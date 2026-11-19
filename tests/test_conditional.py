@@ -342,6 +342,25 @@ class BlockingBaseTest(unittest.TestCase):
 
 
 class ActionTest(unittest.TestCase):
+    def test_push_wall_action_honors_reach_keys_and_disabled_controls(self):
+        disk = synthetic()
+        disk.walls[0].extra = Extra({"tx_id": 129, "trigger_push": 1, "trigger_on": 1})
+        graph = build_graph(disk)
+        def offered(held=Held(), reached={0}):
+            return [a for a in graph.available_actions(held, reached) if a.kind == "use_wall"]
+        self.assertEqual([(a.index, a.channel, a.where) for a in offered()], [(0, 129, 0)])
+        self.assertEqual(offered(reached={2}), [])
+        self.assertEqual(offered(Held(channels=frozenset({129}))), [])
+        for change in ({"locked": 1}, {"trigger_push": 0}, {"trigger_on": 0},
+                       {"tx_id": 0}, {"trigger_once": 1, "is_triggered": 1}):
+            original = dict(disk.walls[0].extra.fields)
+            disk.walls[0].extra.fields.update(change)
+            self.assertEqual(offered(), [], change)
+            disk.walls[0].extra.fields = original
+        disk.walls[0].extra.fields["key"] = 6
+        self.assertEqual(offered(), [])
+        self.assertEqual(len(offered(Held(keys=frozenset({6})))), 1)
+
     def test_shooting_the_crack_opens_the_way_and_says_why(self):
         # From a state where the middle room has already been reached: the
         # crack is behind the keyed door, so with nothing held it opens a way

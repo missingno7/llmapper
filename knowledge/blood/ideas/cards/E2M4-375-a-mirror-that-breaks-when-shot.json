@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 375,
+ "kind": "detail",
+ "title": "A mirror that breaks when shot",
+ "what": "In a parlour, an alcove with a round blue-clothed side table, a vase of dried flowers on it and an oval ornate mirror on the wall above. Shooting the mirror swaps it for a broken-mirror picture and throws glass, with a glass sound. Done with no special code: the mirror is a one-way switch that reacts to bullets and is paired with an invisible gib object. Mirror and vase seen in the tour frame; breaking read from the fields, not watched.",
+ "recipe": "Mirror: wall-aligned sprite tile 710 (ornate oval mirror, 48x56 repeat, about 1.42 bodies tall at 64) as kSwitchOneWay (type 21), trigger_vector=1 (hitscan), trigger_once, cmd 3, tx153, rx154, sound 301 on and off; its next tile 711 is the broken mirror, which the switch shows when toggled. Directly in front of it an invisible kThingObjectGib (type 416, picnum 0, cstat invisible) with trigger_vector, rx153, tx154, data1 1 (glass gib), sound 301. Table: octagonal sector raised 8192 (0.48 body), floor tile 355, shade -12. Vase tile 1013 as kThingObjectGib (data1 1, data2 7) so it can be smashed too.",
+ "use": "The saloon (mirror behind the bar), a theatre dressing room, a barber shop in the arcade of shops. Players shoot mirrors; let them.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E2M4/place_376/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

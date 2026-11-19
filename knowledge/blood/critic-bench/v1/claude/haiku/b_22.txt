@@ -1,0 +1,4 @@
+NAME: Narrow alley beside a machine with a horned skull
+SURE: 4
+FAULT: no
+WHAT: nothing

@@ -1,0 +1,1490 @@
+{
+ "gpt-6-luna": {
+  "b_01": {
+   "name": "Underground train station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_02": {
+   "name": "Industrial kitchen counter",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.5
+  },
+  "b_03": {
+   "name": "Brick building storefront",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_04": {
+   "name": "Gothic church interior",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.7
+  },
+  "b_05": {
+   "name": "Urban bank street",
+   "sure": 2,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_06": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.9
+  },
+  "b_07": {
+   "name": "Two wagon wheels and mechanism",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.0
+  },
+  "b_08": {
+   "name": "Underground station interior",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_09": {
+   "name": "Underground rail tracks",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.8
+  },
+  "b_10": {
+   "name": "Bait shop and wooden pier",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.9
+  },
+  "b_11": {
+   "name": "Train beside a stone alley",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_12": {
+   "name": "Industrial fortress corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.7
+  },
+  "b_13": {
+   "name": "Underground train station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_14": {
+   "name": "Dark cathedral interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.6
+  },
+  "b_15": {
+   "name": "Movie theater entrance",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_16": {
+   "name": "Stone alley and wooden stall",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.0
+  },
+  "b_17": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_18": {
+   "name": "Dark castle alley",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.8
+  },
+  "b_19": {
+   "name": "Stone tavern interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.7
+  },
+  "b_20": {
+   "name": "Underground wooden structure",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_21": {
+   "name": "Stone dungeon crypt",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_22": {
+   "name": "Stone fortress corridor",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.5
+  },
+  "b_23": {
+   "name": "Dungeon bar",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.6
+  }
+ },
+ "gpt-6.1-terra": {
+  "b_01": {
+   "name": "Railway station platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_02": {
+   "name": "Industrial kitchen",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_03": {
+   "name": "Station exterior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_04": {
+   "name": "Memorial room",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.0
+  },
+  "b_05": {
+   "name": "City street facade",
+   "sure": 4,
+   "fault": true,
+   "what": "The station sign is upside down.",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_06": {
+   "name": "Wooden hallway",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_07": {
+   "name": "Steam locomotive wheels",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_08": {
+   "name": "Brick room with counters",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.0
+  },
+  "b_09": {
+   "name": "Railway tracks beside platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_10": {
+   "name": "Wooden pier",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.6
+  },
+  "b_11": {
+   "name": "Cobblestone alley beside train",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.2
+  },
+  "b_12": {
+   "name": "Industrial courtyard machinery",
+   "sure": 2,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_13": {
+   "name": "Underground railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.6
+  },
+  "b_14": {
+   "name": "Church interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.7
+  },
+  "b_15": {
+   "name": "Cinema auditorium with gargoyle",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.8
+  },
+  "b_16": {
+   "name": "Train station platform",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_17": {
+   "name": "Wooden hallway",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_18": {
+   "name": "Industrial courtyard",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.0
+  },
+  "b_19": {
+   "name": "Tavern interior",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.7
+  },
+  "b_20": {
+   "name": "Wooden platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_21": {
+   "name": "Stone chamber",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_22": {
+   "name": "Industrial walkway and machinery",
+   "sure": 2,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.8
+  },
+  "b_23": {
+   "name": "Bar with hooded figures",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.8
+  }
+ },
+ "gpt-6.2-sol": {
+  "b_01": {
+   "name": "Subway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.1
+  },
+  "b_02": {
+   "name": "Kitchen serving counter",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.9
+  },
+  "b_03": {
+   "name": "Station entrance",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.3
+  },
+  "b_04": {
+   "name": "Funeral chapel",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_05": {
+   "name": "City street",
+   "sure": 5,
+   "fault": true,
+   "what": "The green storefront lettering is upside down.",
+   "ok": true,
+   "seconds": 4.9
+  },
+  "b_06": {
+   "name": "Wood-paneled corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_07": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": true,
+   "what": "The locomotive\u2019s wheels sit against a solid wall, with no rails beneath them.",
+   "ok": true,
+   "seconds": 4.5
+  },
+  "b_08": {
+   "name": "Brick-walled lobby",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_09": {
+   "name": "Railway tracks beside a platform",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_10": {
+   "name": "Waterfront pier and bait shop",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_11": {
+   "name": "Passage beside a train",
+   "sure": 4,
+   "fault": true,
+   "what": "The train\u2019s wheels sit on cobblestones with no rails.",
+   "ok": true,
+   "seconds": 4.8
+  },
+  "b_12": {
+   "name": "Railroad quay",
+   "sure": 4,
+   "fault": true,
+   "what": "The railcar is upside down, with its wheels pointing up.",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_13": {
+   "name": "Railway tracks and platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_14": {
+   "name": "Chapel with pews and altar",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.5
+  },
+  "b_15": {
+   "name": "Movie theater",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 11.5
+  },
+  "b_16": {
+   "name": "Railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 13.0
+  },
+  "b_17": {
+   "name": "Narrow wood-paneled hallway",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 12.2
+  },
+  "b_18": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 15.2
+  },
+  "b_19": {
+   "name": "Tavern",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 13.4
+  },
+  "b_20": {
+   "name": "Beneath a wooden platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 11.9
+  },
+  "b_21": {
+   "name": "Stone crypt with sarcophagi",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 12.6
+  },
+  "b_22": {
+   "name": "Steam locomotive in a rail yard",
+   "sure": 5,
+   "fault": true,
+   "what": "The barrels on the left hang in midair.",
+   "ok": true,
+   "seconds": 12.2
+  },
+  "b_23": {
+   "name": "Bar interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 13.0
+  }
+ },
+ "claude-haiku": {
+  "b_01": {
+   "name": "dim brick corridor with shop counters and a central strip",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_02": {
+   "name": "kitchen with stove, pots and pans",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_03": {
+   "name": "Street with a brick station building",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_04": {
+   "name": "Memorial wreath beside a pew-lined room",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_05": {
+   "name": "Street between brick and stone building facades",
+   "sure": 2,
+   "fault": true,
+   "what": "Green lettering on the upper sign is mirrored or rotated, so the sign text is laid the wrong way round.",
+   "ok": true,
+   "seconds": null
+  },
+  "b_06": {
+   "name": "Long shop corridor with hanging cloth and crates",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_07": {
+   "name": "Wheeled wagon beside a burning street",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_08": {
+   "name": "Brick hall with wooden counters and posters",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_09": {
+   "name": "Narrow street with rail tracks at night",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_10": {
+   "name": "Night waterfront boardwalk with BAIT and Phantom shopfronts",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_11": {
+   "name": "narrow cobbled alley beside a green-faced building",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_12": {
+   "name": "Alley with industrial pipe, valve wheels and ram skull",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_13": {
+   "name": "Tram rails along a cobbled street by a shopfront",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_14": {
+   "name": "church interior with pews and altar",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_15": {
+   "name": "winged gargoyle monster beside a \"Blood the Movie\" poster",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_16": {
+   "name": "street with shopfront and green planter",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_17": {
+   "name": "Long hallway with carpet, curtains and wooden chair",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_18": {
+   "name": "Alley beside a machine housing with a ram skull",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_19": {
+   "name": "Tavern dining room with tables and bar",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_20": {
+   "name": "Timber-framed hall with wooden posts and railings",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_21": {
+   "name": "stone crypt with sarcophagi and a pillar",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_22": {
+   "name": "Narrow alley beside a machine with a horned skull",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_23": {
+   "name": "Bar room with two robed figures",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  }
+ },
+ "claude-sonnet": {
+  "b_01": {
+   "name": "Train station platform with tracks",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_02": {
+   "name": "Kitchen with stove and hanging pans",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_03": {
+   "name": "Brick station shopfront on city street",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_04": {
+   "name": "Funeral parlor with memorial wreath sign",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_05": {
+   "name": "City street with station sign",
+   "sure": 5,
+   "fault": true,
+   "what": "The green \"STATION\" sign on the brick building is upside down and mirrored.",
+   "ok": true,
+   "seconds": null
+  },
+  "b_06": {
+   "name": "Wooden hallway with curtains and tables",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_07": {
+   "name": "Locomotive wheels beside burning street",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_08": {
+   "name": "Brick hall with wooden counters",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_09": {
+   "name": "Railway track beside brick wall",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_10": {
+   "name": "Night wooden pier with bait shop",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_11": {
+   "name": "Cobblestone alley between building walls",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_12": {
+   "name": "Alley with steam engine machinery",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_13": {
+   "name": "Train tracks beside a station platform",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_14": {
+   "name": "Church interior with pews and altar",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_15": {
+   "name": "Movie theatre with gargoyle and poster",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_16": {
+   "name": "Train station platform with tracks",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_17": {
+   "name": "Curtained wooden corridor with carpet",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_18": {
+   "name": "Alley with steam locomotive and gargoyle",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_19": {
+   "name": "Tavern with bar, tables and chairs",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_20": {
+   "name": "Wooden-beamed hall with stone floor",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_21": {
+   "name": "Crypt with stone sarcophagi",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_22": {
+   "name": "Stone alley with furnace and gargoyle",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  },
+  "b_23": {
+   "name": "Bar with stools and cultists",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": null
+  }
+ },
+ "gpt-6.2-sol@high": {
+  "b_01": {
+   "name": "Underground train station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 17.8
+  },
+  "b_02": {
+   "name": "Industrial kitchen",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 11.5
+  },
+  "b_03": {
+   "name": "Station exterior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.0
+  },
+  "b_04": {
+   "name": "Funeral chapel",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 13.7
+  },
+  "b_05": {
+   "name": "City street",
+   "sure": 5,
+   "fault": true,
+   "what": "The green sign above the windows is upside down.",
+   "ok": true,
+   "seconds": 9.9
+  },
+  "b_06": {
+   "name": "Wood-paneled corridor",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.8
+  },
+  "b_07": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 13.4
+  },
+  "b_08": {
+   "name": "Brick waiting room with benches",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 11.6
+  },
+  "b_09": {
+   "name": "Railway tracks beside a platform",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.2
+  },
+  "b_10": {
+   "name": "Pier beside a bait shop",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.6
+  },
+  "b_11": {
+   "name": "Train beside a stone wall",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 10.2
+  },
+  "b_12": {
+   "name": "Railway locomotive",
+   "sure": 4,
+   "fault": true,
+   "what": "The locomotive\u2019s wheels and drive rods sit above its body, off the rails.",
+   "ok": true,
+   "seconds": 10.8
+  },
+  "b_13": {
+   "name": "Railway tracks beside a train",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 14.1
+  },
+  "b_14": {
+   "name": "Funeral chapel",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 11.8
+  },
+  "b_15": {
+   "name": "Movie theater",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 16.6
+  },
+  "b_16": {
+   "name": "Subway station",
+   "sure": 4,
+   "fault": true,
+   "what": "The rails run across the corridor, perpendicular to the train and tunnel.",
+   "ok": true,
+   "seconds": 15.1
+  },
+  "b_17": {
+   "name": "Wood-paneled hallway",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 6.6
+  },
+  "b_18": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 12.9
+  },
+  "b_19": {
+   "name": "Tavern interior",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.9
+  },
+  "b_20": {
+   "name": "Under a wooden dock",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.3
+  },
+  "b_21": {
+   "name": "Stone crypt with sarcophagi",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 6.7
+  },
+  "b_22": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": true,
+   "what": "Barrels along the left passage float above the ground.",
+   "ok": true,
+   "seconds": 10.6
+  },
+  "b_23": {
+   "name": "Bar interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.8
+  }
+ },
+ "gpt-6.1-terra@high": {
+  "b_01": {
+   "name": "Underground railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_02": {
+   "name": "Industrial kitchen",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_03": {
+   "name": "Station exterior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_04": {
+   "name": "Memorial wreath",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_05": {
+   "name": "Station exterior",
+   "sure": 5,
+   "fault": true,
+   "what": "The station sign is upside down.",
+   "ok": true,
+   "seconds": 5.5
+  },
+  "b_06": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_07": {
+   "name": "Train car",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_08": {
+   "name": "Brick room with counter",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.4
+  },
+  "b_09": {
+   "name": "Railway tracks",
+   "sure": 5,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_10": {
+   "name": "Wooden pier",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_11": {
+   "name": "Alley beside a train",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_12": {
+   "name": "Industrial machinery",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_13": {
+   "name": "Underground railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.9
+  },
+  "b_14": {
+   "name": "Church interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_15": {
+   "name": "Movie theater with gargoyle",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.6
+  },
+  "b_16": {
+   "name": "Railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.4
+  },
+  "b_17": {
+   "name": "Wooden hallway",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  },
+  "b_18": {
+   "name": "Steam locomotive",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.1
+  },
+  "b_19": {
+   "name": "Tavern",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.3
+  },
+  "b_20": {
+   "name": "Wooden dock over water",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.8
+  },
+  "b_21": {
+   "name": "Stone burial chamber",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.2
+  },
+  "b_22": {
+   "name": "Industrial locomotive",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.3
+  },
+  "b_23": {
+   "name": "Bar interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.2
+  }
+ },
+ "gpt-6-luna@high": {
+  "b_01": {
+   "name": "Railway station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 6.2
+  },
+  "b_02": {
+   "name": "Industrial kitchen",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.2
+  },
+  "b_03": {
+   "name": "City street storefront",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 4.9
+  },
+  "b_04": {
+   "name": "Church interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.0
+  },
+  "b_05": {
+   "name": "Brick city street",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 3.7
+  },
+  "b_06": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 6.3
+  },
+  "b_07": {
+   "name": "Rusty railcar",
+   "sure": 4,
+   "fault": true,
+   "what": "The railcar\u2019s wheels hang above the ground.",
+   "ok": true,
+   "seconds": 12.9
+  },
+  "b_08": {
+   "name": "Brick interior hall",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 8.1
+  },
+  "b_09": {
+   "name": "Railroad tracks beside a wall",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.2
+  },
+  "b_10": {
+   "name": "Railroad tracks by bait shop",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.4
+  },
+  "b_11": {
+   "name": "Train car beside alley",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.3
+  },
+  "b_12": {
+   "name": "Industrial alley",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 7.5
+  },
+  "b_13": {
+   "name": "Railway tracks and station",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 17.3
+  },
+  "b_14": {
+   "name": "Dark chapel interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.8
+  },
+  "b_15": {
+   "name": "Movie theater lobby",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 5.4
+  },
+  "b_16": {
+   "name": "Stone alley market",
+   "sure": 3,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 18.8
+  },
+  "b_17": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 14.9
+  },
+  "b_18": {
+   "name": "industrial stone alley",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 14.3
+  },
+  "b_19": {
+   "name": "Tavern interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 15.7
+  },
+  "b_20": {
+   "name": "Wooden structure underside",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 12.9
+  },
+  "b_21": {
+   "name": "Stone tomb room",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 14.7
+  },
+  "b_22": {
+   "name": "Gothic industrial alley",
+   "sure": 4,
+   "fault": true,
+   "what": "Barrels appear to float above the walkway.",
+   "ok": true,
+   "seconds": 15.3
+  },
+  "b_23": {
+   "name": "Tavern interior",
+   "sure": 4,
+   "fault": false,
+   "what": "nothing",
+   "ok": true,
+   "seconds": 16.2
+  }
+ }
+}

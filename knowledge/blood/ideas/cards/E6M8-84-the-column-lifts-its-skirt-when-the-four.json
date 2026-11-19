@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 84,
+ "kind": "mechanism",
+ "title": "The column lifts its skirt when the four beasts fall",
+ "what": "In the round hall at the centre of the map a dark carved octagonal block 6.7 m across stands floor to ceiling (seen in my frame with the sector at its load state). It is a ring sector around a slimmer grey core. When the four Beast Cultists posted on the hexagonal apron outside are all dead, the block's lower part rises 2.66 bodies into the ceiling and exposes the grey core, which carries the horned level-exit switch. The exit is literally inside the thing the whole arena circles, and nothing about it says 'door' until it opens. Note: the tour frames show it already open, because the map stores the on geometry and the renderer does not apply trInit.",
+ "recipe": "Core: solid octagon 2816 units across (4.95 m), walls tile 89. Ring sector around it (outer octagon 3840 across, 6.7 m), walls tile 93 both faces, floor/ceiling tile 416, type 600 kSectorZMotion, rx 113, off_ceiling_z = floor z (closed, reads as a solid block), on_ceiling_z = floor minus 45056 (2.66 bodies), busy_time 160, trigger_once. Exit switch: wall sprite tile 318 (horned emblem), type 20, tx 4 (kChannelLevelExitNormal), push trigger, dude_lockout, on the core's face 0.12 bodies up. Counting: each of 4 kDudeCultistBeast (type 249, tile 2825 pal 12) has tx 112 cmd 1 on death; three kSwitchCombo sprites (type 22) rx 112 tx 113 with data_2 goal 4/3/2, split by launch_skill so easier skills need fewer kills. Hall around it: 12-sided room 8192 across (14.4 m), ceiling 3.08 bodies.",
+ "use": "St Gallow's church: the altar block in the crossing rises when the four cultist wardens in the side chapels die, exposing the crypt key or the exit lever. Also a pump-station central manifold that lifts once all the guards are down.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e6m8_e/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

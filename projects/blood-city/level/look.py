@@ -56,6 +56,156 @@ POSE_SETS = {
         "monument_side": (23.0, 47.5, 26.0, 45.0, LEVEL,
                           "from the plaza's west side"),
     },
+    #: the owner, 2026-11-18: "Ship in a harbour is just a wooden rectangle,
+    #: water should end with sky"
+    #: the owner, 2026-11-18: "I would add these stained window glass
+    #: decorative sprites also inside ... to have a feeling that you are
+    #: really inside that church"
+    "church_in": {
+        "nave_north": (28.75, 29.5, 28.75, 23.0, LEVEL, "up the nave to the chancel"),
+        "nave_east": (28.0, 27.0, 30.0, 27.4, UP, "the nave's east wall and clerestory"),
+        "nave_west": (29.6, 26.5, 27.5, 27.0, UP, "the nave's west side over the aisle"),
+        "apse": (29.4, 24.5, 29.4, 22.0, LEVEL, "the apse and its three lights"),
+        "narthex": (30.9, 28.6, 32.3, 28.6, LEVEL, "the narthex's street wall"),
+    },
+    "crypt": {
+        "antechamber": (30.3, 25.4, 31.2, 26.3, LEVEL, "the antechamber: the slab in its east wall"),
+        "from_lift": (31.0, 26.5, 29.4, 29.0, LEVEL, "the crypt from where the slab lands", 61440),
+        "sarcophagus": (28.2, 28.0, 29.6, 28.8, LEVEL, "the sarcophagus from the west aisle", 61440),
+        "lid": (29.5, 29.6, 29.5, 28.0, DOWN, "down onto the lid from its foot", 61440),
+        "plaques": (30.9, 27.2, 27.5, 29.0, LEVEL, "the west wall: plaques and cobwebs", 61440),
+        "back": (27.8, 29.8, 31.2, 26.8, LEVEL, "the crypt from its far corner", 61440),
+        "fuse": (30.9, 26.6, 31.0, 30.0, LEVEL, "down the east aisle: the barrels", 61440),
+    },
+    #: the owner, 2026-11-18: "We should have more windows in buildings
+    #: around the city"
+    "windows": {
+        "theatre_out": (22.5, 1.6, 22.5, 4.0, LEVEL, "the auditorium's window from the street"),
+        "theatre_in": (22.5, 5.6, 22.5, 3.0, LEVEL, "the same window from inside the auditorium"),
+        "saloon_out": (1.6, 7.0, 4.0, 7.0, LEVEL, "the saloon back room's barred window from the street"),
+        "saloon_in": (5.4, 7.0, 3.0, 7.0, LEVEL, "the same bars from inside"),
+        "market_out": (1.8, 42.75, 3.5, 42.75, LEVEL, "the supermarket's window from the street"),
+        "market_in": (5.2, 42.75, 3.0, 42.75, LEVEL, "the same window from inside"),
+    },
+    #: Gravesend Station, behind the north wall (floors: street 8192, hall
+    #: and platform -12288)
+    "railway": {
+        "street_door": (16.9, 2.6, 14.4, -0.8, LEVEL, "the station's door and name from the street"),
+        "hall": (17.6, -8.6, 9.5, -12.5, LEVEL, "the booking hall from the stair head", -12288),
+        "office": (10.4, -12.0, 7.0, -12.3, LEVEL, "the booking window and its clerk", -12288),
+        "gates": (13.0, -9.2, 13.0, -16.0, LEVEL, "through the gates to the carriage", -12288),
+        "carriage": (20.5, -15.4, 13.5, -16.6, LEVEL, "the carriage along the platform", -12288),
+        "locomotive": (21.0, -14.9, 26.5, -17.4, LEVEL, "the locomotive from the platform's east end", -12288),
+        "car_door": (15.9, -14.8, 14.8, -16.6, LEVEL, "the carriage's door from the platform", -12288),
+        "balcony": (27.6, -14.0, 25.4, -17.4, LEVEL, "the engine from the signal box's balcony", -32768),
+        "signal_box": (27.6, -13.2, 27.6, -11.4, LEVEL, "the signal box and its lever", -32768),
+        "signal_stair": (22.6, -13.4, 26.6, -13.0, LEVEL, "the stair up to the signal box", -12288),
+        "waiting": (18.6, -10.8, 21.8, -13.2, LEVEL, "the waiting room", -12288),
+        "tunnel_gate": (26.5, -21.8, 31.0, -20.6, LEVEL, "the gate in the tunnel's mouth", 2048),
+        "goods": (38.6, -20.2, 43.0, -22.5, LEVEL, "the goods store", 2048),
+        "nose": (28.6, -14.8, 25.0, -17.4, LEVEL, "the locomotive from ahead of it", -12288),
+        "far_track": (7.0, -15.3, 14.0, -22.0, LEVEL, "the tracks from the platform's west end", -12288),
+        "from_track": (4.5, -21.5, 14.0, -18.0, LEVEL, "the train from down on the track", 2048),
+        "inside": (10.6, -17.0, 19.5, -17.2, LEVEL, "inside the carriage", -12288),
+    },
+    #: ONE THING PER VIEW, for `tools.critique things`: a reader who is
+    #: told nothing names what each shows, and the name is held against
+    #: what it was built to be (knowledge/blood/studies/station/things.json)
+    "railway_things": {
+        "t_engine_side": (21.0, -14.9, 26.5, -17.4, LEVEL, "thing", -12288),
+        "t_engine_nose": (28.6, -14.8, 25.0, -17.4, LEVEL, "thing", -12288),
+        "t_car_door": (15.9, -14.8, 14.8, -16.6, LEVEL, "thing", -12288),
+        "t_car_side": (12.6, -14.9, 12.4, -16.6, LEVEL, "thing", -12288),
+        "t_car_inside": (10.6, -17.0, 19.5, -17.2, LEVEL, "thing", -12288),
+        "t_track": (4.5, -21.5, 14.0, -18.0, LEVEL, "thing", 2048),
+        "t_tunnel": (33.0, -20.5, 37.5, -20.5, LEVEL, "thing", 2048),
+        "t_bench": (11.0, -13.4, 11.0, -11.7, LEVEL, "thing", -12288),
+        "t_waiting": (18.6, -10.8, 21.8, -13.2, LEVEL, "thing", -12288),
+        "t_gate": (26.5, -21.8, 31.0, -20.6, LEVEL, "thing", 2048),
+        "t_goods": (38.6, -20.2, 43.0, -22.5, LEVEL, "thing", 2048),
+        "t_balcony": (24.0, -15.6, 28.0, -14.3, LEVEL, "thing", -12288),
+        "t_ticket": (10.4, -12.0, 7.0, -12.3, LEVEL, "thing", -12288),
+        "t_gates": (11.2, -12.6, 10.4, -14.6, LEVEL, "thing", -12288),
+        "t_hall": (17.6, -8.6, 9.5, -12.5, LEVEL, "thing", -12288),
+    },
+    "saloon": {
+        "bar": (9.4, 12.4, 6.5, 9.5, LEVEL, "the saloon from its south-east corner: the bar"),
+        "along": (4.6, 10.6, 9.5, 10.2, LEVEL, "along the stools"),
+    },
+    "house": {
+        "to_stage": (25.4, 7.5, 19.5, 7.5, LEVEL, "the auditorium toward the stage"),
+        "up": (24.5, 9.5, 20.0, 6.0, UP, "the height of the house"),
+    },
+    "sea_ends": {
+        "east_end": (46.0, 55.0, 52.0, 58.0, LEVEL, "the quay's east end: the headland"),
+        "west_end": (10.0, 55.0, 4.5, 58.0, LEVEL, "the quay's west end: the headland"),
+        "out": (30.0, 55.2, 41.0, 66.0, LEVEL, "out to the skerry"),
+        "piles": (22.0, 55.2, 26.0, 60.0, LEVEL, "the jetty from the quay"),
+        "jetty_end": (25.5, 60.5, 22.0, 57.0, LEVEL, "back along the jetty to the ship and the town"),
+    },
+    #: the owner's walk of 2026-11-19 (second): the jetty, the ship's
+    #: crates, the flanks over the rock, the hall's back door
+    "walk_1119": {
+        "jetty": (25.5, 54.6, 25.5, 60.0, DOWN, "along the jetty from the quay"),
+        "crates": (18.6, 58.4, 20.6, 58.4, LEVEL, "the crates on the ship's deck", 1024),
+        "window_in": (8.0, 44.0, 14.0, 42.5, LEVEL, "the hall's display windows from inside"),
+        "window_side": (7.0, 43.0, 7.0, 40.0, LEVEL, "the hall's side gallery from inside"),
+        "mall_niche": (45.0, 45.0, 45.0, 41.0, LEVEL, "a shop unit's back wall"),
+        "flank_east": (44.0, 55.0, 52.0, 59.0, LEVEL, "the building over the east headland"),
+        "flank_west": (12.0, 55.0, 4.0, 59.0, LEVEL, "the building over the west headland"),
+        "back_door": (7.6, 52.6, 7.0, 50.0, LEVEL, "the market hall's back door"),
+        "back_door_side": (10.5, 51.2, 7.0, 50.0, LEVEL, "the back door along its wall"),
+        "wheels_far": (25.0, -21.0, 25.4, -17.6, LEVEL, "the locomotive's far side", 2048),
+        "rail": (24.0, -15.6, 28.0, -14.3, LEVEL, "the balcony's railing", -12288),
+    },
+    "harbour": {
+        "ship_from_quay": (15.0, 55.0, 19.0, 58.5, LEVEL,
+                           "from the boards, the ship's stern quarter"),
+        "ship_bow": (27.0, 55.0, 22.0, 58.5, LEVEL,
+                     "from the boards east of it, the bow"),
+        "horizon_south": (34.0, 55.0, 34.0, 70.0, LEVEL,
+                          "from the boards, straight out to sea"),
+        "horizon_east": (40.0, 55.0, 53.0, 60.0, LEVEL,
+                         "from the boards, where the east wall was"),
+        "from_water": (26.0, 59.0, 20.0, 58.5, LEVEL,
+                       "standing in the slip, the hull over you"),
+        "quay_from_sea": (30.0, 63.0, 30.0, 54.0, LEVEL,
+                          "from the water, back at the town"),
+    },
+    #: the owner, 2026-11-18: "some of the lower walls around city have
+    #: building textures and the things that should probably be buildings
+    #: have wall textures"
+    "edges": {
+        "avenue_end": (35.0, 8.0, 35.0, -2.0, LEVEL, "the avenue's north end wall"),
+        "row_end": (8.0, 16.5, -2.0, 16.5, LEVEL, "Theatre Row's west end wall"),
+        "west_lane": (1.5, 26.0, 1.5, 4.0, LEVEL, "the west perimeter lane"),
+        "north_lane": (16.0, 1.5, 30.0, 1.5, LEVEL, "the north perimeter lane"),
+        "east_lane": (57.0, 30.0, 57.0, 6.0, LEVEL, "the east perimeter lane"),
+        "market_east_end": (50.0, 38.5, 60.0, 38.5, LEVEL, "market street's east end"),
+    },
+    #: the owner, 2026-11-18: "In the shops shelves aren't sometimes aligned
+    #: with textures ... pawn shop could be rethinked a bit"
+    "shelves": {
+        "unit_b_close": (45.0, 43.0, 45.0, 41.0, LEVEL, "the apothecary's shelf, square on"),
+        "unit_c_close": (48.0, 43.0, 48.0, 41.0, LEVEL, "the ironmonger's shelf, square on"),
+        "unit_e_close": (45.0, 47.0, 45.0, 49.0, LEVEL, "the bookseller's shelf, square on"),
+        "saloon_shelf": (7.6, 10.9, 10.2, 9.4, LEVEL, "along the bar to the east wall"),
+        "pawn_west": (31.0, 4.9, 27.2, 4.9, LEVEL, "the pawn shop, to its west wall"),
+        "pawn_east": (28.5, 4.9, 32.5, 4.9, LEVEL, "the pawn shop, to its east wall"),
+        "pawn_north": (30.0, 5.6, 30.0, 3.0, LEVEL, "the pawn shop, to its window"),
+        "pawn_south": (30.0, 4.2, 30.0, 7.0, LEVEL, "the pawn shop, to its back"),
+    },
+    #: the owner, 2026-11-18: "Pump station interior is a bit small, we can
+    #: make it as a big technical building with conveyor belts and heavy
+    #: machinery"
+    "machines": {
+        "from_gallery": (47.3, 6.6, 42.0, 8.0, LEVEL, "entering the hall from the gallery"),
+        "consoles": (41.8, 8.2, 40.0, 7.2, LEVEL, "the console alcove in the west wall"),
+        "belt": (46.9, 11.0, 42.0, 9.5, LEVEL, "along the belt from the south-east corner"),
+        "tanks": (43.5, 8.3, 42.0, 5.5, LEVEL, "the settling basin in the north bay"),
+        "north_wall": (46.8, 13.6, 42.0, 5.0, UP, "the whole hall from the south bay"),
+        "east_wall": (40.5, 4.0, 47.0, 13.0, LEVEL, "the hall's length from the north bay"),
+    },
     "pilot": {
         "spur_street": (55.5, 26, 55.5, 16, LEVEL, "the rail spur, facing the yard"),
         "yard": (51.5, 19.5, 55.5, 19.5, LEVEL, "in the works yard, facing the spur"),
@@ -432,7 +582,68 @@ POSE_SETS = {
 GRADE_Z = 8192
 
 
-def sector_at(level, x: int, y: int) -> int | None:
+#: What the GAME never draws. The owner, 2026-11-18, on frames of E1M1's
+#: crypt full of numbered red flags and of ours with orange streaks in the
+#: wall: "When you are viewing the level look you should be hiding these
+#: control things which are normally invisible like player starts, stack
+#: markers, sounds, etc."
+#:
+#: The engine's own list, not a guess: player starts and every marker
+#: (types 1-19: the starts are taken into the start zones and deleted,
+#: links and stacks get the invisible bit in warp.cpp:113-133, statnum 10
+#: is culled at load); generators and sound sprites (700-712:
+#: `InitGenerator`, triggers.cpp:2362); the exploder (459: actor.cpp:2507);
+#: and anything launched only outside single player (blood.cpp:700).
+HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
+HIDDEN_STATUS = {10}
+#: WHO AND WHAT IS IN A ROOM IS NOT THE ROOM. The owner, 2026-11-18: "you
+#: also should be able to check how it looks like without enemies and
+#: pickups for example to get rid of visual noise." A cultist in the
+#: middle of a frame is what a reader looks at, and a reader praised or
+#: blamed a hall for the zombie standing in it. `as_played(..., empty=True)`
+#: also hides the dudes (200-254), the weapons (40-51), the ammunition
+#: (60-81) and the items and keys (100-149): nblood's kDudeBase..kDudeMax,
+#: kItemWeaponBase, kItemAmmoBase and kItemBase ranges. Bodies, barrels,
+#: lamps and every other decoration (type 0) stay: they ARE the room.
+EMPTY_TYPES = (set(range(200, 255)) | set(range(40, 52))
+               | set(range(60, 82)) | set(range(100, 150)))
+
+
+def as_played(map_path, out_dir, empty: bool = False) -> pathlib.Path:
+    """A copy of the map with the game's invisible things made invisible.
+
+    A frame is evidence of what a player sees. A reviewer shown a start
+    flag or a charge takes it for part of the room -- one read the
+    exploders in the crypt wall as "orange sparks coming out of a crack".
+    """
+    from bloodmap.format import write_map
+
+    disk = read_map(map_path)
+    hidden = emptied = 0
+    for sprite in disk.sprites:
+        f = sprite.fields
+        extra = getattr(getattr(sprite, "extra", None), "fields", None) or {}
+        if empty and int(f.get("type", 0)) in EMPTY_TYPES:
+            if not int(f["cstat"]) & 32768:
+                f["cstat"] = int(f["cstat"]) | 32768
+                emptied += 1
+            continue
+        if (int(f.get("type", 0)) in HIDDEN_TYPES
+                or int(f.get("status", 0)) in HIDDEN_STATUS
+                or int(extra.get("launch_single", 0))):
+            if not int(f["cstat"]) & 32768:
+                f["cstat"] = int(f["cstat"]) | 32768
+                hidden += 1
+    out = pathlib.Path(out_dir) / ("as-empty.MAP" if empty
+                                   else "as-played.MAP")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    write_map(disk, out)
+    print(f"as played: {hidden} control sprites hidden"
+          + (f"; emptied of {emptied} enemies and pickups" if empty else ""))
+    return out
+
+
+def sector_at(level, x: int, y: int, near: int | None = None) -> int | None:
     """The sector at a point -- the one a person would be standing in.
 
     `_contains` handles outer loops and carved holes.  (The old observer
@@ -455,14 +666,18 @@ def sector_at(level, x: int, y: int) -> int | None:
         sector = level.sectors[sector_id]
         fields = sector["fields"] if isinstance(sector, dict) else sector.fields
         return int(fields["floor_z"])
-    return min(hits, key=lambda sector_id: abs(floor(sector_id) - GRADE_Z))
+    want = GRADE_Z if near is None else near
+    return min(hits, key=lambda sector_id: abs(floor(sector_id) - want))
 
 
 def poses_for(level, name: str) -> list[Viewpoint]:
     out = []
-    for view_id, (px, py, tx, ty, horiz, note) in POSE_SETS[name].items():
+    for view_id, pose in POSE_SETS[name].items():
+        #: an optional seventh item names the floor the pose stands on, for
+        #: a place under or over the street (the crypt, the sewer)
+        px, py, tx, ty, horiz, note = pose[:6]
         x, y = int(px * PU), int(py * PU)
-        sector = sector_at(level, x, y)
+        sector = sector_at(level, x, y, pose[6] if len(pose) > 6 else None)
         if sector is None:
             print(f"  ! {view_id}: no sector at ({x},{y}) -- pose skipped")
             continue
@@ -503,6 +718,8 @@ def main(argv=None) -> int:
     parser.add_argument("--sectors", default="", help="reference sector ids")
     parser.add_argument("--tag", default="latest")
     parser.add_argument("-o", "--out", default=None)
+    parser.add_argument("--empty", action="store_true",
+                        help="hide enemies and pickups too: the place alone")
     args = parser.parse_args(argv)
 
     map_path = (corpus_map_path(args.ref) if args.ref
@@ -520,7 +737,8 @@ def main(argv=None) -> int:
     out_dir = pathlib.Path(args.out or (PROJECT / "reports" / "looks" / args.tag))
     out_dir.mkdir(parents=True, exist_ok=True)
     manifest = run_observation(ObservationRequest(
-        map_path=map_path, output_dir=out_dir,
+        map_path=as_played(map_path, out_dir, empty=args.empty),
+        output_dir=out_dir,
         resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
         width=640, height=480, screenshots=[v.view_id for v in views],
         brightness=0, rff=None))

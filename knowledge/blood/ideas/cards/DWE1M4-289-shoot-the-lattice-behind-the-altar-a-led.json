@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 289,
+ "kind": "secret",
+ "title": "Shoot the lattice behind the altar: a ledge over a starry void",
+ "what": "Behind a church's altar the back wall has a strip of wooden lattice screens at chest height (a sill about 0.9 body up, an opening 1.2 bodies tall). They look like decoration, but bullets break them. Beyond is a narrow sloping ledge (the secret, with super armour on it) that hangs over a black void 22 bodies deep, in which dozens of soft red glowing orbs float at every height. The church you were standing in turns out to sit on the edge of nothing. Seen in my own frames: from inside the church the orbs show faintly through the lattice; from the ledge they fill the view.",
+ "recipe": "Window slot: 3 thin sectors (271, 273, 274), 256 units deep, 9000 units long in all, floor 0.9 body above the church floor, ceiling 1.2 bodies above that, walls tile 253. On the void side each slot wall is a masked wall, overpicnum 263 (brown wooden lattice, 32x32 px), cstat 209 (blocking, masked), type 511 kWallGib, trigger_vector, data 12, so gunfire breaks it. Ledge 289: 9200 x 2000 units, sloped floor (heinum 256) of light marble 2490, sky-less ceiling, XSECTOR trigger_enter, trigger_once, tx 2 (kChannelSecretFound) cmd 64; kItemArmorSuper (type 144, tile 2594) on it. Void 290: floor 22 bodies below the ledge, walls 2490, filled with 22 orb pairs (see the glowing-orb card).",
+ "use": "Behind the church's altar screen or the theatre's back-stage scenery flat: a lattice you shoot through to find the building backs onto an abyss, the harbour's dark water, or the city's sky. The secret is hinted by the orbs glimpsed through the holes.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_void/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

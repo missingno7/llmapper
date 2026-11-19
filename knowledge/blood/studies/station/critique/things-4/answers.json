@@ -1,0 +1,156 @@
+{
+ "gpt-6.2-sol": {
+  "q_01": {
+   "name": "Brick-Walled Railway Cutting",
+   "sure": 5,
+   "why": "Steel rails and wooden sleepers run between tall brick walls under an open sky.",
+   "odd": "The far end is very dark, and the wall signs are hard to read.",
+   "seconds": 5.9,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Train station",
+   "sure": 5,
+   "why": "Two sets of tracks run beside a green-striped train and a covered platform.",
+   "odd": "The platform interior is too dark to make out clearly.",
+   "seconds": 5.9,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Brick-walled industrial walkway",
+   "sure": 4,
+   "why": "A gray tiled walkway runs beside red brick walls, with metal machinery visible below on the left.",
+   "odd": "The dark recess in the right wall is hard to make out.",
+   "seconds": 6.2,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Crate storage room",
+   "sure": 5,
+   "why": "Three wooden crates sit on a stone-tiled floor beneath a plank ceiling.",
+   "odd": "Dim lighting obscures some wall detail.",
+   "seconds": 5.4,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Dining room",
+   "sure": 4,
+   "why": "Two high-backed chairs flank a wooden table, with a grandfather clock against the back wall.",
+   "odd": "The small framed picture is too dark to make out.",
+   "seconds": 6.5,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Industrial station interior",
+   "sure": 4,
+   "why": "Brick walls, riveted steel columns, wooden counters, and a tiled floor frame a long room.",
+   "odd": "Deep shadows make the far wall and doorways hard to read.",
+   "seconds": 5.8,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Bar interior",
+   "sure": 5,
+   "why": "Bottles sit on a wooden counter beside red stools, with small tables along the back wall.",
+   "odd": "Two hooded figures appear to overlap beside a stool.",
+   "seconds": 7.6,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Wood-paneled corridor",
+   "sure": 5,
+   "why": "Wood-paneled walls, ceiling beams, and patterned carpet frame a narrow passage.",
+   "odd": "The hanging strips along the walls are hard to identify.",
+   "seconds": 6.7,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Brick Wall With Barred Window",
+   "sure": 5,
+   "why": "A red brick wall frames an open doorway and a recessed window with iron bars.",
+   "odd": "The small symbol on the wall panel is hard to identify.",
+   "seconds": 7.3,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Storage room",
+   "sure": 5,
+   "why": "Wooden crates and a barrel sit against the walls of a dim, enclosed room.",
+   "odd": "A wide black border surrounds the small view, and the bottom edge is barely readable.",
+   "seconds": 5.6,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Brick-walled train platform",
+   "sure": 4,
+   "why": "A locomotive with a smokestack and red wheels sits beside a stone walkway with a barrel.",
+   "odd": "The wheels are partly hidden below the platform edge.",
+   "seconds": 8.4,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Steam locomotive in a rail yard",
+   "sure": 4,
+   "why": "Large spoked wheels and a connecting rod sit beneath a rust-colored body, with flames behind it.",
+   "odd": "The locomotive\u2019s upper body is cropped, and the background is very dark.",
+   "seconds": 5.8,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Steam locomotive at a platform",
+   "sure": 5,
+   "why": "A tall smokestack and large wheels sit above rails beside a stone platform.",
+   "odd": "A horned skull decorates the locomotive\u2019s front.",
+   "seconds": 4.9,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Rusted door in industrial corridor",
+   "sure": 5,
+   "why": "A rust-orange door with a metal handle and barred window stands along a green-striped wall.",
+   "odd": "The barred window is too dark to see through.",
+   "seconds": 5.6,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Moonlit wooden walkway",
+   "sure": 5,
+   "why": "Wooden planks run alongside a metal-clad wall, with a low railing and the moon overhead.",
+   "odd": "The opening at the far end is too dark to make out.",
+   "seconds": 5.1,
+   "ok": true
+  },
+  "q_16": {
+   "name": "Rail depot shutter doors",
+   "sure": 4,
+   "why": "Rusty tracks and wooden ties lead toward tall, ribbed metal panels framed by brickwork.",
+   "odd": "The rails appear to end flush against the shutters.",
+   "seconds": 7.5,
+   "ok": true
+  },
+  "q_17": {
+   "name": "Pillar-lined walkway",
+   "sure": 3,
+   "why": "Gray pillars divide recessed brown bays beneath a low ceiling, with a curb running across the foreground.",
+   "odd": "The bright green strip blends into the pillar bases, making the ground and walls hard to distinguish.",
+   "seconds": 8.1,
+   "ok": true
+  },
+  "q_18": {
+   "name": "Ornate iron gate",
+   "sure": 5,
+   "why": "Tall iron bars with curved motifs block a stone passage, with green liquid visible beyond.",
+   "odd": "The dim lighting makes the wooden objects beyond the gate hard to identify.",
+   "seconds": 6.6,
+   "ok": true
+  },
+  "q_19": {
+   "name": "Wooden bench in brick room",
+   "sure": 4,
+   "why": "A broad plank seat and upright backrest sit in front of a dark brick wall.",
+   "odd": "The dim lighting makes the small framed wall details hard to read.",
+   "seconds": 4.5,
+   "ok": true
+  }
+ }
+}

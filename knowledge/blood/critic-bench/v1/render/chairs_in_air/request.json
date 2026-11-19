@@ -1,0 +1,23 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/chairs_in_air/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/chairs_in_air",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "inside",
+   "x": 10854,
+   "y": -17408,
+   "z": -24576,
+   "angle": 2041,
+   "horiz": 100,
+   "sector": 342,
+   "screenshot": true
+  }
+ ]
+}

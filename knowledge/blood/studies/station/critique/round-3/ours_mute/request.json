@@ -1,0 +1,103 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/round-3/ours_mute/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/round-3/ours_mute",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "street_door",
+   "x": 15872,
+   "y": 2457,
+   "z": -7072,
+   "angle": 1363,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "hall",
+   "x": 17203,
+   "y": -9216,
+   "z": -27552,
+   "angle": 1170,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "office",
+   "x": 10649,
+   "y": -12288,
+   "z": -27552,
+   "angle": 1053,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "gates",
+   "x": 13312,
+   "y": -9420,
+   "z": -27552,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "carriage",
+   "x": 20992,
+   "y": -15769,
+   "z": -27552,
+   "angle": 1079,
+   "horiz": 100,
+   "sector": 332,
+   "screenshot": true
+  },
+  {
+   "id": "locomotive",
+   "x": 20684,
+   "y": -16384,
+   "z": -27552,
+   "angle": 1930,
+   "horiz": 100,
+   "sector": 332,
+   "screenshot": true
+  },
+  {
+   "id": "far_track",
+   "x": 7168,
+   "y": -15667,
+   "z": -27552,
+   "angle": 1799,
+   "horiz": 100,
+   "sector": 328,
+   "screenshot": true
+  },
+  {
+   "id": "from_track",
+   "x": 4608,
+   "y": -22016,
+   "z": -13216,
+   "angle": 115,
+   "horiz": 100,
+   "sector": 334,
+   "screenshot": true
+  },
+  {
+   "id": "inside",
+   "x": 11059,
+   "y": -18329,
+   "z": -27552,
+   "angle": 2041,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  }
+ ]
+}

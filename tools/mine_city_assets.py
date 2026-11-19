@@ -97,7 +97,16 @@ def census(paths) -> dict[int, dict[str, Any]]:
             row["repeats"].append((int(f["x_repeat"]), int(f["y_repeat"])))
             row["cstat"].append(int(f["cstat"]))
             row["shade"].append(int(f["shade"]))
-            row["pal"].append(int(f.get("pal", 0)))
+            #: A sprite wearing its SECTOR's palette wears the place, not
+            #: itself: DWE3M1 is fogged, and 963 of its sprites are palette 1
+            #: in a palette-1 sector, none in a clear one. The owner found
+            #: fog-blue chairs and bottles in Gravesend's clear rooms. The
+            #: thing's own palette is what is left when the place's is taken.
+            own = int(f.get("pal", 0))
+            if sector is not None and own and own == int(
+                    sector.get("floor_pal", 0)):
+                own = 0
+            row["pal"].append(own)
             row["type"].append(int(f.get("type", 0)))
             row["status"].append(int(f.get("statnum", f.get("status", 0))))
             if sector is not None:

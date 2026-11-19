@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 60,
+ "kind": "mechanism",
+ "title": "Wheel grate you shoot out of a window",
+ "what": "In the gallery's inner wall, where the yard bulges into an octagonal bay, a rusted round wheel-pattern grate fills the opening from floor to ceiling. It looks like ornament, but it is a breakable thing: shot or blasted, it bursts with an explosion on both faces and leaves a clear window from gallery to yard. Four of them, one per quarter.",
+ "recipe": "Opening: a portal 2048 wide in the wall between gallery 60 (floor -12288) and yard 35, the full 1.93-body gallery height. Grate: wall-aligned sprite tile 483 (128x128, 12% see-through mask), repeat 64x64 so it covers 2048 by 1.93 bodies, centred at z -28672, cstat 401 (blocking, hitscan, wall-aligned), type 411 kThingMetalGrate, tx 107, trigger_vector + trigger_impact, trigger_once. Two type 417 kThingObjectExplode sprites (invisible, rx 107, data_1 5, data_4 314) placed 16 units either side of the wall plane so the burst shows from both rooms.",
+ "use": "Sewer: a round iron grille in a culvert mouth that has to be shot out to pass. Pump station: a fan guard. Crypt: a rusted ossuary grille that gives a shortcut into the nave once broken.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E6M8/place_60/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

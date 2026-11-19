@@ -1,0 +1,2443 @@
+{
+ "2541": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "spiked iron key-door sign, eye emblem",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2542": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "spiked iron key-door sign, flame emblem",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2543": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "spiked iron key-door sign, dagger emblem",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2544": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "spiked iron key-door sign, spider emblem",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2545": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "spiked iron key-door sign, moon emblem",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2546": {
+  "class": "machine",
+  "layout": "picture",
+  "looks": "wooden radio cabinet panel with dial",
+  "tags": [
+   "domestic",
+   "tech",
+   "wood"
+  ],
+  "by": "f"
+ },
+ "2548": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "framed metal ventilation fan, four blades",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "f"
+ },
+ "2549": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "framed metal ventilation fan, blades turned",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "f"
+ },
+ "2550": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "framed metal ventilation fan, blades turned",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "f"
+ },
+ "2551": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "empty metal fan frame, see-through centre",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "f"
+ },
+ "2552": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with skull emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2553": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with eye emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2554": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with flame emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2555": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with dagger emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2556": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with spider emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2557": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "iron key with moon emblem bow",
+  "tags": [
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2558": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "blue outlined key",
+  "tags": [
+   "door"
+  ],
+  "by": "f"
+ },
+ "2559": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "empty red square frame outline",
+  "tags": [
+   "trim"
+  ],
+  "by": "f"
+ },
+ "2578": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "fire armour pickup, eye in leathery shell",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2579": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "thin hanging pull chain",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "f"
+ },
+ "2580": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "thin hanging pull chain",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "f"
+ },
+ "2583": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloody flesh carcass lying flat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2584": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloody flesh carcass lying flat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2585": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloody flesh carcass lying flat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2586": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "body armour pickup, quilted steel shield",
+  "tags": [
+   "metal",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2594": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "super armour pickup, ribcage shield",
+  "tags": [
+   "bones",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2595": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "winged blue gargoyle flying",
+  "tags": [
+   "church",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2596": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "winged blue gargoyle swooping",
+  "tags": [
+   "church",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2602": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "spirit armour pickup, studded disc with face",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2604": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "red shotgun shell",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2621": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small grey stone rubble chip",
+  "tags": [
+   "decay",
+   "stone"
+  ],
+  "by": "f"
+ },
+ "2622": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small grey stone rubble chip",
+  "tags": [
+   "decay",
+   "stone"
+  ],
+  "by": "f"
+ },
+ "2623": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small grey stone rubble chip",
+  "tags": [
+   "decay",
+   "stone"
+  ],
+  "by": "f"
+ },
+ "2627": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small grey stone rubble chip",
+  "tags": [
+   "decay",
+   "stone"
+  ],
+  "by": "f"
+ },
+ "2628": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "basic armour pickup, grey round plate",
+  "tags": [
+   "metal",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2629": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "double shotgun barrels, close view",
+  "tags": [
+   "metal",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2633": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "tan rolled bundle or scroll",
+  "tags": [
+   "paper"
+  ],
+  "by": "f"
+ },
+ "2635": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "shelf of folded shirts and hanging clothes",
+  "tags": [
+   "cloth",
+   "shop",
+   "storage"
+  ],
+  "by": "f"
+ },
+ "2680": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, front",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2696": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, running",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2705": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, front",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2720": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, front",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2716": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, side",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2803": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "two-headed hellhound Cerberus, dead",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2819": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "dark spindly legs, dead spider-like remains",
+  "tags": [
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2820": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2821": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2825": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2826": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2830": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2832": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2834": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2835": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2840": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2841": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2845": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2850": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2853": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2855": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2860": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2861": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2870": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2880": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2885": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2890": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2895": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2905": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2925": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist with tommy gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "2914": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloody corpse heap",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2915": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "water surface, blue ripples",
+  "tags": [
+   "water"
+  ],
+  "by": "f"
+ },
+ "2937": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dead cultist lying in blood",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "2943": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "burning flames, low fire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "2944": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "burning flames, low fire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "2945": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "burning flames, low fire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "2946": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "burning flames, low fire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "2954": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "flattened gore remains on floor",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "2960": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey clawed beast monster, front",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3004": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey clawed beast monster, back",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3006": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey clawed beast monster with club",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3052": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "fat zombie butcher with cleaver",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3053": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "fat zombie butcher, shirtless",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3054": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "fat zombie butcher, shirtless",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3056": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blue swirling vortex",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3060": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3066": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3075": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3080": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3083": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3085": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3086": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3087": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3090": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3091": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3100": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3101": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3105": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3110": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3122": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3115": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "fanged brown pod creature on legs",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3129": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "yellow light beam or fire jet",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "f"
+ },
+ "3140": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Tchernobog, horned skeletal giant",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3165": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "large human hand, palm",
+  "tags": [
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3201": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "green diamond-shaped quilted cushion",
+  "tags": [
+   "cloth"
+  ],
+  "by": "f"
+ },
+ "3202": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "green diamond-shaped quilted cushion",
+  "tags": [
+   "cloth"
+  ],
+  "by": "f"
+ },
+ "3238": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie arm rising from ground",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3239": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie hand clawing from ground",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3251": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist crouching",
+  "tags": [
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3308": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "fireball",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3317": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "skull on wooden staff",
+  "tags": [
+   "bones",
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3321": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "burning cultist",
+  "tags": [
+   "fire",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3327": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "burning cultist",
+  "tags": [
+   "fire",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3385": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown-robed cultist lying prone with gun",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3405": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3407": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3413": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3414": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3415": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3420": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3421": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody zombie head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3444": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "dynamite bundle with green detonator",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3463": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "stick of dynamite with fuse cap",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3490": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden barrel with iron hoops",
+  "tags": [
+   "container",
+   "wood"
+  ],
+  "by": "f"
+ },
+ "3491": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "red sky parallax",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3523": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3524": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3525": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3529": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3531": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3540": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "grey metal can lying on side",
+  "tags": [
+   "container",
+   "metal"
+  ],
+  "by": "f"
+ },
+ "3558": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "tattered black banner with horned skull",
+  "tags": [
+   "cloth",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3563": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "tattered black banner with horned skull",
+  "tags": [
+   "cloth",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3566": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "large flame, bonfire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3567": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "large flame, bonfire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3568": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "large flame, bonfire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3572": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "large flame, bonfire",
+  "tags": [
+   "fire"
+  ],
+  "by": "f"
+ },
+ "3604": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "fat shirtless zombie",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3655": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "axe zombie with axe",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3657": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie crumbling into earth",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3658": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie crumbling into earth",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3659": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie crumbling into earth",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3661": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie remains sunk in ground",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "f"
+ },
+ "3678": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark rock, scorched ground",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "f"
+ },
+ "3739": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dark hooded phantasm with scythe",
+  "tags": [
+   "graveyard",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3754": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3764": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3774": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3793": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3798": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3801": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3802": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3803": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3804": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie in ragged shorts",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3784": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3785": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3786": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3787": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3788": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3789": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shirtless zombie clutching bloody throat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3791": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie corpse lying flat",
+  "tags": [
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3792": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "zombie corpse lying flat",
+  "tags": [
+   "gore"
+  ],
+  "by": "f"
+ },
+ "3808": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter A",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3809": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter B",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3810": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter C",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3811": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter D",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3812": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter E",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3813": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter F",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3814": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter G",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3815": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter H",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3816": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter I",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3817": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter J",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3818": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter K",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3819": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter L",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3820": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter M",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3821": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter N",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3822": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter O",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3823": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter P",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3824": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter Q",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3825": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter R",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3826": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter S",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3827": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter T",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3828": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter U",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3829": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter V",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3830": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter W",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3831": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter X",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3832": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter Y",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3833": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "brown blocky letter Z",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "3840": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb, gunslinger in hat and long coat",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3870": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb, gunslinger in hat and long coat",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3876": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb, gunslinger in hat and long coat",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3955": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb, gunslinger in hat and long coat",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3867": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb leaping, firing pistol",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3892": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Caleb crouching with pistol",
+  "tags": [
+   "weapon"
+  ],
+  "by": "f"
+ },
+ "3966": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Tchernobog, horned skeletal giant",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "3981": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "Tchernobog, horned skeletal giant",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "f"
+ },
+ "4119": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "white blocky digit 7",
+  "tags": [
+   "text"
+  ],
+  "by": "f"
+ },
+ "4193": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph !",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4207": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph /",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4215": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph 7",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4225": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph A",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4226": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph B",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4227": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph C",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4229": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph E",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4230": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph F",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4231": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph G",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4232": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph H",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4233": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph I",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4235": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph K",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4236": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph L",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4237": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph M",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4238": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph N",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4239": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph O",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4240": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph P",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4242": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph R",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4243": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph S",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4244": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph T",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4245": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph U",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4250": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient glyph Z",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4259": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph c",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4269": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph m",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4271": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph o",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4274": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph r",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4275": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph s",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4277": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph u",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4279": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph w",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4281": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "silver gradient lowercase glyph y",
+  "tags": [
+   "metal",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4321": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter A",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4322": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter B",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4323": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter C",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4324": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter D",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4325": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter E",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4326": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter F",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4328": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter H",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4329": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter I",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4332": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter L",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4333": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter M",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4334": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter N",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4335": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter O",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4336": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter P",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4338": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter R",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4339": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter S",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4341": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter U",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4342": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter V",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4343": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic letter W",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4353": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter a",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4355": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter c",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4357": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter e",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4365": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter m",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4371": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter s",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ },
+ "4378": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "grey gothic lowercase letter z",
+  "tags": [
+   "stone",
+   "text"
+  ],
+  "by": "f"
+ }
+}

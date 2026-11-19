@@ -2,7 +2,10 @@
 
 ## Development setup
 
-Use Python 3.10 or newer. The package has no runtime dependencies.
+Use Python 3.10 or newer. The package has no runtime dependencies. The optional geometry test tools need
+Shapely and Matplotlib: install them into the same interpreter with
+`python -m pip install -e ".[test-geometry]"` before full test discovery.
+Missing local corpus/oracle assets may still produce explicit skips.
 
 ```text
 python -m unittest discover -s tests -v

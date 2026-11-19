@@ -1,0 +1,440 @@
+{
+ "bare_engine|eng_e|name": {
+  "name": "Industrial rail yard",
+  "sure": "4",
+  "why": "Rail tracks run beside a riveted steel structure, with brick walls and barrels lining the walkway.",
+  "seconds": 10.6
+ },
+ "bare_engine|eng_track_e|name": {
+  "name": "Industrial rail yard",
+  "sure": "5",
+  "why": "Parallel rails and wooden sleepers run between brick industrial buildings.",
+  "seconds": 5.4
+ },
+ "brick_livery|door_2|name": {
+  "name": "Rusty metal door",
+  "sure": "5",
+  "why": "An orange door with a gray frame and latch sits in the center of the brick wall.",
+  "seconds": 5.0
+ },
+ "brick_livery|door_5|name": {
+  "name": "Brick hallway with wooden door",
+  "sure": "5",
+  "why": "Metal pillars frame the central wooden door, with a stone floor below and a barred opening to the right.",
+  "seconds": 7.3
+ },
+ "brick_livery|track_2|name": {
+  "name": "Rail tracks beside a brick wall",
+  "sure": "5",
+  "why": "Metal rails and evenly spaced ties run along a red brick wall with recessed openings.",
+  "seconds": 8.7
+ },
+ "bright|door_2|name": {
+  "name": "Wooden door in a hallway",
+  "sure": "5",
+  "why": "A metal-framed wooden door with a handle sits between green-striped walls above a tiled floor.",
+  "seconds": 5.2
+ },
+ "bright|door_5|name": {
+  "name": "Wooden door in a brick hall",
+  "sure": "4",
+  "why": "The orange door is centered between metal columns, with brick walls and a bright green stripe behind it.",
+  "seconds": 9.2
+ },
+ "bright|eng_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack and connected driving wheels identify the locomotive on the tracks.",
+  "seconds": 6.4
+ },
+ "bright|eng_w|name": {
+  "name": "Industrial engine room",
+  "sure": "4",
+  "why": "Large fan wheels sit beneath metal housings beside a narrow walkway and brick walls.",
+  "seconds": 6.5
+ },
+ "bright|goods|name": {
+  "name": "Crate storage room",
+  "sure": "5",
+  "why": "Wooden shipping crates sit on a tiled floor beneath a plank ceiling.",
+  "seconds": 8.4
+ },
+ "bright|hall|name": {
+  "name": "Industrial brick hall",
+  "sure": "4",
+  "why": "Brick walls, riveted steel columns, and wooden barriers frame a wide tiled passage.",
+  "seconds": 9.0
+ },
+ "bright|ticket|name": {
+  "name": "Ticket booth",
+  "sure": "4",
+  "why": "A barred service window sits in a brick wall beside an open doorway and a small wall switch.",
+  "seconds": 7.4
+ },
+ "bright|waiting|name": {
+  "name": "Waiting room",
+  "sure": "4",
+  "why": "High-backed chairs and a grandfather clock suggest a furnished waiting area.",
+  "seconds": 7.2
+ },
+ "full|along_e|name": {
+  "name": "Covered stone corridor",
+  "sure": "5",
+  "why": "A low ceiling covers the stone walkway, with wooden barrels and recessed windows along the right wall.",
+  "seconds": 4.4
+ },
+ "full|along_w|name": {
+  "name": "Industrial corridor",
+  "sure": "5",
+  "why": "A long tiled passage runs past green wall panels, recessed windows, and heavy metal columns.",
+  "seconds": 6.8
+ },
+ "full|door_1|name": {
+  "name": "Orange industrial door",
+  "sure": "5",
+  "why": "A large orange door with a recessed panel and gray metal frame fills the center of the screenshot.",
+  "seconds": 6.1
+ },
+ "full|door_2|choice": {
+  "name": "factory",
+  "sure": "2",
+  "why": "The heavy service door, worn floor tiles, and exposed ceiling panels suggest an industrial interior.",
+  "seconds": 14.6
+ },
+ "full|door_2|fix": {
+  "name": "Rusty industrial corridor door",
+  "reads": "no",
+  "fix": "Add a visible platform edge with a narrow gap that reveals the rails beneath the carriage.",
+  "seconds": 7.8
+ },
+ "full|door_2|list": {
+  "seen": "Rusty orange door, gray metal doorframe, green wall stripe, gray tiled floor, brown paneled ceiling",
+  "name": "Rusty metal corridor door",
+  "sure": "5",
+  "seconds": 5.6
+ },
+ "full|door_2|name": {
+  "name": "Rusty industrial door",
+  "sure": "5",
+  "why": "The metal frame, handle, and inset panel make the orange door the focal point.",
+  "seconds": 4.5
+ },
+ "full|door_3|name": {
+  "name": "Rusty metal door",
+  "sure": "5",
+  "why": "A rust-colored door with a visible handle sits between two recessed wall panels.",
+  "seconds": 4.8
+ },
+ "full|door_4|name": {
+  "name": "Laboratory entrance",
+  "sure": "3",
+  "why": "A closed wooden door sits between two windows, framed by heavy pillars.",
+  "seconds": 4.1
+ },
+ "full|door_5|choice": {
+  "name": "a prison",
+  "sure": "3",
+  "why": "Iron bars, heavy doors, and bare brick suggest a prison corridor.",
+  "seconds": 5.7
+ },
+ "full|door_5|fix": {
+  "name": "A brick hallway with a door",
+  "reads": "no",
+  "fix": "Expose the carriage\u2019s wheels and the rails beneath them so both are visible from the station hall.",
+  "seconds": 7.6
+ },
+ "full|door_5|list": {
+  "seen": "brick walls, ornate pillars, wooden door, iron bars, stone floor",
+  "name": "Brick corridor with wooden door",
+  "sure": "5",
+  "seconds": 6.4
+ },
+ "full|door_5|name": {
+  "name": "Wooden door in brick corridor",
+  "sure": "5",
+  "why": "A wooden door sits between metal pillars, with brick walls and iron bars framing the corridor.",
+  "seconds": 5.6
+ },
+ "full|door_6|name": {
+  "name": "Brick room with wooden door",
+  "sure": "5",
+  "why": "A wooden door stands behind a low barricade, framed by steel pillars and barred partitions.",
+  "seconds": 6.9
+ },
+ "full|eng_balcony|name": {
+  "name": "Steam locomotive viewed from a balcony",
+  "sure": "4",
+  "why": "A smoking stack rises from the locomotive beside a cab with windows, and rails run behind it.",
+  "seconds": 6.7
+ },
+ "full|eng_e|choice": {
+  "name": "a railway station",
+  "sure": "5",
+  "why": "A steam locomotive sits on tracks beside a platform, with a passenger car behind it.",
+  "seconds": 4.4
+ },
+ "full|eng_e|fix": {
+  "name": "Armored steam locomotive",
+  "reads": "yes",
+  "fix": "Replace the boxy body beneath the smokestack with a faceted horizontal cylinder.",
+  "seconds": 5.8
+ },
+ "full|eng_e|list": {
+  "seen": "steam locomotive, railroad tracks, skull ornament, wooden barrels, brick walls",
+  "name": "Steam locomotive in a brick alley",
+  "sure": "5",
+  "seconds": 5.7
+ },
+ "full|eng_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack, driving wheels, and a front cowcatcher identify the engine on the tracks.",
+  "seconds": 4.8
+ },
+ "full|eng_front|name": {
+  "name": "Horned gargoyle relief",
+  "sure": "5",
+  "why": "A gray stone face with curved horns protrudes from the central pillar beside the railway tracks.",
+  "seconds": 5.0
+ },
+ "full|eng_mid|name": {
+  "name": "Industrial engine room",
+  "sure": "4",
+  "why": "A large ribbed metal housing with exposed circular components dominates the brick-walled chamber.",
+  "seconds": 7.9
+ },
+ "full|eng_track_e|name": {
+  "name": "Industrial railway siding",
+  "sure": "4",
+  "why": "Rails run between brick buildings, past wooden crates and a green-and-white railcar.",
+  "seconds": 7.2
+ },
+ "full|eng_track_n|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A smokestack, boiler, and windowed cab sit on railway tracks.",
+  "seconds": 5.3
+ },
+ "full|eng_w|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A smokestack, large spoked wheels, and a connecting rod identify the locomotive.",
+  "seconds": 5.7
+ },
+ "full|goods|name": {
+  "name": "Crate storage room",
+  "sure": "5",
+  "why": "Wooden crates sit on a stone-tile floor inside a dim, enclosed room.",
+  "seconds": 4.4
+ },
+ "full|hall|choice": {
+  "name": "a railway station",
+  "sure": "3",
+  "why": "Wooden benches line a brick hall with steel columns and broad openings onto an outdoor area.",
+  "seconds": 10.7
+ },
+ "full|hall|fix": {
+  "name": "Dim industrial lobby",
+  "reads": "no",
+  "fix": "Build a railway platform with tracks visible through the right-hand openings.",
+  "seconds": 7.0
+ },
+ "full|hall|list": {
+  "seen": "brick walls, stone tile floor, metal columns, wooden partitions, windows",
+  "name": "Dim brick hall",
+  "sure": "5",
+  "seconds": 6.5
+ },
+ "full|hall|name": {
+  "name": "Dim brick hall",
+  "sure": "5",
+  "why": "Brick walls, a stone-tiled floor, and low wooden partitions frame a broad passage.",
+  "seconds": 6.8
+ },
+ "full|ticket|choice": {
+  "name": "a prison",
+  "sure": "4",
+  "why": "The barred window and tall iron gate suggest a cell block.",
+  "seconds": 7.5
+ },
+ "full|ticket|fix": {
+  "name": "Barred window in a brick wall",
+  "reads": "no",
+  "fix": "Add a high-contrast TICKETS sign directly above the barred window, with block letters legible from across the room.",
+  "seconds": 4.5
+ },
+ "full|ticket|list": {
+  "seen": "red brick wall, open doorway, barred window, framed glowing emblem, stone-tiled floor",
+  "name": "Brick fa\u00e7ade with barred window",
+  "sure": "5",
+  "seconds": 6.1
+ },
+ "full|ticket|name": {
+  "name": "Brick ticket booth",
+  "sure": "4",
+  "why": "A barred service window and a small illuminated recess sit beside an open doorway in the brick wall.",
+  "seconds": 6.4
+ },
+ "full|track_1|name": {
+  "name": "Railroad train car",
+  "sure": "5",
+  "why": "A row of wheels sits beneath ribbed metal siding, with wooden railroad ties in the foreground.",
+  "seconds": 5.8
+ },
+ "full|track_2|name": {
+  "name": "Railway tracks beside a platform",
+  "sure": "4",
+  "why": "Rust-colored rails and wooden ties run along the edge of a raised concrete ledge.",
+  "seconds": 6.2
+ },
+ "full|track_3|name": {
+  "name": "Railway Tracks",
+  "sure": "5",
+  "why": "Two parallel rails run across wooden sleepers set in a stone track bed.",
+  "seconds": 3.9
+ },
+ "full|track_far|name": {
+  "name": "Train yard",
+  "sure": "5",
+  "why": "Parallel tracks run past a green-striped railcar between brick walls.",
+  "seconds": 7.3
+ },
+ "full|waiting|choice": {
+  "name": "a hotel",
+  "sure": "4",
+  "why": "Patterned carpet, ornate chairs, wood paneling, and a grandfather clock suggest a hotel sitting room.",
+  "seconds": 4.4
+ },
+ "full|waiting|fix": {
+  "name": "Cluttered Victorian parlor",
+  "reads": "no",
+  "fix": "Replace the small framed picture with a large railway departures board listing destinations, times, and platforms.",
+  "seconds": 6.3
+ },
+ "full|waiting|list": {
+  "seen": "grandfather clock, high-backed chairs, wooden crates, framed picture, patterned carpet",
+  "name": "Waiting room",
+  "sure": "4",
+  "seconds": 5.9
+ },
+ "full|waiting|name": {
+  "name": "Victorian waiting room",
+  "sure": "4",
+  "why": "High-backed chairs, a grandfather clock, and patterned carpet suggest a Victorian waiting room.",
+  "seconds": 5.4
+ },
+ "no_bill|door_2|name": {
+  "name": "Rusty metal door",
+  "sure": "5",
+  "why": "An orange-brown door with a dark inset panel and metal handle fills the center of the screenshot.",
+  "seconds": 5.2
+ },
+ "no_bill|door_5|name": {
+  "name": "Wooden door in brick corridor",
+  "sure": "4",
+  "why": "A wooden door sits centered between dark metal columns beneath a low brick ceiling.",
+  "seconds": 8.7
+ },
+ "no_bill|track_2|name": {
+  "name": "Subway train",
+  "sure": "5",
+  "why": "A ribbed metal carriage with windows and a row of wheels sits on rails.",
+  "seconds": 5.5
+ },
+ "no_chimney|eng_e|name": {
+  "name": "Skull-fronted locomotive",
+  "sure": "5",
+  "why": "A sculpted skull crowns the front, with large wheels and rails visible below.",
+  "seconds": 6.1
+ },
+ "no_chimney|eng_track_e|name": {
+  "name": "Locomotive on a railway track",
+  "sure": "4",
+  "why": "A boxy metal engine with a raised cab sits on rails beside a brick building.",
+  "seconds": 7.1
+ },
+ "no_curtains|door_2|name": {
+  "name": "Closed laboratory door",
+  "sure": "4",
+  "why": "An orange metal door with a grated window stands in a green-and-gray corridor.",
+  "seconds": 4.4
+ },
+ "no_curtains|door_5|name": {
+  "name": "Wooden Door in Brick Corridor",
+  "sure": "5",
+  "why": "A closed wooden door is centered between ornate pillars, with dark brickwork overhead and iron bars on the right.",
+  "seconds": 17.6
+ },
+ "no_curtains|track_2|name": {
+  "name": "Subway train car",
+  "sure": "5",
+  "why": "A row of wheels sits on the rails beneath the car\u2019s ribbed metal siding and green stripe.",
+  "seconds": 15.3
+ },
+ "no_door|door_2|name": {
+  "name": "Closed metal shutter",
+  "sure": "4",
+  "why": "A ribbed metal panel fills the central opening, with vertical seams and heavier hardware along the bottom.",
+  "seconds": 12.9
+ },
+ "no_door|door_5|name": {
+  "name": "Industrial brick room",
+  "sure": "4",
+  "why": "Heavy metal supports and iron bars frame a dark brick interior with a corrugated shutter in the center.",
+  "seconds": 19.4
+ },
+ "no_door|track_2|name": {
+  "name": "Train car and railway track",
+  "sure": "4",
+  "why": "A steel rail crosses wooden sleepers below a long, ribbed metal carriage.",
+  "seconds": 19.5
+ },
+ "no_face|eng_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack, spoked wheels, and a front cowcatcher identify the engine on the tracks.",
+  "seconds": 13.3
+ },
+ "no_face|eng_track_e|name": {
+  "name": "Steam locomotive on railway tracks",
+  "sure": "4",
+  "why": "A tall smokestack rises from the blocky engine, with a green passenger car behind it.",
+  "seconds": 15.7
+ },
+ "no_smoke|eng_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack, large wheels, and a trailing railcar identify the locomotive.",
+  "seconds": 14.0
+ },
+ "no_smoke|eng_track_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack rises above the boiler, with a green-striped railcar behind it.",
+  "seconds": 14.2
+ },
+ "no_wheels|eng_e|name": {
+  "name": "Steam locomotive",
+  "sure": "5",
+  "why": "A tall smokestack rises above the metal engine, with rails below and a green carriage behind.",
+  "seconds": 13.8
+ },
+ "no_wheels|eng_track_e|name": {
+  "name": "Steam locomotive",
+  "sure": "4",
+  "why": "A tall smokestack rises from the metal engine, with a green passenger car behind it on the tracks.",
+  "seconds": 13.3
+ },
+ "only_wheels|eng_e|name": {
+  "name": "Steam locomotive on railway tracks",
+  "sure": "4",
+  "why": "Large spoked wheels and a riveted metal body sit on rails beside a brick platform.",
+  "seconds": 16.3
+ },
+ "only_wheels|eng_track_e|name": {
+  "name": "Train on railroad tracks",
+  "sure": "5",
+  "why": "Rails and wooden ties run alongside a blocky locomotive and a green-striped carriage.",
+  "seconds": 14.3
+ }
+}

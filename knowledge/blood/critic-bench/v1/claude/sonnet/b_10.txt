@@ -1,0 +1,4 @@
+NAME: Night wooden pier with bait shop
+SURE: 4
+FAULT: no
+WHAT: nothing

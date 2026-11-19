@@ -1,0 +1,4 @@
+NAME: Curtained wooden corridor with carpet
+SURE: 3
+FAULT: no
+WHAT: nothing

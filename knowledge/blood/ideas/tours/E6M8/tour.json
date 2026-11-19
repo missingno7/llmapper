@@ -1,0 +1,943 @@
+{
+ "map": "E6M8",
+ "date": "2026-11-18",
+ "places": [
+  {
+   "host": 60,
+   "sky": false,
+   "metres": [
+    52.2,
+    61.7,
+    3.5
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     91,
+     0.481,
+     "brick wall with base course"
+    ],
+    [
+     123,
+     0.427,
+     ""
+    ],
+    [
+     94,
+     0.04,
+     ""
+    ]
+   ],
+   "things": 30,
+   "sprites": [
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 12,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 810,
+     "type": 65,
+     "type_name": "kItemAmmoRemoteBombBundle",
+     "align": "face",
+     "count": 8,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 618,
+     "type": 60,
+     "type_name": "kItemAmmoSprayCan",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 483,
+     "type": 411,
+     "type_name": "kThingMetalGrate",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_60\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_60\\frames.png"
+   ]
+  },
+  {
+   "host": 81,
+   "sky": false,
+   "metres": [
+    9.6,
+    15.6,
+    2.9
+   ],
+   "layers": [
+    "trim",
+    "light",
+    "motion"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     91,
+     0.926,
+     "brick wall with base course"
+    ],
+    [
+     94,
+     0.074,
+     ""
+    ]
+   ],
+   "things": 8,
+   "sprites": [
+    {
+     "tile": 572,
+     "type": 30,
+     "type_name": "kDecorationTorch",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 2522,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2523,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2524,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2525,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2526,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2527,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2528,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2529,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 825,
+     "type": 114,
+     "type_name": "kItemDeathMask",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_81\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_81\\frames.png"
+   ]
+  },
+  {
+   "host": 35,
+   "sky": true,
+   "metres": [
+    21.7,
+    41.7,
+    7.5
+   ],
+   "layers": [
+    "trim",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600
+   ],
+   "walls": [
+    [
+     91,
+     0.959,
+     "brick wall with base course"
+    ],
+    [
+     94,
+     0.041,
+     ""
+    ]
+   ],
+   "things": 18,
+   "sprites": [
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 1797,
+     "type": 222,
+     "type_name": "kDudeTentacleGreen",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2825,
+     "type": 249,
+     "type_name": "kDudeCultistBeast",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 12,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 618,
+     "type": 60,
+     "type_name": "kItemAmmoSprayCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2526,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_35\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_35\\frames.png"
+   ]
+  },
+  {
+   "host": 36,
+   "sky": true,
+   "metres": [
+    25.2,
+    41.7,
+    7.5
+   ],
+   "layers": [
+    "trim",
+    "levels",
+    "light",
+    "motion"
+   ],
+   "sector_types": [
+    600
+   ],
+   "walls": [
+    [
+     123,
+     0.94,
+     ""
+    ],
+    [
+     124,
+     0.037,
+     ""
+    ],
+    [
+     126,
+     0.023,
+     ""
+    ]
+   ],
+   "things": 19,
+   "sprites": [
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 1797,
+     "type": 222,
+     "type_name": "kDudeTentacleGreen",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 618,
+     "type": 60,
+     "type_name": "kItemAmmoSprayCan",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2825,
+     "type": 249,
+     "type_name": "kDudeCultistBeast",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 12,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 483,
+     "type": 411,
+     "type_name": "kThingMetalGrate",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.9
+    },
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_36\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_36\\frames.png"
+   ]
+  },
+  {
+   "host": 0,
+   "sky": false,
+   "metres": [
+    13.9,
+    13.9,
+    5.5
+   ],
+   "layers": [
+    "second",
+    "motion"
+   ],
+   "sector_types": [
+    600
+   ],
+   "walls": [
+    [
+     89,
+     0.382,
+     "stone wall"
+    ],
+    [
+     123,
+     0.309,
+     ""
+    ],
+    [
+     91,
+     0.309,
+     "brick wall with base course"
+    ]
+   ],
+   "things": 1,
+   "sprites": [
+    {
+     "tile": 1048,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2528,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2529,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 558,
+     "type": 42,
+     "type_name": "kItemWeaponTommygun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 519,
+     "type": 107,
+     "type_name": "kItemHealthDoctorBag",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 318,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_0\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_0\\frames.png"
+   ]
+  },
+  {
+   "host": 83,
+   "sky": false,
+   "metres": [
+    3.5,
+    3.5,
+    1.7
+   ],
+   "layers": [
+    "standing"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     0,
+     1.0,
+     ""
+    ]
+   ],
+   "things": 0,
+   "sprites": [
+    {
+     "tile": 0,
+     "type": 22,
+     "type_name": "kSwitchCombo",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 0,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 0,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_83\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_83\\frames.png"
+   ]
+  },
+  {
+   "host": 39,
+   "sky": false,
+   "metres": [
+    3.5,
+    3.5,
+    3.5
+   ],
+   "layers": [],
+   "sector_types": [],
+   "walls": [
+    [
+     123,
+     1.0,
+     ""
+    ]
+   ],
+   "things": 0,
+   "sprites": [
+    {
+     "tile": 2594,
+     "type": 144,
+     "type_name": "kItemArmorSuper",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_39\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E6M8\\place_39\\frames.png"
+   ]
+  }
+ ]
+}

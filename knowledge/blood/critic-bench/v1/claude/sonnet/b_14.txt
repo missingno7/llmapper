@@ -1,0 +1,4 @@
+NAME: Church interior with pews and altar
+SURE: 4
+FAULT: no
+WHAT: nothing

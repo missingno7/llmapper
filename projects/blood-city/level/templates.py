@@ -325,6 +325,50 @@ def shop(space, *, material, grade: int, host_clear: int, name: str = "fittings"
     return node
 
 
+PAWN_SHELF_CLEAR = 9216
+
+
+def pawnbroker(space, *, material, grade: int, host_clear: int, back: str,
+               name: str = "fittings", connector=None):
+    """A pawnbroker's: the pledges on a shelf behind one counter.
+
+    The shop was fitted as a clothier (`clothier` below: a bank of pedestals,
+    a cashwrap under the window, garment rails), and read as one. A
+    pawnbroker's customer meets a counter with the stock out of reach behind
+    it: so the shelf is let into the wall OPPOSITE the door (`back`), the
+    counter crosses the room in front of it a body's width off, and stops
+    `COUNTER_PASS` short so the broker can come round. Unlike `shop`, whose
+    counter runs along the unit's long side, this one crosses the short one.
+    """
+    import citytree
+    import props
+
+    x0, y0, x1, y1 = (int(v) for v in props.room_rect(space))
+    if back not in ("west", "east"):
+        raise TemplateError(f"{space.node_id}: a pawnbroker's shelf goes on "
+                            "an end wall, west or east")
+    node = citytree.sub(space, name, note="pawnbroker: shelf and counter")
+    fixtures.shelf_niche(space, _shelf_id(space), back,
+                         width=(y1 - y0) - 2 * WALL_STANDOFF, sells="pledges",
+                         #: lower-headed than an arcade unit's: this room is
+                         #: 4,096 lower, and at the full 12,288 the band
+                         #: over the shelf was too thin for the shop's name,
+                         #: which was lettered under it, behind the counter
+                         clear=PAWN_SHELF_CLEAR)
+    stand = 1024
+    near = x0 + stand if back == "west" else x1 - stand - fixtures.BAR.depth
+    counter = fixtures.run_along(
+        f"{space.node_id}_counter", space, axis="y",
+        start=y0 + WALL_STANDOFF, end=y1 - COUNTER_PASS,
+        across0=near, across1=near + fixtures.BAR.depth, family="bar",
+        material=material, grade=grade, host_clear=host_clear,
+        connector=connector, whole=True, wall_picnum=fixtures.BAR_FACE)
+    space.children.remove(counter)
+    counter.parent = node
+    node.children.append(counter)
+    return node
+
+
 def clothier(space, *, material, grade: int, host_clear: int,
              name: str = "clothier_fittings", connector=None):
     """Fit a broad-fronted shop without sacrificing its entrance aisle.
@@ -719,7 +763,14 @@ DESK_DEPTH, DESK_INSET = 512, 512
 #: A shooting range: the line you stand behind, and what you shoot at.
 TARGET_SIDE, TARGET_PITCH = 512, 1536
 #: A pew, and the gap between two of them.
-PEW_DEPTH, PEW_PITCH = 512, 1024
+#: PEWS, from the church study (`knowledge/blood/studies/church`): they
+#: were flat grey kerbs 1,024 apart and read as one stepped mass. Blood's
+#: have a PROFILE and a pitch: a seat 0.36 of a body up and a back 0.72
+#: behind it (DWE1M4 s229/s230), in wood -- top 34, ends 88 -- three rows
+#: 1,536 apart (E3M4 s280-285), so floor shows between them.
+PEW_DEPTH, PEW_PITCH = 512, 1536
+PEW_SEAT, PEW_BACK = 6144, 12288
+PEW_WOOD = (88, 34)             # faces, top: the owner's pilaster and wood
 #: The mined rises, restated here only so a reader can see them together.
 PEW_RISE = 5120
 FONT_RISE = 4096
@@ -834,7 +885,7 @@ def shooting_range(space, *, material, grade: int, host_clear: int,
 
 
 def chapel_furnishing(nave, *, material, grade: int, host_clear: int,
-                      pews: int = 4, first: int = 1024,
+                      pews: int = 3, first: int = 1536,
                       name: str = "pews", connector=None):
     """Rows of pews down a nave, leaving an aisle against each wall.
 
@@ -854,13 +905,23 @@ def chapel_furnishing(nave, *, material, grade: int, host_clear: int,
             f"{nave.node_id}: {y1 - y0} units of nave will not hold {pews} "
             f"pews at {PEW_PITCH}")
     node = citytree.sub(nave, name, note="rows of pews down the nave")
+    from materials import Material
+    wood = Material(wall=PEW_WOOD[0], floor=PEW_WOOD[1],
+                    ceiling=material.ceiling, opening=PEW_WOOD[0])
     for index in range(pews):
         top = y0 + first + index * PEW_PITCH
+        #: the seat faces the chancel (north); the back stands behind it,
+        #: a slit apart, because two tiers may not share an edge
         setpieces.raised_solid(
             node, f"pew_{index}", nave,
-            (x0 + 512, top, x1 - 512, top + PEW_DEPTH),
-            material, grade=grade, rise=PEW_RISE, host_clear=host_clear,
-            connector=connector or citytree.owner(nave), note="a pew")
+            (x0 + 512, top, x1 - 512, top + PEW_DEPTH - 64),
+            wood, grade=grade, rise=PEW_SEAT, host_clear=host_clear,
+            connector=connector or citytree.owner(nave), note="a pew's seat")
+        setpieces.raised_solid(
+            node, f"pew_{index}_back", nave,
+            (x0 + 512, top + PEW_DEPTH, x1 - 512, top + PEW_DEPTH + 256),
+            wood, grade=grade, rise=PEW_BACK, host_clear=host_clear,
+            connector=connector or citytree.owner(nave), note="a pew's back")
     return node
 
 

@@ -181,9 +181,15 @@ MAP, its evidence packet, its rendered views, and its review. See
 [the pilot report](../projects/reasoned-authoring-v1/reports/comparison.md).
 
 ```text
-python -m experiments.monastery_pilot v0 v1 v2 v3 --comparison \
+python -m experiments.monastery_pilot v0 v1 v2 v3 --run-id review-001 --comparison \
   --nblood reference/blood/nblood.exe --game-dir reference/blood
 ```
+
+New runs go to `work/authoring-runs/<run-id>/`; existing run IDs are refused.
+Each run snapshots Python sources and records input hashes. Historical reviews
+are not inherited. The frozen six-version pilot and its compiler revision are
+bound by [the archive manifest](../projects/reasoned-authoring-v1/archive/architectural-v0-v5/manifest.json).
+Live candidate names are later working sources, not historical identities.
 
 ## Limits
 

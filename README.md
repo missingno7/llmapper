@@ -61,8 +61,8 @@ An authored candidate can be compiled, gated, independently decompiled, probed,
 and rendered as one evidence packet, then revised from that evidence:
 
 ```text
-python -m experiments.monastery_pilot v0 v1 v2 v3 --comparison
-python -m experiments.monastery_pilot v3 --nblood reference/blood/nblood.exe --game-dir reference/blood
+python -m experiments.monastery_pilot v0 v1 v2 v3 --run-id review-001 --comparison
+python -m experiments.monastery_pilot v3 --run-id review-002 --nblood reference/blood/nblood.exe --game-dir reference/blood
 ```
 
 See [the reasoned authoring loop](docs/authoring-loop.md) and the six-iteration

@@ -1,0 +1,189 @@
+{
+ "map": "TEDE1M7",
+ "at": [
+  -40300,
+  25000
+ ],
+ "views": 8,
+ "recipe": {
+  "walls": [
+   {
+    "tile": 80,
+    "count": 5,
+    "is": "weathered vertical stone wall with hints of moss"
+   },
+   {
+    "tile": 490,
+    "count": 3,
+    "is": "grey metal panel with recessed rectangle"
+   }
+  ],
+  "masked": [],
+  "flats": [
+   {
+    "tile": 470,
+    "on": "floor",
+    "count": 3,
+    "is": "riveted metal plating"
+   },
+   {
+    "tile": 438,
+    "on": "floor",
+    "count": 1,
+    "is": "embossed metal floor"
+   }
+  ],
+  "sprites": [
+   {
+    "tile": 4323,
+    "align": "wall",
+    "repeat": [
+     168,
+     232
+    ],
+    "count": 2,
+    "is": "grey gothic letter C"
+   },
+   {
+    "tile": 2322,
+    "align": "wall",
+    "repeat": [
+     112,
+     96
+    ],
+    "count": 1,
+    "is": "locomotive wheels with connecting rod, frame 2"
+   },
+   {
+    "tile": 2323,
+    "align": "wall",
+    "repeat": [
+     112,
+     96
+    ],
+    "count": 1,
+    "is": "locomotive wheels with connecting rod, frame 3"
+   },
+   {
+    "tile": 794,
+    "align": "wall",
+    "repeat": [
+     80,
+     56
+    ],
+    "count": 1,
+    "is": "barred vent in a dark frame"
+   },
+   {
+    "tile": 1070,
+    "align": "face",
+    "repeat": [
+     64,
+     64
+    ],
+    "count": 1,
+    "is": "floor lever switch in rusty plate"
+   },
+   {
+    "tile": 2519,
+    "align": "face",
+    "repeat": [
+     64,
+     64
+    ],
+    "count": 1,
+    "is": "editor marker labelled SOUND"
+   },
+   {
+    "tile": 4326,
+    "align": "wall",
+    "repeat": [
+     168,
+     255
+    ],
+    "count": 1,
+    "is": "grey gothic letter F"
+   },
+   {
+    "tile": 4341,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter U"
+   },
+   {
+    "tile": 4332,
+    "align": "wall",
+    "repeat": [
+     160,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter L"
+   },
+   {
+    "tile": 4333,
+    "align": "wall",
+    "repeat": [
+     136,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter M"
+   },
+   {
+    "tile": 4329,
+    "align": "wall",
+    "repeat": [
+     168,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter I"
+   },
+   {
+    "tile": 4335,
+    "align": "wall",
+    "repeat": [
+     168,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter O"
+   },
+   {
+    "tile": 4321,
+    "align": "wall",
+    "repeat": [
+     168,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter A"
+   },
+   {
+    "tile": 4328,
+    "align": "wall",
+    "repeat": [
+     168,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter H"
+   },
+   {
+    "tile": 634,
+    "align": "wall",
+    "repeat": [
+     80,
+     88
+    ],
+    "count": 1,
+    "is": "horned stone demon face ornament"
+   }
+  ]
+ }
+}

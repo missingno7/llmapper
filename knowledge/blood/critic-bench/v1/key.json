@@ -1,0 +1,286 @@
+{
+ "b_01": {
+  "kind": "fault",
+  "truth": "track_through_hall",
+  "accept": [
+   "rail",
+   "track"
+  ],
+  "fault": "track_through_hall"
+ },
+ "b_02": {
+  "kind": "naming",
+  "truth": "kitchen (E2M4)",
+  "accept": [
+   "kitchen",
+   "butcher",
+   "meat",
+   "galley",
+   "pantry",
+   "scullery"
+  ],
+  "fault": null
+ },
+ "b_03": {
+  "kind": "clean",
+  "truth": "our station: street_door",
+  "accept": [],
+  "fault": null
+ },
+ "b_04": {
+  "kind": "naming",
+  "truth": "funeral parlour (E1M1)",
+  "accept": [
+   "funeral",
+   "memorial",
+   "mortuary",
+   "wake",
+   "chapel",
+   "parlour",
+   "parlor",
+   "viewing"
+  ],
+  "fault": null
+ },
+ "b_05": {
+  "kind": "fault",
+  "truth": "name_upside_down",
+  "accept": [
+   "upside",
+   "invert",
+   "flipped",
+   "letter",
+   "sign",
+   "text"
+  ],
+  "fault": "name_upside_down"
+ },
+ "b_06": {
+  "kind": "fault",
+  "truth": "chairs_in_air",
+  "accept": [
+   "chair",
+   "float",
+   "mid-air",
+   "midair",
+   "hover",
+   "air",
+   "furniture"
+  ],
+  "fault": "chairs_in_air"
+ },
+ "b_07": {
+  "kind": "naming",
+  "truth": "steam locomotive (E1M4)",
+  "accept": [
+   "locomotive",
+   "steam engine",
+   "train",
+   "steam train"
+  ],
+  "fault": null
+ },
+ "b_08": {
+  "kind": "clean",
+  "truth": "our station: hall",
+  "accept": [],
+  "fault": null
+ },
+ "b_09": {
+  "kind": "naming",
+  "truth": "railway track (E1M2)",
+  "accept": [
+   "rail",
+   "track",
+   "train",
+   "subway",
+   "tunnel"
+  ],
+  "fault": null
+ },
+ "b_10": {
+  "kind": "naming",
+  "truth": "boardwalk / pier at night",
+  "accept": [
+   "dock",
+   "pier",
+   "wharf",
+   "boardwalk",
+   "jetty",
+   "quay",
+   "harbour",
+   "harbor",
+   "boathouse",
+   "waterfront",
+   "carnival",
+   "fair",
+   "promenade"
+  ],
+  "fault": null
+ },
+ "b_11": {
+  "kind": "naming",
+  "truth": "railway carriage, parked (community STATION)",
+  "accept": [
+   "carriage",
+   "train",
+   "railcar",
+   "rail car",
+   "railway car",
+   "coach",
+   "tram",
+   "wagon",
+   "boxcar",
+   "locomotive"
+  ],
+  "fault": null
+ },
+ "b_12": {
+  "kind": "fault",
+  "truth": "wheels_on_top",
+  "accept": [
+   "wheel"
+  ],
+  "fault": "wheels_on_top"
+ },
+ "b_13": {
+  "kind": "clean",
+  "truth": "our station: from_track",
+  "accept": [],
+  "fault": null
+ },
+ "b_14": {
+  "kind": "naming",
+  "truth": "chapel with pews and altar",
+  "accept": [
+   "church",
+   "chapel",
+   "cathedral",
+   "altar",
+   "temple",
+   "shrine",
+   "sanctuary",
+   "nave"
+  ],
+  "fault": null
+ },
+ "b_15": {
+  "kind": "naming",
+  "truth": "cinema / theatre",
+  "accept": [
+   "theatre",
+   "theater",
+   "cinema",
+   "movie",
+   "auditorium",
+   "screening"
+  ],
+  "fault": null
+ },
+ "b_16": {
+  "kind": "fault",
+  "truth": "rails_across",
+  "accept": [
+   "rail",
+   "track",
+   "sleeper",
+   "tie"
+  ],
+  "fault": "rails_across"
+ },
+ "b_17": {
+  "kind": "clean",
+  "truth": "our station: inside",
+  "accept": [],
+  "fault": null
+ },
+ "b_18": {
+  "kind": "clean",
+  "truth": "our station: nose",
+  "accept": [],
+  "fault": null
+ },
+ "b_19": {
+  "kind": "naming",
+  "truth": "saloon (Death Wish)",
+  "accept": [
+   "bar",
+   "saloon",
+   "tavern",
+   "pub",
+   "restaurant",
+   "diner",
+   "cafe",
+   "lounge",
+   "inn"
+  ],
+  "fault": null
+ },
+ "b_20": {
+  "kind": "naming",
+  "truth": "under a pier, over water",
+  "accept": [
+   "dock",
+   "pier",
+   "wharf",
+   "boardwalk",
+   "jetty",
+   "quay",
+   "harbour",
+   "harbor",
+   "boathouse",
+   "waterfront",
+   "water",
+   "bridge",
+   "under"
+  ],
+  "fault": null
+ },
+ "b_21": {
+  "kind": "naming",
+  "truth": "crypt (E1M1)",
+  "accept": [
+   "crypt",
+   "tomb",
+   "mausoleum",
+   "catacomb",
+   "burial",
+   "sepulch",
+   "graveyard",
+   "cemetery",
+   "morgue",
+   "coffin",
+   "sarcophag"
+  ],
+  "fault": null
+ },
+ "b_22": {
+  "kind": "fault",
+  "truth": "barrel_in_air",
+  "accept": [
+   "barrel",
+   "float",
+   "mid-air",
+   "midair",
+   "hover",
+   "air"
+  ],
+  "fault": "barrel_in_air"
+ },
+ "b_23": {
+  "kind": "naming",
+  "truth": "bar with stools (E1M2)",
+  "accept": [
+   "bar",
+   "saloon",
+   "tavern",
+   "pub",
+   "restaurant",
+   "diner",
+   "cafe",
+   "lounge",
+   "inn"
+  ],
+  "fault": null
+ }
+}

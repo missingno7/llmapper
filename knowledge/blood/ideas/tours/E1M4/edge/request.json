@@ -1,0 +1,73 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/ideas/tours/E1M4/edge/as-played.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/reference/blood",
+ "output": "knowledge/blood/ideas/tours/E1M4/edge",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "gallery",
+   "x": 16384,
+   "y": 43800,
+   "z": 13408,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 320,
+   "screenshot": true
+  },
+  {
+   "id": "carousel_out",
+   "x": 14848,
+   "y": 35500,
+   "z": 25696,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 352,
+   "screenshot": true
+  },
+  {
+   "id": "carousel_in",
+   "x": 12000,
+   "y": 28160,
+   "z": 17504,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  },
+  {
+   "id": "funhouse_door",
+   "x": 15616,
+   "y": 45500,
+   "z": 13408,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 320,
+   "screenshot": true
+  },
+  {
+   "id": "funhouse_in",
+   "x": 15616,
+   "y": 52000,
+   "z": 14336,
+   "angle": 877,
+   "horiz": 100,
+   "sector": 221,
+   "screenshot": true
+  },
+  {
+   "id": "funhouse2",
+   "x": 11500,
+   "y": 51000,
+   "z": 26624,
+   "angle": 793,
+   "horiz": 100,
+   "sector": 223,
+   "screenshot": true
+  }
+ ]
+}

@@ -20,6 +20,7 @@ Everything is placed from the L1 plan's own `furnish` slots for the area.
 from __future__ import annotations
 
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.slope import SlopeSpec
 
 from bloodmap.doors import z_motion_door
 
@@ -72,6 +73,102 @@ SLIP_DROP = 2048
 #: also the form that made our own sewer trunk read wet.
 WATER = 1120
 WATER_DEPTH = 7
+#: THE SEA, from the harbour study (`knowledge/blood/studies/harbour`).
+#: Two blind reviews read the water as grass, and the study says why: it
+#: was 1120, the owner's "green dirty water", still, bright, and 0.12 of a
+#: body under the boards -- a lawn. Every Blood sea (DWE3M4 s636/528/527,
+#: E2M1 s125, E2M9 s49) is tile 2490 or 2448 in PALETTE 10, shade 38 to 44
+#: darkening outward, its floor panning, depth 0, and it lies 1.75 bodies
+#: below its quay (DWE3M4: boardwalk -8,192 over sea 21,504).
+#: (2490 is the owner's "light marble": water is a use he has not named.)
+SEA_TILE, SEA_PAL = 2490, 10
+SEA_DROP = 29696
+SEA_PAN = {"pan_floor": 1, "pan_always": 1, "pan_velocity": 10,
+           "pan_angle": 900, "depth": 0}
+BULKHEAD = 20                  # the quay's face to the water: dark planks
+
+#: The sea, band by band going out: (depth in plan units, floor shade).
+#: DWE3M4 darkens its sea 3 a band (35, 38, 41, 44); ours starts where the
+#: old river was lit.
+SEA_BANDS = ((8, 38), (6, 41), (6, 44))
+HORIZON_DEPTH = 1024
+#: region ids of the horizon's pieces, for the build to check
+HORIZON: list = []
+#: The ship. Rim over the quay: DWE3M4's "Phantom" stands 11,264 over its
+#: pier; deck under the rim: 4,096 (s671 under s625).
+SHIP_RIM = 11264
+SHIP_DECK_DROP = 4096
+SHIP_CABIN = 16384
+SHIP_MAST = 73728
+#: Owner anchors: 67 "dark horizontal planks" is the hull DWE2M4's rowboat
+#: shows the water; 15 planks cap the rim; 28 is the wooden wall; 20 is the
+#: tile DWE2M6's three masts wear.
+SHIP_HULL, SHIP_PLANK, SHIP_CABIN_WALL, SHIP_MAST_TILE = 67, 15, 28, 20
+#: region id -> the tile its raised sides wear (`skyline.dress_steps`)
+SHIP_FACES: dict = {}
+#: the owner's "smaller crate"; and E2M1 sprites 156/157, the black flag
+CRATE = 452
+FLAG = {"type": 0, "picnum": 3558, "cstat": 144, "x_repeat": 64,
+        "y_repeat": 64, "shade": 8, "status": 0}
+SHIP_FLAG: list = []
+
+
+def fly_flag(layout) -> int:
+    """Hang the flag on the mast's west face, 2.3 bodies over the deck."""
+    for spec in SHIP_FLAG:
+        layout.place_on_wall(
+            "ship:flag", spec["region_id"], a1=spec["a1"], a2=spec["a2"],
+            t=0.5, height_player_heights=2.3, offset_player_widths=0.02,
+            **FLAG)
+    return len(SHIP_FLAG)
+
+#: What stands between the sea and the town. The owner, 2026-11-18: "Edges
+#: of that sea looks bad because they connect straight to buildings, it
+#: should have something to visually divide it, places where player can't
+#: reach, but will see." The water ran from a building's back corner
+#: straight to the horizon ring.
+#:
+#: Measured: DWE2M6 rings its bay in rock (s931-940: floor 273, faces 458,
+#: 2.3 to 3.6 bodies over the water); DWE3M5's ring STOPS at the tips of
+#: rock headlands with jagged edges of several segments; DWE2M6 stands
+#: wooden piles in the water (s621-626: 512 square, 2.05 bodies, tile 20,
+#: 2,560 apart); DWE3M4 blocks every wall into its outermost band, so the
+#: far sea is seen and never reached.
+#:
+#: Plan units, in the near band's own frame: a headland at each end,
+#: between the quay's corner and the ring, and its crest.
+HEAD_WEST = ((0, 0), (3.5, 0), (3, 2), (1.5, 3.5), (1, 5.5), (0, 6.5))
+HEAD_EAST = ((44.25, 0), (48, 0), (48, 6), (47, 5), (46.5, 3), (45, 1.75))
+CREST_WEST = ((0.5, 0.5), (2.5, 0.5), (2, 1.75), (0.75, 3), (0.5, 4))
+CREST_EAST = ((45.5, 0.5), (47.5, 0.5), (47.5, 3.5), (46.75, 2.5), (46, 1.25))
+#: the flank of the building at each end of the quay: the owner's "brick
+#: facade with shuttered window", darker than the street's own fronts
+#: (until `flank_follow` has looked at the building each one belongs to)
+FLANK_TILE, FLANK_SHADE = 385, 12
+FLANKS: list = []
+FLANK_END = 2048               # how thick the flank building is at its end
+#: over the SEA, which now lies 1.75 bodies under the quay: the tops stand
+#: where they stood, 2.5 and 4 bodies over the street (DWE3M5: 2.7 to 6)
+HEAD_RISE = 44096 + 27648
+CREST_RISE = 71232 + 27648
+ROCK_FLOOR, ROCK_FACE = 273, 458   # the owner's "rock/cliff" and "rock"
+PILE, PILE_RISE, PILE_PITCH = 512, 34768, 2560
+#: the jetty: (x0, x1, length) in plan units, in the near band's frame --
+#: beside the ship's bow, five and a half out. TWO units wide: at one,
+#: with a 256 post 64 in from each edge, 384 was left between the posts and
+#: a body is wider than that (the owner, in the game: "Pier is very narrow,
+#: you can't walk on it"). Now 1,408 clear.
+JETTY = (21, 23, 5.5)
+POST_RISE = 16960              # a body over the deck
+PILE_TILE = 20
+#: a skerry in the second band: out of reach, in view from the whole quay
+SKERRY = ((36, 9.5), (38.5, 9), (39.5, 10.5), (38.5, 12), (36.5, 12.5),
+          (35.5, 11))
+SKERRY_RISE = 25440            # a body and a half
+#: region ids: the band the player can wade, and the ones he cannot
+SEA: dict = {}
+#: region ids of everything made of rock, for the scale pass
+ROCKS: list = []
 
 
 def _island(place, district, street_room, name, *, x0, y0, x1, y1, floor_z,
@@ -99,6 +196,153 @@ def _island(place, district, street_room, name, *, x0, y0, x1, y1, floor_z,
         district.connect(room.face(face), street_room.face("north"),
                          connection_id=f"connection:market_{name}_{face}")
     return room
+
+
+def close_outer_sea(level, compiled) -> dict:
+    """Block every wall from the near water into the bands beyond it.
+
+    DWE3M4 does exactly this (every wall between s527 and s856 carries the
+    blocking bit): the far sea, its skerry and the ring are seen and never
+    reached, so nobody wades to the horizon and finds its edge.
+    """
+    def f(item):
+        return item.get("fields", item) if isinstance(item, dict) else item.fields
+
+    near = compiled.allocations[SEA["near"]].sector_id
+    far = {compiled.allocations[r].sector_id for r in SEA["far"]}
+    #: palette 10 is what makes 2490 water; and nobody steps off the quay
+    #: into a sea 1.75 bodies down that he could not climb out of: every
+    #: wall between the water and anything at the quay's level blocks.
+    walk = {compiled.allocations[r].sector_id for r in SEA.get("walk", ())
+            if r in compiled.allocations}
+    edge = 0
+    for index in [near, *far]:
+        s = f(level.sectors[index])
+        s["floor_pal"] = SEA_PAL
+        s["floor_stat"] = int(s["floor_stat"]) | 4
+    for index, sector in enumerate(level.sectors):
+        s = f(sector)
+        for w in range(int(s["wall_ptr"]),
+                       int(s["wall_ptr"]) + int(s["wall_count"])):
+            wall = f(level.walls[w])
+            other = int(wall["next_sector"])
+            if (index == near and other in walk) or (index in walk
+                                                     and other == near):
+                wall["cstat"] = int(wall["cstat"]) | 1
+                edge += 1
+    shut = 0
+    for index, sector in enumerate(level.sectors):
+        s = f(sector)
+        for w in range(int(s["wall_ptr"]),
+                       int(s["wall_ptr"]) + int(s["wall_count"])):
+            wall = f(level.walls[w])
+            other = int(wall["next_sector"])
+            if (index == near and other in far) or (index in far
+                                                    and other == near):
+                wall["cstat"] = int(wall["cstat"]) | 1
+                shut += 1
+    # Rock at the scale it is drawn everywhere else. The same reviewer:
+    # "a free-standing block of cracked grey rock ... its texture is badly
+    # stretched". The faces took whatever repeat their wall had as water's
+    # edge; a rock face is 16 units a texel both ways, begun at its own end.
+    rocks = {compiled.allocations[r].sector_id for r in ROCKS
+             if r in compiled.allocations}
+    scaled = 0
+    for wall in level.walls:
+        w = f(wall)
+        if int(w["next_sector"]) in rocks and int(w["picnum"]) == ROCK_FACE:
+            n = f(level.walls[int(w["point2"])])
+            length = (abs(int(n["x"]) - int(w["x"]))
+                      + abs(int(n["y"]) - int(w["y"])))
+            w["x_repeat"] = max(1, min(255, round(length / 128)))
+            w["y_repeat"], w["x_panning"], w["y_panning"] = 8, 0, 0
+            scaled += 1
+    return {"walls": shut, "rock_faces": scaled, "quay_edge": edge}
+
+
+def _flank_specs(side):
+    import detailing
+    return [spec for spec in detailing.PANELS
+            if spec["note"].startswith(f"harbour flank {side}")]
+
+
+def flank_follow(level, compiled, street_region_id, quay_y, x_ends) -> dict:
+    """Each flank wears its own building's wall, without the windows.
+
+    The owner, in the game, 2026-11-19: "These building walls which reach
+    sea shouldn't probably have windows if there is that big rock. Also
+    they should have texture that follows up -- for example 380 is building
+    facade with windows and 381 is the same thing just without windows."
+    Both flanks were 384 whatever stood on the quay beside them. Now the
+    front that ends at each corner is read, and the flank takes its blank
+    companion (`facade_pass.BLANK_OF`); a front with no companion (the
+    tall 400 and 401) is made the district's 380, which has one.
+
+    Before `detailing.paint`, which then paints what this decided.
+    """
+    import facade_pass
+
+    def f(item):
+        return item.get("fields", item) if isinstance(item, dict) else item.fields
+
+    street = f(level.sectors[compiled.allocations[street_region_id].sector_id])
+    out = {}
+    for side, x in zip(("west", "east"), x_ends):
+        front = None
+        for w in range(int(street["wall_ptr"]),
+                       int(street["wall_ptr"]) + int(street["wall_count"])):
+            wall = f(level.walls[w])
+            nxt = f(level.walls[int(wall["point2"])])
+            if (int(wall["next_sector"]) >= 0 or int(wall["y"]) != quay_y
+                    or int(nxt["y"]) != quay_y):
+                continue
+            xs = (int(wall["x"]), int(nxt["x"]))
+            beyond = min(xs) < x if side == "west" else max(xs) > x
+            if x in xs and beyond:
+                front = wall
+        if front is None:
+            out[side] = None
+            continue
+        if int(front["picnum"]) not in facade_pass.BLANK_OF:
+            front["picnum"] = 380
+        blank = facade_pass.BLANK_OF[int(front["picnum"])]
+        for spec in _flank_specs(side):
+            spec["tile"] = blank
+        out[side] = [int(front["picnum"]), blank]
+    return out
+
+
+def flank_align(level, grade, art_sizes) -> int:
+    """After the frames: the flank's courses are the front's courses.
+
+    The front stands on the quay (`frame_map`, v_anchor floor); a flank's
+    own floor is a rock or the sea, 1.75 bodies and more below. So the
+    flank is hung from the sky they share, panned to put the tile's bottom
+    row at the QUAY's level -- the cornice and the brick base come round
+    the corner at the height they left it.
+    """
+    from bloodmap.texture_frame import c_div, sector_index
+
+    def f(item):
+        return item.get("fields", item) if isinstance(item, dict) else item.fields
+
+    owners = sector_index(level)
+    done = 0
+    for side in ("west", "east"):
+        for spec in _flank_specs(side):
+            size = art_sizes.get(int(spec["tile"]))
+            if not size:
+                continue
+            for index in spec.get("records", ()):
+                wall = f(level.walls[index])
+                ceiling = int(f(level.sectors[owners[index]])["ceiling_z"])
+                origin = grade - int(size[1]) * 2048 // 8
+                wall["cstat"] = int(wall["cstat"]) & ~4
+                wall["y_repeat"] = 8
+                wall["y_panning"] = c_div((ceiling - origin) * 8,
+                                          int(size[1]) << 3) % 256
+                done += 1
+    return done
 
 
 def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
@@ -213,51 +457,361 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     built["street_joined"].append(boards.region_id)
     built["boardwalk"] = boards
 
-    # ---- the river: DWE3M10 builds its water as real sectors with boats
-    # as geometry, not as a painted edge.  A slip one max-step deep, so the
-    # player can step down to the water and back out.
+    # ---- the sea: it ends in sky, not in a wall --------------------------
+    # The owner, walking the build of 2026-11-18: "Ship in a harbour is just
+    # a wooden rectangle, water should end with sky (check DWE3M4 for
+    # promenades, sea, etc.)". This was one water sector 16 units deep
+    # walled in brick 11.7 bodies high on three sides: a tank.
+    #
+    # DWE3M4, measured: the sea runs flat to a HORIZON RING, sector 648 --
+    # zero height at the water's own z, the sky on floor AND ceiling with
+    # the parallax bit on both. The wall between two parallax ceilings is
+    # never drawn, so the sky comes down to the waterline. The sea is cut
+    # into bands only to step its shade outward: 35, 38, 41, 44.
     river_y0 = int(city_d_pu * PU)
     river_x0, river_x1 = int(4 * PU), int(52 * PU)
-    # Deep enough that the far bank falls into the engine's own fog rather
-    # than reading as the wall of a tank (visibility 800, E3M1's own).
-    river_depth = 16 * PU
-    river = quay.room(
-        "river", [(0, 0), (river_x1 - river_x0, 0),
-                  (river_x1 - river_x0, river_depth), (0, river_depth)],
+    sea_z = GRADE + SEA_DROP
+    sky = facade.ceiling
+
+    # The near band's ends are the headlands' shores: north, the east
+    # head's four edges, east, south, west, the west head's four.
+    jx0, jx1, jlen = JETTY
+    near_outline = ([HEAD_WEST[1], (jx0, 0), (jx0, jlen), (jx1, jlen),
+                     (jx1, 0), HEAD_EAST[0]]
+                    + list(reversed(HEAD_EAST[2:]))
+                    + [(48, SEA_BANDS[0][0]), (0, SEA_BANDS[0][0])]
+                    + list(reversed(HEAD_WEST[2:])))
+    near_outline = [(int(x * PU), int(y * PU)) for x, y in near_outline]
+    #: north, the jetty's three sides, north again, then as before
+    near_faces = {"north": 0, "jw": 1, "js": 2, "je": 3, "north_b": 4,
+                  "east": 9, "south": 10, "west": 11}
+    near_faces.update({f"he{k}": 5 + k for k in range(4)})
+    near_faces.update({f"hw{k}": 12 + k for k in range(4)})
+
+    #: The bands beyond the near one are WIDER than it by `FLANK_END` at
+    #: each side. A blind reviewer on the build that first had flanks:
+    #: "the brick wall ends flat against the sky, a cut-off edge with no
+    #: visible side or thickness". The step in the sea's outline is that
+    #: side: the flank building's END FACE, turning its far corner.
+    far_x0, far_x1 = river_x0 - FLANK_END, river_x1 + FLANK_END
+
+    def water_band(name, y0, depth, shade, note, outline=None):
+        wide = outline is None
+        x0, x1 = (far_x0, far_x1) if wide else (river_x0, river_x1)
+        band = quay.room(
+            name, outline or [(0, 0), (x1 - x0, 0), (x1 - x0, depth),
+                              (0, depth)],
+            role="exterior",
+            faces=dict(near_faces) if outline else dict(COMPASS),
+            frame=Frame(x0, y0),
+            region_kwargs={"sector_behavior": dict(SEA_PAN)},
+            note=note)
+        band.style = Style(floor_picnum=SEA_TILE, wall_picnum=BULKHEAD,
+                           ceiling_picnum=sky, parallax_ceiling=True,
+                           layer="sea",
+                           floor_z=sea_z, clear_height=STREET_SKY + SEA_DROP,
+                           floor_shade=shade)
+        built["rooms"].append(band.region_id)
+        built["street_joined"].append(band.region_id)
+        return band
+
+    def horizon(name, x0, y0, x1, y1):
+        piece = quay.room(
+            name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
+            role="exterior", faces=dict(COMPASS), frame=Frame(x0, y0),
+            region_kwargs={"declared_zero_exit": True},
+            intent={"kind": "horizon"},
+            note="the horizon: no height, sky above and below (DWE3M4 s648)")
+        piece.style = Style(floor_picnum=sky, wall_picnum=MASONRY.wall,
+                            ceiling_picnum=sky, parallax_ceiling=True,
+                            layer="sea",
+                            floor_stat=1, floor_z=sea_z, clear_height=0)
+        HORIZON.append(piece.region_id)
+        return piece
+
+    bands, rings = [], []
+    y = river_y0
+    for index, (depth, shade) in enumerate(SEA_BANDS):
+        band = water_band(
+            "river" if index == 0 else f"sea_{index}", y, depth * PU, shade,
+            "the water at the quay" if index == 0
+            else "the sea, a band further out and a step darker",
+            outline=near_outline if index == 0 else None)
+        if bands:
+            city.connect(bands[-1].face("south"), band.face("north"),
+                         connection_id=f"connection:sea_{index}")
+        if index == 0:
+            # The owner, 2026-11-18: "the sea connection to city looks
+            # poor, there is a wall that directly ends into sky". The quay
+            # street runs a little past the water at each end, and the
+            # facade on its seaward side stopped dead where the ring began:
+            # a building with a front and no flank, its end against the sky.
+            # So the near band has NO ring at its ends. Its end walls, and
+            # the headlands', are solid: the flank of that same building,
+            # standing in the water behind the rock (`FLANKS`, painted by
+            # `detailing`). The ring begins one band further out, at the
+            # building's far corner.
+            for x in (river_x0, river_x1):
+                FLANKS.append(((x, y), (x, y + depth * PU)))
+            rings.append(None)
+            bands.append(band)
+            y += depth * PU
+            continue
+        west = horizon(f"horizon_w{index}", far_x0 - HORIZON_DEPTH, y,
+                       far_x0, y + depth * PU)
+        east = horizon(f"horizon_e{index}", far_x1, y,
+                       far_x1 + HORIZON_DEPTH, y + depth * PU)
+        if index == 1:
+            import detailing as _detailing
+            for a, b in (((far_x0, y), (river_x0, y)),
+                         ((river_x1, y), (far_x1, y))):
+                side = "west" if a[0] < river_x0 else "east"
+                _detailing.panel(band.region_id, a, b, FLANK_TILE,
+                                 peg="ceiling", shade=FLANK_SHADE + 4,
+                                 note=f"harbour flank {side} end face")
+        city.connect(band.face("west"), west.face("east"),
+                     connection_id=f"connection:horizon_w{index}")
+        city.connect(band.face("east"), east.face("west"),
+                     connection_id=f"connection:horizon_e{index}")
+        #: every coincident edge is a declared portal
+        for side, piece in (("w", west), ("e", east)):
+            if rings[-1]:
+                city.connect(rings[-1][side].face("south"), piece.face("north"),
+                             connection_id=f"connection:horizon_{side}{index}_up")
+        rings.append({"w": west, "e": east})
+        bands.append(band)
+        y += depth * PU
+    south = horizon("horizon_s", far_x0, y, far_x1, y + HORIZON_DEPTH)
+    city.connect(bands[-1].face("south"), south.face("north"),
+                 connection_id="connection:horizon_s")
+    river = bands[0]
+    SEA["near"] = river.region_id
+    SEA["walk"] = [market_st.region_id]
+    SEA["far"] = [band.region_id for band in bands[1:]]
+
+    def rock(name, outline, rise, shade, note, tile=ROCK_FLOOR,
+             face=ROCK_FACE, origin_y=river_y0, fall=0):
+        """`fall` tips the top: z gained going away from its first edge.
+
+        The study: Blood's rock is facets, "each with its own slope and
+        its own shade" (DWE3M5 s46-60: heinum 512 to 1,280, shade 25 to
+        37); ours was "two stacked rectangles with flat tops".
+        """
+        points = [(int(x * PU), int(y * PU)) for x, y in outline]
+        x0 = min(x for x, _y in points)
+        y0 = min(y for _x, y in points)
+        room = quay.room(
+            name, [(x - x0, y - y0) for x, y in points], role="detail",
+            faces={f"e{i}": i for i in range(len(points))},
+            frame=Frame(river_x0 + x0, origin_y + y0),
+            region_kwargs={"declared_zero_exit": True, **(
+                {"floor_slope": SlopeSpec(
+                    hinge=((river_x0 + points[0][0], origin_y + points[0][1]),
+                           (river_x0 + points[1][0], origin_y + points[1][1])),
+                    rise_z=fall)} if fall else {})},
+            intent={"kind": "sea_rock"}, note=note)
+        room.style = Style(floor_picnum=tile, wall_picnum=face,
+                           ceiling_picnum=sky, parallax_ceiling=True,
+                           floor_z=sea_z - rise,
+                           clear_height=STREET_SKY + SEA_DROP - rise,
+                           floor_shade=shade)
+        SHIP_FACES[room.region_id] = face
+        if face == ROCK_FACE:
+            ROCKS.append(room.region_id)
+        return room, points, (x0, y0)
+
+    import detailing
+    for side, outline, crest in (("west", HEAD_WEST, CREST_WEST),
+                                 ("east", HEAD_EAST, CREST_EAST)):
+        head, points, origin = rock(
+            f"headland_{side}", outline, HEAD_RISE,
+            31 if side == "west" else 35,
+            "a rock headland: the sea ends against it, not against a house",
+            fall=20480)                 # highest at the land, down to sea
+        top, crest_points, _o = rock(
+            f"headland_{side}_crest", crest, CREST_RISE,
+            25 if side == "west" else 28, "the headland's crest",
+            fall=-9216 if side == "west" else 12288)
+        head.carve([(x - origin[0], y - origin[1]) for x, y in crest_points])
+        for name in list(top.faces):
+            city.connect(top.face(name), head.face("e0"),
+                         connection_id=f"connection:crest_{side}_{name}")
+        city.connect(head.face("e0"), market_st.face("south"),
+                     connection_id=f"connection:headland_{side}_quay")
+        #: west: edges 1-4 are the shore and 5 the ring; east: 1 is the
+        #: ring and 2-5 the shore
+        shore = range(1, 5) if side == "west" else range(2, 6)
+        for k in shore:
+            city.connect(head.face(f"e{k}"), river.face("north"),
+                         connection_id=f"connection:headland_{side}_shore{k}")
+        x = river_x0 if side == "west" else river_x1
+        for region in (head, river):
+            #: hung from the sky both regions share, so the window rows
+            #: run straight across the rock and the water
+            detailing.panel(region.region_id, (x, river_y0),
+                            (x, river_y0 + SEA_BANDS[0][0] * PU), FLANK_TILE,
+                            peg="ceiling", shade=FLANK_SHADE,
+                            note=f"harbour flank {side}")
+    built["headlands"] = 2
+
+    # The jetty, and the posts that are ITS posts. A blind reviewer on
+    # the first build with piles in the water: "the posts are scattered at
+    # random and fence nothing". A pile has a job when it holds something
+    # up: so a plank jetty runs out from the quay beside the ship's bow,
+    # and the piles stand along its two edges, a body over the deck
+    # (DWE2M6 s621-626: 512 square, 2.05 bodies over the water).
+    city.connect(river.face("north_b"), market_st.face("south"),
+                 connection_id="connection:quay_river_b")
+    jw = int((jx1 - jx0) * PU)
+    jetty = quay.room(
+        "jetty", [(0, 0), (jw, 0), (jw, int(jlen * PU)), (0, int(jlen * PU))],
         role="exterior", faces=dict(COMPASS),
-        frame=Frame(river_x0, river_y0),
-        region_kwargs={"sector_behavior": {"depth": WATER_DEPTH}},
-        note="the river beyond the quay (promenade-patterns)")
-    river.style = Style(floor_picnum=WATER, wall_picnum=MASONRY.wall,
-                        ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                        floor_z=GRADE + SLIP_DROP,
-                        clear_height=STREET_SKY + SLIP_DROP, floor_shade=26)
+        frame=Frame(river_x0 + int(jx0 * PU), river_y0),
+        intent={"kind": "jetty"}, note="the jetty: planks out over the water")
+    jetty.style = Style(floor_picnum=BOARDWALK, wall_picnum=PILE_TILE,
+                        ceiling_picnum=sky, parallax_ceiling=True,
+                        floor_z=GRADE, clear_height=STREET_SKY,
+                        floor_shade=26)
+    SHIP_FACES[jetty.region_id] = PILE_TILE
+    SEA["walk"].append(jetty.region_id)
+    built["rooms"].append(jetty.region_id)
+    built["street_joined"].append(jetty.region_id)
+    city.connect(jetty.face("north"), market_st.face("south"),
+                 connection_id="connection:jetty_quay")
+    for face in ("east", "south", "west"):
+        city.connect(jetty.face(face), river.face("north"),
+                     connection_id=f"connection:jetty_{face}")
+    piles = 0
+    post, inset = 256, 64
+    for side, px in enumerate((inset, jw - inset - post)):
+        for k in range(4):
+            py = 512 + k * 1408
+            box_ = [(px, py), (px + post, py), (px + post, py + post),
+                    (px, py + post)]
+            jetty.carve(box_)
+            pile = quay.room(
+                f"pile_{side}_{k}", [(0, 0), (post, 0), (post, post),
+                                     (0, post)],
+                role="detail", faces=dict(COMPASS),
+                frame=Frame(river_x0 + int(jx0 * PU) + px, river_y0 + py),
+                region_kwargs={"declared_zero_exit": True},
+                intent={"kind": "sea_rock"}, note="a jetty post")
+            pile.style = Style(floor_picnum=PILE_TILE, wall_picnum=PILE_TILE,
+                               ceiling_picnum=sky, parallax_ceiling=True,
+                               floor_z=GRADE - POST_RISE,
+                               clear_height=STREET_SKY - POST_RISE,
+                               floor_shade=28)
+            SHIP_FACES[pile.region_id] = PILE_TILE
+            for name in list(pile.faces):
+                city.connect(pile.face(name), jetty.face("north"),
+                             connection_id=f"connection:pile_{side}_{k}_{name}")
+            piles += 1
+    built["piles"] = piles
+
+    # The skerry: a rock in the band nobody can wade to.
+    far = bands[1]
+    far_y0 = river_y0 + SEA_BANDS[0][0] * PU
+    far.carve([(int(x * PU) + FLANK_END, int(y * PU) - SEA_BANDS[0][0] * PU)
+               for x, y in SKERRY])
+    skerry, _p, _o = rock("skerry", SKERRY, SKERRY_RISE + 27648, 33,
+                          "a skerry: in view from the quay, out of reach",
+                          fall=14336)
+    for name in list(skerry.faces):
+        city.connect(skerry.face(name), far.face("north"),
+                     connection_id=f"connection:skerry_{name}")
     city.connect(river.face("north"), market_st.face("south"),
                  connection_id="connection:quay_river")
-    built["rooms"].append(river.region_id)
-    built["street_joined"].append(river.region_id)
 
-    # A moored boat: a deck standing in the water, geometry not sprite.
-    boat_w, boat_d = 4 * PU, 2 * PU
-    boat_x0 = river_x0 + 12 * PU
-    boat_y0 = river_y0 + 4 * PU
-    river.carve([(boat_x0 - river_x0, boat_y0 - river_y0),
-                 (boat_x0 - river_x0 + boat_w, boat_y0 - river_y0),
-                 (boat_x0 - river_x0 + boat_w, boat_y0 - river_y0 + boat_d),
-                 (boat_x0 - river_x0, boat_y0 - river_y0 + boat_d)])
-    boat = quay.room(
-        "boat", [(0, 0), (boat_w, 0), (boat_w, boat_d), (0, boat_d)],
-        role="detail", faces=dict(COMPASS), frame=Frame(boat_x0, boat_y0),
-        note="a moored lighter: deck boards over the water")
-    boat.style = Style(floor_picnum=BOARDWALK, wall_picnum=BOARDWALK,
-                       ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                       floor_z=GRADE - 1024, clear_height=STREET_SKY - 1024,
-                       floor_shade=28)
-    for face in ("north", "east", "south", "west"):
-        city.connect(boat.face(face), river.face("north"),
-                     connection_id=f"connection:boat_{face}")
-    built["rooms"].append(boat.region_id)
-    built["street_joined"].append(boat.region_id)
+    # ---- the ship: a hull, not a deck ------------------------------------
+    # It was a 4 x 2 rectangle of boards a step over the water. Every hull
+    # in the corpus that reads as a boat (DWE3M4's "Phantom", DWE2M6's ghost
+    # ship, DWE2M4's rowboat) has the same three things: a pointed or
+    # tapered end, a thin RIM that is the highest thing with the deck lower
+    # inside it, and a hull tile that is not the deck's. This is the
+    # Phantom's plan at three quarters: 9,984 by 3,072, bow to the east, the
+    # rim 0.66 body over the quay as the Phantom's is over its pier, the
+    # deck 4,096 under the rim.
+    ship_x0 = river_x0 + 10 * PU
+    ship_y0 = river_y0 + 1 * PU
+    hull = [(0, 0), (7680, 0), (9216, 768), (9984, 1536), (9216, 2304),
+            (7680, 3072), (0, 3072)]
+    inside = [(256, 256), (7616, 256), (8960, 928), (9472, 1536),
+              (8960, 2144), (7616, 2816), (256, 2816)]
+    cabin_box = (1024, 768, 3072, 2304)
+    mast_box = (5120, 1408, 5376, 1664)
+    rim_z = GRADE - SHIP_RIM
+    deck_z = rim_z + SHIP_DECK_DROP
+
+    def edges(points):
+        return {f"e{i}": i for i in range(len(points))}
+
+    def box(b):
+        return [(0, 0), (b[2] - b[0], 0), (b[2] - b[0], b[3] - b[1]),
+                (0, b[3] - b[1])]
+
+    def part(name, outline, origin, floor_z, floor_tile, wall_tile, shade,
+             note):
+        room = quay.room(name, outline, role="detail", faces=edges(outline),
+                         frame=Frame(ship_x0 + origin[0], ship_y0 + origin[1]),
+                         region_kwargs={"declared_zero_exit": True},
+                         intent={"kind": "ship"}, note=note)
+        room.style = Style(floor_picnum=floor_tile, wall_picnum=wall_tile,
+                           ceiling_picnum=sky, parallax_ceiling=True,
+                           floor_z=floor_z,
+                           clear_height=STREET_SKY - (GRADE - floor_z),
+                           floor_shade=shade)
+        SHIP_FACES[room.region_id] = wall_tile
+        return room
+
+    def join(room, other, tag):
+        for name in list(room.faces):
+            if name.startswith("e"):
+                city.connect(room.face(name), other.face(next(iter(other.faces))),
+                             connection_id=f"connection:ship_{tag}_{name}")
+
+    river.carve([(ship_x0 - river_x0 + x, ship_y0 - river_y0 + y)
+                 for x, y in hull])
+    rim = part("ship_rim", hull, (0, 0), rim_z, SHIP_PLANK, SHIP_HULL, 24,
+               "the gunwale: the highest thing on the hull")
+    rim.carve(inside)
+    deck = part("ship_deck", inside, (0, 0), deck_z, BOARDWALK, SHIP_HULL, 28,
+                "the deck, a step under the gunwale")
+    deck.carve([(x, y) for x, y in box(cabin_box)]
+               if False else [(cabin_box[0], cabin_box[1]),
+                              (cabin_box[2], cabin_box[1]),
+                              (cabin_box[2], cabin_box[3]),
+                              (cabin_box[0], cabin_box[3])])
+    deck.carve([(mast_box[0], mast_box[1]), (mast_box[2], mast_box[1]),
+                (mast_box[2], mast_box[3]), (mast_box[0], mast_box[3])])
+    cabin = part("ship_cabin", box(cabin_box), cabin_box[:2],
+                 deck_z - SHIP_CABIN, SHIP_PLANK, SHIP_CABIN_WALL, 26,
+                 "the deckhouse: a body high, shut")
+    mast = part("ship_mast", box(mast_box), mast_box[:2], deck_z - SHIP_MAST,
+                SHIP_PLANK, SHIP_MAST_TILE, 30, "the mast")
+    join(rim, river, "hull")
+    join(deck, rim, "deck")
+    join(cabin, deck, "cabin")
+    join(mast, deck, "mast")
+    deck.light_source("ship_lamp", local=(0.7, 0.5), height_player_heights=1.0)
+    # What is ON the deck is what makes a hull a ship (the study, after
+    # DWE3M4's "Phantom" and E2M1): crates, and the black flag at the mast.
+    #: A WHOLE tile to a face. They were 768 square and 12,288 high, and
+    #: tile 452 is 64 texels: a face showed three quarters of the picture
+    #: each way (the owner: "crates at ship has misaligned textures"). The
+    #: small crate's module is 1,024 by 16,384 (`templates.SMALL_CRATE`).
+    for index, (bx, by) in enumerate(((6144, 512), (6400, 1664))):
+        crate_box = (bx, by, bx + 1024, by + 1024)
+        deck.carve([(crate_box[0], crate_box[1]), (crate_box[2], crate_box[1]),
+                    (crate_box[2], crate_box[3]), (crate_box[0], crate_box[3])])
+        crate = part(f"ship_crate_{index}", box(crate_box), crate_box[:2],
+                     deck_z - 16384, CRATE, CRATE, 24, "a crate on the deck")
+        join(crate, deck, f"crate_{index}")
+    SHIP_FLAG.append({
+        "region_id": deck.region_id,
+        "a1": (ship_x0 + mast_box[0], ship_y0 + mast_box[1]),
+        "a2": (ship_x0 + mast_box[0], ship_y0 + mast_box[3])})
+    built["ship"] = [rim.region_id, deck.region_id, cabin.region_id,
+                     mast.region_id]
 
     # ---- the market hall: a full supermarket inside block A --------------
     # Use most of the block for one readable sales floor, reserve the south
@@ -399,9 +953,19 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                          host_clear=ROOM_HEIGHT)
     # Rear staff entrance: it reaches the stock strip directly and never turns
     # the public checkout aisle into a through-route.
+    #: A DOOR, in a frame. It was a sector of no height and no type: it
+    #: never opened, and with nothing between its planks and the street
+    #: they were drawn from the pavement to the sky (the owner:
+    #: "Provisions backdoor aren't set in a frame and their texture goes up
+    #: to the sky"). As a type-600 door it gets what the front door has:
+    #: a thin leaf with a reveal each side, the outer one a recess at door
+    #: height that gives the wall above back to the facade.
     staff_door = room("staff_door", 6.0, 49.5, 8.0, 50.0, common,
                       "staff-only rear entrance", role="doorway",
-                      rk={"door_face": 22})
+                      rk={"type": 600, "door_face": 22,
+                          "inherit_finish": "both",
+                          "sector_behavior": z_motion_door(
+                              GRADE, GRADE - 16384)})
     staff_door.surfaces(wall_picnum=facade.opening, clear_height=0)
     hall.connect(staff_door.face("north"), stock.face("south"),
                  connection_id="connection:supermarket_staff_inner")

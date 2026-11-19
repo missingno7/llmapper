@@ -1,0 +1,4 @@
+NAME: kitchen with stove, pots and pans
+SURE: 3
+FAULT: no
+WHAT: nothing

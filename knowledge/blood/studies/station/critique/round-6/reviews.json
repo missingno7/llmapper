@@ -1,0 +1,38 @@
+{
+ "recognition": {
+  "named": "small railway station with a passenger car and steam locomotive at the platform",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "carriage windows are solid wood panels, so from the platform the train reads as a building wall, not a vehicle",
+   "tunnel mouth is a flat black rectangle with no depth; the line goes nowhere"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "Posters mounted on the outside of the train carriage (view_01, 05, 06)",
+   "Station entrance doorway renders as a flat black void (view_11)",
+   "Enclosed track shaft lidded with red marbled ceiling reading as lava, not sky (view_04, 09)",
+   "Wall sign text collides with gargoyle sprite on locomotive (view_09)"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 0,
+  "score": 4,
+  "blocking": [
+   "view_09: locomotive wheels stand on the platform paving with no rails under them"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "The street doorway is an unlit black slot with no name or canopy of its own; STATION reads as the neighbour's sign (view 11)"
+  ]
+ }
+}

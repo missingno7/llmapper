@@ -2047,53 +2047,41 @@
   }
  },
  "built": {
-  "blood-city-current.MAP": {
+  "observed.MAP": {
    "bend portal-portal": {
-    "n": 768,
-    "x": 550,
-    "y": 764
-   },
-   "bend solid-solid": {
-    "n": 209,
-    "x": 206,
-    "y": 209
-   },
-   "collinear solid-portal": {
-    "n": 73,
-    "x": 72,
-    "y": 71
-   },
-   "bend solid-portal": {
-    "n": 198,
-    "x": 165,
-    "y": 194
+    "n": 952,
+    "x": 666,
+    "y": 951
    },
    "collinear portal-portal": {
-    "n": 16,
-    "x": 11,
-    "y": 16
+    "n": 49,
+    "x": 28,
+    "y": 47
+   },
+   "bend solid-solid": {
+    "n": 196,
+    "x": 193,
+    "y": 196
+   },
+   "collinear solid-portal": {
+    "n": 82,
+    "x": 80,
+    "y": 79
+   },
+   "bend solid-portal": {
+    "n": 233,
+    "x": 178,
+    "y": 229
+   },
+   "reflex portal-portal": {
+    "n": 4,
+    "x": 2,
+    "y": 4
    },
    "reflex solid-portal": {
     "n": 24,
     "x": 0,
-    "y": 3
-   }
-  },
-  "pattern-zoo.MAP": {
-   "bend solid-solid": {
-    "n": 130,
-    "x": 119,
-    "y": 130
-   },
-   "collinear solid-portal": {
-    "n": 114,
-    "x": 82,
-    "y": 114
-   },
-   "bend solid-portal": {
-    "n": 238,
-    "x": 167,
-    "y": 222
+    "y": 24
    }
   }
  }

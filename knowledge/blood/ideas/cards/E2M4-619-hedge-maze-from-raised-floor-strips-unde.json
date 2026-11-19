@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 619,
+ "kind": "composition",
+ "title": "Hedge maze from raised-floor strips under the sky",
+ "what": "An outdoor hedge maze about 19 x 13 m built with no walls at all, only strips of raised floor. Each hedge is a sector whose floor is 1.9 bodies above the path, under open sky, so its tops are seen with snow on them and the player cannot see over it. In the middle of the maze a round low kerb (a 0.36-body ring) marks a clearing where the paths meet. The paths bend at chamfered corners, so the views along them are short and every turn is a reveal. Seen in tour and own frames.",
+ "recipe": "Ground sector floor z -24576, floor tile 2448 (snow), ceiling 2500 parallax sky. Hedges: thin sectors 512 units thick (0.9 m, 1.3 body widths), floor z -57344 (32768 above the path = 1.93 bodies, 3.5 m), walls tile 2491 (hedge with a snow cap at the top), ends chamfered by 128-256 units. Paths between hedges 1280 units (about 2.2 m, 3.3 body widths). Centre: a 16-sided ring sector (radius 768 outer) raised 6144 (0.36 body) with step faces tile 2455, around an inner round sector at path level. Enemies: axe zombies (type 203) placed at turns, an ambient sound (710) in the middle.",
+ "use": "A churchyard or a rich house's garden behind the church; a maze of market stalls or crates in the harbour yard would use the same raised-floor trick with crate tiles.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E2M4/place_619/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

@@ -1,0 +1,164 @@
+{
+ "map": "E1M4",
+ "at": [
+  -8245,
+  4567
+ ],
+ "views": 6,
+ "recipe": {
+  "walls": [
+   {
+    "tile": 255,
+    "count": 10,
+    "is": "metal wall, lightly rusted"
+   },
+   {
+    "tile": 2453,
+    "count": 8,
+    "is": "technical riveted metal cladding"
+   },
+   {
+    "tile": 0,
+    "count": 8,
+    "is": "grey stone block wall"
+   },
+   {
+    "tile": 449,
+    "count": 4,
+    "is": "rough rock face / rubble stone"
+   },
+   {
+    "tile": 200,
+    "count": 2,
+    "is": "metal threshold with rivets"
+   },
+   {
+    "tile": 49,
+    "count": 1,
+    "is": "weathered red and grey boards with cross rails"
+   },
+   {
+    "tile": 274,
+    "count": 1,
+    "is": "rough coarse stone, almost cobblestone"
+   }
+  ],
+  "masked": [],
+  "flats": [
+   {
+    "tile": 200,
+    "on": "ceiling",
+    "count": 2,
+    "is": "metal threshold with rivets"
+   },
+   {
+    "tile": 274,
+    "on": "floor",
+    "count": 2,
+    "is": "rough coarse stone, almost cobblestone"
+   },
+   {
+    "tile": 270,
+    "on": "floor",
+    "count": 2,
+    "is": "dirt/earth ground"
+   },
+   {
+    "tile": 438,
+    "on": "floor",
+    "count": 1,
+    "is": "embossed metal floor"
+   },
+   {
+    "tile": 200,
+    "on": "floor",
+    "count": 1,
+    "is": "metal threshold with rivets"
+   },
+   {
+    "tile": 491,
+    "on": "floor",
+    "count": 1,
+    "is": "metal plating; can also read as stone"
+   },
+   {
+    "tile": 255,
+    "on": "ceiling",
+    "count": 1,
+    "is": "metal wall, lightly rusted"
+   }
+  ],
+  "sprites": [
+   {
+    "tile": 2322,
+    "align": "wall",
+    "repeat": [
+     88,
+     104
+    ],
+    "count": 1,
+    "is": "locomotive wheels with connecting rod, frame 2"
+   },
+   {
+    "tile": 3566,
+    "align": "face",
+    "repeat": [
+     80,
+     192
+    ],
+    "count": 1,
+    "is": "large flame / bonfire"
+   },
+   {
+    "tile": 754,
+    "align": "face",
+    "repeat": [
+     56,
+     40
+    ],
+    "count": 1,
+    "is": "thin smoke/steam column"
+   },
+   {
+    "tile": 672,
+    "align": "face",
+    "repeat": [
+     48,
+     80
+    ],
+    "count": 1,
+    "is": "smoke/steam plume"
+   },
+   {
+    "tile": 1987,
+    "align": "face",
+    "repeat": [
+     32,
+     32
+    ],
+    "count": 1,
+    "is": "crawling severed hand, leaping"
+   },
+   {
+    "tile": 0,
+    "align": "floor",
+    "repeat": [
+     64,
+     64
+    ],
+    "count": 1,
+    "is": "grey stone block wall"
+   },
+   {
+    "tile": 2521,
+    "align": "face",
+    "repeat": [
+     64,
+     64
+    ],
+    "count": 1,
+    "is": "environmental/ambient sound marker (invisible in game)"
+   }
+  ]
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 155,
+ "kind": "detail",
+ "title": "Hanging body that drips until you shoot it down",
+ "what": "In the torture car a woman's body hangs by her wrists from a chain at the ceiling over a pile of gore on the floor, with blood dripping steadily from her onto it. She is a breakable object: shoot her and she bursts, the drip stops, and a life essence falls where she hung. Around her: a long table on the diagonal, small fires burning on broken wood, blood sprayed on the walls and dripping from the ceiling edge, cultists among it. The drip is what makes the corpse fresh.",
+ "recipe": "Body: face sprite tile 698 (woman on chain, 106 px tall) type 416 kThingObjectGib, z just under the ceiling (-40384 in a room whose ceiling is -40960, 1.93 bodies high), cstat 385 (blocking + hitscan), tx 209, drop_item 109 (life essence), data_4 2205 (sound). Drip: type 702 kGenDripBlood at the same x,y and z, rx 209, state 1 (on at start) so the body's destruction (cmd 0, off) stops it, busy_time 30, data_1 15. Gore: floor-aligned sprite tile 732 (cstat 160) under it on the floor. Dressing: tile 3566 bonfire and 2101 small flame on wood, wall sprites 915 (blood splatter) and 929 (blood dripping from ceiling). Room shading: shade_wave 7 amplitude -4 frequency 4 (firelight).",
+ "use": "Crypt torture chamber under St Gallow's, or the butcher's back room in the market: one fresh body over a gore pile. Use it as the reason a life essence is where it is.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M3/place_155/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

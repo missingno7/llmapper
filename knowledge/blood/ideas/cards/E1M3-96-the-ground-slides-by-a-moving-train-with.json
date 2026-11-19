@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 96,
+ "kind": "transition",
+ "title": "The ground slides by: a moving train without moving the train",
+ "what": "Outside the windows and off the train's sides, the ground is two strips 20 m wide and 258 m long whose floor texture scrolls at speed, with a constant wind and drag along the same direction, under a sky of dark trees. The train itself never moves; the world does. Step off and you are carried backwards along the strip; at each end the strip ends in a sector that does explosive damage. The cars' sides carry a green livery band with the train's name and the number 666.",
+ "recipe": "Ground: sectors 96 and 98, each 11264 x 147456 (20 x 258 m), floor z 28672 (well below the cars' floors 8192-18432), floor tile 373 with fstat 2, pan_always + pan_floor, pan_velocity 128, pan_angle 512, drag 1, wind_velocity 255 wind_angle 512 wind_always; parallax ceiling tile 3678 (cstat 67). Ends: sectors 0, 1, 94, 99 type 618 kSectorDamage damage_type 3 (explode), pan_velocity 255. Same pan on the track sectors under the train. Not verified in game: how far the player is carried before the damage sector.",
+ "use": "Harbour: a ferry or barge deck crossing the harbour, water floor panning past with wind; sewer: a fast culvert current that carries the player towards a grinder. Any 'vehicle' set piece: move the world, not the room.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M3/place_96/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

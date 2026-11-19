@@ -1,0 +1,16 @@
+{
+ "slug": "station",
+ "kind": "station",
+ "round": 5,
+ "poses": [
+  "railway"
+ ],
+ "views": 10,
+ "references": 4,
+ "readers": [
+  "recognition",
+  "comparison",
+  "use",
+  "sense"
+ ]
+}

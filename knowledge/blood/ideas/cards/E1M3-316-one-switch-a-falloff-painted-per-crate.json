@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 316,
+ "kind": "lighting",
+ "title": "One switch, a falloff painted per crate",
+ "what": "The freight car is a dark maze of 1.8 m crates stacked one and two high, with cultists standing on the single-height tops. A small white switch plate at each end turns the car's light on and off. Every crate column and the floor are on the same channel but with different amplitudes, so when the light comes on it does not flood evenly: some stacks brighten a lot, some barely, which reads as a lamp somewhere in the car. Coffins (low boxes with a cross inlaid on the lid) lie among the crates, one up on a stack.",
+ "recipe": "Car sector 316: 14.4 x 21.6 m, floor 8192, ceiling 2.9 bodies, shade 42, rx 139, amplitude -24, dude_lockout. Crates: square sectors 1024 x 1024, single stack floor -8192 (0.97 bodies up), double -24576 (1.93 bodies), walls tile 95 (large crate) and 452 (smaller crate), each crate with rx 139 and its own amplitude (-8, -12, -16, -18, -24) or none. Switches: tile 1078 (20x32 plate) type 20 cmd 3 tx 139, push, at 0.78 bodies on the end walls. Coffin: sector 296 (1024 x 2176, trapezoid), floor 0.36 bodies up, tile 175, with a cross-shaped inner sector 297 tile 272 sunk 1024. Cultists (type 202) on single crate tops. Two double crates (293, 295) are Z-motion on rx 8 (deathmatch start) and move only in multiplayer.",
+ "use": "Harbour warehouse or the undertaker's store behind the church: crates and coffins, one light switch, enemies on the stacks. The per-crate amplitude trick works for any room with one switch: vary amplitude by distance from where the lamp would be.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M3/place_316/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

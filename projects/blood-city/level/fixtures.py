@@ -277,6 +277,71 @@ def shelf_niche(room, name: str, face: str, *, width: int, at: float = 0.5,
                 "source": "E1M2 s213, E3M2 s82/s87 (tools/mine_stands.py)"})
 
 
+#: tiles that are a PICTURE of a thing (a bookcase front) and must be shown
+#: whole, against plain boards that only need an origin
+SHELF_PICTURES = {31, 32, 33}
+
+
+def frame_shelves(level, compiled, layout, art_sizes) -> dict:
+    """Give every shelf niche's walls an origin and a scale of their own.
+
+    The owner, 2026-11-18: "In the shops shelves aren't sometimes aligned
+    with textures." A niche's back wore its tile wherever the room's run
+    happened to leave the panning: the ironmonger's boards began 24 texels
+    in, and the bookseller's "bookcase front", 128 texels tall, showed its
+    top 48 in a niche 12,288 high -- a slice of a bookcase. A niche is one
+    framed thing: its walls begin at their own left end, stand on the
+    niche's own floor, and a picture tile is scaled to be seen whole.
+    """
+    report = {"niches": 0, "walls": 0, "pictures": 0}
+    for region_id, region in layout.regions.items():
+        if (getattr(region, "intent", None) or {}).get("kind") != SHELF_INTENT:
+            continue
+        allocation = compiled.allocations.get(region_id)
+        if allocation is None:
+            continue
+        sector = level.sectors[allocation.sector_id]
+        sector = sector.get("fields", sector) if isinstance(sector, dict) \
+            else sector.fields
+        clear = abs(int(sector["floor_z"]) - int(sector["ceiling_z"]))
+        report["niches"] += 1
+        start, count = int(sector["wall_ptr"]), int(sector["wall_count"])
+        for wall_id in range(start, start + count):
+            wall = level.walls[wall_id]
+            wall = wall.get("fields", wall) if isinstance(wall, dict) \
+                else wall.fields
+            if int(wall["next_sector"]) >= 0:
+                continue
+            other = level.walls[int(wall["point2"])]
+            other = other.get("fields", other) if isinstance(other, dict) \
+                else other.fields
+            length = (abs(int(other["x"]) - int(wall["x"]))
+                      + abs(int(other["y"]) - int(wall["y"])))
+            size = art_sizes.get(int(wall["picnum"]))
+            if size is None or not length:
+                continue
+            width, height = size
+            wall["x_panning"] = 0
+            wall["y_panning"] = 0
+            wall["cstat"] = int(wall["cstat"]) | 4      # stands on its floor
+            if int(wall["picnum"]) in SHELF_PICTURES:
+                #: the whole tile top to bottom, and its width kept in
+                #: proportion: 2,048 z a texel at y_repeat 1
+                y_repeat = max(1, round(2048 * height / clear))
+                squash = y_repeat / 8.0
+                repeats = max(1, round(length * squash / (width * 16)))
+                wall["y_repeat"] = y_repeat
+                wall["x_repeat"] = min(255, max(1, repeats * width // 8))
+                report["pictures"] += 1
+            else:
+                repeats = max(1, round(length / (width * 16)))
+                #: whole boards across the back; a cheek keeps its scale
+                if length >= width * 16:
+                    wall["x_repeat"] = min(255, repeats * width // 8)
+            report["walls"] += 1
+    return report
+
+
 def run_along(name, host, *, axis: str, start: int, end: int,
               across0: int, across1: int, family: str, material,
               grade: int, host_clear: int, gap: int = 512,

@@ -1,0 +1,73 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/studies/locomotive/round_E1M4/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "knowledge/blood/studies/locomotive/round_E1M4",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "round_00",
+   "x": -5645,
+   "y": 4567,
+   "z": 7264,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 114,
+   "screenshot": true
+  },
+  {
+   "id": "round_01",
+   "x": -6945,
+   "y": 6818,
+   "z": -13216,
+   "angle": 1365,
+   "horiz": 100,
+   "sector": 113,
+   "screenshot": true
+  },
+  {
+   "id": "round_02",
+   "x": -9545,
+   "y": 6818,
+   "z": -13216,
+   "angle": 1707,
+   "horiz": 100,
+   "sector": 113,
+   "screenshot": true
+  },
+  {
+   "id": "round_03",
+   "x": -9545,
+   "y": 2315,
+   "z": 3168,
+   "angle": 341,
+   "horiz": 100,
+   "sector": 109,
+   "screenshot": true
+  },
+  {
+   "id": "round_04",
+   "x": -6945,
+   "y": 2315,
+   "z": 7264,
+   "angle": 683,
+   "horiz": 100,
+   "sector": 111,
+   "screenshot": true
+  },
+  {
+   "id": "round_05",
+   "x": -6555,
+   "y": 4567,
+   "z": 7264,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 114,
+   "screenshot": true
+  }
+ ]
+}

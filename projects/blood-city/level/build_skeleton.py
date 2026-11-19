@@ -288,6 +288,13 @@ def build():
                        ceiling_z=GRADE - max(STREET_SKY, l3_church.TOWER_HEIGHT),
                        floor_z=16384,
                        note="the open city at grade")
+    # The sea lies 1.75 bodies under the quay (the harbour study), which is
+    # deeper than the street's band goes: it is a layer of its own, open to
+    # the same sky.
+    city.declare_layer("sea",
+                       ceiling_z=GRADE - max(STREET_SKY, l3_church.TOWER_HEIGHT),
+                       floor_z=GRADE + 29696 + 4096,
+                       note="the harbour's water and its horizon")
     city.declare_layer("sewer", ceiling_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
                        floor_z=SEWER_FLOOR + 4096,
                        note="the wet undercity beneath Foundry Ward")
@@ -839,6 +846,12 @@ def build():
                                    grounds["cemetery"], gates,
                                    tuple(int(v * PU) for v in areas["cemetery"]["rect"]),
                                    gate_rects.get("cemetery", ()))
+    # The crypt's cracked wall is the sewer trunk's west wall, seen from
+    # the other side: 512 of earth under the avenue's kerb.
+    for _index in range(len(l3_church.BREACH_PIECES)):
+        city.connect(church_rooms[f"crypt_breach_{_index}"].face("east"),
+                     sewer_net["w_leg"].face("west"),
+                     connection_id=f"connection:crypt_breach_sewer_{_index}")
 
     # ---- L3: the Gravesend Arcade (the shopping mall) -------------------
     import l3_mall
@@ -849,6 +862,10 @@ def build():
     theatre_rooms, door_levers, stage_curtain = l3_theatre.build(
         district_of['theatre_row'], theatre_st)
     ctx_stage_curtain = stage_curtain
+
+    # ---- L3: Gravesend Station, behind the city's north wall ------------
+    import l3_station
+    station_rooms = l3_station.build(city, theatre_st)
 
     # ---- L3: Market Slip's public space (the district the player starts
     # in), furnished from its own L1 `furnish` slots ------------------------
@@ -926,6 +943,7 @@ def build():
     ctx["light_pools"] = ctx_pools
     ctx["market_dressing"] = market_dressing
     ctx["market_street"] = market_st
+    ctx["theatre_street"] = theatre_st
     ctx["manifest"] = {
         "districts": len(DISTRICT_BOUNDS),
         "carved_areas": sum(1 for a in data["areas"] if a.get("carved")),
@@ -1038,6 +1056,105 @@ def build_stack_link(layout, spec, offset_d, *, see_through):
 LAST_BUILD = None
 
 
+def _seat_actors(layout) -> int:
+    """Write every dude standing on its floor, as the campaign does.
+
+    The layout seats nothing here (it is built without the game's ART), so
+    a dude's z was its floor's, and with bit 128 it is drawn about its z:
+    half of every zombie was under the floor in the editor. The game moves
+    a dude to the floor when it spawns, which is why nobody saw it in play.
+    """
+    import wallplane
+    from bloodmap.placement import drawn_lift
+
+    sizes = wallplane.art()
+    seated = 0
+    for placement in layout.placements:
+        anchor = placement.anchor or {}
+        if not 200 <= int(placement.type) <= 260:
+            continue
+        size = sizes.get(int(placement.picnum))
+        if size is None:
+            continue
+        _width, height, _xofs, yofs = size
+        lift = drawn_lift(height, yofs, placement.y_repeat, placement.cstat)
+        if not anchor:
+            #: placed at a world point with its z on the floor
+            region = layout.regions.get(placement.region_id)
+            if (region is not None and lift > 0
+                    and int(placement.z) == int(region.floor_z)):
+                placement.z = int(region.floor_z) - lift
+                seated += 1
+            continue
+        if anchor.get("kind") != "floor" or float(
+                anchor.get("height_player_heights", 0.0)):
+            continue
+        if lift > 0:
+            anchor["height_player_heights"] = lift / 16960.0
+            seated += 1
+    return seated
+
+
+def _drop_flat_overlaps(layout) -> list:
+    """Two flat sprites at one height in one place lie through each other.
+
+    The sewer's runs each put their floor things on the room's centre line,
+    so a room with a run on two faces got two of everything in one spot,
+    and a drain grate 2,048 across swallowed its neighbours. The first one
+    placed stays; a later one that would cover it is not placed, and says
+    so. `tools/sprite_fit.flat_overlaps` holds the result.
+    """
+    import props
+    import wallplane
+
+    sizes = wallplane.art()
+    taken: dict = {}
+    dropped, keep = [], []
+    for placement in layout.placements:
+        anchor = placement.anchor or {}
+        size = sizes.get(int(placement.picnum))
+        region = layout.regions.get(placement.region_id)
+        if (anchor.get("kind") not in ("floor", "ceiling") or size is None
+                or region is None or int(placement.cstat) & 48 != 32
+                or int(placement.cstat) & 0x8000 or "local" not in anchor):
+            keep.append(placement)
+            continue
+        x0, y0, x1, y1 = props.room_rect(region)
+        x = x0 + float(anchor["local"][0]) * (x1 - x0)
+        y = y0 + float(anchor["local"][1]) * (y1 - y0)
+        half = min(size[0] * int(placement.x_repeat),
+                   size[1] * int(placement.y_repeat)) / 8.0
+        key = (placement.region_id, anchor["kind"])
+        lifted = float(anchor.get("height_player_heights", 0.0))
+        if not region.parallax_ceiling:
+            #: the compiler presses a thing asked for above the ceiling
+            #: against it, so a porthole "at 3.38" and a grate "at 1.99"
+            #: are one plane in a sewer two bodies high
+            lifted = min(lifted, abs(int(region.floor_z)
+                                     - int(region.ceiling_z)) / 16960.0)
+        clash = None
+        for ox, oy, ohalf, oid, olifted in taken.get(key, ()):
+            #: (a grate at 1.99 bodies and one at 1.93 are both pressed to
+            #: the same sewer ceiling by the compiler)
+            if abs(olifted - lifted) > 0.15:
+                continue
+            wide = min(x + half, ox + ohalf) - max(x - half, ox - ohalf)
+            deep = min(y + half, oy + ohalf) - max(y - half, oy - ohalf)
+            if wide > 0 and deep > 0 and (
+                    wide * deep > 0.15 * 4.0 * min(half, ohalf) ** 2):
+                clash = oid
+                break
+        if clash is not None:
+            dropped.append(f"{placement.placement_id} (tile "
+                           f"{placement.picnum}) would lie through {clash}")
+            continue
+        taken.setdefault(key, []).append(
+            (x, y, half, placement.placement_id, lifted))
+        keep.append(placement)
+    layout.placements[:] = keep
+    return dropped
+
+
 def main() -> int:
     global LAST_BUILD
     program, stack_links, gates, ctx, dressing = build()
@@ -1091,7 +1208,7 @@ def main() -> int:
         # and the count was never actually declared -- the player would never
         # have been told a secret was found. The rule caught it; the helper
         # cannot forget it.
-        behavior=motion.secret_total(2))            # stash + flooded branch
+        behavior=motion.secret_total(3))            # stash + flooded branch
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -1140,6 +1257,16 @@ def main() -> int:
     print("sewer runs:", run_layer.emit_all(layout, _sewer_runs))
 
     import l3_church
+    import l3_station as _station
+    print("station:", _station.furnish(
+        layout, ctx["theatre_street"].region_id, _attested_or_none))
+    import l3_theatre as _saloon
+    print("saloon stools:", _saloon.stools(layout, ctx["theatre_rooms"]))
+    import l3_market as _harbour
+    print("ship flag:", _harbour.fly_flag(layout))
+    print("crypt breach:", l3_church.crack(
+        layout, ctx["church_rooms"],
+        ctx["sewer_rooms_new"]["w_leg"].region_id))
     print("church populated:", l3_church.populate(
         layout, ctx["church_rooms"], _attested_or_none, torch_fields,
         FLAME_STAND))
@@ -1428,6 +1555,32 @@ def main() -> int:
     door_frames = frame_z_doors(layout, art_sizes=art_sizes())
     ctx["manifest"]["door_frames"] = len(door_frames["doors"])
     print("door frames:", len(door_frames["doors"]))
+    import l3_shed as _late_shed
+    import l3_station as _late_station
+    for _region_id, _type in {**l3_church.LATE_TYPES,
+                              **_late_shed.LATE_TYPES,
+                              **_late_station.LATE_TYPES}.items():
+        layout.regions[_region_id].type = _type
+
+    import facade_pass
+    _backs = facade_pass.split_backs(layout, ctx["street_regions"])
+    import detailing as _detailing
+    print("detail panels:", _detailing.split(layout))
+    import windows as _windows
+    # (The blind recesses in the edge buildings, `_windows.cut`, are no
+    # longer cut: the owner wants windows one can look through, and a blind
+    # reviewer read the recesses as "a protrusion with misaligned texture".)
+    _windows.NICHES.clear()
+    ctx["manifest"]["windows"] = _windows.cut_through(
+        layout, ctx["street_regions"], grade=GRADE)
+    print("windows:", ctx["manifest"]["windows"])
+    ctx["manifest"]["building_backs"] = _backs
+    print("building backs:", _backs)
+    ctx["manifest"]["seated_actors"] = _seat_actors(layout)
+    ctx["manifest"]["flat_dropped"] = _drop_flat_overlaps(layout)
+    print("actors seated:", ctx["manifest"]["seated_actors"],
+          "flat sprites dropped for lying through another:",
+          len(ctx["manifest"]["flat_dropped"]))
 
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
@@ -1438,7 +1591,8 @@ def main() -> int:
     # network; one per district read as one repeated building).
     import facade_pass
     print("facades:", facade_pass.apply(compiled.level, compiled,
-                                        ctx["street_regions"]))
+                                        ctx["street_regions"],
+                                        edge=_backs["edge"]))
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
@@ -1516,6 +1670,37 @@ def main() -> int:
                        if r in compiled.allocations}
     print("standing edges:", skyline.dress_steps(
         compiled.level, _stands, only_from=_street_sectors))
+    # The ship's sides, from the water, the deck and each other: nothing
+    # that looks up at a hull is a street.
+    import l3_shed as _shed
+    print("machines:", _shed.dress(compiled.level, compiled))
+    from bloodmap.rules import art_sizes as _panel_sizes
+    print("harbour flanks follow:", l3_market.flank_follow(
+        compiled.level, compiled, ctx["market_street"].region_id,
+        CITY_D, (4 * PU, 52 * PU)))
+    print("detail paint:", _detailing.paint(compiled.level, compiled,
+                                            _panel_sizes()))
+    # The quay's face to the sea: dark planks, seen from the water.
+    print("bulkhead:", skyline.dress_steps(
+        compiled.level,
+        {compiled.allocations[ctx["market_street"].region_id].sector_id:
+         l3_market.BULKHEAD},
+        only_from={compiled.allocations[l3_market.SEA["near"]].sector_id}))
+    import l3_station as _station_dress
+    print("station faces:", skyline.dress_steps(compiled.level, {
+        compiled.allocations[region_id].sector_id: tile
+        for region_id, tile in _station_dress.FACES.items()
+        if region_id in compiled.allocations}))
+    print("station:", _station_dress.dress(compiled.level, compiled))
+    print("sarcophagus faces:", skyline.dress_steps(compiled.level, {
+        compiled.allocations[region_id].sector_id: tile
+        for region_id, tile in l3_church.CRYPT_FACES.items()
+        if region_id in compiled.allocations}))
+    print("ship sides:", skyline.dress_steps(compiled.level, {
+        compiled.allocations[region_id].sector_id: tile
+        for region_id, tile in l3_market.SHIP_FACES.items()
+        if region_id in compiled.allocations}))
+    print("outer sea:", l3_market.close_outer_sea(compiled.level, compiled))
     # An end wall's face is LIT and BLOCKING, as E3M1's are: its three street
     # ends (s0, s339, s343) wear their facade at shade -8, cstat 1, on every
     # face a road or a pavement sees, against 24 to 34 on the masonry beside
@@ -1585,6 +1770,15 @@ def main() -> int:
     #: origin used to be its first wall's peg, an accident of wall order: the
     #: market hall wore its dado under the ceiling, and a facade's arched
     #: ground storey began wherever the run did.
+    #: ...and a wall drawn in two bands hangs both from its own ceiling,
+    #: BEFORE the frames read where each wall hangs from.
+    from bloodmap.texture_frame import peg_split_bands
+    _bands = peg_split_bands(compiled.level, records=records,
+                             owner="surface:facade")
+    ctx["manifest"]["split_bands"] = {k: v for k, v in _bands.items()
+                                      if k != "walls"}
+    print("walls in two bands hung from their own ceiling:",
+          ctx["manifest"]["split_bands"])
     print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes,
                                        world_phase=district_walls,
                                        records=records, owner="surface:facade",
@@ -1594,6 +1788,9 @@ def main() -> int:
     # campaign's 110 raised crate tops do; this map's eleven did not, so a
     # 1024 box off the 1024 world grid wore a cut tile.
     print("crate tops:", frame_raised_solids(compiled.level, art_sizes=art_sizes))
+    print("carriage records kept:", _station_dress.keep(compiled.level))
+    print("harbour flanks aligned:", l3_market.flank_align(
+        compiled.level, GRADE, art_sizes))
 
     # LightBomb now runs inside ``layout.compile`` from the sources declared by
     # each emitting placement.  Flicker remains a distinct runtime effect: it
@@ -1630,6 +1827,12 @@ def main() -> int:
     print("pilasters:", glass.stand_pilasters(compiled.level,
                                               compiled.allocations))
 
+    import fixtures as _fixtures
+    from bloodmap.rules import art_sizes as _art_sizes
+    print("window niche walls:", _windows.paint(compiled.level, compiled))
+    print("window glass and bars:", _windows.glaze(compiled.level))
+    print("shelf frames:", _fixtures.frame_shelves(
+        compiled.level, compiled, layout, _art_sizes()))
     disk = compiled.level.to_disk_map()
     # Wall sprites, as rectangles on the surfaces they hang from.  This was
     # 18.86 clashing pairs per 100 against a campaign 0.0-8.0, with 26
@@ -1781,9 +1984,35 @@ def main() -> int:
                    if k in row} for row in _lint[kind]]
            for kind in ("sunk", "through", "squeezed")},
         "overlaps": [{"sprites": [o["a"], o["b"]], "tiles": list(o["tiles"]),
-                      "sector": o["sector"]} for o in _lint["overlaps"]]}
+                      "sector": o["sector"]} for o in _lint["overlaps"]],
+        "flat_overlaps": [{"sprites": [o["a"], o["b"]],
+                           "tiles": list(o["tiles"]), "sector": o["sector"]}
+                          for o in _lint["flat_overlaps"]],
+        "sunk_actors": _lint["sunk_actors"],
+        "on_travelling_floor": _lint["on_travelling_floor"]}
+    print("decoration on a travelling floor:",
+          len(_lint["on_travelling_floor"]))
     print("sprite fit:", _lint["rates"], "overlapping pairs:",
-          len(_lint["overlaps"]))
+          len(_lint["overlaps"]), "flat pairs:", len(_lint["flat_overlaps"]),
+          "sunk actors:", len(_lint["sunk_actors"]))
+    from tools import catalog as _catalog
+    ctx["manifest"]["directional_floors"] = _catalog.directional_floor_faults(disk)
+    print("floors laid across their run:", ctx["manifest"]["directional_floors"])
+    print("papers and boards hung on no wall:", _lint.get("unbacked", []))
+    import character as _character
+    _sheet = _character.sheet(disk)
+    ctx["manifest"]["character"] = _sheet
+    for _name, _row in _sheet["places"].items():
+        print(f"character: {_name}: {_row['layer_count']} layers "
+              f"(campaign p25 {_row['campaign_p25']}, p50 "
+              f"{_row['campaign_p50']}); lacks {_row['missing'] or 'nothing'}")
+    for _name, _row in _sheet["places"].items():
+        print(f"scale: {_name}: {_row['metres'][0]} x {_row['metres'][1]} m, "
+              f"{_row['metres'][2]} m high; cramped: "
+              f"{_row['cramped'] or 'no'}")
+    print("character: built without a study:", _sheet["unstudied"])
+    print("character: thin", _sheet["thin"], "unfound", _sheet["unfound"],
+          "dangling channels", _sheet["dangling_channels"])
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")

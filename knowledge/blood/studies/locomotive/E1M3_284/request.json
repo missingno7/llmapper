@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/locomotive/E1M3_284/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/locomotive/E1M3_284",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -14336,
+   "y": 67584,
+   "z": 13408,
+   "angle": 1615,
+   "horiz": 100,
+   "sector": 96,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -14336,
+   "y": -73728,
+   "z": 13408,
+   "angle": 397,
+   "horiz": 100,
+   "sector": 96,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -8192,
+   "y": 30720,
+   "z": 13408,
+   "angle": 1633,
+   "horiz": 100,
+   "sector": 96,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -14336,
+   "y": -30720,
+   "z": 13408,
+   "angle": 189,
+   "horiz": 100,
+   "sector": 96,
+   "screenshot": true
+  }
+ ]
+}

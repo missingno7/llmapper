@@ -1,0 +1,4 @@
+NAME: dim brick corridor with shop counters and a central strip
+SURE: 3
+FAULT: no
+WHAT: nothing

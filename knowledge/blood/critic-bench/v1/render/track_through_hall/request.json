@@ -1,0 +1,23 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/track_through_hall/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/track_through_hall",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "hall",
+   "x": 18022,
+   "y": -8806,
+   "z": -27552,
+   "angle": 1170,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  }
+ ]
+}

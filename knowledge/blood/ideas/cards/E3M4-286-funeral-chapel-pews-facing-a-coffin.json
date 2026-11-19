@@ -1,0 +1,12 @@
+{
+ "map": "E3M4",
+ "sector": 286,
+ "kind": "set-piece",
+ "title": "Funeral chapel: pews facing a coffin",
+ "what": "A tall, dim chapel of rest: rows of wooden pews facing a low dais where a coffin lies between wreaths and two banks of candles, a robed figure behind it, round fat columns at the corners, gargoyle statues in pointed niches high on the side walls, and a pointed doorway glowing behind the dais with small figures inside. First second: pews, wreaths, candles around a coffin.",
+ "recipe": "Hosts s286 + s287 together are 7168 x 4096 units (12.2 x 7.0 m), 5.8 bodies high, floor 287 (owner: interlocking paving), ceiling 432, walls 130 (clay), 88 (wooden pilaster, 9 walls), 123. Gargoyle niches s393/s397 are 896 x 896 units raised 1.15 bodies with a statue sprite 1530 in each. Side bays s289/s291 (1024 x 768) hold a bonfire sprite 3566 each. Pews are sector solids (not measured); wreath, candle and coffin sprites seen in frame but not looked up.",
+ "use": "The front room of a funeral parlour at the city edge, different from the church because it is small, private and has the coffin as its centre. Entered from the street through a vestibule; the player is ambushed when the coffin is approached, or the coffin lid hides a key. It can sit over the morgue card's basement.",
+ "frame": "knowledge/blood/ideas/tours/E3M4/place_286/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

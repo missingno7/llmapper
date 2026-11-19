@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/maps_blood_community_SCHOOL_.map_244/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/maps_blood_community_SCHOOL_.map_244",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 13839,
+   "y": 30981,
+   "z": 4192,
+   "angle": 141,
+   "horiz": 100,
+   "sector": 244,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 13839,
+   "y": 36273,
+   "z": 4192,
+   "angle": 1916,
+   "horiz": 100,
+   "sector": 244,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 23499,
+   "y": 30981,
+   "z": 4192,
+   "angle": 816,
+   "horiz": 100,
+   "sector": 244,
+   "screenshot": true
+  }
+ ]
+}

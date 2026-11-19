@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/maps_blood_community_STATION.MAP_125/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/maps_blood_community_STATION.MAP_125",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -116872,
+   "y": 24920,
+   "z": -8096,
+   "angle": 1591,
+   "horiz": 100,
+   "sector": 125,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -114875,
+   "y": 24920,
+   "z": -8096,
+   "angle": 1508,
+   "horiz": 100,
+   "sector": 125,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -116872,
+   "y": 9745,
+   "z": -8096,
+   "angle": 453,
+   "horiz": 100,
+   "sector": 125,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -114875,
+   "y": 9745,
+   "z": -8096,
+   "angle": 542,
+   "horiz": 100,
+   "sector": 125,
+   "screenshot": true
+  }
+ ]
+}

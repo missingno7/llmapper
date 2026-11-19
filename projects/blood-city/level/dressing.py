@@ -100,6 +100,25 @@ def _palette_for(region) -> str | None:
     return "interior"
 
 
+#: what a region is when it is a thing in a room and not a room
+NOT_ROOMS = ("machine", "light_pool", "ship", "sea_rock", "horizon",
+             "shelf_niche")
+
+
+def moves(region) -> bool:
+    """A floor that pans, a sector that travels, or a machine: no decor."""
+    behavior = dict(getattr(region, "sector_behavior", None) or {})
+    if any(int(behavior.get(key, 0) or 0) for key in (
+            "pan_floor", "pan_ceiling", "bob_z_range", "drag")):
+        return True
+    for key in ("on_floor_z", "on_ceiling_z"):
+        if key in behavior and int(behavior[key]) != int(
+                behavior.get(key.replace("on_", "off_"), behavior[key])):
+            return True
+    kind = dict(getattr(region, "intent", None) or {}).get("kind")
+    return kind in NOT_ROOMS
+
+
 def dress(layout, regions=None) -> dict:
     """Dress the campaign's share of rooms, each as a coherent set."""
     report = {"dressed": 0, "bare": 0, "placed": 0, "no_association": 0,
@@ -117,10 +136,22 @@ def dress(layout, regions=None) -> dict:
         if clear < MIN_CLEAR:
             continue                      # doorways, and anything crawlable
         if dict(getattr(region, "intent", {}) or {}).get("kind") in (
-                "roof", "sky_apron", "end_wall", "sky_backing", "roadway"):
+                "roof", "sky_apron", "end_wall", "sky_backing", "roadway",
+                #: a room its own module furnishes by hand. The station's
+                #: open platform got a headstone from this pass twice (the
+                #: owner: "there is grave on it"): what the campaign puts
+                #: on stone under a sky is not what stands on a platform.
+                "furnished"):
             # A roof is the top of something solid and an apron is a strip of
             # pavement; neither is a room.  The first build with roofs stood
             # two headstones on St Gallow's, visible from the avenue.
+            continue
+        if moves(region):
+            # The owner, 2026-11-18: "there are few illogical things like
+            # that pipe entrance decoration on the conveyor belt instead on
+            # the floor". A drain cover was laid on the belt and a grate
+            # hung over it: the belt is a room by its size and its height,
+            # and a floor that travels carries nothing that stays put.
             continue
         surfaces = _surfaces_of(region)
         if surfaces is None:

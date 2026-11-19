@@ -1,0 +1,12 @@
+{
+ "map": "E3M4",
+ "sector": 153,
+ "kind": "set-piece",
+ "title": "Hospital admissions lobby",
+ "what": "The front hall of a hospital: one square, tall hall on a black-and-white chequer floor, a grey plaster reception block on one side with a raised mezzanine edge, benches along the walls with potted plants between them, a planter with a bare tree in the middle, lamps hanging on long stems. The first-second reads: the chequer floor, red crosses on the wall, and the two signs '+HOSPITAL+' and 'HOSPITAL INFORMATION AND ADMISSION' (plus 'EAST WING' over a corridor mouth).",
+ "recipe": "Host s153 is 17408 x 17408 units (29.6 m square), 5.8 bodies high, floor tile 290, ceiling 315, walls 1011/130/90 with two big carved pillars (seen in frame). Signs are wall sprites: 151 'Hospital information and admission' (75x34 px), 695 '+HOSPITAL+' (106x21), 143 'EAST WING' (79x20). Hanging lamps 468 x4 (owner: vertical ceiling light), potted plants 1009 x2 by the benches. Benches and the reception block are sector solids (sizes not measured). Three hellhounds (type 211) wait in it.",
+ "use": "A city-edge hospital entered from the street through a double door into this hall; scale it down to about 18 x 15 m and 3.4 bodies. The player reads the signs, finds the reception desk with a key or a ward map, and takes the EAST WING corridor to a morgue or a lock-up ward. Monsters waiting in a waiting room is the joke.",
+ "frame": "knowledge/blood/ideas/tours/E3M4/place_153/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

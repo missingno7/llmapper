@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E6M8/place_0/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E6M8/place_0",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 35676,
+   "y": 25251,
+   "z": 96,
+   "angle": 768,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 35676,
+   "y": 30044,
+   "z": 96,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 30883,
+   "y": 30044,
+   "z": 96,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 30883,
+   "y": 25251,
+   "z": 96,
+   "angle": 256,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  }
+ ]
+}

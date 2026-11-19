@@ -1,0 +1,93 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/studies/locomotive/round_TEDE1M8/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "knowledge/blood/studies/locomotive/round_TEDE1M8",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "round_00",
+   "x": 23700,
+   "y": 71000,
+   "z": -49056,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 80,
+   "screenshot": true
+  },
+  {
+   "id": "round_01",
+   "x": 21942,
+   "y": 75242,
+   "z": -7072,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 76,
+   "screenshot": true
+  },
+  {
+   "id": "round_02",
+   "x": 17700,
+   "y": 77000,
+   "z": -7072,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 76,
+   "screenshot": true
+  },
+  {
+   "id": "round_03",
+   "x": 13457,
+   "y": 75242,
+   "z": -7072,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 76,
+   "screenshot": true
+  },
+  {
+   "id": "round_04",
+   "x": 13457,
+   "y": 66757,
+   "z": -25504,
+   "angle": 256,
+   "horiz": 100,
+   "sector": 69,
+   "screenshot": true
+  },
+  {
+   "id": "round_05",
+   "x": 21942,
+   "y": 66757,
+   "z": -25504,
+   "angle": 768,
+   "horiz": 100,
+   "sector": 69,
+   "screenshot": true
+  },
+  {
+   "id": "round_06",
+   "x": 21600,
+   "y": 71000,
+   "z": -26528,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 81,
+   "screenshot": true
+  },
+  {
+   "id": "round_07",
+   "x": 20457,
+   "y": 73757,
+   "z": -7072,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 76,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/name_upside_down/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/v1/render/name_upside_down",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "street_door",
+   "x": 17305,
+   "y": 2662,
+   "z": -7072,
+   "angle": 1329,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  }
+ ]
+}

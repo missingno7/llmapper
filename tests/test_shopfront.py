@@ -280,7 +280,10 @@ class CityStreetEndTests(unittest.TestCase):
     def test_four_streets_end_in_eight_backed_masses(self):
         from bloodmap import skyline
 
-        backings = skyline.sky_backings(self.disk)
+        #: (the sea's horizon pieces are backings too, with the sky on their
+        #: FLOOR as well: `l3_market`, DWE3M4 s648. These are the streets'.)
+        backings = [b for b in skyline.sky_backings(self.disk)
+                    if not int(self.disk.sectors[b].fields["floor_stat"]) & 1]
         self.assertEqual(len(backings), 8)
         for backing in backings:
             masses = {int(w["next_sector"]) for w in self._walls(backing)

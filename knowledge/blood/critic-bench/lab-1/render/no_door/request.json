@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/no_door/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/no_door",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "door_2",
+   "x": 15769,
+   "y": -14950,
+   "z": -25600,
+   "angle": 1465,
+   "horiz": 100,
+   "sector": 334,
+   "screenshot": true
+  },
+  {
+   "id": "door_5",
+   "x": 15769,
+   "y": -10752,
+   "z": -27552,
+   "angle": 1514,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "track_2",
+   "x": 15769,
+   "y": -22118,
+   "z": -13216,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 342,
+   "screenshot": true
+  }
+ ]
+}

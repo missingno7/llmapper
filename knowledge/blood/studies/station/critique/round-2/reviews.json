@@ -1,0 +1,39 @@
+{
+ "recognition": {
+  "named": "small underground railway station with a parked train car",
+  "sure": 4,
+  "score": 2,
+  "blocking": [
+   "No platform edge: floor flush with track bed, so there is no platform",
+   "Carriage not on the rails; reads as a box parked on cobble",
+   "Carriage windows see through to bare brick, no interior",
+   "Street (view 9) and shop aisle (view 6) do not read as part of a station",
+   "Legible poster lettering remains in view 6"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Solid ceiling over the tracks and train: no sky, no open air",
+   "No signs of use: no bodies, debris or litter",
+   "Train windows are holes onto brick: no curtains or interior",
+   "Flat light level across every view",
+   "Benches are bare boxes and the halls have almost no props",
+   "Track tunnel ends in a black void"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Locomotive does not read as one: a box in carriage livery, 5.5 m cab, no chimney or tender",
+   "Carriage is 5.1 m wide with a 1.7 x 3.0 m door and no bogies: reads as a green building",
+   "Street entrance is an unframed slot in the theatre facade with STATION above eye line",
+   "No end: tunnel barred, the player retraces the whole route",
+   "Lever gives no visible result 22 m from its door; open_time 8 may shut it first"
+  ]
+ }
+}

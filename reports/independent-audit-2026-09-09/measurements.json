@@ -1,0 +1,400 @@
+{
+  "scope": "Current working tree; no engine runs; counts do not measure quality",
+  "inventory": {
+    "bloodmap": {
+      "python_files": 133,
+      "lines": 79614
+    },
+    "tests": {
+      "python_files": 145,
+      "lines": 36318
+    },
+    "tools": {
+      "python_files": 72,
+      "lines": 19695
+    },
+    "experiments": {
+      "python_files": 11,
+      "lines": 2547
+    },
+    "projects": {
+      "python_files": 119,
+      "lines": 47935
+    },
+    "static_test_methods": 2186
+  },
+  "artifacts": [
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v0.MAP",
+      "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
+      "bytes": 7171,
+      "counts": {
+        "sectors": 30,
+        "walls": 157,
+        "sprites": 5
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 173298,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 33,
+            "regions": 30,
+            "sectors": 30,
+            "sprites": 5,
+            "walls": 157
+          },
+          "declared_changes": [
+            "initial blockout: hierarchy, containment, connectivity, scale, spine"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v0",
+          "map_bytes": 7171,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v0.MAP",
+          "map_sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v0.py",
+          "parent_iteration": null
+        },
+        "artifact_hash_matches": true,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v1.MAP",
+      "sha256": "0d8bccd359a3c9cedd4a3c3222b31b502b2075aa68f4118015b76c4762b37682",
+      "bytes": 7531,
+      "counts": {
+        "sectors": 31,
+        "walls": 167,
+        "sprites": 5
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 204190,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 34,
+            "regions": 31,
+            "sectors": 31,
+            "sprites": 5,
+            "walls": 167
+          },
+          "declared_changes": [
+            "added a covered gatehouse and two gallery arches as real thresholds, each darker than its neighbours, to answer the collapsed perceptual space",
+            "cut stair sectors from 16 to 10 and raised room sectors from 10 to 15",
+            "lowered the gallery from about 2.7 to about 2.0 player heights",
+            "gave the chapel two side aisles and a raised, brighter apse holding the switch",
+            "gave the crypt a larger hall plus a reliquary and a cistern chamber",
+            "declared the open exterior stairs as courtyard circulation instead of gallery",
+            "fixed probe:reach_crypt to open both sides of the crypt gate and reworded the ossuary probe so its intended answer is not phrased as a failure",
+            "surface treatment deliberately unchanged; that is iteration 2"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v1",
+          "map_bytes": 7531,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v1.MAP",
+          "map_sha256": "0d8bccd359a3c9cedd4a3c3222b31b502b2075aa68f4118015b76c4762b37682",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v1.py",
+          "parent_iteration": "v0"
+        },
+        "artifact_hash_matches": true,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v2.MAP",
+      "sha256": "b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b",
+      "bytes": 9775,
+      "counts": {
+        "sectors": 31,
+        "walls": 167,
+        "sprites": 56
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 248998,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 34,
+            "regions": 31,
+            "sectors": 31,
+            "sprites": 56,
+            "walls": 167
+          },
+          "declared_changes": [
+            "one dominant floor/ceiling/wall triple per assembly, each tile chosen from both mined corpus usage and its rendered appearance",
+            "ceilings picked for what they look like: 454 coffered over the nave, 4 light stone over the apse, 285 vault over the approach, 455 moss over the derelict gallery",
+            "courtyard wall changed from smooth marble 2490 to coursed rubble 110 so the wall carries a unit of scale",
+            "51 decoration sprites attached to architectural roles at precedent-anchored density",
+            "geometry and shading deliberately unchanged from v1 so any hierarchy movement would prove the critic was reading something other than what changed"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v2",
+          "map_bytes": 9775,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v2.MAP",
+          "map_sha256": "b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v2.py",
+          "parent_iteration": "v1"
+        },
+        "artifact_hash_matches": true,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v3.MAP",
+      "sha256": "94bade7ac361e2362c81a4377429f3396b0699f4b767eefd265ce461b0f5d6f1",
+      "bytes": 11263,
+      "counts": {
+        "sectors": 31,
+        "walls": 208,
+        "sprites": 60
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 239331,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 38,
+            "regions": 31,
+            "sectors": 31,
+            "sprites": 60,
+            "walls": 208
+          },
+          "declared_changes": [
+            "ceilings set from corpus percentiles for each space's footprint rather than from round multiples of player height: nave 7->10, aisles 4->6, apse 6->8, gallery 6->12, exit 4->8, ledge 4->6, gatehouse 3->5, crypt hall 2.18->5, arches 2->4",
+            "crypt cells deliberately kept near 3 player heights on the E6M3 precedent, as an argued exception rather than an unexamined default",
+            "chamfers and shallower non-45-degree facets on the courtyard, chapel mass, crypt hall, gallery, exit hall, ledge and crypt cells; the gatehouse splayed at 37 degrees; the apse made an eight-sided radial chancel; the garden bed made an octagonal planter",
+            "sprite repeats derived from each tile's pixel size and a stated target height in player heights, instead of copied from the campaign mode",
+            "the loop arch given the emblem its twin already had"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v3",
+          "map_bytes": 11263,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v3.MAP",
+          "map_sha256": "94bade7ac361e2362c81a4377429f3396b0699f4b767eefd265ce461b0f5d6f1",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v3.py",
+          "parent_iteration": "v2"
+        },
+        "artifact_hash_matches": true,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v4.MAP",
+      "sha256": "1f358e5d3dd42c6125f0e7c2a44a580cb38462283722184423f1b8f0517d6ca3",
+      "bytes": 12887,
+      "counts": {
+        "sectors": 38,
+        "walls": 250,
+        "sprites": 60
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 267966,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 49,
+            "regions": 38,
+            "sectors": 38,
+            "sprites": 60,
+            "walls": 250
+          },
+          "declared_changes": [
+            "the garden bed raised 6144 above the courtyard instead of sunk 2048, and the chancel raised 6144 above the nave instead of 2048, so the level finally has one-way vertical relationships; v3 had none anywhere",
+            "a three-tread chancel stair beside a direct 6144 opening, so the chancel is reached without closing the view back down into the nave",
+            "the gallery ascent rise changed from 3840 to 4096, the rise the corpus uses for 771 of its 1283 stair rises",
+            "all four stairs written as bloodmap.vocabulary.staircase calls instead of hand-rolled loops that tracked their own previous edge",
+            "three wall niches written as bloodmap.vocabulary.recess calls, sized on the corpus profile: flush floor, lowered ceiling, a few percent of the host",
+            "a raised tomb block in the crypt hall: a third vertical relationship, and something for the level's second-largest interior to be about"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v4",
+          "map_bytes": 12887,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v4.MAP",
+          "map_sha256": "1f358e5d3dd42c6125f0e7c2a44a580cb38462283722184423f1b8f0517d6ca3",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v4.py",
+          "parent_iteration": "v3"
+        },
+        "artifact_hash_matches": true,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v5.MAP",
+      "sha256": "467800188f1ffb3d1de2a209085ce5a4af2eceb99f5ba17785b8442e66413fe2",
+      "bytes": 58679,
+      "counts": {
+        "sectors": 133,
+        "walls": 913,
+        "sprites": 360
+      },
+      "dude_types_200_to_299": {
+        "201": 9,
+        "202": 5,
+        "203": 8,
+        "206": 3,
+        "211": 2,
+        "217": 2
+      },
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": {
+        "bytes": 285569,
+        "identity": {
+          "counting_note": "object counts describe size, never quality",
+          "counts": {
+            "connections": 57,
+            "regions": 38,
+            "sectors": 38,
+            "sprites": 60,
+            "walls": 295
+          },
+          "declared_changes": [
+            "the crypt stops being one tile: the hall, its stair and the tomb block take E6M3's crypt treatments, tile 1097 stays only on the reliquary where the corpus supports it, and the two larger chambers take a third set",
+            "segmented arcs at the mined corpus parameters replace chamfers on the planter, the chancel, two courtyard corners, two crypt-hall corners and two gallery corners",
+            "the planter's eight hand-written connection edges are generated from its own outline, so its sixteen segments cannot drift out of step with its connections",
+            "four viewpoints declare an upward pitch, so the level's ceilings and its sky are looked at for the first time in five iterations",
+            "the sky panorama itself was a compiler fix rather than a source change: PlanarLayout now emits the sixteen-panel sky every campaign map with a parallax sector declares, instead of the single panel new_level hardcoded"
+          ],
+          "deterministic_compile": true,
+          "iteration_id": "v5",
+          "map_bytes": 14327,
+          "map_path": "projects\\reasoned-authoring-v1\\level\\candidate-v5.MAP",
+          "map_sha256": "8fb5288e73833498ed487636f8446b69967dc328b968d6ef396101b254b1eee9",
+          "module": "projects/reasoned-authoring-v1/level/candidate_v5.py",
+          "parent_iteration": "v4"
+        },
+        "artifact_hash_matches": false,
+        "gate_status_counts": {
+          "pass": 14
+        }
+      }
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v6.MAP",
+      "sha256": "7cbe0cf86a22935cf5ff96ef31a1b386a32aa798fef6abe5e77c17dce4388ba4",
+      "bytes": 68015,
+      "counts": {
+        "sectors": 137,
+        "walls": 953,
+        "sprites": 505
+      },
+      "dude_types_200_to_299": {
+        "201": 9,
+        "202": 5,
+        "203": 8,
+        "206": 3,
+        "211": 2,
+        "217": 2
+      },
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": null
+    },
+    {
+      "path": "projects\\reasoned-authoring-v1\\level\\candidate-v7.MAP",
+      "sha256": "6721a48634a5a6ad6999c63f16d91738cb10353140f4cebb3018778729310aaf",
+      "bytes": 70863,
+      "counts": {
+        "sectors": 150,
+        "walls": 1011,
+        "sprites": 513
+      },
+      "dude_types_200_to_299": {
+        "201": 9,
+        "202": 5,
+        "203": 8,
+        "206": 3,
+        "211": 2,
+        "217": 2
+      },
+      "native_roundtrip_exact": true,
+      "native_errors": [],
+      "packet": null
+    },
+    {
+      "path": "projects\\blood-city\\level\\blood-city-current.MAP",
+      "sha256": "5a1aac2ed778d2918eb9ed3d689cc6e1608f25acad3f780992e71652f644f84f",
+      "bytes": 93683,
+      "counts": {
+        "sectors": 259,
+        "walls": 1694,
+        "sprites": 430
+      },
+      "dude_types_200_to_299": {
+        "202": 10,
+        "203": 8,
+        "217": 1,
+        "218": 1,
+        "220": 7
+      },
+      "native_roundtrip_exact": true,
+      "native_errors": []
+    },
+    {
+      "path": "projects\\blood-city\\level\\slice2-streets.MAP",
+      "sha256": "347ba9fbce3d2e074a3683c08bbaff845a2302ae3146d32c0f9a9993dd147eea",
+      "bytes": 44567,
+      "counts": {
+        "sectors": 199,
+        "walls": 1031,
+        "sprites": 16
+      },
+      "dude_types_200_to_299": {},
+      "native_roundtrip_exact": true,
+      "native_errors": []
+    }
+  ],
+  "source_compile": [
+    {
+      "version": "v0",
+      "source_sha256": "c62a971b0fedef65c2e5898e3df451d7c195e75c44c646450b10042737594828",
+      "status": "compiled",
+      "deterministic": true,
+      "sha256": "a94ba555d922f3f432239db913c1a07abcbf2d78a32334cc0f3c2e2bc2cff967",
+      "matches_stored_map": false,
+      "seconds": 0.563
+    },
+    {
+      "version": "v5",
+      "source_sha256": "241c2eab0aee894fbf0be39d0204407333e04f7018ffb57af93d73455c86c8fa",
+      "status": "failed",
+      "error_type": "PlanarLayoutError",
+      "error": "9 mechanism(s) break their geometry somewhere in their travel:\n  sector 34 (type 617): step 12/16: loop 0 of sector 29, which this mechanism drags through wall(s) [345, 348] crosses itself (1 new wall pair(s))\n  sector 34 (type 617): step 12/16: wall 296 of sector 29 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 12/16: wall 348 of sector 34 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 13/16: wall 296 of sector 29 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 13/16: wall 348 of sector 34 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 14/16: wall 296 of sector 29 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 14/16: wall 348 of sector 34 cuts through wall 294 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 16/16: wall 296 of sector 29 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 16/16: wall 348 of sector 34 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\nEvery other check reads the pose the map is saved in, and a moving sector is only in that pose for an instant.",
+      "seconds": 14.25
+    },
+    {
+      "version": "v7",
+      "source_sha256": "cbf42812ce066c1d02a6165649ed6b5c5544e4a850e96e3de36c4dfc9b162ef6",
+      "status": "failed",
+      "error_type": "PlanarLayoutError",
+      "error": "9 mechanism(s) break their geometry somewhere in their travel:\n  sector 34 (type 617): step 12/16: loop 0 of sector 29, which this mechanism drags through wall(s) [344, 347] crosses itself (1 new wall pair(s))\n  sector 34 (type 617): step 12/16: wall 295 of sector 29 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 12/16: wall 347 of sector 34 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 13/16: wall 295 of sector 29 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 13/16: wall 347 of sector 34 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 14/16: wall 295 of sector 29 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 14/16: wall 347 of sector 34 cuts through wall 293 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 16/16: wall 295 of sector 29 cuts through wall 292 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\n  sector 34 (type 617): step 16/16: wall 347 of sector 34 cuts through wall 292 of sector 29, which this mechanism does not move -- it sweeps through standing geometry\nEvery other check reads the pose the map is saved in, and a moving sector is only in that pose for an instant.",
+      "seconds": 16.765
+    }
+  ]
+}

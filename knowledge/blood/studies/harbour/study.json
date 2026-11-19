@@ -1,0 +1,1129 @@
+{
+ "slug": "harbour",
+ "want": "the harbour of Gravesend: a boardwalk quay above the sea, a moored ship at a jetty on piles, the sea running out to a sky horizon, and the quay's ends where buildings and rock meet the water",
+ "date": "2026-11-18",
+ "seeds": [
+  {
+   "seed": "DWE3M4:548!",
+   "map": "maps\\blood\\curated\\DWE3M4.MAP",
+   "host": 548,
+   "sectors": [
+    376,
+    377,
+    548
+   ],
+   "metres": [
+    10.0,
+    33.4,
+    6.5
+   ],
+   "area_M": 75.83,
+   "clear_bodies": 3.62,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    28,
+    "wooden wall"
+   ],
+   "ceiling": [
+    2500,
+    "sky parallax segment"
+   ],
+   "walls": [
+    [
+     20,
+     1.0,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 376,
+     "corners": 3,
+     "size": [
+      1536,
+      1536
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 28,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      28,
+      369
+     ]
+    },
+    {
+     "sector": 377,
+     "corners": 3,
+     "size": [
+      1536,
+      1536
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 28,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      28,
+      369
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 46,
+     "repeats": [
+      8,
+      8
+     ],
+     "pal": 7,
+     "over_floor_bodies": 3.5
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.44
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 2820,
+     "type": 247,
+     "type_name": "kDudeCultistTesla",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 11,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE3M4_548\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE3M4_548\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE2M6:627!",
+   "map": "maps\\blood\\curated\\DWE2M6.MAP",
+   "host": 627,
+   "sectors": [
+    621,
+    622,
+    623,
+    624,
+    625,
+    626,
+    627
+   ],
+   "metres": [
+    8.7,
+    13.9,
+    22.8
+   ],
+   "area_M": 35.13,
+   "clear_bodies": 12.68,
+   "free_floor_share": 0.96,
+   "shade_spread": 34,
+   "floor": [
+    2490,
+    "light marble"
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     20,
+     1.0,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 621,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 622,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 623,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 624,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 625,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 626,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 170,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 16,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 693,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      32,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.57
+    },
+    {
+     "tile": 2332,
+     "type": 9,
+     "type_name": "kMarkerUpWater",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE2M6_627\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE2M6_627\\frames.png"
+   ]
+  },
+  {
+   "seed": "E2M1:247!",
+   "map": "maps\\blood\\campaign\\E2M1.MAP",
+   "host": 247,
+   "sectors": [
+    1,
+    15,
+    16,
+    34,
+    35,
+    36,
+    82,
+    216,
+    217,
+    247
+   ],
+   "metres": [
+    12.2,
+    22.2,
+    6.1
+   ],
+   "area_M": 53.94,
+   "clear_bodies": 3.38,
+   "free_floor_share": 0.94,
+   "shade_spread": 20,
+   "floor": [
+    21,
+    "dark vertical planks"
+   ],
+   "ceiling": [
+    2500,
+    "sky parallax segment"
+   ],
+   "walls": [
+    [
+     49,
+     0.312,
+     ""
+    ],
+    [
+     452,
+     0.22,
+     "smaller crate"
+    ],
+    [
+     20,
+     0.175,
+     "wood"
+    ],
+    [
+     22,
+     0.122,
+     ""
+    ],
+    [
+     88,
+     0.102,
+     "wooden column/pilaster with base and capital"
+    ],
+    [
+     462,
+     0.031,
+     "smaller crate, broken"
+    ],
+    [
+     174,
+     0.022,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 1,
+     "corners": 10,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 21,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      22,
+      195
+     ]
+    },
+    {
+     "sector": 15,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 452,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      452
+     ]
+    },
+    {
+     "sector": 16,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 452,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      452
+     ]
+    },
+    {
+     "sector": 34,
+     "corners": 5,
+     "size": [
+      473,
+      473
+     ],
+     "rise_bodies": 1.99,
+     "floor_tile": 174,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      174
+     ]
+    },
+    {
+     "sector": 35,
+     "corners": 6,
+     "size": [
+      512,
+      558
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 174,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      174
+     ]
+    },
+    {
+     "sector": 36,
+     "corners": 15,
+     "size": [
+      875,
+      1024
+     ],
+     "rise_bodies": 2.66,
+     "floor_tile": 174,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      88
+     ]
+    },
+    {
+     "sector": 82,
+     "corners": 10,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 21,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      22,
+      195
+     ]
+    },
+    {
+     "sector": 216,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      473
+     ]
+    },
+    {
+     "sector": 217,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      473
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2541,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 1470,
+     "type": 206,
+     "type_name": "kDudeGargoyleFlesh",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.3
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2101,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.05
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 515,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3558,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.33
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\E2M1_247\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\E2M1_247\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M5:50!",
+   "map": "maps\\blood\\curated\\DWE3M5.MAP",
+   "host": 50,
+   "sectors": [
+    50
+   ],
+   "metres": [
+    20.9,
+    27.8,
+    16.1
+   ],
+   "area_M": 156.24,
+   "clear_bodies": 8.94,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    458,
+    "rock"
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE3M5_50\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\DWE3M5_50\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-20.png"
+  },
+  "21": {
+   "tile": 21,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-21.png"
+  },
+  "22": {
+   "tile": 22,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-22.png"
+  },
+  "28": {
+   "tile": 28,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-28.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-34.png"
+  },
+  "49": {
+   "tile": 49,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-49.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-68.png"
+  },
+  "88": {
+   "tile": 88,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-88.png"
+  },
+  "170": {
+   "tile": 170,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-170.png"
+  },
+  "174": {
+   "tile": 174,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-174.png"
+  },
+  "452": {
+   "tile": 452,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-452.png"
+  },
+  "458": {
+   "tile": 458,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-458.png"
+  },
+  "462": {
+   "tile": 462,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-462.png"
+  },
+  "515": {
+   "tile": 515,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.662,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-515.png"
+  },
+  "624": {
+   "tile": 624,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.197,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-624.png"
+  },
+  "693": {
+   "tile": 693,
+   "pixels": [
+    16,
+    37
+   ],
+   "world_at_repeat_8": [
+    256,
+    9472
+   ],
+   "see_through_share": 0.274,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-693.png"
+  },
+  "754": {
+   "tile": 754,
+   "pixels": [
+    16,
+    125
+   ],
+   "world_at_repeat_8": [
+    256,
+    32000
+   ],
+   "see_through_share": 0.508,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-754.png"
+  },
+  "801": {
+   "tile": 801,
+   "pixels": [
+    32,
+    36
+   ],
+   "world_at_repeat_8": [
+    512,
+    9216
+   ],
+   "see_through_share": 0.174,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-801.png"
+  },
+  "809": {
+   "tile": 809,
+   "pixels": [
+    40,
+    24
+   ],
+   "world_at_repeat_8": [
+    640,
+    6144
+   ],
+   "see_through_share": 0.027,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-809.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-1170.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-1370.png"
+  },
+  "1470": {
+   "tile": 1470,
+   "pixels": [
+    167,
+    115
+   ],
+   "world_at_repeat_8": [
+    2672,
+    29440
+   ],
+   "see_through_share": 0.642,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-1470.png"
+  },
+  "2101": {
+   "tile": 2101,
+   "pixels": [
+    26,
+    37
+   ],
+   "world_at_repeat_8": [
+    416,
+    9472
+   ],
+   "see_through_share": 0.378,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2101.png"
+  },
+  "2332": {
+   "tile": 2332,
+   "pixels": [
+    9,
+    13
+   ],
+   "world_at_repeat_8": [
+    144,
+    3328
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2332.png"
+  },
+  "2490": {
+   "tile": 2490,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2490.png"
+  },
+  "2500": {
+   "tile": 2500,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2500.png"
+  },
+  "2541": {
+   "tile": 2541,
+   "pixels": [
+    58,
+    58
+   ],
+   "world_at_repeat_8": [
+    928,
+    14848
+   ],
+   "see_through_share": 0.56,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2541.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-2820.png"
+  },
+  "3558": {
+   "tile": 3558,
+   "pixels": [
+    86,
+    50
+   ],
+   "world_at_repeat_8": [
+    1376,
+    12800
+   ],
+   "see_through_share": 0.28,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-3558.png"
+  },
+  "3678": {
+   "tile": 3678,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\harbour\\tiles\\tile-3678.png"
+  }
+ }
+}

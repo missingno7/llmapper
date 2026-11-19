@@ -1,0 +1,4 @@
+NAME: Brick hall with wooden counters and posters
+SURE: 3
+FAULT: no
+WHAT: nothing

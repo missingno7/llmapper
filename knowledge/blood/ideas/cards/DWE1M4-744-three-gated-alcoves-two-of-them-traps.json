@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 744,
+ "kind": "encounter",
+ "title": "Three gated alcoves, two of them traps",
+ "what": "A round black cave (floor and ceiling at shade 62, so only the rock walls show) with three stone gateways round its edge, each lit by a hanging lamp and glowing with a different colour of mist or fire behind it: blue, white and red. Stepping into the cave plays a voice line and slides out a glowing orb of the matching colour in front of each gate. Two of the gates are trapped: walking into the white-smoke or the red-fire alcove fires a cluster of buried exploders. The third (blue) leads on, judging by its walls (not verified). The colour coding invites a choice the player cannot know the answer to the first time.",
+ "recipe": "Cave 744: 18 x 16 m, 2 bodies high, floor tile 41 and ceiling 449 both shade 62. Entry strip 712 at the north rim: trigger_enter, trigger_once, tx121; kSoundPlayer (711) rx121 data1 3203. Orbs: three 512-unit square kSectorSlide (616) sectors rx121, busy_time_a 30, each carrying an orb sprite pair (tile 624 pal 10 blue, 624 pal 7 red, tile 626 gold; 16x16 shade -29 plus 4x4 shade -84) and using kMarkerOff (3) / kMarkerOn (4) pairs; the Off markers stand in a row by the north rim. Gates: alcoves about 2000 units wide, floor 1-2 steps up (tile 253, shade 39-50), ceiling dropped to 1.5 bodies (tile 140), a hanging lamp tile 641 in each; at the back a masked wall with overpicnum 2342 (fire mask) for the red one. Traps: inner sector of the east and south alcoves has trigger_enter, trigger_once, dude_lockout, tx123 / tx122, and 7-12 kTrapExploder (459, tile 908, 4x64, invisible) with the matching rx spread through the alcove.",
+ "use": "The crypt under the church: three family vaults behind grilles, one true. Or the pump station's three sluice tunnels, two of them flooded or rigged with gas, colour-coded by the pipes' paint.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_744/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

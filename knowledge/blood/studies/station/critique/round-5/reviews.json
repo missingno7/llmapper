@@ -1,0 +1,43 @@
+{
+ "recognition": {
+  "named": "small covered railway station with a train at the platform",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "Locomotive reads as a stone block/crypt wall, not an engine",
+   "Main platform is an alley-width brick corridor, not a platform",
+   "Open red sky over the tracks reads as hell/lava, not a station roof",
+   "Carriage has no visible doors; its window shows brick contradicting the carpeted interior",
+   "Tunnel mouth is a flat black void with no portal or frame"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "view_07: floating sign text ('THE QUAY') hangs in mid-air and clips into the wall beside the locomotive",
+   "view_03: floating green booth lettering with no backing plate",
+   "view_02: stray line sprites lying on the carriage roof"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "Locomotive stands on platform paving with no rails under it (views 6-7)",
+   "Carriage has no doors facing the platform; nobody could board (views 1-4)"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "Carriage reads as a striped wall from platform and hall: one slab, two windows a side, one door, no roof/ends/wheels in view (view_01, view_04)",
+   "Carriage windows still show brown panelling through the glass: window sectors wear PANELLING 105 (round-4 defect persists)",
+   "STATION is lettered on the neighbouring building; the station doorway is an unmarked unframed slot (view_09)"
+  ]
+ }
+}

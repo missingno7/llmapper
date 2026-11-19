@@ -278,11 +278,76 @@ def build(city, market_st):
     arcade.connect(key_door.face("east"), rooms["service"].face("west"),
                    connection_id="connection:arcade_service_out")
 
+    # The extinguisher and what is behind it. The owner, 2026-11-18: "fire
+    # extinguisher ... is usually thing that will explode and reveal hole
+    # in the wall behind it, it is something that can possibly reveal
+    # secret room for example in staff only part of arcades".
+    #
+    # Transcribed from E3M4 sprite 331 and E1M2 sprite 489 (the one whose
+    # hole is a counted secret): the extinguisher is a kThingObjectGib that
+    # a bullet breaks, its death sends its channel (actor.cpp:3513 ->
+    # triggers.cpp:103), a closed Z-motion sector in the wall behind it
+    # opens in a tenth of a second, and exploders on the same channel go
+    # off staggered. None of the campaign's nine uses a gib WALL.
+    seal = make("service_seal", *SECRET_SEAL, "service", 0,
+                "the wall behind the extinguisher: blown open, once",
+                role="doorway",
+                rk={"type": 600, "inherit_finish": "both",
+                    "sector_behavior": {
+                        **z_motion_door(GRADE, GRADE - SECRET_HOLE,
+                                        interaction="remote",
+                                        rx_id=SECRET_CHANNEL, open_time=1),
+                        "trigger_once": 1}})
+    seal.surfaces(floor_z=GRADE, clear_height=0)
+    cache = make("service_cache", *SECRET_CACHE, "service", SERVICE_H,
+                 "the cache behind the service corridor's wall: a secret",
+                 role="secret",
+                 rk={"secret": True, "declared_zero_exit": True})
+    arcade.connect(seal.face("south"), rooms["service"].face("north"),
+                   connection_id="connection:arcade_cache_blast")
+    arcade.connect(seal.face("north"), cache.face("south"),
+                   connection_id="connection:arcade_cache_in")
+
     # The four hand-placed counters that used to sit here are gone: they
     # were four of six units furnished, each a literal rect derived from
     # its host's own origin.  `templates.shop` furnishes all six, from the
     # same counter family, at whatever size the unit turns out to be.
     return rooms
+
+
+#: The extinguisher's channel, the blast hole and the cache behind it.
+SECRET_CHANNEL = 260
+SECRET_SEAL = (52480, 44032, 53120, 44544)      # 640 wide: E3M4 wall 2361
+SECRET_CACHE = (52224, 43008, 53504, 44032)
+SECRET_HOLE = 20480                              # E3M4 s320: 18,432-26,624
+#: E3M4 sprite 331, field for field
+EXTINGUISHER = {"type": 416, "picnum": 658, "cstat": 464, "x_repeat": 40,
+                "y_repeat": 40, "status": 4,
+                "behavior": {"tx_id": SECRET_CHANNEL, "command": 1,
+                             "trigger_on": 1, "trigger_off": 1,
+                             "trigger_once": 1, "trigger_vector": 1,
+                             "data_1": 5, "data_4": 314}}
+#: E3M4 sprites 332-334: (local in the corridor, tenths of a second)
+EXPLODERS = (((0.40, 0.06), 1), ((0.52, 0.10), 4), ((0.46, 0.14), 3))
+
+
+def extinguisher_secret(layout, rooms) -> dict:
+    """Hang the extinguisher on the seal and arm the charges behind it."""
+    service = rooms["service"]
+    x0, y0, x1, _y1 = 51968, 44544, 53760, 47616
+    centre = (SECRET_SEAL[0] + SECRET_SEAL[2]) // 2
+    layout.place_on_wall(
+        "mall:service_extinguisher", service.region_id,
+        a1=(x0, y0), a2=(x1, y0), t=(centre - x0) / (x1 - x0),
+        height_player_heights=0.87, offset_player_widths=0.06,
+        #: it hangs on the wall that opens, and goes with it
+        spans_opening=True, **EXTINGUISHER)
+    for index, (local, wait) in enumerate(EXPLODERS):
+        layout.place_on_floor(
+            f"mall:service_charge_{index}", service.region_id, local=local,
+            type=459, picnum=908, cstat=128, x_repeat=4, y_repeat=64,
+            status=11, behavior={"rx_id": SECRET_CHANNEL, "wait_time": wait})
+    return {"channel": SECRET_CHANNEL, "charges": len(EXPLODERS)}
 
 
 #: Where the placard hangs, and where the key it names can be found.
@@ -291,6 +356,15 @@ def dress(layout, rooms, attested) -> dict:
     import props
 
     report = {}
+    report["extinguisher_secret"] = extinguisher_secret(layout, rooms)
+    for index, (type_id, local) in enumerate(((62, (0.3, 0.4)),
+                                              (65, (0.7, 0.4)),
+                                              (109, (0.5, 0.7)))):
+        spec = attested(type_id)
+        if spec is not None:
+            layout.place_on_floor(f"mall:cache_{type_id}_{index}",
+                                  rooms["service_cache"].region_id,
+                                  local=local, **spec["fields"])
     # The placard, on the concourse wall beside the service door.
     concourse = rooms["concourse"]
     keysign.placard(layout, "keysign:arcade_service", concourse.region_id,

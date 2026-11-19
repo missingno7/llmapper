@@ -1,0 +1,589 @@
+{
+  "compiler_revision": "b0e0f3b8749391add4f65354f9d54949f109bfcd",
+  "evidence_kind": "historical architectural pilot",
+  "runtime_revision_recorded": "rlocal-agtst10",
+  "runtime_binary_recovered": false,
+  "limitations": [
+    "The old absolute MAP paths in packets are historical; map records here select the archived bytes.",
+    "This manifest verifies preservation, not quality or a fresh runtime run.",
+    "v5 chapel_apse is a failed capture in its packet; the adjacent older PNG is not bound evidence for that view."
+  ],
+  "iterations": [
+    {
+      "id": "monastery-architectural-v0",
+      "iteration_id": "v0",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v0/candidate_v0.py",
+        "sha256": "c62a971b0fedef65c2e5898e3df451d7c195e75c44c646450b10042737594828"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v0/candidate-v0.MAP",
+        "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v0/iteration.json",
+        "sha256": "8e2f4536aa2ce819acd53b0eb64abab51121f1983358fba72ad093cef8d7e4b3"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v0.json",
+        "sha256": "60ef02affb8f5a8b1376d55552fbb93296033a2c52a4f2993dbd1acbad8a2747"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_start.png",
+          "sha256": "df5de299bc98e8581159e3e5d5a357c0fcd0eba6f57a4b573e1b400c139aa24b"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_gate_approach.png",
+          "sha256": "2ede1d12737f4bbb770ce02af988e6e78b1a16ff464f5c59af3dc97ef5eaf78e"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_courtyard_center.png",
+          "sha256": "8dddf78f6a8dec8ceae8b9714003e59273069c574f9dd995f2604dbaead414f0"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_chapel_interior.png",
+          "sha256": "77d6dafe21add42910cdb73f10e45a1df4af7041cdbab06a94ba488f7036f659"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_crypt_hall.png",
+          "sha256": "7c6d8e4c480935f600e8bd0397b632059015faf9d08161a7d55e5eb3a4d21319"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_gallery.png",
+          "sha256": "841d186b0fdcea0b1d64b28b1fad5c72f347584e008c91328e93199cdf999f84"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_courtyard_from_stair.png",
+          "sha256": "6313236d9b4d172a8ce4217eb776b16dd0523ebb1f85bf6d8efdb079ef149e5b"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v0/views/view_chapel_reverse.png",
+          "sha256": "932d9a8122be95a4bc9947ba9fddb4e83789abb7fbd600e86b92362515bc0a27"
+        }
+      ]
+    },
+    {
+      "id": "monastery-architectural-v1",
+      "iteration_id": "v1",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v1/candidate_v1.py",
+        "sha256": "b5473f86ad0be84d304cb4c367087646452e57add7da8cfba683d0c2c7fdd4e1"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v1/candidate-v1.MAP",
+        "sha256": "0d8bccd359a3c9cedd4a3c3222b31b502b2075aa68f4118015b76c4762b37682"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v1/iteration.json",
+        "sha256": "6aced3582a895a3e8bc5640e631c1004c8a14e4beee5836b7b8b8eaf34d6ae72"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v1.json",
+        "sha256": "f6e36eeee35c92068e305d3061048253deeb1d686cc3cc528417e282b155e6cd"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_start.png",
+          "sha256": "9542210ea36f3cdf63276a1c69ad01dfecbac0b58e449911ce6361069a3a6a40"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_gate_approach.png",
+          "sha256": "450137183a20a2e1a7a1d45f5c8f1d64884f9f2a864244725852568794be446d"
+        },
+        {
+          "id": "view:gatehouse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_gatehouse.png",
+          "sha256": "9be37b08349a447062c7f2e341faece40a148caaafcd8f546543b4250ebfd9f5"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_courtyard_center.png",
+          "sha256": "81a8442ae8a165beef2c8981d3c13444d8bcffdeb1739aca0be9cda97de3bdc2"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_chapel_interior.png",
+          "sha256": "9d98b601cfa5352f256be94487a4260bc5928bed466e25b1c153a30ba09e509e"
+        },
+        {
+          "id": "view:chapel_apse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_chapel_apse.png",
+          "sha256": "34e84c814b7cbf61478e75a2bbb99ea259af718e464a8118c0d9443a2e3973aa"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_crypt_hall.png",
+          "sha256": "9ecae6be69fe8633f38b55a98115e3f0b04d971ecf8be2976854e49bcf2c34ee"
+        },
+        {
+          "id": "view:gallery_arch",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_gallery_arch.png",
+          "sha256": "f6ef2e1704ec03e8fda865000d6aa3afcad96e6e4cfb28ea534a369a4b413114"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_gallery.png",
+          "sha256": "18adb60f212742f936650330482fc985be7ecd9bfa34ae42802640b641f38807"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_courtyard_from_stair.png",
+          "sha256": "8cf8e3cc8fbd4f4ef6d43f500fe9a9067cb9037dab77d1c6fdbb096182db1ae7"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v1/views/view_chapel_reverse.png",
+          "sha256": "d697a5a8b02b2268fafb162ba5832c175019456570f8b63e7591ce9f93c45446"
+        }
+      ]
+    },
+    {
+      "id": "monastery-architectural-v2",
+      "iteration_id": "v2",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v2/candidate_v2.py",
+        "sha256": "f9d358169deb33cc1f3e0a42f0fdfed9c83aefffdfe8ff7a46c5b37e4979ed83"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v2/candidate-v2.MAP",
+        "sha256": "b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v2/iteration.json",
+        "sha256": "4f5ea31bad9607c1c78c693c035f0caf3b9a8277658a36bba838cf715e8f6fb1"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v2.json",
+        "sha256": "5c4e33614af8de3707fb5d04d7d1049fdcd61edc4d1deef6a999ad962eca6f0c"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_start.png",
+          "sha256": "f8bc77189d93a7436ec9edc3098ae8fd9f28f9eae6490b97088d9f04856dcbcd"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_gate_approach.png",
+          "sha256": "2971900b93e211d9ac2951dacf965027adf887a393be048dcafd0b5a9ac031a6"
+        },
+        {
+          "id": "view:gatehouse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_gatehouse.png",
+          "sha256": "e561a5495effba76d7b388a33b369c8cafcc6725c9422f6233ecb83221be9933"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_courtyard_center.png",
+          "sha256": "48f7d283e0a5ce8360394167815b37d03568dc06d9e2665c8b97953302f033df"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_chapel_interior.png",
+          "sha256": "9fe45a757b09e647d307a16a60a0704f8d22d0867ace883de1a0d6b2237a27a7"
+        },
+        {
+          "id": "view:chapel_apse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_chapel_apse.png",
+          "sha256": "426e08cbf1f2c2df88084fda86b9340a75691fa8edf3d3b76310d3dc75329a24"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_crypt_hall.png",
+          "sha256": "8f4d716908404b08e0a4aa839c02370bcbd6b4571ed17db16b07bc11fc9c228e"
+        },
+        {
+          "id": "view:gallery_arch",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_gallery_arch.png",
+          "sha256": "62bcaae085ede4cc2c9a5d7c62aadaa936965997e13f00c06b93e8f1d742ec42"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_gallery.png",
+          "sha256": "3e7f1d0bb31af33881e7ea732c2111d5dd3cf6ce92dedd02c3d292004150467e"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_courtyard_from_stair.png",
+          "sha256": "c3af7a1d29c5a64c86d8d2a89b7dffacd6f2f5d87d8b7aea4ad3b1bfab8b7781"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v2/views/view_chapel_reverse.png",
+          "sha256": "92b206b36caae61a991f0c82248e2464375b89c2cee241d29d46c92c08606e75"
+        }
+      ]
+    },
+    {
+      "id": "monastery-architectural-v3",
+      "iteration_id": "v3",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v3/candidate_v3.py",
+        "sha256": "e2649ab96e51b4f8e375d5be974db8f0e78b2cc764fb21eb30d87270358cf2e3"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v3/candidate-v3.MAP",
+        "sha256": "94bade7ac361e2362c81a4377429f3396b0699f4b767eefd265ce461b0f5d6f1"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v3/iteration.json",
+        "sha256": "5b05ec0f743f9f7ce2e69e16b69eb4ec3788ff37ab96c2b04d4d1e37499bc277"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v3.json",
+        "sha256": "ba149737d5c5587d447467eb839c18556ece52be8ffba85bcf5e26b91741df2e"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_start.png",
+          "sha256": "21f34cde638ff3b75e0894473ca13e31b4fe5377fd5d07f968e83dc189c8c7dd"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_gate_approach.png",
+          "sha256": "dccef7e0ef630e9ffd31bede3e9559a0bf64791b2f9467594c829b683fb68317"
+        },
+        {
+          "id": "view:gatehouse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_gatehouse.png",
+          "sha256": "ee4fe8ce46002fbb80485747c7654b17e9e024fee173479b0a4378020d725ee6"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_courtyard_center.png",
+          "sha256": "d7a03f43cd63c64eab12cd7bd6e952b13389caf41a4f18a7da9c53ad9a27e59a"
+        },
+        {
+          "id": "view:courtyard_corner",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_courtyard_corner.png",
+          "sha256": "cb1e1cfbc4afad0b5addc06463e90fe7b92fb7bc126a1068b22e4d26e9342481"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_chapel_interior.png",
+          "sha256": "8eaa3b42e95a570a66285d02c4b368fe15db8c9a4fedb67726414369260eb634"
+        },
+        {
+          "id": "view:chapel_apse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_chapel_apse.png",
+          "sha256": "026b4980f6019b1cd1424b86699f15f69bba22c1a001e260124d9f6cbb6c5d57"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_crypt_hall.png",
+          "sha256": "af6d0819d5b6c5a9124ed194d14a9401d6623aacc4a0e2d66e02c40fb3b01b20"
+        },
+        {
+          "id": "view:gallery_arch",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_gallery_arch.png",
+          "sha256": "9e6d90e09f5fc0b8bb36e5d39e530f42b38e3de0d17f1e373f6e39b3e93e911c"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_gallery.png",
+          "sha256": "54b275ec25f26ce3263dd332983543590ea05184e989004052beb3776eb28506"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_courtyard_from_stair.png",
+          "sha256": "fa97d8d99b9e69b647281e33ce5db3b4499a76e30244b38e2fe46041bff295e2"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v3/views/view_chapel_reverse.png",
+          "sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636"
+        }
+      ]
+    },
+    {
+      "id": "monastery-architectural-v4",
+      "iteration_id": "v4",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v4/candidate_v4.py",
+        "sha256": "890147ac4c3d26b80854fed52c7282f0900c97d355bef11cdc380eb0d6079e67"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v4/candidate-v4.MAP",
+        "sha256": "1f358e5d3dd42c6125f0e7c2a44a580cb38462283722184423f1b8f0517d6ca3"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v4/iteration.json",
+        "sha256": "e7d7a4ec3af61e3efe7de8bd61e2e60cd7ba9a18d42e3e81dcc1689694492c77"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v4.json",
+        "sha256": "de4361877ed433b77acea04f21a2712c7464b49e724fc19aab87cab97e970778"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_start.png",
+          "sha256": "a9eb3ad9a781fd4c8e3789bb627e7d4a6b76571ddef64851d2b8f5fc6751fdf7"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_gate_approach.png",
+          "sha256": "67de03c4c9a4901eaccf68ede6e76a4c08c5b5789899b4611a0c51a01e728dad"
+        },
+        {
+          "id": "view:gatehouse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_gatehouse.png",
+          "sha256": "017ef3254ba1d06f3e9b6ad42b20860f273f793aa89190b040d76598e14da1dd"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_courtyard_center.png",
+          "sha256": "d7a03f43cd63c64eab12cd7bd6e952b13389caf41a4f18a7da9c53ad9a27e59a"
+        },
+        {
+          "id": "view:courtyard_corner",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_courtyard_corner.png",
+          "sha256": "282e5d0e4178719e72be3e1ba5567a484d87dfd0cbde1c0b8cca9fa131db2fb4"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_chapel_interior.png",
+          "sha256": "9e4d1d781f10d898b4684d6b6aa55471aedf1101d5c9b08b37388717a0dc3721"
+        },
+        {
+          "id": "view:chapel_apse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_chapel_apse.png",
+          "sha256": "b9ba5503f01dfa2bd3792ce0cb3477cd5599a44a350aa7274b32288cb5b36645"
+        },
+        {
+          "id": "view:chancel_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_chancel_stair.png",
+          "sha256": "035e7228964cd00fed3f0426a7ae9c7a0044445d79db9a1fb5b305392a7ad353"
+        },
+        {
+          "id": "view:planter",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_planter.png",
+          "sha256": "51e1ccaab857923af22901afdb2ece3e3dde43a0484f8ee3cb41481d46ad557c"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_crypt_hall.png",
+          "sha256": "ab28716a43d3d40f989519d5d4e0e12d289fb824772c253c969cbe5f5c982297"
+        },
+        {
+          "id": "view:gallery_arch",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_gallery_arch.png",
+          "sha256": "242aab43809103ee8aef66395ffd137203284bcc60224f959c6b01fb28efdd93"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_gallery.png",
+          "sha256": "9788346848a626d1e30ca6aff957510162493497bd1bca3009cd3e1fb0f2830c"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_courtyard_from_stair.png",
+          "sha256": "227322a3a5b4a41edc4b393ca7ee9273fe65dfed16ceb79a0b1f23d1ad4b1ff1"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v4/views/view_chapel_reverse.png",
+          "sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636"
+        }
+      ]
+    },
+    {
+      "id": "monastery-architectural-v5",
+      "iteration_id": "v5",
+      "source": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v5/candidate_v5.py",
+        "sha256": "0d6d1e44991f7fdf573a24988b75a91cd0fb35b4a7f0e63eac659a99e2a50eef"
+      },
+      "map": {
+        "path": "projects/reasoned-authoring-v1/archive/architectural-v0-v5/v5/candidate-v5.MAP",
+        "sha256": "8fb5288e73833498ed487636f8446b69967dc328b968d6ef396101b254b1eee9"
+      },
+      "packet": {
+        "path": "projects/reasoned-authoring-v1/reports/v5/iteration.json",
+        "sha256": "1751b50e4a55be1cc7ba6be6e5088712278d361cf010e29c1043dd20b7d55a8c"
+      },
+      "review": {
+        "path": "projects/reasoned-authoring-v1/design/reviews/v5.json",
+        "sha256": "2563b982ee9d05a59755f92d86105e4bd7d37e911943068cee387e58d234fcdc"
+      },
+      "views": [
+        {
+          "id": "view:start",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_start.png",
+          "sha256": "9409aa0aad2364813d0d015b1c133b9bfd730c29519d97576cc5df51581209e9"
+        },
+        {
+          "id": "view:gate_approach",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_gate_approach.png",
+          "sha256": "6464513fb975baf3571c132bd79b406fa488eab65188be342c46233a7b375b50"
+        },
+        {
+          "id": "view:gatehouse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_gatehouse.png",
+          "sha256": "53587e93897218b0199690c191728a267bac6947da68816af0eff3e0dedc5245"
+        },
+        {
+          "id": "view:courtyard_center",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_courtyard_center.png",
+          "sha256": "a0cb01aaf29786fe5b260dbdb20205317fa41bf8722d07b20f45e274be80bc7c"
+        },
+        {
+          "id": "view:courtyard_sky",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_courtyard_sky.png",
+          "sha256": "b89550ec3535aa73c2a6e962b7fc5fcc8fbddb3e4d153fb79a8d3af865271a7b"
+        },
+        {
+          "id": "view:nave_vault",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_nave_vault.png",
+          "sha256": "24f2338bd8d53ad62c69b77136b71b566269c0fa21d9ec6334d6fefe7feebf4b"
+        },
+        {
+          "id": "view:crypt_vault",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_crypt_vault.png",
+          "sha256": "4346a3cfb4b52de30a7567e9b067c04558655d2f06a702b7ae7ff79b8f7f4474"
+        },
+        {
+          "id": "view:gallery_vault",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_gallery_vault.png",
+          "sha256": "7c7c4a7ef7dd027784f44b7d9356fc3f45e6a60d0db4332e3252816d886128d9"
+        },
+        {
+          "id": "view:courtyard_corner",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_courtyard_corner.png",
+          "sha256": "58faed8b69a63b95ac0459e93da1d85e4bf7da91607fefb78294028ffb432109"
+        },
+        {
+          "id": "view:chapel_interior",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_chapel_interior.png",
+          "sha256": "bd2b1e772675fa964b609c50a916fbf83eacc9d8ba6e444f0d119b732cf857af"
+        },
+        {
+          "id": "view:chapel_apse",
+          "status": "fail",
+          "path": null,
+          "sha256": null
+        },
+        {
+          "id": "view:chancel_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_chancel_stair.png",
+          "sha256": "4c966bd108bbabdfe063d4dd331aad82563fd398d80972cdeae4e3c6c011a003"
+        },
+        {
+          "id": "view:planter",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_planter.png",
+          "sha256": "5389dd9e412c5764d1af14d1e3329fb759936d460bc24802dce87d28cde362ee"
+        },
+        {
+          "id": "view:crypt_hall",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_crypt_hall.png",
+          "sha256": "dc5cb43159ad85ef93910f294fc1e7a21a0878610ff915ebb927a2b22263fb65"
+        },
+        {
+          "id": "view:gallery_arch",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_gallery_arch.png",
+          "sha256": "774d35d72beb50815028a0c03a721bbcd9b717b279c00df09c1117090fbf3080"
+        },
+        {
+          "id": "view:gallery",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_gallery.png",
+          "sha256": "9788346848a626d1e30ca6aff957510162493497bd1bca3009cd3e1fb0f2830c"
+        },
+        {
+          "id": "view:courtyard_from_stair",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_courtyard_from_stair.png",
+          "sha256": "227322a3a5b4a41edc4b393ca7ee9273fe65dfed16ceb79a0b1f23d1ad4b1ff1"
+        },
+        {
+          "id": "view:chapel_reverse",
+          "status": "pass",
+          "path": "projects/reasoned-authoring-v1/reports/v5/views/view_chapel_reverse.png",
+          "sha256": "80c3cd9bd85f8d7ad0e52842fd66817d6f629c868fa5cdb17ac76f1887434636"
+        }
+      ]
+    }
+  ]
+}

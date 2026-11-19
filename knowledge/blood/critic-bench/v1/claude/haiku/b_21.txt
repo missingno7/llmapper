@@ -1,0 +1,4 @@
+NAME: stone crypt with sarcophagi and a pillar
+SURE: 3
+FAULT: no
+WHAT: nothing

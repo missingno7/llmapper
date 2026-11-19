@@ -1,0 +1,4 @@
+NAME: Wooden hallway with curtains and tables
+SURE: 3
+FAULT: no
+WHAT: nothing

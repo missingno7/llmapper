@@ -1,0 +1,4 @@
+NAME: Timber-framed hall with wooden posts and railings
+SURE: 3
+FAULT: no
+WHAT: nothing

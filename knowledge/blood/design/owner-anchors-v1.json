@@ -1523,7 +1523,7 @@
       "kind": "wall",
       "label_en": "gravestone",
       "label_cs": "Náhrobek",
-      "notes": "owner tile sheet 2026-09-03"
+      "notes": "owner tile sheet 2026-09-03; owner 2026-11-18: versatile -- the top of a coffin/sarcophagus (E1M1 s0/s9 lay it so), and it can even be a door texture"
     },
     {
       "picnum": 503,
@@ -1706,6 +1706,13 @@
       "label_en": "small door, like a furnace's",
       "label_cs": "Dvířka jak od pece",
       "notes": "owner tile sheet 2026-09-03"
+    },
+    {
+      "picnum": 315,
+      "kind": "wall",
+      "label_en": "metal door texture",
+      "label_cs": "textura kovových dveří",
+      "notes": "Owner-confirmed 2026-09-09 during mashup review. Prefer for door faces rather than generic room walls; contextual anchor, not a universal usage rule."
     }
   ],
   "reading_guide": {

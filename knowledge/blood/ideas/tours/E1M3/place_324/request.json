@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M3/place_324/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M3/place_324",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 6587,
+   "y": -754,
+   "z": 6144,
+   "angle": 611,
+   "horiz": 100,
+   "sector": 324,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 5189,
+   "y": -754,
+   "z": 6144,
+   "angle": 490,
+   "horiz": 100,
+   "sector": 324,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 3193,
+   "y": 5835,
+   "z": 6144,
+   "angle": 1750,
+   "horiz": 100,
+   "sector": 324,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 2793,
+   "y": 643,
+   "z": 6144,
+   "angle": 232,
+   "horiz": 100,
+   "sector": 324,
+   "screenshot": true
+  }
+ ]
+}

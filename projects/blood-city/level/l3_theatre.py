@@ -203,8 +203,25 @@ ROOM_MATERIAL = {row[0]: row[5] for row in ROOMS}
 #: Ceiling height per room, where it is not ROOM_H.  Height is the other
 #: half of telling venues apart: the landmark's house is the tallest
 #: interior in the city, the shop the meanest.
+#: THE SALOON, from its study (`knowledge/blood/studies/saloon`): Blood's
+#: bars are 2.1 to 2.8 bodies high (E1M2 s278: 2.66) where ours stood under
+#: an office ceiling at 1.93; their counter top is the brightest surface in
+#: a dim room (shade 5 against a floor at 30) where ours was 32 everywhere;
+#: and stools stand along the counter (DWE3M1 sprites 539-547: tile 284, a
+#: gib object, 32 by 24, 768 apart). The study's larger moves -- a soffit
+#: over the bar on a post, a back-bar niche of bottles -- are not built.
+SALOON_SHADES = {"floor": 30, "ceiling": 44, "wall": 34}
+STOOL = {"type": 416, "picnum": 284, "cstat": 385, "x_repeat": 32,
+         "y_repeat": 24, "shade": 0, "status": 4,
+         "behavior": {"data_1": 5, "data_2": 20, "data_4": 312}}
+STOOL_PITCH, STOOL_LIFT = 768, 2880          # its drawn half height at 24
 ROOM_HEIGHT = {
-    "aldermack_auditorium": 49152,   # 2.9 player heights
+    "saloon_main": 45056,            # 2.66: E1M2's station bar
+    #: 5.7 bodies. The theatre study (`knowledge/blood/studies/theatre`):
+    #: "every exemplar house is 5.7 to 6.8 bodies tall" (SCHOOL_ s154,
+    #: FORDTHEA s252); ours was 2.9. The study's other moves -- a framed
+    #: three-bay proscenium, raked rows of real seats -- are NOT built yet.
+    "aldermack_auditorium": 96256,
     "aldermack_foyer": 40960,
     "aldermack_lobby": 40960,
     "parlor_gallery": 28672,
@@ -490,12 +507,17 @@ def build(district, theatre_st):
     # E6M1's repetitive display modules become a full retail composition:
     # window-side racks, two free-standing garment rails and a sales counter
     # that leaves the door-side aisle open.
-    templates.clothier(rooms["pawn_shop"], material=INTERIORS["shop"],
-                       grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"])
+    templates.pawnbroker(rooms["pawn_shop"], material=INTERIORS["shop"],
+                         grade=GRADE, host_clear=ROOM_HEIGHT["pawn_shop"],
+                         back="west")
     #: The east wall has nothing behind it, and WHISKEY is lettered on it:
     #: the liquor shelf goes under the word, at the bar's end.
     templates.bar(rooms["saloon_main"], material=INTERIORS["saloon"],
-                  grade=GRADE, host_clear=ROOM_H, shelf=("east", 0.3, 2048))
+                  grade=GRADE, host_clear=ROOM_HEIGHT["saloon_main"],
+                  shelf=("east", 0.3, 2048))
+    rooms["saloon_main"].surfaces(floor_shade=SALOON_SHADES["floor"],
+                                  ceiling_shade=SALOON_SHADES["ceiling"],
+                                  wall_shade=SALOON_SHADES["wall"])
 
     return rooms, levers, curtain
 
@@ -540,6 +562,29 @@ SHOP_MANNEQUIN_ABOVE_FLOOR = 10976
 #: These are one per venue -- the light you actually navigate by -- and the
 #: rest of the brightness comes from the shade passes.
 LIT = [("saloon_main", "east", 0.30), ("aldermack_auditorium", "north", 0.12)]
+
+
+def stools(layout, rooms) -> int:
+    """A row of stools along the customers' side of the saloon's counter."""
+    import props
+    import fixtures
+
+    room = rooms["saloon_main"]
+    x0, y0, x1, y1 = (int(v) for v in props.room_rect(room))
+    #: `templates.bar` runs the counter 1,024 in from the walls
+    front = y0 + 1024 + fixtures.BAR.depth + 320
+    placed = 0
+    x = x0 + 1024 + 384
+    while x <= x1 - 1024 - 384:
+        local = ((x - x0) / (x1 - x0), (front - y0) / (y1 - y0))
+        free = props.free_local(layout.regions[room.region_id], local)
+        if free is not None:
+            layout.place_on_floor(
+                f"saloon:stool_{placed}", room.region_id, local=free,
+                height_player_heights=STOOL_LIFT / 16960.0, **STOOL)
+            placed += 1
+        x += STOOL_PITCH
+    return placed
 
 
 def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
@@ -620,7 +665,11 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
     display = rooms["pawn_display"]
     dx0, dy0, dx1, dy1 = props.room_rect(display)
     display_floor = int(layout.regions[display.region_id].floor_z)
-    for index, (u, palette, cstat) in enumerate(SHOP_MANNEQUINS):
+    #: No mannequins. The owner, 2026-11-18: "pawn shop could be rethinked
+    #: a bit". Three dressed figures in the window made it a dress shop (a
+    #: blind reviewer said "boutique" twice), and they were the build's
+    #: three squeezed sprites. The window now holds pledges (`goods.ON_TOP`).
+    for index, (u, palette, cstat) in enumerate(()):
         layout.add_sprite(
             f"theatre:pawn_mannequin_{index}", display.region_id,
             x=round(dx0 + (dx1 - dx0) * u), y=(dy0 + dy1) // 2,

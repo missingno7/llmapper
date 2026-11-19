@@ -1,0 +1,270 @@
+{
+ "gpt-6-luna": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   10,
+   12
+  ],
+  "faults_caught": [
+   0,
+   6
+  ],
+  "faults_named": [
+   0,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.611,
+  "seconds_median": 4.1,
+  "missed_faults": [
+   "track_through_hall",
+   "name_upside_down",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across",
+   "barrel_in_air"
+  ],
+  "misnamed": [
+   "funeral parlour (E1M1) -> Gothic church interior",
+   "steam locomotive (E1M4) -> Two wagon wheels and mechanism"
+  ],
+  "alarms_on": []
+ },
+ "gpt-6.1-terra": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   10,
+   12
+  ],
+  "faults_caught": [
+   1,
+   6
+  ],
+  "faults_named": [
+   1,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.667,
+  "seconds_median": 4.2,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across",
+   "barrel_in_air"
+  ],
+  "misnamed": [
+   "under a pier, over water -> Wooden platform",
+   "crypt (E1M1) -> Stone chamber"
+  ],
+  "alarms_on": []
+ },
+ "gpt-6.2-sol": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   11,
+   12
+  ],
+  "faults_caught": [
+   3,
+   6
+  ],
+  "faults_named": [
+   3,
+   6
+  ],
+  "false_alarms": [
+   2,
+   17
+  ],
+  "score": 0.766,
+  "seconds_median": 4.9,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air",
+   "rails_across"
+  ],
+  "misnamed": [
+   "under a pier, over water -> Beneath a wooden platform"
+  ],
+  "alarms_on": [
+   "steam locomotive (E1M4): The locomotive\u2019s wheels sit against a solid wall, with no rails beneath them.",
+   "railway carriage, parked (community STATION): The train\u2019s wheels sit on cobblestones with no rails."
+  ]
+ },
+ "claude-haiku": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   9,
+   12
+  ],
+  "faults_caught": [
+   1,
+   6
+  ],
+  "faults_named": [
+   1,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.639,
+  "seconds_median": null,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across",
+   "barrel_in_air"
+  ],
+  "misnamed": [
+   "steam locomotive (E1M4) -> Wheeled wagon beside a burning street",
+   "railway carriage, parked (community STATION) -> narrow cobbled alley beside a green-faced building",
+   "under a pier, over water -> Timber-framed hall with wooden posts and railings"
+  ],
+  "alarms_on": []
+ },
+ "claude-sonnet": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   10,
+   12
+  ],
+  "faults_caught": [
+   1,
+   6
+  ],
+  "faults_named": [
+   1,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.667,
+  "seconds_median": null,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across",
+   "barrel_in_air"
+  ],
+  "misnamed": [
+   "railway carriage, parked (community STATION) -> Cobblestone alley between building walls",
+   "under a pier, over water -> Wooden-beamed hall with stone floor"
+  ],
+  "alarms_on": []
+ },
+ "gpt-6.2-sol@high": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   12,
+   12
+  ],
+  "faults_caught": [
+   4,
+   6
+  ],
+  "faults_named": [
+   4,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.889,
+  "seconds_median": 10.6,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air"
+  ],
+  "misnamed": [],
+  "alarms_on": []
+ },
+ "gpt-6.1-terra@high": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   12,
+   12
+  ],
+  "faults_caught": [
+   1,
+   6
+  ],
+  "faults_named": [
+   1,
+   6
+  ],
+  "false_alarms": [
+   0,
+   17
+  ],
+  "score": 0.722,
+  "seconds_median": 4.3,
+  "missed_faults": [
+   "track_through_hall",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across",
+   "barrel_in_air"
+  ],
+  "misnamed": [],
+  "alarms_on": []
+ },
+ "gpt-6-luna@high": {
+  "answered": 23,
+  "of": 23,
+  "named": [
+   9,
+   12
+  ],
+  "faults_caught": [
+   1,
+   6
+  ],
+  "faults_named": [
+   1,
+   6
+  ],
+  "false_alarms": [
+   1,
+   17
+  ],
+  "score": 0.619,
+  "seconds_median": 8.0,
+  "missed_faults": [
+   "track_through_hall",
+   "name_upside_down",
+   "chairs_in_air",
+   "wheels_on_top",
+   "rails_across"
+  ],
+  "misnamed": [
+   "funeral parlour (E1M1) -> Church interior",
+   "steam locomotive (E1M4) -> Rusty railcar",
+   "boardwalk / pier at night -> Railroad tracks by bait shop"
+  ],
+  "alarms_on": [
+   "steam locomotive (E1M4): The railcar\u2019s wheels hang above the ground."
+  ]
+ }
+}

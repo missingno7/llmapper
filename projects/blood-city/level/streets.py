@@ -608,6 +608,8 @@ END_WALL_RISE = 98304
 END_WALL_DEPTH = 1024
 SKY_BACKING_DEPTH = 512
 #: E3M1 s0/s339/s343 floor: "the top of an end wall, not a plaza surface".
+#: the owner's brick with crumbling plaster; `materials.MASONRY.wall`
+END_WALL_TILE = 417
 END_WALL_TOP_TILE = 379
 
 
@@ -690,7 +692,14 @@ def end_walls(city, ends, streets, district_of, district_bounds, gates, *,
             mass = make(f"end_wall_{name}_{district}", mass_box, "end_wall",
                         f"{name}: the end wall, {rise} over the pavement -- "
                         f"E3M1 s0 and s343",
-                        wall_picnum=int(facade_of[district]),
+                        #: PLAIN, never the district's facade. The owner,
+                        #: 2026-11-18: "some of the lower walls around city
+                        #: have building textures". E3M1's three street ends
+                        #: (s0, s339, s343) wear plaster over brick, with the
+                        #: windowed fronts on the tall walls BESIDE them; a
+                        #: facade here was cut mid-storey at 5.8 bodies and
+                        #: changed tile half way across a two-district mouth.
+                        wall_picnum=int(END_WALL_TILE),
                         floor_picnum=END_WALL_TOP_TILE,
                         floor_z=grade - rise, clear_height=street_sky - rise)
             sky = make(f"end_sky_{name}_{district}",
@@ -698,7 +707,7 @@ def end_walls(city, ends, streets, district_of, district_bounds, gates, *,
                        "sky_backing",
                        f"{name}: no height and a parallax ceiling, so the eye "
                        f"goes over the end wall into sky -- E3M1 s340, s338",
-                       wall_picnum=int(facade_of[district]), floor_picnum=4,
+                       wall_picnum=int(END_WALL_TILE), floor_picnum=4,
                        floor_z=grade, clear_height=0)
             city.connect(mass.face(outer), sky.face(inner),
                          connection_id=f"connection:end_{name}_{district}_sky")

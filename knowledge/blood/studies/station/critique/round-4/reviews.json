@@ -1,0 +1,39 @@
+{
+ "recognition": {
+  "named": "small railway station: platform beside a parked train",
+  "sure": 4,
+  "score": 2,
+  "blocking": [
+   "Locomotive is an unreadable riveted box: no boiler, chimney or cab",
+   "Frame 5 carpeted crate-filled corridor does not read as part of a station or a train"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Facade sign truncated to STATI (view_09)",
+   "Green THE QUAY / ...EEND lettering clipped at wall edge, floating (view_03, view_07)",
+   "Locomotive is a plain diamond-plate box with no cab, boiler or chimney (view_06, view_07)",
+   "Carriage windows are wooden door panels, not windows (view_01/02/04)"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "Office lever opens a carriage door ~14 m away and out of sight with no cue linking them; pulling it appears to do nothing"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 0,
+  "score": 4,
+  "blocking": [
+   "Locomotive has no chimney and no readable front; a featureless box on wheels",
+   "Carriage exterior shows 1-2 wooden panels per side but interior is lined with curtained windows"
+  ]
+ }
+}

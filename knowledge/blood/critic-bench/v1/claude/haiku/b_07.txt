@@ -1,0 +1,4 @@
+NAME: Wheeled wagon beside a burning street
+SURE: 3
+FAULT: no
+WHAT: nothing

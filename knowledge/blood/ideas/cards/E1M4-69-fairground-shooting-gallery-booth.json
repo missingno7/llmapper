@@ -1,0 +1,12 @@
+{
+ "map": "E1M4",
+ "sector": 69,
+ "kind": "set-piece",
+ "title": "Fairground shooting gallery booth",
+ "what": "A carnival booth: a grey diamond-quilted cabinet with dark pilasters at both ends, a waist-high counter at the front and two stepped shelves behind it, the lower carrying coloured clay jugs and the upper a row of drinking glasses, a robed attendant behind the counter, balloons tied above. First second: the rows of glassware waiting to be shot, the balloons.",
+ "recipe": "Booth floor s69 is 2304 x 1024 units (3.9 x 1.7 m) at the midway's level; behind it shelf s68 (2304 x 256, 0.66 bodies up) holds 5 jugs (tile 712, owner: clay jug) and shelf s67 (2304 x 256, 1.15 bodies up) holds 6 glasses (tile 574, owner: drinking glass); the back s66 (2816 x 2048) stands 1.93 bodies up with 4 lamp sprites 1115. Glass-like sprites 589 (type 62) x6 also sit on s69. Shelf walls 299, sides 369. The midway around it (s320, 18432 x 11520) is boardwalk floor 250 under a parallax sky.",
+ "use": "One booth on a fairground lot behind the city's edge facade, or a single booth set into a street wall. The player shoots out the glassware for fun (glass and jug sprites break), and a prize -- ammo or a key -- sits on the top shelf.",
+ "frame": "knowledge/blood/ideas/tours/E1M4/edge/frames/gallery.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

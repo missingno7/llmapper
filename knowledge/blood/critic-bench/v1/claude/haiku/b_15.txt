@@ -1,0 +1,4 @@
+NAME: winged gargoyle monster beside a "Blood the Movie" poster
+SURE: 4
+FAULT: no
+WHAT: nothing

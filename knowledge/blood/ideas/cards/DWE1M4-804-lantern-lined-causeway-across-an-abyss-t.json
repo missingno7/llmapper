@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 804,
+ "kind": "transition",
+ "title": "Lantern-lined causeway across an abyss to a guarded door",
+ "what": "From a cave mouth framed by two carved totem pillars a straight cobbled causeway crosses an abyss to a cliff with a blue-tiled shrine door. Low parapets on both sides carry a row of lanterns that pull the eye to the far end, where two cultists and a hellhound wait beneath a corpse hung over the doorway. The parapet is low enough to show there is nothing either side; glowing orbs float in the dark around it. The long straight approach makes the guarded door the whole view for 22 m. Seen in my own frames.",
+ "recipe": "Causeway 804: 13000 x 2300 units (22 x 3.9 m), floor tile 2496 (cobbles), sky ceiling. Parapets 793 / 794: 1300 units wide strips each side, floor 5120 z (0.3 body) higher, tile 273 rock tops with brick faces; 6 lanterns tile 2493 per side, about 2000 units apart, standing on the parapet. Abyss sectors 810 / 817 either side: floor 24 bodies below the causeway, light marble 2490 walls. Entry between two 1.9-body carved pillars; far end a blue stone wall with a doorway, two kDudeCultistShotgun (202), a hellhound (type 211, tile 1270) and a hanging corpse sprite. Orb pairs (tile 624) float around the bridge.",
+ "use": "The harbour: a long pier or breakwater at night with lamps on its rail, leading to the lighthouse or a moored ship with its guards at the gangway. The church: a raised path across a flooded crypt to the reliquary.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_bridge/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

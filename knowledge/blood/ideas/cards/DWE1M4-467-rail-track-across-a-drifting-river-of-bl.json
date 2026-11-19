@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 467,
+ "kind": "composition",
+ "title": "Rail track across a drifting river of blood",
+ "what": "A long mine-rail track runs straight across a vast blood-red cavern on a bed barely above the surface of a river of blood. The blood floor pans slowly and drags whoever stands in it, and it can be dived into. Huge pillars rise out of it carrying round green-rimmed medallions with a horned skull, and an enemy walks toward you down the rails. The space looks endless upward because its ceiling is a stack link, not a lid. Seen in my own frames; drag and dive read from the fields.",
+ "recipe": "Track 467: 23000 x 2048 units (39 x 3.5 m), floor tile 22 (rails), 1024 z (0.06 body) above the river. River 468 and its edge sectors: floor tile 1130 (blood), XSECTOR pan_floor, pan_always, pan_velocity 20, pan_angle 1014, drag 1 (current pushes the player), kMarkerUpWater (type 9, tile 2332) at the floor so it is diveable, kMarkerLowStack (type 12, tile 2331) at the ceiling 60 bodies up linking to the space above. Pillars: square sectors 512 units across rising to the ceiling, with the medallions on them (tile not identified). Three ambient sounds (710) along it, data3 13 / 14 / 33.",
+ "use": "The sewer: a narrow plank walk or rail over a fast channel of sewage that drags and can be swum; the pump station's culvert; the harbour's coal-tram line on a jetty over the water.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_468/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

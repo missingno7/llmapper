@@ -1,0 +1,2508 @@
+{
+ "503": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "metal wall, grey riveted panel",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "504": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "mirror / room-over-room surface, shows wooden planks",
+  "tags": [
+   "floor",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "505": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "metal waste bin 'WASTE', blood-smeared top",
+  "tags": [
+   "blood",
+   "container",
+   "metal",
+   "street"
+  ],
+  "by": "c"
+ },
+ "506": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "burning wall torch",
+  "tags": [
+   "crypt",
+   "fire",
+   "light"
+  ],
+  "by": "c"
+ },
+ "510": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal plate, rusty narrow strip",
+  "tags": [
+   "metal",
+   "trim"
+  ],
+  "by": "c"
+ },
+ "511": {
+  "class": "unclear",
+  "layout": "picture",
+  "looks": "small metal strip or plate",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "512": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown stone block wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "513": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "diagonal rope",
+  "tags": [
+   "nautical",
+   "tool"
+  ],
+  "by": "c"
+ },
+ "514": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "straw or hay, dense brown stalks",
+  "tags": [
+   "farm",
+   "floor"
+  ],
+  "by": "c"
+ },
+ "515": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "straw, loose tangle",
+  "tags": [
+   "farm",
+   "floor"
+  ],
+  "by": "c"
+ },
+ "516": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "stained glass: winged demon over water",
+  "tags": [
+   "church",
+   "glass",
+   "occult",
+   "window"
+  ],
+  "by": "c"
+ },
+ "517": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "red glowing flask, life essence pickup",
+  "tags": [
+   "container",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "518": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "open book, tome pickup",
+  "tags": [
+   "library",
+   "occult",
+   "paper"
+  ],
+  "by": "c"
+ },
+ "519": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "doctor's bag with red cross",
+  "tags": [
+   "container",
+   "medical"
+  ],
+  "by": "c"
+ },
+ "520": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "skull grail on a stem",
+  "tags": [
+   "bones",
+   "drink",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "521": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "silver wine goblet filled with red",
+  "tags": [
+   "church",
+   "drink",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "522": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "dark iron-banded chest",
+  "tags": [
+   "container",
+   "metal",
+   "storage"
+  ],
+  "by": "c"
+ },
+ "523": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "wooden chest with brass fittings",
+  "tags": [
+   "container",
+   "storage",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "524": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "flare pistol",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "525": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "voodoo doll",
+  "tags": [
+   "occult",
+   "toy",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "526": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "sawed-off shotgun",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "528": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "molten orange lava surface",
+  "tags": [
+   "fire",
+   "floor"
+  ],
+  "by": "c"
+ },
+ "529": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown packed earth or sand",
+  "tags": [
+   "cave",
+   "floor"
+  ],
+  "by": "c"
+ },
+ "530": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "lava, scorched black ground with glowing cracks",
+  "tags": [
+   "cave",
+   "fire",
+   "floor"
+  ],
+  "by": "c"
+ },
+ "534": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "grey stone pillar or bollard",
+  "tags": [
+   "column",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "535": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "dark stone pedestal pillar",
+  "tags": [
+   "column",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "536": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "stone statue of a crouching figure on plinth",
+  "tags": [
+   "art",
+   "garden",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "537": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tall clay vase",
+  "tags": [
+   "container",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "538": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey cobblestones",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "c"
+ },
+ "539": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tesla cannon weapon",
+  "tags": [
+   "tech",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "540": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "bare leafless tree",
+  "tags": [
+   "forest",
+   "graveyard"
+  ],
+  "by": "c"
+ },
+ "541": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "leafy dark green tree",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "542": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "thin tree with sparse leaves",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "543": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "bare leafless tree",
+  "tags": [
+   "forest",
+   "graveyard"
+  ],
+  "by": "c"
+ },
+ "544": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "dark pine tree",
+  "tags": [
+   "forest",
+   "snow"
+  ],
+  "by": "c"
+ },
+ "545": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "bare leafless tree",
+  "tags": [
+   "forest",
+   "graveyard"
+  ],
+  "by": "c"
+ },
+ "546": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "bush with cattail reeds",
+  "tags": [
+   "garden",
+   "water"
+  ],
+  "by": "c"
+ },
+ "547": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "tall narrow conifer",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "548": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "blue battery with lightning bolt, tesla ammo",
+  "tags": [
+   "tech",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "549": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "iron ring chandelier hanging on chains",
+  "tags": [
+   "ceiling",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "550": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "clay brazier bowl on a foot, torch base",
+  "tags": [
+   "fire",
+   "light",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "552": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "horned demon head with arms, gable ornament",
+  "tags": [
+   "art",
+   "occult",
+   "trim"
+  ],
+  "by": "c"
+ },
+ "553": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "stone chevron gable trim",
+  "tags": [
+   "roof",
+   "stone",
+   "trim"
+  ],
+  "by": "c"
+ },
+ "554": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "small wooden wall sconce for a torch",
+  "tags": [
+   "fire",
+   "light",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "556": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown flagstone paving",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "558": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tommy gun",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "559": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "double-barrel shotgun",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "560": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "tall brass candle stand",
+  "tags": [
+   "church",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "561": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "tall brass candle stand",
+  "tags": [
+   "church",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "562": {
+  "class": "material",
+  "layout": "band",
+  "looks": "banded wooden crate planks",
+  "tags": [
+   "storage",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "563": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "metal drum with a trapped face behind a window",
+  "tags": [
+   "container",
+   "gore",
+   "industrial"
+  ],
+  "by": "c"
+ },
+ "564": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "ornate stand topped with a skull",
+  "tags": [
+   "bones",
+   "metal",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "566": {
+  "class": "material",
+  "layout": "band",
+  "looks": "sandstone block column, stacked",
+  "tags": [
+   "column",
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "567": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown cracked rock",
+  "tags": [
+   "cave",
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "568": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark grey rough stone",
+  "tags": [
+   "cave",
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "569": {
+  "class": "glass",
+  "layout": "tiles",
+  "looks": "stained glass, orange red blue green panes",
+  "tags": [
+   "church",
+   "glass",
+   "window"
+  ],
+  "by": "c"
+ },
+ "570": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "wooden torch bracket",
+  "tags": [
+   "fire",
+   "light",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "572": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "stone gargoyle crouching under a bowl",
+  "tags": [
+   "art",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "573": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "stone gargoyle crouching under a bowl",
+  "tags": [
+   "art",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "574": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "drinking glass",
+  "tags": [
+   "bar",
+   "drink",
+   "glass"
+  ],
+  "by": "c"
+ },
+ "576": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "statue of a robed figure in a tomb niche",
+  "tags": [
+   "art",
+   "graveyard",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "577": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "statue of a figure in a tomb niche",
+  "tags": [
+   "art",
+   "graveyard",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "578": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "stone heraldic shield with lion crest",
+  "tags": [
+   "art",
+   "rich",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "579": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "dark iron bowl or basin",
+  "tags": [
+   "container",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "580": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "standing candelabrum, three candles",
+  "tags": [
+   "church",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "584": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "brass candelabrum, three lit candles",
+  "tags": [
+   "church",
+   "light",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "588": {
+  "class": "mask",
+  "layout": "band",
+  "looks": "wooden balustrade railing with turned posts",
+  "tags": [
+   "fence",
+   "stairs",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "589": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bundle of red dynamite sticks",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "590": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "brass candelabrum, three lit candles",
+  "tags": [
+   "church",
+   "light",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "596": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "small chandelier on a long chain",
+  "tags": [
+   "ceiling",
+   "light",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "598": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "small brown flat thing with a red eye",
+  "tags": [
+   "decay"
+  ],
+  "by": "c"
+ },
+ "599": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "dark tangled shrub",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "600": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "melting candle in a holder",
+  "tags": [
+   "church",
+   "light"
+  ],
+  "by": "c"
+ },
+ "601": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "skull with a lit candle on top",
+  "tags": [
+   "bones",
+   "light",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "604": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden keg with a lid",
+  "tags": [
+   "container",
+   "drink",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "605": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "brown glass bottle",
+  "tags": [
+   "bar",
+   "drink",
+   "glass"
+  ],
+  "by": "c"
+ },
+ "606": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "blue glass bottle",
+  "tags": [
+   "bar",
+   "drink",
+   "glass"
+  ],
+  "by": "c"
+ },
+ "607": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "skeletal scarecrow on a pole",
+  "tags": [
+   "bones",
+   "farm",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "608": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "dry brown thorny bush",
+  "tags": [
+   "decay",
+   "forest"
+  ],
+  "by": "c"
+ },
+ "609": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "dark dead tree trunk",
+  "tags": [
+   "decay",
+   "forest"
+  ],
+  "by": "c"
+ },
+ "610": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed tapestry of a banquet scene",
+  "tags": [
+   "art",
+   "cloth",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "611": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed picture of a flayed torso",
+  "tags": [
+   "art",
+   "gore",
+   "medical"
+  ],
+  "by": "c"
+ },
+ "612": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "tapestry of a sailing ship",
+  "tags": [
+   "art",
+   "cloth",
+   "nautical"
+  ],
+  "by": "c"
+ },
+ "613": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed still-life painting of food",
+  "tags": [
+   "art",
+   "food",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "614": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "ornate dark tapestry with demon face",
+  "tags": [
+   "art",
+   "cloth",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "615": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone with inset geometric slabs",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "616": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "brown stoneware jug with handle",
+  "tags": [
+   "container",
+   "drink",
+   "kitchen"
+  ],
+  "by": "c"
+ },
+ "617": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed portrait of a dark-haired man",
+  "tags": [
+   "art",
+   "domestic",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "618": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "glass cylinder canister",
+  "tags": [
+   "container",
+   "glass",
+   "tech"
+  ],
+  "by": "c"
+ },
+ "619": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "red shotgun shells",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "620": {
+  "class": "unclear",
+  "layout": "band",
+  "looks": "thin grey strip, like piano keys",
+  "tags": [
+   "trim"
+  ],
+  "by": "c"
+ },
+ "621": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed portrait of a grinning ghoul",
+  "tags": [
+   "art",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "622": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "stone demon face with golden beard",
+  "tags": [
+   "art",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "623": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "stone demon face with golden beard",
+  "tags": [
+   "art",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "624": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "white round glow",
+  "tags": [
+   "light"
+  ],
+  "by": "c"
+ },
+ "625": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "white round glow",
+  "tags": [
+   "light"
+  ],
+  "by": "c"
+ },
+ "626": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "yellow round glow",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "c"
+ },
+ "627": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "yellow round glow",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "c"
+ },
+ "628": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "iron chandelier hanging on chains",
+  "tags": [
+   "ceiling",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "631": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "orange prison jumpsuit, 'KIMBLE'",
+  "tags": [
+   "cloth",
+   "prison",
+   "text"
+  ],
+  "by": "c"
+ },
+ "632": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "brown rock spike, stalagmite",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "634": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "horned stone demon face ornament",
+  "tags": [
+   "occult",
+   "stone",
+   "trim"
+  ],
+  "by": "c"
+ },
+ "635": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "horned stone demon face, glowing eyes",
+  "tags": [
+   "light",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "636": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "horned stone demon face, glowing mouth",
+  "tags": [
+   "light",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "637": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "round wooden hatch in carved stone frame",
+  "tags": [
+   "door",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "638": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "carved stone pillar with eye glyphs",
+  "tags": [
+   "column",
+   "occult",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "639": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "flat tan slab or plank debris",
+  "tags": [
+   "decay"
+  ],
+  "by": "c"
+ },
+ "640": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "black street lamp post",
+  "tags": [
+   "light",
+   "metal",
+   "street"
+  ],
+  "by": "c"
+ },
+ "641": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "lamp hanging on a chain",
+  "tags": [
+   "ceiling",
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "642": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ornate bronze urn with handles",
+  "tags": [
+   "container",
+   "graveyard",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "643": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "carved dark panel with a spider",
+  "tags": [
+   "art",
+   "occult",
+   "wall"
+  ],
+  "by": "c"
+ },
+ "644": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed grey and brown picture, map-like",
+  "tags": [
+   "art"
+  ],
+  "by": "c"
+ },
+ "645": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "telephone booth door: 'PUBLIC TELEPHONE'",
+  "tags": [
+   "door",
+   "street",
+   "text"
+  ],
+  "by": "c"
+ },
+ "646": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'MISKATONIC STATION'",
+  "tags": [
+   "rail",
+   "text"
+  ],
+  "by": "c"
+ },
+ "647": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "sign: '21 Railfreight Co.'",
+  "tags": [
+   "rail",
+   "text"
+  ],
+  "by": "c"
+ },
+ "648": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloodied man hanging arms outstretched",
+  "tags": [
+   "blood",
+   "gore",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "649": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "round stone pedestal table",
+  "tags": [
+   "stone",
+   "table"
+  ],
+  "by": "c"
+ },
+ "650": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tall yellow candle",
+  "tags": [
+   "church",
+   "light"
+  ],
+  "by": "c"
+ },
+ "651": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "blood-streaked wooden board",
+  "tags": [
+   "blood",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "652": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark grey blotchy surface, tiny",
+  "tags": [
+   "stone"
+  ],
+  "by": "c"
+ },
+ "653": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "sign: 'HOUSE OF HORRORS'",
+  "tags": [
+   "carnival",
+   "text"
+  ],
+  "by": "c"
+ },
+ "654": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "brown rock stalactites",
+  "tags": [
+   "cave",
+   "ceiling",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "655": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "circular saw blade trap",
+  "tags": [
+   "industrial",
+   "metal",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "658": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "fire extinguisher: 'IN CASE OF FIRE'",
+  "tags": [
+   "fire",
+   "metal",
+   "text"
+  ],
+  "by": "c"
+ },
+ "659": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "window with lace curtains",
+  "tags": [
+   "cloth",
+   "domestic",
+   "window"
+  ],
+  "by": "c"
+ },
+ "660": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "underwater grass",
+  "tags": [
+   "water"
+  ],
+  "by": "c"
+ },
+ "664": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "underwater grass, tall strand",
+  "tags": [
+   "water"
+  ],
+  "by": "c"
+ },
+ "668": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "column of rising bubbles",
+  "tags": [
+   "water"
+  ],
+  "by": "c"
+ },
+ "672": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "smoke/steam plume",
+  "tags": [
+   "fire",
+   "industrial"
+  ],
+  "by": "c"
+ },
+ "676": {
+  "class": "glass",
+  "layout": "sprite",
+  "looks": "round porthole glass in brass rim",
+  "tags": [
+   "glass",
+   "nautical",
+   "window"
+  ],
+  "by": "c"
+ },
+ "677": {
+  "class": "glass",
+  "layout": "sprite",
+  "looks": "round porthole glass in brass rim",
+  "tags": [
+   "glass",
+   "nautical",
+   "window"
+  ],
+  "by": "c"
+ },
+ "678": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ornate iron cross grave marker",
+  "tags": [
+   "church",
+   "graveyard",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "679": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "ornate iron lamp post",
+  "tags": [
+   "light",
+   "metal",
+   "street"
+  ],
+  "by": "c"
+ },
+ "680": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "severed head lying on its side",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "681": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "severed head lying on its side",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "682": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "severed arm, bloody",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "683": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "human skull",
+  "tags": [
+   "bones",
+   "crypt"
+  ],
+  "by": "c"
+ },
+ "684": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "pile of skulls",
+  "tags": [
+   "bones",
+   "crypt",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "685": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "skull on a stake",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "686": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "skull split by an axe",
+  "tags": [
+   "bones",
+   "gore",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "687": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bloody heads impaled on a stake",
+  "tags": [
+   "blood",
+   "gore",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "688": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "skeleton hanging by its feet from a chain",
+  "tags": [
+   "bones",
+   "crypt",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "689": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "skeleton hanging from a chain",
+  "tags": [
+   "bones",
+   "crypt",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "690": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hanging from a chain",
+  "tags": [
+   "crypt",
+   "gore",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "691": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "skeleton hanging from a chain",
+  "tags": [
+   "bones",
+   "crypt",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "692": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging chain loop",
+  "tags": [
+   "metal",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "693": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "lit brass lantern",
+  "tags": [
+   "light",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "694": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "single hanging chain",
+  "tags": [
+   "metal",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "695": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'HOSPITAL' with red crosses",
+  "tags": [
+   "medical",
+   "street",
+   "text"
+  ],
+  "by": "c"
+ },
+ "696": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "skeleton hanging from a chain",
+  "tags": [
+   "bones",
+   "crypt",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "697": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hanging from a chain",
+  "tags": [
+   "crypt",
+   "gore",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "698": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hanging from a chain",
+  "tags": [
+   "crypt",
+   "gore",
+   "prison"
+  ],
+  "by": "c"
+ },
+ "699": {
+  "class": "mask",
+  "layout": "sprite",
+  "looks": "arched iron grate in brick arch",
+  "tags": [
+   "brick",
+   "metal",
+   "sewer"
+  ],
+  "by": "c"
+ },
+ "700": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden cross with a skull",
+  "tags": [
+   "bones",
+   "graveyard",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "701": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tombstone 'RIP' with plaque",
+  "tags": [
+   "graveyard",
+   "stone",
+   "text"
+  ],
+  "by": "c"
+ },
+ "702": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "grey stone slab 'RIP' with skull",
+  "tags": [
+   "graveyard",
+   "stone",
+   "text"
+  ],
+  "by": "c"
+ },
+ "703": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden grave cross",
+  "tags": [
+   "graveyard",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "704": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "cracked tombstone 'RIP'",
+  "tags": [
+   "graveyard",
+   "stone",
+   "text"
+  ],
+  "by": "c"
+ },
+ "705": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tombstone 'KLK' smeared with blood",
+  "tags": [
+   "blood",
+   "graveyard",
+   "stone",
+   "text"
+  ],
+  "by": "c"
+ },
+ "706": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tombstone 'RIP' with skull and cross",
+  "tags": [
+   "graveyard",
+   "stone",
+   "text"
+  ],
+  "by": "c"
+ },
+ "707": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ornate dark iron urn",
+  "tags": [
+   "graveyard",
+   "metal",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "708": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "pair of train wheels with coupling rod",
+  "tags": [
+   "metal",
+   "rail",
+   "vehicle"
+  ],
+  "by": "c"
+ },
+ "709": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "tall narrow wooden post with fittings",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "710": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "oval mirror in ornate frame",
+  "tags": [
+   "domestic",
+   "glass",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "711": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "broken mirror in ornate frame",
+  "tags": [
+   "decay",
+   "domestic",
+   "glass"
+  ],
+  "by": "c"
+ },
+ "712": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "clay jug",
+  "tags": [
+   "container",
+   "drink",
+   "kitchen"
+  ],
+  "by": "c"
+ },
+ "713": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blood splatter (wall)",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "714": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "skull trophy with crossed axes and sword",
+  "tags": [
+   "bones",
+   "occult",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "715": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "suit of armour on a stand",
+  "tags": [
+   "metal",
+   "rich",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "716": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "painting: mother and child, framed",
+  "tags": [
+   "art",
+   "church",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "717": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "painting: mother and child, slightly decayed",
+  "tags": [
+   "art",
+   "church",
+   "decay"
+  ],
+  "by": "c"
+ },
+ "719": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "painting: mother and child rotted to skulls",
+  "tags": [
+   "art",
+   "decay",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "720": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "grandfather clock, front face",
+  "tags": [
+   "domestic",
+   "rich",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "730": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blood drips",
+  "tags": [
+   "blood"
+  ],
+  "by": "c"
+ },
+ "731": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blood (spreading)",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "732": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "gore / blood mass",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "737": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "few small blood drops",
+  "tags": [
+   "blood"
+  ],
+  "by": "c"
+ },
+ "738": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "horned animal skull",
+  "tags": [
+   "bones",
+   "farm",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "739": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tall clay vase",
+  "tags": [
+   "container",
+   "rich"
+  ],
+  "by": "c"
+ },
+ "740": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'PICKMAN'S RARE BOOKS AND MAPS'",
+  "tags": [
+   "library",
+   "shop",
+   "text"
+  ],
+  "by": "c"
+ },
+ "741": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'Cask of Amontillado PUB & GRILLE'",
+  "tags": [
+   "bar",
+   "food",
+   "text"
+  ],
+  "by": "c"
+ },
+ "742": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "paper notice: 'NOTICE'",
+  "tags": [
+   "paper",
+   "street",
+   "text"
+  ],
+  "by": "c"
+ },
+ "743": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "newspaper page: 'NEWS'",
+  "tags": [
+   "paper",
+   "text"
+  ],
+  "by": "c"
+ },
+ "744": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'WARNING!'",
+  "tags": [
+   "industrial",
+   "text"
+  ],
+  "by": "c"
+ },
+ "745": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "thin hanging chain",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "746": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging chain",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "748": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "thin hanging chain",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "750": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging chain",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "751": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "wall sign 'manager'",
+  "tags": [
+   "office",
+   "text",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "752": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'ADMISSION 10 TICKETS'",
+  "tags": [
+   "carnival",
+   "text",
+   "theatre"
+  ],
+  "by": "c"
+ },
+ "753": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "dark iron pole on a round foot",
+  "tags": [
+   "metal"
+  ],
+  "by": "c"
+ },
+ "754": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "thin smoke/steam column",
+  "tags": [
+   "fire",
+   "industrial"
+  ],
+  "by": "c"
+ },
+ "758": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "voxel chair, wooden high back",
+  "tags": [
+   "domestic",
+   "seat",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "759": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "labelled brown bottle",
+  "tags": [
+   "bar",
+   "drink",
+   "glass"
+  ],
+  "by": "c"
+ },
+ "760": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "crystal ball on a stand",
+  "tags": [
+   "carnival",
+   "glass",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "761": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "green sign: 'EXIT'",
+  "tags": [
+   "door",
+   "light",
+   "text"
+  ],
+  "by": "c"
+ },
+ "768": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "hooded dark robe hanging",
+  "tags": [
+   "cloth",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "772": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "circular saw blade half",
+  "tags": [
+   "industrial",
+   "metal",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "775": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "rising spray of blood droplets",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "776": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "spurting blood",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "777": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "rising spray of blood droplets",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "c"
+ },
+ "783": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "brown feather quill",
+  "tags": [
+   "library",
+   "office",
+   "paper"
+  ],
+  "by": "c"
+ },
+ "784": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round brown wall button, switch",
+  "tags": [
+   "tech",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "785": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round brown button, shaded",
+  "tags": [
+   "tech",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "788": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round pale button, pressed look",
+  "tags": [
+   "tech"
+  ],
+  "by": "c"
+ },
+ "789": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "plaque: 'IN LOVING MEMORY'",
+  "tags": [
+   "graveyard",
+   "text"
+  ],
+  "by": "c"
+ },
+ "790": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "plaque: 'I DISMEMBERED MOMMA'",
+  "tags": [
+   "gore",
+   "text"
+  ],
+  "by": "c"
+ },
+ "791": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "hanging green willow foliage",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "792": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "hanging vines on a twisted trunk",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "c"
+ },
+ "793": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "hanging green foliage fringe",
+  "tags": [
+   "forest",
+   "garden",
+   "trim"
+  ],
+  "by": "c"
+ },
+ "794": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "barred vent in a dark frame",
+  "tags": [
+   "metal",
+   "prison",
+   "sewer"
+  ],
+  "by": "c"
+ },
+ "795": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "flat round light",
+  "tags": [
+   "ceiling",
+   "light"
+  ],
+  "by": "c"
+ },
+ "796": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "fluorescent light tube, vertical",
+  "tags": [
+   "industrial",
+   "light",
+   "tech"
+  ],
+  "by": "c"
+ },
+ "797": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "broad leafy tree",
+  "tags": [
+   "forest",
+   "garden",
+   "street"
+  ],
+  "by": "c"
+ },
+ "798": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "dead broken tree trunk",
+  "tags": [
+   "decay",
+   "forest",
+   "graveyard"
+  ],
+  "by": "c"
+ },
+ "799": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "hooded robed figure holding a lantern",
+  "tags": [
+   "graveyard",
+   "light",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "800": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "staff topped with a skull",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "801": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "red jerry can: 'GASOLINE'",
+  "tags": [
+   "fire",
+   "text",
+   "vehicle"
+  ],
+  "by": "c"
+ },
+ "802": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "glass jar with a green label",
+  "tags": [
+   "container",
+   "glass",
+   "kitchen"
+  ],
+  "by": "c"
+ },
+ "803": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "metal chalice with red band",
+  "tags": [
+   "church",
+   "drink",
+   "metal"
+  ],
+  "by": "c"
+ },
+ "804": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "grey boulder",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "805": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "grey boulder",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "806": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "heap of grey rocks",
+  "tags": [
+   "cave",
+   "mine",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "807": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "human skull, close",
+  "tags": [
+   "bones"
+  ],
+  "by": "c"
+ },
+ "808": {
+  "class": "material",
+  "layout": "sprite",
+  "looks": "grey boulder",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "c"
+ },
+ "809": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden crate: 'TNT'",
+  "tags": [
+   "container",
+   "mine",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "810": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "dynamite bundle with a detonator",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "811": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "dynamite bundle with a fuse",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "812": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "open ammo box: 'SHELLS'",
+  "tags": [
+   "container",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "813": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "row of brass cartridges",
+  "tags": [
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "814": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "open ammo box: 'BULLETS'",
+  "tags": [
+   "container",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "816": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ammo box: 'FLARES'",
+  "tags": [
+   "container",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "817": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "dark round mine or charge",
+  "tags": [
+   "metal",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "820": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "blue orb with a screaming face",
+  "tags": [
+   "occult",
+   "weapon"
+  ],
+  "by": "c"
+ },
+ "822": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "tied brown sack",
+  "tags": [
+   "container",
+   "farm",
+   "storage"
+  ],
+  "by": "c"
+ },
+ "823": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: 'NO ADMITTANCE'",
+  "tags": [
+   "door",
+   "office",
+   "text"
+  ],
+  "by": "c"
+ },
+ "824": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "wooden sign: 'KEEP OUT' in red",
+  "tags": [
+   "text",
+   "wood"
+  ],
+  "by": "c"
+ },
+ "825": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "horned goat demon head",
+  "tags": [
+   "art",
+   "occult"
+  ],
+  "by": "c"
+ },
+ "575": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "funeral wreath on stand: 'IN LOVING MEMORY'",
+  "tags": [
+   "garden",
+   "graveyard",
+   "text"
+  ],
+  "by": "c"
+ },
+ "633": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "funeral wreath: 'REST IN PIECES'",
+  "tags": [
+   "garden",
+   "graveyard",
+   "text"
+  ],
+  "by": "c"
+ }
+}

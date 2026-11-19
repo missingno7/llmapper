@@ -1,0 +1,4 @@
+NAME: Bar with stools and cultists
+SURE: 4
+FAULT: no
+WHAT: nothing

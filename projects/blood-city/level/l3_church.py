@@ -77,8 +77,8 @@ ROOMS = [
      "the aisle, low beside the nave so the nave reads tall"),
     ("vestry", 30720, 24576, 32256, 25600, "church", 32768,
      "the vestry"),
-    ("crypt_stair", 30720, 25600, 32256, 27136, "crypt", 32768,
-     "the head of the crypt stair"),
+    ("crypt_stair", 30720, 25600, 31232, 27136, "crypt", 32768,
+     "the crypt's antechamber: the slab in its east wall goes down"),
     ("narthex", 30720, 27136, 32256, 30208, "church", 40960,
      "the narthex, behind the avenue portal"),
 ]
@@ -129,7 +129,128 @@ TOWER = (MASS[2], 22272, MASS[2] + 1536, 24320)
 #: height band clear of what is beneath it (`bloodmap.layers`): the low rooms
 #: top out at 57,344 above grade under a roof at 65,536; the nave and belfry
 #: at about 79,000 under a nave roof at 98,304.
+#: The crypt. The owner, 2026-11-18: "in church I see that it says crypt,
+#: but shouldn't there be access to crypt? the crypt should be under the
+#: church, you might need to move some obelisk or something to get there".
+#: The sign hung in a room called `crypt_stair` that had no stair and
+#: nothing beneath it.
+#:
+#: Nothing is under the church (the sewer runs under the avenue, east of x
+#: 32,768), so the crypt lies under the narthex at the sewer's depth, on a
+#: layer of its own. The way down is the thing that moves: a stone slab in
+#: the antechamber's east wall, a Z-motion sector whose FLOOR travels the
+#: 3.1 bodies between the church and the crypt (E3M2 has 28 such lifts).
+#: Step on it and it sinks; step on it below and it rises.
+CRYPT_SHAFT_X = 31744
+#: SIZES, redone. The owner walked the first crypt: "crypt feels tiny,
+#: crypt elevator is just for a player to stand, but there is really no
+#: negative space. That hole that get blown into sewers is just a narrow
+#: strip instead of looking like a actual hole." It was 1,536 by 3,328
+#: under 1.45 bodies -- 2.6 m by 5.6 m with a 2.6 m ceiling -- with a lift
+#: 512 square and a hole 512 wide; `scale.py` has what Blood builds.
+#:
+#: The lift is 1,024 square (campaign median 600 by 1,408). The crypt runs
+#: under the nave AND the narthex: 4,096 by 3,840 (7 m by 6.5 m, the
+#: campaign's median indoor room is 14M and this is 15.7M) under 2.4
+#: bodies. The tombs stand FREE in two rows down the middle, 768 by 1,280,
+#: with a 1,024 aisle along each wall and 512 between the rows: floor to
+#: walk round, which is what "negative space" is.
+CRYPT_LIFT = (31232, 25856, 32256, 26880)
+CRYPT = (28160, 26880, 32256, 30720)
+CRYPT_FLOOR, CRYPT_CLEAR = 61440, 40960
+LIFT_CLEAR = 28672
+LIFT_TIME = 40                                 # four seconds for 53,248
+TOMBS = ()                       # (the four grey boxes are gone)
+TOMB_RISE = 10240
+#: WHAT A CRYPT IS. The owner, on the enlarged one: "The crypt doesn't
+#: really look like a crypt, check E1M1 for reference". It was a room of
+#: neat grey brick with four plain boxes in it.
+#:
+#: E1M1's (sector 150, looked at in six frames with the control sprites
+#: hidden): walls of rough RUBBLE (110), an EARTH floor (270) under dark
+#: worked stone (253); ONE sarcophagus as the thing the room is for -- a
+#: stone chest whose sides stand a third of a body, then a bevelled
+#: shoulder 256 wide rising 2,048 (sectors 1-3: floor 273, heinum -2048,
+#: hinged on the outer edge), then a WOODEN lid (504) a lip above it (28:
+#: 1,920 by 1,024), its faces grey brick (421); gold burial PLAQUES on
+#: the walls (128, palette 8, 48 by 48, 1.2 bodies up: sprites 185-189,
+#: kThingObjectExplode, so a blast breaks them); and COBWEBS hung from the
+#: ceiling in open air (1067/1068, sprites 150-154, translucent, 64 by
+#: 76). Every field below is E1M1's.
+CRYPT_WALL, CRYPT_EARTH, CRYPT_VAULT = 110, 270, 253
+#: the lid, in world units; the shoulder runs 256 outside it
+#: The lid is CLOSED. The owner, on the first version, which had E1M1's
+#: wooden top: "there is that ROR which I wouldn't use here, so instead of
+#: it just put a sarcophagus texture on the top of it and it will look
+#: good, like closed sarcophagus". E1M1's planks are the coffin the player
+#: climbs out of. E3M8 has the closed one (s249, s445): tile 128, the
+#: carved figure, laid as the FLOOR of a chest top 1,024 by 2,048 -- the
+#: tile is 64 by 128, so that is the whole figure once, at Blood's scale.
+SARCOPHAGUS = (29696, 27904, 30720, 29952)
+SHOULDER = 256
+CHEST_SIDE, SHOULDER_RISE, LID_RISE = 6144, 2048, 8192
+#: (The owner, a minute after the carved figure went on: "picnum 346 is
+#: what I meant for that top of the coffin" -- his "gravestone". E1M1 lays
+#: it exactly so, on its two flanking tombs: s0 and s9, 2,048 by 1,024,
+#: floor_stat 64, the tile begun at the tomb's own first wall.)
+SHOULDER_TILE, LID_TILE, CHEST_FACE = 273, 346, 421
+PLAQUE = {"type": 417, "picnum": 128, "cstat": 464, "x_repeat": 48,
+          "y_repeat": 48, "status": 4, "pal": 8, "shade": 4,
+          "behavior": {"data_1": 5, "data_2": 5, "data_3": 5, "data_4": 502}}
+#: (a1, a2): short stretches of wall, wound with the room on the left
+PLAQUES = (((28160, 28672), (28160, 27904)), ((28160, 30208), (28160, 29440)),
+           ((29440, 30720), (28672, 30720)), ((31744, 30720), (30976, 30720)))
+COBWEB = {"type": 417, "cstat": 146, "x_repeat": 64, "y_repeat": 76,
+          "status": 4, "shade": -28, "behavior": {"data_1": 6}}
+#: (tile, x, y, angle): in the open, under the vault
+COBWEBS = ((1067, 28800, 27520, 512), (1067, 31200, 27900, 0),
+           (1068, 28900, 30100, 0), (1067, 30208, 27300, 512),
+           (1067, 31500, 30300, 512))
+#: region id -> the tile its raised faces wear (`skyline.dress_steps`)
+CRYPT_FACES: dict = {}
+#: The breach. The owner, 2026-11-18: "We can add something that will
+#: connect crypt to sewers, like a wall crack that you need use explosive
+#: to ... It should also make sense in space relations". It does: the
+#: sewer trunk runs under the avenue, and the avenue is the far side of
+#: the crypt's east wall -- 512 of earth between them. So that wall is
+#: cracked, between the two eastern tombs, and the same crack shows in the
+#: sewer; a bundle of TNT lies by a tomb. E6M1 sprite 262 is the assembly:
+#: a kThingWallCrack (tile 1127, which only an explosion breaks) sending
+#: on its death to a shut Z-motion sector, with E3M1's staggered charges.
+#: The hole: 1,536 wide in three pieces that open to different heights
+#: (campaign blast holes: median 1,280 wide and 1.45 bodies, upper
+#: quartile 1,792 and 1.8), so what is left is a ragged arch and not a
+#: doorway. (y0, y1, how high it opens)
+BREACH = (32256, 28672, 32768, 30208)
+BREACH_PIECES = ((28672, 29056, 18432), (29056, 29824, 30720),
+                 (29824, 30208, 14336))
+BREACH_CHANNEL = 262
+BREACH_HOLE = 20480
+#: The powder store. The owner again: "Maybe we can have it as a TNT
+#: barrels storage or something with cascade explosions (check other
+#: levels for similar things)". Blood does exactly this: its TNT barrels
+#: (type 400, tile 907, cstat 385, 64 by 64) stand in threes about 512
+#: apart, and three of the campaign's four such stacks stand within 1,200
+#: of a wall crack (E1M8 s390, E2M9 s1, E1M2 s270). A barrel sets off its
+#: neighbour, so a line of them is a fuse: shoot the first from the slab
+#: and the last one takes the wall. World x, y, down the aisle and round
+#: to the crack; 512 apart.
+BARRELS = ((31744, 27392), (31744, 27904), (31744, 28416), (31744, 28928),
+           (31936, 29440))
+BARREL = {"type": 400, "picnum": 907, "cstat": 385, "x_repeat": 64,
+          "y_repeat": 64, "status": 4}
+BARREL_LIFT = 5888             # its drawn half height: it stands on the floor
+CRACK = {"type": 408, "picnum": 1127, "cstat": 16 | 64 | 128, "x_repeat": 64,
+         "y_repeat": 64, "status": 4,
+         "behavior": {"tx_id": BREACH_CHANNEL, "command": 1, "trigger_on": 1,
+                      "trigger_off": 1, "trigger_once": 1}}
+
+#: region id -> sector type, set by the build once the doors are framed
+LATE_TYPES: dict = {}
+
 LAYERS = {
+    "crypt": (CRYPT_FLOOR - CRYPT_CLEAR - 4096, CRYPT_FLOOR + 4096,
+              "St Gallow's crypt, under the narthex"),
     "church_low": (GRADE - 57344, 16384, "St Gallow's rooms under the low roof"),
     "church_tall": (GRADE - 81920, 16384, "the nave and the belfry"),
     "roof_low": (GRADE - TOWER_HEIGHT - 4096, GRADE - BODY_HEIGHT,
@@ -483,6 +604,102 @@ def glaze(layout) -> dict:
     return {"hung": hung, "refused": refused}
 
 
+#: The glass, from inside. The owner, 2026-11-18: "Church looks good from
+#: the outside, but inside doesn't fully correspond ... I would add these
+#: stained window glass decorative sprites also inside to be like a
+#: counterpart of what is outside, to have a feeling that you are really
+#: inside that church." Sixteen lancets outside and not one within: the
+#: nave touched no glazed wall.
+#:
+#: Blood pairs a window by position (E1M5 walls 29/31: one masked wall, an
+#: arch sprite duplicated on each face at the same x) and also hangs glass
+#: inside with nothing outside (E3M2 s312-314, DWE1M4 s822-835), brighter
+#: than its wall. So: a CLERESTORY in the nave at the avenue lancets' own
+#: stations, on both sides, in the wall over the aisle and the side rooms
+#: -- the height the lancets have outside (sill 1.95 to head 3.4; here 2.45
+#: so the sill clears the narthex arch, 2.42) -- and a lower light on the
+#: inside of each glazed outer wall a room really has.
+CLERESTORY = {"y_repeat": 176, "height": 2.45}
+CANDELABRUM_LIFT = 0.0          # set below from the tile's own height
+GLASS_SHADE = 8                     # the walls stand at 27-31
+#: (room, face, the station along the wall, y_repeat, sill in bodies)
+INSIDE_LIGHTS = (
+    ("narthex", "east", 29184, 160, 0.9), ("narthex", "east", 28160, 160, 0.9),
+    ("vestry", "east", 25216, 128, 0.7),
+    #: the east end has ONE subject (the church study: "our twelve
+    #: identical lancets are why the reviewer said stamped"): the great
+    #: window below, flanked by two narrow lights
+    ("apse", "north", 28800, 128, 0.9), ("apse", "north", 30080, 128, 0.9),
+)
+#: The great window behind the altar: tile 265, a haloed figure, which
+#: E3M2 s312-314 hangs so; no see-through pixels, so it may hang on a
+#: solid wall. The apse is only 1,536 wide, so it is 960 by a body and a
+#: half, between the two narrow lights: the brightest thing in sight.
+GREAT_WINDOW = {"tile": 265, "x_repeat": 48, "y_repeat": 80, "sill": 0.8,
+                "shade": -6, "station": 29440}
+#: DWE1M4 sprites 314/315: a candelabrum at each south corner of the chancel
+CANDELABRUM = {"type": 0, "picnum": 580, "cstat": 385, "x_repeat": 64,
+               "y_repeat": 64, "shade": -6, "status": 0}
+
+
+def glaze_inside(layout, rooms) -> dict:
+    """The inside counterparts of `glaze`'s lancets."""
+    import props
+    import wallplane
+    hung, refused = [], []
+
+    def light(name, room, face, station, y_repeat, sill, over_steps):
+        x0, y0, x1, y1 = (int(v) for v in props.room_rect(room))
+        half = 192
+        a1, a2 = {"east": ((x1, station - half), (x1, station + half)),
+                  "west": ((x0, station + half), (x0, station - half)),
+                  "north": ((station - half, y0), (station + half, y0)),
+                  "south": ((station + half, y1), (station - half, y1))}[face]
+        left, right, above, below = wallplane.extents(
+            LANCET["tile"], LANCET["x_repeat"], y_repeat, LANCET["cstat"])
+        slot = wallplane.find_slot(
+            layout, room.region_id, a1, a2, width=left + right, above=above,
+            below=below, t=0.5, height_player_heights=sill,
+            offset_player_widths=0.02, slide=False, stack=False,
+            over_steps=over_steps)
+        got = slot and layout.place_on_wall(
+            f"church:inside_{name}", room.region_id, a1=a1, a2=a2, t=slot[0],
+            height_player_heights=slot[1], offset_player_widths=0.02,
+            type=0, picnum=LANCET["tile"], cstat=LANCET["cstat"],
+            x_repeat=LANCET["x_repeat"], y_repeat=y_repeat,
+            shade=GLASS_SHADE)
+        (hung if got else refused).append(name)
+
+    nave = rooms["nave"]
+    _x0, ny0, _x1, ny1 = (int(v) for v in props.room_rect(nave))
+    for station in LANCETS_AVENUE:
+        if not ny0 + 256 <= station <= ny1 - 256:
+            continue
+        for face in ("east", "west"):
+            light(f"clerestory_{face}_{station}", nave, face, station,
+                  CLERESTORY["y_repeat"], CLERESTORY["height"], True)
+    for room, face, station, y_repeat, sill in INSIDE_LIGHTS:
+        light(f"{room}_{station}", rooms[room], face, station, y_repeat,
+              sill, False)
+    apse = rooms["apse"]
+    ax0, ay0, ax1, _ay1 = (int(v) for v in props.room_rect(apse))
+    got = wallplane.sprite(
+        layout, "church:great_window", apse.region_id, (ax0, ay0), (ax1, ay0),
+        tile=GREAT_WINDOW["tile"], x_repeat=GREAT_WINDOW["x_repeat"],
+        y_repeat=GREAT_WINDOW["y_repeat"], cstat=LANCET["cstat"],
+        t=(GREAT_WINDOW["station"] - ax0) / (ax1 - ax0),
+        height_player_heights=GREAT_WINDOW["sill"],
+        offset_player_widths=0.02, shade=GREAT_WINDOW["shade"])
+    (hung if got else refused).append("great_window")
+    chancel = rooms["chancel"]
+    for index, u in enumerate((0.08, 0.92)):
+        layout.place_on_floor(
+            f"church:candelabrum_{index}", chancel.region_id,
+            local=(u, 0.9), height_player_heights=CANDELABRUM_LIFT,
+            **CANDELABRUM)
+    return {"hung": len(hung), "refused": refused}
+
+
 #: (small room, its face, big room, its face).  Anchored from the smaller
 #: face; equal faces either way round.
 JOINS = [
@@ -602,6 +819,106 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
         parish.connect(rooms[small].face(sf), rooms[big].face(bf),
                        connection_id=f"connection:church_{small}_{big}")
 
+    # ---- the crypt, and the slab that goes down to it -------------------
+    lift = make("crypt_lift", *CRYPT_LIFT, "crypt", LIFT_CLEAR,
+                "the slab: a lift between the antechamber and the crypt",
+                role="gateway",
+                rk={"sector_behavior": {
+                    "off_floor_z": GRADE, "on_floor_z": CRYPT_FLOOR,
+                    "off_ceiling_z": GRADE - LIFT_CLEAR,
+                    "on_ceiling_z": GRADE - LIFT_CLEAR,
+                    "busy_time_a": LIFT_TIME, "busy_time_b": LIFT_TIME,
+                    "trigger_enter": 1, "trigger_wall_push": 1,
+                    "trigger_on": 1, "trigger_off": 1}})
+    #: Typed after the door pass: `frame_z_doors` takes every type-600
+    #: region for a door leaf between two opposite edges, and a lift is
+    #: entered from one side above and left by another below.
+    LATE_TYPES[lift.region_id] = 600
+    crypt = make("crypt", *CRYPT, "crypt", CRYPT_CLEAR,
+                 "the crypt under the narthex: four tombs",
+                 floor_z=CRYPT_FLOOR, rk={"declared_zero_exit": True})
+    crypt.surfaces(layer="crypt")
+    parish.connect(lift.face("west"), rooms["crypt_stair"].face("east"),
+                   connection_id="connection:church_crypt_lift_top")
+    parish.connect(lift.face("south"), crypt.face("north"),
+                   connection_id="connection:church_crypt_lift_bottom")
+    previous = None
+    for index, (by0, by1, opens) in enumerate(BREACH_PIECES):
+        piece = make(f"crypt_breach_{index}", BREACH[0], by0, BREACH[2], by1,
+                     "crypt", 0,
+                     "the cracked wall between the crypt and the sewer",
+                     role="doorway", floor_z=CRYPT_FLOOR,
+                     rk={"sector_behavior": {
+                         **z_motion_door(CRYPT_FLOOR, CRYPT_FLOOR - opens,
+                                         interaction="remote",
+                                         rx_id=BREACH_CHANNEL, open_time=1),
+                         "trigger_once": 1}})
+        piece.surfaces(layer="crypt", floor_z=CRYPT_FLOOR, clear_height=0)
+        #: typed after the door pass, like the lift: three pieces side by
+        #: side are a hole, not three doors
+        LATE_TYPES[piece.region_id] = 600
+        parish.connect(piece.face("west"), crypt.face("east"),
+                       connection_id=f"connection:church_crypt_breach_{index}")
+        if previous is not None:
+            parish.connect(previous.face("south"), piece.face("north"),
+                           connection_id=f"connection:crypt_breach_join_{index}")
+        previous = piece
+    crypt.surfaces(wall_picnum=CRYPT_WALL, floor_picnum=CRYPT_EARTH,
+                   ceiling_picnum=CRYPT_VAULT, floor_shade=34,
+                   ceiling_shade=28, wall_shade=30)
+    # The sarcophagus: a lid, and four bevelled shoulders mitred round it.
+    cx0, cy0 = CRYPT[0], CRYPT[1]
+    lx0, ly0, lx1, ly1 = SARCOPHAGUS
+    ox0, oy0, ox1, oy1 = (lx0 - SHOULDER, ly0 - SHOULDER, lx1 + SHOULDER,
+                          ly1 + SHOULDER)
+    crypt.carve([(ox0 - cx0, oy0 - cy0), (ox1 - cx0, oy0 - cy0),
+                 (ox1 - cx0, oy1 - cy0), (ox0 - cx0, oy1 - cy0)])
+
+    def piece(name, points, floor_z, tile, note, slope=None):
+        x0 = min(x for x, _y in points)
+        y0 = min(y for _x, y in points)
+        rk = {"declared_zero_exit": True}
+        if slope is not None:
+            rk["floor_slope"] = slope
+        made = parish.room(
+            name, [(x - x0, y - y0) for x, y in points], role="detail",
+            faces={f"e{k}": k for k in range(len(points))},
+            frame=Frame(x0, y0),
+            region_kwargs={**INTERIORS["crypt"].region_kwargs(), **rk},
+            intent={"kind": "sarcophagus"}, note=note)
+        made.surfaces(**INTERIORS["crypt"].style_kwargs(
+            floor_z=floor_z, clear_height=floor_z - (CRYPT_FLOOR - CRYPT_CLEAR)))
+        made.surfaces(layer="crypt", floor_picnum=tile, wall_picnum=CHEST_FACE,
+                      ceiling_picnum=CRYPT_VAULT, floor_shade=26)
+        rooms[name] = made
+        CRYPT_FACES[made.region_id] = CHEST_FACE
+        return made
+
+    lid = piece("sarcophagus_lid",
+                [(lx0, ly0), (lx1, ly0), (lx1, ly1), (lx0, ly1)],
+                CRYPT_FLOOR - CHEST_SIDE - SHOULDER_RISE - 2048, LID_TILE,
+                "the sarcophagus's lid: a gravestone slab, closed")
+    #: begun at the lid's own corner, so the one figure fills it
+    lid.surfaces(floor_stat=64, floor_shade=14)
+    outer = [(ox0, oy0), (ox1, oy0), (ox1, oy1), (ox0, oy1)]
+    inner = [(lx0, ly0), (lx1, ly0), (lx1, ly1), (lx0, ly1)]
+    shoulders = []
+    for k in range(4):
+        a, b = outer[k], outer[(k + 1) % 4]
+        c, d = inner[(k + 1) % 4], inner[k]
+        shoulders.append(piece(
+            f"sarcophagus_shoulder_{k}", [a, b, c, d],
+            CRYPT_FLOOR - CHEST_SIDE, SHOULDER_TILE,
+            "a bevelled shoulder of the sarcophagus",
+            slope=SlopeSpec(hinge=(a, b), rise_z=-SHOULDER_RISE)))
+    for k, shoulder in enumerate(shoulders):
+        parish.connect(shoulder.face("e0"), crypt.face("north"),
+                       connection_id=f"connection:sarcophagus_side_{k}")
+        parish.connect(shoulder.face("e2"), lid.face("e0"),
+                       connection_id=f"connection:sarcophagus_lid_{k}")
+        parish.connect(shoulder.face("e1"), shoulders[(k + 1) % 4].face("e3"),
+                       connection_id=f"connection:sarcophagus_mitre_{k}")
+
     material_of = {row[0]: row[5] for row in ROOMS}
 
     def leaf(name, x0, y0, x1, y1, height):
@@ -650,7 +967,17 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
     nave_clear = next(r[6] for r in ROOMS if r[0] == "nave")
     templates.chapel_furnishing(
         rooms["nave"], material=INTERIORS[material_of["nave"]],
-        grade=GRADE, host_clear=nave_clear, pews=4)
+        grade=GRADE, host_clear=nave_clear, pews=3)
+    # LIGHT, from the church study: every surface stood at shade 32. Blood
+    # lights a church from the floor up and toward the altar -- E3M4 s286,
+    # floor 9-11 under a ceiling at 45; DWE1M4 s288, chancel 24 against a
+    # nave at 36 -- so the roof is the darkest thing and the chancel the
+    # brightest.
+    for name, floor, ceiling in (("nave", 20, 44), ("west_aisle", 28, 40),
+                                 ("chancel", 14, 36), ("apse", 14, 36),
+                                 ("narthex", 26, 40)):
+        rooms[name].surfaces(floor_shade=floor, ceiling_shade=ceiling,
+                             wall_shade=floor + 6)
     templates.font(
         rooms["narthex"], material=INTERIORS[material_of["narthex"]],
         grade=GRADE,
@@ -670,12 +997,60 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
 #: The church is the one justified exception: E1M5, Blood's own church, is
 #: the most flicker-dense interior in the corpus -- candlelight is what the
 #: room is FOR.  Four, not thirteen.
-LIT = [("nave", "south", 0.35), ("chancel", "west", 0.5)]
+LIT = [("nave", "south", 0.35), ("chancel", "west", 0.5),
+       #: the crypt has no other light: two flames, and the dark between
+       ("crypt", "north", 0.3), ("crypt", "south", 0.5)]
 
-POPULATION = [("nave", 202, (0.5, 0.75)), ("west_aisle", 203, (0.5, 0.45)),
-              ("crypt_stair", 203, (0.3, 0.5)), ("tower", 202, (0.35, 0.6))]
+POPULATION = [("nave", 202, (0.5, 0.9)), ("west_aisle", 203, (0.5, 0.45)),
+              ("crypt_stair", 203, (0.3, 0.5)), ("tower", 202, (0.35, 0.6)),
+              #: what the slab goes down to: between the tombs, and one
+              #: waiting by the far wall
+              ("crypt", 203, (0.12, 0.3)), ("crypt", 202, (0.15, 0.85))]
 PICKUPS = [("vestry", 109, (0.35, 0.5)), ("apse", 67, (0.5, 0.35)),
-           ("tower", 62, (0.7, 0.3))]
+           ("tower", 62, (0.7, 0.3)), ("crypt", 109, (0.4, 0.09)),
+           #: the TNT the cracked wall wants, by the tomb facing it
+           ("crypt", 62, (0.12, 0.12))]
+
+
+def crack(layout, rooms, trunk_region_id) -> dict:
+    """The crack on both faces of the breach, and the charges behind it."""
+    crypt = rooms["crypt"]
+    x0, y0, x1, y1 = CRYPT
+    centre = (BREACH[1] + BREACH[3]) // 2
+    layout.place_on_wall(
+        "church:crypt_crack", crypt.region_id, a1=(x1, y0), a2=(x1, y1),
+        t=(centre - y0) / (y1 - y0), height_player_heights=0.6,
+        offset_player_widths=0.04, spans_opening=True, **CRACK)
+    # the sewer's side of the same wall: the trunk's west face
+    layout.place_on_wall(
+        "church:sewer_crack", trunk_region_id,
+        a1=(BREACH[2], BREACH[3] + 1024), a2=(BREACH[2], BREACH[1] - 1024),
+        t=0.5, height_player_heights=0.6, offset_player_widths=0.04,
+        spans_opening=True, **CRACK)
+    for index, (local, wait) in enumerate((((0.96, 0.52), 1),
+                                           ((0.96, 0.66), 3),
+                                           ((0.96, 0.82), 2))):
+        layout.place_on_floor(
+            f"church:crypt_charge_{index}", crypt.region_id, local=local,
+            type=459, picnum=908, cstat=128, x_repeat=4, y_repeat=64,
+            status=11, behavior={"rx_id": BREACH_CHANNEL, "wait_time": wait})
+    for index, (a1, a2) in enumerate(PLAQUES):
+        layout.place_on_wall(
+            f"church:crypt_plaque_{index}", crypt.region_id, a1=a1, a2=a2,
+            t=0.5, height_player_heights=1.2, offset_player_widths=0.02,
+            **PLAQUE)
+    for index, (tile, wx, wy, angle) in enumerate(COBWEBS):
+        layout.place_on_floor(
+            f"church:crypt_cobweb_{index}", crypt.region_id,
+            local=((wx - x0) / (x1 - x0), (wy - y0) / (y1 - y0)),
+            height_player_heights=CRYPT_CLEAR / 16960.0, picnum=tile,
+            angle=angle, **COBWEB)
+    for index, (bx, by) in enumerate(BARRELS):
+        layout.place_on_floor(
+            f"church:crypt_barrel_{index}", crypt.region_id,
+            local=((bx - x0) / (x1 - x0), (by - y0) / (y1 - y0)),
+            height_player_heights=BARREL_LIFT / 16960.0, **BARREL)
+    return {"channel": BREACH_CHANNEL, "barrels": len(BARRELS)}
 
 
 def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
@@ -695,5 +1070,6 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
                             rooms[name], face, t=t)
         placed += 1
     glass = glaze(layout)
+    glass["inside"] = glaze_inside(layout, rooms)
     print("church glass:", glass)
     return placed + len(glass["hung"])

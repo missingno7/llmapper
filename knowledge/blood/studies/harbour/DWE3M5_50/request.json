@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/harbour/DWE3M5_50/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/harbour/DWE3M5_50",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -2516,
+   "y": 78517,
+   "z": -62368,
+   "angle": 745,
+   "horiz": 100,
+   "sector": 50,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -5711,
+   "y": 77719,
+   "z": -62368,
+   "angle": 608,
+   "horiz": 100,
+   "sector": 50,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -10503,
+   "y": 78517,
+   "z": -62368,
+   "angle": 376,
+   "horiz": 100,
+   "sector": 50,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -4113,
+   "y": 89699,
+   "z": -62368,
+   "angle": 1331,
+   "horiz": 100,
+   "sector": 50,
+   "screenshot": true
+  }
+ ]
+}

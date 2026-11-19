@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/no_smoke/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/no_smoke",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "eng_e",
+   "x": 29286,
+   "y": -15155,
+   "z": -27552,
+   "angle": 1228,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "eng_track_e",
+   "x": 30310,
+   "y": -21708,
+   "z": -13216,
+   "angle": 763,
+   "horiz": 100,
+   "sector": 341,
+   "screenshot": true
+  }
+ ]
+}

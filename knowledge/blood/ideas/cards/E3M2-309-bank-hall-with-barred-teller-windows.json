@@ -1,0 +1,12 @@
+{
+ "map": "E3M2",
+ "sector": 309,
+ "kind": "set-piece",
+ "title": "Bank hall with barred teller windows",
+ "what": "A long marble-walled banking hall with a grey hexagon-tiled floor and a timber ceiling: along one wall a wooden counter with a run of barred teller windows, each window a deep niche with a carved fretwork band over the bars, NOTICE posters pinned behind, and a cultist cashier standing inside; red banners hang on the opposite wall and a wide dark opening ends the hall. First second: bars over a wooden counter, a figure behind them, NOTICE papers.",
+ "recipe": "Hall s309 is 6656 x 11264 units (11.3 x 19.1 m), 3.86 bodies high, floor 44, ceiling 504, walls 123 (the marble) with 121. Each teller window (s326, s327, s328) is a niche 512 wide x 1792 long (0.9 x 3.0 m) whose floor is the counter top, 0.49 bodies above the hall, open 1.45 bodies high, faced in 84 (owner: wooden paneling), with grate sprites 465/466 (owner: grate / grate, broken) as the bars. Behind the counter the tellers' strip s408 is 2048 deep (3.5 m) and a desk strip s409 512 deep raised 0.43 bodies carries the clutter. No vault was found near it (searched the 6000 units east; not exhaustive).",
+ "use": "A city-edge bank: the facade's door opens into this hall; the player vaults the counter or finds the staff door, and the vault (still to be designed, perhaps a big rotating door, type 617) is the goal behind. Cashier cultists behind bars shoot back through them.",
+ "frame": "knowledge/blood/ideas/tours/E3M2/edge/frames/case2.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

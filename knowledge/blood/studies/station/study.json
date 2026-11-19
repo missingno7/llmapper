@@ -1,0 +1,1380 @@
+{
+ "slug": "station",
+ "want": "a railway station on the edge of Gravesend: a booking hall entered from a city street through the edge facade, one platform beside a track under the sky, a train standing at the platform, and the line running out into a tunnel or the dark where the player cannot follow",
+ "date": "2026-11-18",
+ "seeds": [
+  {
+   "seed": "E1M2:271!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 271,
+   "sectors": [
+    32,
+    271
+   ],
+   "metres": [
+    8.7,
+    21.3,
+    5.3
+   ],
+   "area_M": 54.79,
+   "clear_bodies": 2.96,
+   "free_floor_share": 1.0,
+   "shade_spread": 26,
+   "floor": [
+    281,
+    "irregular grey stone masonry"
+   ],
+   "ceiling": [
+    67,
+    "dark horizontal planks"
+   ],
+   "walls": [
+    [
+     90,
+     0.558,
+     "worn large bricks with moss"
+    ],
+    [
+     49,
+     0.186,
+     ""
+    ],
+    [
+     414,
+     0.14,
+     ""
+    ],
+    [
+     115,
+     0.093,
+     ""
+    ],
+    [
+     174,
+     0.023,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 32,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      49,
+      81,
+      174
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 3540,
+     "type": 415,
+     "type_name": "kThingKickablePail",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.16
+    },
+    {
+     "tile": 823,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.75
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2334,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.26
+    },
+    {
+     "tile": 2584,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.23
+    },
+    {
+     "tile": 2333,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.26
+    },
+    {
+     "tile": 3791,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.15
+    },
+    {
+     "tile": 440,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.54
+    },
+    {
+     "tile": 453,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.57
+    },
+    {
+     "tile": 981,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      88,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.55
+    },
+    {
+     "tile": 753,
+     "type": 145,
+     "type_name": "kItemFlagABase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M2_271\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M2_271\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M2:34!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 34,
+   "sectors": [
+    9,
+    34,
+    265,
+    266
+   ],
+   "metres": [
+    6.1,
+    105.6,
+    7.1
+   ],
+   "area_M": 138.1,
+   "clear_bodies": 3.92,
+   "free_floor_share": 0.99,
+   "shade_spread": 32,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     421,
+     0.385,
+     "wall of grey bricks"
+    ],
+    [
+     90,
+     0.207,
+     "worn large bricks with moss"
+    ],
+    [
+     49,
+     0.195,
+     ""
+    ],
+    [
+     200,
+     0.114,
+     "metal threshold with rivets"
+    ],
+    [
+     414,
+     0.071,
+     ""
+    ],
+    [
+     20,
+     0.022,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 9,
+     "corners": 4,
+     "size": [
+      2048,
+      512
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 616,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 265,
+     "corners": 4,
+     "size": [
+      1792,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379,
+      414
+     ]
+    },
+    {
+     "sector": 266,
+     "corners": 4,
+     "size": [
+      1792,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379,
+      414,
+      421
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 847,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.54
+    },
+    {
+     "tile": 3808,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 5,
+     "over_floor_bodies": -10.57
+    },
+    {
+     "tile": 420,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      96,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.11
+    },
+    {
+     "tile": 3827,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 5,
+     "over_floor_bodies": -10.57
+    },
+    {
+     "tile": 3825,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 5,
+     "over_floor_bodies": -10.57
+    },
+    {
+     "tile": 3810,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 5,
+     "over_floor_bodies": -10.57
+    },
+    {
+     "tile": 3818,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 5,
+     "over_floor_bodies": -10.57
+    },
+    {
+     "tile": 676,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.23
+    },
+    {
+     "tile": 318,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M2_34\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M2_34\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M3:6!",
+   "map": "maps\\blood\\campaign\\E1M3.MAP",
+   "host": 6,
+   "sectors": [
+    3,
+    6,
+    9,
+    15,
+    17,
+    80,
+    227
+   ],
+   "metres": [
+    13.9,
+    26.1,
+    3.5
+   ],
+   "area_M": 34.47,
+   "clear_bodies": 1.93,
+   "free_floor_share": 0.91,
+   "shade_spread": 4,
+   "floor": [
+    308,
+    ""
+   ],
+   "ceiling": [
+    455,
+    "moss-green surface material (also ceilings/walls)"
+   ],
+   "walls": [
+    [
+     176,
+     0.433,
+     ""
+    ],
+    [
+     2453,
+     0.379,
+     "technical riveted metal cladding"
+    ],
+    [
+     20,
+     0.054,
+     "wood"
+    ],
+    [
+     200,
+     0.054,
+     "metal threshold with rivets"
+    ],
+    [
+     109,
+     0.054,
+     "plaster wall with top beam and carved base"
+    ],
+    [
+     300,
+     0.026,
+     "carpet"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 3,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109,
+      2453
+     ]
+    },
+    {
+     "sector": 9,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109,
+      2453
+     ]
+    },
+    {
+     "sector": 15,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109,
+      2453
+     ]
+    },
+    {
+     "sector": 17,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109,
+      2453
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 16,
+     "size": [
+      3840,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      176,
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 227,
+     "corners": 16,
+     "size": [
+      3840,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      176,
+      200,
+      2453
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2523,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 753,
+     "type": 146,
+     "type_name": "kItemFlagBBase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M3_6\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\E1M3_6\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/STATION.MAP:125!",
+   "map": "maps\\blood\\community\\STATION.MAP",
+   "host": 125,
+   "sectors": [
+    125
+   ],
+   "metres": [
+    4.3,
+    33.0,
+    7.1
+   ],
+   "area_M": 49.81,
+   "clear_bodies": 3.92,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    276,
+    ""
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     80,
+     1.0,
+     "weathered vertical stone wall with hints of moss"
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 146,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\maps_blood_community_STATION.MAP_125\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\maps_blood_community_STATION.MAP_125\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-20.png"
+  },
+  "49": {
+   "tile": 49,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-49.png"
+  },
+  "67": {
+   "tile": 67,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-67.png"
+  },
+  "80": {
+   "tile": 80,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-80.png"
+  },
+  "90": {
+   "tile": 90,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-90.png"
+  },
+  "109": {
+   "tile": 109,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-109.png"
+  },
+  "115": {
+   "tile": 115,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-115.png"
+  },
+  "146": {
+   "tile": 146,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-146.png"
+  },
+  "174": {
+   "tile": 174,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-174.png"
+  },
+  "176": {
+   "tile": 176,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-176.png"
+  },
+  "200": {
+   "tile": 200,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-200.png"
+  },
+  "276": {
+   "tile": 276,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-276.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-281.png"
+  },
+  "300": {
+   "tile": 300,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-300.png"
+  },
+  "308": {
+   "tile": 308,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-308.png"
+  },
+  "414": {
+   "tile": 414,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-414.png"
+  },
+  "420": {
+   "tile": 420,
+   "pixels": [
+    69,
+    44
+   ],
+   "world_at_repeat_8": [
+    1104,
+    11264
+   ],
+   "see_through_share": 0.341,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-420.png"
+  },
+  "421": {
+   "tile": 421,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-421.png"
+  },
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-438.png"
+  },
+  "455": {
+   "tile": 455,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-455.png"
+  },
+  "559": {
+   "tile": 559,
+   "pixels": [
+    61,
+    14
+   ],
+   "world_at_repeat_8": [
+    976,
+    3584
+   ],
+   "see_through_share": 0.492,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-559.png"
+  },
+  "676": {
+   "tile": 676,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.223,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-676.png"
+  },
+  "753": {
+   "tile": 753,
+   "pixels": [
+    11,
+    64
+   ],
+   "world_at_repeat_8": [
+    176,
+    16384
+   ],
+   "see_through_share": 0.5,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-753.png"
+  },
+  "817": {
+   "tile": 817,
+   "pixels": [
+    23,
+    23
+   ],
+   "world_at_repeat_8": [
+    368,
+    5888
+   ],
+   "see_through_share": 0.204,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-817.png"
+  },
+  "823": {
+   "tile": 823,
+   "pixels": [
+    64,
+    23
+   ],
+   "world_at_repeat_8": [
+    1024,
+    5888
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-823.png"
+  },
+  "847": {
+   "tile": 847,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.018,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-847.png"
+  },
+  "1129": {
+   "tile": 1129,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-1129.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-1170.png"
+  },
+  "2333": {
+   "tile": 2333,
+   "pixels": [
+    60,
+    29
+   ],
+   "world_at_repeat_8": [
+    960,
+    7424
+   ],
+   "see_through_share": 0.425,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2333.png"
+  },
+  "2334": {
+   "tile": 2334,
+   "pixels": [
+    71,
+    33
+   ],
+   "world_at_repeat_8": [
+    1136,
+    8448
+   ],
+   "see_through_share": 0.504,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2334.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2453.png"
+  },
+  "2523": {
+   "tile": 2523,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2523.png"
+  },
+  "2584": {
+   "tile": 2584,
+   "pixels": [
+    75,
+    26
+   ],
+   "world_at_repeat_8": [
+    1200,
+    6656
+   ],
+   "see_through_share": 0.297,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2584.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-2825.png"
+  },
+  "3540": {
+   "tile": 3540,
+   "pixels": [
+    34,
+    26
+   ],
+   "world_at_repeat_8": [
+    544,
+    6656
+   ],
+   "see_through_share": 0.14,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3540.png"
+  },
+  "3678": {
+   "tile": 3678,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3678.png"
+  },
+  "3808": {
+   "tile": 3808,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.125,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3808.png"
+  },
+  "3810": {
+   "tile": 3810,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.295,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3810.png"
+  },
+  "3818": {
+   "tile": 3818,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.136,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3818.png"
+  },
+  "3825": {
+   "tile": 3825,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.057,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3825.png"
+  },
+  "3827": {
+   "tile": 3827,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.364,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\station\\tiles\\tile-3827.png"
+  }
+ }
+}

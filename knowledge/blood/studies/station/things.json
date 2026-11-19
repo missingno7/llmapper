@@ -1,0 +1,226 @@
+{
+ "poses": "railway_things",
+ "ours": {
+  "t_engine_side": {
+   "expect": "steam locomotive",
+   "accept": [
+    "locomotive",
+    "steam engine",
+    "train engine",
+    "steam train",
+    "train"
+   ]
+  },
+  "t_engine_nose": {
+   "expect": "steam locomotive",
+   "accept": [
+    "locomotive",
+    "steam engine",
+    "train engine",
+    "steam train",
+    "train"
+   ]
+  },
+  "t_car_door": {
+   "expect": "door of a railway carriage",
+   "accept": [
+    "carriage",
+    "train",
+    "railcar",
+    "rail car",
+    "railway car",
+    "coach",
+    "tram",
+    "wagon",
+    "boxcar"
+   ]
+  },
+  "t_car_side": {
+   "expect": "side of a railway carriage with windows",
+   "accept": [
+    "carriage",
+    "train",
+    "railcar",
+    "rail car",
+    "railway car",
+    "coach",
+    "tram",
+    "wagon",
+    "boxcar"
+   ]
+  },
+  "t_car_inside": {
+   "expect": "inside of a railway carriage",
+   "accept": [
+    "carriage",
+    "train",
+    "railcar",
+    "rail car",
+    "railway car",
+    "coach",
+    "tram",
+    "wagon",
+    "boxcar",
+    "dining car"
+   ]
+  },
+  "t_track": {
+   "expect": "railway track",
+   "accept": [
+    "rail",
+    "track",
+    "train"
+   ]
+  },
+  "t_tunnel": {
+   "expect": "railway tunnel mouth",
+   "accept": [
+    "tunnel"
+   ]
+  },
+  "t_bench": {
+   "expect": "bench",
+   "accept": [
+    "bench",
+    "pew",
+    "seat"
+   ]
+  },
+  "t_ticket": {
+   "expect": "ticket window",
+   "accept": [
+    "ticket",
+    "booking",
+    "booth",
+    "teller",
+    "kiosk",
+    "cashier",
+    "box office"
+   ]
+  },
+  "t_gates": {
+   "expect": "iron gates",
+   "accept": [
+    "gate",
+    "railing",
+    "fence",
+    "grille",
+    "bars"
+   ]
+  },
+  "t_hall": {
+   "expect": "station hall / waiting hall",
+   "accept": [
+    "station",
+    "waiting",
+    "concourse",
+    "hall",
+    "lobby"
+   ]
+  },
+  "t_waiting": {
+   "expect": "waiting room",
+   "accept": [
+    "waiting",
+    "lounge",
+    "parlour",
+    "parlor",
+    "sitting",
+    "lobby",
+    "living"
+   ]
+  },
+  "t_gate": {
+   "expect": "roll-up gate across the track at a tunnel mouth",
+   "accept": [
+    "gate",
+    "shutter",
+    "tunnel",
+    "portcullis"
+   ]
+  },
+  "t_goods": {
+   "expect": "goods store / warehouse with crates",
+   "accept": [
+    "warehouse",
+    "store",
+    "storage",
+    "depot",
+    "crate",
+    "cargo",
+    "goods",
+    "freight"
+   ]
+  },
+  "t_balcony": {
+   "expect": "balcony with a balustrade over the platform",
+   "accept": [
+    "balcony",
+    "gallery",
+    "balustrade",
+    "signal",
+    "veranda",
+    "platform",
+    "walkway"
+   ]
+  }
+ },
+ "controls": [
+  {
+   "id": "c_engine",
+   "file": "knowledge/blood/studies/locomotive/round_E1M4/frames/round_03.png",
+   "expect": "steam locomotive (E1M4)",
+   "accept": [
+    "locomotive",
+    "steam engine",
+    "train engine",
+    "steam train",
+    "train",
+    "engine",
+    "wheel"
+   ]
+  },
+  {
+   "id": "c_track",
+   "file": "knowledge/blood/studies/station/E1M2_34/frames/corner_2.png",
+   "expect": "railway track (E1M2)",
+   "accept": [
+    "rail",
+    "track",
+    "train",
+    "tunnel"
+   ]
+  },
+  {
+   "id": "c_bar",
+   "file": "knowledge/blood/studies/saloon/E1M2_278/frames/corner_1.png",
+   "expect": "bar (E1M2)",
+   "accept": [
+    "bar",
+    "saloon",
+    "pub",
+    "tavern",
+    "diner",
+    "lounge"
+   ]
+  },
+  {
+   "id": "c_dock",
+   "file": "knowledge/blood/studies/harbour/E2M1_247/frames/corner_0.png",
+   "expect": "wooden dock (E2M1)",
+   "accept": [
+    "dock",
+    "pier",
+    "wharf",
+    "boardwalk",
+    "jetty",
+    "quay",
+    "harbour",
+    "harbor",
+    "walkway",
+    "bridge",
+    "deck"
+   ]
+  }
+ ]
+}

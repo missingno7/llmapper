@@ -79,3 +79,17 @@ projects/*/experiments/*/*/
 # beside the json mined from them and never redistributed.
 projects/*/references/town-fixtures.png
 projects/*/references/city-assets.png
+
+# The library's looks: renders of commercial maps, cut-down copies of those
+# maps, and sheets of commercial tile art, written beside the notes they
+# illustrate by tools/study.py, tools/ideas.py, tools/critique.py,
+# tools/critic_bench.py and tools/tile_naming_sheet.py. The notes, cards,
+# labels and observation JSON are tracked; the pictures and the maps stay
+# local, on the same rule as maps/ itself.
+knowledge/blood/studies/**/*.png
+knowledge/blood/studies/**/*.[Mm][Aa][Pp]
+knowledge/blood/ideas/**/*.png
+knowledge/blood/ideas/**/*.[Mm][Aa][Pp]
+knowledge/blood/critic-bench/**/*.png
+knowledge/blood/critic-bench/**/*.[Mm][Aa][Pp]
+reports/tiles/**/*.png

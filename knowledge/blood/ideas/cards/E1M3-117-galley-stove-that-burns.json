@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 117,
+ "kind": "set-piece",
+ "title": "Galley stove that burns",
+ "what": "The dining car's kitchen is told with one wall: a long counter-height range with roasting food on a grill rack, steam columns rising from it into a hood with two extractor fans, a bank of riveted metal cladding, and a marble island in the middle of the room with a cleaver on it. The range top flickers like fire and is a damage sector, so the stove is real: stand on it and you burn. Rats run on the chequered floor.",
+ "recipe": "Range: sector 117, 768 x 4096 (1.35 x 7.2 m) along a wall, floor at 0.48 bodies above the room (z 10240 vs 18432), ceiling (the hood) 0.72 bodies above the range, floor tile 376, ceiling 255; type 618 kSectorDamage damage_type 1 (burn), shade_wave 7 amplitude 3 frequency 5 on all surfaces. On it: steam flats tile 754 stretched x_repeat 64-144, y 16; grill/food sprites 1741, 1040, 1267, 1269. Fans: flat sprites tile 2548 (cstat 489, floor-aligned) just under the hood ceiling. Island: sector 119, 1024 x 5120 (1.8 x 9 m), 0.48 bodies high, floor tile 294 (marble), its own light channel 125. Room floor 291 (chequered); 4 rats (type 220, tile 1745). Light: switch plates tile 1078 at both doors, tx 126 cmd 3; room rx 126 amplitude -32.",
+ "use": "Saloon kitchen behind the bar; the market's cook-shop; a crypt-side charnel kitchen for the cultists. The burning range doubles as a hazard to fight around.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e1m3_b/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 60,
+ "kind": "composition",
+ "title": "Loggia gallery a body above the yard",
+ "what": "A ring corridor 4.5 m wide runs round the whole building with its floor 1.93 bodies above the yard grass. Its inner side is open to the yard over a plain brick lower wall: from the yard you look up and see the gallery's tiled ceiling running along the top of the wall, so the gallery reads as a balcony and anyone in it holds the high ground over the yard. Midway along, a framed bay with two arched skull-filled windows and pilasters breaks the run and marks where the power-up (guns akimbo) is kept above. The east gallery opens to the sky in two bays.",
+ "recipe": "Gallery sector 60: 2560 wide (4.5 m), 52 m long, floor z -12288, ceiling -45056 (1.93 bodies), floor tile 427, ceiling tile 491, walls 91/92/94. Yard floor z 20480, so the gallery floor is 32768 z (1.93 bodies) above the grass; the shared wall is a portal with only a lower wall of brick. Central bay: sectors 29/30 (1024 x 1024 each) on the yard side, floor 15360, open sky, wall art of arched skull windows. East gallery: sectors 38 and 40 have parallax ceilings (sky bays) between roofed lengths 37/39/41.",
+ "use": "Saloon: an upper gallery on three sides of the bar room, a body and a half up, open over the floor. Arcade of shops: a first-floor walkway overlooking the shopping street. Theatre: the dress circle.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e6m8_f/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

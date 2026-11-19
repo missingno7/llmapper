@@ -348,6 +348,48 @@ def portal_spans(layout, region_id: str, a1, a2) -> list:
     return out
 
 
+def edge_spans(layout, region_id: str, a1, a2) -> list:
+    """The stretches of the line a1-a2 that ARE an edge of this region.
+
+    The owner, 2026-11-19, in the game: "there are places with posters
+    which are hanging mid air." A notice was hung at 0.6 of a line along a
+    street's side; the street's outline has a yard let into it there, and
+    for 3,072 units the line is not a wall. Nothing asked. (This is for
+    things HUNG ON walls, which is what this module places. A wall-aligned
+    sprite that stands free -- a railing, a gate, a cobweb, a flag -- is
+    not wrong for having air behind it, and does not come through here.)
+    """
+    if layout.regions.get(region_id) is None:
+        return []
+    unit, _length = _unit_and_offset(a1, a2)
+    normal = (-unit[1], unit[0])
+    offset = a1[0] * normal[0] + a1[1] * normal[1]
+    spans = []
+    #: ANY room's edge on this line counts: a wall is a wall whichever
+    #: side's outline draws it (the church's apse lights hang on a line
+    #: that is the neighbouring room's edge, and were refused when only
+    #: the named room's own outline was asked)
+    loops = [loop for region in layout.regions.values()
+             for loop in (tuple(region.outer),) + tuple(region.holes)]
+    for loop in loops:
+        for index, p in enumerate(loop):
+            q = loop[(index + 1) % len(loop)]
+            if (abs(p[0] * normal[0] + p[1] * normal[1] - offset) > 2
+                    or abs(q[0] * normal[0] + q[1] * normal[1] - offset) > 2):
+                continue
+            first = p[0] * unit[0] + p[1] * unit[1]
+            second = q[0] * unit[0] + q[1] * unit[1]
+            spans.append((min(first, second), max(first, second)))
+    spans.sort()
+    merged = []
+    for low, high in spans:
+        if merged and low <= merged[-1][1] + 1:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], high))
+        else:
+            merged.append((low, high))
+    return merged
+
+
 def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
               below: int, t: float = 0.5, height_player_heights: float = 0.65,
               offset_player_widths: float = 0.10,
@@ -371,6 +413,7 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
     # exactly the surface a monument carries its name on.  The span table
     # carries no z, so the caller says which case this is.
     blocked = [] if over_steps else portal_spans(layout, region_id, a1, a2)
+    walls = edge_spans(layout, region_id, a1, a2)
     half = width / 2.0
 
     clear = abs(int(region.floor_z) - int(region.ceiling_z))
@@ -389,6 +432,15 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
         if z != raw:
             return None
         along = point[0] * unit[0] + point[1] * unit[1]
+        #: most of it on real wall (where any outline lies on this line at
+        #: all). Not ALL of it: a light let into a wall an eighth of its
+        #: width from a corner is hung, and was refused by a stricter rule;
+        #: the notice this is for hung wholly over a yard.
+        if walls:
+            on_wall = sum(max(0.0, min(along + half, high) - max(along - half, low))
+                          for low, high in walls)
+            if on_wall < 0.6 * width:
+                return None
         if any(along - half < high and low < along + half
                and (top is None or (z - above < bottom and top < z + below))
                for low, high, top, bottom in blocked):

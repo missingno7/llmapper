@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 642,
+ "kind": "set-piece",
+ "title": "A congregation of painted cultists who never move",
+ "what": "A dim chapel with rows of stone pews with red cushions either side of an aisle, candelabra on the pew ends, a chandelier, and a glowing round red window at the end with a dark figure standing against it. The pews are full of robed cultists in brown, green, blue and grey robes. Almost all of them are flat decoration sprites, not enemies: the player walks in braced for a fight and the congregation just stares. Two at the front, by the altar, can be shot to pieces, and shooting one gets a remark from Caleb. Seen in the tour and my own frames; that they are decoration is read from the sprites (type 0).",
+ "recipe": "Pews: pairs of sectors, a seat 5120 z up (0.3 body, floor tile 260 red patterned cloth) and a back 14336 up (0.85 body, tile 253), about 1800 x 900 units each, 4 pew blocks each side of a 1600-unit aisle; room 9.8 m high. Congregation: 15 face sprites tile 2870 (robed cultist with tommy gun, 1.6 bodies at 64), type 0 decoration, cstat 16768, seated with z at the seat top, pal 0 / 3 / 11 / 13 for different robe colours. Front pair: same tile, pal 4, kThingObjectGib (416), trigger_vector, data1 8, sound 1019, one also tx119 -> kSoundPlayer (711) data1 2364. Candelabra tile 580 (standing three-candle) at pew ends; a real cultist or two elsewhere in the room so the player cannot simply ignore them.",
+ "use": "The church nave of the city level, at once; equally the theatre auditorium with a seated audience of dummies, one of which is not a dummy (combine with a real cultist using the same tile).",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_642/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

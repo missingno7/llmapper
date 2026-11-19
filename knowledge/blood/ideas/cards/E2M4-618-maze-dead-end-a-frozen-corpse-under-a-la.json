@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 618,
+ "kind": "set-piece",
+ "title": "Maze dead end: a frozen corpse under a lamp, the reward laid out at its knees",
+ "what": "The far dead end of a snowy hedge maze ends in a small round apse. Under a snow-capped street lamp kneels a frozen zombie (a breakable object, not an enemy), and in front of him four TNT bundles stand in a neat row on a bright pool of lamplight on the snow. Stepping into the apse plays a one-off Caleb line. It tells a little story in three objects (lamp, corpse, dynamite) and rewards finding the end of the maze. Seen in my own frames.",
+ "recipe": "Apse = three concentric crescent sectors (42, 43, 44, about 1700 x 1280 units, arcs of 8 walls) opening off the maze path, all floor z -24576 like the path, ceiling sky (2500, parallax). Floor shade steps 0 / 12 / 20 toward the open end (ground is 22) to make the light pool. Inner crescent: street lamp sprite tile 2493 (snow-covered street lamp, face, 64x64, shade -128 so it glows) and frozen kneeling zombie tile 2447 as kThingObjectGib (type 416, 40x40, data1 8, data2 12, sound 316). Middle crescent: 4 x kItemAmmoProxBombBundle (type 64, tile 811) 256 units apart in a line. Entry sector 618: XSECTOR trigger_enter, trigger_once, dude_lockout, tx166; receiver kSoundPlayer (type 711) data1 4525 (which line, not verified).",
+ "use": "The dead end of the sewer, or the back of the crypt: a frozen or drowned body under the only lamp, with the ammo at its knees. In a city in winter, the end of a blind alley behind the saloon.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/e2m4_maze/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

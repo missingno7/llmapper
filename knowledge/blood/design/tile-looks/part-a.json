@@ -1,0 +1,2534 @@
+{
+ "0": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone block wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "1": {
+  "class": "material",
+  "layout": "band",
+  "looks": "strip of grey stone blocks",
+  "tags": [
+   "stone",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "2": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone bricks with rust-stained courses",
+  "tags": [
+   "brick",
+   "decay",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "3": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey stone blocks, rust-stained along the bottom",
+  "tags": [
+   "decay",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "4": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone paving",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "a"
+ },
+ "5": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wall of grey stone bricks",
+  "tags": [
+   "brick",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "6": {
+  "class": "material",
+  "layout": "band",
+  "looks": "kerb",
+  "tags": [
+   "stone",
+   "street",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "7": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey metal door with handle",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "8": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone bricks overgrown with ivy",
+  "tags": [
+   "decay",
+   "garden",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "9": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal roll-up gate",
+  "tags": [
+   "door",
+   "metal",
+   "shop"
+  ],
+  "by": "a"
+ },
+ "10": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "lattice window with a diamond grid",
+  "tags": [
+   "metal",
+   "window"
+  ],
+  "by": "a"
+ },
+ "11": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "spiked arched grate under three skulls",
+  "tags": [
+   "bones",
+   "crypt",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "12": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "blood-red wall under a skull frieze",
+  "tags": [
+   "bones",
+   "occult",
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "14": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: BRAIN STORAGE / NO ZOMBIES ALLOWED",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "15": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "planks",
+  "tags": [
+   "floor",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "16": {
+  "class": "plant",
+  "layout": "tiles",
+  "looks": "dense thorny vines and leaves",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "a"
+ },
+ "17": {
+  "class": "plant",
+  "layout": "tiles",
+  "looks": "thorny vines with see-through gaps",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "a"
+ },
+ "18": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "narrow hanging thorny vines",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "a"
+ },
+ "19": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: TEST SUBJECTS",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "20": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wood",
+  "tags": [
+   "wood"
+  ],
+  "by": "a"
+ },
+ "21": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark vertical planks",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "22": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank door with iron bands",
+  "tags": [
+   "door",
+   "metal",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "23": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "iron-bound door",
+  "tags": [
+   "door",
+   "metal",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "24": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "iron-banded plank door with carved rosette",
+  "tags": [
+   "church",
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "25": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank door with skull rosette",
+  "tags": [
+   "bones",
+   "door",
+   "occult",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "26": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank door with skull rosette, blood dripping",
+  "tags": [
+   "blood",
+   "door",
+   "occult",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "27": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank door with carved square rosette",
+  "tags": [
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "28": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wooden wall",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "29": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank wall with an iron-bound edge",
+  "tags": [
+   "metal",
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "30": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden door",
+  "tags": [
+   "domestic",
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "31": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "bookcase front",
+  "tags": [
+   "library",
+   "paper",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "32": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "bookcase front",
+  "tags": [
+   "library",
+   "paper",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "33": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "bookcase front, arched top",
+  "tags": [
+   "library",
+   "paper",
+   "rich",
+   "storage"
+  ],
+  "by": "a"
+ },
+ "34": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wood, for counter or cabinet sides",
+  "tags": [
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "35": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "drawer fronts",
+  "tags": [
+   "domestic",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "36": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "drawer fronts",
+  "tags": [
+   "domestic",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "37": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "pale carved stone panel crossed by timber beams",
+  "tags": [
+   "stone",
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "38": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "dusty bookshelf in a wooden frame",
+  "tags": [
+   "decay",
+   "library",
+   "storage"
+  ],
+  "by": "a"
+ },
+ "39": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "diagonal wooden lattice",
+  "tags": [
+   "fence",
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "40": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "bevelled grey stone slab",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "41": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown stone",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "42": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "mottled orange-brown rock",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "43": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "44": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey marble slab with a diamond inlay",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "45": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone slab with a round dark grated hole",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "46": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "Z-braced plank door",
+  "tags": [
+   "door",
+   "farm",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "47": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "red brick panel in a wooden frame",
+  "tags": [
+   "brick",
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "48": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "corrugated metal sheet",
+  "tags": [
+   "industrial",
+   "metal",
+   "roof"
+  ],
+  "by": "a"
+ },
+ "49": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "weathered red and grey boards with cross rails",
+  "tags": [
+   "decay",
+   "fence",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "50": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone niche with an ornate arched top",
+  "tags": [
+   "church",
+   "crypt",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "51": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "broken chunk of red brick wall",
+  "tags": [
+   "brick",
+   "decay"
+  ],
+  "by": "a"
+ },
+ "52": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "broken chunk of red brick wall",
+  "tags": [
+   "brick",
+   "decay"
+  ],
+  "by": "a"
+ },
+ "53": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "splatter of blood and flesh",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "a"
+ },
+ "54": {
+  "class": "decal",
+  "layout": "band",
+  "looks": "black goo dripping from above",
+  "tags": [
+   "ceiling",
+   "decay"
+  ],
+  "by": "a"
+ },
+ "55": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey block wall with dark grime at the top",
+  "tags": [
+   "decay",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "56": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "red door with a small wooden window",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "57": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "red metal-framed door with a wooden panel",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "58": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "iron bars (jail)",
+  "tags": [
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "a"
+ },
+ "60": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey concrete wall with a metal stripe",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "63": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "barrel wall, broken",
+  "tags": [
+   "container",
+   "drink",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "64": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "barrel wall",
+  "tags": [
+   "container",
+   "drink",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "66": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: INFIRMARY",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "67": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark horizontal planks",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "68": {
+  "class": "material",
+  "layout": "band",
+  "looks": "single dark wooden plank",
+  "tags": [
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "69": {
+  "class": "material",
+  "layout": "band",
+  "looks": "single wooden plank",
+  "tags": [
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "70": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone panel in an ornate carved frame",
+  "tags": [
+   "church",
+   "rich",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "73": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "hanging clothes: brown shirt on a hanger",
+  "tags": [
+   "cloth",
+   "domestic",
+   "shop"
+  ],
+  "by": "a"
+ },
+ "74": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: K MARCHE",
+  "tags": [
+   "shop",
+   "text"
+  ],
+  "by": "a"
+ },
+ "75": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "jar with a brain in green fluid",
+  "tags": [
+   "container",
+   "glass",
+   "gore",
+   "medical"
+  ],
+  "by": "a"
+ },
+ "76": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "jar with a brain in red fluid",
+  "tags": [
+   "container",
+   "glass",
+   "gore",
+   "medical"
+  ],
+  "by": "a"
+ },
+ "77": {
+  "class": "fixture",
+  "layout": "band",
+  "looks": "strip of red bulbs on a wooden rail",
+  "tags": [
+   "carnival",
+   "light",
+   "theatre"
+  ],
+  "by": "a"
+ },
+ "80": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "weathered vertical stone wall with hints of moss",
+  "tags": [
+   "decay",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "81": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone wall",
+  "tags": [
+   "crypt",
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "82": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark stone niche under a brick arch",
+  "tags": [
+   "brick",
+   "crypt",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "83": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "stone niche with a skull and demon carving",
+  "tags": [
+   "bones",
+   "crypt",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "84": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wooden paneling / wainscot",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "85": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank panel smashed through in the middle",
+  "tags": [
+   "decay",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "86": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank panel with a rough splintered patch",
+  "tags": [
+   "decay",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "87": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "framed panel with a rough rusty centre",
+  "tags": [
+   "decay",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "88": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden column/pilaster with base and capital",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "89": {
+  "class": "material",
+  "layout": "band",
+  "looks": "stone wall",
+  "tags": [
+   "stone",
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "90": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "worn large bricks with moss",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "91": {
+  "class": "material",
+  "layout": "band",
+  "looks": "brick wall with base course",
+  "tags": [
+   "brick",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "92": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "brick wall beside a dark iron pillar",
+  "tags": [
+   "brick",
+   "column",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "93": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow dark stone pilaster",
+  "tags": [
+   "column",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "94": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "brick wall with an arched niche of skulls",
+  "tags": [
+   "bones",
+   "brick",
+   "crypt"
+  ],
+  "by": "a"
+ },
+ "95": {
+  "class": "object",
+  "layout": "picture",
+  "looks": "large crate",
+  "tags": [
+   "container",
+   "storage",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "96": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "iron-bound door",
+  "tags": [
+   "door",
+   "metal",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "97": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal crypt door",
+  "tags": [
+   "crypt",
+   "door",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "98": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark ornate panel with a winged demon relief",
+  "tags": [
+   "art",
+   "crypt",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "99": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark ornate tracery panel with a central boss",
+  "tags": [
+   "crypt",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "100": {
+  "class": "material",
+  "layout": "band",
+  "looks": "cracked brown plaster wall with base moulding",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "101": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark recessed slot framed in iron",
+  "tags": [
+   "metal",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "102": {
+  "class": "material",
+  "layout": "band",
+  "looks": "cracked brown plaster wall with base moulding",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "103": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plaster wall with a carved nude torso relief",
+  "tags": [
+   "art",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "104": {
+  "class": "mask",
+  "layout": "band",
+  "looks": "row of small columns and arches",
+  "tags": [
+   "column",
+   "stone",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "105": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "coffered wood panelling",
+  "tags": [
+   "ceiling",
+   "rich",
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "106": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "iron-framed dark plank door with a skull",
+  "tags": [
+   "door",
+   "occult",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "107": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow framed brown panel",
+  "tags": [
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "108": {
+  "class": "material",
+  "layout": "band",
+  "looks": "peeling plaster wall with top beam and carved base",
+  "tags": [
+   "decay",
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "109": {
+  "class": "material",
+  "layout": "band",
+  "looks": "plaster wall with top beam and carved base",
+  "tags": [
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "110": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "cobblestone",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "a"
+ },
+ "111": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "cobblestone",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "112": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "rope net",
+  "tags": [
+   "fence",
+   "nautical"
+  ],
+  "by": "a"
+ },
+ "113": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "cobblestone wall with a carved see-through arch",
+  "tags": [
+   "crypt",
+   "stone",
+   "window"
+  ],
+  "by": "a"
+ },
+ "114": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "stone wall with a demon face relief",
+  "tags": [
+   "crypt",
+   "occult",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "115": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow dark studded pilaster",
+  "tags": [
+   "column",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "116": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "wooden frame with four see-through slots",
+  "tags": [
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "117": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow wooden frame strip",
+  "tags": [
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "118": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "red-and-gold demon fresco over a rosette frieze",
+  "tags": [
+   "art",
+   "occult",
+   "rich",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "119": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "red-and-gold fresco over a carved rosette frieze",
+  "tags": [
+   "art",
+   "rich",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "120": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay tiles",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "121": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "cracked plaster wall with a recessed panel",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "123": {
+  "class": "material",
+  "layout": "band",
+  "looks": "cracked plaster wall over a carved base",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "124": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plaster panel with a carved dagger relief",
+  "tags": [
+   "art",
+   "occult",
+   "weapon"
+  ],
+  "by": "a"
+ },
+ "125": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plaster panel with a winged skull relief",
+  "tags": [
+   "art",
+   "bones",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "126": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plaster niche with a shackled woman relief",
+  "tags": [
+   "art",
+   "occult",
+   "prison"
+  ],
+  "by": "a"
+ },
+ "127": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow carved skeleton column",
+  "tags": [
+   "bones",
+   "column",
+   "crypt"
+  ],
+  "by": "a"
+ },
+ "128": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone figure carved in a niche",
+  "tags": [
+   "art",
+   "crypt",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "129": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow totem of skulls and bones",
+  "tags": [
+   "bones",
+   "column",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "130": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay wall",
+  "tags": [
+   "wall"
+  ],
+  "by": "a"
+ },
+ "131": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay wall with a plain edge",
+  "tags": [
+   "wall"
+  ],
+  "by": "a"
+ },
+ "132": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay wall, stained",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "133": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Assisted Suicide Ward",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "134": {
+  "class": "material",
+  "layout": "band",
+  "looks": "clay wall with top beam and base",
+  "tags": [
+   "trim",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "135": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow dark wooden pilaster",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "136": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay panel between dark pilasters and corbels",
+  "tags": [
+   "column",
+   "rich",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "137": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "arched barred window under a demon head",
+  "tags": [
+   "metal",
+   "occult",
+   "window"
+  ],
+  "by": "a"
+ },
+ "138": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "framed brown panel with a faded figure",
+  "tags": [
+   "art",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "139": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "wooden strip with three inset panels",
+  "tags": [
+   "stairs",
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "140": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown stucco",
+  "tags": [
+   "wall"
+  ],
+  "by": "a"
+ },
+ "141": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown stucco with dark drips",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "142": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "skull-shaped fireplace maskwall",
+  "tags": [
+   "bones",
+   "fire",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "143": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: EAST WING",
+  "tags": [
+   "hotel",
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "144": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "wooden lattice, used e.g. as windows",
+  "tags": [
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "145": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "dark curtain drawn to one side",
+  "tags": [
+   "cloth",
+   "theatre",
+   "window"
+  ],
+  "by": "a"
+ },
+ "146": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "curtain texture",
+  "tags": [
+   "cloth",
+   "theatre"
+  ],
+  "by": "a"
+ },
+ "147": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "curtain, translucent variant",
+  "tags": [
+   "cloth",
+   "theatre"
+  ],
+  "by": "a"
+ },
+ "148": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow louvred wooden shutter",
+  "tags": [
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "149": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow panelled wooden door",
+  "tags": [
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "150": {
+  "class": "material",
+  "layout": "band",
+  "looks": "clay wall over a dark stone base",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "151": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: HOSPITAL INFORMATION AND ADMISSION",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "a"
+ },
+ "152": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay wall with a small window and torn curtain",
+  "tags": [
+   "cloth",
+   "decay",
+   "window"
+  ],
+  "by": "a"
+ },
+ "154": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay wall with a small four-pane window",
+  "tags": [
+   "wall",
+   "window"
+  ],
+  "by": "a"
+ },
+ "153": {
+  "class": "material",
+  "layout": "band",
+  "looks": "clay wall with a wooden skirting",
+  "tags": [
+   "trim",
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "155": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "iron bars between top and bottom rails",
+  "tags": [
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "a"
+ },
+ "156": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "door leaf texture",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "157": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "studded panelled wooden door",
+  "tags": [
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "158": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "arched panelled wooden door",
+  "tags": [
+   "church",
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "159": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "crumpled curtain",
+  "tags": [
+   "cloth",
+   "theatre"
+  ],
+  "by": "a"
+ },
+ "160": {
+  "class": "material",
+  "layout": "band",
+  "looks": "clay wall",
+  "tags": [
+   "wall"
+  ],
+  "by": "a"
+ },
+ "161": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "dark x-ray viewer in a green metal frame",
+  "tags": [
+   "light",
+   "medical"
+  ],
+  "by": "a"
+ },
+ "162": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "green x-ray of a skeleton on a viewer",
+  "tags": [
+   "bones",
+   "light",
+   "medical"
+  ],
+  "by": "a"
+ },
+ "163": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "painting",
+  "tags": [
+   "art",
+   "rich"
+  ],
+  "by": "a"
+ },
+ "164": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round riveted copper porthole or mirror",
+  "tags": [
+   "metal",
+   "nautical",
+   "window"
+  ],
+  "by": "a"
+ },
+ "165": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round bronze medallion with a lion face",
+  "tags": [
+   "art",
+   "metal",
+   "rich"
+  ],
+  "by": "a"
+ },
+ "166": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "bronze face door knocker",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "167": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round carved bronze medallion with a central boss",
+  "tags": [
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "168": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "frieze of carved skulls",
+  "tags": [
+   "bones",
+   "crypt",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "169": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark wooden beam",
+  "tags": [
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "170": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden boarding",
+  "tags": [
+   "decay",
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "171": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "boards nailed across a dark opening",
+  "tags": [
+   "decay",
+   "window",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "172": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "timber shoring",
+  "tags": [
+   "mine",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "173": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "timber beam with diagonal braces",
+  "tags": [
+   "mine",
+   "trim",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "174": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark vertical plank",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "175": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow grooved wooden post",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "176": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "plank door with iron hinges and ring handle",
+  "tags": [
+   "door",
+   "metal",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "177": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wooden wall",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "178": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "plank deck, plank floor",
+  "tags": [
+   "floor",
+   "nautical",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "179": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden panel",
+  "tags": [
+   "wall",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "180": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brick wall",
+  "tags": [
+   "brick",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "181": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brick wall",
+  "tags": [
+   "brick",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "183": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "blue baby pram",
+  "tags": [
+   "domestic",
+   "toy",
+   "vehicle"
+  ],
+  "by": "a"
+ },
+ "184": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow carved post with a figure relief",
+  "tags": [
+   "art",
+   "column",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "185": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow carved post with figures and skulls",
+  "tags": [
+   "bones",
+   "column",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "186": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "carved wooden panel topped by a skull",
+  "tags": [
+   "bones",
+   "occult",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "187": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "carved skull plaque in a stone frame",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "188": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "carved skull plaque in a stone frame",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "190": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "rusty metal wall under a skull frieze",
+  "tags": [
+   "bones",
+   "industrial",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "191": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal hatch/grate with X brace",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "193": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "rusty metal wall under a skull frieze",
+  "tags": [
+   "bones",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "194": {
+  "class": "material",
+  "layout": "band",
+  "looks": "rusty dark metal wall with riveted base",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "195": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal rail/track, for inside faces of jambs",
+  "tags": [
+   "door",
+   "metal",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "196": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "rusty metal wall with a pipe at one edge",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "a"
+ },
+ "197": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "spiked arched grate under skulls, metal wall",
+  "tags": [
+   "bones",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "198": {
+  "class": "material",
+  "layout": "band",
+  "looks": "rusty dark metal wall with riveted base",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "199": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal door",
+  "tags": [
+   "door",
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "200": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "metal threshold with rivets",
+  "tags": [
+   "door",
+   "floor",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "201": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "barrel: CAUTION TOXIC, green slime",
+  "tags": [
+   "container",
+   "industrial"
+  ],
+  "by": "a"
+ },
+ "202": {
+  "class": "material",
+  "layout": "band",
+  "looks": "worn wall/facade texture, bricks showing through",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "203": {
+  "class": "material",
+  "layout": "band",
+  "looks": "worn wall with bricks showing through",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "204": {
+  "class": "material",
+  "layout": "band",
+  "looks": "worn wall with bricks showing through",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "205": {
+  "class": "material",
+  "layout": "band",
+  "looks": "vertical black-and-yellow hazard stripes",
+  "tags": [
+   "industrial",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "206": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "vertical metal pipe",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "a"
+ },
+ "207": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "narrow slotted metal vent strip",
+  "tags": [
+   "industrial",
+   "metal",
+   "tech"
+  ],
+  "by": "a"
+ },
+ "208": {
+  "class": "material",
+  "layout": "band",
+  "looks": "diagonal black-and-yellow hazard stripes",
+  "tags": [
+   "industrial",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "209": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "metal floor plate with an octagon pattern",
+  "tags": [
+   "floor",
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "210": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal grille wall over a ribbed base",
+  "tags": [
+   "industrial",
+   "metal",
+   "tech"
+  ],
+  "by": "a"
+ },
+ "211": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "twin vertical metal pipes",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "a"
+ },
+ "212": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal mesh wall over a ribbed base",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "213": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow dark metal pilaster",
+  "tags": [
+   "column",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "215": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "pressed metal",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "216": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "pressed metal with a framed edge",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "217": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "metal platform, usually a lift floor",
+  "tags": [
+   "floor",
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "218": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "round barred vent set in stone",
+  "tags": [
+   "metal",
+   "pipe",
+   "sewer"
+  ],
+  "by": "a"
+ },
+ "219": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "drain",
+  "tags": [
+   "metal",
+   "sewer",
+   "street"
+  ],
+  "by": "a"
+ },
+ "220": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark ribbed bulging wall panel",
+  "tags": [
+   "metal",
+   "wall"
+  ],
+  "by": "a"
+ },
+ "221": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark ribbed wall with a round spoked hatch",
+  "tags": [
+   "metal",
+   "tech"
+  ],
+  "by": "a"
+ },
+ "223": {
+  "class": "unclear",
+  "layout": "picture",
+  "looks": "dark ribbed wall with a torn vertical slit",
+  "tags": [
+   "decay"
+  ],
+  "by": "a"
+ },
+ "224": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark ribbed wall with a ribbed pod",
+  "tags": [
+   "metal",
+   "tech"
+  ],
+  "by": "a"
+ },
+ "225": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "sign: Cougar and D'arc's Pandemonium Shadow Show",
+  "tags": [
+   "carnival",
+   "text",
+   "theatre"
+  ],
+  "by": "a"
+ },
+ "226": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey horned grinning demon face carving",
+  "tags": [
+   "occult",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "227": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "ornate carved bracket with a face",
+  "tags": [
+   "occult",
+   "stone",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "228": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "octagonal dark metal vent with radial holes",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "229": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "octagonal metal vent glowing orange",
+  "tags": [
+   "fire",
+   "light",
+   "metal"
+  ],
+  "by": "a"
+ },
+ "230": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "flesh wall",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "231": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall with stapled wounds",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "232": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall torn open, held by chains",
+  "tags": [
+   "gore",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "233": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall wound held by chains",
+  "tags": [
+   "gore",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "234": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall with a wound and metal clamps",
+  "tags": [
+   "gore",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "235": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall with an eye, chained",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "236": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh wall with a bleeding hole",
+  "tags": [
+   "blood",
+   "gore",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "237": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "narrow ribbed flesh column",
+  "tags": [
+   "column",
+   "gore"
+  ],
+  "by": "a"
+ },
+ "238": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal-framed panel with a row of fangs",
+  "tags": [
+   "gore",
+   "metal",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "239": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "row of fangs between metal rails",
+  "tags": [
+   "gore",
+   "occult",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "240": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "flesh wall with blisters and veins",
+  "tags": [
+   "decay",
+   "gore"
+  ],
+  "by": "a"
+ },
+ "241": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dripping flesh wall",
+  "tags": [
+   "decay",
+   "gore"
+  ],
+  "by": "a"
+ },
+ "242": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "flesh relief of a ribcaged insect between ribs",
+  "tags": [
+   "bones",
+   "gore",
+   "occult"
+  ],
+  "by": "a"
+ },
+ "243": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "pool of blood with bones and a skull",
+  "tags": [
+   "blood",
+   "bones",
+   "floor",
+   "gore"
+  ],
+  "by": "a"
+ },
+ "244": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "twisted wooden column",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "245": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "twisted wooden column",
+  "tags": [
+   "column",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "246": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow segmented brown strip",
+  "tags": [
+   "trim"
+  ],
+  "by": "a"
+ },
+ "247": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow dark beaded strip",
+  "tags": [
+   "metal",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "248": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "metal plate, decoration",
+  "tags": [
+   "metal",
+   "trim"
+  ],
+  "by": "a"
+ },
+ "249": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "grey stone bearded face carving",
+  "tags": [
+   "art",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "250": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "light wooden planks",
+  "tags": [
+   "floor",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "251": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "blue cloth panel in a wooden frame",
+  "tags": [
+   "cloth",
+   "wood"
+  ],
+  "by": "a"
+ },
+ "252": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "grey square frame with see-through centre",
+  "tags": [
+   "metal",
+   "window"
+  ],
+  "by": "a"
+ },
+ "253": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dressed/worked stone: altars, concrete-like surfaces",
+  "tags": [
+   "church",
+   "stone"
+  ],
+  "by": "a"
+ },
+ "254": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "panelled wooden door with brass knob",
+  "tags": [
+   "domestic",
+   "door",
+   "wood"
+  ],
+  "by": "a"
+ }
+}

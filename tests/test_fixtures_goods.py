@@ -111,7 +111,8 @@ class StockedCityTests(unittest.TestCase):
 
         tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
         shelves = tags.get("shelf_niche", [])
-        self.assertEqual(len(shelves), 7)
+        #: seven, and the pawnbroker's behind his counter
+        self.assertEqual(len(shelves), 8)
         disk = read_map(CITY)
         rows = 0
         for sector in shelves:
@@ -123,8 +124,9 @@ class StockedCityTests(unittest.TestCase):
             rows += len(held) >= 4
             fields = disk.sectors[sector].fields
             self.assertEqual(int(fields["floor_picnum"]), 34)
-            self.assertEqual(int(fields["floor_z"]) - int(fields["ceiling_z"]),
-                             12288)
+            #: (9,216 in the pawn shop, whose room is 4,096 lower)
+            self.assertIn(int(fields["floor_z"]) - int(fields["ceiling_z"]),
+                          (12288, 9216))
         self.assertGreaterEqual(rows, 6)
 
 

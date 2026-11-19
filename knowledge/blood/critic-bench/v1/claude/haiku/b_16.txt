@@ -1,0 +1,4 @@
+NAME: street with shopfront and green planter
+SURE: 3
+FAULT: no
+WHAT: nothing

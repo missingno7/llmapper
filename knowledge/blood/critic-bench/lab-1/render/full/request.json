@@ -1,0 +1,243 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/full/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/critic-bench/lab-1/render/full",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "along_e",
+   "x": 22118,
+   "y": -15564,
+   "z": -27552,
+   "angle": 1075,
+   "horiz": 100,
+   "sector": 337,
+   "screenshot": true
+  },
+  {
+   "id": "along_w",
+   "x": 11059,
+   "y": -15564,
+   "z": -25600,
+   "angle": 1974,
+   "horiz": 100,
+   "sector": 333,
+   "screenshot": true
+  },
+  {
+   "id": "door_1",
+   "x": 15769,
+   "y": -15872,
+   "z": -25600,
+   "angle": 1400,
+   "horiz": 100,
+   "sector": 334,
+   "screenshot": true
+  },
+  {
+   "id": "door_2",
+   "x": 15769,
+   "y": -14950,
+   "z": -25600,
+   "angle": 1465,
+   "horiz": 100,
+   "sector": 334,
+   "screenshot": true
+  },
+  {
+   "id": "door_3",
+   "x": 15769,
+   "y": -13721,
+   "z": -27552,
+   "angle": 1493,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "door_4",
+   "x": 15769,
+   "y": -12288,
+   "z": -27552,
+   "angle": 1506,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "door_5",
+   "x": 15769,
+   "y": -10752,
+   "z": -27552,
+   "angle": 1514,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "door_6",
+   "x": 15769,
+   "y": -9216,
+   "z": -27552,
+   "angle": 1518,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "eng_balcony",
+   "x": 28262,
+   "y": -14336,
+   "z": -48032,
+   "angle": 1349,
+   "horiz": 100,
+   "sector": 349,
+   "screenshot": true
+  },
+  {
+   "id": "eng_e",
+   "x": 29286,
+   "y": -15155,
+   "z": -27552,
+   "angle": 1228,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "eng_front",
+   "x": 30515,
+   "y": -18022,
+   "z": -13216,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 341,
+   "screenshot": true
+  },
+  {
+   "id": "eng_mid",
+   "x": 26112,
+   "y": -15564,
+   "z": -27552,
+   "angle": 1641,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "eng_track_e",
+   "x": 30310,
+   "y": -21708,
+   "z": -13216,
+   "angle": 763,
+   "horiz": 100,
+   "sector": 341,
+   "screenshot": true
+  },
+  {
+   "id": "eng_track_n",
+   "x": 26624,
+   "y": -23347,
+   "z": -13216,
+   "angle": 492,
+   "horiz": 100,
+   "sector": 341,
+   "screenshot": true
+  },
+  {
+   "id": "eng_w",
+   "x": 23756,
+   "y": -15769,
+   "z": -27552,
+   "angle": 1847,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "goods",
+   "x": 39526,
+   "y": -20684,
+   "z": -13216,
+   "angle": 1891,
+   "horiz": 100,
+   "sector": 385,
+   "screenshot": true
+  },
+  {
+   "id": "hall",
+   "x": 18022,
+   "y": -8806,
+   "z": -27552,
+   "angle": 1170,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "ticket",
+   "x": 10649,
+   "y": -12288,
+   "z": -27552,
+   "angle": 1053,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "track_1",
+   "x": 15769,
+   "y": -20480,
+   "z": -13216,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 342,
+   "screenshot": true
+  },
+  {
+   "id": "track_2",
+   "x": 15769,
+   "y": -22118,
+   "z": -13216,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 342,
+   "screenshot": true
+  },
+  {
+   "id": "track_3",
+   "x": 15769,
+   "y": -23961,
+   "z": -13216,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 342,
+   "screenshot": true
+  },
+  {
+   "id": "track_far",
+   "x": 4608,
+   "y": -22016,
+   "z": -13216,
+   "angle": 115,
+   "horiz": 100,
+   "sector": 340,
+   "screenshot": true
+  },
+  {
+   "id": "waiting",
+   "x": 19046,
+   "y": -11059,
+   "z": -27552,
+   "angle": 1838,
+   "horiz": 100,
+   "sector": 351,
+   "screenshot": true
+  }
+ ]
+}

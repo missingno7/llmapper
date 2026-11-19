@@ -1118,6 +1118,71 @@ def frame_map(level: Any, *,
                       "the editor's AutoAlignWalls has nothing left to change")}
 
 
+def peg_split_bands(level: Any, *, skip: Iterable[int] = (),
+                    records: Any = None, owner: str = "surface") -> dict[str, Any]:
+    """A wall drawn in TWO bands hangs both from one place.
+
+    The owner, in the game, 2026-11-19: "There are some misaligned
+    textures, because if you have red sector it can have mode where you
+    can select top and bottom texture to align them with the rest,
+    otherwise it splits texture in half and you aren't able to align it
+    properly with walls next to it."
+
+    A two-sided wall whose neighbour is both lower-ceilinged and
+    higher-floored -- a window, a niche, a shop's display -- shows a band
+    above the opening and a band below it from ONE record. Left alone the
+    engine hangs the upper band from the neighbour's ceiling and the lower
+    from the neighbour's floor: two origins, one panning, and no value of
+    it lines both up with the wall either side. The editor gives two ways
+    out and the campaign uses them on nearly every such wall (E3M1: 34 of
+    37; E1M1: 22 of 26; this city before this pass: 4 of 40):
+
+    * `kWallOrgOutside` (cstat 4): BOTH bands hang from this sector's own
+      ceiling, as the solid wall beside them does. One panning serves.
+    * `kWallSwap` (cstat 2): the lower band is drawn from the far side's
+      record, with its own tile and panning. For a lower band of another
+      material; a wall that already has it is left alone.
+
+    This sets the first. It must run BEFORE `frame_map`, whose y term
+    reads `wall_z_peg`, which reads the bit.
+    """
+    owners = sector_index(level)
+    skip = set(int(v) for v in skip)
+    pegged: list[int] = []
+    left = 0
+    for index, wall in enumerate(level.walls):
+        face = _fields(wall)
+        nxt = int(face["next_sector"])
+        cstat = int(face["cstat"])
+        if nxt < 0 or cstat & (WALL_MASKED | WALL_ONE_WAY):
+            continue
+        here = _fields(level.sectors[owners[index]])
+        there = _fields(level.sectors[nxt])
+        if (int(here["type"]) in MOVING_SECTOR_TYPES
+                or int(there["type"]) in MOVING_SECTOR_TYPES):
+            continue
+        both_sky = int(here["ceiling_stat"]) & 1 and int(there["ceiling_stat"]) & 1
+        top = int(there["ceiling_z"]) > int(here["ceiling_z"]) and not both_sky
+        bottom = int(there["floor_z"]) < int(here["floor_z"])
+        if not (top and bottom) or cstat & (WALL_ORG_OUTSIDE | WALL_SWAP):
+            continue
+        if index in skip or (records is not None
+                             and not records.may_write(index, owner)):
+            left += 1
+            continue
+        face["cstat"] = cstat | WALL_ORG_OUTSIDE
+        pegged.append(index)
+    return {"pegged": len(pegged), "left_to_their_owner": left,
+            "walls": pegged}
+
+
+def split_bands_unpegged(level: Any) -> list[int]:
+    """The walls `peg_split_bands` would still change: for a test to hold."""
+    import copy
+
+    return peg_split_bands(copy.deepcopy(level))["walls"]
+
+
 #: The campaign's crate class: the six floor tiles the owner walk named, and
 #: the measured practice on the 110 raised tops that wear them -- 62% use the
 #: expanded bit, 71% land the tile grid on the crate's own corner, 59% carry a

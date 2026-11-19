@@ -1,0 +1,4 @@
+NAME: Crypt with stone sarcophagi
+SURE: 4
+FAULT: no
+WHAT: nothing

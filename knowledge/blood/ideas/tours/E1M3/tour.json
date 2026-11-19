@@ -1,0 +1,1288 @@
+{
+ "map": "E1M3",
+ "date": "2026-11-18",
+ "places": [
+  {
+   "host": 324,
+   "sky": false,
+   "metres": [
+    10.4,
+    24.3,
+    2.6
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    614,
+    618
+   ],
+   "walls": [
+    [
+     2453,
+     0.424,
+     "technical riveted metal cladding"
+    ],
+    [
+     345,
+     0.191,
+     ""
+    ],
+    [
+     200,
+     0.118,
+     "metal threshold with rivets"
+    ],
+    [
+     156,
+     0.091,
+     "door leaf texture"
+    ],
+    [
+     261,
+     0.083,
+     "small door, like a furnace's"
+    ]
+   ],
+   "things": 16,
+   "sprites": [
+    {
+     "tile": 1078,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 1745,
+     "type": 220,
+     "type_name": "kDudeRat",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.08
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      144,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 2548,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      64,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.89
+    },
+    {
+     "tile": 611,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.83
+    },
+    {
+     "tile": 2525,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 262,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_324\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_324\\frames.png"
+   ]
+  },
+  {
+   "host": 96,
+   "sky": true,
+   "metres": [
+    80.0,
+    288.7,
+    4.8
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600,
+    602,
+    614,
+    618
+   ],
+   "walls": [
+    [
+     2453,
+     0.526,
+     "technical riveted metal cladding"
+    ],
+    [
+     200,
+     0.13,
+     "metal threshold with rivets"
+    ],
+    [
+     1665,
+     0.099,
+     ""
+    ],
+    [
+     255,
+     0.055,
+     "metal wall, lightly rusted"
+    ],
+    [
+     1666,
+     0.043,
+     ""
+    ]
+   ],
+   "things": 70,
+   "sprites": [
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 31,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 252,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 12,
+     "repeats": [
+      158,
+      98
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.29
+    },
+    {
+     "tile": 1407,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.23
+    },
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    },
+    {
+     "tile": 1667,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 5,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.23
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 981,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      128,
+      128
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 2320,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      88,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.61
+    },
+    {
+     "tile": 847,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.33
+    },
+    {
+     "tile": 805,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      16,
+      8
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_96\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_96\\frames.png"
+   ]
+  },
+  {
+   "host": 316,
+   "sky": false,
+   "metres": [
+    13.9,
+    22.6,
+    5.2
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600,
+    614
+   ],
+   "walls": [
+    [
+     95,
+     0.492,
+     "large crate"
+    ],
+    [
+     2453,
+     0.204,
+     "technical riveted metal cladding"
+    ],
+    [
+     452,
+     0.141,
+     "smaller crate"
+    ],
+    [
+     67,
+     0.063,
+     "dark horizontal planks"
+    ],
+    [
+     200,
+     0.061,
+     "metal threshold with rivets"
+    ]
+   ],
+   "things": 29,
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 8,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 563,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1078,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 524,
+     "type": 43,
+     "type_name": "kItemWeaponFlarePistol",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 829,
+     "type": 117,
+     "type_name": "kItemTwoGuns",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2433,
+     "type": 110,
+     "type_name": "kItemHealthLifeSeed",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_316\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_316\\frames.png"
+   ]
+  },
+  {
+   "host": 6,
+   "sky": false,
+   "metres": [
+    14.3,
+    33.9,
+    3.5
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600,
+    614
+   ],
+   "walls": [
+    [
+     109,
+     0.256,
+     "plaster wall with top beam and carved base"
+    ],
+    [
+     2453,
+     0.254,
+     "technical riveted metal cladding"
+    ],
+    [
+     60,
+     0.168,
+     ""
+    ],
+    [
+     300,
+     0.108,
+     "carpet"
+    ],
+    [
+     28,
+     0.082,
+     "wooden wall"
+    ]
+   ],
+   "things": 35,
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 12,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 574,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1078,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 759,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 605,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1070,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_6\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_6\\frames.png"
+   ]
+  },
+  {
+   "host": 95,
+   "sky": true,
+   "metres": [
+    19.1,
+    20.9,
+    0.0
+   ],
+   "layers": [
+    "motion"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     2453,
+     1.0,
+     "technical riveted metal cladding"
+    ]
+   ],
+   "things": 0,
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_95\\plan.png",
+   "frames": []
+  },
+  {
+   "host": 155,
+   "sky": false,
+   "metres": [
+    12.2,
+    12.2,
+    3.5
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    614
+   ],
+   "walls": [
+    [
+     118,
+     0.604,
+     ""
+    ],
+    [
+     28,
+     0.12,
+     "wooden wall"
+    ],
+    [
+     34,
+     0.063,
+     "wood, usable e.g. for counter/cabinet sides"
+    ],
+    [
+     255,
+     0.063,
+     "metal wall, lightly rusted"
+    ],
+    [
+     200,
+     0.059,
+     "metal threshold with rivets"
+    ]
+   ],
+   "things": 6,
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1078,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 3566,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 929,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.9
+    },
+    {
+     "tile": 2433,
+     "type": 110,
+     "type_name": "kItemHealthLifeSeed",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2101,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 698,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.9
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.63
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_155\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_155\\frames.png"
+   ]
+  },
+  {
+   "host": 115,
+   "sky": false,
+   "metres": [
+    10.4,
+    24.3,
+    3.5
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "standing",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600,
+    602,
+    615
+   ],
+   "walls": [
+    [
+     200,
+     0.422,
+     "metal threshold with rivets"
+    ],
+    [
+     2453,
+     0.418,
+     "technical riveted metal cladding"
+    ],
+    [
+     2477,
+     0.035,
+     "machinery"
+    ],
+    [
+     379,
+     0.032,
+     "stone wall"
+    ],
+    [
+     2463,
+     0.025,
+     "machinery"
+    ]
+   ],
+   "things": 16,
+   "sprites": [
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 45,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 784,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 12,
+     "over_floor_bodies": 1.88
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 1070,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 3566,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -1.45
+    },
+    {
+     "tile": 714,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 933,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    },
+    {
+     "tile": 1098,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      65,
+      65
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.95
+    },
+    {
+     "tile": 2101,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": -1.45
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_115\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_115\\frames.png"
+   ]
+  },
+  {
+   "host": 158,
+   "sky": false,
+   "metres": [
+    3.5,
+    4.8,
+    3.5
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "levels",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    600
+   ],
+   "walls": [
+    [
+     2453,
+     0.67,
+     "technical riveted metal cladding"
+    ],
+    [
+     20,
+     0.15,
+     "wood"
+    ],
+    [
+     504,
+     0.096,
+     "mirror / room-over-room surface"
+    ],
+    [
+     68,
+     0.046,
+     ""
+    ],
+    [
+     200,
+     0.025,
+     "metal threshold with rivets"
+    ]
+   ],
+   "things": 5,
+   "sprites": [
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 6,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 521,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 682,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.08
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 795,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_158\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\E1M3\\place_158\\frames.png"
+   ]
+  }
+ ]
+}

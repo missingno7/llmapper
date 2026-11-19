@@ -1,0 +1,4 @@
+NAME: Alley with steam locomotive and gargoyle
+SURE: 3
+FAULT: no
+WHAT: nothing

@@ -1,0 +1,46 @@
+{
+ "recognition": {
+  "named": "A small railway station: platform, tracks and a parked carriage",
+  "sure": 4,
+  "score": 2,
+  "blocking": [
+   "Carriage is a doorless, wheelless striped box; side-on it reads as a wall",
+   "Track ends in a black void under a red sky; no tunnel mouth, buffer or end wall",
+   "Exterior facade (view 9) does not read as a station entrance",
+   "Hall furniture is bare blocks; ticket counters and benches unreadable"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Carriage windows are empty recesses showing brick; no glass, curtains or interior",
+   "Uniform lighting everywhere; no darkness or pools of light",
+   "Track tunnel ends in red lava sky over black void",
+   "Shop corridor is one shelf texture tiled over walls and ceiling, crate blocks aisle",
+   "No signs of use (bodies, debris, posters) anywhere on the platform"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "Train windows show brick masonry directly behind the glass - the carriage has no interior (views 1, 4)",
+   "Train is one featureless box with no locomotive, front or back (views 2, 3, 7)"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Carriage is a 5.1 m wide solid from track bed to roof (6.7 m) and the boiler a 4.25 m box: the train reads as buildings",
+   "The one way on, the TO THE QUAY tunnel, is barred: the station is a dead end",
+   "The office lever gives no feedback: the door it opens is about 16 m and two walls away",
+   "Carriage door is remote-only with open_time 8: if it closes again, a player inside is trapped",
+   "The street door is an unmarked slot; STATION is on the neighbour's wall above eye level"
+  ]
+ }
+}

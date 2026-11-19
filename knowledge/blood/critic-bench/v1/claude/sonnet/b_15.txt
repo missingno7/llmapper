@@ -1,0 +1,4 @@
+NAME: Movie theatre with gargoyle and poster
+SURE: 4
+FAULT: no
+WHAT: nothing

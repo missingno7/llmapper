@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/saloon/E1M2_278/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/saloon/E1M2_278",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_1",
+   "x": -15614,
+   "y": 35522,
+   "z": -35744,
+   "angle": 1921,
+   "horiz": 100,
+   "sector": 278,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -10821,
+   "y": 32327,
+   "z": -35744,
+   "angle": 767,
+   "horiz": 100,
+   "sector": 278,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -10821,
+   "y": 35522,
+   "z": -35744,
+   "angle": 1187,
+   "horiz": 100,
+   "sector": 278,
+   "screenshot": true
+  }
+ ]
+}

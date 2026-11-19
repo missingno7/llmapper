@@ -1,0 +1,163 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/things-3/render/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/things-3/render",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "t_engine_side",
+   "x": 21504,
+   "y": -15257,
+   "z": -27552,
+   "angle": 1909,
+   "horiz": 100,
+   "sector": 337,
+   "screenshot": true
+  },
+  {
+   "id": "t_engine_nose",
+   "x": 29286,
+   "y": -15155,
+   "z": -27552,
+   "angle": 1228,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "t_car_door",
+   "x": 16281,
+   "y": -15155,
+   "z": -27552,
+   "angle": 1357,
+   "horiz": 100,
+   "sector": 335,
+   "screenshot": true
+  },
+  {
+   "id": "t_car_side",
+   "x": 12902,
+   "y": -15257,
+   "z": -27552,
+   "angle": 1498,
+   "horiz": 100,
+   "sector": 333,
+   "screenshot": true
+  },
+  {
+   "id": "t_car_inside",
+   "x": 10854,
+   "y": -17408,
+   "z": -24576,
+   "angle": 2041,
+   "horiz": 100,
+   "sector": 355,
+   "screenshot": true
+  },
+  {
+   "id": "t_track",
+   "x": 4608,
+   "y": -22016,
+   "z": -13216,
+   "angle": 115,
+   "horiz": 100,
+   "sector": 340,
+   "screenshot": true
+  },
+  {
+   "id": "t_tunnel",
+   "x": 33792,
+   "y": -20992,
+   "z": -13216,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 383,
+   "screenshot": true
+  },
+  {
+   "id": "t_bench",
+   "x": 11264,
+   "y": -13721,
+   "z": -27552,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "t_waiting",
+   "x": 19046,
+   "y": -11059,
+   "z": -27552,
+   "angle": 1838,
+   "horiz": 100,
+   "sector": 351,
+   "screenshot": true
+  },
+  {
+   "id": "t_gate",
+   "x": 27136,
+   "y": -22323,
+   "z": -13216,
+   "angle": 85,
+   "horiz": 100,
+   "sector": 341,
+   "screenshot": true
+  },
+  {
+   "id": "t_goods",
+   "x": 39526,
+   "y": -20684,
+   "z": -13216,
+   "angle": 1891,
+   "horiz": 100,
+   "sector": 385,
+   "screenshot": true
+  },
+  {
+   "id": "t_balcony",
+   "x": 24576,
+   "y": -15974,
+   "z": -27552,
+   "angle": 102,
+   "horiz": 100,
+   "sector": 338,
+   "screenshot": true
+  },
+  {
+   "id": "t_ticket",
+   "x": 10649,
+   "y": -12288,
+   "z": -27552,
+   "angle": 1053,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "t_gates",
+   "x": 11468,
+   "y": -12902,
+   "z": -27552,
+   "angle": 1412,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "t_hall",
+   "x": 18022,
+   "y": -8806,
+   "z": -27552,
+   "angle": 1170,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  }
+ ]
+}

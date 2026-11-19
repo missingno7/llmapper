@@ -1,0 +1,4 @@
+NAME: Train station platform with tracks
+SURE: 4
+FAULT: no
+WHAT: nothing

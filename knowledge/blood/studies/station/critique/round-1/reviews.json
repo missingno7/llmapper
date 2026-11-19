@@ -1,0 +1,41 @@
+{
+ "recognition": {
+  "named": "underground train platform with a parked carriage",
+  "sure": 2,
+  "score": 2,
+  "blocking": [
+   "Train has no windows, doors, wheels or ends; reads as a green felt wall or counter",
+   "No platform edge, track bed or rails; nothing says railway",
+   "Red ceiling patch above the train reads as lava or a render hole",
+   "Flat uniform lighting with no lamps; black doorway is an unlit void",
+   "Street entrance has no stairs, canopy or shape of a station entrance"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "No track, rails or platform edge; train sits on the platform floor",
+   "Train is a flat wall with no windows, doors or end",
+   "Sky leaks at the train/ceiling seam",
+   "TICKETS sign floats on a bare wall with no booth",
+   "No signs of use: no posters, people, debris or props",
+   "One floor and one wall material throughout; flat lighting"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 2,
+  "blocking": [
+   "Station name GRAVESEND hangs behind the 3.4-body car; invisible from anywhere",
+   "Street entrance is an unmarked dark slot: no sign, lamp or canopy",
+   "Car is 6.8 m wide and about 6 m tall with no doors, windows, wheels or ends; reads as a striped wall",
+   "Ticket counter is 0.42 m off the wall: no clerk fits, no window or grille",
+   "No way onward: platform edge blocks, track and tunnel unreachable, platform ends dead",
+   "Nothing to do: no enemy, item, switch or moving part",
+   "17 x 10 m hall is empty: no bench, no waiting room"
+  ]
+ }
+}

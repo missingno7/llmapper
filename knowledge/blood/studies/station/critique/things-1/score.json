@@ -1,0 +1,491 @@
+{
+ "models": {
+  "gpt-6-luna#1": {
+   "answered": 15,
+   "failed": 0,
+   "controls_named": [
+    3,
+    4
+   ],
+   "ours_named": [
+    3,
+    11
+   ],
+   "seconds_median": 4.6
+  },
+  "gpt-6-luna#2": {
+   "answered": 15,
+   "failed": 0,
+   "controls_named": [
+    3,
+    4
+   ],
+   "ours_named": [
+    3,
+    11
+   ],
+   "seconds_median": 4.3
+  },
+  "gpt-6.1-terra#1": {
+   "answered": 15,
+   "failed": 0,
+   "controls_named": [
+    4,
+    4
+   ],
+   "ours_named": [
+    4,
+    11
+   ],
+   "seconds_median": 4.3
+  },
+  "gpt-6.1-terra#2": {
+   "answered": 15,
+   "failed": 0,
+   "controls_named": [
+    4,
+    4
+   ],
+   "ours_named": [
+    4,
+    11
+   ],
+   "seconds_median": 4.2
+  },
+  "gpt-6.2-sol": {
+   "answered": 15,
+   "failed": 0,
+   "controls_named": [
+    3,
+    4
+   ],
+   "ours_named": [
+    5,
+    11
+   ],
+   "seconds_median": 6.9
+  }
+ },
+ "things": {
+  "c_dock": {
+   "q": "q_01",
+   "ours": false,
+   "expect": "wooden dock (E2M1)",
+   "named": {
+    "gpt-6-luna#1": "Moonlit industrial wooden walkway",
+    "gpt-6-luna#2": "Moonlit industrial dock walkway",
+    "gpt-6.1-terra#1": "Moonlit wooden dock",
+    "gpt-6.1-terra#2": "Wooden walkway beside industrial building",
+    "gpt-6.2-sol": "Moonlit industrial catwalk"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "Text on the small sign is unreadable.",
+    "gpt-6-luna#2": "The distant signs and small window details are too pixelated to read.",
+    "gpt-6.1-terra#1": "The distant passage is very dark and hard to distinguish.",
+    "gpt-6.1-terra#2": "Distant objects are very dark and difficult to distinguish.",
+    "gpt-6.2-sol": "The dark opening beyond the crates is hard to make out."
+   },
+   "hits": 4,
+   "asked": 5
+  },
+  "t_hall": {
+   "q": "q_02",
+   "ours": true,
+   "expect": "station hall / waiting hall",
+   "named": {
+    "gpt-6-luna#1": "Industrial station interior",
+    "gpt-6-luna#2": "Industrial station interior",
+    "gpt-6.1-terra#1": "Dark industrial room",
+    "gpt-6.1-terra#2": "Industrial station interior",
+    "gpt-6.2-sol": "Dim industrial hall"
+   },
+   "sure": {
+    "gpt-6-luna#1": 3,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6-luna#1": "Pixelated textures and dim lighting obscure small details.",
+    "gpt-6-luna#2": "Pixelated textures and indistinct objects in the distance.",
+    "gpt-6.1-terra#1": "The room is very dark, obscuring details.",
+    "gpt-6.1-terra#2": "The scene is very dark, obscuring details in the background.",
+    "gpt-6.2-sol": "Deep shadows obscure details along the back wall."
+   },
+   "hits": 4,
+   "asked": 5
+  },
+  "t_engine_side": {
+   "q": "q_03",
+   "ours": true,
+   "expect": "steam locomotive",
+   "named": {
+    "gpt-6-luna#1": "Industrial brick alley",
+    "gpt-6-luna#2": "Industrial sewer passage",
+    "gpt-6.1-terra#1": "Industrial brick corridor",
+    "gpt-6.1-terra#2": "Industrial brick alley",
+    "gpt-6.2-sol": "Industrial rail loading bay"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6-luna#1": "Machinery details and distant dark openings are hard to make out.",
+    "gpt-6-luna#2": "Low-resolution textures and dark shadows obscure some details.",
+    "gpt-6.1-terra#1": "The dark opening and objects behind the metal structure are difficult to distinguish.",
+    "gpt-6.1-terra#2": "The machinery\u2019s purpose and dark background details are unclear.",
+    "gpt-6.2-sol": "The opening behind the railcar is too dark to make out clearly."
+   },
+   "hits": 0,
+   "asked": 5
+  },
+  "c_bar": {
+   "q": "q_04",
+   "ours": false,
+   "expect": "bar (E1M2)",
+   "named": {
+    "gpt-6-luna#1": "Medieval themed bar",
+    "gpt-6-luna#2": "Medieval tavern bar",
+    "gpt-6.1-terra#1": "Dimly lit bar",
+    "gpt-6.1-terra#2": "Gothic bar interior",
+    "gpt-6.2-sol": "Bar"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 5,
+    "gpt-6.1-terra#2": 5,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "Figures appear duplicated or oddly posed.",
+    "gpt-6-luna#2": "The patrons look oddly blurred and distorted.",
+    "gpt-6.1-terra#1": "Two hooded figures appear to overlap.",
+    "gpt-6.1-terra#2": "The two robed figures overlap, making their bodies difficult to distinguish.",
+    "gpt-6.2-sol": "A thin, jagged white line runs beneath the hanging panel."
+   },
+   "hits": 5,
+   "asked": 5
+  },
+  "t_tunnel": {
+   "q": "q_05",
+   "ours": true,
+   "expect": "railway tunnel mouth",
+   "named": {
+    "gpt-6-luna#1": "Underground rail tunnel gate",
+    "gpt-6-luna#2": "Barred underground rail tunnel",
+    "gpt-6.1-terra#1": "Underground railway tunnel",
+    "gpt-6.1-terra#2": "Underground railway tunnel",
+    "gpt-6.2-sol": "Gated railway tunnel"
+   },
+   "sure": {
+    "gpt-6-luna#1": 5,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "The gate blocks the tracks; no readable signs are visible.",
+    "gpt-6-luna#2": "Low resolution and darkness obscure details.",
+    "gpt-6.1-terra#1": "Tracks appear to end abruptly at the wall.",
+    "gpt-6.1-terra#2": "The tracks appear to end directly at the barred wall.",
+    "gpt-6.2-sol": "The darkness hides whatever is behind the gate."
+   },
+   "hits": 5,
+   "asked": 5
+  },
+  "t_track": {
+   "q": "q_06",
+   "ours": true,
+   "expect": "railway track",
+   "named": {
+    "gpt-6-luna#1": "Underground railway station",
+    "gpt-6-luna#2": "Underground train station",
+    "gpt-6.1-terra#1": "Underground railway station",
+    "gpt-6.1-terra#2": "Underground railway station",
+    "gpt-6.2-sol": "Railway station"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 5,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "A large black opening at the end of the tracks is unreadable.",
+    "gpt-6-luna#2": "The sky is blood red, and the far end of the tracks is pitch black.",
+    "gpt-6.1-terra#1": "The red sky above the enclosed station looks unusual.",
+    "gpt-6.1-terra#2": "The sky above the tunnel glows red.",
+    "gpt-6.2-sol": "The tunnel entrance is pitch black."
+   },
+   "hits": 5,
+   "asked": 5
+  },
+  "t_car_side": {
+   "q": "q_07",
+   "ours": true,
+   "expect": "side of a railway carriage with windows",
+   "named": {
+    "gpt-6-luna#1": "Street with wooden storefronts",
+    "gpt-6-luna#2": "Exterior brick building wall",
+    "gpt-6.1-terra#1": "Station hallway with windows",
+    "gpt-6.1-terra#2": "Station wall with recessed windows",
+    "gpt-6.2-sol": "Building facade with two windows"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 3,
+    "gpt-6.1-terra#1": 3,
+    "gpt-6.1-terra#2": 3,
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6-luna#1": "The storefronts appear partially detached or floating above the grass.",
+    "gpt-6-luna#2": "The window interiors look distorted or unreadable.",
+    "gpt-6.1-terra#1": "The rooms beyond the windows look unusually flat and dark.",
+    "gpt-6.1-terra#2": "The openings show mismatched interiors, and the right one contains an unclear vertical object.",
+    "gpt-6.2-sol": "A grass-textured band runs across the wall, and the right opening has a streaked panel."
+   },
+   "hits": 0,
+   "asked": 5
+  },
+  "t_ticket": {
+   "q": "q_08",
+   "ours": true,
+   "expect": "ticket window",
+   "named": {
+    "gpt-6-luna#1": "Brick building wall",
+    "gpt-6-luna#2": "Brick building interior",
+    "gpt-6.1-terra#1": "Brick building exterior",
+    "gpt-6.1-terra#2": "Brick building exterior",
+    "gpt-6.2-sol": "Brick wall with barred window"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 3,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 5,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "Low-resolution textures and a dark, pixelated scene.",
+    "gpt-6-luna#2": "Textures look pixelated and muddy.",
+    "gpt-6.1-terra#1": "The scene is very dark, obscuring some details.",
+    "gpt-6.1-terra#2": "The scene is very dark, obscuring some details.",
+    "gpt-6.2-sol": "Deep shadows obscure details behind the bars."
+   },
+   "hits": 0,
+   "asked": 5
+  },
+  "t_bench": {
+   "q": "q_09",
+   "ours": true,
+   "expect": "bench",
+   "named": {
+    "gpt-6-luna#1": "Industrial station interior",
+    "gpt-6-luna#2": "Industrial prison interior",
+    "gpt-6.1-terra#1": "Dark industrial brick room",
+    "gpt-6.1-terra#2": "Dark industrial prison room",
+    "gpt-6.2-sol": "Barred brick room"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 3,
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6-luna#1": "The scene is very dark and pixelated.",
+    "gpt-6-luna#2": "Pixelated textures and dark lighting obscure some details.",
+    "gpt-6.1-terra#1": "The dark wooden barrier has an unclear shape and purpose.",
+    "gpt-6.1-terra#2": "The dark lighting obscures some textures and details.",
+    "gpt-6.2-sol": "Deep shadows obscure the area behind the bars."
+   },
+   "hits": 0,
+   "asked": 5
+  },
+  "c_engine": {
+   "q": "q_10",
+   "ours": false,
+   "expect": "steam locomotive (E1M4)",
+   "named": {
+    "gpt-6-luna#1": "Industrial rail cart",
+    "gpt-6-luna#2": "Industrial rail cart",
+    "gpt-6.1-terra#1": "Steam locomotive wheels",
+    "gpt-6.1-terra#2": "Industrial train engine",
+    "gpt-6.2-sol": "Steam locomotive at a station"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 3,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6-luna#1": "The cart\u2019s wheels and connecting rods look oversized and oddly arranged.",
+    "gpt-6-luna#2": "The cart\u2019s wheels and connecting bar look unusually oversized and fixed to the wall.",
+    "gpt-6.1-terra#1": "The locomotive body is partially obscured and blends into the background.",
+    "gpt-6.1-terra#2": "The dark, low-resolution image makes surrounding structures difficult to identify.",
+    "gpt-6.2-sol": "Bright flames rise behind the engine, and the sign at far left is unreadable."
+   },
+   "hits": 3,
+   "asked": 5
+  },
+  "t_car_inside": {
+   "q": "q_11",
+   "ours": true,
+   "expect": "inside of a railway carriage",
+   "named": {
+    "gpt-6-luna#1": "Industrial corridor",
+    "gpt-6-luna#2": "Wooden corridor",
+    "gpt-6.1-terra#1": "Derelict wooden corridor",
+    "gpt-6.1-terra#2": "Wooden corridor",
+    "gpt-6.2-sol": "Long wooden corridor"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 5,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "The textures look pixelated and the foreground furniture appears oddly placed.",
+    "gpt-6-luna#2": "Pixelated textures and some wall details are hard to read.",
+    "gpt-6.1-terra#1": "The floor texture is unusually noisy and difficult to interpret.",
+    "gpt-6.1-terra#2": "The floor texture is unusually noisy and hard to interpret.",
+    "gpt-6.2-sol": "The mottled floor texture makes its material hard to identify."
+   },
+   "hits": 0,
+   "asked": 5
+  },
+  "t_engine_nose": {
+   "q": "q_12",
+   "ours": true,
+   "expect": "steam locomotive",
+   "named": {
+    "gpt-6-luna#1": "Industrial sewer corridor",
+    "gpt-6-luna#2": "Gothic industrial sewer passage",
+    "gpt-6.1-terra#1": "Gothic industrial train station",
+    "gpt-6.1-terra#2": "Gothic industrial train",
+    "gpt-6.2-sol": "Steam locomotive at a station"
+   },
+   "sure": {
+    "gpt-6-luna#1": 3,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 4,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "The gray machinery has a large skull-like face.",
+    "gpt-6-luna#2": "The carved face on the structure looks unusually ornamental for the grimy industrial setting.",
+    "gpt-6.1-terra#1": "The locomotive has a demonic face, and its front is partly obscured.",
+    "gpt-6.1-terra#2": "A horned face decorates the locomotive\u2019s side.",
+    "gpt-6.2-sol": "A horned skull decorates the front of the locomotive."
+   },
+   "hits": 3,
+   "asked": 5
+  },
+  "c_track": {
+   "q": "q_13",
+   "ours": false,
+   "expect": "railway track (E1M2)",
+   "named": {
+    "gpt-6-luna#1": "Underground railway tunnel",
+    "gpt-6-luna#2": "Underground railway tunnel",
+    "gpt-6.1-terra#1": "Railway tunnel",
+    "gpt-6.1-terra#2": "Railway tunnel",
+    "gpt-6.2-sol": "Brick-walled railway cutting"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 4,
+    "gpt-6.1-terra#1": 5,
+    "gpt-6.1-terra#2": 5,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "The wall sign is too pixelated to read.",
+    "gpt-6-luna#2": "The wall sign is too pixelated to read.",
+    "gpt-6.1-terra#1": "The sign on the left wall is unreadable.",
+    "gpt-6.1-terra#2": "The sign on the left wall is unreadable.",
+    "gpt-6.2-sol": "The lettering on the blue wall signs is hard to read."
+   },
+   "hits": 5,
+   "asked": 5
+  },
+  "t_gates": {
+   "q": "q_14",
+   "ours": true,
+   "expect": "iron gates",
+   "named": {
+    "gpt-6-luna#1": "Iron barred dungeon cell",
+    "gpt-6-luna#2": "Barred stone corridor",
+    "gpt-6.1-terra#1": "Barred gate in stone corridor",
+    "gpt-6.1-terra#2": "Barred stone chamber",
+    "gpt-6.2-sol": "Iron gate in a brick corridor"
+   },
+   "sure": {
+    "gpt-6-luna#1": 5,
+    "gpt-6-luna#2": 5,
+    "gpt-6.1-terra#1": 5,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "None obvious.",
+    "gpt-6-luna#2": "The green strip looks unusually bright and flat.",
+    "gpt-6.1-terra#1": "Bright green wall beyond the gate looks out of place.",
+    "gpt-6.1-terra#2": "Bright green wall patches look out of place.",
+    "gpt-6.2-sol": "The dark bars blend into the shadows."
+   },
+   "hits": 2,
+   "asked": 5
+  },
+  "t_car_door": {
+   "q": "q_15",
+   "ours": true,
+   "expect": "door of a railway carriage",
+   "named": {
+    "gpt-6-luna#1": "Industrial corridor door",
+    "gpt-6-luna#2": "Industrial corridor door",
+    "gpt-6.1-terra#1": "Industrial hallway with orange door",
+    "gpt-6.1-terra#2": "Industrial corridor entrance",
+    "gpt-6.2-sol": "Barred door in brick corridor"
+   },
+   "sure": {
+    "gpt-6-luna#1": 4,
+    "gpt-6-luna#2": 5,
+    "gpt-6.1-terra#1": 5,
+    "gpt-6.1-terra#2": 4,
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6-luna#1": "Low-resolution textures and perspective make the wall and doorway look distorted.",
+    "gpt-6-luna#2": "Low-resolution textures and pixelation obscure small details.",
+    "gpt-6.1-terra#1": "nothing",
+    "gpt-6.1-terra#2": "The green wall panels look unusually like grass.",
+    "gpt-6.2-sol": "The darkness makes it hard to see through the grille."
+   },
+   "hits": 0,
+   "asked": 5
+  }
+ }
+}

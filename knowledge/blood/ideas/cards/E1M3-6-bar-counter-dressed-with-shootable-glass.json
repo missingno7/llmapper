@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 6,
+ "kind": "detail",
+ "title": "Bar counter dressed with shootable glass",
+ "what": "The bar car is a carpet runner down the middle between two long stone-topped counters at half a body, with dining booths outside them and framed tapestries on the walls. Along the counter tops stand wine glasses and bottles of several colours, spaced a hand apart; each is a breakable object, so a gunfight here shatters the bar with glass sounds. Cultists stand in the aisle and behind the counters, where the shape of the room makes the counters cover.",
+ "recipe": "Aisle sector 6: 2048 wide (3.6 m), 25 m long, floor tile 308 (patterned carpet runner), 1.93 bodies high. Counters: sectors 218-221, 512 deep, floor 0 (0.48 bodies above the aisle floor 8192), floor tile 43 (stone top), walls 2453. Bar backs 22/25 behind them at aisle level, holding ammo pickups (TNT bundles type 62, shells type 67). Glass: face sprites tile 574 (drinking glass, 13x25 px), 605/606 (bottles), 759 (bottle, recoloured with pal 4 and pal 12), cstat 385, type 416 kThingObjectGib, data_1 1, data_4 301 (glass), standing on the counter top at z 0. Tapestries: wall art on wall tile 109.",
+ "use": "The saloon: line every bar top and shelf with breakable glasses and bottles (tile 574, 605, 606, 759 as type 416) so the first shot in the room makes a mess. Also theatre bar, hotel lobby.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e1m3_a/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

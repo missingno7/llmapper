@@ -1,0 +1,2423 @@
+{
+ "1556": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow wood-panelled wall strip with arched panel",
+  "tags": [
+   "door",
+   "wall",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "1557": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow wood-panelled wall strip, dark variant",
+  "tags": [
+   "door",
+   "wall",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "1565": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster falling, bleeding",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "1569": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed monster corpse lying flat",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "1570": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster standing, front",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1575": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster walking",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1576": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster walking, side angle",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1580": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster turning away",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1585": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster crouching",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1591": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster, side view",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1605": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed monster lunging, mouth open",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1620": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster attacking",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1630": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster attacking, variant",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1650": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed brown monster recoiling",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1660": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "shark-mouthed monster wounded, bleeding",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "1665": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey metal wall strip with green panel and grille",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "1666": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey metal wall strip with green panel, variant",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "1667": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "green gothic lettering: Phantom",
+  "tags": [
+   "text",
+   "theatre"
+  ],
+  "by": "e"
+ },
+ "1682": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloody animal carcass lying down",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "1683": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "crystal ball, clear glass sphere",
+  "tags": [
+   "carnival",
+   "glass",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1701": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging chain lamp with burning bowl",
+  "tags": [
+   "crypt",
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "1708": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "pair of pliers or tongs",
+  "tags": [
+   "metal",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1709": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "long-handled axe",
+  "tags": [
+   "farm",
+   "tool",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "1710": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "straw broom",
+  "tags": [
+   "domestic",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1711": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "garden rake",
+  "tags": [
+   "farm",
+   "garden",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1712": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "short shovel",
+  "tags": [
+   "farm",
+   "graveyard",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1713": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "long spade",
+  "tags": [
+   "farm",
+   "graveyard",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1714": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bloody handsaw",
+  "tags": [
+   "blood",
+   "gore",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1715": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ice tongs, metal grabbing hook",
+  "tags": [
+   "industrial",
+   "metal",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1716": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "thin crowbar or poker",
+  "tags": [
+   "metal",
+   "tool"
+  ],
+  "by": "e"
+ },
+ "1717": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "green marble panels with brass plaques",
+  "tags": [
+   "rich",
+   "stone",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "1718": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey marble wall with green column strip",
+  "tags": [
+   "column",
+   "rich",
+   "stone"
+  ],
+  "by": "e"
+ },
+ "1719": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: EMPLOYEES MUST WASH HANDS",
+  "tags": [
+   "bar",
+   "kitchen",
+   "text"
+  ],
+  "by": "e"
+ },
+ "1721": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging wires",
+  "tags": [
+   "decay",
+   "wire"
+  ],
+  "by": "e"
+ },
+ "1722": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "hanging wires with electric spark",
+  "tags": [
+   "decay",
+   "tech",
+   "wire"
+  ],
+  "by": "e"
+ },
+ "1725": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: CARNIVAL, red lettering",
+  "tags": [
+   "carnival",
+   "text"
+  ],
+  "by": "e"
+ },
+ "1726": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "iron arch sign: MORNINGSIDE CEMETERY",
+  "tags": [
+   "graveyard",
+   "metal",
+   "text"
+  ],
+  "by": "e"
+ },
+ "1727": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hanging from chain",
+  "tags": [
+   "gore",
+   "morgue"
+  ],
+  "by": "e"
+ },
+ "1728": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hanging from chain, arms out",
+  "tags": [
+   "gore",
+   "morgue"
+  ],
+  "by": "e"
+ },
+ "1741": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dead spiny animal lying down",
+  "tags": [
+   "decay",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "1743": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown rat, side view",
+  "tags": [
+   "decay",
+   "sewer"
+  ],
+  "by": "e"
+ },
+ "1744": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown rat, side view, step variant",
+  "tags": [
+   "decay",
+   "sewer"
+  ],
+  "by": "e"
+ },
+ "1745": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown rat, front view",
+  "tags": [
+   "decay",
+   "sewer"
+  ],
+  "by": "e"
+ },
+ "1797": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "green clawed tentacle rising from ground",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1835": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "horned skeletal demon standing",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1840": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "horned skeletal demon, glowing chest",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1845": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "horned skeletal demon, blue glow spreading",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1850": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "horned skeletal demon, arms spread, glowing",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1856": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "small blue energy ring",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1857": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blue energy ring, growing",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1858": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blue energy ring, larger",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1859": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blue energy ring, largest, fading",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1870": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "floating fanged head, side",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1875": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "floating fanged head, mouth open",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1876": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bony spined fish creature swimming",
+  "tags": [
+   "sewer",
+   "water"
+  ],
+  "by": "e"
+ },
+ "1881": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bony spined fish creature, jaws open",
+  "tags": [
+   "sewer",
+   "water"
+  ],
+  "by": "e"
+ },
+ "1893": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dark spider, legs splayed, flattened",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1902": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "bloody footprint",
+  "tags": [
+   "blood",
+   "floor"
+  ],
+  "by": "e"
+ },
+ "1903": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blue wet footprint",
+  "tags": [
+   "floor",
+   "water"
+  ],
+  "by": "e"
+ },
+ "1904": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "brown muddy footprint",
+  "tags": [
+   "decay",
+   "floor"
+  ],
+  "by": "e"
+ },
+ "1907": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "thin grey vertical line, maybe a rope",
+  "tags": [
+   "wire"
+  ],
+  "by": "e"
+ },
+ "1908": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown spider, top view",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1920": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider, legs spread",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1925": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider walking",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1930": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider walking, variant",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1935": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider, side angle",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1936": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider, side angle variant",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1940": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black spider seen from above",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1943": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "brown spider, legs spread",
+  "tags": [
+   "cave",
+   "decay"
+  ],
+  "by": "e"
+ },
+ "1948": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "black bat hanging, wings folded",
+  "tags": [
+   "cave",
+   "crypt"
+  ],
+  "by": "e"
+ },
+ "1980": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "crawling severed hand",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1981": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "crawling severed hand, side",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1987": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "crawling severed hand, leaping",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2012": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "blank dark chalkboard in red-brown frame",
+  "tags": [
+   "school",
+   "shop",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2019": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "small blood pool on floor",
+  "tags": [
+   "blood",
+   "floor"
+  ],
+  "by": "e"
+ },
+ "2026": {
+  "class": "fixture",
+  "layout": "tiles",
+  "looks": "wall shelf with books and jars",
+  "tags": [
+   "library",
+   "shop",
+   "storage"
+  ],
+  "by": "e"
+ },
+ "2027": {
+  "class": "fixture",
+  "layout": "tiles",
+  "looks": "wall shelf with books and jars, blue variant",
+  "tags": [
+   "library",
+   "shop",
+   "storage"
+  ],
+  "by": "e"
+ },
+ "2039": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "teleport pad, swirling metal disc",
+  "tags": [
+   "floor",
+   "metal",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2044": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "ad screen: HUNGRY FOR MORE? MORE BLOOD!",
+  "tags": [
+   "art",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2046": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "title screen: BLOOD in stone under gargoyle",
+  "tags": [
+   "art",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2047": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "poster: COMING SOON BLOOD THE MOVIE",
+  "tags": [
+   "paper",
+   "text",
+   "theatre"
+  ],
+  "by": "e"
+ },
+ "2049": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal screen frame with gargoyles and skull",
+  "tags": [
+   "art",
+   "metal",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2050": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "logo screen: MONOLITH PRODUCTIONS",
+  "tags": [
+   "art",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2051": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey marble texture, full screen",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2052": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "red script logo on black screen",
+  "tags": [
+   "art"
+  ],
+  "by": "e"
+ },
+ "2054": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small chunk of raw flesh",
+  "tags": [
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2055": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small chunk of raw flesh, variant",
+  "tags": [
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2056": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "small strip of raw flesh",
+  "tags": [
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2070": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "doormat reading WELCOME",
+  "tags": [
+   "domestic",
+   "door",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2071": {
+  "class": "furniture",
+  "layout": "picture",
+  "looks": "blood-stained doormat reading WELCOME",
+  "tags": [
+   "blood",
+   "domestic",
+   "door"
+  ],
+  "by": "e"
+ },
+ "2073": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "lump of raw meat",
+  "tags": [
+   "food",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2074": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "lump of raw meat, variant",
+  "tags": [
+   "food",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2075": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "lump of raw meat, variant",
+  "tags": [
+   "food",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2076": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "lump of raw meat, variant",
+  "tags": [
+   "food",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2082": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "scattered dead leaves on ground",
+  "tags": [
+   "decay",
+   "forest",
+   "garden"
+  ],
+  "by": "e"
+ },
+ "2090": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "white lightning bolt",
+  "tags": [
+   "light"
+  ],
+  "by": "e"
+ },
+ "2091": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "sparse falling snowflakes, nearly empty",
+  "tags": [
+   "snow"
+  ],
+  "by": "e"
+ },
+ "2101": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "flame (small fire)",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2105": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "flickering flame, tall",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2107": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "flickering flame, ragged",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2115": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "fully see-through sprite, invisible blocker",
+  "tags": [
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2123": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "white-hot glowing spark streak",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2129": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Cuesta Verde Mall",
+  "tags": [
+   "shop",
+   "street",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2135": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blue glowing magic seal, eight-pointed star",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2137": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dead deer hung head down, bloody wound",
+  "tags": [
+   "farm",
+   "food",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2139": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "meat cleaver, flying angle",
+  "tags": [
+   "kitchen",
+   "tool",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2140": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "meat cleaver, flying angle",
+  "tags": [
+   "kitchen",
+   "tool",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2144": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "meat cleaver, upright",
+  "tags": [
+   "kitchen",
+   "tool",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2145": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "meat cleaver, tilted",
+  "tags": [
+   "kitchen",
+   "tool",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2155": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blood spray burst",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2157": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blood spray burst, variant",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2158": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "blood spray, dispersing",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2159": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "arrow or thin spear in flight",
+  "tags": [
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2165": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "fiery explosion burst",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2169": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bloody human heart",
+  "tags": [
+   "blood",
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2170": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bloody human heart, beating variant",
+  "tags": [
+   "blood",
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2174": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign plate: RADIOLOGY",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2178": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "metal vent grille in riveted frame",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "e"
+ },
+ "2182": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "recessed wall lamp in metal frame, unlit",
+  "tags": [
+   "industrial",
+   "light",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2183": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "recessed wall lamp in metal frame, lit",
+  "tags": [
+   "industrial",
+   "light",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2190": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "red digit 0, 8x11 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2203": {
+  "class": "engine",
+  "layout": "band",
+  "looks": "red gradient bar, status display",
+  "tags": [
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2204": {
+  "class": "engine",
+  "layout": "picture",
+  "looks": "empty metal bar frame, status gauge",
+  "tags": [
+   "metal",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2205": {
+  "class": "engine",
+  "layout": "band",
+  "looks": "thin dark red line, status bar",
+  "tags": [
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2210": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2211": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2212": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2213": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2215": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2216": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2217": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2218": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "tiny red digit, 3x5 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2241": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "blue digit 1, 8x11 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2242": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "blue digit 2, 8x11 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2245": {
+  "class": "letter",
+  "layout": "sprite",
+  "looks": "blue digit 5, 8x11 font",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2260": {
+  "class": "engine",
+  "layout": "band",
+  "looks": "thin dark red line, status bar",
+  "tags": [
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2273": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "gumball machine on a pole stand",
+  "tags": [
+   "food",
+   "shop",
+   "toy"
+  ],
+  "by": "e"
+ },
+ "2288": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "fluorescent light, vertical tile",
+  "tags": [
+   "light",
+   "office",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2289": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "fluorescent light, vertical, unlit",
+  "tags": [
+   "light",
+   "office",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2290": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "fluorescent light",
+  "tags": [
+   "ceiling",
+   "light",
+   "office"
+  ],
+  "by": "e"
+ },
+ "2291": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "fluorescent light, unlit",
+  "tags": [
+   "ceiling",
+   "light",
+   "office"
+  ],
+  "by": "e"
+ },
+ "2292": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "two frosted glass panes in wooden frame",
+  "tags": [
+   "glass",
+   "window",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2293": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow grey plaster wall strip",
+  "tags": [
+   "domestic",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2294": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey plaster wall over red tiled wainscot",
+  "tags": [
+   "domestic",
+   "trim",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2295": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "cooking pot or pan, side view",
+  "tags": [
+   "kitchen",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2304": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "hanging frying pan",
+  "tags": [
+   "kitchen",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2305": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "hanging frying pan, turned",
+  "tags": [
+   "kitchen",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2317": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Innsmouth Corporate Plaza",
+  "tags": [
+   "office",
+   "street",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2318": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "chalkboard: TODAY'S SPECIAL CHUM CHOWDER",
+  "tags": [
+   "bar",
+   "kitchen",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2319": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "tiny red cross mark",
+  "tags": [
+   "medical"
+  ],
+  "by": "e"
+ },
+ "2320": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "locomotive wheels with connecting rod",
+  "tags": [
+   "metal",
+   "rail",
+   "vehicle"
+  ],
+  "by": "e"
+ },
+ "2322": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "locomotive wheels with connecting rod, frame 2",
+  "tags": [
+   "metal",
+   "rail",
+   "vehicle"
+  ],
+  "by": "e"
+ },
+ "2323": {
+  "class": "machine",
+  "layout": "sprite",
+  "looks": "locomotive wheels with connecting rod, frame 3",
+  "tags": [
+   "metal",
+   "rail",
+   "vehicle"
+  ],
+  "by": "e"
+ },
+ "2324": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "corpse hung upside down from chain",
+  "tags": [
+   "gore",
+   "morgue"
+  ],
+  "by": "e"
+ },
+ "2330": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "bloodied shirtless man sitting on floor",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2331": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "lower room-over-room stack marker, up arrow",
+  "tags": [
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2332": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "upper room-over-room stack marker, down arrow",
+  "tags": [
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2333": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dead body lying on back, bloody",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2334": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "dead body sprawled, bloody head",
+  "tags": [
+   "blood",
+   "gore"
+  ],
+  "by": "e"
+ },
+ "2340": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "shop sign: ICHABOD'S HALLOWEEN SUPPLY",
+  "tags": [
+   "shop",
+   "street",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2341": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "shop sign: MIGUEL'S Guns and Ammo, shotgun",
+  "tags": [
+   "shop",
+   "text",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2342": {
+  "class": "effect",
+  "layout": "tiles",
+  "looks": "fire (mask wall)",
+  "tags": [
+   "fire",
+   "light"
+  ],
+  "by": "e"
+ },
+ "2345": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "graffiti: one eyed monks rule",
+  "tags": [
+   "decay",
+   "street",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2348": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "giant reaching human hand",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2357": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "oval blue sign: SALE",
+  "tags": [
+   "shop",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2377": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "mannequin",
+  "tags": [
+   "cloth",
+   "shop"
+  ],
+  "by": "e"
+ },
+ "2400": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "mime in striped shirt standing",
+  "tags": [
+   "carnival",
+   "street",
+   "theatre"
+  ],
+  "by": "e"
+ },
+ "2404": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "small grey metal piece with bloody end",
+  "tags": [
+   "blood",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2427": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "red-rimmed star-burst light flare",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2428": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "black glossy orb pickup",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2433": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "life seed pickup, copper ribbed pod",
+  "tags": [
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2446": {
+  "class": "effect",
+  "layout": "sprite",
+  "looks": "golden star-burst light flare",
+  "tags": [
+   "light",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2447": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "axe zombie kneeling, rising",
+  "tags": [
+   "gore",
+   "graveyard"
+  ],
+  "by": "e"
+ },
+ "2448": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "marble; also used as snow",
+  "tags": [
+   "floor",
+   "snow",
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2449": {
+  "class": "decal",
+  "layout": "sprite",
+  "looks": "blood splat with grey smear",
+  "tags": [
+   "blood",
+   "floor"
+  ],
+  "by": "e"
+ },
+ "2450": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "snowy red brick wall with stone pilaster",
+  "tags": [
+   "brick",
+   "column",
+   "snow"
+  ],
+  "by": "e"
+ },
+ "2451": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden door with lion knocker, snowy",
+  "tags": [
+   "door",
+   "snow",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2452": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden door with carved rosette, snowy",
+  "tags": [
+   "door",
+   "snow",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2453": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "technical riveted metal cladding",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2455": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "snow-capped red brick wall",
+  "tags": [
+   "brick",
+   "snow",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2456": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "panelled wooden door, snowy frame",
+  "tags": [
+   "door",
+   "snow",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2457": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal panel with two oval portholes",
+  "tags": [
+   "industrial",
+   "metal",
+   "window"
+  ],
+  "by": "e"
+ },
+ "2458": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "copper wall of horizontal fleshy coils",
+  "tags": [
+   "metal",
+   "occult",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2460": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "ribbed grey metal column",
+  "tags": [
+   "column",
+   "industrial",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2461": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown organic wall pocked with black holes",
+  "tags": [
+   "cave",
+   "occult",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2462": {
+  "class": "machine",
+  "layout": "picture",
+  "looks": "machinery",
+  "tags": [
+   "industrial",
+   "metal",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2463": {
+  "class": "machine",
+  "layout": "picture",
+  "looks": "machinery",
+  "tags": [
+   "industrial",
+   "metal",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2464": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "ejected shotgun shell casing",
+  "tags": [
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2466": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "copper wall with wavy organic ridges",
+  "tags": [
+   "metal",
+   "occult",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2467": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "narrow dark strip with chain pattern",
+  "tags": [
+   "metal",
+   "occult",
+   "trim"
+  ],
+  "by": "e"
+ },
+ "2469": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "copper organic panel with staring eye",
+  "tags": [
+   "metal",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2471": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "copper wall of raised bubbles",
+  "tags": [
+   "metal",
+   "occult",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2472": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "stacked disc weight on triangular cable hanger",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2473": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "snow-covered cobblestone",
+  "tags": [
+   "snow",
+   "stone",
+   "street"
+  ],
+  "by": "e"
+ },
+ "2474": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "snow-covered wooden plank wall",
+  "tags": [
+   "snow",
+   "wall",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2476": {
+  "class": "machine",
+  "layout": "picture",
+  "looks": "cash register top surface; also machinery",
+  "tags": [
+   "shop",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2477": {
+  "class": "machine",
+  "layout": "picture",
+  "looks": "machinery",
+  "tags": [
+   "industrial",
+   "tech"
+  ],
+  "by": "e"
+ },
+ "2479": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "copper ribbed drum on hanging cables",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2482": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "copper weight hanging from long cables",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2483": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "copper coil weight hanging from long cables",
+  "tags": [
+   "industrial",
+   "metal"
+  ],
+  "by": "e"
+ },
+ "2490": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "light marble",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2491": {
+  "class": "plant",
+  "layout": "tiles",
+  "looks": "dark green hedge wall, snow on top",
+  "tags": [
+   "garden",
+   "snow",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2492": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone brick wall with icy top",
+  "tags": [
+   "snow",
+   "stone",
+   "wall"
+  ],
+  "by": "e"
+ },
+ "2493": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "street lamp, snow-covered",
+  "tags": [
+   "light",
+   "snow",
+   "street"
+  ],
+  "by": "e"
+ },
+ "2494": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "snow-covered grey boulder",
+  "tags": [
+   "snow",
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2495": {
+  "class": "plant",
+  "layout": "sprite",
+  "looks": "bare gnarled dead tree, snowy branches",
+  "tags": [
+   "forest",
+   "graveyard",
+   "snow"
+  ],
+  "by": "e"
+ },
+ "2496": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown stones set in grey ice",
+  "tags": [
+   "floor",
+   "snow",
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2497": {
+  "class": "effect",
+  "layout": "band",
+  "looks": "row of short icicles",
+  "tags": [
+   "roof",
+   "snow"
+  ],
+  "by": "e"
+ },
+ "2498": {
+  "class": "effect",
+  "layout": "band",
+  "looks": "row of long icicles",
+  "tags": [
+   "roof",
+   "snow"
+  ],
+  "by": "e"
+ },
+ "2499": {
+  "class": "plant",
+  "layout": "band",
+  "looks": "tall narrow strip of dark green hedge",
+  "tags": [
+   "forest",
+   "garden"
+  ],
+  "by": "e"
+ },
+ "2500": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2501": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2502": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2503": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2504": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2505": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2506": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2507": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2508": {
+  "class": "sky",
+  "layout": "band",
+  "looks": "dark rocky sky parallax segment",
+  "tags": [
+   "stone"
+  ],
+  "by": "e"
+ },
+ "2519": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "editor marker labelled SOUND",
+  "tags": [
+   "music",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2520": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "sector sound marker: SSOUND",
+  "tags": [
+   "music",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2521": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "ambient sound marker: ASOUND",
+  "tags": [
+   "music",
+   "text"
+  ],
+  "by": "e"
+ },
+ "2522": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 1, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2523": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 2, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2524": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 3, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2525": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 4, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2526": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 5, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2527": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 6, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2528": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 7, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2529": {
+  "class": "engine",
+  "layout": "sprite",
+  "looks": "player start marker 8, dagger",
+  "tags": [
+   "text"
+  ],
+  "by": "e"
+ },
+ "2532": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, skull in round stone frame",
+  "tags": [
+   "door",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2533": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, eye in round stone frame",
+  "tags": [
+   "door",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2534": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, flame in round stone frame",
+  "tags": [
+   "door",
+   "fire",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2535": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, dagger in round stone frame",
+  "tags": [
+   "door",
+   "occult",
+   "weapon"
+  ],
+  "by": "e"
+ },
+ "2536": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, spider in round stone frame",
+  "tags": [
+   "door",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2537": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "key-door sign, crescent moon in stone frame",
+  "tags": [
+   "door",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "2538": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "shield-shaped wooden plaque with keyhole symbol",
+  "tags": [
+   "door",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2539": {
+  "class": "furniture",
+  "layout": "tiles",
+  "looks": "bookshelf full of old books",
+  "tags": [
+   "library",
+   "storage",
+   "wood"
+  ],
+  "by": "e"
+ },
+ "2540": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "key-door sign, skull",
+  "tags": [
+   "door",
+   "occult"
+  ],
+  "by": "e"
+ },
+ "1792": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "green pod monster, closed bulb on tendrils",
+  "tags": [
+   "garden",
+   "occult"
+  ],
+  "by": "e"
+ }
+}

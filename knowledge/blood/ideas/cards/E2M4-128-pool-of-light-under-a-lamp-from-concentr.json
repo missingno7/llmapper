@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 128,
+ "kind": "lighting",
+ "title": "Pool of light under a lamp from concentric shade rings",
+ "what": "Blood paints the light under a lamp with nested sectors, each a few shades darker than the one inside it: round rings under a hanging lamp indoors, half-moon crescents under a street lamp outside. Nothing moves; it is pure floor shade, but it reads as a lamp throwing light, and it gathers the eye to whatever sits in the pool (the TNT in the maze, a corner of the cult chapel). Seen in the tour frames and my own maze frame.",
+ "recipe": "Indoors (cult chapel, sectors 128 / 127 / 126): three nested 12-16-sided circles of radius about 330 / 600 / 900 units under a tile 641 hanging lamp; floor shade 0 / 6 / 15 against the room's 25, ceiling shade 8 / 21 / 33 against 44. Outdoors (maze apse, sectors 42 / 43 / 44): three crescents of 8-wall arcs about 512 units apart in front of a tile 2493 street lamp at shade -128; floor shade 0 / 12 / 20 against ground 22. Same floor tile and height in every ring, so the rings are invisible except as light.",
+ "use": "Every street lamp on the city streets and every lantern in the saloon, the harbour quay and the sewer: three rings, 0 / ~10 / ~18 shades under the room's own value.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E2M4/place_564/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

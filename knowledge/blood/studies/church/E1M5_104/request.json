@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/church/E1M5_104/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/church/E1M5_104",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 2704,
+   "y": 12928,
+   "z": 87136,
+   "angle": 724,
+   "horiz": 100,
+   "sector": 394,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -3285,
+   "y": 12928,
+   "z": 87136,
+   "angle": 312,
+   "horiz": 100,
+   "sector": 394,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 2704,
+   "y": 20916,
+   "z": 87136,
+   "angle": 1316,
+   "horiz": 100,
+   "sector": 394,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -3285,
+   "y": 20916,
+   "z": 87136,
+   "angle": 1743,
+   "horiz": 100,
+   "sector": 394,
+   "screenshot": true
+  }
+ ]
+}

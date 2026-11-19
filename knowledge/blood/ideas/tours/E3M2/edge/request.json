@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/ideas/tours/E3M2/edge/as-played.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/reference/blood",
+ "output": "knowledge/blood/ideas/tours/E3M2/edge",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "case",
+   "x": 26300,
+   "y": 36352,
+   "z": -28576,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 309,
+   "screenshot": true
+  },
+  {
+   "id": "case2",
+   "x": 26300,
+   "y": 34000,
+   "z": -28576,
+   "angle": 1994,
+   "horiz": 100,
+   "sector": 309,
+   "screenshot": true
+  },
+  {
+   "id": "hall",
+   "x": 22000,
+   "y": 40500,
+   "z": -28576,
+   "angle": 1679,
+   "horiz": 100,
+   "sector": 309,
+   "screenshot": true
+  },
+  {
+   "id": "kitchen",
+   "x": 0,
+   "y": 0,
+   "z": -7072,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 16,
+   "screenshot": true
+  }
+ ]
+}

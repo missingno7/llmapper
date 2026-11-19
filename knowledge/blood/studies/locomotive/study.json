@@ -1,0 +1,4196 @@
+{
+ "slug": "locomotive",
+ "want": "a steam locomotive seen from a platform: what its body, front, top and cab wear, and what sprites make it read",
+ "date": "2026-11-18",
+ "seeds": [
+  {
+   "seed": "E1M4:110",
+   "map": "maps\\blood\\campaign\\E1M4.MAP",
+   "host": 110,
+   "sectors": [
+    100,
+    108,
+    110
+   ],
+   "metres": [
+    5.3,
+    7.8,
+    7.0
+   ],
+   "area_M": 4.48,
+   "clear_bodies": 3.86,
+   "free_floor_share": 0.78,
+   "shade_spread": 12,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     255,
+     0.383,
+     "metal wall, lightly rusted"
+    ],
+    [
+     449,
+     0.307,
+     "rough rock face / rubble stone"
+    ],
+    [
+     200,
+     0.277,
+     "metal threshold with rivets"
+    ],
+    [
+     49,
+     0.034,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 100,
+     "corners": 7,
+     "size": [
+      3266,
+      1858
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      49,
+      255,
+      449,
+      2453
+     ]
+    },
+    {
+     "sector": 108,
+     "corners": 4,
+     "size": [
+      1344,
+      1344
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      255
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2322,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      88,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.61
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\E1M4_110\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\E1M4_110\\frames.png"
+   ]
+  },
+  {
+   "seed": "TEDE1M8:116",
+   "map": "maps\\blood\\curated\\TEDE1M8.MAP",
+   "host": 76,
+   "sectors": [
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    87,
+    89,
+    116,
+    161,
+    162,
+    163
+   ],
+   "metres": [
+    49.1,
+    224.3,
+    5.5
+   ],
+   "area_M": 2779.42,
+   "clear_bodies": 3.08,
+   "free_floor_share": 0.98,
+   "shade_spread": 53,
+   "floor": [
+    361,
+    "grass/turf with dirt patches"
+   ],
+   "ceiling": [
+    3491,
+    "red sky parallax"
+   ],
+   "walls": [
+    [
+     4,
+     0.584,
+     "stone paving"
+    ],
+    [
+     470,
+     0.208,
+     "riveted metal plating"
+    ],
+    [
+     709,
+     0.064,
+     ""
+    ],
+    [
+     1665,
+     0.049,
+     ""
+    ],
+    [
+     2453,
+     0.037,
+     "technical riveted metal cladding"
+    ],
+    [
+     255,
+     0.032,
+     "metal wall, lightly rusted"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 77,
+     "corners": 4,
+     "size": [
+      1024,
+      1792
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      2453
+     ]
+    },
+    {
+     "sector": 78,
+     "corners": 16,
+     "size": [
+      5888,
+      3840
+     ],
+     "rise_bodies": 3.05,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 79,
+     "corners": 4,
+     "size": [
+      1792,
+      3328
+     ],
+     "rise_bodies": 2.48,
+     "floor_tile": 274,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 8,
+     "size": [
+      3328,
+      3328
+     ],
+     "rise_bodies": 2.48,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 81,
+     "corners": 34,
+     "size": [
+      21504,
+      4864
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      255,
+      274,
+      470,
+      490,
+      2453
+     ]
+    },
+    {
+     "sector": 82,
+     "corners": 20,
+     "size": [
+      11008,
+      4864
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      248,
+      470,
+      495,
+      709
+     ]
+    },
+    {
+     "sector": 83,
+     "corners": 4,
+     "size": [
+      2176,
+      256
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      470
+     ]
+    },
+    {
+     "sector": 87,
+     "corners": 4,
+     "size": [
+      2176,
+      158
+     ],
+     "rise_bodies": 3.14,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 616,
+     "wall_tiles": [
+      709
+     ]
+    },
+    {
+     "sector": 89,
+     "corners": 3,
+     "size": [
+      2176,
+      128
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      95,
+      255
+     ]
+    },
+    {
+     "sector": 116,
+     "corners": 46,
+     "size": [
+      62720,
+      5376
+     ],
+     "rise_bodies": -0.06,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      4,
+      80,
+      470,
+      1665
+     ]
+    },
+    {
+     "sector": 161,
+     "corners": 8,
+     "size": [
+      1536,
+      1792
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 162,
+     "corners": 4,
+     "size": [
+      512,
+      768
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 163,
+     "corners": 11,
+     "size": [
+      8194,
+      4402
+     ],
+     "rise_bodies": -0.06,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2322,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      120,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.54
+    },
+    {
+     "tile": 805,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      24,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 4323,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 634,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      80,
+      88
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 225,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      96,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.27
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      96,
+      72
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 2594,
+     "type": 144,
+     "type_name": "kItemArmorSuper",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 676,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 4326,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      176,
+      255
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4341,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4332,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4333,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4329,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4335,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4321,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 4328,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.35
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.74
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\TEDE1M8_116\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "TEDE1M7:471",
+   "map": "maps\\blood\\curated\\TEDE1M7.MAP",
+   "host": 471,
+   "sectors": [
+    431,
+    432,
+    433,
+    434,
+    435,
+    436,
+    437,
+    438,
+    439,
+    440,
+    441,
+    442,
+    443,
+    444,
+    445,
+    446,
+    447,
+    448,
+    449,
+    450,
+    451,
+    452,
+    453,
+    454,
+    458,
+    459,
+    460,
+    461,
+    464,
+    465,
+    466,
+    467,
+    468,
+    471,
+    472,
+    473,
+    490,
+    491
+   ],
+   "metres": [
+    18.3,
+    81.1,
+    14.1
+   ],
+   "area_M": 363.21,
+   "clear_bodies": 7.85,
+   "free_floor_share": 0.3,
+   "shade_spread": 64,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     470,
+     0.256,
+     "riveted metal plating"
+    ],
+    [
+     512,
+     0.209,
+     ""
+    ],
+    [
+     177,
+     0.138,
+     "wooden wall"
+    ],
+    [
+     80,
+     0.105,
+     "weathered vertical stone wall with hints of moss"
+    ],
+    [
+     709,
+     0.077,
+     ""
+    ],
+    [
+     1665,
+     0.061,
+     ""
+    ],
+    [
+     2453,
+     0.044,
+     "technical riveted metal cladding"
+    ],
+    [
+     255,
+     0.039,
+     "metal wall, lightly rusted"
+    ],
+    [
+     490,
+     0.024,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 431,
+     "corners": 16,
+     "size": [
+      3840,
+      16896
+     ],
+     "rise_bodies": 4.77,
+     "floor_tile": 49,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      512
+     ]
+    },
+    {
+     "sector": 432,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 2.9,
+     "floor_tile": 456,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      512
+     ]
+    },
+    {
+     "sector": 433,
+     "corners": 6,
+     "size": [
+      1536,
+      13056
+     ],
+     "rise_bodies": 5.01,
+     "floor_tile": 470,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 434,
+     "corners": 20,
+     "size": [
+      1280,
+      13056
+     ],
+     "rise_bodies": 5.01,
+     "floor_tile": 470,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      490
+     ]
+    },
+    {
+     "sector": 435,
+     "corners": 6,
+     "size": [
+      1536,
+      13056
+     ],
+     "rise_bodies": 5.01,
+     "floor_tile": 470,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 436,
+     "corners": 8,
+     "size": [
+      768,
+      1024
+     ],
+     "rise_bodies": 5.68,
+     "floor_tile": 42,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 437,
+     "corners": 8,
+     "size": [
+      768,
+      1024
+     ],
+     "rise_bodies": 5.68,
+     "floor_tile": 42,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      490
+     ]
+    },
+    {
+     "sector": 438,
+     "corners": 18,
+     "size": [
+      3072,
+      6661
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470
+     ]
+    },
+    {
+     "sector": 439,
+     "corners": 4,
+     "size": [
+      1792,
+      1024
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      490,
+      2453
+     ]
+    },
+    {
+     "sector": 440,
+     "corners": 16,
+     "size": [
+      3840,
+      6656
+     ],
+     "rise_bodies": 3.02,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 441,
+     "corners": 35,
+     "size": [
+      4864,
+      22272
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      255,
+      274,
+      470,
+      490,
+      2453
+     ]
+    },
+    {
+     "sector": 442,
+     "corners": 7,
+     "size": [
+      3328,
+      4096
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 443,
+     "corners": 4,
+     "size": [
+      3328,
+      1792
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 274,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      470
+     ]
+    },
+    {
+     "sector": 444,
+     "corners": 17,
+     "size": [
+      4352,
+      11264
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470,
+      709
+     ]
+    },
+    {
+     "sector": 445,
+     "corners": 19,
+     "size": [
+      3840,
+      9472
+     ],
+     "rise_bodies": 4.65,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      439,
+      470
+     ]
+    },
+    {
+     "sector": 446,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 4.53,
+     "floor_tile": 504,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 447,
+     "corners": 3,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 448,
+     "corners": 3,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 449,
+     "corners": 3,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 450,
+     "corners": 3,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 451,
+     "corners": 3,
+     "size": [
+      768,
+      768
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      439
+     ]
+    },
+    {
+     "sector": 452,
+     "corners": 3,
+     "size": [
+      768,
+      768
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      439
+     ]
+    },
+    {
+     "sector": 453,
+     "corners": 3,
+     "size": [
+      768,
+      768
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      439
+     ]
+    },
+    {
+     "sector": 454,
+     "corners": 3,
+     "size": [
+      768,
+      768
+     ],
+     "rise_bodies": 4.89,
+     "floor_tile": 42,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      439
+     ]
+    },
+    {
+     "sector": 458,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      100
+     ]
+    },
+    {
+     "sector": 459,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      100
+     ]
+    },
+    {
+     "sector": 460,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      100
+     ]
+    },
+    {
+     "sector": 461,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      100
+     ]
+    },
+    {
+     "sector": 464,
+     "corners": 4,
+     "size": [
+      1536,
+      2560
+     ],
+     "rise_bodies": 0.18,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      281,
+      512
+     ]
+    },
+    {
+     "sector": 465,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      281,
+      512
+     ]
+    },
+    {
+     "sector": 466,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      281,
+      512
+     ]
+    },
+    {
+     "sector": 467,
+     "corners": 10,
+     "size": [
+      1536,
+      36096
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      456,
+      512
+     ]
+    },
+    {
+     "sector": 468,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      100,
+      281,
+      512
+     ]
+    },
+    {
+     "sector": 472,
+     "corners": 3,
+     "size": [
+      2688,
+      640
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470,
+      512
+     ]
+    },
+    {
+     "sector": 473,
+     "corners": 3,
+     "size": [
+      2688,
+      640
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470,
+      512
+     ]
+    },
+    {
+     "sector": 490,
+     "corners": 8,
+     "size": [
+      1792,
+      1536
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470
+     ]
+    },
+    {
+     "sector": 491,
+     "corners": 4,
+     "size": [
+      768,
+      512
+     ],
+     "rise_bodies": 1.75,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      470
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 805,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 794,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      80,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 2323,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      112,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.54
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 4323,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      168,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 634,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      80,
+      88
+     ],
+     "pal": 9,
+     "over_floor_bodies": 0.85
+    },
+    {
+     "tile": 225,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      112,
+      128
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 1043,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 7,
+     "over_floor_bodies": 1.39
+    },
+    {
+     "tile": 676,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.51
+    },
+    {
+     "tile": 1713,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 4326,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      168,
+      255
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 4341,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      152,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.11
+    },
+    {
+     "tile": 4332,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      160,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.11
+    },
+    {
+     "tile": 4333,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      136,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.11
+    },
+    {
+     "tile": 4329,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      168,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 4335,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      168,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 4321,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      168,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 4328,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      168,
+      232
+     ],
+     "pal": 9,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 334,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      118
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.81
+    },
+    {
+     "tile": 2332,
+     "type": 11,
+     "type_name": "kMarkerUpStack",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 2322,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      112,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.54
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\TEDE1M7_471\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\TEDE1M7_471\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M3:284",
+   "map": "maps\\blood\\campaign\\E1M3.MAP",
+   "host": 96,
+   "sectors": [
+    19,
+    33,
+    35,
+    36,
+    40,
+    41,
+    42,
+    43,
+    44,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    96,
+    98,
+    162,
+    163,
+    164,
+    165,
+    203,
+    204,
+    205,
+    207,
+    208,
+    210,
+    211,
+    212,
+    213,
+    215,
+    225,
+    226,
+    231,
+    233,
+    235,
+    237,
+    239,
+    267,
+    268,
+    269,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290
+   ],
+   "metres": [
+    80.0,
+    288.7,
+    4.8
+   ],
+   "area_M": 6656.3,
+   "clear_bodies": 2.66,
+   "free_floor_share": 0.99,
+   "shade_spread": 46,
+   "floor": [
+    373,
+    ""
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     2453,
+     0.526,
+     "technical riveted metal cladding"
+    ],
+    [
+     200,
+     0.13,
+     "metal threshold with rivets"
+    ],
+    [
+     1665,
+     0.099,
+     ""
+    ],
+    [
+     255,
+     0.055,
+     "metal wall, lightly rusted"
+    ],
+    [
+     1666,
+     0.043,
+     ""
+    ],
+    [
+     1556,
+     0.029,
+     ""
+    ],
+    [
+     146,
+     0.021,
+     "curtain texture"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 19,
+     "corners": 14,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      2453
+     ]
+    },
+    {
+     "sector": 33,
+     "corners": 12,
+     "size": [
+      288,
+      2048
+     ],
+     "rise_bodies": 2.42,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      200
+     ]
+    },
+    {
+     "sector": 35,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 36,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 40,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 41,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 42,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      200
+     ]
+    },
+    {
+     "sector": 43,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      2453
+     ]
+    },
+    {
+     "sector": 44,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      2453
+     ]
+    },
+    {
+     "sector": 54,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      200
+     ]
+    },
+    {
+     "sector": 55,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      2453
+     ]
+    },
+    {
+     "sector": 56,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      2453
+     ]
+    },
+    {
+     "sector": 57,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      255
+     ]
+    },
+    {
+     "sector": 58,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      255
+     ]
+    },
+    {
+     "sector": 59,
+     "corners": 5,
+     "size": [
+      3584,
+      2560
+     ],
+     "rise_bodies": 2.23,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 60,
+     "corners": 4,
+     "size": [
+      3584,
+      4864
+     ],
+     "rise_bodies": 2.23,
+     "floor_tile": 274,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 61,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 62,
+     "corners": 4,
+     "size": [
+      1792,
+      1024
+     ],
+     "rise_bodies": 1.33,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 63,
+     "corners": 16,
+     "size": [
+      4096,
+      9728
+     ],
+     "rise_bodies": 2.66,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 70,
+     "corners": 4,
+     "size": [
+      2048,
+      128
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 71,
+     "corners": 8,
+     "size": [
+      3840,
+      256
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      195,
+      199,
+      2453
+     ]
+    },
+    {
+     "sector": 72,
+     "corners": 8,
+     "size": [
+      3840,
+      128
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      195,
+      199,
+      2453
+     ]
+    },
+    {
+     "sector": 73,
+     "corners": 4,
+     "size": [
+      2048,
+      128
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      2453
+     ]
+    },
+    {
+     "sector": 74,
+     "corners": 14,
+     "size": [
+      3840,
+      384
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      195,
+      199,
+      2453
+     ]
+    },
+    {
+     "sector": 75,
+     "corners": 6,
+     "size": [
+      2048,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      1666
+     ]
+    },
+    {
+     "sector": 81,
+     "corners": 6,
+     "size": [
+      2560,
+      1024
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      2453
+     ]
+    },
+    {
+     "sector": 82,
+     "corners": 4,
+     "size": [
+      2048,
+      4608
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 83,
+     "corners": 4,
+     "size": [
+      2048,
+      4608
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 84,
+     "corners": 4,
+     "size": [
+      2048,
+      30464
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 85,
+     "corners": 4,
+     "size": [
+      2048,
+      10240
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 86,
+     "corners": 4,
+     "size": [
+      256,
+      28416
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      2453
+     ]
+    },
+    {
+     "sector": 87,
+     "corners": 4,
+     "size": [
+      256,
+      10240
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 88,
+     "corners": 4,
+     "size": [
+      2048,
+      28416
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 170,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 89,
+     "corners": 4,
+     "size": [
+      2048,
+      10240
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 170,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200
+     ]
+    },
+    {
+     "sector": 90,
+     "corners": 4,
+     "size": [
+      256,
+      28416
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      2453
+     ]
+    },
+    {
+     "sector": 91,
+     "corners": 4,
+     "size": [
+      256,
+      10240
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 92,
+     "corners": 4,
+     "size": [
+      2048,
+      30464
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 93,
+     "corners": 4,
+     "size": [
+      2048,
+      10240
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      2453
+     ]
+    },
+    {
+     "sector": 98,
+     "corners": 10,
+     "size": [
+      11264,
+      147456
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 373,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      2453
+     ]
+    },
+    {
+     "sector": 162,
+     "corners": 12,
+     "size": [
+      288,
+      2048
+     ],
+     "rise_bodies": 2.42,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      200
+     ]
+    },
+    {
+     "sector": 163,
+     "corners": 14,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      2453
+     ]
+    },
+    {
+     "sector": 164,
+     "corners": 14,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      2453
+     ]
+    },
+    {
+     "sector": 165,
+     "corners": 14,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      146,
+      2453
+     ]
+    },
+    {
+     "sector": 203,
+     "corners": 5,
+     "size": [
+      1792,
+      256
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      109,
+      378
+     ]
+    },
+    {
+     "sector": 204,
+     "corners": 4,
+     "size": [
+      2560,
+      256
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109
+     ]
+    },
+    {
+     "sector": 205,
+     "corners": 5,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.3,
+     "floor_tile": 379,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      378,
+      379
+     ]
+    },
+    {
+     "sector": 207,
+     "corners": 4,
+     "size": [
+      1536,
+      768
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      28,
+      109,
+      378
+     ]
+    },
+    {
+     "sector": 208,
+     "corners": 4,
+     "size": [
+      1280,
+      1280
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 301,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      28,
+      109,
+      378
+     ]
+    },
+    {
+     "sector": 210,
+     "corners": 4,
+     "size": [
+      256,
+      640
+     ],
+     "rise_bodies": 1.87,
+     "floor_tile": 379,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      379
+     ]
+    },
+    {
+     "sector": 211,
+     "corners": 5,
+     "size": [
+      256,
+      2176
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 379,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      378,
+      379
+     ]
+    },
+    {
+     "sector": 212,
+     "corners": 4,
+     "size": [
+      1280,
+      256
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      109,
+      378
+     ]
+    },
+    {
+     "sector": 213,
+     "corners": 4,
+     "size": [
+      2944,
+      256
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      109
+     ]
+    },
+    {
+     "sector": 215,
+     "corners": 5,
+     "size": [
+      1152,
+      768
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      28,
+      109,
+      378
+     ]
+    },
+    {
+     "sector": 225,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 226,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 231,
+     "corners": 8,
+     "size": [
+      1792,
+      34816
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      1557,
+      2453
+     ]
+    },
+    {
+     "sector": 233,
+     "corners": 5,
+     "size": [
+      256,
+      33280
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      1557,
+      2453
+     ]
+    },
+    {
+     "sector": 235,
+     "corners": 5,
+     "size": [
+      2048,
+      33280
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 170,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      1557,
+      2453
+     ]
+    },
+    {
+     "sector": 237,
+     "corners": 5,
+     "size": [
+      256,
+      33280
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      1557,
+      2453
+     ]
+    },
+    {
+     "sector": 239,
+     "corners": 8,
+     "size": [
+      1792,
+      34816
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      1557,
+      2453
+     ]
+    },
+    {
+     "sector": 267,
+     "corners": 3,
+     "size": [
+      1344,
+      64
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 379,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      379
+     ]
+    },
+    {
+     "sector": 268,
+     "corners": 4,
+     "size": [
+      1536,
+      64
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 379,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      379
+     ]
+    },
+    {
+     "sector": 269,
+     "corners": 6,
+     "size": [
+      1792,
+      960
+     ],
+     "rise_bodies": 1.75,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379
+     ]
+    },
+    {
+     "sector": 284,
+     "corners": 56,
+     "size": [
+      9216,
+      169984
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      195,
+      200,
+      255,
+      1556,
+      1557,
+      1665,
+      1666,
+      2453
+     ]
+    },
+    {
+     "sector": 285,
+     "corners": 6,
+     "size": [
+      2048,
+      11264
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      255,
+      1666
+     ]
+    },
+    {
+     "sector": 286,
+     "corners": 19,
+     "size": [
+      3584,
+      17152
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 602,
+     "wall_tiles": [
+      49,
+      200,
+      255,
+      2453
+     ]
+    },
+    {
+     "sector": 287,
+     "corners": 12,
+     "size": [
+      4096,
+      3072
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      255,
+      274
+     ]
+    },
+    {
+     "sector": 288,
+     "corners": 7,
+     "size": [
+      2048,
+      11264
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      200,
+      255,
+      1666
+     ]
+    },
+    {
+     "sector": 289,
+     "corners": 55,
+     "size": [
+      9216,
+      169984
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      195,
+      200,
+      255,
+      1556,
+      1557,
+      1665,
+      1666,
+      2453
+     ]
+    },
+    {
+     "sector": 290,
+     "corners": 16,
+     "size": [
+      3584,
+      17152
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      49,
+      200,
+      255,
+      2453
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 31,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 252,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 12,
+     "repeats": [
+      158,
+      98
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.29
+    },
+    {
+     "tile": 1407,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.23
+    },
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    },
+    {
+     "tile": 1667,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 5,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.23
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 981,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      128,
+      128
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 2320,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      88,
+      104
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.61
+    },
+    {
+     "tile": 847,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.33
+    },
+    {
+     "tile": 805,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      16,
+      8
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2331,
+     "type": 12,
+     "type_name": "kMarkerLowStack",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 2101,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": -1.45
+    },
+    {
+     "tile": 2524,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2525,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2527,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 808,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      8,
+      8
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1043,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.03
+    },
+    {
+     "tile": 2527,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2542,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.85
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2523,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2526,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2528,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2529,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 829,
+     "type": 117,
+     "type_name": "kItemTwoGuns",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1127,
+     "type": 408,
+     "type_name": "kThingWallCrack",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 676,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.92
+    },
+    {
+     "tile": 2522,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 760,
+     "type": 121,
+     "type_name": "kItemCrystalBall",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1721,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.57
+    },
+    {
+     "tile": 2835,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.65
+    },
+    {
+     "tile": 3754,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.65
+    },
+    {
+     "tile": 3788,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 58,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.45
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\E1M3_284\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\E1M3_284\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "4": {
+   "tile": 4,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-4.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-20.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-34.png"
+  },
+  "42": {
+   "tile": 42,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-42.png"
+  },
+  "49": {
+   "tile": 49,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-49.png"
+  },
+  "80": {
+   "tile": 80,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-80.png"
+  },
+  "110": {
+   "tile": 110,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-110.png"
+  },
+  "146": {
+   "tile": 146,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-146.png"
+  },
+  "170": {
+   "tile": 170,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-170.png"
+  },
+  "177": {
+   "tile": 177,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-177.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-195.png"
+  },
+  "200": {
+   "tile": 200,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-200.png"
+  },
+  "225": {
+   "tile": 225,
+   "pixels": [
+    205,
+    56
+   ],
+   "world_at_repeat_8": [
+    3280,
+    14336
+   ],
+   "see_through_share": 0.171,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-225.png"
+  },
+  "252": {
+   "tile": 252,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.66,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-252.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-255.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-270.png"
+  },
+  "273": {
+   "tile": 273,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-273.png"
+  },
+  "274": {
+   "tile": 274,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-274.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-281.png"
+  },
+  "301": {
+   "tile": 301,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-301.png"
+  },
+  "361": {
+   "tile": 361,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-361.png"
+  },
+  "362": {
+   "tile": 362,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-362.png"
+  },
+  "373": {
+   "tile": 373,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-373.png"
+  },
+  "379": {
+   "tile": 379,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-379.png"
+  },
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-438.png"
+  },
+  "449": {
+   "tile": 449,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-449.png"
+  },
+  "456": {
+   "tile": 456,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-456.png"
+  },
+  "470": {
+   "tile": 470,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-470.png"
+  },
+  "490": {
+   "tile": 490,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-490.png"
+  },
+  "491": {
+   "tile": 491,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-491.png"
+  },
+  "504": {
+   "tile": 504,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-504.png"
+  },
+  "512": {
+   "tile": 512,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-512.png"
+  },
+  "634": {
+   "tile": 634,
+   "pixels": [
+    120,
+    64
+   ],
+   "world_at_repeat_8": [
+    1920,
+    16384
+   ],
+   "see_through_share": 0.503,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-634.png"
+  },
+  "709": {
+   "tile": 709,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-709.png"
+  },
+  "713": {
+   "tile": 713,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-713.png"
+  },
+  "754": {
+   "tile": 754,
+   "pixels": [
+    16,
+    125
+   ],
+   "world_at_repeat_8": [
+    256,
+    32000
+   ],
+   "see_through_share": 0.508,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-754.png"
+  },
+  "794": {
+   "tile": 794,
+   "pixels": [
+    40,
+    27
+   ],
+   "world_at_repeat_8": [
+    640,
+    6912
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-794.png"
+  },
+  "805": {
+   "tile": 805,
+   "pixels": [
+    39,
+    25
+   ],
+   "world_at_repeat_8": [
+    624,
+    6400
+   ],
+   "see_through_share": 0.154,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-805.png"
+  },
+  "908": {
+   "tile": 908,
+   "pixels": [
+    42,
+    80
+   ],
+   "world_at_repeat_8": [
+    672,
+    20480
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-908.png"
+  },
+  "981": {
+   "tile": 981,
+   "pixels": [
+    87,
+    68
+   ],
+   "world_at_repeat_8": [
+    1392,
+    17408
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-981.png"
+  },
+  "1043": {
+   "tile": 1043,
+   "pixels": [
+    11,
+    19
+   ],
+   "world_at_repeat_8": [
+    176,
+    4864
+   ],
+   "see_through_share": 0.517,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1043.png"
+  },
+  "1129": {
+   "tile": 1129,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1129.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1170.png"
+  },
+  "1407": {
+   "tile": 1407,
+   "pixels": [
+    51,
+    24
+   ],
+   "world_at_repeat_8": [
+    816,
+    6144
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1407.png"
+  },
+  "1556": {
+   "tile": 1556,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1556.png"
+  },
+  "1665": {
+   "tile": 1665,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1665.png"
+  },
+  "1666": {
+   "tile": 1666,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1666.png"
+  },
+  "1667": {
+   "tile": 1667,
+   "pixels": [
+    125,
+    35
+   ],
+   "world_at_repeat_8": [
+    2000,
+    8960
+   ],
+   "see_through_share": 0.562,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-1667.png"
+  },
+  "2320": {
+   "tile": 2320,
+   "pixels": [
+    143,
+    49
+   ],
+   "world_at_repeat_8": [
+    2288,
+    12544
+   ],
+   "see_through_share": 0.355,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2320.png"
+  },
+  "2322": {
+   "tile": 2322,
+   "pixels": [
+    143,
+    49
+   ],
+   "world_at_repeat_8": [
+    2288,
+    12544
+   ],
+   "see_through_share": 0.358,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2322.png"
+  },
+  "2323": {
+   "tile": 2323,
+   "pixels": [
+    143,
+    49
+   ],
+   "world_at_repeat_8": [
+    2288,
+    12544
+   ],
+   "see_through_share": 0.358,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2323.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2453.png"
+  },
+  "2594": {
+   "tile": 2594,
+   "pixels": [
+    29,
+    37
+   ],
+   "world_at_repeat_8": [
+    464,
+    9472
+   ],
+   "see_through_share": 0.277,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2594.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-2825.png"
+  },
+  "3054": {
+   "tile": 3054,
+   "pixels": [
+    61,
+    120
+   ],
+   "world_at_repeat_8": [
+    976,
+    30720
+   ],
+   "see_through_share": 0.444,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-3054.png"
+  },
+  "3491": {
+   "tile": 3491,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-3491.png"
+  },
+  "3678": {
+   "tile": 3678,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-3678.png"
+  },
+  "4323": {
+   "tile": 4323,
+   "pixels": [
+    9,
+    17
+   ],
+   "world_at_repeat_8": [
+    144,
+    4352
+   ],
+   "see_through_share": 0.542,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\locomotive\\tiles\\tile-4323.png"
+  }
+ }
+}

@@ -1,0 +1,4 @@
+NAME: Bar room with two robed figures
+SURE: 4
+FAULT: no
+WHAT: nothing

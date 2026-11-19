@@ -9,6 +9,9 @@ description = "Lossless Blood, Duke3D, and classic Doom map parsing, shared sema
 requires-python = ">=3.10"
 dependencies = []
 
+[project.optional-dependencies]
+test-geometry = ["shapely", "matplotlib"]
+
 [project.scripts]
 bloodmap = "bloodmap.cli:main"
 llmapper = "bloodmap.cli:main"

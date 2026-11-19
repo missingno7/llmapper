@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 36,
+ "kind": "composition",
+ "title": "Twin halves told apart by masonry",
+ "what": "The map is one square building cut into two mirror-image open-sky yards with identical geometry: same octagonal blocks, same three-spoke half-hub, same galleries. The only difference is material: the west half is red brick with a base course, the east half is cracked dark rock. Standing anywhere you know which side you are on from the wall alone, and the two capture flags sit in the middle of the west and east galleries, so the masonry is the team colour.",
+ "recipe": "West yard sector 35 and its spokes, gallery 60: walls tile 91 (brick with base course), spoke floors tile 90. East yard 36, spokes and gallery: walls tile 123 (cracked rock), spoke floors tile 120. Both yards: floor tile 362 grass, parallax ceiling 2500, yard 22-25 m by 41.7 m, open to sky 4.17 bodies above the grass. kItemFlagB (type 146, tile 753) in the west gallery, kItemFlagA (type 145) in the east gallery, each at the gallery's midpoint. Everything else mirrored about the north-south axis (sprites placed in point-mirrored pairs).",
+ "use": "Streets: two parallel blocks of the city built from the same template, one in brick and one in rendered stone, so the player can tell the rich side from the poor side; or the harbour's two quays. Cheap variety: one layout, two skins.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E6M8/place_36/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

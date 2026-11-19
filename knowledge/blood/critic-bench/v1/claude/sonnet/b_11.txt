@@ -1,0 +1,4 @@
+NAME: Cobblestone alley between building walls
+SURE: 4
+FAULT: no
+WHAT: nothing

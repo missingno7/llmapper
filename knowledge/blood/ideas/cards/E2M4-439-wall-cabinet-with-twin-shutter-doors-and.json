@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 439,
+ "kind": "encounter",
+ "title": "Wall cabinet with twin shutter doors and a Hand inside",
+ "what": "In a timber-walled cult room, a tall wooden wall cabinet with two louvred shutter doors. Pushing either door swings BOTH open (each leaf turns on its own hinge), and inside, on shelves, are two spray cans and a severed Hand that is a live enemy and leaps out at you. The tour frame shows it open: the hand and a bottle-shaped can on the cabinet floor between the open leaves.",
+ "recipe": "Cabinet: sector 439 recessed into the wall, about 1150 x 560 units (2 x 1 m, 3 x 1.5 bodies), floor 1024 above the room (tile 67, floor stat 4), shelves as wall/floor-aligned sprites inside (tiles 68, 20, 34, 28; repeats 48x32 and 64x80). Jambs 129, 130: thin sectors with floor raised to 1.27 bodies (-46080) as the side posts. Leaves 131, 132: thin kSectorRotate (type 617) sectors 128 units wide, each with its own kMarkerAxis (type 5) at its outer edge as the hinge. Linking: leaf A rx108 tx109 cmd 5 (link), busy 10, wait 30, trigger_wall_push; leaf B tx108 rx109 cmd 3, decoupled, trigger_wall_push, so a push on either drives the other. Inside: kDudeHand (type 212, tile 1980, 32x32) standing on the cabinet floor, 2 x kItemAmmoSprayCan (type 60). Door sound: kGenSound (709) data 117/156 nearby.",
+ "use": "A pharmacy or pawn shop in the arcade of shops (the stock cupboard), the church vestry (the vestment cupboard), the saloon's back room. The idea is any cupboard that is worth opening and bites.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E2M4/place_564/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

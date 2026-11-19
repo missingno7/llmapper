@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/maps_blood_community_FORDTHEA.MAP_252/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/maps_blood_community_FORDTHEA.MAP_252",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 24190,
+   "y": 51642,
+   "z": -15264,
+   "angle": 781,
+   "horiz": 100,
+   "sector": 252,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 24190,
+   "y": 57134,
+   "z": -15264,
+   "angle": 1245,
+   "horiz": 100,
+   "sector": 252,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 22992,
+   "y": 51642,
+   "z": -15264,
+   "angle": 706,
+   "horiz": 100,
+   "sector": 252,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 19797,
+   "y": 51642,
+   "z": -15264,
+   "angle": 384,
+   "horiz": 100,
+   "sector": 252,
+   "screenshot": true
+  }
+ ]
+}

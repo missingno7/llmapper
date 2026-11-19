@@ -1,0 +1,166 @@
+{
+ "map": "TEDE1M8",
+ "at": [
+  17700,
+  71000
+ ],
+ "views": 8,
+ "recipe": {
+  "walls": [
+   {
+    "tile": 4,
+    "count": 2,
+    "is": "stone paving"
+   },
+   {
+    "tile": 490,
+    "count": 1,
+    "is": "grey metal panel with recessed rectangle"
+   },
+   {
+    "tile": 255,
+    "count": 1,
+    "is": "metal wall, lightly rusted"
+   }
+  ],
+  "masked": [
+   {
+    "tile": 1044,
+    "count": 2,
+    "is": "grate"
+   }
+  ],
+  "flats": [
+   {
+    "tile": 361,
+    "on": "floor",
+    "count": 1,
+    "is": "grass/turf with dirt patches"
+   },
+   {
+    "tile": 438,
+    "on": "floor",
+    "count": 1,
+    "is": "embossed metal floor"
+   },
+   {
+    "tile": 1129,
+    "on": "floor",
+    "count": 1,
+    "is": "railway track with sleepers, floor texture"
+   }
+  ],
+  "sprites": [
+   {
+    "tile": 2322,
+    "align": "wall",
+    "repeat": [
+     120,
+     96
+    ],
+    "count": 2,
+    "is": "locomotive wheels with connecting rod, frame 2"
+   },
+   {
+    "tile": 4323,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 2,
+    "is": "grey gothic letter C"
+   },
+   {
+    "tile": 634,
+    "align": "wall",
+    "repeat": [
+     80,
+     88
+    ],
+    "count": 2,
+    "is": "horned stone demon face ornament"
+   },
+   {
+    "tile": 4326,
+    "align": "wall",
+    "repeat": [
+     176,
+     255
+    ],
+    "count": 1,
+    "is": "grey gothic letter F"
+   },
+   {
+    "tile": 4341,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter U"
+   },
+   {
+    "tile": 4332,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter L"
+   },
+   {
+    "tile": 4333,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter M"
+   },
+   {
+    "tile": 4329,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter I"
+   },
+   {
+    "tile": 4335,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter O"
+   },
+   {
+    "tile": 4321,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter A"
+   },
+   {
+    "tile": 4328,
+    "align": "wall",
+    "repeat": [
+     152,
+     232
+    ],
+    "count": 1,
+    "is": "grey gothic letter H"
+   }
+  ]
+ }
+}

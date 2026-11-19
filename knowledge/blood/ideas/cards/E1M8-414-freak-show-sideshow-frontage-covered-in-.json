@@ -1,0 +1,12 @@
+{
+ "map": "E1M8",
+ "sector": 414,
+ "kind": "composition",
+ "title": "Freak-show sideshow frontage covered in banners",
+ "what": "A sideshow building facing a yard: a whole wall of grey diamond-quilted panelling with a cornice band, painted canvas posters pinned across it ('SEEING IS BELIEVING! CRAZY BIZARRE GOONY SLOTH THE HAPPY MUTANT', 'JO-JO THE IDIOT CIRCUS BOY'), a ticket window with balloons tied over it, a 'HOUSE OF HORRORS' board, wrought-iron fence panels, barrels and bottles along the base. The building is the sign. First second: the giant posters.",
+ "recipe": "Yard s414 is 16896 x 9216 units (28.7 x 15.6 m) and s94 continues it, parallax sky, floor 361. Facade tile 473 (128x128 px, quilted diamonds with a cornice band, 26 walls) with 95 and 16. Posters are wall sprites: 932 (the SLOTH poster, 87x56 px, scaled up 120/64, about 2.6 x 1.6 m) and 981 (owner: poster 'JOJO the idiot circus boy'). Fence panels 1060/1064, cobwebs 1067-1069, glowing wood 378 on the ticket booth (s415/s417/s418, about 1100 units square, type 600 sectors with bottle sprites 605/606/759). Dark wood ground (s102 nearby is a cloth-roofed forest).",
+ "use": "The best edge facade we have not built: the city's edge wall itself becomes a sideshow front, posters at street level, a ticket window as the doorway. Behind it a short dark walk (the 'House of Horrors') of two or three rooms. The player pays nothing -- shoots the lock of the ticket booth.",
+ "frame": "knowledge/blood/ideas/tours/E1M8/place_94/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

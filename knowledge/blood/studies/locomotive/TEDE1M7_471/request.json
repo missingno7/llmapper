@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/locomotive/TEDE1M7_471/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/locomotive/TEDE1M7_471",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -44318,
+   "y": 45461,
+   "z": 86112,
+   "angle": 1574,
+   "horiz": 100,
+   "sector": 471,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -44318,
+   "y": -286,
+   "z": 86112,
+   "angle": 463,
+   "horiz": 100,
+   "sector": 471,
+   "screenshot": true
+  }
+ ]
+}

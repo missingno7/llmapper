@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/DWE1M4/place_869/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/DWE1M4/place_869",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -57073,
+   "y": 32408,
+   "z": 1261664,
+   "angle": 676,
+   "horiz": 100,
+   "sector": 869,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -53479,
+   "y": 36801,
+   "z": 1261664,
+   "angle": 822,
+   "horiz": 100,
+   "sector": 869,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -64661,
+   "y": 32008,
+   "z": 1261664,
+   "angle": 477,
+   "horiz": 100,
+   "sector": 869,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -71051,
+   "y": 34804,
+   "z": 1261664,
+   "angle": 282,
+   "horiz": 100,
+   "sector": 869,
+   "screenshot": true
+  }
+ ]
+}

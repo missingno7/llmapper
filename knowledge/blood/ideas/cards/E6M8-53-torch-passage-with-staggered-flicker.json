@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 53,
+ "kind": "lighting",
+ "title": "Torch passage with staggered flicker",
+ "what": "From a dark octagonal starting room the player walks down a narrow passage past three small octagonal alcoves, each with a gargoyle-statue torch on a raised sill. The whole passage flickers, but not in unison: consecutive sectors are offset in phase, so the light seems to travel and waver as from separate flames rather than blinking like one bulb. The start room itself stays dark and steady.",
+ "recipe": "Passage sectors 49-59: 1.63 bodies high (floor -17408, ceiling -45056), floor tile 427, ceiling 414, walls 91/94. Every sector: shade_wave 7 (flicker2), amplitude -10, shade_frequency 10, shade_always, applied to floor, ceiling and walls; shade_phase alternates 0 / 10 / 20 along the run (e.g. 46: 20, 47: 10, 48: 0). Alcoves 46-48: octagons 1024 across (1.8 m), floor raised 3072 above the passage, ceiling 3.86 bodies (tall, shadowed shaft); torch sprite tile 572 type 30 kDecorationTorch on the sill. Start room 81: shade 44-48, no wave.",
+ "use": "Crypt approach under St Gallow's: the stair passage down to the ossuary, torches in niches, each niche flickering out of step. Also a sewer maintenance tunnel lit by lanterns.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e6m8_a/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

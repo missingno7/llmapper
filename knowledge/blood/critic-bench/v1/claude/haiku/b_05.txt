@@ -1,0 +1,4 @@
+NAME: Street between brick and stone building facades
+SURE: 2
+FAULT: yes
+WHAT: Green lettering on the upper sign is mirrored or rotated, so the sign text is laid the wrong way round.

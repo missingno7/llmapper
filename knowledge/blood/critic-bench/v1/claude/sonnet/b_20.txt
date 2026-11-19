@@ -1,0 +1,4 @@
+NAME: Wooden-beamed hall with stone floor
+SURE: 3
+FAULT: no
+WHAT: nothing

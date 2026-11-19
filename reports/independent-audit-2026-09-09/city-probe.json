@@ -1,0 +1,77 @@
+{
+  "status": "compiled",
+  "seconds": 12.563,
+  "counts": {
+    "sectors": 199,
+    "walls": 1031,
+    "sprites": 16
+  },
+  "sha256": "347ba9fbce3d2e074a3683c08bbaff845a2302ae3146d32c0f9a9993dd147eea",
+  "matches_stored_map": true,
+  "mission": {
+    "sectors": 199,
+    "reachable at rest": 173,
+    "reachable with the mechanisms worked": 199,
+    "sentences": 9,
+    "sentences reachable": 9,
+    "sentences unreached": [],
+    "rooms": 17,
+    "rooms unreached": [],
+    "links declared": 9,
+    "links realised": 9,
+    "keys declared": 5,
+    "keys realised": 5
+  },
+  "readback": {
+    "sentences": 9,
+    "agree": true,
+    "differences": 0,
+    "per building": {
+      "door:col_a/row_1": {
+        "tenant": "aldermack",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_a/row_2": {
+        "tenant": "saloon",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_a/row_3": {
+        "tenant": "shooting_parlor",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_b/row_1": {
+        "tenant": "ferry_office",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_b/row_2": {
+        "tenant": "market_hall",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_b/row_3": {
+        "tenant": "works_canteen",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_c/row_1": {
+        "tenant": "church",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_c/row_2": {
+        "tenant": "arcade",
+        "differences": 0,
+        "facets": []
+      },
+      "door:col_c/row_3": {
+        "tenant": "pawn_shop",
+        "differences": 0,
+        "facets": []
+      }
+    }
+  }
+}

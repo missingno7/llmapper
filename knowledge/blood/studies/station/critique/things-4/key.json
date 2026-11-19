@@ -1,0 +1,251 @@
+{
+ "q_01": {
+  "id": "c_track",
+  "ours": false,
+  "expect": "railway track (E1M2)",
+  "accept": [
+   "rail",
+   "track",
+   "train",
+   "tunnel"
+  ]
+ },
+ "q_02": {
+  "id": "t_track",
+  "ours": true,
+  "expect": "railway track",
+  "accept": [
+   "rail",
+   "track",
+   "train"
+  ]
+ },
+ "q_03": {
+  "id": "t_balcony",
+  "ours": true,
+  "expect": "balcony with a balustrade over the platform",
+  "accept": [
+   "balcony",
+   "gallery",
+   "balustrade",
+   "signal",
+   "veranda",
+   "platform",
+   "walkway"
+  ]
+ },
+ "q_04": {
+  "id": "t_goods",
+  "ours": true,
+  "expect": "goods store / warehouse with crates",
+  "accept": [
+   "warehouse",
+   "store",
+   "storage",
+   "depot",
+   "crate",
+   "cargo",
+   "goods",
+   "freight"
+  ]
+ },
+ "q_05": {
+  "id": "t_waiting",
+  "ours": true,
+  "expect": "waiting room",
+  "accept": [
+   "waiting",
+   "lounge",
+   "parlour",
+   "parlor",
+   "sitting",
+   "lobby",
+   "living"
+  ]
+ },
+ "q_06": {
+  "id": "t_hall",
+  "ours": true,
+  "expect": "station hall / waiting hall",
+  "accept": [
+   "station",
+   "waiting",
+   "concourse",
+   "hall",
+   "lobby"
+  ]
+ },
+ "q_07": {
+  "id": "c_bar",
+  "ours": false,
+  "expect": "bar (E1M2)",
+  "accept": [
+   "bar",
+   "saloon",
+   "pub",
+   "tavern",
+   "diner",
+   "lounge"
+  ]
+ },
+ "q_08": {
+  "id": "t_car_inside",
+  "ours": true,
+  "expect": "inside of a railway carriage",
+  "accept": [
+   "carriage",
+   "train",
+   "railcar",
+   "rail car",
+   "railway car",
+   "coach",
+   "tram",
+   "wagon",
+   "boxcar",
+   "dining car"
+  ]
+ },
+ "q_09": {
+  "id": "t_ticket",
+  "ours": true,
+  "expect": "ticket window",
+  "accept": [
+   "ticket",
+   "booking",
+   "booth",
+   "teller",
+   "kiosk",
+   "cashier",
+   "box office"
+  ]
+ },
+ "q_10": {
+  "id": "t_tunnel",
+  "ours": true,
+  "expect": "railway tunnel mouth",
+  "accept": [
+   "tunnel"
+  ]
+ },
+ "q_11": {
+  "id": "t_engine_side",
+  "ours": true,
+  "expect": "steam locomotive",
+  "accept": [
+   "locomotive",
+   "steam engine",
+   "train engine",
+   "steam train",
+   "train"
+  ]
+ },
+ "q_12": {
+  "id": "c_engine",
+  "ours": false,
+  "expect": "steam locomotive (E1M4)",
+  "accept": [
+   "locomotive",
+   "steam engine",
+   "train engine",
+   "steam train",
+   "train",
+   "engine",
+   "wheel"
+  ]
+ },
+ "q_13": {
+  "id": "t_engine_nose",
+  "ours": true,
+  "expect": "steam locomotive",
+  "accept": [
+   "locomotive",
+   "steam engine",
+   "train engine",
+   "steam train",
+   "train"
+  ]
+ },
+ "q_14": {
+  "id": "t_car_door",
+  "ours": true,
+  "expect": "door of a railway carriage",
+  "accept": [
+   "carriage",
+   "train",
+   "railcar",
+   "rail car",
+   "railway car",
+   "coach",
+   "tram",
+   "wagon",
+   "boxcar"
+  ]
+ },
+ "q_15": {
+  "id": "c_dock",
+  "ours": false,
+  "expect": "wooden dock (E2M1)",
+  "accept": [
+   "dock",
+   "pier",
+   "wharf",
+   "boardwalk",
+   "jetty",
+   "quay",
+   "harbour",
+   "harbor",
+   "walkway",
+   "bridge",
+   "deck"
+  ]
+ },
+ "q_16": {
+  "id": "t_gate",
+  "ours": true,
+  "expect": "roll-up gate across the track at a tunnel mouth",
+  "accept": [
+   "gate",
+   "shutter",
+   "tunnel",
+   "portcullis"
+  ]
+ },
+ "q_17": {
+  "id": "t_car_side",
+  "ours": true,
+  "expect": "side of a railway carriage with windows",
+  "accept": [
+   "carriage",
+   "train",
+   "railcar",
+   "rail car",
+   "railway car",
+   "coach",
+   "tram",
+   "wagon",
+   "boxcar"
+  ]
+ },
+ "q_18": {
+  "id": "t_gates",
+  "ours": true,
+  "expect": "iron gates",
+  "accept": [
+   "gate",
+   "railing",
+   "fence",
+   "grille",
+   "bars"
+  ]
+ },
+ "q_19": {
+  "id": "t_bench",
+  "ours": true,
+  "expect": "bench",
+  "accept": [
+   "bench",
+   "pew",
+   "seat"
+  ]
+ }
+}

@@ -1,0 +1,1359 @@
+{
+ "map": "DWE1M4",
+ "date": "2026-11-18",
+ "places": [
+  {
+   "host": 290,
+   "sky": false,
+   "metres": [
+    34.7,
+    43.0,
+    40.8
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     253,
+     0.328,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ],
+    [
+     1011,
+     0.262,
+     ""
+    ],
+    [
+     2490,
+     0.135,
+     "light marble"
+    ],
+    [
+     556,
+     0.076,
+     ""
+    ],
+    [
+     68,
+     0.04,
+     ""
+    ]
+   ],
+   "things": 147,
+   "sprites": [
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 43,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 7,
+     "over_floor_bodies": 14.79
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 18,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 753,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 1013,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.51
+    },
+    {
+     "tile": 1056,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      32,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_290\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_290\\frames.png"
+   ]
+  },
+  {
+   "host": 468,
+   "sky": false,
+   "metres": [
+    43.5,
+    99.1,
+    108.7
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     556,
+     0.698,
+     ""
+    ],
+    [
+     449,
+     0.13,
+     "rough rock face / rubble stone"
+    ],
+    [
+     264,
+     0.094,
+     ""
+    ],
+    [
+     244,
+     0.022,
+     ""
+    ]
+   ],
+   "things": 47,
+   "sprites": [
+    {
+     "tile": 2332,
+     "type": 9,
+     "type_name": "kMarkerUpWater",
+     "align": "face",
+     "count": 12,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 2331,
+     "type": 12,
+     "type_name": "kMarkerLowStack",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 60.38
+    },
+    {
+     "tile": 759,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 11,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.54
+    },
+    {
+     "tile": 570,
+     "type": 30,
+     "type_name": "kDecorationTorch",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 577,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.86
+    },
+    {
+     "tile": 576,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.86
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_468\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_468\\frames.png"
+   ]
+  },
+  {
+   "host": 869,
+   "sky": false,
+   "metres": [
+    53.0,
+    81.7,
+    135.8
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    602
+   ],
+   "walls": [
+    [
+     556,
+     0.499,
+     ""
+    ],
+    [
+     449,
+     0.262,
+     "rough rock face / rubble stone"
+    ],
+    [
+     273,
+     0.135,
+     "rock/cliff"
+    ],
+    [
+     436,
+     0.069,
+     "metal threshold"
+    ]
+   ],
+   "things": 101,
+   "sprites": [
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 98,
+     "repeats": [
+      4,
+      4
+     ],
+     "pal": 7,
+     "over_floor_bodies": 62.79
+    },
+    {
+     "tile": 2332,
+     "type": 11,
+     "type_name": "kMarkerUpStack",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 640,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.38
+    },
+    {
+     "tile": 3056,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      255,
+      255
+     ],
+     "pal": 10,
+     "over_floor_bodies": 53.92
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 226,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      104,
+      104
+     ],
+     "pal": 2,
+     "over_floor_bodies": 1.57
+    },
+    {
+     "tile": 2331,
+     "type": 12,
+     "type_name": "kMarkerLowStack",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 75.47
+    },
+    {
+     "tile": 3444,
+     "type": 401,
+     "type_name": "kThingArmedProxBomb",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.07
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_869\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_869\\frames.png"
+   ]
+  },
+  {
+   "host": 642,
+   "sky": false,
+   "metres": [
+    24.8,
+    28.3,
+    9.8
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     253,
+     0.368,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ],
+    [
+     1011,
+     0.242,
+     ""
+    ],
+    [
+     28,
+     0.112,
+     "wooden wall"
+    ],
+    [
+     0,
+     0.07,
+     ""
+    ],
+    [
+     68,
+     0.041,
+     ""
+    ]
+   ],
+   "things": 98,
+   "sprites": [
+    {
+     "tile": 116,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 19,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2870,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 14,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 13,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 12,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 753,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2870,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 1056,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      16
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 1980,
+     "type": 212,
+     "type_name": "kDudeHand",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 576,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 2,
+     "over_floor_bodies": 1.15
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_642\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_642\\frames.png"
+   ]
+  },
+  {
+   "host": 817,
+   "sky": true,
+   "metres": [
+    57.4,
+    62.6,
+    54.3
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "light",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     2490,
+     0.611,
+     "light marble"
+    ],
+    [
+     273,
+     0.151,
+     "rock/cliff"
+    ],
+    [
+     512,
+     0.136,
+     ""
+    ],
+    [
+     556,
+     0.049,
+     ""
+    ],
+    [
+     566,
+     0.036,
+     ""
+    ]
+   ],
+   "things": 38,
+   "sprites": [
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 32,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 10,
+     "over_floor_bodies": 6.52
+    },
+    {
+     "tile": 2493,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 14,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.78
+    },
+    {
+     "tile": 116,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 20.23
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      88
+     ],
+     "pal": 10,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 648,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.66
+    },
+    {
+     "tile": 1270,
+     "type": 211,
+     "type_name": "kDudeHellHound",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 24.03
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_817\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_817\\frames.png"
+   ]
+  },
+  {
+   "host": 494,
+   "sky": false,
+   "metres": [
+    12.2,
+    30.0,
+    5.7
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     449,
+     0.454,
+     "rough rock face / rubble stone"
+    ],
+    [
+     273,
+     0.181,
+     "rock/cliff"
+    ],
+    [
+     556,
+     0.156,
+     ""
+    ],
+    [
+     244,
+     0.076,
+     ""
+    ],
+    [
+     253,
+     0.059,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ]
+   ],
+   "things": 29,
+   "sprites": [
+    {
+     "tile": 2332,
+     "type": 9,
+     "type_name": "kMarkerUpWater",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 759,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 640,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.82
+    },
+    {
+     "tile": 2544,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      19,
+      19
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 745,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      88,
+      112
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.26
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.42
+    },
+    {
+     "tile": 799,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 1,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 750,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      88,
+      112
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.38
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_494\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_494\\frames.png"
+   ]
+  },
+  {
+   "host": 744,
+   "sky": false,
+   "metres": [
+    19.8,
+    22.4,
+    3.6
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "standing",
+    "levels",
+    "masked",
+    "light",
+    "motion",
+    "machines"
+   ],
+   "sector_types": [
+    616
+   ],
+   "walls": [
+    [
+     449,
+     0.813,
+     "rough rock face / rubble stone"
+    ],
+    [
+     244,
+     0.136,
+     ""
+    ],
+    [
+     253,
+     0.051,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ]
+   ],
+   "things": 36,
+   "sprites": [
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 7,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 626,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.96
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_744\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_744\\frames.png"
+   ]
+  },
+  {
+   "host": 369,
+   "sky": false,
+   "metres": [
+    9.7,
+    24.8,
+    2.9
+   ],
+   "layers": [
+    "second",
+    "trim",
+    "wall_art",
+    "flat_art",
+    "standing",
+    "levels",
+    "light",
+    "machines"
+   ],
+   "sector_types": [],
+   "walls": [
+    [
+     1011,
+     0.431,
+     ""
+    ],
+    [
+     556,
+     0.359,
+     ""
+    ],
+    [
+     253,
+     0.155,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ],
+    [
+     68,
+     0.051,
+     ""
+    ]
+   ],
+   "things": 37,
+   "sprites": [
+    {
+     "tile": 1980,
+     "type": 212,
+     "type_name": "kDudeHand",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.87
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 956,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      16,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1067,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      72
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 1068,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      32
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      35,
+      80
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 1066,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      56
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 621,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_369\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\ideas\\tours\\DWE1M4\\place_369\\frames.png"
+   ]
+  }
+ ]
+}

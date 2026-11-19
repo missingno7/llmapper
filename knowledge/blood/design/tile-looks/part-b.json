@@ -1,0 +1,2586 @@
+{
+ "255": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "metal wall, lightly rusted",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "256": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "wooden plank boarding with gaps, rope-bridge deck",
+  "tags": [
+   "fence",
+   "floor",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "257": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "wooden rope post topped with a skull",
+  "tags": [
+   "bones",
+   "occult",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "258": {
+  "class": "object",
+  "layout": "band",
+  "looks": "horizontal twisted rope strand",
+  "tags": [
+   "cloth",
+   "fence"
+  ],
+  "by": "b"
+ },
+ "259": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "rope strung with two small skulls",
+  "tags": [
+   "bones",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "260": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "red and gold ornate damask pattern",
+  "tags": [
+   "cloth",
+   "rich",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "261": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "small door, like a furnace's",
+  "tags": [
+   "door",
+   "industrial",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "262": {
+  "class": "unclear",
+  "layout": "picture",
+  "looks": "grey metal frame around a dark recess",
+  "tags": [
+   "metal"
+  ],
+  "by": "b"
+ },
+ "263": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "tan quilted padding, diamond tufted",
+  "tags": [
+   "cloth",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "264": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "round stained glass rose window with horned demon",
+  "tags": [
+   "church",
+   "glass",
+   "occult",
+   "window"
+  ],
+  "by": "b"
+ },
+ "265": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "stained glass: grinning skeletal priest figure",
+  "tags": [
+   "church",
+   "glass",
+   "occult",
+   "window"
+  ],
+  "by": "b"
+ },
+ "266": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "glass or metal sheet (mask)",
+  "tags": [
+   "glass",
+   "metal",
+   "window"
+  ],
+  "by": "b"
+ },
+ "267": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "tapestry: horned skull above a chalice",
+  "tags": [
+   "art",
+   "cloth",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "268": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "framed panel: coiled serpent",
+  "tags": [
+   "art",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "269": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "painting: snarling demon face in wooden frame",
+  "tags": [
+   "art",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "270": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dirt/earth ground",
+  "tags": [
+   "cave",
+   "floor",
+   "garden"
+  ],
+  "by": "b"
+ },
+ "271": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "speckled dark red and green rough ground",
+  "tags": [
+   "cave",
+   "floor"
+  ],
+  "by": "b"
+ },
+ "272": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "plain grey concrete",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "273": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey rock/cliff face, streaked",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "274": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rough coarse stone, almost cobblestone",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "b"
+ },
+ "275": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rough coarse grey stone gravel",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "276": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey cobbles, rounded stones",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "b"
+ },
+ "277": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark grey rounded fieldstone wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "278": {
+  "class": "plant",
+  "layout": "tiles",
+  "looks": "dense green leafy foliage or ivy",
+  "tags": [
+   "forest",
+   "garden",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "279": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "blue-grey flagstone rubble wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "280": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rubble masonry, mixed coloured stones",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "281": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "irregular grey stone masonry",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "282": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey metal with grooved hexagonal channels",
+  "tags": [
+   "metal",
+   "tech",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "283": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "red-brown cracked flagstone rock",
+  "tags": [
+   "cave",
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "284": {
+  "class": "furniture",
+  "layout": "sprite",
+  "looks": "red-topped bar stool, blood-streaked chrome leg",
+  "tags": [
+   "bar",
+   "blood",
+   "seat"
+  ],
+  "by": "b"
+ },
+ "285": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown irregular brick-stone wall",
+  "tags": [
+   "brick",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "286": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown crazy paving, dark joints",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "287": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "interlocking red brick paving",
+  "tags": [
+   "brick",
+   "floor",
+   "street"
+  ],
+  "by": "b"
+ },
+ "288": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey rounded stones with rusty joints",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "289": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark stacked slate stone wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "290": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "chequerboard paving, black and grey marble",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "291": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "bloody tiles, chequered marble",
+  "tags": [
+   "blood",
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "292": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "chequered marble tiles with rusty borders",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "293": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "pale grey cracked marble slab",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "294": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "chequered green and grey marble",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "295": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark marble veined with orange",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "296": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grimy tiles, grey squares stained rust",
+  "tags": [
+   "decay",
+   "floor",
+   "morgue",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "297": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey bevelled square tiles",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "298": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rusty green bevelled panel square",
+  "tags": [
+   "decay",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "299": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone diamond panel",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "300": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "carpet, red floral pattern on tan",
+  "tags": [
+   "cloth",
+   "domestic",
+   "rich",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "301": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "carpet, dark red floral pattern",
+  "tags": [
+   "cloth",
+   "domestic",
+   "floor",
+   "rich"
+  ],
+  "by": "b"
+ },
+ "302": {
+  "class": "material",
+  "layout": "band",
+  "looks": "vertical copper pipe",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "b"
+ },
+ "303": {
+  "class": "material",
+  "layout": "band",
+  "looks": "horizontal copper pipe",
+  "tags": [
+   "industrial",
+   "metal",
+   "pipe"
+  ],
+  "by": "b"
+ },
+ "304": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "carpet, brown with green diamond",
+  "tags": [
+   "cloth",
+   "domestic",
+   "floor"
+  ],
+  "by": "b"
+ },
+ "305": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown carpet with fleur-de-lis pattern",
+  "tags": [
+   "cloth",
+   "floor",
+   "rich"
+  ],
+  "by": "b"
+ },
+ "306": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "red carpet with gold border",
+  "tags": [
+   "cloth",
+   "floor",
+   "rich"
+  ],
+  "by": "b"
+ },
+ "307": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "square patterned rug, diamond centre",
+  "tags": [
+   "cloth",
+   "domestic",
+   "floor",
+   "rich"
+  ],
+  "by": "b"
+ },
+ "308": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "oriental runner rug, blue and red",
+  "tags": [
+   "cloth",
+   "domestic",
+   "floor"
+  ],
+  "by": "b"
+ },
+ "309": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "blue bevelled square tiles",
+  "tags": [
+   "floor",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "310": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey recessed stone panel in rusty frame",
+  "tags": [
+   "stone",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "311": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "two stacked steel hatches, morgue body drawers",
+  "tags": [
+   "medical",
+   "metal",
+   "morgue",
+   "storage"
+  ],
+  "by": "b"
+ },
+ "312": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "stacked steel morgue drawers, blood dripping",
+  "tags": [
+   "blood",
+   "metal",
+   "morgue",
+   "storage"
+  ],
+  "by": "b"
+ },
+ "313": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "carved panel: skulls in a ring, wood frame",
+  "tags": [
+   "art",
+   "bones",
+   "occult",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "314": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "carved panel: spider, wood frame",
+  "tags": [
+   "art",
+   "occult",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "315": {
+  "class": "architecture",
+  "layout": "tiles",
+  "looks": "metal door texture, riveted shield panels",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "316": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "embossed metal panel with skull relief",
+  "tags": [
+   "bones",
+   "metal",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "317": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "embossed panel: bomb with lit fuse",
+  "tags": [
+   "metal",
+   "weapon"
+  ],
+  "by": "b"
+ },
+ "318": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "horned grey stone shield emblem",
+  "tags": [
+   "occult",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "320": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "column strip: spine between two skulls",
+  "tags": [
+   "bones",
+   "column",
+   "occult",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "321": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "dark ornate iron lattice strip",
+  "tags": [
+   "column",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "322": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey steel door edge strip, rusty foot",
+  "tags": [
+   "door",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "323": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey steel door strip with keyhole",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "324": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey steel strip with scratched graffiti",
+  "tags": [
+   "door",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "325": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "steel hinged cabinet door with handle",
+  "tags": [
+   "container",
+   "metal",
+   "storage"
+  ],
+  "by": "b"
+ },
+ "326": {
+  "class": "fixture",
+  "layout": "band",
+  "looks": "grey steel panel strip with small controls",
+  "tags": [
+   "metal",
+   "tech",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "327": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark tree bark strip",
+  "tags": [
+   "column",
+   "forest",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "328": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "red cross symbol on grey",
+  "tags": [
+   "medical"
+  ],
+  "by": "b"
+ },
+ "329": {
+  "class": "plant",
+  "layout": "tiles",
+  "looks": "hedge",
+  "tags": [
+   "garden",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "330": {
+  "class": "mask",
+  "layout": "band",
+  "looks": "single iron spear railing bar",
+  "tags": [
+   "fence",
+   "graveyard",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "331": {
+  "class": "mask",
+  "layout": "tiles",
+  "looks": "rusty vertical iron bars",
+  "tags": [
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "b"
+ },
+ "332": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "grate/lattice, iron bar gate",
+  "tags": [
+   "door",
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "b"
+ },
+ "334": {
+  "class": "mask",
+  "layout": "band",
+  "looks": "rusty iron ladder",
+  "tags": [
+   "industrial",
+   "metal",
+   "stairs"
+  ],
+  "by": "b"
+ },
+ "335": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: COMING SOON The Super Spine-Crusher!!!",
+  "tags": [
+   "carnival",
+   "text"
+  ],
+  "by": "b"
+ },
+ "336": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark wooden door with iron hinge bands",
+  "tags": [
+   "door",
+   "metal",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "337": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown rock wall embedded with skulls",
+  "tags": [
+   "bones",
+   "cave",
+   "crypt",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "338": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "bone ladder lashed with rope, skulls",
+  "tags": [
+   "bones",
+   "occult",
+   "stairs"
+  ],
+  "by": "b"
+ },
+ "339": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "small grey stone balustrade with balusters",
+  "tags": [
+   "fence",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "340": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "dark carved stone frieze, scrollwork",
+  "tags": [
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "341": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey carved stone frieze, interlace knots",
+  "tags": [
+   "church",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "342": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "carved stone niche with gargoyle statue",
+  "tags": [
+   "church",
+   "occult",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "343": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey carved stone lintel with inscription band",
+  "tags": [
+   "church",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "344": {
+  "class": "unclear",
+  "layout": "picture",
+  "looks": "grey carved stone block, swirling relief",
+  "tags": [
+   "stone"
+  ],
+  "by": "b"
+ },
+ "345": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey plaster wall, rusty grime at foot",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "346": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "gravestone, carved grey slab; also coffin lid",
+  "tags": [
+   "crypt",
+   "graveyard",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "347": {
+  "class": "fixture",
+  "layout": "tiles",
+  "looks": "iron grille over dark red slats",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "348": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "closed leather book, runes and XII, red gem",
+  "tags": [
+   "library",
+   "occult",
+   "paper"
+  ],
+  "by": "b"
+ },
+ "349": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "open book with handwritten pages",
+  "tags": [
+   "library",
+   "occult",
+   "paper"
+  ],
+  "by": "b"
+ },
+ "350": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "turned wooden balusters with rail",
+  "tags": [
+   "fence",
+   "stairs",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "351": {
+  "class": "architecture",
+  "layout": "sprite",
+  "looks": "single turned wooden baluster with rail end",
+  "tags": [
+   "fence",
+   "stairs",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "352": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "cobblestone, brown rounded",
+  "tags": [
+   "floor",
+   "stone",
+   "street"
+  ],
+  "by": "b"
+ },
+ "353": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: EMERGENCY ROOM",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "b"
+ },
+ "354": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "large tan sandstone blocks",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "355": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey mottled marble",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "356": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "poster: JO-JO!!! IN PERSON!! BOOK SIGNING",
+  "tags": [
+   "paper",
+   "shop",
+   "text"
+  ],
+  "by": "b"
+ },
+ "357": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey fieldstone wall with rusty mortar",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "358": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone, plain grey speckled",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "359": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: WESTBOUND LOCAL",
+  "tags": [
+   "rail",
+   "text"
+  ],
+  "by": "b"
+ },
+ "360": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey ornate carved square stone panel",
+  "tags": [
+   "ceiling",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "361": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grass/turf with dirt patches",
+  "tags": [
+   "floor",
+   "forest",
+   "garden"
+  ],
+  "by": "b"
+ },
+ "362": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark green speckled ground",
+  "tags": [
+   "floor",
+   "garden"
+  ],
+  "by": "b"
+ },
+ "363": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone block masonry, grey",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "364": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey and black ogee lattice pattern",
+  "tags": [
+   "floor",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "365": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone slabs, four squares",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "366": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rusty copper-framed metal panels",
+  "tags": [
+   "decay",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "367": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown cracked crackle pattern",
+  "tags": [
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "368": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone panel with carved face relief",
+  "tags": [
+   "occult",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "369": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "concrete/plaster with light cornice band",
+  "tags": [
+   "stone",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "370": {
+  "class": "creature",
+  "layout": "sprite",
+  "looks": "man with arms spread, hanging or crucified",
+  "tags": [
+   "gore",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "371": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone/slate wall with diamond emblem",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "372": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown wood panel squares",
+  "tags": [
+   "floor",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "373": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown streaked fibrous texture, hay or bark",
+  "tags": [
+   "farm",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "374": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey gravel concrete slab",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "375": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "copper pyramid stud in riveted metal frame",
+  "tags": [
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "376": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rusty vertical metal ribs",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "377": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown fish-scale roof shingles",
+  "tags": [
+   "roof",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "378": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "glowing wood, red-hot charred grain",
+  "tags": [
+   "fire",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "379": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "stone wall, grey streaked",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "380": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "brick-and-stone house facade with a window",
+  "tags": [
+   "brick",
+   "street",
+   "wall",
+   "window"
+  ],
+  "by": "b"
+ },
+ "381": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "facade section, cornice top, brick base (backdrop)",
+  "tags": [
+   "brick",
+   "street",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "382": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "brass wall bell with striker arm",
+  "tags": [
+   "metal",
+   "school"
+  ],
+  "by": "b"
+ },
+ "383": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "red brick wall, white mortar, flaking",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "384": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "brick facade with shuttered window (backdrop)",
+  "tags": [
+   "brick",
+   "street",
+   "window"
+  ],
+  "by": "b"
+ },
+ "385": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rough tan brickwork",
+  "tags": [
+   "brick",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "386": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey weathered facade strip, blue top trim",
+  "tags": [
+   "decay",
+   "street",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "387": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey weathered facade, cellar vent grille at foot",
+  "tags": [
+   "decay",
+   "street",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "388": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey facade edge with blue pilaster strip",
+  "tags": [
+   "street",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "389": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "window with brown wooden shutters open",
+  "tags": [
+   "domestic",
+   "street",
+   "window",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "390": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay wall, brown plaster",
+  "tags": [
+   "poor",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "391": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay wall under tiled roof eave",
+  "tags": [
+   "roof",
+   "street",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "392": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay wall under roof eave, drainpipe",
+  "tags": [
+   "pipe",
+   "roof",
+   "street"
+  ],
+  "by": "b"
+ },
+ "393": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "clay facade with a window",
+  "tags": [
+   "street",
+   "wall",
+   "window"
+  ],
+  "by": "b"
+ },
+ "394": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "clay wall, brown plaster",
+  "tags": [
+   "poor",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "395": {
+  "class": "sign",
+  "layout": "band",
+  "looks": "illegible blue lettering on rusty strip",
+  "tags": [
+   "street",
+   "text"
+  ],
+  "by": "b"
+ },
+ "396": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "brown wooden clapboard facade",
+  "tags": [
+   "street",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "397": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden facade with a window",
+  "tags": [
+   "street",
+   "window",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "398": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden clapboard facade with drainpipe",
+  "tags": [
+   "pipe",
+   "street",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "399": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "wooden clapboard facade with carved bracket",
+  "tags": [
+   "street",
+   "trim",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "400": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "multi-storey building facade with windows (backdrop)",
+  "tags": [
+   "stone",
+   "street",
+   "window"
+  ],
+  "by": "b"
+ },
+ "401": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "multi-storey building facade with windows (backdrop)",
+  "tags": [
+   "stone",
+   "street",
+   "window"
+  ],
+  "by": "b"
+ },
+ "402": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: TEST YOUR STRENGTH PUNCH-O-METER",
+  "tags": [
+   "carnival",
+   "text"
+  ],
+  "by": "b"
+ },
+ "403": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "small barred vent grille in stone",
+  "tags": [
+   "metal",
+   "prison",
+   "sewer"
+  ],
+  "by": "b"
+ },
+ "404": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "red-brown granite, speckled",
+  "tags": [
+   "floor",
+   "rich",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "405": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey stone pilaster edge strip",
+  "tags": [
+   "column",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "406": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stone wall",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "407": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey stone pilaster strip, narrow",
+  "tags": [
+   "column",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "408": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey stone doorway frame with meander border",
+  "tags": [
+   "door",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "409": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey stone wall with meander ornament",
+  "tags": [
+   "stone",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "410": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey stone pilaster with meander band",
+  "tags": [
+   "column",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "411": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "cobblestone wall, mossy grey stones",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "412": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey metal double door, riveted",
+  "tags": [
+   "door",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "413": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "mossy grey stacked stone wall",
+  "tags": [
+   "decay",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "414": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey plaster crumbling over red brick",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "415": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey stones with orange rusty mortar",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "416": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark gravel/asphalt",
+  "tags": [
+   "floor",
+   "street"
+  ],
+  "by": "b"
+ },
+ "417": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "brick wall with crumbling plaster",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "418": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "red brick showing through torn grey plaster",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "419": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "grey plaster wall with large brick hole",
+  "tags": [
+   "brick",
+   "decay",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "420": {
+  "class": "sign",
+  "layout": "sprite",
+  "looks": "sign: NORTHBOUND EXPRESS",
+  "tags": [
+   "rail",
+   "text"
+  ],
+  "by": "b"
+ },
+ "421": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "wall of grey bricks, green tint",
+  "tags": [
+   "brick",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "422": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "green quatrefoil panel with central boss",
+  "tags": [
+   "ceiling",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "423": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Leprosy Ward, blood-dripped",
+  "tags": [
+   "blood",
+   "medical",
+   "text"
+  ],
+  "by": "b"
+ },
+ "424": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey-green brick wall over dark plinth",
+  "tags": [
+   "brick",
+   "trim",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "425": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Scabies Ward",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "b"
+ },
+ "426": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: Syphilis Ward",
+  "tags": [
+   "medical",
+   "text"
+  ],
+  "by": "b"
+ },
+ "427": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey ashlar stone blocks",
+  "tags": [
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "428": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark metal with ringed vertical bars",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "429": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey stone slab, step edge",
+  "tags": [
+   "stairs",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "430": {
+  "class": "material",
+  "layout": "band",
+  "looks": "brown brick column in wooden frame",
+  "tags": [
+   "brick",
+   "column",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "431": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "board: ARRIVALS DEPARTURES, blood-splashed",
+  "tags": [
+   "blood",
+   "rail",
+   "text"
+  ],
+  "by": "b"
+ },
+ "432": {
+  "class": "material",
+  "layout": "band",
+  "looks": "brown brick column with grey bands",
+  "tags": [
+   "brick",
+   "column",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "433": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dirt, brown earth",
+  "tags": [
+   "floor",
+   "garden"
+  ],
+  "by": "b"
+ },
+ "434": {
+  "class": "material",
+  "layout": "band",
+  "looks": "brown marbled panels in wooden frame strip",
+  "tags": [
+   "trim",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "435": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "brown marbled panels in wood frame",
+  "tags": [
+   "rich",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "436": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal threshold, rusty strip",
+  "tags": [
+   "door",
+   "floor",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "437": {
+  "class": "material",
+  "layout": "band",
+  "looks": "metal X-truss strip",
+  "tags": [
+   "industrial",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "438": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "embossed metal floor, diamond plate",
+  "tags": [
+   "floor",
+   "industrial",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "439": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey ribbed metal vent strip",
+  "tags": [
+   "industrial",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "440": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "poster: TONIGHT!!! MONKEY WRESTLING",
+  "tags": [
+   "carnival",
+   "paper",
+   "text"
+  ],
+  "by": "b"
+ },
+ "441": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "grey cobble infill in dark wood frame",
+  "tags": [
+   "stone",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "443": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "two cobble panels in dark wood frame",
+  "tags": [
+   "stone",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "444": {
+  "class": "sign",
+  "layout": "picture",
+  "looks": "sign: YOUR TAX DOLLARS AT WORK, track replacement",
+  "tags": [
+   "rail",
+   "street",
+   "text"
+  ],
+  "by": "b"
+ },
+ "446": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "brown fedora and striped red-green sweater",
+  "tags": [
+   "cloth"
+  ],
+  "by": "b"
+ },
+ "447": {
+  "class": "object",
+  "layout": "sprite",
+  "looks": "white hockey mask and machete",
+  "tags": [
+   "weapon"
+  ],
+  "by": "b"
+ },
+ "448": {
+  "class": "material",
+  "layout": "band",
+  "looks": "thin grey edge strip",
+  "tags": [
+   "trim"
+  ],
+  "by": "b"
+ },
+ "449": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rough rock face / rubble stone",
+  "tags": [
+   "cave",
+   "stone",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "450": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey plaster wall above wooden skirting",
+  "tags": [
+   "trim",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "451": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "grey chain links over red lava",
+  "tags": [
+   "fire",
+   "metal",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "452": {
+  "class": "object",
+  "layout": "picture",
+  "looks": "smaller crate, wooden X-braced",
+  "tags": [
+   "container",
+   "storage",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "453": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "poster: POSSUM GALLO, dead possum",
+  "tags": [
+   "art",
+   "paper",
+   "text"
+  ],
+  "by": "b"
+ },
+ "454": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "ceiling tiles, green panels in wood grid",
+  "tags": [
+   "ceiling",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "455": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "moss-green surface material",
+  "tags": [
+   "ceiling",
+   "floor",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "456": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "crate look, grey X-braced panel",
+  "tags": [
+   "ceiling",
+   "container",
+   "wall",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "457": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "arched wooden plank door in stone",
+  "tags": [
+   "door",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "458": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rock, grey cracked",
+  "tags": [
+   "cave",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "459": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "rock, moss-grown grey",
+  "tags": [
+   "cave",
+   "forest",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "462": {
+  "class": "object",
+  "layout": "picture",
+  "looks": "smaller crate, broken wooden slats",
+  "tags": [
+   "container",
+   "decay",
+   "storage",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "463": {
+  "class": "mask",
+  "layout": "band",
+  "looks": "grate, iron bars with ornate rails",
+  "tags": [
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "b"
+ },
+ "464": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "grate door, iron bars with lock",
+  "tags": [
+   "door",
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "b"
+ },
+ "465": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "grate, iron bars, one bent",
+  "tags": [
+   "fence",
+   "metal",
+   "prison"
+  ],
+  "by": "b"
+ },
+ "466": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "grate, broken, jagged bar stumps",
+  "tags": [
+   "decay",
+   "fence",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "468": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "vertical ceiling light, unlit pendant lamp",
+  "tags": [
+   "ceiling",
+   "light",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "469": {
+  "class": "fixture",
+  "layout": "sprite",
+  "looks": "vertical ceiling light, lit pendant lamp",
+  "tags": [
+   "ceiling",
+   "light",
+   "metal"
+  ],
+  "by": "b"
+ },
+ "470": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "riveted metal plating, rusty",
+  "tags": [
+   "industrial",
+   "metal",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "471": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "carpet, red and tan chevron pattern",
+  "tags": [
+   "cloth",
+   "floor",
+   "rich"
+  ],
+  "by": "b"
+ },
+ "472": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "dark grey panelled pilaster with recess",
+  "tags": [
+   "column",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "473": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "dark grey diamond tiles",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "474": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "large dark grey diamond tiles",
+  "tags": [
+   "floor",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "475": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "gothic arched window, green leaded panes",
+  "tags": [
+   "church",
+   "glass",
+   "stone",
+   "window"
+  ],
+  "by": "b"
+ },
+ "476": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "gothic arched window, green leaded panes",
+  "tags": [
+   "church",
+   "glass",
+   "stone",
+   "window"
+  ],
+  "by": "b"
+ },
+ "477": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "gothic arched window, green panes, column edge",
+  "tags": [
+   "church",
+   "glass",
+   "stone",
+   "window"
+  ],
+  "by": "b"
+ },
+ "478": {
+  "class": "glass",
+  "layout": "picture",
+  "looks": "gothic arched window, green panes, column edge",
+  "tags": [
+   "church",
+   "glass",
+   "stone",
+   "window"
+  ],
+  "by": "b"
+ },
+ "479": {
+  "class": "architecture",
+  "layout": "band",
+  "looks": "stone column texture, grey shaft",
+  "tags": [
+   "column",
+   "stone"
+  ],
+  "by": "b"
+ },
+ "480": {
+  "class": "plant",
+  "layout": "band",
+  "looks": "dark forest of tall tree trunks, backdrop",
+  "tags": [
+   "forest",
+   "wood"
+  ],
+  "by": "b"
+ },
+ "481": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey quatrefoil frame on green panel",
+  "tags": [
+   "ceiling",
+   "stone",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "482": {
+  "class": "decal",
+  "layout": "picture",
+  "looks": "mosaic: serpent coiled around a skull",
+  "tags": [
+   "art",
+   "bones",
+   "occult"
+  ],
+  "by": "b"
+ },
+ "483": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "round spoked iron grate, wheel pattern",
+  "tags": [
+   "fence",
+   "metal",
+   "sewer"
+  ],
+  "by": "b"
+ },
+ "485": {
+  "class": "unclear",
+  "layout": "sprite",
+  "looks": "three small grey knobs or caps",
+  "tags": [
+   "metal"
+  ],
+  "by": "b"
+ },
+ "486": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark rusty metal strip",
+  "tags": [
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "487": {
+  "class": "material",
+  "layout": "band",
+  "looks": "dark metal X-brace strip",
+  "tags": [
+   "industrial",
+   "metal",
+   "trim"
+  ],
+  "by": "b"
+ },
+ "488": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey metal panels with rusty pipe seam",
+  "tags": [
+   "metal",
+   "pipe",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "489": {
+  "class": "material",
+  "layout": "band",
+  "looks": "technical metal cladding, grey panels",
+  "tags": [
+   "metal",
+   "tech",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "490": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey metal panel with recessed rectangle",
+  "tags": [
+   "metal",
+   "tech",
+   "wall"
+  ],
+  "by": "b"
+ },
+ "491": {
+  "class": "material",
+  "layout": "tiles",
+  "looks": "metal plating, grey panels; can read as stone",
+  "tags": [
+   "floor",
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "492": {
+  "class": "material",
+  "layout": "band",
+  "looks": "grey metal panels, rusty seams",
+  "tags": [
+   "decay",
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "493": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "metal wall with junction box and conduit",
+  "tags": [
+   "metal",
+   "tech",
+   "wire"
+  ],
+  "by": "b"
+ },
+ "494": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "grey metal panel with two vents",
+  "tags": [
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "495": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "metal door, grey panelled",
+  "tags": [
+   "door",
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "496": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "technical wall with pipes, rusty cross pipe",
+  "tags": [
+   "metal",
+   "pipe",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "497": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "technical wall with pipes, horizontal pipe",
+  "tags": [
+   "metal",
+   "pipe",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "498": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "technical wall with pipes, vertical pipe run",
+  "tags": [
+   "metal",
+   "pipe",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "499": {
+  "class": "material",
+  "layout": "picture",
+  "looks": "technical wall with pipes, valve box",
+  "tags": [
+   "metal",
+   "pipe",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "500": {
+  "class": "architecture",
+  "layout": "picture",
+  "looks": "technical door, grey panel in frame",
+  "tags": [
+   "door",
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "501": {
+  "class": "fixture",
+  "layout": "picture",
+  "looks": "technical light, round cross-barred lamp",
+  "tags": [
+   "light",
+   "metal",
+   "tech"
+  ],
+  "by": "b"
+ },
+ "502": {
+  "class": "mask",
+  "layout": "picture",
+  "looks": "sewer grate, octagon lattice",
+  "tags": [
+   "fence",
+   "metal",
+   "sewer"
+  ],
+  "by": "b"
+ }
+}

@@ -1,0 +1,323 @@
+{
+ "models": {
+  "gpt-6.2-sol": {
+   "answered": 19,
+   "failed": 0,
+   "controls_named": [
+    4,
+    4
+   ],
+   "ours_named": [
+    7,
+    15
+   ],
+   "seconds_median": 5.8
+  }
+ },
+ "things": {
+  "t_ticket": {
+   "q": "q_01",
+   "ours": true,
+   "expect": "ticket window",
+   "named": {
+    "gpt-6.2-sol": "Brick guardhouse"
+   },
+   "sure": {
+    "gpt-6.2-sol": 3
+   },
+   "odd": {
+    "gpt-6.2-sol": "The small glowing object in the wall recess is hard to identify."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_car_side": {
+   "q": "q_02",
+   "ours": true,
+   "expect": "side of a railway carriage with windows",
+   "named": {
+    "gpt-6.2-sol": "Building facade with recessed windows"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "The opening on the right has a streaked panel that\u2019s hard to identify."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_tunnel": {
+   "q": "q_03",
+   "ours": true,
+   "expect": "railway tunnel mouth",
+   "named": {
+    "gpt-6.2-sol": "Storage room"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "Thick black borders surround the view, and the room is very dark."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_track": {
+   "q": "q_04",
+   "ours": true,
+   "expect": "railway track",
+   "named": {
+    "gpt-6.2-sol": "Railway yard"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The left track appears to end at a blank wall."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "c_engine": {
+   "q": "q_05",
+   "ours": false,
+   "expect": "steam locomotive (E1M4)",
+   "named": {
+    "gpt-6.2-sol": "Steam locomotive"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "The wheels look painted onto a flat wall."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "c_track": {
+   "q": "q_06",
+   "ours": false,
+   "expect": "railway track (E1M2)",
+   "named": {
+    "gpt-6.2-sol": "Brick-Walled Railway Cutting"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The wall signs are too pixelated to read clearly, and the far end is nearly black."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_car_door": {
+   "q": "q_07",
+   "ours": true,
+   "expect": "door of a railway carriage",
+   "named": {
+    "gpt-6.2-sol": "Orange door in an exterior wall"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The sky looks like a mottled red ceiling."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_gate": {
+   "q": "q_08",
+   "ours": true,
+   "expect": "roll-up gate across the track at a tunnel mouth",
+   "named": {
+    "gpt-6.2-sol": "Rail tunnel service gate"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "The rails appear to end flush against the gate."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_engine_side": {
+   "q": "q_09",
+   "ours": true,
+   "expect": "steam locomotive",
+   "named": {
+    "gpt-6.2-sol": "Brick passage beside a railcar"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "Deep shadows make the wheels hard to distinguish."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_engine_nose": {
+   "q": "q_10",
+   "ours": true,
+   "expect": "steam locomotive",
+   "named": {
+    "gpt-6.2-sol": "Steam locomotive at a platform"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "A horned skull decorates the locomotive beneath a fiery red sky."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_goods": {
+   "q": "q_11",
+   "ours": true,
+   "expect": "goods store / warehouse with crates",
+   "named": {
+    "gpt-6.2-sol": "Crate storage room"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "nothing"
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_hall": {
+   "q": "q_12",
+   "ours": true,
+   "expect": "station hall / waiting hall",
+   "named": {
+    "gpt-6.2-sol": "Industrial corridor"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "The far wall and doorways are hard to make out in the shadows."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "c_dock": {
+   "q": "q_13",
+   "ours": false,
+   "expect": "wooden dock (E2M1)",
+   "named": {
+    "gpt-6.2-sol": "Moonlit wooden walkway"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The far doorway is too dark to see into."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_gates": {
+   "q": "q_14",
+   "ours": true,
+   "expect": "iron gates",
+   "named": {
+    "gpt-6.2-sol": "Iron gate overlooking a courtyard"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "Deep shadows obscure details near the base of the gate."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_balcony": {
+   "q": "q_15",
+   "ours": true,
+   "expect": "balcony with a balustrade over the platform",
+   "named": {
+    "gpt-6.2-sol": "Brick-walled industrial walkway"
+   },
+   "sure": {
+    "gpt-6.2-sol": 4
+   },
+   "odd": {
+    "gpt-6.2-sol": "The wooden inset is too dark to tell whether it is a boarded window."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_waiting": {
+   "q": "q_16",
+   "ours": true,
+   "expect": "waiting room",
+   "named": {
+    "gpt-6.2-sol": "Wood-paneled room with grandfather clock"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The small framed picture near the ceiling is too pixelated to identify."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "t_car_inside": {
+   "q": "q_17",
+   "ours": true,
+   "expect": "inside of a railway carriage",
+   "named": {
+    "gpt-6.2-sol": "Wood-paneled hallway"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The carpet pattern is so busy it obscures the floor\u2019s edges."
+   },
+   "hits": 0,
+   "asked": 1
+  },
+  "c_bar": {
+   "q": "q_18",
+   "ours": false,
+   "expect": "bar (E1M2)",
+   "named": {
+    "gpt-6.2-sol": "Bar interior"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "Two nearly identical figures appear to overlap beside the stools."
+   },
+   "hits": 1,
+   "asked": 1
+  },
+  "t_bench": {
+   "q": "q_19",
+   "ours": true,
+   "expect": "bench",
+   "named": {
+    "gpt-6.2-sol": "Wooden Bench in Brick Room"
+   },
+   "sure": {
+    "gpt-6.2-sol": 5
+   },
+   "odd": {
+    "gpt-6.2-sol": "The tiny symbol in the wall frame is hard to make out."
+   },
+   "hits": 1,
+   "asked": 1
+  }
+ }
+}

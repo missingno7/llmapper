@@ -1,0 +1,12 @@
+{
+ "map": "E1M3",
+ "sector": 12,
+ "kind": "mechanism",
+ "title": "Draw the curtain and the booth brightens",
+ "what": "In the bar car each dining booth (a wooden table between two benches) sits against a window with a curtain. The curtain is a thin sliding sector; pushing it slides it open, and the booth's own sectors are linked to it so the booth gets brighter as the night outside is let in. A hidden switch behind the bar sets all four curtains at once. Light follows a visible, physical cause instead of a lamp you cannot see.",
+ "recipe": "Curtain: sector 19, 256 x 2048 (0.45 x 3.6 m) in the car's side wall, walls tile 146 (curtain texture; it squashes as the sector narrows), type 614 kSectorSlideMarked between marker pair (type 3/4 sprites, tile 3997), busy_time 5, rx 134, tx 157 cmd 5 (kCmdLink) so its state is copied to the booth; the curtain's wall faces carry tx 134 cmd 3 push. Booth: sector 12, 2816 x 1024, floor raised 6144 (0.36 bodies), floor tile 34 wood, rx 157, amplitude -8 on floor, ceiling and walls. Bar switch: tile 1070 type 20 tx 159 cmd 2 behind the counter; off-map relay switches (type 20, rx 159, cmd 2) forward to 134-137.",
+ "use": "Saloon: booths along the street windows; drawing a curtain lights the table and shows the street. Church vestry or a shop back room: open the shutter to see by. Works anywhere a window can explain the light.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e1m3_a/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

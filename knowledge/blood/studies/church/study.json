@@ -1,0 +1,6771 @@
+{
+ "slug": "church",
+ "want": "the inside of St Gallow's, a parish church: a tall nave with pews in rows, a low aisle, a raised chancel with an altar, varied stained glass, columns",
+ "date": "2026-11-18",
+ "seeds": [
+  {
+   "seed": "DWE1M4:276",
+   "map": "maps\\blood\\curated\\DWE1M4.MAP",
+   "host": 290,
+   "sectors": [
+    169,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    198,
+    199,
+    200,
+    204,
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    213,
+    214,
+    215,
+    216,
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227,
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240,
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266,
+    267,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    275,
+    276,
+    277,
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    292,
+    293,
+    294,
+    295,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    304,
+    305,
+    359,
+    360,
+    363,
+    371,
+    372,
+    373,
+    374,
+    375,
+    376,
+    377,
+    378,
+    379,
+    380,
+    381,
+    382,
+    383,
+    392,
+    393,
+    394,
+    411,
+    412,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    423
+   ],
+   "metres": [
+    34.7,
+    43.0,
+    40.8
+   ],
+   "area_M": 284.33,
+   "clear_bodies": 22.64,
+   "free_floor_share": 0.15,
+   "shade_spread": 62,
+   "floor": [
+    2490,
+    "light marble"
+   ],
+   "ceiling": [
+    2490,
+    "light marble"
+   ],
+   "walls": [
+    [
+     253,
+     0.328,
+     "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+    ],
+    [
+     1011,
+     0.262,
+     ""
+    ],
+    [
+     2490,
+     0.135,
+     "light marble"
+    ],
+    [
+     556,
+     0.076,
+     ""
+    ],
+    [
+     68,
+     0.04,
+     ""
+    ],
+    [
+     0,
+     0.022,
+     ""
+    ],
+    [
+     22,
+     0.021,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 169,
+     "corners": 12,
+     "size": [
+      512,
+      2080
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      27,
+      248,
+      556
+     ]
+    },
+    {
+     "sector": 180,
+     "corners": 4,
+     "size": [
+      64,
+      4096
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 246,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      246,
+      264,
+      2342
+     ]
+    },
+    {
+     "sector": 181,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 16.18,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 182,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 183,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 16.36,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 184,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 17.15,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273
+     ]
+    },
+    {
+     "sector": 185,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 17.15,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273
+     ]
+    },
+    {
+     "sector": 186,
+     "corners": 6,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273,
+      1011
+     ]
+    },
+    {
+     "sector": 187,
+     "corners": 6,
+     "size": [
+      512,
+      768
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273,
+      1011
+     ]
+    },
+    {
+     "sector": 188,
+     "corners": 4,
+     "size": [
+      128,
+      640
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 189,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 190,
+     "corners": 8,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 16.97,
+     "floor_tile": 34,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      28
+     ]
+    },
+    {
+     "sector": 191,
+     "corners": 4,
+     "size": [
+      448,
+      384
+     ],
+     "rise_bodies": 16.72,
+     "floor_tile": 260,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34
+     ]
+    },
+    {
+     "sector": 192,
+     "corners": 10,
+     "size": [
+      64,
+      4096
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 246,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      246,
+      264,
+      1011
+     ]
+    },
+    {
+     "sector": 193,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.99,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 194,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.99,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      1011
+     ]
+    },
+    {
+     "sector": 195,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      1011
+     ]
+    },
+    {
+     "sector": 196,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      1011
+     ]
+    },
+    {
+     "sector": 197,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.51,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      1011
+     ]
+    },
+    {
+     "sector": 198,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.99,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      1011
+     ]
+    },
+    {
+     "sector": 199,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.99,
+     "floor_tile": 253,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      185,
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 200,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 19.74,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 204,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.12,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 205,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.24,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 206,
+     "corners": 7,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 207,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.12,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 208,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.24,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 209,
+     "corners": 5,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 210,
+     "corners": 4,
+     "size": [
+      256,
+      384
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 211,
+     "corners": 4,
+     "size": [
+      256,
+      384
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      1011
+     ]
+    },
+    {
+     "sector": 212,
+     "corners": 4,
+     "size": [
+      128,
+      640
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 213,
+     "corners": 4,
+     "size": [
+      128,
+      640
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 214,
+     "corners": 4,
+     "size": [
+      768,
+      256
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      1011
+     ]
+    },
+    {
+     "sector": 215,
+     "corners": 4,
+     "size": [
+      640,
+      640
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 216,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 217,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.24,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 218,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.24,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 219,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 16.24,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 220,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 221,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 222,
+     "corners": 4,
+     "size": [
+      640,
+      640
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 223,
+     "corners": 12,
+     "size": [
+      1024,
+      1536
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 224,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.12,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 225,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 16.12,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 226,
+     "corners": 4,
+     "size": [
+      512,
+      640
+     ],
+     "rise_bodies": 16.12,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253
+     ]
+    },
+    {
+     "sector": 227,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      556
+     ]
+    },
+    {
+     "sector": 228,
+     "corners": 4,
+     "size": [
+      768,
+      256
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      556
+     ]
+    },
+    {
+     "sector": 229,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 230,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 231,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 232,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 233,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 234,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 235,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 236,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 237,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 238,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 239,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 240,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 241,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 242,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 243,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 244,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 245,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 246,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 247,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 248,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 249,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 250,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.85,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 251,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 252,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.3,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 259,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.54,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 260,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.36,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 261,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.18,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 262,
+     "corners": 10,
+     "size": [
+      7680,
+      1536
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68
+     ]
+    },
+    {
+     "sector": 263,
+     "corners": 4,
+     "size": [
+      6656,
+      512
+     ],
+     "rise_bodies": 16.97,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68
+     ]
+    },
+    {
+     "sector": 264,
+     "corners": 37,
+     "size": [
+      8704,
+      2560
+     ],
+     "rise_bodies": 16.72,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      68,
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 265,
+     "corners": 6,
+     "size": [
+      1920,
+      128
+     ],
+     "rise_bodies": 16.54,
+     "floor_tile": 620,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34,
+      195,
+      248
+     ]
+    },
+    {
+     "sector": 266,
+     "corners": 4,
+     "size": [
+      1920,
+      128
+     ],
+     "rise_bodies": 16.42,
+     "floor_tile": 620,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      22,
+      34,
+      248
+     ]
+    },
+    {
+     "sector": 267,
+     "corners": 27,
+     "size": [
+      4608,
+      1496
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      22,
+      34,
+      168,
+      195,
+      253
+     ]
+    },
+    {
+     "sector": 268,
+     "corners": 15,
+     "size": [
+      1280,
+      424
+     ],
+     "rise_bodies": 16.78,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      22,
+      34,
+      146,
+      348,
+      349
+     ]
+    },
+    {
+     "sector": 269,
+     "corners": 30,
+     "size": [
+      2432,
+      1032
+     ],
+     "rise_bodies": 17.57,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      22
+     ]
+    },
+    {
+     "sector": 270,
+     "corners": 4,
+     "size": [
+      640,
+      64
+     ],
+     "rise_bodies": 17.27,
+     "floor_tile": 349,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34
+     ]
+    },
+    {
+     "sector": 271,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 18.35,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      2490
+     ]
+    },
+    {
+     "sector": 272,
+     "corners": 16,
+     "size": [
+      8704,
+      2816
+     ],
+     "rise_bodies": 17.45,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 273,
+     "corners": 4,
+     "size": [
+      5120,
+      256
+     ],
+     "rise_bodies": 18.35,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      2490
+     ]
+    },
+    {
+     "sector": 274,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 18.35,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      2490
+     ]
+    },
+    {
+     "sector": 275,
+     "corners": 24,
+     "size": [
+      7424,
+      4096
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      360,
+      1011
+     ]
+    },
+    {
+     "sector": 276,
+     "corners": 43,
+     "size": [
+      9472,
+      5632
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 277,
+     "corners": 40,
+     "size": [
+      8960,
+      2560
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 278,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 279,
+     "corners": 10,
+     "size": [
+      3328,
+      1536
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      251,
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 280,
+     "corners": 22,
+     "size": [
+      9472,
+      2048
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 281,
+     "corners": 30,
+     "size": [
+      9472,
+      2048
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 282,
+     "corners": 12,
+     "size": [
+      2816,
+      2048
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 283,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 284,
+     "corners": 15,
+     "size": [
+      5376,
+      4096
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 285,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      1011
+     ]
+    },
+    {
+     "sector": 286,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 287,
+     "corners": 4,
+     "size": [
+      512,
+      2560
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 288,
+     "corners": 67,
+     "size": [
+      4096,
+      7168
+     ],
+     "rise_bodies": 16.6,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      28,
+      34,
+      260,
+      273,
+      1011
+     ]
+    },
+    {
+     "sector": 289,
+     "corners": 17,
+     "size": [
+      9216,
+      2048
+     ],
+     "rise_bodies": 17.51,
+     "floor_tile": 2490,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      1011,
+      2490
+     ]
+    },
+    {
+     "sector": 292,
+     "corners": 5,
+     "size": [
+      768,
+      384
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 293,
+     "corners": 5,
+     "size": [
+      768,
+      384
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 294,
+     "corners": 5,
+     "size": [
+      768,
+      384
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 295,
+     "corners": 5,
+     "size": [
+      768,
+      384
+     ],
+     "rise_bodies": 17.21,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 297,
+     "corners": 18,
+     "size": [
+      1301,
+      1792
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011
+     ]
+    },
+    {
+     "sector": 298,
+     "corners": 12,
+     "size": [
+      2080,
+      768
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 67,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      27,
+      248,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 299,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 15.82,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 300,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 15.64,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 301,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 15.46,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 302,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 15.28,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 303,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 15.09,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 304,
+     "corners": 10,
+     "size": [
+      1024,
+      1280
+     ],
+     "rise_bodies": 14.73,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 305,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 14.91,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      68,
+      1011
+     ]
+    },
+    {
+     "sector": 359,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 17.51,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 360,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 17.51,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 363,
+     "corners": 27,
+     "size": [
+      1379,
+      1627
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 371,
+     "corners": 5,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.33,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 372,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 17.33,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 373,
+     "corners": 5,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 17.33,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 374,
+     "corners": 10,
+     "size": [
+      614,
+      614
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 375,
+     "corners": 16,
+     "size": [
+      825,
+      825
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 376,
+     "corners": 16,
+     "size": [
+      1119,
+      1119
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 377,
+     "corners": 16,
+     "size": [
+      1355,
+      1354
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 378,
+     "corners": 16,
+     "size": [
+      1541,
+      1472
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    },
+    {
+     "sector": 379,
+     "corners": 5,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 17.33,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 380,
+     "corners": 8,
+     "size": [
+      2304,
+      256
+     ],
+     "rise_bodies": 17.33,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 381,
+     "corners": 5,
+     "size": [
+      1664,
+      256
+     ],
+     "rise_bodies": 18.29,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 382,
+     "corners": 4,
+     "size": [
+      1664,
+      256
+     ],
+     "rise_bodies": 18.29,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 383,
+     "corners": 6,
+     "size": [
+      1792,
+      512
+     ],
+     "rise_bodies": 17.27,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      253
+     ]
+    },
+    {
+     "sector": 392,
+     "corners": 25,
+     "size": [
+      4096,
+      1792
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      28,
+      31,
+      32,
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 393,
+     "corners": 4,
+     "size": [
+      256,
+      384
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      28,
+      556
+     ]
+    },
+    {
+     "sector": 394,
+     "corners": 4,
+     "size": [
+      256,
+      384
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      28,
+      253,
+      556
+     ]
+    },
+    {
+     "sector": 411,
+     "corners": 6,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      556
+     ]
+    },
+    {
+     "sector": 412,
+     "corners": 24,
+     "size": [
+      4096,
+      3584
+     ],
+     "rise_bodies": 16.0,
+     "floor_tile": 251,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      244,
+      556,
+      1011
+     ]
+    },
+    {
+     "sector": 413,
+     "corners": 15,
+     "size": [
+      2176,
+      4096
+     ],
+     "rise_bodies": 16.91,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 414,
+     "corners": 25,
+     "size": [
+      1472,
+      1279
+     ],
+     "rise_bodies": 17.63,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 415,
+     "corners": 60,
+     "size": [
+      1600,
+      1008
+     ],
+     "rise_bodies": 17.63,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      168,
+      253
+     ]
+    },
+    {
+     "sector": 416,
+     "corners": 36,
+     "size": [
+      1472,
+      1727
+     ],
+     "rise_bodies": 17.63,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 417,
+     "corners": 18,
+     "size": [
+      1472,
+      1536
+     ],
+     "rise_bodies": 17.39,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 418,
+     "corners": 14,
+     "size": [
+      1024,
+      1088
+     ],
+     "rise_bodies": 17.39,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 419,
+     "corners": 24,
+     "size": [
+      704,
+      1536
+     ],
+     "rise_bodies": 17.39,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253,
+      1006
+     ]
+    },
+    {
+     "sector": 420,
+     "corners": 11,
+     "size": [
+      1408,
+      492
+     ],
+     "rise_bodies": 17.15,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 421,
+     "corners": 25,
+     "size": [
+      1024,
+      1389
+     ],
+     "rise_bodies": 17.15,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253,
+      1006
+     ]
+    },
+    {
+     "sector": 422,
+     "corners": 22,
+     "size": [
+      2048,
+      1611
+     ],
+     "rise_bodies": 17.15,
+     "floor_tile": 1011,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      253
+     ]
+    },
+    {
+     "sector": 423,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 17.63,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      253
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 43,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 7,
+     "over_floor_bodies": 14.79
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 18,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 13,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 753,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 1013,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.51
+    },
+    {
+     "tile": 1056,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      32,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 598,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2820,
+     "type": 247,
+     "type_name": "kDudeCultistTesla",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 11,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 813,
+     "type": 69,
+     "type_name": "kItemAmmoTommygunFew",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 518,
+     "type": 136,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.16
+    },
+    {
+     "tile": 3385,
+     "type": 230,
+     "type_name": "kDudeCultistTommyProne",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 758,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.53
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 642,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.46
+    },
+    {
+     "tile": 576,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 577,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 226,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      96
+     ],
+     "pal": 2,
+     "over_floor_bodies": 3.5
+    },
+    {
+     "tile": 829,
+     "type": 117,
+     "type_name": "kItemTwoGuns",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 628,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 4.6
+    },
+    {
+     "tile": 2594,
+     "type": 144,
+     "type_name": "kItemArmorSuper",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 521,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 956,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      24,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1009,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 2553,
+     "type": 101,
+     "type_name": "kItemKeyEye",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 697,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      96,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.44
+    },
+    {
+     "tile": 626,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      56,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.85
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\DWE1M4_276\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\DWE1M4_276\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M4:286",
+   "map": "maps\\blood\\campaign\\E3M4.MAP",
+   "host": 286,
+   "sectors": [
+    278,
+    279,
+    280,
+    281,
+    282,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    292,
+    293,
+    294,
+    295,
+    296,
+    297,
+    392,
+    393,
+    396,
+    397
+   ],
+   "metres": [
+    13.9,
+    18.9,
+    10.4
+   ],
+   "area_M": 56.18,
+   "clear_bodies": 5.8,
+   "free_floor_share": 0.64,
+   "shade_spread": 45,
+   "floor": [
+    287,
+    "interlocking paving"
+   ],
+   "ceiling": [
+    432,
+    ""
+   ],
+   "walls": [
+    [
+     130,
+     0.329,
+     "clay wall"
+    ],
+    [
+     512,
+     0.225,
+     ""
+    ],
+    [
+     88,
+     0.137,
+     "wooden column/pilaster with base and capital"
+    ],
+    [
+     245,
+     0.113,
+     ""
+    ],
+    [
+     84,
+     0.047,
+     "wooden paneling / wainscot"
+    ],
+    [
+     497,
+     0.036,
+     "technical wall with pipes"
+    ],
+    [
+     496,
+     0.036,
+     "technical wall with pipes"
+    ],
+    [
+     146,
+     0.035,
+     "curtain texture"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 278,
+     "corners": 27,
+     "size": [
+      7168,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      130,
+      245
+     ]
+    },
+    {
+     "sector": 279,
+     "corners": 27,
+     "size": [
+      7168,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      130,
+      245
+     ]
+    },
+    {
+     "sector": 280,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 281,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 282,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 283,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 284,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 285,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 287,
+     "corners": 21,
+     "size": [
+      7168,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      88,
+      123,
+      130
+     ]
+    },
+    {
+     "sector": 288,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 286,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 289,
+     "corners": 6,
+     "size": [
+      1024,
+      768
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 286,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 290,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 286,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 291,
+     "corners": 6,
+     "size": [
+      1024,
+      768
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 286,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 292,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 355,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      130
+     ]
+    },
+    {
+     "sector": 293,
+     "corners": 4,
+     "size": [
+      384,
+      768
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      146
+     ]
+    },
+    {
+     "sector": 294,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 355,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34,
+      130
+     ]
+    },
+    {
+     "sector": 295,
+     "corners": 25,
+     "size": [
+      2048,
+      6144
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34,
+      84,
+      130,
+      146
+     ]
+    },
+    {
+     "sector": 296,
+     "corners": 6,
+     "size": [
+      1280,
+      2048
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      496,
+      497
+     ]
+    },
+    {
+     "sector": 297,
+     "corners": 12,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      130,
+      140,
+      146,
+      497
+     ]
+    },
+    {
+     "sector": 392,
+     "corners": 4,
+     "size": [
+      896,
+      896
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 512,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 393,
+     "corners": 4,
+     "size": [
+      896,
+      896
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 512,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 396,
+     "corners": 4,
+     "size": [
+      896,
+      896
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 512,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    },
+    {
+     "sector": 397,
+     "corners": 4,
+     "size": [
+      896,
+      896
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 512,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      512
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 10,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1530,
+     "type": 208,
+     "type_name": "kDudeGargoyleStatueFlesh",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1063,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 3566,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 633,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.16
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 3060,
+     "type": 210,
+     "type_name": "kDudePhantasm",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.7
+    },
+    {
+     "tile": 524,
+     "type": 43,
+     "type_name": "kItemWeaponFlarePistol",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 637,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 4.55
+    },
+    {
+     "tile": 1048,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 5.48
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 575,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.82
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\E3M4_286\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\E3M4_286\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M5:104",
+   "map": "maps\\blood\\campaign\\E1M5.MAP",
+   "host": 394,
+   "sectors": [
+    62,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110,
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    180,
+    181,
+    182,
+    183,
+    184,
+    185,
+    186,
+    187,
+    188,
+    189,
+    190,
+    191,
+    192,
+    193,
+    194,
+    195,
+    196,
+    197,
+    220,
+    221,
+    223,
+    240,
+    268,
+    269,
+    270,
+    271,
+    272,
+    273,
+    274,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    374,
+    375,
+    376,
+    394,
+    395,
+    399
+   ],
+   "metres": [
+    45.0,
+    52.2,
+    10.4
+   ],
+   "area_M": 371.6,
+   "clear_bodies": 5.8,
+   "free_floor_share": 0.58,
+   "shade_spread": 56,
+   "floor": [
+    90,
+    "worn large bricks with moss"
+   ],
+   "ceiling": [
+    98,
+    ""
+   ],
+   "walls": [
+    [
+     406,
+     0.438,
+     "grey stone wall"
+    ],
+    [
+     385,
+     0.163,
+     "rough tan brickwork"
+    ],
+    [
+     366,
+     0.047,
+     ""
+    ],
+    [
+     409,
+     0.045,
+     "grey stone wall with meander ornament"
+    ],
+    [
+     93,
+     0.041,
+     ""
+    ],
+    [
+     408,
+     0.037,
+     ""
+    ],
+    [
+     512,
+     0.035,
+     ""
+    ],
+    [
+     22,
+     0.029,
+     ""
+    ],
+    [
+     88,
+     0.023,
+     "wooden column/pilaster with base and capital"
+    ],
+    [
+     146,
+     0.022,
+     "curtain texture"
+    ],
+    [
+     175,
+     0.02,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 62,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 68,
+     "corners": 5,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      405,
+      406
+     ]
+    },
+    {
+     "sector": 69,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 70,
+     "corners": 5,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      405,
+      406
+     ]
+    },
+    {
+     "sector": 71,
+     "corners": 29,
+     "size": [
+      2048,
+      4352
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 72,
+     "corners": 4,
+     "size": [
+      2048,
+      1792
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 504,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      281,
+      406
+     ]
+    },
+    {
+     "sector": 73,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.15,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 74,
+     "corners": 6,
+     "size": [
+      768,
+      1024
+     ],
+     "rise_bodies": 1.33,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 75,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 76,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 77,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 78,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 79,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 81,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 82,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 83,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 84,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 85,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 86,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 98,
+     "corners": 13,
+     "size": [
+      512,
+      10240
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 99,
+     "corners": 8,
+     "size": [
+      1536,
+      10240
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      408
+     ]
+    },
+    {
+     "sector": 100,
+     "corners": 10,
+     "size": [
+      512,
+      10240
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      120,
+      406
+     ]
+    },
+    {
+     "sector": 101,
+     "corners": 9,
+     "size": [
+      1536,
+      10240
+     ],
+     "rise_bodies": 0.91,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      408
+     ]
+    },
+    {
+     "sector": 102,
+     "corners": 19,
+     "size": [
+      4352,
+      8192
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273,
+      366,
+      406,
+      408,
+      409
+     ]
+    },
+    {
+     "sector": 103,
+     "corners": 19,
+     "size": [
+      4352,
+      8192
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273,
+      366,
+      406,
+      408,
+      409
+     ]
+    },
+    {
+     "sector": 104,
+     "corners": 4,
+     "size": [
+      2048,
+      6656
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 422,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      120,
+      307,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 105,
+     "corners": 4,
+     "size": [
+      256,
+      768
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 106,
+     "corners": 4,
+     "size": [
+      256,
+      768
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      409
+     ]
+    },
+    {
+     "sector": 107,
+     "corners": 4,
+     "size": [
+      384,
+      768
+     ],
+     "rise_bodies": 1.33,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      272,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 108,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 1.57,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      409
+     ]
+    },
+    {
+     "sector": 109,
+     "corners": 4,
+     "size": [
+      384,
+      768
+     ],
+     "rise_bodies": 1.33,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      272,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 110,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 1.57,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      409
+     ]
+    },
+    {
+     "sector": 111,
+     "corners": 8,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 112,
+     "corners": 5,
+     "size": [
+      960,
+      192
+     ],
+     "rise_bodies": 2.66,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      375,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 113,
+     "corners": 4,
+     "size": [
+      512,
+      768
+     ],
+     "rise_bodies": 1.33,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 114,
+     "corners": 35,
+     "size": [
+      4007,
+      3584
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 307,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379,
+      409
+     ]
+    },
+    {
+     "sector": 115,
+     "corners": 8,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 272,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 116,
+     "corners": 4,
+     "size": [
+      2048,
+      1536
+     ],
+     "rise_bodies": 0.59,
+     "floor_tile": 422,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      120,
+      406
+     ]
+    },
+    {
+     "sector": 180,
+     "corners": 8,
+     "size": [
+      2560,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      146
+     ]
+    },
+    {
+     "sector": 181,
+     "corners": 21,
+     "size": [
+      4608,
+      4608
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      366,
+      385
+     ]
+    },
+    {
+     "sector": 182,
+     "corners": 12,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      146,
+      385
+     ]
+    },
+    {
+     "sector": 183,
+     "corners": 4,
+     "size": [
+      256,
+      2304
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 184,
+     "corners": 4,
+     "size": [
+      1664,
+      2560
+     ],
+     "rise_bodies": 2.42,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 185,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      20,
+      385
+     ]
+    },
+    {
+     "sector": 186,
+     "corners": 4,
+     "size": [
+      1408,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      179,
+      385
+     ]
+    },
+    {
+     "sector": 187,
+     "corners": 52,
+     "size": [
+      10752,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      185,
+      237,
+      366,
+      406,
+      408
+     ]
+    },
+    {
+     "sector": 188,
+     "corners": 16,
+     "size": [
+      3008,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      22,
+      88,
+      406
+     ]
+    },
+    {
+     "sector": 189,
+     "corners": 4,
+     "size": [
+      1536,
+      4864
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 190,
+     "corners": 16,
+     "size": [
+      3008,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      22,
+      68,
+      88
+     ]
+    },
+    {
+     "sector": 191,
+     "corners": 8,
+     "size": [
+      2560,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      146
+     ]
+    },
+    {
+     "sector": 192,
+     "corners": 12,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      146,
+      175,
+      385
+     ]
+    },
+    {
+     "sector": 193,
+     "corners": 14,
+     "size": [
+      4096,
+      2048
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 194,
+     "corners": 6,
+     "size": [
+      256,
+      6144
+     ],
+     "rise_bodies": 3.14,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      406
+     ]
+    },
+    {
+     "sector": 195,
+     "corners": 6,
+     "size": [
+      256,
+      6144
+     ],
+     "rise_bodies": 3.14,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      10,
+      20
+     ]
+    },
+    {
+     "sector": 196,
+     "corners": 7,
+     "size": [
+      2304,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      175,
+      406
+     ]
+    },
+    {
+     "sector": 197,
+     "corners": 18,
+     "size": [
+      768,
+      3456
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      22,
+      88,
+      115,
+      175,
+      321,
+      406
+     ]
+    },
+    {
+     "sector": 220,
+     "corners": 8,
+     "size": [
+      1024,
+      2048
+     ],
+     "rise_bodies": 2.35,
+     "floor_tile": 273,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      273,
+      406
+     ]
+    },
+    {
+     "sector": 221,
+     "corners": 8,
+     "size": [
+      1280,
+      2304
+     ],
+     "rise_bodies": 3.62,
+     "floor_tile": 110,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      273,
+      406
+     ]
+    },
+    {
+     "sector": 223,
+     "corners": 7,
+     "size": [
+      768,
+      1280
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      273,
+      385
+     ]
+    },
+    {
+     "sector": 240,
+     "corners": 4,
+     "size": [
+      4608,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 422,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88
+     ]
+    },
+    {
+     "sector": 268,
+     "corners": 4,
+     "size": [
+      512,
+      384
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 449,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 269,
+     "corners": 4,
+     "size": [
+      512,
+      384
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 449,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 270,
+     "corners": 4,
+     "size": [
+      512,
+      384
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 449,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 271,
+     "corners": 4,
+     "size": [
+      1536,
+      1408
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 272,
+     "corners": 4,
+     "size": [
+      1536,
+      1408
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 273,
+     "corners": 4,
+     "size": [
+      1536,
+      1408
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 274,
+     "corners": 28,
+     "size": [
+      14336,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      385
+     ]
+    },
+    {
+     "sector": 306,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      366,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 307,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 308,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 309,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      406,
+      409
+     ]
+    },
+    {
+     "sector": 310,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 311,
+     "corners": 20,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      93,
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 312,
+     "corners": 4,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      406
+     ]
+    },
+    {
+     "sector": 313,
+     "corners": 16,
+     "size": [
+      4736,
+      512
+     ],
+     "rise_bodies": 0.78,
+     "floor_tile": 307,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      0,
+      20,
+      175,
+      406
+     ]
+    },
+    {
+     "sector": 354,
+     "corners": 7,
+     "size": [
+      1024,
+      32
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      238,
+      272,
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 355,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 356,
+     "corners": 7,
+     "size": [
+      2048,
+      6656
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 357,
+     "corners": 6,
+     "size": [
+      1536,
+      5120
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      366,
+      406
+     ]
+    },
+    {
+     "sector": 358,
+     "corners": 4,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 359,
+     "corners": 4,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 360,
+     "corners": 6,
+     "size": [
+      1536,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 361,
+     "corners": 6,
+     "size": [
+      1536,
+      1536
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 374,
+     "corners": 6,
+     "size": [
+      1024,
+      768
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406,
+      470
+     ]
+    },
+    {
+     "sector": 375,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      185,
+      406,
+      470
+     ]
+    },
+    {
+     "sector": 376,
+     "corners": 4,
+     "size": [
+      256,
+      6144
+     ],
+     "rise_bodies": 3.14,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      10,
+      20,
+      406
+     ]
+    },
+    {
+     "sector": 395,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      321
+     ]
+    },
+    {
+     "sector": 399,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 30,
+     "repeats": [
+      64,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 16,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 15,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 11,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 164,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 580,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 9,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 577,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 2101,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 9,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 268,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 813,
+     "type": 69,
+     "type_name": "kItemAmmoTommygunFew",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 576,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 9,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1530,
+     "type": 208,
+     "type_name": "kDudeGargoyleStatueFlesh",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 526,
+     "type": 46,
+     "type_name": "kItemWeaponNapalmLauncher",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 907,
+     "type": 400,
+     "type_name": "kThingTNTBarrel",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.33
+    },
+    {
+     "tile": 128,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 9,
+     "over_floor_bodies": 0.92
+    },
+    {
+     "tile": 187,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2332,
+     "type": 9,
+     "type_name": "kMarkerUpWater",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 2915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      112,
+      128
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 574,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.17
+    },
+    {
+     "tile": 2526,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 753,
+     "type": 146,
+     "type_name": "kItemFlagBBase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 760,
+     "type": 121,
+     "type_name": "kItemCrystalBall",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1470,
+     "type": 206,
+     "type_name": "kDudeGargoyleFlesh",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.52
+    },
+    {
+     "tile": 165,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      88,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.15
+    },
+    {
+     "tile": 519,
+     "type": 107,
+     "type_name": "kItemHealthDoctorBag",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2527,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 524,
+     "type": 43,
+     "type_name": "kItemWeaponFlarePistol",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1070,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 2428,
+     "type": 124,
+     "type_name": "kItemReflectShots",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 827,
+     "type": 115,
+     "type_name": "kItemJumpBoots",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1701,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      56,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.84
+    },
+    {
+     "tile": 2594,
+     "type": 144,
+     "type_name": "kItemArmorSuper",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2628,
+     "type": 140,
+     "type_name": "kItemArmorBasic",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.23
+    },
+    {
+     "tile": 1127,
+     "type": 408,
+     "type_name": "kThingWallCrack",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 537,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 839,
+     "type": 125,
+     "type_name": "kItemBeastVision",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 226,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.27
+    },
+    {
+     "tile": 360,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2586,
+     "type": 141,
+     "type_name": "kItemArmorBody",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2525,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\E1M5_104\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\E1M5_104\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "0": {
+   "tile": 0,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-0.png"
+  },
+  "15": {
+   "tile": 15,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-15.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-20.png"
+  },
+  "22": {
+   "tile": 22,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-22.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-34.png"
+  },
+  "67": {
+   "tile": 67,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-67.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-68.png"
+  },
+  "84": {
+   "tile": 84,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-84.png"
+  },
+  "88": {
+   "tile": 88,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-88.png"
+  },
+  "90": {
+   "tile": 90,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-90.png"
+  },
+  "93": {
+   "tile": 93,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-93.png"
+  },
+  "98": {
+   "tile": 98,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-98.png"
+  },
+  "110": {
+   "tile": 110,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-110.png"
+  },
+  "120": {
+   "tile": 120,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-120.png"
+  },
+  "130": {
+   "tile": 130,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-130.png"
+  },
+  "146": {
+   "tile": 146,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-146.png"
+  },
+  "164": {
+   "tile": 164,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.194,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-164.png"
+  },
+  "175": {
+   "tile": 175,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-175.png"
+  },
+  "200": {
+   "tile": 200,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-200.png"
+  },
+  "245": {
+   "tile": 245,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-245.png"
+  },
+  "246": {
+   "tile": 246,
+   "pixels": [
+    8,
+    32
+   ],
+   "world_at_repeat_8": [
+    128,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-246.png"
+  },
+  "251": {
+   "tile": 251,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-251.png"
+  },
+  "253": {
+   "tile": 253,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-253.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-255.png"
+  },
+  "260": {
+   "tile": 260,
+   "pixels": [
+    128,
+    64
+   ],
+   "world_at_repeat_8": [
+    2048,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-260.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-270.png"
+  },
+  "272": {
+   "tile": 272,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-272.png"
+  },
+  "273": {
+   "tile": 273,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-273.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-281.png"
+  },
+  "286": {
+   "tile": 286,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-286.png"
+  },
+  "287": {
+   "tile": 287,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-287.png"
+  },
+  "294": {
+   "tile": 294,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-294.png"
+  },
+  "307": {
+   "tile": 307,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-307.png"
+  },
+  "349": {
+   "tile": 349,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.594,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-349.png"
+  },
+  "355": {
+   "tile": 355,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-355.png"
+  },
+  "366": {
+   "tile": 366,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-366.png"
+  },
+  "385": {
+   "tile": 385,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-385.png"
+  },
+  "406": {
+   "tile": 406,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-406.png"
+  },
+  "408": {
+   "tile": 408,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-408.png"
+  },
+  "409": {
+   "tile": 409,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-409.png"
+  },
+  "422": {
+   "tile": 422,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-422.png"
+  },
+  "432": {
+   "tile": 432,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-432.png"
+  },
+  "449": {
+   "tile": 449,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-449.png"
+  },
+  "496": {
+   "tile": 496,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-496.png"
+  },
+  "497": {
+   "tile": 497,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-497.png"
+  },
+  "504": {
+   "tile": 504,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-504.png"
+  },
+  "512": {
+   "tile": 512,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-512.png"
+  },
+  "524": {
+   "tile": 524,
+   "pixels": [
+    45,
+    20
+   ],
+   "world_at_repeat_8": [
+    720,
+    5120
+   ],
+   "see_through_share": 0.618,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-524.png"
+  },
+  "556": {
+   "tile": 556,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-556.png"
+  },
+  "580": {
+   "tile": 580,
+   "pixels": [
+    30,
+    81
+   ],
+   "world_at_repeat_8": [
+    480,
+    20736
+   ],
+   "see_through_share": 0.734,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-580.png"
+  },
+  "620": {
+   "tile": 620,
+   "pixels": [
+    128,
+    8
+   ],
+   "world_at_repeat_8": [
+    2048,
+    2048
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-620.png"
+  },
+  "624": {
+   "tile": 624,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.197,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-624.png"
+  },
+  "633": {
+   "tile": 633,
+   "pixels": [
+    57,
+    55
+   ],
+   "world_at_repeat_8": [
+    912,
+    14080
+   ],
+   "see_through_share": 0.424,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-633.png"
+  },
+  "753": {
+   "tile": 753,
+   "pixels": [
+    11,
+    64
+   ],
+   "world_at_repeat_8": [
+    176,
+    16384
+   ],
+   "see_through_share": 0.5,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-753.png"
+  },
+  "908": {
+   "tile": 908,
+   "pixels": [
+    42,
+    80
+   ],
+   "world_at_repeat_8": [
+    672,
+    20480
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-908.png"
+  },
+  "938": {
+   "tile": 938,
+   "pixels": [
+    9,
+    28
+   ],
+   "world_at_repeat_8": [
+    144,
+    7168
+   ],
+   "see_through_share": 0.472,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-938.png"
+  },
+  "1011": {
+   "tile": 1011,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1011.png"
+  },
+  "1013": {
+   "tile": 1013,
+   "pixels": [
+    44,
+    67
+   ],
+   "world_at_repeat_8": [
+    704,
+    17152
+   ],
+   "see_through_share": 0.598,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1013.png"
+  },
+  "1056": {
+   "tile": 1056,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.67,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1056.png"
+  },
+  "1063": {
+   "tile": 1063,
+   "pixels": [
+    52,
+    61
+   ],
+   "world_at_repeat_8": [
+    832,
+    15616
+   ],
+   "see_through_share": 0.411,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1063.png"
+  },
+  "1130": {
+   "tile": 1130,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1130.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1170.png"
+  },
+  "1530": {
+   "tile": 1530,
+   "pixels": [
+    61,
+    122
+   ],
+   "world_at_repeat_8": [
+    976,
+    31232
+   ],
+   "see_through_share": 0.339,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-1530.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-2169.png"
+  },
+  "2490": {
+   "tile": 2490,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-2490.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-2825.png"
+  },
+  "3060": {
+   "tile": 3060,
+   "pixels": [
+    118,
+    147
+   ],
+   "world_at_repeat_8": [
+    1888,
+    37632
+   ],
+   "see_through_share": 0.535,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-3060.png"
+  },
+  "3566": {
+   "tile": 3566,
+   "pixels": [
+    59,
+    69
+   ],
+   "world_at_repeat_8": [
+    944,
+    17664
+   ],
+   "see_through_share": 0.376,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\church\\tiles\\tile-3566.png"
+  }
+ }
+}

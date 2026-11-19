@@ -1,0 +1,4 @@
+NAME: Funeral parlor with memorial wreath sign
+SURE: 3
+FAULT: no
+WHAT: nothing

@@ -1,0 +1,4 @@
+NAME: Kitchen with stove and hanging pans
+SURE: 4
+FAULT: no
+WHAT: nothing

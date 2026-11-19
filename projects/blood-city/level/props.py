@@ -374,7 +374,17 @@ def safe_wall_fraction(layout, region_id: str, a1, a2, preferred: float,
 def stand_on_floor(layout, placement_id: str, region_id: str,
                    local=(0.5, 0.5), tile: int = STREET_LAMP,
                    **overrides) -> str:
-    """Stand a prop on the floor at its measured height."""
+    """Stand a prop on the floor at its measured height.
+
+    Refuses a tile the campaign HANGS (its catalogued cstat is wall
+    aligned): three newspapers "stood" in the station this way hung a third
+    of a body up in the middle of the hall, the platform and the waiting
+    room, facing nothing.
+    """
+    if int(fields(tile, **overrides)["cstat"]) & 48 == 16:
+        raise ValueError(
+            f"{placement_id}: tile {tile} is wall-aligned in the campaign; "
+            f"hang it with wallplane.sprite, do not stand it on a floor")
     return layout.place_on_floor(
         placement_id, region_id, local=local,
         height_player_heights=height_of(tile),

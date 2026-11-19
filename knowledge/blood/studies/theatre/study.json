@@ -1,0 +1,2151 @@
+{
+ "slug": "theatre",
+ "want": "the Aldermack theatre of Gravesend: a raked auditorium of seats facing a raised stage behind a proscenium curtain that slides open, with a backstage and a foyer with a ticket booth",
+ "date": "2026-11-18",
+ "seeds": [
+  {
+   "seed": "maps/blood/community/SCHOOL_.map:154!",
+   "map": "maps\\blood\\community\\SCHOOL_.map",
+   "host": 154,
+   "sectors": [
+    154,
+    155,
+    156,
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163
+   ],
+   "metres": [
+    20.6,
+    22.2,
+    12.3
+   ],
+   "area_M": 144.61,
+   "clear_bodies": 6.82,
+   "free_floor_share": 0.99,
+   "shade_spread": 1,
+   "floor": [
+    34,
+    "wood, usable e.g. for counter/cabinet sides"
+   ],
+   "ceiling": [
+    272,
+    ""
+   ],
+   "walls": [
+    [
+     272,
+     0.962,
+     ""
+    ],
+    [
+     455,
+     0.035,
+     "moss-green surface material (also ceilings/walls)"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 155,
+     "corners": 4,
+     "size": [
+      640,
+      512
+     ],
+     "rise_bodies": -0.42,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      105,
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 156,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 105,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 157,
+     "corners": 4,
+     "size": [
+      640,
+      512
+     ],
+     "rise_bodies": -0.18,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 158,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 105,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 159,
+     "corners": 4,
+     "size": [
+      640,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 160,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 105,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      146,
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 161,
+     "corners": 4,
+     "size": [
+      1280,
+      512
+     ],
+     "rise_bodies": -0.42,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      105,
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 162,
+     "corners": 4,
+     "size": [
+      1280,
+      512
+     ],
+     "rise_bodies": -0.18,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272,
+      455
+     ]
+    },
+    {
+     "sector": 163,
+     "corners": 4,
+     "size": [
+      1280,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 455,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 649,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 48,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.05
+    },
+    {
+     "tile": 3798,
+     "type": 245,
+     "type_name": "kDudeInnocent",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.82
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.55
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_SCHOOL_.map_154\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_SCHOOL_.map_154\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/SCHOOL_.map:244!",
+   "map": "maps\\blood\\community\\SCHOOL_.map",
+   "host": 244,
+   "sectors": [
+    178,
+    179,
+    180,
+    181,
+    182,
+    191,
+    192,
+    244,
+    245
+   ],
+   "metres": [
+    12.4,
+    21.0,
+    6.4
+   ],
+   "area_M": 69.05,
+   "clear_bodies": 3.56,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    15,
+    "planks"
+   ],
+   "ceiling": [
+    272,
+    ""
+   ],
+   "walls": [
+    [
+     272,
+     1.0,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 178,
+     "corners": 4,
+     "size": [
+      1024,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 179,
+     "corners": 4,
+     "size": [
+      2304,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 180,
+     "corners": 4,
+     "size": [
+      1024,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 181,
+     "corners": 4,
+     "size": [
+      5376,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 182,
+     "corners": 4,
+     "size": [
+      2304,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 191,
+     "corners": 4,
+     "size": [
+      1152,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      30,
+      272
+     ]
+    },
+    {
+     "sector": 192,
+     "corners": 4,
+     "size": [
+      1152,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 15,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    },
+    {
+     "sector": 245,
+     "corners": 4,
+     "size": [
+      512,
+      768
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 504,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      272
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2332,
+     "type": 11,
+     "type_name": "kMarkerUpStack",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_SCHOOL_.map_244\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_SCHOOL_.map_244\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/FORDTHEA.MAP:252",
+   "map": "maps\\blood\\community\\FORDTHEA.MAP",
+   "host": 252,
+   "sectors": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    61,
+    62,
+    75,
+    76,
+    79,
+    80,
+    83,
+    84,
+    85,
+    86,
+    89,
+    90,
+    91,
+    92,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    229,
+    233,
+    234,
+    250,
+    251,
+    252
+   ],
+   "metres": [
+    15.6,
+    22.8,
+    11.3
+   ],
+   "area_M": 62.4,
+   "clear_bodies": 6.28,
+   "free_floor_share": 0.74,
+   "shade_spread": 16,
+   "floor": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     180,
+     0.627,
+     "brick wall"
+    ],
+    [
+     179,
+     0.114,
+     "wooden panel"
+    ],
+    [
+     0,
+     0.1,
+     ""
+    ],
+    [
+     2047,
+     0.086,
+     ""
+    ],
+    [
+     255,
+     0.025,
+     "metal wall, lightly rusted"
+    ],
+    [
+     381,
+     0.024,
+     "facade section, cornice top, brick base (backdrop)"
+    ],
+    [
+     254,
+     0.024,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 1,
+     "corners": 6,
+     "size": [
+      1536,
+      384
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 2,
+     "corners": 3,
+     "size": [
+      1792,
+      128
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 0,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      381
+     ]
+    },
+    {
+     "sector": 3,
+     "corners": 4,
+     "size": [
+      1024,
+      128
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      380,
+      381
+     ]
+    },
+    {
+     "sector": 4,
+     "corners": 5,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 5,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": -0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 6,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": -0.12,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 7,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 8,
+     "corners": 4,
+     "size": [
+      512,
+      32
+     ],
+     "rise_bodies": 2.9,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      255
+     ]
+    },
+    {
+     "sector": 9,
+     "corners": 8,
+     "size": [
+      2560,
+      160
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 10,
+     "corners": 3,
+     "size": [
+      3072,
+      640
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 11,
+     "corners": 3,
+     "size": [
+      1536,
+      1024
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 12,
+     "corners": 3,
+     "size": [
+      1536,
+      1024
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 13,
+     "corners": 3,
+     "size": [
+      1536,
+      384
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 14,
+     "corners": 3,
+     "size": [
+      1280,
+      1216
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 15,
+     "corners": 3,
+     "size": [
+      2560,
+      640
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 16,
+     "corners": 3,
+     "size": [
+      1280,
+      1216
+     ],
+     "rise_bodies": 2.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 17,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      179
+     ]
+    },
+    {
+     "sector": 18,
+     "corners": 4,
+     "size": [
+      3072,
+      128
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 61,
+     "corners": 3,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 62,
+     "corners": 4,
+     "size": [
+      1536,
+      1024
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 75,
+     "corners": 4,
+     "size": [
+      512,
+      32
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 76,
+     "corners": 4,
+     "size": [
+      511,
+      32
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 79,
+     "corners": 6,
+     "size": [
+      1536,
+      1280
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 4,
+     "size": [
+      1536,
+      1280
+     ],
+     "rise_bodies": -0.06,
+     "floor_tile": 255,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 83,
+     "corners": 4,
+     "size": [
+      512,
+      64
+     ],
+     "rise_bodies": 1.57,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 84,
+     "corners": 4,
+     "size": [
+      512,
+      64
+     ],
+     "rise_bodies": 1.57,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 85,
+     "corners": 3,
+     "size": [
+      768,
+      1024
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 86,
+     "corners": 3,
+     "size": [
+      768,
+      1024
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 89,
+     "corners": 4,
+     "size": [
+      3072,
+      128
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 90,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      179
+     ]
+    },
+    {
+     "sector": 91,
+     "corners": 4,
+     "size": [
+      3072,
+      128
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 92,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 179,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      179
+     ]
+    },
+    {
+     "sector": 100,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 101,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 102,
+     "corners": 6,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 103,
+     "corners": 4,
+     "size": [
+      1024,
+      64
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 104,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 105,
+     "corners": 14,
+     "size": [
+      1024,
+      576
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180
+     ]
+    },
+    {
+     "sector": 229,
+     "corners": 7,
+     "size": [
+      1664,
+      1280
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 233,
+     "corners": 6,
+     "size": [
+      1024,
+      1280
+     ],
+     "rise_bodies": 0.18,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 234,
+     "corners": 6,
+     "size": [
+      1024,
+      1280
+     ],
+     "rise_bodies": 0.18,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      180,
+      255
+     ]
+    },
+    {
+     "sector": 250,
+     "corners": 5,
+     "size": [
+      6400,
+      256
+     ],
+     "rise_bodies": 1.22,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      180,
+      255,
+      2047
+     ]
+    },
+    {
+     "sector": 251,
+     "corners": 5,
+     "size": [
+      6400,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      255
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    },
+    {
+     "tile": 1470,
+     "type": 206,
+     "type_name": "kDudeGargoyleFlesh",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.83
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.44
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 558,
+     "type": 42,
+     "type_name": "kItemWeaponTommygun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2586,
+     "type": 141,
+     "type_name": "kItemArmorBody",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_FORDTHEA.MAP_252\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\maps_blood_community_FORDTHEA.MAP_252\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M1:122!",
+   "map": "maps\\blood\\campaign\\E1M1.MAP",
+   "host": 122,
+   "sectors": [
+    47,
+    48,
+    52,
+    53,
+    122,
+    125
+   ],
+   "metres": [
+    14.1,
+    18.3,
+    10.4
+   ],
+   "area_M": 64.51,
+   "clear_bodies": 5.8,
+   "free_floor_share": 0.97,
+   "shade_spread": 16,
+   "floor": [
+    1008,
+    "tablecloth, carpet"
+   ],
+   "ceiling": [
+    390,
+    "clay wall"
+   ],
+   "walls": [
+    [
+     109,
+     0.63,
+     "plaster wall with top beam and carved base"
+    ],
+    [
+     20,
+     0.222,
+     "wood"
+    ],
+    [
+     88,
+     0.092,
+     "wooden column/pilaster with base and capital"
+    ],
+    [
+     84,
+     0.028,
+     "wooden paneling / wainscot"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 47,
+     "corners": 4,
+     "size": [
+      4096,
+      256
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      90
+     ]
+    },
+    {
+     "sector": 48,
+     "corners": 4,
+     "size": [
+      4096,
+      256
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      90
+     ]
+    },
+    {
+     "sector": 52,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": -0.12,
+     "floor_tile": 1008,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      6,
+      88,
+      90
+     ]
+    },
+    {
+     "sector": 53,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": -0.12,
+     "floor_tile": 1008,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      6,
+      88,
+      90
+     ]
+    },
+    {
+     "sector": 125,
+     "corners": 12,
+     "size": [
+      128,
+      4352
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1008,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      109,
+      146
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 537,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 14,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 1009,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.32
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 575,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.61
+    },
+    {
+     "tile": 2526,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 570,
+     "type": 30,
+     "type_name": "kDecorationTorch",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.21
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 617,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 633,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      128,
+      128
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.72
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\E1M1_122\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\E1M1_122\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "0": {
+   "tile": 0,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-0.png"
+  },
+  "15": {
+   "tile": 15,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-15.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-20.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-34.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-68.png"
+  },
+  "84": {
+   "tile": 84,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-84.png"
+  },
+  "88": {
+   "tile": 88,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-88.png"
+  },
+  "105": {
+   "tile": 105,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-105.png"
+  },
+  "109": {
+   "tile": 109,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-109.png"
+  },
+  "179": {
+   "tile": 179,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-179.png"
+  },
+  "180": {
+   "tile": 180,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-180.png"
+  },
+  "254": {
+   "tile": 254,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-254.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-255.png"
+  },
+  "272": {
+   "tile": 272,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-272.png"
+  },
+  "381": {
+   "tile": 381,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-381.png"
+  },
+  "390": {
+   "tile": 390,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-390.png"
+  },
+  "455": {
+   "tile": 455,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-455.png"
+  },
+  "504": {
+   "tile": 504,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-504.png"
+  },
+  "537": {
+   "tile": 537,
+   "pixels": [
+    24,
+    50
+   ],
+   "world_at_repeat_8": [
+    384,
+    12800
+   ],
+   "see_through_share": 0.214,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-537.png"
+  },
+  "558": {
+   "tile": 558,
+   "pixels": [
+    92,
+    24
+   ],
+   "world_at_repeat_8": [
+    1472,
+    6144
+   ],
+   "see_through_share": 0.578,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-558.png"
+  },
+  "559": {
+   "tile": 559,
+   "pixels": [
+    61,
+    14
+   ],
+   "world_at_repeat_8": [
+    976,
+    3584
+   ],
+   "see_through_share": 0.492,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-559.png"
+  },
+  "570": {
+   "tile": 570,
+   "pixels": [
+    15,
+    23
+   ],
+   "world_at_repeat_8": [
+    240,
+    5888
+   ],
+   "see_through_share": 0.545,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-570.png"
+  },
+  "575": {
+   "tile": 575,
+   "pixels": [
+    70,
+    108
+   ],
+   "world_at_repeat_8": [
+    1120,
+    27648
+   ],
+   "see_through_share": 0.603,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-575.png"
+  },
+  "649": {
+   "tile": 649,
+   "pixels": [
+    45,
+    32
+   ],
+   "world_at_repeat_8": [
+    720,
+    8192
+   ],
+   "see_through_share": 0.523,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-649.png"
+  },
+  "812": {
+   "tile": 812,
+   "pixels": [
+    36,
+    26
+   ],
+   "world_at_repeat_8": [
+    576,
+    6656
+   ],
+   "see_through_share": 0.113,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-812.png"
+  },
+  "817": {
+   "tile": 817,
+   "pixels": [
+    23,
+    23
+   ],
+   "world_at_repeat_8": [
+    368,
+    5888
+   ],
+   "see_through_share": 0.204,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-817.png"
+  },
+  "1008": {
+   "tile": 1008,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-1008.png"
+  },
+  "1009": {
+   "tile": 1009,
+   "pixels": [
+    38,
+    41
+   ],
+   "world_at_repeat_8": [
+    608,
+    10496
+   ],
+   "see_through_share": 0.322,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-1009.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-1170.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-1370.png"
+  },
+  "1470": {
+   "tile": 1470,
+   "pixels": [
+    167,
+    115
+   ],
+   "world_at_repeat_8": [
+    2672,
+    29440
+   ],
+   "see_through_share": 0.642,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-1470.png"
+  },
+  "2047": {
+   "tile": 2047,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2047.png"
+  },
+  "2332": {
+   "tile": 2332,
+   "pixels": [
+    9,
+    13
+   ],
+   "world_at_repeat_8": [
+    144,
+    3328
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2332.png"
+  },
+  "2526": {
+   "tile": 2526,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2526.png"
+  },
+  "2586": {
+   "tile": 2586,
+   "pixels": [
+    29,
+    35
+   ],
+   "world_at_repeat_8": [
+    464,
+    8960
+   ],
+   "see_through_share": 0.217,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2586.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-2825.png"
+  },
+  "3054": {
+   "tile": 3054,
+   "pixels": [
+    61,
+    120
+   ],
+   "world_at_repeat_8": [
+    976,
+    30720
+   ],
+   "see_through_share": 0.444,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-3054.png"
+  },
+  "3798": {
+   "tile": 3798,
+   "pixels": [
+    60,
+    107
+   ],
+   "world_at_repeat_8": [
+    960,
+    27392
+   ],
+   "see_through_share": 0.589,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\theatre\\tiles\\tile-3798.png"
+  }
+ }
+}

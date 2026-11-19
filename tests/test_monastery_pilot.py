@@ -23,9 +23,9 @@ def _load(iteration: str):
 
 @unittest.skipUnless(LEVEL_DIR.is_dir(), "pilot project is not present")
 class MonasteryPilotTests(unittest.TestCase):
-    """Every preserved iteration must stay compilable, valid, and deterministic."""
+    """Current early candidates v0-v3 must remain valid and deterministic; archive bindings cover all six historical versions."""
 
-    def test_every_iteration_compiles_deterministically_and_passes_hard_gates(self):
+    def test_current_early_candidates_compile_deterministically_and_pass_hard_gates(self):
         for iteration in ITERATIONS:
             with self.subTest(iteration=iteration):
                 module = _load(iteration)
@@ -62,31 +62,19 @@ class MonasteryPilotTests(unittest.TestCase):
     def test_reviews_reference_only_evidence_that_exists(self):
         import json
 
-        from bloodmap.authoring_loop import attach_review, review_from_dict
+        from bloodmap.authoring_loop import AuthoringIteration, attach_review, review_from_dict
 
-        # Later reviews cite corpus-relative scale and shape findings, which only
-        # exist when the mined corpora are present.  Those come from the local
-        # commercial map set, so this check follows the repo's usual policy and
-        # skips rather than pretending the reviews were verified.
-        spatial = Path("work/blood.spatial-corpus.json")
-        shape = Path("work/blood.shape-corpus.json")
-        if not (spatial.is_file() and shape.is_file()):
-            self.skipTest("mined spatial/shape corpora are not available locally")
-
-        for iteration in ITERATIONS:
-            review_path = Path("projects/reasoned-authoring-v1/design/reviews") / f"{iteration}.json"
-            if not review_path.is_file():
-                continue
+        # Reviews belong to saved packets, never to a current recompilation.
+        for iteration in ("v0", "v1", "v2", "v3", "v4", "v5"):
             with self.subTest(iteration=iteration):
-                packet = evaluate_candidate(
-                    _load(iteration).candidate(),
-                    art_directory=Path("reference/blood") if Path("reference/blood").is_dir() else None,
-                    spatial_corpus_path=spatial,
-                    shape_corpus_path=shape,
-                )
-                review = review_from_dict(json.loads(review_path.read_text(encoding="utf-8")))
+                root = Path("projects/reasoned-authoring-v1")
+                packet = AuthoringIteration.from_dict(json.loads(
+                    (root / "reports" / iteration / "iteration.json").read_text(encoding="utf-8")))
+                review = review_from_dict(json.loads(
+                    (root / "design/reviews" / f"{iteration}.json").read_text(encoding="utf-8")))
                 attach_review(packet, review)
                 self.assertTrue(packet.review["claims"])
+
 
 
 if __name__ == "__main__":

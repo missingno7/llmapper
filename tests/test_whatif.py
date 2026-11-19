@@ -280,7 +280,10 @@ class PledgeRoomTests(unittest.TestCase):
         vault = self.tags["vault"][0]
         bars = [(index, wall.fields) for index, wall in enumerate(self.disk.walls)
                 if int(wall.fields.get("over_picnum", 0)) == 463
-                and int(wall.fields["cstat"]) & 16]
+                and int(wall.fields["cstat"]) & 16
+                #: (the city has barred windows too, since 2026-11-18)
+                and vault in (self.owner[index],
+                              int(wall.fields["next_sector"]))]
         self.assertEqual(len(bars), 2)             # the two sides of one wall
         self.assertIn(vault, {self.owner[i] for i, _f in bars}
                       | {int(f["next_sector"]) for _i, f in bars})

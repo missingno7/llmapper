@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/crypt/E3M8_456/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/crypt/E3M8_456",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 3964,
+   "y": 13162,
+   "z": 43104,
+   "angle": 900,
+   "horiz": 100,
+   "sector": 511,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 3964,
+   "y": 18753,
+   "z": 43104,
+   "angle": 1126,
+   "horiz": 100,
+   "sector": 511,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 3964,
+   "y": 14360,
+   "z": 43104,
+   "angle": 945,
+   "horiz": 100,
+   "sector": 511,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 3964,
+   "y": 17555,
+   "z": 43104,
+   "angle": 1078,
+   "horiz": 100,
+   "sector": 511,
+   "screenshot": true
+  }
+ ]
+}

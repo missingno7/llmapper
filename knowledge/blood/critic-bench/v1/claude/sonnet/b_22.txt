@@ -1,0 +1,4 @@
+NAME: Stone alley with furnace and gargoyle
+SURE: 3
+FAULT: no
+WHAT: nothing

@@ -1,0 +1,612 @@
+{
+ "gpt-6-luna#1": {
+  "q_01": {
+   "name": "Moonlit industrial wooden walkway",
+   "sure": 4,
+   "why": "A narrow plank path runs beside a dark metal building under a full moon.",
+   "odd": "Text on the small sign is unreadable.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Industrial station interior",
+   "sure": 3,
+   "why": "Dark brick room with metal support beams, stone floor, and windows overlooking greenery.",
+   "odd": "Pixelated textures and dim lighting obscure small details.",
+   "seconds": 5.3,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Industrial brick alley",
+   "sure": 4,
+   "why": "A narrow passage runs between a brick wall and bulky metal machinery, with a barrel ahead.",
+   "odd": "Machinery details and distant dark openings are hard to make out.",
+   "seconds": 4.6,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Medieval themed bar",
+   "sure": 4,
+   "why": "A dim interior has a wooden counter, bottles, stools, and robed figures.",
+   "odd": "Figures appear duplicated or oddly posed.",
+   "seconds": 4.7,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Underground rail tunnel gate",
+   "sure": 5,
+   "why": "Rusty railway tracks lead through a dark stone tunnel toward a barred gate.",
+   "odd": "The gate blocks the tracks; no readable signs are visible.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Underground railway station",
+   "sure": 4,
+   "why": "Rail tracks run through a stone station beside a platform and wooden kiosk.",
+   "odd": "A large black opening at the end of the tracks is unreadable.",
+   "seconds": 5.1,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Street with wooden storefronts",
+   "sure": 4,
+   "why": "Brick walls, shopfront windows, sidewalks, and a grassy strip line the street.",
+   "odd": "The storefronts appear partially detached or floating above the grass.",
+   "seconds": 4.8,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Brick building wall",
+   "sure": 4,
+   "why": "A dark brick wall with a doorway and barred window fills the view.",
+   "odd": "Low-resolution textures and a dark, pixelated scene.",
+   "seconds": 4.5,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Industrial station interior",
+   "sure": 4,
+   "why": "Brick walls, metal bars, and a long wooden counter suggest a station or industrial interior.",
+   "odd": "The scene is very dark and pixelated.",
+   "seconds": 5.4,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Industrial rail cart",
+   "sure": 4,
+   "why": "A large rusted rail vehicle with two spoked wheels fills the foreground beside burning industrial buildings.",
+   "odd": "The cart\u2019s wheels and connecting rods look oversized and oddly arranged.",
+   "seconds": 4.9,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Industrial corridor",
+   "sure": 4,
+   "why": "A long, narrow hallway has metal-paneled walls, barred openings, scattered debris, and crates.",
+   "odd": "The textures look pixelated and the foreground furniture appears oddly placed.",
+   "seconds": 4.8,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Industrial sewer corridor",
+   "sure": 3,
+   "why": "Brick corridor with barrels, pipes, metal machinery, and a red-lit sky.",
+   "odd": "The gray machinery has a large skull-like face.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Underground railway tunnel",
+   "sure": 4,
+   "why": "Railroad tracks run between brick walls beneath a dark, smoky sky.",
+   "odd": "The wall sign is too pixelated to read.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Iron barred dungeon cell",
+   "sure": 5,
+   "why": "Heavy vertical iron bars enclose a dark stone chamber with a barrel and wooden boards.",
+   "odd": "None obvious.",
+   "seconds": 3.8,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Industrial corridor door",
+   "sure": 4,
+   "why": "A rusty orange door sits in a gray wall with a green lower panel beside a tiled walkway.",
+   "odd": "Low-resolution textures and perspective make the wall and doorway look distorted.",
+   "seconds": 4.2,
+   "ok": true
+  }
+ },
+ "gpt-6-luna#2": {
+  "q_01": {
+   "name": "Moonlit industrial dock walkway",
+   "sure": 4,
+   "why": "A narrow wooden walkway runs beside a rusted metal building, with crates, a stone wall, and a moonlit sky.",
+   "odd": "The distant signs and small window details are too pixelated to read.",
+   "seconds": 4.4,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Industrial station interior",
+   "sure": 4,
+   "why": "Dark brick room with metal supports, a tiled floor, and windows overlooking a green exterior.",
+   "odd": "Pixelated textures and indistinct objects in the distance.",
+   "seconds": 4.8,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Industrial sewer passage",
+   "sure": 4,
+   "why": "Brick walls, barred gates, a concrete channel, and a barrel suggest an old industrial corridor.",
+   "odd": "Low-resolution textures and dark shadows obscure some details.",
+   "seconds": 4.4,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Medieval tavern bar",
+   "sure": 4,
+   "why": "A wooden bar, bottles, stools, checkerboard floor, and robed patrons fill the room.",
+   "odd": "The patrons look oddly blurred and distorted.",
+   "seconds": 4.4,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Barred underground rail tunnel",
+   "sure": 4,
+   "why": "Rail tracks lead to a barred gate in a dark stone tunnel.",
+   "odd": "Low resolution and darkness obscure details.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Underground train station",
+   "sure": 4,
+   "why": "Railroad tracks run beside a platform and a covered station structure.",
+   "odd": "The sky is blood red, and the far end of the tracks is pitch black.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Exterior brick building wall",
+   "sure": 3,
+   "why": "Brick fa\u00e7ade, windows, pavement, and grass suggest the outside of a building.",
+   "odd": "The window interiors look distorted or unreadable.",
+   "seconds": 3.7,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Brick building interior",
+   "sure": 3,
+   "why": "Dark brick wall with a doorway, barred window, and stone floor.",
+   "odd": "Textures look pixelated and muddy.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Industrial prison interior",
+   "sure": 4,
+   "why": "Brick walls, barred metal gates, and a wooden bench suggest a prison or holding area.",
+   "odd": "Pixelated textures and dark lighting obscure some details.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Industrial rail cart",
+   "sure": 3,
+   "why": "A large rusted structure has two spoked wheels connected by a metal bar, beside flames and industrial walls.",
+   "odd": "The cart\u2019s wheels and connecting bar look unusually oversized and fixed to the wall.",
+   "seconds": 5.2,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Wooden corridor",
+   "sure": 4,
+   "why": "Long narrow hallway with wood-paneled walls, a patterned floor, crates, and open doorways.",
+   "odd": "Pixelated textures and some wall details are hard to read.",
+   "seconds": 5.0,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Gothic industrial sewer passage",
+   "sure": 4,
+   "why": "Brick alley, stone flooring, barrels, and a large metal structure with pipes suggest a sewer or industrial passage.",
+   "odd": "The carved face on the structure looks unusually ornamental for the grimy industrial setting.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Underground railway tunnel",
+   "sure": 4,
+   "why": "Railway tracks run through a narrow, brick-lined passage beneath a dark sky.",
+   "odd": "The wall sign is too pixelated to read.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Barred stone corridor",
+   "sure": 5,
+   "why": "Iron bars block a passage with stone floors, brick walls, and a green strip beyond.",
+   "odd": "The green strip looks unusually bright and flat.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Industrial corridor door",
+   "sure": 5,
+   "why": "A heavy orange door sits in a gray and green paneled corridor with brickwork overhead.",
+   "odd": "Low-resolution textures and pixelation obscure small details.",
+   "seconds": 4.6,
+   "ok": true
+  }
+ },
+ "gpt-6.1-terra#1": {
+  "q_01": {
+   "name": "Moonlit wooden dock",
+   "sure": 4,
+   "why": "A wooden walkway runs alongside a dark building beneath a cloudy night sky.",
+   "odd": "The distant passage is very dark and hard to distinguish.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Dark industrial room",
+   "sure": 4,
+   "why": "Brick walls, metal supports, tiled floor, and wooden barriers define a large interior.",
+   "odd": "The room is very dark, obscuring details.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Industrial brick corridor",
+   "sure": 4,
+   "why": "A stone passage runs between brick walls and a large metal structure, with a barrel ahead.",
+   "odd": "The dark opening and objects behind the metal structure are difficult to distinguish.",
+   "seconds": 4.1,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Dimly lit bar",
+   "sure": 5,
+   "why": "Bottles line a counter, with stools and tables in a dark room.",
+   "odd": "Two hooded figures appear to overlap.",
+   "seconds": 4.1,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Underground railway tunnel",
+   "sure": 4,
+   "why": "Two sets of railway tracks lead through a dark, enclosed stone tunnel toward a barred wall.",
+   "odd": "Tracks appear to end abruptly at the wall.",
+   "seconds": 4.6,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Underground railway station",
+   "sure": 5,
+   "why": "Railway tracks run alongside a platform and a green-striped train.",
+   "odd": "The red sky above the enclosed station looks unusual.",
+   "seconds": 4.4,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Station hallway with windows",
+   "sure": 3,
+   "why": "Two recessed windows overlook wood-paneled rooms from a tiled corridor with a green wall.",
+   "odd": "The rooms beyond the windows look unusually flat and dark.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Brick building exterior",
+   "sure": 4,
+   "why": "A red brick wall has an open doorway and a barred window beside a stone-paved walkway.",
+   "odd": "The scene is very dark, obscuring some details.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Dark industrial brick room",
+   "sure": 4,
+   "why": "Brick walls, metal bars, ornate pillars, and a wooden barrier define the interior.",
+   "odd": "The dark wooden barrier has an unclear shape and purpose.",
+   "seconds": 4.4,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Steam locomotive wheels",
+   "sure": 4,
+   "why": "Large spoked wheels and connecting rods sit beneath a rusted industrial structure.",
+   "odd": "The locomotive body is partially obscured and blends into the background.",
+   "seconds": 4.3,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Derelict wooden corridor",
+   "sure": 4,
+   "why": "A long, narrow hallway has wooden walls, a low ceiling, windows, and scattered furniture.",
+   "odd": "The floor texture is unusually noisy and difficult to interpret.",
+   "seconds": 4.8,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Gothic industrial train station",
+   "sure": 4,
+   "why": "A dark locomotive sits beside a stone platform, surrounded by brick walls and barrels.",
+   "odd": "The locomotive has a demonic face, and its front is partly obscured.",
+   "seconds": 4.7,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Railway tunnel",
+   "sure": 5,
+   "why": "Railroad tracks run between high brick walls toward a dark opening.",
+   "odd": "The sign on the left wall is unreadable.",
+   "seconds": 4.1,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Barred gate in stone corridor",
+   "sure": 5,
+   "why": "A large iron gate fills a dark, brick-lined passage, with a barrel visible beyond.",
+   "odd": "Bright green wall beyond the gate looks out of place.",
+   "seconds": 4.6,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Industrial hallway with orange door",
+   "sure": 5,
+   "why": "A metal door sits in a brick and concrete corridor with green wall panels.",
+   "odd": "nothing",
+   "seconds": 4.6,
+   "ok": true
+  }
+ },
+ "gpt-6.1-terra#2": {
+  "q_01": {
+   "name": "Wooden walkway beside industrial building",
+   "sure": 4,
+   "why": "A plank walkway runs alongside a large metal-sided building under a cloudy night sky.",
+   "odd": "Distant objects are very dark and difficult to distinguish.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Industrial station interior",
+   "sure": 4,
+   "why": "Brick walls, metal pillars, tiled floors, and a counter suggest a dim industrial station.",
+   "odd": "The scene is very dark, obscuring details in the background.",
+   "seconds": 4.8,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Industrial brick alley",
+   "sure": 4,
+   "why": "A narrow brick passage contains machinery, metal grates, and a barrel.",
+   "odd": "The machinery\u2019s purpose and dark background details are unclear.",
+   "seconds": 4.6,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Gothic bar interior",
+   "sure": 5,
+   "why": "Bottles line a wooden counter, with red stools, checkerboard flooring, and robed figures in a dim room.",
+   "odd": "The two robed figures overlap, making their bodies difficult to distinguish.",
+   "seconds": 4.7,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Underground railway tunnel",
+   "sure": 4,
+   "why": "Two sets of rusty tracks run through a dark stone tunnel toward a barred wall.",
+   "odd": "The tracks appear to end directly at the barred wall.",
+   "seconds": 4.2,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Underground railway station",
+   "sure": 4,
+   "why": "Railway tracks run past a platform and a green-striped train inside a brick-walled tunnel.",
+   "odd": "The sky above the tunnel glows red.",
+   "seconds": 3.9,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Station wall with recessed windows",
+   "sure": 3,
+   "why": "Two rectangular openings interrupt a green and gray wall beneath a brick overhang.",
+   "odd": "The openings show mismatched interiors, and the right one contains an unclear vertical object.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Brick building exterior",
+   "sure": 5,
+   "why": "A brick wall has an open doorway and a barred window beside a paved passage.",
+   "odd": "The scene is very dark, obscuring some details.",
+   "seconds": 4.5,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Dark industrial prison room",
+   "sure": 3,
+   "why": "Brick walls, metal bars, heavy columns, and a low barrier define an enclosed industrial space.",
+   "odd": "The dark lighting obscures some textures and details.",
+   "seconds": 5.0,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Industrial train engine",
+   "sure": 4,
+   "why": "Large spoked wheels and connecting rods sit beneath a tall, rusted metal body.",
+   "odd": "The dark, low-resolution image makes surrounding structures difficult to identify.",
+   "seconds": 4.0,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Wooden corridor",
+   "sure": 5,
+   "why": "A long hallway has wooden walls and ceiling, windows, a patterned floor, and scattered furniture.",
+   "odd": "The floor texture is unusually noisy and hard to interpret.",
+   "seconds": 3.9,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Gothic industrial train",
+   "sure": 4,
+   "why": "A locomotive with wheels and a tall smokestack sits on tracks between brick walls.",
+   "odd": "A horned face decorates the locomotive\u2019s side.",
+   "seconds": 5.5,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Railway tunnel",
+   "sure": 5,
+   "why": "Railroad tracks run between tall brick walls toward a dark opening.",
+   "odd": "The sign on the left wall is unreadable.",
+   "seconds": 4.1,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Barred stone chamber",
+   "sure": 4,
+   "why": "Iron bars block a dark stone chamber with a barrel and wooden door beyond.",
+   "odd": "Bright green wall patches look out of place.",
+   "seconds": 4.1,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Industrial corridor entrance",
+   "sure": 4,
+   "why": "A barred orange door sits in a tiled corridor with small windows and green wall panels.",
+   "odd": "The green wall panels look unusually like grass.",
+   "seconds": 4.1,
+   "ok": true
+  }
+ },
+ "gpt-6.2-sol": {
+  "q_01": {
+   "name": "Moonlit industrial catwalk",
+   "sure": 5,
+   "why": "A narrow wooden walkway runs beside a rusted metal wall, with crates ahead and the moon overhead.",
+   "odd": "The dark opening beyond the crates is hard to make out.",
+   "seconds": 5.8,
+   "ok": true
+  },
+  "q_02": {
+   "name": "Dim industrial hall",
+   "sure": 4,
+   "why": "Brick walls, riveted steel columns, and wooden counters frame a broad tiled walkway.",
+   "odd": "Deep shadows obscure details along the back wall.",
+   "seconds": 7.6,
+   "ok": true
+  },
+  "q_03": {
+   "name": "Industrial rail loading bay",
+   "sure": 4,
+   "why": "A rusted metal railcar with partly visible wheels sits beside a stone platform between brick walls.",
+   "odd": "The opening behind the railcar is too dark to make out clearly.",
+   "seconds": 8.2,
+   "ok": true
+  },
+  "q_04": {
+   "name": "Bar",
+   "sure": 5,
+   "why": "Bottles line a wooden counter, with red stools and small tables on a checkered floor.",
+   "odd": "A thin, jagged white line runs beneath the hanging panel.",
+   "seconds": 9.1,
+   "ok": true
+  },
+  "q_05": {
+   "name": "Gated railway tunnel",
+   "sure": 5,
+   "why": "Two sets of rusty tracks run through a concrete tunnel toward a barred gate.",
+   "odd": "The darkness hides whatever is behind the gate.",
+   "seconds": 5.7,
+   "ok": true
+  },
+  "q_06": {
+   "name": "Railway station",
+   "sure": 5,
+   "why": "Two sets of tracks, a green-striped railcar, and a covered platform.",
+   "odd": "The tunnel entrance is pitch black.",
+   "seconds": 5.7,
+   "ok": true
+  },
+  "q_07": {
+   "name": "Building facade with two windows",
+   "sure": 4,
+   "why": "Two rectangular openings reveal wood-paneled interiors above a curb and paved road.",
+   "odd": "A grass-textured band runs across the wall, and the right opening has a streaked panel.",
+   "seconds": 9.2,
+   "ok": true
+  },
+  "q_08": {
+   "name": "Brick wall with barred window",
+   "sure": 5,
+   "why": "A barred window sits in a red brick wall beside an open doorway.",
+   "odd": "Deep shadows obscure details behind the bars.",
+   "seconds": 6.3,
+   "ok": true
+  },
+  "q_09": {
+   "name": "Barred brick room",
+   "sure": 4,
+   "why": "A wooden bench sits on a stone floor beside tall iron bars and brick walls.",
+   "odd": "Deep shadows obscure the area behind the bars.",
+   "seconds": 7.5,
+   "ok": true
+  },
+  "q_10": {
+   "name": "Steam locomotive at a station",
+   "sure": 4,
+   "why": "Two large spoked wheels joined by a rod sit beneath a rust-colored engine beside a raised platform.",
+   "odd": "Bright flames rise behind the engine, and the sign at far left is unreadable.",
+   "seconds": 6.0,
+   "ok": true
+  },
+  "q_11": {
+   "name": "Long wooden corridor",
+   "sure": 5,
+   "why": "A plank ceiling, repeated wall openings, and scattered wooden furniture recede toward the far wall.",
+   "odd": "The mottled floor texture makes its material hard to identify.",
+   "seconds": 6.9,
+   "ok": true
+  },
+  "q_12": {
+   "name": "Steam locomotive at a station",
+   "sure": 5,
+   "why": "A smokestack, driving wheels, and connecting rods identify the locomotive beside a stone platform.",
+   "odd": "A horned skull decorates the front of the locomotive.",
+   "seconds": 7.8,
+   "ok": true
+  },
+  "q_13": {
+   "name": "Brick-walled railway cutting",
+   "sure": 5,
+   "why": "Rails and wooden sleepers run between tall brick walls beneath an open sky.",
+   "odd": "The lettering on the blue wall signs is hard to read.",
+   "seconds": 5.0,
+   "ok": true
+  },
+  "q_14": {
+   "name": "Iron gate in a brick corridor",
+   "sure": 5,
+   "why": "Thick vertical bars fill a brick-framed opening, with a barrel and wooden crates visible beyond.",
+   "odd": "The dark bars blend into the shadows.",
+   "seconds": 5.0,
+   "ok": true
+  },
+  "q_15": {
+   "name": "Barred door in brick corridor",
+   "sure": 5,
+   "why": "A rusty orange door with a metal grille sits beside two recessed windows along a green-striped wall.",
+   "odd": "The darkness makes it hard to see through the grille.",
+   "seconds": 8.8,
+   "ok": true
+  }
+ }
+}

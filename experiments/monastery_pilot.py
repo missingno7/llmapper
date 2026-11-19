@@ -9,8 +9,12 @@ the packet, and any captured views.  It makes no design decisions.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
+import re
+import shutil
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any
@@ -18,16 +22,12 @@ from typing import Any
 from bloodmap.authoring_loop import (
     AuthoringIteration,
     Candidate,
-    attach_review,
     compare_iterations,
     evaluate_candidate,
-    record_review,
-    review_from_dict,
 )
 
 PROJECT = Path("projects/reasoned-authoring-v1")
 LEVEL_DIR = PROJECT / "level"
-REPORT_DIR = PROJECT / "reports"
 DEFAULT_CATALOG = Path("work/blood.material-knowledge-v2.json")
 DEFAULT_SPATIAL_CORPUS = Path("work/blood.spatial-corpus.json")
 DEFAULT_SHAPE_CORPUS = Path("work/blood.shape-corpus.json")
@@ -64,8 +64,8 @@ def engine_config(args: argparse.Namespace) -> dict[str, Any] | None:
 
 def run_iteration(iteration: str, args: argparse.Namespace) -> AuthoringIteration:
     candidate = load_candidate(iteration)
-    out = REPORT_DIR / iteration
-    out.mkdir(parents=True, exist_ok=True)
+    out = args.run_dir / iteration
+    out.mkdir(parents=True, exist_ok=False)
     catalog = Path(args.catalog) if args.catalog else DEFAULT_CATALOG
     spatial = Path(args.spatial_corpus) if args.spatial_corpus else DEFAULT_SPATIAL_CORPUS
     shape = Path(args.shape_corpus) if args.shape_corpus else DEFAULT_SHAPE_CORPUS
@@ -73,7 +73,7 @@ def run_iteration(iteration: str, args: argparse.Namespace) -> AuthoringIteratio
     art_dir = Path(args.art_dir) if args.art_dir else DEFAULT_ART
     packet = evaluate_candidate(
         candidate,
-        map_path=LEVEL_DIR / f"candidate-{iteration}.MAP",
+        map_path=out / "candidate.MAP",
         catalog_path=catalog if catalog.is_file() else None,
         art_directory=art_dir if art_dir.is_dir() else None,
         spatial_corpus_path=spatial if spatial.is_file() else None,
@@ -81,19 +81,81 @@ def run_iteration(iteration: str, args: argparse.Namespace) -> AuthoringIteratio
         surface_corpus_path=surface if surface.is_file() else None,
         engine=engine_config(args),
         view_dir=out / "views",
-        work_dir=Path("work") / f"monastery-{iteration}",
+        work_dir=out / "engine-work",
     )
-    review_path = PROJECT / "design" / "reviews" / f"{iteration}.json"
-    if review_path.is_file():
-        review = review_from_dict(json.loads(review_path.read_text(encoding="utf-8")))
-        attach_review(packet, review)
-        record_review(PROJECT, packet, review)
+    # A historical review describes the historical MAP, not a recompilation
+    # with today's compiler/defaults. New runs start without a review.
     (out / "iteration.json").write_text(
         json.dumps(packet.to_dict(), indent=2, sort_keys=True) + "\n",
         encoding="utf-8", newline="\n",
     )
     (out / "summary.md").write_text(summarize(packet), encoding="utf-8", newline="\n")
     return packet
+
+
+def prepare_run(output_root: Path, run_id: str, iterations: list[str]) -> Path:
+    """Reserve a new run and preserve the Python that will produce its maps."""
+    if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_-]*", run_id):
+        raise ValueError("run-id must contain only letters, digits, '-' and '_'")
+    if not iterations:
+        raise ValueError("a run must contain at least one iteration")
+    if len(set(iterations)) != len(iterations):
+        raise ValueError("each iteration may occur only once in a run")
+    for iteration in iterations:
+        if not re.fullmatch(r"v[0-9]+", iteration) or not (LEVEL_DIR / f"candidate_{iteration}.py").is_file():
+            raise ValueError(f"unknown iteration: {iteration!r}")
+    run_dir = output_root.resolve() / run_id
+    run_dir.mkdir(parents=True, exist_ok=False)
+    sources = sorted(Path("bloodmap").rglob("*.py")) + sorted(LEVEL_DIR.glob("*.py"))
+    sources.append(Path(__file__).resolve().relative_to(Path.cwd().resolve()))
+    files = []
+    for path in sources:
+        target = run_dir / "source" / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
+        files.append({"path": path.as_posix(), "sha256": hashlib.sha256(target.read_bytes()).hexdigest()})
+    try:
+        revision = subprocess.run(
+            ["git", "-c", f"safe.directory={Path.cwd().as_posix()}", "rev-parse", "HEAD"],
+            capture_output=True, text=True, check=False,
+        )
+        commit = revision.stdout.strip() if revision.returncode == 0 else None
+    except OSError:
+        commit = None
+    (run_dir / "run.json").write_text(json.dumps({
+        "run_id": run_id, "iterations": iterations,
+        "git_revision": commit,
+        "python": sys.version, "source_files": files,
+        "status": "started", "kind": "current-source reevaluation",
+        "limitations": ["No historical review is inherited.",
+                        "Game assets and runtime binaries are external inputs.",
+                        "A completed evaluation does not establish map quality."],
+    }, indent=2) + "\n", encoding="utf-8")
+    return run_dir
+
+
+def record_inputs(args: argparse.Namespace) -> None:
+    """Identify external evidence inputs without copying commercial game data."""
+    paths = [Path(args.catalog or DEFAULT_CATALOG),
+             Path(args.spatial_corpus or DEFAULT_SPATIAL_CORPUS),
+             Path(args.shape_corpus or DEFAULT_SHAPE_CORPUS),
+             Path(args.surface_corpus or DEFAULT_SURFACE_CORPUS)]
+    art = Path(args.art_dir or DEFAULT_ART)
+    paths.extend(p for p in art.glob("*") if p.suffix.lower() in {".art", ".rff"})
+    if args.game_dir and Path(args.game_dir).resolve() != art.resolve():
+        paths.extend(p for p in Path(args.game_dir).glob("*") if p.suffix.lower() in {".art", ".rff"})
+    if args.nblood:
+        paths.append(Path(args.nblood))
+    from bloodmap.visual import default_binary
+    paths.append(default_binary())
+    path = args.run_dir / "run.json"
+    manifest = json.loads(path.read_text(encoding="utf-8"))
+    manifest["inputs"] = [
+        {"path": str(p.resolve()), "sha256": hashlib.sha256(p.read_bytes()).hexdigest() if p.is_file() else None}
+        for p in sorted(set(paths))
+    ]
+    manifest["arguments"] = {k: str(v) if isinstance(v, Path) else v for k, v in vars(args).items()}
+    path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
 
 
 def summarize(packet: AuthoringIteration) -> str:
@@ -205,15 +267,34 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--startup-timeout", type=float, default=25.0)
     parser.add_argument("--settle-seconds", type=float, default=3.0)
     parser.add_argument("--comparison", action="store_true",
-                        help="write reports/comparison.json across the run")
+                        help="write comparison.json inside the new run")
+    parser.add_argument("--run-id", required=True,
+                        help="new immutable run label; an existing label is refused")
+    parser.add_argument("--output-root", type=Path, default=Path("work/authoring-runs"))
     args = parser.parse_args(argv)
 
     wanted = args.iterations or [
         name for name in ITERATIONS if (LEVEL_DIR / f"candidate_{name}.py").is_file()
     ]
+    try:
+        args.run_dir = prepare_run(args.output_root, args.run_id, wanted)
+    except (ValueError, FileExistsError) as error:
+        parser.error(str(error))
+    record_inputs(args)
     packets: list[AuthoringIteration] = []
     for iteration in wanted:
-        packet = run_iteration(iteration, args)
+        try:
+            packet = run_iteration(iteration, args)
+        except Exception as error:
+            (args.run_dir / "failure.json").write_text(json.dumps({
+                "iteration": iteration, "error_type": type(error).__name__,
+                "error": str(error), "status": "failed",
+            }, indent=2) + "\n", encoding="utf-8")
+            manifest_path = args.run_dir / "run.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["status"] = "failed"
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            raise
         packets.append(packet)
         failures = [g["gate_id"] for g in packet.hard_gates if g["status"] == "fail"]
         print(
@@ -225,13 +306,28 @@ def main(argv: list[str] | None = None) -> int:
             f"discrepancies={len(packet.hierarchy_comparison['discrepancies'])}"
         )
     if args.comparison and packets:
-        REPORT_DIR.mkdir(parents=True, exist_ok=True)
-        (REPORT_DIR / "comparison.json").write_text(
+        (args.run_dir / "comparison.json").write_text(
             json.dumps(compare_iterations(packets), indent=2, sort_keys=True) + "\n",
             encoding="utf-8", newline="\n",
         )
-        print(f"wrote {REPORT_DIR / 'comparison.json'}")
-    return 0
+        print(f"wrote {args.run_dir / 'comparison.json'}")
+    failures = any(g["status"] == "fail" for p in packets for g in p.hard_gates)
+    manifest_path = args.run_dir / "run.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    changed = [row["path"] for row in manifest["source_files"]
+               if not Path(row["path"]).is_file() or hashlib.sha256(Path(row["path"]).read_bytes()).hexdigest() != row["sha256"]]
+    if changed:
+        manifest["changed_during_run"] = changed
+        failures = True
+    manifest["status"] = "source_changed" if changed else ("failed_gates" if failures else "evaluated")
+    manifest["artifacts"] = [
+        {"iteration": p.identity["iteration_id"], "map_sha256": p.identity["map_sha256"],
+         "packet_sha256": hashlib.sha256((args.run_dir / p.identity["iteration_id"] / "iteration.json").read_bytes()).hexdigest(),
+         "gates": {g["gate_id"]: g["status"] for g in p.hard_gates}}
+        for p in packets
+    ]
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    return 1 if failures else 0
 
 
 if __name__ == "__main__":

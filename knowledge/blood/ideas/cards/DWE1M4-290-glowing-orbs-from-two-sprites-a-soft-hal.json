@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M4",
+ "sector": 290,
+ "kind": "lighting",
+ "title": "Glowing orbs from two sprites: a soft halo and a hot core",
+ "what": "Floating lights in a void shaft (and around a causeway): each orb is two face sprites at the same spot, a large translucent one at mid shade and a tiny one at full bright, so it reads as a glowing ball with a halo and stays legible on black. Hung at many heights they give depth to a space that has no visible floor or far wall. Seen in my own frames (pinkish-red with palette 7, bluish with palette 10).",
+ "recipe": "Per orb: sprite A tile 624 (64x64 px round glow, 20% see-through), face, cstat 130 (translucent, centred), repeat 16x16 (or 96x80 for a near, big one), shade -29; sprite B same tile and xy and z, cstat 128, repeat 4x4 (or 24x19), shade -84. Both pal 7 (red) or pal 10 (blue); tile 626 for a gold one. 22 pairs scattered over a 9000 x 5000 unit shaft at z spread over about 8 bodies. Decoration type 0, no x-sprite.",
+ "use": "Will-o'-the-wisps over the churchyard or the flooded crypt, marsh lights above the harbour at night, ghost lights in the sewer outfall; also the coloured lamp dots in the theatre's dark auditorium.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/dw_void/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

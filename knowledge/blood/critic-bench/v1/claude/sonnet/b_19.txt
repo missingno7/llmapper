@@ -1,0 +1,4 @@
+NAME: Tavern with bar, tables and chairs
+SURE: 4
+FAULT: no
+WHAT: nothing

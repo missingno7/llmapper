@@ -1,0 +1,73 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/round-1/ours_mute/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/station/critique/round-1/ours_mute",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "street_door",
+   "x": 13312,
+   "y": 2252,
+   "z": -7072,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "passage",
+   "x": 13312,
+   "y": -1536,
+   "z": -7072,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 317,
+   "screenshot": true
+  },
+  {
+   "id": "hall",
+   "x": 16896,
+   "y": -9523,
+   "z": -27552,
+   "angle": 1173,
+   "horiz": 100,
+   "sector": 319,
+   "screenshot": true
+  },
+  {
+   "id": "platform",
+   "x": 9216,
+   "y": -15564,
+   "z": -27552,
+   "angle": 2042,
+   "horiz": 100,
+   "sector": 322,
+   "screenshot": true
+  },
+  {
+   "id": "train",
+   "x": 19968,
+   "y": -15360,
+   "z": -27552,
+   "angle": 1209,
+   "horiz": 100,
+   "sector": 323,
+   "screenshot": true
+  },
+  {
+   "id": "tunnel",
+   "x": 7168,
+   "y": -15564,
+   "z": -27552,
+   "angle": 1988,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  }
+ ]
+}

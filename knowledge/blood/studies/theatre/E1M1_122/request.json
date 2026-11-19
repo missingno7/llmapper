@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/E1M1_122/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/theatre/E1M1_122",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 7814,
+   "y": 27714,
+   "z": 7264,
+   "angle": 1823,
+   "horiz": 100,
+   "sector": 122,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 14204,
+   "y": 19727,
+   "z": 7264,
+   "angle": 662,
+   "horiz": 100,
+   "sector": 122,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 7814,
+   "y": 21324,
+   "z": 7264,
+   "angle": 205,
+   "horiz": 100,
+   "sector": 122,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 9412,
+   "y": 27714,
+   "z": 7264,
+   "angle": 1744,
+   "horiz": 100,
+   "sector": 122,
+   "screenshot": true
+  }
+ ]
+}

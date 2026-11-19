@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 613,
+ "kind": "lighting",
+ "title": "The lights go out when you walk in; the switch is behind the bar",
+ "what": "A tall dark-panelled hall (16.5 x 19 m, 5.3 bodies high, green-and-grey checker floor, chandeliers on chains) with a bar counter on one side, a stair up to a railed balcony at the back, and fat butcher zombies standing in four dark curtained corner doorways. Its ten sectors carry a lighting effect that is ON at start; stepping into the hall once fires a relay chain that switches it OFF, so the room drops by 30 shades around you. The only way back to light is a toggle light-switch on the back wall BEHIND the bar counter, so the player has to cross the dark room and vault the bar while the zombies come out of the corners. The fields are read; the darkening on entry is inferred from them (state 1, amplitude -30, relay command off), not seen in a frame.",
+ "recipe": "Hall sector + 9 neighbours (bar, doorways) each get XSECTOR state=1, rx=113, amplitude=-30, busy_wave_a=3, busy_time_a=7, shade_floor/ceiling/walls=1. Hall sector also has trigger_enter + trigger_once, tx=140 cmd on, dude_lockout. Chain in a hidden control sector: kSwitchOneWay (type 21) rx140 -> tx151 on; second type 21 rx151 -> tx113 cmd OFF (both trigger_once). Behind the bar (sector 316, 3 m deep, ceiling only 2.3 bodies) a wall-aligned kSwitchToggle (type 20) tile 1078 at 32x32 repeat, about 0.8 body above the floor, tx113 cmd 3 (toggle), trigger_push, sound 207 both ways. Also behind the bar: doctor's bag (type 107), TNT box (63), sawed-off box (68) as the reward for getting there. Chandeliers: tile 641 hanging lamp at ceiling. Corner doorways: crumpled curtain tile 159 on the jambs, 1-2 kDudeZombieButcher (type 204) each.",
+ "use": "The saloon: the player pushes through the doors, the oil lamps die, and the light switch (or a lamp lever) is behind the bar among the bottles. Also the theatre auditorium (house lights go down as you enter; the switch is in the projection box).",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_a/e2m4_hall/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

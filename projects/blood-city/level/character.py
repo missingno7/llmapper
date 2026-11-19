@@ -1,0 +1,186 @@
+"""The character sheet: what each named place is, and whether it shows.
+
+The owner, 2026-11-18: "I would like you to come up with some tools or
+conventions how to really make the places to be memorable, have
+character, more details, combination of sprites and textures like other
+blood levels are doing." And: "think about stuff in relations, like this
+machine connects to this, there is a control panel here, there is a dirty
+water tank, the water goes there".
+
+The convention, in four lines a place must be able to answer:
+
+``hero``       the ONE thing a visitor would describe it by
+``exemplar``   the Blood room its detail is transcribed from
+``layers``     which of `tools.place_character`'s layers it carries: the
+               build MEASURES these, the sheet does not claim them
+``relations``  what connects to what inside it: (from, to, how)
+``study``      the study it was built from (`tools/study.py`): where Blood
+               built such a place, looked at, and what was decided. A
+               place built from the word for it is how the first crypt
+               came to be a brick room with grey boxes.
+
+A place with no hero is a room. A place whose measured layers are fewer
+than a quarter of the campaign's rooms of its size carry is THIN, and the
+build says so by name. Nothing here places a sprite: it is the gate the
+detail work answers to (`detailing.py` is the hands).
+"""
+
+from __future__ import annotations
+
+from typing import Any
+
+#: name -> a point inside it (world units), its hero and its exemplar
+PLACES: dict[str, dict[str, Any]] = {
+    "pump machine hall": {
+        "at": (45056, 11500),
+        "hero": "a sludge belt through two pulsing presses, between a "
+                "settling basin and a filter drum",
+        "exemplar": "E3M5 crusher line s44-52; E3M3 generator consoles; "
+                    "E3M6 tanks s410-417",
+    },
+    "St Gallow's nave": {
+        "at": (29440, 30500), "study": "church",
+        "hero": "a clerestory of stained glass over the aisle, the "
+                "outside's lancets seen from within",
+        "exemplar": "E1M5 walls 29/31 (paired glass); E3M2 s312-314",
+    },
+    "St Gallow's crypt": {
+        "at": (28700, 27300), "floor": 61440, "study": "crypt",
+        "hero": "one closed stone sarcophagus under a gravestone slab, in a rubble vault "
+                "hung with cobwebs and gold plaques, a line of powder "
+                "barrels along its east wall",
+        "exemplar": "E1M1 s150 (rubble 110, earth 270), its sarcophagus "
+                    "s1-3/27/28, plaques sprites 185-189, cobwebs 150-154",
+    },
+    "Gravesend Station": {
+        "at": (13312, -11500), "floor": -12288, "study": "station",
+        "hero": "a green-banded carriage standing at a platform under a "
+                "plank canopy, seen through a line of riveted columns",
+        "exemplar": "E1M2 s271/s272/s34 (hall, platform, track); STATION "
+                    "s128 (the solid car, livery 1665); tunnel STATION "
+                    "s131-137; an enterable car is NOT built",
+    },
+    "saloon": {
+        "at": (7168, 11800), "study": "saloon",
+        "hero": "a dim bar room with a lit plank counter, stools along "
+                "it and whiskey lettered on the wall",
+        "exemplar": "E1M2 s278 (height, light); DWE3M1 sprites 539-547 "
+                    "(stools); soffit and back bar NOT yet built",
+    },
+    "Aldermack auditorium": {
+        "at": (23040, 9500), "study": "theatre",
+        "hero": "a tall house facing a curtained stage",
+        "exemplar": "SCHOOL_ s154/s244, FORDTHEA s252 (height); the "
+                    "framed proscenium and raked seats NOT yet built",
+    },
+    "harbour": {
+        "at": (30720, 58368), "floor": 37888, "study": "harbour",
+        "hero": "a moored hull between two rock headlands, the sea "
+                "running out to a skerry and the sky",
+        "exemplar": "DWE3M4 s636-648 (bands, ring); DWE2M6 s931-940 "
+                    "(rock), s621-626 (piles)",
+    },
+    "arcade concourse": {
+        "at": (46080, 46080),
+        "hero": "a tall concourse of glazed shopfronts, and a service "
+                "corridor with something behind its wall",
+        "exemplar": "E4M9 concourse; E6M1 shopfronts; E3M4 sprite 331",
+    },
+}
+
+
+DESTINATION_AREA_M, DESTINATION_BODIES = 14.0, 1.93
+
+
+def relations() -> dict[str, list]:
+    """Every declared relation, by place."""
+    import l3_mall
+    import l3_shed
+
+    return {
+        "pump machine hall": [list(r) for r in l3_shed.RELATIONS],
+        "arcade concourse": [[
+            "service extinguisher", "service cache",
+            f"channel {l3_mall.SECRET_CHANNEL}: shot, it opens the wall "
+            "behind it and three charges go off; the cache is a secret"]],
+    }
+
+
+def wired(disk) -> dict[int, dict[str, int]]:
+    """Channel -> how many things send on it and how many listen."""
+    out: dict[int, dict[str, int]] = {}
+    for group in (disk.sprites, disk.sectors, disk.walls):
+        for item in group:
+            extra = getattr(item, "extra", None)
+            fields = getattr(extra, "fields", None) or {}
+            for key in ("tx_id", "rx_id"):
+                channel = int(fields.get(key, 0) or 0)
+                if channel >= 100:
+                    out.setdefault(channel, {"tx_id": 0, "rx_id": 0})[key] += 1
+    return out
+
+
+def sheet(disk) -> dict[str, Any]:
+    """Measure every named place and say which are thin."""
+    from tools import place_character as pc
+
+    geom = pc.Geometry(disk)
+    reference = pc.load_norms() if pc.NORMS.exists() else None
+    related = relations()
+    report: dict[str, Any] = {"places": {}, "thin": [], "unfound": []}
+    for name, spec in PLACES.items():
+        #: space is stacked: the crypt lies under the nave, so a place under
+        #: or over the street also says which floor it means
+        hits = [i for i in range(len(geom.sectors))
+                if geom.contains(i, *spec["at"])]
+        want = spec.get("floor", 8192)
+        seed = min(hits, key=lambda i: (abs(int(
+            geom.sectors[i]["floor_z"]) - want), geom.area(i)),
+            default=None)
+        if seed is None:
+            report["unfound"].append(name)
+            continue
+        profile = pc.profile(geom, pc.place_of(geom, seed))
+        verdict = pc.judge(profile, reference) if reference else {}
+        report["places"][name] = {
+            "hero": spec["hero"], "exemplar": spec["exemplar"],
+            "layers": [k for k, v in profile["layers"].items() if v],
+            "layer_count": profile["layer_count"],
+            "campaign_p25": verdict.get("campaign_p25"),
+            "campaign_p50": verdict.get("campaign_p50"),
+            "missing": verdict.get("missing", []),
+            "wall_tiles": profile["wall_tiles"],
+            "shade_spread": profile["shade_spread"],
+            "metres": profile["metres"],
+            "free_floor_share": profile["free_floor_share"],
+            "cramped": verdict.get("cramped", []),
+            "relations": related.get(name, []),
+            "study": spec.get("study"),
+        }
+        if verdict.get("thin"):
+            report["thin"].append(name)
+        #: A NAMED place is a destination: it may not be smaller or lower
+        #: than the campaign's median indoor room (14M of floor, 1.93
+        #: bodies), whatever Blood's cupboards measure.
+        if not profile["sky"]:
+            small = verdict.setdefault("cramped", [])
+            if profile["area_M"] < DESTINATION_AREA_M:
+                small.append(f"{profile['area_M']}M of floor (a destination "
+                             f"wants {DESTINATION_AREA_M}M)")
+            if profile["clear_bodies"] < DESTINATION_BODIES:
+                small.append(f"{profile['clear_bodies']} bodies high (a "
+                             f"destination wants {DESTINATION_BODIES})")
+            report["places"][name]["cramped"] = small
+        if verdict.get("cramped"):
+            report.setdefault("cramped", {})[name] = verdict["cramped"]
+    #: which named places were built without a finished study
+    from tools import study as _study
+    report["unstudied"] = sorted(
+        name for name, spec in PLACES.items()
+        if not spec.get("study")
+        or _study.notes_written(_study.STUDIES / spec["study"]))
+    channels = wired(disk)
+    report["dangling_channels"] = sorted(
+        channel for channel, ends in channels.items()
+        if not ends["tx_id"] or not ends["rx_id"])
+    return report

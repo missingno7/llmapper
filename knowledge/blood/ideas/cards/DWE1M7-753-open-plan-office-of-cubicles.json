@@ -1,0 +1,12 @@
+{
+ "map": "DWE1M7",
+ "sector": 753,
+ "kind": "set-piece",
+ "title": "Open-plan office of cubicles",
+ "what": "A big low office floor of a finance company (lettering 'GRUDGE FINANCE' and 'FOUNDER' elsewhere in the map): dark green carpet, a grid ceiling of green panels between brown beams with fluorescent light panels, and rows of grey partition cubicles with wooden caps, aisles between them, a brick-faced wall of glazed offices at the edge. First second: the ceiling grid and the partition maze at chest height.",
+ "recipe": "s753 is 17856 x 15616 units (30.3 x 26.5 m), 2.29 bodies high, floor 455, ceiling 454 (owner: ceiling tiles); walls 2294 (109 walls) and 1012 (60), each 32x256 px grey with a brick base. A cubicle (s36, s68 ...) is 2944 x 2688 units (5.0 x 4.6 m) bounded by partitions 1.33 bodies high (floor 433), with a desk sector (s38, 1536 x 1280) 0.42 bodies up, a 384-square block 0.9 bodies up (a terminal, tile 379) and a 320-square keypad (439). Long cabinet strips (s126, s128: 3584 x 128) stand 0.78 bodies up. Lettering sprites 3808-3833 spell the signs.",
+ "use": "An office building on the city's edge: a lobby through the facade door, a lift, and this floor. The player hunts along the aisles, enemies pop up from behind partitions, and the boss's glazed office at the end holds the key. The partitions give cover without walls to the ceiling.",
+ "frame": "knowledge/blood/ideas/tours/DWE1M7/place_753/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

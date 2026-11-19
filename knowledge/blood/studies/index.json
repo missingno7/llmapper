@@ -1,0 +1,72 @@
+{
+ "$schema": "llmapper.studies",
+ "studies": {
+  "crypt": {
+   "want": "a crypt under a parish church: a burial vault with a sarcophagus, entered from above",
+   "seeds": [
+    "E1M1:150!",
+    "E3M8:456"
+   ],
+   "date": "2026-11-18"
+  },
+  "church": {
+   "want": "the inside of St Gallow's, a parish church: a tall nave with pews in rows, a low aisle, a raised chancel with an altar, varied stained glass, columns",
+   "seeds": [
+    "DWE1M4:276",
+    "E3M4:286",
+    "E1M5:104"
+   ],
+   "date": "2026-11-18"
+  },
+  "theatre": {
+   "want": "the Aldermack theatre of Gravesend: a raked auditorium of seats facing a raised stage behind a proscenium curtain that slides open, with a backstage and a foyer with a ticket booth",
+   "seeds": [
+    "maps/blood/community/SCHOOL_.map:154!",
+    "maps/blood/community/SCHOOL_.map:244!",
+    "maps/blood/community/FORDTHEA.MAP:252",
+    "E1M1:122!"
+   ],
+   "date": "2026-11-18"
+  },
+  "saloon": {
+   "want": "a town saloon and a works canteen: one bar room with a counter, a back bar of bottles, stools, tables and a back room, and a canteen with a serving counter and a kitchen, that read as places to drink and eat before anyone is in them",
+   "seeds": [
+    "E1M2:278!",
+    "DWE3M1:238!",
+    "E2M4:407!",
+    "E2M4:434!"
+   ],
+   "date": "2026-11-18"
+  },
+  "harbour": {
+   "want": "the harbour of Gravesend: a boardwalk quay above the sea, a moored ship at a jetty on piles, the sea running out to a sky horizon, and the quay's ends where buildings and rock meet the water",
+   "seeds": [
+    "DWE3M4:548!",
+    "DWE2M6:627!",
+    "E2M1:247!",
+    "DWE3M5:50!"
+   ],
+   "date": "2026-11-18"
+  },
+  "station": {
+   "want": "a railway station on the edge of Gravesend: a booking hall entered from a city street through the edge facade, one platform beside a track under the sky, a train standing at the platform, and the line running out into a tunnel or the dark where the player cannot follow",
+   "seeds": [
+    "E1M2:271!",
+    "E1M2:34!",
+    "E1M3:6!",
+    "maps/blood/community/STATION.MAP:125!"
+   ],
+   "date": "2026-11-18"
+  },
+  "locomotive": {
+   "want": "a steam locomotive seen from a platform: what its body, front, top and cab wear, and what sprites make it read",
+   "seeds": [
+    "E1M4:110",
+    "TEDE1M8:116",
+    "TEDE1M7:471",
+    "E1M3:284"
+   ],
+   "date": "2026-11-18"
+  }
+ }
+}

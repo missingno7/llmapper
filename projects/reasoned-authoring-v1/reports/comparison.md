@@ -1,3 +1,9 @@
+> Historical report: use `archive/architectural-v0-v5/manifest.json` relative
+> to the project root to identify the original MAPs. Live v5 is later expanded work.
+> Correction established 2026-09-09: the v5 packet records 17 successful captures
+> and one failed `view:chapel_apse`; the legacy 18/18 table below is not authoritative.
+> Original packets and the historical report body are retained for provenance.
+
 # Cliffside monastery: six evidence-driven iterations
 
 The machine-readable version is `comparison.json`. Each iteration's full packet

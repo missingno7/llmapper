@@ -217,6 +217,240 @@ def overlaps(disk, *, covered: float = COVERED) -> list[dict[str, Any]]:
     return out
 
 
+def flat_overlaps(disk, *, covered: float = COVERED) -> list[dict[str, Any]]:
+    """Pairs of floor- or ceiling-aligned sprites lying through each other.
+
+    The owner, 2026-11-18: "I also noticed sprite overlapping on some
+    floor/ceiling aligned sprites, for example in sewers." A flat sprite is
+    a rectangle at its own z; two at one z in one sector whose rectangles
+    intersect fight for the same pixels. Each rectangle is the engine's
+    own (`bloodmap.flatsprite.footprint`): a flat sprite's width lies a
+    quarter turn from its angle, and until 2026-11-19 this ignored
+    rotation and took the smaller half extent for a square -- which is
+    how a roof of twenty pieces, each lying across its neighbours' gaps
+    and over the walls, was reported as no overlap at all.
+    """
+    from bloodmap import flatsprite
+
+    tiles = art()
+    flats = []
+    for index, sprite in enumerate(disk.sprites):
+        f = sprite.fields
+        cstat = int(f["cstat"])
+        if cstat & 0x8000 or cstat & 48 != 32 or int(f["picnum"]) <= 0:
+            continue
+        tile = tiles.get(int(f["picnum"]))
+        if tile is None or not tile.width or not tile.height:
+            continue
+        if not int(f["x_repeat"]) or not int(f["y_repeat"]):
+            continue
+        x0, y0, x1, y1 = flatsprite.box(
+            f, (tile.width, tile.height),
+            (int(tile.animation["xofs"]), int(tile.animation["yofs"])))
+        flats.append((int(f["z"]), index, int(f["picnum"]), int(f["x"]),
+                      int(f["y"]), (x0, y0, x1, y1), int(f["sector"])))
+    flats.sort()
+    out = []
+    for i, a in enumerate(flats):
+        for b in flats[i + 1:]:
+            if b[0] - a[0] > SAME_PLANE:
+                break
+            wide = min(a[5][2], b[5][2]) - max(a[5][0], b[5][0])
+            deep = min(a[5][3], b[5][3]) - max(a[5][1], b[5][1])
+            if wide <= 0 or deep <= 0:
+                continue
+            smaller = min((a[5][2] - a[5][0]) * (a[5][3] - a[5][1]),
+                          (b[5][2] - b[5][0]) * (b[5][3] - b[5][1]))
+            if smaller <= 0:
+                continue
+            share = wide * deep / float(smaller)
+            if share > covered:
+                out.append({"a": a[1], "b": b[1], "tiles": (a[2], b[2]),
+                            "covered": round(share, 2), "sector": a[6],
+                            "x": a[3], "y": a[4]})
+    return out
+
+
+#: how near a wall a hung thing must be, and how much of it the wall
+#: must stand behind
+MOUNT_REACH, BACKED = 96, 0.6
+
+
+def hung_tiles() -> set[int]:
+    """Tiles that are a picture of something HUNG: paper, boards, signs.
+
+    The owner, 2026-11-19: "not all wall sprites will be on the wall and
+    it doesn't mean it is wrong ... Two sided wall sprite can be used for
+    balcony railing for example." A railing, a gate, a curtain, a cobweb,
+    a flag stand free by nature. A poster, a notice, a newspaper page or a
+    name board does not: with air behind it, it is a mistake. The library
+    says which is which: its `sign` class, and anything tagged `paper`.
+    """
+    from tools import catalog
+
+    return {tile for tile, row in catalog.tile_looks().items()
+            if row.get("class") == "sign" or "paper" in row.get("tags", ())}
+
+
+def unbacked(disk, *, backed: float = BACKED) -> list[dict[str, Any]]:
+    """Posters, notices and boards with no wall behind them. ADVICE, and
+    only about things that are hung (`hung_tiles`): a free-standing wall
+    sprite is not looked at.
+
+    The owner, 2026-11-19, in the game: "there are places with posters
+    which are hanging mid air." A wall sprite is placed against a line on
+    the plan; nothing checked that the line is SOLID where the sprite
+    hangs. A doorway cut through that line later, a window, the band of
+    a step that stops below the picture -- and the poster hangs over a
+    hole. For each wall sprite this finds the walls it lies against and
+    measures how much of its drawn height they are solid behind, at its
+    middle and towards both ends.
+    """
+    tiles = art()
+    hung = hung_tiles()
+    sectors = [s.fields for s in disk.sectors]
+    walls = [w.fields for w in disk.walls]
+    owner = {}
+    for sector_id, s in enumerate(sectors):
+        for w in range(int(s["wall_ptr"]),
+                       int(s["wall_ptr"]) + int(s["wall_count"])):
+            owner[w] = sector_id
+    segments = []
+    for wall_id, w in enumerate(walls):
+        n = walls[int(w["point2"])]
+        ax, ay, bx, by = int(w["x"]), int(w["y"]), int(n["x"]), int(n["y"])
+        here = sectors[owner[wall_id]]
+        bands = []
+        other = int(w["next_sector"])
+        if other < 0:
+            bands.append((int(here["ceiling_z"]), int(here["floor_z"])))
+        else:
+            there = sectors[other]
+            if int(there["ceiling_z"]) > int(here["ceiling_z"]):
+                bands.append((int(here["ceiling_z"]),
+                              int(there["ceiling_z"])))
+            if int(there["floor_z"]) < int(here["floor_z"]):
+                bands.append((int(there["floor_z"]), int(here["floor_z"])))
+        segments.append((ax, ay, bx, by, bands))
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        f = sprite.fields
+        if not _visible(f) or int(f["cstat"]) & 48 != 16:
+            continue
+        tile = tiles.get(int(f["picnum"]))
+        if tile is None or not tile.height or int(f["picnum"]) not in hung:
+            continue
+        top, bottom = drawn_extent(tile.height, int(tile.animation["yofs"]),
+                                   int(f["y_repeat"]), int(f["cstat"]),
+                                   int(f["z"]))
+        if bottom <= top:
+            continue
+        half = tile.width * int(f["x_repeat"]) / 8.0
+        turn = (int(f["angle"]) & 2047) * math.pi / 1024
+        #: the sprite's own line runs across its facing
+        ux, uy = -math.sin(turn), math.cos(turn)
+        shares = []
+        for along in (-0.7, 0.0, 0.7):
+            px = int(f["x"]) + ux * half * along
+            py = int(f["y"]) + uy * half * along
+            best = 0.0
+            for ax, ay, bx, by, bands in segments:
+                if (min(ax, bx) - MOUNT_REACH > px or max(ax, bx) + MOUNT_REACH < px
+                        or min(ay, by) - MOUNT_REACH > py
+                        or max(ay, by) + MOUNT_REACH < py):
+                    continue
+                length = math.hypot(bx - ax, by - ay)
+                if not length:
+                    continue
+                #: it must lie ALONG the sprite, not across its end
+                if abs(((bx - ax) * ux + (by - ay) * uy) / length) < 0.7:
+                    continue
+                at = ((px - ax) * (bx - ax) + (py - ay) * (by - ay)) / length ** 2
+                if not 0.0 <= at <= 1.0:
+                    continue
+                if _distance(px, py, ax, ay, bx, by) > MOUNT_REACH:
+                    continue
+                solid = sum(max(0, min(bottom, low) - max(top, high))
+                            for high, low in bands)
+                best = max(best, solid / float(bottom - top))
+            shares.append(best)
+        share = sum(shares) / len(shares)
+        if share < backed:
+            out.append({"sprite": index, "tile": int(f["picnum"]),
+                        "backed": round(share, 2), "sector": int(f["sector"]),
+                        "x": int(f["x"]), "y": int(f["y"]), "z": int(f["z"])})
+    return out
+
+
+def on_travelling_floor(disk) -> list[dict[str, Any]]:
+    """Decoration left on a floor that carries things away.
+
+    The owner, 2026-11-18: "that pipe entrance decoration on the conveyor
+    belt instead on the floor, sometimes we have details like this missed".
+    A conveyor is a floor that pans AND drags (`pan_floor` with `drag`):
+    a decal on it stays where it was written while the belt runs under it,
+    and anything hung over it belongs to the room, not the belt. Water pans
+    without dragging and is not counted: the campaign floats things on it.
+    """
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        f = sprite.fields
+        if int(f.get("status", 0)) != 0 or int(f.get("type", 0)) != 0:
+            continue
+        if int(f["cstat"]) & 32768:
+            continue
+        sid = int(f["sector"])
+        if not 0 <= sid < len(disk.sectors):
+            continue
+        extra = getattr(disk.sectors[sid], "extra", None)
+        x = getattr(extra, "fields", None) or {}
+        #: only what LIES ON the belt: the campaign hangs lights, grate
+        #: decks and posters in its belt and train sectors (E3M5, E1M3),
+        #: all of them on a wall or well over the floor
+        if (int(f["cstat"]) & 48) == 16:
+            continue
+        if int(disk.sectors[sid].fields["floor_z"]) - int(f["z"]) > BODY // 4:
+            continue
+        if int(x.get("pan_floor", 0)) and int(x.get("drag", 0)):
+            out.append({"sprite": index, "tile": int(f["picnum"]),
+                        "sector": sid, "at": (int(f["x"]), int(f["y"]))})
+    return out
+
+
+def sunk_actors(disk, *, sunk: float = SUNK) -> list[dict[str, Any]]:
+    """Actors written with their feet under the floor.
+
+    The game stands a dude on the floor when it spawns, so nobody sees this
+    in play (the owner: "enemies even when they are sinked game makes them
+    normal, but yes they are sinked in the map"). The editor and every
+    renderer that is not the game show the map as written, and the campaign
+    writes them standing: all of E3M1's dudes have their drawn bottom on
+    their floor.
+    """
+    tiles = art()
+    out = []
+    for index, sprite in enumerate(disk.sprites):
+        f = sprite.fields
+        if not 200 <= int(f.get("type", 0)) <= 260:
+            continue
+        sid = int(f["sector"])
+        tile = tiles.get(int(f["picnum"]))
+        if tile is None or not tile.height or not 0 <= sid < len(disk.sectors):
+            continue
+        s = disk.sectors[sid].fields
+        if int(s["floor_heinum"]) and int(s["floor_stat"]) & 2:
+            continue
+        top, bottom = drawn_extent(tile.height, int(tile.animation["yofs"]),
+                                   int(f["y_repeat"]), int(f["cstat"]),
+                                   int(f["z"]))
+        share = (bottom - int(s["floor_z"])) / max(1, bottom - top)
+        if share > sunk:
+            out.append({"sprite": index, "tile": int(f["picnum"]),
+                        "type": int(f["type"]), "sector": sid,
+                        "sunk": round(share, 2)})
+    return out
+
+
 def faults(rows, *, sunk: float = SUNK, squeezed: float = SQUEEZED) -> dict:
     return {
         "sunk": [r for r in rows if r["sunk"] > sunk],
@@ -244,6 +478,10 @@ def lint(disk) -> dict[str, Any]:
     rows = audit(disk)
     found = faults(rows)
     return {"rates": rates(rows), "overlaps": overlaps(disk),
+            "flat_overlaps": flat_overlaps(disk),
+            "unbacked": unbacked(disk),
+            "sunk_actors": sunk_actors(disk),
+            "on_travelling_floor": on_travelling_floor(disk),
             "sunk": found["sunk"], "through": found["through"],
             "squeezed": found["squeezed"]}
 
@@ -264,12 +502,25 @@ def main(argv=None) -> int:
         disk = read_map(path)
         rows = audit(disk)
         covering = overlaps(disk)
+        lying = flat_overlaps(disk)
+        buried = sunk_actors(disk)
         out[path.stem] = {"rates": rates(rows), "faults": faults(rows),
-                          "overlaps": covering}
+                          "overlaps": covering, "flat_overlaps": lying,
+                          "sunk_actors": buried}
         print(path.stem, rates(rows), "overlapping wall sprite pairs:",
-              len(covering))
+              len(covering), "flat pairs:", len(lying), "sunk actors:",
+              len(buried))
         if args.rates:
             continue
+        for pair in lying:
+            print(f"  flat      sprites {pair['a']} and {pair['b']} tiles "
+                  f"{pair['tiles']} sector {pair['sector']} at "
+                  f"({pair['x']}, {pair['y']}): {pair['covered']:.0%} of the "
+                  "smaller is covered")
+        for r in buried:
+            print(f"  actor     sprite {r['sprite']:4d} tile {r['tile']:5d} "
+                  f"type {r['type']} sector {r['sector']}: {r['sunk']:.0%} "
+                  "of it is under its floor")
         for pair in covering:
             print(f"  overlap   sprites {pair['a']} and {pair['b']} tiles "
                   f"{pair['tiles']} sector {pair['sector']} at "

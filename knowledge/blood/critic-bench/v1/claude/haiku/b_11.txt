@@ -1,0 +1,4 @@
+NAME: narrow cobbled alley beside a green-faced building
+SURE: 3
+FAULT: no
+WHAT: nothing

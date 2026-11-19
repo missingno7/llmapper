@@ -1,0 +1,12 @@
+{
+ "map": "E2M4",
+ "sector": 427,
+ "kind": "mechanism",
+ "title": "Courtyard floor that collapses into a stepped rift",
+ "what": "A snowy walled courtyard (22 x 38 m) whose middle is a chain of five irregular polygon sectors flush with the ground. Walking in starts an earthquake and rumbling; seventeen ticks later the five polygons sink one after another to different depths (one rises a little), leaving a jagged stepped crack in the marble, and invisible exploders buried under it go off one by one at staggered delays. The tour frame shows the sunk state: pale broken-marble faces (tile 2490) inside the snow. The order of motion is read from busy times; how it plays was not seen.",
+ "recipe": "Courtyard sector 427: floor z 12288 (snow/marble 2448), XSECTOR trigger_enter, trigger_once, tx167 cmd on. Receivers of 167: kMarkerEarthQuake (type 19) data1=700, two kGenSound (708) data2=265, and a kSwitchOneWay (21) relay rx167 tx127 wait_time 17. Rift: 5 kSectorZMotion (600) polygons, 1000-2500 units across, all rx127 trigger_once, off_floor_z 12288 (flush), on_floor_z 39936 / 32768 / 26624 / 19456 (drops of 0.4 to 1.6 bodies) and one at 10240 (rises 0.12 body), busy_time_a 10 / 8 / 4 / 2 / 2 so the deep end goes slowest. Step faces tile 2490 light marble. Under the floor: 11 kTrapExploder (type 459, tile 908, repeat 4x64, invisible) rx127 with wait_time 1..11 so the blasts ripple. One ambient sound (710) in the rift. Flammable snowy trees (type 412, tile 547) at the courtyard edges.",
+ "use": "The church square or the harbour quay: the player crosses the open square, the ground shakes, and the paving drops into a stepped crack that opens a way down to the crypt or the sewer. Equally the pump station yard collapsing over a flooded culvert.",
+ "frame": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E2M4/place_427/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

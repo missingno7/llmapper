@@ -1,0 +1,4 @@
+NAME: City street with station sign
+SURE: 5
+FAULT: yes
+WHAT: The green "STATION" sign on the brick building is upside down and mirrored.

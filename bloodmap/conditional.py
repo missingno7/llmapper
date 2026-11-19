@@ -803,12 +803,11 @@ def route_edges(edges: Sequence["ConditionalEdge"]) -> list[dict[str, Any]]:
 class Action:
     """One thing a player can do that changes the topology.
 
-    Deliberately only three kinds, and each is a thing the map itself
-    contains: a switch sprite to work, a destructible to shoot, a key to
-    pick up.
+    Each names a thing the map contains: a sprite switch, a push wall,
+    a destructible, a key, or a directly operated mechanism.
     """
 
-    kind: str                 # use_switch | destroy | obtain_key | operate
+    kind: str                 # use_switch | use_wall | destroy | obtain_key | operate
     index: int = -1           # the sprite, wall or sector acted on
     key: int = 0
     channel: int = 0
@@ -835,6 +834,8 @@ class Action:
             return f"destroy sprite {self.index} (channel {self.channel})"
         if self.kind == "use_switch":
             return f"use switch sprite {self.index} (channel {self.channel})"
+        if self.kind == "use_wall":
+            return f"push wall {self.index} (channel {self.channel})"
         return f"operate mechanism sector {self.index}"
 
 
@@ -1039,6 +1040,24 @@ class ConditionalGraph:
             elif type_id in SWITCH_TYPES and channel and channel not in held.channels:
                 found[("use_switch", index)] = Action(
                     kind="use_switch", index=index, channel=channel, where=sector)
+        # Native XWALL push transmitters are controls too. E1M4 wall 3111
+        # operates sector 359 without a switch sprite. This is sector-level
+        # availability; use distance and line of sight still need checking.
+        for sector, record in enumerate(self.disk.sectors):
+            if sector not in reached:
+                continue
+            first = int(record.fields["wall_ptr"])
+            for index in range(first, first + int(record.fields["wall_count"])):
+                extra = _extra(self.disk.walls[index])
+                channel = int(extra.get("tx_id") or 0)
+                key = int(extra.get("key") or 0)
+                if (channel and channel not in held.channels
+                        and extra.get("trigger_push") and not extra.get("locked")
+                        and (not key or key in held.keys)
+                        and (extra.get("trigger_on") or extra.get("trigger_off"))
+                        and not (extra.get("trigger_once") and extra.get("is_triggered"))):
+                    found[("use_wall", index)] = Action(
+                        kind="use_wall", index=index, channel=channel, where=sector)
         for edge in self.edges:
             if edge.verdict != "conditional" or edge.mechanism in held.operated:
                 continue
@@ -1630,4 +1649,3 @@ def repartition_edges(disk: Any, wires: dict[int, list] | None = None
             causes=list(causes),
         ))
     return out
-

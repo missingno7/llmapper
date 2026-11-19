@@ -1,0 +1,4 @@
+NAME: Long shop corridor with hanging cloth and crates
+SURE: 4
+FAULT: no
+WHAT: nothing

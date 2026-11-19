@@ -1,0 +1,23 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M4/place_330/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/ideas/tours/E1M4/place_330",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_2",
+   "x": -45065,
+   "y": 27449,
+   "z": 35840,
+   "angle": 890,
+   "horiz": 100,
+   "sector": 330,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,4 @@
+NAME: Alley beside a machine housing with a ram skull
+SURE: 3
+FAULT: no
+WHAT: nothing

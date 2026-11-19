@@ -89,6 +89,10 @@ def holder(region_a: str, region_b: str, span: Sequence[int]) -> dict[str, Any]:
     }
 
 
+#: kWallGib: the wall type a shot-out pane needs (blood_types / triggers.cpp)
+WALL_GIB = 511
+
+
 def attach_xwall(level: Any, wall_id: int, **values: int) -> None:
     """Give one wall an XWALL, the way `bloodmap.construction` does."""
     from .construction import _empty_fields
@@ -183,6 +187,12 @@ def glaze(level: Any, spans: Iterable[Sequence[int]], *,
             records.concede(index, name)
             report["borrowed"].append(index)
         attach_xwall(level, index, **(xwall or GLASS_XWALL))
+        #: kWallGib. Without the type `OperateWall` (triggers.cpp:715-737)
+        #: takes its default branch and `SetupGibWallState` never runs: the
+        #: pane carried the XWALL of breakable glass and could not break.
+        #: E3M1, E6M1 and E1M4 type both records of every pane 511; twenty
+        #: panes in Gravesend were type 0 until 2026-11-18.
+        fields["type"] = WALL_GIB
         report["panes"] += 1
         report["walls"].append(index)
     return report

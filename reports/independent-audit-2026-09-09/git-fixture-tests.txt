@@ -1,0 +1,16 @@
+test_a_door_with_a_channel_and_no_route_is_a_difference (tests.test_readback.ReadBackFailsFirst) ... ok
+test_a_link_receiver_that_cannot_respond_is_a_difference (tests.test_readback.ReadBackFailsFirst) ... ok
+test_the_pre_p1_city_curtain_fails_its_own_sentence (tests.test_readback.ReadBackFailsFirst) ... ok
+test_a_lower_stage_ceiling_puts_the_fabric_on_a_step (tests.test_rendering_law.FailFirstTest) ... ok
+test_a_one_sided_fin_makes_the_fabric_draw (tests.test_rendering_law.FailFirstTest) ... ok
+test_both_rules_are_registered_with_an_engine_source (tests.test_rendering_law.FailFirstTest) ... ok
+test_masking_the_wall_makes_the_fabric_draw (tests.test_rendering_law.FailFirstTest) ... ok
+test_the_city_as_committed_before_the_curtain_rebuild_is_caught (tests.test_rendering_law.FailFirstTest) ... ok
+test_the_gate_is_graded_as_a_warning_and_the_habit_as_a_note (tests.test_rendering_law.FailFirstTest) ... ok
+test_the_rebuilt_city_curtain_passes_the_same_gate (tests.test_rendering_law.FailFirstTest) ... ok
+test_the_reduced_city_curtain_fails_the_gate (tests.test_rendering_law.FailFirstTest) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.186s
+
+OK

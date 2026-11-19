@@ -1,0 +1,12 @@
+{
+ "map": "E3M4",
+ "sector": 252,
+ "kind": "set-piece",
+ "title": "Mortuary disposal room with a striped press",
+ "what": "A white-tiled square room with drains in the floor and blood smeared across it, a heavy blue bin full of remains, and a hazard-striped machine column with spiked jaws standing against one wall, plus a pipe column. A shutter-like hatch on the far wall shows a bloody window. First second: hazard stripes and spikes on a clean tiled wall; the bin of remains.",
+ "recipe": "Host s252 is 5120 x 5120 units (8.7 m), 3.86 bodies high, floor 296 (grimy tiles), walls 297 (owner: tiles). The machine is s212, 896 x 896 units (1.5 m square), walls 309, floor 1116, a damage sector (type 618, damage_type 3); a second damage strip s251 is 2048 x 768 against the north wall with a see-through sprite 1080 (type 457) in it. A 64-unit slide door s257 (type 614) closes one side. Frame shows the bin as a sector box with gib sprites (not measured).",
+ "use": "The room behind a morgue or behind the meat counter of a butcher: the place nobody should see. Through one door off a hospital or funeral corridor. The player crosses a floor where standing in the wrong square hurts, and the press is the reason to hesitate.",
+ "frame": "knowledge/blood/ideas/tours/E3M4/place_252/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

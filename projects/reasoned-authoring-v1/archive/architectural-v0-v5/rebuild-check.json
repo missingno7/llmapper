@@ -1,0 +1,37 @@
+{
+  "compiler_revision": "b0e0f3b8749391add4f65354f9d54949f109bfcd",
+  "python": "3.10.11 (main, Apr  7 2023, 17:44:59)  [GCC 12.2.0 64 bit (AMD64)]",
+  "method": "Historical bloodmap package and candidate sources extracted with git archive; compile then encode_map, compare every byte to archived MAP. No runtime execution.",
+  "results": [
+    {
+      "iteration": "v0",
+      "byte_exact": true,
+      "sha256": "385472cc8708f4060344f99e7ee548559170c48536e644d21064d95077a8e9f6"
+    },
+    {
+      "iteration": "v1",
+      "byte_exact": true,
+      "sha256": "0d8bccd359a3c9cedd4a3c3222b31b502b2075aa68f4118015b76c4762b37682"
+    },
+    {
+      "iteration": "v2",
+      "byte_exact": true,
+      "sha256": "b9f390032e0f8bcc77cf6a00008fb63125011e31a6d766226ef2c52179c6587b"
+    },
+    {
+      "iteration": "v3",
+      "byte_exact": true,
+      "sha256": "94bade7ac361e2362c81a4377429f3396b0699f4b767eefd265ce461b0f5d6f1"
+    },
+    {
+      "iteration": "v4",
+      "byte_exact": true,
+      "sha256": "1f358e5d3dd42c6125f0e7c2a44a580cb38462283722184423f1b8f0517d6ca3"
+    },
+    {
+      "iteration": "v5",
+      "byte_exact": true,
+      "sha256": "8fb5288e73833498ed487636f8446b69967dc328b968d6ef396101b254b1eee9"
+    }
+  ]
+}

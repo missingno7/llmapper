@@ -33,6 +33,20 @@ TILE_SETS = {
 }
 
 
+#: the owner's facade tiles that have windows in their art (looked at, and
+#: named so on the tile sheet): the blank ones are 417, 418, 181, 414, 406
+WINDOWED = {380, 384, 393, 397, 400, 401}
+BACK_EXTRA = 397
+#: A facade and THE SAME WALL WITHOUT ITS WINDOW. The owner, 2026-11-19:
+#: "380 is building facade with windows and 381 is the same thing just
+#: without windows, so if you want to have just a wall of that building it
+#: should have this texture to look good." 380/381 are his; the other three
+#: pairs are read off the art, which sits side by side in the tile set the
+#: same way: 384's brick is 385 ("rough tan brickwork"), 393's clay is 394
+#: ("clay wall"), 397's boards are 396 (which he has not named).
+BLANK_OF = {380: 381, 384: 385, 393: 394, 397: 396}
+
+
 def _fields(item):
     """LevelIR nests its record under 'fields'; DiskMap objects expose it."""
     if isinstance(item, dict):
@@ -65,7 +79,56 @@ def _loop_extent(level, loop: list[int]) -> tuple[int, int, float]:
     return min(xs), min(ys), span
 
 
-def apply(level, compiled, districts) -> dict:
+#: A building's back along the city's edge, in units: the lengths cycle so
+#: the edge has no beat. E3M1's longest tall wall that is not a facade is
+#: 8,704; ours was one brick wall 49,152 long down a whole side.
+BACK_LENGTHS = (5120, 7168, 6144, 8192)
+BACK_MAX = 9216
+
+
+def split_backs(layout, districts) -> dict:
+    """Cut the city's edge into building-sized walls, before compile.
+
+    The owner, 2026-11-18: "the things that should probably be buildings
+    have wall textures". The plan always said the north, east and west
+    edges were `building_back`; the build painted them as one boundary wall
+    apiece, because one wall record carries one tile. A vertex every
+    building's length gives each back its own record for `apply` to paint.
+    """
+    regions = [layout.regions[r] for r in districts if r in layout.regions]
+    if not regions:
+        return {"edge": None, "vertices": 0}
+    xs = [x for r in regions for x, _y in r.outer]
+    ys = [y for r in regions for _x, y in r.outer]
+    edge = (min(xs), min(ys), max(xs), max(ys))
+    added = 0
+    for region in regions:
+        points = [(int(x), int(y)) for x, y in region.outer]
+        out = []
+        for i, (x0, y0) in enumerate(points):
+            x1, y1 = points[(i + 1) % len(points)]
+            out.append((x0, y0))
+            on_edge = ((x0 == x1 and x0 in (edge[0], edge[2]))
+                       or (y0 == y1 and y0 in (edge[1], edge[3])))
+            length = abs(x1 - x0) + abs(y1 - y0)
+            if not on_edge or length <= BACK_MAX:
+                continue
+            sx = (x1 > x0) - (x1 < x0)
+            sy = (y1 > y0) - (y1 < y0)
+            done, k = 0, (abs(x0) + abs(y0)) // 1024
+            while True:
+                step = BACK_LENGTHS[k % len(BACK_LENGTHS)]
+                if length - done - step < 4096:
+                    break
+                done += step
+                k += 1
+                out.append((x0 + sx * done, y0 + sy * done))
+                added += 1
+        region.outer = tuple(out)
+    return {"edge": list(edge), "vertices": added}
+
+
+def apply(level, compiled, districts, edge=None) -> dict:
     """Vary facades per building.  `districts` maps region_id -> district."""
     report = {"buildings": 0, "walls": 0, "by_tile": {}, "boundary_walls": 0}
     for region_id, district in districts.items():
@@ -82,8 +145,33 @@ def apply(level, compiled, districts) -> dict:
         for index, loop in enumerate(loops):
             if index == outer:
                 for wall in loop:
-                    if int(_fields(level.walls[wall])["next_sector"]) < 0:
-                        _fields(level.walls[wall])["picnum"] = MASONRY.wall
+                    record = _fields(level.walls[wall])
+                    if int(record["next_sector"]) >= 0:
+                        continue
+                    nxt = _fields(level.walls[int(record["point2"])])
+                    x0, y0 = int(record["x"]), int(record["y"])
+                    x1, y1 = int(nxt["x"]), int(nxt["y"])
+                    length = abs(x1 - x0) + abs(y1 - y0)
+                    on_edge = edge is not None and (
+                        (x0 == x1 and x0 in (edge[0], edge[2]))
+                        or (y0 == y1 and y0 in (edge[1], edge[3])))
+                    if on_edge and length >= 1024:
+                        #: the city's edge IS the backs of its buildings
+                        #: (`city_plan.BOUNDARY`: building_back), one
+                        #: building to a segment (`split_backs`)
+                        key = (min(x0, x1) // 1024) + (min(y0, y1) // 1024) * 3
+                        #: The owner, 2026-11-18: "We should have more
+                        #: windows in buildings around the city." A third
+                        #: of the edge (47k of 159k) drew the district's
+                        #: BLANK tiles -- 417, 418, 181 -- so a building's
+                        #: back was a wall with no window in it. A back
+                        #: wears only the tiles with windows in their art,
+                        #: and the wooden front (397) joins them.
+                        backs = [t for t in tiles if t in WINDOWED] + [BACK_EXTRA]
+                        record["picnum"] = backs[key % len(backs)]
+                        report["back_walls"] = report.get("back_walls", 0) + 1
+                    else:
+                        record["picnum"] = MASONRY.wall
                         report["boundary_walls"] += 1
                 continue
             # Deterministic per building, and stable under re-compiles:

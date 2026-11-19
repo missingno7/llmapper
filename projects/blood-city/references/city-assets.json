@@ -25,7 +25,7 @@
    "y_repeat": 48,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.619
@@ -237,7 +237,7 @@
    "y_repeat": 16,
    "cstat": 8577,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.072
@@ -255,7 +255,7 @@
    "y_repeat": 16,
    "cstat": 8577,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.072
@@ -492,7 +492,7 @@
    "y_repeat": 32,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.302
@@ -510,7 +510,7 @@
    "y_repeat": 64,
    "cstat": 417,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 1.026
@@ -528,7 +528,7 @@
    "y_repeat": 64,
    "cstat": 401,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 1.026
@@ -711,7 +711,7 @@
    "y_repeat": 72,
    "cstat": 401,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": -0.483
@@ -748,7 +748,7 @@
    "y_repeat": 64,
    "cstat": 401,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.423
@@ -766,7 +766,7 @@
    "y_repeat": 40,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.747
@@ -860,7 +860,7 @@
    "y_repeat": 24,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.17
@@ -974,7 +974,7 @@
    "y_repeat": 48,
    "cstat": 8320,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.725
@@ -1064,7 +1064,7 @@
    "y_repeat": 64,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.845
@@ -1449,7 +1449,7 @@
    "y_repeat": 40,
    "cstat": 8576,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -1568,7 +1568,7 @@
    "y_repeat": 64,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -1589,7 +1589,7 @@
    "y_repeat": 56,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.019
@@ -1610,7 +1610,7 @@
    "y_repeat": 64,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.015
@@ -1629,7 +1629,7 @@
    "y_repeat": 104,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -1649,7 +1649,7 @@
    "y_repeat": 64,
    "cstat": 132,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.015
@@ -1667,7 +1667,7 @@
    "y_repeat": 56,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.017
@@ -1880,7 +1880,7 @@
    "y_repeat": 64,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -1988,7 +1988,7 @@
    "y_repeat": 72,
    "cstat": 132,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -2510,7 +2510,7 @@
    "y_repeat": 13,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 1.419
@@ -2620,7 +2620,7 @@
    "y_repeat": 32,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.143
@@ -2732,7 +2732,7 @@
    "y_repeat": 64,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.015
@@ -2750,7 +2750,7 @@
    "y_repeat": 64,
    "cstat": 389,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -2768,7 +2768,7 @@
    "y_repeat": 64,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.423
@@ -2786,7 +2786,7 @@
    "y_repeat": 48,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.011
@@ -2805,7 +2805,7 @@
    "y_repeat": 40,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.015
@@ -2863,7 +2863,7 @@
    "y_repeat": 64,
    "cstat": 385,
    "shade": 9,
-   "pal": 13,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.181
@@ -2942,7 +2942,7 @@
    "y_repeat": 48,
    "cstat": 160,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.332
@@ -3044,7 +3044,7 @@
    "y_repeat": 136,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 2.443
@@ -3237,7 +3237,7 @@
    "y_repeat": 24,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.423
@@ -3339,7 +3339,7 @@
    "y_repeat": 88,
    "cstat": 16512,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 2.958
@@ -3357,7 +3357,7 @@
    "y_repeat": 64,
    "cstat": 16512,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 2.838
@@ -3375,7 +3375,7 @@
    "y_repeat": 88,
    "cstat": 16512,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 2.717
@@ -3393,7 +3393,7 @@
    "y_repeat": 32,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.106
@@ -3455,7 +3455,7 @@
    "y_repeat": 80,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.021
@@ -3473,7 +3473,7 @@
    "y_repeat": 72,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 417,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -3493,7 +3493,7 @@
    "y_repeat": 64,
    "cstat": 389,
    "shade": -18,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.0
@@ -3513,7 +3513,7 @@
    "y_repeat": 32,
    "cstat": 385,
    "shade": 0,
-   "pal": 2,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -3645,7 +3645,7 @@
    "y_repeat": 40,
    "cstat": 385,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 0.0
@@ -4200,7 +4200,7 @@
    "y_repeat": 48,
    "cstat": 384,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 416,
    "status": 4,
    "over_floor_bodies": 3.84
@@ -4218,7 +4218,7 @@
    "y_repeat": 27,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.891
@@ -4682,7 +4682,7 @@
    "y_repeat": 64,
    "cstat": 464,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.664
@@ -4741,7 +4741,7 @@
    "y_repeat": 51,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.664
@@ -4759,7 +4759,7 @@
    "y_repeat": 40,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.664
@@ -4795,7 +4795,7 @@
    "y_repeat": 40,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 1.479
@@ -5072,7 +5072,7 @@
    "y_repeat": 64,
    "cstat": 397,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 3.517
@@ -5093,7 +5093,7 @@
    "y_repeat": 59,
    "cstat": 208,
    "shade": 16,
-   "pal": 9,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 1.932
@@ -5406,7 +5406,7 @@
    "y_repeat": 64,
    "cstat": 226,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.0
@@ -5424,7 +5424,7 @@
    "y_repeat": 91,
    "cstat": 160,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 3.743
@@ -5479,7 +5479,7 @@
    "y_repeat": 64,
    "cstat": 160,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.0
@@ -5964,7 +5964,7 @@
    "y_repeat": 40,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.302
@@ -5982,7 +5982,7 @@
    "y_repeat": 16,
    "cstat": 128,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": -0.362
@@ -6173,7 +6173,7 @@
    "y_repeat": 40,
    "cstat": 208,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.0
@@ -6227,7 +6227,7 @@
    "y_repeat": 24,
    "cstat": 8416,
    "shade": 0,
-   "pal": 1,
+   "pal": 0,
    "type": 0,
    "status": 0,
    "over_floor_bodies": 0.0

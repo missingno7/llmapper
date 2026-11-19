@@ -1,0 +1,12 @@
+{
+ "map": "E1M4",
+ "sector": 321,
+ "kind": "set-piece",
+ "title": "Carousel: a rotating platform of poles and winged riders",
+ "what": "A round merry-go-round in a brick yard: a raised octagonal platform with a thick central drum, eight brass poles around it and winged gargoyle figures mounted on the poles where horses would be; painted carnival signs ('Pukey!', 'Happy-...') on the yard walls. The whole platform is one rotating sector. First second: poles in a ring around a drum, figures on them, at night.",
+ "recipe": "s321 is 8704 x 8704 units (14.8 m across), floor 0.49 bodies above the yard, 2.9 bodies of headroom, walls 1095 and 299; type 617 kSectorRotate, busy_time_a 255, rx_id 128 (what sends 128 not verified). Eight pole sprites of tile 213 (16x128 px) stand on a ring of radius about 3072 (5.2 m) around (14848, 28160). Riders: 4 decoration sprites of tile 1475 (winged figure, 174x90 px) and 3 flesh gargoyles (tile 1470, type 206) at the pole tops. Yard s352 is 11264 x 14592, floor 255.",
+ "use": "The centrepiece of a fairground behind the edge facade, seen first through the entrance arch. The player throws the switch that starts it, and the riders that were decoration come alive (the gargoyles are real enemies); or a key rides on it and must be grabbed as it comes round.",
+ "frame": "knowledge/blood/ideas/tours/E1M4/edge/frames/carousel_out.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

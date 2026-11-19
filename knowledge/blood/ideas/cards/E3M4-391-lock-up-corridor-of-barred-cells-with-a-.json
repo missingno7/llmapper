@@ -1,0 +1,12 @@
+{
+ "map": "E3M4",
+ "sector": 391,
+ "kind": "set-piece",
+ "title": "Lock-up corridor of barred cells with a flame trap in each",
+ "what": "A dark, low corridor of stone with a red-and-black chequer floor and a single candle; on one side are cells closed by iron bars, each holding a half-naked prisoner. Spiders crawl the floor. First second: bars, a person behind them, the dark.",
+ "recipe": "Corridor s391 is 8832 x 3072 units (15.0 x 5.2 m), 1.93 bodies high, floor 291, ceiling 379, walls 414. Each cell (s340, s346, s348) is about 1280 x 2048 (2.2 x 3.5 m), 1.63 bodies high, with tile 465 (owner: grate) as the masked wall of bars, one prisoner (tile 3798, type 245 kDudeInnocent) and a flame trap (tile 2183, type 452 kTrapFlame, a nozzle in a frame). Raised corner pieces s364/s366 1152 square hold more flame traps; s365/s367 are type 600 sectors (what fires them: not verified). Brown spiders are type 213.",
+ "use": "The secure ward of an asylum or the cells of a police station at the city edge: a desk room in front, this corridor behind one locked door. The player walks past the cells; a switch or the wrong step lights the traps and the prisoners burn, which is the scene to remember.",
+ "frame": "knowledge/blood/ideas/tours/E3M4/place_391/frames.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

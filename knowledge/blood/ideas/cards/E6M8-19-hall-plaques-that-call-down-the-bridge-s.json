@@ -1,0 +1,12 @@
+{
+ "map": "E6M8",
+ "sector": 19,
+ "kind": "mechanism",
+ "title": "Hall plaques that call down the bridge spokes",
+ "what": "Six raised walkways radiate from the round central hall out over the two yards, 2.2 bodies above the grass, each made of two narrow rails with a lift slot between them. On the hall's twelve-sided wall, six small skull-portrait plaques face the six spokes. Pushing a plaque drops the matching lift slot to the hall's floor level; after a few seconds it rises back, carrying whoever stepped on it up onto the spoke. The control is in one room and the effect is visible through its openings. From fields: the ride direction (step on low, ride up) is inferred, not watched.",
+ "recipe": "Spoke: two rails (e.g. sectors 7 and 8, 3584 x 512 each) at floor -17408 under open sky, with the lift slot between them (sector 19, 2560 x 1024 = 4.5 x 1.8 m), type 600 kSectorZMotion, off_floor_z -17408, on_floor_z 15360 (hall floor; 0.3 bodies above the apron grass at 20480), busy_time 10, wait_time 30-40, rx 101-106 one per spoke. Each slot carries a deathmatch start (type 2) and an ammo pickup. Plaques: wall sprites tile 1048 (32x40 skull portrait, 0.6 bodies tall) on the hall wall 0.9 bodies up, type 20 kSwitchToggle, cmd 3, push trigger, tx 101-106, data 211 (sound).",
+ "use": "Harbour: a harbourmaster's office with a row of levers that lower individual gangplanks onto ships moored outside its windows. Theatre: stage-manager's panel lowering separate flown platforms.",
+ "frame": "C:/Users/jiriv/AppData/Local/Temp/claude/eeb8d0b59fa9e1b9/04d05acf-4d03-4678-bfee-b4269db19368/scratchpad/ideas_b/e6m8_b/montage.png",
+ "date": "2026-11-18",
+ "used_in": []
+}

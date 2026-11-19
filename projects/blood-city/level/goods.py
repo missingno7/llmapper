@@ -117,8 +117,10 @@ ON_TOP = [
     ("saloon/main/fittings/main_table_0", [(759, 0.4, 0.45), (574, 0.65, 0.6)]),
     ("saloon/main/fittings/main_table_1", [(605, 0.55, 0.4), (521, 0.4, 0.65)]),
     # the pawnbroker's window: what people pledge
-    ("pawn_shop/pawn_display", [(739, 0.10, 0.5), (616, 0.37, 0.5),
-                                (520, 0.62, 0.5), (574, 0.90, 0.5)]),
+    ("pawn_shop/pawn_display", [(739, 0.08, 0.5), (616, 0.22, 0.5),
+                                (520, 0.36, 0.5), (574, 0.50, 0.5),
+                                (938, 0.64, 0.5), (712, 0.78, 0.5),
+                                (604, 0.92, 0.5)]),
     ("pawn_shop/vault", [(712, 0.25, 0.3), (938, 0.75, 0.3)]),
     # PROVISIONS: a grocer's windows
     ("market_hall/display_n", [(2937, 0.5, 0.12), (834, 0.5, 0.30), (759, 0.5, 0.45),
@@ -161,6 +163,8 @@ ROWS = [
     #: (`fixtures.SHELF_BACKS`); a candle to read by and nothing else
     ("gravesend_arcade/unit_e/shelf", [938]),
     ("gravesend_arcade/unit_f/shelf", [834, 802, 604, 834]),
+    #: the pawnbroker: what people pledged, out of reach behind the counter
+    ("pawn_shop/shop/shelf", [739, 616, 520, 574, 938]),
 ]
 #: a shelf with one tile in its list holds one thing at each end, not a row
 
@@ -201,7 +205,7 @@ ON_WALL = [
     ("gravesend_arcade/unit_e", "west", 740, 0.5, None),
     ("gravesend_arcade/unit_e", "east", 644, 0.5, 1.1),
     ("gravesend_arcade/service", "south", 1710, 0.3, None),
-    ("gravesend_arcade/service", "north", 658, 0.7, None),
+    #: (the arcade's service extinguisher is wired now: `l3_mall`)
     ("st_gallows/narthex", "north", 845, 0.5, 1.7),
     ("st_gallows/chancel", "west", 848, 0.82, 1.9),
     ("st_gallows/west_aisle", "west", 614, 0.5, None),
