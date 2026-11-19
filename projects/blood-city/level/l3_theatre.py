@@ -400,7 +400,10 @@ def build(district, theatre_st):
     import doorswitch
     levers = []
     for door_index, (name, room_name, x0, y0, x1, y1, face) in enumerate(DOORS):
-        channel = doorswitch.channel_for(door_index)
+        import wires
+        from bloodmap import wiring
+        lever_wire = wires.lever(door_index, name)
+        channel = lever_wire.channel
         inner = {"south": "north", "east": "west",
                  "north": "south", "west": "east"}[face]
         if face == "south":
@@ -424,6 +427,7 @@ def build(district, theatre_st):
             porch = make(f"{name}_porch", x1 - PORCH_D, y0, x1, y1, "service",
                          f"the {name} reveal", role="gateway", clear=DOOR_H)
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)
+        lever_wire.then(wiring.region(door.region_id))
         porch.surfaces(wall_picnum=facade.opening, ceiling_picnum=facade.opening,
                        floor_z=GRADE, clear_height=DOOR_H)
         citytree.join(door, rooms[room_name], at_a=inner, at_b=face,

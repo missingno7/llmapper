@@ -316,11 +316,10 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     from bloodmap import wiring
 
     grate_region = ctx["grate_upper"].region_id
-    moment = ctx["circuit"].wire(
-        "foundry:staged-moment",
-        "stepping onto the yard grate, once, fires the cart's two charges and "
-        "a sound cue").when(wiring.region(grate_region), "enter",
-                            command=1, once=True)
+    import wires
+
+    moment = wires.wire("foundry:staged-moment").when(
+        wiring.region(grate_region), "enter", command=1, once=True)
     cart_x0, cart_y0 = dressing["cart_world"]
     # The grate gained a kerb ring (2048 across, centred 1536 east of the
     # yard's west edge), so the charges sit in the strip between the dock

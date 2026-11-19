@@ -160,6 +160,29 @@ class DeclareTests(unittest.TestCase):
         self.assertFalse(chain["silent"])
         self.assertEqual(chain["steps"][0]["to_type"], "kChannelSecretFound")
 
+    def test_a_circuit_can_be_declared_before_its_layout_exists(self):
+        """A level is a program before it is a layout, and a wire's ends are
+        names: the city declares them where each thing is built."""
+        circuit = wiring.Circuit()
+        circuit.wire("vault", "the lever works the vault")             .when(wiring.placement("lever"), "push").then(wiring.region(VAULT))
+        with self.assertRaisesRegex(wiring.WireError, "has no layout"):
+            circuit.apply()
+        layout = _layout()
+        circuit.bind(layout).apply()
+        self.assertEqual(layout.regions[VAULT].sector_behavior["rx_id"], 100)
+
+    def test_a_relay_passes_on_what_it_answers_and_is_read_back_as_one(self):
+        """The curtain answers the push and passes its travel to the stage
+        light: it is nobody's cause, and it is an end of two wires."""
+        layout = _layout()
+        circuit = wiring.Circuit(layout)
+        circuit.wire("yard", "the lever works the yard")             .when(wiring.placement("lever"), "push").then(wiring.region(YARD))
+        circuit.wire("vault", "the vault follows the yard")             .when(wiring.region(YARD), wiring.RELAY, command=wiring.CMD_LINK, on=False)             .then(wiring.region(VAULT))
+        compiled, disk = _built(layout, circuit)
+        said = circuit.read_back(compiled, disk)
+        self.assertEqual([row["faults"] for row in said["wires"]], [[], []])
+        self.assertEqual(layout.regions[YARD].sector_behavior["command"], wiring.CMD_LINK)
+
     def test_a_cause_is_something_that_can_be_done(self):
         with self.assertRaisesRegex(wiring.WireError, "not something that can be done"):
             wiring.Circuit(_layout()).wire("a", "x").when(wiring.region(YARD), "opened")

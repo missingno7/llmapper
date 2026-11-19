@@ -137,6 +137,36 @@ class CityStatusTests(unittest.TestCase):
         typed = [row for row in self.status["open"] if row["kind"] == "undeclared-wire"]
         self.assertEqual(len(typed), len(wires["undeclared"]))
 
+    def test_no_channel_in_the_city_is_typed_by_hand(self):
+        """Thirteen were, in six modules, until 2026-11-19. Every wire is now
+        a line of `wires.py` saying what it is for, numbered by its place."""
+        manifest = json.loads((REPORTS / "build-manifest.json").read_text("utf-8"))
+        wires = manifest["wires"]
+        self.assertEqual(wires["undeclared"], [])
+        self.assertEqual(wires["idle"], [], "a planned wire has no end declared")
+        self.assertGreaterEqual(len(wires["declared"]), 14)
+        numbers = [row["channel"] for row in wires["declared"]]
+        self.assertEqual(numbers, list(range(100, 100 + len(numbers))))
+        for row in wires["wires"]:
+            self.assertTrue(row["senders"], row["name"])
+            self.assertTrue(row["answers"], row["name"])
+
+    def test_the_plan_numbers_a_wire_by_its_place(self):
+        added = str(LEVEL) not in sys.path
+        if added:
+            sys.path.insert(0, str(LEVEL))
+        try:
+            import wires
+        finally:
+            if added:
+                sys.path.remove(str(LEVEL))
+        names = [name for name, _says in wires.PLAN]
+        self.assertEqual(len(set(names)), len(names))
+        self.assertEqual(names[0], "foundry:staged-moment")     # append only
+        for index, (name, says) in enumerate(wires.PLAN):
+            self.assertEqual(wires.channel(name), 100 + index)
+            self.assertGreater(len(says.split()), 5, name)
+
     def test_the_brief_is_short_and_says_what_is_not_verified(self):
         _data, page = self.module.render(self.status)
         self.assertLess(len(page.splitlines()), 70)

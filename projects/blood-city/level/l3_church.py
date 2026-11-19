@@ -22,6 +22,9 @@ that the nave touches five of them, is the shape the measurement asks for.
 
 from __future__ import annotations
 
+import wires
+from bloodmap import wiring
+
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
@@ -224,7 +227,7 @@ CRYPT_FACES: dict = {}
 BREACH = (32256, 28672, 32768, 30208)
 BREACH_PIECES = ((28672, 29056, 18432), (29056, 29824, 30720),
                  (29824, 30208, 14336))
-BREACH_CHANNEL = 262
+BREACH_CHANNEL = wires.channel("church:breach")
 BREACH_HOLE = 20480
 #: The powder store. The owner again: "Maybe we can have it as a TNT
 #: barrels storage or something with cascade explosions (check other
@@ -854,6 +857,7 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
                                          rx_id=BREACH_CHANNEL, open_time=1),
                          "trigger_once": 1}})
         piece.surfaces(layer="crypt", floor_z=CRYPT_FLOOR, clear_height=0)
+        wires.wire("church:breach").then(wiring.region(piece.region_id))
         #: typed after the door pass, like the lift: three pieces side by
         #: side are a hole, not three doors
         LATE_TYPES[piece.region_id] = 600
@@ -1027,6 +1031,10 @@ def crack(layout, rooms, trunk_region_id) -> dict:
         a1=(BREACH[2], BREACH[3] + 1024), a2=(BREACH[2], BREACH[1] - 1024),
         t=0.5, height_player_heights=0.6, offset_player_widths=0.04,
         spans_opening=True, **CRACK)
+    for cracked in ("church:crypt_crack", "church:sewer_crack"):
+        wires.wire("church:breach").when(
+            wiring.placement(cracked), "destroyed", command=1,
+            on=True, off=True, once=True)
     for index, (local, wait) in enumerate((((0.96, 0.52), 1),
                                            ((0.96, 0.66), 3),
                                            ((0.96, 0.82), 2))):
@@ -1034,6 +1042,8 @@ def crack(layout, rooms, trunk_region_id) -> dict:
             f"church:crypt_charge_{index}", crypt.region_id, local=local,
             type=459, picnum=908, cstat=128, x_repeat=4, y_repeat=64,
             status=11, behavior={"rx_id": BREACH_CHANNEL, "wait_time": wait})
+        wires.wire("church:breach").then(
+            wiring.placement(f"church:crypt_charge_{index}"))
     for index, (a1, a2) in enumerate(PLAQUES):
         layout.place_on_wall(
             f"church:crypt_plaque_{index}", crypt.region_id, a1=a1, a2=a2,

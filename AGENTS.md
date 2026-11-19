@@ -77,7 +77,7 @@ critique, and what is open. The build writes it; it is never edited.
 ```bash
 python projects/blood-city/level/status.py --place station   # one place and what is open on it
 python projects/blood-city/level/status.py --kind refused    # one kind of open item
-python projects/blood-city/level/status.py --wires           # the level's wiring, as declared
+python projects/blood-city/level/status.py --wires           # the level's wiring (named in level/wires.py)
 python projects/blood-city/level/build_skeleton.py     # about a minute; prints every pass
 python projects/blood-city/level/look.py --set <poses> -o <dir>   # frames, as the game shows it
 python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP

@@ -676,7 +676,7 @@
     "lines": [],
     "degraded": [],
     "wired": {
-      "channel": 341,
+      "channel": 102,
       "command": 5,
       "from": "region:gravesend/theatre_row/aldermack/stage_curtain",
       "to": "region:gravesend/theatre_row/aldermack/auditorium/house/stage"
@@ -902,8 +902,179 @@
           "placement moment:exploder_b",
           "placement moment:boom_sound"
         ]
+      },
+      {
+        "name": "theatre:curtain",
+        "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
+        "channel": 101,
+        "engine": null,
+        "when": [
+          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25600, 7072) to (25472, 7072)",
+          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25472, 7072) to (25472, 7008)",
+          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25472, 7008) to (25600, 7008)"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/stage_curtain"
+        ]
+      },
+      {
+        "name": "theatre:stage-light",
+        "says": "the stage's light follows the curtain as it travels: dark shut, lit open",
+        "channel": 102,
+        "engine": null,
+        "when": [
+          "relay on region region:gravesend/theatre_row/aldermack/stage_curtain"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/auditorium/house/stage"
+        ]
+      },
+      {
+        "name": "church:breach",
+        "says": "blowing the crack in the crypt wall, from either side, once, opens the way between crypt and sewer and fires three charges",
+        "channel": 103,
+        "engine": null,
+        "when": [
+          "destroyed on placement church:crypt_crack",
+          "destroyed on placement church:sewer_crack"
+        ],
+        "then": [
+          "region region:gravesend/old_crossing/st_gallows/crypt_breach_0",
+          "region region:gravesend/old_crossing/st_gallows/crypt_breach_1",
+          "region region:gravesend/old_crossing/st_gallows/crypt_breach_2",
+          "placement church:crypt_charge_0",
+          "placement church:crypt_charge_1",
+          "placement church:crypt_charge_2"
+        ]
+      },
+      {
+        "name": "arcade:cache",
+        "says": "shooting the extinguisher in the service corridor, once, blows open the wall behind it onto a hidden cache",
+        "channel": 104,
+        "engine": null,
+        "when": [
+          "vector on placement mall:service_extinguisher"
+        ],
+        "then": [
+          "region region:gravesend/market_slip/gravesend_arcade/service_seal",
+          "placement mall:service_charge_0",
+          "placement mall:service_charge_1",
+          "placement mall:service_charge_2"
+        ]
+      },
+      {
+        "name": "pump:belt",
+        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on",
+        "channel": 105,
+        "engine": null,
+        "when": [
+          "push on placement pump:belt_lever"
+        ],
+        "then": [
+          "region region:gravesend/foundry_ward/pump_station/belt_0",
+          "region region:gravesend/foundry_ward/pump_station/belt_2",
+          "region region:gravesend/foundry_ward/pump_station/belt_4"
+        ]
+      },
+      {
+        "name": "pump:presses",
+        "says": "when the level starts both presses begin slamming, and never stop",
+        "channel": 106,
+        "engine": null,
+        "when": [
+          "level start on placement pump:press_starter"
+        ],
+        "then": [
+          "region region:gravesend/foundry_ward/pump_station/belt_1",
+          "region region:gravesend/foundry_ward/pump_station/belt_3"
+        ]
+      },
+      {
+        "name": "station:car-door",
+        "says": "the lever in the station hall sinks the carriage's door into its floor",
+        "channel": 107,
+        "engine": null,
+        "when": [
+          "push on placement station:car_lever"
+        ],
+        "then": [
+          "region region:gravesend/gravesend_station/carriage_door"
+        ]
+      },
+      {
+        "name": "station:gate",
+        "says": "the signal box's lever raises the roll-up gate in the tunnel's mouth",
+        "channel": 108,
+        "engine": null,
+        "when": [
+          "push on placement station:gate_lever"
+        ],
+        "then": [
+          "region region:gravesend/gravesend_station/tunnel_gate"
+        ]
+      },
+      {
+        "name": "lever:saloon",
+        "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
+        "channel": 109,
+        "engine": null,
+        "when": [
+          "push on placement lever:saloon"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/saloon/door"
+        ]
+      },
+      {
+        "name": "lever:parlor",
+        "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
+        "channel": 110,
+        "engine": null,
+        "when": [
+          "push on placement lever:parlor"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/parlor/door"
+        ]
+      },
+      {
+        "name": "lever:aldermack",
+        "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
+        "channel": 111,
+        "engine": null,
+        "when": [
+          "push on placement lever:aldermack"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/door"
+        ]
+      },
+      {
+        "name": "lever:lobby",
+        "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
+        "channel": 112,
+        "engine": null,
+        "when": [
+          "push on placement lever:lobby"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/lobby_door"
+        ]
+      },
+      {
+        "name": "lever:pawn",
+        "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
+        "channel": 113,
+        "engine": null,
+        "when": [
+          "push on placement lever:pawn"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/pawn_shop/pawn_door"
+        ]
       }
     ],
+    "idle": [],
     "wires": [
       {
         "name": "foundry:staged-moment",
@@ -919,141 +1090,192 @@
           "sprite 36"
         ],
         "faults": []
-      }
-    ],
-    "undeclared": [
-      {
-        "channel": 200,
-        "senders": [
-          "sprite 350"
-        ],
-        "listeners": [
-          "sector 9"
-        ]
       },
       {
-        "channel": 201,
-        "senders": [
-          "sprite 351"
-        ],
-        "listeners": [
-          "sector 18"
-        ]
-      },
-      {
-        "channel": 202,
-        "senders": [
-          "sprite 352"
-        ],
-        "listeners": [
-          "sector 30"
-        ]
-      },
-      {
-        "channel": 203,
-        "senders": [
-          "sprite 353"
-        ],
-        "listeners": [
-          "sector 32"
-        ]
-      },
-      {
-        "channel": 204,
-        "senders": [
-          "sprite 354"
-        ],
-        "listeners": [
-          "sector 39"
-        ]
-      },
-      {
-        "channel": 260,
-        "senders": [
-          "sprite 280"
-        ],
-        "listeners": [
-          "sprite 281",
-          "sprite 282",
-          "sprite 283",
-          "sector 198"
-        ]
-      },
-      {
-        "channel": 261,
-        "senders": [
-          "sprite 1"
-        ],
-        "listeners": [
-          "sector 133",
-          "sector 135",
-          "sector 137"
-        ]
-      },
-      {
-        "channel": 262,
-        "senders": [
-          "sprite 210",
-          "sprite 211"
-        ],
-        "listeners": [
-          "sprite 212",
-          "sprite 213",
-          "sprite 214",
-          "sector 93",
-          "sector 94",
-          "sector 95"
-        ]
-      },
-      {
-        "channel": 263,
-        "senders": [
-          "sprite 0"
-        ],
-        "listeners": [
-          "sector 134",
-          "sector 136"
-        ]
-      },
-      {
-        "channel": 264,
-        "senders": [
-          "sprite 177"
-        ],
-        "listeners": [
-          "sector 363"
-        ]
-      },
-      {
-        "channel": 265,
-        "senders": [
-          "sprite 171"
-        ],
-        "listeners": [
-          "sector 389"
-        ]
-      },
-      {
-        "channel": 340,
+        "name": "theatre:curtain",
+        "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
+        "channel": 101,
+        "engine": null,
         "senders": [
           "wall 273",
           "wall 274",
           "wall 275"
         ],
-        "listeners": [
+        "answers": [
           "sector 34"
-        ]
+        ],
+        "faults": []
       },
       {
-        "channel": 341,
+        "name": "theatre:stage-light",
+        "says": "the stage's light follows the curtain as it travels: dark shut, lit open",
+        "channel": 102,
+        "engine": null,
         "senders": [
           "sector 34"
         ],
-        "listeners": [
+        "answers": [
           "sector 21"
-        ]
+        ],
+        "faults": []
+      },
+      {
+        "name": "church:breach",
+        "says": "blowing the crack in the crypt wall, from either side, once, opens the way between crypt and sewer and fires three charges",
+        "channel": 103,
+        "engine": null,
+        "senders": [
+          "sprite 210",
+          "sprite 211"
+        ],
+        "answers": [
+          "sector 93",
+          "sector 94",
+          "sector 95",
+          "sprite 212",
+          "sprite 213",
+          "sprite 214"
+        ],
+        "faults": []
+      },
+      {
+        "name": "arcade:cache",
+        "says": "shooting the extinguisher in the service corridor, once, blows open the wall behind it onto a hidden cache",
+        "channel": 104,
+        "engine": null,
+        "senders": [
+          "sprite 280"
+        ],
+        "answers": [
+          "sector 198",
+          "sprite 281",
+          "sprite 282",
+          "sprite 283"
+        ],
+        "faults": []
+      },
+      {
+        "name": "pump:belt",
+        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on",
+        "channel": 105,
+        "engine": null,
+        "senders": [
+          "sprite 1"
+        ],
+        "answers": [
+          "sector 133",
+          "sector 135",
+          "sector 137"
+        ],
+        "faults": []
+      },
+      {
+        "name": "pump:presses",
+        "says": "when the level starts both presses begin slamming, and never stop",
+        "channel": 106,
+        "engine": null,
+        "senders": [
+          "sprite 0"
+        ],
+        "answers": [
+          "sector 134",
+          "sector 136"
+        ],
+        "faults": []
+      },
+      {
+        "name": "station:car-door",
+        "says": "the lever in the station hall sinks the carriage's door into its floor",
+        "channel": 107,
+        "engine": null,
+        "senders": [
+          "sprite 177"
+        ],
+        "answers": [
+          "sector 363"
+        ],
+        "faults": []
+      },
+      {
+        "name": "station:gate",
+        "says": "the signal box's lever raises the roll-up gate in the tunnel's mouth",
+        "channel": 108,
+        "engine": null,
+        "senders": [
+          "sprite 171"
+        ],
+        "answers": [
+          "sector 389"
+        ],
+        "faults": []
+      },
+      {
+        "name": "lever:saloon",
+        "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
+        "channel": 109,
+        "engine": null,
+        "senders": [
+          "sprite 350"
+        ],
+        "answers": [
+          "sector 9"
+        ],
+        "faults": []
+      },
+      {
+        "name": "lever:parlor",
+        "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
+        "channel": 110,
+        "engine": null,
+        "senders": [
+          "sprite 351"
+        ],
+        "answers": [
+          "sector 18"
+        ],
+        "faults": []
+      },
+      {
+        "name": "lever:aldermack",
+        "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
+        "channel": 111,
+        "engine": null,
+        "senders": [
+          "sprite 352"
+        ],
+        "answers": [
+          "sector 30"
+        ],
+        "faults": []
+      },
+      {
+        "name": "lever:lobby",
+        "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
+        "channel": 112,
+        "engine": null,
+        "senders": [
+          "sprite 353"
+        ],
+        "answers": [
+          "sector 32"
+        ],
+        "faults": []
+      },
+      {
+        "name": "lever:pawn",
+        "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
+        "channel": 113,
+        "engine": null,
+        "senders": [
+          "sprite 354"
+        ],
+        "answers": [
+          "sector 39"
+        ],
+        "faults": []
       }
     ],
+    "undeclared": [],
     "silent": [],
     "agrees": true
   },
@@ -1295,7 +1517,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 200,
+          "rx_id": 109,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1323,7 +1545,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 201,
+          "rx_id": 110,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1351,7 +1573,7 @@
         ],
         "sector_type": 0,
         "wiring": {
-          "rx_id": 341,
+          "rx_id": 102,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1366,7 +1588,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 202,
+          "rx_id": 111,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1394,7 +1616,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 203,
+          "rx_id": 112,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1422,8 +1644,8 @@
         ],
         "sector_type": 614,
         "wiring": {
-          "rx_id": 340,
-          "tx_id": 341,
+          "rx_id": 101,
+          "tx_id": 102,
           "command": 5,
           "state": 0
         },
@@ -1488,7 +1710,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 204,
+          "rx_id": 113,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1556,7 +1778,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 262,
+          "rx_id": 103,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1584,7 +1806,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 262,
+          "rx_id": 103,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1612,7 +1834,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 262,
+          "rx_id": 103,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1748,7 +1970,7 @@
         ],
         "sector_type": 0,
         "wiring": {
-          "rx_id": 261,
+          "rx_id": 105,
           "tx_id": 0,
           "command": 0,
           "state": 1
@@ -1763,7 +1985,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 263,
+          "rx_id": 106,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1791,7 +2013,7 @@
         ],
         "sector_type": 0,
         "wiring": {
-          "rx_id": 261,
+          "rx_id": 105,
           "tx_id": 0,
           "command": 0,
           "state": 1
@@ -1806,7 +2028,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 263,
+          "rx_id": 106,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1834,7 +2056,7 @@
         ],
         "sector_type": 0,
         "wiring": {
-          "rx_id": 261,
+          "rx_id": 105,
           "tx_id": 0,
           "command": 0,
           "state": 1
@@ -1964,7 +2186,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 260,
+          "rx_id": 104,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2225,7 +2447,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 264,
+          "rx_id": 107,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2253,7 +2475,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 265,
+          "rx_id": 108,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2544,12 +2766,12 @@
           [
             "console lever",
             "belt",
-            "channel 261: toggles the belt's three open stretches, which pan and drag only while on"
+            "channel 105: toggles the belt's three open stretches, which pan and drag only while on"
           ],
           [
             "level start",
             "presses",
-            "channel 263: a starter sets both presses slamming for good, as E3M5's are"
+            "channel 106: a starter sets both presses slamming for good, as E3M5's are"
           ],
           [
             "console bank",
@@ -2910,7 +3132,7 @@
           [
             "service extinguisher",
             "service cache",
-            "channel 260: shot, it opens the wall behind it and three charges go off; the cache is a secret"
+            "channel 104: shot, it opens the wall behind it and three charges go off; the cache is a secret"
           ]
         ],
         "study": null

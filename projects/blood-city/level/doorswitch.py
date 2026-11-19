@@ -46,11 +46,8 @@ LEVER_OFFSET = 512         # how far to the side of the opening it sits
 #: Channels reserved for door levers.  L1's channel budget owns the rest;
 #: these are taken from the top of the range so they cannot collide with
 #: the destruction and secret channels already allocated.
-FIRST_CHANNEL = 200
-
-
-def channel_for(index: int) -> int:
-    return FIRST_CHANNEL + index
+#: (Lever channels used to start at 200, typed here. A lever's wire is now
+#: `wires.lever(index, door)`, numbered with every other wire of the city.)
 
 
 def lever_segment(face: str, x0: int, y0: int, x1: int, y1: int,

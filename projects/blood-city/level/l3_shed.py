@@ -21,6 +21,9 @@ round a hole in the stair.
 
 from __future__ import annotations
 
+import wires
+from bloodmap import wiring
+
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.spiral import INNER_RADIUS
@@ -181,10 +184,10 @@ POOL_SHADE, HALL_SHADE = 4, 22
 #: lever beside the console bank stops and starts that belt: the belt's
 #: sectors pan only while their state is on (sectorfx.cpp: `panAlways ||
 #: busy`) and the lever toggles it on one channel.
-BELT_CHANNEL = 261
+BELT_CHANNEL = wires.channel("pump:belt")
 #: The presses move. E3M5's are started by a sprite that hears the level
 #: begin (sprite 38: rx 7, tx 108, command 3, once) and never stop.
-CRUSH_CHANNEL = 263
+CRUSH_CHANNEL = wires.channel("pump:presses")
 LEVEL_START = 7
 #: region id -> sector type, set once the door pass has run (a press is
 #: type 600 and is not a door)
@@ -277,6 +280,8 @@ def machine_hall(shed, lobby, room):
                   else "the belt, open"))
         piece.surfaces(wall_picnum=PLATING, floor_picnum=BELT_TILE,
                        ceiling_picnum=PLATING if press else HALL_CEILING)
+        wires.wire("pump:presses" if press else "pump:belt").then(
+            wiring.region(piece.region_id))
         #: the stripes go on the press, as E3M5 puts them on its jambs
         MACHINE_FACES[piece.region_id] = HAZARD if press else THRESHOLD
         if press:
@@ -469,10 +474,14 @@ def machine_hall(shed, lobby, room):
             status=0, behavior={"tx_id": CRUSH_CHANNEL, "rx_id": LEVEL_START,
                                 "command": 3, "trigger_on": 1,
                                 "trigger_once": 1})
+        wires.wire("pump:presses").when(
+            wiring.placement("pump:press_starter"), wiring.LEVEL_START,
+            command=3, once=True)
         # The lever that runs the belt, on the hazard strip by the consoles.
         import doorswitch
         doorswitch.place(layout, "pump:belt_lever", hall.region_id,
                          ((hx0, ay1 + PILASTER_W), (hx0, ay1)), BELT_CHANNEL)
+        wires.wire("pump:belt").when(wiring.placement("pump:belt_lever"), "push")
         # Each stage says what it is, in stencil, on the wall behind it.
         for word, a1, a2 in (
                 ("INTAKE", (hx0 + 1408, hy0), (hx0 + 2688, hy0)),

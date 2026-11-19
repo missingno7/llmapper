@@ -31,6 +31,9 @@ reported rather than assumed.
 
 from __future__ import annotations
 
+import wires
+from bloodmap import wiring
+
 import pathlib
 import sys
 
@@ -50,8 +53,8 @@ PROSCENIUM = 256
 #: Fifteen tenths each way, which is what every tutorial curtain uses.
 BUSY = 15
 #: The channel the curtain answers, and the one it drives.
-CH_CURTAIN = 340
-CH_STAGE_LIGHT = 341
+CH_CURTAIN = wires.channel("theatre:curtain")
+CH_STAGE_LIGHT = wires.channel("theatre:stage-light")
 #: The shade wave the stage light runs when the curtain is open. Negative
 #: amplitude BRIGHTENS in Blood.
 STAGE_AMPLITUDE = -24
@@ -186,6 +189,7 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
         layout.carry_wall(region, edge[0], edge[1], moves=flag["moves"])
         out["flagged"] += 1
 
+    wires.wire("theatre:curtain").then(wiring.region(region))
     #: The fabric, sized for the span it hangs ACROSS.
     for edge, repeat in zip(spec["fabric"], spec["x_repeats"]):
         layout.paint_wall(region, edge[0], edge[1],
@@ -196,6 +200,8 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
         #: sector, so pushing the proscenium arch does nothing.
         motion.wall_button(layout, region, edge, channel=CH_CURTAIN,
                            command=motion.CMD_TOGGLE, receiver_state=0)
+        wires.wire("theatre:curtain").when(
+            wiring.face(region, edge[0], edge[1]), "push", on=True, off=True)
         out["buttons"] += 1
 
     return out
@@ -237,6 +243,9 @@ def link_stage_light(layout, built, *, stage_region: str) -> dict:
     stage.sector_behavior.update(
         {"rx_id": CH_STAGE_LIGHT, "amplitude": STAGE_AMPLITUDE,
          "shade_floor": 1, "shade_ceiling": 1, "shade_walls": 1})
+    wires.wire("theatre:stage-light").when(
+        wiring.region(built["room"].region_id), wiring.RELAY,
+        command=motion.CMD_LINK, on=False).then(wiring.region(stage_region))
     payload = report(decisions)
     payload["wired"] = {"channel": CH_STAGE_LIGHT,
                         "command": motion.CMD_LINK,

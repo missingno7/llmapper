@@ -280,6 +280,9 @@ LEVEL_START = "level start"
 LEVEL_START_CHANNEL = 7
 #: Causes the engine raises with no flag on the object (see `nodes`).
 UNFLAGGED_CAUSES = ("killed", "destroyed")
+#: Not a cause a player raises: the sender answers another wire and passes
+#: it on, as a curtain that draws passes its travel to the stage's light.
+RELAY = "relay"
 #: `kCmdToggle`, the verb the campaign wires most; `bloodmap.motion.wiring`
 #: explains when a directed verb is a no-op.
 CMD_TOGGLE = 3
@@ -336,11 +339,11 @@ class Wire:
         `on`/`off` are which change of the sender's own state is reported:
         with neither, nothing is ever sent (triggers.cpp:100).
         """
-        if cause not in CAUSES and cause not in UNFLAGGED_CAUSES and cause != LEVEL_START:
+        if cause not in CAUSES + UNFLAGGED_CAUSES + (LEVEL_START, RELAY):
             raise WireError(
                 f"wire {self.name!r}: {cause!r} is not something that can be done "
-                f"to an object; one of {', '.join(CAUSES + UNFLAGGED_CAUSES)} "
-                f"or {LEVEL_START!r}")
+                f"to an object; one of {', '.join(CAUSES + UNFLAGGED_CAUSES)}, "
+                f"{LEVEL_START!r} or {RELAY!r}")
         if cause in UNFLAGGED_CAUSES and ref[0] != "placement":
             raise WireError(f"wire {self.name!r}: only a sprite can be {cause}")
         if not (on or off) and int(command) != CMD_LINK:
@@ -382,11 +385,19 @@ class Circuit:
     listening on two, and a level wire on a channel the engine owns.
     """
 
-    def __init__(self, layout: Any, *, first_channel: int = USER_CHANNELS_FROM) -> None:
+    def __init__(self, layout: Any = None, *,
+                 first_channel: int = USER_CHANNELS_FROM) -> None:
+        #: None until `bind`: a wire's ends are names, so they can be
+        #: declared while the level is still a program and has no layout
         self.layout = layout
         self.first_channel = int(first_channel)
         self.wires: list[Wire] = []
         self.applied = False
+
+    def bind(self, layout: Any) -> "Circuit":
+        """Give the circuit the layout its names are names in."""
+        self.layout = layout
+        return self
 
     # ---- declaring -----------------------------------------------------------
 
@@ -467,6 +478,8 @@ class Circuit:
         """Number every wire and write it into the layout. Once, before compile."""
         if self.applied:
             raise WireError("this circuit has already been applied")
+        if self.layout is None:
+            raise WireError("the circuit has no layout: `bind` one before `apply`")
         self._faces: dict[tuple, dict[str, int]] = {}
         taken = self._hand_numbered()
         owner: dict[int, str] = {}
@@ -579,10 +592,14 @@ class Circuit:
                 for ident in found:
                     if row["cause"] == LEVEL_START:
                         fires = by_id[ident]["rx"] == LEVEL_START_CHANNEL
+                    elif row["cause"] == RELAY:
+                        fires = bool(by_id[ident]["rx"])
                     else:
                         fires = row["cause"] in by_id[ident]["causes"]
                     if not fires:
                         faults.append(f"{ident} is not set off by {row['cause']}")
+                    if row["cause"] == RELAY:
+                        continue          # some other wire's chain passes here
                     chain = roots.get(ident)
                     if chain is None:
                         faults.append(f"{ident} starts no chain")
@@ -601,7 +618,9 @@ class Circuit:
             for ident in sorted(hearing - set(answers)):
                 faults.append(f"{ident} answers the wire and was not declared")
             for ident in senders:
-                reached = {step["to"] for step in roots.get(ident, {"steps": []})["steps"]
+                if ident not in roots:
+                    continue              # a relay, or already reported above
+                reached = {step["to"] for step in roots[ident]["steps"]
                            if step["channel"] == wire.channel}
                 for missed in sorted(set(answers) - reached):
                     faults.append(f"the chain from {ident} does not reach {missed}")

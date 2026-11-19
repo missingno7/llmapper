@@ -30,6 +30,9 @@ Three lessons from elsewhere land here:
 
 from __future__ import annotations
 
+import wires
+from bloodmap import wiring
+
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
@@ -299,6 +302,7 @@ def build(city, market_st):
                                         rx_id=SECRET_CHANNEL, open_time=1),
                         "trigger_once": 1}})
     seal.surfaces(floor_z=GRADE, clear_height=0)
+    wires.wire("arcade:cache").then(wiring.region(seal.region_id))
     cache = make("service_cache", *SECRET_CACHE, "service", SERVICE_H,
                  "the cache behind the service corridor's wall: a secret",
                  role="secret",
@@ -316,7 +320,7 @@ def build(city, market_st):
 
 
 #: The extinguisher's channel, the blast hole and the cache behind it.
-SECRET_CHANNEL = 260
+SECRET_CHANNEL = wires.channel("arcade:cache")
 SECRET_SEAL = (52480, 44032, 53120, 44544)      # 640 wide: E3M4 wall 2361
 SECRET_CACHE = (52224, 43008, 53504, 44032)
 SECRET_HOLE = 20480                              # E3M4 s320: 18,432-26,624
@@ -342,11 +346,16 @@ def extinguisher_secret(layout, rooms) -> dict:
         height_player_heights=0.87, offset_player_widths=0.06,
         #: it hangs on the wall that opens, and goes with it
         spans_opening=True, **EXTINGUISHER)
+    wires.wire("arcade:cache").when(
+        wiring.placement("mall:service_extinguisher"), "vector", command=1,
+        on=True, off=True, once=True)
     for index, (local, wait) in enumerate(EXPLODERS):
         layout.place_on_floor(
             f"mall:service_charge_{index}", service.region_id, local=local,
             type=459, picnum=908, cstat=128, x_repeat=4, y_repeat=64,
             status=11, behavior={"rx_id": SECRET_CHANNEL, "wait_time": wait})
+        wires.wire("arcade:cache").then(
+            wiring.placement(f"mall:service_charge_{index}"))
     return {"channel": SECRET_CHANNEL, "charges": len(EXPLODERS)}
 
 

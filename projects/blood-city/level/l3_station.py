@@ -70,6 +70,9 @@ door. Tiles with no owner name: 1665 (train livery), 174, 414, 2320
 
 from __future__ import annotations
 
+import wires
+from bloodmap import wiring
+
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, Style
 from bloodmap.slope import SlopeSpec
@@ -144,7 +147,7 @@ TUNNEL = ((30976, 34816, 30), (34816, 38912, 60))
 #: box, whose balcony looks straight at it. Beyond the tunnel, the goods
 #: store the line serves.
 GATE_X = (30720, 30976)
-GATE_CHANNEL = 265
+GATE_CHANNEL = wires.channel("station:gate")
 STORE = (38912, -25856, 44032, -15616)
 #: (rectangle, how high it stands)
 CRATES = (((42240, -25344, 43520, -24064), 16384),
@@ -225,7 +228,7 @@ POOLS = ((9216, -10752, 10752, -9216), (12544, -10240, 14080, -8704),
 LAMP, WALL_LAMP, CURTAIN = 945, 2183, 147
 COLUMNS = tuple(HALL[0] + 1024 + k * 2560 for k in range(4))
 BENCHES = ((10240, -12032), (14848, -12032))      # seat's north-west corner
-CAR_DOOR_CHANNEL = 264
+CAR_DOOR_CHANNEL = wires.channel("station:car-door")
 
 #: tiles (the owner's names in quotes)
 FLOOR = 281                        # "irregular grey stone masonry"
@@ -633,6 +636,7 @@ def build(city, street):
                         "busy_time_a": 8, "busy_time_b": 8}},
                     floor_picnum=WOOD)
                 LATE_TYPES[piece.region_id] = 600
+                wires.wire("station:car-door").then(wiring.region(piece.region_id))
             station.connect(piece.face(out_face), shed.face("north"),
                             connection_id=f"connection:station_{row}{k}_out")
             station.connect(piece.face(in_face), car.face(out_face),
@@ -681,6 +685,7 @@ def build(city, street):
                 ceiling_picnum=TUNNEL_VAULT)
     station.connect(gate.face("west"), east.face("east"),
                     connection_id="connection:station_gate_out")
+    wires.wire("station:gate").then(wiring.region(gate.region_id))
     previous = gate
     for index, (x0, x1, shade) in enumerate(TUNNEL):
         bore = room(f"tunnel_{index}", (x0, by0 + 512, x1, by1 - 512),
@@ -923,6 +928,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     doorswitch.place(layout, "station:gate_lever", box.region_id,
                      ((mid + 512, SIGNAL_BOX[3]), (mid - 512, SIGNAL_BOX[3])),
                      GATE_CHANNEL)
+    wires.wire("station:gate").when(wiring.placement("station:gate_lever"), "push")
     report["rail"] = 0
     #: two lengths: the tile is 128 texels, 1,536 wide at this repeat
     #: (four of them lay over each other: the sprite lint's pairs)
@@ -969,6 +975,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     doorswitch.place(layout, "station:car_lever", hall.region_id,
                      ((lx + 512, HALL[1] + 128), (lx, HALL[1] + 128)),
                      CAR_DOOR_CHANNEL)
+    wires.wire("station:car-door").when(wiring.placement("station:car_lever"), "push")
     import props
 
     def free(room_name, local):

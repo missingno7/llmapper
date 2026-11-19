@@ -310,6 +310,10 @@ def build():
     STAGE.begin()
     STAGE("districts",
           "the plan as district assemblies: one street region each, blocks carved out")
+    # The level's wiring, declared: `wires.py` names every wire and what it
+    # is for; each module declares the ends where it builds them.
+    import wires as _wires
+    _wires.begin()
     import glass as _glass
     _glass.FRONTS.clear()
     data = plan()
@@ -1235,10 +1239,10 @@ def main() -> int:
     STAGE("connect",
           "the program becomes a planar layout; gates join the regions")
     layout = program.compile()
-    # The level's wiring, declared: every module that wires something says
-    # so here, with what it is for, and the circuit numbers the channel.
+    # The circuit was begun with the program; its names are this layout's.
     from bloodmap import wiring as _wiring
-    circuit = ctx["circuit"] = _wiring.Circuit(layout)
+    import wires as _wires
+    circuit = ctx["circuit"] = _wires.circuit().bind(layout)
     for gate in gates:
         gate_id, region_a, region_b, a1, a2 = gate[:5]
         # A sixth field states a narrower span on purpose: a roof's edge or a
@@ -1488,6 +1492,7 @@ def main() -> int:
     import doorswitch
     for placement_id, region_id, segment, channel in ctx["door_levers"]:
         doorswitch.place(layout, placement_id, region_id, segment, channel)
+        _wires.by_channel(channel).when(_wiring.placement(placement_id), "push")
     print(f"door levers: {len(ctx['door_levers'])}")
 
     # Ambience.  The Blood campaign runs 23.6 ambient emitters per hundred
@@ -1676,7 +1681,10 @@ def main() -> int:
 
     STAGE("compile",
           "the layout becomes sectors, walls and sprites; the light bomb runs")
-    ctx["manifest"]["wires"] = {"declared": circuit.apply()}
+    _idle = _wires.close()
+    if _idle:
+        print("wires in the plan that nothing declared an end of:", _idle)
+    ctx["manifest"]["wires"] = {"declared": circuit.apply(), "idle": _idle}
     print("wires declared:", [f"{row['name']} on {row['channel']}"
                               for row in ctx["manifest"]["wires"]["declared"]])
     compiled = layout.compile()
