@@ -42,11 +42,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.604,
    "drawn_height_player_heights": {
-    "min": 0.18,
-    "p10": 0.73,
-    "median": 1.45,
-    "p90": 1.45,
-    "max": 1.45
+    "min": 0.06,
+    "p10": 0.24,
+    "median": 0.48,
+    "p90": 0.48,
+    "max": 0.48
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -56,7 +56,7 @@
     "floor": 0.925,
     "wall": 0.075
    },
-   "above_floor_median": 5.82,
+   "above_floor_median": 1.93,
    "canonical_cstat": 224,
    "canonical_cstat_share": 0.358,
    "canonical_x_repeat": 64,
@@ -69,11 +69,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.837,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 4.36,
-    "max": 5.82
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 1.45,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 1.5,
    "fixed_size": false,
@@ -95,11 +95,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.971,
    "drawn_height_player_heights": {
-    "min": 1.47,
-    "p10": 1.95,
-    "median": 1.95,
-    "p90": 1.95,
-    "max": 1.95
+    "min": 0.49,
+    "p10": 0.65,
+    "median": 0.65,
+    "p90": 0.65,
+    "max": 0.65
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -108,7 +108,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 3.64,
+   "above_floor_median": 1.21,
    "canonical_cstat": 128,
    "canonical_cstat_share": 0.464,
    "canonical_x_repeat": 64,
@@ -121,11 +121,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.45,
    "drawn_height_player_heights": {
-    "min": 0.09,
-    "p10": 0.18,
-    "median": 0.36,
-    "p90": 0.73,
-    "max": 0.77
+    "min": 0.03,
+    "p10": 0.06,
+    "median": 0.12,
+    "p90": 0.24,
+    "max": 0.26
    },
    "size_ratio_p90_over_p10": 4.0,
    "fixed_size": false,
@@ -135,7 +135,7 @@
     "wall": 0.613,
     "floor": 0.387
    },
-   "above_floor_median": 2.45,
+   "above_floor_median": 0.82,
    "canonical_cstat": 465,
    "canonical_cstat_share": 0.36,
    "canonical_x_repeat": 64,
@@ -148,11 +148,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.527,
    "drawn_height_player_heights": {
-    "min": 0.42,
-    "p10": 1.26,
-    "median": 1.68,
-    "p90": 2.52,
-    "max": 3.99
+    "min": 0.14,
+    "p10": 0.42,
+    "median": 0.56,
+    "p90": 0.84,
+    "max": 1.33
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -174,13 +174,13 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.674,
    "drawn_height_player_heights": {
-    "min": 1.09,
-    "p10": 1.45,
-    "median": 1.45,
-    "p90": 2.73,
-    "max": 3.45
+    "min": 0.36,
+    "p10": 0.48,
+    "median": 0.48,
+    "p90": 0.91,
+    "max": 1.15
    },
-   "size_ratio_p90_over_p10": 1.87,
+   "size_ratio_p90_over_p10": 1.88,
    "fixed_size": false,
    "scales_with_room": false,
    "room_height_correlation": -0.33,
@@ -200,11 +200,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.958,
    "drawn_height_player_heights": {
-    "min": 4.36,
-    "p10": 5.82,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 7.27
+    "min": 1.45,
+    "p10": 1.93,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 2.42
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -213,7 +213,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 10.36,
+   "above_floor_median": 3.44,
    "canonical_cstat": 129,
    "canonical_cstat_share": 0.338,
    "canonical_x_repeat": 64,
@@ -226,11 +226,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.899,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 1.32,
-    "median": 1.32,
-    "p90": 1.32,
-    "max": 2.64
+    "min": 0.33,
+    "p10": 0.44,
+    "median": 0.44,
+    "p90": 0.44,
+    "max": 0.88
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -239,7 +239,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.55,
+   "above_floor_median": 0.85,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.565,
    "canonical_x_repeat": 32,
@@ -252,11 +252,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.868,
    "drawn_height_player_heights": {
-    "min": 2.86,
-    "p10": 4.3,
-    "median": 5.73,
-    "p90": 5.73,
-    "max": 7.16
+    "min": 0.95,
+    "p10": 1.43,
+    "median": 1.9,
+    "p90": 1.9,
+    "max": 2.38
    },
    "size_ratio_p90_over_p10": 1.33,
    "fixed_size": true,
@@ -278,11 +278,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.492,
    "drawn_height_player_heights": {
-    "min": 0.78,
-    "p10": 2.35,
-    "median": 3.14,
-    "p90": 6.27,
-    "max": 9.41
+    "min": 0.26,
+    "p10": 0.78,
+    "median": 1.04,
+    "p90": 2.08,
+    "max": 3.12
    },
    "size_ratio_p90_over_p10": 2.67,
    "fixed_size": false,
@@ -304,11 +304,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.397,
    "drawn_height_player_heights": {
-    "min": 3.64,
-    "p10": 5.09,
-    "median": 5.82,
-    "p90": 8.0,
-    "max": 12.36
+    "min": 1.21,
+    "p10": 1.69,
+    "median": 1.93,
+    "p90": 2.66,
+    "max": 4.11
    },
    "size_ratio_p90_over_p10": 1.57,
    "fixed_size": false,
@@ -318,7 +318,7 @@
     "wall": 0.984,
     "floor": 0.016
    },
-   "above_floor_median": 2.91,
+   "above_floor_median": 0.97,
    "canonical_cstat": 401,
    "canonical_cstat_share": 0.365,
    "canonical_x_repeat": 64,
@@ -331,11 +331,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.983,
    "drawn_height_player_heights": {
-    "min": 3.22,
-    "p10": 3.68,
-    "median": 3.68,
-    "p90": 3.68,
-    "max": 3.68
+    "min": 1.07,
+    "p10": 1.22,
+    "median": 1.22,
+    "p90": 1.22,
+    "max": 1.22
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -357,11 +357,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.518,
    "drawn_height_player_heights": {
-    "min": 1.5,
-    "p10": 2.5,
-    "median": 4.0,
-    "p90": 4.0,
-    "max": 4.5
+    "min": 0.5,
+    "p10": 0.83,
+    "median": 1.33,
+    "p90": 1.33,
+    "max": 1.49
    },
    "size_ratio_p90_over_p10": 1.6,
    "fixed_size": false,
@@ -371,7 +371,7 @@
     "wall": 0.964,
     "floor": 0.036
    },
-   "above_floor_median": 3.82,
+   "above_floor_median": 1.27,
    "canonical_cstat": 208,
    "canonical_cstat_share": 0.482,
    "canonical_x_repeat": 64,
@@ -384,11 +384,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.709,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 11.64
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 3.86
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -397,7 +397,7 @@
    "alignment": {
     "floor": 1.0
    },
-   "above_floor_median": 9.45,
+   "above_floor_median": 3.14,
    "canonical_cstat": 417,
    "canonical_cstat_share": 0.636,
    "canonical_x_repeat": 48,
@@ -410,11 +410,11 @@
    "canonical_y_repeat": 48,
    "canonical_share": 0.509,
    "drawn_height_player_heights": {
-    "min": 2.03,
-    "p10": 4.06,
-    "median": 4.06,
-    "p90": 5.41,
-    "max": 5.41
+    "min": 0.67,
+    "p10": 1.35,
+    "median": 1.35,
+    "p90": 1.8,
+    "max": 1.8
    },
    "size_ratio_p90_over_p10": 1.33,
    "fixed_size": true,
@@ -423,7 +423,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 10.91,
+   "above_floor_median": 3.62,
    "canonical_cstat": 384,
    "canonical_cstat_share": 0.377,
    "canonical_x_repeat": 48,
@@ -436,11 +436,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.51,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 5.82,
-    "max": 5.82
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 1.93,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -449,7 +449,7 @@
    "alignment": {
     "floor": 1.0
    },
-   "above_floor_median": 6.0,
+   "above_floor_median": 1.99,
    "canonical_cstat": 417,
    "canonical_cstat_share": 0.918,
    "canonical_x_repeat": 32,
@@ -462,11 +462,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 3.5,
-    "p10": 3.5,
-    "median": 3.5,
-    "p90": 3.5,
-    "max": 3.5
+    "min": 1.16,
+    "p10": 1.16,
+    "median": 1.16,
+    "p90": 1.16,
+    "max": 1.16
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -488,11 +488,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.732,
    "drawn_height_player_heights": {
-    "min": 1.09,
-    "p10": 1.45,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.36,
+    "p10": 0.48,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -515,11 +515,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.976,
    "drawn_height_player_heights": {
-    "min": 5.82,
-    "p10": 5.82,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 7.27
+    "min": 1.93,
+    "p10": 1.93,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 2.42
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -541,11 +541,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.658,
    "drawn_height_player_heights": {
-    "min": 0.73,
-    "p10": 1.82,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.24,
+    "p10": 0.6,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.6,
    "fixed_size": false,
@@ -568,11 +568,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.857,
    "drawn_height_player_heights": {
-    "min": 0.09,
-    "p10": 0.18,
-    "median": 0.36,
-    "p90": 0.36,
-    "max": 0.36
+    "min": 0.03,
+    "p10": 0.06,
+    "median": 0.12,
+    "p90": 0.12,
+    "max": 0.12
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -581,7 +581,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 5.27,
+   "above_floor_median": 1.75,
    "canonical_cstat": 465,
    "canonical_cstat_share": 0.686,
    "canonical_x_repeat": 64,
@@ -594,11 +594,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.857,
    "drawn_height_player_heights": {
-    "min": 1.82,
-    "p10": 2.55,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.6,
+    "p10": 0.85,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.14,
    "fixed_size": true,
@@ -608,7 +608,7 @@
     "floor": 0.914,
     "wall": 0.086
    },
-   "above_floor_median": 9.09,
+   "above_floor_median": 3.02,
    "canonical_cstat": 481,
    "canonical_cstat_share": 0.457,
    "canonical_x_repeat": 64,
@@ -621,11 +621,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.226,
    "drawn_height_player_heights": {
-    "min": 0.36,
-    "p10": 1.42,
-    "median": 3.55,
-    "p90": 5.68,
-    "max": 9.94
+    "min": 0.12,
+    "p10": 0.47,
+    "median": 1.18,
+    "p90": 1.89,
+    "max": 3.3
    },
    "size_ratio_p90_over_p10": 4.0,
    "fixed_size": false,
@@ -634,7 +634,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 0.21,
+   "above_floor_median": 0.07,
    "canonical_cstat": 128,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -647,11 +647,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.581,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 0.99,
-    "median": 1.32,
-    "p90": 1.65,
-    "max": 2.31
+    "min": 0.33,
+    "p10": 0.33,
+    "median": 0.44,
+    "p90": 0.55,
+    "max": 0.77
    },
    "size_ratio_p90_over_p10": 1.67,
    "fixed_size": false,
@@ -660,7 +660,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.55,
+   "above_floor_median": 0.85,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.645,
    "canonical_x_repeat": 32,
@@ -673,11 +673,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.567,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 0.99,
-    "median": 1.32,
-    "p90": 2.31,
-    "max": 2.64
+    "min": 0.33,
+    "p10": 0.33,
+    "median": 0.44,
+    "p90": 0.77,
+    "max": 0.88
    },
    "size_ratio_p90_over_p10": 2.33,
    "fixed_size": false,
@@ -686,7 +686,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.67,
+   "above_floor_median": 0.89,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.8,
    "canonical_x_repeat": 32,
@@ -699,11 +699,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.724,
    "drawn_height_player_heights": {
-    "min": 0.91,
-    "p10": 1.82,
-    "median": 2.91,
-    "p90": 3.27,
-    "max": 4.73
+    "min": 0.3,
+    "p10": 0.6,
+    "median": 0.97,
+    "p90": 1.09,
+    "max": 1.57
    },
    "size_ratio_p90_over_p10": 1.8,
    "fixed_size": false,
@@ -713,7 +713,7 @@
     "floor": 0.966,
     "wall": 0.034
    },
-   "above_floor_median": 2.91,
+   "above_floor_median": 0.97,
    "canonical_cstat": 417,
    "canonical_cstat_share": 0.897,
    "canonical_x_repeat": 64,
@@ -726,11 +726,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 0.18,
-    "p10": 0.18,
-    "median": 0.18,
-    "p90": 0.18,
-    "max": 0.18
+    "min": 0.06,
+    "p10": 0.06,
+    "median": 0.06,
+    "p90": 0.06,
+    "max": 0.06
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -739,7 +739,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 4.07,
+   "above_floor_median": 1.35,
    "canonical_cstat": 144,
    "canonical_cstat_share": 0.621,
    "canonical_x_repeat": 64,
@@ -752,11 +752,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 1.45,
-    "p10": 1.45,
-    "median": 1.45,
-    "p90": 1.45,
-    "max": 1.45
+    "min": 0.48,
+    "p10": 0.48,
+    "median": 0.48,
+    "p90": 0.48,
+    "max": 0.48
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -765,7 +765,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 4.36,
+   "above_floor_median": 1.45,
    "canonical_cstat": 208,
    "canonical_cstat_share": 0.571,
    "canonical_x_repeat": 64,
@@ -778,11 +778,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 0.73,
-    "p10": 0.73,
-    "median": 0.73,
-    "p90": 0.73,
-    "max": 0.73
+    "min": 0.24,
+    "p10": 0.24,
+    "median": 0.24,
+    "p90": 0.24,
+    "max": 0.24
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -793,7 +793,7 @@
     "face": 0.429,
     "floor": 0.071
    },
-   "above_floor_median": 7.45,
+   "above_floor_median": 2.48,
    "canonical_cstat": 128,
    "canonical_cstat_share": 0.429,
    "canonical_x_repeat": 64,
@@ -806,11 +806,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.571,
    "drawn_height_player_heights": {
-    "min": 1.45,
-    "p10": 1.45,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.48,
+    "p10": 0.48,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -819,7 +819,7 @@
    "alignment": {
     "floor": 1.0
    },
-   "above_floor_median": 5.64,
+   "above_floor_median": 1.87,
    "canonical_cstat": 481,
    "canonical_cstat_share": 0.964,
    "canonical_x_repeat": 64,
@@ -832,11 +832,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.63,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 1.32,
-    "median": 1.32,
-    "p90": 2.31,
-    "max": 2.64
+    "min": 0.33,
+    "p10": 0.44,
+    "median": 0.44,
+    "p90": 0.77,
+    "max": 0.88
    },
    "size_ratio_p90_over_p10": 1.75,
    "fixed_size": false,
@@ -845,7 +845,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.55,
+   "above_floor_median": 0.85,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.556,
    "canonical_x_repeat": 32,
@@ -858,11 +858,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.923,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 1.32,
-    "median": 1.32,
-    "p90": 1.32,
-    "max": 1.32
+    "min": 0.33,
+    "p10": 0.44,
+    "median": 0.44,
+    "p90": 0.44,
+    "max": 0.44
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -871,7 +871,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.55,
+   "above_floor_median": 0.85,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.731,
    "canonical_x_repeat": 32,
@@ -884,11 +884,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.708,
    "drawn_height_player_heights": {
-    "min": 1.51,
-    "p10": 1.81,
-    "median": 2.41,
-    "p90": 2.41,
-    "max": 2.41
+    "min": 0.5,
+    "p10": 0.6,
+    "median": 0.8,
+    "p90": 0.8,
+    "max": 0.8
    },
    "size_ratio_p90_over_p10": 1.33,
    "fixed_size": true,
@@ -897,7 +897,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.0,
+   "above_floor_median": 0.66,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.5,
    "canonical_x_repeat": 64,
@@ -910,11 +910,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.609,
    "drawn_height_player_heights": {
-    "min": 1.82,
-    "p10": 2.18,
-    "median": 2.91,
-    "p90": 3.27,
-    "max": 6.55
+    "min": 0.6,
+    "p10": 0.72,
+    "median": 0.97,
+    "p90": 1.09,
+    "max": 2.17
    },
    "size_ratio_p90_over_p10": 1.5,
    "fixed_size": false,
@@ -936,11 +936,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -951,7 +951,7 @@
     "wall": 0.304,
     "face": 0.174
    },
-   "above_floor_median": 6.55,
+   "above_floor_median": 2.17,
    "canonical_cstat": 481,
    "canonical_cstat_share": 0.348,
    "canonical_x_repeat": 64,
@@ -964,11 +964,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.5,
    "drawn_height_player_heights": {
-    "min": 2.11,
-    "p10": 3.52,
-    "median": 5.64,
-    "p90": 9.16,
-    "max": 11.98
+    "min": 0.7,
+    "p10": 1.17,
+    "median": 1.87,
+    "p90": 3.04,
+    "max": 3.98
    },
    "size_ratio_p90_over_p10": 2.6,
    "fixed_size": false,
@@ -977,7 +977,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 0.05,
+   "above_floor_median": 0.02,
    "canonical_cstat": 128,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -990,11 +990,11 @@
    "canonical_y_repeat": 16,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 0.34,
-    "p10": 0.34,
-    "median": 0.34,
-    "p90": 0.34,
-    "max": 0.34
+    "min": 0.11,
+    "p10": 0.11,
+    "median": 0.11,
+    "p90": 0.11,
+    "max": 0.11
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1003,7 +1003,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 3.45,
+   "above_floor_median": 1.15,
    "canonical_cstat": 208,
    "canonical_cstat_share": 0.944,
    "canonical_x_repeat": 16,
@@ -1016,11 +1016,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 5.82,
-    "p10": 5.82,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 5.82
+    "min": 1.93,
+    "p10": 1.93,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1029,7 +1029,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 5.82,
+   "above_floor_median": 1.93,
    "canonical_cstat": 209,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -1042,11 +1042,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 5.82,
-    "p10": 5.82,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 5.82
+    "min": 1.93,
+    "p10": 1.93,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1055,7 +1055,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 8.73,
+   "above_floor_median": 2.9,
    "canonical_cstat": 209,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -1068,21 +1068,21 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.722,
    "drawn_height_player_heights": {
-    "min": 0.36,
-    "p10": 0.73,
-    "median": 0.73,
-    "p90": 0.82,
-    "max": 0.82
+    "min": 0.12,
+    "p10": 0.24,
+    "median": 0.24,
+    "p90": 0.27,
+    "max": 0.27
    },
    "size_ratio_p90_over_p10": 1.12,
    "fixed_size": true,
    "scales_with_room": false,
-   "room_height_correlation": -0.0,
+   "room_height_correlation": 0.0,
    "alignment": {
     "wall": 0.889,
     "floor": 0.111
    },
-   "above_floor_median": 3.5,
+   "above_floor_median": 1.16,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.611,
    "canonical_x_repeat": 64,
@@ -1095,11 +1095,11 @@
    "canonical_y_repeat": 48,
    "canonical_share": 0.471,
    "drawn_height_player_heights": {
-    "min": 0.38,
-    "p10": 0.38,
-    "median": 0.5,
-    "p90": 0.75,
-    "max": 1.75
+    "min": 0.12,
+    "p10": 0.12,
+    "median": 0.17,
+    "p90": 0.25,
+    "max": 0.58
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -1108,7 +1108,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.91,
+   "above_floor_median": 0.97,
    "canonical_cstat": 208,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 48,
@@ -1121,11 +1121,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.765,
    "drawn_height_player_heights": {
-    "min": 1.09,
-    "p10": 1.45,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.36,
+    "p10": 0.48,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -1148,11 +1148,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.562,
    "drawn_height_player_heights": {
-    "min": 1.45,
-    "p10": 1.45,
-    "median": 1.45,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.48,
+    "p10": 0.48,
+    "median": 0.48,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -1161,7 +1161,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 0.91,
+   "above_floor_median": 0.3,
    "canonical_cstat": 145,
    "canonical_cstat_share": 0.562,
    "canonical_x_repeat": 64,
@@ -1174,11 +1174,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.625,
    "drawn_height_player_heights": {
-    "min": 0.99,
-    "p10": 1.19,
-    "median": 1.32,
-    "p90": 1.32,
-    "max": 2.64
+    "min": 0.33,
+    "p10": 0.4,
+    "median": 0.44,
+    "p90": 0.44,
+    "max": 0.88
    },
    "size_ratio_p90_over_p10": 1.1,
    "fixed_size": true,
@@ -1187,7 +1187,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.86,
+   "above_floor_median": 0.95,
    "canonical_cstat": 208,
    "canonical_cstat_share": 0.562,
    "canonical_x_repeat": 32,
@@ -1200,11 +1200,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1213,7 +1213,7 @@
    "alignment": {
     "floor": 1.0
    },
-   "above_floor_median": 5.27,
+   "above_floor_median": 1.75,
    "canonical_cstat": 481,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -1226,11 +1226,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 1.45,
-    "p10": 1.45,
-    "median": 1.45,
-    "p90": 1.45,
-    "max": 1.45
+    "min": 0.48,
+    "p10": 0.48,
+    "median": 0.48,
+    "p90": 0.48,
+    "max": 0.48
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1252,11 +1252,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.933,
    "drawn_height_player_heights": {
-    "min": 1.45,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.48,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1265,7 +1265,7 @@
    "alignment": {
     "floor": 1.0
    },
-   "above_floor_median": 5.14,
+   "above_floor_median": 1.71,
    "canonical_cstat": 225,
    "canonical_cstat_share": 0.533,
    "canonical_x_repeat": 64,
@@ -1278,11 +1278,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 3.41,
-    "p10": 3.41,
-    "median": 3.41,
-    "p90": 3.41,
-    "max": 3.41
+    "min": 1.13,
+    "p10": 1.13,
+    "median": 1.13,
+    "p90": 1.13,
+    "max": 1.13
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1304,11 +1304,11 @@
    "canonical_y_repeat": 112,
    "canonical_share": 0.571,
    "drawn_height_player_heights": {
-    "min": 2.41,
-    "p10": 2.41,
-    "median": 4.22,
-    "p90": 4.22,
-    "max": 4.22
+    "min": 0.8,
+    "p10": 0.8,
+    "median": 1.4,
+    "p90": 1.4,
+    "max": 1.4
    },
    "size_ratio_p90_over_p10": 1.75,
    "fixed_size": false,
@@ -1317,7 +1317,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 0.75,
+   "above_floor_median": 0.25,
    "canonical_cstat": 385,
    "canonical_cstat_share": 0.929,
    "canonical_x_repeat": 96,
@@ -1330,11 +1330,11 @@
    "canonical_y_repeat": 32,
    "canonical_share": 0.692,
    "drawn_height_player_heights": {
-    "min": 0.73,
-    "p10": 0.73,
-    "median": 0.73,
-    "p90": 0.91,
-    "max": 0.91
+    "min": 0.24,
+    "p10": 0.24,
+    "median": 0.24,
+    "p90": 0.3,
+    "max": 0.3
    },
    "size_ratio_p90_over_p10": 1.25,
    "fixed_size": true,
@@ -1343,7 +1343,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 1.09,
+   "above_floor_median": 0.36,
    "canonical_cstat": 208,
    "canonical_cstat_share": 0.846,
    "canonical_x_repeat": 32,
@@ -1356,11 +1356,11 @@
    "canonical_y_repeat": 98,
    "canonical_share": 0.308,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 3.27,
-    "median": 3.55,
-    "p90": 4.45,
-    "max": 4.45
+    "min": 0.97,
+    "p10": 1.09,
+    "median": 1.18,
+    "p90": 1.48,
+    "max": 1.48
    },
    "size_ratio_p90_over_p10": 1.36,
    "fixed_size": false,
@@ -1369,7 +1369,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 4.73,
+   "above_floor_median": 1.57,
    "canonical_cstat": 464,
    "canonical_cstat_share": 0.923,
    "canonical_x_repeat": 158,
@@ -1382,11 +1382,11 @@
    "canonical_y_repeat": 80,
    "canonical_share": 0.538,
    "drawn_height_player_heights": {
-    "min": 4.27,
-    "p10": 4.36,
-    "median": 7.27,
-    "p90": 7.27,
-    "max": 7.27
+    "min": 1.42,
+    "p10": 1.45,
+    "median": 2.42,
+    "p90": 2.42,
+    "max": 2.42
    },
    "size_ratio_p90_over_p10": 1.67,
    "fixed_size": false,
@@ -1395,7 +1395,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 2.0,
+   "above_floor_median": 0.66,
    "canonical_cstat": 144,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 96,
@@ -1408,11 +1408,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.923,
    "drawn_height_player_heights": {
-    "min": 0.27,
-    "p10": 0.73,
-    "median": 0.73,
-    "p90": 0.73,
-    "max": 0.73
+    "min": 0.09,
+    "p10": 0.24,
+    "median": 0.24,
+    "p90": 0.24,
+    "max": 0.24
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1421,7 +1421,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 9.64,
+   "above_floor_median": 3.2,
    "canonical_cstat": 465,
    "canonical_cstat_share": 0.615,
    "canonical_x_repeat": 64,
@@ -1434,11 +1434,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.25,
    "drawn_height_player_heights": {
-    "min": 0.38,
-    "p10": 0.38,
-    "median": 0.75,
-    "p90": 0.81,
-    "max": 1.75
+    "min": 0.12,
+    "p10": 0.12,
+    "median": 0.25,
+    "p90": 0.27,
+    "max": 0.58
    },
    "size_ratio_p90_over_p10": 2.17,
    "fixed_size": false,
@@ -1447,7 +1447,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 4.53,
+   "above_floor_median": 1.51,
    "canonical_cstat": 208,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -1460,11 +1460,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.667,
    "drawn_height_player_heights": {
-    "min": 1.39,
-    "p10": 1.39,
-    "median": 2.23,
-    "p90": 2.23,
-    "max": 2.23
+    "min": 0.46,
+    "p10": 0.46,
+    "median": 0.74,
+    "p90": 0.74,
+    "max": 0.74
    },
    "size_ratio_p90_over_p10": 1.6,
    "fixed_size": false,
@@ -1473,7 +1473,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 1.05,
+   "above_floor_median": 0.35,
    "canonical_cstat": 208,
    "canonical_cstat_share": 1.0,
    "canonical_x_repeat": 64,
@@ -1486,11 +1486,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.5,
    "drawn_height_player_heights": {
-    "min": 4.36,
-    "p10": 4.36,
-    "median": 5.09,
-    "p90": 5.82,
-    "max": 5.82
+    "min": 1.45,
+    "p10": 1.45,
+    "median": 1.69,
+    "p90": 1.93,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 1.33,
    "fixed_size": true,
@@ -1499,7 +1499,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 15.88,
+   "above_floor_median": 5.27,
    "canonical_cstat": 129,
    "canonical_cstat_share": 0.333,
    "canonical_x_repeat": 64,
@@ -1512,11 +1512,11 @@
    "canonical_y_repeat": 48,
    "canonical_share": 0.417,
    "drawn_height_player_heights": {
-    "min": 2.1,
-    "p10": 2.1,
-    "median": 3.84,
-    "p90": 4.19,
-    "max": 4.89
+    "min": 0.7,
+    "p10": 0.7,
+    "median": 1.28,
+    "p90": 1.39,
+    "max": 1.62
    },
    "size_ratio_p90_over_p10": 2.0,
    "fixed_size": false,
@@ -1525,7 +1525,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 9.38,
+   "above_floor_median": 3.12,
    "canonical_cstat": 385,
    "canonical_cstat_share": 0.667,
    "canonical_x_repeat": 48,
@@ -1538,11 +1538,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 1.0,
    "drawn_height_player_heights": {
-    "min": 2.91,
-    "p10": 2.91,
-    "median": 2.91,
-    "p90": 2.91,
-    "max": 2.91
+    "min": 0.97,
+    "p10": 0.97,
+    "median": 0.97,
+    "p90": 0.97,
+    "max": 0.97
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1551,7 +1551,7 @@
    "alignment": {
     "wall": 1.0
    },
-   "above_floor_median": 3.66,
+   "above_floor_median": 1.22,
    "canonical_cstat": 144,
    "canonical_cstat_share": 0.75,
    "canonical_x_repeat": 64,
@@ -1564,11 +1564,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.917,
    "drawn_height_player_heights": {
-    "min": 5.82,
-    "p10": 5.82,
-    "median": 5.82,
-    "p90": 5.82,
-    "max": 6.18
+    "min": 1.93,
+    "p10": 1.93,
+    "median": 1.93,
+    "p90": 1.93,
+    "max": 2.05
    },
    "size_ratio_p90_over_p10": 1.0,
    "fixed_size": true,
@@ -1577,7 +1577,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 2.91,
+   "above_floor_median": 0.97,
    "canonical_cstat": 129,
    "canonical_cstat_share": 0.5,
    "canonical_x_repeat": 64,
@@ -1590,11 +1590,11 @@
    "canonical_y_repeat": 64,
    "canonical_share": 0.333,
    "drawn_height_player_heights": {
-    "min": 3.64,
-    "p10": 3.64,
-    "median": 4.73,
-    "p90": 5.82,
-    "max": 5.82
+    "min": 1.21,
+    "p10": 1.21,
+    "median": 1.57,
+    "p90": 1.93,
+    "max": 1.93
    },
    "size_ratio_p90_over_p10": 1.6,
    "fixed_size": false,
@@ -1603,7 +1603,7 @@
    "alignment": {
     "face": 1.0
    },
-   "above_floor_median": 11.5,
+   "above_floor_median": 3.82,
    "canonical_cstat": 128,
    "canonical_cstat_share": 0.5,
    "canonical_x_repeat": 64,

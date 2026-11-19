@@ -16,7 +16,7 @@ So this mines three things an author actually needs and cannot currently get:
 
 .. code-block:: bash
 
-    python -m tools.mine_decoration --maps maps/blood --art reference/blood \\
+    python -m tools.mine_decoration --art reference/blood --min-uses 12 \\
         -o knowledge/blood/design/decoration-v1.json
 
 A "decoration" here is a sprite with no gameplay type that is not marked
@@ -163,8 +163,8 @@ def build(rows: list[dict[str, Any]], *, min_uses: int) -> dict[str, Any]:
                 # min/max are what it ever draws. Six per cent of the campaign's
                 # own decorations sit outside their tile's p10..p90, so a
                 # percentile band cannot be used as a limit -- it would reject
-                # Blood. Tile 1044 is the worked example: p10 is 5.09 player
-                # heights and the smallest one in the game is 3.64.
+                # Blood. Tile 1044 is the worked example: p10 is 1.69 player
+                # heights and the smallest one in the game is 1.21.
                 "min": round(drawn[0], 2),
                 "p10": round(low, 2),
                 "median": round(statistics.median(drawn), 2),

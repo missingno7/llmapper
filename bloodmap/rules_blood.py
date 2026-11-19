@@ -764,7 +764,7 @@ register(Rule(
         "doorway behind it. Dressing a whole portal wall in the material's "
         "opening tile therefore hangs the dressing over the doorway as well as "
         "around it. The campaign dresses jambs freely and still keeps this: of "
-        "its 10,475 lintels, 70% carry the room's own field tile"),
+        "its 10,319 lintels, 60% carry the room's own field tile"),
     source="corpus",
     scope="wall",
     check=_lintel_continues_the_facade,

@@ -149,9 +149,9 @@ guess a sector's surface, scored against the campaign:
 | predictor | wall | floor | ceiling |
 | --- | ---: | ---: | ---: |
 | the map's favourite tile | 38% | 35% | 34% |
-| the space context (area, height, sky) | 45% | 49% | 54% |
+| the space context (area, height, sky) | 46% | 48% | 54% |
 | **its portal neighbours** | 58% | 67% | 71% |
-| **neighbours in the same context** | **60%** | **71%** | **76%** |
+| **neighbours in the same context** | **59%** | **71%** | **76%** |
 
 So a surface is mostly *inherited* and only occasionally *decided*. That is what
 a person does: paint a region, change the finish where the space changes. A
@@ -159,8 +159,8 @@ generator that picks each sector's tile independently from a per-context table
 cannot produce that, however good the table is.
 
 It is also why the per-context tile lists transfer badly between episodes: held-
-out agreement is only 11-23%, because **each episode has its own art set**. The
-conditioning is sound (it saves 1.5-5 bits against the marginal); tile identity
+out agreement is only 10-28%, because **each episode has its own art set**. The
+conditioning is sound (it saves 2-5 bits against the marginal); tile identity
 simply is not a portable fact. Use the tables within a map, and the propagation
 rule between them.
 
@@ -175,9 +175,11 @@ the 3,159 visible untyped sprites in reachable sectors.
 
 * **60% are drawn at `y_repeat` 64** -- the tile's natural size -- and 73% at a
   power of two. The whole campaign uses 53 distinct repeats.
-* **15 of the 36 common decoration tiles are never resized at all**; only 5
-  genuinely scale with the room (median |r| between drawn size and room height
-  is 0.20).
+* **29 of the 60 decoration tiles with twelve or more uses are never resized at
+  all**; only 11 genuinely scale with the room (median |r| between drawn size
+  and room height is 0.23). Among the 36 with twenty or more uses it is 15 and
+  5. The file is written with `--min-uses 12`, which is the set
+  `bloodmap/decoration.py` is generated from.
 * **Alignment belongs to the tile too**: 506 is face-aligned in 100% of its 138
   uses, 2540 wall-aligned in 100% of 69, 2915 floor-aligned in 100% of 147.
 

@@ -7,32 +7,32 @@
   "two_sided_walkable_walls": 56624,
   "kinds": {
    "seam": {
-    "count": 25522,
-    "share": 0.4507
+    "count": 25594,
+    "share": 0.452
    },
    "lintel": {
-    "count": 9143,
-    "share": 0.1615
+    "count": 9002,
+    "share": 0.159
    },
    "step_only": {
-    "count": 8921,
-    "share": 0.1575
+    "count": 8959,
+    "share": 0.1582
    },
    "pinch": {
-    "count": 7324,
-    "share": 0.1293
+    "count": 7355,
+    "share": 0.1299
    },
    "door_sector": {
     "count": 5714,
     "share": 0.1009
    }
   },
-  "apertures": 22181,
+  "apertures": 22071,
   "leaf_player_heights": {
    "min": 0.24,
    "q1": 1.57,
    "median": 1.93,
-   "q3": 3.32,
+   "q3": 3.26,
    "p95": 5.8,
    "max": 75.47
   },
@@ -40,45 +40,45 @@
    "min": 0.01,
    "q1": 1.33,
    "median": 2.67,
-   "q3": 4.01,
-   "p95": 8.54,
-   "max": 160.0
+   "q3": 4.0,
+   "p95": 8.43,
+   "max": 53.33
   },
   "facade_player_heights": {
    "min": 0.24,
    "q1": 1.93,
    "median": 2.9,
    "q3": 3.98,
-   "p95": 8.12,
+   "p95": 8.09,
    "max": 89.0
   },
   "lintel": {
-   "openings_with_one": 10475,
-   "share": 0.472,
+   "openings_with_one": 10319,
+   "share": 0.468,
    "player_heights": {
     "min": 0.01,
     "q1": 0.24,
-    "median": 0.5,
+    "median": 0.54,
     "q3": 1.87,
-    "p95": 3.98,
+    "p95": 4.11,
     "max": 32.0
    },
-   "continues_the_facade": 0.704
+   "continues_the_facade": 0.599
   },
   "step": {
-   "openings_with_one": 6185,
+   "openings_with_one": 6147,
    "player_heights": {
     "min": 0.01,
     "q1": 0.24,
     "median": 0.48,
-    "q3": 1.69,
+    "q3": 1.63,
     "p95": 4.11,
     "max": 77.71
    }
   },
   "full_height": {
-   "openings": 8941,
-   "share": 0.4031,
+   "openings": 8970,
+   "share": 0.4064,
    "leaf_player_heights": {
     "min": 0.24,
     "q1": 1.69,
@@ -87,15 +87,15 @@
     "p95": 6.28,
     "max": 62.31
    },
-   "in_door_sectors": 2159
+   "in_door_sectors": 2174
   },
   "leaf_taller_than": {
-   "1.5": 0.7896,
-   "2.0": 0.4284,
-   "2.5": 0.3508,
-   "3.0": 0.283,
-   "4.0": 0.1197,
-   "6.0": 0.0475
+   "1.5": 0.7895,
+   "2.0": 0.4266,
+   "2.5": 0.349,
+   "3.0": 0.2811,
+   "4.0": 0.1184,
+   "6.0": 0.0472
   }
  },
  "engine": {

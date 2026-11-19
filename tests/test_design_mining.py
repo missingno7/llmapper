@@ -312,7 +312,11 @@ class MonasteryDecorationTests(unittest.TestCase):
         from bloodmap.art import read_art_directory
         from bloodmap.decoration import height_bounds
         from bloodmap.format import read_map
+        from bloodmap.player_space import PLAYER_PROFILES
 
+        # One standing human, from the profile. This divided by 0x1600 for as
+        # long as the table it checks against was in that unit too.
+        body = PLAYER_PROFILES["blood"].standing_height
         art = read_art_directory(str(ART))
         level = read_map(self.CANDIDATE)
         checked = 0
@@ -324,14 +328,14 @@ class MonasteryDecorationTests(unittest.TestCase):
             span = height_bounds(int(fields["picnum"]))
             if tile is None or not tile.height or span is None:
                 continue
-            drawn = ((int(fields["y_repeat"]) * tile.height) << 2) / 0x1600
+            drawn = ((int(fields["y_repeat"]) * tile.height) << 2) / body
             checked += 1
             with self.subTest(picnum=int(fields["picnum"])):
                 # The true bounds, not p10/p90: a percentile band is where the
                 # campaign usually draws a tile, and 6% of its own decorations
                 # sit outside their tile's band, so using it as a limit rejects
-                # Blood itself. Tile 1044 is the case that showed it -- p10 5.09
-                # against three shipped fences at 4.36 and two at 3.64.
+                # Blood itself. Tile 1044 is the case that showed it -- p10 1.69
+                # against three shipped fences at 1.45 and two at 1.21.
                 # Rounded to two decimals, so compare with a little slack.
                 self.assertGreaterEqual(drawn, span[0] * 0.98)
                 self.assertLessEqual(drawn, span[1] * 1.02)

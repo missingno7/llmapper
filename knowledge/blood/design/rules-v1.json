@@ -122,9 +122,9 @@
   "lintel-continues-the-facade": {
    "rule": "lintel-continues-the-facade",
    "maps": 43,
-   "population": 10475,
-   "violations": 3098,
-   "rate": 0.29575,
+   "population": 10319,
+   "violations": 4138,
+   "rate": 0.40101,
    "severity": "note",
    "statement": "the band above an opening is made of the wall it is cut in",
    "source": "corpus"
@@ -183,10 +183,10 @@
    "rule": "open-neighbours-share-a-sky",
    "maps": 43,
    "population": 2402,
-   "violations": 81,
-   "rate": 0.03372,
-   "severity": "warning",
-   "statement": "two open sectors that touch should hold their sky at one height",
+   "violations": 14,
+   "rate": 0.00583,
+   "severity": "error",
+   "statement": "two open sectors that touch should hold their sky at one height, unless the lower sky is out of a body's reach",
    "source": "corpus"
   },
   "opening-clears-a-standing-body": {

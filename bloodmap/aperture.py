@@ -44,20 +44,20 @@ What the campaign does
 ----------------------
 
 ``knowledge/blood/design/apertures-v1.json``, from all 43 campaign maps. Of
-56,624 walkable two-sided walls, only 22,181 are apertures at all -- 45% are
+56,624 walkable two-sided walls, only 22,071 are apertures at all -- 45% are
 *seams*, two sectors of one continuous space meeting, with no wall there to carry
 anything. Among the apertures, in standing humans:
 
 ===================  ====  ======  ====  ====
 measure                q1  median    q3   p95
 ===================  ====  ======  ====  ====
-leaf height          1.57    1.93  3.32  5.80
-leaf width (widths)  1.33    2.67  4.01  8.54
-facade height        1.93    2.90  3.98  8.12
-lintel (when there)  0.24    0.50  1.87  3.98
+leaf height          1.57    1.93  3.26  5.80
+leaf width (widths)  1.33    2.67  4.00  8.43
+facade height        1.93    2.90  3.98  8.09
+lintel (when there)  0.24    0.54  1.87  4.11
 ===================  ====  ======  ====  ====
 
-47% of apertures carry a lintel, and **70% of those continue the facade's own
+47% of apertures carry a lintel, and **60% of those continue the facade's own
 wall tile across it** -- the single measurement that makes lintel ownership a
 compiled property rather than a suggestion.
 
@@ -93,7 +93,7 @@ PLAYER_HEIGHT = PLAYER_PROFILES["blood"].standing_height
 PLAYER_WIDTH = PLAYER_PROFILES["blood"].body_width
 
 #: The tallest leaf that needs no name. The campaign's apertures run a median of
-#: 1.93 humans and a q3 of 3.32, so this sits just past the middle of the range:
+#: 1.93 humans and a q3 of 3.26, so this sits just past the middle of the range:
 #: an ordinary door passes unremarked, and anything monumental has to say so.
 DOOR_MAX = 2.5
 

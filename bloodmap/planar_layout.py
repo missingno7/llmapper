@@ -1639,8 +1639,8 @@ class PlanarLayout:
         # a corridor mouth". One of these in the candidate was a 4.35-human
         # sheet of smooth ashlar (tile 5) floating on a rubble wall (110).
         #
-        # The corpus draws the line the same place. Of the campaign's 10,475
-        # lintels, **70% carry the room's own field tile**, while separately 74%
+        # The corpus draws the line the same place. Of the campaign's 10,319
+        # lintels, **60% carry the room's own field tile**, while separately 74%
         # of its multi-tile rooms dress their two-sided walls. Both hold at once
         # because the dressing goes on openings that have no lintel to carry --
         # full-height mouths and seams. So: dress the opening, but where a

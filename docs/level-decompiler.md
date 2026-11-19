@@ -228,7 +228,8 @@ Fixing the fences turned up a third error, in the checking rather than the level
 `decoration.height_range` returned p10/p90 while its docstring said "ever drawn
 at", and a test used it as a hard bound. 6% of the campaign's own decorations
 fall outside their tile's p10..p90, so that check rejects Blood: tile 1044 has
-p10 5.09 and a true minimum of 3.64, and three shipped fences sit at 4.36.
+p10 1.69 and a true minimum of 1.21 standing humans, and three shipped fences
+sit at 1.45.
 `height_bounds` now carries the observed min and max, and the bound-shaped
 question asks it. This is the same mistake as ranking raw counts as consensus
 norms -- a description of where something usually sits, used as a rule about
