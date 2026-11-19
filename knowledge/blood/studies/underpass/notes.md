@@ -177,3 +177,36 @@ The layout that does fit:
 Done so far, on the surface: the yard's grate is a grate (no link, flush,
 tile 502 laid as a floor sprite), the low dock is a bay at grade, and the
 staged charges are gone. The wire `foundry:staged-moment` is idle until 6.
+
+## What was built (2026-11-20), and how it differs from the layout above
+
+The owner chose the passage over the hall: "you can do your own style as you
+described before, there is not that much space ... just do a passageway."
+Built in `build_skeleton.py` (stage `works-stair`), in E1M2's passage
+materials (brick 417, stone 281, clay tiles 120):
+
+- **Depth 16,384 below the street, not 24,576.** `bloodmap.layers` lets two
+  plans share ground only when their height bands are apart, and the
+  sewer's band starts at 28,672. The passage is its own layer, `underpass`,
+  from 8,192 above its floor's 32,768 clear down to a floor at 24,576.
+- **The yard stair keeps its place and its eight treads**, taken at 2,048
+  each, and its landing is the passage's level.
+- **The old lower flight and the cellar are kept whole** as the service
+  stair to the sewer hatch (eight steep treads of 384 by 3,584). The
+  cellar's room-over-room pit sits inside the sewer's junction chamber and
+  was not worth moving. So the "service room off the concourse" of the
+  layout above is the cellar where it always was.
+- **The passage** runs south from the landing, 2,048 wide and 5,120 long,
+  1.93 bodies clear, over the sewer's trunk.
+- **The avenue stair** is half that width, stands a wall's thickness clear
+  of the landing and the passage (two rooms that share an edge and no
+  doorway are refused), and is reached from the avenue through a porch in
+  the works' west face. A flight laid along the block's edge was refused
+  too: every tread became a neighbour of the street.
+- **The metro bore** is one corridor square behind iron bars (tile 463),
+  floored with track 1129 and dark. Its bed is level with the passage,
+  because bars hang on a wall whose two sides stand at one floor.
+
+Not built: the breach (the wire `foundry:staged-moment` is still idle), any
+door on the service stair, a notice board or a lamp in the passage, and the
+second-exit porch's fit to the facade's painted windows, which it cuts.

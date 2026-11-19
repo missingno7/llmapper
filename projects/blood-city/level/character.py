@@ -38,6 +38,14 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E3M5 crusher line s44-52; E3M3 generator consoles; "
                     "E3M6 tanks s410-417",
     },
+    "foundry underpass": {
+        "at": (43008, 23000), "floor": 24576, "study": "underpass",
+        "hero": "a brick passage under the works from the yard to the "
+                "avenue, ending at the barred mouth of a metro that was "
+                "never finished",
+        "exemplar": "E1M2 s103-105 (the passage to the waiting hall); the "
+                    "owner's DNE3L6 for the metro beyond the bars",
+    },
     "St Gallow's nave": {
         "at": (29440, 30500), "study": "church",
         "hero": "a clerestory of stained glass over the aisle, the "

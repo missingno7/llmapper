@@ -226,6 +226,13 @@ POSE_SETS = {
         "stair_down": (49.6, 19.5, 46.0, 19.5, LEVEL, "from the stair head, down the flight"),
         "grate_east": (53.6, 21.9, 50.6, 21.9, LEVEL, "the grate from the spur side"),
     },
+    "underpass": {
+        "underpass_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "from the yard stair's foot, down the passage"),
+        "underpass_bars": (42.0, 22.4, 42.0, 26.5, LEVEL, "the barred mouth of the unfinished metro"),
+        "underpass_back": (42.0, 24.6, 42.0, 19.0, LEVEL, "from the passage's end, back to the stairs"),
+        "avenue_mouth": (37.6, 19.0, 40.4, 19.0, LEVEL, "the underpass's mouth from the avenue"),
+        "service_stair": (42.0, 19.6, 42.0, 15.5, LEVEL, "from the landing, down the service stair"),
+    },
     "fresh1": {
         "quay_start": (33.5, 53.0, 35.5, 45.0, LEVEL, "the player's first frame: quay, facing the avenue"),
         "avenue_vista": (35.0, 30.0, 35.0, 14.0, LEVEL, "mid-avenue, the Aldermack vista north"),

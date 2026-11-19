@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f391f076ca33cf98dc9cad0d5925ec57e58ac3cd16fe2b4bb8126da753922b98",
-  "map_sha256": "5f3af1fa5d68eb2c1e7a83d3185f95c81833528dc648fa569041d907dffff3cb",
+  "manifest_sha256": "801a2de9e7954ed97ee8da2f74b0257495c172b485f11e0221e290d46a94596b",
+  "map_sha256": "63a739636f9e9e44ee23ae258a40e464386660ef955ea0dc98d31b1e95cceee1",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 474,
-  "walls": 3187,
-  "sprites": 810,
+  "sectors": 493,
+  "walls": 3266,
+  "sprites": 813,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.884,
-   "walls": 0.805,
-   "sprites": 0.951
+   "sectors": 0.88,
+   "walls": 0.801,
+   "sprites": 0.95
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1077,
+   "note": 1091,
    "warning": 6,
    "error": 14
   }
@@ -32,157 +32,157 @@
   {
    "name": "districts",
    "says": "the plan as district assemblies: one street region each, blocks carved out",
-   "at": "projects/blood-city/level/build_skeleton.py:311"
+   "at": "projects/blood-city/level/build_skeleton.py:314"
   },
   {
    "name": "cemetery",
    "says": "the cemetery as a walled, gated ground carved from its district",
-   "at": "projects/blood-city/level/build_skeleton.py:417"
+   "at": "projects/blood-city/level/build_skeleton.py:420"
   },
   {
    "name": "sewer",
    "says": "the sewer declared at depth beneath Foundry Ward",
-   "at": "projects/blood-city/level/build_skeleton.py:530"
+   "at": "projects/blood-city/level/build_skeleton.py:533"
   },
   {
    "name": "works-stair",
    "says": "the first way down: the works stair, in flights, to the cellar",
-   "at": "projects/blood-city/level/build_skeleton.py:613"
+   "at": "projects/blood-city/level/build_skeleton.py:616"
   },
   {
    "name": "stack-links",
    "says": "the two room-over-room links between street and sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:665"
+   "at": "projects/blood-city/level/build_skeleton.py:776"
   },
   {
    "name": "sewer-network",
    "says": "the sewer's ring, its chambers and the necks between them",
-   "at": "projects/blood-city/level/build_skeleton.py:776"
+   "at": "projects/blood-city/level/build_skeleton.py:887"
   },
   {
    "name": "pumping-station",
    "says": "the second way down: the pumping station's stairs",
-   "at": "projects/blood-city/level/build_skeleton.py:826"
+   "at": "projects/blood-city/level/build_skeleton.py:937"
   },
   {
    "name": "light-pools",
    "says": "patches of lit floor in the streets, declared as regions",
-   "at": "projects/blood-city/level/build_skeleton.py:874"
+   "at": "projects/blood-city/level/build_skeleton.py:985"
   },
   {
    "name": "church",
    "says": "St Gallow's: nave, tower, crypt",
-   "at": "projects/blood-city/level/build_skeleton.py:913"
+   "at": "projects/blood-city/level/build_skeleton.py:1024"
   },
   {
    "name": "arcade",
    "says": "the Gravesend Arcade and its shops",
-   "at": "projects/blood-city/level/build_skeleton.py:928"
+   "at": "projects/blood-city/level/build_skeleton.py:1039"
   },
   {
    "name": "theatre",
    "says": "Theatre Row: the Aldermack, the saloon, the pawnshop",
-   "at": "projects/blood-city/level/build_skeleton.py:934"
+   "at": "projects/blood-city/level/build_skeleton.py:1045"
   },
   {
    "name": "station",
    "says": "Gravesend Station behind the north wall",
-   "at": "projects/blood-city/level/build_skeleton.py:942"
+   "at": "projects/blood-city/level/build_skeleton.py:1053"
   },
   {
    "name": "market",
    "says": "Market Slip: the quay, the harbour and the ship",
-   "at": "projects/blood-city/level/build_skeleton.py:948"
+   "at": "projects/blood-city/level/build_skeleton.py:1059"
   },
   {
    "name": "foundry",
    "says": "Foundry Ward, the pilot district, with its machine hall",
-   "at": "projects/blood-city/level/build_skeleton.py:959"
+   "at": "projects/blood-city/level/build_skeleton.py:1070"
   },
   {
    "name": "undeclared-venues",
    "says": "venues on the plan that nobody has built, declared as such",
-   "at": "projects/blood-city/level/build_skeleton.py:984"
+   "at": "projects/blood-city/level/build_skeleton.py:1095"
   },
   {
    "name": "start",
    "says": "the player's start on the quay, and the manifest begins",
-   "at": "projects/blood-city/level/build_skeleton.py:1016"
+   "at": "projects/blood-city/level/build_skeleton.py:1127"
   },
   {
    "name": "street-anatomy",
    "says": "pavement, carriageway and kerb along every street",
-   "at": "projects/blood-city/level/build_skeleton.py:1050"
+   "at": "projects/blood-city/level/build_skeleton.py:1161"
   },
   {
    "name": "street-ends",
    "says": "the walls where the main streets stop",
-   "at": "projects/blood-city/level/build_skeleton.py:1075"
+   "at": "projects/blood-city/level/build_skeleton.py:1186"
   },
   {
    "name": "connect",
    "says": "the program becomes a planar layout; gates join the regions",
-   "at": "projects/blood-city/level/build_skeleton.py:1251"
+   "at": "projects/blood-city/level/build_skeleton.py:1362"
   },
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1276"
+   "at": "projects/blood-city/level/build_skeleton.py:1387"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1386"
+   "at": "projects/blood-city/level/build_skeleton.py:1497"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1493"
+   "at": "projects/blood-city/level/build_skeleton.py:1604"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1564"
+   "at": "projects/blood-city/level/build_skeleton.py:1675"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1599"
+   "at": "projects/blood-city/level/build_skeleton.py:1710"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1654"
+   "at": "projects/blood-city/level/build_skeleton.py:1765"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1694"
+   "at": "projects/blood-city/level/build_skeleton.py:1805"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1707"
+   "at": "projects/blood-city/level/build_skeleton.py:1818"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:1848"
+   "at": "projects/blood-city/level/build_skeleton.py:1960"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1925"
+   "at": "projects/blood-city/level/build_skeleton.py:2037"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:1978"
+   "at": "projects/blood-city/level/build_skeleton.py:2090"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2157"
+   "at": "projects/blood-city/level/build_skeleton.py:2269"
   }
  ],
  "finish": {
@@ -190,7 +190,7 @@
    {
     "root": "sprite 168",
     "cause": "push",
-    "sector": 391,
+    "sector": 397,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -200,7 +200,7 @@
    {
     "sprite": 285,
     "name": "kItemKeyEye",
-    "sector": 180,
+    "sector": 186,
     "reached": true
    }
   ],
@@ -209,11 +209,11 @@
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sector 197"
+     "sector 203"
     ],
-    "sector": 197,
+    "sector": 203,
     "answers": [
-     "sector 197"
+     "sector 203"
     ],
     "by_hand": true
    }
@@ -223,24 +223,24 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 449,
-  "reached": 449,
+  "space": 467,
+  "reached": 467,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 288,
+    "sectors": 306,
     "first_sector": 0
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 195"
+     "operate mechanism sector 201"
     ],
     "sectors": 34,
-    "first_sector": 169
+    "first_sector": 175
    },
    {
     "round": 1,
@@ -277,18 +277,18 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 267"
+     "operate mechanism sector 273"
     ],
     "sectors": 23,
-    "first_sector": 238
+    "first_sector": 244
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 268"
+     "operate mechanism sector 274"
     ],
     "sectors": 1,
-    "first_sector": 268
+    "first_sector": 274
    },
    {
     "round": 1,
@@ -304,23 +304,23 @@
      "use switch sprite 167 (channel 108)"
     ],
     "sectors": 9,
-    "first_sector": 389
+    "first_sector": 395
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 151"
+     "operate mechanism sector 157"
     ],
     "sectors": 8,
-    "first_sector": 147
+    "first_sector": 153
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 153"
+     "operate mechanism sector 159"
     ],
     "sectors": 1,
-    "first_sector": 153
+    "first_sector": 159
    },
    {
     "round": 1,
@@ -341,10 +341,10 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 128"
+     "operate mechanism sector 134"
     ],
     "sectors": 1,
-    "first_sector": 128
+    "first_sector": 134
    },
    {
     "round": 2,
@@ -360,7 +360,7 @@
      "several of this round's acts together"
     ],
     "sectors": 4,
-    "first_sector": 182
+    "first_sector": 188
    },
    {
     "round": 3,
@@ -368,7 +368,7 @@
      "destroy sprite 277 (channel 104)"
     ],
     "sectors": 3,
-    "first_sector": 198
+    "first_sector": 204
    }
   ]
  },
@@ -582,6 +582,37 @@
     18.3,
     21.6,
     10.4
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "foundry underpass",
+   "at": [
+    43008,
+    23000
+   ],
+   "hero": "a brick passage under the works from the yard to the avenue, ending at the barred mouth of a metro that was never finished",
+   "study": "underpass",
+   "layers": {
+    "has": [
+     "second",
+     "levels",
+     "masked",
+     "light",
+     "machines"
+    ],
+    "missing": [
+     "trim",
+     "motion"
+    ],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    16.5,
+    26.1,
+    3.5
    ],
    "cramped": [],
    "critique": null
@@ -848,6 +879,27 @@
    "see": "python -m tools.study <slug> --want \"...\" --seed MAP:sector!"
   },
   {
+   "kind": "missing-layer",
+   "place": "foundry underpass",
+   "says": "carries no trim layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "foundry underpass",
+   "says": "carries no motion layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "foundry underpass",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare underpass --poses <set> --kind <kind>"
+  },
+  {
    "kind": "cramped",
    "place": "St Gallow's nave",
    "says": "short side 5591 (campaign p25 6144)",
@@ -1032,18 +1084,18 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 255 and 166",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 261 and 172",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2009"
+   "at": "wall 2036"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 262 and 166",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 268 and 172",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2054"
+   "at": "wall 2081"
   },
   {
    "kind": "rule-error",
@@ -1051,7 +1103,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[389].ceiling"
+   "at": "sector[395].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1059,7 +1111,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[466].ceiling"
+   "at": "sector[485].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1067,7 +1119,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[468].floor"
+   "at": "sector[487].floor"
   },
   {
    "kind": "rule-error",
@@ -1075,7 +1127,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[468].ceiling"
+   "at": "sector[487].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1083,7 +1135,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[469].floor"
+   "at": "sector[488].floor"
   },
   {
    "kind": "rule-error",
@@ -1091,7 +1143,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[469].ceiling"
+   "at": "sector[488].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1099,7 +1151,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[472].floor"
+   "at": "sector[491].floor"
   },
   {
    "kind": "rule-error",
@@ -1107,7 +1159,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[472].ceiling"
+   "at": "sector[491].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1115,7 +1167,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[473].floor"
+   "at": "sector[492].floor"
   },
   {
    "kind": "rule-error",
@@ -1123,7 +1175,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[473].ceiling"
+   "at": "sector[492].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1131,7 +1183,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1893]"
+   "at": "wall[1920]"
   },
   {
    "kind": "rule-error",
@@ -1139,7 +1191,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1894]"
+   "at": "wall[1921]"
   },
   {
    "kind": "rule-error",
@@ -1147,7 +1199,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1895]"
+   "at": "wall[1922]"
   },
   {
    "kind": "rule-error",
@@ -1155,7 +1207,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1896]"
+   "at": "wall[1923]"
   },
   {
    "kind": "rule-warning",
@@ -1176,7 +1228,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2151, 2203) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2178, 2230) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[194]"
@@ -1291,42 +1343,42 @@
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:8 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:9 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_e_leg (tile 795) would lie through run:sewer_e_leg:10",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1689",
+   "owner": "projects/blood-city/level/build_skeleton.py:1800",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
@@ -1379,8 +1431,8 @@
   "critique": 8,
   "dropped": 6,
   "lost-tile": 4,
-  "missing-layer": 9,
-  "never-critiqued": 5,
+  "missing-layer": 11,
+  "never-critiqued": 6,
   "refused": 8,
   "rule-error": 14,
   "rule-warning": 6,
