@@ -887,6 +887,176 @@
     "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:1 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
     "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:2 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0"
   ],
+  "wires": {
+    "declared": [
+      {
+        "name": "foundry:staged-moment",
+        "says": "stepping onto the yard grate, once, fires the cart's two charges and a sound cue",
+        "channel": 100,
+        "engine": null,
+        "when": [
+          "enter on region region:gravesend/foundry_ward/yard_grate_mouth"
+        ],
+        "then": [
+          "placement moment:exploder_a",
+          "placement moment:exploder_b",
+          "placement moment:boom_sound"
+        ]
+      }
+    ],
+    "wires": [
+      {
+        "name": "foundry:staged-moment",
+        "says": "stepping onto the yard grate, once, fires the cart's two charges and a sound cue",
+        "channel": 100,
+        "engine": null,
+        "senders": [
+          "sector 126"
+        ],
+        "answers": [
+          "sprite 34",
+          "sprite 35",
+          "sprite 36"
+        ],
+        "faults": []
+      }
+    ],
+    "undeclared": [
+      {
+        "channel": 200,
+        "senders": [
+          "sprite 350"
+        ],
+        "listeners": [
+          "sector 9"
+        ]
+      },
+      {
+        "channel": 201,
+        "senders": [
+          "sprite 351"
+        ],
+        "listeners": [
+          "sector 18"
+        ]
+      },
+      {
+        "channel": 202,
+        "senders": [
+          "sprite 352"
+        ],
+        "listeners": [
+          "sector 30"
+        ]
+      },
+      {
+        "channel": 203,
+        "senders": [
+          "sprite 353"
+        ],
+        "listeners": [
+          "sector 32"
+        ]
+      },
+      {
+        "channel": 204,
+        "senders": [
+          "sprite 354"
+        ],
+        "listeners": [
+          "sector 39"
+        ]
+      },
+      {
+        "channel": 260,
+        "senders": [
+          "sprite 280"
+        ],
+        "listeners": [
+          "sprite 281",
+          "sprite 282",
+          "sprite 283",
+          "sector 198"
+        ]
+      },
+      {
+        "channel": 261,
+        "senders": [
+          "sprite 1"
+        ],
+        "listeners": [
+          "sector 133",
+          "sector 135",
+          "sector 137"
+        ]
+      },
+      {
+        "channel": 262,
+        "senders": [
+          "sprite 210",
+          "sprite 211"
+        ],
+        "listeners": [
+          "sprite 212",
+          "sprite 213",
+          "sprite 214",
+          "sector 93",
+          "sector 94",
+          "sector 95"
+        ]
+      },
+      {
+        "channel": 263,
+        "senders": [
+          "sprite 0"
+        ],
+        "listeners": [
+          "sector 134",
+          "sector 136"
+        ]
+      },
+      {
+        "channel": 264,
+        "senders": [
+          "sprite 177"
+        ],
+        "listeners": [
+          "sector 363"
+        ]
+      },
+      {
+        "channel": 265,
+        "senders": [
+          "sprite 171"
+        ],
+        "listeners": [
+          "sector 389"
+        ]
+      },
+      {
+        "channel": 340,
+        "senders": [
+          "wall 273",
+          "wall 274",
+          "wall 275"
+        ],
+        "listeners": [
+          "sector 34"
+        ]
+      },
+      {
+        "channel": 341,
+        "senders": [
+          "sector 34"
+        ],
+        "listeners": [
+          "sector 21"
+        ]
+      }
+    ],
+    "silent": [],
+    "agrees": true
+  },
   "lighting": {
     "lights": 52,
     "rays_cast": 913379,
@@ -1542,7 +1712,7 @@
         "sector_type": 0,
         "wiring": {
           "rx_id": 0,
-          "tx_id": 30,
+          "tx_id": 100,
           "command": 1,
           "state": 0
         }
@@ -2764,20 +2934,7 @@
       "pump machine hall"
     ],
     "dangling_channels": [],
-    "engine_channels_wired": [
-      {
-        "channel": 30,
-        "name": "kChannelPlayer0",
-        "senders": [
-          "sector 126"
-        ],
-        "listeners": [
-          "sprite 34",
-          "sprite 35",
-          "sprite 36"
-        ]
-      }
-    ]
+    "engine_channels_wired": []
   },
   "stages": [
     {

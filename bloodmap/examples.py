@@ -51,6 +51,7 @@ from .blood_types import RESERVED_CHANNELS, classify
 from .effects import read_map_mechanisms
 from .format import XSECTOR_SCHEMA
 from .model import record_extra, record_fields
+from .reachability import sector_kinds
 from .sector_geom import wall_owners
 from .wiring import USER_CHANNELS_FROM, chains, shape
 
@@ -256,7 +257,7 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
             "worked_by": item["primitive"].get("interaction") or "nothing a player does",
         }
     wires = []
-    for chain in chains(disk):
+    for chain in chains(disk, reach=sector_kinds(disk)):
         answers = set()
         for step in chain["steps"]:
             if step["to_kind"] == "engine":
@@ -267,6 +268,8 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
             "shape": shape(chain, readings), "root": chain["root"],
             "sector": chain["sector"], "depth": chain["depth"],
             "keyed": bool(chain["key"]), "listeners": len(chain["steps"]),
+            "silent": bool(chain["silent"]),
+            "through_closet": bool(chain["closet_relays"]),
             "sender": (f"{chain['root_kind']}:{chain['root_type_id']}"
                        if chain["root_type_id"] else None),
             "answers": sorted(answers)})
@@ -398,9 +401,12 @@ def build(observations: Iterable[dict[str, Any]], *,
             said = wire["shape"]
             row = shapes.setdefault(
                 (said["cause"], said["sender"], tuple(said["answers"])),
-                {"count": 0, "keyed": 0, "deepest": 0, "most_answers": 0, "per_map": {}})
+                {"count": 0, "keyed": 0, "silent": 0, "through_closet": 0,
+                 "deepest": 0, "most_answers": 0, "per_map": {}})
             row["count"] += 1
             row["keyed"] += int(wire["keyed"])
+            row["silent"] += int(wire.get("silent", False))
+            row["through_closet"] += int(wire.get("through_closet", False))
             row["deepest"] = max(row["deepest"], wire["depth"])
             row["most_answers"] = max(row["most_answers"], wire["listeners"])
             row["per_map"].setdefault(seen["map"], []).append(
@@ -420,7 +426,9 @@ def build(observations: Iterable[dict[str, Any]], *,
                 item["place"] = places.get(item["map"], {}).get(item["sector"])
         wiring.append({"cause": cause, "sender": sender, "answers": list(answers),
                        "count": row["count"], "maps": len(row["per_map"]),
-                       "keyed": row["keyed"], "deepest": row["deepest"],
+                       "keyed": row["keyed"], "silent": row["silent"],
+                       "through_closet": row["through_closet"],
+                       "deepest": row["deepest"],
                        "most_answers": row["most_answers"], "examples": examples})
     wiring.sort(key=lambda row: (-row["count"], row["cause"], row["sender"], row["answers"]))
 
@@ -536,6 +544,12 @@ def build(observations: Iterable[dict[str, Any]], *,
             "`bloodmap.effects` reads it doing to the space, where it reads one",
             "set_off_by and drives on a part are counted over those chains; "
             "a part with neither is never on a wire in the campaign",
+            "a row's `silent` is how many of its chains start at a sender "
+            "that reports neither its ON nor its OFF change, so never sends: "
+            "wired, and inert",
+            "a row's `through_closet` is how many of its chains pass through "
+            "a relay in a sector no player reaches: the campaign's way of "
+            "building a cascade",
         ],
         "entries": entries,
         "wiring": wiring,
@@ -586,6 +600,74 @@ def search(index: Mapping[str, Any], words: Iterable[str]) -> list[tuple[str, di
     return sorted(hits, key=rank)
 
 
+#: The phrases the campaign's wiring is written in. The owner: "these
+#: mechanics things are like a programming language of the level, same things
+#: are used for different purposes according to what author wants." A phrase
+#: is a test on a shape of chain, so each one is counted and has examples;
+#: none is a type. `idioms` lists them, `search_wiring` answers to their names.
+IDIOMS: dict[str, dict[str, Any]] = {
+    "shot switch": {
+        "says": "a switch that answers a bullet and not a hand. A switch shows "
+                "a second picture when its state changes (view.cpp:2735), so "
+                "this is how a clock face is made breakable, and it can fire "
+                "a wire as it goes",
+        "test": lambda row: (row["sender"].startswith("kSwitch")
+                             and ("vector" in row["cause"] or "impact" in row["cause"])
+                             and "push" not in row["cause"])},
+    "secret": {
+        "says": "an act that ends at the engine's secret counter: nearly "
+                "always walking into a plain sector, once",
+        "test": lambda row: any("kChannelSecretFound" in answer
+                                for answer in row["answers"])},
+    "level exit": {
+        "says": "an act that ends the level, by its normal or its secret way out",
+        "test": lambda row: any("kChannelLevelExit" in answer
+                                for answer in row["answers"])},
+    "cascade": {
+        "says": "one act followed through three or more senders in turn",
+        "test": lambda row: row["deepest"] >= 3},
+    "closet relay": {
+        "says": "a chain that passes through a switch or generator in a room "
+                "no player reaches: the relay is there to be wired, not found",
+        "counts": "through_closet",
+        "test": lambda row: row.get("through_closet", 0) > 0},
+    "locked": {
+        "says": "a sender that wants a key before it will fire",
+        "counts": "keyed",
+        "test": lambda row: row["keyed"] > 0},
+    "wakes a dude": {
+        "says": "an act that is answered by a monster: an ambush, or a "
+                "monster let out",
+        "test": lambda row: any(answer.startswith("kDude") for answer in row["answers"])},
+    "breach": {
+        "says": "something destroyed that moves a sector or sets off a charge: "
+                "a wall blown open, a floor dropped",
+        "test": lambda row: row["cause"] == "destroyed" and any(
+            answer.startswith(("kSector", "kTrapExploder")) for answer in row["answers"])},
+    "level start": {
+        "says": "what the level does to itself before the player moves, on "
+                "the engine's start channel",
+        "test": lambda row: "kChannelLevelStart" in row["cause"]},
+    "never fires": {
+        "says": "wired, and its sender reports no change of state: a mistake "
+                "or a leftover, in the campaign too",
+        "counts": "silent",
+        "test": lambda row: row.get("silent", 0) > 0},
+}
+
+
+def idioms(index: Mapping[str, Any]) -> list[dict[str, Any]]:
+    """Each phrase with how much of the campaign's wiring is written in it."""
+    out = []
+    for name, phrase in IDIOMS.items():
+        rows = [row for row in index.get("wiring", ()) if phrase["test"](row)]
+        out.append({"name": name, "says": phrase["says"], "shapes": len(rows),
+                    #: a phrase true of some chains of a shape counts those
+                    "chains": sum(row[phrase.get("counts", "count")] for row in rows),
+                    "commonest": rows[0] if rows else None})
+    return out
+
+
 #: A mapper's word for a mechanism, as what must be read of the sector that
 #: answers. On a wire these words mean the reading and nothing else: "lift"
 #: must not find a `kSectorZMotion` that is read as a door, which is what
@@ -609,16 +691,22 @@ def search_wiring(index: Mapping[str, Any],
     that sector is, and nothing that merely shares a type with one.
     """
     wanted = [word.lower() for word in words]
-    #: "keyed" and "locked" ask for a sender that wants a key, which is a
-    #: count on the row and not a word in it
-    keyed = any(word in ("keyed", "locked") for word in wanted)
-    wanted = [word for word in wanted if word not in ("keyed", "locked")]
+    #: a phrase asked for by name is its test, not a word to look for:
+    #: "locked" is a count on the row, "cascade" a depth
+    asked = [phrase for name, phrase in IDIOMS.items()
+             if all(word in wanted for word in name.split())]
+    for name in IDIOMS:
+        if all(word in wanted for word in name.split()):
+            wanted = [word for word in wanted if word not in name.split()]
+    if "keyed" in wanted:
+        asked.append(IDIOMS["locked"])
+        wanted.remove("keyed")
     hits = []
     for row in index.get("wiring", ()):
-        if keyed and not row["keyed"]:
+        if not all(phrase["test"](row) for phrase in asked):
             continue
         haystack = " ".join([row["cause"], row["sender"], *row["answers"]]).lower()
-        if (wanted or keyed) and all(
+        if (wanted or asked) and all(
                 any(reading in haystack for reading in READINGS[word])
                 if word in READINGS else _matches(word, haystack)
                 for word in wanted):

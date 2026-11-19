@@ -43,6 +43,14 @@ blocking defect. The mapper may not call a place done on its own frames.
         --named "warehouse loading dock" --sure 2 --score 2 \\
         --blocking "the train reads as a striped wall" --file review.md
     python -m tools.critique verdict station
+
+``change`` hands a mechanism's before/after pairs (`tools.mechanism_look`)
+to readers who are told neither what the mechanism is nor which frame is
+which, and scores whether they can say what changed and which came after:
+
+.. code-block:: bash
+
+    python -m tools.critique change work/mech/e1m5-s84/pair.json --model <model>
 """
 
 from __future__ import annotations
@@ -327,6 +335,123 @@ def score_things(slug: str, number: int) -> dict:
     return report
 
 
+# ---------------------------------------------------------------------------
+# change: two frames of one place, before and after, a reader told NOTHING
+# ---------------------------------------------------------------------------
+#: The owner wants the critic to "tell that it works the intended way".
+#: `tools.mechanism_look` renders a mechanism's rest and fired poses from
+#: one camera; this hands each pair to a reader in random order, never
+#: saying what the mechanism is or which frame is which, and scores whether
+#: the reader can tell what changed and which came after. A pair whose
+#: frames are identical is kept as a control: the right answer is "nothing".
+CHANGE_PROMPT = """You are shown TWO screenshots (attached images, first A then B) \
+from a 1997 first-person shooter level, taken from the same spot. They show \
+the same place before and after something happened. Do not run any commands \
+or read any files. Look only at the two images and answer in exactly this \
+form, nothing else:
+STATUS: done
+CHANGED: <what is different between A and B, at most 20 words, or "nothing">
+AFTER: <A or B: which one shows the place after it happened, or "cannot tell">
+SURE: <1-5>
+WHY: <at most 20 words: what in the pictures makes you say so>
+"""
+
+
+def prepare_change(pair_json: pathlib.Path) -> pathlib.Path:
+    """A packet of before/after questions from one `mechanism_look` pair.json."""
+    import random
+
+    pair = json.loads(pathlib.Path(pair_json).read_text("utf-8"))
+    folder = pathlib.Path(pair_json).parent
+    done = sorted(int(p.name.split("-")[1]) for p in folder.glob("change-*"))
+    number = (done[-1] + 1) if done else 1
+    packet = folder / f"change-{number}"
+    (packet / "q").mkdir(parents=True, exist_ok=True)
+    shuffle = random.Random(f"{pair['map']}|{pair['root']}|{number}")
+    key = {}
+    rows = [row for row in pair["pairs"] if "rest" in row]
+    shuffle.shuffle(rows)
+    for index, row in enumerate(rows):
+        name = f"q_{index + 1:02d}"
+        after = shuffle.choice("AB")
+        first, second = ((row["rest"], row["posed"]) if after == "B"
+                         else (row["posed"], row["rest"]))
+        shutil.copyfile(first, packet / "q" / f"{name}_A.png")
+        shutil.copyfile(second, packet / "q" / f"{name}_B.png")
+        key[name] = {"pose": row["pose"]["id"], "after": after,
+                     "differ": row["differ"], "finding": row["finding"]}
+    (packet / "key.json").write_text(json.dumps(
+        {"pair": str(pair_json), "map": pair["map"], "root": pair["root"],
+         "questions": key}, indent=1), "utf-8")
+    return packet
+
+
+def _parse_change(text: str) -> dict:
+    out = {"changed": "", "after": "", "sure": 0, "why": ""}
+    for line in text.splitlines():
+        head, _, rest = line.partition(":")
+        head = head.strip().lower()
+        if head in ("changed", "why"):
+            out[head] = rest.strip()
+        elif head == "after":
+            said = rest.strip().upper()
+            out["after"] = said[:1] if said[:1] in ("A", "B") else "?"
+        elif head == "sure":
+            digits = "".join(c for c in rest if c.isdigit())
+            out["sure"] = int(digits[:1] or 0)
+    return out
+
+
+def ask_change(packet: pathlib.Path, models: list[str], effort: str,
+               workers: int = 8) -> dict:
+    """Every (model, question) asked by its own worker, in the sandbox."""
+    import concurrent.futures
+    import subprocess
+
+    key = json.loads((packet / "key.json").read_text("utf-8"))["questions"]
+    SANDBOX.mkdir(exist_ok=True)
+    cx = pathlib.Path.home() / ".codex-dashboard" / "cx.py"
+    tag = f"{packet.parent.name}-{packet.name}"
+
+    def one(model, q):
+        images = []
+        for side in ("A", "B"):
+            image = SANDBOX / f"{tag}-{q}_{side}.png"
+            shutil.copyfile(packet / "q" / f"{q}_{side}.png", image)
+            images += ["-i", str(image)]
+        run = subprocess.run(
+            [sys.executable, str(cx), "run", "-n", f"change-{q}", "-C", str(SANDBOX),
+             "-m", model, "-e", effort, "-s", "read-only", "--", *images],
+            input=CHANGE_PROMPT, capture_output=True, text=True,
+            encoding="utf-8", errors="replace")
+        row = _parse_change(run.stdout)
+        row["ok"] = run.returncode == 0 and bool(row["changed"])
+        if not row["ok"]:
+            row["error"] = (run.stdout + run.stderr)[-300:]
+        return model, q, row
+
+    path = packet / "answers.json"
+    answers = json.loads(path.read_text("utf-8")) if path.exists() else {}
+    todo = [(m, q) for m in models for q in key
+            if not answers.get(m, {}).get(q, {}).get("ok")]
+    with concurrent.futures.ThreadPoolExecutor(workers) as pool:
+        for model, q, row in pool.map(lambda a: one(*a), todo):
+            answers.setdefault(model, {})[q] = row
+    path.write_text(json.dumps(answers, indent=1), "utf-8")
+    scored = {}
+    for model, rows in answers.items():
+        moved = [q for q in rows if rows[q]["ok"] and key[q]["differ"]]
+        still = [q for q in rows if rows[q]["ok"] and not key[q]["differ"]]
+        scored[model] = {
+            "after_right": [sum(rows[q]["after"] == key[q]["after"] for q in moved),
+                            len(moved)],
+            "said_nothing_when_nothing": [
+                sum("nothing" in rows[q]["changed"].lower() for q in still), len(still)],
+            "answers": {q: {**rows[q], "truth": key[q]} for q in rows}}
+    (packet / "score.json").write_text(json.dumps(scored, indent=1), "utf-8")
+    return scored
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     sub = parser.add_subparsers(dest="command", required=True)
@@ -353,7 +478,27 @@ def main(argv=None) -> int:
     things.add_argument("--effort", default="low")
     things.add_argument("--workers", type=int, default=8)
     things.add_argument("--repeat", type=int, default=1)
+    change = sub.add_parser("change", help="blind before/after of a mechanism_look pair")
+    change.add_argument("pair", help="a pair.json written by tools.mechanism_look")
+    change.add_argument("--round", type=int, default=0,
+                        help="an existing change round; 0 prepares a new one")
+    change.add_argument("--model", action="append", default=[])
+    change.add_argument("--effort", default="low")
+    change.add_argument("--workers", type=int, default=8)
     args = parser.parse_args(argv)
+    if args.command == "change":
+        folder = pathlib.Path(args.pair).parent
+        packet = (folder / f"change-{args.round}" if args.round
+                  else prepare_change(pathlib.Path(args.pair)))
+        print(packet)
+        for model, row in (ask_change(packet, args.model, args.effort, args.workers)
+                           if args.model else {}).items():
+            print(f"{model}: after named right {row['after_right']}, "
+                  f"'nothing' on identical pairs {row['said_nothing_when_nothing']}")
+            for q, said in sorted(row["answers"].items()):
+                print(f"   {q} ({said['truth']['pose']}, after={said['truth']['after']}): "
+                      f"said after={said['after']} sure {said['sure']}: {said['changed']}")
+        return 0
     if args.command == "things":
         number = args.round
         if not number:

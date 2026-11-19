@@ -83,6 +83,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `level_profile` | What a Blood level measures like, so an authored one can be compared to it. |
 | `effects` | What a mechanism physically does, said neutrally. |
 | `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
+| `posed` | Posed: a copy of a map with everything one wiring chain answers put in its other state. |
 | `assembly` | A mechanism is several objects and the relations between them. |
 | `conditional` | Conditional traversability: which ways open, and what opens them. |
 | `progression` | State-dependent single-player progression over Blood native mechanisms. |
@@ -358,6 +359,7 @@ Render what the game shows, through the XMapEdit observer.
 | `render_precedent` | Observe an original map, so claims about the corpus have evidence. |
 | `sweep_views` | Stand everywhere in a map, look every way, and record what was drawn. |
 | `look_at` | Walk round a THING in one of Blood's maps and photograph it. |
+| `mechanism_look` | Render one mechanism before and after it fires, from the same cameras, and measure the difference. |
 | `tile_usage` | What a tile LOOKS like, and every way Blood uses it. |
 
 ### The library of Blood

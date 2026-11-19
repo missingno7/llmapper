@@ -286,6 +286,27 @@ class CommittedIndexTests(unittest.TestCase):
                          ("a plain sector", ["the engine (kChannelSecretFound)"]))
         self.assertGreater(secret["count"], 100)
 
+    def test_the_campaigns_wiring_is_written_in_phrases_that_can_be_counted(self):
+        """The same parts mean different things on different wires; a phrase
+        is a test on the wire, so each is a number and a place to look."""
+        said = {phrase["name"]: phrase for phrase in examples.idioms(self.committed)}
+        self.assertEqual(set(said), set(examples.IDIOMS))
+        for name, phrase in said.items():
+            with self.subTest(phrase=name):
+                self.assertGreater(phrase["chains"], 10)
+                self.assertTrue(phrase["commonest"]["examples"])
+        rows = self.committed["wiring"]
+        self.assertEqual(said["never fires"]["chains"], sum(row["silent"] for row in rows))
+        self.assertEqual(said["locked"]["chains"], sum(row["keyed"] for row in rows))
+        # a switch nobody pushes: every row is shot, and is a switch
+        for row in examples.search_wiring(self.committed, ["shot", "switch"]):
+            self.assertTrue(row["sender"].startswith("kSwitch"), row["sender"])
+            self.assertNotIn("push", row["cause"])
+        # a phrase and a word together: locked ways through
+        for row in examples.search_wiring(self.committed, ["locked", "door"]):
+            self.assertTrue(row["keyed"])
+        self.assertGreater(said["closet relay"]["chains"], 500)
+
     def test_every_chain_is_counted_once_and_no_cause_is_no_channel(self):
         from bloodmap import wiring
         from bloodmap.format import read_map

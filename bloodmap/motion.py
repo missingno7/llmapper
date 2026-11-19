@@ -823,22 +823,19 @@ def silent_transmitters(disk: Any) -> list[str]:
     The check that would have caught both of the zoo's dead switches without
     anyone walking the map.
     """
-    out = []
-    for index, sprite in enumerate(disk.sprites):
-        extra = _extra(sprite)
-        channel = int(extra.get("tx_id") or 0)
-        if not channel or "command" not in extra:
-            continue
-        if int(extra["command"]) == 5:
-            continue                      # kCmdLink never evSends
-        if int(extra.get("trigger_on", 0)) or int(extra.get("trigger_off", 0)):
-            continue
-        out.append(
-            f"sprite {index} carries tx_id {channel} and command "
-            f"{int(extra['command'])} but reports neither its ON nor its OFF "
-            f"edge, so triggers.cpp never calls evSend for it: pushing it "
-            f"does nothing")
-    return out
+    # The rule is one rule for sprites, walls and sectors (`SetSpriteState`,
+    # `SetWallState`, `SetSectorState`), and `bloodmap.wiring` reads it once.
+    # This looked at sprites alone, so a sector that could not send -- every
+    # secret the layout emitted -- passed.
+    from .wiring import silent_senders
+
+    return [
+        f"{node['id']} carries tx_id {node['tx']} and command "
+        f"{node['command']} but reports neither its ON nor its OFF "
+        f"edge, so triggers.cpp never calls evSend for it: "
+        + ("pushing it does nothing" if node["kind"] == "sprite"
+           else "whatever is done to it, nothing hears")
+        for node in silent_senders(disk)]
 
 
 # ---------------------------------------------------------------------------

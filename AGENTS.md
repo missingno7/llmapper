@@ -12,6 +12,8 @@ calls for it. Commands are run from the repository root.
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
 | one part: engine name, how many, what sets it off, examples, lessons | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
 | a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
+| whether a mechanism visibly works: the same view at rest and fired | `python -m tools.mechanism_look MAP --root "sprite 51" -o work/mech/<name>`, then `python -m tools.critique change work/mech/<name>/pair.json` for blind readers |
+| the phrases Blood's wiring is written in, each counted | `python -m tools.catalog idioms` (shot switch, secret, cascade, closet relay, breach ...) |
 | how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set, and the room it is in) |
 | which rooms have a mechanic, and what one room has | `python -m tools.catalog find lift crypt`, then `python -m tools.catalog show E1M8:243` |
 | what a thing is wired to | `python -m tools.catalog mechanisms E2M4 --place E2M4:613` |
@@ -40,6 +42,10 @@ module map and the limits fail a test when broken.
   through `sector_geom`. A sector's outline is its LARGEST loop
   (`outline_and_holes`), not its first: 514 of the campaign's 867 sectors with
   holes trace a hole first.
+- **A wire is declared on a `wiring.Circuit`**, with a sentence saying what
+  it is for; the circuit numbers the channel. Never type a channel number:
+  below 100 is the engine's. An object has one `tx_id` and one `rx_id`, and a
+  sender that reports neither its ON nor its OFF change sends nothing.
 - **Units come from `player_space.PLAYER_PROFILES["blood"]`.** A standing
   player is 16960 high and 384 wide. `0x1600` is an eye offset, not a height.
 - **Limits are NBlood's**: 4096 sectors, 16384 walls, 16384 sprites. Past the
@@ -71,6 +77,7 @@ critique, and what is open. The build writes it; it is never edited.
 ```bash
 python projects/blood-city/level/status.py --place station   # one place and what is open on it
 python projects/blood-city/level/status.py --kind refused    # one kind of open item
+python projects/blood-city/level/status.py --wires           # the level's wiring, as declared
 python projects/blood-city/level/build_skeleton.py     # about a minute; prints every pass
 python projects/blood-city/level/look.py --set <poses> -o <dir>   # frames, as the game shows it
 python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP

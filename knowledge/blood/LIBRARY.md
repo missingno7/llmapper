@@ -26,6 +26,16 @@ mechanism by what happens (`catalog wiring switch lift`, `find door key`) and
 read a part's entry for what it is set off by. Never pick a sector type and
 call it the mechanism.
 
+The wiring is a language, and the campaign writes it in phrases: a switch
+that is shot instead of pushed (a breakable clock face), an act that ends at
+the engine's secret counter, a cascade relayed through a room no player
+reaches, something destroyed that drops a floor. `catalog idioms` lists each
+phrase with how many of the campaign's 2,775 chains are written in it and the
+commonest shape; `catalog wiring <phrase> <words>` finds them. A level of ours
+says its own wiring the same way, on a `bloodmap.wiring.Circuit`: each wire
+states what it is for, the circuit numbers the channel, and the build reads
+the finished map back against it.
+
 Places and Parts are joined both ways. A part's entry names the rooms
 holding the most of it and each of its examples says which room it is in; a
 place row lists what it holds under the part keys. So `find lift crypt`
@@ -48,6 +58,8 @@ python -m tools.catalog find conveyor      # ...a part is found the same way
 python -m tools.catalog show conveyor      # what it is, how often, where to look
 python -m tools.catalog show sector:614    # a type: readings, what sets it off, examples
 python -m tools.catalog wiring switch door # mechanisms: an act, a sender, what answers
+python -m tools.catalog idioms             # the phrases: shot switch, secret, cascade, closet relay ...
+python -m tools.catalog wiring locked door # a phrase and a word together
 python -m tools.catalog mechanisms E1M5 --place E1M5:160   # one room's chains in full
 python -m tools.catalog record E3M5 sector 20   # only the fields that are set on it
 python -m tools.catalog show 1129          # a tile: name, reading, uses, places

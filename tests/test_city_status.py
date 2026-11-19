@@ -116,6 +116,27 @@ class CityStatusTests(unittest.TestCase):
         # the seconds are a machine's, so they are not in what is committed
         self.assertNotIn("seconds", json.dumps(self.status["stages"]))
 
+    def test_the_citys_declared_wiring_agrees_with_its_map(self):
+        """Read back with the campaign's reader: a declared wire is on the
+        map as declared, nothing wired is unable to send, and no wire of the
+        level's own sits on an engine channel."""
+        from bloodmap import wiring
+        from bloodmap.format import read_map
+
+        manifest = json.loads((REPORTS / "build-manifest.json").read_text("utf-8"))
+        wires = manifest["wires"]
+        self.assertTrue(wires["agrees"], [row for row in wires["wires"] if row["faults"]])
+        self.assertGreaterEqual(len(wires["declared"]), 1)
+        for row in wires["declared"]:
+            self.assertTrue(row["says"].strip(), row["name"])
+            self.assertGreaterEqual(row["channel"], 100, row["name"])
+        disk = read_map(LEVEL / "blood-city-current.MAP")
+        self.assertEqual([node["id"] for node in wiring.silent_senders(disk)], [])
+        self.assertEqual(manifest["character"]["engine_channels_wired"], [])
+        # every channel typed by hand is an open item until a wire declares it
+        typed = [row for row in self.status["open"] if row["kind"] == "undeclared-wire"]
+        self.assertEqual(len(typed), len(wires["undeclared"]))
+
     def test_the_brief_is_short_and_says_what_is_not_verified(self):
         _data, page = self.module.render(self.status)
         self.assertLess(len(page.splitlines()), 70)

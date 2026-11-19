@@ -31,10 +31,11 @@ def _map():
     """A pushed switch on 101; sector 1 listens there and tells the engine a secret was found."""
     disk = synthetic_two_sector_map()
     disk.sprites[0].fields["type"] = TOGGLE
-    disk.sprites[0].extra = _x("XSPRITE", tx_id=101, trigger_push=1, command=1, key=3)
+    disk.sprites[0].extra = _x("XSPRITE", tx_id=101, trigger_push=1, trigger_on=1,
+                               command=1, key=3)
     disk.sprites[0].fields["extra"] = 1
     disk.sectors[1].fields["type"] = 600
-    disk.sectors[1].extra = _x("XSECTOR", rx_id=101, tx_id=2)
+    disk.sectors[1].extra = _x("XSECTOR", rx_id=101, tx_id=2, trigger_on=1)
     disk.sectors[1].fields["extra"] = 1
     return disk
 
@@ -71,7 +72,7 @@ class ChainTests(unittest.TestCase):
             with self.subTest(type=type_id):
                 disk = _map()
                 disk.sprites[1].fields["type"] = type_id
-                disk.sprites[1].extra = _x("XSPRITE", tx_id=101, rx_id=150)
+                disk.sprites[1].extra = _x("XSPRITE", tx_id=101, rx_id=150, trigger_off=1)
                 disk.sprites[1].fields["extra"] = 2
                 causes = {chain["root"]: chain["cause"] for chain in wiring.chains(disk)}
                 self.assertEqual(causes["sprite 1"], [cause])
@@ -84,6 +85,41 @@ class ChainTests(unittest.TestCase):
         self.assertEqual(causes["sprite 1"], ["channel 7 kChannelLevelStart"])
         disk.sprites[1].extra = _x("XSPRITE", tx_id=101, rx_id=100)
         self.assertNotIn("sprite 1", {chain["root"] for chain in wiring.chains(disk)})
+
+    def test_a_sender_that_reports_no_change_never_fires(self):
+        """`SetSpriteState`, `SetWallState` and `SetSectorState` send only
+        under triggerOn or triggerOff. The layout's own secrets were emitted
+        without either, so no secret it ever built was counted."""
+        disk = _map()
+        disk.sprites[0].extra = _x("XSPRITE", tx_id=101, trigger_push=1, command=1)
+        (chain,) = wiring.chains(disk)
+        self.assertTrue(chain["silent"])
+        self.assertEqual([node["id"] for node in wiring.silent_senders(disk)], ["sprite 0"])
+        disk.sprites[0].extra = _x("XSPRITE", tx_id=101, trigger_push=1, trigger_off=1)
+        self.assertFalse(wiring.chains(disk)[0]["silent"])
+
+    def test_a_cascade_stops_at_a_relay_that_reports_no_change(self):
+        disk = _map()
+        disk.sectors[1].extra = _x("XSECTOR", rx_id=101, tx_id=2)
+        (chain,) = wiring.chains(disk)
+        self.assertEqual(chain["dead_relays"], ["sector 1"])
+        self.assertEqual([step["to"] for step in chain["steps"]], ["sector 1"])
+
+    def test_a_link_drives_its_listeners_without_reporting_anything(self):
+        disk = _map()
+        disk.sprites[0].extra = _x("XSPRITE", tx_id=101, trigger_push=1,
+                                   command=wiring.CMD_LINK)
+        self.assertFalse(wiring.chains(disk)[0]["silent"])
+
+    def test_a_relay_where_no_player_goes_is_named_as_one(self):
+        """The owner: "there are usually switches outside of accessible level
+        area to do cascade of events." 603 campaign chains pass through one."""
+        disk = _map()
+        (chain,) = wiring.chains(disk, reach={0: "reachable", 1: "logic_closet"})
+        self.assertEqual(chain["closet_relays"], ["sector 1"])
+        (chain,) = wiring.chains(disk, reach={0: "reachable", 1: "reachable"})
+        self.assertEqual(chain["closet_relays"], [])
+        self.assertEqual(wiring.chains(disk)[0]["closet_relays"], [])
 
     def test_only_keeps_the_chains_that_start_in_those_sectors(self):
         disk = _map()

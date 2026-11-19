@@ -50,7 +50,10 @@ LAMP_FIELDS = {"picnum": 641, "x_repeat": 64, "y_repeat": 64, "cstat": 129,
                "shade": -128, "type": 0}
 
 #: The district's channel allocation starts here (CN 8; city_plan CHANNELS).
-CH_STAGED_MOMENT = 30
+#: The staged moment's wire is declared on the build's circuit
+#: (`bloodmap.wiring.Circuit`), which numbers it. It used to be channel 30,
+#: typed here: that is the engine's kChannelPlayer0, and the grate reported
+#: no change of state, so stepping on it sent nothing at all.
 
 
 @functools.lru_cache(maxsize=None)
@@ -310,25 +313,29 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
 
     # The staged moment (destruction reserve): stepping onto the grate fires
     # the cart's barrels and a sound cue.  tx: the grate sector itself.
+    from bloodmap import wiring
+
     grate_region = ctx["grate_upper"].region_id
-    layout.regions[grate_region].sector_behavior.update({
-        "tx_id": CH_STAGED_MOMENT, "trigger_enter": 1, "trigger_once": 1,
-        "command": 1,
-    })
+    moment = ctx["circuit"].wire(
+        "foundry:staged-moment",
+        "stepping onto the yard grate, once, fires the cart's two charges and "
+        "a sound cue").when(wiring.region(grate_region), "enter",
+                            command=1, once=True)
     cart_x0, cart_y0 = dressing["cart_world"]
     # The grate gained a kerb ring (2048 across, centred 1536 east of the
     # yard's west edge), so the charges sit in the strip between the dock
     # mouth and that ring -- still on the approach the trigger watches.
     mouth_x = yard_x0 + 256
+    # `rx_id=0`: the specs are copied from E3M1's own records, channel and
+    # all; the wire gives each its channel here.
     world_sprite("moment:exploder_a", street_region,
-                 mouth_x, cart_y0 + 256, exploder,
-                 **{"rx_id": CH_STAGED_MOMENT})
+                 mouth_x, cart_y0 + 256, exploder, rx_id=0)
     world_sprite("moment:exploder_b", street_region,
-                 mouth_x, cart_y0 + 1024, exploder,
-                 **{"rx_id": CH_STAGED_MOMENT})
+                 mouth_x, cart_y0 + 1024, exploder, rx_id=0)
     world_sprite("moment:boom_sound", street_region,
-                 mouth_x, cart_y0 + 640, gen_sound,
-                 **{"rx_id": CH_STAGED_MOMENT})
+                 mouth_x, cart_y0 + 640, gen_sound, rx_id=0)
+    for answer in ("moment:exploder_a", "moment:exploder_b", "moment:boom_sound"):
+        moment.then(wiring.placement(answer))
     for index in range(2):
         fields = breakable("barrel")
         behavior = fields.pop("behavior", {})

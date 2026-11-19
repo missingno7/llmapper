@@ -1235,6 +1235,10 @@ def main() -> int:
     STAGE("connect",
           "the program becomes a planar layout; gates join the regions")
     layout = program.compile()
+    # The level's wiring, declared: every module that wires something says
+    # so here, with what it is for, and the circuit numbers the channel.
+    from bloodmap import wiring as _wiring
+    circuit = ctx["circuit"] = _wiring.Circuit(layout)
     for gate in gates:
         gate_id, region_a, region_b, a1, a2 = gate[:5]
         # A sixth field states a narrower span on purpose: a roof's edge or a
@@ -1672,6 +1676,9 @@ def main() -> int:
 
     STAGE("compile",
           "the layout becomes sectors, walls and sprites; the light bomb runs")
+    ctx["manifest"]["wires"] = {"declared": circuit.apply()}
+    print("wires declared:", [f"{row['name']} on {row['channel']}"
+                              for row in ctx["manifest"]["wires"]["declared"]])
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
     # place, so the reference stays current.
@@ -2104,6 +2111,15 @@ def main() -> int:
     print("papers and boards hung on no wall:", _lint.get("unbacked", []))
     import character as _character
     _sheet = _character.sheet(disk)
+    # The wiring read back off the finished map with the campaign's reader:
+    # where it and the declarations differ, what is wired and can never
+    # send, and every channel nobody declared the purpose of.
+    _wires = circuit.read_back(compiled, disk)
+    ctx["manifest"]["wires"].update(_wires)
+    print(f"wires: {len(_wires['wires'])} declared, "
+          f"{'agree' if _wires['agrees'] else 'DISAGREE'} with the map; "
+          f"{len(_wires['undeclared'])} channel(s) nobody declared; "
+          f"{len(_wires['silent'])} sender(s) that can never send")
     ctx["manifest"]["character"] = _sheet
     for _name, _row in _sheet["places"].items():
         print(f"character: {_name}: {_row['layer_count']} layers "

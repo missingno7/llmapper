@@ -1403,8 +1403,12 @@ def double_rotating_door(layout, stall, box, back, *, floor_z, ceiling_z,
                         floor_z=floor_z, ceiling_z=ceiling_z, skin=skin,
                         counter_rotating=True, concourse=False)
     #: The chain: the first leaf transmits on the channel the second hears.
+    # E1M1 s50 to the field: command 5 (Link), reporting both edges. This
+    # sent command 1 and reported neither, so the first leaf sent nothing
+    # and the chain the stall exists to show never happened.
     layout.regions["rotating_door:a"].sector_behavior.update(
-        {"tx_id": CH_ROTOR_CHAIN, "command": 1})
+        {"tx_id": CH_ROTOR_CHAIN, "command": 5,
+         "trigger_on": 1, "trigger_off": 1})
     layout.regions["rotating_door:b"].sector_behavior.update(
         {"rx_id": CH_ROTOR_CHAIN})
     return built

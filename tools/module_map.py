@@ -49,7 +49,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Derived readings of a map. Never authoritative, never written back.",
      ["design", "spatial", "sight", "exposure", "morphology", "contents",
       "reachability", "relations", "patterns", "anchors", "structures",
-      "materials", "level_profile", "effects", "wiring", "assembly", "conditional",
+      "materials", "level_profile", "effects", "wiring", "posed", "assembly", "conditional",
       "progression", "understanding", "sp_understand", "bundle", "style"]),
     ("Probes",
      "Replayable questions about a level, with explicit world state.",
@@ -140,7 +140,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
       "whatif", "judge_experiment"]),
     ("Looking",
      "Render what the game shows, through the XMapEdit observer.",
-     ["observe", "render_precedent", "sweep_views", "look_at", "tile_usage"]),
+     ["observe", "render_precedent", "sweep_views", "look_at", "mechanism_look", "tile_usage"]),
     ("The library of Blood",
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "
      "the readers that criticise a place.",

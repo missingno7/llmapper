@@ -339,9 +339,9 @@ class RegionSpec:
     #: Blood has no "secret" sector type. A secret is a plain sector wired to the
     #: engine's own channel 2 with the numeric command base, and the campaign is
     #: near-unanimous about the form: type 0, tx_id 2, command 64,
-    #: trigger_enter, trigger_once, resting at state 0 -- 141 of its 152 secret
-    #: sectors are exactly that. The count is declared separately, by a sprite
-    #: transmitting `64 + n` on channel 1.
+    #: trigger_enter, trigger_once, trigger_on, resting at state 0. The fields
+    #: are `motion.secret_credit`'s. The count is declared separately, by a
+    #: sprite transmitting `64 + n` on channel 1.
     #:
     #: A level with `role="secret"` regions and none of this wiring has hidden
     #: rooms that no player is ever told they found, which is what this one was.
@@ -1623,11 +1623,15 @@ class PlanarLayout:
             if not region.secret:
                 continue
             sector_id = allocations[region.region_id].sector_id
+            # `motion.secret_credit` is the secret, to the field, from the
+            # tutorial. This used to write its own copy without `trigger_on`,
+            # and a sector that does not report its ON change sends nothing
+            # (SetSectorState, triggers.cpp:136): no secret built here was
+            # ever counted. All 153 campaign secret sectors report ON.
+            from .motion import secret_credit
             builder.set_behavior(
                 "sector", sector_id,
-                tx_id=SECRET_FOUND_CHANNEL, command=NUMERIC_COMMAND_BASE,
-                trigger_enter=1, trigger_once=1, state=0,
-                **dict(region.sector_behavior))
+                **{**secret_credit(), "state": 0, **dict(region.sector_behavior)})
 
         # Openings get their own material before doors do, so a door_face still
         # wins on the sectors that declare one.

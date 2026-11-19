@@ -153,7 +153,18 @@ class CandidateTests(unittest.TestCase):
     #: and there was never a y half to run. Reported, not patched: another
     #: project's shipped artifact, and rebuilding it through `frame_map` is
     #: that project's call.
+    #: Four more, 2026-11-19, when the rule stopped looking at sprites only
+    #: (the same `evSend` gate is in `SetWallState` and `SetSectorState`).
+    #: Sectors 23, 35, 37 and 96 are candidate-v7's four secrets: tx 2,
+    #: command 64, enter, once, and no `trigger_on`, which is what the
+    #: layout's `secret=True` emitted until that day. No secret in this map
+    #: was ever counted. Reported, not patched: a shipped artifact; a rebuild
+    #: through today's layout would emit `motion.secret_credit`.
     KNOWN = {("transmitter-reports-an-edge", "sprite 290"),
+             ("transmitter-reports-an-edge", "sector 23"),
+             ("transmitter-reports-an-edge", "sector 35"),
+             ("transmitter-reports-an-edge", "sector 37"),
+             ("transmitter-reports-an-edge", "sector 96"),
              ("texture-continues-across-a-join",
               "joins[collinear solid-portal].y"),
              ("tile-sits-in-an-attested-slot", "wall[577]"),

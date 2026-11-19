@@ -292,12 +292,12 @@
   "transmitter-reports-an-edge": {
    "rule": "transmitter-reports-an-edge",
    "maps": 43,
-   "population": 2234,
-   "violations": 13,
-   "rate": 0.00582,
+   "population": 3796,
+   "violations": 21,
+   "rate": 0.00553,
    "severity": "error",
-   "statement": "a sprite that transmits must report its ON or its OFF edge",
-   "source": "NBlood/source/blood/src/triggers.cpp:100 SetSpriteState"
+   "statement": "a sprite, wall or sector that transmits must report its ON or its OFF edge",
+   "source": "NBlood/source/blood/src/triggers.cpp:100 SetSpriteState, :121 SetWallState, :136 SetSectorState"
   },
   "two-sided-wall-is-reciprocal": {
    "rule": "two-sided-wall-is-reciprocal",

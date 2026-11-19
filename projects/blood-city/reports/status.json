@@ -2,8 +2,8 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "6407df8acc65ca1cc705239ab75d64e0f1dbb1adad583395464e56d9c8e0ca56",
-  "map_sha256": "bd2ecd669a5709e332bac3a162d3fc8f75d62dfa53f8298d377aaf374e5c250e",
+  "manifest_sha256": "c87def7f419a3b4f36c1c0bba2ceae90f0b2590ad10fc823aee49cc0823e8dd5",
+  "map_sha256": "3770357616dc22489119c2d86c398ad0ef1427512f458c518d6e58273b06677f",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
@@ -127,62 +127,78 @@
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1256"
+   "at": "projects/blood-city/level/build_skeleton.py:1260"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1366"
+   "at": "projects/blood-city/level/build_skeleton.py:1370"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1473"
+   "at": "projects/blood-city/level/build_skeleton.py:1477"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1543"
+   "at": "projects/blood-city/level/build_skeleton.py:1547"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1578"
+   "at": "projects/blood-city/level/build_skeleton.py:1582"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1633"
+   "at": "projects/blood-city/level/build_skeleton.py:1637"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1673"
+   "at": "projects/blood-city/level/build_skeleton.py:1677"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1680"
+   "at": "projects/blood-city/level/build_skeleton.py:1687"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:1821"
+   "at": "projects/blood-city/level/build_skeleton.py:1828"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1898"
+   "at": "projects/blood-city/level/build_skeleton.py:1905"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:1951"
+   "at": "projects/blood-city/level/build_skeleton.py:1958"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2121"
+   "at": "projects/blood-city/level/build_skeleton.py:2137"
+  }
+ ],
+ "wires": [
+  {
+   "name": "foundry:staged-moment",
+   "says": "stepping onto the yard grate, once, fires the cart's two charges and a sound cue",
+   "channel": 100,
+   "engine": null,
+   "when": [
+    "enter on region region:gravesend/foundry_ward/yard_grate_mouth"
+   ],
+   "then": [
+    "placement moment:exploder_a",
+    "placement moment:exploder_b",
+    "placement moment:boom_sound"
+   ]
   }
  ],
  "places": [
@@ -646,10 +662,94 @@
    "see": "python -m tools.study <slug> --want \"...\" --seed MAP:sector!"
   },
   {
-   "kind": "engine-channel",
+   "kind": "undeclared-wire",
    "place": null,
-   "says": "channel 30 (kChannelPlayer0) is the engine's, and the level sends on it (sector 126) and listens on it (sprite 34, sprite 35, sprite 36); no campaign map does, and a level's own channels start at 100",
-   "owner": "projects/blood-city/level/character.py:engine_channels_wired",
+   "says": "channel 200 is typed by hand: sprite 350 send(s), sector 9 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 201 is typed by hand: sprite 351 send(s), sector 18 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 202 is typed by hand: sprite 352 send(s), sector 30 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 203 is typed by hand: sprite 353 send(s), sector 32 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 204 is typed by hand: sprite 354 send(s), sector 39 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 260 is typed by hand: sprite 280 send(s), sprite 281, sprite 282, sprite 283, sector 198 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 261 is typed by hand: sprite 1 send(s), sector 133, sector 135, sector 137 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 262 is typed by hand: sprite 210, sprite 211 send(s), sprite 212, sprite 213, sprite 214, sector 93, sector 94, sector 95 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 263 is typed by hand: sprite 0 send(s), sector 134, sector 136 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 264 is typed by hand: sprite 177 send(s), sector 363 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 265 is typed by hand: sprite 171 send(s), sector 389 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 340 is typed by hand: wall 273, wall 274, wall 275 send(s), sector 34 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
+   "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "undeclared-wire",
+   "place": null,
+   "says": "channel 341 is typed by hand: sector 34 send(s), sector 21 answer(s), and no wire says what it is for",
+   "owner": "bloodmap/wiring.py:Circuit (declare it where its number is typed: grep the number under projects/blood-city/level)",
    "see": "python -m tools.catalog mechanisms projects/blood-city/level/blood-city-current.MAP"
   },
   {
@@ -914,56 +1014,56 @@
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:8 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:9 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_e_leg (tile 795) would lie through run:sewer_e_leg:10",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:1 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:2 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1668",
+   "owner": "projects/blood-city/level/build_skeleton.py:1672",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
@@ -1015,7 +1115,6 @@
   "cramped": 3,
   "critique": 8,
   "dropped": 8,
-  "engine-channel": 1,
   "lost-tile": 4,
   "missing-layer": 7,
   "never-critiqued": 5,
@@ -1025,6 +1124,7 @@
   "skipped": 6,
   "sprite-overlaps": 1,
   "sprite-through": 1,
+  "undeclared-wire": 13,
   "unstudied": 2
  },
  "not_verified": [

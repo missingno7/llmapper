@@ -227,6 +227,29 @@ def gather() -> dict[str, Any]:
              owner="projects/blood-city/level/character.py:engine_channels_wired",
              see=f"python -m tools.catalog mechanisms {MAP_REL}")
 
+    wires = manifest.get("wires", {})
+    for row in wires.get("wires", []):
+        for fault in row["faults"]:
+            item("wire-fault", f"wire {row['name']} ({row['says']}): {fault}",
+                 owner="projects/blood-city/level/build_skeleton.py (the module "
+                       "that declares the wire: grep its name)",
+                 see=f"python -m tools.catalog mechanisms {MAP_REL}")
+    for row in wires.get("silent", []):
+        item("silent-sender",
+             f"{row['id']} ({row['type']}) has channel {row['channel']} to send on "
+             f"and reports neither its ON nor its OFF change, so it never sends",
+             owner="bloodmap/wiring.py:Circuit (declare the wire; `when` sets the report)",
+             see=f"python -m tools.catalog mechanisms {MAP_REL}")
+    for row in wires.get("undeclared", []):
+        item("undeclared-wire",
+             f"channel {row['channel']} is typed by hand: "
+             f"{', '.join(row['senders']) or 'nothing'} send(s), "
+             f"{', '.join(row['listeners']) or 'nothing'} answer(s), and no "
+             f"wire says what it is for",
+             owner="bloodmap/wiring.py:Circuit (declare it where its number is typed: "
+                   "grep the number under projects/blood-city/level)",
+             see=f"python -m tools.catalog mechanisms {MAP_REL}")
+
     rules = manifest.get("rules", {})
     for row in rules.get("open", []):
         item(f"rule-{row['severity']}", f"{row['code']}: {row['says']}",
@@ -279,6 +302,9 @@ def gather() -> dict[str, Any]:
             "rules": rules.get("by_severity", {}),
         },
         "stages": _stages(manifest.get("stages", [])),
+        "wires": [{key: row[key] for key in ("name", "says", "channel", "engine",
+                                              "when", "then")}
+                  for row in wires.get("declared", [])],
         "places": places,
         "open": open_items,
         "open_by_kind": dict(sorted(by_kind.items())),
@@ -315,6 +341,12 @@ def brief(status: dict[str, Any]) -> str:
         "(" + ", ".join(row["name"] for row in status["stages"]) + "). "
         "`python projects/blood-city/level/status.py --stages` gives each "
         "one's line in the build and what it took.",
+        "",
+        f"**Wiring**: {len(status['wires'])} wire(s) are declared with their "
+        f"purpose (`status.py --wires`); "
+        f"{status['open_by_kind'].get('undeclared-wire', 0)} channel(s) on the "
+        f"map are still typed by hand, and "
+        f"{status['open_by_kind'].get('silent-sender', 0)} sender(s) can never send.",
         "",
         "## Places",
         "",
@@ -384,9 +416,19 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--kind", help="one kind of open item")
     parser.add_argument("--stages", action="store_true",
                         help="the build's stages: where each starts, what it took")
+    parser.add_argument("--wires", action="store_true",
+                        help="the level's declared wiring: what each wire is for")
     parser.add_argument("--check", action="store_true",
                         help="exit 1 if the files are stale")
     args = parser.parse_args(argv)
+
+    if args.wires:
+        for row in gather()["wires"]:
+            print(f"{row['name']}  [channel {row['channel']}"
+                  f"{' ' + row['engine'] if row['engine'] else ''}]  {row['says']}")
+            print(f"    when {'; '.join(row['when']) or 'the engine sends'}")
+            print(f"    then {'; '.join(row['then']) or 'the engine hears'}")
+        return 0
 
     if args.stages:
         took = stage_seconds()

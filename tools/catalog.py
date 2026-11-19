@@ -435,10 +435,12 @@ def mechanisms(name: str, only: set[int] | None = None) -> list[dict]:
     from bloodmap import wiring
     from bloodmap.format import read_map
     from bloodmap.corpus import corpus_map_path
+    from bloodmap.reachability import sector_kinds
 
     path = (pathlib.Path(name) if name.upper().endswith(".MAP")
             else corpus_map_path(name))
-    return wiring.chains(read_map(path), only)
+    disk = read_map(path)
+    return wiring.chains(disk, only, reach=sector_kinds(disk))
 
 
 def find_places(words: list[str], tile: int | None = None,
@@ -659,6 +661,9 @@ def _wire(row: dict) -> str:
             f"{'; '.join(row['answers']) or 'nothing listens'}: "
             f"{row['count']} in {row['maps']} maps"
             + (f", {row['keyed']} keyed" if row["keyed"] else "")
+            + (f", {row['silent']} never fire" if row.get("silent") else "")
+            + (f", {row['through_closet']} relayed out of reach"
+               if row.get("through_closet") else "")
             + f", e.g. {first['map']} {first['root']}"
             + (f" in room {first['place']}" if first.get("place") else ""))
 
@@ -924,6 +929,7 @@ def main(argv=None) -> int:
     tiles.add_argument("words", nargs="+")
     sub.add_parser("build-places")
     sub.add_parser("build-mechanisms")
+    sub.add_parser("idioms", help="the phrases the campaign's wiring is written in")
     wires = sub.add_parser("wiring", help="shapes of chain: an act, a sender, what answers")
     wires.add_argument("words", nargs="+")
     wires.add_argument("--limit", type=int, default=40)
@@ -1033,13 +1039,28 @@ def main(argv=None) -> int:
                   f"{'/'.join(chain['cause'])}"
                   f"{' key ' + str(chain['key']) if chain['key'] else ''}"
                   f"{' once' if chain['once'] else ''}: {chain['depth']} "
-                  f"hop(s) -> {chain['receivers']}")
+                  f"hop(s) -> {chain['receivers']}"
+                  + ("  NEVER FIRES: reports neither its ON nor its OFF change"
+                     if chain["silent"] else "")
+                  + (f"  stops at {', '.join(chain['dead_relays'])}: a relay "
+                     f"that reports no change" if chain["dead_relays"] else "")
+                  + (f"  relayed out of reach by {', '.join(chain['closet_relays'])}"
+                     if chain["closet_relays"] else ""))
             for step in chain["steps"][:10]:
                 print(f"     {step['from']} --ch {step['channel']} cmd "
                       f"{step['command']}--> {step['to']} ({step['to_type']})"
                       f"{' after ' + str(step['wait']) if step['wait'] else ''}")
     elif args.command == "record":
         print(record(args.map, args.kind, args.index))
+    elif args.command == "idioms":
+        from bloodmap import examples
+
+        for phrase in examples.idioms(mechanism_index() or {}):
+            print(f"{phrase['name']:<14}{phrase['chains']:>5} chains in "
+                  f"{phrase['shapes']} shapes  {phrase['says']}")
+            if phrase["commonest"]:
+                print(f"{'':14}commonest: {_wire(phrase['commonest'])}")
+                print(f"{'':14}all of them: python -m tools.catalog wiring {phrase['name']}")
     elif args.command == "wiring":
         print("\n".join(find_wiring(args.words, args.limit)) or "  no chain of that shape")
     elif args.command == "build-mechanisms":

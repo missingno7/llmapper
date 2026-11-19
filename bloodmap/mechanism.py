@@ -1045,8 +1045,14 @@ def planar_door(
                                   command=motion.CMD_TOGGLE,
                                   receiver_state=1))
     if transmits:
+        # Both edges, or it sends nothing: SetSectorState calls evSend only
+        # under triggerOn or triggerOff (triggers.cpp:136). This wrote the
+        # channel and the verb alone until 2026-11-19, so a door "that can
+        # drive a light" drove nothing. E1M1's casket lid (s30) reports ON.
         behavior["tx_id"] = int(transmits)
         behavior["command"] = motion.CMD_TOGGLE
+        behavior["trigger_on"] = 1
+        behavior["trigger_off"] = 1
     if lift_out:
         if motor != "hole":
             raise MechanismError(
