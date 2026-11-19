@@ -1,0 +1,870 @@
+{
+ "$schema": "llmapper.blood-city-status",
+ "schema_version": 1,
+ "built_from": {
+  "manifest_sha256": "d0ab18c3d76505244693c9997f958333fd39d6e5a0692c0c20ae5f33ee867a4a",
+  "map_sha256": "bd2ecd669a5709e332bac3a162d3fc8f75d62dfa53f8298d377aaf374e5c250e",
+  "map": "projects/blood-city/level/blood-city-current.MAP"
+ },
+ "build": {
+  "sectors": 474,
+  "walls": 3187,
+  "sprites": 816,
+  "limits": {
+   "sectors": 4096,
+   "walls": 16384,
+   "sprites": 16384
+  },
+  "headroom": {
+   "sectors": 0.884,
+   "walls": 0.805,
+   "sprites": 0.95
+  },
+  "command": "python projects/blood-city/level/build_skeleton.py",
+  "read_back_agrees": true,
+  "rules": {
+   "note": 1071,
+   "warning": 6,
+   "error": 14
+  }
+ },
+ "places": [
+  {
+   "name": "pump machine hall",
+   "at": [
+    45056,
+    11500
+   ],
+   "hero": "a sludge belt through two pulsing presses, between a settling basin and a filter drum",
+   "study": null,
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "standing",
+     "levels",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    18.3,
+    21.6,
+    10.4
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "St Gallow's nave",
+   "at": [
+    29440,
+    30500
+   ],
+   "hero": "a clerestory of stained glass over the aisle, the outside's lancets seen from within",
+   "study": "church",
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "standing",
+     "levels",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    9.5,
+    14.8,
+    7.0
+   ],
+   "cramped": [
+    "short side 5591 (campaign p25 6144)"
+   ],
+   "critique": null
+  },
+  {
+   "name": "St Gallow's crypt",
+   "at": [
+    28700,
+    27300
+   ],
+   "hero": "one closed stone sarcophagus under a gravestone slab, in a rubble vault hung with cobwebs and gold plaques, a line of powder barrels along its east wall",
+   "study": "crypt",
+   "layers": {
+    "has": [
+     "second",
+     "standing",
+     "levels",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 1,
+    "campaign_p50": 3
+   },
+   "metres": [
+    6.5,
+    7.0,
+    4.3
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "Gravesend Station",
+   "at": [
+    13312,
+    -11500
+   ],
+   "hero": "a green-banded carriage standing at a platform under a plank canopy, seen through a line of riveted columns",
+   "study": "station",
+   "layers": {
+    "has": [
+     "second",
+     "wall_art",
+     "levels",
+     "masked",
+     "light",
+     "machines"
+    ],
+    "missing": [
+     "trim",
+     "motion"
+    ],
+    "campaign_p25": 4,
+    "campaign_p50": 6
+   },
+   "metres": [
+    18.3,
+    24.8,
+    5.3
+   ],
+   "cramped": [
+    "short side 10752 (campaign p25 12288)"
+   ],
+   "critique": {
+    "round": 6,
+    "passes": false,
+    "scores": {
+     "recognition": 3,
+     "comparison": 3,
+     "sense": 4,
+     "use": 3
+    },
+    "named_as": "small railway station with a passenger car and steam locomotive at the platform",
+    "readers_missing": [],
+    "blocking": [
+     "recognition: carriage windows are solid wood panels, so from the platform the train reads as a building wall, not a vehicle",
+     "recognition: tunnel mouth is a flat black rectangle with no depth; the line goes nowhere",
+     "comparison: Posters mounted on the outside of the train carriage (view_01, 05, 06)",
+     "comparison: Station entrance doorway renders as a flat black void (view_11)",
+     "comparison: Enclosed track shaft lidded with red marbled ceiling reading as lava, not sky (view_04, 09)",
+     "comparison: Wall sign text collides with gargoyle sprite on locomotive (view_09)",
+     "sense: view_09: locomotive wheels stand on the platform paving with no rails under them",
+     "use: The street doorway is an unlit black slot with no name or canopy of its own; STATION reads as the neighbour's sign (view 11)"
+    ],
+    "packet": "knowledge/blood/studies/station/critique/round-6"
+   }
+  },
+  {
+   "name": "saloon",
+   "at": [
+    7168,
+    11800
+   ],
+   "hero": "a dim bar room with a lit plank counter, stools along it and whiskey lettered on the wall",
+   "study": "saloon",
+   "layers": {
+    "has": [
+     "trim",
+     "wall_art",
+     "standing",
+     "levels",
+     "masked",
+     "motion",
+     "machines"
+    ],
+    "missing": [
+     "second",
+     "light"
+    ],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    12.2,
+    12.8,
+    4.8
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "Aldermack auditorium",
+   "at": [
+    23040,
+    9500
+   ],
+   "hero": "a tall house facing a curtained stage",
+   "study": "theatre",
+   "layers": {
+    "has": [
+     "second",
+     "wall_art",
+     "standing",
+     "levels",
+     "masked",
+     "motion"
+    ],
+    "missing": [
+     "trim",
+     "light",
+     "machines"
+    ],
+    "campaign_p25": 4,
+    "campaign_p50": 6
+   },
+   "metres": [
+    19.1,
+    27.1,
+    10.2
+   ],
+   "cramped": [
+    "short side 11264 (campaign p25 12288)"
+   ],
+   "critique": null
+  },
+  {
+   "name": "harbour",
+   "at": [
+    30720,
+    58368
+   ],
+   "hero": "a moored hull between two rock headlands, the sea running out to a skerry and the sky",
+   "study": "harbour",
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "standing",
+     "levels",
+     "masked",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 4,
+    "campaign_p50": 6
+   },
+   "metres": [
+    104.3,
+    133.9,
+    20.9
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "arcade concourse",
+   "at": [
+    46080,
+    46080
+   ],
+   "hero": "a tall concourse of glazed shopfronts, and a service corridor with something behind its wall",
+   "study": null,
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "flat_art",
+     "standing",
+     "levels",
+     "masked",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    15.2,
+    19.4,
+    7.0
+   ],
+   "cramped": [],
+   "critique": null
+  }
+ ],
+ "open": [
+  {
+   "kind": "unstudied",
+   "place": "pump machine hall",
+   "says": "built without a study of how Blood built one",
+   "owner": "projects/blood-city/level/character.py:PLACES",
+   "see": "python -m tools.study <slug> --want \"...\" --seed MAP:sector!"
+  },
+  {
+   "kind": "cramped",
+   "place": "St Gallow's nave",
+   "says": "short side 5591 (campaign p25 6144)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "St Gallow's nave",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare church --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "St Gallow's crypt",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare crypt --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Gravesend Station",
+   "says": "carries no trim layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Gravesend Station",
+   "says": "carries no motion layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "cramped",
+   "place": "Gravesend Station",
+   "says": "short side 10752 (campaign p25 12288)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "carriage windows are solid wood panels, so from the platform the train reads as a building wall, not a vehicle",
+   "owner": "blind reader: recognition",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-recognition.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "tunnel mouth is a flat black rectangle with no depth; the line goes nowhere",
+   "owner": "blind reader: recognition",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-recognition.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "Posters mounted on the outside of the train carriage (view_01, 05, 06)",
+   "owner": "blind reader: comparison",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "Station entrance doorway renders as a flat black void (view_11)",
+   "owner": "blind reader: comparison",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "Enclosed track shaft lidded with red marbled ceiling reading as lava, not sky (view_04, 09)",
+   "owner": "blind reader: comparison",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "Wall sign text collides with gargoyle sprite on locomotive (view_09)",
+   "owner": "blind reader: comparison",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "view_09: locomotive wheels stand on the platform paving with no rails under them",
+   "owner": "blind reader: sense",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-sense.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Gravesend Station",
+   "says": "The street doorway is an unlit black slot with no name or canopy of its own; STATION reads as the neighbour's sign (view 11)",
+   "owner": "blind reader: use",
+   "see": "knowledge/blood/studies/station/critique/round-6/review-use.md"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "saloon",
+   "says": "carries no second layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "saloon",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "saloon",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare saloon --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Aldermack auditorium",
+   "says": "carries no trim layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Aldermack auditorium",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Aldermack auditorium",
+   "says": "carries no machines layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "cramped",
+   "place": "Aldermack auditorium",
+   "says": "short side 11264 (campaign p25 12288)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Aldermack auditorium",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare theatre --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "harbour",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare harbour --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "unstudied",
+   "place": "arcade concourse",
+   "says": "built without a study of how Blood built one",
+   "owner": "projects/blood-city/level/character.py:PLACES",
+   "see": "python -m tools.study <slug> --want \"...\" --seed MAP:sector!"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 255 and 166",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall 2009"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 262 and 166",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall 2054"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[389].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[466].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[468].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[468].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[469].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[469].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[472].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[472].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[473].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[473].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall[1893]"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall[1894]"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall[1895]"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall[1896]"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 5 wall(s) (121, 124, 131, 167, 169) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "tile[68]"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (655, 661, 662, 673, 737, 738) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "tile[93]"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2151, 2203) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "tile[194]"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 3 wall(s) (237, 242, 256) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "tile[203]"
+  },
+  {
+   "kind": "refused",
+   "place": "market_hall_display_side_2_2937",
+   "says": "no room for a roast at (6451, 41344)",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "gravesend_arcade_unit_a_window_0_1013",
+   "says": "no room for a vase of dried flowers at (42432, 44160)",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "saloon/back east",
+   "says": "no room for portrait of a ghoul",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "pawn_shop/shop west",
+   "says": "no room for snake panel",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "gravesend_arcade/unit_e east",
+   "says": "no room for painted map",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "gravesend_arcade/service south",
+   "says": "no room for broom",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "st_gallows/narthex north",
+   "says": "no room for banner, lion",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "refused",
+   "place": "ground_cemetery_23552_26624_608",
+   "says": "no room for a dry bush at (23552, 26624)",
+   "owner": "projects/blood-city/level/goods.py:dress",
+   "see": "the goods lines the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "theatre/pawn_shop",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "mall/unit_c",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "church/nave",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "church/nave",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "church/crypt_stair",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "skipped",
+   "place": "station/hall",
+   "says": "venue detail not placed: no_room",
+   "owner": "projects/blood-city/level/venue_detail.py:apply",
+   "see": "the venue detail line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "run:sewer_w_leg:8 (tile 795) would lie through run:sewer_w_leg:7",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "run:sewer_w_leg:9 (tile 795) would lie through run:sewer_w_leg:7",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "sig:sewer_e_leg (tile 795) would lie through run:sewer_e_leg:10",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:1 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "dropped",
+   "place": null,
+   "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:2 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
+   "owner": "projects/blood-city/level/build_skeleton.py:1580",
+   "see": "the 'flat sprites dropped' line the build prints"
+  },
+  {
+   "kind": "sprite-through",
+   "place": null,
+   "says": "{\"sector\": 27, \"sprite\": 614, \"tile\": 793}",
+   "owner": "the pass that placed the sprite; find it by tile",
+   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[27]"
+  },
+  {
+   "kind": "sprite-overlaps",
+   "place": null,
+   "says": "{\"sector\": 38, \"sprites\": [320, 321], \"tiles\": [73, 73]}",
+   "owner": "the pass that placed the sprite; find it by tile",
+   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[38]"
+  },
+  {
+   "kind": "lost-tile",
+   "place": null,
+   "says": "tile[68] is authored on walls and drawn on no band",
+   "owner": "bloodmap/render_slots.py decides what is drawn",
+   "see": "the READ-BACK DIFF lines the build prints"
+  },
+  {
+   "kind": "lost-tile",
+   "place": null,
+   "says": "tile[93] is authored on walls and drawn on no band",
+   "owner": "bloodmap/render_slots.py decides what is drawn",
+   "see": "the READ-BACK DIFF lines the build prints"
+  },
+  {
+   "kind": "lost-tile",
+   "place": null,
+   "says": "tile[194] is authored on walls and drawn on no band",
+   "owner": "bloodmap/render_slots.py decides what is drawn",
+   "see": "the READ-BACK DIFF lines the build prints"
+  },
+  {
+   "kind": "lost-tile",
+   "place": null,
+   "says": "tile[203] is authored on walls and drawn on no band",
+   "owner": "bloodmap/render_slots.py decides what is drawn",
+   "see": "the READ-BACK DIFF lines the build prints"
+  }
+ ],
+ "open_by_kind": {
+  "cramped": 3,
+  "critique": 8,
+  "dropped": 8,
+  "lost-tile": 4,
+  "missing-layer": 7,
+  "never-critiqued": 5,
+  "refused": 8,
+  "rule-error": 14,
+  "rule-warning": 6,
+  "skipped": 6,
+  "sprite-overlaps": 1,
+  "sprite-through": 1,
+  "unstudied": 2
+ },
+ "not_verified": [
+  "no play session is recorded here: whether the level is fun, or can be finished, is known only from the owner's walks (tests/test_city_second_walk.py, tests/test_city_third_walk.py)",
+  "traversal is a static reading of the map (projects/blood-city/level/walk_static.py), not a walk",
+  "a critique score is a blind reader's opinion of frames, recorded as said; it is not a measurement"
+ ]
+}

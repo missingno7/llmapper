@@ -62,7 +62,13 @@ read-back and rule lines, or a frame.
 
 ## The city (`projects/blood-city`)
 
+Read [projects/blood-city/reports/STATUS.md](projects/blood-city/reports/STATUS.md)
+first: the build's size, every named place with its study and its last
+critique, and what is open. The build writes it; it is never edited.
+
 ```bash
+python projects/blood-city/level/status.py --place station   # one place and what is open on it
+python projects/blood-city/level/status.py --kind refused    # one kind of open item
 python projects/blood-city/level/build_skeleton.py     # about a minute; prints every pass
 python projects/blood-city/level/look.py --set <poses> -o <dir>   # frames, as the game shows it
 python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP
@@ -70,7 +76,8 @@ python -m tools.critique prepare <slug> --poses <set> --kind <kind>
 ```
 
 The build is deterministic and writes `level/blood-city-current.MAP`; what it
-measured is in `reports/build-manifest.json`. A new kind of place is studied
+measured is in `reports/build-manifest.json`, and it ends by rewriting the
+status. After recording a critique round, run `status.py` again. A new kind of place is studied
 first (`tools.study`), named on the place in `level/character.py`, built, then
 looked at. Your own reading of your own frames does not pass a place:
 `tools.critique` hands them to blind readers, and the owner walking the map

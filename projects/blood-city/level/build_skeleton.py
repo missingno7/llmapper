@@ -1937,6 +1937,11 @@ def main() -> int:
         "total": len(_diags),
         "by_severity": dict(_by_sev),
         "by_code": {f"{a}:{b}": c for (a, b), c in _by_code.items()},
+        # Where each error and warning is, so `status.py` can hand an agent
+        # the finding and not only the count of them.
+        "open": [{"severity": d.severity, "code": d.code, "at": d.location,
+                  "says": d.message}
+                 for d in _diags if d.severity in ("error", "warning")],
     }
     # The rendering law, called out by name rather than left inside the
     # diagnostic count.  `bloodmap.render_slots` says which band the engine
@@ -2041,6 +2046,12 @@ def main() -> int:
     print(f"sectors {len(disk.sectors)} walls {len(disk.walls)} "
           f"sprites {len(disk.sprites)}")
     print(f"wrote {out_dir / 'city-skeleton.MAP'} (+ blood-city-current.MAP)")
+    # Last, where it all stands, as data: every place and every open item,
+    # for the agent that starts the next session knowing none of the above.
+    import status as _status
+    _stand = _status.write()
+    print(f"status: {len(_stand['places'])} places, {len(_stand['open'])} open "
+          f"{_stand['open_by_kind']} -> reports/status.json, reports/STATUS.md")
     return 0
 
 
