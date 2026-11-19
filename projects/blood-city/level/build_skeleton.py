@@ -762,11 +762,19 @@ def build():
         region_kwargs={**service.region_kwargs(), "declared_zero_exit": True},
         note="the metro that was begun and never finished",
     )
+    # Lit enough to be read through the bars: the owner, walking it, "these
+    # bars are just bars, you can't really tell what it is". What says
+    # "metro" hangs in it and beside it (`dress_underpass`, in `main`).
     bore.surfaces(layer="underpass", floor_z=PASSAGE_Z, clear_height=PASSAGE_CLEAR,
                   wall_picnum=417, floor_picnum=1129, ceiling_picnum=120,
-                  floor_shade=46, ceiling_shade=50, wall_shade=46)
+                  floor_shade=30, ceiling_shade=34, wall_shade=28)
     city.connect(bore.face("north"), passage.face("south"),
                  connection_id="connection:underpass_metro_mouth")
+    UNDERPASS.update(
+        passage=passage.region_id, bore=bore.region_id,
+        x0=int(landing_x0), x1=int(landing_x0) + CORRIDOR_W,
+        y0=top_y0 + CORRIDOR_W, y1=top_y0 + CORRIDOR_W + PASSAGE_LEN,
+        y2=top_y0 + CORRIDOR_W + PASSAGE_LEN + CORRIDOR_W)
     UNDERPASS["bars"] = (int(landing_x0) - 16, top_y0 + CORRIDOR_W + PASSAGE_LEN - 16,
                          int(landing_x0) + CORRIDOR_W + 16,
                          top_y0 + CORRIDOR_W + PASSAGE_LEN + 16)
@@ -1214,6 +1222,35 @@ def build():
     return city, stack_links, gates, ctx, dressing
 
 
+def dress_underpass(layout) -> dict:
+    """What tells a player the barred bore is a metro, and which way is out.
+
+    Blood's own boards, hung where his own metro (DNE3L6 s371) hangs them:
+    the arrivals board on the wall the eye lands on, TICKETS beside the way
+    to the trains, EXIT toward the stairs.
+    """
+    import props
+
+    u = UNDERPASS
+    hung = {}
+    for name, region, a1, a2, t, tile in (
+            # the bore's back wall, straight ahead through the bars
+            ("arrivals", u["bore"], (u["x1"], u["y2"]), (u["x0"], u["y2"]), 0.5, 431),
+            # beside the bars, on the passage's east wall
+            ("tickets", u["passage"], (u["x1"], u["y0"]), (u["x1"], u["y1"]), 0.88, 943),
+            # toward the stairs, on the same wall and on the one facing it
+            ("exit_yard", u["passage"], (u["x1"], u["y0"]), (u["x1"], u["y1"]), 0.12, 761),
+            ("exit_avenue", u["passage"], (u["x0"], u["y1"]), (u["x0"], u["y0"]), 0.62, 761)):
+        layout.place_on_wall(
+            f"underpass:{name}", region, a1=a1, a2=a2, t=t,
+            # the campaign hangs EXIT at 1.85 bodies; under a ceiling 1.93
+            # up that put a tenth of the sign through it
+            height_player_heights=min(props.height_of(tile), 1.5),
+            offset_player_widths=0.06, **props.fields(tile))
+        hung[name] = tile
+    return hung
+
+
 def build_stack_link(layout, spec, offset_d, *, see_through):
     """A stack pair, hand-built per stacks-v1 (grammar req #7:
     room_over_room only places both markers at one point).  Congruent
@@ -1613,6 +1650,7 @@ def main() -> int:
     # Levers beside the street doors.  Blood has no door texture, so this
     # is the only thing on the facade that says the wall opens.
     import doorswitch
+    print("underpass boards:", dress_underpass(layout))
     for placement_id, region_id, segment, channel in ctx["door_levers"]:
         doorswitch.place(layout, placement_id, region_id, segment, channel)
         _wires.by_channel(channel).when(_wiring.placement(placement_id), "push")
@@ -1862,7 +1900,8 @@ def main() -> int:
 
     from bloodmap.glass import grille as _grille
     print("grilles:", _grille(compiled.level,
-                              [l3_theatre.PAWN_GRILLE, UNDERPASS["bars"]],
+                              [l3_theatre.PAWN_GRILLE, UNDERPASS["bars"],
+                               l3_foundry.CAGE["bars"]],
                               tile=l3_theatre.GRILLE_TILE))
     flush = panes_without_a_recess(compiled.level)
     report["panes_on_the_facade_line"] = len(flush)

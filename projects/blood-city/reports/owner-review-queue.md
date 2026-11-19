@@ -83,3 +83,46 @@ in the right place, entered through a real opening.
 **Recommended default:** re-parent them one at a time, each under the
 island whose shell it belongs to, and each with its own read-back
 sentence, so a failure names one building rather than the city.
+
+---
+
+## The owner's walk of 2026-11-20 (Foundry Ward and the underpass)
+
+Recorded by the agent that was told these things, the same night. "Done"
+means built and looked at in a frame by that agent; nobody has walked the
+result.
+
+**Done**
+
+- "Passageway looks ok, but simple, these bars are just bars, you can't
+  really tell what it is." The bore behind the bars is lit and wears the
+  board ARRIVALS DEPARTURES (431) on its back wall; TICKETS (943) hangs
+  beside the bars and EXIT (761) toward each stair
+  (`build_skeleton.dress_underpass`).
+- "These low doors ... something what is not finished properly" (standing
+  at X 51969 Y 17417, ANG 1553). They are the works canteen's two doors,
+  which were 16,384 high: lower than a body and lower than 87% of the
+  campaign's ceiling doors. They are 31,744 now, like every other venue's.
+- "That walk-in bay looks like just a random cutoff in the building. You can
+  put there bars ... bloody stuff behind bars." It is a cage: bars across a
+  reveal in its mouth, three corpses on chains (690, 698) over a pool of
+  blood (956, 730), the two barrels kept.
+
+**Open, said in the same walk and not done**
+
+- "When you look at that canteen facade it is cutting off middle of windows,
+  we should align it properly." Measured, not fixed: the yard's north face
+  (walls 838-841, y 15,360, x 50,176..53,760) wears tile 393 at `x_repeat`
+  9 on its 1,024-long walls, which is 72 texels a wall where the tile is 64
+  wide. So its painted windows stand every 910 units and the doors, which
+  are on the 1,024 grid, cut them. `texture_frame.frame_map` sets the
+  natural scale (64 texels a wall, `x_repeat` 8) for these walls; something
+  after it, or the face's length of 3.5 bays (one corner is chamfered), is
+  squeezing four tiles into it. Find which pass writes the 9. The raised
+  doors also end partway up the window row, and the torch between them
+  hangs across a window.
+- "Canteen should look more like a canteen." Not started. It has no study;
+  by this project's rule it gets one before it is rebuilt.
+- The avenue mouth of the underpass cuts the facade's painted windows too.
+- The breach that is to be the foundry's staged moment is not built; the
+  wire `foundry:staged-moment` is in the plan with no ends.

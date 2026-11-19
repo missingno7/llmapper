@@ -36,6 +36,15 @@ COMPASS = dict(zip(RECT_FACES, range(4)))
 #: The campaign's direct-use Z-door family uses tile 22 (64x128); 390 is a
 #: masonry surface and made our public leaves read as plain brown wall.
 DOOR_FACE_TILE = 22
+#: The yard's cage: how deep it is behind its bars, and where they stand.
+CAGE_DEEP = 1792
+CAGE: dict = {}
+#: The canteen's doors were 16,384 high: lower than a body (16,960) and lower
+#: than 87% of the campaign's 594 ceiling doors, whose median opens 28,672.
+#: The owner, standing in the yard on 2026-11-20: "these low doors ...
+#: something what is not finished properly". They take the height every
+#: other venue in the city already uses.
+CANTEEN_DOOR_H = 31744
 JAMB_TILE = 170
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
@@ -54,6 +63,18 @@ LAMP_FIELDS = {"picnum": 641, "x_repeat": 64, "y_repeat": 64, "cstat": 129,
 #: (`bloodmap.wiring.Circuit`), which numbers it. It used to be channel 30,
 #: typed here: that is the engine's kChannelPlayer0, and the grate reported
 #: no change of state, so stepping on it sent nothing at all.
+
+
+@functools.lru_cache(maxsize=None)
+def _attested_tile(map_name: str, picnum: int) -> dict:
+    """A decoration's fields, copied from the first one a campaign map has."""
+    disk = read_map(corpus_map_path(map_name))
+    for sprite in disk.sprites:
+        if int(sprite.fields["picnum"]) == picnum:
+            fields = {k: int(sprite.fields[k]) for k in
+                      ("picnum", "x_repeat", "y_repeat", "cstat", "status", "type")}
+            return fields
+    raise KeyError(f"{map_name} has no sprite wearing tile {picnum}")
 
 
 @functools.lru_cache(maxsize=None)
@@ -162,7 +183,7 @@ def dress(city, ctx) -> dict:
             "door_face": DOOR_FACE_TILE,
             "inherit_finish": "both",
             "sector_behavior": {
-                **z_motion_door(GRADE, GRADE - 16384),
+                **z_motion_door(GRADE, GRADE - CANTEEN_DOOR_H),
                 "amplitude": -24, "shade_frequency": 12, "shade_wave": 0,
             },
         },
@@ -182,7 +203,7 @@ def dress(city, ctx) -> dict:
         note="the canteen's reveal: the facade owns the wall above the door",
     )
     porch.surfaces(wall_picnum=MASONRY.wall, ceiling_picnum=MASONRY.wall,
-                   floor_z=GRADE, clear_height=16384)
+                   floor_z=GRADE, clear_height=CANTEEN_DOOR_H)
     canteen.connect(porch.face("north"), door.face("south"),
                     connection_id="connection:canteen_porch_door")
     city.connect(porch.face("south"), foundry_st.face("west"),
@@ -198,7 +219,7 @@ def dress(city, ctx) -> dict:
             "type": 600,
             "door_face": DOOR_FACE_TILE,
             "inherit_finish": "both",
-            "sector_behavior": z_motion_door(GRADE, GRADE - 16384),
+            "sector_behavior": z_motion_door(GRADE, GRADE - CANTEEN_DOOR_H),
         },
         note="the canteen's second mouth, west end of the yard face",
     )
@@ -212,7 +233,7 @@ def dress(city, ctx) -> dict:
         note="the second mouth's reveal",
     )
     side_porch.surfaces(wall_picnum=MASONRY.wall, ceiling_picnum=MASONRY.wall,
-                        floor_z=GRADE, clear_height=16384)
+                        floor_z=GRADE, clear_height=CANTEEN_DOOR_H)
     canteen.connect(side_porch.face("north"), side_door.face("south"),
                     connection_id="connection:canteen_side_porch")
     city.connect(side_porch.face("south"), foundry_st.face("west"),
@@ -243,7 +264,7 @@ def dress(city, ctx) -> dict:
     cart = city.room(
         # Two bays tall so the dock's mouth lands between the painted
         # windows like every other opening in the city.
-        "yard_dock", [(0, 0), (2048, 0), (2048, 2048), (0, 2048)],
+        "yard_dock", [(0, 0), (CAGE_DEEP, 0), (CAGE_DEEP, 2048), (0, 2048)],
         role="detail", faces=dict(COMPASS), frame=Frame(cart_x0, cart_y0),
         note="loading bay, level with the yard, recessed in the works face",
     )
@@ -259,8 +280,29 @@ def dress(city, ctx) -> dict:
     # 16,384 high, lower than a body, so it read as a hole in the wall. It
     # is a bay now: level with the yard and a body and a half high.
     cart.surfaces(floor_z=GRADE)
-    city.connect(cart.face("east"), foundry_st.face("east"),
+    # THE BAY IS A CAGE. The owner, walking it on 2026-11-20: "that walk-in
+    # bay looks like just a random cutoff in the building. You can put there
+    # bars or something to add more meaning to it, maybe it can have bloody
+    # stuff behind bars". Bars hang on a wall whose two sides stand at one
+    # floor and one ceiling, and the yard has the sky over it, so a reveal
+    # of the bay's own height stands in the mouth and the bars cross its
+    # inner edge. What hangs behind them is in `sprinkle`.
+    reveal = city.room(
+        "yard_dock_reveal", [(0, 0), (2048 - CAGE_DEEP, 0),
+                             (2048 - CAGE_DEEP, 2048), (0, 2048)],
+        role="detail", faces=dict(COMPASS),
+        frame=Frame(cart_x0 + CAGE_DEEP, cart_y0),
+        note="the cage's reveal: the bars stand at its back",
+    )
+    reveal.style = cart.style
+    reveal.surfaces(floor_z=GRADE)
+    city.connect(cart.face("east"), reveal.face("west"),
+                 connection_id="connection:dock_cage_bars")
+    city.connect(reveal.face("east"), foundry_st.face("east"),
                  connection_id="connection:dock_mouth")
+    placed["rooms"].append(reveal.region_id)
+    CAGE["bars"] = (cart_x0 + CAGE_DEEP - 16, cart_y0 - 16,
+                    cart_x0 + CAGE_DEEP + 16, cart_y0 + 2048 + 16)
     placed["rooms"].append(cart.region_id)
 
     return {"placed": placed, "canteen_door": door.region_id,
@@ -350,7 +392,29 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
         behavior = fields.pop("behavior", {})
         spec = {"fields": fields, "behavior": behavior}
         room_sprite(f"prop:cart_barrel_{index}", dressing["cart"],
-                    (0.3 + 0.4 * index, 0.5), spec)
+                    (0.2 + 0.6 * index, 0.2), spec)
+    # What the cage holds: the works' meat store. Corpses on chains hang
+    # from the ceiling as Blood hangs them (tiles 690 and 698: 24 and 19 in
+    # the campaign, each one a record copied from the map named), over a
+    # pool of blood (956, which Blood lays as a floor sprite) and its drips.
+    for index, (source, tile, local) in enumerate((
+            ("E1M2", 690, (0.3, 0.5)), ("E1M3", 698, (0.55, 0.3)),
+            ("E1M2", 690, (0.7, 0.72)))):
+        hung = dict(_attested_tile(source, tile))
+        # The campaign hangs these at repeat 64 in rooms 33,000 to 42,000
+        # high; the cage is 24,576, and at that size the lint read a quarter
+        # of each as sunk. Blood also hangs them at 48; these are 40, so
+        # chain and body fit under the cage's ceiling.
+        hung["x_repeat"] = hung["y_repeat"] = 40
+        layout.place_on_ceiling(f"cage:corpse_{index}", dressing["cart"],
+                                local=local, **hung)
+        out.append(f"cage:corpse_{index}")
+    import props as _cage_props
+    for index, (tile, local) in enumerate(((956, (0.45, 0.5)), (730, (0.7, 0.7)),
+                                           (730, (0.3, 0.35)))):
+        layout.place_on_floor(f"cage:blood_{index}", dressing["cart"],
+                              local=local, **_cage_props.fields(tile))
+        out.append(f"cage:blood_{index}")
 
     # Pickups.  The campaign runs 0.9 per dude; we had none, which the
     # discriminator ranked as one of our worst features.  Types and fields

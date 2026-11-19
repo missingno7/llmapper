@@ -226,6 +226,13 @@ POSE_SETS = {
         "stair_down": (49.6, 19.5, 46.0, 19.5, LEVEL, "from the stair head, down the flight"),
         "grate_east": (53.6, 21.9, 50.6, 21.9, LEVEL, "the grate from the spur side"),
     },
+    #: The owner's own standing point, 2026-11-20: X 51969 Y 17417 ANG 1553,
+    #: "these low doors ... something what is not finished properly".
+    "owner_low_door": {
+        "low_door": (50.75, 17.01, 50.83, 14.0, LEVEL, "the owner's pose: the yard's north side"),
+        "low_door_near": (50.75, 16.2, 50.75, 14.0, LEVEL, "the same, two steps closer"),
+        "low_door_east": (52.7, 16.6, 52.7, 14.0, LEVEL, "its neighbour to the east"),
+    },
     "underpass": {
         "underpass_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "from the yard stair's foot, down the passage"),
         "underpass_bars": (42.0, 22.4, 42.0, 26.5, LEVEL, "the barred mouth of the unfinished metro"),
