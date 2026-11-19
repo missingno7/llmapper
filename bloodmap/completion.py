@@ -106,6 +106,36 @@ def read(disk: Any, name: str = "") -> dict[str, Any]:
             "senders": [], "sector": node["sector"], "answers": answers})
         row["senders"].append(node["id"])
 
+    # A lock is not always on a wire: a door pushed by hand that wants a key
+    # sends and hears nothing, so the wiring never lists it. The city's one
+    # key works exactly such a door, and it was read as a key for nothing.
+    wired = {node["id"] for node in every}
+    owners = None
+    for kind, group in (("sector", disk.sectors), ("wall", disk.walls),
+                        ("sprite", disk.sprites)):
+        for index, item in enumerate(group):
+            wants = int((record_extra(item) or {}).get("key", 0) or 0)
+            if not wants or f"{kind} {index}" in wired:
+                continue
+            fields = record_fields(item)
+            if kind == "sprite":
+                if classify("sprite", int(fields["type"])).get("category") == "dude":
+                    continue                      # a key it drops, not a lock
+                sector = int(fields["sector"])
+            elif kind == "sector":
+                sector = index
+            else:
+                if owners is None:
+                    from .sector_geom import wall_owners
+                    owners = wall_owners(disk)
+                sector = owners.get(index, -1)
+            row = locked.setdefault((wants, -index - 1 if kind == "sector" else 0), {
+                "key": wants, "key_name": KEY_NAMES.get(wants), "senders": [],
+                "sector": sector,
+                "answers": [f"{kind} {index}"] if kind == "sector" else []})
+            row["senders"].append(f"{kind} {index}")
+            row["by_hand"] = True
+
     declared = None
     credited = Counter()
     for node in every:
@@ -123,6 +153,12 @@ def read(disk: Any, name: str = "") -> dict[str, Any]:
         "unreached": [sector for sector in space if sector not in reached],
         "exits": exits,
         "exit_reached": any(row["reached"] for row in exits),
+        #: the map as it is played: what is open from the start, and what
+        #: each act opens (`bloodmap.conditional.frontier`)
+        "gated_areas": [{"round": area["round"], "opened_by": area["opened_by"],
+                         "sectors": len(area["sectors"]),
+                         "first_sector": area["sectors"][0]}
+                        for area in progression.get("gated_areas", ())],
         "keys": keys,
         "locked": sorted(locked.values(), key=lambda row: (row["key"], row["sector"])),
         "secrets": {"declared": declared, "credited_normal": credited["normal"],
@@ -142,6 +178,14 @@ def missed(mark: dict[str, Any]) -> list[str]:
         out.append("no chain ends at the level's exit")
     elif not mark["exit_reached"]:
         out.append("the exit is never reached")
+    wanted = {row["key"] for row in mark.get("locked", ())}
+    names = {name: number for number, name in KEY_NAMES.items()}
+    for row in mark["keys"]:
+        said = row["name"].lower()
+        number = next((names[name] for name in names if name in said), None)
+        if number is not None and number not in wanted:
+            out.append(f"{row['name']} opens nothing: no lock wants it")
+            break
     lost = [row["name"] for row in mark["keys"] if not row["reached"]]
     if lost:
         out.append(f"{len(lost)} key(s) never reached: {', '.join(sorted(lost))}")

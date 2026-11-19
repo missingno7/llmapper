@@ -26,7 +26,7 @@ class MissedTests(unittest.TestCase):
     def _mark(self, **changed):
         mark = {"exits": [{"reached": True}], "exit_reached": True,
                 "keys": [{"name": "kItemKeySkull", "reached": True}],
-                "unreached": [], "space": 10,
+                "unreached": [], "space": 10, "locked": [{"key": 1}],
                 "secrets": {"declared": 3, "credited_normal": 3, "credited_super": 1}}
         mark.update(changed)
         return mark
@@ -49,6 +49,14 @@ class MissedTests(unittest.TestCase):
         self.assertTrue(any("kItemKeySkull" in line for line in said))
         self.assertEqual(completion.missed(self._mark(exits=[], exit_reached=False))[0],
                          "no chain ends at the level's exit")
+
+    def test_a_key_no_lock_wants_is_said(self):
+        from bloodmap import completion
+
+        mark = self._mark(locked=[])
+        self.assertTrue(any("opens nothing" in line for line in completion.missed(mark)))
+        mark = self._mark(locked=[{"key": 1}])
+        self.assertEqual(completion.missed(mark), [])
 
     def test_a_super_secret_is_not_counted_against_the_total(self):
         """The number on channel 2 is a type: 0 normal, more super
@@ -98,6 +106,22 @@ class E1M1Tests(unittest.TestCase):
                          ("push", "kChannelLevelExitNormal"))
         self.assertEqual(self.mark["secrets"],
                          {"declared": 11, "credited_normal": 11, "credited_super": 1})
+
+    def test_it_is_read_as_the_areas_each_act_opens(self):
+        """A gated area is the unit a map is played in, and the engine
+        decides where it ends. A "room" is a guess with thresholds."""
+        areas = self.mark["gated_areas"]
+        self.assertEqual(areas[0]["opened_by"], ["nothing: open from the start"])
+        self.assertGreater(len(areas), 3)
+        self.assertEqual(sum(area["sectors"] for area in areas),
+                         len(set(range(10**6)) & set(self._reached())))
+        self.assertTrue(all(area["sectors"] > 0 for area in areas))
+
+    def _reached(self):
+        from bloodmap import bundle, completion
+
+        views = bundle.build_bundle(corpus_disk("E1M1"), map_name="E1M1")["views"]
+        return completion.reached_sectors(views["progression"])
 
     def test_the_whole_map_reading_names_all_of_it(self):
         from tools import catalog

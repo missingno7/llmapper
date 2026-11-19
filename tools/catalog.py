@@ -931,13 +931,14 @@ def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
                      f"-> {row['to']}"
                      + ("" if row["reached"] else "  (our traversal never gets here)"))
     if not mark["exits"]:
-        lines.append("  exit: no chain ends at the level's exit (a reader gap)")
+        lines.append("  exit: NONE. No chain ends at the level's exit")
     for row in mark["keys"]:
         lines.append(f"  key: {row['name']} (sprite {row['sprite']}) in {room(row['sector'])}"
                      + ("" if row["reached"] else "  (our traversal never gets here)"))
     for row in mark["locked"]:
         lines.append(
-            f"  wants the {row['key_name'] or row['key']} key: "
+            f"  wants the {row['key_name'] or row['key']} key"
+            f"{' (pushed by hand)' if row.get('by_hand') else ''}: "
             f"{len(row['senders'])} face(s)/object(s) in {room(row['sector'])} "
             f"({row['senders'][0]}) -> {', '.join(row['answers'][:6]) or 'nothing'}"
             + (f" (+{len(row['answers']) - 6})" if len(row["answers"]) > 6 else ""))
@@ -946,6 +947,13 @@ def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
                  f"{secrets['credited_normal']} senders credit a normal one and "
                  f"{secrets['credited_super']} a super secret")
 
+    lines.append("HOW IT IS PLAYED  (gated areas: what each act opens; the "
+                 "engine decides where one ends)")
+    for area in mark["gated_areas"][:14]:
+        lines.append(f"  round {area['round']}: {area['sectors']:>3} sectors around "
+                     f"{room(area['first_sector'])} -- {'; '.join(area['opened_by'])}")
+    if len(mark["gated_areas"]) > 14:
+        lines.append(f"  ... {len(mark['gated_areas']) - 14} more areas")
     seen = examples.observe(key, disk)
     index = examples.build([seen], places={key: where})
     lines.append(f"WIRING  ({len(seen['wires'])} chains; "

@@ -1699,6 +1699,8 @@ def frontier(disk: Any, *, graph: ConditionalGraph | None = None,
     reached = graph.reachable(held)
     steps = [{"round": 0, "action": None, "reached": len(reached),
               "newly_reachable": sorted(reached)}]
+    areas = [{"round": 0, "act": None, "sectors": sorted(reached),
+              "opened_by": ["nothing: open from the start"]}]
     for index in range(1, rounds + 1):
         actions = graph.available_actions(held, reached)
         fresh = [item for item in actions
@@ -1709,12 +1711,29 @@ def frontier(disk: Any, *, graph: ConditionalGraph | None = None,
         for action in fresh:
             after = graph.reachable(held.with_action(action))
             scored.append((action, sorted(after - reached)))
+        #: The areas this round opens, whole: what each act opens by itself,
+        #: and what only several of them together open. A gated area is the
+        #: unit a map is played in -- the space between one act and the
+        #: next -- and unlike a "room" the engine decides where it ends.
+        claimed: set[int] = set()
+        opened = []
+        for action, gained in sorted(scored, key=lambda item: -len(item[1])):
+            fresh_area = [sector for sector in gained if sector not in claimed]
+            if fresh_area:
+                claimed.update(fresh_area)
+                opened.append({"round": index, "opened_by": [action.describes()],
+                               "act": action.to_dict(), "sectors": fresh_area})
         nxt = held
         for action in fresh:
             nxt = nxt.with_action(action)
         after_all = graph.reachable(nxt)
         if after_all == reached and nxt == held:
             break
+        together = sorted(after_all - reached - claimed)
+        if together:
+            opened.append({"round": index, "act": None, "sectors": together,
+                           "opened_by": ["several of this round's acts together"]})
+        areas.extend(opened)
         steps.append({
             "round": index,
             "actions": [{"action": action.to_dict(),
@@ -1739,6 +1758,7 @@ def frontier(disk: Any, *, graph: ConditionalGraph | None = None,
         "reached_sectors": sorted(reached),
         "channels_fired": sorted(graph.fired(held.channels | graph.fired_at_start)),
         "keys_held": sorted(held.keys),
+        "gated_areas": areas,
         "rounds": steps,
         "summary": dict(graph.summary),
         "limitations": list(LIMITATIONS),

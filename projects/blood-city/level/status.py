@@ -227,6 +227,17 @@ def gather() -> dict[str, Any]:
              owner="projects/blood-city/level/character.py:engine_channels_wired",
              see=f"python -m tools.catalog mechanisms {MAP_REL}")
 
+    # The same mark the campaign's maps are given. A shipped map can be
+    # finished; ours is held to that by the reader that is held to them.
+    from bloodmap import completion
+
+    finish = completion.read(disk, "BLOOD-CITY")
+    for said in completion.missed(finish):
+        item("cannot-finish", said,
+             owner="bloodmap/completion.py (the reader reaches the exit in 38 of "
+                   "43 campaign maps: check a shortfall before believing it)",
+             see=f"python -m tools.catalog map {MAP_REL}")
+
     wires = manifest.get("wires", {})
     for row in wires.get("wires", []):
         for fault in row["faults"]:
@@ -302,6 +313,11 @@ def gather() -> dict[str, Any]:
             "rules": rules.get("by_severity", {}),
         },
         "stages": _stages(manifest.get("stages", [])),
+        "finish": {"exits": finish["exits"], "exit_reached": finish["exit_reached"],
+                   "keys": finish["keys"], "locked": finish["locked"],
+                   "secrets": finish["secrets"], "space": finish["space"],
+                   "reached": finish["reached"],
+                   "gated_areas": finish["gated_areas"]},
         "wires": [{key: row[key] for key in ("name", "says", "channel", "engine",
                                               "when", "then")}
                   for row in wires.get("declared", [])],
@@ -341,6 +357,14 @@ def brief(status: dict[str, Any]) -> str:
         "(" + ", ".join(row["name"] for row in status["stages"]) + "). "
         "`python projects/blood-city/level/status.py --stages` gives each "
         "one's line in the build and what it took.",
+        "",
+        f"**Can it be finished**: "
+        + ("yes by our reader" if status["finish"]["exit_reached"]
+           else "NO: " + ("there is no exit" if not status["finish"]["exits"]
+                          else "the exit is never reached"))
+        + f"; {status['finish']['reached']} of {status['finish']['space']} "
+        f"player-space sectors reached in {len(status['finish']['gated_areas'])} "
+        f"gated areas (`python -m tools.catalog map {MAP_REL}`).",
         "",
         f"**Wiring**: {len(status['wires'])} wire(s) are declared with their "
         f"purpose (`status.py --wires`); "

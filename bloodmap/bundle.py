@@ -182,6 +182,7 @@ def progression_view(disk: Any, graph: Any) -> dict[str, Any]:
         "finally_reachable": walk["finally_reachable"],
         "gated_by_action": walk["gated_by_action"],
         "reached_sectors": walk["reached_sectors"],
+        "gated_areas": walk["gated_areas"],
         "rounds": walk["rounds"],
         "sp_understand": {
             "produced_by": "bloodmap.progression.analyze_progression",

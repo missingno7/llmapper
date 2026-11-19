@@ -137,6 +137,21 @@ class CityStatusTests(unittest.TestCase):
         typed = [row for row in self.status["open"] if row["kind"] == "undeclared-wire"]
         self.assertEqual(len(typed), len(wires["undeclared"]))
 
+    def test_the_city_is_given_the_mark_the_campaign_is_given(self):
+        """Our own map is held to what a shipped map is: can it be finished.
+        On 2026-11-19 it could not -- it has no exit -- and no gate, rule or
+        status line had said so."""
+        finish = self.status["finish"]
+        self.assertEqual(finish["exit_reached"], bool(
+            [row for row in finish["exits"] if row["reached"]]))
+        said = [row for row in self.status["open"] if row["kind"] == "cannot-finish"]
+        if not finish["exit_reached"]:
+            self.assertTrue(said)
+        # its one key works a door that is pushed by hand, on no wire
+        self.assertTrue(all(row["key"] in {lock["key"] for lock in finish["locked"]}
+                            for row in [{"key": 2}] if finish["keys"]))
+        self.assertGreater(len(finish["gated_areas"]), 1)
+
     def test_no_channel_in_the_city_is_typed_by_hand(self):
         """Thirteen were, in six modules, until 2026-11-19. Every wire is now
         a line of `wires.py` saying what it is for, numbered by its place."""

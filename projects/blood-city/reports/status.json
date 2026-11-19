@@ -185,6 +185,185 @@
    "at": "projects/blood-city/level/build_skeleton.py:2145"
   }
  ],
+ "finish": {
+  "exits": [],
+  "exit_reached": false,
+  "keys": [
+   {
+    "sprite": 288,
+    "name": "kItemKeyEye",
+    "sector": 180,
+    "reached": true
+   }
+  ],
+  "locked": [
+   {
+    "key": 2,
+    "key_name": "eye",
+    "senders": [
+     "sector 197"
+    ],
+    "sector": 197,
+    "answers": [
+     "sector 197"
+    ],
+    "by_hand": true
+   }
+  ],
+  "secrets": {
+   "declared": 3,
+   "credited_normal": 3,
+   "credited_super": 0
+  },
+  "space": 474,
+  "reached": 449,
+  "gated_areas": [
+   {
+    "round": 0,
+    "opened_by": [
+     "nothing: open from the start"
+    ],
+    "sectors": 288,
+    "first_sector": 0
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 195"
+    ],
+    "sectors": 34,
+    "first_sector": 169
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 350 (channel 109)"
+    ],
+    "sectors": 34,
+    "first_sector": 3
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 351 (channel 110)"
+    ],
+    "sectors": 1,
+    "first_sector": 18
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 352 (channel 111)"
+    ],
+    "sectors": 1,
+    "first_sector": 30
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 353 (channel 112)"
+    ],
+    "sectors": 1,
+    "first_sector": 32
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 267"
+    ],
+    "sectors": 23,
+    "first_sector": 238
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 268"
+    ],
+    "sectors": 1,
+    "first_sector": 268
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "destroy sprite 210 (channel 103)"
+    ],
+    "sectors": 9,
+    "first_sector": 92
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 171 (channel 108)"
+    ],
+    "sectors": 9,
+    "first_sector": 389
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 151"
+    ],
+    "sectors": 8,
+    "first_sector": 147
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 153"
+    ],
+    "sectors": 1,
+    "first_sector": 153
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 354 (channel 113)"
+    ],
+    "sectors": 7,
+    "first_sector": 35
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 101"
+    ],
+    "sectors": 4,
+    "first_sector": 78
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 128"
+    ],
+    "sectors": 1,
+    "first_sector": 128
+   },
+   {
+    "round": 2,
+    "opened_by": [
+     "operate mechanism sector 103"
+    ],
+    "sectors": 20,
+    "first_sector": 75
+   },
+   {
+    "round": 2,
+    "opened_by": [
+     "several of this round's acts together"
+    ],
+    "sectors": 4,
+    "first_sector": 182
+   },
+   {
+    "round": 3,
+    "opened_by": [
+     "destroy sprite 280 (channel 104)"
+    ],
+    "sectors": 3,
+    "first_sector": 198
+   }
+  ]
+ },
  "wires": [
   {
    "name": "foundry:staged-moment",
@@ -846,6 +1025,20 @@
    "see": "python -m tools.place_character --help"
   },
   {
+   "kind": "cannot-finish",
+   "place": null,
+   "says": "no chain ends at the level's exit",
+   "owner": "bloodmap/completion.py (the reader reaches the exit in 38 of 43 campaign maps: check a shortfall before believing it)",
+   "see": "python -m tools.catalog map projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
+   "kind": "cannot-finish",
+   "place": null,
+   "says": "25 of 474 player-space sectors never reached",
+   "owner": "bloodmap/completion.py (the reader reaches the exit in 38 of 43 campaign maps: check a shortfall before believing it)",
+   "see": "python -m tools.catalog map projects/blood-city/level/blood-city-current.MAP"
+  },
+  {
    "kind": "rule-warning",
    "place": null,
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 255 and 166",
@@ -1205,6 +1398,7 @@
   }
  ],
  "open_by_kind": {
+  "cannot-finish": 2,
   "cramped": 3,
   "critique": 8,
   "dropped": 8,

@@ -25,14 +25,34 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 SCORECARD = ROOT / "knowledge" / "blood" / "design" / "reading-scorecard-v1.json"
 
 
-def gather() -> dict:
+def gather(population: str | None = None) -> dict:
+    """The campaign's score; or, with `population`, another corpus population's.
+
+    The readers were tuned on the campaign and are scored on it, so its
+    number flatters them. `--population community-curated` is the same mark
+    on maps no rule here was fitted to. It is printed and not kept: nobody
+    has shown those maps can all be finished.
+    """
     from bloodmap import completion
-    from bloodmap.corpus import campaign_maps
+    from bloodmap.corpus import campaign_maps, list_corpus_maps
     from bloodmap.format import read_map
 
     rows = []
-    for path in campaign_maps(required=True):
-        mark = completion.read(read_map(path), path.stem.upper())
+    paths = (campaign_maps(required=True) if population is None
+             else [item.path for item in list_corpus_maps(population=population)])
+    for path in paths:
+        try:
+            mark = completion.read(read_map(path), path.stem.upper())
+        except Exception as error:               # a held-out map may not read at all
+            if population is None:
+                raise
+            rows.append({"map": path.stem.upper(), "space": 0, "reached": 0,
+                         "exits": 0, "exit_reached": False, "keys": 0,
+                         "keys_reached": 0,
+                         "secrets": {"declared": None, "credited_normal": 0},
+                         "older_reader": {"exit_reachable": None},
+                         "missed": [f"the reader failed: {type(error).__name__}: {error}"[:160]]})
+            continue
         rows.append({
             "map": mark["map"], "space": mark["space"], "reached": mark["reached"],
             "exits": len(mark["exits"]), "exit_reached": mark["exit_reached"],
@@ -105,7 +125,14 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("map", nargs="?", help="one map, in full")
     parser.add_argument("--check", action="store_true")
+    parser.add_argument("--population",
+                        help="mark another corpus population (printed, not kept)")
     args = parser.parse_args(argv)
+    if args.population:
+        print(table(gather(args.population)).replace(
+            "campaign maps, every one of them finishable",
+            f"{args.population} maps, not known to be finishable"))
+        return 0
     if args.map:
         from bloodmap import completion
         from bloodmap.corpus import corpus_map_path
