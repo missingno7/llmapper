@@ -18,6 +18,9 @@ from bloodmap.conditional import (
 from bloodmap.conditional import _trigger_for
 from bloodmap.effects import STEP_UP
 from bloodmap.doors import PLAYER_HEIGHT
+from tests.helpers import campaign_maps
+
+HAVE_CAMPAIGN = bool(campaign_maps())
 
 try:
     from bloodmap.corpus import list_corpus_maps
@@ -456,6 +459,118 @@ class CrossingTest(unittest.TestCase):
         drop = 100_000
         self.assertTrue(passable(record, "off", drop, leaving=True))
         self.assertFalse(passable(record, "off", drop, leaving=False))
+
+
+class EngineCrossingTest(unittest.TestCase):
+    """What the engine asks at a portal, which is not whether a body can stand inside.
+
+    `cliptestsector` (clip.cpp, ENGINE_19960925) stops a body when the next
+    floor is too high for its feet or the next ceiling too low for its head,
+    and Blood gives it a quarter of the body's extent each way
+    (actor.cpp:4450). Marked against the campaign, the older standing-room
+    test left the exit unreached in 7 of 43 maps that this reaches.
+    """
+
+    def record(self, **over):
+        base = {"off_floor_z": 0, "on_floor_z": 0, "off_ceiling_z": 0,
+                "on_ceiling_z": -16384}
+        base.update(over)
+        return base
+
+    def test_a_door_lower_than_a_standing_body_is_still_walked_through(self):
+        from bloodmap.conditional import HEAD_ROOM, PLAYER_HEIGHT
+
+        self.assertLess(16384, PLAYER_HEIGHT)
+        self.assertGreater(16384, HEAD_ROOM)
+        record = self.record()
+        # into the door from a room at the same floor, under a high ceiling
+        self.assertTrue(passable(record, "on", 0, leaving=False,
+                                 neighbour_ceiling_z=-60000))
+        # and it is shut flat when shut
+        self.assertFalse(passable(record, "off", 0, leaving=False,
+                                  neighbour_ceiling_z=-60000))
+
+    def test_a_ceiling_too_low_over_the_floor_stood_on_stops_the_head(self):
+        from bloodmap.conditional import HEAD_ROOM
+
+        low = self.record(on_ceiling_z=-HEAD_ROOM)
+        self.assertFalse(passable(low, "on", 0, leaving=False,
+                                  neighbour_ceiling_z=-60000))
+        self.assertTrue(passable(self.record(on_ceiling_z=-HEAD_ROOM - 1), "on", 0,
+                                 leaving=False, neighbour_ceiling_z=-60000))
+
+    def test_a_lift_lets_a_body_off_at_a_landing_it_only_passes(self):
+        """E2M2 s276: it runs from 17,408 to -15,360 past a doorway whose
+        floor is at 6,144 and stops level with it at neither end."""
+        from bloodmap.conditional import _passes_in_travel
+
+        lift = {"off_floor_z": 17408, "off_ceiling_z": -43008,
+                "on_floor_z": -15360, "on_ceiling_z": -43008}
+        for end in ("off", "on"):
+            self.assertFalse(passable(lift, end, 6144, leaving=True,
+                                      neighbour_ceiling_z=-10240))
+        self.assertTrue(_passes_in_travel(lift, "off", "on", 6144, -10240,
+                                          leaving=True))
+
+    def test_a_neighbour_that_is_a_mechanism_is_met_at_either_of_its_ends(self):
+        from bloodmap.conditional import _poses_of
+        from bloodmap.format import XSECTOR_SCHEMA
+        from bloodmap.model import PackedExtra
+        from tests.helpers import synthetic_two_sector_map
+
+        disk = synthetic_two_sector_map()
+        values = {name: 0 for name, _bits, _signed in XSECTOR_SCHEMA}
+        values.update(off_floor_z=100, off_ceiling_z=100, on_floor_z=100,
+                      on_ceiling_z=-20000)
+        disk.sectors[1].extra = PackedExtra("XSECTOR", values)
+        saved = (int(disk.sectors[1].fields["floor_z"]),
+                 int(disk.sectors[1].fields["ceiling_z"]))
+        # a plain sector keeps the floor it was saved with, whatever its fields say
+        self.assertEqual(_poses_of(disk, 1), [saved])
+        disk.sectors[1].fields["type"] = 600
+        self.assertEqual(_poses_of(disk, 1), [saved, (100, 100), (100, -20000)])
+
+
+@unittest.skipUnless(HAVE_CAMPAIGN, "no campaign corpus")
+class CampaignTraversalTest(unittest.TestCase):
+    """Each fix, on the map that showed it was needed."""
+
+    def _walk(self, name):
+        from bloodmap.conditional import build_graph, frontier
+        from tests.helpers import corpus_disk
+
+        disk = corpus_disk(name)
+        graph = build_graph(disk)
+        return disk, graph, frontier(disk, graph=graph)
+
+    def test_a_crack_is_shot_from_outside_the_wall_it_sits_in(self):
+        """E1M8: the way out of the start is a crack whose sector nobody
+        stands in. The reader stopped at 20 sectors of 425."""
+        _disk, _graph, walk = self._walk("E1M8")
+        self.assertGreater(walk["finally_reachable"], 300)
+        kinds = {action["action"]["kind"] for step in walk["rounds"][1:]
+                 for action in step["actions"]}
+        self.assertIn("destroy", kinds)
+
+    def test_walking_into_a_sector_and_a_relay_both_fire(self):
+        """Acts other than a switch, a push wall and a crack were not acts,
+        and only the level's start was followed through a relay."""
+        _disk, graph, walk = self._walk("E1M1")
+        kinds = {action["action"]["kind"] for step in walk["rounds"][1:]
+                 for action in step["actions"]}
+        self.assertIn("enter", kinds)
+        self.assertEqual(graph.fired({7}) - {7}, graph.fired_at_start - {7, 17, 18})
+        self.assertGreaterEqual(walk["finally_reachable"], 136)
+
+    def test_stale_height_fields_on_a_plain_sector_gate_nothing(self):
+        """E1M6 s184 is type 0 with a z pair 100,000 units from its floor."""
+        _disk, graph, _walk = self._walk("E1M6")
+        self.assertFalse([edge for edge in graph.edges
+                          if edge.mechanism == 184 and edge.mechanism_kind == "sector"])
+
+    def test_the_whole_reached_set_is_returned(self):
+        _disk, _graph, walk = self._walk("E3M4")
+        self.assertEqual(len(walk["reached_sectors"]), walk["finally_reachable"])
 
 
 class RestStateTest(unittest.TestCase):

@@ -78,8 +78,13 @@ class E1M1Tests(unittest.TestCase):
         self.assertFalse(self.mark["older_reader"]["exit_reachable"])
 
     def test_its_two_keys_and_what_each_works(self):
+        # each key is there twice: lying as an item, and carried by a
+        # cultist who drops it when killed (actor.cpp:3053)
         self.assertEqual(sorted(row["name"] for row in self.mark["keys"]),
-                         ["kItemKeyDagger", "kItemKeySkull"])
+                         ["dagger key, dropped by kDudeCultistShotgun",
+                          "kItemKeyDagger", "kItemKeySkull",
+                          "skull key, dropped by kDudeCultistShotgun"])
+        self.assertTrue(all(row["reached"] for row in self.mark["keys"]))
         locked = {row["key_name"]: row for row in self.mark["locked"]}
         self.assertEqual(set(locked), {"skull", "dagger"})
         # the skull key works the chained rotating doors, s50 and s51

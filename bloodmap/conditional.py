@@ -71,6 +71,11 @@ WALL_BLOCK, WALL_MASKED, WALL_HITSCAN = 1, 16, 64
 #: blocking wall that is not a gib wall is shut for ever.
 KWALLGIB = 511
 
+#: Slide and rotate sectors: the ones whose walls travel (`TranslateSector`).
+SWEPT_TYPES = frozenset({613, 614, 615, 616, 617})
+#: How many portals a shot or a blast is allowed to cross to its target.
+SHOT_HOPS = 2
+
 #: The three base graphs, and what each assumes. One is the default; all
 #: three stay callable, because they disagree by a lot and the disagreement
 #: is a finding rather than a setting.
@@ -380,8 +385,24 @@ def rest_state(record: dict[str, Any]) -> str:
     return "off"
 
 
+#: How far below the floor a body stands on the next ceiling must be for the
+#: engine to let it through. `cliptestsector` (clip.cpp, the branch Blood's
+#: ENGINE_19960925 takes) stops a body at a portal on two tests only: the
+#: next floor is higher and the body's z is within `flordist` of it, or the
+#: next ceiling is lower and the body's z is within `ceildist` of it. Blood
+#: passes a QUARTER of the body's extent each way (`MoveDude`, actor.cpp:
+#: 4450: `bz = (bottom-z)/4`, `tz = (z-top)/4`). So the step-up is three
+#: quarters of the lower extent -- `STEP_UP` -- and the head needs the lower
+#: extent plus a quarter of the upper one, measured from the floor it stands
+#: on. The sector being entered is not asked whether a body can stand in it.
+_LOWER_EXTENT = STEP_UP / 0.75
+HEAD_ROOM = round(_LOWER_EXTENT + (PLAYER_HEIGHT - _LOWER_EXTENT) / 4)
+#: The engine ignores a floor or ceiling that differs by a curb or less.
+CURB = 256
+
+
 def passable(record: dict[str, Any], state: str, neighbour_floor_z: int,
-             *, leaving: bool) -> bool:
+             *, leaving: bool, neighbour_ceiling_z: int | None = None) -> bool:
     """Can a body cross between this mechanism and that neighbour, in `state`?
 
     Two conditions, and both are needed. The gap has to admit a standing body
@@ -399,12 +420,78 @@ def passable(record: dict[str, Any], state: str, neighbour_floor_z: int,
     """
     floor = int(record[f"{state}_floor_z"])
     ceiling = int(record[f"{state}_ceiling_z"])
-    if (floor - ceiling) < PLAYER_HEIGHT:
-        return False
     #: Blood's z grows downward, so a smaller number is higher up.
     here, there = (floor, int(neighbour_floor_z)) if leaving else (
         int(neighbour_floor_z), floor)
-    return there >= here - STEP_UP
+    if there < here - STEP_UP:
+        return False
+    if neighbour_ceiling_z is None:
+        # The older question, kept for a caller that has no ceiling to give:
+        # can a body stand in the mechanism's own sector.
+        return (floor - ceiling) >= PLAYER_HEIGHT
+    if floor <= ceiling:
+        return False                      # shut flat: there is no inside
+    # The engine's question (see `HEAD_ROOM`): is the ceiling being walked
+    # under far enough above the floor being stood on. This asked whether a
+    # standing body fits inside the mechanism's own sector, which the engine
+    # never asks; it called 74 campaign crossings impassable that a body
+    # walks through, and every door that opens to less than a body's height.
+    here_ceiling, there_ceiling = ((ceiling, int(neighbour_ceiling_z)) if leaving
+                                   else (int(neighbour_ceiling_z), ceiling))
+    if there_ceiling > here_ceiling + CURB and here - there_ceiling <= HEAD_ROOM:
+        return False
+    return True
+
+
+#: How finely a floor's travel is looked at for a landing it passes.
+TRAVEL_STEPS = 8
+
+
+def _poses_of(disk: Any, sector_id: int) -> list[tuple[int, int]]:
+    """The (floor, ceiling) a neighbour can be found at: saved, and its other end.
+
+    Two mechanisms side by side -- a lift that arrives at a door -- are each
+    a crossing of the other's. Judged against the neighbour as it was saved,
+    the lift meets a door shut flat and the door meets a lift that is not
+    there, and neither ever opens. The neighbour's own edge carries the
+    neighbour's own condition; here it is given the benefit of both ends.
+    """
+    sector = disk.sectors[sector_id]
+    poses = [(int(sector.fields["floor_z"]), int(sector.fields["ceiling_z"]))]
+    extra = _extra(sector)
+    if int(sector.fields["type"]) in MOTION_TYPES and "off_floor_z" in extra:
+        ends = [(int(extra[f"{state}_floor_z"]), int(extra[f"{state}_ceiling_z"]))
+                for state in ("off", "on")]
+        # A pair that does not differ is no travel: a slide sector carries
+        # the fields at zero, and the engine leaves its floor where it is.
+        if ends[0] != ends[1]:
+            poses += [pose for pose in ends if pose not in poses]
+    return poses
+
+
+def _passes_in_travel(record: dict[str, Any], rest: str, other: str,
+                      neighbour_floor_z: int, neighbour_ceiling_z: int,
+                      *, leaving: bool) -> bool:
+    """Passable at the far end of the travel, or anywhere on the way there.
+
+    A sector moves between its two heights; it is not switched between them.
+    A lift whose travel passes a landing lets a body off at the landing,
+    though it stops above and below it. E2M2 s276 runs from 17,408 to
+    -15,360 past a doorway at 6,144 and stops level with it at neither end.
+    """
+    if passable(record, other, neighbour_floor_z, leaving=leaving,
+                neighbour_ceiling_z=neighbour_ceiling_z):
+        return True
+    ends = {name: (int(record[f"{name}_floor_z"]), int(record[f"{name}_ceiling_z"]))
+            for name in (rest, other)}
+    for step in range(1, TRAVEL_STEPS):
+        part = step / TRAVEL_STEPS
+        between = {"at_floor_z": round(ends[rest][0] + (ends[other][0] - ends[rest][0]) * part),
+                   "at_ceiling_z": round(ends[rest][1] + (ends[other][1] - ends[rest][1]) * part)}
+        if passable(between, "at", neighbour_floor_z, leaving=leaving,
+                    neighbour_ceiling_z=neighbour_ceiling_z):
+            return True
+    return False
 
 
 @dataclass
@@ -558,6 +645,15 @@ def conditional_edges(disk: Any, *, owners: Sequence[int] | None = None
             if record["type_id"] in MOTION_TYPES:
                 scoped_out += 1
             continue
+        if record["type_id"] not in MOTION_TYPES:
+            #: Height fields on a sector the engine never moves. Only the
+            #: typed sectors travel on a state (`OperateSector`,
+            #: triggers.cpp:1680-1696); a type-0 sector with an off/on z pair
+            #: keeps the floor it was saved with. E1M6 s184 carries a pair
+            #: 100,000 units from its real floor and was read as shut for
+            #: ever, with a key behind it.
+            inert += 1
+            continue
         considered += 1
         rest = rest_state(record)
         other = "off" if rest == "on" else "on"
@@ -593,13 +689,25 @@ def conditional_edges(disk: Any, *, owners: Sequence[int] | None = None
         for portal in record["portals"]:
             by_neighbour[int(portal["next_sector"])].append(portal)
         for neighbour, portals in sorted(by_neighbour.items()):
-            floor = int(disk.sectors[neighbour].fields["floor_z"])
+            poses = _poses_of(disk, neighbour)
             #: Two walls between the same pair of sectors are one crossing.
             #: Emitting one edge per wall double-counted every mechanism that
             #: shares more than one wall with its neighbour.
             for leaving in (True, False):
-                at_rest = passable(record, rest, floor, leaving=leaving)
-                when_moved = passable(record, other, floor, leaving=leaving)
+                floor = poses[0][0]
+                at_rest = any(passable(record, rest, low, leaving=leaving,
+                                       neighbour_ceiling_z=high)
+                              for low, high in poses)
+                when_moved = any(passable(record, other, low, leaving=leaving,
+                                          neighbour_ceiling_z=high)
+                                 for low, high in poses)
+                if not at_rest and not when_moved:
+                    #: Shut at both ends is not shut on the way between them.
+                    #: Only asked here: a door that closes passes through
+                    #: every open height, and that makes it no less a door.
+                    when_moved = any(_passes_in_travel(record, rest, other, low,
+                                                       high, leaving=leaving)
+                                     for low, high in poses)
                 if at_rest and when_moved:
                     continue                 # simply a way; nothing to say
                 pair = ((sector_id, neighbour) if leaving
@@ -806,7 +914,11 @@ class Action:
     a destructible, a key, or a directly operated mechanism.
     """
 
-    kind: str                 # use_switch | use_wall | destroy | obtain_key | operate
+    # use_switch | use_wall | destroy | obtain_key | operate, and the acts
+    # read off the wiring: enter | kill | pick_up | push | shoot | touch
+    kind: str
+    #: "sprite", "wall" or "sector" for an act read off the wiring
+    what: str = ""
     index: int = -1           # the sprite, wall or sector acted on
     key: int = 0
     channel: int = 0
@@ -835,6 +947,10 @@ class Action:
             return f"use switch sprite {self.index} (channel {self.channel})"
         if self.kind == "use_wall":
             return f"push wall {self.index} (channel {self.channel})"
+        if self.what:
+            verb = {"enter": "walk into", "kill": "kill", "pick_up": "pick up",
+                    "push": "push", "shoot": "shoot", "touch": "touch"}[self.kind]
+            return f"{verb} {self.what} {self.index} (channel {self.channel})"
         return f"operate mechanism sector {self.index}"
 
 
@@ -976,6 +1092,69 @@ class ConditionalGraph:
     reach: Any = None
     #: Fired before the player does anything -- see `level_start_closure`.
     fired_at_start: frozenset[int] = frozenset()
+    _wiring_nodes: Any = None
+    _onward: Any = None
+    #: sector pair -> the slide or rotate sector whose own walls block it.
+    #: The engine never changes a wall's blocking bit, but it does carry the
+    #: wall away: a leaf that travels takes its blocking walls with it.
+    swept_blocked: dict[tuple[int, int], int] = field(default_factory=dict)
+
+    def within_shot(self, reached: set[int], hops: int = SHOT_HOPS) -> set[int]:
+        """Sectors a body in `reached` can put a bullet or a blast into.
+
+        Not a line of sight: the sectors within a few portals of where a body
+        stands, by the portal graph that ignores doors. A crack sits in the
+        wall it will open -- in the shut door's own sector, where nobody
+        stands -- so a target is rarely in a sector a body has reached.
+        """
+        seen, edge = set(reached), set(reached)
+        for _step in range(hops):
+            edge = {other for sector in edge
+                    for other in self.reach.graph.get(sector, ())} - seen
+            seen |= edge
+        return seen
+
+    def _mover_worked(self, mover: int, held: Held, done: frozenset[int]) -> bool:
+        extra = _extra(self.disk.sectors[mover])
+        key = int(extra.get("key") or 0)
+        if key and key not in held.keys:
+            return False
+        listens = int(extra.get("rx_id") or 0)
+        return (listens and listens in done) or mover in held.operated
+
+    def wiring_nodes(self) -> list[dict[str, Any]]:
+        """Every object on a wire, read once (`bloodmap.wiring.nodes`)."""
+        if self._wiring_nodes is None:
+            from .wiring import nodes
+
+            self._wiring_nodes = nodes(self.disk)
+        return self._wiring_nodes
+
+    def fired(self, channels: Iterable[int]) -> frozenset[int]:
+        """These channels and every one a relay passes them on to.
+
+        A switch in a room nobody reaches listens on one channel and sends
+        on another; 603 of the campaign's chains pass through one. Firing a
+        channel fires what its listeners send, as far as it goes. This was
+        done for the level's start and for nothing a player does, so a
+        pushed wall that works a door through a relay opened nothing.
+        """
+        if self._onward is None:
+            from .wiring import can_send
+
+            onward: dict[int, set[int]] = defaultdict(set)
+            for node in self.wiring_nodes():
+                if node["rx"] and can_send(node):
+                    onward[node["rx"]].add(node["tx"])
+            self._onward = onward
+        out = set(channels)
+        pending = list(out)
+        while pending:
+            for channel in self._onward.get(pending.pop(), ()):
+                if channel not in out:
+                    out.add(channel)
+                    pending.append(channel)
+        return frozenset(out)
 
     def at_rest(self) -> Held:
         """What has already happened when the level loads."""
@@ -991,13 +1170,17 @@ class ConditionalGraph:
         """
         graph = {sector: set(neighbours) for sector, neighbours in self.base.items()}
         struck = without or set()
-        held = Held(frozenset(held.channels | self.fired_at_start),
+        held = Held(self.fired(held.channels | self.fired_at_start),
                     held.keys, held.operated)
         for edge in self.edges:
             if (edge.mechanism_kind, edge.mechanism) in struck:
                 continue
             if _edge_enabled(edge, held):
                 graph.setdefault(edge.sectors[0], set()).add(edge.sectors[1])
+        for (left, right), mover in self.swept_blocked.items():
+            if ("sector", mover) not in struck and self._mover_worked(
+                    mover, held, held.channels):
+                graph.setdefault(left, set()).add(right)
         return _flood(graph, self.start)
 
     def everything_worked(self) -> Held:
@@ -1022,21 +1205,30 @@ class ConditionalGraph:
         against the map.
         """
         found: dict[tuple[str, int], Action] = {}
+        done = self.fired(held.channels | self.fired_at_start)
+        in_shot = self.within_shot(reached)
         for index, sprite in enumerate(self.disk.sprites):
             sector = int(sprite.fields["sector"])
-            if sector not in reached:
+            if sector not in reached and not (
+                    sector in in_shot
+                    and int(sprite.fields["type"]) in DESTRUCTIBLE_TYPES):
                 continue
             type_id = int(sprite.fields["type"])
             extra = _extra(sprite)
             channel = int(extra.get("tx_id") or 0)
             key = KEY_TYPES.get(type_id)
+            if not key and _category("sprite", type_id) == "dude":
+                # A dude carrying a key drops it when killed (`actKillDude`,
+                # actor.cpp:3053). 17 campaign dudes do, in 12 maps, and the
+                # doors those keys work were shut for ever.
+                key = int(extra.get("key") or 0)
             if key and key not in held.keys:
                 found[("obtain_key", index)] = Action(
                     kind="obtain_key", index=index, key=key, where=sector)
-            elif type_id in DESTRUCTIBLE_TYPES and channel and channel not in held.channels:
+            elif type_id in DESTRUCTIBLE_TYPES and channel and channel not in done:
                 found[("destroy", index)] = Action(
                     kind="destroy", index=index, channel=channel, where=sector)
-            elif type_id in SWITCH_TYPES and channel and channel not in held.channels:
+            elif type_id in SWITCH_TYPES and channel and channel not in done:
                 found[("use_switch", index)] = Action(
                     kind="use_switch", index=index, channel=channel, where=sector)
         # Native XWALL push transmitters are controls too. E1M4 wall 3111
@@ -1050,13 +1242,57 @@ class ConditionalGraph:
                 extra = _extra(self.disk.walls[index])
                 channel = int(extra.get("tx_id") or 0)
                 key = int(extra.get("key") or 0)
-                if (channel and channel not in held.channels
+                if (channel and channel not in done
                         and extra.get("trigger_push") and not extra.get("locked")
                         and (not key or key in held.keys)
                         and (extra.get("trigger_on") or extra.get("trigger_off"))
                         and not (extra.get("trigger_once") and extra.get("is_triggered"))):
                     found[("use_wall", index)] = Action(
                         kind="use_wall", index=index, channel=channel, where=sector)
+        # Everything else a body can do to something on a wire. A sector
+        # walked into, a dude killed, a pickup taken, a sprite or sector
+        # pushed or shot: each sends as surely as a switch does, and none of
+        # them was an action here. Read off `bloodmap.wiring`, with its rule
+        # for what can send at all and the key the sender wants.
+        from .wiring import can_send as _can_send
+
+        verbs = {"enter": "enter", "exit": "enter", "killed": "kill",
+                 "destroyed": "destroy", "pickup": "pick_up", "push": "push",
+                 "wall_push": "push", "vector": "shoot", "impact": "shoot",
+                 "touch": "touch", "proximity": "touch", "sight": "touch"}
+        taken = {(kind, index) for kind, index in found}
+        far = ("vector", "impact", "destroyed")
+        for node in self.wiring_nodes():
+            if not node["causes"] or node["tx"] in done or not _can_send(node):
+                continue
+            if node["sector"] not in reached and not (
+                    node["causes"][0] in far and node["sector"] in in_shot):
+                continue
+            if node["key"] and node["key"] not in held.keys:
+                continue
+            if node["kind"] == "sprite" and (
+                    ("destroy", node["index"]) in taken
+                    or ("use_switch", node["index"]) in taken
+                    or ("obtain_key", node["index"]) in taken):
+                continue
+            if node["kind"] == "wall" and ("use_wall", node["index"]) in taken:
+                continue
+            verb = verbs[node["causes"][0]]
+            found[(f"{verb}:{node['kind']}", node["index"])] = Action(
+                kind=verb, what=node["kind"], index=node["index"],
+                channel=node["tx"], where=node["sector"])
+        # A slide or rotate leaf a body can shove: it is worked by hand, and
+        # what its walls blocked is then open.
+        for (left, right), mover in self.swept_blocked.items():
+            if mover in held.operated or not (left in reached or right in reached):
+                continue
+            extra = _extra(self.disk.sectors[mover])
+            key = int(extra.get("key") or 0)
+            if ((extra.get("trigger_push") or extra.get("trigger_wall_push"))
+                    and not extra.get("locked") and (not key or key in held.keys)):
+                found[("operate", mover)] = Action(
+                    kind="operate", index=mover,
+                    where=left if left in reached else right)
         for edge in self.edges:
             if edge.verdict != "conditional" or edge.mechanism in held.operated:
                 continue
@@ -1408,9 +1644,19 @@ def build_graph(disk: Any, *, owners: Sequence[int] | None = None,
     start = int(reach.start["sector"])
     fired = level_start_closure(disk)
     summary["channels_fired_at_level_start"] = len(fired)
+    swept = {}
+    if base == BASE_BLOCKING_AWARE:
+        for (left, right) in blocked:
+            if (left, right) in reopened:
+                continue
+            for mover in (left, right):
+                if int(disk.sectors[mover].fields["type"]) in SWEPT_TYPES:
+                    swept[(left, right)] = mover
+                    break
+    summary["blocking_carried_away_by_a_leaf"] = len(swept)
     return ConditionalGraph(disk=disk, edges=edges, summary=summary,
                             start=start, base=graph, gated=gated, reach=reach,
-                            fired_at_start=fired)
+                            fired_at_start=fired, swept_blocked=swept)
 
 
 def what_becomes_reachable(disk: Any, action: Action, *,
@@ -1489,6 +1735,10 @@ def frontier(disk: Any, *, graph: ConditionalGraph | None = None,
         "at_rest_reachable": steps[0]["reached"],
         "finally_reachable": steps[-1]["reached"],
         "gated_by_action": steps[-1]["reached"] - steps[0]["reached"],
+        #: all of it: a round lists at most 64 of what it gained
+        "reached_sectors": sorted(reached),
+        "channels_fired": sorted(graph.fired(held.channels | graph.fired_at_start)),
+        "keys_held": sorted(held.keys),
         "rounds": steps,
         "summary": dict(graph.summary),
         "limitations": list(LIMITATIONS),
@@ -1513,6 +1763,12 @@ LIMITATIONS = (
     "a `command` that turns one off, is not distinguished.",
     "Whether a body can *survive* a crossing is not asked. A long fall is a "
     "way down.",
+    "A thing that is shot or blown up is available from two portals away, "
+    "not by a line of sight. A crack sits in the wall it opens, so asking "
+    "that a body stand in its sector finds none of them.",
+    "A blocking wall of a slide or rotate sector stops blocking once that "
+    "sector is worked, on the reading that the leaf travels clear. Where "
+    "it travels to is not checked.",
 )
 
 # ---------------------------------------------------------------------------

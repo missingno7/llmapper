@@ -32,7 +32,7 @@ from typing import Any
 from . import bundle, reachability, wiring
 from .blood_types import classify
 from .doors import KEY_NAMES
-from .model import record_fields
+from .model import record_extra, record_fields
 
 EXIT_CHANNELS = (4, 5)
 SECRET_TOTAL_CHANNEL, SECRET_FOUND_CHANNEL = 1, 2
@@ -40,7 +40,14 @@ NUMERIC = 64
 
 
 def reached_sectors(progression: dict[str, Any]) -> set[int]:
-    """Every sector the traversal reader ends up standing in."""
+    """Every sector the traversal reader ends up standing in.
+
+    The reader's own list when it gives one. A round's `newly_reachable` is
+    cut at 64, so adding the rounds up undercounts a big map, and the first
+    scorecard was read that way.
+    """
+    if "reached_sectors" in progression:
+        return set(progression["reached_sectors"])
     reached: set[int] = set()
     for step in progression.get("rounds", ()):
         reached.update(step.get("newly_reachable", ()))
@@ -77,6 +84,15 @@ def read(disk: Any, name: str = "") -> dict[str, Any]:
             keys.append({"sprite": index, "name": named.get("name"),
                          "sector": int(fields["sector"]),
                          "reached": int(fields["sector"]) in reached})
+        elif named.get("category") == "dude":
+            # a key a dude drops when killed (actor.cpp:3053)
+            carried = int((record_extra(sprite) or {}).get("key", 0) or 0)
+            if carried:
+                keys.append({"sprite": index,
+                             "name": f"{KEY_NAMES.get(carried, carried)} key, "
+                                     f"dropped by {named.get('name')}",
+                             "sector": int(fields["sector"]),
+                             "reached": int(fields["sector"]) in reached})
     #: what wants a key, and what it works when it has one
     locked: dict[tuple[int, int], dict[str, Any]] = {}
     roots = {chain["root"]: chain for chain in found}

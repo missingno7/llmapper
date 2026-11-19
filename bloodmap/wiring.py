@@ -112,6 +112,10 @@ def nodes(disk: Any) -> list[dict[str, Any]]:
                     causes = ["destroyed"]
             sector = (int(fields["sector"]) if kind == "sprite"
                       else index if kind == "sector" else owners.get(index, -1))
+            # On a dude the key field is not a lock: it is the key the dude
+            # drops when killed (`actKillDude`, actor.cpp:3053).
+            wants = int(extra.get("key", 0) or 0)
+            drops = wants if named.get("category") == "dude" else 0
             command = int(extra.get("command", 0) or 0)
             out.append({
                 "id": f"{kind} {index}", "kind": kind, "index": index,
@@ -125,7 +129,7 @@ def nodes(disk: Any) -> list[dict[str, Any]]:
                 "causes": causes, "sector": sector,
                 "once": bool(int(extra.get("trigger_once", 0) or 0)),
                 "wait": int(extra.get("wait_time", extra.get("wait_time_a", 0)) or 0),
-                "key": int(extra.get("key", 0) or 0)})
+                "key": 0 if drops else wants, "drops_key": drops})
     return out
 
 
