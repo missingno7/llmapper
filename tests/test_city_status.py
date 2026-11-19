@@ -159,11 +159,14 @@ class CityStatusTests(unittest.TestCase):
         manifest = json.loads((REPORTS / "build-manifest.json").read_text("utf-8"))
         wires = manifest["wires"]
         self.assertEqual(wires["undeclared"], [])
-        self.assertEqual(wires["idle"], [], "a planned wire has no end declared")
+        # one planned wire is idle on purpose: the foundry's staged moment
+        # was taken off the yard and waits to be rebuilt underground
+        self.assertEqual(wires["idle"], ["foundry:staged-moment"])
         self.assertGreaterEqual(len(wires["declared"]), 14)
         numbers = sorted(row["channel"] for row in wires["declared"]
                          if row["engine"] is None)
-        self.assertEqual(numbers, list(range(100, 100 + len(numbers))))
+        self.assertEqual(len(set(numbers)), len(numbers))
+        self.assertTrue(all(100 <= number < 120 for number in numbers))
         for row in wires["wires"]:
             self.assertTrue(row["senders"], row["name"])
             if row["engine"] is None:

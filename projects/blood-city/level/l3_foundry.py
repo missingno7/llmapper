@@ -245,17 +245,20 @@ def dress(city, ctx) -> dict:
         # windows like every other opening in the city.
         "yard_dock", [(0, 0), (2048, 0), (2048, 2048), (0, 2048)],
         role="detail", faces=dict(COMPASS), frame=Frame(cart_x0, cart_y0),
-        note="loading dock, rise 6144, recessed in the works face",
+        note="loading bay, level with the yard, recessed in the works face",
     )
     cart.style = Style(**MASONRY.style_kwargs(
         floor_picnum=FACADES["foundry_ward"].floor, floor_shade=36,
         ceiling_picnum=INTERIORS["service"].ceiling,
-        parallax_ceiling=False, clear_height=16384))
+        parallax_ceiling=False, clear_height=24576))
     # street-furniture measured cart platforms at +6144, but those are
     # scenery; this one is an alcove the player should be able to step into,
     # and 6144 is above the 4096 max step.  A dock at exactly one max step
     # is what a dock is.  (Found by the reachability check, not by eye.)
-    cart.surfaces(floor_z=GRADE - 4096)
+    # The owner, playing it: "weird low door". It stood a step up and
+    # 16,384 high, lower than a body, so it read as a hole in the wall. It
+    # is a bay now: level with the yard and a body and a half high.
+    cart.surfaces(floor_z=GRADE)
     city.connect(cart.face("east"), foundry_st.face("east"),
                  connection_id="connection:dock_mouth")
     placed["rooms"].append(cart.region_id)
@@ -318,8 +321,23 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     grate_region = ctx["grate_upper"].region_id
     import wires
 
-    moment = wires.wire("foundry:staged-moment").when(
-        wiring.region(grate_region), "enter", command=1, once=True)
+    # The staged moment is not staged here any more. The owner: "that
+    # staged explosion thing with this weird rectangle hole ... looks
+    # weird." Its wire stays in the plan, with no ends, until the moment is
+    # rebuilt underground (`knowledge/blood/studies/underpass/notes.md`).
+    # What lies on the mouth is the campaign's own sewer grate: tile 502,
+    # laid as a floor sprite as Blood lays it (49 times in 9 maps).
+    from bloodmap import flatsprite
+    import wallplane as _art
+
+    for index, piece in enumerate(flatsprite.cover((0, 0, 1024, 1024),
+                                                   _art.art()[502][:2])):
+        layout.place_on_floor(
+            f"yard:grate_{index}", grate_region,
+            local=(piece["x"] / 1024, piece["y"] / 1024),
+            height_player_heights=0.0, type=0, picnum=502, cstat=32,
+            x_repeat=piece["x_repeat"], y_repeat=piece["y_repeat"],
+            angle=piece["angle"], shade=20, status=0)
     cart_x0, cart_y0 = dressing["cart_world"]
     # The grate gained a kerb ring (2048 across, centred 1536 east of the
     # yard's west edge), so the charges sit in the strip between the dock
@@ -327,14 +345,6 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     mouth_x = yard_x0 + 256
     # `rx_id=0`: the specs are copied from E3M1's own records, channel and
     # all; the wire gives each its channel here.
-    world_sprite("moment:exploder_a", street_region,
-                 mouth_x, cart_y0 + 256, exploder, rx_id=0)
-    world_sprite("moment:exploder_b", street_region,
-                 mouth_x, cart_y0 + 1024, exploder, rx_id=0)
-    world_sprite("moment:boom_sound", street_region,
-                 mouth_x, cart_y0 + 640, gen_sound, rx_id=0)
-    for answer in ("moment:exploder_a", "moment:exploder_b", "moment:boom_sound"):
-        moment.then(wiring.placement(answer))
     for index in range(2):
         fields = breakable("barrel")
         behavior = fields.pop("behavior", {})

@@ -888,20 +888,6 @@
   "wires": {
     "declared": [
       {
-        "name": "foundry:staged-moment",
-        "says": "stepping onto the yard grate, once, fires the cart's two charges and a sound cue",
-        "channel": 100,
-        "engine": null,
-        "when": [
-          "enter on region region:gravesend/foundry_ward/yard_grate_mouth"
-        ],
-        "then": [
-          "placement moment:exploder_a",
-          "placement moment:exploder_b",
-          "placement moment:boom_sound"
-        ]
-      },
-      {
         "name": "theatre:curtain",
         "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
         "channel": 101,
@@ -1082,23 +1068,10 @@
         ]
       }
     ],
-    "idle": [],
+    "idle": [
+      "foundry:staged-moment"
+    ],
     "wires": [
-      {
-        "name": "foundry:staged-moment",
-        "says": "stepping onto the yard grate, once, fires the cart's two charges and a sound cue",
-        "channel": 100,
-        "engine": null,
-        "senders": [
-          "sector 126"
-        ],
-        "answers": [
-          "sprite 34",
-          "sprite 35",
-          "sprite 36"
-        ],
-        "faults": []
-      },
       {
         "name": "theatre:curtain",
         "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
@@ -1133,16 +1106,16 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 211",
-          "sprite 212"
+          "sprite 207",
+          "sprite 208"
         ],
         "answers": [
           "sector 93",
           "sector 94",
           "sector 95",
-          "sprite 213",
-          "sprite 214",
-          "sprite 215"
+          "sprite 209",
+          "sprite 210",
+          "sprite 211"
         ],
         "faults": []
       },
@@ -1152,13 +1125,13 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 281"
+          "sprite 277"
         ],
         "answers": [
           "sector 198",
-          "sprite 282",
-          "sprite 283",
-          "sprite 284"
+          "sprite 278",
+          "sprite 279",
+          "sprite 280"
         ],
         "faults": []
       },
@@ -1197,7 +1170,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 178"
+          "sprite 174"
         ],
         "answers": [
           "sector 363"
@@ -1210,7 +1183,7 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 171"
+          "sprite 167"
         ],
         "answers": [
           "sector 389"
@@ -1223,7 +1196,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 172"
+          "sprite 168"
         ],
         "answers": [],
         "faults": []
@@ -1234,7 +1207,7 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 351"
+          "sprite 347"
         ],
         "answers": [
           "sector 9"
@@ -1247,7 +1220,7 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "sprite 352"
+          "sprite 348"
         ],
         "answers": [
           "sector 18"
@@ -1260,7 +1233,7 @@
         "channel": 111,
         "engine": null,
         "senders": [
-          "sprite 353"
+          "sprite 349"
         ],
         "answers": [
           "sector 30"
@@ -1273,7 +1246,7 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 354"
+          "sprite 350"
         ],
         "answers": [
           "sector 32"
@@ -1286,7 +1259,7 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 355"
+          "sprite 351"
         ],
         "answers": [
           "sector 39"
@@ -1300,10 +1273,10 @@
   },
   "lighting": {
     "lights": 52,
-    "rays_cast": 913379,
-    "surfaces_lit": 1187,
+    "rays_cast": 913377,
+    "surfaces_lit": 1179,
     "surfaces_protected": 418,
-    "walls_lit": 1186,
+    "walls_lit": 1178,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1452,7 +1425,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 814,
+    "sprites": 810,
     "wall_sprites": 426,
     "planes": 92,
     "clashing_pairs": 4,
@@ -1504,7 +1477,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 60,
+    "sentences": 59,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -1942,21 +1915,6 @@
           120
         ],
         "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/foundry_ward/yard_grate_mouth",
-        "construct": "sector",
-        "sector": 126,
-        "sectors": [
-          126
-        ],
-        "sector_type": 0,
-        "wiring": {
-          "rx_id": 0,
-          "tx_id": 100,
-          "command": 1,
-          "state": 0
-        }
       },
       {
         "name": "region:gravesend/foundry_ward/pump_station/door",
@@ -2516,22 +2474,22 @@
     ]
   },
   "rules": {
-    "total": 1093,
+    "total": 1097,
     "by_severity": {
-      "note": 1073,
+      "note": 1077,
       "warning": 6,
       "error": 14
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 115,
+      "note:sprite-drawn-square": 113,
       "note:floor-aligned-sprite-rests-on-a-surface": 23,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 90,
+      "note:opening-clears-a-standing-body": 88,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
       "error:tile-sits-in-an-attested-slot": 14,
-      "note:wall-draws-its-own-tile": 834,
+      "note:wall-draws-its-own-tile": 842,
       "warning:wall-tile-is-drawn-somewhere": 4
     },
     "open": [
@@ -2674,15 +2632,15 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 666,
+      "sprites": 667,
       "sunk": 0.0,
-      "through": 0.002,
+      "through": 0.001,
       "squeezed": 0.0
     },
     "sunk": [],
     "through": [
       {
-        "sprite": 615,
+        "sprite": 611,
         "tile": 793,
         "sector": 27
       }
@@ -2691,8 +2649,8 @@
     "overlaps": [
       {
         "sprites": [
-          321,
-          322
+          317,
+          318
         ],
         "tiles": [
           73,

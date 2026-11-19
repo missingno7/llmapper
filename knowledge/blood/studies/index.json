@@ -67,6 +67,15 @@
     "E1M3:284"
    ],
    "date": "2026-11-18"
+  },
+  "underpass": {
+   "want": "a pedestrian passage under a street: a stair down from the pavement, a tiled or brick concourse, a closed ticket barrier, a barred tunnel mouth where a metro was to run, and a service door",
+   "seeds": [
+    "E1M2:104!",
+    "E1M2:105!",
+    "maps/blood/community/MISKSTAT.MAP:0!"
+   ],
+   "date": "2026-11-19"
   }
  }
 }

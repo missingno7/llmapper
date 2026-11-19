@@ -720,7 +720,14 @@ def build():
     # you step over, which frames the hole and says "something opens here"
     # from across the yard.  The ring is a sector with the shaft as its
     # hole; both are carved out of the street together.
-    KERB, KERB_RISE = 2048, 1024
+    # THE GRATE IS A GRATE NOW, NOT A HOLE. The owner, playing it on
+    # 2026-11-19: "this weird rectangle hole with posters on the ground
+    # looks weird ... entrances to the sewers basically next to each other".
+    # It was a see-through room-over-room drop, its floor the mirror tile,
+    # inside a raised kerb. The link is gone, the ring lies flush as a stone
+    # apron, and an iron sewer grate lies on the mouth
+    # (`l3_foundry.sprinkle`). The shaft below stays, as the sewer's riser.
+    KERB, KERB_RISE = 2048, 0
     foundry_local_gx = gx - int(SEAM_AVENUE)
     kerb_half = KERB // 2
     foundry_st.carve([(foundry_local_gx - kerb_half + dx, gy - kerb_half + dy)
@@ -733,8 +740,10 @@ def build():
         note="the raised stone ring around the yard grate: stepped over, "
              "not climbed -- 1024 against a 4096 max step",
     )
+    # the yard's own paving: the red service floor it wore read, flush, as
+    # "posters on the ground"
     kerb.surfaces(**MASONRY.style_kwargs(
-        floor_picnum=INTERIORS["service"].floor, floor_shade=28,
+        floor_picnum=FACADES["foundry_ward"].floor, floor_shade=28,
         floor_z=GRADE - KERB_RISE, clear_height=STREET_SKY - KERB_RISE))
     kerb.carve([(kerb_half - SHAFT_HALF + dx, kerb_half - SHAFT_HALF + dy)
                 for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
@@ -745,7 +754,13 @@ def build():
         "yard_grate", district_of["foundry_ward"],
         (gx - SHAFT_HALF, gy - SHAFT_HALF), GRADE,
         Style(**MASONRY.style_kwargs(clear_height=STREET_SKY)),
-        SEWER_FLOOR - GRADE, see_through=True)
+        SEWER_FLOOR - GRADE, see_through=False)
+    # With no link the shaft is a sewer room like any other and has to keep
+    # to the sewer's band: a riser a little taller than the runs, not a
+    # tube to the street.
+    grate_lower.style = Style(**SEWER.style_kwargs(
+        floor_shade=40, floor_z=SEWER_FLOOR, clear_height=SEWER_CLEAR + 8192))
+    grate_upper.surfaces(floor_picnum=FACADES["foundry_ward"].floor, floor_shade=34)
     # The shaft's rim now meets the kerb ring, not the street: the ring is
     # what surrounds it.  A hole is wound opposite to its outer loop, but
     # _compass_edges still names each edge by where it lies, so the names
@@ -849,9 +864,6 @@ def build():
         wind_into_sewer)
 
     stack_links = [
-        {"stack_id": "stack:yard_grate", "upper": grate_upper.region_id,
-         "lower": grate_lower.region_id, "link_id": 1,
-         "at_upper": (gx, gy), "see_through": True},
         {"stack_id": "stack:cellar_pit", "upper": pit_upper.region_id,
          "lower": pit_lower.region_id, "link_id": 2,
          "at_upper": (pit_xy[0] + SHAFT_HALF, pit_xy[1] + SHAFT_HALF),

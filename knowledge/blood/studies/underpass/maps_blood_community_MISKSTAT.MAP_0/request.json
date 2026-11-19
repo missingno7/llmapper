@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/maps_blood_community_MISKSTAT.MAP_0/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/maps_blood_community_MISKSTAT.MAP_0",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -1664,
+   "y": 74624,
+   "z": -7072,
+   "angle": 2023,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 12928,
+   "y": 73088,
+   "z": -7072,
+   "angle": 974,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 5248,
+   "y": 74624,
+   "z": -7072,
+   "angle": 1956,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  }
+ ]
+}

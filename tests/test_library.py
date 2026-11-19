@@ -300,7 +300,14 @@ class StationTests(unittest.TestCase):
         #: two tracks wide, so the far one stands empty in view
         self.assertGreaterEqual(s.BED_Y[1] - s.BED_Y[0], 8192)
         shades = sorted(int(self.sectors[i]["floor_shade"]) for i in tracks)
-        self.assertGreaterEqual(shades[-1], 55)
+        #: The far bore was shade 60 so the line ran out into the dark. It
+        #: holds the level's exit switch now, and the owner, playing it on
+        #: 2026-11-19: "that exit switch is in the very dark corridor, not
+        #: sure why we made that one strip that dark when other rooms
+        #: around it are lit." His walk outranks the round that asked for
+        #: the dark: the tunnel keeps a step of fade and stays readable.
+        self.assertGreater(shades[-1], shades[0])
+        self.assertLessEqual(shades[-1], 36)
 
     def test_the_carriage_can_be_boarded_and_seen_through(self):
         #: round 1 of the critique: "The train has no windows, doors,

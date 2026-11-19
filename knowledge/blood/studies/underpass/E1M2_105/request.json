@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/E1M2_105/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/E1M2_105",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -36736,
+   "y": 39040,
+   "z": -94112,
+   "angle": 392,
+   "horiz": 100,
+   "sector": 105,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -34944,
+   "y": 39040,
+   "z": -94112,
+   "angle": 632,
+   "horiz": 100,
+   "sector": 105,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -36736,
+   "y": 42880,
+   "z": -94112,
+   "angle": 1711,
+   "horiz": 100,
+   "sector": 105,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -34944,
+   "y": 42880,
+   "z": -94112,
+   "angle": 1361,
+   "horiz": 100,
+   "sector": 105,
+   "screenshot": true
+  }
+ ]
+}

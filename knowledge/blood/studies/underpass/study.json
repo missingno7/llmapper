@@ -1,0 +1,377 @@
+{
+ "slug": "underpass",
+ "want": "a pedestrian passage under a street: a stair down from the pavement, a tiled or brick concourse, a closed ticket barrier, a barred tunnel mouth where a metro was to run, and a service door",
+ "date": "2026-11-19",
+ "seeds": [
+  {
+   "seed": "E1M2:104!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 104,
+   "sectors": [
+    104
+   ],
+   "metres": [
+    2.8,
+    13.9,
+    7.0
+   ],
+   "area_M": 8.43,
+   "clear_bodies": 3.86,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    281,
+    "irregular grey stone masonry"
+   ],
+   "ceiling": [
+    120,
+    "clay tiles"
+   ],
+   "walls": [
+    [
+     417,
+     1.0,
+     "brick wall with crumbling plaster"
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 1060,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 39,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 2.48
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_104\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_104\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M2:105!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 105,
+   "sectors": [
+    105
+   ],
+   "metres": [
+    3.5,
+    7.0,
+    7.5
+   ],
+   "area_M": 8.39,
+   "clear_bodies": 4.17,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    281,
+    "irregular grey stone masonry"
+   ],
+   "ceiling": [
+    67,
+    "dark horizontal planks"
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_105\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_105\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/MISKSTAT.MAP:0!",
+   "map": "maps\\blood\\community\\MISKSTAT.MAP",
+   "host": 0,
+   "sectors": [
+    0,
+    52
+   ],
+   "metres": [
+    4.3,
+    31.3,
+    3.5
+   ],
+   "area_M": 34.47,
+   "clear_bodies": 1.93,
+   "free_floor_share": 1.0,
+   "shade_spread": 1,
+   "floor": [
+    195,
+    "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+   ],
+   "ceiling": [
+    273,
+    "rock/cliff"
+   ],
+   "walls": [
+    [
+     360,
+     0.889,
+     ""
+    ],
+    [
+     357,
+     0.111,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 52,
+     "corners": 4,
+     "size": [
+      1792,
+      512
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 415,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      273,
+      415
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1044,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 7,
+     "repeats": [
+      32,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_community_MISKSTAT.MAP_0\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_community_MISKSTAT.MAP_0\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "39": {
+   "tile": 39,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.18,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-39.png"
+  },
+  "67": {
+   "tile": 67,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-67.png"
+  },
+  "120": {
+   "tile": 120,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-120.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-195.png"
+  },
+  "273": {
+   "tile": 273,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-273.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-281.png"
+  },
+  "357": {
+   "tile": 357,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-357.png"
+  },
+  "360": {
+   "tile": 360,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-360.png"
+  },
+  "415": {
+   "tile": 415,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-415.png"
+  },
+  "417": {
+   "tile": 417,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-417.png"
+  },
+  "1044": {
+   "tile": 1044,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.565,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1044.png"
+  },
+  "1060": {
+   "tile": 1060,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.549,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1060.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2825.png"
+  }
+ }
+}
