@@ -429,82 +429,16 @@ def mechanisms(name: str, only: set[int] | None = None) -> list[dict]:
     have pretty complex chains of them." A chain starts at a thing a
     player can cause (pushed, shot, entered, picked up, killed, or the
     level starting) and follows each channel to its receivers, and on
-    through any receiver that sends in turn.
+    through any receiver that sends in turn. The reading is
+    `bloodmap.wiring.chains`; this finds the map.
     """
-    from bloodmap.blood_types import (RESERVED_CHANNELS, SECTOR_TYPES,
-                                      SPRITE_TYPES, WALL_TYPES)
+    from bloodmap import wiring
     from bloodmap.format import read_map
     from bloodmap.corpus import corpus_map_path
 
     path = (pathlib.Path(name) if name.upper().endswith(".MAP")
             else corpus_map_path(name))
-    disk = read_map(path)
-    nodes = []
-    for kind, group, table in (("sprite", disk.sprites, SPRITE_TYPES),
-                               ("sector", disk.sectors, SECTOR_TYPES),
-                               ("wall", disk.walls, WALL_TYPES)):
-        for index, item in enumerate(group):
-            x = getattr(getattr(item, "extra", None), "fields", None) or {}
-            tx, rx = int(x.get("tx_id", 0) or 0), int(x.get("rx_id", 0) or 0)
-            if not tx and not rx:
-                continue
-            f = item.fields
-            what = int(f.get("type", 0))
-            causes = [c for c in ("push", "vector", "impact", "pickup",
-                                  "touch", "sight", "proximity", "enter",
-                                  "exit", "wall_push")
-                      if int(x.get(f"trigger_{c}", 0) or 0)]
-            sector = int(f["sector"]) if kind == "sprite" else (
-                index if kind == "sector" else -1)
-            nodes.append({
-                "id": f"{kind} {index}", "kind": kind, "index": index,
-                "type": what,
-                "type_name": (table.get(what) or {}).get("name", str(what)),
-                "tile": int(f.get("picnum", f.get("floor_picnum", 0))),
-                "tx": tx, "rx": rx, "command": int(x.get("command", 0) or 0),
-                "causes": causes, "sector": sector,
-                "once": bool(int(x.get("trigger_once", 0) or 0)),
-                "wait": int(x.get("wait_time", x.get("wait_time_a", 0)) or 0),
-                "key": int(x.get("key", 0) or 0)})
-    listeners: dict[int, list[dict]] = {}
-    for node in nodes:
-        if node["rx"]:
-            listeners.setdefault(node["rx"], []).append(node)
-    reserved = {int(k): v for k, v in RESERVED_CHANNELS.items()} \
-        if isinstance(RESERVED_CHANNELS, dict) else {}
-    chains = []
-    for node in nodes:
-        #: a root: it sends, and something a player does (or a reserved
-        #: channel such as the level's start) sets it off
-        starts = node["causes"] or (node["rx"] in reserved)
-        if not node["tx"] or not starts:
-            continue
-        if only is not None and node["sector"] not in only:
-            continue
-        steps, seen, frontier, depth = [], {node["id"]}, [node], 0
-        while frontier and depth < 8:
-            nxt = []
-            for sender in frontier:
-                for receiver in listeners.get(sender["tx"], ()):
-                    steps.append({"from": sender["id"], "channel": sender["tx"],
-                                  "command": sender["command"],
-                                  "to": receiver["id"],
-                                  "to_type": receiver["type_name"],
-                                  "wait": receiver["wait"]})
-                    if receiver["id"] not in seen and receiver["tx"]:
-                        seen.add(receiver["id"])
-                        nxt.append(receiver)
-            frontier, depth = nxt, depth + 1
-        chains.append({
-            "root": node["id"], "root_type": node["type_name"],
-            "tile": node["tile"], "sector": node["sector"],
-            "cause": node["causes"] or [f"channel {node['rx']} "
-                                        f"({reserved.get(node['rx'], '')})"],
-            "key": node["key"], "once": node["once"],
-            "steps": steps, "depth": depth,
-            "receivers": dict(Counter(s["to_type"] for s in steps))})
-    chains.sort(key=lambda c: (-c["depth"], -len(c["steps"])))
-    return chains
+    return wiring.chains(read_map(path), only)
 
 
 def find_places(words: list[str], tile: int | None = None,
@@ -656,6 +590,17 @@ def show_mechanism(key: str, entry: dict) -> str:
             f"{name} x{n}" for name, n in entry["read_as"].items()))
         lines.append("  worked by: " + ", ".join(
             f"{name} x{n}" for name, n in entry["worked_by"].items()))
+    if entry["kind"] != "effect":
+        if entry.get("set_off_by"):
+            lines.append("  on a wire, set off by: " + ", ".join(
+                f"{who} x{n}" for who, n in entry["set_off_by"].items()))
+        if entry.get("starts"):
+            lines.append(f"  starts {entry['starts']} chains, answered by: " + ", ".join(
+                f"{what} x{n}" for what, n in entry["drives"].items()))
+        if not entry.get("set_off_by") and not entry.get("starts"):
+            lines.append("  on a wire: never, in the campaign")
+        lines.append("  a part is not a mechanism: what this one becomes is "
+                     "decided by what is wired to it")
     if entry["examples"]:
         lines.append(f"  {entry.get('examples_are', 'examples')}: " + ", ".join(
             _example(entry, item) for item in entry["examples"]))
@@ -704,6 +649,36 @@ def find_mechanisms(words: list[str], limit: int = 10) -> list[str]:
                        f"x{entry['places'][0]['count']}"
                        if entry.get("places") else ""))
         out.append(f"  {key:<28}{said}")
+    return out
+
+
+def _wire(row: dict) -> str:
+    """One shape of chain as a line: the act, who it is done to, what answers."""
+    first = row["examples"][0]
+    return (f"{row['cause']} on {row['sender']} -> "
+            f"{'; '.join(row['answers']) or 'nothing listens'}: "
+            f"{row['count']} in {row['maps']} maps"
+            + (f", {row['keyed']} keyed" if row["keyed"] else "")
+            + f", e.g. {first['map']} {first['root']}"
+            + (f" in room {first['place']}" if first.get("place") else ""))
+
+
+def find_wiring(words: list[str], limit: int = 8) -> list[str]:
+    """The shapes of chain answering to the words, and how to read one in full."""
+    from bloodmap import examples
+
+    index = mechanism_index()
+    if index is None or "wiring" not in index:
+        return ["  (not built: python -m tools.catalog build-mechanisms)"]
+    found = examples.search_wiring(index, words)
+    out = [f"  {_wire(row)}" for row in found[:limit]]
+    if len(found) > limit:
+        out.append(f"  ... {len(found) - limit} more shapes: "
+                   f"python -m tools.catalog wiring {' '.join(words)}")
+    if found:
+        first = found[0]["examples"][0]
+        out.append(f"  one in full: python -m tools.catalog mechanisms {first['map']} "
+                   f"--place {first['map']}:{first['sector']}")
     return out
 
 
@@ -885,8 +860,11 @@ def find_all(words: list[str]) -> str:
     channels, lessons), what a mapper sees (tiles, places), and what has been
     written down (studies, ideas, measured reports).
     """
-    out = ["MECHANISMS  (python -m tools.catalog show <key>)"]
+    out = ["PARTS  (a type, a sector effect, an engine channel, a lesson: "
+           "python -m tools.catalog show <key>)"]
     out.extend(find_mechanisms(words))
+    out.append("WIRING  (a mechanism: an act, the object it is done to, what answers)")
+    out.extend(find_wiring(words))
     out.append("TILES")
     for tile, said in find_tiles(words)[:20]:
         out.append(f"  {tile:>5}  {said}")
@@ -946,6 +924,9 @@ def main(argv=None) -> int:
     tiles.add_argument("words", nargs="+")
     sub.add_parser("build-places")
     sub.add_parser("build-mechanisms")
+    wires = sub.add_parser("wiring", help="shapes of chain: an act, a sender, what answers")
+    wires.add_argument("words", nargs="+")
+    wires.add_argument("--limit", type=int, default=40)
     rec = sub.add_parser("record")
     rec.add_argument("map")
     rec.add_argument("kind", choices=("sector", "wall", "sprite"))
@@ -1059,6 +1040,8 @@ def main(argv=None) -> int:
                       f"{' after ' + str(step['wait']) if step['wait'] else ''}")
     elif args.command == "record":
         print(record(args.map, args.kind, args.index))
+    elif args.command == "wiring":
+        print("\n".join(find_wiring(args.words, args.limit)) or "  no chain of that shape")
     elif args.command == "build-mechanisms":
         document = build_mechanisms()
         kinds = Counter(entry["kind"] for entry in document["entries"].values())

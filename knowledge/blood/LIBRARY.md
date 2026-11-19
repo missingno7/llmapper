@@ -12,13 +12,23 @@ rather than tons of texts, it needs to be a real library you can use."
 | Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, its member sectors, what works and stands in it (by the Mechanisms keys), and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
-| Mechanisms | what the engine does: every sector, wall and sprite type the campaign uses, every sector effect, every reserved channel and every tutorial lesson, each with maps that show it | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` |
+| Parts | what a mechanism is made of: every sector, wall and sprite type the campaign uses, every sector effect, every engine channel and every tutorial lesson, each with maps that show it, what sets it off and what it drives | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` (`entries`) |
+| Wiring | the mechanisms themselves: every shape of chain the campaign has, an act on a sender and what answers, with how often, how many are keyed, and where | words (`catalog wiring switch door`) | `design/mechanism-examples-v1.json` (`wiring`) |
 
 The owner's names outrank the mapper's readings wherever both exist.
 
-Places and Mechanisms are joined both ways. A mechanism entry names the rooms
+**A mechanism is not a part.** Blood has no door and no lift: it has sectors,
+walls and sprites, and a layer of wiring over them in which an act makes one
+object send and others answer. `kSectorZMotion` is 671 times something that
+changes what fits through, 186 times something that carries a body between
+levels, and four times in five it is moved by something else. So ask for a
+mechanism by what happens (`catalog wiring switch lift`, `find door key`) and
+read a part's entry for what it is set off by. Never pick a sector type and
+call it the mechanism.
+
+Places and Parts are joined both ways. A part's entry names the rooms
 holding the most of it and each of its examples says which room it is in; a
-place row lists what it holds under the mechanism keys. So `find lift crypt`
+place row lists what it holds under the part keys. So `find lift crypt`
 answers with crypts that have a lift, `show conveyor` ends with the room to
 go and stand in, and `record` says which room an object is in.
 
@@ -34,9 +44,11 @@ one thing keeps one name and a search for it finds all of it.
 
 ```bash
 python -m tools.catalog find rail          # every shelf at once
-python -m tools.catalog find conveyor      # ...a mechanic is found the same way
+python -m tools.catalog find conveyor      # ...a part is found the same way
 python -m tools.catalog show conveyor      # what it is, how often, where to look
-python -m tools.catalog show sector:614    # a type: name, readings, examples, lessons
+python -m tools.catalog show sector:614    # a type: readings, what sets it off, examples
+python -m tools.catalog wiring switch door # mechanisms: an act, a sender, what answers
+python -m tools.catalog mechanisms E1M5 --place E1M5:160   # one room's chains in full
 python -m tools.catalog record E3M5 sector 20   # only the fields that are set on it
 python -m tools.catalog show 1129          # a tile: name, reading, uses, places
 python -m tools.catalog show E1M2:271      # a place: kind, signs, tiles, what works in it

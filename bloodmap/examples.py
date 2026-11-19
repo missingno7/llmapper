@@ -29,6 +29,14 @@ Nothing here is a claim about behaviour. A type's name is the engine's own; an
 effect is defined by which fields are set, and says so; a lesson is a file. To
 learn what a thing DOES, follow an example with ``catalog mechanisms`` or read
 the lesson.
+
+Every entry above is a PART. A mechanism is not a part: it is the wiring laid
+over them, an act that makes one object send and others answer
+(`bloodmap.wiring`). So the index carries that layer too. ``wiring`` is every
+shape of chain the campaign has -- "a pushed kSwitchToggle, answered by a
+kSectorZMotion that changes what fits through" -- with how often and where,
+and each part says what sets it off and what it drives. A sector type is
+never called a door here; a sector on the end of a wire may be read as one.
 """
 
 from __future__ import annotations
@@ -44,6 +52,7 @@ from .effects import read_map_mechanisms
 from .format import XSECTOR_SCHEMA
 from .model import record_extra, record_fields
 from .sector_geom import wall_owners
+from .wiring import USER_CHANNELS_FROM, chains, shape
 
 SCHEMA = "llmapper.mechanism-examples"
 SCHEMA_VERSION = 1
@@ -52,8 +61,11 @@ SCHEMA_VERSION = 1
 #: that an entry is a dozen lines.
 EXAMPLES_PER_ENTRY = 8
 
-#: Channels from here up are a level's own wiring, not the engine's.
-USER_CHANNELS_FROM = 100
+#: Places kept per shape of wiring: fewer than a part's, there are more shapes.
+EXAMPLES_PER_SHAPE = 4
+
+#: Senders and answers named on a part: the commonest few.
+WIRES_PER_ENTRY = 6
 
 #: Rooms named per entry: the ones holding the most instances.
 PLACES_PER_ENTRY = 6
@@ -140,6 +152,11 @@ SYNONYMS: dict[str, tuple[str, ...]] = {
     "elevator": ("lift", "zmotion"),
     "lift": ("zmotion",),
     "platform": ("lift", "zmotion"),
+    "shoot": ("vector", "impact"),
+    "shot": ("vector", "impact"),
+    "kill": ("killed",),
+    "break": ("destroyed",),
+    "walk": ("enter",),
     "teleporter": ("teleport", "warp"),
     "teleport": ("warp",),
     "belt": ("conveyor",),
@@ -238,8 +255,24 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
             "is": item["design_object"],
             "worked_by": item["primitive"].get("interaction") or "nothing a player does",
         }
+    wires = []
+    for chain in chains(disk):
+        answers = set()
+        for step in chain["steps"]:
+            if step["to_kind"] == "engine":
+                answers.add(f"channel:{step['to_type_id']}")
+            elif step["to_type_id"]:
+                answers.add(f"{step['to_kind']}:{step['to_type_id']}")
+        wires.append({
+            "shape": shape(chain, readings), "root": chain["root"],
+            "sector": chain["sector"], "depth": chain["depth"],
+            "keyed": bool(chain["key"]), "listeners": len(chain["steps"]),
+            "sender": (f"{chain['root_kind']}:{chain['root_type_id']}"
+                       if chain["root_type_id"] else None),
+            "answers": sorted(answers)})
     return {"map": name, "types": dict(types), "effects": dict(effects),
-            "sends": dict(sends), "hears": dict(hears), "readings": readings}
+            "sends": dict(sends), "hears": dict(hears), "readings": readings,
+            "wires": wires}
 
 
 def by_place(seen: Mapping[str, Any],
@@ -277,14 +310,15 @@ def _rooms(per_map: list[tuple[str, list[tuple[int, int]]]],
                        for place, count in ranked[:PLACES_PER_ENTRY]]}
 
 
-def _spread(per_map: list[tuple[str, list[tuple[int, int]]]]) -> list[dict[str, Any]]:
+def _spread(per_map: list[tuple[str, list[tuple[int, Any]]]],
+            limit: int = EXAMPLES_PER_ENTRY) -> list[dict[str, Any]]:
     """A few instances, one map at a time, so they do not all come from the first."""
     picked: list[dict[str, Any]] = []
     depth = 0
-    while len(picked) < EXAMPLES_PER_ENTRY:
+    while len(picked) < limit:
         took = False
         for name, instances in per_map:
-            if depth < len(instances) and len(picked) < EXAMPLES_PER_ENTRY:
+            if depth < len(instances) and len(picked) < limit:
                 sector, index = instances[depth]
                 picked.append({"map": name, "sector": sector, "id": index})
                 took = True
@@ -354,6 +388,50 @@ def build(observations: Iterable[dict[str, Any]], *,
         for key, instances in seen["effects"].items():
             effect_instances[key].append((seen["map"], instances))
 
+    #: the wiring layer: every chain's shape, and per part who sets it off
+    shapes: dict[tuple[str, str, tuple[str, ...]], dict[str, Any]] = {}
+    set_off_by: dict[str, Counter] = defaultdict(Counter)
+    drives: dict[str, Counter] = defaultdict(Counter)
+    starts: Counter = Counter()
+    for seen in observations:
+        for wire in seen.get("wires", ()):
+            said = wire["shape"]
+            row = shapes.setdefault(
+                (said["cause"], said["sender"], tuple(said["answers"])),
+                {"count": 0, "keyed": 0, "deepest": 0, "most_answers": 0, "per_map": {}})
+            row["count"] += 1
+            row["keyed"] += int(wire["keyed"])
+            row["deepest"] = max(row["deepest"], wire["depth"])
+            row["most_answers"] = max(row["most_answers"], wire["listeners"])
+            row["per_map"].setdefault(seen["map"], []).append(
+                (wire["sector"], wire["root"]))
+            for part in wire["answers"]:
+                set_off_by[part][f"{said['sender']} ({said['cause']})"] += 1
+            if wire["sender"]:
+                starts[wire["sender"]] += 1
+                for answer in said["answers"]:
+                    drives[wire["sender"]][answer] += 1
+    wiring = []
+    for (cause, sender, answers), row in shapes.items():
+        examples = _spread(list(row["per_map"].items()), EXAMPLES_PER_SHAPE)
+        for item in examples:
+            item["root"] = item.pop("id")
+            if places is not None:
+                item["place"] = places.get(item["map"], {}).get(item["sector"])
+        wiring.append({"cause": cause, "sender": sender, "answers": list(answers),
+                       "count": row["count"], "maps": len(row["per_map"]),
+                       "keyed": row["keyed"], "deepest": row["deepest"],
+                       "most_answers": row["most_answers"], "examples": examples})
+    wiring.sort(key=lambda row: (-row["count"], row["cause"], row["sender"], row["answers"]))
+
+    def wired(key: str, entry: dict[str, Any]) -> dict[str, Any]:
+        if set_off_by.get(key):
+            entry["set_off_by"] = dict(set_off_by[key].most_common(WIRES_PER_ENTRY))
+        if starts.get(key):
+            entry["starts"] = starts[key]
+            entry["drives"] = dict(drives[key].most_common(WIRES_PER_ENTRY))
+        return entry
+
     #: the manual's first-tier lessons lead, so the one named is one to read
     lessons_by_type: dict[str, list[tuple[int, str]]] = defaultdict(list)
     entries: dict[str, dict[str, Any]] = {}
@@ -393,7 +471,7 @@ def build(observations: Iterable[dict[str, Any]], *,
         if readings.get(key):
             entry["read_as"] = dict(readings[key].most_common())
             entry["worked_by"] = dict(worked[key].most_common())
-        entries[key] = located(entry, per_map)
+        entries[key] = wired(key, located(entry, per_map))
 
     for name, rule in EFFECTS.items():
         per_map = effect_instances.get(name, [])
@@ -421,7 +499,7 @@ def build(observations: Iterable[dict[str, Any]], *,
             continue
         sent = sum(len(instances) for _name, instances in senders)
         heard = sum(len(instances) for _name, instances in hearers)
-        entries[key] = located({
+        entries[key] = wired(key, located({
             "kind": "channel", "name": named["name"],
             "says": f"{sent} objects send on it and {heard} listen to it"
                     + (f"; {named['notes']}" if named.get("notes") else ""),
@@ -431,7 +509,7 @@ def build(observations: Iterable[dict[str, Any]], *,
             "examples": _spread(senders or hearers),
             "examples_are": "senders" if senders else "listeners",
             "lessons": [],
-        }, senders + hearers)
+        }, senders + hearers))
 
     return {
         "$schema": SCHEMA, "schema_version": SCHEMA_VERSION,
@@ -452,8 +530,15 @@ def build(observations: Iterable[dict[str, Any]], *,
             "an example's place, and an entry's places, are ids of "
             "places-v1.json: the rooms holding the most of it, most first. "
             "A null place is a sector no catalogued room claims",
+            "every entry is a PART. `wiring` is the mechanisms: each row is "
+            "one shape of chain, a cause on a sender and what answers, counted "
+            "over the campaign; a sector that answers is named by what "
+            "`bloodmap.effects` reads it doing to the space, where it reads one",
+            "set_off_by and drives on a part are counted over those chains; "
+            "a part with neither is never on a wire in the campaign",
         ],
         "entries": entries,
+        "wiring": wiring,
     }
 
 
@@ -499,6 +584,46 @@ def search(index: Mapping[str, Any], words: Iterable[str]) -> list[tuple[str, di
         return (2, -int(entry["count"]), key)
 
     return sorted(hits, key=rank)
+
+
+#: A mapper's word for a mechanism, as what must be read of the sector that
+#: answers. On a wire these words mean the reading and nothing else: "lift"
+#: must not find a `kSectorZMotion` that is read as a door, which is what
+#: matching the type's name did.
+READINGS: dict[str, tuple[str, ...]] = {
+    "lift": ("carries a body between levels",),
+    "elevator": ("carries a body between levels",),
+    "platform": ("carries a body between levels",),
+    "door": ("changes what fits through",),
+    "gate": ("changes what fits through",),
+}
+
+
+def search_wiring(index: Mapping[str, Any],
+                  words: Iterable[str]) -> list[dict[str, Any]]:
+    """The shapes of chain answering to every word, the commonest first.
+
+    A word is looked for in the cause, the sender and what answers, and tries
+    its `SYNONYMS`. A word in `READINGS` is a reading instead: "door" finds
+    whatever ends at a sector that changes what fits through, whatever type
+    that sector is, and nothing that merely shares a type with one.
+    """
+    wanted = [word.lower() for word in words]
+    #: "keyed" and "locked" ask for a sender that wants a key, which is a
+    #: count on the row and not a word in it
+    keyed = any(word in ("keyed", "locked") for word in wanted)
+    wanted = [word for word in wanted if word not in ("keyed", "locked")]
+    hits = []
+    for row in index.get("wiring", ()):
+        if keyed and not row["keyed"]:
+            continue
+        haystack = " ".join([row["cause"], row["sender"], *row["answers"]]).lower()
+        if (wanted or keyed) and all(
+                any(reading in haystack for reading in READINGS[word])
+                if word in READINGS else _matches(word, haystack)
+                for word in wanted):
+            hits.append(row)
+    return hits
 
 
 def resolve(index: Mapping[str, Any], what: str) -> str | None:

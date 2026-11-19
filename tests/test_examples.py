@@ -122,6 +122,32 @@ class PlaceJoinTests(unittest.TestCase):
         self.assertEqual([item["place"] for item in entry["examples"]],
                          ["AAA:0", None, "AAA:0", "BBB:1"])
 
+    def test_a_part_says_what_sets_it_off_and_what_it_drives(self):
+        """A type alone is not a mechanism; the index says so by carrying
+        the wire it is found on."""
+        from bloodmap.model import PackedExtra as Extra
+        from bloodmap.format import XSPRITE_SCHEMA
+
+        disk = ObserveTests()._map()
+        switch = {name: 0 for name, _bits, _signed in XSPRITE_SCHEMA}
+        switch.update(tx_id=120, trigger_push=1)
+        disk.sprites[0].fields["type"] = 20
+        disk.sprites[0].extra = Extra("XSPRITE", switch)
+        disk.sprites[0].fields["extra"] = 1
+        disk.sectors[0].extra = _xsector(rx_id=120)
+        disk.sectors[0].fields["extra"] = 1
+        index = examples.build([examples.observe("AAA", disk)])
+        (row,) = [row for row in index["wiring"] if row["sender"] == "kSwitchToggle"]
+        self.assertEqual((row["cause"], row["answers"], row["count"]),
+                         ("push", ["kSectorSlideMarked"], 1))
+        self.assertEqual(row["examples"], [{"map": "AAA", "sector": 0, "root": "sprite 0"}])
+        self.assertEqual(index["entries"]["sector:614"]["set_off_by"],
+                         {"kSwitchToggle (push)": 1})
+        self.assertEqual(index["entries"]["sprite:20"]["drives"],
+                         {"kSectorSlideMarked": 1})
+        self.assertEqual(examples.search_wiring(index, ["button", "slide"]), [row])
+        self.assertEqual(examples.search_wiring(index, ["lift"]), [])
+
     def test_without_the_catalogue_an_entry_claims_no_room(self):
         index = examples.build([examples.observe("AAA", ObserveTests()._map())])
         entry = index["entries"]["sprite:1"]
@@ -237,6 +263,54 @@ class CommittedIndexTests(unittest.TestCase):
         self.assertEqual(stale[:10], [],
                          "run python -m tools.catalog build-mechanisms")
         self.assertEqual(set(self.committed["entries"]), set(self.fresh["entries"]))
+        self.assertTrue(self.committed.get("wiring") == self.fresh["wiring"],
+                        "the wiring is stale: run python -m tools.catalog build-mechanisms")
+
+    def test_a_lift_and_a_door_are_found_as_wiring_and_not_as_a_type(self):
+        """`kSectorZMotion` is 671 times something that changes what fits
+        through and 186 times something that carries a body between levels.
+        The word a mapper uses picks the reading, on a wire."""
+        for word, does in (("lift", "carries a body between levels"),
+                           ("door", "changes what fits through")):
+            with self.subTest(word=word):
+                found = examples.search_wiring(self.committed, [word])
+                self.assertGreater(len(found), 20)
+                for row in found:
+                    self.assertTrue(any(does in answer for answer in row["answers"]), row)
+        locked = examples.search_wiring(self.committed, ["locked", "door"])
+        self.assertTrue(locked)
+        self.assertTrue(all(row["keyed"] for row in locked))
+        # and a secret is an act that ends at the engine, with no sector type at all
+        secret = examples.search_wiring(self.committed, ["enter", "secret"])[0]
+        self.assertEqual((secret["sender"], secret["answers"]),
+                         ("a plain sector", ["the engine (kChannelSecretFound)"]))
+        self.assertGreater(secret["count"], 100)
+
+    def test_every_chain_is_counted_once_and_no_cause_is_no_channel(self):
+        from bloodmap import wiring
+        from bloodmap.format import read_map
+
+        total = sum(len(wiring.chains(read_map(path))) for path in campaign_maps())
+        self.assertEqual(sum(row["count"] for row in self.committed["wiring"]), total)
+        self.assertFalse([row for row in self.committed["wiring"]
+                          if "channel 0" in row["cause"]])
+
+    def test_a_wiring_example_is_a_sender_that_exists(self):
+        from bloodmap.format import read_map
+
+        maps = {path.stem.upper(): read_map(path) for path in campaign_maps()[:4]}
+        checked = 0
+        for row in self.committed["wiring"]:
+            for item in row["examples"]:
+                disk = maps.get(item["map"])
+                if disk is None:
+                    continue
+                kind, index = item["root"].split()
+                group = {"sprite": disk.sprites, "sector": disk.sectors,
+                         "wall": disk.walls}[kind]
+                self.assertIsNotNone(group[int(index)].extra, item)
+                checked += 1
+        self.assertGreater(checked, 100)
 
     def test_the_questions_that_used_to_return_nothing_are_answered(self):
         for words, expected in ((["conveyor"], "effect:conveyor"),

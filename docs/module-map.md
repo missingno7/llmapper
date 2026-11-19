@@ -82,6 +82,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `materials` | Evidence-first material/texture knowledge. |
 | `level_profile` | What a Blood level measures like, so an authored one can be compared to it. |
 | `effects` | What a mechanism physically does, said neutrally. |
+| `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
 | `assembly` | A mechanism is several objects and the relations between them. |
 | `conditional` | Conditional traversability: which ways open, and what opens them. |
 | `progression` | State-dependent single-player progression over Blood native mechanisms. |

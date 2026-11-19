@@ -8,9 +8,10 @@ calls for it. Commands are run from the repository root.
 
 | You need to know | Run |
 | --- | --- |
-| what a tile is, a mechanic is, or where Blood has one | `python -m tools.catalog find <words>` |
+| what a tile is, a part is, how a thing is wired, or where Blood has one | `python -m tools.catalog find <words>` |
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
-| one mechanic: engine name, how many, examples, lessons, next commands | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
+| one part: engine name, how many, what sets it off, examples, lessons | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
+| a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
 | how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set, and the room it is in) |
 | which rooms have a mechanic, and what one room has | `python -m tools.catalog find lift crypt`, then `python -m tools.catalog show E1M8:243` |
 | what a thing is wired to | `python -m tools.catalog mechanisms E2M4 --place E2M4:613` |

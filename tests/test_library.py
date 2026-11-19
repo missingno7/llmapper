@@ -158,6 +158,18 @@ class PlaceMembershipTests(unittest.TestCase):
         self.assertTrue(any("sector:600" in row["mechanisms"]
                             for _s, row, _w in both))
 
+    def test_find_answers_with_parts_and_with_wiring_as_two_things(self):
+        from tools import catalog
+
+        said = catalog.find_all(["lift"])
+        parts, wires = said.index("PARTS"), said.index("WIRING")
+        self.assertLess(parts, wires)
+        self.assertIn("carries a body between levels", said[wires:said.index("TILES")])
+        self.assertIn("python -m tools.catalog mechanisms", said)
+        shown = catalog.show("sector:600")
+        self.assertIn("on a wire, set off by:", shown)
+        self.assertIn("a part is not a mechanism", shown)
+
     def test_showing_a_room_says_what_works_in_it_and_what_to_run_next(self):
         from tools import catalog
 
