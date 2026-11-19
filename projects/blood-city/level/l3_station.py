@@ -139,7 +139,12 @@ PLATFORM = ((6144, 8192, False, False), (8192, 9984, False, False),
 DOWN_RAMP = (4096, PY0, 6144, PY1)                # platform's west end
 BED_Y = (PY0 - 8192, PY0)                         # two tracks
 BED_X = (2048, 6144, 22528, 30720)                # sky | shed | sky
-TUNNEL = ((30976, 34816, 30), (34816, 38912, 60))
+#: The far bore was shade 60, near black, from when the tunnel was a dead
+#: end that faded out. It now holds the switch that ends the level, and the
+#: owner, playing it on 2026-11-19: "that exit switch is in the very dark
+#: corridor, not sure why we made that one strip that dark when other rooms
+#: around it are lit." It keeps a step of fade and no more.
+TUNNEL = ((30976, 34816, 24), (34816, 38912, 30))
 #: THE LINE GOES SOMEWHERE. Every round: "the tunnel is barred, the
 #: station is a dead end". A roll-up gate stands in the tunnel's mouth
 #: (tile 9, the owner's "metal roll-up gate": on 40 of the campaign's

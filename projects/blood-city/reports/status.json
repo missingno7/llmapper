@@ -3,7 +3,7 @@
  "schema_version": 1,
  "built_from": {
   "manifest_sha256": "994fb34fe884b3238876267d3baae22b4bdab159558dd02a2d4f36b5890ec630",
-  "map_sha256": "735a990518ea9b8b56597d76a6c0d5355a5b9ad39d2e255c2bdb3ffe3f190644",
+  "map_sha256": "c4b03349dd5980ed910673e3b9249528107acdad413eb58acae51e110836e768",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
