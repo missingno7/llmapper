@@ -1,0 +1,960 @@
+{
+ "$schema": "llmapper.reading-scorecard",
+ "schema_version": 1,
+ "reading_guide": [
+  "the ground truth is that a shipped campaign map can be finished: nothing here was labelled by anyone",
+  "exit_reached, keys_reached and reached are what `bloodmap.conditional.frontier` stands in by its last round; the exit, keys and secrets are found by `bloodmap.wiring`",
+  "a secret's number is its type (0 normal, more super; endgame.cpp:240), and the level's total counts the normal ones",
+  "`missed` is the reader's shortfall on that map, never the map's"
+ ],
+ "total": {
+  "maps": 43,
+  "exit_reached": 26,
+  "exit_reached_by_the_older_reader": 24,
+  "keys": 93,
+  "keys_reached": 71,
+  "player_space_sectors": 13649,
+  "player_space_reached": 9972,
+  "secret_counts_agree": 39,
+  "read_to_the_end": 0
+ },
+ "maps": [
+  {
+   "map": "E1M1",
+   "space": 146,
+   "reached": 121,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 2,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 11,
+    "credited_normal": 11,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 2,
+    "exit_reachable": false
+   },
+   "missed": [
+    "25 of 146 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M2",
+   "space": 293,
+   "reached": 243,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 3,
+   "keys_reached": 3,
+   "secrets": {
+    "declared": 8,
+    "credited_normal": 8,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 248,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "50 of 293 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M3",
+   "space": 320,
+   "reached": 244,
+   "exits": 4,
+   "exit_reached": true,
+   "keys": 4,
+   "keys_reached": 4,
+   "secrets": {
+    "declared": 6,
+    "credited_normal": 6,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 271,
+    "exit_reachable": true
+   },
+   "missed": [
+    "76 of 320 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M4",
+   "space": 387,
+   "reached": 362,
+   "exits": 4,
+   "exit_reached": true,
+   "keys": 5,
+   "keys_reached": 5,
+   "secrets": {
+    "declared": 12,
+    "credited_normal": 12,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 278,
+    "exit_reachable": false
+   },
+   "missed": [
+    "25 of 387 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M5",
+   "space": 408,
+   "reached": 294,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 6,
+   "keys_reached": 6,
+   "secrets": {
+    "declared": 9,
+    "credited_normal": 9,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 292,
+    "exit_reachable": true
+   },
+   "missed": [
+    "114 of 408 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M6",
+   "space": 516,
+   "reached": 401,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 8,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 6,
+    "credited_normal": 6,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 392,
+    "exit_reachable": false
+   },
+   "missed": [
+    "6 key(s) never reached: kItemKeyFire, kItemKeyFire, kItemKeySkull, kItemKeySkull, kItemKeySpider, kItemKeySpider",
+    "115 of 516 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M7",
+   "space": 46,
+   "reached": 38,
+   "exits": 9,
+   "exit_reached": true,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 3,
+    "credited_normal": 3,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 43,
+    "exit_reachable": true
+   },
+   "missed": [
+    "8 of 46 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E1M8",
+   "space": 425,
+   "reached": 20,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 2,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 367,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "2 key(s) never reached: kItemKeySkull, kItemKeySkull",
+    "405 of 425 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M1",
+   "space": 234,
+   "reached": 202,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 3,
+   "keys_reached": 3,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 82,
+    "exit_reachable": false
+   },
+   "missed": [
+    "32 of 234 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M2",
+   "space": 260,
+   "reached": 230,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 2,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 2,
+    "credited_normal": 2,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 221,
+    "exit_reachable": true
+   },
+   "missed": [
+    "1 key(s) never reached: kItemKeyDagger",
+    "30 of 260 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M3",
+   "space": 329,
+   "reached": 288,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 224,
+    "exit_reachable": true
+   },
+   "missed": [
+    "41 of 329 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M4",
+   "space": 621,
+   "reached": 542,
+   "exits": 3,
+   "exit_reached": true,
+   "keys": 5,
+   "keys_reached": 5,
+   "secrets": {
+    "declared": 17,
+    "credited_normal": 19,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 514,
+    "exit_reachable": true
+   },
+   "missed": [
+    "79 of 621 player-space sectors never reached",
+    "the level declares 17 secrets and 19 senders credit one"
+   ]
+  },
+  {
+   "map": "E2M5",
+   "space": 779,
+   "reached": 709,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 6,
+   "keys_reached": 5,
+   "secrets": {
+    "declared": 8,
+    "credited_normal": 8,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 699,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeySkull",
+    "70 of 779 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M6",
+   "space": 230,
+   "reached": 178,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 177,
+    "exit_reachable": true
+   },
+   "missed": [
+    "52 of 230 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M7",
+   "space": 439,
+   "reached": 14,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 2,
+    "credited_normal": 2,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 292,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "425 of 439 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M8",
+   "space": 52,
+   "reached": 49,
+   "exits": 3,
+   "exit_reached": true,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 0,
+    "credited_normal": 0,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 45,
+    "exit_reachable": true
+   },
+   "missed": [
+    "3 of 52 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E2M9",
+   "space": 158,
+   "reached": 142,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 2,
+    "credited_normal": 2,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 81,
+    "exit_reachable": true
+   },
+   "missed": [
+    "16 of 158 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M1",
+   "space": 374,
+   "reached": 302,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 2,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 9,
+    "credited_normal": 10,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 275,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "72 of 374 player-space sectors never reached",
+    "the level declares 9 secrets and 10 senders credit one"
+   ]
+  },
+  {
+   "map": "E3M2",
+   "space": 551,
+   "reached": 380,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 3,
+    "credited_normal": 3,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 254,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "171 of 551 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M3",
+   "space": 302,
+   "reached": 261,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 3,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 167,
+    "exit_reachable": true
+   },
+   "missed": [
+    "1 key(s) never reached: kItemKeyEye",
+    "41 of 302 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M4",
+   "space": 423,
+   "reached": 142,
+   "exits": 2,
+   "exit_reached": false,
+   "keys": 3,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 13,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "3 key(s) never reached: kItemKeyDagger, kItemKeyFire, kItemKeySkull",
+    "281 of 423 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M5",
+   "space": 329,
+   "reached": 92,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 1,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 4,
+    "credited_normal": 4,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 252,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeySkull",
+    "237 of 329 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M6",
+   "space": 525,
+   "reached": 320,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 2,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 454,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeyFire",
+    "205 of 525 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M7",
+   "space": 130,
+   "reached": 125,
+   "exits": 2,
+   "exit_reached": true,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 0,
+    "credited_normal": 0,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 104,
+    "exit_reachable": true
+   },
+   "missed": [
+    "5 of 130 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E3M8",
+   "space": 614,
+   "reached": 453,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 2,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 6,
+    "credited_normal": 6,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 584,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeyEye",
+    "161 of 614 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M1",
+   "space": 206,
+   "reached": 190,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 2,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 6,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 9,
+    "exit_reachable": false
+   },
+   "missed": [
+    "16 of 206 player-space sectors never reached",
+    "the level declares 5 secrets and 6 senders credit one"
+   ]
+  },
+  {
+   "map": "E4M2",
+   "space": 273,
+   "reached": 219,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 3,
+    "credited_normal": 3,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 7,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "54 of 273 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M3",
+   "space": 444,
+   "reached": 118,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 2,
+    "credited_normal": 2,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 6,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "326 of 444 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M4",
+   "space": 248,
+   "reached": 239,
+   "exits": 2,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 6,
+    "credited_normal": 6,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 15,
+    "exit_reachable": false
+   },
+   "missed": [
+    "9 of 248 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M5",
+   "space": 245,
+   "reached": 242,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 236,
+    "exit_reachable": true
+   },
+   "missed": [
+    "3 of 245 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M6",
+   "space": 511,
+   "reached": 471,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 4,
+   "keys_reached": 3,
+   "secrets": {
+    "declared": 1,
+    "credited_normal": 1,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 450,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeySkull",
+    "40 of 511 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M7",
+   "space": 137,
+   "reached": 128,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 3,
+    "credited_normal": 3,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 94,
+    "exit_reachable": false
+   },
+   "missed": [
+    "9 of 137 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E4M8",
+   "space": 69,
+   "reached": 26,
+   "exits": 3,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": null,
+    "credited_normal": 1,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 65,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "43 of 69 player-space sectors never reached",
+    "secrets are credited and the level declares no total"
+   ]
+  },
+  {
+   "map": "E4M9",
+   "space": 205,
+   "reached": 170,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 180,
+    "exit_reachable": false
+   },
+   "missed": [
+    "the exit is never reached",
+    "35 of 205 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M1",
+   "space": 121,
+   "reached": 115,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 3,
+   "keys_reached": 3,
+   "secrets": {
+    "declared": 4,
+    "credited_normal": 4,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 113,
+    "exit_reachable": true
+   },
+   "missed": [
+    "6 of 121 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M2",
+   "space": 268,
+   "reached": 241,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 1,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 2,
+    "credited_normal": 2,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 230,
+    "exit_reachable": true
+   },
+   "missed": [
+    "27 of 268 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M3",
+   "space": 239,
+   "reached": 221,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 2,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 7,
+    "credited_normal": 7,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 205,
+    "exit_reachable": true
+   },
+   "missed": [
+    "18 of 239 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M4",
+   "space": 372,
+   "reached": 277,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 4,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 207,
+    "exit_reachable": false
+   },
+   "missed": [
+    "2 key(s) never reached: kItemKeyMoon, kItemKeySpider",
+    "95 of 372 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M5",
+   "space": 339,
+   "reached": 203,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 2,
+   "keys_reached": 1,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 1
+   },
+   "older_reader": {
+    "final_reachable": 10,
+    "exit_reachable": false
+   },
+   "missed": [
+    "1 key(s) never reached: kItemKeyEye",
+    "136 of 339 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M6",
+   "space": 371,
+   "reached": 356,
+   "exits": 2,
+   "exit_reached": true,
+   "keys": 4,
+   "keys_reached": 4,
+   "secrets": {
+    "declared": 10,
+    "credited_normal": 10,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 285,
+    "exit_reachable": true
+   },
+   "missed": [
+    "15 of 371 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M7",
+   "space": 470,
+   "reached": 371,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 3,
+   "keys_reached": 2,
+   "secrets": {
+    "declared": 3,
+    "credited_normal": 3,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 235,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 key(s) never reached: kItemKeyDagger",
+    "99 of 470 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M8",
+   "space": 84,
+   "reached": 83,
+   "exits": 1,
+   "exit_reached": false,
+   "keys": 0,
+   "keys_reached": 0,
+   "secrets": {
+    "declared": 0,
+    "credited_normal": 0,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 84,
+    "exit_reachable": true
+   },
+   "missed": [
+    "the exit is never reached",
+    "1 of 84 player-space sectors never reached"
+   ]
+  },
+  {
+   "map": "E6M9",
+   "space": 156,
+   "reached": 150,
+   "exits": 1,
+   "exit_reached": true,
+   "keys": 3,
+   "keys_reached": 3,
+   "secrets": {
+    "declared": 5,
+    "credited_normal": 5,
+    "credited_super": 0
+   },
+   "older_reader": {
+    "final_reachable": 128,
+    "exit_reachable": false
+   },
+   "missed": [
+    "6 of 156 player-space sectors never reached"
+   ]
+  }
+ ]
+}

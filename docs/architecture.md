@@ -111,6 +111,7 @@ convenient.
 | how much solid mass stands between two rooms | `layout.observe_wall_thickness` | the miner that runs it over the corpus |
 | where the campaign has an instance of a type, a sector effect or a reserved channel, and which lesson teaches it | `examples.py` (asked through `python -m tools.catalog find` / `show`) | a census written for the occasion |
 | what an act sets off: the chain from a cause through a sender to everything that answers, and that chain's shape | `wiring.py` (`chains`, `shape`; indexed by `examples.py`, asked through `catalog find` / `wiring` / `mechanisms`) | another walk over `tx_id`/`rx_id`; naming a mechanism by a sector's type |
+| whether our readers can finish a map known to be finishable, and where they stop | `completion.py` (`read`, `missed`; the campaign's score is `tools/reading_check.py`) | judging a reader by whether it returns; a scoreboard labelled by hand |
 | a level's own wiring: what each wire is for, which channel it is on, and whether the built map agrees | `wiring.py` (`Circuit`, `Wire`; `read_back`) | a channel number typed into a module; an object given two `tx_id`s |
 | whether an object with a channel can send at all | `wiring.py` (`can_send`, `silent_senders`; `motion.silent_transmitters` and the rule `transmitter-reports-an-edge` call it) | a check that looks at sprites only |
 | which tile the renderer shows on which band of a wall (steps, mask, one-way) | `render_slots.py` | a `next_sector < 0` test in the consumer |

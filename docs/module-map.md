@@ -84,6 +84,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `effects` | What a mechanism physically does, said neutrally. |
 | `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
 | `posed` | Posed: a copy of a map with everything one wiring chain answers put in its other state. |
+| `completion` | Completion: whether our readers can finish a map that is known to be finishable, and where they stop. |
 | `assembly` | A mechanism is several objects and the relations between them. |
 | `conditional` | Conditional traversability: which ways open, and what opens them. |
 | `progression` | State-dependent single-player progression over Blood native mechanisms. |
@@ -336,6 +337,7 @@ Lints and comparisons of one map against the engine or the campaign.
 | Module | What it is |
 | --- | --- |
 | `sprite_fit` | Does every sprite fit where it was put? |
+| `reading_check` | Mark our map readers against the campaign: can they finish what is known to be finishable. |
 | `unattested_values` | Authored values the campaign never uses for that type. |
 | `map_discriminator` | Could you tell this level from a Blood level, on the evidence available? |
 | `symmetry_diff` | What the city DECLARED against what its built map SAYS, row for row. |

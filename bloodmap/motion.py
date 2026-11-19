@@ -567,9 +567,12 @@ def secret_credit(index: int = 0) -> dict[str, int]:
     """XSECTOR for a space that counts as a secret when you walk into it.
 
     `OTHERSECTORSFX-SECRETS.map` s2 and s3, to the field: transmit on channel
-    2 (`kChannelSecretFound`) with the NUMERIC command that carries the
-    secret's index -- 64 is 0, 65 is 1 -- on entering, once, with
-    `dude_lockout` so a wandering monster cannot claim it for you.
+    2 (`kChannelSecretFound`) with a NUMERIC command -- 64 is 0, 65 is 1 --
+    on entering, once, with `dude_lockout` so a wandering monster cannot
+    claim it for you. The number is the secret's TYPE and not its index:
+    `CSecretMgr::Found` (endgame.cpp:240) counts 0 as a normal secret and
+    anything more as a super secret, and the level's total counts the
+    normal ones. So `index` here is 0 for every ordinary secret.
 
     The command is the part that is easy to get wrong, and the zoo did: it
     sent command 1, which is kCmdOn. The counter wants a number.

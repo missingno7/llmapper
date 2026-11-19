@@ -54,6 +54,7 @@ one thing keeps one name and a search for it finds all of it.
 
 ```bash
 python -m tools.catalog find rail          # every shelf at once
+python -m tools.catalog map E1M1           # one whole map: rooms, how it ends, wiring, materials
 python -m tools.catalog find conveyor      # ...a part is found the same way
 python -m tools.catalog show conveyor      # what it is, how often, where to look
 python -m tools.catalog show sector:614    # a type: readings, what sets it off, examples

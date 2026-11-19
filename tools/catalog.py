@@ -858,6 +858,134 @@ def _place_holds(row: dict) -> list[str]:
     return lines
 
 
+def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
+    """One whole map as our readers read it: rooms, how it ends, wiring, materials.
+
+    Everything here is a reading, and the last section says how far the
+    readers got: a campaign map is known to be finishable, so where the
+    reading stops short the reader is at fault, not the map. Each line that
+    names a room or an object can be followed with the command beside it.
+    """
+    from collections import Counter
+
+    from bloodmap import completion, examples
+    from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+    from bloodmap.model import record_fields
+
+    path = (pathlib.Path(name) if name.upper().endswith(".MAP")
+            else corpus_map_path(name))
+    key = path.stem.upper()
+    disk = read_map(path)
+    data = json.loads(PLACES.read_text("utf-8")) if PLACES.exists() else {"places": []}
+    mine = [row for row in data["places"] if row["map"] == key]
+    where = {sector: row["id"] for row in mine for sector in row["members"]}
+    labels, names, looks = place_labels(), owner_names(), tile_looks()
+
+    def room(sector: int) -> str:
+        ident = where.get(sector)
+        if ident is None:
+            return f"sector {sector} (no catalogued room)"
+        label = labels.get(ident)
+        return ident + (f" [{label['kind']}]" if label else "")
+
+    def tile(number: int) -> str:
+        said = names.get(number) or looks.get(number, {}).get("looks") or "unnamed"
+        return f"{number} {said[:34]}"
+
+    mark = completion.read(disk, key)
+    lines = [f"MAP {key}  {len(disk.sectors)} sectors, {len(disk.walls)} walls, "
+             f"{len(disk.sprites)} sprites; {len(mine)} rooms catalogued; the "
+             f"player starts in {room(mark['start_sector'])}"]
+
+    #: what the map calls itself: every tile in it that is a sign
+    worn = {int(record_fields(wall)[field]) for wall in disk.walls
+            for field in ("picnum", "over_picnum")}
+    worn |= {int(record_fields(sprite)["picnum"]) for sprite in disk.sprites}
+    signs = sorted(number for number in worn
+                   if looks.get(number, {}).get("class") == "sign")
+    lettered = sorted({word for row in mine for word in row["signs"]})
+    lines.append("SAYS OF ITSELF  (tiles that are signs, and lettering spelt in sprites)")
+    lines.append("  " + ("; ".join(tile(number) for number in signs[:14])
+                         or "no sign tile")
+                 + (f"; lettered {lettered}" if lettered else ""))
+    lines.append(f"ROOMS  (the {min(rooms, len(mine))} largest of {len(mine)}; "
+                 f"python -m tools.catalog show <room>)")
+    for row in sorted(mine, key=lambda r: -r["metres"][0] * r["metres"][1])[:rooms]:
+        label = labels.get(row["id"])
+        held = row.get("mechanisms", {})
+        dudes = sum(n for k, n in held.items() if k.startswith("sprite:")
+                    and (mechanism_index() or {"entries": {}})["entries"].get(k, {})
+                    .get("category") == "dude")
+        lines.append(
+            f"  {row['id']:<10}{('[' + label['kind'] + '] ') if label else ''}"
+            f"{'outdoor' if row['sky'] else 'indoor'} "
+            f"{row['metres'][0]}x{row['metres'][1]} m, {row['sectors']} sectors"
+            + (f", lettered {row['signs']}" if row["signs"] else "")
+            + (f", {dudes} dudes" if dudes else "")
+            + f"; wears " + ", ".join(tile(t) for t in row["distinctive"][:2]))
+
+    lines.append("HOW IT IS FINISHED")
+    for row in mark["exits"]:
+        lines.append(f"  exit: {row['cause']} on {row['root']} in {room(row['sector'])} "
+                     f"-> {row['to']}"
+                     + ("" if row["reached"] else "  (our traversal never gets here)"))
+    if not mark["exits"]:
+        lines.append("  exit: no chain ends at the level's exit (a reader gap)")
+    for row in mark["keys"]:
+        lines.append(f"  key: {row['name']} (sprite {row['sprite']}) in {room(row['sector'])}"
+                     + ("" if row["reached"] else "  (our traversal never gets here)"))
+    for row in mark["locked"]:
+        lines.append(
+            f"  wants the {row['key_name'] or row['key']} key: "
+            f"{len(row['senders'])} face(s)/object(s) in {room(row['sector'])} "
+            f"({row['senders'][0]}) -> {', '.join(row['answers'][:6]) or 'nothing'}"
+            + (f" (+{len(row['answers']) - 6})" if len(row["answers"]) > 6 else ""))
+    secrets = mark["secrets"]
+    lines.append(f"  secrets: the level declares {secrets['declared']}; "
+                 f"{secrets['credited_normal']} senders credit a normal one and "
+                 f"{secrets['credited_super']} a super secret")
+
+    seen = examples.observe(key, disk)
+    index = examples.build([seen], places={key: where})
+    lines.append(f"WIRING  ({len(seen['wires'])} chains; "
+                 f"python -m tools.catalog mechanisms {key} --place <room>)")
+    lines.append("  in phrases: " + ", ".join(
+        f"{phrase['name']} {phrase['chains']}"
+        for phrase in examples.idioms(index) if phrase["chains"]))
+    for row in index["wiring"][:shapes]:
+        lines.append(f"  {_wire(row)}".replace(f": {row['count']} in 1 maps",
+                                             f": x{row['count']}"))
+    if len(index["wiring"]) > shapes:
+        lines.append(f"  ... {len(index['wiring']) - shapes} more shapes")
+
+    lines.append("MATERIALS  (python -m tools.catalog show <tile>)")
+    walls = Counter(int(record_fields(wall)["picnum"]) for wall in disk.walls
+                    if int(record_fields(wall)["next_sector"]) < 0)
+    floors = Counter(int(record_fields(sector)["floor_picnum"]) for sector in disk.sectors)
+    ceilings = Counter(int(record_fields(sector)["ceiling_picnum"]) for sector in disk.sectors)
+    for said, counted in (("walls", walls), ("floors", floors), ("ceilings", ceilings)):
+        lines.append(f"  {said}: " + "; ".join(
+            f"{tile(t)} x{n}" for t, n in counted.most_common(5))
+            + f"  ({len(counted)} tiles in all)")
+
+    lines.append("HOW FAR OUR READERS GET  (a shipped map can be finished: a "
+                 "shortfall here is the reader's)")
+    lines.append(f"  stood in {mark['reached']} of {mark['space']} player-space "
+                 f"sectors; the older progression reader ends at "
+                 f"{mark['older_reader']['final_reachable']}")
+    if mark["unreached"]:
+        by_room = Counter(where.get(sector) for sector in mark["unreached"])
+        lines.append("  never reached: " + ", ".join(
+            f"{(ident or 'uncatalogued')}"
+            + (f" [{labels[ident]['kind']}]" if ident in labels else "")
+            + f" x{count}" for ident, count in by_room.most_common(8)))
+    for said in completion.missed(mark):
+        lines.append(f"  missed: {said}")
+    lines.append(f"  in full: python -m tools.reading_check {key}")
+    return "\n".join(lines)
+
+
 def find_all(words: list[str]) -> str:
     """Everything the library holds that answers to the words.
 
@@ -930,6 +1058,8 @@ def main(argv=None) -> int:
     sub.add_parser("build-places")
     sub.add_parser("build-mechanisms")
     sub.add_parser("idioms", help="the phrases the campaign's wiring is written in")
+    whole = sub.add_parser("map", help="one whole map as our readers read it")
+    whole.add_argument("name")
     wires = sub.add_parser("wiring", help="shapes of chain: an act, a sender, what answers")
     wires.add_argument("words", nargs="+")
     wires.add_argument("--limit", type=int, default=40)
@@ -1052,6 +1182,8 @@ def main(argv=None) -> int:
                       f"{' after ' + str(step['wait']) if step['wait'] else ''}")
     elif args.command == "record":
         print(record(args.map, args.kind, args.index))
+    elif args.command == "map":
+        print(map_reading(args.name))
     elif args.command == "idioms":
         from bloodmap import examples
 

@@ -9,6 +9,7 @@ calls for it. Commands are run from the repository root.
 | You need to know | Run |
 | --- | --- |
 | what a tile is, a part is, how a thing is wired, or where Blood has one | `python -m tools.catalog find <words>` |
+| one whole map: what it says of itself, its rooms, how it is finished, its wiring, how far our readers get | `python -m tools.catalog map E1M1` |
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
 | one part: engine name, how many, what sets it off, examples, lessons | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
 | a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
@@ -63,6 +64,11 @@ hides the exit code. A single module is `python -m unittest tests.test_<name>`.
 When a change moves a sensor or a helper, run the miner that uses it before
 and after and compare the files byte for byte. When it touches the city, the
 build must write the same map unless you meant to change it.
+
+A reader is marked against the campaign, which needs no labels: every shipped
+map can be finished. `python -m tools.reading_check` says in how many our
+readers reach the exit, the keys and the rooms; a change to a reader is
+checked there.
 
 A function that returns without raising is not evidence that it built what it
 says. Read the result back: `python -m tools.sprite_fit <MAP>`, the build's own
