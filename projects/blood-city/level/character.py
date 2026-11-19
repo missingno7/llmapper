@@ -120,6 +120,31 @@ def wired(disk) -> dict[int, dict[str, int]]:
     return out
 
 
+def engine_channels_wired(disk) -> list[dict[str, Any]]:
+    """Engine channels this level uses as a wire of its own.
+
+    Channels below 100 are the engine's: it sends on some (the level
+    starting) and listens on others (a secret found). A level that both
+    sends AND listens on one is using it as its own wire. Not one of the
+    campaign's 43 maps does, so here it is a fault to look at, whether or
+    not it happens to work; `wired` above cannot see it, because it only
+    counts a level's own channels.
+    """
+    from bloodmap import wiring
+    from bloodmap.blood_types import RESERVED_CHANNELS
+
+    nodes = wiring.nodes(disk)
+    out = []
+    for channel in sorted({node["tx"] for node in nodes} & {node["rx"] for node in nodes}):
+        if 0 < channel < wiring.USER_CHANNELS_FROM:
+            out.append({
+                "channel": channel,
+                "name": (RESERVED_CHANNELS.get(channel) or {}).get("name", "unnamed"),
+                "senders": [node["id"] for node in nodes if node["tx"] == channel],
+                "listeners": [node["id"] for node in nodes if node["rx"] == channel]})
+    return out
+
+
 def sheet(disk) -> dict[str, Any]:
     """Measure every named place and say which are thin."""
     from tools import place_character as pc
@@ -183,4 +208,5 @@ def sheet(disk) -> dict[str, Any]:
     report["dangling_channels"] = sorted(
         channel for channel, ends in channels.items()
         if not ends["tx_id"] or not ends["rx_id"])
+    report["engine_channels_wired"] = engine_channels_wired(disk)
     return report

@@ -24,6 +24,7 @@ The build runs 31 named stages in order (districts, cemetery, sewer, works-stair
 - `cramped`: 3
 - `critique`: 8
 - `dropped`: 8
+- `engine-channel`: 1
 - `lost-tile`: 4
 - `missing-layer`: 7
 - `never-critiqued`: 5

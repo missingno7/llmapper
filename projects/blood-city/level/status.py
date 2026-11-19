@@ -218,6 +218,15 @@ def gather() -> dict[str, Any]:
              owner="projects/blood-city/level/character.py",
              see=f"python -m tools.catalog mechanisms {MAP_REL}")
 
+    for row in sheet.get("engine_channels_wired", []):
+        item("engine-channel",
+             f"channel {row['channel']} ({row['name']}) is the engine's, and the level "
+             f"sends on it ({', '.join(row['senders'])}) and listens on it "
+             f"({', '.join(row['listeners'])}); no campaign map does, and a "
+             f"level's own channels start at 100",
+             owner="projects/blood-city/level/character.py:engine_channels_wired",
+             see=f"python -m tools.catalog mechanisms {MAP_REL}")
+
     rules = manifest.get("rules", {})
     for row in rules.get("open", []):
         item(f"rule-{row['severity']}", f"{row['code']}: {row['says']}",

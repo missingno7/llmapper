@@ -2763,7 +2763,21 @@
       "arcade concourse",
       "pump machine hall"
     ],
-    "dangling_channels": []
+    "dangling_channels": [],
+    "engine_channels_wired": [
+      {
+        "channel": 30,
+        "name": "kChannelPlayer0",
+        "senders": [
+          "sector 126"
+        ],
+        "listeners": [
+          "sprite 34",
+          "sprite 35",
+          "sprite 36"
+        ]
+      }
+    ]
   },
   "stages": [
     {

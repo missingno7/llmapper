@@ -2116,6 +2116,8 @@ def main() -> int:
     print("character: built without a study:", _sheet["unstudied"])
     print("character: thin", _sheet["thin"], "unfound", _sheet["unfound"],
           "dangling channels", _sheet["dangling_channels"])
+    print("character: engine channels used as the level's own wire:",
+          _sheet["engine_channels_wired"] or "none")
     STAGE("write",
           "the map, its sector tags, the manifest and the status")
     out_dir = pathlib.Path(__file__).resolve().parent
