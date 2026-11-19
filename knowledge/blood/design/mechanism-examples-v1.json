@@ -4958,7 +4958,7 @@
      "map": "E1M1",
      "sector": 0,
      "id": 0,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -4970,7 +4970,7 @@
      "map": "E1M3",
      "sector": 101,
      "id": 101,
-     "place": "E1M3:115"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -4982,7 +4982,7 @@
      "map": "E1M5",
      "sector": 73,
      "id": 73,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
@@ -5029,31 +5029,31 @@
     "touch+remote": 2,
     "sector_push": 2
    },
-   "place_count": 255,
+   "place_count": 310,
    "places": [
     {
      "id": "E3M2:141",
-     "count": 23
-    },
-    {
-     "id": "E2M7:439",
-     "count": 20
-    },
-    {
-     "id": "E6M7:443",
-     "count": 18
-    },
-    {
-     "id": "E4M6:382",
-     "count": 17
-    },
-    {
-     "id": "E6M4:24",
-     "count": 16
+     "count": 21
     },
     {
      "id": "E3M3:263",
-     "count": 14
+     "count": 13
+    },
+    {
+     "id": "E3M8:566",
+     "count": 12
+    },
+    {
+     "id": "E3M8:139",
+     "count": 10
+    },
+    {
+     "id": "E4M7:59",
+     "count": 9
+    },
+    {
+     "id": "E6M4:287",
+     "count": 9
     }
    ],
    "set_off_by": {
@@ -5105,7 +5105,7 @@
      "map": "E1M3",
      "sector": 66,
      "id": 66,
-     "place": "E1M3:115"
+     "place": "E1M3:66"
     },
     {
      "map": "E1M4",
@@ -5123,7 +5123,7 @@
      "map": "E1M6",
      "sector": 119,
      "id": 119,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M8",
@@ -5158,31 +5158,31 @@
     "remote_rx": 49,
     "touch+remote": 1
    },
-   "place_count": 33,
+   "place_count": 34,
    "places": [
-    {
-     "id": "E2M4:613",
-     "count": 5
-    },
-    {
-     "id": "E2M7:51",
-     "count": 4
-    },
     {
      "id": "E4M1:6",
      "count": 3
     },
     {
-     "id": "E1M3:115",
+     "id": "E2M7:51",
      "count": 2
     },
     {
-     "id": "E2M5:763",
+     "id": "E2M7:60",
      "count": 2
     },
     {
-     "id": "E3M2:486",
-     "count": 2
+     "id": "E1M1:122",
+     "count": 1
+    },
+    {
+     "id": "E1M1:87",
+     "count": 1
+    },
+    {
+     "id": "E1M2:271",
+     "count": 1
     }
    ],
    "set_off_by": {
@@ -5227,7 +5227,7 @@
      "map": "E1M6",
      "sector": 388,
      "id": 388,
-     "place": "E1M6:294"
+     "place": null
     },
     {
      "map": "E1M7",
@@ -5251,7 +5251,7 @@
      "map": "E2M5",
      "sector": 413,
      "id": 413,
-     "place": null
+     "place": "E2M5:413"
     },
     {
      "map": "E3M2",
@@ -5269,30 +5269,30 @@
     "E1M1ZDF",
     "MACHINERY-PORTALS"
    ],
-   "place_count": 22,
+   "place_count": 11,
    "places": [
     {
      "id": "E1M6:391",
-     "count": 8
-    },
-    {
-     "id": "E1M6:303",
-     "count": 2
-    },
-    {
-     "id": "E4M6:337",
-     "count": 2
+     "count": 5
     },
     {
      "id": "E1M1:146",
      "count": 1
     },
     {
-     "id": "E1M5:237",
+     "id": "E1M6:454",
      "count": 1
     },
     {
-     "id": "E1M5:314",
+     "id": "E1M7:45",
+     "count": 1
+    },
+    {
+     "id": "E1M7:52",
+     "count": 1
+    },
+    {
+     "id": "E2M5:413",
      "count": 1
     }
    ],
@@ -5321,13 +5321,13 @@
      "map": "E6M4",
      "sector": 0,
      "id": 0,
-     "place": null
+     "place": "E6M4:0"
     },
     {
      "map": "E6M4",
      "sector": 25,
      "id": 25,
-     "place": null
+     "place": "E6M4:0"
     },
     {
      "map": "E6M4",
@@ -5337,8 +5337,13 @@
     }
    ],
    "lessons": [],
-   "place_count": 0,
-   "places": [],
+   "place_count": 1,
+   "places": [
+    {
+     "id": "E6M4:0",
+     "count": 2
+    }
+   ],
    "set_off_by": {
     "kThingFluorescent (destroyed)": 1
    }
@@ -5379,13 +5384,13 @@
      "map": "E3M6",
      "sector": 84,
      "id": 84,
-     "place": "E3M6:105"
+     "place": "E3M6:57"
     },
     {
      "map": "E1M2",
      "sector": 4,
      "id": 4,
-     "place": "E1M2:270"
+     "place": "E1M2:3"
     },
     {
      "map": "E1M6",
@@ -5397,13 +5402,13 @@
      "map": "E2M7",
      "sector": 70,
      "id": 70,
-     "place": "E2M7:72"
+     "place": null
     },
     {
      "map": "E1M2",
      "sector": 11,
      "id": 11,
-     "place": "E1M2:270"
+     "place": "E1M2:3"
     }
    ],
    "lessons": [
@@ -5421,19 +5426,19 @@
    "place_count": 4,
    "places": [
     {
-     "id": "E1M2:270",
+     "id": "E1M2:3",
      "count": 3
     },
     {
-     "id": "E2M7:72",
-     "count": 2
-    },
-    {
-     "id": "E1M2:3",
+     "id": "E1M2:270",
      "count": 1
     },
     {
-     "id": "E3M6:105",
+     "id": "E2M7:72",
+     "count": 1
+    },
+    {
+     "id": "E3M6:57",
      "count": 1
     }
    ],
@@ -5462,7 +5467,7 @@
      "map": "E1M1",
      "sector": 4,
      "id": 4,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -5492,7 +5497,7 @@
      "map": "E1M6",
      "sector": 45,
      "id": 45,
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     },
     {
      "map": "E1M8",
@@ -5525,31 +5530,31 @@
     "wall_push": 169,
     "remote_rx": 139
    },
-   "place_count": 118,
+   "place_count": 153,
    "places": [
     {
-     "id": "E3M4:153",
-     "count": 25
-    },
-    {
      "id": "E2M9:76",
-     "count": 19
-    },
-    {
-     "id": "E1M8:243",
-     "count": 15
-    },
-    {
-     "id": "E1M3:96",
-     "count": 12
+     "count": 13
     },
     {
      "id": "E2M9:138",
      "count": 12
     },
     {
-     "id": "E2M4:613",
-     "count": 8
+     "id": "E1M3:96",
+     "count": 11
+    },
+    {
+     "id": "E2M9:151",
+     "count": 7
+    },
+    {
+     "id": "E3M4:267",
+     "count": 7
+    },
+    {
+     "id": "E1M8:390",
+     "count": 5
     }
    ],
    "set_off_by": {
@@ -5621,7 +5626,7 @@
      "map": "E3M3",
      "sector": 0,
      "id": 0,
-     "place": "E3M3:263"
+     "place": null
     }
    ],
    "lessons": [
@@ -5641,7 +5646,7 @@
     "wall_push": 3,
     "wall_push+remote": 2
    },
-   "place_count": 23,
+   "place_count": 25,
    "places": [
     {
      "id": "E6M7:283",
@@ -5652,19 +5657,19 @@
      "count": 3
     },
     {
-     "id": "E3M3:263",
-     "count": 3
-    },
-    {
      "id": "E3M5:280",
      "count": 3
     },
     {
-     "id": "E4M3:94",
-     "count": 3
+     "id": "E1M3:115",
+     "count": 2
     },
     {
-     "id": "E1M3:115",
+     "id": "E3M1:381",
+     "count": 2
+    },
+    {
+     "id": "E4M3:51",
      "count": 2
     }
    ],
@@ -5724,7 +5729,7 @@
      "map": "E1M6",
      "sector": 310,
      "id": 310,
-     "place": "E1M6:303"
+     "place": "E1M6:311"
     },
     {
      "map": "E2M1",
@@ -5758,7 +5763,7 @@
     "wall_push": 17,
     "wall_push+remote": 2
    },
-   "place_count": 22,
+   "place_count": 20,
    "places": [
     {
      "id": "E1M4:43",
@@ -5769,15 +5774,15 @@
      "count": 6
     },
     {
-     "id": "E2M1:125",
-     "count": 5
-    },
-    {
      "id": "E2M1:134",
      "count": 5
     },
     {
      "id": "E1M2:34",
+     "count": 4
+    },
+    {
+     "id": "E2M1:125",
      "count": 4
     },
     {
@@ -5826,7 +5831,7 @@
      "map": "E1M2",
      "sector": 12,
      "id": 12,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -5844,7 +5849,7 @@
      "map": "E1M5",
      "sector": 87,
      "id": 87,
-     "place": "E1M5:237"
+     "place": "E1M5:232"
     },
     {
      "map": "E1M6",
@@ -5884,27 +5889,27 @@
     "wall_push": 66,
     "remote_rx": 60
    },
-   "place_count": 62,
+   "place_count": 65,
    "places": [
-    {
-     "id": "E2M5:577",
-     "count": 11
-    },
-    {
-     "id": "E2M4:613",
-     "count": 10
-    },
     {
      "id": "E1M4:321",
      "count": 9
     },
     {
-     "id": "E4M2:247",
+     "id": "E2M4:333",
+     "count": 7
+    },
+    {
+     "id": "E2M5:577",
      "count": 6
     },
     {
-     "id": "E4M6:382",
+     "id": "E2M5:512",
      "count": 5
+    },
+    {
+     "id": "E4M2:33",
+     "count": 4
     },
     {
      "id": "E1M3:125",
@@ -5958,7 +5963,7 @@
      "map": "E1M4",
      "sector": 167,
      "id": 167,
-     "place": null
+     "place": "E1M4:170"
     },
     {
      "map": "E1M5",
@@ -5982,7 +5987,7 @@
      "map": "E1M8",
      "sector": 53,
      "id": 53,
-     "place": "E1M8:243"
+     "place": null
     },
     {
      "map": "E2M1",
@@ -6007,19 +6012,15 @@
    "places": [
     {
      "id": "E1M3:96",
-     "count": 18
+     "count": 16
     },
     {
      "id": "E3M4:252",
-     "count": 6
+     "count": 4
     },
     {
      "id": "E4M6:456",
      "count": 4
-    },
-    {
-     "id": "E1M8:243",
-     "count": 3
     },
     {
      "id": "E3M7:125",
@@ -6028,6 +6029,10 @@
     {
      "id": "E4M6:459",
      "count": 3
+    },
+    {
+     "id": "E1M7:47",
+     "count": 2
     }
    ],
    "set_off_by": {
@@ -6119,13 +6124,13 @@
      "map": "E1M5",
      "sector": 327,
      "id": 299,
-     "place": "E1M5:392"
+     "place": "E1M5:327"
     },
     {
      "map": "E1M6",
      "sector": 198,
      "id": 191,
-     "place": "E1M6:256"
+     "place": "E1M6:192"
     },
     {
      "map": "E1M7",
@@ -6141,7 +6146,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 44,
+   "place_count": 45,
    "places": [
     {
      "id": "E4M7:59",
@@ -6160,11 +6165,11 @@
      "count": 8
     },
     {
-     "id": "E1M5:392",
+     "id": "E1M5:327",
      "count": 8
     },
     {
-     "id": "E1M6:256",
+     "id": "E1M6:192",
      "count": 8
     }
    ]
@@ -6193,7 +6198,7 @@
      "map": "E1M5",
      "sector": 320,
      "id": 347,
-     "place": "E1M5:323"
+     "place": "E1M5:337"
     },
     {
      "map": "E1M6",
@@ -6233,7 +6238,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 61,
+   "place_count": 66,
    "places": [
     {
      "id": "E6M4:232",
@@ -6248,15 +6253,15 @@
      "count": 8
     },
     {
-     "id": "E4M4:233",
-     "count": 8
-    },
-    {
      "id": "E6M4:294",
      "count": 8
     },
     {
      "id": "E2M9:151",
+     "count": 7
+    },
+    {
+     "id": "E3M3:239",
      "count": 7
     }
    ]
@@ -6291,7 +6296,7 @@
      "map": "E1M5",
      "sector": 181,
      "id": 241,
-     "place": "E1M5:394"
+     "place": "E1M5:181"
     },
     {
      "map": "E1M6",
@@ -6315,7 +6320,7 @@
      "map": "E2M4",
      "sector": 347,
      "id": 652,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -6325,14 +6330,14 @@
     }
    ],
    "lessons": [],
-   "place_count": 24,
+   "place_count": 22,
    "places": [
     {
      "id": "E1M3:6",
      "count": 2
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M5:181",
      "count": 2
     },
     {
@@ -6392,7 +6397,7 @@
      "map": "E3M3",
      "sector": 13,
      "id": 263,
-     "place": "E3M3:263"
+     "place": null
     },
     {
      "map": "E3M8",
@@ -6404,13 +6409,13 @@
      "map": "E4M1",
      "sector": 205,
      "id": 206,
-     "place": "E4M1:57"
+     "place": "E4M1:205"
     },
     {
      "map": "E4M6",
      "sector": 139,
      "id": 282,
-     "place": "E4M6:382"
+     "place": null
     },
     {
      "map": "E6M1",
@@ -6426,14 +6431,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 9,
+   "place_count": 7,
    "places": [
     {
      "id": "E2M5:710",
-     "count": 1
-    },
-    {
-     "id": "E3M3:263",
      "count": 1
     },
     {
@@ -6441,15 +6442,19 @@
      "count": 1
     },
     {
-     "id": "E4M1:57",
-     "count": 1
-    },
-    {
-     "id": "E4M6:382",
+     "id": "E4M1:205",
      "count": 1
     },
     {
      "id": "E6M1:47",
+     "count": 1
+    },
+    {
+     "id": "E6M5:231",
+     "count": 1
+    },
+    {
+     "id": "E6M6:325",
      "count": 1
     }
    ],
@@ -6481,7 +6486,7 @@
      "map": "E1M2",
      "sector": 162,
      "id": 258,
-     "place": null
+     "place": "E1M2:168"
     },
     {
      "map": "E1M3",
@@ -6511,7 +6516,7 @@
      "map": "E2M4",
      "sector": 496,
      "id": 655,
-     "place": "E2M4:613"
+     "place": "E2M4:497"
     },
     {
      "map": "E2M5",
@@ -6523,12 +6528,16 @@
      "map": "E3M1",
      "sector": 156,
      "id": 800,
-     "place": "E3M1:170"
+     "place": "E3M1:171"
     }
    ],
    "lessons": [],
-   "place_count": 14,
+   "place_count": 15,
    "places": [
+    {
+     "id": "E1M2:168",
+     "count": 2
+    },
     {
      "id": "E1M3:140",
      "count": 2
@@ -6542,15 +6551,11 @@
      "count": 1
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:497",
      "count": 1
     },
     {
      "id": "E2M5:130",
-     "count": 1
-    },
-    {
-     "id": "E3M1:170",
      "count": 1
     }
    ],
@@ -6612,13 +6617,13 @@
      "map": "E3M4",
      "sector": 101,
      "id": 395,
-     "place": "E3M4:218"
+     "place": "E3M4:101"
     },
     {
      "map": "E6M3",
      "sector": 79,
      "id": 209,
-     "place": "E6M3:231"
+     "place": "E6M3:84"
     },
     {
      "map": "E6M6",
@@ -6647,11 +6652,11 @@
      "count": 1
     },
     {
-     "id": "E3M4:218",
+     "id": "E3M4:101",
      "count": 1
     },
     {
-     "id": "E6M3:231",
+     "id": "E6M3:84",
      "count": 1
     }
    ],
@@ -6689,7 +6694,7 @@
      "map": "E1M6",
      "sector": 345,
      "id": 349,
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     },
     {
      "map": "E2M4",
@@ -6707,7 +6712,7 @@
      "map": "E4M6",
      "sector": 104,
      "id": 335,
-     "place": "E4M6:214"
+     "place": "E4M6:113"
     },
     {
      "map": "E6M4",
@@ -6725,7 +6730,7 @@
      "map": "E1M6",
      "sector": 345,
      "id": 1129,
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     }
    ],
    "lessons": [],
@@ -6736,7 +6741,7 @@
      "count": 2
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:349",
      "count": 2
     },
     {
@@ -6748,7 +6753,7 @@
      "count": 1
     },
     {
-     "id": "E4M6:214",
+     "id": "E4M6:113",
      "count": 1
     },
     {
@@ -6783,7 +6788,7 @@
      "map": "E1M2",
      "sector": 75,
      "id": 677,
-     "place": "E1M2:92"
+     "place": "E1M2:70"
     },
     {
      "map": "E1M4",
@@ -6801,7 +6806,7 @@
      "map": "E1M6",
      "sector": 254,
      "id": 367,
-     "place": "E1M6:294"
+     "place": "E1M6:371"
     },
     {
      "map": "E2M1",
@@ -6819,7 +6824,7 @@
      "map": "E2M4",
      "sector": 503,
      "id": 661,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -6829,18 +6834,18 @@
     }
    ],
    "lessons": [],
-   "place_count": 13,
+   "place_count": 12,
    "places": [
     {
      "id": "E1M5:387",
      "count": 2
     },
     {
-     "id": "E1M6:294",
+     "id": "E1M6:371",
      "count": 2
     },
     {
-     "id": "E1M2:92",
+     "id": "E1M2:70",
      "count": 1
     },
     {
@@ -6852,7 +6857,7 @@
      "count": 1
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 1
     }
    ],
@@ -6891,7 +6896,7 @@
      "map": "E1M2",
      "sector": 308,
      "id": 667,
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -6915,7 +6920,7 @@
      "map": "E1M6",
      "sector": 405,
      "id": 453,
-     "place": "E1M6:256"
+     "place": null
     },
     {
      "map": "E1M7",
@@ -6927,11 +6932,11 @@
      "map": "E1M8",
      "sector": 97,
      "id": 205,
-     "place": null
+     "place": "E1M8:97"
     }
    ],
    "lessons": [],
-   "place_count": 58,
+   "place_count": 56,
    "places": [
     {
      "id": "E1M6:391",
@@ -6939,10 +6944,6 @@
     },
     {
      "id": "E1M1:82",
-     "count": 1
-    },
-    {
-     "id": "E1M2:92",
      "count": 1
     },
     {
@@ -6954,7 +6955,11 @@
      "count": 1
     },
     {
-     "id": "E1M5:305",
+     "id": "E1M5:394",
+     "count": 1
+    },
+    {
+     "id": "E1M6:349",
      "count": 1
     }
    ],
@@ -7028,15 +7033,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 187,
+   "place_count": 216,
    "places": [
     {
      "id": "E6M8:60",
      "count": 12
-    },
-    {
-     "id": "E1M6:303",
-     "count": 9
     },
     {
      "id": "E6M1:25",
@@ -7051,8 +7052,12 @@
      "count": 7
     },
     {
-     "id": "E2M4:613",
-     "count": 7
+     "id": "E1M7:44",
+     "count": 6
+    },
+    {
+     "id": "E6M9:4",
+     "count": 6
     }
    ]
   },
@@ -7074,7 +7079,7 @@
      "map": "E1M1",
      "sector": 28,
      "id": 47,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -7131,7 +7136,7 @@
      "count": 2
     },
     {
-     "id": "E1M1:122",
+     "id": "E1M1:150",
      "count": 1
     },
     {
@@ -7185,7 +7190,7 @@
      "map": "E1M4",
      "sector": 64,
      "id": 75,
-     "place": "E1M4:320"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -7197,7 +7202,7 @@
      "map": "E1M6",
      "sector": 328,
      "id": 190,
-     "place": "E1M6:303"
+     "place": "E1M6:328"
     },
     {
      "map": "E1M7",
@@ -7209,11 +7214,11 @@
      "map": "E1M8",
      "sector": 113,
      "id": 210,
-     "place": "E1M8:64"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 52,
+   "place_count": 42,
    "places": [
     {
      "id": "E1M1:88",
@@ -7224,7 +7229,7 @@
      "count": 1
     },
     {
-     "id": "E1M3:155",
+     "id": "E1M3:154",
      "count": 1
     },
     {
@@ -7311,7 +7316,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 16,
+   "place_count": 12,
    "places": [
     {
      "id": "E1M2:258",
@@ -7385,7 +7390,7 @@
      "map": "E3M8",
      "sector": 5,
      "id": 0,
-     "place": "E3M8:511"
+     "place": null
     },
     {
      "map": "E4M6",
@@ -7407,7 +7412,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 7,
+   "place_count": 6,
    "places": [
     {
      "id": "E1M4:3",
@@ -7426,11 +7431,11 @@
      "count": 1
     },
     {
-     "id": "E3M8:511",
+     "id": "E6M6:213",
      "count": 1
     },
     {
-     "id": "E6M6:213",
+     "id": "E6M8:81",
      "count": 1
     }
    ],
@@ -7469,19 +7474,19 @@
      "map": "E1M5",
      "sector": 186,
      "id": 284,
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     },
     {
      "map": "E1M6",
      "sector": 343,
      "id": 966,
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     },
     {
      "map": "E1M7",
      "sector": 11,
      "id": 67,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E2M2",
@@ -7514,15 +7519,15 @@
      "count": 1
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M5:184",
      "count": 1
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:349",
      "count": 1
     },
     {
-     "id": "E1M7:45",
+     "id": "E1M7:30",
      "count": 1
     },
     {
@@ -7555,7 +7560,7 @@
      "map": "E1M2",
      "sector": 273,
      "id": 371,
-     "place": "E1M2:164"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -7567,7 +7572,7 @@
      "map": "E1M4",
      "sector": 375,
      "id": 582,
-     "place": "E1M4:311"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -7579,34 +7584,30 @@
      "map": "E1M6",
      "sector": 301,
      "id": 579,
-     "place": "E1M6:300"
+     "place": "E1M6:301"
     },
     {
      "map": "E1M7",
      "sector": 38,
      "id": 10,
-     "place": "E1M7:45"
+     "place": "E1M7:38"
     },
     {
      "map": "E1M8",
      "sector": 111,
      "id": 262,
-     "place": "E1M8:78"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 56,
+   "place_count": 50,
    "places": [
     {
      "id": "E1M1:90",
      "count": 1
     },
     {
-     "id": "E1M2:164",
-     "count": 1
-    },
-    {
-     "id": "E1M2:92",
+     "id": "E1M2:70",
      "count": 1
     },
     {
@@ -7619,6 +7620,10 @@
     },
     {
      "id": "E1M3:96",
+     "count": 1
+    },
+    {
+     "id": "E1M4:197",
      "count": 1
     }
    ],
@@ -7671,7 +7676,7 @@
      "map": "E3M3",
      "sector": 297,
      "id": 327,
-     "place": "E3M3:15"
+     "place": null
     },
     {
      "map": "E4M2",
@@ -7693,7 +7698,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 10,
+   "place_count": 9,
    "places": [
     {
      "id": "E1M8:251",
@@ -7712,11 +7717,11 @@
      "count": 1
     },
     {
-     "id": "E3M3:15",
+     "id": "E4M2:147",
      "count": 1
     },
     {
-     "id": "E4M2:147",
+     "id": "E4M2:96",
      "count": 1
     }
    ],
@@ -7749,13 +7754,13 @@
      "map": "E1M2",
      "sector": 186,
      "id": 184,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
      "sector": 269,
      "id": 324,
-     "place": "E1M3:96"
+     "place": null
     },
     {
      "map": "E1M6",
@@ -7789,22 +7794,22 @@
     }
    ],
    "lessons": [],
-   "place_count": 29,
+   "place_count": 30,
    "places": [
     {
      "id": "E2M7:39",
      "count": 3
     },
     {
+     "id": "E4M9:200",
+     "count": 2
+    },
+    {
      "id": "E1M1:65",
      "count": 1
     },
     {
-     "id": "E1M2:92",
-     "count": 1
-    },
-    {
-     "id": "E1M3:96",
+     "id": "E1M2:14",
      "count": 1
     },
     {
@@ -7835,7 +7840,7 @@
      "map": "E1M1",
      "sector": 118,
      "id": 162,
-     "place": "E1M1:122"
+     "place": "E1M1:118"
     },
     {
      "map": "E1M3",
@@ -7871,20 +7876,20 @@
      "map": "E2M2",
      "sector": 198,
      "id": 301,
-     "place": null
+     "place": "E2M2:198"
     },
     {
      "map": "E2M4",
      "sector": 85,
      "id": 102,
-     "place": "E2M4:613"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 14,
+   "place_count": 12,
    "places": [
     {
-     "id": "E1M1:122",
+     "id": "E1M1:118",
      "count": 1
     },
     {
@@ -7904,7 +7909,7 @@
      "count": 1
     },
     {
-     "id": "E1M5:394",
+     "id": "E2M2:198",
      "count": 1
     }
    ]
@@ -7927,19 +7932,19 @@
      "map": "E1M3",
      "sector": 222,
      "id": 370,
-     "place": "E1M3:6"
+     "place": null
     },
     {
      "map": "E1M4",
      "sector": 15,
      "id": 602,
-     "place": "E1M4:320"
+     "place": null
     },
     {
      "map": "E1M5",
      "sector": 184,
      "id": 285,
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     },
     {
      "map": "E1M6",
@@ -7973,18 +7978,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 7,
+   "place_count": 5,
    "places": [
     {
-     "id": "E1M3:6",
-     "count": 1
-    },
-    {
-     "id": "E1M4:320",
-     "count": 1
-    },
-    {
-     "id": "E1M5:394",
+     "id": "E1M5:184",
      "count": 1
     },
     {
@@ -7997,6 +7994,10 @@
     },
     {
      "id": "E6M3:90",
+     "count": 1
+    },
+    {
+     "id": "E6M9:97",
      "count": 1
     }
    ],
@@ -8023,7 +8024,7 @@
      "map": "E1M1",
      "sector": 130,
      "id": 331,
-     "place": "E1M1:122"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -8041,19 +8042,19 @@
      "map": "E1M5",
      "sector": 356,
      "id": 521,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
      "sector": 42,
      "id": 967,
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E2M5",
      "sector": 510,
      "id": 985,
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     },
     {
      "map": "E3M3",
@@ -8069,12 +8070,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 11,
+   "place_count": 9,
    "places": [
-    {
-     "id": "E1M1:122",
-     "count": 1
-    },
     {
      "id": "E1M3:183",
      "count": 1
@@ -8084,15 +8081,19 @@
      "count": 1
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M5:102",
      "count": 1
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:187",
      "count": 1
     },
     {
      "id": "E2M5:330",
+     "count": 1
+    },
+    {
+     "id": "E2M5:512",
      "count": 1
     }
    ],
@@ -8128,7 +8129,7 @@
      "map": "E2M4",
      "sector": 240,
      "id": 409,
-     "place": "E2M4:613"
+     "place": "E2M4:110"
     },
     {
      "map": "E2M4",
@@ -8153,6 +8154,10 @@
    "place_count": 5,
    "places": [
     {
+     "id": "E2M4:110",
+     "count": 1
+    },
+    {
      "id": "E2M4:376",
      "count": 1
     },
@@ -8166,10 +8171,6 @@
     },
     {
      "id": "E2M4:564",
-     "count": 1
-    },
-    {
-     "id": "E2M4:613",
      "count": 1
     }
    ],
@@ -8201,7 +8202,7 @@
      "map": "E1M2",
      "sector": 260,
      "id": 673,
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -8243,14 +8244,14 @@
      "map": "E3M2",
      "sector": 169,
      "id": 771,
-     "place": "E3M2:400"
+     "place": "E3M2:169"
     }
    ],
    "lessons": [],
-   "place_count": 34,
+   "place_count": 32,
    "places": [
     {
-     "id": "E3M6:400",
+     "id": "E3M6:155",
      "count": 2
     },
     {
@@ -8258,7 +8259,7 @@
      "count": 2
     },
     {
-     "id": "E6M6:272",
+     "id": "E6M6:283",
      "count": 2
     },
     {
@@ -8266,11 +8267,11 @@
      "count": 1
     },
     {
-     "id": "E1M2:92",
+     "id": "E1M5:216",
      "count": 1
     },
     {
-     "id": "E1M5:216",
+     "id": "E1M5:394",
      "count": 1
     }
    ],
@@ -8303,7 +8304,7 @@
      "map": "E1M2",
      "sector": 310,
      "id": 207,
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -8327,7 +8328,7 @@
      "map": "E1M6",
      "sector": 492,
      "id": 946,
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E2M1",
@@ -8343,12 +8344,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 55,
+   "place_count": 54,
    "places": [
-    {
-     "id": "E2M4:613",
-     "count": 2
-    },
     {
      "id": "E3M7:125",
      "count": 2
@@ -8358,7 +8355,7 @@
      "count": 1
     },
     {
-     "id": "E1M1:122",
+     "id": "E1M1:66",
      "count": 1
     },
     {
@@ -8366,7 +8363,11 @@
      "count": 1
     },
     {
-     "id": "E1M2:92",
+     "id": "E1M3:115",
+     "count": 1
+    },
+    {
+     "id": "E1M3:140",
      "count": 1
     }
    ]
@@ -8395,7 +8396,7 @@
      "map": "E1M3",
      "sector": 201,
      "id": 368,
-     "place": "E1M3:192"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -8407,7 +8408,7 @@
      "map": "E1M6",
      "sector": 83,
      "id": 685,
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     },
     {
      "map": "E2M2",
@@ -8438,10 +8439,6 @@
    "place_count": 31,
    "places": [
     {
-     "id": "E3M5:211",
-     "count": 2
-    },
-    {
      "id": "E3M7:125",
      "count": 2
     },
@@ -8450,15 +8447,19 @@
      "count": 1
     },
     {
-     "id": "E1M3:192",
-     "count": 1
-    },
-    {
      "id": "E1M4:57",
      "count": 1
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:109",
+     "count": 1
+    },
+    {
+     "id": "E2M2:175",
+     "count": 1
+    },
+    {
+     "id": "E2M4:235",
      "count": 1
     }
    ],
@@ -8497,7 +8498,7 @@
      "map": "E2M5",
      "sector": 708,
      "id": 1033,
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     },
     {
      "map": "E3M3",
@@ -8509,7 +8510,7 @@
      "map": "E3M4",
      "sector": 72,
      "id": 629,
-     "place": "E3M4:153"
+     "place": null
     },
     {
      "map": "E3M7",
@@ -8531,7 +8532,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 16,
+   "place_count": 15,
    "places": [
     {
      "id": "E2M2:143",
@@ -8542,7 +8543,7 @@
      "count": 1
     },
     {
-     "id": "E2M5:577",
+     "id": "E2M5:512",
      "count": 1
     },
     {
@@ -8554,7 +8555,7 @@
      "count": 1
     },
     {
-     "id": "E3M4:153",
+     "id": "E3M7:125",
      "count": 1
     }
    ]
@@ -8583,7 +8584,7 @@
      "map": "E1M2",
      "sector": 260,
      "id": 355,
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -8613,7 +8614,7 @@
      "map": "E1M7",
      "sector": 52,
      "id": 73,
-     "place": null
+     "place": "E1M7:52"
     },
     {
      "map": "E1M8",
@@ -8623,14 +8624,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 38,
+   "place_count": 37,
    "places": [
     {
      "id": "E1M1:122",
-     "count": 1
-    },
-    {
-     "id": "E1M2:92",
      "count": 1
     },
     {
@@ -8646,7 +8643,11 @@
      "count": 1
     },
     {
-     "id": "E1M5:387",
+     "id": "E1M5:394",
+     "count": 1
+    },
+    {
+     "id": "E1M5:414",
      "count": 1
     }
    ],
@@ -8704,13 +8705,13 @@
      "map": "E1M6",
      "sector": 187,
      "id": 1131,
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M7",
      "sector": 29,
      "id": 217,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -8743,7 +8744,7 @@
      "count": 1
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:187",
      "count": 1
     }
    ]
@@ -8767,7 +8768,7 @@
      "map": "E1M1",
      "sector": 118,
      "id": 557,
-     "place": "E1M1:122"
+     "place": "E1M1:118"
     },
     {
      "map": "E1M2",
@@ -8791,7 +8792,7 @@
      "map": "E1M5",
      "sector": 104,
      "id": 682,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
@@ -8816,7 +8817,7 @@
    "place_count": 42,
    "places": [
     {
-     "id": "E1M1:122",
+     "id": "E1M1:118",
      "count": 1
     },
     {
@@ -8832,7 +8833,7 @@
      "count": 1
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M5:102",
      "count": 1
     },
     {
@@ -8883,7 +8884,7 @@
      "map": "E3M4",
      "sector": 101,
      "id": 569,
-     "place": "E3M4:218"
+     "place": "E3M4:101"
     },
     {
      "map": "E3M8",
@@ -8905,19 +8906,19 @@
     }
    ],
    "lessons": [],
-   "place_count": 23,
+   "place_count": 28,
    "places": [
-    {
-     "id": "E3M4:218",
-     "count": 15
-    },
     {
      "id": "E3M1:8",
      "count": 12
     },
     {
-     "id": "E6M7:443",
+     "id": "E3M4:218",
      "count": 10
+    },
+    {
+     "id": "E3M1:104",
+     "count": 8
     },
     {
      "id": "E4M4:64",
@@ -8959,7 +8960,7 @@
      "map": "E1M7",
      "sector": 29,
      "id": 216,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E2M1",
@@ -9020,7 +9021,7 @@
      "count": 2
     },
     {
-     "id": "E1M7:45",
+     "id": "E1M7:30",
      "count": 1
     },
     {
@@ -9057,13 +9058,13 @@
      "map": "E1M1",
      "sector": 150,
      "id": 7,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
      "sector": 14,
      "id": 38,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -9081,19 +9082,19 @@
      "map": "E1M5",
      "sector": 66,
      "id": 177,
-     "place": "E1M5:369"
+     "place": "E1M5:211"
     },
     {
      "map": "E1M6",
      "sector": 203,
      "id": 943,
-     "place": "E1M6:256"
+     "place": "E1M6:192"
     },
     {
      "map": "E1M7",
      "sector": 30,
      "id": 2,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -9103,10 +9104,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 204,
+   "place_count": 237,
    "places": [
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 8
     },
     {
@@ -9115,18 +9116,18 @@
     },
     {
      "id": "E1M2:92",
-     "count": 7
+     "count": 6
     },
     {
-     "id": "E1M7:45",
-     "count": 7
-    },
-    {
-     "id": "E3M4:153",
-     "count": 7
+     "id": "E1M7:30",
+     "count": 6
     },
     {
      "id": "E3M7:125",
+     "count": 6
+    },
+    {
+     "id": "E4M7:59",
      "count": 6
     }
    ]
@@ -9154,7 +9155,7 @@
      "map": "E1M2",
      "sector": 144,
      "id": 6,
-     "place": "E1M2:230"
+     "place": "E1M2:147"
     },
     {
      "map": "E1M3",
@@ -9194,7 +9195,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 216,
+   "place_count": 242,
    "places": [
     {
      "id": "E1M6:244",
@@ -9287,7 +9288,7 @@
      "map": "E1M7",
      "sector": 29,
      "id": 184,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -9303,31 +9304,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 184,
+   "place_count": 218,
    "places": [
     {
      "id": "E1M6:294",
-     "count": 21
+     "count": 19
     },
     {
      "id": "E2M7:72",
-     "count": 16
+     "count": 14
     },
     {
-     "id": "E1M6:303",
+     "id": "E2M4:333",
      "count": 12
     },
     {
-     "id": "E1M8:243",
-     "count": 12
-    },
-    {
-     "id": "E2M4:613",
-     "count": 12
-    },
-    {
-     "id": "E1M5:394",
+     "id": "E6M4:359",
      "count": 11
+    },
+    {
+     "id": "E3M6:318",
+     "count": 9
+    },
+    {
+     "id": "E1M6:256",
+     "count": 8
     }
    ],
    "set_off_by": {
@@ -9365,7 +9366,7 @@
      "map": "E1M2",
      "sector": 14,
      "id": 39,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -9389,13 +9390,13 @@
      "map": "E1M6",
      "sector": 493,
      "id": 22,
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E1M8",
      "sector": 21,
      "id": 11,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E2M1",
@@ -9405,15 +9406,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 227,
+   "place_count": 263,
    "places": [
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 26
-    },
-    {
-     "id": "E1M6:303",
-     "count": 22
     },
     {
      "id": "E1M8:390",
@@ -9424,12 +9421,16 @@
      "count": 18
     },
     {
-     "id": "E1M6:294",
-     "count": 18
+     "id": "E6M1:47",
+     "count": 17
     },
     {
-     "id": "E1M2:92",
-     "count": 17
+     "id": "E6M4:371",
+     "count": 16
+    },
+    {
+     "id": "E1M3:6",
+     "count": 13
     }
    ],
    "set_off_by": {
@@ -9464,19 +9465,19 @@
      "map": "E1M1",
      "sector": 96,
      "id": 212,
-     "place": "E1M1:122"
+     "place": null
     },
     {
      "map": "E1M2",
      "sector": 14,
      "id": 45,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
      "sector": 34,
      "id": 295,
-     "place": "E1M3:6"
+     "place": "E1M3:34"
     },
     {
      "map": "E1M4",
@@ -9510,7 +9511,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 155,
+   "place_count": 185,
    "places": [
     {
      "id": "E4M9:95",
@@ -9518,23 +9519,23 @@
     },
     {
      "id": "E1M6:294",
-     "count": 27
-    },
-    {
-     "id": "E1M6:303",
-     "count": 26
-    },
-    {
-     "id": "E1M5:394",
-     "count": 16
-    },
-    {
-     "id": "E6M3:231",
      "count": 13
     },
     {
-     "id": "E1M2:92",
+     "id": "E6M3:234",
      "count": 12
+    },
+    {
+     "id": "E1M4:311",
+     "count": 11
+    },
+    {
+     "id": "E1M2:92",
+     "count": 10
+    },
+    {
+     "id": "E1M6:349",
+     "count": 10
     }
    ],
    "set_off_by": {
@@ -9610,20 +9611,12 @@
      "map": "E3M1",
      "sector": 63,
      "id": 520,
-     "place": null
+     "place": "E3M1:63"
     }
    ],
    "lessons": [],
-   "place_count": 85,
+   "place_count": 94,
    "places": [
-    {
-     "id": "E2M4:613",
-     "count": 22
-    },
-    {
-     "id": "E2M5:577",
-     "count": 13
-    },
     {
      "id": "E4M9:95",
      "count": 10
@@ -9633,12 +9626,20 @@
      "count": 9
     },
     {
+     "id": "E2M5:577",
+     "count": 8
+    },
+    {
      "id": "E6M7:443",
      "count": 7
     },
     {
      "id": "E6M1:47",
      "count": 6
+    },
+    {
+     "id": "E2M5:512",
+     "count": 5
     }
    ],
    "starts": 2,
@@ -9714,7 +9715,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 60,
+   "place_count": 63,
    "places": [
     {
      "id": "E6M5:334",
@@ -9723,10 +9724,6 @@
     {
      "id": "E1M8:251",
      "count": 10
-    },
-    {
-     "id": "E2M7:72",
-     "count": 9
     },
     {
      "id": "E1M4:3",
@@ -9738,6 +9735,10 @@
     },
     {
      "id": "E6M6:70",
+     "count": 7
+    },
+    {
+     "id": "E6M7:380",
      "count": 7
     }
    ],
@@ -9815,12 +9816,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 83,
+   "place_count": 91,
    "places": [
-    {
-     "id": "E2M7:72",
-     "count": 10
-    },
     {
      "id": "E4M5:245",
      "count": 8
@@ -9831,6 +9828,10 @@
     },
     {
      "id": "E1M7:45",
+     "count": 6
+    },
+    {
+     "id": "E2M7:72",
      "count": 6
     },
     {
@@ -9877,7 +9878,7 @@
      "map": "E2M4",
      "sector": 210,
      "id": 403,
-     "place": "E2M4:613"
+     "place": "E2M4:266"
     },
     {
      "map": "E2M5",
@@ -9907,7 +9908,7 @@
      "map": "E3M6",
      "sector": 384,
      "id": 631,
-     "place": "E3M6:367"
+     "place": "E3M6:391"
     },
     {
      "map": "E4M6",
@@ -9936,7 +9937,7 @@
      "count": 2
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:266",
      "count": 1
     },
     {
@@ -9979,13 +9980,13 @@
      "map": "E1M5",
      "sector": 103,
      "id": 490,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
      "sector": 51,
      "id": 1064,
-     "place": "E1M6:256"
+     "place": "E1M6:49"
     },
     {
      "map": "E1M8",
@@ -10015,30 +10016,30 @@
      "map": "E3M4",
      "sector": 183,
      "id": 402,
-     "place": "E3M4:153"
+     "place": "E3M4:207"
     }
    ],
    "lessons": [],
-   "place_count": 20,
+   "place_count": 19,
    "places": [
     {
      "id": "E2M4:427",
      "count": 6
     },
     {
-     "id": "E3M4:153",
-     "count": 5
-    },
-    {
-     "id": "E1M6:256",
+     "id": "E1M6:328",
      "count": 4
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:49",
      "count": 4
     },
     {
      "id": "E2M4:577",
+     "count": 4
+    },
+    {
+     "id": "E3M4:153",
      "count": 4
     },
     {
@@ -10086,13 +10087,13 @@
      "map": "E4M5",
      "sector": 102,
      "id": 293,
-     "place": "E4M5:245"
+     "place": null
     },
     {
      "map": "E4M6",
      "sector": 372,
      "id": 198,
-     "place": "E4M6:337"
+     "place": null
     },
     {
      "map": "E6M2",
@@ -10110,26 +10111,18 @@
      "map": "E4M6",
      "sector": 373,
      "id": 199,
-     "place": "E4M6:337"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 6,
+   "place_count": 4,
    "places": [
-    {
-     "id": "E4M6:337",
-     "count": 2
-    },
     {
      "id": "E2M5:464",
      "count": 1
     },
     {
      "id": "E4M2:247",
-     "count": 1
-    },
-    {
-     "id": "E4M5:245",
      "count": 1
     },
     {
@@ -10179,7 +10172,7 @@
      "map": "E1M3",
      "sector": 66,
      "id": 34,
-     "place": "E1M3:115"
+     "place": "E1M3:66"
     },
     {
      "map": "E1M4",
@@ -10197,7 +10190,7 @@
      "map": "E1M6",
      "sector": 42,
      "id": 9,
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M7",
@@ -10213,7 +10206,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 123,
+   "place_count": 137,
    "places": [
     {
      "id": "E3M4:334",
@@ -10287,7 +10280,7 @@
      "map": "E2M7",
      "sector": 366,
      "id": 515,
-     "place": null
+     "place": "E2M7:366"
     },
     {
      "map": "E2M9",
@@ -10317,19 +10310,15 @@
      "map": "E3M6",
      "sector": 83,
      "id": 716,
-     "place": "E3M6:105"
+     "place": "E3M6:57"
     }
    ],
    "lessons": [],
-   "place_count": 38,
+   "place_count": 39,
    "places": [
     {
-     "id": "E3M8:511",
+     "id": "E3M8:603",
      "count": 5
-    },
-    {
-     "id": "E2M5:577",
-     "count": 4
     },
     {
      "id": "E3M8:429",
@@ -10344,7 +10333,11 @@
      "count": 2
     },
     {
-     "id": "E2M5:710",
+     "id": "E2M5:512",
+     "count": 2
+    },
+    {
+     "id": "E2M5:577",
      "count": 2
     }
    ],
@@ -10397,7 +10390,7 @@
      "map": "E3M5",
      "sector": 21,
      "id": 234,
-     "place": "E3M5:211"
+     "place": "E3M5:55"
     },
     {
      "map": "E3M6",
@@ -10419,7 +10412,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 56,
+   "place_count": 62,
    "places": [
     {
      "id": "E4M9:95",
@@ -10434,16 +10427,16 @@
      "count": 8
     },
     {
-     "id": "E6M3:231",
-     "count": 8
+     "id": "E3M2:450",
+     "count": 5
     },
     {
-     "id": "E3M4:153",
-     "count": 6
+     "id": "E4M2:101",
+     "count": 5
     },
     {
-     "id": "E4M2:247",
-     "count": 6
+     "id": "E4M5:190",
+     "count": 5
     }
    ],
    "set_off_by": {
@@ -10479,7 +10472,7 @@
      "map": "E2M5",
      "sector": 649,
      "id": 561,
-     "place": "E2M5:642"
+     "place": null
     },
     {
      "map": "E2M6",
@@ -10497,7 +10490,7 @@
      "map": "E3M1",
      "sector": 92,
      "id": 773,
-     "place": null
+     "place": "E3M1:98"
     },
     {
      "map": "E3M2",
@@ -10509,18 +10502,18 @@
      "map": "E3M3",
      "sector": 42,
      "id": 412,
-     "place": "E3M3:15"
+     "place": "E3M3:43"
     }
    ],
    "lessons": [],
    "place_count": 43,
    "places": [
     {
-     "id": "E4M7:59",
-     "count": 10
+     "id": "E4M4:158",
+     "count": 6
     },
     {
-     "id": "E4M4:158",
+     "id": "E4M7:59",
      "count": 6
     },
     {
@@ -10532,7 +10525,7 @@
      "count": 5
     },
     {
-     "id": "E4M1:57",
+     "id": "E4M1:152",
      "count": 5
     },
     {
@@ -10571,7 +10564,7 @@
      "map": "E2M3",
      "sector": 106,
      "id": 69,
-     "place": "E2M3:91"
+     "place": null
     },
     {
      "map": "E2M4",
@@ -10605,7 +10598,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 26,
+   "place_count": 23,
    "places": [
     {
      "id": "E4M4:57",
@@ -10616,19 +10609,19 @@
      "count": 7
     },
     {
-     "id": "E4M3:94",
-     "count": 6
-    },
-    {
-     "id": "E6M5:327",
-     "count": 5
-    },
-    {
      "id": "E6M9:4",
      "count": 5
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:336",
+     "count": 4
+    },
+    {
+     "id": "E2M7:299",
+     "count": 4
+    },
+    {
+     "id": "E4M3:94",
      "count": 4
     }
    ]
@@ -10681,7 +10674,7 @@
      "map": "E3M1",
      "sector": 240,
      "id": 544,
-     "place": null
+     "place": "E3M1:104"
     },
     {
      "map": "E3M3",
@@ -10693,14 +10686,14 @@
      "map": "E3M8",
      "sector": 270,
      "id": 139,
-     "place": "E3M8:220"
+     "place": null
     }
    ],
    "lessons": [],
    "place_count": 17,
    "places": [
     {
-     "id": "E4M2:247",
+     "id": "E4M2:33",
      "count": 6
     },
     {
@@ -10755,7 +10748,7 @@
      "map": "E4M2",
      "sector": 33,
      "id": 114,
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M4",
@@ -10796,7 +10789,7 @@
      "count": 3
     },
     {
-     "id": "E4M6:214",
+     "id": "E4M6:113",
      "count": 3
     },
     {
@@ -10808,7 +10801,7 @@
      "count": 1
     },
     {
-     "id": "E4M2:247",
+     "id": "E4M2:33",
      "count": 1
     },
     {
@@ -10843,7 +10836,7 @@
      "map": "E2M1",
      "sector": 27,
      "id": 216,
-     "place": "E2M1:37"
+     "place": "E2M1:27"
     },
     {
      "map": "E2M3",
@@ -10889,7 +10882,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 32,
+   "place_count": 34,
    "places": [
     {
      "id": "E4M4:233",
@@ -10908,12 +10901,12 @@
      "count": 5
     },
     {
-     "id": "E4M4:111",
+     "id": "E4M4:207",
      "count": 5
     },
     {
-     "id": "E4M4:207",
-     "count": 5
+     "id": "E2M1:134",
+     "count": 4
     }
    ]
   },
@@ -10959,7 +10952,7 @@
      "map": "E2M1",
      "sector": 27,
      "id": 211,
-     "place": "E2M1:37"
+     "place": "E2M1:27"
     },
     {
      "map": "E2M3",
@@ -10981,7 +10974,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 20,
+   "place_count": 24,
    "places": [
     {
      "id": "E6M4:133",
@@ -10996,16 +10989,16 @@
      "count": 11
     },
     {
-     "id": "E1M8:245",
-     "count": 11
-    },
-    {
-     "id": "E1M5:323",
-     "count": 10
-    },
-    {
      "id": "E1M6:258",
      "count": 10
+    },
+    {
+     "id": "E1M8:245",
+     "count": 8
+    },
+    {
+     "id": "E3M3:239",
+     "count": 8
     }
    ]
   },
@@ -11026,13 +11019,13 @@
      "map": "E1M1",
      "sector": 133,
      "id": 202,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
      "sector": 144,
      "id": 274,
-     "place": "E1M2:230"
+     "place": "E1M2:147"
     },
     {
      "map": "E1M6",
@@ -11044,7 +11037,7 @@
      "map": "E2M7",
      "sector": 348,
      "id": 626,
-     "place": null
+     "place": "E2M7:348"
     },
     {
      "map": "E2M9",
@@ -11072,7 +11065,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 10,
+   "place_count": 11,
    "places": [
     {
      "id": "E4M4:48",
@@ -11091,7 +11084,7 @@
      "count": 5
     },
     {
-     "id": "E1M2:230",
+     "id": "E1M2:147",
      "count": 4
     },
     {
@@ -11249,13 +11242,13 @@
      "map": "E1M5",
      "sector": 201,
      "id": 403,
-     "place": "E1M5:149"
+     "place": null
     },
     {
      "map": "E1M6",
      "sector": 424,
      "id": 688,
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     },
     {
      "map": "E1M8",
@@ -11267,18 +11260,18 @@
      "map": "E2M1",
      "sector": 85,
      "id": 250,
-     "place": "E2M1:112"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 21,
+   "place_count": 18,
    "places": [
     {
      "id": "E1M1:122",
      "count": 12
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:109",
      "count": 12
     },
     {
@@ -11290,12 +11283,12 @@
      "count": 7
     },
     {
-     "id": "E1M5:149",
-     "count": 6
+     "id": "E1M1:82",
+     "count": 5
     },
     {
-     "id": "E2M1:112",
-     "count": 6
+     "id": "E1M3:125",
+     "count": 5
     }
    ]
   },
@@ -11666,7 +11659,7 @@
      "map": "E4M8",
      "sector": 29,
      "id": 33,
-     "place": "E4M8:64"
+     "place": "E4M8:29"
     }
    ],
    "lessons": [],
@@ -11681,7 +11674,7 @@
      "count": 1
     },
     {
-     "id": "E4M8:64",
+     "id": "E4M8:29",
      "count": 1
     }
    ],
@@ -11782,13 +11775,13 @@
      "map": "E3M2",
      "sector": 516,
      "id": 879,
-     "place": "E3M2:537"
+     "place": "E3M2:516"
     },
     {
      "map": "E3M5",
      "sector": 244,
      "id": 402,
-     "place": "E3M5:211"
+     "place": "E3M5:170"
     },
     {
      "map": "E4M2",
@@ -11818,7 +11811,7 @@
      "map": "E6M3",
      "sector": 157,
      "id": 460,
-     "place": "E6M3:163"
+     "place": "E6M3:157"
     },
     {
      "map": "E6M7",
@@ -11851,7 +11844,7 @@
      "count": 1
     },
     {
-     "id": "E3M2:537",
+     "id": "E3M2:516",
      "count": 1
     }
    ],
@@ -11902,7 +11895,7 @@
      "map": "E4M6",
      "sector": 154,
      "id": 520,
-     "place": "E4M6:382"
+     "place": "E4M6:154"
     },
     {
      "map": "E6M1",
@@ -11924,12 +11917,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 11,
+   "place_count": 12,
    "places": [
-    {
-     "id": "E3M4:153",
-     "count": 8
-    },
     {
      "id": "E3M3:210",
      "count": 5
@@ -11947,8 +11936,12 @@
      "count": 4
     },
     {
-     "id": "E3M3:15",
+     "id": "E3M3:265",
      "count": 3
+    },
+    {
+     "id": "E3M4:267",
+     "count": 2
     }
    ],
    "set_off_by": {
@@ -11993,13 +11986,13 @@
      "map": "E2M2",
      "sector": 33,
      "id": 398,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M4",
      "sector": 333,
      "id": 936,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -12027,7 +12020,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 46,
+   "place_count": 48,
    "places": [
     {
      "id": "E4M9:95",
@@ -12088,7 +12081,7 @@
      "map": "E4M2",
      "sector": 216,
      "id": 110,
-     "place": "E4M2:247"
+     "place": "E4M2:216"
     },
     {
      "map": "E4M3",
@@ -12118,7 +12111,7 @@
      "map": "E6M3",
      "sector": 234,
      "id": 427,
-     "place": "E6M3:231"
+     "place": "E6M3:234"
     },
     {
      "map": "E3M2",
@@ -12128,7 +12121,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 8,
+   "place_count": 9,
    "places": [
     {
      "id": "E3M2:216",
@@ -12139,20 +12132,20 @@
      "count": 3
     },
     {
-     "id": "E4M2:247",
-     "count": 2
-    },
-    {
      "id": "E6M1:47",
      "count": 2
     },
     {
-     "id": "E6M3:163",
+     "id": "E6M3:157",
      "count": 2
     },
     {
-     "id": "E6M3:231",
+     "id": "E6M3:234",
      "count": 2
+    },
+    {
+     "id": "E4M2:216",
+     "count": 1
     }
    ],
    "set_off_by": {
@@ -12195,13 +12188,13 @@
      "map": "E6M4",
      "sector": 151,
      "id": 49,
-     "place": "E6M4:159"
+     "place": null
     },
     {
      "map": "E6M5",
      "sector": 195,
      "id": 76,
-     "place": "E6M5:24"
+     "place": "E6M5:195"
     },
     {
      "map": "E6M6",
@@ -12223,12 +12216,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 29,
+   "place_count": 34,
    "places": [
-    {
-     "id": "E6M3:231",
-     "count": 6
-    },
     {
      "id": "E6M9:139",
      "count": 6
@@ -12239,14 +12228,18 @@
     },
     {
      "id": "E6M6:213",
-     "count": 5
-    },
-    {
-     "id": "E6M7:443",
      "count": 4
     },
     {
-     "id": "E6M2:7",
+     "id": "E6M3:231",
+     "count": 3
+    },
+    {
+     "id": "E6M6:128",
+     "count": 3
+    },
+    {
+     "id": "E6M7:433",
      "count": 3
     }
    ],
@@ -12324,14 +12317,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 36,
+   "place_count": 37,
    "places": [
     {
-     "id": "E6M3:231",
-     "count": 4
-    },
-    {
-     "id": "E6M6:272",
+     "id": "E6M3:234",
      "count": 4
     },
     {
@@ -12348,6 +12337,10 @@
     },
     {
      "id": "E6M6:128",
+     "count": 3
+    },
+    {
+     "id": "E6M6:137",
      "count": 3
     }
    ]
@@ -12438,7 +12431,7 @@
      "map": "E1M3",
      "sector": 71,
      "id": 19,
-     "place": "E1M3:96"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -12456,13 +12449,13 @@
      "map": "E1M6",
      "sector": 169,
      "id": 32,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M8",
      "sector": 41,
      "id": 12,
-     "place": "E1M8:243"
+     "place": "E1M8:40"
     },
     {
      "map": "E2M1",
@@ -12472,18 +12465,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 136,
+   "place_count": 171,
    "places": [
     {
-     "id": "E3M4:153",
-     "count": 25
-    },
-    {
      "id": "E2M9:76",
-     "count": 20
-    },
-    {
-     "id": "E1M8:243",
      "count": 15
     },
     {
@@ -12491,12 +12476,20 @@
      "count": 15
     },
     {
-     "id": "E1M3:96",
+     "id": "E2M1:125",
      "count": 12
     },
     {
-     "id": "E2M1:125",
+     "id": "E2M9:138",
      "count": 12
+    },
+    {
+     "id": "E1M3:96",
+     "count": 10
+    },
+    {
+     "id": "E1M4:43",
+     "count": 9
     }
    ]
   },
@@ -12517,7 +12510,7 @@
      "map": "E1M1",
      "sector": 38,
      "id": 57,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M4",
@@ -12535,7 +12528,7 @@
      "map": "E1M6",
      "sector": 39,
      "id": 10,
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M7",
@@ -12547,7 +12540,7 @@
      "map": "E2M1",
      "sector": 235,
      "id": 40,
-     "place": null
+     "place": "E2M1:235"
     },
     {
      "map": "E2M3",
@@ -12559,26 +12552,18 @@
      "map": "E2M4",
      "sector": 365,
      "id": 9,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ],
    "lessons": [],
-   "place_count": 92,
+   "place_count": 101,
    "places": [
-    {
-     "id": "E1M6:294",
-     "count": 16
-    },
     {
      "id": "E3M8:566",
      "count": 15
     },
     {
-     "id": "E4M2:247",
-     "count": 14
-    },
-    {
-     "id": "E2M4:613",
+     "id": "E1M6:294",
      "count": 10
     },
     {
@@ -12587,6 +12572,14 @@
     },
     {
      "id": "E1M4:210",
+     "count": 8
+    },
+    {
+     "id": "E1M7:44",
+     "count": 8
+    },
+    {
+     "id": "E2M4:333",
      "count": 8
     }
    ],
@@ -12617,13 +12610,13 @@
      "map": "E1M5",
      "sector": 17,
      "id": 1,
-     "place": "E1M5:369"
+     "place": null
     },
     {
      "map": "E1M6",
      "sector": 345,
      "id": 345,
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     },
     {
      "map": "E2M4",
@@ -12663,15 +12656,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 27,
+   "place_count": 24,
    "places": [
     {
-     "id": "E1M5:394",
+     "id": "E1M5:71",
      "count": 30
-    },
-    {
-     "id": "E1M5:369",
-     "count": 12
     },
     {
      "id": "E3M4:286",
@@ -12682,12 +12671,16 @@
      "count": 6
     },
     {
-     "id": "E2M5:577",
+     "id": "E2M7:101",
      "count": 5
     },
     {
-     "id": "E2M7:101",
-     "count": 5
+     "id": "E1M6:349",
+     "count": 4
+    },
+    {
+     "id": "E2M4:564",
+     "count": 4
     }
    ]
   },
@@ -12738,13 +12731,13 @@
      "map": "E1M6",
      "sector": 169,
      "id": 33,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M8",
      "sector": 40,
      "id": 13,
-     "place": "E1M8:243"
+     "place": "E1M8:40"
     },
     {
      "map": "E2M1",
@@ -12754,18 +12747,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 130,
+   "place_count": 164,
    "places": [
     {
-     "id": "E3M4:153",
-     "count": 25
-    },
-    {
      "id": "E2M9:76",
-     "count": 19
-    },
-    {
-     "id": "E1M8:243",
      "count": 16
     },
     {
@@ -12779,6 +12764,14 @@
     {
      "id": "E2M9:138",
      "count": 12
+    },
+    {
+     "id": "E1M4:43",
+     "count": 9
+    },
+    {
+     "id": "E3M2:16",
+     "count": 8
     }
    ]
   },
@@ -12812,13 +12805,13 @@
      "map": "E1M5",
      "sector": 221,
      "id": 286,
-     "place": "E1M5:394"
+     "place": null
     },
     {
      "map": "E1M6",
      "sector": 491,
      "id": 509,
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E1M8",
@@ -12846,14 +12839,14 @@
     }
    ],
    "lessons": [],
-   "place_count": 46,
+   "place_count": 47,
    "places": [
     {
      "id": "E1M8:94",
      "count": 10
     },
     {
-     "id": "E2M9:10",
+     "id": "E2M9:4",
      "count": 9
     },
     {
@@ -12861,7 +12854,7 @@
      "count": 6
     },
     {
-     "id": "E6M4:281",
+     "id": "E6M4:371",
      "count": 6
     },
     {
@@ -12909,26 +12902,26 @@
      "map": "E1M6",
      "sector": 110,
      "id": 164,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 110,
      "id": 617,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 110,
      "id": 618,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     }
    ],
    "lessons": [],
    "place_count": 3,
    "places": [
     {
-     "id": "E1M6:294",
+     "id": "E1M6:108",
      "count": 3
     },
     {
@@ -12964,13 +12957,13 @@
      "map": "E1M4",
      "sector": 170,
      "id": 204,
-     "place": null
+     "place": "E1M4:170"
     },
     {
      "map": "E2M4",
      "sector": 535,
      "id": 701,
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     },
     {
      "map": "E3M6",
@@ -12982,13 +12975,13 @@
      "map": "E6M3",
      "sector": 122,
      "id": 10,
-     "place": "E6M3:231"
+     "place": "E6M3:126"
     },
     {
      "map": "E6M4",
      "sector": 59,
      "id": 85,
-     "place": null
+     "place": "E6M4:59"
     },
     {
      "map": "E1M2",
@@ -13004,7 +12997,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 15,
+   "place_count": 18,
    "places": [
     {
      "id": "E1M2:92",
@@ -13019,15 +13012,15 @@
      "count": 2
     },
     {
-     "id": "E3M6:105",
-     "count": 2
-    },
-    {
      "id": "E3M6:318",
      "count": 2
     },
     {
      "id": "E6M4:359",
+     "count": 2
+    },
+    {
+     "id": "E6M4:75",
      "count": 2
     }
    ],
@@ -13076,7 +13069,7 @@
      "map": "E1M3",
      "sector": 203,
      "id": 318,
-     "place": "E1M3:96"
+     "place": "E1M3:209"
     },
     {
      "map": "E1M4",
@@ -13088,7 +13081,7 @@
      "map": "E1M5",
      "sector": 221,
      "id": 217,
-     "place": "E1M5:394"
+     "place": null
     },
     {
      "map": "E1M6",
@@ -13100,7 +13093,7 @@
      "map": "E1M8",
      "sector": 22,
      "id": 21,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E2M1",
@@ -13110,23 +13103,15 @@
     }
    ],
    "lessons": [],
-   "place_count": 77,
+   "place_count": 80,
    "places": [
     {
      "id": "E3M1:8",
-     "count": 6
+     "count": 5
     },
     {
      "id": "E1M1:122",
      "count": 4
-    },
-    {
-     "id": "E1M8:390",
-     "count": 3
-    },
-    {
-     "id": "E6M3:231",
-     "count": 3
     },
     {
      "id": "E1M2:188",
@@ -13134,6 +13119,14 @@
     },
     {
      "id": "E1M2:301",
+     "count": 2
+    },
+    {
+     "id": "E1M6:328",
+     "count": 2
+    },
+    {
+     "id": "E1M8:389",
      "count": 2
     }
    ],
@@ -13174,7 +13167,7 @@
      "map": "E1M2",
      "sector": 14,
      "id": 370,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -13214,10 +13207,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 101,
+   "place_count": 102,
    "places": [
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 3
     },
     {
@@ -13225,20 +13218,20 @@
      "count": 3
     },
     {
-     "id": "E1M2:92",
-     "count": 2
-    },
-    {
      "id": "E1M4:320",
      "count": 2
     },
     {
-     "id": "E1M7:45",
+     "id": "E4M7:59",
      "count": 2
     },
     {
-     "id": "E4M1:57",
+     "id": "E4M9:95",
      "count": 2
+    },
+    {
+     "id": "E1M1:122",
+     "count": 1
     }
    ],
    "starts": 3,
@@ -13264,7 +13257,7 @@
      "map": "E1M8",
      "sector": 142,
      "id": 582,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E2M5",
@@ -13294,7 +13287,7 @@
      "map": "E2M5",
      "sector": 683,
      "id": 628,
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     },
     {
      "map": "E2M8",
@@ -13310,18 +13303,22 @@
     }
    ],
    "lessons": [],
-   "place_count": 6,
+   "place_count": 7,
    "places": [
     {
      "id": "E2M8:3",
      "count": 4
     },
     {
-     "id": "E2M5:577",
-     "count": 2
+     "id": "E1M8:389",
+     "count": 1
     },
     {
-     "id": "E1M8:243",
+     "id": "E2M5:512",
+     "count": 1
+    },
+    {
+     "id": "E2M5:577",
      "count": 1
     },
     {
@@ -13330,10 +13327,6 @@
     },
     {
      "id": "E6M6:229",
-     "count": 1
-    },
-    {
-     "id": "E6M6:232",
      "count": 1
     }
    ],
@@ -13627,13 +13620,13 @@
      "map": "E1M6",
      "sector": 351,
      "id": 350,
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     },
     {
      "map": "E1M7",
      "sector": 29,
      "id": 112,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -13643,31 +13636,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 237,
+   "place_count": 289,
    "places": [
     {
-     "id": "E1M8:243",
-     "count": 80
-    },
-    {
-     "id": "E1M1:122",
-     "count": 63
-    },
-    {
      "id": "E1M8:390",
-     "count": 57
-    },
-    {
-     "id": "E3M4:153",
-     "count": 56
+     "count": 52
     },
     {
      "id": "E1M4:321",
      "count": 49
     },
     {
-     "id": "E2M5:577",
-     "count": 49
+     "id": "E1M4:320",
+     "count": 47
+    },
+    {
+     "id": "E1M1:122",
+     "count": 43
+    },
+    {
+     "id": "E1M8:243",
+     "count": 42
+    },
+    {
+     "id": "E3M2:450",
+     "count": 42
     }
    ],
    "set_off_by": {
@@ -13736,7 +13729,7 @@
      "map": "E1M6",
      "sector": 27,
      "id": 7,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M8",
@@ -13752,31 +13745,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 267,
+   "place_count": 308,
    "places": [
-    {
-     "id": "E2M4:613",
-     "count": 97
-    },
-    {
-     "id": "E2M5:577",
-     "count": 87
-    },
-    {
-     "id": "E1M8:243",
-     "count": 84
-    },
     {
      "id": "E4M6:268",
      "count": 62
     },
     {
-     "id": "E4M9:95",
+     "id": "E2M4:333",
      "count": 59
     },
     {
-     "id": "E3M4:153",
-     "count": 54
+     "id": "E4M9:95",
+     "count": 57
+    },
+    {
+     "id": "E1M8:389",
+     "count": 50
+    },
+    {
+     "id": "E6M2:14",
+     "count": 46
+    },
+    {
+     "id": "E2M5:577",
+     "count": 43
     }
    ],
    "set_off_by": {
@@ -13839,7 +13832,7 @@
      "map": "E1M5",
      "sector": 88,
      "id": 57,
-     "place": null
+     "place": "E1M5:88"
     },
     {
      "map": "E1M6",
@@ -13861,22 +13854,18 @@
     }
    ],
    "lessons": [],
-   "place_count": 75,
+   "place_count": 78,
    "places": [
     {
      "id": "E2M1:125",
      "count": 2
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 2
     },
     {
      "id": "E2M7:72",
-     "count": 2
-    },
-    {
-     "id": "E3M3:15",
      "count": 2
     },
     {
@@ -13886,6 +13875,10 @@
     {
      "id": "E4M7:59",
      "count": 2
+    },
+    {
+     "id": "E1M1:66",
+     "count": 1
     }
    ],
    "starts": 1,
@@ -14004,13 +13997,13 @@
      "map": "E1M6",
      "sector": 328,
      "id": 960,
-     "place": "E1M6:303"
+     "place": "E1M6:328"
     },
     {
      "map": "E1M7",
      "sector": 8,
      "id": 25,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -14020,7 +14013,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 73,
+   "place_count": 74,
    "places": [
     {
      "id": "E1M3:316",
@@ -14031,19 +14024,19 @@
      "count": 2
     },
     {
-     "id": "E3M4:153",
-     "count": 2
-    },
-    {
-     "id": "E4M2:247",
-     "count": 2
-    },
-    {
      "id": "E6M2:14",
      "count": 2
     },
     {
      "id": "E1M1:65",
+     "count": 1
+    },
+    {
+     "id": "E1M1:87",
+     "count": 1
+    },
+    {
+     "id": "E1M2:207",
      "count": 1
     }
    ]
@@ -14073,7 +14066,7 @@
      "map": "E1M7",
      "sector": 30,
      "id": 198,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E2M1",
@@ -14097,7 +14090,7 @@
      "map": "E2M4",
      "sector": 605,
      "id": 904,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -14116,19 +14109,11 @@
    "place_count": 50,
    "places": [
     {
-     "id": "E2M4:613",
-     "count": 2
-    },
-    {
-     "id": "E3M4:153",
-     "count": 2
-    },
-    {
      "id": "E1M2:92",
      "count": 1
     },
     {
-     "id": "E1M7:45",
+     "id": "E1M7:30",
      "count": 1
     },
     {
@@ -14137,6 +14122,14 @@
     },
     {
      "id": "E2M2:97",
+     "count": 1
+    },
+    {
+     "id": "E2M3:275",
+     "count": 1
+    },
+    {
+     "id": "E2M4:333",
      "count": 1
     }
    ],
@@ -14163,7 +14156,7 @@
      "map": "E1M6",
      "sector": 316,
      "id": 304,
-     "place": "E1M6:303"
+     "place": null
     },
     {
      "map": "E2M6",
@@ -14181,19 +14174,19 @@
      "map": "E3M5",
      "sector": 135,
      "id": 72,
-     "place": "E3M5:3"
+     "place": null
     },
     {
      "map": "E3M7",
      "sector": 97,
      "id": 64,
-     "place": "E3M7:125"
+     "place": null
     },
     {
      "map": "E1M6",
      "sector": 316,
      "id": 305,
-     "place": "E1M6:303"
+     "place": null
     },
     {
      "map": "E3M4",
@@ -14205,35 +14198,35 @@
      "map": "E3M5",
      "sector": 135,
      "id": 73,
-     "place": "E3M5:3"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 7,
+   "place_count": 6,
    "places": [
     {
-     "id": "E1M6:303",
-     "count": 14
+     "id": "E1M6:354",
+     "count": 6
     },
     {
-     "id": "E3M7:125",
-     "count": 8
-    },
-    {
-     "id": "E1M6:294",
-     "count": 7
-    },
-    {
-     "id": "E3M4:391",
-     "count": 3
-    },
-    {
-     "id": "E3M5:3",
-     "count": 3
+     "id": "E3M4:342",
+     "count": 2
     },
     {
      "id": "E3M4:350",
      "count": 2
+    },
+    {
+     "id": "E1M6:294",
+     "count": 1
+    },
+    {
+     "id": "E2M6:188",
+     "count": 1
+    },
+    {
+     "id": "E3M4:391",
+     "count": 1
     }
    ],
    "set_off_by": {
@@ -14259,7 +14252,7 @@
      "map": "E2M2",
      "sector": 34,
      "id": 55,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M5",
@@ -14271,48 +14264,48 @@
      "map": "E4M1",
      "sector": 188,
      "id": 357,
-     "place": "E4M1:57"
+     "place": "E4M1:152"
     },
     {
      "map": "E2M2",
      "sector": 34,
      "id": 56,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E4M1",
      "sector": 188,
      "id": 358,
-     "place": "E4M1:57"
+     "place": "E4M1:152"
     },
     {
      "map": "E2M2",
      "sector": 34,
      "id": 57,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M2",
      "sector": 34,
      "id": 58,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M2",
      "sector": 34,
      "id": 59,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     }
    ],
    "lessons": [],
    "place_count": 3,
    "places": [
     {
-     "id": "E2M2:50",
+     "id": "E2M2:33",
      "count": 10
     },
     {
-     "id": "E4M1:57",
+     "id": "E4M1:152",
      "count": 2
     },
     {
@@ -14433,7 +14426,7 @@
      "map": "E1M8",
      "sector": 56,
      "id": 32,
-     "place": "E1M8:243"
+     "place": "E1M8:272"
     },
     {
      "map": "E3M4",
@@ -14446,7 +14439,7 @@
    "place_count": 2,
    "places": [
     {
-     "id": "E1M8:243",
+     "id": "E1M8:272",
      "count": 1
     },
     {
@@ -14471,17 +14464,12 @@
      "map": "E3M4",
      "sector": 258,
      "id": 172,
-     "place": "E3M4:252"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 1,
-   "places": [
-    {
-     "id": "E3M4:252",
-     "count": 1
-    }
-   ]
+   "place_count": 0,
+   "places": []
   },
   "sprite:459": {
    "kind": "sprite type",
@@ -14506,13 +14494,13 @@
      "map": "E1M2",
      "sector": 14,
      "id": 0,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
      "sector": 65,
      "id": 37,
-     "place": "E1M3:115"
+     "place": "E1M3:69"
     },
     {
      "map": "E1M4",
@@ -14542,22 +14530,22 @@
      "map": "E1M8",
      "sector": 389,
      "id": 348,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ],
    "lessons": [],
-   "place_count": 109,
+   "place_count": 128,
    "places": [
     {
      "id": "E3M1:8",
-     "count": 162
+     "count": 160
     },
     {
      "id": "E6M4:281",
-     "count": 120
+     "count": 57
     },
     {
-     "id": "E3M6:335",
+     "id": "E6M4:371",
      "count": 50
     },
     {
@@ -14569,8 +14557,8 @@
      "count": 47
     },
     {
-     "id": "E1M3:115",
-     "count": 45
+     "id": "E3M7:125",
+     "count": 37
     }
    ],
    "set_off_by": {
@@ -14646,7 +14634,7 @@
      "map": "E1M7",
      "sector": 2,
      "id": 1,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -14658,14 +14646,6 @@
    "lessons": [],
    "place_count": 58,
    "places": [
-    {
-     "id": "E1M5:394",
-     "count": 2
-    },
-    {
-     "id": "E2M4:613",
-     "count": 2
-    },
     {
      "id": "E1M1:112",
      "count": 1
@@ -14680,6 +14660,14 @@
     },
     {
      "id": "E1M3:115",
+     "count": 1
+    },
+    {
+     "id": "E1M3:31",
+     "count": 1
+    },
+    {
+     "id": "E1M4:331",
      "count": 1
     }
    ],
@@ -14708,13 +14696,13 @@
      "map": "E1M1",
      "sector": 149,
      "id": 39,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
      "sector": 14,
      "id": 24,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -14732,7 +14720,7 @@
      "map": "E1M5",
      "sector": 232,
      "id": 49,
-     "place": "E1M5:237"
+     "place": "E1M5:232"
     },
     {
      "map": "E1M6",
@@ -14754,30 +14742,30 @@
     }
    ],
    "lessons": [],
-   "place_count": 89,
+   "place_count": 97,
    "places": [
     {
      "id": "E2M5:577",
-     "count": 16
-    },
-    {
-     "id": "E4M2:247",
      "count": 12
-    },
-    {
-     "id": "E2M4:613",
-     "count": 10
     },
     {
      "id": "E1M4:352",
      "count": 9
     },
     {
+     "id": "E2M4:333",
+     "count": 8
+    },
+    {
+     "id": "E4M2:33",
+     "count": 7
+    },
+    {
      "id": "E1M2:3",
      "count": 4
     },
     {
-     "id": "E2M5:634",
+     "id": "E2M5:512",
      "count": 4
     }
    ]
@@ -14847,7 +14835,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 22,
+   "place_count": 21,
    "places": [
     {
      "id": "E2M2:223",
@@ -14943,7 +14931,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 14,
+   "place_count": 13,
    "places": [
     {
      "id": "E4M6:456",
@@ -15036,14 +15024,14 @@
     }
    ],
    "lessons": [],
-   "place_count": 86,
+   "place_count": 96,
    "places": [
     {
      "id": "E2M8:3",
      "count": 8
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 7
     },
     {
@@ -15051,15 +15039,15 @@
      "count": 6
     },
     {
-     "id": "E6M7:443",
-     "count": 6
-    },
-    {
      "id": "E6M8:60",
      "count": 5
     },
     {
-     "id": "E1M1:122",
+     "id": "E2M6:209",
+     "count": 4
+    },
+    {
+     "id": "E4M1:205",
      "count": 4
     }
    ]
@@ -15089,7 +15077,7 @@
      "map": "E1M2",
      "sector": 70,
      "id": 627,
-     "place": "E1M2:92"
+     "place": "E1M2:70"
     },
     {
      "map": "E1M3",
@@ -15119,7 +15107,7 @@
      "map": "E1M7",
      "sector": 30,
      "id": 43,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -15129,14 +15117,14 @@
     }
    ],
    "lessons": [],
-   "place_count": 52,
+   "place_count": 56,
    "places": [
     {
      "id": "E1M6:294",
-     "count": 15
+     "count": 10
     },
     {
-     "id": "E1M7:45",
+     "id": "E1M7:30",
      "count": 10
     },
     {
@@ -15222,7 +15210,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 134,
+   "place_count": 148,
    "places": [
     {
      "id": "E3M7:125",
@@ -15233,20 +15221,20 @@
      "count": 5
     },
     {
-     "id": "E1M1:122",
-     "count": 4
-    },
-    {
-     "id": "E2M4:613",
-     "count": 4
-    },
-    {
      "id": "E4M9:95",
      "count": 4
     },
     {
      "id": "E6M1:25",
      "count": 4
+    },
+    {
+     "id": "E6M8:60",
+     "count": 4
+    },
+    {
+     "id": "E1M6:256",
+     "count": 3
     }
    ]
   },
@@ -15276,7 +15264,7 @@
      "map": "E1M7",
      "sector": 29,
      "id": 21,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E2M1",
@@ -15312,11 +15300,11 @@
      "map": "E2M7",
      "sector": 443,
      "id": 501,
-     "place": "E2M7:72"
+     "place": "E2M7:443"
     }
    ],
    "lessons": [],
-   "place_count": 40,
+   "place_count": 39,
    "places": [
     {
      "id": "E2M4:619",
@@ -15327,7 +15315,7 @@
      "count": 4
     },
     {
-     "id": "E2M7:72",
+     "id": "E2M7:443",
      "count": 4
     },
     {
@@ -15392,7 +15380,7 @@
      "map": "E2M4",
      "sector": 434,
      "id": 460,
-     "place": "E2M4:613"
+     "place": "E2M4:434"
     },
     {
      "map": "E2M5",
@@ -15414,16 +15402,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 57,
+   "place_count": 62,
    "places": [
-    {
-     "id": "E2M4:613",
-     "count": 13
-    },
-    {
-     "id": "E3M5:211",
-     "count": 9
-    },
     {
      "id": "E6M8:60",
      "count": 8
@@ -15438,6 +15418,14 @@
     },
     {
      "id": "E2M3:284",
+     "count": 6
+    },
+    {
+     "id": "E3M5:170",
+     "count": 6
+    },
+    {
+     "id": "E4M1:57",
      "count": 6
     }
    ]
@@ -15497,7 +15485,7 @@
      "map": "E3M4",
      "sector": 138,
      "id": 615,
-     "place": "E3M4:153"
+     "place": "E3M4:267"
     },
     {
      "map": "E3M8",
@@ -15507,7 +15495,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 34,
+   "place_count": 37,
    "places": [
     {
      "id": "E4M9:95",
@@ -15518,15 +15506,15 @@
      "count": 3
     },
     {
-     "id": "E3M4:153",
-     "count": 3
-    },
-    {
      "id": "E2M4:394",
      "count": 2
     },
     {
      "id": "E3M3:15",
+     "count": 2
+    },
+    {
+     "id": "E3M4:267",
      "count": 2
     },
     {
@@ -15584,7 +15572,7 @@
      "map": "E1M8",
      "sector": 272,
      "id": 500,
-     "place": "E1M8:243"
+     "place": "E1M8:272"
     },
     {
      "map": "E2M2",
@@ -15600,31 +15588,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 88,
+   "place_count": 98,
    "places": [
     {
      "id": "E1M4:320",
      "count": 8
     },
     {
-     "id": "E6M7:352",
-     "count": 7
+     "id": "E1M2:92",
+     "count": 5
     },
     {
-     "id": "E1M2:92",
-     "count": 6
+     "id": "E6M4:371",
+     "count": 5
+    },
+    {
+     "id": "E6M7:384",
+     "count": 5
     },
     {
      "id": "E2M5:577",
-     "count": 6
+     "count": 4
     },
     {
-     "id": "E3M5:211",
-     "count": 5
-    },
-    {
-     "id": "E4M2:247",
-     "count": 5
+     "id": "E2M6:209",
+     "count": 4
     }
    ]
   },
@@ -15653,7 +15641,7 @@
      "map": "E1M2",
      "sector": 14,
      "id": 55,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -15689,11 +15677,11 @@
      "map": "E1M8",
      "sector": 47,
      "id": 196,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ],
    "lessons": [],
-   "place_count": 189,
+   "place_count": 197,
    "places": [
     {
      "id": "E6M1:47",
@@ -15702,10 +15690,6 @@
     {
      "id": "E6M8:36",
      "count": 6
-    },
-    {
-     "id": "E2M4:613",
-     "count": 4
     },
     {
      "id": "E3M7:125",
@@ -15718,6 +15702,10 @@
     {
      "id": "E6M9:59",
      "count": 4
+    },
+    {
+     "id": "E1M7:12",
+     "count": 3
     }
    ]
   },
@@ -15746,7 +15734,7 @@
      "map": "E1M5",
      "sector": 82,
      "id": 59,
-     "place": "E1M5:394"
+     "place": "E1M5:71"
     },
     {
      "map": "E1M6",
@@ -15786,12 +15774,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 22,
+   "place_count": 25,
    "places": [
-    {
-     "id": "E4M2:247",
-     "count": 4
-    },
     {
      "id": "E6M7:255",
      "count": 3
@@ -15801,7 +15785,7 @@
      "count": 2
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M6:108",
      "count": 2
     },
     {
@@ -15809,8 +15793,12 @@
      "count": 2
     },
     {
-     "id": "E1M6:294",
+     "id": "E4M2:33",
      "count": 2
+    },
+    {
+     "id": "E1M5:102",
+     "count": 1
     }
    ]
   },
@@ -15850,7 +15838,7 @@
      "map": "E2M2",
      "sector": 138,
      "id": 113,
-     "place": "E2M2:107"
+     "place": null
     },
     {
      "map": "E2M6",
@@ -15862,23 +15850,23 @@
      "map": "E2M7",
      "sector": 4,
      "id": 358,
-     "place": "E2M7:72"
+     "place": "E2M7:443"
     },
     {
      "map": "E3M2",
      "sector": 242,
      "id": 332,
-     "place": "E3M2:380"
+     "place": null
     },
     {
      "map": "E4M3",
      "sector": 204,
      "id": 152,
-     "place": null
+     "place": "E4M3:204"
     }
    ],
    "lessons": [],
-   "place_count": 16,
+   "place_count": 14,
    "places": [
     {
      "id": "E4M6:245",
@@ -15901,7 +15889,7 @@
      "count": 1
     },
     {
-     "id": "E2M2:107",
+     "id": "E2M6:126",
      "count": 1
     }
    ]
@@ -15931,13 +15919,13 @@
      "map": "E1M2",
      "sector": 162,
      "id": 686,
-     "place": null
+     "place": "E1M2:168"
     },
     {
      "map": "E1M7",
      "sector": 2,
      "id": 207,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E2M1",
@@ -15955,13 +15943,13 @@
      "map": "E2M3",
      "sector": 140,
      "id": 309,
-     "place": null
+     "place": "E2M3:140"
     },
     {
      "map": "E2M4",
      "sector": 250,
      "id": 466,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -15971,10 +15959,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 52,
+   "place_count": 51,
    "places": [
     {
-     "id": "E2M5:577",
+     "id": "E2M5:512",
      "count": 2
     },
     {
@@ -15982,19 +15970,19 @@
      "count": 1
     },
     {
+     "id": "E1M2:168",
+     "count": 1
+    },
+    {
      "id": "E1M2:207",
      "count": 1
     },
     {
-     "id": "E1M7:45",
+     "id": "E1M7:30",
      "count": 1
     },
     {
      "id": "E2M1:165",
-     "count": 1
-    },
-    {
-     "id": "E2M1:90",
      "count": 1
     }
    ],
@@ -16129,7 +16117,7 @@
      "map": "E1M1",
      "sector": 150,
      "id": 497,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M4",
@@ -16159,7 +16147,7 @@
      "map": "E3M3",
      "sector": 265,
      "id": 243,
-     "place": "E3M3:15"
+     "place": "E3M3:265"
     },
     {
      "map": "E3M4",
@@ -16175,19 +16163,15 @@
     }
    ],
    "lessons": [],
-   "place_count": 25,
+   "place_count": 28,
    "places": [
-    {
-     "id": "E3M3:15",
-     "count": 8
-    },
     {
      "id": "E1M4:197",
      "count": 7
     },
     {
      "id": "E3M1:381",
-     "count": 6
+     "count": 5
     },
     {
      "id": "E1M4:292",
@@ -16198,7 +16182,11 @@
      "count": 4
     },
     {
-     "id": "E1M1:122",
+     "id": "E3M3:15",
+     "count": 4
+    },
+    {
+     "id": "E1M1:150",
      "count": 3
     }
    ]
@@ -16221,7 +16209,7 @@
      "map": "E1M1",
      "sector": 66,
      "id": 495,
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M2",
@@ -16233,7 +16221,7 @@
      "map": "E1M3",
      "sector": 305,
      "id": 874,
-     "place": "E1M3:324"
+     "place": "E1M3:305"
     },
     {
      "map": "E1M4",
@@ -16251,7 +16239,7 @@
      "map": "E2M2",
      "sector": 34,
      "id": 271,
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M3",
@@ -16267,30 +16255,30 @@
     }
    ],
    "lessons": [],
-   "place_count": 15,
+   "place_count": 17,
    "places": [
     {
      "id": "E1M4:321",
      "count": 7
     },
     {
-     "id": "E1M8:243",
-     "count": 6
-    },
-    {
      "id": "E3M2:306",
      "count": 5
+    },
+    {
+     "id": "E1M8:243",
+     "count": 3
+    },
+    {
+     "id": "E1M8:389",
+     "count": 3
     },
     {
      "id": "E3M2:258",
      "count": 3
     },
     {
-     "id": "E1M1:122",
-     "count": 2
-    },
-    {
-     "id": "E1M3:324",
+     "id": "E1M3:305",
      "count": 2
     }
    ],
@@ -16326,25 +16314,25 @@
      "map": "E1M6",
      "sector": 108,
      "id": 13,
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E2M4",
      "sector": 333,
      "id": 119,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E3M2",
      "sector": 480,
      "id": 556,
-     "place": "E3M2:486"
+     "place": null
     },
     {
      "map": "E4M6",
      "sector": 182,
      "id": 81,
-     "place": "E4M6:382"
+     "place": null
     },
     {
      "map": "E6M4",
@@ -16370,27 +16358,27 @@
    "places": [
     {
      "id": "E1M5:237",
-     "count": 10
+     "count": 8
     },
     {
-     "id": "E1M6:294",
-     "count": 7
+     "id": "E1M6:108",
+     "count": 6
     },
     {
-     "id": "E1M6:303",
-     "count": 7
-    },
-    {
-     "id": "E4M6:382",
-     "count": 5
+     "id": "E1M6:109",
+     "count": 6
     },
     {
      "id": "E6M7:283",
      "count": 4
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 3
+    },
+    {
+     "id": "E6M4:281",
+     "count": 2
     }
    ],
    "set_off_by": {
@@ -16579,7 +16567,7 @@
      "count": 4
     },
     {
-     "id": "E4M3:374",
+     "id": "E4M3:368",
      "count": 4
     },
     {
@@ -16610,7 +16598,7 @@
      "map": "E1M1",
      "sector": 150,
      "id": 52,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -16640,23 +16628,23 @@
      "map": "E1M6",
      "sector": 371,
      "id": 775,
-     "place": "E1M6:294"
+     "place": "E1M6:371"
     },
     {
      "map": "E1M7",
      "sector": 29,
      "id": 151,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
      "sector": 154,
      "id": 519,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ],
    "lessons": [],
-   "place_count": 74,
+   "place_count": 85,
    "places": [
     {
      "id": "E4M1:0",
@@ -16713,7 +16701,7 @@
      "map": "E1M1",
      "sector": 4,
      "id": 3,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -16731,7 +16719,7 @@
      "map": "E1M4",
      "sector": 64,
      "id": 725,
-     "place": "E1M4:320"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -16759,31 +16747,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 300,
+   "place_count": 387,
    "places": [
     {
-     "id": "E3M4:153",
-     "count": 30
+     "id": "E2M4:333",
+     "count": 16
     },
     {
-     "id": "E2M4:613",
-     "count": 25
-    },
-    {
-     "id": "E6M7:443",
-     "count": 25
+     "id": "E2M9:138",
+     "count": 13
     },
     {
      "id": "E2M9:76",
-     "count": 18
+     "count": 13
     },
     {
-     "id": "E2M7:439",
-     "count": 17
+     "id": "E3M8:139",
+     "count": 10
     },
     {
      "id": "E3M5:3",
-     "count": 16
+     "count": 9
+    },
+    {
+     "id": "E3M4:267",
+     "count": 8
     }
    ]
   },
@@ -16834,13 +16822,13 @@
      "map": "E1M6",
      "sector": 193,
      "id": 393,
-     "place": "E1M6:256"
+     "place": "E1M6:192"
     },
     {
      "map": "E1M7",
      "sector": 28,
      "id": 127,
-     "place": null
+     "place": "E1M7:52"
     },
     {
      "map": "E1M8",
@@ -16850,15 +16838,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 396,
+   "place_count": 463,
    "places": [
     {
      "id": "E1M3:96",
      "count": 106
-    },
-    {
-     "id": "E1M8:243",
-     "count": 39
     },
     {
      "id": "E3M6:318",
@@ -16874,7 +16858,11 @@
     },
     {
      "id": "E4M5:181",
-     "count": 28
+     "count": 27
+    },
+    {
+     "id": "E6M4:232",
+     "count": 27
     }
    ],
    "set_off_by": {
@@ -16927,7 +16915,7 @@
      "map": "E1M5",
      "sector": 360,
      "id": 603,
-     "place": "E1M5:394"
+     "place": "E1M5:360"
     },
     {
      "map": "E1M6",
@@ -16949,7 +16937,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 67,
+   "place_count": 68,
    "places": [
     {
      "id": "E1M4:385",
@@ -17028,7 +17016,7 @@
      "map": "E1M5",
      "sector": 88,
      "id": 58,
-     "place": null
+     "place": "E1M5:88"
     },
     {
      "map": "E1M6",
@@ -17046,24 +17034,12 @@
      "map": "E1M8",
      "sector": 51,
      "id": 198,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ],
    "lessons": [],
-   "place_count": 133,
+   "place_count": 139,
    "places": [
-    {
-     "id": "E6M3:231",
-     "count": 6
-    },
-    {
-     "id": "E2M5:577",
-     "count": 4
-    },
-    {
-     "id": "E2M7:72",
-     "count": 4
-    },
     {
      "id": "E6M1:25",
      "count": 4
@@ -17073,8 +17049,20 @@
      "count": 4
     },
     {
-     "id": "E6M9:59",
-     "count": 4
+     "id": "E1M6:294",
+     "count": 3
+    },
+    {
+     "id": "E1M7:12",
+     "count": 3
+    },
+    {
+     "id": "E1M7:44",
+     "count": 3
+    },
+    {
+     "id": "E1M8:390",
+     "count": 3
     }
    ]
   },
@@ -17143,7 +17131,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 108,
+   "place_count": 113,
    "places": [
     {
      "id": "E2M8:3",
@@ -17154,20 +17142,20 @@
      "count": 6
     },
     {
+     "id": "E6M8:60",
+     "count": 5
+    },
+    {
+     "id": "E1M7:12",
+     "count": 4
+    },
+    {
      "id": "E4M7:59",
-     "count": 6
+     "count": 4
     },
     {
-     "id": "E2M5:577",
-     "count": 5
-    },
-    {
-     "id": "E3M3:15",
-     "count": 5
-    },
-    {
-     "id": "E3M4:153",
-     "count": 5
+     "id": "E4M9:95",
+     "count": 4
     }
    ]
   },
@@ -17213,7 +17201,7 @@
      "map": "E1M5",
      "sector": 327,
      "id": 292,
-     "place": "E1M5:392"
+     "place": "E1M5:327"
     },
     {
      "map": "E1M6",
@@ -17235,7 +17223,7 @@
     }
    ],
    "lessons": [],
-   "place_count": 139,
+   "place_count": 140,
    "places": [
     {
      "id": "E6M1:47",
@@ -17254,11 +17242,11 @@
      "count": 5
     },
     {
-     "id": "E1M1:122",
+     "id": "E1M7:30",
      "count": 4
     },
     {
-     "id": "E1M7:45",
+     "id": "E4M1:57",
      "count": 4
     }
    ],
@@ -17304,7 +17292,7 @@
      "map": "E1M5",
      "sector": 360,
      "id": 372,
-     "place": "E1M5:394"
+     "place": "E1M5:360"
     },
     {
      "map": "E1M6",
@@ -17332,16 +17320,8 @@
     }
    ],
    "lessons": [],
-   "place_count": 96,
+   "place_count": 107,
    "places": [
-    {
-     "id": "E3M4:153",
-     "count": 5
-    },
-    {
-     "id": "E4M1:57",
-     "count": 5
-    },
     {
      "id": "E4M4:48",
      "count": 4
@@ -17351,11 +17331,19 @@
      "count": 4
     },
     {
-     "id": "E1M5:394",
+     "id": "E2M4:333",
      "count": 3
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M5:577",
+     "count": 3
+    },
+    {
+     "id": "E4M7:59",
+     "count": 3
+    },
+    {
+     "id": "E6M8:60",
      "count": 3
     }
    ],
@@ -17388,7 +17376,7 @@
      "map": "E1M5",
      "sector": 399,
      "id": 640,
-     "place": "E1M5:394"
+     "place": "E1M5:181"
     },
     {
      "map": "E1M6",
@@ -17424,35 +17412,35 @@
      "map": "E3M2",
      "sector": 219,
      "id": 899,
-     "place": "E3M2:33"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 21,
+   "place_count": 15,
    "places": [
     {
-     "id": "E1M6:391",
-     "count": 5
-    },
-    {
      "id": "E1M5:394",
-     "count": 3
-    },
-    {
-     "id": "E1M6:150",
-     "count": 3
-    },
-    {
-     "id": "E4M6:337",
-     "count": 3
-    },
-    {
-     "id": "E1M6:294",
      "count": 2
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:391",
      "count": 2
+    },
+    {
+     "id": "E1M7:44",
+     "count": 2
+    },
+    {
+     "id": "E4M5:245",
+     "count": 2
+    },
+    {
+     "id": "E1M1:90",
+     "count": 1
+    },
+    {
+     "id": "E1M5:181",
+     "count": 1
     }
    ]
   },
@@ -17480,7 +17468,7 @@
      "map": "E1M5",
      "sector": 72,
      "id": 366,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
@@ -17520,10 +17508,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 75,
+   "place_count": 79,
    "places": [
     {
-     "id": "E3M3:15",
+     "id": "E3M3:43",
      "count": 11
     },
     {
@@ -17539,11 +17527,11 @@
      "count": 7
     },
     {
-     "id": "E4M4:76",
-     "count": 7
+     "id": "E1M6:257",
+     "count": 6
     },
     {
-     "id": "E1M6:257",
+     "id": "E4M4:76",
      "count": 6
     }
    ]
@@ -17628,32 +17616,32 @@
      "map": "E3M6",
      "sector": 35,
      "id": 231,
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     },
     {
      "map": "E3M6",
      "sector": 35,
      "id": 233,
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     },
     {
      "map": "E3M6",
      "sector": 35,
      "id": 237,
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     },
     {
      "map": "E3M6",
      "sector": 35,
      "id": 239,
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     }
    ],
    "lessons": [],
    "place_count": 1,
    "places": [
     {
-     "id": "E3M6:105",
+     "id": "E3M6:35",
      "count": 4
     }
    ],
@@ -17685,7 +17673,7 @@
      "map": "E1M2",
      "sector": 201,
      "id": 1505,
-     "place": "E1M2:92"
+     "place": "E1M2:234"
     },
     {
      "map": "E1M3",
@@ -17725,15 +17713,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 47,
+   "place_count": 61,
    "places": [
     {
      "id": "E1M3:96",
      "count": 40
-    },
-    {
-     "id": "E2M5:577",
-     "count": 12
     },
     {
      "id": "E3M6:303",
@@ -17748,8 +17732,12 @@
      "count": 8
     },
     {
-     "id": "E6M2:7",
+     "id": "E2M5:512",
      "count": 8
+    },
+    {
+     "id": "E1M5:102",
+     "count": 6
     }
    ],
    "set_off_by": {
@@ -17798,7 +17786,7 @@
      "map": "E1M8",
      "sector": 142,
      "id": 142,
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E2M2",
@@ -17810,7 +17798,7 @@
      "map": "E2M7",
      "sector": 15,
      "id": 15,
-     "place": "E2M7:72"
+     "place": "E2M7:443"
     },
     {
      "map": "E3M5",
@@ -17834,30 +17822,30 @@
    "lessons": [
     "MACHINERY-CONVEYOR"
    ],
-   "place_count": 41,
+   "place_count": 44,
    "places": [
     {
      "id": "E1M8:243",
-     "count": 103
+     "count": 69
+    },
+    {
+     "id": "E1M8:389",
+     "count": 34
     },
     {
      "id": "E3M6:318",
-     "count": 38
+     "count": 33
     },
     {
      "id": "E1M3:96",
-     "count": 23
+     "count": 21
     },
     {
      "id": "E4M3:256",
      "count": 8
     },
     {
-     "id": "E2M7:7",
-     "count": 7
-    },
-    {
-     "id": "E2M7:51",
+     "id": "E3M6:400",
      "count": 6
     }
    ]
@@ -17933,23 +17921,23 @@
     }
    ],
    "lessons": [],
-   "place_count": 37,
+   "place_count": 40,
    "places": [
     {
      "id": "E2M9:76",
-     "count": 19
+     "count": 12
     },
     {
-     "id": "E3M3:134",
-     "count": 11
+     "id": "E3M3:162",
+     "count": 8
     },
     {
      "id": "E3M7:125",
      "count": 6
     },
     {
-     "id": "E3M3:174",
-     "count": 3
+     "id": "E3M3:158",
+     "count": 4
     },
     {
      "id": "E4M3:426",
@@ -17982,7 +17970,7 @@
      "map": "E1M4",
      "sector": 18,
      "id": 18,
-     "place": "E1M4:320"
+     "place": "E1M4:369"
     },
     {
      "map": "E1M6",
@@ -18084,7 +18072,7 @@
      "map": "E1M5",
      "sector": 320,
      "id": 320,
-     "place": "E1M5:323"
+     "place": "E1M5:337"
     },
     {
      "map": "E1M6",
@@ -18126,15 +18114,11 @@
    "lessons": [
     "#WATER"
    ],
-   "place_count": 94,
+   "place_count": 111,
    "places": [
     {
      "id": "E6M4:133",
-     "count": 34
-    },
-    {
-     "id": "E4M4:111",
-     "count": 21
+     "count": 31
     },
     {
      "id": "E6M4:232",
@@ -18142,15 +18126,19 @@
     },
     {
      "id": "E2M9:138",
-     "count": 19
-    },
-    {
-     "id": "E6M4:370",
      "count": 17
     },
     {
      "id": "E2M1:134",
      "count": 16
+    },
+    {
+     "id": "E6M4:370",
+     "count": 15
+    },
+    {
+     "id": "E2M9:151",
+     "count": 13
     }
    ]
   },
@@ -18177,7 +18165,7 @@
      "map": "E1M2",
      "sector": 152,
      "id": 152,
-     "place": "E1M2:257"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -18195,13 +18183,13 @@
      "map": "E2M1",
      "sector": 28,
      "id": 28,
-     "place": "E2M1:39"
+     "place": "E2M1:28"
     },
     {
      "map": "E2M4",
      "sector": 403,
      "id": 403,
-     "place": "E2M4:613"
+     "place": "E2M4:434"
     },
     {
      "map": "E2M5",
@@ -18225,7 +18213,7 @@
    "lessons": [
     "#WATER"
    ],
-   "place_count": 27,
+   "place_count": 31,
    "places": [
     {
      "id": "E4M3:426",
@@ -18240,16 +18228,16 @@
      "count": 7
     },
     {
-     "id": "E2M7:51",
-     "count": 6
-    },
-    {
-     "id": "E3M3:213",
-     "count": 6
+     "id": "E4M3:380",
+     "count": 5
     },
     {
      "id": "E2M1:39",
-     "count": 5
+     "count": 4
+    },
+    {
+     "id": "E2M4:537",
+     "count": 4
     }
    ]
   },
@@ -18288,7 +18276,7 @@
      "map": "E1M4",
      "sector": 167,
      "id": 167,
-     "place": null
+     "place": "E1M4:170"
     },
     {
      "map": "E1M5",
@@ -18312,7 +18300,7 @@
      "map": "E1M8",
      "sector": 53,
      "id": 53,
-     "place": "E1M8:243"
+     "place": null
     },
     {
      "map": "E2M1",
@@ -18328,15 +18316,11 @@
    "places": [
     {
      "id": "E1M3:96",
-     "count": 21
+     "count": 19
     },
     {
      "id": "E3M4:252",
-     "count": 7
-    },
-    {
-     "id": "E1M8:243",
-     "count": 3
+     "count": 4
     },
     {
      "id": "E3M7:125",
@@ -18348,6 +18332,10 @@
     },
     {
      "id": "E1M7:47",
+     "count": 2
+    },
+    {
+     "id": "E2M4:434",
      "count": 2
     }
    ]
@@ -18386,13 +18374,13 @@
      "map": "E4M7",
      "sector": 97,
      "id": 97,
-     "place": "E4M7:95"
+     "place": "E4M7:94"
     },
     {
      "map": "E2M7",
      "sector": 21,
      "id": 21,
-     "place": "E2M7:7"
+     "place": null
     },
     {
      "map": "E3M5",
@@ -18410,7 +18398,7 @@
      "map": "E2M7",
      "sector": 23,
      "id": 23,
-     "place": "E2M7:7"
+     "place": null
     },
     {
      "map": "E3M5",
@@ -18422,22 +18410,26 @@
    "lessons": [
     "MACHINERY-PISTON"
    ],
-   "place_count": 4,
+   "place_count": 5,
    "places": [
     {
      "id": "E2M7:439",
-     "count": 20
+     "count": 7
     },
     {
      "id": "E4M7:95",
-     "count": 4
+     "count": 2
     },
     {
-     "id": "E2M7:7",
-     "count": 3
+     "id": "E2M7:432",
+     "count": 1
     },
     {
-     "id": "E2M7:33",
+     "id": "E4M7:93",
+     "count": 1
+    },
+    {
+     "id": "E4M7:94",
      "count": 1
     }
    ]
@@ -18489,7 +18481,7 @@
      "map": "E4M7",
      "sector": 96,
      "id": 96,
-     "place": "E4M7:95"
+     "place": "E4M7:96"
     },
     {
      "map": "E1M3",
@@ -18513,30 +18505,30 @@
    "lessons": [
     "ENVIRONMENT-WIND"
    ],
-   "place_count": 16,
+   "place_count": 17,
    "places": [
     {
      "id": "E1M3:96",
-     "count": 28
+     "count": 26
     },
     {
      "id": "E2M2:76",
      "count": 5
     },
     {
-     "id": "E2M1:125",
-     "count": 4
-    },
-    {
      "id": "E2M2:204",
      "count": 4
     },
     {
-     "id": "E2M2:104",
+     "id": "E4M7:131",
+     "count": 4
+    },
+    {
+     "id": "E2M1:125",
      "count": 3
     },
     {
-     "id": "E2M2:40",
+     "id": "E2M2:104",
      "count": 3
     }
    ]
@@ -18566,7 +18558,7 @@
      "map": "E1M3",
      "sector": 101,
      "id": 101,
-     "place": "E1M3:115"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -18578,13 +18570,13 @@
      "map": "E1M8",
      "sector": 26,
      "id": 26,
-     "place": "E1M8:243"
+     "place": null
     },
     {
      "map": "E2M1",
      "sector": 26,
      "id": 26,
-     "place": "E2M1:37"
+     "place": "E2M1:27"
     },
     {
      "map": "E2M2",
@@ -18602,7 +18594,7 @@
      "map": "E2M7",
      "sector": 60,
      "id": 60,
-     "place": "E2M7:51"
+     "place": "E2M7:60"
     },
     {
      "map": "E2M9",
@@ -18612,19 +18604,15 @@
     }
    ],
    "lessons": [],
-   "place_count": 28,
+   "place_count": 31,
    "places": [
-    {
-     "id": "E2M9:76",
-     "count": 19
-    },
-    {
-     "id": "E1M8:243",
-     "count": 17
-    },
     {
      "id": "E2M9:138",
      "count": 13
+    },
+    {
+     "id": "E2M9:76",
+     "count": 12
     },
     {
      "id": "E2M9:151",
@@ -18635,8 +18623,12 @@
      "count": 7
     },
     {
-     "id": "E2M1:39",
+     "id": "E2M9:53",
      "count": 5
+    },
+    {
+     "id": "E2M1:39",
+     "count": 4
     }
    ]
   },
@@ -18665,7 +18657,7 @@
      "map": "E1M1",
      "sector": 0,
      "id": 0,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -18711,31 +18703,31 @@
     }
    ],
    "lessons": [],
-   "place_count": 347,
+   "place_count": 458,
    "places": [
     {
-     "id": "E1M8:243",
-     "count": 130
+     "id": "E1M8:390",
+     "count": 105
     },
     {
-     "id": "E1M8:390",
-     "count": 108
+     "id": "E1M8:243",
+     "count": 73
+    },
+    {
+     "id": "E6M1:47",
+     "count": 39
+    },
+    {
+     "id": "E1M8:389",
+     "count": 36
     },
     {
      "id": "E1M6:294",
-     "count": 53
+     "count": 34
     },
     {
-     "id": "E4M1:57",
-     "count": 51
-    },
-    {
-     "id": "E4M6:382",
-     "count": 49
-    },
-    {
-     "id": "E1M2:92",
-     "count": 41
+     "id": "E3M2:141",
+     "count": 31
     }
    ]
   },
@@ -18772,13 +18764,13 @@
      "map": "E1M5",
      "sector": 62,
      "id": 62,
-     "place": "E1M5:394"
+     "place": "E1M5:71"
     },
     {
      "map": "E1M6",
      "sector": 279,
      "id": 279,
-     "place": "E1M6:294"
+     "place": "E1M6:164"
     },
     {
      "map": "E1M8",
@@ -18802,34 +18794,34 @@
      "map": "E2M4",
      "sector": 332,
      "id": 332,
-     "place": "E2M4:613"
+     "place": "E2M4:497"
     }
    ],
    "lessons": [],
-   "place_count": 44,
+   "place_count": 45,
    "places": [
-    {
-     "id": "E1M5:394",
-     "count": 3
-    },
-    {
-     "id": "E1M6:294",
-     "count": 3
-    },
-    {
-     "id": "E4M2:247",
-     "count": 3
-    },
-    {
-     "id": "E6M1:25",
-     "count": 3
-    },
     {
      "id": "E1M3:6",
      "count": 2
     },
     {
-     "id": "E1M4:320",
+     "id": "E1M5:71",
+     "count": 2
+    },
+    {
+     "id": "E1M6:294",
+     "count": 2
+    },
+    {
+     "id": "E2M2:107",
+     "count": 2
+    },
+    {
+     "id": "E2M5:532",
+     "count": 2
+    },
+    {
+     "id": "E4M1:57",
      "count": 2
     }
    ]
@@ -18872,19 +18864,19 @@
      "map": "E1M5",
      "sector": 188,
      "id": 188,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E2M4",
      "sector": 506,
      "id": 506,
-     "place": "E2M4:613"
+     "place": null
     },
     {
      "map": "E2M6",
      "sector": 199,
      "id": 199,
-     "place": "E2M6:209"
+     "place": null
     },
     {
      "map": "E3M2",
@@ -18900,15 +18892,11 @@
     }
    ],
    "lessons": [],
-   "place_count": 21,
+   "place_count": 18,
    "places": [
     {
      "id": "E1M3:47",
      "count": 3
-    },
-    {
-     "id": "E1M5:394",
-     "count": 2
     },
     {
      "id": "E1M2:92",
@@ -18919,11 +18907,15 @@
      "count": 1
     },
     {
-     "id": "E1M4:320",
+     "id": "E1M5:102",
      "count": 1
     },
     {
-     "id": "E2M4:613",
+     "id": "E1M5:181",
+     "count": 1
+    },
+    {
+     "id": "E3M2:486",
      "count": 1
     }
    ]
@@ -18957,7 +18949,7 @@
      "map": "E1M2",
      "sector": 14,
      "id": 14,
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M3",
@@ -18993,35 +18985,35 @@
      "map": "E1M8",
      "sector": 25,
      "id": 25,
-     "place": "E1M8:243"
+     "place": null
     }
    ],
    "lessons": [],
-   "place_count": 238,
+   "place_count": 264,
    "places": [
-    {
-     "id": "E1M2:92",
-     "count": 10
-    },
-    {
-     "id": "E1M1:122",
-     "count": 9
-    },
-    {
-     "id": "E1M6:391",
-     "count": 9
-    },
     {
      "id": "E3M5:3",
      "count": 9
     },
     {
-     "id": "E3M8:566",
-     "count": 8
+     "id": "E1M6:391",
+     "count": 6
     },
     {
-     "id": "E1M8:243",
+     "id": "E3M7:125",
      "count": 6
+    },
+    {
+     "id": "E3M8:586",
+     "count": 6
+    },
+    {
+     "id": "E1M2:92",
+     "count": 5
+    },
+    {
+     "id": "E1M1:122",
+     "count": 4
     }
    ]
   },
@@ -19058,7 +19050,7 @@
      "map": "E2M4",
      "sector": 503,
      "id": 503,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E3M4",
@@ -19070,7 +19062,7 @@
      "map": "E3M5",
      "sector": 154,
      "id": 154,
-     "place": "E3M5:211"
+     "place": "E3M5:155"
     },
     {
      "map": "E3M6",
@@ -19107,7 +19099,7 @@
      "count": 1
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:333",
      "count": 1
     },
     {
@@ -19115,7 +19107,7 @@
      "count": 1
     },
     {
-     "id": "E3M5:211",
+     "id": "E3M5:155",
      "count": 1
     }
    ]
@@ -19154,7 +19146,7 @@
      "map": "E1M5",
      "sector": 87,
      "id": 87,
-     "place": "E1M5:237"
+     "place": "E1M5:232"
     },
     {
      "map": "E1M6",
@@ -19188,22 +19180,10 @@
     }
    ],
    "lessons": [],
-   "place_count": 46,
+   "place_count": 48,
    "places": [
     {
      "id": "E1M6:306",
-     "count": 3
-    },
-    {
-     "id": "E2M4:613",
-     "count": 3
-    },
-    {
-     "id": "E3M4:153",
-     "count": 3
-    },
-    {
-     "id": "E3M5:211",
      "count": 3
     },
     {
@@ -19211,8 +19191,20 @@
      "count": 3
     },
     {
+     "id": "E2M4:333",
+     "count": 2
+    },
+    {
      "id": "E6M4:75",
      "count": 2
+    },
+    {
+     "id": "E1M2:92",
+     "count": 1
+    },
+    {
+     "id": "E1M5:122",
+     "count": 1
     }
    ]
   },
@@ -19240,7 +19232,7 @@
      "map": "E1M1",
      "sector": 0,
      "id": 0,
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -19264,7 +19256,7 @@
      "map": "E1M5",
      "sector": 87,
      "id": 87,
-     "place": "E1M5:237"
+     "place": "E1M5:232"
     },
     {
      "map": "E1M6",
@@ -19299,31 +19291,31 @@
     "DOOR-SLIDING",
     "DOOR-SLIDINGD"
    ],
-   "place_count": 125,
+   "place_count": 133,
    "places": [
     {
-     "id": "E2M4:613",
-     "count": 10
-    },
-    {
-     "id": "E2M5:577",
-     "count": 7
-    },
-    {
-     "id": "E6M6:272",
-     "count": 6
-    },
-    {
-     "id": "E6M3:231",
-     "count": 5
+     "id": "E2M4:333",
+     "count": 8
     },
     {
      "id": "E2M4:477",
      "count": 4
     },
     {
-     "id": "E2M4:564",
+     "id": "E2M5:577",
      "count": 4
+    },
+    {
+     "id": "E6M6:283",
+     "count": 4
+    },
+    {
+     "id": "E1M3:125",
+     "count": 3
+    },
+    {
+     "id": "E2M4:564",
+     "count": 3
     }
    ]
   },
@@ -19482,7 +19474,7 @@
      "map": "E1M4",
      "sector": 64,
      "id": 64,
-     "place": "E1M4:320"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -19500,41 +19492,41 @@
      "map": "E1M7",
      "sector": 38,
      "id": 38,
-     "place": "E1M7:45"
+     "place": "E1M7:38"
     },
     {
      "map": "E1M8",
      "sector": 96,
      "id": 96,
-     "place": null
+     "place": "E1M8:97"
     }
    ],
    "examples_are": "senders",
    "lessons": [],
-   "place_count": 144,
+   "place_count": 130,
    "places": [
     {
      "id": "E2M4:523",
      "count": 9
     },
     {
-     "id": "E1M1:122",
-     "count": 6
-    },
-    {
      "id": "E2M5:767",
      "count": 5
     },
     {
-     "id": "E1M4:320",
-     "count": 3
-    },
-    {
-     "id": "E3M8:511",
-     "count": 3
+     "id": "E1M1:122",
+     "count": 2
     },
     {
      "id": "E1M2:19",
+     "count": 2
+    },
+    {
+     "id": "E1M4:320",
+     "count": 2
+    },
+    {
+     "id": "E2M4:517",
      "count": 2
     }
    ],
@@ -19710,7 +19702,7 @@
    ],
    "examples_are": "senders",
    "lessons": [],
-   "place_count": 44,
+   "place_count": 46,
    "places": [
     {
      "id": "E2M8:51",
@@ -19799,7 +19791,7 @@
      "map": "E2M4",
      "sector": 503,
      "id": 707,
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ],
    "examples_are": "senders",
@@ -19815,11 +19807,11 @@
      "count": 1
     },
     {
-     "id": "E2M4:538",
+     "id": "E2M4:333",
      "count": 1
     },
     {
-     "id": "E2M4:613",
+     "id": "E2M4:538",
      "count": 1
     },
     {
@@ -19884,7 +19876,7 @@
      "map": "E1M6",
      "sector": 199,
      "id": 1061,
-     "place": "E1M6:256"
+     "place": "E1M6:192"
     },
     {
      "map": "E1M7",
@@ -19901,18 +19893,18 @@
    ],
    "examples_are": "listeners",
    "lessons": [],
-   "place_count": 65,
+   "place_count": 68,
    "places": [
     {
      "id": "E1M8:391",
      "count": 9
     },
     {
-     "id": "E4M7:59",
-     "count": 7
+     "id": "E3M5:203",
+     "count": 6
     },
     {
-     "id": "E3M5:203",
+     "id": "E4M7:59",
      "count": 6
     },
     {
@@ -19958,7 +19950,7 @@
      "map": "E1M3",
      "sector": 293,
      "id": 293,
-     "place": "E1M3:316"
+     "place": "E1M3:183"
     },
     {
      "map": "E1M4",
@@ -19982,7 +19974,7 @@
      "map": "E1M7",
      "sector": 42,
      "id": 42,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -20000,10 +19992,6 @@
      "count": 8
     },
     {
-     "id": "E1M6:391",
-     "count": 7
-    },
-    {
      "id": "E2M4:523",
      "count": 7
     },
@@ -20018,6 +20006,10 @@
     {
      "id": "E4M8:69",
      "count": 6
+    },
+    {
+     "id": "E3M5:203",
+     "count": 5
     }
    ]
   },
@@ -20069,13 +20061,13 @@
      "map": "E1M6",
      "sector": 187,
      "id": 1131,
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M7",
      "sector": 29,
      "id": 217,
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     },
     {
      "map": "E1M8",
@@ -20109,7 +20101,7 @@
      "count": 1
     },
     {
-     "id": "E1M6:303",
+     "id": "E1M6:187",
      "count": 1
     }
    ]
@@ -20132,7 +20124,7 @@
      "map": "E1M1",
      "sector": 118,
      "id": 557,
-     "place": "E1M1:122"
+     "place": "E1M1:118"
     },
     {
      "map": "E1M2",
@@ -20156,7 +20148,7 @@
      "map": "E1M5",
      "sector": 104,
      "id": 682,
-     "place": "E1M5:394"
+     "place": "E1M5:102"
     },
     {
      "map": "E1M6",
@@ -20182,7 +20174,7 @@
    "place_count": 42,
    "places": [
     {
-     "id": "E1M1:122",
+     "id": "E1M1:118",
      "count": 1
     },
     {
@@ -20198,7 +20190,7 @@
      "count": 1
     },
     {
-     "id": "E1M5:394",
+     "id": "E1M5:102",
      "count": 1
     },
     {
@@ -20227,7 +20219,7 @@
      "map": "E1M1",
      "sector": 4,
      "root": "wall 23",
-     "place": "E1M1:122"
+     "place": "E1M1:150"
     },
     {
      "map": "E1M2",
@@ -20239,7 +20231,7 @@
      "map": "E1M3",
      "sector": 71,
      "root": "wall 457",
-     "place": "E1M3:96"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -20325,7 +20317,7 @@
      "map": "E2M4",
      "sector": 212,
      "root": "wall 1459",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -20359,7 +20351,7 @@
      "map": "E2M4",
      "sector": 333,
      "root": "wall 2417",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -20387,7 +20379,7 @@
      "map": "E1M5",
      "sector": 160,
      "root": "sprite 84",
-     "place": "E1M5:369"
+     "place": "E1M5:160"
     },
     {
      "map": "E1M8",
@@ -20589,13 +20581,13 @@
      "map": "E1M1",
      "sector": 124,
      "root": "wall 1183",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E2M1",
      "sector": 95,
      "root": "wall 704",
-     "place": "E2M1:90"
+     "place": null
     },
     {
      "map": "E3M2",
@@ -20607,7 +20599,7 @@
      "map": "E3M4",
      "sector": 19,
      "root": "wall 88",
-     "place": "E3M4:153"
+     "place": "E3M4:272"
     }
    ]
   },
@@ -20635,7 +20627,7 @@
      "map": "E2M5",
      "sector": 50,
      "root": "sector 50",
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     },
     {
      "map": "E2M6",
@@ -20709,19 +20701,19 @@
      "map": "E1M2",
      "sector": 6,
      "root": "sprite 544",
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E1M4",
      "sector": 203,
      "root": "sprite 259",
-     "place": "E1M4:3"
+     "place": null
     },
     {
      "map": "E2M5",
      "sector": 718,
      "root": "sprite 716",
-     "place": "E2M5:724"
+     "place": null
     },
     {
      "map": "E2M7",
@@ -20843,13 +20835,13 @@
      "map": "E3M2",
      "sector": 362,
      "root": "wall 2539",
-     "place": "E3M2:367"
+     "place": "E3M2:473"
     },
     {
      "map": "E3M4",
      "sector": 203,
      "root": "wall 1435",
-     "place": "E3M4:153"
+     "place": "E3M4:215"
     }
    ]
   },
@@ -20883,13 +20875,13 @@
      "map": "E1M3",
      "sector": 319,
      "root": "sprite 944",
-     "place": "E1M3:158"
+     "place": null
     },
     {
      "map": "E1M4",
      "sector": 167,
      "root": "sprite 769",
-     "place": null
+     "place": "E1M4:170"
     }
    ]
   },
@@ -20912,7 +20904,7 @@
      "map": "E1M2",
      "sector": 152,
      "root": "sprite 608",
-     "place": "E1M2:257"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -20924,7 +20916,7 @@
      "map": "E1M2",
      "sector": 152,
      "root": "sprite 614",
-     "place": "E1M2:257"
+     "place": null
     },
     {
      "map": "E1M4",
@@ -20952,13 +20944,13 @@
      "map": "E1M5",
      "sector": 181,
      "root": "sprite 277",
-     "place": "E1M5:394"
+     "place": "E1M5:181"
     },
     {
      "map": "E1M6",
      "sector": 371,
      "root": "sprite 1028",
-     "place": "E1M6:294"
+     "place": "E1M6:371"
     },
     {
      "map": "E1M8",
@@ -20993,19 +20985,19 @@
      "map": "E1M2",
      "sector": 14,
      "root": "sprite 186",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M6",
      "sector": 320,
      "root": "sprite 932",
-     "place": "E1M6:303"
+     "place": "E1M6:328"
     },
     {
      "map": "E1M8",
      "sector": 399,
      "root": "sprite 405",
-     "place": "E1M8:390"
+     "place": "E1M8:399"
     },
     {
      "map": "E2M6",
@@ -21045,13 +21037,13 @@
      "map": "E3M1",
      "sector": 280,
      "root": "wall 1771",
-     "place": "E3M1:8"
+     "place": null
     },
     {
      "map": "E4M9",
      "sector": 26,
      "root": "wall 153",
-     "place": "E4M9:32"
+     "place": null
     }
    ]
   },
@@ -21163,7 +21155,7 @@
      "map": "E2M4",
      "sector": 347,
      "root": "sprite 419",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -21191,7 +21183,7 @@
      "map": "E2M6",
      "sector": 177,
      "root": "sector 177",
-     "place": "E2M6:182"
+     "place": "E2M6:177"
     },
     {
      "map": "E2M7",
@@ -21203,7 +21195,7 @@
      "map": "E3M6",
      "sector": 165,
      "root": "sector 165",
-     "place": "E3M6:105"
+     "place": "E3M6:167"
     },
     {
      "map": "E3M8",
@@ -21232,25 +21224,25 @@
      "map": "E2M4",
      "sector": 536,
      "root": "sprite 700",
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     },
     {
      "map": "E2M4",
      "sector": 537,
      "root": "sprite 819",
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     },
     {
      "map": "E2M4",
      "sector": 537,
      "root": "sprite 820",
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     },
     {
      "map": "E2M4",
      "sector": 537,
      "root": "sprite 821",
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     }
    ]
   },
@@ -21284,7 +21276,7 @@
      "map": "E3M8",
      "sector": 571,
      "root": "sector 571",
-     "place": "E3M8:566"
+     "place": "E3M8:571"
     },
     {
      "map": "E3M5",
@@ -21555,7 +21547,7 @@
      "map": "E1M2",
      "sector": 70,
      "root": "sector 70",
-     "place": "E1M2:92"
+     "place": "E1M2:70"
     },
     {
      "map": "E1M3",
@@ -21645,7 +21637,7 @@
      "map": "E2M4",
      "sector": 406,
      "root": "sector 406",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E2M5",
@@ -21722,25 +21714,25 @@
      "map": "E3M6",
      "sector": 10,
      "root": "wall 50",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     },
     {
      "map": "E3M6",
      "sector": 10,
      "root": "wall 51",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     },
     {
      "map": "E3M6",
      "sector": 10,
      "root": "wall 52",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     },
     {
      "map": "E3M6",
      "sector": 10,
      "root": "wall 56",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     }
    ]
   },
@@ -21902,7 +21894,7 @@
      "map": "E1M8",
      "sector": 154,
      "root": "sector 154",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ]
   },
@@ -21924,19 +21916,19 @@
      "map": "E1M3",
      "sector": 70,
      "root": "sector 70",
-     "place": "E1M3:96"
+     "place": null
     },
     {
      "map": "E1M6",
      "sector": 41,
      "root": "sector 41",
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M8",
      "sector": 148,
      "root": "sector 148",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E2M4",
@@ -21982,7 +21974,7 @@
      "map": "E3M2",
      "sector": 162,
      "root": "wall 1171",
-     "place": "E3M2:216"
+     "place": null
     }
    ]
   },
@@ -22005,7 +21997,7 @@
      "map": "E2M2",
      "sector": 126,
      "root": "sprite 103",
-     "place": "E2M2:107"
+     "place": "E2M2:97"
     },
     {
      "map": "E2M3",
@@ -22023,7 +22015,7 @@
      "map": "E3M4",
      "sector": 204,
      "root": "sprite 168",
-     "place": "E3M4:153"
+     "place": "E3M4:207"
     }
    ]
   },
@@ -22045,7 +22037,7 @@
      "map": "E2M4",
      "sector": 230,
      "root": "sector 230",
-     "place": "E2M4:235"
+     "place": null
     },
     {
      "map": "E2M5",
@@ -22129,25 +22121,25 @@
      "map": "E1M6",
      "sector": 298,
      "root": "sprite 278",
-     "place": "E1M6:300"
+     "place": "E1M6:298"
     },
     {
      "map": "E1M6",
      "sector": 298,
      "root": "sprite 570",
-     "place": "E1M6:300"
+     "place": "E1M6:298"
     },
     {
      "map": "E1M6",
      "sector": 298,
      "root": "sprite 571",
-     "place": "E1M6:300"
+     "place": "E1M6:298"
     },
     {
      "map": "E1M6",
      "sector": 298,
      "root": "sprite 572",
-     "place": "E1M6:300"
+     "place": "E1M6:298"
     }
    ]
   },
@@ -22169,7 +22161,7 @@
      "map": "E1M4",
      "sector": 375,
      "root": "sprite 582",
-     "place": "E1M4:311"
+     "place": null
     },
     {
      "map": "E1M5",
@@ -22252,25 +22244,25 @@
      "map": "E3M5",
      "sector": 8,
      "root": "wall 81",
-     "place": "E3M5:211"
+     "place": null
     },
     {
      "map": "E3M5",
      "sector": 8,
      "root": "wall 82",
-     "place": "E3M5:211"
+     "place": null
     },
     {
      "map": "E3M5",
      "sector": 8,
      "root": "wall 83",
-     "place": "E3M5:211"
+     "place": null
     },
     {
      "map": "E3M5",
      "sector": 8,
      "root": "wall 87",
-     "place": "E3M5:211"
+     "place": null
     }
    ]
   },
@@ -22292,7 +22284,7 @@
      "map": "E1M2",
      "sector": 14,
      "root": "wall 136",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M4",
@@ -22378,13 +22370,13 @@
      "map": "E3M1",
      "sector": 240,
      "root": "sprite 541",
-     "place": null
+     "place": "E3M1:104"
     },
     {
      "map": "E3M4",
      "sector": 423,
      "root": "sprite 667",
-     "place": null
+     "place": "E3M4:423"
     },
     {
      "map": "E6M2",
@@ -22498,25 +22490,25 @@
      "map": "E1M5",
      "sector": 186,
      "root": "sprite 457",
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     },
     {
      "map": "E1M5",
      "sector": 186,
      "root": "sprite 458",
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     },
     {
      "map": "E1M5",
      "sector": 186,
      "root": "sprite 459",
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     },
     {
      "map": "E1M5",
      "sector": 186,
      "root": "sprite 465",
-     "place": "E1M5:394"
+     "place": "E1M5:184"
     }
    ]
   },
@@ -22541,25 +22533,25 @@
      "map": "E1M6",
      "sector": 493,
      "root": "wall 4782",
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E1M6",
      "sector": 493,
      "root": "wall 4783",
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E1M6",
      "sector": 493,
      "root": "wall 4787",
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     },
     {
      "map": "E1M6",
      "sector": 493,
      "root": "wall 4788",
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     }
    ]
   },
@@ -22763,7 +22755,7 @@
      "map": "E3M5",
      "sector": 16,
      "root": "sprite 18",
-     "place": "E3M5:23"
+     "place": "E3M5:16"
     },
     {
      "map": "E6M4",
@@ -22890,7 +22882,7 @@
      "map": "E1M8",
      "sector": 22,
      "root": "sprite 697",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ]
   },
@@ -22918,13 +22910,13 @@
      "map": "E3M1",
      "sector": 234,
      "root": "sprite 429",
-     "place": "E3M1:239"
+     "place": null
     },
     {
      "map": "E3M3",
      "sector": 300,
      "root": "sprite 324",
-     "place": "E3M3:101"
+     "place": null
     },
     {
      "map": "E3M6",
@@ -22992,7 +22984,7 @@
      "map": "E1M2",
      "sector": 307,
      "root": "wall 2447",
-     "place": "E1M2:92"
+     "place": null
     },
     {
      "map": "E2M5",
@@ -23004,13 +22996,13 @@
      "map": "E3M6",
      "sector": 129,
      "root": "wall 812",
-     "place": "E3M6:400"
+     "place": "E3M6:399"
     },
     {
      "map": "E4M1",
      "sector": 212,
      "root": "wall 1730",
-     "place": "E4M1:57"
+     "place": "E4M1:212"
     }
    ]
   },
@@ -23038,19 +23030,19 @@
      "map": "E3M6",
      "sector": 35,
      "root": "wall 231",
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     },
     {
      "map": "E1M6",
      "sector": 189,
      "root": "sprite 677",
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E3M6",
      "sector": 35,
      "root": "wall 233",
-     "place": "E3M6:105"
+     "place": "E3M6:35"
     }
    ]
   },
@@ -23072,7 +23064,7 @@
      "map": "E3M5",
      "sector": 18,
      "root": "sprite 20",
-     "place": "E3M5:23"
+     "place": "E3M5:18"
     },
     {
      "map": "E6M4",
@@ -23118,7 +23110,7 @@
      "map": "E3M3",
      "sector": 289,
      "root": "sprite 5",
-     "place": "E3M3:263"
+     "place": null
     },
     {
      "map": "E4M9",
@@ -23281,7 +23273,7 @@
      "map": "E3M6",
      "sector": 38,
      "root": "sprite 25",
-     "place": "E3M6:105"
+     "place": "E3M6:270"
     },
     {
      "map": "E3M6",
@@ -23444,7 +23436,7 @@
      "map": "E2M7",
      "sector": 296,
      "root": "sector 296",
-     "place": "E2M7:72"
+     "place": "E2M7:285"
     },
     {
      "map": "E3M2",
@@ -23698,7 +23690,7 @@
      "map": "E4M1",
      "sector": 155,
      "root": "wall 1235",
-     "place": "E4M1:57"
+     "place": "E4M1:152"
     },
     {
      "map": "E2M6",
@@ -23733,7 +23725,7 @@
      "map": "E2M7",
      "sector": 70,
      "root": "sprite 333",
-     "place": "E2M7:72"
+     "place": null
     },
     {
      "map": "E1M6",
@@ -23807,13 +23799,13 @@
      "map": "E2M4",
      "sector": 497,
      "root": "sprite 248",
-     "place": "E2M4:613"
+     "place": "E2M4:497"
     },
     {
      "map": "E3M2",
      "sector": 389,
      "root": "sprite 547",
-     "place": "E3M2:309"
+     "place": "E3M2:389"
     },
     {
      "map": "E3M3",
@@ -23825,7 +23817,7 @@
      "map": "E2M4",
      "sector": 583,
      "root": "sprite 715",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -23847,13 +23839,13 @@
      "map": "E1M8",
      "sector": 389,
      "root": "sprite 777",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E1M8",
      "sector": 389,
      "root": "sprite 826",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E1M8",
@@ -23971,19 +23963,19 @@
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 293",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 294",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 504",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
@@ -24017,7 +24009,7 @@
      "map": "E1M3",
      "sector": 305,
      "root": "sprite 873",
-     "place": "E1M3:324"
+     "place": "E1M3:305"
     },
     {
      "map": "E2M5",
@@ -24029,7 +24021,7 @@
      "map": "E1M3",
      "sector": 305,
      "root": "sprite 876",
-     "place": "E1M3:324"
+     "place": "E1M3:305"
     }
    ]
   },
@@ -24069,7 +24061,7 @@
      "map": "E6M5",
      "sector": 206,
      "root": "sprite 194",
-     "place": "E6M5:212"
+     "place": null
     }
    ]
   },
@@ -24136,13 +24128,13 @@
      "map": "E1M2",
      "sector": 216,
      "root": "sprite 262",
-     "place": "E1M2:164"
+     "place": null
     },
     {
      "map": "E1M2",
      "sector": 216,
      "root": "sprite 263",
-     "place": "E1M2:164"
+     "place": null
     },
     {
      "map": "E1M2",
@@ -24182,13 +24174,13 @@
      "map": "E3M8",
      "sector": 561,
      "root": "sprite 393",
-     "place": "E3M8:511"
+     "place": null
     },
     {
      "map": "E4M9",
      "sector": 162,
      "root": "sprite 103",
-     "place": "E4M9:157"
+     "place": null
     },
     {
      "map": "E6M6",
@@ -24259,13 +24251,13 @@
      "map": "E2M2",
      "sector": 36,
      "root": "sprite 108",
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M2",
      "sector": 33,
      "root": "sprite 109",
-     "place": "E2M2:50"
+     "place": "E2M2:33"
     },
     {
      "map": "E2M2",
@@ -24277,7 +24269,7 @@
      "map": "E2M2",
      "sector": 98,
      "root": "sprite 117",
-     "place": "E2M2:74"
+     "place": "E2M2:98"
     }
    ]
   },
@@ -24306,7 +24298,7 @@
      "map": "E4M6",
      "sector": 13,
      "root": "sprite 339",
-     "place": "E4M6:382"
+     "place": null
     },
     {
      "map": "E6M4",
@@ -24430,19 +24422,19 @@
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 280",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 281",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 66,
      "root": "sprite 503",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
@@ -24476,13 +24468,13 @@
      "map": "E4M7",
      "sector": 100,
      "root": "sector 100",
-     "place": "E4M7:95"
+     "place": "E4M7:93"
     },
     {
      "map": "E4M7",
      "sector": 97,
      "root": "sector 97",
-     "place": "E4M7:95"
+     "place": "E4M7:94"
     },
     {
      "map": "E4M7",
@@ -24636,7 +24628,7 @@
      "map": "E6M3",
      "sector": 175,
      "root": "sprite 151",
-     "place": "E6M3:163"
+     "place": "E6M3:157"
     },
     {
      "map": "E6M4",
@@ -24684,7 +24676,7 @@
      "map": "E3M2",
      "sector": 345,
      "root": "sprite 426",
-     "place": "E3M2:462"
+     "place": "E3M2:345"
     },
     {
      "map": "E6M4",
@@ -24718,7 +24710,7 @@
      "map": "E3M2",
      "sector": 479,
      "root": "sector 479",
-     "place": "E3M2:486"
+     "place": "E3M2:546"
     },
     {
      "map": "E6M4",
@@ -24736,7 +24728,7 @@
      "map": "E6M7",
      "sector": 134,
      "root": "sector 134",
-     "place": "E6M7:443"
+     "place": "E6M7:134"
     }
    ]
   },
@@ -24811,7 +24803,7 @@
      "map": "E2M4",
      "sector": 240,
      "root": "sprite 409",
-     "place": "E2M4:613"
+     "place": "E2M4:110"
     },
     {
      "map": "E2M4",
@@ -24847,25 +24839,25 @@
      "map": "E4M2",
      "sector": 33,
      "root": "sprite 8",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 33,
      "root": "sprite 10",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 33,
      "root": "sprite 11",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 33,
      "root": "sprite 12",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     }
    ]
   },
@@ -25069,7 +25061,7 @@
      "map": "E2M5",
      "sector": 512,
      "root": "wall 4432",
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     },
     {
      "map": "E2M5",
@@ -25098,25 +25090,25 @@
      "map": "E4M2",
      "sector": 35,
      "root": "wall 210",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 37,
      "root": "wall 219",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 239,
      "root": "wall 1530",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     },
     {
      "map": "E4M2",
      "sector": 239,
      "root": "wall 1545",
-     "place": "E4M2:247"
+     "place": "E4M2:33"
     }
    ]
   },
@@ -25139,25 +25131,25 @@
      "map": "E1M6",
      "sector": 282,
      "root": "wall 2747",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 282,
      "root": "wall 2748",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 282,
      "root": "wall 2754",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 282,
      "root": "wall 2755",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     }
    ]
   },
@@ -25235,7 +25227,7 @@
      "map": "E3M7",
      "sector": 71,
      "root": "sprite 146",
-     "place": "E3M7:125"
+     "place": "E3M7:71"
     },
     {
      "map": "E3M7",
@@ -25317,7 +25309,7 @@
      "map": "E3M3",
      "sector": 300,
      "root": "sprite 350",
-     "place": "E3M3:101"
+     "place": null
     },
     {
      "map": "E4M9",
@@ -25329,7 +25321,7 @@
      "map": "E6M6",
      "sector": 318,
      "root": "sprite 264",
-     "place": "E6M6:244"
+     "place": null
     }
    ]
   },
@@ -25355,13 +25347,13 @@
      "map": "E3M2",
      "sector": 491,
      "root": "sprite 667",
-     "place": "E3M2:537"
+     "place": "E3M2:514"
     },
     {
      "map": "E3M2",
      "sector": 491,
      "root": "sprite 679",
-     "place": "E3M2:537"
+     "place": "E3M2:514"
     },
     {
      "map": "E3M2",
@@ -25396,7 +25388,7 @@
      "map": "E4M3",
      "sector": 95,
      "root": "sprite 239",
-     "place": "E4M3:94"
+     "place": "E4M3:95"
     },
     {
      "map": "E4M3",
@@ -25408,7 +25400,7 @@
      "map": "E4M3",
      "sector": 410,
      "root": "sprite 241",
-     "place": "E4M3:94"
+     "place": "E4M3:411"
     },
     {
      "map": "E4M3",
@@ -25491,7 +25483,7 @@
      "map": "E3M7",
      "sector": 71,
      "root": "sprite 145",
-     "place": "E3M7:125"
+     "place": "E3M7:71"
     },
     {
      "map": "E3M7",
@@ -25612,7 +25604,7 @@
      "map": "E3M5",
      "sector": 113,
      "root": "sector 113",
-     "place": "E3M5:3"
+     "place": null
     },
     {
      "map": "E3M5",
@@ -25686,13 +25678,13 @@
      "map": "E6M3",
      "sector": 122,
      "root": "sprite 10",
-     "place": "E6M3:231"
+     "place": "E6M3:126"
     },
     {
      "map": "E1M4",
      "sector": 170,
      "root": "sprite 204",
-     "place": null
+     "place": "E1M4:170"
     }
    ]
   },
@@ -25763,7 +25755,7 @@
      "map": "E1M3",
      "sector": 34,
      "root": "sprite 708",
-     "place": "E1M3:6"
+     "place": "E1M3:34"
     }
    ]
   },
@@ -25869,7 +25861,7 @@
      "map": "E1M8",
      "sector": 406,
      "root": "sprite 404",
-     "place": "E1M8:390"
+     "place": "E1M8:405"
     }
    ]
   },
@@ -25967,7 +25959,7 @@
      "map": "E3M2",
      "sector": 478,
      "root": "sector 478",
-     "place": "E3M2:486"
+     "place": "E3M2:546"
     },
     {
      "map": "E4M9",
@@ -26002,13 +25994,13 @@
      "map": "E2M4",
      "sector": 378,
      "root": "sector 378",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E3M2",
      "sector": 340,
      "root": "sector 340",
-     "place": "E3M2:216"
+     "place": "E3M2:361"
     }
    ]
   },
@@ -26169,7 +26161,7 @@
      "map": "E1M1",
      "sector": 130,
      "root": "sprite 331",
-     "place": "E1M1:122"
+     "place": null
     },
     {
      "map": "E1M3",
@@ -26203,7 +26195,7 @@
      "map": "E1M3",
      "sector": 222,
      "root": "sprite 370",
-     "place": "E1M3:6"
+     "place": null
     },
     {
      "map": "E3M1",
@@ -26307,19 +26299,19 @@
      "map": "E1M1",
      "sector": 126,
      "root": "sprite 317",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 126,
      "root": "sprite 318",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     },
     {
      "map": "E1M1",
      "sector": 126,
      "root": "sprite 319",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     }
    ]
   },
@@ -26347,7 +26339,7 @@
      "map": "E1M8",
      "sector": 22,
      "root": "sprite 15",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E1M8",
@@ -26388,7 +26380,7 @@
      "map": "E3M5",
      "sector": 16,
      "root": "wall 187",
-     "place": "E3M5:23"
+     "place": "E3M5:16"
     }
    ]
   },
@@ -26422,7 +26414,7 @@
      "map": "E2M5",
      "sector": 718,
      "root": "wall 6300",
-     "place": "E2M5:724"
+     "place": null
     }
    ]
   },
@@ -26588,19 +26580,19 @@
      "map": "E2M7",
      "sector": 367,
      "root": "sprite 368",
-     "place": null
+     "place": "E2M7:366"
     },
     {
      "map": "E2M7",
      "sector": 375,
      "root": "sprite 369",
-     "place": null
+     "place": "E2M7:381"
     },
     {
      "map": "E2M7",
      "sector": 378,
      "root": "sprite 370",
-     "place": null
+     "place": "E2M7:381"
     }
    ]
   },
@@ -26662,7 +26654,7 @@
      "map": "E2M4",
      "sector": 503,
      "root": "sprite 707",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     },
     {
      "map": "E3M4",
@@ -26771,7 +26763,7 @@
      "map": "E3M5",
      "sector": 9,
      "root": "sprite 15",
-     "place": "E3M5:211"
+     "place": "E3M5:170"
     },
     {
      "map": "E3M5",
@@ -26801,13 +26793,13 @@
      "map": "E6M7",
      "sector": 403,
      "root": "sprite 203",
-     "place": "E6M7:443"
+     "place": "E6M7:216"
     },
     {
      "map": "E6M7",
      "sector": 404,
      "root": "sprite 213",
-     "place": "E6M7:443"
+     "place": "E6M7:262"
     },
     {
      "map": "E6M7",
@@ -26842,13 +26834,13 @@
      "map": "E3M5",
      "sector": 80,
      "root": "sprite 59",
-     "place": "E3M5:211"
+     "place": "E3M5:80"
     },
     {
      "map": "E3M5",
      "sector": 80,
      "root": "sprite 60",
-     "place": "E3M5:211"
+     "place": "E3M5:80"
     }
    ]
   },
@@ -26948,7 +26940,7 @@
      "map": "E1M8",
      "sector": 41,
      "root": "sprite 829",
-     "place": "E1M8:243"
+     "place": "E1M8:40"
     },
     {
      "map": "E1M8",
@@ -27064,7 +27056,7 @@
      "map": "E1M3",
      "sector": 34,
      "root": "sprite 709",
-     "place": "E1M3:6"
+     "place": "E1M3:34"
     }
    ]
   },
@@ -27560,7 +27552,7 @@
      "map": "E1M2",
      "sector": 75,
      "root": "sprite 313",
-     "place": "E1M2:92"
+     "place": "E1M2:70"
     },
     {
      "map": "E2M7",
@@ -27589,13 +27581,13 @@
      "map": "E2M7",
      "sector": 4,
      "root": "sprite 10",
-     "place": "E2M7:72"
+     "place": "E2M7:443"
     },
     {
      "map": "E2M7",
      "sector": 4,
      "root": "sprite 11",
-     "place": "E2M7:72"
+     "place": "E2M7:443"
     }
    ]
   },
@@ -27652,7 +27644,7 @@
      "map": "E6M3",
      "sector": 175,
      "root": "sprite 154",
-     "place": "E6M3:163"
+     "place": "E6M3:157"
     }
    ]
   },
@@ -27796,7 +27788,7 @@
      "map": "E1M5",
      "sector": 221,
      "root": "sprite 217",
-     "place": "E1M5:394"
+     "place": null
     },
     {
      "map": "E2M3",
@@ -27832,7 +27824,7 @@
      "map": "E4M9",
      "sector": 181,
      "root": "sprite 277",
-     "place": null
+     "place": "E4M9:181"
     }
    ]
   },
@@ -27856,7 +27848,7 @@
      "map": "E6M3",
      "sector": 234,
      "root": "sprite 57",
-     "place": "E6M3:231"
+     "place": "E6M3:234"
     },
     {
      "map": "E6M5",
@@ -27915,13 +27907,13 @@
      "map": "E1M8",
      "sector": 22,
      "root": "sprite 21",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     },
     {
      "map": "E1M8",
      "sector": 17,
      "root": "sprite 617",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ]
   },
@@ -27945,13 +27937,13 @@
      "map": "E1M6",
      "sector": 281,
      "root": "sector 281",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     },
     {
      "map": "E1M6",
      "sector": 314,
      "root": "sector 314",
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     }
    ]
   },
@@ -27975,7 +27967,7 @@
      "map": "E2M6",
      "sector": 137,
      "root": "sector 137",
-     "place": "E2M6:209"
+     "place": "E2M6:140"
     },
     {
      "map": "E2M6",
@@ -28065,13 +28057,13 @@
      "map": "E3M4",
      "sector": 387,
      "root": "sector 387",
-     "place": "E3M4:40"
+     "place": "E3M4:386"
     },
     {
      "map": "E3M4",
      "sector": 389,
      "root": "sector 389",
-     "place": "E3M4:40"
+     "place": null
     }
    ]
   },
@@ -28094,13 +28086,13 @@
      "map": "E4M2",
      "sector": 260,
      "root": "sector 260",
-     "place": "E4M2:247"
+     "place": "E4M2:52"
     },
     {
      "map": "E4M2",
      "sector": 32,
      "root": "sector 32",
-     "place": "E4M2:247"
+     "place": "E4M2:7"
     }
    ]
   },
@@ -28306,7 +28298,7 @@
      "map": "E3M1",
      "sector": 276,
      "root": "sector 276",
-     "place": "E3M1:8"
+     "place": null
     }
    ]
   },
@@ -28330,7 +28322,7 @@
      "map": "E1M6",
      "sector": 354,
      "root": "sector 354",
-     "place": "E1M6:294"
+     "place": "E1M6:354"
     },
     {
      "map": "E3M7",
@@ -28359,13 +28351,13 @@
      "map": "E1M2",
      "sector": 14,
      "root": "sector 14",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M2",
      "sector": 186,
      "root": "sector 186",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     }
    ]
   },
@@ -28393,7 +28385,7 @@
      "map": "E3M6",
      "sector": 481,
      "root": "sector 481",
-     "place": "E3M6:498"
+     "place": "E3M6:480"
     }
    ]
   },
@@ -28416,13 +28408,13 @@
      "map": "E3M4",
      "sector": 118,
      "root": "sector 118",
-     "place": "E3M4:153"
+     "place": "E3M4:267"
     },
     {
      "map": "E3M4",
      "sector": 119,
      "root": "sector 119",
-     "place": "E3M4:153"
+     "place": "E3M4:267"
     }
    ]
   },
@@ -28500,13 +28492,13 @@
      "map": "E2M6",
      "sector": 180,
      "root": "sector 180",
-     "place": "E2M6:182"
+     "place": "E2M6:180"
     },
     {
      "map": "E6M2",
      "sector": 151,
      "root": "sector 151",
-     "place": "E6M2:148"
+     "place": null
     }
    ]
   },
@@ -28529,7 +28521,7 @@
      "map": "E1M2",
      "sector": 147,
      "root": "sector 147",
-     "place": "E1M2:230"
+     "place": "E1M2:147"
     },
     {
      "map": "E3M1",
@@ -28564,7 +28556,7 @@
      "map": "E2M4",
      "sector": 266,
      "root": "sector 266",
-     "place": null
+     "place": "E2M4:266"
     }
    ]
   },
@@ -28673,13 +28665,13 @@
      "map": "E1M2",
      "sector": 14,
      "root": "sprite 39",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     },
     {
      "map": "E1M2",
      "sector": 14,
      "root": "sprite 40",
-     "place": "E1M2:92"
+     "place": "E1M2:14"
     }
    ]
   },
@@ -28971,13 +28963,13 @@
      "map": "E1M2",
      "sector": 162,
      "root": "sprite 258",
-     "place": null
+     "place": "E1M2:168"
     },
     {
      "map": "E1M2",
      "sector": 162,
      "root": "sprite 678",
-     "place": null
+     "place": "E1M2:168"
     }
    ]
   },
@@ -29029,13 +29021,13 @@
      "map": "E1M6",
      "sector": 254,
      "root": "sprite 367",
-     "place": "E1M6:294"
+     "place": "E1M6:371"
     },
     {
      "map": "E1M6",
      "sector": 254,
      "root": "sprite 1130",
-     "place": "E1M6:294"
+     "place": "E1M6:371"
     }
    ]
   },
@@ -29122,13 +29114,13 @@
      "map": "E1M5",
      "sector": 181,
      "root": "sprite 241",
-     "place": "E1M5:394"
+     "place": "E1M5:181"
     },
     {
      "map": "E1M5",
      "sector": 181,
      "root": "sprite 677",
-     "place": "E1M5:394"
+     "place": "E1M5:181"
     }
    ]
   },
@@ -29181,13 +29173,13 @@
      "map": "E1M6",
      "sector": 345,
      "root": "sprite 349",
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     },
     {
      "map": "E1M6",
      "sector": 345,
      "root": "sprite 1129",
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     }
    ]
   },
@@ -29209,7 +29201,7 @@
      "map": "E6M1",
      "sector": 107,
      "root": "sprite 183",
-     "place": "E6M1:47"
+     "place": null
     },
     {
      "map": "E6M9",
@@ -29542,7 +29534,7 @@
      "map": "E4M1",
      "sector": 79,
      "root": "wall 627",
-     "place": "E4M1:144"
+     "place": null
     },
     {
      "map": "E4M1",
@@ -29601,13 +29593,13 @@
      "map": "E6M7",
      "sector": 422,
      "root": "sprite 54",
-     "place": "E6M7:443"
+     "place": "E6M7:401"
     },
     {
      "map": "E6M7",
      "sector": 423,
      "root": "sprite 55",
-     "place": "E6M7:443"
+     "place": "E6M7:401"
     }
    ]
   },
@@ -29697,13 +29689,13 @@
      "map": "E3M5",
      "sector": 240,
      "root": "sprite 356",
-     "place": "E3M5:211"
+     "place": "E3M5:170"
     },
     {
      "map": "E3M5",
      "sector": 241,
      "root": "sprite 357",
-     "place": "E3M5:211"
+     "place": "E3M5:170"
     }
    ]
   },
@@ -29769,7 +29761,7 @@
      "map": "E1M3",
      "sector": 66,
      "root": "sprite 34",
-     "place": "E1M3:115"
+     "place": "E1M3:66"
     },
     {
      "map": "E1M3",
@@ -29801,13 +29793,13 @@
      "map": "E1M6",
      "sector": 42,
      "root": "sprite 9",
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M6",
      "sector": 39,
      "root": "sprite 17",
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     }
    ]
   },
@@ -29833,13 +29825,13 @@
      "map": "E3M6",
      "sector": 389,
      "root": "sprite 312",
-     "place": "E3M6:367"
+     "place": "E3M6:391"
     },
     {
      "map": "E3M6",
      "sector": 387,
      "root": "sprite 313",
-     "place": "E3M6:367"
+     "place": "E3M6:391"
     }
    ]
   },
@@ -29873,7 +29865,7 @@
      "map": "E6M7",
      "sector": 287,
      "root": "sprite 111",
-     "place": "E6M7:443"
+     "place": "E6M7:231"
     }
    ]
   },
@@ -29903,7 +29895,7 @@
      "map": "E3M5",
      "sector": 286,
      "root": "sprite 318",
-     "place": "E3M5:286"
+     "place": null
     }
    ]
   },
@@ -29925,13 +29917,13 @@
      "map": "E1M6",
      "sector": 103,
      "root": "sprite 61",
-     "place": "E1M6:294"
+     "place": "E1M6:164"
     },
     {
      "map": "E3M2",
      "sector": 175,
      "root": "sprite 213",
-     "place": "E3M2:141"
+     "place": null
     }
    ]
   },
@@ -29954,13 +29946,13 @@
      "map": "E4M6",
      "sector": 174,
      "root": "sprite 264",
-     "place": "E4M6:382"
+     "place": "E4M6:173"
     },
     {
      "map": "E4M6",
      "sector": 172,
      "root": "sprite 265",
-     "place": "E4M6:382"
+     "place": "E4M6:173"
     }
    ]
   },
@@ -30109,13 +30101,13 @@
      "map": "E1M6",
      "sector": 313,
      "root": "sprite 287",
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     },
     {
      "map": "E1M6",
      "sector": 497,
      "root": "sprite 1074",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     }
    ]
   },
@@ -30206,7 +30198,7 @@
      "map": "E2M7",
      "sector": 8,
      "root": "sprite 653",
-     "place": "E2M7:72"
+     "place": null
     }
    ]
   },
@@ -30318,7 +30310,7 @@
      "map": "E1M2",
      "sector": 144,
      "root": "sprite 6",
-     "place": "E1M2:230"
+     "place": "E1M2:147"
     },
     {
      "map": "E1M2",
@@ -30346,7 +30338,7 @@
      "map": "E2M4",
      "sector": 266,
      "root": "sprite 188",
-     "place": null
+     "place": "E2M4:266"
     },
     {
      "map": "E2M4",
@@ -30404,7 +30396,7 @@
      "map": "E3M6",
      "sector": 93,
      "root": "sprite 291",
-     "place": "E3M6:367"
+     "place": "E3M6:98"
     },
     {
      "map": "E3M6",
@@ -30466,7 +30458,7 @@
      "map": "E4M6",
      "sector": 318,
      "root": "sprite 227",
-     "place": "E4M6:4"
+     "place": "E4M6:318"
     }
    ]
   },
@@ -30584,7 +30576,7 @@
      "map": "E6M4",
      "sector": 147,
      "root": "sprite 207",
-     "place": "E6M4:334"
+     "place": "E6M4:147"
     }
    ]
   },
@@ -30608,7 +30600,7 @@
      "map": "E1M6",
      "sector": 187,
      "root": "sprite 944",
-     "place": "E1M6:303"
+     "place": "E1M6:187"
     },
     {
      "map": "E1M6",
@@ -30779,7 +30771,7 @@
      "map": "E3M6",
      "sector": 69,
      "root": "sprite 219",
-     "place": "E3M6:367"
+     "place": "E3M6:365"
     },
     {
      "map": "E3M6",
@@ -30837,13 +30829,13 @@
      "map": "E3M1",
      "sector": 263,
      "root": "sprite 747",
-     "place": "E3M1:8"
+     "place": null
     },
     {
      "map": "E3M4",
      "sector": 316,
      "root": "sprite 331",
-     "place": "E3M4:218"
+     "place": "E3M4:316"
     }
    ]
   },
@@ -30900,7 +30892,7 @@
      "map": "E2M5",
      "sector": 683,
      "root": "sprite 628",
-     "place": "E2M5:577"
+     "place": "E2M5:512"
     }
    ]
   },
@@ -30926,7 +30918,7 @@
      "map": "E3M2",
      "sector": 45,
      "root": "sector 45",
-     "place": "E3M2:33"
+     "place": "E3M2:40"
     }
    ]
   },
@@ -31046,7 +31038,7 @@
      "map": "E3M1",
      "sector": 181,
      "root": "sector 181",
-     "place": "E3M1:203"
+     "place": null
     }
    ]
   },
@@ -31788,7 +31780,7 @@
      "map": "E6M4",
      "sector": 59,
      "root": "sprite 85",
-     "place": null
+     "place": "E6M4:59"
     }
    ]
   },
@@ -31925,7 +31917,7 @@
      "map": "E1M3",
      "sector": 224,
      "root": "sprite 696",
-     "place": "E1M3:6"
+     "place": "E1M3:224"
     }
    ]
   },
@@ -31973,7 +31965,7 @@
      "map": "E2M2",
      "sector": 160,
      "root": "sprite 145",
-     "place": "E2M2:182"
+     "place": null
     }
    ]
   },
@@ -32144,7 +32136,7 @@
      "map": "E6M2",
      "sector": 217,
      "root": "sprite 239",
-     "place": "E6M2:219"
+     "place": null
     }
    ]
   },
@@ -32198,7 +32190,7 @@
      "map": "E1M3",
      "sector": 203,
      "root": "sprite 318",
-     "place": "E1M3:96"
+     "place": "E1M3:209"
     }
    ]
   },
@@ -32225,7 +32217,7 @@
      "map": "E3M1",
      "sector": 223,
      "root": "sprite 657",
-     "place": "E3M1:238"
+     "place": "E3M1:225"
     }
    ]
   },
@@ -32250,7 +32242,7 @@
      "map": "E2M4",
      "sector": 207,
      "root": "sprite 662",
-     "place": "E2M4:613"
+     "place": "E2M4:267"
     }
    ]
   },
@@ -32587,7 +32579,7 @@
      "map": "E1M6",
      "sector": 119,
      "root": "sprite 639",
-     "place": "E1M6:294"
+     "place": "E1M6:108"
     }
    ]
   },
@@ -32618,7 +32610,7 @@
      "map": "E3M2",
      "sector": 488,
      "root": "sprite 703",
-     "place": "E3M2:486"
+     "place": null
     }
    ]
   },
@@ -32646,7 +32638,7 @@
      "map": "E2M7",
      "sector": 53,
      "root": "sprite 117",
-     "place": "E2M7:51"
+     "place": "E2M7:60"
     }
    ]
   },
@@ -32696,7 +32688,7 @@
      "map": "E2M5",
      "sector": 664,
      "root": "sprite 594",
-     "place": "E2M5:642"
+     "place": "E2M5:663"
     }
    ]
   },
@@ -32721,7 +32713,7 @@
      "map": "E2M7",
      "sector": 381,
      "root": "sprite 380",
-     "place": null
+     "place": "E2M7:381"
     }
    ]
   },
@@ -32846,7 +32838,7 @@
      "map": "E6M5",
      "sector": 339,
      "root": "sprite 448",
-     "place": "E6M5:337"
+     "place": null
     }
    ]
   },
@@ -33062,7 +33054,7 @@
      "map": "E3M8",
      "sector": 161,
      "root": "sprite 257",
-     "place": "E3M8:139"
+     "place": "E3M8:161"
     }
    ]
   },
@@ -33147,7 +33139,7 @@
      "map": "E3M1",
      "sector": 171,
      "root": "sector 171",
-     "place": "E3M1:170"
+     "place": "E3M1:171"
     }
    ]
   },
@@ -33174,7 +33166,7 @@
      "map": "E2M9",
      "sector": 63,
      "root": "sector 63",
-     "place": "E2M9:76"
+     "place": "E2M9:63"
     }
    ]
   },
@@ -33226,7 +33218,7 @@
      "map": "E1M6",
      "sector": 54,
      "root": "sector 54",
-     "place": "E1M6:256"
+     "place": "E1M6:491"
     }
    ]
   },
@@ -33250,7 +33242,7 @@
      "map": "E1M1",
      "sector": 61,
      "root": "sector 61",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     }
    ]
   },
@@ -33536,7 +33528,7 @@
      "map": "E1M5",
      "sector": 355,
      "root": "sector 355",
-     "place": "E1M5:394"
+     "place": "E1M5:360"
     }
    ]
   },
@@ -33632,7 +33624,7 @@
      "map": "E1M1",
      "sector": 62,
      "root": "sector 62",
-     "place": "E1M1:122"
+     "place": "E1M1:66"
     }
    ]
   },
@@ -33709,7 +33701,7 @@
      "map": "E1M7",
      "sector": 29,
      "root": "sector 29",
-     "place": "E1M7:45"
+     "place": "E1M7:30"
     }
    ]
   },
@@ -33881,7 +33873,7 @@
      "map": "E3M6",
      "sector": 386,
      "root": "sector 386",
-     "place": "E3M6:367"
+     "place": "E3M6:391"
     }
    ]
   },
@@ -34047,7 +34039,7 @@
      "map": "E3M2",
      "sector": 183,
      "root": "sector 183",
-     "place": null
+     "place": "E3M2:183"
     }
    ]
   },
@@ -34117,7 +34109,7 @@
      "map": "E1M5",
      "sector": 328,
      "root": "sector 328",
-     "place": "E1M5:392"
+     "place": "E1M5:327"
     }
    ]
   },
@@ -34221,7 +34213,7 @@
      "map": "E3M2",
      "sector": 99,
      "root": "sector 99",
-     "place": null
+     "place": "E3M2:99"
     }
    ]
   },
@@ -34270,7 +34262,7 @@
      "map": "E1M8",
      "sector": 423,
      "root": "sector 423",
-     "place": "E1M8:243"
+     "place": "E1M8:423"
     }
    ]
   },
@@ -34442,7 +34434,7 @@
      "map": "E1M2",
      "sector": 288,
      "root": "sector 288",
-     "place": "E1M2:293"
+     "place": null
     }
    ]
   },
@@ -34464,7 +34456,7 @@
      "map": "E3M8",
      "sector": 9,
      "root": "sector 9",
-     "place": "E3M8:511"
+     "place": null
     }
    ]
   },
@@ -34769,7 +34761,7 @@
      "map": "E1M6",
      "sector": 193,
      "root": "sector 193",
-     "place": "E1M6:256"
+     "place": "E1M6:192"
     }
    ]
   },
@@ -34815,7 +34807,7 @@
      "map": "E1M8",
      "sector": 165,
      "root": "sector 165",
-     "place": "E1M8:243"
+     "place": "E1M8:389"
     }
    ]
   },
@@ -34860,7 +34852,7 @@
      "map": "E3M6",
      "sector": 517,
      "root": "sector 517",
-     "place": "E3M6:513"
+     "place": "E3M6:517"
     }
    ]
   },
@@ -34904,7 +34896,7 @@
      "map": "E6M4",
      "sector": 151,
      "root": "sector 151",
-     "place": "E6M4:159"
+     "place": null
     }
    ]
   },
@@ -34971,7 +34963,7 @@
      "map": "E6M7",
      "sector": 274,
      "root": "sector 274",
-     "place": "E6M7:443"
+     "place": null
     }
    ]
   },
@@ -34993,7 +34985,7 @@
      "map": "E2M4",
      "sector": 504,
      "root": "sector 504",
-     "place": "E2M4:613"
+     "place": null
     }
    ]
   },
@@ -35020,7 +35012,7 @@
      "map": "E2M4",
      "sector": 503,
      "root": "sector 503",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -35117,7 +35109,7 @@
      "map": "E3M5",
      "sector": 154,
      "root": "sector 154",
-     "place": "E3M5:211"
+     "place": "E3M5:155"
     }
    ]
   },
@@ -35137,7 +35129,7 @@
      "map": "E1M3",
      "sector": 305,
      "root": "sector 305",
-     "place": "E1M3:324"
+     "place": "E1M3:305"
     }
    ]
   },
@@ -35428,7 +35420,7 @@
      "map": "E4M8",
      "sector": 29,
      "root": "sprite 33",
-     "place": "E4M8:64"
+     "place": "E4M8:29"
     }
    ]
   },
@@ -35541,7 +35533,7 @@
      "map": "E6M7",
      "sector": 134,
      "root": "sprite 237",
-     "place": "E6M7:443"
+     "place": "E6M7:134"
     }
    ]
   },
@@ -35565,7 +35557,7 @@
      "map": "E1M4",
      "sector": 170,
      "root": "sprite 446",
-     "place": null
+     "place": "E1M4:170"
     }
    ]
   },
@@ -35889,7 +35881,7 @@
      "map": "E6M3",
      "sector": 85,
      "root": "sprite 102",
-     "place": "E6M3:231"
+     "place": null
     }
    ]
   },
@@ -35955,7 +35947,7 @@
      "map": "E1M6",
      "sector": 83,
      "root": "sprite 685",
-     "place": "E1M6:303"
+     "place": "E1M6:109"
     }
    ]
   },
@@ -36006,7 +35998,7 @@
      "map": "E3M3",
      "sector": 297,
      "root": "sprite 327",
-     "place": "E3M3:15"
+     "place": null
     }
    ]
   },
@@ -36028,7 +36020,7 @@
      "map": "E4M1",
      "sector": 105,
      "root": "sprite 209",
-     "place": "E4M1:57"
+     "place": null
     }
    ]
   },
@@ -36052,7 +36044,7 @@
      "map": "E4M2",
      "sector": 200,
      "root": "sprite 150",
-     "place": "E4M2:247"
+     "place": null
     }
    ]
   },
@@ -36098,7 +36090,7 @@
      "map": "E3M4",
      "sector": 101,
      "root": "sprite 395",
-     "place": "E3M4:218"
+     "place": "E3M4:101"
     }
    ]
   },
@@ -36143,7 +36135,7 @@
      "map": "E4M6",
      "sector": 139,
      "root": "sprite 282",
-     "place": "E4M6:382"
+     "place": null
     }
    ]
   },
@@ -36170,7 +36162,7 @@
      "map": "E3M1",
      "sector": 156,
      "root": "sprite 800",
-     "place": "E3M1:170"
+     "place": "E3M1:171"
     }
    ]
   },
@@ -36240,7 +36232,7 @@
      "map": "E6M9",
      "sector": 61,
      "root": "sprite 33",
-     "place": "E6M9:59"
+     "place": "E6M9:67"
     }
    ]
   },
@@ -36287,7 +36279,7 @@
      "map": "E2M4",
      "sector": 503,
      "root": "sprite 661",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -36422,7 +36414,7 @@
      "map": "E2M4",
      "sector": 347,
      "root": "sprite 652",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -36446,7 +36438,7 @@
      "map": "E4M6",
      "sector": 157,
      "root": "sprite 263",
-     "place": "E4M6:382"
+     "place": null
     }
    ]
   },
@@ -36603,7 +36595,7 @@
      "map": "E3M1",
      "sector": 250,
      "root": "sprite 608",
-     "place": "E3M1:381"
+     "place": null
     }
    ]
   },
@@ -36645,7 +36637,7 @@
      "map": "E6M9",
      "sector": 61,
      "root": "sprite 257",
-     "place": "E6M9:59"
+     "place": "E6M9:67"
     }
    ]
   },
@@ -36667,7 +36659,7 @@
      "map": "E3M3",
      "sector": 291,
      "root": "sprite 322",
-     "place": "E3M3:271"
+     "place": null
     }
    ]
   },
@@ -36741,7 +36733,7 @@
      "map": "E6M3",
      "sector": 155,
      "root": "sprite 301",
-     "place": "E6M3:163"
+     "place": "E6M3:157"
     }
    ]
   },
@@ -36788,7 +36780,7 @@
      "map": "E2M5",
      "sector": 413,
      "root": "sprite 821",
-     "place": null
+     "place": "E2M5:413"
     }
    ]
   },
@@ -36909,7 +36901,7 @@
      "map": "E3M5",
      "sector": 60,
      "root": "sprite 141",
-     "place": "E3M5:211"
+     "place": "E3M5:55"
     }
    ]
   },
@@ -36931,7 +36923,7 @@
      "map": "E4M6",
      "sector": 97,
      "root": "sprite 34",
-     "place": "E4M6:214"
+     "place": null
     }
    ]
   },
@@ -36953,7 +36945,7 @@
      "map": "E2M4",
      "sector": 602,
      "root": "sprite 717",
-     "place": "E2M4:613"
+     "place": "E2M4:537"
     }
    ]
   },
@@ -36973,7 +36965,7 @@
      "map": "E3M6",
      "sector": 268,
      "root": "wall 1715",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     }
    ]
   },
@@ -37067,7 +37059,7 @@
      "map": "E4M1",
      "sector": 105,
      "root": "wall 809",
-     "place": "E4M1:57"
+     "place": null
     }
    ]
   },
@@ -37092,7 +37084,7 @@
      "map": "E4M1",
      "sector": 107,
      "root": "wall 817",
-     "place": "E4M1:57"
+     "place": null
     }
    ]
   },
@@ -37163,7 +37155,7 @@
      "map": "E3M4",
      "sector": 43,
      "root": "wall 293",
-     "place": "E3M4:153"
+     "place": "E3M4:267"
     }
    ]
   },
@@ -37257,7 +37249,7 @@
      "map": "E3M6",
      "sector": 103,
      "root": "wall 653",
-     "place": "E3M6:367"
+     "place": "E3M6:391"
     }
    ]
   },
@@ -37401,7 +37393,7 @@
      "map": "E6M7",
      "sector": 424,
      "root": "sprite 56",
-     "place": "E6M7:443"
+     "place": "E6M7:401"
     }
    ]
   },
@@ -37616,7 +37608,7 @@
      "map": "E3M2",
      "sector": 510,
      "root": "sprite 694",
-     "place": "E3M2:537"
+     "place": "E3M2:510"
     }
    ]
   },
@@ -37771,7 +37763,7 @@
      "map": "E3M5",
      "sector": 108,
      "root": "sprite 322",
-     "place": "E3M5:3"
+     "place": null
     }
    ]
   },
@@ -37852,7 +37844,7 @@
      "map": "E1M5",
      "sector": 326,
      "root": "sprite 383",
-     "place": "E1M5:323"
+     "place": "E1M5:337"
     }
    ]
   },
@@ -37900,7 +37892,7 @@
      "map": "E3M2",
      "sector": 177,
      "root": "sprite 210",
-     "place": "E3M2:141"
+     "place": null
     }
    ]
   },
@@ -37923,7 +37915,7 @@
      "map": "E1M6",
      "sector": 431,
      "root": "sprite 723",
-     "place": "E1M6:303"
+     "place": null
     }
    ]
   },
@@ -37955,7 +37947,7 @@
      "map": "E1M6",
      "sector": 311,
      "root": "sprite 292",
-     "place": "E1M6:303"
+     "place": "E1M6:311"
     }
    ]
   },
@@ -38168,7 +38160,7 @@
      "map": "E3M6",
      "sector": 90,
      "root": "sprite 38",
-     "place": "E3M6:367"
+     "place": null
     }
    ]
   },
@@ -38217,7 +38209,7 @@
      "map": "E1M6",
      "sector": 113,
      "root": "sprite 221",
-     "place": "E1M6:256"
+     "place": "E1M6:113"
     }
    ]
   },
@@ -38452,7 +38444,7 @@
      "map": "E2M3",
      "sector": 226,
      "root": "sprite 220",
-     "place": "E2M3:275"
+     "place": "E2M3:86"
     }
    ]
   },
@@ -38479,7 +38471,7 @@
      "map": "E3M2",
      "sector": 487,
      "root": "sprite 562",
-     "place": "E3M2:309"
+     "place": null
     }
    ]
   },
@@ -38506,7 +38498,7 @@
      "map": "E3M2",
      "sector": 487,
      "root": "sprite 563",
-     "place": "E3M2:309"
+     "place": null
     }
    ]
   },
@@ -38656,7 +38648,7 @@
      "map": "E6M3",
      "sector": 49,
      "root": "sprite 7",
-     "place": "E6M3:231"
+     "place": "E6M3:126"
     }
    ]
   },
@@ -38731,7 +38723,7 @@
      "map": "E2M3",
      "sector": 200,
      "root": "sprite 193",
-     "place": null
+     "place": "E2M3:140"
     }
    ]
   },
@@ -38756,7 +38748,7 @@
      "map": "E2M3",
      "sector": 201,
      "root": "sprite 6",
-     "place": null
+     "place": "E2M3:140"
     }
    ]
   },
@@ -38779,7 +38771,7 @@
      "map": "E1M6",
      "sector": 346,
      "root": "sprite 965",
-     "place": "E1M6:303"
+     "place": "E1M6:349"
     }
    ]
   },
@@ -38919,7 +38911,7 @@
      "map": "E1M6",
      "sector": 328,
      "root": "sprite 997",
-     "place": "E1M6:303"
+     "place": "E1M6:328"
     }
    ]
   },
@@ -38941,7 +38933,7 @@
      "map": "E2M4",
      "sector": 497,
      "root": "sprite 418",
-     "place": "E2M4:613"
+     "place": "E2M4:497"
     }
    ]
   },
@@ -38992,7 +38984,7 @@
      "map": "E3M6",
      "sector": 56,
      "root": "sprite 404",
-     "place": "E3M6:105"
+     "place": "E3M6:57"
     }
    ]
   },
@@ -39061,7 +39053,7 @@
      "map": "E4M4",
      "sector": 160,
      "root": "sprite 109",
-     "place": "E4M4:219"
+     "place": null
     }
    ]
   },
@@ -39133,7 +39125,7 @@
      "map": "E3M6",
      "sector": 268,
      "root": "sector 268",
-     "place": "E3M6:318"
+     "place": "E3M6:268"
     }
    ]
   },
@@ -39644,7 +39636,7 @@
      "map": "E6M6",
      "sector": 367,
      "root": "sprite 269",
-     "place": "E6M6:272"
+     "place": "E6M6:283"
     }
    ]
   },
@@ -39733,7 +39725,7 @@
      "map": "E3M1",
      "sector": 242,
      "root": "sprite 539",
-     "place": null
+     "place": "E3M1:104"
     }
    ]
   },
@@ -39807,7 +39799,7 @@
      "map": "E3M4",
      "sector": 161,
      "root": "sprite 215",
-     "place": "E3M4:153"
+     "place": "E3M4:215"
     }
    ]
   },
@@ -39852,7 +39844,7 @@
      "map": "E2M4",
      "sector": 615,
      "root": "sprite 878",
-     "place": "E2M4:485"
+     "place": null
     }
    ]
   },
@@ -39876,7 +39868,7 @@
      "map": "E4M9",
      "sector": 39,
      "root": "sprite 284",
-     "place": "E4M9:177"
+     "place": "E4M9:54"
     }
    ]
   },
@@ -40085,7 +40077,7 @@
      "map": "E2M4",
      "sector": 476,
      "root": "sector 476",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -40155,7 +40147,7 @@
      "map": "E6M7",
      "sector": 323,
      "root": "sector 323",
-     "place": "E6M7:195"
+     "place": null
     }
    ]
   },
@@ -40226,7 +40218,7 @@
      "map": "E2M4",
      "sector": 448,
      "root": "sector 448",
-     "place": "E2M4:613"
+     "place": "E2M4:333"
     }
    ]
   },
@@ -40273,7 +40265,7 @@
      "map": "E1M6",
      "sector": 279,
      "root": "sector 279",
-     "place": "E1M6:294"
+     "place": "E1M6:164"
     }
    ]
   },
@@ -40318,7 +40310,7 @@
      "map": "E4M5",
      "sector": 179,
      "root": "sector 179",
-     "place": "E4M5:193"
+     "place": null
     }
    ]
   },

@@ -18,14 +18,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 678 704 701 703"
+  "note": "tiles 678 704 703 701"
  },
  "E1M1:122": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 974 575 346"
+ },
+ "E1M1:150": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 128 346 1067"
+  "note": "tiles 97 128 346 1068"
  },
  "E1M1:100": {
   "kind": "graveyard",
@@ -34,12 +41,12 @@
   "confidence": "guessed",
   "note": "tiles 704 703"
  },
- "E1M1:82": {
-  "kind": "hospital",
+ "E1M1:66": {
+  "kind": "graveyard",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 962 963 519"
+  "note": "tiles 964"
  },
  "E1M1:12": {
   "kind": "graveyard",
@@ -55,19 +62,12 @@
   "confidence": "guessed",
   "note": "tiles 420 1129"
  },
- "E1M2:92": {
-  "kind": "office",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2288 2291 1050 2290"
- },
  "E1M2:270": {
   "kind": "station",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 444 708 359 647"
+  "note": "tiles 444 708 359 1129"
  },
  "E1M2:234": {
   "kind": "forest",
@@ -88,9 +88,9 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2295 2304 2305 1719"
+  "note": "tiles 2295 2305 2139 2304"
  },
- "E1M2:230": {
+ "E1M2:147": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
@@ -105,18 +105,18 @@
   "note": "tiles 199 563 2453 255"
  },
  "E1M3:324": {
-  "kind": "kitchen",
+  "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1350 1351 2139"
+  "note": "tiles 261 2548 2453 754"
  },
  "E1M3:115": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2463 933 1715 2477"
+  "note": "tiles 2457 2463 933 1715"
  },
  "E1M3:140": {
   "kind": "church",
@@ -125,12 +125,12 @@
   "confidence": "guessed",
   "note": "tiles 803 521"
  },
- "E1M3:229": {
-  "kind": "factory",
+ "E1M3:305": {
+  "kind": "kitchen",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2460"
+  "note": "tiles 1350 1351"
  },
  "E1M4:210": {
   "kind": "carnival",
@@ -152,6 +152,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 1259"
+ },
+ "E1M4:114": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 672 2453 754 438"
  },
  "E1M4:282": {
   "kind": "cave",
@@ -216,6 +223,13 @@
   "confidence": "guessed",
   "note": "tiles 928 927"
  },
+ "E1M4:170": {
+  "kind": "sewer",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1743 1744"
+ },
  "E1M5:392": {
   "kind": "forest",
   "by": "guess",
@@ -230,33 +244,19 @@
   "confidence": "guessed",
   "note": "tiles 278 543 545 540"
  },
- "E1M5:387": {
+ "E1M5:394": {
+  "kind": "crypt",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 98 128"
+ },
+ "E1M5:102": {
   "kind": "graveyard",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 642 1530"
- },
- "E1M5:369": {
-  "kind": "graveyard",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 642 576 577 1530"
- },
- "E1M6:294": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2183 209 1070"
- },
- "E1M6:303": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2183 209 1074 1070"
+  "note": "tiles 576 577 1530"
  },
  "E1M6:258": {
   "kind": "prison",
@@ -265,26 +265,47 @@
   "confidence": "guessed",
   "note": "tiles 924 690 697"
  },
+ "E1M8:251": {
+  "kind": "sewer",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 977 1120"
+ },
+ "E1M8:94": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 932 981"
+ },
  "E1M8:243": {
   "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 465 692 906 690"
+  "note": "tiles 924 692 1060 690"
+ },
+ "E1M8:272": {
+  "kind": "prison",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 692 906 690 698"
  },
  "E1M8:245": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2462 2477 487 2453"
+  "note": "tiles 2462 2477 487 470"
  },
  "E1M8:4": {
   "kind": "carnival",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 752 653 2400 932"
+  "note": "tiles 752 2400 653 932"
  },
  "E1M8:64": {
   "kind": "graveyard",
@@ -298,7 +319,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 704 701 703 706"
+  "note": "tiles 704 703 701 706"
  },
  "E1M8:139": {
   "kind": "graveyard",
@@ -306,6 +327,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 700"
+ },
+ "E1M8:423": {
+  "kind": "prison",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 465 906"
  },
  "E2M1:123": {
   "kind": "harbour",
@@ -333,14 +361,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 924 975 689 688"
- },
- "E2M1:203": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 97"
+  "note": "tiles 975 924 689 688"
  },
  "E2M1:63": {
   "kind": "prison",
@@ -349,12 +370,12 @@
   "confidence": "guessed",
   "note": "tiles 126"
  },
- "E2M2:50": {
-  "kind": "factory",
+ "E2M1:204": {
+  "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 655 198 1076 194"
+  "note": "tiles 97"
  },
  "E2M2:204": {
   "kind": "snowfield",
@@ -363,12 +384,19 @@
   "confidence": "guessed",
   "note": "tiles 2498 2474 2497 2448"
  },
+ "E2M2:33": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 655 198 194 438"
+ },
  "E2M2:182": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 942 208 744 1076"
+  "note": "tiles 942 208 1076 744"
  },
  "E2M2:97": {
   "kind": "hospital",
@@ -382,14 +410,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 942 1076 194 438"
- },
- "E2M3:275": {
-  "kind": "snowfield",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2491 2474 2493 2497"
+  "note": "tiles 942 503 1076 194"
  },
  "E2M3:272": {
   "kind": "snowfield",
@@ -403,7 +424,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2498 2491 2474 2493"
+  "note": "tiles 2498 2474 2491 2448"
  },
  "E2M3:318": {
   "kind": "prison",
@@ -419,19 +440,40 @@
   "confidence": "guessed",
   "note": "tiles 2451 2493 2448"
  },
+ "E2M3:86": {
+  "kind": "snowfield",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2474 2493 2497 2448"
+ },
  "E2M3:212": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2498 2492 2497"
+  "note": "tiles 2498 2497 2492"
  },
  "E2M3:91": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2452 2492 2493 2448"
+  "note": "tiles 2452 2492 2448"
+ },
+ "E2M4:613": {
+  "kind": "bar",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 284 605 574 606"
+ },
+ "E2M4:619": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2447"
  },
  "E2M4:353": {
   "kind": "graveyard",
@@ -452,7 +494,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2492 2474 2493 2496"
+  "note": "tiles 2474 2493 2492 2496"
+ },
+ "E2M4:434": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2295 2140 2305 2304"
  },
  "E2M4:112": {
   "kind": "library",
@@ -461,26 +510,26 @@
   "confidence": "guessed",
   "note": "tiles 33 31 32"
  },
- "E2M5:339": {
-  "kind": "snowfield",
+ "E2M5:577": {
+  "kind": "library",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2495 2494 2498 2491"
+  "note": "tiles 2539 33 349 31"
  },
  "E2M5:362": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2491 2474 2497 2448"
+  "note": "tiles 2474 2497 2491 2448"
  },
  "E2M5:330": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2498 2491 2492 2474"
+  "note": "tiles 2498 2474 2497 2491"
  },
  "E2M5:560": {
   "kind": "snowfield",
@@ -489,19 +538,26 @@
   "confidence": "guessed",
   "note": "tiles 2494 2498 2474 2493"
  },
+ "E2M5:512": {
+  "kind": "church",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 584 521 580"
+ },
  "E2M5:440": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2494 2491 2492 2474"
+  "note": "tiles 2494 2474 2493 2497"
  },
  "E2M5:464": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2495 2494 2491 2493"
+  "note": "tiles 2495 2494 2493 2491"
  },
  "E2M5:254": {
   "kind": "snowfield",
@@ -529,14 +585,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 924 975 906 690"
+  "note": "tiles 975 924 906 690"
  },
  "E2M5:642": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 688 697 684 506"
+  "note": "tiles 688 684 697 506"
  },
  "E2M5:130": {
   "kind": "prison",
@@ -559,19 +615,19 @@
   "confidence": "guessed",
   "note": "tiles 2452 2496"
  },
+ "E2M5:187": {
+  "kind": "snowfield",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2451 2492 2496 2448"
+ },
  "E2M6:208": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 2497 2473 2496 2448"
- },
- "E2M6:226": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 632"
  },
  "E2M6:209": {
   "kind": "snowfield",
@@ -586,20 +642,6 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 2498 2474 2497 2473"
- },
- "E2M6:228": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 632"
- },
- "E2M6:127": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2579 217 1098 2453"
  },
  "E2M7:257": {
   "kind": "sewer",
@@ -622,28 +664,7 @@
   "confidence": "guessed",
   "note": "tiles 211 215 1074 376"
  },
- "E2M7:294": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 804 805 270 449"
- },
- "E2M8:9": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1059 270"
- },
  "E2M9:49": {
-  "kind": "snowfield",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2498 2497 2473 2448"
- },
- "E2M9:76": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
@@ -656,6 +677,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 806 804 808 805"
+ },
+ "E2M9:98": {
+  "kind": "snowfield",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2498 2497 2473 2448"
  },
  "E3M1:53": {
   "kind": "morgue",
@@ -690,35 +718,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2295 2304 2305"
+  "note": "tiles 2295 2305 2304"
  },
  "E3M2:141": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 439 194 376 438"
+  "note": "tiles 439 376 194 438"
  },
  "E3M2:537": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 261 205 376 438"
- },
- "E3M2:380": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 933 2548 1097 255"
- },
- "E3M2:486": {
-  "kind": "bank",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1352"
+  "note": "tiles 437 205 376 438"
  },
  "E3M3:15": {
   "kind": "factory",
@@ -734,26 +748,47 @@
   "confidence": "guessed",
   "note": "tiles 942 2462 2463 933"
  },
- "E3M3:271": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 191 487 255"
- },
  "E3M4:153": {
   "kind": "hospital",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 328 962 963"
+  "note": "tiles 143 151 695 353"
  },
- "E3M4:391": {
-  "kind": "factory",
+ "E3M4:215": {
+  "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2183 503 470"
+  "note": "tiles 691 975 924 689"
+ },
+ "E3M4:207": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 353"
+ },
+ "E3M4:267": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 423 426 425 328"
+ },
+ "E3M4:272": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2174"
+ },
+ "E3M4:252": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1080"
  },
  "E3M4:313": {
   "kind": "hospital",
@@ -761,6 +796,20 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 76 75"
+ },
+ "E3M4:112": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 963 962"
+ },
+ "E3M4:386": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 963 962"
  },
  "E3M4:194": {
   "kind": "hospital",
@@ -788,28 +837,49 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 212 2580 2183 933"
+  "note": "tiles 212 933 437 1076"
  },
  "E3M5:211": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2580 198 191 217"
+  "note": "tiles 2580 191 217 933"
+ },
+ "E3M5:170": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 198 191 1072 470"
+ },
+ "E3M5:55": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2580 191 205 470"
+ },
+ "E3M5:104": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2580 194"
  },
  "E3M5:23": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 199 933 208 211"
+  "note": "tiles 933 208 211 1076"
  },
- "E3M5:267": {
+ "E3M5:80": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 206 1074 487 205"
+  "note": "tiles 2463 2477 1074"
  },
  "E3M5:128": {
   "kind": "factory",
@@ -818,47 +888,40 @@
   "confidence": "guessed",
   "note": "tiles 210 487 470 194"
  },
- "E3M5:286": {
+ "E3M5:280": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 933 208 1076 205"
- },
- "E3M6:105": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 216 796 211 1070"
+  "note": "tiles 933 205 470 1070"
  },
  "E3M6:413": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 191 2462 2477 255"
+  "note": "tiles 2462 191 2477 255"
  },
  "E3M6:400": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 207 216 191 487"
+  "note": "tiles 216 191 211 487"
  },
  "E3M6:318": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 844 216 796 217"
+  "note": "tiles 844 216 796 211"
  },
  "E3M6:367": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 216 942 796 2477"
+  "note": "tiles 216 439 215 1072"
  },
  "E3M6:458": {
   "kind": "factory",
@@ -872,14 +935,28 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 207 2462 2463 796"
+  "note": "tiles 2462 2463 376"
  },
- "E3M6:272": {
+ "E3M6:365": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 207 211"
+  "note": "tiles 942 796 376"
+ },
+ "E3M6:505": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 207 796 376"
+ },
+ "E3M6:391": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2477 211 215 1076"
  },
  "E3M6:370": {
   "kind": "factory",
@@ -888,26 +965,40 @@
   "confidence": "guessed",
   "note": "tiles 216 1072 1070"
  },
- "E3M7:125": {
+ "E3M6:98": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2183 428 215"
+  "note": "tiles 207 216 1072 1070"
+ },
+ "E3M6:356": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 632 458"
+ },
+ "E3M6:268": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 207 216 217 211"
  },
  "E3M8:511": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 113 97 1068 1701"
+  "note": "tiles 97 81 1701"
  },
  "E3M8:566": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 82 83 127"
+  "note": "tiles 82 127"
  },
  "E3M8:266": {
   "kind": "church",
@@ -916,26 +1007,26 @@
   "confidence": "guessed",
   "note": "tiles 341 560"
  },
- "E3M8:586": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 217 1074 194"
- },
- "E3M8:601": {
+ "E3M8:603": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1069 1066"
+  "note": "tiles 113 1068 1067"
  },
  "E4M1:57": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2479 2482 563"
+  "note": "tiles 2479 2482 2477 487"
+ },
+ "E4M1:152": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 655 199 563"
  },
  "E4M2:147": {
   "kind": "sewer",
@@ -944,19 +1035,12 @@
   "confidence": "guessed",
   "note": "tiles 483"
  },
- "E4M2:247": {
-  "kind": "crypt",
+ "E4M3:94": {
+  "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 81 1067 506"
- },
- "E4M2:143": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 81"
+  "note": "tiles 155"
  },
  "E4M3:416": {
   "kind": "prison",
@@ -970,7 +1054,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1930 1925 1948 271"
+  "note": "tiles 1930 1948 1925 271"
  },
  "E4M4:64": {
   "kind": "prison",
@@ -979,19 +1063,12 @@
   "confidence": "guessed",
   "note": "tiles 924 698"
  },
- "E4M4:111": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 933 744 205"
- },
  "E4M5:71": {
   "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 654 632 1925 1948"
+  "note": "tiles 654 632 1948 1925"
  },
  "E4M5:180": {
   "kind": "crypt",
@@ -1000,13 +1077,6 @@
   "confidence": "guessed",
   "note": "tiles 688 94 698"
  },
- "E4M6:214": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 684 1701 506"
- },
  "E4M6:4": {
   "kind": "crypt",
   "by": "guess",
@@ -1014,7 +1084,14 @@
   "confidence": "guessed",
   "note": "tiles 98 1701 506"
  },
- "E4M6:403": {
+ "E4M6:386": {
+  "kind": "church",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 343"
+ },
+ "E4M6:215": {
   "kind": "church",
   "by": "guess",
   "scale": "place",
@@ -1049,40 +1126,40 @@
   "confidence": "guessed",
   "note": "tiles 2317"
  },
- "E6M2:14": {
-  "kind": "garden",
+ "E6M3:231": {
+  "kind": "station",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 18 1792 792 793"
+  "note": "tiles 708"
  },
- "E6M3:163": {
+ "E6M3:157": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 942 933 672 744"
+  "note": "tiles 942 933 563 744"
  },
- "E6M4:281": {
-  "kind": "harbour",
+ "E6M3:84": {
+  "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 513 164"
+  "note": "tiles 1098 2548 1097 194"
+ },
+ "E6M3:15": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1098 2548 1097 194"
  },
  "E6M4:133": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2462 2463 796 933"
- },
- "E6M4:359": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 796 487 194"
+  "note": "tiles 2462 2463 933 796"
  },
  "E6M4:159": {
   "kind": "factory",
@@ -1112,19 +1189,19 @@
   "confidence": "guessed",
   "note": "tiles 796 211 487"
  },
- "E6M4:124": {
-  "kind": "factory",
+ "E6M4:147": {
+  "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2462 796"
+  "note": "tiles 464"
  },
  "E6M4:24": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 196 1070 194"
+  "note": "tiles 196 487 1070 194"
  },
  "E6M5:337": {
   "kind": "church",
@@ -1175,6 +1252,13 @@
   "confidence": "guessed",
   "note": "tiles 2482 206 470 194"
  },
+ "E6M7:380": {
+  "kind": "garden",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 362 1792"
+ },
  "E6M7:443": {
   "kind": "factory",
   "by": "guess",
@@ -1188,6 +1272,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 173 172"
+ },
+ "E6M8:35": {
+  "kind": "garden",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 362 1792"
  },
  "E6M8:60": {
   "kind": "sewer",
@@ -1217,33 +1308,26 @@
   "confidence": "guessed",
   "note": "tiles 976 924 698"
  },
- "DWE1M1:193": {
+ "DWE1M1:678": {
   "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 808 283 530 805"
- },
- "DWE1M1:675": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1925 808 283 530"
- },
- "DWE1M1:711": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1006 805 42 270"
+  "note": "tiles 1925 530 283 1920"
  },
  "DWE1M1:797": {
   "kind": "forest",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 480 459 16 599"
+  "note": "tiles 327 480 459 16"
+ },
+ "DWE1M1:61": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 48"
  },
  "DWE1M1:794": {
   "kind": "forest",
@@ -1251,6 +1335,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 327 480 16 599"
+ },
+ "DWE1M1:519": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1006 1925 458 270"
  },
  "DWE1M10:49": {
   "kind": "snowfield",
@@ -1266,26 +1357,19 @@
   "confidence": "guessed",
   "note": "tiles 334 60 2472 1666"
  },
- "DWE1M2:368": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 60 2472 1666 1074"
- },
  "DWE1M2:609": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1665 1666 1076 255"
+  "note": "tiles 1665 1666 1076"
  },
- "DWE1M2:46": {
-  "kind": "forest",
+ "DWE1M2:606": {
+  "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 327 480 16 361"
+  "note": "tiles 844 60 255"
  },
  "DWE1M2:108": {
   "kind": "forest",
@@ -1322,26 +1406,12 @@
   "confidence": "guessed",
   "note": "tiles 208 503 201 438"
  },
- "DWE1M2:56": {
-  "kind": "forest",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 327 480 16 361"
- },
- "DWE1M2:73": {
-  "kind": "forest",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 327 480 16 361"
- },
  "DWE1M2:531": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 744 1076 201 438"
+  "note": "tiles 1076 744 201 438"
  },
  "DWE1M2:24": {
   "kind": "forest",
@@ -1350,12 +1420,33 @@
   "confidence": "guessed",
   "note": "tiles 327 480 16 599"
  },
+ "DWE1M2:526": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2463 2477 1097 470"
+ },
+ "DWE1M3:807": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 530 283 805 567"
+ },
  "DWE1M3:328": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 2456 2495 2494 2498"
+ },
+ "DWE1M3:310": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 3739"
  },
  "DWE1M3:159": {
   "kind": "factory",
@@ -1364,20 +1455,6 @@
   "confidence": "guessed",
   "note": "tiles 60 1666 201 255"
  },
- "DWE1M3:432": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1935 1920"
- },
- "DWE1M3:433": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1935 1920"
- },
  "DWE1M3:464": {
   "kind": "graveyard",
   "by": "guess",
@@ -1385,47 +1462,19 @@
   "confidence": "guessed",
   "note": "tiles 3739"
  },
- "DWE1M3:849": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 529 283 530 567"
- },
- "DWE1M3:387": {
+ "DWE1M3:403": {
   "kind": "church",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 24 1470"
+  "note": "tiles 24"
  },
- "DWE1M4:869": {
+ "DWE1M4:463": {
   "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1006 567 273 270"
- },
- "DWE1M4:468": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 264 580 938 253"
- },
- "DWE1M4:290": {
-  "kind": "graveyard",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 642 576 577"
- },
- "DWE1M4:369": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1068 1066 1067"
+  "note": "tiles 1006 567 273 449"
  },
  "DWE1M4:391": {
   "kind": "library",
@@ -1439,7 +1488,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2091 2498 2492 2497"
+  "note": "tiles 2091 2497 2492 2455"
+ },
+ "DWE1M5:631": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1059 1935 1925 458"
  },
  "DWE1M5:210": {
   "kind": "snowfield",
@@ -1453,28 +1509,35 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1354 1715 255"
+  "note": "tiles 1354 1353 1715 1072"
  },
  "DWE1M5:242": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2551 2579 2483 215"
+  "note": "tiles 2483 2551 2579 215"
  },
- "DWE1M5:146": {
-  "kind": "factory",
+ "DWE1M5:640": {
+  "kind": "graveyard",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1353 208 205 255"
+  "note": "tiles 3659"
  },
- "DWE1M5:73": {
-  "kind": "bar",
+ "DWE1M5:606": {
+  "kind": "morgue",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 957 605 606"
+  "note": "tiles 1728"
+ },
+ "DWE1M5:469": {
+  "kind": "crypt",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1058 1057 1068 1066"
  },
  "DWE1M6:694": {
   "kind": "factory",
@@ -1495,21 +1558,28 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 216 942 933 1715"
+  "note": "tiles 942 216 933 1715"
  },
  "DWE1M6:461": {
   "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1893 1943 2461 1130"
+  "note": "tiles 1943 1893 2461 270"
+ },
+ "DWE1M6:456": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1893 270 449"
  },
  "DWE1M6:367": {
   "kind": "hospital",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 328 14 611 76"
+  "note": "tiles 14 328 611 76"
  },
  "DWE1M6:385": {
   "kind": "cave",
@@ -1518,19 +1588,19 @@
   "confidence": "guessed",
   "note": "tiles 654 1935 1920 270"
  },
- "DWE1M6:671": {
-  "kind": "factory",
+ "DWE1M6:377": {
+  "kind": "carnival",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2463 439 255"
+  "note": "tiles 837"
  },
  "DWE1M7:842": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2457 347 439 2548"
+  "note": "tiles 2457 347 439 1666"
  },
  "DWE1M7:832": {
   "kind": "factory",
@@ -1553,19 +1623,12 @@
   "confidence": "guessed",
   "note": "tiles 716"
  },
- "DWE1M7:537": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 844 334 1072"
- },
  "DWE1M7:283": {
   "kind": "kitchen",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2144 2140 802"
+  "note": "tiles 2144 802"
  },
  "DWE1M7:393": {
   "kind": "kitchen",
@@ -1581,12 +1644,19 @@
   "confidence": "guessed",
   "note": "tiles 844 215 1072 438"
  },
+ "DWE1M7:483": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 837"
+ },
  "DWE1M8:287": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2457 439 2548 1097"
+  "note": "tiles 2457 2472 439 2548"
  },
  "DWE1M9:210": {
   "kind": "forest",
@@ -1609,19 +1679,19 @@
   "confidence": "guessed",
   "note": "tiles 905 943 850 1115"
  },
+ "DWE1M9:361": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1259 1105"
+ },
  "DWE1M9:502": {
   "kind": "forest",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 828 18 17 608"
- },
- "DWE1M9:168": {
-  "kind": "carnival",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1042 1115"
  },
  "DWE1M9:681": {
   "kind": "graveyard",
@@ -1635,14 +1705,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 590 1505 584 521"
- },
- "DWE1M9:279": {
-  "kind": "theatre",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 225 145 159"
+  "note": "tiles 590 1505 1063 584"
  },
  "DWE1M9:519": {
   "kind": "carnival",
@@ -1663,7 +1726,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1259 335 653 225"
+  "note": "tiles 335 653"
  },
  "DWE1M9:640": {
   "kind": "graveyard",
@@ -1700,33 +1763,33 @@
   "confidence": "guessed",
   "note": "tiles 1715 744 754 255"
  },
- "DWE1M9:790": {
-  "kind": "prison",
+ "DWE1M9:767": {
+  "kind": "carnival",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 463 464"
+  "note": "tiles 1259 225"
+ },
+ "DWE1M9:402": {
+  "kind": "sewer",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 928 927"
  },
  "DWE2M1:569": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1353 428 228 437"
+  "note": "tiles 1353 228 437 2548"
  },
  "DWE2M1:342": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 198 428 228 1076"
- },
- "DWE2M1:474": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 210 437 470 194"
+  "note": "tiles 198 201 470 194"
  },
  "DWE2M1:560": {
   "kind": "factory",
@@ -1740,21 +1803,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 198 428 228 2477"
+  "note": "tiles 198 2477 201 470"
  },
  "DWE2M1:576": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1353 437 754 194"
+  "note": "tiles 1353 437 754 376"
  },
- "DWE2M10:94": {
+ "DWE2M1:379": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 208 211 563 201"
+  "note": "tiles 1353 470 438 255"
  },
  "DWE2M10:521": {
   "kind": "factory",
@@ -1768,14 +1831,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2460 209 1098 208"
+  "note": "tiles 2460 209 208 503"
  },
  "DWE2M10:909": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2548 208 201 438"
+  "note": "tiles 208 2548 201 438"
  },
  "DWE2M10:772": {
   "kind": "factory",
@@ -1783,6 +1846,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 744 201 1072 205"
+ },
+ "DWE2M10:100": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 198 439 563 201"
  },
  "DWE2M10:323": {
   "kind": "factory",
@@ -1796,7 +1866,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 210 206 209 2477"
+  "note": "tiles 206 210 209 208"
  },
  "DWE2M10:716": {
   "kind": "factory",
@@ -1810,35 +1880,35 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 437 2548 208 201"
+  "note": "tiles 2463 437 208 2548"
  },
  "DWE2M10:207": {
   "kind": "kitchen",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2295 2304 2305 2140"
- },
- "DWE2M10:153": {
-  "kind": "kitchen",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1350 1351"
+  "note": "tiles 2295 2140 2305 2304"
  },
  "DWE2M10:399": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 48 255"
+  "note": "tiles 48"
+ },
+ "DWE2M10:173": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1350"
  },
  "DWE2M10:801": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2550 2549 933 437"
+  "note": "tiles 2550 2549 437 208"
  },
  "DWE2M10:43": {
   "kind": "factory",
@@ -1861,13 +1931,6 @@
   "confidence": "guessed",
   "note": "tiles 428 209 437 215"
  },
- "DWE2M10:409": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 196 1070 194 438"
- },
  "DWE2M10:36": {
   "kind": "factory",
   "by": "guess",
@@ -1882,12 +1945,12 @@
   "confidence": "guessed",
   "note": "tiles 428 217 437 1072"
  },
- "DWE2M10:150": {
+ "DWE2M10:815": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1074 1072 470 376"
+  "note": "tiles 201 1097 205 438"
  },
  "DWE2M10:154": {
   "kind": "factory",
@@ -1908,21 +1971,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1069 683 1068 1066"
+  "note": "tiles 1069 683 684 1068"
  },
  "DWE2M11:227": {
   "kind": "hospital",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 858 14 962 963"
+  "note": "tiles 858 14 963 962"
  },
- "DWE2M2:720": {
+ "DWE2M2:186": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1353 1665 228 437"
+  "note": "tiles 2550 2549 437 672"
  },
  "DWE2M2:734": {
   "kind": "factory",
@@ -1936,28 +1999,35 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 428 228 201 194"
+  "note": "tiles 198 201 470 194"
  },
  "DWE2M2:848": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1665 1666 1074 201"
+  "note": "tiles 1665 1666 470 255"
+ },
+ "DWE2M2:125": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 196 228 754 1070"
  },
  "DWE2M2:200": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2462 199 1098 470"
+  "note": "tiles 2462 2463 1098 194"
  },
  "DWE2M2:167": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1353 437 754 194"
+  "note": "tiles 1353 437 754 376"
  },
  "DWE2M2:531": {
   "kind": "factory",
@@ -1966,82 +2036,75 @@
   "confidence": "guessed",
   "note": "tiles 1098 201 1097 470"
  },
- "DWE2M2:589": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1098 201 1097 255"
- },
- "DWE2M2:174": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1353 194 438"
- },
- "DWE2M2:116": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 198 754 376 255"
- },
  "DWE2M3:803": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 207 217 2472 437"
+  "note": "tiles 207 217 437 2472"
  },
- "DWE2M3:432": {
+ "DWE2M3:829": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 228 1098 487 1072"
- },
- "DWE2M3:798": {
-  "kind": "hospital",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 161"
+  "note": "tiles 217 2472 208 211"
  },
  "DWE2M3:712": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2462 2463 439 672"
+  "note": "tiles 439 672 211 487"
  },
- "DWE2M3:496": {
+ "DWE2M3:731": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1098 205 470 255"
+  "note": "tiles 207 2462 2463 439"
  },
- "DWE2M3:800": {
+ "DWE2M3:725": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 206 503 1076 2453"
+  "note": "tiles 439 672 487 205"
+ },
+ "DWE2M3:733": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 439 672 211 487"
+ },
+ "DWE2M3:435": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 228 796 1072 470"
+ },
+ "DWE2M4:840": {
+  "kind": "hospital",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 858 14 963 962"
+ },
+ "DWE2M4:908": {
+  "kind": "library",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2539 33 349 31"
  },
  "DWE2M4:805": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2482 2472 754 255"
- },
- "DWE2M4:11": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1666 1076 2453 255"
+  "note": "tiles 2482 2472"
  },
  "DWE2M5:430": {
   "kind": "forest",
@@ -2055,14 +2118,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 3105 3090 1712"
+  "note": "tiles 3105 3090"
  },
- "DWE2M5:218": {
-  "kind": "factory",
+ "DWE2M5:320": {
+  "kind": "forest",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 334 208 376 255"
+  "note": "tiles 543 544 541 542"
  },
  "DWE2M5:276": {
   "kind": "sewer",
@@ -2090,14 +2153,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 793 8 791"
- },
- "DWE2M5:887": {
-  "kind": "cave",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1935 1920 270"
+  "note": "tiles 793 791 8"
  },
  "DWE2M6:633": {
   "kind": "graveyard",
@@ -2106,33 +2162,12 @@
   "confidence": "guessed",
   "note": "tiles 3080 3085 3090"
  },
- "DWE2M6:192": {
-  "kind": "church",
+ "DWE2M6:228": {
+  "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 521 580 938 1470"
- },
- "DWE2M6:705": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1068 1066 1067"
- },
- "DWE2M6:853": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 716 521"
- },
- "DWE2M6:55": {
-  "kind": "graveyard",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 575 707"
+  "note": "tiles 1948 1925 1920 270"
  },
  "DWE2M6:713": {
   "kind": "kitchen",
@@ -2153,7 +2188,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2145 2140 2139 616"
+  "note": "tiles 2145 616"
  },
  "DWE2M6:206": {
   "kind": "church",
@@ -2168,6 +2203,13 @@
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 264 265 521 253"
+ },
+ "DWE2M6:889": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2140 2139 616 802"
  },
  "DWE2M7:396": {
   "kind": "forest",
@@ -2197,7 +2239,7 @@
   "confidence": "guessed",
   "note": "tiles 806 808 459 458"
  },
- "DWE2M7:592": {
+ "DWE2M7:590": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
@@ -2218,13 +2260,6 @@
   "confidence": "guessed",
   "note": "tiles 792 793 544 327"
  },
- "DWE2M8:525": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 477 478 475"
- },
  "DWE2M8:479": {
   "kind": "church",
   "by": "guess",
@@ -2237,7 +2272,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 477 475 938 1470"
+  "note": "tiles 477 475"
+ },
+ "DWE2M8:499": {
+  "kind": "church",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 477 475 938"
  },
  "DWE2M8:501": {
   "kind": "church",
@@ -2246,14 +2288,21 @@
   "confidence": "guessed",
   "note": "tiles 478 475 938"
  },
- "DWE2M8:159": {
-  "kind": "forest",
+ "DWE2M8:611": {
+  "kind": "church",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 327 480 16 361"
+  "note": "tiles 476 478 475"
  },
- "DWE2M9:44": {
+ "DWE2M8:409": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 3739"
+ },
+ "DWE2M9:23": {
   "kind": "church",
   "by": "guess",
   "scale": "place",
@@ -2286,14 +2335,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2549 942 437 2477"
+  "note": "tiles 2549 942 437 208"
  },
- "DWE3M1:575": {
+ "DWE3M1:576": {
   "kind": "carnival",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1095 1096"
+  "note": "tiles 1095"
+ },
+ "DWE3M1:517": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1096 1095"
  },
  "DWE3M1:286": {
   "kind": "forest",
@@ -2307,14 +2363,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1095 1096"
+  "note": "tiles 1096 1095"
  },
  "DWE3M10:259": {
   "kind": "bar",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 605 965 606 759"
+  "note": "tiles 965 605 606 759"
  },
  "DWE3M10:24": {
   "kind": "factory",
@@ -2323,12 +2379,26 @@
   "confidence": "guessed",
   "note": "tiles 844 2548 754 376"
  },
+ "DWE3M10:362": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2140 802"
+ },
  "DWE3M2:243": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1665 1666 211"
+  "note": "tiles 2579 1665 1666 211"
+ },
+ "DWE3M2:481": {
+  "kind": "station",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 359 647"
  },
  "DWE3M2:476": {
   "kind": "graveyard",
@@ -2351,26 +2421,26 @@
   "confidence": "guessed",
   "note": "tiles 1881"
  },
- "DWE3M2:567": {
-  "kind": "kitchen",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2144 2140 802"
- },
  "DWE3M2:508": {
   "kind": "kitchen",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2144 2140 802"
+  "note": "tiles 2144"
+ },
+ "DWE3M2:560": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2144 802"
  },
  "DWE3M3:872": {
   "kind": "cave",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 283 271 458 3678"
+  "note": "tiles 271 283 458 3678"
  },
  "DWE3M3:496": {
   "kind": "cave",
@@ -2379,12 +2449,12 @@
   "confidence": "guessed",
   "note": "tiles 1935 273 568 270"
  },
- "DWE3M3:301": {
-  "kind": "cave",
+ "DWE3M3:563": {
+  "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 271 459 42 273"
+  "note": "tiles 155"
  },
  "DWE3M3:348": {
   "kind": "garden",
@@ -2393,12 +2463,26 @@
   "confidence": "guessed",
   "note": "tiles 1711 599 270"
  },
+ "DWE3M3:286": {
+  "kind": "church",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 516"
+ },
+ "DWE3M4:856": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1086"
+ },
  "DWE3M4:503": {
   "kind": "bar",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 605 965 606 759"
+  "note": "tiles 965 605 606 759"
  },
  "DWE3M4:149": {
   "kind": "station",
@@ -2407,19 +2491,33 @@
   "confidence": "guessed",
   "note": "tiles 647 431"
  },
+ "DWE3M4:939": {
+  "kind": "library",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 33 31 32"
+ },
  "DWE3M4:866": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1075 744 563 201"
+  "note": "tiles 1075 563 201 376"
+ },
+ "DWE3M4:607": {
+  "kind": "kitchen",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2140 802"
  },
  "DWE3M5:517": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2472 437 2477 1666"
+  "note": "tiles 2472 1666 2477 1097"
  },
  "DWE3M5:382": {
   "kind": "theatre",
@@ -2435,26 +2533,40 @@
   "confidence": "guessed",
   "note": "tiles 853"
  },
- "DWE3M5:833": {
+ "DWE3M5:679": {
+  "kind": "church",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 70"
+ },
+ "DWE3M5:768": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 503 563 201 205"
+  "note": "tiles 437 503 754 376"
+ },
+ "DWE3M5:838": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 347 2548 503 744"
+ },
+ "DWE3M6:42": {
+  "kind": "forest",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 543 544 541 542"
  },
  "DWE3M6:391": {
   "kind": "church",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1063 650 580 253"
- },
- "DWE3M6:311": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 600 650 938"
+  "note": "tiles 1063 650 600 253"
  },
  "DWE3M6:585": {
   "kind": "factory",
@@ -2477,33 +2589,12 @@
   "confidence": "guessed",
   "note": "tiles 707 576 577 3060"
  },
- "DWE3M6:156": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 650 580 253"
- },
- "DWE3M6:314": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 650 580 253"
- },
  "DWE3M6:404": {
   "kind": "church",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 600 650 938"
- },
- "DWE3M8:27": {
-  "kind": "garden",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 362 536 542 361"
+  "note": "tiles 650 600 938"
  },
  "DWE3M8:1": {
   "kind": "hospital",
@@ -2512,19 +2603,33 @@
   "confidence": "guessed",
   "note": "tiles 2319"
  },
- "DWE3M9:812": {
+ "DWE3M9:488": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2457 428 228 439"
+  "note": "tiles 2457 439 1666 2548"
  },
- "DWE3M9:159": {
-  "kind": "carnival",
+ "DWE3M9:445": {
+  "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 837 1105"
+  "note": "tiles 198 2477 201 470"
+ },
+ "DWE3M9:159": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 942 933 1715 744"
+ },
+ "DWE3M9:59": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 48"
  },
  "DM1:169": {
   "kind": "church",
@@ -2566,21 +2671,21 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2457 347 439 1098"
+  "note": "tiles 2457 347 439 1666"
  },
  "DWBB1:410": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 347 2548 1097 376"
+  "note": "tiles 347 2548 1097 255"
  },
  "DWBB2:445": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2457 439 1097 754"
+  "note": "tiles 2457 439 2548 1097"
  },
  "DWBB3:419": {
   "kind": "forest",
@@ -2589,26 +2694,19 @@
   "confidence": "guessed",
   "note": "tiles 543 547 540 542"
  },
- "DWBB3:942": {
-  "kind": "church",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 600 650 580 938"
- },
  "DWBB3:516": {
   "kind": "hospital",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 962 963 76 75"
+  "note": "tiles 14 963 962 76"
  },
- "DWBB3:491": {
-  "kind": "graveyard",
+ "DWBB3:976": {
+  "kind": "library",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 3110"
+  "note": "tiles 2539 349 31"
  },
  "TEDE1M1:2": {
   "kind": "graveyard",
@@ -2631,19 +2729,12 @@
   "confidence": "guessed",
   "note": "tiles 19"
  },
- "TEDE1M1:106": {
-  "kind": "crypt",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1066 1067 506"
- },
  "TEDE1M1:105": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 128 1948 1067 506"
+  "note": "tiles 128 346 1066 1948"
  },
  "TEDE1M2:942": {
   "kind": "forest",
@@ -2666,26 +2757,26 @@
   "confidence": "guessed",
   "note": "tiles 24"
  },
- "TEDE1M2:875": {
-  "kind": "garden",
+ "TEDE1M2:200": {
+  "kind": "graveyard",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 278 1010 433"
+  "note": "tiles 1065"
  },
  "TEDE1M2:614": {
   "kind": "graveyard",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1726 702 701 706"
+  "note": "tiles 702 1726 701 706"
  },
  "TEDE1M2:532": {
   "kind": "kitchen",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 1350 2304 2305 1351"
+  "note": "tiles 1350 1351 2305 2304"
  },
  "TEDE1M2:880": {
   "kind": "shop",
@@ -2708,6 +2799,20 @@
   "confidence": "guessed",
   "note": "tiles 1068 1948 1067"
  },
+ "TEDE1M3:201": {
+  "kind": "forest",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 792 793 791 327"
+ },
+ "TEDE1M3:107": {
+  "kind": "library",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 38"
+ },
  "TEDE1M3:122": {
   "kind": "forest",
   "by": "guess",
@@ -2722,12 +2827,19 @@
   "confidence": "guessed",
   "note": "tiles 327 608 480 361"
  },
+ "TEDE1M3:354": {
+  "kind": "library",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 38"
+ },
  "TEDE1M3:367": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 655 942 347 194"
+  "note": "tiles 942 347 194"
  },
  "TEDE1M3:382": {
   "kind": "factory",
@@ -2750,19 +2862,19 @@
   "confidence": "guessed",
   "note": "tiles 655 1072 194"
  },
+ "TEDE1M3:281": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2550 2549 2548 754"
+ },
  "TEDE1M3:356": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 261 933 1098 1076"
- },
- "TEDE1M4:623": {
-  "kind": "carnival",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 836"
+  "note": "tiles 261 1098 1076"
  },
  "TEDE1M4:915": {
   "kind": "graveyard",
@@ -2776,7 +2888,7 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 206 1072 205 2453"
+  "note": "tiles 206 1072 205 376"
  },
  "TEDE1M4:511": {
   "kind": "factory",
@@ -2786,18 +2898,32 @@
   "note": "tiles 208 744 1072 205"
  },
  "TEDE1M4:293": {
+  "kind": "carnival",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 849 853 836 440"
+ },
+ "TEDE1M4:746": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 428 60 205 1097"
+  "note": "tiles 2479 2482 428 60"
+ },
+ "TEDE1M4:666": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 655 199 503 376"
  },
  "TEDE1M4:850": {
   "kind": "snowfield",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2491 2493 2455 2473"
+  "note": "tiles 2493 2491 2455 2473"
  },
  "TEDE1M4:978": {
   "kind": "library",
@@ -2813,19 +2939,33 @@
   "confidence": "guessed",
   "note": "tiles 2463 1098 215 563"
  },
- "TEDE1M4:641": {
-  "kind": "factory",
+ "TEDE1M4:208": {
+  "kind": "bar",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 772 1098 1076 438"
+  "note": "tiles 1719 957"
  },
  "TEDE1M4:553": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2183 2463 334 210"
+  "note": "tiles 334 210 672 2477"
+ },
+ "TEDE1M4:655": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2183 210 2463 208"
+ },
+ "TEDE1M4:991": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2460 2463 2477 2453"
  },
  "TEDE1M4:499": {
   "kind": "graveyard",
@@ -2834,6 +2974,34 @@
   "confidence": "guessed",
   "note": "tiles 3658"
  },
+ "TEDE1M4:89": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 3238 3239"
+ },
+ "TEDE1M4:927": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2463 215 1074 205"
+ },
+ "TEDE1M4:340": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 208 2477 215 205"
+ },
+ "TEDE1M4:733": {
+  "kind": "graveyard",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 3657 3661 3659"
+ },
  "TEDE1M4:183": {
   "kind": "hospital",
   "by": "guess",
@@ -2841,19 +3009,26 @@
   "confidence": "guessed",
   "note": "tiles 963 75"
  },
+ "TEDE1M4:494": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 428 1072 2453 470"
+ },
  "TEDE1M4:807": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 206 2453 470 1070"
+  "note": "tiles 206 2453 470 376"
  },
- "TEDE1M5:469": {
-  "kind": "carnival",
+ "TEDE1M4:656": {
+  "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 836"
+  "note": "tiles 210 2477 470 438"
  },
  "TEDE1M5:547": {
   "kind": "factory",
@@ -2874,49 +3049,14 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 191 942 503 1074"
+  "note": "tiles 942 191 503 1074"
  },
- "TEDE1M5:122": {
-  "kind": "sewer",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 927 794 218 1120"
- },
- "TEDE1M5:427": {
-  "kind": "shop",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 73 2476"
- },
- "TEDE1M5:444": {
-  "kind": "library",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 33 32"
- },
- "TEDE1M5:29": {
+ "TEDE1M5:25": {
   "kind": "carnival",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 930"
- },
- "TEDE1M6:258": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1116 228 672 2548"
- },
- "TEDE1M6:279": {
-  "kind": "factory",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 503 744 2453 255"
  },
  "TEDE1M6:259": {
   "kind": "prison",
@@ -2925,12 +3065,12 @@
   "confidence": "guessed",
   "note": "tiles 954 332"
  },
- "TEDE1M6:240": {
+ "TEDE1M6:212": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 2477 503 215 744"
+  "note": "tiles 261 503 2453 255"
  },
  "TEDE1M6:287": {
   "kind": "factory",
@@ -2939,19 +3079,19 @@
   "confidence": "guessed",
   "note": "tiles 206 744 2453"
  },
+ "TEDE1M6:203": {
+  "kind": "factory",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2462 2477 503 215"
+ },
  "TEDE1M7:267": {
   "kind": "crypt",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 97"
- },
- "TEDE1M7:409": {
-  "kind": "graveyard",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 1065 1064 545 540"
  },
  "TEDE1M7:471": {
   "kind": "station",
@@ -2961,18 +3101,25 @@
   "note": "tiles 2323 2322 1129"
  },
  "TEDE1M7:284": {
+  "kind": "harbour",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 513 676"
+ },
+ "TEDE1M7:13": {
+  "kind": "cave",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 1940 1943 42"
+ },
+ "TEDE1M7:98": {
   "kind": "prison",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
   "note": "tiles 906 698 697 694"
- },
- "TEDE1M7:104": {
-  "kind": "morgue",
-  "by": "guess",
-  "scale": "place",
-  "confidence": "guessed",
-  "note": "tiles 2324"
  },
  "TEDE1M7:111": {
   "kind": "hospital",
@@ -2995,6 +3142,13 @@
   "confidence": "guessed",
   "note": "tiles 1363"
  },
+ "TEDE1M8:76": {
+  "kind": "station",
+  "by": "guess",
+  "scale": "place",
+  "confidence": "guessed",
+  "note": "tiles 2322 1129"
+ },
  "TEDE1M8:60": {
   "kind": "carnival",
   "by": "guess",
@@ -3014,13 +3168,13 @@
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 428 206 209 2477"
+  "note": "tiles 428 206 2463 208"
  },
- "TEDE1M9:84": {
+ "TEDE1M9:3": {
   "kind": "factory",
   "by": "guess",
   "scale": "place",
   "confidence": "guessed",
-  "note": "tiles 428 206 208"
+  "note": "tiles 428 210 209 208"
  }
 }

@@ -2708,40 +2708,44 @@
         "missing": [],
         "wall_tiles": [
           [
-            379,
-            0.21
+            500,
+            0.172
           ],
           [
-            500,
-            0.182
+            379,
+            0.119
           ],
           [
             2453,
-            0.096
+            0.115
           ],
           [
             496,
-            0.086
+            0.104
           ],
           [
             498,
-            0.085
-          ],
-          [
-            200,
-            0.079
+            0.102
           ],
           [
             497,
-            0.078
+            0.094
           ],
           [
             503,
-            0.077
+            0.092
+          ],
+          [
+            200,
+            0.072
           ],
           [
             489,
-            0.045
+            0.054
+          ],
+          [
+            2462,
+            0.023
           ]
         ],
         "shade_spread": 28,
@@ -2750,7 +2754,7 @@
           21.6,
           10.4
         ],
-        "free_floor_share": 0.91,
+        "free_floor_share": 0.96,
         "cramped": [],
         "relations": [
           [
@@ -2801,19 +2805,19 @@
         "wall_tiles": [
           [
             406,
-            0.525
+            0.515
           ],
           [
             88,
-            0.26
+            0.265
           ],
           [
             409,
-            0.157
+            0.161
           ],
           [
             421,
-            0.055
+            0.056
           ]
         ],
         "shade_spread": 18,
@@ -2822,7 +2826,7 @@
           14.8,
           7.0
         ],
-        "free_floor_share": 0.88,
+        "free_floor_share": 0.89,
         "cramped": [
           "short side 5591 (campaign p25 6144)"
         ],
@@ -2886,19 +2890,19 @@
         "wall_tiles": [
           [
             414,
-            0.361
+            0.362
           ],
           [
             90,
-            0.32
+            0.321
           ],
           [
             34,
-            0.166
+            0.162
           ],
           [
             115,
-            0.153
+            0.154
           ]
         ],
         "shade_spread": 28,
@@ -2909,7 +2913,7 @@
         ],
         "free_floor_share": 0.72,
         "cramped": [
-          "short side 10752 (campaign p25 12288)"
+          "short side 10752 (campaign p25 11776)"
         ],
         "relations": [],
         "study": "station"
@@ -2936,20 +2940,20 @@
         "wall_tiles": [
           [
             28,
-            0.92
+            0.917
           ],
           [
             20,
-            0.08
+            0.083
           ]
         ],
         "shade_spread": 2,
         "metres": [
+          12.0,
           12.2,
-          12.8,
           4.8
         ],
-        "free_floor_share": 0.82,
+        "free_floor_share": 0.83,
         "cramped": [],
         "relations": [],
         "study": "saloon"
@@ -2976,22 +2980,22 @@
         "wall_tiles": [
           [
             119,
-            0.691
+            0.686
           ],
           [
             379,
-            0.298
+            0.303
           ]
         ],
         "shade_spread": 7,
         "metres": [
-          19.1,
+          18.3,
           27.1,
           10.2
         ],
-        "free_floor_share": 0.97,
+        "free_floor_share": 0.98,
         "cramped": [
-          "short side 11264 (campaign p25 12288)"
+          "short side 10752 (campaign p25 11776)"
         ],
         "relations": [],
         "study": "theatre"
@@ -3017,23 +3021,23 @@
         "wall_tiles": [
           [
             417,
-            0.156
+            0.155
           ],
           [
             380,
-            0.132
+            0.133
           ],
           [
             384,
-            0.125
+            0.126
           ],
           [
             393,
-            0.112
+            0.113
           ],
           [
             400,
-            0.093
+            0.094
           ],
           [
             20,
@@ -3057,7 +3061,7 @@
           ],
           [
             67,
-            0.032
+            0.033
           ],
           [
             381,
@@ -3065,7 +3069,7 @@
           ],
           [
             397,
-            0.021
+            0.022
           ]
         ],
         "shade_spread": 35,
@@ -3088,45 +3092,45 @@
           "wall_art",
           "flat_art",
           "standing",
-          "levels",
-          "masked",
-          "light",
           "motion",
           "machines"
         ],
-        "layer_count": 10,
+        "layer_count": 7,
         "campaign_p25": 2,
         "campaign_p50": 5,
-        "missing": [],
+        "missing": [
+          "levels",
+          "light"
+        ],
         "wall_tiles": [
           [
             2294,
-            0.474
+            0.472
           ],
           [
             108,
-            0.238
+            0.245
           ],
           [
             20,
-            0.119
+            0.122
           ],
           [
             28,
-            0.104
+            0.107
           ],
           [
             32,
-            0.04
+            0.041
           ]
         ],
-        "shade_spread": 27,
+        "shade_spread": 7,
         "metres": [
           15.2,
           19.4,
           7.0
         ],
-        "free_floor_share": 0.9,
+        "free_floor_share": 0.89,
         "cramped": [],
         "relations": [
           [
@@ -3145,10 +3149,10 @@
         "short side 5591 (campaign p25 6144)"
       ],
       "Gravesend Station": [
-        "short side 10752 (campaign p25 12288)"
+        "short side 10752 (campaign p25 11776)"
       ],
       "Aldermack auditorium": [
-        "short side 11264 (campaign p25 12288)"
+        "short side 10752 (campaign p25 11776)"
       ]
     },
     "unstudied": [

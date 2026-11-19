@@ -2,7 +2,7 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "9f303c982e1724b9cdc3eb66af440a9e79accdd13737950a6d018298a435232a",
+  "manifest_sha256": "f80ea8c510355889224e883854420939385f2f7cd7b635fbb0292dd16ec42da4",
   "map_sha256": "5ab1be0477a5c6beb546cf7a8dca20b9939c5734fb7e7889deb59e5e3140aaf2",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
@@ -495,7 +495,7 @@
     5.3
    ],
    "cramped": [
-    "short side 10752 (campaign p25 12288)"
+    "short side 10752 (campaign p25 11776)"
    ],
    "critique": {
     "round": 6,
@@ -547,8 +547,8 @@
     "campaign_p50": 5
    },
    "metres": [
+    12.0,
     12.2,
-    12.8,
     4.8
    ],
    "cramped": [],
@@ -580,12 +580,12 @@
     "campaign_p50": 6
    },
    "metres": [
-    19.1,
+    18.3,
     27.1,
     10.2
    ],
    "cramped": [
-    "short side 11264 (campaign p25 12288)"
+    "short side 10752 (campaign p25 11776)"
    ],
    "critique": null
   },
@@ -636,13 +636,13 @@
      "wall_art",
      "flat_art",
      "standing",
-     "levels",
-     "masked",
-     "light",
      "motion",
      "machines"
     ],
-    "missing": [],
+    "missing": [
+     "levels",
+     "light"
+    ],
     "campaign_p25": 2,
     "campaign_p50": 5
    },
@@ -701,7 +701,7 @@
   {
    "kind": "cramped",
    "place": "Gravesend Station",
-   "says": "short side 10752 (campaign p25 12288)",
+   "says": "short side 10752 (campaign p25 11776)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
@@ -806,7 +806,7 @@
   {
    "kind": "cramped",
    "place": "Aldermack auditorium",
-   "says": "short side 11264 (campaign p25 12288)",
+   "says": "short side 10752 (campaign p25 11776)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
@@ -830,6 +830,20 @@
    "says": "built without a study of how Blood built one",
    "owner": "projects/blood-city/level/character.py:PLACES",
    "see": "python -m tools.study <slug> --want \"...\" --seed MAP:sector!"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "arcade concourse",
+   "says": "carries no levels layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "arcade concourse",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
   },
   {
    "kind": "rule-warning",
@@ -1195,7 +1209,7 @@
   "critique": 8,
   "dropped": 8,
   "lost-tile": 4,
-  "missing-layer": 7,
+  "missing-layer": 9,
   "never-critiqued": 5,
   "refused": 8,
   "rule-error": 14,

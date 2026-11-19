@@ -113,6 +113,43 @@ class PlaceMembershipTests(unittest.TestCase):
                 self.assertIsNone(claimed.get((row["map"], sector)), row["id"])
                 claimed[(row["map"], sector)] = row["id"]
 
+    def test_a_room_ends_at_its_doors(self):
+        """E1M1's funeral home was one "room" of 73 sectors: any small
+        sector was taken in and the room went on from it, through every door
+        leaf. A room with its moving sectors taken out is still one piece,
+        so no room runs through a door to the next."""
+        from bloodmap.format import read_map
+        from tests.helpers import campaign_maps
+        from tools import place_character as pc
+
+        mine = [row for row in self.rows if row["map"] == "E1M1"]
+        self.assertLessEqual(max(row["sectors"] for row in mine), 30)
+        signs = {974: None, 1726: None, 789: None, 844: None}
+        for row in mine:
+            for tile in signs:
+                if tile in row["tiles"] or str(tile) in row["sprites"]:
+                    signs[tile] = row["id"]
+        # the funeral home's welcome, the cemetery's arch, the memorial
+        # plaque and the construction sign are four different places
+        self.assertEqual(len(set(signs.values())), 4, signs)
+        for path in campaign_maps()[:5]:
+            geom = pc.Geometry(read_map(path))
+            for place in pc.places(geom):
+                # the sector a room is grown from is its floor even when
+                # it is a moving type (E1M1's memorial hall is one)
+                host = max(place, key=geom.area)
+                still = {s for s in place if s == host or not pc.is_mover(geom, s)}
+                seen, queue = set(), [host]
+                while queue:
+                    here = queue.pop()
+                    if here in seen:
+                        continue
+                    seen.add(here)
+                    queue += [int(geom.walls[w]["next_sector"])
+                              for w in geom.wall_ids(here)
+                              if int(geom.walls[w]["next_sector"]) in still]
+                self.assertEqual(seen, still, (path.stem, sorted(place)[:6]))
+
     def test_what_a_room_holds_is_keyed_as_the_mechanisms_shelf_keys_it(self):
         kinds = set()
         for row in self.rows:

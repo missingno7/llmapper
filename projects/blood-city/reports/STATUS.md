@@ -19,7 +19,7 @@ The build runs 31 named stages in order (districts, cemetery, sewer, works-stair
 | saloon | saloon | 7 (campaign median 5), lacks second, light | never | 3 |
 | Aldermack auditorium | theatre | 6 (campaign median 6), lacks trim, light, machines | never | 5 |
 | harbour | harbour | 9 (campaign median 6) | never | 1 |
-| arcade concourse | **none** | 10 (campaign median 5) | never | 1 |
+| arcade concourse | **none** | 7 (campaign median 5), lacks levels, light | never | 3 |
 
 ## Open
 
@@ -27,7 +27,7 @@ The build runs 31 named stages in order (districts, cemetery, sewer, works-stair
 - `critique`: 8
 - `dropped`: 8
 - `lost-tile`: 4
-- `missing-layer`: 7
+- `missing-layer`: 9
 - `never-critiqued`: 5
 - `refused`: 8
 - `rule-error`: 14

@@ -136,15 +136,49 @@ class Geometry:
         return min(hits, key=self.area) if hits else None
 
 
-def place_of(geom: Geometry, seed: int) -> set[int]:
-    """The seed's room: across wide portals, and into the small things in it."""
+#: Sectors the engine moves on a state (`OperateSector`, triggers.cpp:1680):
+#: z-motion, slide and rotate. A room ends at one.
+MOVER_TYPES = frozenset({600, 602, 613, 614, 615, 616, 617})
+
+
+def is_mover(geom: Geometry, sector: int) -> bool:
+    """A sector the engine moves: a door, a lift, a leaf.
+
+    A room does not go on through one -- unless the room IS one. E1M1's
+    memorial hall is a single slide sector of 180 million square units,
+    typed that way for a wall that moves inside it, so the sector a room
+    is grown from is always its floor, whatever its type.
+    """
+    return int(geom.sectors[sector].get("type", 0)) in MOVER_TYPES
+
+
+def place_of(geom: Geometry, seed: int, avoid: Iterable[int] = ()) -> set[int]:
+    """The seed's room: across wide portals, and into the small things in it.
+
+    A room ends at a door and at a neck. Until 2026-11-19 it ended at
+    neither: any small sector was taken in whatever the width of the way
+    into it AND the room went on from there, so it ran through every door
+    leaf and every doorway, and E1M1's whole funeral home -- chapel, halls,
+    embalming room, crematorium -- was one "room" of 73 sectors. Now:
+
+    * a sector the engine moves (a door, a lift) is taken in as the room's
+      edge and the room does not go on through it;
+    * a small sector reached through a narrow way is taken in as a thing
+      standing in the room -- a niche, a step, a machine -- and the room
+      does not go on from it either. Reached through a wide way it is part
+      of the floor, and the room continues.
+    """
+    # `avoid` is what other rooms have already claimed. Growing through it
+    # and subtracting afterwards left a room in pieces joined only through
+    # somebody else's floor.
+    claimed = set(avoid)
     sky = geom.sky(seed)
     seen, queue = {seed}, [seed]
     while queue:
         here = queue.pop()
         for w in geom.wall_ids(here):
             other = int(geom.walls[w]["next_sector"])
-            if other < 0 or other in seen:
+            if other < 0 or other in seen or other in claimed:
                 continue
             a, b = geom.sectors[here], geom.sectors[other]
             #: no height in common at rest: a lift shaft, a shut door, a
@@ -155,9 +189,16 @@ def place_of(geom: Geometry, seed: int) -> set[int]:
             small = geom.area(other) < SMALL
             if geom.sky(other) != sky and not small:
                 continue
-            if geom.length(w) >= WIDE or small:
+            wide = geom.length(w) >= WIDE
+            if is_mover(geom, other):
+                if small or wide:
+                    seen.add(other)          # the room's edge, not its floor
+                continue
+            if wide:
                 seen.add(other)
                 queue.append(other)
+            elif small:
+                seen.add(other)              # a thing in the room: a leaf
     return seen
 
 
@@ -296,9 +337,20 @@ def places(geom: Geometry) -> list[set[int]]:
     for sector in sorted(range(len(geom.sectors)), key=geom.area, reverse=True):
         if sector in taken or geom.area(sector) < CORE:
             continue
-        place = place_of(geom, sector) - taken
+        place = place_of(geom, sector, taken)
         taken |= place
         out.append(place)
+    # What is left is the passages: a corridor is several sectors none of
+    # which is a room's worth, and with rooms ending at their doors nothing
+    # claims it. Grown the same way, it is a place when all of it together
+    # is as big as a room's core.
+    for sector in sorted(range(len(geom.sectors)), key=geom.area, reverse=True):
+        if sector in taken or is_mover(geom, sector):
+            continue
+        place = place_of(geom, sector, taken)
+        if sum(geom.area(member) for member in place) >= CORE:
+            taken |= place
+            out.append(place)
     return out
 
 
