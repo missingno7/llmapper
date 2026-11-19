@@ -1041,6 +1041,9 @@ def _coincident_wall_findings(layout: Any, found: list[Overlap],
     ids = list(layout.regions)
     seen: set[frozenset[str]] = set()
     walls = solid_edges(layout)
+    # Asked once: `separate_arrangements` rebuilds this set on every call
+    # when it is not handed one, and this loop calls it for every pair.
+    joins = layout.declared_joins()
     examined = 0
     for index, left_id in enumerate(ids):
         left = layout.regions[left_id]
@@ -1051,7 +1054,7 @@ def _coincident_wall_findings(layout: Any, found: list[Overlap],
             right = layout.regions[right_id]
             if left.layer == right.layer:
                 continue
-            if not layout.separate_arrangements(left_id, right_id):
+            if not layout.separate_arrangements(left_id, right_id, joins):
                 continue
             shared = _shared_boundary_length(left, right)
             if shared <= 0:

@@ -210,29 +210,66 @@ class Hit:
     z: float
 
 
+class ScanIndex:
+    """One map's sectors as the ray caster reads them, looked up once each.
+
+    A bomb casts hundreds of thousands of rays and every one of them walks the
+    walls of each sector it crosses. Reading those out of the records per ray
+    was 40% of a city build. The numbers kept here are the ones `hitscan`
+    always computed, in the same order, so a ray lands exactly where it did.
+    The map's geometry must not change while an index is in use.
+    """
+
+    def __init__(self, level: Any) -> None:
+        self.level = level
+        self._sectors: dict[int, tuple[int, int, list[tuple[int, int, int, int, int]]]] = {}
+        self._next: dict[int, int] = {}
+
+    def sector(self, index: int) -> tuple[int, int, list[tuple[int, int, int, int, int]]]:
+        """`(floor_z, ceiling_z, walls)`; a wall is `(id, ax, ay, ex, ey)`."""
+        found = self._sectors.get(index)
+        if found is None:
+            level = self.level
+            fields = _fields(level.sectors[index])
+            walls = []
+            for wall_id in _walls_of(level, index):
+                here = _fields(level.walls[wall_id])
+                there = _fields(level.walls[int(here["point2"])])
+                ax, ay = int(here["x"]), int(here["y"])
+                bx, by = int(there["x"]), int(there["y"])
+                walls.append((wall_id, ax, ay, bx - ax, by - ay))
+            found = (int(fields["floor_z"]), int(fields["ceiling_z"]), walls)
+            self._sectors[index] = found
+        return found
+
+    def next_sector(self, wall_id: int) -> int:
+        found = self._next.get(wall_id)
+        if found is None:
+            found = int(_fields(self.level.walls[wall_id])["next_sector"])
+            self._next[wall_id] = found
+        return found
+
+
 def hitscan(level: Any, x: float, y: float, z: float, sector: int,
-            dx: float, dy: float, dz: float) -> Hit:
+            dx: float, dy: float, dz: float, *,
+            index: ScanIndex | None = None) -> Hit:
     """Follow a ray until it lands on something.
 
     Walks sector to sector: within each, find the nearest wall the ray crosses,
     then check whether the ray leaves through the floor or ceiling first. A
     two-sided wall is passed through when the ray's height at the crossing is
     inside the neighbour's open band; otherwise it is a surface and the ray
-    stops.
+    stops. Pass one `ScanIndex` for many rays over the same map.
     """
+    if index is None:
+        index = ScanIndex(level)
     for _ in range(MAX_CROSSINGS):
-        fields = _fields(level.sectors[sector])
-        floor_z, ceiling_z = int(fields["floor_z"]), int(fields["ceiling_z"])
+        floor_z, ceiling_z, walls = index.sector(sector)
 
         # Which wall, and how far along the ray
         best_t: float | None = None
         best_wall = -1
-        for wall_id in _walls_of(level, sector):
-            here = _fields(level.walls[wall_id])
-            there = _fields(level.walls[int(here["point2"])])
-            ax, ay = int(here["x"]), int(here["y"])
-            bx, by = int(there["x"]), int(there["y"])
-            ex, ey = bx - ax, by - ay
+        for wall_id, ax, ay, ex, ey in walls:
             denominator = dx * ey - dy * ex
             if abs(denominator) < 1e-9:
                 continue
@@ -259,12 +296,11 @@ def hitscan(level: Any, x: float, y: float, z: float, sector: int,
                        z + dz * t_plane)
 
         hx, hy, hz = x + dx * best_t, y + dy * best_t, z + dz * best_t
-        here = _fields(level.walls[best_wall])
-        other = int(here["next_sector"])
+        other = index.next_sector(best_wall)
         if other >= 0:
-            theirs = _fields(level.sectors[other])
-            top = max(ceiling_z, int(theirs["ceiling_z"]))
-            bottom = min(floor_z, int(theirs["floor_z"]))
+            their_floor, their_ceiling, _their_walls = index.sector(other)
+            top = max(ceiling_z, their_ceiling)
+            bottom = min(floor_z, their_floor)
             if top < hz < bottom:
                 # through the opening and on into the next room
                 x, y, z, sector = hx, hy, hz, other
@@ -300,13 +336,14 @@ def light_bomb(level: Any, lights: Sequence[tuple[int, int, int, int] | tuple[in
     protected_floors = {int(item) for item in protected.get("floor", ())}
     protected_ceilings = {int(item) for item in protected.get("ceiling", ())}
     rays = 0
+    scan = ScanIndex(level)
 
     def shoot(x: float, y: float, z: float, sector: int,
               dx: float, dy: float, dz: float,
               power: float, reflected: int, travelled: float) -> None:
         nonlocal rays
         rays += 1
-        hit = hitscan(level, x, y, z, sector, dx, dy, dz)
+        hit = hitscan(level, x, y, z, sector, dx, dy, dz, index=scan)
         if hit.kind == "void":
             return
         distance = travelled + math.hypot(

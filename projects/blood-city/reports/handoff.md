@@ -1,5 +1,10 @@
 # Blood City — handoff
 
+> **Out of date in its numbers.** The counts and the 7,000-wall budget below are September's. The target
+> is NBlood (4,096 sectors, 16,384 walls, 16,384 sprites; `project.json`), and the build on 2026-11-19 is
+> 474 sectors, 3,187 walls and 816 sprites. The commands and the tree description still hold; the state
+> of each place is in `reports/build-manifest.json` and the build's own output.
+
 Gravesend, the demonstration city. What it is, how to run it, what is
 actually wrong with it, and what to do next.
 

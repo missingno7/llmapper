@@ -1,4 +1,11 @@
-# City evidence status — 2026-09-09
+# City evidence status â€” 2026-09-09
+
+> **Out of date since 2026-11-17.** This page was written on 2026-09-09, when the street slice was the
+> line being worked. Everything since -- the church, market, shed, theatre, station, harbour, shopfronts,
+> goods, the owner's second and third walks -- went into `level/build_skeleton.py`, which writes
+> `level/blood-city-current.MAP`. On 2026-11-19 that build is **474 sectors, 3,187 walls, 816 sprites**,
+> takes about a minute, and reproduces the committed map byte for byte. The slice below has not been
+> rebuilt or re-audited since September. The numbers of the day are in `reports/build-manifest.json`.
 
 The current construction control is `level/slice2-streets.MAP`, emitted by
 `level/build_graph_slice2.py` through `bloodmap.pipeline.compile_city`.

@@ -236,11 +236,8 @@ def audit_geometry(
                 continue
             if owners[left] == owners[right]:
                 continue
-            if frozenset((owners[left], owners[right])) in {
-                frozenset((int(a), int(b))) for a, b, _kind in (declared_specials or [])
-            }:
-                continue
-            if frozenset((owners[left], owners[right])) in apart:
+            pair = frozenset((owners[left], owners[right]))
+            if pair in declared or pair in apart:
                 continue
             relation = classify_segment_pair(*segments[left], *segments[right])
             if relation is None:
