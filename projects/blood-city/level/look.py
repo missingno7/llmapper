@@ -217,6 +217,15 @@ POSE_SETS = {
         "grate_stand": (49.4, 21.5, 50.5, 21.5, LEVEL, "the grate and its kerb, from the dock"),
         "sewer_junction": (42.0, 12.0, 46.0, 12.0, LEVEL, "the sewer junction under Foundry Ward"),
     },
+    #: The works yard's three ways down, for the owner's rework of 2026-11-19
+    #: ("entrances to the sewers basically next to each other, weird low door").
+    "foundry_ways_down": {
+        "yard_west": (54.0, 20.5, 48.5, 20.5, LEVEL, "the yard, facing its west face: stair mouth and dock"),
+        "stair_mouth": (51.6, 19.5, 48.0, 19.5, LEVEL, "the works stair's mouth on the yard"),
+        "dock_mouth": (51.6, 22.5, 48.0, 22.5, LEVEL, "the low room beside the stair"),
+        "stair_down": (49.6, 19.5, 46.0, 19.5, LEVEL, "from the stair head, down the flight"),
+        "grate_east": (53.6, 21.9, 50.6, 21.9, LEVEL, "the grate from the spur side"),
+    },
     "fresh1": {
         "quay_start": (33.5, 53.0, 35.5, 45.0, LEVEL, "the player's first frame: quay, facing the avenue"),
         "avenue_vista": (35.0, 30.0, 35.0, 14.0, LEVEL, "mid-avenue, the Aldermack vista north"),

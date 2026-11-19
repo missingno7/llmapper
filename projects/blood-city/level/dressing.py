@@ -119,6 +119,31 @@ def moves(region) -> bool:
     return kind in NOT_ROOMS
 
 
+_GRAVES: frozenset | None = None
+
+
+def _grave_tiles() -> frozenset:
+    """Tiles the owner or a reader named as a grave: tombstone, headstone, coffin."""
+    global _GRAVES
+    if _GRAVES is None:
+        from tools import catalog
+
+        names, looks = catalog.owner_names(), catalog.tile_looks()
+        said = {}
+        for tile in set(names) | set(looks):
+            said[tile] = f"{names.get(tile, '')} {looks.get(tile, {}).get('looks', '')}".lower()
+        _GRAVES = frozenset(
+            tile for tile, text in said.items()
+            if any(word in text for word in ("tombstone", "headstone", "gravestone",
+                                             "grave marker", "coffin", "casket")))
+    return _GRAVES
+
+
+def _burial_ground(region_id: str) -> bool:
+    return any(word in region_id for word in ("cemetery", "crypt", "st_gallows",
+                                              "graveyard"))
+
+
 def dress(layout, regions=None) -> dict:
     """Dress the campaign's share of rooms, each as a coherent set."""
     report = {"dressed": 0, "bare": 0, "placed": 0, "no_association": 0,
@@ -153,6 +178,11 @@ def dress(layout, regions=None) -> dict:
             # hung over it: the belt is a room by its size and its height,
             # and a floor that travels carries nothing that stays put.
             continue
+        if getattr(region, "role", "") == "gateway":
+            # A way through is not a room to furnish. The yard's grate is a
+            # room-over-room mouth into the sewer, and this pass stood a
+            # headstone on its edge.
+            continue
         surfaces = _surfaces_of(region)
         if surfaces is None:
             continue
@@ -164,6 +194,13 @@ def dress(layout, regions=None) -> dict:
         wall, floor, ceiling, sky = surfaces
         report["rooms"] = report.get("rooms", 0) + 1
         candidates = props.props_for(wall, floor, ceiling, sky=sky)
+        if not _burial_ground(region_id):
+            # A headstone belongs where somebody is buried. `props_for` asks
+            # what the campaign stands on these surfaces, and on stone under
+            # a sky that is often a grave: this pass has put one on the
+            # station's platform twice, on the sewer grate, and two in the
+            # market plaza. The owner each time: it does not look right.
+            candidates = [tile for tile in candidates if tile not in _grave_tiles()]
         if not candidates:
             report["no_association"] += 1
             report["bare"] += 1

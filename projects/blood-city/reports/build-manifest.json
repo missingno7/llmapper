@@ -883,9 +883,7 @@
     "run:sewer_w_leg:9 (tile 795) would lie through run:sewer_w_leg:7",
     "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
     "sig:sewer_e_leg (tile 795) would lie through run:sewer_e_leg:10",
-    "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0",
-    "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:1 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
-    "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:2 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0"
+    "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0"
   ],
   "wires": {
     "declared": [
@@ -1454,7 +1452,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 817,
+    "sprites": 814,
     "wall_sprites": 426,
     "planes": 92,
     "clashing_pairs": 4,
@@ -2518,16 +2516,16 @@
     ]
   },
   "rules": {
-    "total": 1091,
+    "total": 1093,
     "by_severity": {
-      "note": 1071,
+      "note": 1073,
       "warning": 6,
       "error": 14
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 114,
-      "note:floor-aligned-sprite-rests-on-a-surface": 22,
+      "note:sprite-drawn-square": 115,
+      "note:floor-aligned-sprite-rests-on-a-surface": 23,
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 90,
       "note:lintel-continues-the-facade": 5,
@@ -2676,9 +2674,9 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 669,
+      "sprites": 666,
       "sunk": 0.0,
-      "through": 0.001,
+      "through": 0.002,
       "squeezed": 0.0
     },
     "sunk": [],
@@ -3028,6 +3026,7 @@
           "second",
           "trim",
           "wall_art",
+          "flat_art",
           "standing",
           "levels",
           "masked",
@@ -3035,7 +3034,7 @@
           "motion",
           "machines"
         ],
-        "layer_count": 9,
+        "layer_count": 10,
         "campaign_p25": 4,
         "campaign_p50": 6,
         "missing": [],

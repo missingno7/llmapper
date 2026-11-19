@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "994fb34fe884b3238876267d3baae22b4bdab159558dd02a2d4f36b5890ec630",
-  "map_sha256": "c4b03349dd5980ed910673e3b9249528107acdad413eb58acae51e110836e768",
+  "manifest_sha256": "6284c9cb729a49a54155e50a98b417e0bf9a139a7dc7b3fd529c4aa38e7fe473",
+  "map_sha256": "e032d988193441c2799dd7bcd4a9948b2199561558de5e11342f263b59685913",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 474,
   "walls": 3187,
-  "sprites": 817,
+  "sprites": 814,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -23,7 +23,7 @@
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1071,
+   "note": 1073,
    "warning": 6,
    "error": 14
   }
@@ -799,6 +799,7 @@
      "second",
      "trim",
      "wall_art",
+     "flat_art",
      "standing",
      "levels",
      "masked",
@@ -1343,20 +1344,6 @@
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
-   "kind": "dropped",
-   "place": null,
-   "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:1 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1677",
-   "see": "the 'flat sprites dropped' line the build prints"
-  },
-  {
-   "kind": "dropped",
-   "place": null,
-   "says": "grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:2 (tile 515) would lie through grime:region:gravesend/sewer/mouths/cellar_pit_mouth_below:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1677",
-   "see": "the 'flat sprites dropped' line the build prints"
-  },
-  {
    "kind": "sprite-through",
    "place": null,
    "says": "{\"sector\": 27, \"sprite\": 615, \"tile\": 793}",
@@ -1404,7 +1391,7 @@
  "open_by_kind": {
   "cramped": 3,
   "critique": 8,
-  "dropped": 8,
+  "dropped": 6,
   "lost-tile": 4,
   "missing-layer": 9,
   "never-critiqued": 5,
