@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/maps_blood_conversions_DNE3L6.map_165/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/underpass/maps_blood_conversions_DNE3L6.map_165",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 23328,
+   "y": -57376,
+   "z": -15264,
+   "angle": 595,
+   "horiz": 100,
+   "sector": 165,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 22624,
+   "y": -53152,
+   "z": -15264,
+   "angle": 616,
+   "horiz": 100,
+   "sector": 165,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 23328,
+   "y": -44000,
+   "z": -15264,
+   "angle": 1334,
+   "horiz": 100,
+   "sector": 165,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 23328,
+   "y": -48928,
+   "z": -15264,
+   "angle": 865,
+   "horiz": 100,
+   "sector": 165,
+   "screenshot": true
+  }
+ ]
+}

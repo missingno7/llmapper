@@ -83,6 +83,58 @@ From the frames, in the order a player meets them:
 - Whether a breach in the concourse wall onto the unfinished tunnel is
   legible as "the metro" without a platform behind it.
 
+## The owner's own metro: DNE3L6 (added 2026-11-20)
+
+The owner: "I made metro in one of my duke converted maps Rabid." That is
+`maps/blood/conversions/DNE3L6.map`, his Blood conversion of Duke's Rabid
+Transit, and it outranks everything above: it is a metro built in Blood's
+tiles by the person this one is for. Seeds `DNE3L6:0!`, `:165!`, `:371!`;
+I looked at the frame sheets for 165 and 371 myself.
+
+**The ticket hall (s371).** 10,752 by 15,360 and 65,536 high: 18 m by 28 m,
+3.9 bodies. Floor 287 ("interlocking paving", dark red brick), ceiling 40
+("bevelled grey stone slab", coffered), walls 2293 (grey plaster) over a
+panelled stone dado with 427 (grey ashlar) on the end walls. What makes it a
+ticket hall, in the order the eye finds them:
+
+- a row of barred ticket windows (sprite 1060, "black iron lattice grille",
+  six of them) with a clerk behind each, under the board 943 'TICKETS';
+- the board 431 'ARRIVALS DEPARTURES', bloodied, high on the same wall;
+- the green sign 761 'EXIT' over the doors out;
+- two iron ring chandeliers (549) and statues in niches on the end wall.
+
+**The platform (s165 with s0, s90, s92, s20).** One strip 16,896 long, in
+bands across its width:
+
+- the platform proper, s165: 3,968 wide, 56,832 high (3.35 bodies), floor
+  294 ("chequered green and grey marble"), ceiling 390, walls 102 ("cracked
+  brown plaster") with a dark dado rail, hung with tapestries and a banner
+  (610, 614, 847), floor shade -8: the brightest place in the map;
+- a LIGHT BAND beside it, s0: 768 wide under a ceiling dropped to 25,600
+  that wears 2288 ("fluorescent light, vertical tile") at shade -24. It reads
+  as a strip light running the whole platform;
+- two more low bands, s90 and s92 (864 and 960 wide, ceiling 491 metal
+  plating), their walls 321 ("dark ornate iron lattice strip"): the train's
+  side, with its doors;
+- the edge, s20: 192 wide, floor 208 ("diagonal black-and-yellow hazard
+  stripe").
+
+**What this changes in the plan.** The first plan was a brick passage with a
+notice board. The owner's metro is a public building: tall, lit, tiled,
+with a ticket wall and a named way out. So:
+
+- The concourse is a HALL, not a corridor. The layout below gave it 3 by 5
+  plan units at 1.93 bodies; his is 10 by 15 at 3.9. Under the works block
+  there is room for about 8 by 8 south of the trunk (x 41..49, y 23..31),
+  and no street above it, so it can stand 3 bodies high.
+- Its dress is his, tile for tile: floor 287, ceiling 40, walls 2293 over a
+  stone dado, ticket windows 1060 under 943, the board 431, 761 over each
+  way out, chandeliers 549.
+- The unfinished platform beyond the bars is his platform cut short: floor
+  294, the 2288 light band dark, the 208 hazard edge, and no train.
+- Brick 417 and floor 281 from E1M2 are kept for the stairs and the service
+  room only: the parts that are NOT the metro.
+
 ## Where it fits in the works block (measured 2026-11-19, not built)
 
 The works block is x 39..53, y 3..35 in plan units (1,024 each); the yard is

@@ -1,56 +1,678 @@
 {
  "slug": "underpass",
- "want": "a pedestrian passage under a street: a stair down from the pavement, a tiled or brick concourse, a closed ticket barrier, a barred tunnel mouth where a metro was to run, and a service door",
- "date": "2026-11-19",
+ "want": "",
+ "date": "2026-11-20",
  "seeds": [
   {
-   "seed": "E1M2:104!",
-   "map": "maps\\blood\\campaign\\E1M2.MAP",
-   "host": 104,
+   "seed": "maps/blood/conversions/DNE3L6.map:0!",
+   "map": "maps\\blood\\conversions\\DNE3L6.map",
+   "host": 0,
    "sectors": [
-    104
+    0
    ],
    "metres": [
-    2.8,
-    13.9,
-    7.0
+    1.3,
+    28.7,
+    2.7
    ],
-   "area_M": 8.43,
-   "clear_bodies": 3.86,
+   "area_M": 12.98,
+   "clear_bodies": 1.51,
    "free_floor_share": 1.0,
    "shade_spread": 0,
    "floor": [
-    281,
-    "irregular grey stone masonry"
+    294,
+    ""
    ],
    "ceiling": [
-    120,
-    "clay tiles"
+    2288,
+    "fluorescent light, vertical tile"
    ],
    "walls": [
     [
-     417,
+     102,
      1.0,
-     "brick wall with crumbling plaster"
+     ""
     ]
    ],
    "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_0\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_0\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/conversions/DNE3L6.map:165!",
+   "map": "maps\\blood\\conversions\\DNE3L6.map",
+   "host": 165,
+   "sectors": [
+    1,
+    5,
+    14,
+    15,
+    120,
+    165
+   ],
+   "metres": [
+    7.6,
+    30.6,
+    6.0
+   ],
+   "area_M": 69.79,
+   "clear_bodies": 3.35,
+   "free_floor_share": 0.97,
+   "shade_spread": 59,
+   "floor": [
+    294,
+    ""
+   ],
+   "ceiling": [
+    390,
+    "clay wall"
+   ],
+   "walls": [
+    [
+     102,
+     0.768,
+     ""
+    ],
+    [
+     492,
+     0.115,
+     ""
+    ],
+    [
+     2453,
+     0.039,
+     "technical riveted metal cladding"
+    ],
+    [
+     296,
+     0.035,
+     "grimy tiles"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 1,
+     "corners": 4,
+     "size": [
+      576,
+      576
+     ],
+     "rise_bodies": 1.0,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 5,
+     "corners": 4,
+     "size": [
+      1248,
+      1056
+     ],
+     "rise_bodies": 1.99,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      492
+     ]
+    },
+    {
+     "sector": 14,
+     "corners": 4,
+     "size": [
+      1248,
+      48
+     ],
+     "rise_bodies": 1.99,
+     "floor_tile": 140,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      102,
+      2070
+     ]
+    },
+    {
+     "sector": 15,
+     "corners": 4,
+     "size": [
+      1248,
+      48
+     ],
+     "rise_bodies": 1.99,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      0,
+      206
+     ]
+    },
+    {
+     "sector": 120,
+     "corners": 4,
+     "size": [
+      512,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      296
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1270,
+     "type": 211,
+     "type_name": "kDudeHellHound",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 847,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.66
+    },
+    {
+     "tile": 610,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.76
+    },
+    {
+     "tile": 614,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.72
+    },
+    {
+     "tile": 525,
+     "type": 70,
+     "type_name": "kItemAmmoVoodooDoll",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 519,
+     "type": 107,
+     "type_name": "kItemHealthDoctorBag",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_165\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_165\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/conversions/DNE3L6.map:371!",
+   "map": "maps\\blood\\conversions\\DNE3L6.map",
+   "host": 371,
+   "sectors": [
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    329,
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336,
+    366,
+    368,
+    371
+   ],
+   "metres": [
+    18.3,
+    28.0,
+    7.0
+   ],
+   "area_M": 113.83,
+   "clear_bodies": 3.86,
+   "free_floor_share": 0.98,
+   "shade_spread": 12,
+   "floor": [
+    287,
+    "interlocking paving"
+   ],
+   "ceiling": [
+    40,
+    ""
+   ],
+   "walls": [
+    [
+     2293,
+     0.43,
+     ""
+    ],
+    [
+     427,
+     0.321,
+     "grey ashlar stone blocks"
+    ],
+    [
+     493,
+     0.085,
+     ""
+    ],
+    [
+     210,
+     0.065,
+     ""
+    ],
+    [
+     421,
+     0.032,
+     "wall of grey bricks"
+    ],
+    [
+     568,
+     0.032,
+     ""
+    ],
+    [
+     492,
+     0.021,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 230,
+     "corners": 8,
+     "size": [
+      1280,
+      256
+     ],
+     "rise_bodies": 0.66,
+     "floor_tile": 492,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      492,
+      499
+     ]
+    },
+    {
+     "sector": 231,
+     "corners": 8,
+     "size": [
+      1280,
+      256
+     ],
+     "rise_bodies": 0.66,
+     "floor_tile": 492,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      492,
+      499
+     ]
+    },
+    {
+     "sector": 232,
+     "corners": 4,
+     "size": [
+      1152,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      495,
+      568
+     ]
+    },
+    {
+     "sector": 233,
+     "corners": 4,
+     "size": [
+      1152,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      195,
+      421
+     ]
+    },
+    {
+     "sector": 234,
+     "corners": 4,
+     "size": [
+      1152,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      495
+     ]
+    },
+    {
+     "sector": 235,
+     "corners": 4,
+     "size": [
+      96,
+      192
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 492,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 236,
+     "corners": 4,
+     "size": [
+      96,
+      192
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 492,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 329,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 421,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 330,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      568
+     ]
+    },
+    {
+     "sector": 331,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 421,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 332,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      568
+     ]
+    },
+    {
+     "sector": 333,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 421,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 334,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      568
+     ]
+    },
+    {
+     "sector": 335,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 421,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421
+     ]
+    },
+    {
+     "sector": 336,
+     "corners": 4,
+     "size": [
+      128,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      421,
+      568
+     ]
+    },
+    {
+     "sector": 366,
+     "corners": 7,
+     "size": [
+      896,
+      1056
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      210
+     ]
+    },
+    {
+     "sector": 368,
+     "corners": 7,
+     "size": [
+      896,
+      1104
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 287,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      210
+     ]
+    }
+   ],
    "sprites": [
     {
      "tile": 1060,
      "type": 0,
      "type_name": "Decoration",
      "align": "wall",
-     "count": 1,
+     "count": 6,
+     "repeats": [
+      32,
+      22
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.33
+    },
+    {
+     "tile": 549,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
      "repeats": [
       64,
       64
      ],
      "pal": 0,
-     "over_floor_bodies": 0.97
+     "over_floor_bodies": 3.82
     },
     {
-     "tile": 39,
+     "tile": 2830,
+     "type": 248,
+     "type_name": "kDudeCultistTNT",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      37,
+      37
+     ],
+     "pal": 13,
+     "over_floor_bodies": 0.46
+    },
+    {
+     "tile": 1070,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.73
+    },
+    {
+     "tile": 2544,
      "type": 0,
      "type_name": "Decoration",
      "align": "wall",
@@ -59,140 +681,150 @@
       64,
       64
      ],
-     "pal": 5,
-     "over_floor_bodies": 2.48
+     "pal": 0,
+     "over_floor_bodies": 1.5
     },
     {
-     "tile": 2825,
-     "type": 202,
-     "type_name": "kDudeCultistShotgun",
+     "tile": 2340,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.75
+    },
+    {
+     "tile": 761,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      80
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.08
+    },
+    {
+     "tile": 431,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      120
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.62
+    },
+    {
+     "tile": 943,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.63
+    },
+    {
+     "tile": 576,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.04
+    },
+    {
+     "tile": 577,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.03
+    },
+    {
+     "tile": 957,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.8
+    },
+    {
+     "tile": 1165,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.97
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
      "align": "face",
      "count": 1,
      "repeats": [
-      40,
-      40
+      48,
+      48
      ],
      "pal": 0,
-     "over_floor_bodies": 0.5
-    }
-   ],
-   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_104\\plan.png",
-   "frames": [
-    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_104\\frames.png"
-   ]
-  },
-  {
-   "seed": "E1M2:105!",
-   "map": "maps\\blood\\campaign\\E1M2.MAP",
-   "host": 105,
-   "sectors": [
-    105
-   ],
-   "metres": [
-    3.5,
-    7.0,
-    7.5
-   ],
-   "area_M": 8.39,
-   "clear_bodies": 4.17,
-   "free_floor_share": 1.0,
-   "shade_spread": 0,
-   "floor": [
-    281,
-    "irregular grey stone masonry"
-   ],
-   "ceiling": [
-    67,
-    "dark horizontal planks"
-   ],
-   "walls": [],
-   "things": [],
-   "sprites": [],
-   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_105\\plan.png",
-   "frames": [
-    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\E1M2_105\\frames.png"
-   ]
-  },
-  {
-   "seed": "maps/blood/community/MISKSTAT.MAP:0!",
-   "map": "maps\\blood\\community\\MISKSTAT.MAP",
-   "host": 0,
-   "sectors": [
-    0,
-    52
-   ],
-   "metres": [
-    4.3,
-    31.3,
-    3.5
-   ],
-   "area_M": 34.47,
-   "clear_bodies": 1.93,
-   "free_floor_share": 1.0,
-   "shade_spread": 1,
-   "floor": [
-    195,
-    "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
-   ],
-   "ceiling": [
-    273,
-    "rock/cliff"
-   ],
-   "walls": [
-    [
-     360,
-     0.889,
-     ""
-    ],
-    [
-     357,
-     0.111,
-     ""
-    ]
-   ],
-   "things": [
+     "over_floor_bodies": 0.0
+    },
     {
-     "sector": 52,
-     "corners": 4,
-     "size": [
-      1792,
-      512
-     ],
-     "rise_bodies": 0.06,
-     "floor_tile": 415,
-     "sloped": false,
-     "type": 0,
-     "wall_tiles": [
-      273,
-      415
-     ]
-    }
-   ],
-   "sprites": [
-    {
-     "tile": 1044,
-     "type": 0,
-     "type_name": "Decoration",
-     "align": "wall",
-     "count": 7,
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
      "repeats": [
-      32,
-      64
+      48,
+      48
      ],
      "pal": 0,
-     "over_floor_bodies": 0.97
+     "over_floor_bodies": 0.0
     }
    ],
-   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_community_MISKSTAT.MAP_0\\plan.png",
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_371\\plan.png",
    "frames": [
-    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_community_MISKSTAT.MAP_0\\frames.png"
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\maps_blood_conversions_DNE3L6.map_371\\frames.png"
    ]
   }
  ],
  "like": [],
  "tiles": {
-  "39": {
-   "tile": 39,
+  "20": {
+   "tile": 20,
    "pixels": [
     64,
     64
@@ -201,12 +833,166 @@
     1024,
     16384
    ],
-   "see_through_share": 0.18,
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-20.png"
+  },
+  "40": {
+   "tile": 40,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-40.png"
+  },
+  "102": {
+   "tile": 102,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-102.png"
+  },
+  "140": {
+   "tile": 140,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-140.png"
+  },
+  "210": {
+   "tile": 210,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-210.png"
+  },
+  "287": {
+   "tile": 287,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-287.png"
+  },
+  "294": {
+   "tile": 294,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-294.png"
+  },
+  "296": {
+   "tile": 296,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-296.png"
+  },
+  "390": {
+   "tile": 390,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-390.png"
+  },
+  "421": {
+   "tile": 421,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-421.png"
+  },
+  "427": {
+   "tile": 427,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-427.png"
+  },
+  "431": {
+   "tile": 431,
+   "pixels": [
+    85,
+    49
+   ],
+   "world_at_repeat_8": [
+    1360,
+    12544
+   ],
+   "see_through_share": 0.079,
    "is_mask": true,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-39.png"
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-431.png"
   },
-  "67": {
-   "tile": 67,
+  "491": {
+   "tile": 491,
    "pixels": [
     64,
     64
@@ -217,108 +1003,10 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-67.png"
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-491.png"
   },
-  "120": {
-   "tile": 120,
-   "pixels": [
-    64,
-    64
-   ],
-   "world_at_repeat_8": [
-    1024,
-    16384
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-120.png"
-  },
-  "195": {
-   "tile": 195,
-   "pixels": [
-    16,
-    128
-   ],
-   "world_at_repeat_8": [
-    256,
-    32768
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-195.png"
-  },
-  "273": {
-   "tile": 273,
-   "pixels": [
-    128,
-    128
-   ],
-   "world_at_repeat_8": [
-    2048,
-    32768
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-273.png"
-  },
-  "281": {
-   "tile": 281,
-   "pixels": [
-    128,
-    128
-   ],
-   "world_at_repeat_8": [
-    2048,
-    32768
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-281.png"
-  },
-  "357": {
-   "tile": 357,
-   "pixels": [
-    128,
-    128
-   ],
-   "world_at_repeat_8": [
-    2048,
-    32768
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-357.png"
-  },
-  "360": {
-   "tile": 360,
-   "pixels": [
-    64,
-    64
-   ],
-   "world_at_repeat_8": [
-    1024,
-    16384
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-360.png"
-  },
-  "415": {
-   "tile": 415,
-   "pixels": [
-    128,
-    128
-   ],
-   "world_at_repeat_8": [
-    2048,
-    32768
-   ],
-   "see_through_share": 0.0,
-   "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-415.png"
-  },
-  "417": {
-   "tile": 417,
+  "492": {
+   "tile": 492,
    "pixels": [
     64,
     128
@@ -329,21 +1017,147 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-417.png"
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-492.png"
   },
-  "1044": {
-   "tile": 1044,
+  "493": {
+   "tile": 493,
    "pixels": [
-    128,
+    64,
     128
    ],
    "world_at_repeat_8": [
-    2048,
+    1024,
     32768
    ],
-   "see_through_share": 0.565,
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-493.png"
+  },
+  "519": {
+   "tile": 519,
+   "pixels": [
+    29,
+    30
+   ],
+   "world_at_repeat_8": [
+    464,
+    7680
+   ],
+   "see_through_share": 0.183,
    "is_mask": true,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1044.png"
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-519.png"
+  },
+  "525": {
+   "tile": 525,
+   "pixels": [
+    29,
+    35
+   ],
+   "world_at_repeat_8": [
+    464,
+    8960
+   ],
+   "see_through_share": 0.558,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-525.png"
+  },
+  "549": {
+   "tile": 549,
+   "pixels": [
+    67,
+    128
+   ],
+   "world_at_repeat_8": [
+    1072,
+    32768
+   ],
+   "see_through_share": 0.772,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-549.png"
+  },
+  "568": {
+   "tile": 568,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-568.png"
+  },
+  "610": {
+   "tile": 610,
+   "pixels": [
+    132,
+    96
+   ],
+   "world_at_repeat_8": [
+    2112,
+    24576
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-610.png"
+  },
+  "614": {
+   "tile": 614,
+   "pixels": [
+    96,
+    128
+   ],
+   "world_at_repeat_8": [
+    1536,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-614.png"
+  },
+  "619": {
+   "tile": 619,
+   "pixels": [
+    18,
+    11
+   ],
+   "world_at_repeat_8": [
+    288,
+    2816
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-619.png"
+  },
+  "761": {
+   "tile": 761,
+   "pixels": [
+    31,
+    15
+   ],
+   "world_at_repeat_8": [
+    496,
+    3840
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-761.png"
+  },
+  "847": {
+   "tile": 847,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.018,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-847.png"
   },
   "1060": {
    "tile": 1060,
@@ -359,19 +1173,117 @@
    "is_mask": true,
    "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1060.png"
   },
-  "2825": {
-   "tile": 2825,
+  "1070": {
+   "tile": 1070,
    "pixels": [
-    50,
-    106
+    32,
+    32
    ],
    "world_at_repeat_8": [
-    800,
-    27136
+    512,
+    8192
    ],
-   "see_through_share": 0.299,
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1070.png"
+  },
+  "1270": {
+   "tile": 1270,
+   "pixels": [
+    64,
+    62
+   ],
+   "world_at_repeat_8": [
+    1024,
+    15872
+   ],
+   "see_through_share": 0.353,
    "is_mask": true,
-   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2825.png"
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-1270.png"
+  },
+  "2288": {
+   "tile": 2288,
+   "pixels": [
+    32,
+    64
+   ],
+   "world_at_repeat_8": [
+    512,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2288.png"
+  },
+  "2293": {
+   "tile": 2293,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2293.png"
+  },
+  "2340": {
+   "tile": 2340,
+   "pixels": [
+    137,
+    31
+   ],
+   "world_at_repeat_8": [
+    2192,
+    7936
+   ],
+   "see_through_share": 0.141,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2340.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2453.png"
+  },
+  "2544": {
+   "tile": 2544,
+   "pixels": [
+    58,
+    58
+   ],
+   "world_at_repeat_8": [
+    928,
+    14848
+   ],
+   "see_through_share": 0.56,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2544.png"
+  },
+  "2830": {
+   "tile": 2830,
+   "pixels": [
+    67,
+    107
+   ],
+   "world_at_repeat_8": [
+    1072,
+    27392
+   ],
+   "see_through_share": 0.4,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\underpass\\tiles\\tile-2830.png"
   }
  }
 }
