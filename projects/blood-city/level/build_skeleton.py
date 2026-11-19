@@ -19,6 +19,7 @@ from __future__ import annotations
 import collections
 import pathlib
 import sys
+import time
 from collections import defaultdict
 
 ROOT = pathlib.Path(__file__).resolve().parents[3]
@@ -269,7 +270,46 @@ def alley_notch_rect(alley, block_rect):
     raise ValueError(alley["edge"])
 
 
+class _Stages:
+    """The build's stages in the order they run, each one timed.
+
+    A stage starts at a `STAGE("name", "what it does")` line and ends at the
+    next. Nothing is moved into a function for it: the call marks a place in
+    a two-thousand-line build so an agent can be told "the windows are made
+    in `doors-and-windows`" and open the file there. `status.py --stages`
+    lists them with their lines; the names that ran go into the manifest and
+    the seconds into `work/`, which is not committed, so a build that makes
+    the same map writes the same manifest.
+    """
+
+    def __init__(self) -> None:
+        self.rows: list[dict] = []
+        self._since = time.perf_counter()
+
+    def begin(self) -> None:
+        self.rows, self._since = [], time.perf_counter()
+
+    def __call__(self, name: str, says: str) -> None:
+        now = time.perf_counter()
+        if self.rows:
+            self.rows[-1]["seconds"] = round(now - self._since, 2)
+        self.rows.append({"name": name, "says": says})
+        self._since = now
+
+    def close(self) -> list[dict]:
+        """End the last stage; what ran, without the seconds."""
+        if self.rows and "seconds" not in self.rows[-1]:
+            self.rows[-1]["seconds"] = round(time.perf_counter() - self._since, 2)
+        return [{"name": row["name"], "says": row["says"]} for row in self.rows]
+
+
+STAGE = _Stages()
+
+
 def build():
+    STAGE.begin()
+    STAGE("districts",
+          "the plan as district assemblies: one street region each, blocks carved out")
     import glass as _glass
     _glass.FRONTS.clear()
     data = plan()
@@ -370,6 +410,8 @@ def build():
         district_of[district] = assembly
 
 
+    STAGE("cemetery",
+          "the cemetery as a walled, gated ground carved from its district")
     # ---- carved areas: the cemetery as a walled, gated ground -------------
     gates = []
     gate_rects: dict = {}
@@ -481,6 +523,8 @@ def build():
     #: roads leave, and `streets.lay` -- which runs last and knows -- writes
     #: one gate per stretch.
 
+    STAGE("sewer",
+          "the sewer declared at depth beneath Foundry Ward")
     # ---- the sewer: directly beneath Foundry Ward --------------------------
     #
     # The sewer occupies the same XY footprint as the city.  Its depth is
@@ -562,6 +606,8 @@ def build():
     sewer.connect(stash.face("east"), main_duct.face("west"),
                   connection_id="connection:sewer_stash")
 
+    STAGE("works-stair",
+          "the first way down: the works stair, in flights, to the cellar")
     # ---- entry 1: the works stair, flights down to the cellar -------------
     yard = areas["works_yard"]["rect"]
     yard_face_x = yard[0] * PU
@@ -612,6 +658,8 @@ def build():
     city.connect(top_room.face("east"), foundry_st.face("west"),
                  connection_id="connection:works_stair_mouth")
 
+    STAGE("stack-links",
+          "the two room-over-room links between street and sewer")
     # ---- the two stack links (hand-built per stacks-v1; grammar req #7) ---
     def mouth_pair(name, upper_parent, upper_frame_xy, upper_floor,
                    upper_style, landing_depth, see_through):
@@ -706,6 +754,8 @@ def build():
     city.connect(grate_lower.face("west"), main_duct.face("east"),
                  connection_id="connection:grate_shaft_trunk")
 
+    STAGE("sewer-network",
+          "the sewer's ring, its chambers and the necks between them")
     # ---- the network proper: the ring, its chambers and the necks --------
     # (the yard shaft's foot opens straight onto the ring's east leg)
     # Built after the mouths, because the ring hangs off the grate shaft.
@@ -754,6 +804,8 @@ def build():
         city.connect(pit_lower.face(face), junction.face("north"),
                      connection_id=f"connection:pit_landing_{face}")
 
+    STAGE("pumping-station",
+          "the second way down: the pumping station's stairs")
     # ---- the pumping station: road-level stairs into the sewer ----------
     import l3_shed
     shed = l3_shed.build(district_of["foundry_ward"], foundry_st,
@@ -803,6 +855,8 @@ def build():
     ]
 
 
+    STAGE("light-pools",
+          "patches of lit floor in the streets, declared as regions")
     # ---- light pools: shade variation a district-sized sector cannot have -
     # Placed where a city lights itself: venue mouths, gates, stair heads,
     # junctions.  Rate follows street-furniture's lamp norm.
@@ -840,6 +894,8 @@ def build():
             size=lightpools.POOL))
     ctx_pools = [room.region_id for room in lit]
 
+    STAGE("church",
+          "St Gallow's: nave, tower, crypt")
     # ---- L3: St Gallow's, the mandatory landmark of Old Crossing --------
     import l3_church
     church_rooms = l3_church.build(district_of["old_crossing"], oldcross_st,
@@ -853,20 +909,28 @@ def build():
                      sewer_net["w_leg"].face("west"),
                      connection_id=f"connection:crypt_breach_sewer_{_index}")
 
+    STAGE("arcade",
+          "the Gravesend Arcade and its shops")
     # ---- L3: the Gravesend Arcade (the shopping mall) -------------------
     import l3_mall
     mall_rooms = l3_mall.build(district_of["market_slip"], market_st)
 
+    STAGE("theatre",
+          "Theatre Row: the Aldermack, the saloon, the pawnshop")
     # ---- L3: Theatre Row's venues (the entertainment district) ----------
     import l3_theatre
     theatre_rooms, door_levers, stage_curtain = l3_theatre.build(
         district_of['theatre_row'], theatre_st)
     ctx_stage_curtain = stage_curtain
 
+    STAGE("station",
+          "Gravesend Station behind the north wall")
     # ---- L3: Gravesend Station, behind the city's north wall ------------
     import l3_station
     station_rooms = l3_station.build(city, theatre_st)
 
+    STAGE("market",
+          "Market Slip: the quay, the harbour and the ship")
     # ---- L3: Market Slip's public space (the district the player starts
     # in), furnished from its own L1 `furnish` slots ------------------------
     import l3_market
@@ -876,6 +940,8 @@ def build():
         city_plan.Y_QUAY, city_plan.CITY_D)
 
 
+    STAGE("foundry",
+          "Foundry Ward, the pilot district, with its machine hall")
     # ---- L3: the pilot district (Foundry Ward), dressed -------------------
     ctx = {
         "foundry_st": foundry_st,
@@ -899,6 +965,8 @@ def build():
     dressing = l3_foundry.dress(district_of["foundry_ward"], ctx)
     dressing["stash"] = stash.region_id
 
+    STAGE("undeclared-venues",
+          "venues on the plan that nobody has built, declared as such")
     # ---- L1 venues nobody has built yet, declared as such -----------------
     #
     # A named empty node is the honest way to say "this space is planned and
@@ -929,6 +997,8 @@ def build():
         citytree.declare_venue(placeholder, slot["id"], slot["type"],
                                built_by="(planned)")
 
+    STAGE("start",
+          "the player's start on the quay, and the manifest begins")
     # ---- start: the first circuit leg, on the quay ------------------------
     start = data["circuit"][0]["at"]
     mb = DISTRICT_BOUNDS["market_slip"]
@@ -961,6 +1031,8 @@ def build():
         "monument_tiers": len(market_dressing.get("monument_rooms", {})),
     }
 
+    STAGE("street-anatomy",
+          "pavement, carriageway and kerb along every street")
     # ---- street anatomy: pavement, carriageway, kerb ---------------------
     # LAST, deliberately. The district street was one open region at one
     # level wearing one tile; `streets.lay` gives each run of the
@@ -984,6 +1056,8 @@ def build():
         blocks_by_district=blocks_by_district, unit=PU, seam_gates=gates)
     ctx["manifest"]["roadways"] = len(ctx["manifest"]["streets"]["laid"])
 
+    STAGE("street-ends",
+          "the walls where the main streets stop")
     # ---- where the main streets stop ------------------------------------
     # The avenue, Theatre Row and the market street ran out at the city's
     # blank perimeter wall, 11.6 bodies of masonry: every long view ended in
@@ -1158,6 +1232,8 @@ def _drop_flat_overlaps(layout) -> list:
 def main() -> int:
     global LAST_BUILD
     program, stack_links, gates, ctx, dressing = build()
+    STAGE("connect",
+          "the program becomes a planar layout; gates join the regions")
     layout = program.compile()
     for gate in gates:
         gate_id, region_a, region_b, a1, a2 = gate[:5]
@@ -1177,6 +1253,8 @@ def main() -> int:
         build_stack_link(layout, spec, SEWER_CITY_D,
                          see_through=spec["see_through"])
 
+    STAGE("set-pieces",
+          "what each venue is furnished with: curtain, flames, sewer runs, pews, stock")
     # ---- the Aldermack's curtain: markers, flags, fabric, and the link ----
     # A second pass, the way `turnstiles.populate` is: the fin is carved in
     # the tree and furnished once its walls exist.
@@ -1285,6 +1363,8 @@ def main() -> int:
     for name, room_obj, face in (("cellar", station["cellar"], "north"),):
         props.mount_on_wall(layout, f"light:station_{name}", room_obj, face)
 
+    STAGE("street-lamps",
+          "a lamp in every light pool and along every run")
     # A street lamp in every light pool.  506 is a wall bracket (92% of the
     # campaign's are within 512 units of a solid wall); a light pool is a
     # patch of brighter floor in the middle of a road, with no wall to
@@ -1390,6 +1470,8 @@ def main() -> int:
                                        "slots": len(lamp_slots)}
     print("street lamps:", ctx["manifest"]["street_lamps"])
 
+    STAGE("street-dressing",
+          "levers by doors, ambient sound, the signature porthole, the monument")
     # Grime, last of the sprite passes so it fills whatever the district
     # modules left bare.  Sprites per sector was 0.60 against a campaign
     # 1.60-4.06; a room with one cultist and one flame in it reads as built
@@ -1458,6 +1540,8 @@ def main() -> int:
         print("supermarket:", l3_market.dress_supermarket(
             layout, _supermarket_rooms))
 
+    STAGE("green",
+          "what stands on the turf, then every sign in the city")
     # ---- plant the green -------------------------------------------------
     # The ground is turf now; this is what stands on it. Every position comes
     # from a slot derived from the ground's own footprint, so a bigger green
@@ -1491,6 +1575,8 @@ def main() -> int:
     for region_id, district in ctx["street_regions"].items():
         sign_rooms[f"street:{district}"] = region_id
     print("signage:", signage.write(layout, sign_rooms))
+    STAGE("shops-and-goods",
+          "fascia names, display lamps, venue detail, goods on fixtures, grime")
     # A shop is named on its fascia and lit behind its glass
     # (`glass.surround`; DukCity and E3M1, `references/dukcity-transfer.md`).
     import glass as _shopfronts
@@ -1544,6 +1630,8 @@ def main() -> int:
     import dressing
     print("dressing:", dressing.dress(layout))
 
+    STAGE("doors-and-windows",
+          "door frames, detail panels, windows, building backs, actors seated")
     # Every moving door is a declared aperture, not a zero-height sector with a
     # door tile sprayed over whatever facade happens to face it.  The shared
     # compiler pass preserves each native type-600 sector and its behaviour,
@@ -1582,11 +1670,15 @@ def main() -> int:
           "flat sprites dropped for lying through another:",
           len(ctx["manifest"]["flat_dropped"]))
 
+    STAGE("compile",
+          "the layout becomes sectors, walls and sprites; the light bomb runs")
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
     # place, so the reference stays current.
     LAST_BUILD = (program, compiled)
     ctx["manifest"]["lighting"] = dict(compiled.lighting_report)
+    STAGE("faces",
+          "what every wall wears: facades, shop glass, the landmark's stone, the sea")
     # Per-building facade variation (E3M1 runs 13 tiles over its street
     # network; one per district read as one repeated building).
     import facade_pass
@@ -1726,6 +1818,8 @@ def main() -> int:
             _lit += 1
     print("end wall faces lit:", _lit)
 
+    STAGE("alignment",
+          "one texture frame per run of walls; who owns each wall record")
     # Texture alignment.  Blood advances a wall's horizontal texture
     # coordinate by x_repeat*8 along the wall, so a run only continues if
     # the next wall's panning picks up where the last left off.  Without
@@ -1801,6 +1895,8 @@ def main() -> int:
         compiled.level, tiles={LAMP_TILE, 506, 640, 1701}))
     print("lighting lightbomb:", compiled.lighting_report)
 
+    STAGE("apertures",
+          "openings: sewer mouths, lintels, pilasters, niches, wall sprites")
     # The sewer's mouths.  Tile 194 is E3M3's circular tunnel lining and it
     # uses it in exactly one place: the short opening where one channel
     # meets another, 29 walls of 1,128, with a band of wall above.
@@ -1852,6 +1948,8 @@ def main() -> int:
     _after = apertures.report(disk)
     print("apertures after:", _after)
     ctx["manifest"]["apertures"] = _after
+    STAGE("gates",
+          "nothing is built: rules, read-back, swept closure, sprite fit, character")
     # The corpus-graded rule registry, whose severities derive from measured
     # campaign violation rates rather than from anyone's opinion.  It was
     # sitting unused: `evaluate` returns nothing at all unless `rules_blood`
@@ -2018,6 +2116,8 @@ def main() -> int:
     print("character: built without a study:", _sheet["unstudied"])
     print("character: thin", _sheet["thin"], "unfound", _sheet["unfound"],
           "dangling channels", _sheet["dangling_channels"])
+    STAGE("write",
+          "the map, its sector tags, the manifest and the status")
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")
@@ -2041,6 +2141,17 @@ def main() -> int:
             _json.dumps({k: sorted(v) for k, v in sorted(_tags.items())},
                         indent=1), "utf-8")
     import json
+    # The stages that ran, by name. Their seconds are this machine's and this
+    # run's, so they go beside the suite's log and not into what is committed.
+    ctx["manifest"]["stages"] = STAGE.close()
+    _timings = ROOT / "work" / "blood-city-stages.json"
+    _timings.parent.mkdir(exist_ok=True)
+    _timings.write_text(json.dumps(STAGE.rows, indent=1) + "\n", encoding="utf-8")
+    _slow = sorted(STAGE.rows, key=lambda row: -row["seconds"])[:4]
+    print(f"stages: {len(STAGE.rows)} in "
+          f"{sum(row['seconds'] for row in STAGE.rows):.0f} s; slowest "
+          + ", ".join(f"{row['name']} {row['seconds']:.1f}" for row in _slow)
+          + "  (python projects/blood-city/level/status.py --stages)")
     (out_dir.parents[0] / "reports" / "build-manifest.json").write_text(
         json.dumps(ctx["manifest"], indent=2), encoding="utf-8")
     print(f"sectors {len(disk.sectors)} walls {len(disk.walls)} "

@@ -96,6 +96,77 @@ class SearchTests(unittest.TestCase):
                 catalog.LABELS = old
 
 
+@unittest.skipUnless(PLACES.exists(), "no library built")
+class PlaceMembershipTests(unittest.TestCase):
+    """A place row says which sectors it is and what they hold."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rows = json.loads(PLACES.read_text("utf-8"))["places"]
+
+    def test_a_sector_belongs_to_one_room_and_the_host_is_a_member(self):
+        claimed: dict[tuple[str, int], str] = {}
+        for row in self.rows:
+            self.assertEqual(len(row["members"]), row["sectors"], row["id"])
+            self.assertIn(row["host"], row["members"], row["id"])
+            for sector in row["members"]:
+                self.assertIsNone(claimed.get((row["map"], sector)), row["id"])
+                claimed[(row["map"], sector)] = row["id"]
+
+    def test_what_a_room_holds_is_keyed_as_the_mechanisms_shelf_keys_it(self):
+        kinds = set()
+        for row in self.rows:
+            for key, count in row["mechanisms"].items():
+                kinds.add(key.split(":", 1)[0])
+                self.assertGreater(count, 0, row["id"])
+        self.assertEqual(kinds, {"sector", "wall", "sprite", "effect", "channel"})
+
+    @unittest.skipUnless(E2M4.exists(), "no E2M4")
+    def test_the_rooms_of_a_map_are_what_the_map_gives_today(self):
+        from bloodmap import examples
+        from bloodmap.format import read_map
+        from tools import catalog
+        from tools import place_character as pc
+
+        disk = read_map(E2M4)
+        mine = {row["id"]: row for row in self.rows if row["map"] == "E2M4"}
+        geom = pc.Geometry(disk)
+        fresh = {}
+        for place in pc.places(geom):
+            profile = pc.profile(geom, place)
+            if profile["solid_wall"] >= 4096:
+                fresh[f"E2M4:{profile['host']}"] = sorted(place)
+        self.assertEqual({key: row["members"] for key, row in mine.items()}, fresh,
+                         "run python -m tools.catalog build-places")
+        held = examples.by_place(examples.observe("E2M4", disk),
+                                 catalog.sector_places({"places": list(mine.values())})["E2M4"])
+        for key, row in mine.items():
+            self.assertEqual(row["mechanisms"], held.get(key, {}), key)
+
+    def test_a_word_for_a_mechanism_finds_the_rooms_that_hold_one(self):
+        from tools import catalog
+
+        found = catalog.find_places(["conveyor"], None, 12)
+        self.assertTrue(found)
+        for _score, row, why in found:
+            self.assertIn("effect:conveyor", row["mechanisms"], row["id"])
+            self.assertTrue(any(said.startswith("holds effect:conveyor")
+                                for said in why))
+        # two words, two shelves: a lift, in a room somebody called a crypt
+        both = catalog.find_places(["lift", "crypt"], None, 5)
+        self.assertTrue(both)
+        self.assertTrue(any("sector:600" in row["mechanisms"]
+                            for _s, row, _w in both))
+
+    def test_showing_a_room_says_what_works_in_it_and_what_to_run_next(self):
+        from tools import catalog
+
+        said = catalog.show("E1M8:243")
+        self.assertIn("works by:", said)
+        self.assertIn("effect:conveyor", said)
+        self.assertIn("python -m tools.catalog mechanisms E1M8 --place E1M8:243", said)
+
+
 @unittest.skipUnless(E2M4.exists(), "no E2M4")
 class MechanismTests(unittest.TestCase):
     def test_a_chain_is_followed_through_its_relays(self):

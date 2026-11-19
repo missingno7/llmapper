@@ -21,6 +21,7 @@ from tests.helpers import campaign_maps, synthetic_two_sector_map
 
 ROOT = Path(__file__).resolve().parent.parent
 INDEX = ROOT / "knowledge" / "blood" / "design" / "mechanism-examples-v1.json"
+PLACES = ROOT / "knowledge" / "blood" / "design" / "places-v1.json"
 
 
 def _xsector(**fields) -> PackedExtra:
@@ -88,6 +89,44 @@ class ObserveTests(unittest.TestCase):
     def test_a_reserved_channel_records_its_senders(self):
         seen = examples.observe("TEST", self._map())
         self.assertEqual(seen["sends"]["channel:4"], [(1, 1)])     # kChannelLevelExitNormal
+
+    def test_no_channel_and_a_levels_own_channel_are_not_the_engines(self):
+        """`tx_id` 0 sends nothing (`if (pXSprite->txID)`), and 100 is the
+        first channel a level may use for itself. Counting both, the index
+        said 24,610 objects "send on kChannelZero" until 2026-11-19."""
+        disk = self._map()
+        disk.sectors[0].extra = _xsector(tx_id=0, rx_id=100)
+        disk.sectors[0].fields["extra"] = 1
+        seen = examples.observe("TEST", disk)
+        self.assertEqual(set(seen["sends"]), {"channel:4"})
+        self.assertEqual(seen["hears"], {})
+
+
+class PlaceJoinTests(unittest.TestCase):
+    def test_a_room_holds_what_stands_in_its_sectors_and_nothing_else(self):
+        seen = examples.observe("TEST", ObserveTests()._map())
+        held = examples.by_place(seen, {1: "TEST:1"})
+        self.assertEqual(held, {"TEST:1": {"channel:4": 1, "effect:conveyor": 1,
+                                           "sprite:1": 1, "wall:511": 1}})
+        self.assertEqual(examples.by_place(seen, {}), {})
+
+    def test_an_entry_names_its_richest_rooms_and_each_example_its_own(self):
+        disk = ObserveTests()._map()
+        index = examples.build(
+            [examples.observe("AAA", disk), examples.observe("BBB", disk)],
+            places={"AAA": {0: "AAA:0", 1: "AAA:0"}, "BBB": {1: "BBB:1"}})
+        entry = index["entries"]["sprite:1"]
+        self.assertEqual(entry["place_count"], 2)
+        self.assertEqual(entry["places"], [{"id": "AAA:0", "count": 2},
+                                           {"id": "BBB:1", "count": 1}])
+        self.assertEqual([item["place"] for item in entry["examples"]],
+                         ["AAA:0", None, "AAA:0", "BBB:1"])
+
+    def test_without_the_catalogue_an_entry_claims_no_room(self):
+        index = examples.build([examples.observe("AAA", ObserveTests()._map())])
+        entry = index["entries"]["sprite:1"]
+        self.assertNotIn("places", entry)
+        self.assertNotIn("place", entry["examples"][0])
 
 
 class BuildAndSearchTests(unittest.TestCase):
@@ -180,10 +219,13 @@ class CommittedIndexTests(unittest.TestCase):
         cls.committed = json.loads(INDEX.read_text(encoding="utf-8"))
         seen = [examples.observe(path.stem.upper(), read_map(path))
                 for path in campaign_maps()]
+        from tools import catalog
+
         cls.fresh = examples.build(
             seen,
             curriculum={"maps": mine_course(blood_corpus_root() / "mechanism")},
-            cited=examples.cited_lessons(ROOT / "bloodmap"))
+            cited=examples.cited_lessons(ROOT / "bloodmap"),
+            places=catalog.sector_places() if PLACES.exists() else None)
 
     def test_it_is_current(self):
         stale = []
@@ -207,6 +249,26 @@ class CommittedIndexTests(unittest.TestCase):
             with self.subTest(words=words):
                 found = [key for key, _e in examples.search(self.committed, words)]
                 self.assertIn(expected, found)
+
+    def test_there_is_no_entry_for_no_channel(self):
+        self.assertNotIn("channel:0", self.committed["entries"])
+        self.assertNotIn("channel:100", self.committed["entries"])
+
+    @unittest.skipUnless(PLACES.exists(), "no places catalogue")
+    def test_a_room_an_entry_names_holds_that_many_of_it(self):
+        """The two shelves say the same thing from both sides."""
+        rooms = {row["id"]: row for row in
+                 json.loads(PLACES.read_text(encoding="utf-8"))["places"]}
+        checked = 0
+        for key, entry in self.committed["entries"].items():
+            for room in entry.get("places", []):
+                self.assertEqual(rooms[room["id"]]["mechanisms"].get(key),
+                                 room["count"], f"{key} in {room['id']}")
+                checked += 1
+            for item in entry.get("examples", []):
+                if item["place"] is not None:
+                    self.assertIn(item["sector"], rooms[item["place"]]["members"], key)
+        self.assertGreater(checked, 400)
 
     def test_every_example_is_an_object_that_exists(self):
         from bloodmap.format import read_map

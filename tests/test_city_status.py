@@ -100,6 +100,22 @@ class CityStatusTests(unittest.TestCase):
                              + len(place["critique"]["readers_missing"]),
                              place["name"])
 
+    def test_every_stage_that_ran_is_at_a_line_that_starts_it(self):
+        """The build is two thousand lines; a stage's name is how an agent is
+        sent to the right hundred of them."""
+        stages = self.status["stages"]
+        self.assertGreater(len(stages), 20)
+        self.assertEqual(len({row["name"] for row in stages}), len(stages))
+        source = (LEVEL / "build_skeleton.py").read_text(encoding="utf-8").splitlines()
+        for row in stages:
+            with self.subTest(stage=row["name"]):
+                path, _colon, line = row["at"].rpartition(":")
+                self.assertTrue((ROOT / path).exists(), row["at"])
+                self.assertIn(f'STAGE("{row["name"]}"', source[int(line) - 1])
+                self.assertTrue(row["says"])
+        # the seconds are a machine's, so they are not in what is committed
+        self.assertNotIn("seconds", json.dumps(self.status["stages"]))
+
     def test_the_brief_is_short_and_says_what_is_not_verified(self):
         _data, page = self.module.render(self.status)
         self.assertLess(len(page.splitlines()), 70)

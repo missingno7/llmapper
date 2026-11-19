@@ -11,7 +11,8 @@ calls for it. Commands are run from the repository root.
 | what a tile is, a mechanic is, or where Blood has one | `python -m tools.catalog find <words>` |
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
 | one mechanic: engine name, how many, examples, lessons, next commands | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
-| how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set) |
+| how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set, and the room it is in) |
+| which rooms have a mechanic, and what one room has | `python -m tools.catalog find lift crypt`, then `python -m tools.catalog show E1M8:243` |
 | what a thing is wired to | `python -m tools.catalog mechanisms E2M4 --place E2M4:613` |
 | whether the library already has a function for this | [docs/module-map.md](docs/module-map.md): every module and tool, one line each |
 | which module owns a kind of fact | [docs/architecture.md](docs/architecture.md) |

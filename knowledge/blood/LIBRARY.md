@@ -9,12 +9,18 @@ rather than tons of texts, it needs to be a real library you can use."
 | Shelf | What an entry is | Id | Where |
 |---|---|---|---|
 | Tiles | what a tile shows (class, layout, a name, themes), the owner's name for it, every way Blood uses it | the tile number | `design/tile-looks/`, `design/owner-anchors-v1.json`, `design/tile-usage-v1.json` |
-| Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, what stands in it, and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
+| Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, its member sectors, what works and stands in it (by the Mechanisms keys), and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
 | Mechanisms | what the engine does: every sector, wall and sprite type the campaign uses, every sector effect, every reserved channel and every tutorial lesson, each with maps that show it | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` |
 
 The owner's names outrank the mapper's readings wherever both exist.
+
+Places and Mechanisms are joined both ways. A mechanism entry names the rooms
+holding the most of it and each of its examples says which room it is in; a
+place row lists what it holds under the mechanism keys. So `find lift crypt`
+answers with crypts that have a lift, `show conveyor` ends with the room to
+go and stand in, and `record` says which room an object is in.
 
 ## One vocabulary
 
@@ -33,7 +39,8 @@ python -m tools.catalog show conveyor      # what it is, how often, where to loo
 python -m tools.catalog show sector:614    # a type: name, readings, examples, lessons
 python -m tools.catalog record E3M5 sector 20   # only the fields that are set on it
 python -m tools.catalog show 1129          # a tile: name, reading, uses, places
-python -m tools.catalog show E1M2:271      # a place: kind, signs, distinctive tiles
+python -m tools.catalog show E1M2:271      # a place: kind, signs, tiles, what works in it
+python -m tools.catalog find lift crypt    # words from two shelves: rooms that are both
 python -m tools.tile_usage 1129            # the tile's picture and every context
 python -m tools.study station --seed E1M2:271!   # look at a place, start a study
 python -m tools.ideas list --grep curtain  # idea cards
@@ -115,7 +122,8 @@ python -m tools.catalog look 1129 --class material --layout band \
     --depicts "railway track with sleepers" --themes rail,floor --part NAME
 python -m tools.catalog look-batch FILE.json --part NAME    # many at once
 python -m tools.catalog label E1M2:271 --kind station --note "waiting hall" --part NAME
-python -m tools.catalog build-places                 # after the corpus changes
+python -m tools.catalog build-places                 # after the corpus changes (ten seconds)
+python -m tools.catalog build-mechanisms             # then this: it reads the rooms from the places
 ```
 
 `--part` is who looked: each reader writes its own part file, so a fleet

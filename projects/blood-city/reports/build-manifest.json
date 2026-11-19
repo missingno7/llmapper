@@ -2764,5 +2764,131 @@
       "pump machine hall"
     ],
     "dangling_channels": []
-  }
+  },
+  "stages": [
+    {
+      "name": "districts",
+      "says": "the plan as district assemblies: one street region each, blocks carved out"
+    },
+    {
+      "name": "cemetery",
+      "says": "the cemetery as a walled, gated ground carved from its district"
+    },
+    {
+      "name": "sewer",
+      "says": "the sewer declared at depth beneath Foundry Ward"
+    },
+    {
+      "name": "works-stair",
+      "says": "the first way down: the works stair, in flights, to the cellar"
+    },
+    {
+      "name": "stack-links",
+      "says": "the two room-over-room links between street and sewer"
+    },
+    {
+      "name": "sewer-network",
+      "says": "the sewer's ring, its chambers and the necks between them"
+    },
+    {
+      "name": "pumping-station",
+      "says": "the second way down: the pumping station's stairs"
+    },
+    {
+      "name": "light-pools",
+      "says": "patches of lit floor in the streets, declared as regions"
+    },
+    {
+      "name": "church",
+      "says": "St Gallow's: nave, tower, crypt"
+    },
+    {
+      "name": "arcade",
+      "says": "the Gravesend Arcade and its shops"
+    },
+    {
+      "name": "theatre",
+      "says": "Theatre Row: the Aldermack, the saloon, the pawnshop"
+    },
+    {
+      "name": "station",
+      "says": "Gravesend Station behind the north wall"
+    },
+    {
+      "name": "market",
+      "says": "Market Slip: the quay, the harbour and the ship"
+    },
+    {
+      "name": "foundry",
+      "says": "Foundry Ward, the pilot district, with its machine hall"
+    },
+    {
+      "name": "undeclared-venues",
+      "says": "venues on the plan that nobody has built, declared as such"
+    },
+    {
+      "name": "start",
+      "says": "the player's start on the quay, and the manifest begins"
+    },
+    {
+      "name": "street-anatomy",
+      "says": "pavement, carriageway and kerb along every street"
+    },
+    {
+      "name": "street-ends",
+      "says": "the walls where the main streets stop"
+    },
+    {
+      "name": "connect",
+      "says": "the program becomes a planar layout; gates join the regions"
+    },
+    {
+      "name": "set-pieces",
+      "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock"
+    },
+    {
+      "name": "street-lamps",
+      "says": "a lamp in every light pool and along every run"
+    },
+    {
+      "name": "street-dressing",
+      "says": "levers by doors, ambient sound, the signature porthole, the monument"
+    },
+    {
+      "name": "green",
+      "says": "what stands on the turf, then every sign in the city"
+    },
+    {
+      "name": "shops-and-goods",
+      "says": "fascia names, display lamps, venue detail, goods on fixtures, grime"
+    },
+    {
+      "name": "doors-and-windows",
+      "says": "door frames, detail panels, windows, building backs, actors seated"
+    },
+    {
+      "name": "compile",
+      "says": "the layout becomes sectors, walls and sprites; the light bomb runs"
+    },
+    {
+      "name": "faces",
+      "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea"
+    },
+    {
+      "name": "alignment",
+      "says": "one texture frame per run of walls; who owns each wall record"
+    },
+    {
+      "name": "apertures",
+      "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites"
+    },
+    {
+      "name": "gates",
+      "says": "nothing is built: rules, read-back, swept closure, sprite fit, character"
+    },
+    {
+      "name": "write",
+      "says": "the map, its sector tags, the manifest and the status"
+    }
+  ]
 }

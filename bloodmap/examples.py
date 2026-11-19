@@ -20,6 +20,11 @@ reader made of the moving ones, the lessons that use it, and the library code
 that cites those lessons. `tools/catalog.py` builds it into
 ``knowledge/blood/design/mechanism-examples-v1.json`` and answers from it.
 
+Given the catalogue of places (which sector belongs to which room), an entry
+also names the rooms that hold the most of it, and `by_place` turns one map's
+observation round: what each room holds, under these same keys. That is the
+join between "what is a conveyor" and "which room do I go and stand in".
+
 Nothing here is a claim about behaviour. A type's name is the engine's own; an
 effect is defined by which fields are set, and says so; a lesson is a file. To
 learn what a thing DOES, follow an example with ``catalog mechanisms`` or read
@@ -46,6 +51,12 @@ SCHEMA_VERSION = 1
 #: Instances kept per entry. Enough to find one worth looking at, few enough
 #: that an entry is a dozen lines.
 EXAMPLES_PER_ENTRY = 8
+
+#: Channels from here up are a level's own wiring, not the engine's.
+USER_CHANNELS_FROM = 100
+
+#: Rooms named per entry: the ones holding the most instances.
+PLACES_PER_ENTRY = 6
 
 #: Something a sector does through its extension, defined by the fields that
 #: are set and by nothing else. ``all``: every one non-zero; ``any``: at least
@@ -196,7 +207,10 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
             return
         for field, into in (("tx_id", sends), ("rx_id", hears)):
             channel = int(extra.get(field, 0) or 0)
-            if channel in RESERVED_CHANNELS:
+            # Zero is no channel at all (`if (pXSprite->txID)` in triggers.cpp)
+            # and 100 is the first of a level's own, so neither is the
+            # engine's: counting them said 24,610 objects "send on channel 0".
+            if 0 < channel < USER_CHANNELS_FROM and channel in RESERVED_CHANNELS:
                 into[f"channel:{channel}"].append((sector, index))
 
     for index, sector in enumerate(disk.sectors):
@@ -226,6 +240,41 @@ def observe(name: str, disk: Any) -> dict[str, Any]:
         }
     return {"map": name, "types": dict(types), "effects": dict(effects),
             "sends": dict(sends), "hears": dict(hears), "readings": readings}
+
+
+def by_place(seen: Mapping[str, Any],
+             place_of: Mapping[int, str]) -> dict[str, dict[str, int]]:
+    """What each place of one map holds, counted under the index's own keys.
+
+    `seen` is one `observe` result and `place_of` says which place a sector
+    belongs to. An object in a sector no place claims is counted nowhere: the
+    catalogue leaves out rooms too small to be one, and says so by omission.
+    """
+    held: dict[str, Counter] = defaultdict(Counter)
+    for group, prefix in (("types", ""), ("effects", "effect:"),
+                          ("sends", ""), ("hears", "")):
+        for key, instances in seen[group].items():
+            for sector, _index in instances:
+                place = place_of.get(sector)
+                if place is not None:
+                    held[place][prefix + key] += 1
+    return {place: dict(sorted(counts.items())) for place, counts in held.items()}
+
+
+def _rooms(per_map: list[tuple[str, list[tuple[int, int]]]],
+           places: Mapping[str, Mapping[int, str]]) -> dict[str, Any]:
+    """The rooms holding the most of one thing, and how many rooms hold any."""
+    counts: Counter = Counter()
+    for name, instances in per_map:
+        where = places.get(name, {})
+        for sector, _index in instances:
+            place = where.get(sector)
+            if place is not None:
+                counts[place] += 1
+    ranked = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    return {"place_count": len(counts),
+            "places": [{"id": place, "count": count}
+                       for place, count in ranked[:PLACES_PER_ENTRY]]}
 
 
 def _spread(per_map: list[tuple[str, list[tuple[int, int]]]]) -> list[dict[str, Any]]:
@@ -270,10 +319,25 @@ def cited_lessons(package: str | Path) -> dict[str, list[str]]:
 
 def build(observations: Iterable[dict[str, Any]], *,
           curriculum: Mapping[str, Any] | None = None,
-          cited: Mapping[str, list[str]] | None = None) -> dict[str, Any]:
-    """Join the campaign's observations, the curriculum and the code's citations."""
+          cited: Mapping[str, list[str]] | None = None,
+          places: Mapping[str, Mapping[int, str]] | None = None) -> dict[str, Any]:
+    """Join the campaign's observations, the curriculum and the code's citations.
+
+    `places` is map name to sector to place id, from the places catalogue.
+    With it every example says which room it is in (or None: no catalogued
+    room claims that sector) and every entry names its richest rooms.
+    """
     observations = list(observations)
     cited = cited or {}
+
+    def located(entry: dict[str, Any],
+                per_map: list[tuple[str, list[tuple[int, int]]]]) -> dict[str, Any]:
+        if places is not None:
+            for item in entry["examples"]:
+                item["place"] = places.get(item["map"], {}).get(item["sector"])
+            entry.update(_rooms(per_map, places))
+        return entry
+
     type_instances: dict[str, list[tuple[str, list[tuple[int, int]]]]] = defaultdict(list)
     effect_instances: dict[str, list[tuple[str, list[tuple[int, int]]]]] = defaultdict(list)
     readings: dict[str, Counter] = defaultdict(Counter)
@@ -329,12 +393,12 @@ def build(observations: Iterable[dict[str, Any]], *,
         if readings.get(key):
             entry["read_as"] = dict(readings[key].most_common())
             entry["worked_by"] = dict(worked[key].most_common())
-        entries[key] = entry
+        entries[key] = located(entry, per_map)
 
     for name, rule in EFFECTS.items():
         per_map = effect_instances.get(name, [])
         wanted = {name.split()[0]} | set(rule.get("words", ()))
-        entries[f"effect:{name}"] = {
+        entries[f"effect:{name}"] = located({
             "kind": "effect", "name": name, "says": rule["says"],
             "fields": {k: list(rule[k]) for k in ("all", "any", "none") if rule.get(k)},
             "words": sorted(set(name.split()) | set(rule.get("words", ()))),
@@ -345,7 +409,7 @@ def build(observations: Iterable[dict[str, Any]], *,
                 key.split(":", 1)[1] for key, entry in entries.items()
                 if entry["kind"] == "lesson"
                 and wanted & set(entry["words"]))[:12],
-        }
+        }, per_map)
 
     for channel, named in sorted(RESERVED_CHANNELS.items()):
         key = f"channel:{channel}"
@@ -357,7 +421,7 @@ def build(observations: Iterable[dict[str, Any]], *,
             continue
         sent = sum(len(instances) for _name, instances in senders)
         heard = sum(len(instances) for _name, instances in hearers)
-        entries[key] = {
+        entries[key] = located({
             "kind": "channel", "name": named["name"],
             "says": f"{sent} objects send on it and {heard} listen to it"
                     + (f"; {named['notes']}" if named.get("notes") else ""),
@@ -367,7 +431,7 @@ def build(observations: Iterable[dict[str, Any]], *,
             "examples": _spread(senders or hearers),
             "examples_are": "senders" if senders else "listeners",
             "lessons": [],
-        }
+        }, senders + hearers)
 
     return {
         "$schema": SCHEMA, "schema_version": SCHEMA_VERSION,
@@ -385,6 +449,9 @@ def build(observations: Iterable[dict[str, Any]], *,
             "cited_by is library code whose docstring names the lesson",
             "a channel entry counts who sends on and who listens to one of "
             "the engine's reserved channels; its examples are the senders",
+            "an example's place, and an entry's places, are ids of "
+            "places-v1.json: the rooms holding the most of it, most first. "
+            "A null place is a sector no catalogued room claims",
         ],
         "entries": entries,
     }

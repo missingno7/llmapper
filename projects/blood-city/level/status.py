@@ -94,6 +94,31 @@ def _pass_owners() -> dict[str, str]:
     return owners
 
 
+def _stages(ran: list[dict[str, str]]) -> list[dict[str, str]]:
+    """The build's stages in the order they ran, each with the line it starts at.
+
+    The names and what each does are the manifest's, so a stage listed here
+    is one that ran. The line is read off `build_skeleton.py` as it is now.
+    """
+    source = (LEVEL / "build_skeleton.py").read_text(encoding="utf-8")
+    script = "projects/blood-city/level/build_skeleton.py"
+    line = {found.group(1): source.count(chr(10), 0, found.start()) + 1
+            for found in re.finditer(r'^\s*STAGE\("([\w-]+)",', source, re.M)}
+    return [{"name": row["name"], "says": row["says"],
+             "at": f"{script}:{line[row['name']]}" if row["name"] in line
+             else f"{script} (no longer has a stage of this name: rebuild)"}
+            for row in ran]
+
+
+def stage_seconds() -> dict[str, float]:
+    """What each stage took in the last build on this machine, if there was one."""
+    timings = ROOT / "work" / "blood-city-stages.json"
+    if not timings.exists():
+        return {}
+    return {row["name"]: row["seconds"]
+            for row in json.loads(timings.read_text(encoding="utf-8"))}
+
+
 def _critique(slug: str | None) -> dict[str, Any] | None:
     """The last critique round of a study, or None if it has never had one."""
     if not slug or not (STUDIES / slug / "critique").is_dir():
@@ -244,6 +269,7 @@ def gather() -> dict[str, Any]:
             "read_back_agrees": bool(manifest.get("readback", {}).get("agrees")),
             "rules": rules.get("by_severity", {}),
         },
+        "stages": _stages(manifest.get("stages", [])),
         "places": places,
         "open": open_items,
         "open_by_kind": dict(sorted(by_kind.items())),
@@ -275,6 +301,11 @@ def brief(status: dict[str, Any]) -> str:
         f"`{build['command']}` takes about a minute and is deterministic. "
         f"Read-back {'agrees' if build['read_back_agrees'] else 'DISAGREES'}; "
         f"rules: {build['rules']}.",
+        "",
+        f"The build runs {len(status['stages'])} named stages in order "
+        "(" + ", ".join(row["name"] for row in status["stages"]) + "). "
+        "`python projects/blood-city/level/status.py --stages` gives each "
+        "one's line in the build and what it took.",
         "",
         "## Places",
         "",
@@ -342,9 +373,20 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("--place", help="one place, by any part of its name")
     parser.add_argument("--kind", help="one kind of open item")
+    parser.add_argument("--stages", action="store_true",
+                        help="the build's stages: where each starts, what it took")
     parser.add_argument("--check", action="store_true",
                         help="exit 1 if the files are stale")
     args = parser.parse_args(argv)
+
+    if args.stages:
+        took = stage_seconds()
+        for row in gather()["stages"]:
+            seconds = f"{took[row['name']]:6.1f} s" if row["name"] in took else "       -"
+            print(f"{row['name']:<18}{seconds}  {row['at'].rsplit('/', 1)[1]:<26}{row['says']}")
+        if not took:
+            print("no timings here: they are written by a build on this machine")
+        return 0
 
     if args.check:
         behind = stale()

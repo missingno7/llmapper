@@ -194,6 +194,7 @@ def find_tiles(words: list[str]) -> list[tuple[int, str]]:
 # places
 # ---------------------------------------------------------------------------
 def build_places() -> dict:
+    from bloodmap import examples
     from bloodmap.blood_types import SPRITE_TYPES
     from bloodmap.format import read_map
     from bloodmap.lettering import read_sign
@@ -217,6 +218,7 @@ def build_places() -> dict:
                 if len(word) >= 3 and ids:
                     sector = int(disk.sprites[ids[0]].fields["sector"])
                     words_in.setdefault(sector, []).append(word)
+            first = len(rows)
             for place in pc.places(geom):
                 profile = pc.profile(geom, place)
                 if profile["solid_wall"] < 4096:
@@ -251,7 +253,18 @@ def build_places() -> dict:
                     "moves": sorted({int(geom.sectors[s]["type"])
                                      for s in place
                                      if int(geom.sectors[s]["type"])}),
-                    "layers": profile["layer_count"]})
+                    "layers": profile["layer_count"],
+                    #: which sectors the place is, so any shelf can ask
+                    #: "which room is this sector in" without the geometry
+                    "members": sorted(place)})
+            #: what each place holds, under the mechanisms shelf's own keys
+            #: (`sector:614`, `effect:conveyor`, `sprite:20`, `channel:4`)
+            held = examples.by_place(
+                examples.observe(item.path.stem.upper(), disk),
+                {sector: row["id"] for row in rows[first:]
+                 for sector in row["members"]})
+            for row in rows[first:]:
+                row["mechanisms"] = held.get(row["id"], {})
     #: a tile is distinctive of a place when few places have it
     seen = Counter()
     for row in rows:
@@ -264,6 +277,18 @@ def build_places() -> dict:
             "tile_places": {str(t): n for t, n in seen.items()}}
     PLACES.write_text(json.dumps(data), "utf-8")
     return data
+
+
+def sector_places(data: dict | None = None) -> dict[str, dict[int, str]]:
+    """Map name to sector to the id of the catalogued place that sector is in."""
+    if data is None:
+        data = json.loads(PLACES.read_text("utf-8"))
+    out: dict[str, dict[int, str]] = {}
+    for row in data["places"]:
+        where = out.setdefault(row["map"], {})
+        for sector in row["members"]:
+            where[sector] = row["id"]
+    return out
 
 
 def place_labels() -> dict[str, dict]:
@@ -487,6 +512,17 @@ def find_places(words: list[str], tile: int | None = None,
     data = json.loads(PLACES.read_text("utf-8"))
     looks, names, labels = tile_looks(), owner_names(), place_labels()
     rarity = {int(t): n for t, n in data["tile_places"].items()}
+    #: a word that names a mechanism finds the rooms holding one
+    index = mechanism_index() if words else None
+    holds: dict[str, list[tuple[str, dict]]] = {}
+    if index is not None:
+        from bloodmap import examples
+
+        for word in words:
+            answers = [(key, entry) for key, entry in index["entries"].items()
+                       if entry["kind"] != "lesson"
+                       and examples.search({"entries": {key: entry}}, [word])]
+            holds[word.lower()] = answers
     hits = []
     for row in data["places"]:
         every = set(row["tiles"]) | {int(t) for t in row["sprites"]}
@@ -505,6 +541,15 @@ def find_places(words: list[str], tile: int | None = None,
                 why.append(f"labelled {label['kind']!r}")
                 score += 6
                 found = True
+            held = row.get("mechanisms", {})
+            for key, entry in holds.get(w, ()):
+                if key in held:
+                    #: a mechanism few rooms hold says more than a common one
+                    score += (4.0 / math.sqrt(entry.get("place_count") or 1)
+                              + math.log2(1 + held[key]))
+                    if len(why) < 6:
+                        why.append(f"holds {key} x{held[key]}")
+                    found = True
             for t in every:
                 text = (names.get(t, "") + " " + looks.get(t, {}).get(
                     "looks", "") + " " + " ".join(
@@ -540,7 +585,9 @@ def build_mechanisms() -> dict:
             for path in campaign_maps(required=True)]
     document = examples.build(
         seen, curriculum={"maps": mine_course(corpus_root() / "mechanism")},
-        cited=examples.cited_lessons(ROOT / "bloodmap"))
+        cited=examples.cited_lessons(ROOT / "bloodmap"),
+        #: after `build-places`: without it no example knows its room
+        places=sector_places() if PLACES.exists() else None)
     files = {item.path.stem.upper(): item.relative
              for item in list_corpus_maps(population="mechanism-tutorial",
                                           attach_tiers=False)}
@@ -623,6 +670,16 @@ def show_mechanism(key: str, entry: dict) -> str:
                      f"{first['map']} --place {first['map']}:{first['sector']}")
         lines.append(f"  look at it: python -m tools.study <slug> --seed "
                      f"{first['map']}:{first['sector']}!")
+    if entry.get("places"):
+        labels = place_labels()
+        top = entry["places"][0]["id"]
+        lines.append(f"  rooms with the most ({entry['place_count']} hold one): "
+                     + ", ".join(
+                         f"{room['id']} x{room['count']}"
+                         + (f" [{labels[room['id']]['kind']}]"
+                            if room["id"] in labels else "")
+                         for room in entry["places"]))
+        lines.append(f"  that room: python -m tools.catalog show {top}")
     if entry.get("lessons"):
         lines.append("  taught by: " + ", ".join(entry["lessons"])
                      + f"  (python -m tools.catalog show lesson:{entry['lessons'][0]})")
@@ -642,7 +699,10 @@ def find_mechanisms(words: list[str], limit: int = 10) -> list[str]:
         else:
             said = (f"{entry['name']}: {entry['count']} in {entry['maps']} maps"
                     + (f", e.g. {_example(entry, entry['examples'][0])}"
-                       if entry["examples"] else ""))
+                       if entry["examples"] else "")
+                    + (f"; most in room {entry['places'][0]['id']} "
+                       f"x{entry['places'][0]['count']}"
+                       if entry.get("places") else ""))
         out.append(f"  {key:<28}{said}")
     return out
 
@@ -702,6 +762,20 @@ def record(map_name: str, kind: str, index: int) -> str:
                                         or "(present, all default)"))
     else:
         lines.append("  extension: none")
+    if PLACES.exists():
+        from bloodmap.sector_geom import wall_owners
+
+        sector = (index if kind == "sector"
+                  else int(fields["sector"]) if kind == "sprite"
+                  else wall_owners(disk).get(index, -1))
+        room = sector_places().get(path.stem.upper(), {}).get(sector)
+        if room:
+            label = place_labels().get(room)
+            lines.append(f"  in room: {room}"
+                         + (f" [{label['kind']}]" if label else "")
+                         + f"  (python -m tools.catalog show {room})")
+        else:
+            lines.append(f"  in room: none catalogued for sector {sector}")
     return "\n".join(lines)
 
 
@@ -755,10 +829,53 @@ def show(what: str) -> str:
         lines.append("  distinctive tiles: " + "; ".join(
             f"{t} {(names.get(t) or looks.get(t, {}).get('looks') or '?')[:28]}"
             for t in row["distinctive"]))
-        lines.append(f"  sprite types: {row['types']}")
-        lines.append(f"  moving sector types: {row['moves']}")
+        lines.extend(_place_holds(row))
         lines.append(f"  look at it: python -m tools.study <slug> --seed {row['map']}:{row['host']}!")
     return "\n".join(lines)
+
+
+#: Sprite categories that are a room's contents and not its workings.
+STANDS_IN = ("dude", "weapon", "ammo", "health", "armor", "powerup", "start")
+
+
+def _place_holds(row: dict) -> list[str]:
+    """What a catalogued room does and what stands in it, by the mechanisms shelf's keys."""
+    from bloodmap.blood_types import classify
+
+    held = row.get("mechanisms")
+    if held is None:
+        return [f"  sprite types: {row['types']}",
+                f"  moving sector types: {row['moves']}",
+                "  mechanisms: not joined (python -m tools.catalog build-places)"]
+    index = mechanism_index() or {"entries": {}}
+    works, stands = [], {}
+    for key, count in sorted(held.items(), key=lambda item: (-item[1], item[0])):
+        kind, _colon, ident = key.partition(":")
+        entry = index["entries"].get(key)
+        if entry is not None:
+            name, category = entry["name"], entry.get("category")
+        elif kind in ("sector", "wall", "sprite", "channel"):
+            named = classify(kind, int(ident))
+            name, category = named.get("name") or f"type {ident}", named.get("category")
+        else:
+            name, category = ident, None
+        if kind == "sprite" and category in STANDS_IN:
+            stands.setdefault(category, []).append(f"{name} x{count}")
+        else:
+            works.append((key, f"{key} {name} x{count}" if kind != "effect"
+                          else f"{key} x{count}"))
+    lines = ["  works by: " + (", ".join(said for _key, said in works[:14])
+                              + (f" (+{len(works) - 14} more)" if len(works) > 14 else "")
+                              if works else "nothing typed, no sector effect")]
+    if stands:
+        lines.append("  stands in it: " + "; ".join(
+            f"{category}: {', '.join(stands[category][:5])}"
+            for category in STANDS_IN if category in stands))
+    if works:
+        lines.append(f"  one of those: python -m tools.catalog show {works[0][0]}")
+        lines.append(f"  its wiring: python -m tools.catalog mechanisms {row['map']} "
+                     f"--place {row['id']}")
+    return lines
 
 
 def find_all(words: list[str]) -> str:
