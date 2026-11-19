@@ -9,16 +9,14 @@ the level around it.
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 VANILLA = Path("maps/blood/mechanism/Vanilla")
 SINGLES = Path("maps/blood/mechanism")
 
 
 def _map(path: Path):
-    from bloodmap.format import read_map
-
-    if not path.exists():
-        raise unittest.SkipTest(f"{path} is not present")
-    return read_map(path)
+    return require_map(path)
 
 
 def _zoo():

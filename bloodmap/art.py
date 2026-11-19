@@ -343,10 +343,6 @@ def _png_chunk(tag: bytes, data: bytes) -> bytes:
     return struct.pack(">I", len(data)) + tag + data + struct.pack(">I", checksum)
 
 
-def _feature(tile: ArtTile, palette: tuple[tuple[int, int, int], ...]) -> tuple[float, ...]:
-    return art_feature(tile, palette)
-
-
 def nearest_art_tiles(
     source_tiles: Iterable[int],
     target_tiles: Iterable[int],

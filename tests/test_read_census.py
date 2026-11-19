@@ -14,15 +14,11 @@ from __future__ import annotations
 
 import unittest
 
+from tests.helpers import corpus_level
+
 
 def _map(stem: str):
-    from bloodmap.format import read_map
-    from bloodmap.corpus import corpus_map_path
-
-    path = corpus_map_path(stem, missing_ok=True)
-    if not path.exists():
-        raise unittest.SkipTest(f"{stem} is not in the corpus")
-    return read_map(path).to_level_ir()
+    return corpus_level(stem)
 
 
 def _art():

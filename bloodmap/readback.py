@@ -217,12 +217,6 @@ def sentence(construct: str, **claims: Any) -> dict[str, Any]:
 # the state pair, in memory
 # ---------------------------------------------------------------------------
 
-def _sector_polygon(disk: Any, sector_id: int) -> list[tuple[float, float]]:
-    from .motion_sim import blood_sector_walls
-
-    return list(blood_sector_walls(disk, sector_id))
-
-
 def _area(points: Sequence[tuple[float, float]]) -> float:
     total = 0.0
     for index, (x, y) in enumerate(points):

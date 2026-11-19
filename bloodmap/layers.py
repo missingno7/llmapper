@@ -1279,23 +1279,6 @@ def covisible(layout: Any, left_id: str, right_id: str,
     return None
 
 
-def _common_vantage(layout: Any, left_id: str, right_id: str,
-                    walls: list[tuple[Point, Point]]) -> str | None:
-    """A region with a clear plan sightline to both, or None.
-
-    Stands in for the renderer's own flood, which is bounded by screen-space
-    occlusion rather than by anything this side can compute exactly. Where this
-    says no, no viewpoint holds both; where it says yes, one might.
-    """
-    for region_id in layout.regions:
-        if region_id in (left_id, right_id):
-            continue
-        if (can_see(layout, region_id, left_id, occluders=walls)
-                and can_see(layout, region_id, right_id, occluders=walls)):
-            return region_id
-    return None
-
-
 def _shared_boundary_length(left: Any, right: Any) -> int:
     """How much of these two outlines lies on the same line, in Build units."""
     total = 0.0

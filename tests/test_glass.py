@@ -9,16 +9,14 @@ exhibit is really glazed.
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 E6M1 = Path("maps/blood/campaign/E6M1.MAP")
 ZOO = Path("projects/pattern-zoo/level/pattern-zoo.MAP")
 
 
 def _map(path):
-    from bloodmap.format import read_map
-
-    if not path.exists():
-        raise unittest.SkipTest(f"{path} is not present")
-    return read_map(path)
+    return require_map(path)
 
 
 class TheRecipeIsE6M1s(unittest.TestCase):

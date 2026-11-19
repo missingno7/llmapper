@@ -197,7 +197,6 @@ def bind_markers(level: Any, *, owners: dict[str, int] | None = None) -> dict[st
     }
 
 
-
 def _flat_lies_flush(cstat: Any, height_player_heights: float) -> int:
     """Clearance for a horizontal anchor, zeroed for floor-aligned tiles.
 
@@ -624,8 +623,6 @@ class CompiledLayout:
         }
 
 
-
-
 def _nearest_wall_of(level: Any, sector_id: int, x: int, y: int) -> int | None:
     """Which wall of this sector the point lies closest to."""
     from math import hypot
@@ -668,7 +665,6 @@ def _open_band(level: Any, sector_id: int, wall_id: int) -> tuple[int, int] | No
     return (top, bottom) if bottom > top else None
 
 
-
 def _region_shading(region: "RegionSpec") -> dict[str, int]:
     """The three shades this region will be built with.
 
@@ -686,7 +682,6 @@ def _region_shading(region: "RegionSpec") -> dict[str, int]:
         if chosen is not None:
             derived[name] = int(chosen)
     return derived
-
 
 
 def _is_power_of_two(value: int) -> bool:
@@ -2639,6 +2634,3 @@ def _edges_of(region: RegionSpec) -> list[Segment]:
             edges.append((start, loop[(index + 1) % len(loop)]))
     return edges
 
-
-def _on_source(edge: AtomicEdge, start: Point, end: Point) -> bool:
-    return on_segment_inclusive(start, end, edge.a) and on_segment_inclusive(start, end, edge.b)

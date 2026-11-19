@@ -27,15 +27,6 @@ def _metric(value: Any, *, basis: str = "derived", confidence: str = "measured")
     return {"value": value, "basis": basis, "confidence": confidence}
 
 
-def _polygon(build: BuildIR, sector_id: int) -> list[tuple[int, int]]:
-    """Return all loop points flattened for legacy callers.
-
-    Area-aware consumers must use :func:`_polygon_loops`: a Build sector can
-    contain an outer loop and one or more inner loops.
-    """
-    return [point for loop in _polygon_loops(build, sector_id) for point in loop]
-
-
 def _polygon_loops(build: BuildIR, sector_id: int) -> list[list[tuple[int, int]]]:
     fields = build.sectors[sector_id]["fields"]
     first, count = int(fields["wall_ptr"]), int(fields["wall_count"])

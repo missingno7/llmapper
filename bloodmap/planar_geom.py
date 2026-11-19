@@ -76,11 +76,6 @@ def proper_crossing(a: Point, b: Point, c: Point, d: Point) -> bool:
     return oa * ob < 0 and oc * od < 0
 
 
-def _axis_interval(a: Point, b: Point, axis: int) -> tuple[int, int]:
-    left, right = a[axis], b[axis]
-    return (left, right) if left <= right else (right, left)
-
-
 def collinear(a: Point, b: Point, c: Point, d: Point) -> bool:
     return orientation(a, b, c) == 0 and orientation(a, b, d) == 0
 

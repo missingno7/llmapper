@@ -107,9 +107,9 @@ def write_pack(layer: int, tree: Tree, title: str,
                str(corpus_map_path(map_name())), str(hierarchy), "-o", str(out),
                "--title", title]
     #: The shared ledger, so a record's fact panel lists every claim on its
-    #: fields and every field nothing claims. It is written by `ledger.py`
+    #: fields and every field nothing claims. It is written by `query`
     #: from every layer's claims, so on a first run of a layer it may be one
-    #: run behind -- rerun `ledger.py` and then the stage to close that.
+    #: run behind -- rerun `query` and then the stage to close that.
     shared = project() / "claims.json"
     if shared.exists():
         command += ["--claims", str(shared)]

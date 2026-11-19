@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import copy
+import unittest
 from pathlib import Path
 
 from bloodmap.format import (
     SECTOR_FIELDS, SPRITE_FIELDS, WALL_FIELDS, XSECTOR_SCHEMA, XSPRITE_SCHEMA,
-    encode_map, parse_map,
+    encode_map, parse_map, read_map,
 )
-from bloodmap.model import DiskMap, DiskObject, ExtraHeader, PackedExtra
+from bloodmap.model import DiskMap, DiskObject, ExtraHeader, LevelIR, PackedExtra
 from bloodmap.corpus import campaign_maps as _campaign_maps
 from bloodmap.corpus import (
     corpus_map_path, corpus_root, is_structured_corpus, named_maps,
@@ -52,6 +53,31 @@ def named_corpus_maps() -> list[Path]:
 def campaign_maps() -> list[Path]:
     """The original campaign, one path per map; empty when the corpus is absent."""
     return _campaign_maps(blood_corpus_root())
+
+
+def require_map(path: str | Path) -> DiskMap:
+    """Read one map, skipping the test when the file is not there.
+
+    Absent is the only reason to skip. A map that is present and does not
+    parse is a failure, and three loaders used to report it as a skip.
+    """
+    path = Path(path)
+    if not path.exists():
+        raise unittest.SkipTest(f"{path.name} is not present")
+    return read_map(path)
+
+
+def corpus_disk(name: str) -> DiskMap:
+    """One named corpus map as a `DiskMap`; skips when the corpus lacks it."""
+    path = corpus_map(name)
+    if not path.exists():
+        raise unittest.SkipTest(f"{name} is not in the corpus")
+    return read_map(path)
+
+
+def corpus_level(name: str) -> LevelIR:
+    """One named corpus map as a `LevelIR`; skips when the corpus lacks it."""
+    return corpus_disk(name).to_level_ir()
 
 
 def synthetic_map() -> DiskMap:

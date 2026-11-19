@@ -371,10 +371,6 @@ def surface_kinds(level: Any, *, owners: Sequence[int] | None = None
     }
 
 
-def _kerb_tile() -> int:
-    return int(TILE_CLASSES["kerb class"])
-
-
 def join_census(level: Any, kinds: dict[int, str], *,
                 owners: Sequence[int] | None = None) -> dict[str, Any]:
     """Every two-sided record, looked up in the writer's table.

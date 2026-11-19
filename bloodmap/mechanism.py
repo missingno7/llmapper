@@ -657,34 +657,6 @@ def _sign(value: int) -> int:
     return (value > 0) - (value < 0)
 
 
-def _slide_markers(layout, name, region_id, origin, offset, floor_z,
-                   to_region=None):
-    """The from/to marker pair a Marked slide reads its travel out of.
-
-    Types 3 and 4 -- kMarkerOff and kMarkerOn -- on statnum 10, which the
-    engine culls from the world and reads as instructions. The vector between
-    them IS the travel; nothing else states it.
-    """
-    out = []
-    #: The "to" marker frequently lands outside the moving sector -- in E1M1's
-    #: casket it stands inside the COVER -- because the travel is most of the
-    #: sector's own width. `to_region` says where it lives; a marker is on
-    #: statnum 10 and is culled from the world, so which sector holds it
-    #: matters only to the compiler's containment check.
-    for tag, kind, point, where in (
-            ("off", 3, origin, region_id),
-            ("on", 4, (origin[0] + offset[0], origin[1] + offset[1]),
-             to_region or region_id)):
-        out.append(layout.add_sprite(
-            f"{name}_marker_{tag}", where,
-            x=int(point[0]), y=int(point[1]), z=int(floor_z),
-            type=kind, picnum=MARKER_PICNUM, status=MARKER_STATNUM,
-            cstat=MARKER_CSTAT, x_repeat=64, y_repeat=64, angle=MARKER_ANGLE,
-            #: It marks the MOVING sector wherever it happens to stand.
-            marker_owner=region_id))
-    return out
-
-
 def _signed_area(points) -> float:
     total = 0.0
     for index, (x, y) in enumerate(points):

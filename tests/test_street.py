@@ -10,15 +10,13 @@ import collections
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 E3M1 = Path("maps/blood/campaign/E3M1.MAP")
 
 
 def _e3m1():
-    from bloodmap.format import read_map
-
-    if not E3M1.exists():
-        raise unittest.SkipTest("E3M1 is not present")
-    return read_map(E3M1)
+    return require_map(E3M1)
 
 
 class TheSplitIsMeasuredFromE3M1(unittest.TestCase):

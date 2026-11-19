@@ -10,16 +10,13 @@ therefore REJECT rather than wave through.
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 VANILLA = Path("maps/blood/mechanism/Vanilla")
 
 
 def _map(name: str):
-    from bloodmap.format import read_map
-
-    path = VANILLA / name
-    if not path.exists():
-        raise unittest.SkipTest(f"{name} is not present")
-    return read_map(path)
+    return require_map(VANILLA / name)
 
 
 def _mine(name: str):

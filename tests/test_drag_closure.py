@@ -10,6 +10,8 @@ fixture whose answer is known by construction, then to the originals.
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 ORACLE = Path("maps/blood/mechanism/casket.map")
 CURTAINS = Path("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map")
 CITY = Path("projects/blood-city/level/blood-city-current.MAP")
@@ -22,11 +24,7 @@ def _fixture():
 
 
 def _map(path: Path):
-    from bloodmap.format import read_map
-
-    if not path.exists():
-        raise unittest.SkipTest(f"{path} is not present")
-    return read_map(path)
+    return require_map(path)
 
 
 def _vertex(disk, wall_id):

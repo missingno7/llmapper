@@ -39,6 +39,8 @@ from __future__ import annotations
 
 import unittest
 
+from tests.helpers import corpus_level
+
 
 def _level(path):
     from bloodmap.format import read_map
@@ -47,12 +49,7 @@ def _level(path):
 
 
 def _corpus(name):
-    from bloodmap.corpus import corpus_map_path
-
-    try:
-        return _level(corpus_map_path(name))
-    except Exception as error:  # pragma: no cover - corpus-dependent
-        raise unittest.SkipTest(f"{name} is not readable here: {error}")
+    return corpus_level(name)
 
 
 CITY = "projects/blood-city/level/slice2-streets.MAP"

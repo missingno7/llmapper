@@ -656,21 +656,6 @@ def extract_behavior_closed_fragment(
     )
 
 
-def _path_get(item: dict[str, Any], path: str) -> int:
-    value: Any = item
-    for component in path.split("."):
-        value = value[component]
-    return int(value)
-
-
-def _path_set(item: dict[str, Any], path: str, value: int) -> None:
-    target: Any = item
-    components = path.split(".")
-    for component in components[:-1]:
-        target = target[component]
-    target[components[-1]] = value
-
-
 def apply_fragment_in_place(level: LevelIR, fragment: LevelFragment) -> LevelIR:
     """Apply a fragment back to its source indices, restoring detached dependencies.
 

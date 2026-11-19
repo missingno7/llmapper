@@ -100,15 +100,6 @@ def _value(item: Any) -> Any:
     return item
 
 
-def _nested(payload: dict[str, Any], *keys: str, default: Any = None) -> Any:
-    current: Any = payload
-    for key in keys:
-        if not isinstance(current, dict) or key not in current:
-            return default
-        current = current[key]
-    return _value(current)
-
-
 def _safe_ratio(numerator: float, denominator: float) -> float:
     return round(float(numerator) / max(1.0, float(denominator)), 6)
 

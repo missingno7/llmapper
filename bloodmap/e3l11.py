@@ -196,11 +196,6 @@ class ChannelAllocator:
         return self._map[tag]
 
 
-def _channel(tag: int) -> int:
-    """One-shot helper for tests; playable conversion uses ChannelAllocator."""
-    return ChannelAllocator().allocate(tag)
-
-
 def _switch_key(sprite: Any) -> int:
     if sprite.picnum == 130:
         return 2 if sprite.pal == 21 else 1

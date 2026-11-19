@@ -14,17 +14,13 @@ import pathlib
 import tempfile
 import unittest
 
+from tests.helpers import corpus_disk
+
 FRAGMENTS = pathlib.Path("projects/e3m1-decompiled/fragments")
 
 
 def _e3m1():
-    from bloodmap.format import read_map
-    from bloodmap.corpus import corpus_map_path
-
-    try:
-        return read_map(corpus_map_path("E3M1"))
-    except Exception as error:  # pragma: no cover - corpus-dependent
-        raise unittest.SkipTest(f"E3M1 is not readable here: {error}")
+    return corpus_disk("E3M1")
 
 
 def _walkable(case, disk, name=""):

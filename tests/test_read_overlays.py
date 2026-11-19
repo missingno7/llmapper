@@ -13,16 +13,11 @@ from __future__ import annotations
 import unittest
 from pathlib import Path
 
+from tests.helpers import corpus_level
+
 
 def _e3m1():
-    from bloodmap.format import read_map
-    from bloodmap.corpus import list_corpus_maps
-
-    found = [item for item in list_corpus_maps(population="blood-campaign")
-             if item.path.stem.upper() == "E3M1"]
-    if not found:
-        raise unittest.SkipTest("E3M1 is not in the corpus")
-    return read_map(found[0].path).to_level_ir()
+    return corpus_level("E3M1")
 
 
 class Islands(unittest.TestCase):

@@ -27,6 +27,8 @@ from __future__ import annotations
 
 import unittest
 
+from tests.helpers import corpus_disk
+
 CITY = "projects/blood-city/level/slice2-streets.MAP"
 
 
@@ -37,12 +39,7 @@ def _disk(path):
 
 
 def _corpus(name):
-    from bloodmap.corpus import corpus_map_path
-
-    try:
-        return _disk(corpus_map_path(name))
-    except Exception as error:  # pragma: no cover - corpus-dependent
-        raise unittest.SkipTest(f"{name} is not readable here: {error}")
+    return corpus_disk(name)
 
 
 class TheSendWhenBits(unittest.TestCase):

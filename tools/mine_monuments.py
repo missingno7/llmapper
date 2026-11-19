@@ -77,18 +77,6 @@ def _inside(outer, inner) -> bool:
             and (bx1 - bx0) * (by1 - by0) < (ax1 - ax0) * (ay1 - ay0))
 
 
-def _contains_point(points, x, y) -> bool:
-    hit = False
-    count = len(points)
-    for index in range(count):
-        ax, ay = points[index]
-        bx, by = points[(index + 1) % count]
-        if (ay > y) != (by > y):
-            if ax + (y - ay) * (bx - ax) / (by - ay) > x:
-                hit = not hit
-    return hit
-
-
 def survey(path) -> dict:
     m = read_map(path)
     name = pathlib.Path(path).stem

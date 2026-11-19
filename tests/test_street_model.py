@@ -19,16 +19,14 @@ asserted as a number and not as "consistent with its neighbours".
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 CITY = Path("projects/blood-city/level/blood-city-current.MAP")
 SLICE = Path("projects/blood-city/level/slice1-west-street.MAP")
 
 
 def _map(path):
-    from bloodmap.format import read_map
-
-    if not path.exists():
-        raise unittest.SkipTest(f"{path} is not present")
-    return read_map(path)
+    return require_map(path)
 
 
 def _road_pieces(disk):

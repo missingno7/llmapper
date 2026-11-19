@@ -12,15 +12,13 @@ never edited.
 import unittest
 from pathlib import Path
 
+from tests.helpers import require_map
+
 TUTORIAL = Path("maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map")
 
 
 def _map():
-    from bloodmap.format import read_map
-
-    if not TUTORIAL.exists():
-        raise unittest.SkipTest("DOOR-CURTAINS.map is not present")
-    return read_map(TUTORIAL)
+    return require_map(TUTORIAL)
 
 
 def _extra(item):

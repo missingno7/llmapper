@@ -9,6 +9,8 @@ whole point of having a grammar rather than a catalogue of prefabs.
 import unittest
 from pathlib import Path
 
+from tests.helpers import corpus_disk
+
 ORACLE = Path("maps/blood/mechanism/casket.map")
 
 
@@ -21,14 +23,7 @@ def _oracle():
 
 
 def _campaign(stem):
-    from bloodmap.format import read_map
-    from bloodmap.corpus import list_corpus_maps
-
-    found = [entry for entry in list_corpus_maps(population="blood-campaign")
-             if entry.path.stem.upper().startswith(stem)]
-    if not found:
-        raise unittest.SkipTest(f"{stem} is not in the corpus")
-    return read_map(found[0].path)
+    return corpus_disk(stem)
 
 
 # ---------------------------------------------------------------------------
