@@ -31,7 +31,6 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "projects" / "blood-city" / "level"))
 
 
 def _fields(item):
@@ -92,9 +91,9 @@ def recipe(disk, x: int, y: int, reach: int) -> dict:
 
 def ring(level, x: int, y: int, radius: int, count: int, near_z=None):
     """Cameras round (x, y) where a player could stand, looking at it."""
-    import look
+    from bloodmap.sector_geom import sector_at
     from bloodmap.viewplan import angle_toward, eye_z
-    from bloodmap.visual import Viewpoint
+    from bloodmap.visual import HORIZ_LEVEL, Viewpoint
 
     out = []
     for step in range(count * 3):
@@ -105,7 +104,7 @@ def ring(level, x: int, y: int, radius: int, count: int, near_z=None):
         scale = (1.0, 0.65, 1.4)[step // count]
         px = int(x + math.cos(turn) * radius * scale)
         py = int(y + math.sin(turn) * radius * scale)
-        sector = look.sector_at(level, px, py, near_z)
+        sector = sector_at(level, px, py, floor_near=near_z)
         if sector is None:
             continue
         z = eye_z(level, sector)
@@ -114,7 +113,7 @@ def ring(level, x: int, y: int, radius: int, count: int, near_z=None):
         out.append(Viewpoint(
             view_id=f"round_{len(out):02d}", x=px, y=py, z=z,
             angle=int(angle_toward((px, py), (x, y))) & 2047,
-            horiz=look.LEVEL, sector=sector, node=f"round:{len(out)}",
+            horiz=HORIZ_LEVEL, sector=sector, node=f"round:{len(out)}",
             purpose="loop", screenshot=True, note="walking round the thing"))
     return out
 
@@ -122,9 +121,9 @@ def ring(level, x: int, y: int, radius: int, count: int, near_z=None):
 def look_at(map_name: str, out: pathlib.Path, *, tile=None, at=None,
             radius: int = 3500, count: int = 6, reach: int = 3000,
             empty: bool = False) -> dict:
-    import look
-    from bloodmap.format import read_map
     from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+    from bloodmap.visual import ObservationRequest, as_played, run_observation
 
     path = pathlib.Path(map_name)
     if not path.exists():
@@ -142,11 +141,11 @@ def look_at(map_name: str, out: pathlib.Path, *, tile=None, at=None,
         x, y = at
         near_z = None
     out.mkdir(parents=True, exist_ok=True)
-    played = look.as_played(path, out, empty=empty)
+    played = as_played(path, out, empty=empty)
     level = read_map(played).to_level_ir()
     views = ring(level, x, y, radius, count, near_z)
     if views:
-        look.run_observation(look.ObservationRequest(
+        run_observation(ObservationRequest(
             map_path=played, output_dir=out,
             resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
             width=640, height=480, screenshots=[v.view_id for v in views],

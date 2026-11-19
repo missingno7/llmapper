@@ -26,15 +26,19 @@ sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from bloodmap.format import read_map
 from bloodmap.corpus import corpus_map_path
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
-from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
-from bloodmap.viewpoints import _contains, _sector_loops
+from bloodmap.sector_geom import outline_and_holes
+from bloodmap.sector_geom import sector_at as _sector_at
+from bloodmap.visual import (
+    EMPTY_TYPES, HIDDEN_STATUS, HIDDEN_TYPES, HORIZ_DOWN, HORIZ_LEVEL,
+    HORIZ_UP, ObservationRequest, Viewpoint, as_played, run_observation,
+)
 
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 CURRENT = PROJECT / "level" / "blood-city-current.MAP"
 PU = 1024
 
 #: Level horizon; the observer's horiz is Build's, 100 is level.
-LEVEL, UP, DOWN = 100, 160, 40
+LEVEL, UP, DOWN = HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN
 
 #: Named poses in plan units: (x, y, look-at x, look-at y, horiz, note).
 #: Fixed sets stay stable across iterations so before/after pairs line up;
@@ -582,92 +586,16 @@ POSE_SETS = {
 GRADE_Z = 8192
 
 
-#: What the GAME never draws. The owner, 2026-11-18, on frames of E1M1's
-#: crypt full of numbered red flags and of ours with orange streaks in the
-#: wall: "When you are viewing the level look you should be hiding these
-#: control things which are normally invisible like player starts, stack
-#: markers, sounds, etc."
-#:
-#: The engine's own list, not a guess: player starts and every marker
-#: (types 1-19: the starts are taken into the start zones and deleted,
-#: links and stacks get the invisible bit in warp.cpp:113-133, statnum 10
-#: is culled at load); generators and sound sprites (700-712:
-#: `InitGenerator`, triggers.cpp:2362); the exploder (459: actor.cpp:2507);
-#: and anything launched only outside single player (blood.cpp:700).
-HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
-HIDDEN_STATUS = {10}
-#: WHO AND WHAT IS IN A ROOM IS NOT THE ROOM. The owner, 2026-11-18: "you
-#: also should be able to check how it looks like without enemies and
-#: pickups for example to get rid of visual noise." A cultist in the
-#: middle of a frame is what a reader looks at, and a reader praised or
-#: blamed a hall for the zombie standing in it. `as_played(..., empty=True)`
-#: also hides the dudes (200-254), the weapons (40-51), the ammunition
-#: (60-81) and the items and keys (100-149): nblood's kDudeBase..kDudeMax,
-#: kItemWeaponBase, kItemAmmoBase and kItemBase ranges. Bodies, barrels,
-#: lamps and every other decoration (type 0) stay: they ARE the room.
-EMPTY_TYPES = (set(range(200, 255)) | set(range(40, 52))
-               | set(range(60, 82)) | set(range(100, 150)))
-
-
-def as_played(map_path, out_dir, empty: bool = False) -> pathlib.Path:
-    """A copy of the map with the game's invisible things made invisible.
-
-    A frame is evidence of what a player sees. A reviewer shown a start
-    flag or a charge takes it for part of the room -- one read the
-    exploders in the crypt wall as "orange sparks coming out of a crack".
-    """
-    from bloodmap.format import write_map
-
-    disk = read_map(map_path)
-    hidden = emptied = 0
-    for sprite in disk.sprites:
-        f = sprite.fields
-        extra = getattr(getattr(sprite, "extra", None), "fields", None) or {}
-        if empty and int(f.get("type", 0)) in EMPTY_TYPES:
-            if not int(f["cstat"]) & 32768:
-                f["cstat"] = int(f["cstat"]) | 32768
-                emptied += 1
-            continue
-        if (int(f.get("type", 0)) in HIDDEN_TYPES
-                or int(f.get("status", 0)) in HIDDEN_STATUS
-                or int(extra.get("launch_single", 0))):
-            if not int(f["cstat"]) & 32768:
-                f["cstat"] = int(f["cstat"]) | 32768
-                hidden += 1
-    out = pathlib.Path(out_dir) / ("as-empty.MAP" if empty
-                                   else "as-played.MAP")
-    out.parent.mkdir(parents=True, exist_ok=True)
-    write_map(disk, out)
-    print(f"as played: {hidden} control sprites hidden"
-          + (f"; emptied of {emptied} enemies and pickups" if empty else ""))
-    return out
-
-
 def sector_at(level, x: int, y: int, near: int | None = None) -> int | None:
     """The sector at a point -- the one a person would be standing in.
 
-    `_contains` handles outer loops and carved holes.  (The old observer
-    helper accepted a camera inside a street's carved lamp/building hole and
-    handed it to the renderer as the host sector.)
-
-    Space is stacked now: a sewer runs under the avenue and a roof stands
-    over the church, so a point in plan can lie in several sectors.  This
-    used to return the first, and the day the church got its roof every
-    interior pose rendered the rooftop instead.  The answer is the sector
-    whose floor is nearest the street's: a pose is written for a person on
-    the ground.  A pose meant for the sewer still needs a layer named on it.
+    `bloodmap.sector_geom.sector_at`, asked for the sector whose floor is
+    nearest the street's: a pose here is written for a person on the ground,
+    and the city is stacked (a sewer under the avenue, a roof over the
+    church). A pose meant for another level names its z as `near`.
     """
-    hits = [sector_id for sector_id in range(len(level.sectors))
-            if _contains(level, sector_id, x, y)]
-    if not hits:
-        return None
-
-    def floor(sector_id):
-        sector = level.sectors[sector_id]
-        fields = sector["fields"] if isinstance(sector, dict) else sector.fields
-        return int(fields["floor_z"])
-    want = GRADE_Z if near is None else near
-    return min(hits, key=lambda sector_id: abs(floor(sector_id) - want))
+    return _sector_at(level, x, y,
+                      floor_near=GRADE_Z if near is None else near)
 
 
 def poses_for(level, name: str) -> list[Viewpoint]:
@@ -700,7 +628,7 @@ def reference_poses(level, sectors: list[int]) -> list[Viewpoint]:
         z = eye_z(level, sector_id)
         if point is None or z is None:
             continue
-        outer = _sector_loops(level, sector_id)[0]
+        outer, _holes = outline_and_holes(level, sector_id)
         far = max(outer, key=lambda p: (p[0] - point[0]) ** 2 + (p[1] - point[1]) ** 2)
         out.append(Viewpoint(
             view_id=f"sector_{sector_id}", x=point[0], y=point[1], z=z,

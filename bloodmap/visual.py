@@ -31,7 +31,7 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
-from .model import LevelIR
+from .model import LevelIR, record_extra
 from .player_space import player_profile
 
 SCHEMA = "llmapper.xmapedit-visual-observation"
@@ -46,6 +46,79 @@ SURFACE_KINDS = ("wall", "upper", "lower", "masked", "floor", "ceiling", "sky", 
 #: Kinds that are architecture rather than decoration.  A room that is visible
 #: only through one of its sprites is not really visible.
 STRUCTURAL_KINDS = ("wall", "upper", "lower", "masked", "floor", "ceiling", "sky")
+
+
+#: The observer's horizon is Build's `horiz`: 100 looks level, more looks up.
+HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN = 100, 160, 40
+
+
+# ---------------------------------------------------------------------------
+# The map as the game shows it
+# ---------------------------------------------------------------------------
+#
+# These lived in `projects/blood-city/level/look.py`, and the study, look-at
+# and critic tools put that project on the import path to borrow them -- for
+# rendering campaign maps that have nothing to do with the city.
+
+#: What the GAME never draws. The owner, 2026-11-18, on frames of E1M1's
+#: crypt full of numbered red flags and of ours with orange streaks in the
+#: wall: "When you are viewing the level look you should be hiding these
+#: control things which are normally invisible like player starts, stack
+#: markers, sounds, etc."
+#:
+#: The engine's own list, not a guess: player starts and every marker
+#: (types 1-19: the starts are taken into the start zones and deleted,
+#: links and stacks get the invisible bit in warp.cpp:113-133, statnum 10
+#: is culled at load); generators and sound sprites (700-712:
+#: `InitGenerator`, triggers.cpp:2362); the exploder (459: actor.cpp:2507);
+#: and anything launched only outside single player (blood.cpp:700).
+HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
+HIDDEN_STATUS = {10}
+#: WHO AND WHAT IS IN A ROOM IS NOT THE ROOM. The owner, 2026-11-18: "you
+#: also should be able to check how it looks like without enemies and
+#: pickups for example to get rid of visual noise." A cultist in the
+#: middle of a frame is what a reader looks at, and a reader praised or
+#: blamed a hall for the zombie standing in it. `as_played(..., empty=True)`
+#: also hides the dudes (200-254), the weapons (40-51), the ammunition
+#: (60-81) and the items and keys (100-149): nblood's kDudeBase..kDudeMax,
+#: kItemWeaponBase, kItemAmmoBase and kItemBase ranges. Bodies, barrels,
+#: lamps and every other decoration (type 0) stay: they ARE the room.
+EMPTY_TYPES = (set(range(200, 255)) | set(range(40, 52))
+               | set(range(60, 82)) | set(range(100, 150)))
+
+
+def as_played(map_path, out_dir, empty: bool = False) -> Path:
+    """A copy of the map with the game's invisible things made invisible.
+
+    A frame is evidence of what a player sees. A reviewer shown a start
+    flag or a charge takes it for part of the room -- one read the
+    exploders in the crypt wall as "orange sparks coming out of a crack".
+    """
+    from .format import read_map, write_map
+
+    disk = read_map(map_path)
+    hidden = emptied = 0
+    for sprite in disk.sprites:
+        f = sprite.fields
+        extra = record_extra(sprite) or {}
+        if empty and int(f.get("type", 0)) in EMPTY_TYPES:
+            if not int(f["cstat"]) & 32768:
+                f["cstat"] = int(f["cstat"]) | 32768
+                emptied += 1
+            continue
+        if (int(f.get("type", 0)) in HIDDEN_TYPES
+                or int(f.get("status", 0)) in HIDDEN_STATUS
+                or int(extra.get("launch_single", 0))):
+            if not int(f["cstat"]) & 32768:
+                f["cstat"] = int(f["cstat"]) | 32768
+                hidden += 1
+    out = Path(out_dir) / ("as-empty.MAP" if empty
+                                   else "as-played.MAP")
+    out.parent.mkdir(parents=True, exist_ok=True)
+    write_map(disk, out)
+    print(f"as played: {hidden} control sprites hidden"
+          + (f"; emptied of {emptied} enemies and pickups" if empty else ""))
+    return out
 
 
 class ObservationError(RuntimeError):

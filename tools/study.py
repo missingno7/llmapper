@@ -50,7 +50,6 @@ from typing import Any
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "projects" / "blood-city" / "level"))
 
 STUDIES = ROOT / "knowledge" / "blood" / "studies"
 INDEX = STUDIES / "index.json"
@@ -146,8 +145,11 @@ def _plan(geom, place, path: pathlib.Path) -> None:
 
 def _frames(map_path, geom, place, host, out_dir: pathlib.Path) -> list[str]:
     """Stand in the room's corners and middle and look across it."""
-    import look
     from bloodmap.format import read_map
+    from bloodmap.viewplan import angle_toward, eye_z
+    from bloodmap.visual import (
+        HORIZ_LEVEL, ObservationRequest, Viewpoint, as_played, run_observation,
+    )
 
     level = read_map(map_path).to_level_ir()
     points = [(int(geom.walls[w]["x"]), int(geom.walls[w]["y"]))
@@ -227,18 +229,18 @@ def _frames(map_path, geom, place, host, out_dir: pathlib.Path) -> list[str]:
                if other != host):
             continue
         sector = host
-        z = look.eye_z(level, sector)
+        z = eye_z(level, sector)
         if z is None:
             continue
-        views.append(look.Viewpoint(
+        views.append(Viewpoint(
             view_id=f"corner_{index}", x=x, y=y, z=z,
-            angle=int(look.angle_toward((x, y), (cx, cy))) & 2047,
-            horiz=look.LEVEL, sector=sector, node=f"study:{index}",
+            angle=int(angle_toward((x, y), (cx, cy))) & 2047,
+            horiz=HORIZ_LEVEL, sector=sector, node=f"study:{index}",
             purpose="reference", screenshot=True, note="across the room"))
     if not views:
         return []
-    look.run_observation(look.ObservationRequest(
-        map_path=look.as_played(map_path, out_dir), output_dir=out_dir,
+    run_observation(ObservationRequest(
+        map_path=as_played(map_path, out_dir), output_dir=out_dir,
         resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
         width=640, height=480, screenshots=[v.view_id for v in views],
         brightness=0, rff=None))
