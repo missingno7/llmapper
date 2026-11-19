@@ -103,7 +103,7 @@ def _stages(ran: list[dict[str, str]]) -> list[dict[str, str]]:
     source = (LEVEL / "build_skeleton.py").read_text(encoding="utf-8")
     script = "projects/blood-city/level/build_skeleton.py"
     line = {found.group(1): source.count(chr(10), 0, found.start()) + 1
-            for found in re.finditer(r'^\s*STAGE\("([\w-]+)",', source, re.M)}
+            for found in re.finditer(r'^[ \t]*STAGE\("([\w-]+)",', source, re.M)}
     return [{"name": row["name"], "says": row["says"],
              "at": f"{script}:{line[row['name']]}" if row["name"] in line
              else f"{script} (no longer has a stage of this name: rebuild)"}

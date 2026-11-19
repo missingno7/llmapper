@@ -37,87 +37,87 @@
   {
    "name": "cemetery",
    "says": "the cemetery as a walled, gated ground carved from its district",
-   "at": "projects/blood-city/level/build_skeleton.py:411"
+   "at": "projects/blood-city/level/build_skeleton.py:413"
   },
   {
    "name": "sewer",
    "says": "the sewer declared at depth beneath Foundry Ward",
-   "at": "projects/blood-city/level/build_skeleton.py:525"
+   "at": "projects/blood-city/level/build_skeleton.py:526"
   },
   {
    "name": "works-stair",
    "says": "the first way down: the works stair, in flights, to the cellar",
-   "at": "projects/blood-city/level/build_skeleton.py:608"
+   "at": "projects/blood-city/level/build_skeleton.py:609"
   },
   {
    "name": "stack-links",
    "says": "the two room-over-room links between street and sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:660"
+   "at": "projects/blood-city/level/build_skeleton.py:661"
   },
   {
    "name": "sewer-network",
    "says": "the sewer's ring, its chambers and the necks between them",
-   "at": "projects/blood-city/level/build_skeleton.py:756"
+   "at": "projects/blood-city/level/build_skeleton.py:757"
   },
   {
    "name": "pumping-station",
    "says": "the second way down: the pumping station's stairs",
-   "at": "projects/blood-city/level/build_skeleton.py:806"
+   "at": "projects/blood-city/level/build_skeleton.py:807"
   },
   {
    "name": "light-pools",
    "says": "patches of lit floor in the streets, declared as regions",
-   "at": "projects/blood-city/level/build_skeleton.py:856"
+   "at": "projects/blood-city/level/build_skeleton.py:858"
   },
   {
    "name": "church",
    "says": "St Gallow's: nave, tower, crypt",
-   "at": "projects/blood-city/level/build_skeleton.py:896"
+   "at": "projects/blood-city/level/build_skeleton.py:897"
   },
   {
    "name": "arcade",
    "says": "the Gravesend Arcade and its shops",
-   "at": "projects/blood-city/level/build_skeleton.py:911"
+   "at": "projects/blood-city/level/build_skeleton.py:912"
   },
   {
    "name": "theatre",
    "says": "Theatre Row: the Aldermack, the saloon, the pawnshop",
-   "at": "projects/blood-city/level/build_skeleton.py:917"
+   "at": "projects/blood-city/level/build_skeleton.py:918"
   },
   {
    "name": "station",
    "says": "Gravesend Station behind the north wall",
-   "at": "projects/blood-city/level/build_skeleton.py:925"
+   "at": "projects/blood-city/level/build_skeleton.py:926"
   },
   {
    "name": "market",
    "says": "Market Slip: the quay, the harbour and the ship",
-   "at": "projects/blood-city/level/build_skeleton.py:931"
+   "at": "projects/blood-city/level/build_skeleton.py:932"
   },
   {
    "name": "foundry",
    "says": "Foundry Ward, the pilot district, with its machine hall",
-   "at": "projects/blood-city/level/build_skeleton.py:941"
+   "at": "projects/blood-city/level/build_skeleton.py:943"
   },
   {
    "name": "undeclared-venues",
    "says": "venues on the plan that nobody has built, declared as such",
-   "at": "projects/blood-city/level/build_skeleton.py:967"
+   "at": "projects/blood-city/level/build_skeleton.py:968"
   },
   {
    "name": "start",
    "says": "the player's start on the quay, and the manifest begins",
-   "at": "projects/blood-city/level/build_skeleton.py:999"
+   "at": "projects/blood-city/level/build_skeleton.py:1000"
   },
   {
    "name": "street-anatomy",
    "says": "pavement, carriageway and kerb along every street",
-   "at": "projects/blood-city/level/build_skeleton.py:1033"
+   "at": "projects/blood-city/level/build_skeleton.py:1034"
   },
   {
    "name": "street-ends",
    "says": "the walls where the main streets stop",
-   "at": "projects/blood-city/level/build_skeleton.py:1058"
+   "at": "projects/blood-city/level/build_skeleton.py:1059"
   },
   {
    "name": "connect",
@@ -127,22 +127,22 @@
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1255"
+   "at": "projects/blood-city/level/build_skeleton.py:1256"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1365"
+   "at": "projects/blood-city/level/build_skeleton.py:1366"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1472"
+   "at": "projects/blood-city/level/build_skeleton.py:1473"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1542"
+   "at": "projects/blood-city/level/build_skeleton.py:1543"
   },
   {
    "name": "shops-and-goods",
@@ -152,12 +152,12 @@
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1632"
+   "at": "projects/blood-city/level/build_skeleton.py:1633"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1672"
+   "at": "projects/blood-city/level/build_skeleton.py:1673"
   },
   {
    "name": "faces",
@@ -167,12 +167,12 @@
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:1820"
+   "at": "projects/blood-city/level/build_skeleton.py:1821"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1897"
+   "at": "projects/blood-city/level/build_skeleton.py:1898"
   },
   {
    "name": "gates",
