@@ -66,6 +66,7 @@ LOOKS = DESIGN / "tile-looks"
 LABELS = DESIGN / "place-labels"
 PLACES = DESIGN / "places-v1.json"
 USAGE = DESIGN / "tile-usage-v1.json"
+MECHANISMS = DESIGN / "mechanism-examples-v1.json"
 SHEETS = ROOT / "reports" / "tiles" / "sheets"
 PER_PAGE, COLUMNS, CELL = 40, 8, 136
 
@@ -523,9 +524,197 @@ def find_places(words: list[str], tile: int | None = None,
     return hits[:limit]
 
 
+def build_mechanisms() -> dict:
+    """Every type, sector effect, reserved channel and lesson, with examples.
+
+    The shelf an agent asks "which levels have one of these". The reading is
+    `bloodmap.examples`; this is its run over the campaign, joined to the
+    mechanism curriculum and to the library code that cites each lesson.
+    """
+    from bloodmap import examples
+    from bloodmap.corpus import campaign_maps, corpus_root, list_corpus_maps
+    from bloodmap.curriculum import mine_course
+    from bloodmap.format import read_map
+
+    seen = [examples.observe(path.stem.upper(), read_map(path))
+            for path in campaign_maps(required=True)]
+    document = examples.build(
+        seen, curriculum={"maps": mine_course(corpus_root() / "mechanism")},
+        cited=examples.cited_lessons(ROOT / "bloodmap"))
+    files = {item.path.stem.upper(): item.relative
+             for item in list_corpus_maps(population="mechanism-tutorial",
+                                          attach_tiers=False)}
+    for entry in document["entries"].values():
+        if entry["kind"] == "lesson":
+            entry["file"] = files.get(entry["name"].upper())
+    MECHANISMS.write_text(json.dumps(document, indent=1) + "\n",
+                          encoding="utf-8", newline="\n")
+    return document
+
+
+def mechanism_index() -> dict | None:
+    if not MECHANISMS.exists():
+        return None
+    return json.loads(MECHANISMS.read_text("utf-8"))
+
+
+def _example(entry: dict, item: dict) -> str:
+    kind = entry["kind"].split()[0]
+    if kind in ("sprite", "wall"):
+        return f"{item['map']} {kind} {item['id']} (sector {item['sector']})"
+    if kind == "channel" and item["id"] != item["sector"]:
+        return f"{item['map']}:{item['sector']} (object {item['id']})"
+    return f"{item['map']}:{item['sector']}"
+
+
+def show_mechanism(key: str, entry: dict) -> str:
+    """One mechanism entry as a dozen lines, ending in what to run next."""
+    _kind, _colon, ident = key.partition(":")
+    lines = []
+    if entry["kind"] == "lesson":
+        size = entry["size"]
+        lines.append(f"LESSON {entry['name']}  tutorial tier {entry['tier']}, "
+                     f"{size['sectors']} sectors, {size['sprites']} sprites")
+        lines.append(f"  shows: {entry['says']}")
+        if entry["types"]:
+            lines.append("  uses: " + ", ".join(entry["types"]))
+        if entry["slots"]:
+            lines.append("  sector resources spent: " + ", ".join(entry["slots"]))
+        if entry["cited_by"]:
+            lines.append("  cited by: " + ", ".join(entry["cited_by"]))
+        if entry.get("file"):
+            where = f"maps/blood/{entry['file']}"
+            if entry.get("sectors"):
+                lines.append(f"  its parts are sectors {entry['sectors']}: "
+                             f"python -m tools.catalog record {where} sector "
+                             f"{entry['sectors'][0]}")
+            lines.append(f"  its wiring: python -m tools.catalog mechanisms {where}")
+        else:
+            lines.append("  file: not in the local corpus")
+        return "\n".join(lines)
+    head = {"effect": f"EFFECT {entry['name']}",
+            "channel": f"CHANNEL {ident}  {entry['name']}"}.get(
+                entry["kind"],
+                f"{entry['kind'].upper()} {ident}  {entry['name']}"
+                + (f"  [{entry['category']}]" if entry.get("category") else ""))
+    lines.append(head)
+    if entry.get("says"):
+        lines.append(f"  is: {entry['says']}")
+    if entry.get("fields"):
+        lines.append("  defined by XSECTOR: " + "; ".join(
+            f"{rule} of {', '.join(names)}" for rule, names in entry["fields"].items()))
+    lines.append(f"  in the campaign: {entry['count']} in {entry['maps']} maps")
+    if entry.get("read_as"):
+        lines.append("  read as: " + ", ".join(
+            f"{name} x{n}" for name, n in entry["read_as"].items()))
+        lines.append("  worked by: " + ", ".join(
+            f"{name} x{n}" for name, n in entry["worked_by"].items()))
+    if entry["examples"]:
+        lines.append(f"  {entry.get('examples_are', 'examples')}: " + ", ".join(
+            _example(entry, item) for item in entry["examples"]))
+        first = entry["examples"][0]
+        what = entry["kind"].split()[0]
+        if what in ("effect", "channel"):
+            what = "sector" if first["id"] == first["sector"] else None
+        if what:
+            lines.append(f"  its fields: python -m tools.catalog record "
+                         f"{first['map']} {what} {first['id']}")
+        lines.append(f"  its wiring: python -m tools.catalog mechanisms "
+                     f"{first['map']} --place {first['map']}:{first['sector']}")
+        lines.append(f"  look at it: python -m tools.study <slug> --seed "
+                     f"{first['map']}:{first['sector']}!")
+    if entry.get("lessons"):
+        lines.append("  taught by: " + ", ".join(entry["lessons"])
+                     + f"  (python -m tools.catalog show lesson:{entry['lessons'][0]})")
+    return "\n".join(lines)
+
+
+def find_mechanisms(words: list[str], limit: int = 10) -> list[str]:
+    from bloodmap import examples
+
+    index = mechanism_index()
+    if index is None:
+        return ["  (not built: python -m tools.catalog build-mechanisms)"]
+    out = []
+    for key, entry in examples.search(index, words)[:limit]:
+        if entry["kind"] == "lesson":
+            said = f"tutorial: {entry['says'][:70]}"
+        else:
+            said = (f"{entry['name']}: {entry['count']} in {entry['maps']} maps"
+                    + (f", e.g. {_example(entry, entry['examples'][0])}"
+                       if entry["examples"] else ""))
+        out.append(f"  {key:<28}{said}")
+    return out
+
+
+def find_written(words: list[str], limit: int = 5) -> list[str]:
+    """Reports and measured families that mention the words, from the knowledge index."""
+    try:
+        from bloodmap.knowledge_index import lookup
+
+        found = lookup(" ".join(words))
+    except Exception as error:               # the index reads many files
+        return [f"  (knowledge index unavailable: {type(error).__name__}: {error})"]
+    out = []
+    for entry in found.get("entries", []):
+        if entry.get("subject_kind") == "tile":
+            continue                         # tiles are answered above
+        out.append(f"  {entry['source']}: {entry['says'][:80]}")
+        if len(out) >= limit:
+            break
+    return out
+
+
+def record(map_name: str, kind: str, index: int) -> str:
+    """One sector, wall or sprite as the fields that are set on it.
+
+    What an agent copies a mechanism from: the type by name, the fields that
+    are not zero, and the extension's fields that are not zero. Everything at
+    its default is left out, which turns a seventy-field record into a few
+    lines.
+    """
+    from bloodmap.blood_types import classify
+    from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+    from bloodmap.model import record_extra, record_fields
+
+    path = (pathlib.Path(map_name) if map_name.upper().endswith(".MAP")
+            else corpus_map_path(map_name))
+    disk = read_map(path)
+    group = {"sector": disk.sectors, "wall": disk.walls,
+             "sprite": disk.sprites}[kind]
+    if not 0 <= index < len(group):
+        return f"{path.stem} has {len(group)} {kind}s; there is no {kind} {index}"
+    item = group[index]
+    fields = record_fields(item)
+    named = classify(kind, int(fields.get("type", 0)))
+
+    def set_fields(values, skip=()):
+        return ", ".join(f"{name}={value}" for name, value in values.items()
+                         if value not in (0, -1, False) and name not in skip)
+
+    lines = [f"{path.stem.upper()} {kind} {index}: type {fields.get('type', 0)} "
+             f"{named.get('name') or ''}".rstrip()]
+    lines.append("  fields: " + (set_fields(fields, skip=("type", "extra")) or "(all default)"))
+    extra = record_extra(item)
+    if extra:
+        lines.append("  extension: " + (set_fields(extra, skip=("reference",))
+                                        or "(present, all default)"))
+    else:
+        lines.append("  extension: none")
+    return "\n".join(lines)
+
+
 def show(what: str) -> str:
     """One entry, with everything the library links to it."""
     lines = []
+    if not what.isdigit():
+        from bloodmap import examples
+
+        index = mechanism_index()
+        key = examples.resolve(index, what) if index else None
+        if key is not None:
+            return show_mechanism(key, index["entries"][key])
     if what.isdigit():
         tile = int(what)
         looks, names = tile_looks().get(tile), owner_names().get(tile)
@@ -554,7 +743,8 @@ def show(what: str) -> str:
         data = json.loads(PLACES.read_text("utf-8"))
         row = next((r for r in data["places"] if r["id"] == what.upper()), None)
         if row is None:
-            return f"no place {what} in the catalogue"
+            return (f"no place, type, effect, channel or lesson called {what} "
+                    f"in the catalogue; try: python -m tools.catalog find {what}")
         label = place_labels().get(row["id"])
         looks, names = tile_looks(), owner_names()
         lines.append(f"PLACE {row['id']}  {'outdoor' if row['sky'] else 'indoor'}  "
@@ -572,8 +762,15 @@ def show(what: str) -> str:
 
 
 def find_all(words: list[str]) -> str:
-    """Tiles, places, studies and idea cards that answer to the words."""
-    out = ["TILES"]
+    """Everything the library holds that answers to the words.
+
+    One question, every shelf: what the engine does (types, effects,
+    channels, lessons), what a mapper sees (tiles, places), and what has been
+    written down (studies, ideas, measured reports).
+    """
+    out = ["MECHANISMS  (python -m tools.catalog show <key>)"]
+    out.extend(find_mechanisms(words))
+    out.append("TILES")
     for tile, said in find_tiles(words)[:20]:
         out.append(f"  {tile:>5}  {said}")
     out.append("PLACES")
@@ -599,6 +796,8 @@ def find_all(words: list[str]) -> str:
                                                "use")).lower()
         if all(re.search(rf"\b{re.escape(w.lower())}\b", text) for w in words):
             out.append(f"  {path.stem}: [{card['kind']}] {card['title']}")
+    out.append("WRITTEN")
+    out.extend(find_written(words))
     return "\n".join(out)
 
 
@@ -629,6 +828,11 @@ def main(argv=None) -> int:
     tiles = sub.add_parser("tiles")
     tiles.add_argument("words", nargs="+")
     sub.add_parser("build-places")
+    sub.add_parser("build-mechanisms")
+    rec = sub.add_parser("record")
+    rec.add_argument("map")
+    rec.add_argument("kind", choices=("sector", "wall", "sprite"))
+    rec.add_argument("index", type=int)
     places = sub.add_parser("places")
     places.add_argument("words", nargs="*")
     places.add_argument("--tile", type=int)
@@ -736,6 +940,15 @@ def main(argv=None) -> int:
                 print(f"     {step['from']} --ch {step['channel']} cmd "
                       f"{step['command']}--> {step['to']} ({step['to_type']})"
                       f"{' after ' + str(step['wait']) if step['wait'] else ''}")
+    elif args.command == "record":
+        print(record(args.map, args.kind, args.index))
+    elif args.command == "build-mechanisms":
+        document = build_mechanisms()
+        kinds = Counter(entry["kind"] for entry in document["entries"].values())
+        print(f"{len(document['entries'])} entries from {len(document['maps'])} "
+              f"maps -> {MECHANISMS.relative_to(ROOT).as_posix()}")
+        for kind, count in kinds.most_common():
+            print(f"  {kind:<14}{count}")
     elif args.command == "status":
         used, looks = used_tiles(), tile_looks()
         names = owner_names()
@@ -750,6 +963,13 @@ def main(argv=None) -> int:
                          for r in data["places"] if r["id"] in labels)
             print(f"places: {len(data['places'])}; with lettering {signed}; "
                   f"labelled {dict(by)}")
+        index = mechanism_index()
+        if index is None:
+            print("mechanisms: not built (python -m tools.catalog build-mechanisms)")
+        else:
+            kinds = Counter(entry["kind"] for entry in index["entries"].values())
+            print("mechanisms: " + "; ".join(
+                f"{count} {kind}s" for kind, count in kinds.most_common()))
     return 0
 
 

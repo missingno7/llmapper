@@ -85,10 +85,10 @@ def tier(name: str) -> str:
 SLOTS = {
     "rx": ("rx_id",), "tx": ("tx_id", "command"),
     "state": ("state", "busy"),
-    "shade wave": ("amplitude", "wave", "shade_floor", "shade_ceiling",
-                   "shade_walls", "phase", "freq"),
-    "wind": ("wind_vel", "wind_ang", "wind_always"),
-    "panning": ("pan_vel", "pan_angle", "pan_always", "pan_floor",
+    "shade wave": ("amplitude", "shade_wave", "shade_floor", "shade_ceiling",
+                   "shade_walls", "shade_phase", "shade_frequency"),
+    "wind": ("wind_velocity", "wind_angle", "wind_always"),
+    "panning": ("pan_velocity", "pan_angle", "pan_always", "pan_floor",
                 "pan_ceiling"),
     "bob": ("bob_speed", "bob_z_range", "bob_always", "bob_floor",
             "bob_ceiling"),
@@ -454,6 +454,27 @@ def mine_map(path: str | Path) -> Reading:
         construct.sentence = sentence(construct)
         reading.constructs.append(construct)
     return reading
+
+
+def mine_course(root: str | Path) -> list[dict[str, Any]]:
+    """Every vanilla lesson of the taught course, as JSON, with its tier.
+
+    The course is the tutorial folder and its `Vanilla/` subfolder; `Modern/`
+    is another dialect and is left out. This is the reading the mechanism
+    index joins to the campaign. It is mined from the maps each time, because
+    the copy in `knowledge/blood/design/mechanism-curriculum-v1.json` has no
+    generator and had drifted from this module on 24 of its 136 lessons.
+    """
+    root = Path(root)
+    readings = mine_folder(root)
+    if (root / "Vanilla").is_dir():
+        readings += mine_folder(root / "Vanilla")
+    lessons = []
+    for reading in readings:
+        lesson = reading.as_json()
+        lesson["tier"] = tier(reading.name)
+        lessons.append(lesson)
+    return sorted(lessons, key=lambda lesson: lesson["map"])
 
 
 def mine_folder(folder: str | Path, *,

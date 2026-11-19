@@ -26,6 +26,8 @@ kind of fact is [architecture](architecture.md).
 | which sector owns a wall; a sector's loops; a wall's ends | `sector_geom.wall_owners`, `sector_loops`, `wall_segment` | a loop over `wall_ptr` |
 | the player's height, width and step | `player_space.PLAYER_PROFILES["blood"]` | 16960, 384, 4096 |
 | every opening in a built map, classified | `aperture.observe_openings` | walking two-sided walls yourself |
+| what a tile is, a mechanic is, or where Blood has one | `python -m tools.catalog find <word>` | reading maps until one turns up |
+| the settings of one thing in a campaign map | `python -m tools.catalog record E3M5 sector 20` | dumping the whole map to JSON |
 
 ---
 

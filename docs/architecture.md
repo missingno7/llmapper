@@ -109,6 +109,7 @@ convenient.
 | an architectural structure candidate with parameters and residual (stairs, recesses) | `structures.py` | `relations.py` |
 | what an opening in a wall is: leaf, lintel, step, and which are apertures | `aperture.observe_openings` | the miner that runs it over the corpus |
 | how much solid mass stands between two rooms | `layout.observe_wall_thickness` | the miner that runs it over the corpus |
+| where the campaign has an instance of a type, a sector effect or a reserved channel, and which lesson teaches it | `examples.py` (asked through `python -m tools.catalog find` / `show`) | a census written for the occasion |
 | which tile the renderer shows on which band of a wall (steps, mask, one-way) | `render_slots.py` | a `next_sector < 0` test in the consumer |
 | a measured, versioned, citable design number | `knowledge/blood/design/*-vN.json` | a constant in the module that needed it |
 | something an author should be able to *write* | a `vocabulary.py` / `prefab.py` constructor | the knowledge store |

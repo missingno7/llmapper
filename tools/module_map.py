@@ -91,7 +91,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Graded claims about Blood, the owner's tile readings, and the indexes "
      "over `knowledge/blood/`.",
      ["rules", "rules_blood", "owner_anchors", "usage_kinds", "curriculum",
-      "curriculum_laws", "assets", "knowledge_index"]),
+      "curriculum_laws", "examples", "assets", "knowledge_index"]),
     ("Evidence loop and observation",
      "Compile a candidate, read it back independently, look at it through "
      "the observer, and keep the packet.",

@@ -222,6 +222,7 @@ Graded claims about Blood, the owner's tile readings, and the indexes over `know
 | `usage_kinds` | Where the campaign is attested to use each tile, and the laws that follow. |
 | `curriculum` | Mine the mechanism tutorials in `maps/blood/mechanism/`. |
 | `curriculum_laws` | The laws the mechanism tutorials teach, each with the citation that made it. |
+| `examples` | Where Blood does each thing: every type, sector effect and taught lesson, with the maps that show it. |
 | `assets` | Contextual sprite and decorative-tile knowledge. |
 | `knowledge_index` | One entry point for "what do we know about this?". |
 
