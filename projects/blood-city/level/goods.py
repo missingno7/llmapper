@@ -18,7 +18,7 @@ authority, and the tiles used here that the owner has not named are listed
 by `unnamed()` for the next one.
 
 The plan is by PLACE, because a thing means something only where it is: a
-bottle on a bar, a roast in a grocer's window, a show bill beside a theatre
+bottle on a bar, a jar in a grocer's window, a show bill beside a theatre
 door. Nothing is scattered.
 """
 
@@ -40,26 +40,29 @@ ASSETS[1165] = {"count": 5, "maps": {"E3M2": 1, "E1M2": 1, "E6M1": 1, "DWE3M1": 
                 "y_repeat": 40, "cstat": 464, "shade": 0, "pal": 0, "type": 0,
                 "status": 0, "over_floor_bodies": 1.5}
 
-#: What each tile is, read off its picture. A reading, not a measurement.
+#: What each tile is, read off its picture. A reading, not a measurement,
+#: and held to the owner's name and the library's reading by
+#: `tests/test_goods_names.py`: 2937 stood here as "roast" and is the owner's
+#: "dead cultist"; two of them lay in the grocer's windows.
 NAMES = {
-    759: "bottle", 605: "brown bottle", 606: "blue bottle", 574: "goblet",
+    759: "bottle", 605: "brown bottle", 606: "blue bottle", 574: "drinking glass",
     521: "wine glass", 758: "chair", 649: "round table", 1009: "potted plant",
-    1010: "fern in a pot", 1013: "vase of dried flowers", 616: "jug",
-    834: "glass jar", 938: "candle", 536: "small statue", 739: "urn",
-    712: "pitcher", 520: "skull goblet", 2937: "roast", 2304: "pan",
-    2305: "skillet", 604: "tin", 802: "labelled tin", 517: "red flask",
+    1010: "plant in a barrel planter", 1013: "vase of dried flowers", 616: "jug",
+    834: "glass jar", 938: "candle", 536: "small statue", 739: "clay vase",
+    712: "clay jug", 520: "skull goblet", 2304: "pan",
+    2305: "frying pan, turned", 604: "keg", 802: "jar with a green label", 517: "red flask",
     741: "sign: Cask of Amontillado Pub & Grille",
     740: "sign: Pickman's Rare Books and Maps", 943: "sign: TICKETS",
     751: "sign: MANAGER", 440: "bill: Tonight, monkey wrestling",
     453: "bill: Possum Gallo", 356: "bill: Jo-Jo book signing",
     981: "bill: Jo-Jo the idiot circus boy", 932: "bill: Sloth",
     742: "notice", 744: "warning plate", 743: "newspaper",
-    613: "still life", 163: "portrait", 621: "portrait of a ghoul",
+    613: "still life", 163: "painting", 621: "portrait of a ghoul",
     268: "snake panel", 614: "tapestry", 644: "painted map",
     1712: "shovel", 1710: "broom", 2139: "cleaver", 1708: "pliers",
     658: "fire extinguisher", 540: "dead tree", 543: "dead tree",
-    545: "dead tree", 608: "dry bush", 3540: "bucket",
-    579: "anvil", 845: "banner, lion", 848: "banner, horse",
+    545: "dead tree", 608: "dry bush", 3540: "metal can",
+    579: "iron bowl", 845: "banner, lion", 848: "banner, ram",
     1165: "wall clock", 73: "hanging clothes",
 }
 
@@ -123,10 +126,10 @@ ON_TOP = [
                                 (604, 0.92, 0.5)]),
     ("pawn_shop/vault", [(712, 0.25, 0.3), (938, 0.75, 0.3)]),
     # PROVISIONS: a grocer's windows
-    ("market_hall/display_n", [(2937, 0.5, 0.12), (834, 0.5, 0.30), (759, 0.5, 0.45),
+    ("market_hall/display_n", [(616, 0.5, 0.12), (834, 0.5, 0.30), (759, 0.5, 0.45),
                                (802, 0.5, 0.62), (616, 0.5, 0.78), (604, 0.5, 0.92)]),
     ("market_hall/display_s", [(834, 0.5, 0.3), (802, 0.5, 0.7)]),
-    ("market_hall/display_side", [(604, 0.08, 0.5), (759, 0.22, 0.5), (2937, 0.40, 0.5),
+    ("market_hall/display_side", [(604, 0.08, 0.5), (759, 0.22, 0.5), (605, 0.40, 0.5),
                                   (834, 0.60, 0.5), (616, 0.76, 0.5), (802, 0.92, 0.5)]),
     # the arcade: each unit's counter says what it sells
     ("gravesend_arcade/unit_b/fittings/unit_b_counter/unit_b_counter_0", [(606, 0.2, 0.5), (517, 0.35, 0.5), (834, 0.8, 0.5)]),
@@ -136,6 +139,12 @@ ON_TOP = [
     ("gravesend_arcade/unit_f/fittings/unit_f_counter/unit_f_counter_0", [(834, 0.25, 0.5), (802, 0.7, 0.5)]),
     ("gravesend_arcade/unit_a_window", [(1013, 0.5, 0.5)]),
     ("gravesend_arcade/unit_d_window", [(739, 0.5, 0.5)]),
+    # the market hall's stall: provisions down the aisle side of each edge,
+    # so either aisle sees stock (the meat lies in its middle and hangs
+    # over it: `l3_market.dress_supermarket`)
+    ("supermarket_fittings/supermarket_stall", [
+        (604, 0.22, 0.08), (834, 0.78, 0.14), (802, 0.22, 0.24), (616, 0.78, 0.32),
+        (759, 0.22, 0.62), (712, 0.78, 0.70), (605, 0.22, 0.78), (604, 0.78, 0.9)]),
     # the canteen, and the altar
     # (RAT DOGS' counter is a bar run now; the rats and the cleaver hold its
     # middle, so the stock stands at its ends)
@@ -151,6 +160,8 @@ ON_TOP = [
 ROW_PITCH = 340
 ROWS = [
     ("saloon/main/shelf", [759, 605, 606, 759, 574, 605]),
+    #: RAT DOGS' kitchen shelf: the cook's jars and jugs
+    ("canteen/main/shelf", [834, 616, 802, 712]),
     #: the draper: the cloth hangs on the walls (ON_WALL); the shelf holds
     #: what a draper also sells
     ("gravesend_arcade/unit_a/shelf", [712, 616, 739, 616]),

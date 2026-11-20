@@ -1,0 +1,193 @@
+{
+ "market_hall": {
+  "title": "The market hall",
+  "candidates": 462,
+  "rendered": 339,
+  "finalists": [
+   {
+    "id": "market_hall-09-1280-0-100",
+    "pose": [
+     8960,
+     45568,
+     -7072,
+     1280,
+     100,
+     244
+    ],
+    "measure": {
+     "subject": 0.4967,
+     "things": 7,
+     "variety": 15,
+     "sectors": 8,
+     "dominant": 0.1936,
+     "sky": 0.0,
+     "unwritten": 0.0325
+    },
+    "score": 4.6021,
+    "letter": "A",
+    "measured_rank": 6
+   },
+   {
+    "id": "market_hall-09-0768-0-100",
+    "pose": [
+     8960,
+     45568,
+     -7072,
+     768,
+     100,
+     244
+    ],
+    "measure": {
+     "subject": 0.5206,
+     "things": 6,
+     "variety": 13,
+     "sectors": 6,
+     "dominant": 0.1939,
+     "sky": 0.0,
+     "unwritten": 0.0381
+    },
+    "score": 3.7978,
+    "letter": "B",
+    "measured_rank": 8
+   },
+   {
+    "id": "market_hall-08-0768-0-100",
+    "pose": [
+     8960,
+     43264,
+     -7072,
+     768,
+     100,
+     244
+    ],
+    "measure": {
+     "subject": 0.6546,
+     "things": 12,
+     "variety": 14,
+     "sectors": 8,
+     "dominant": 0.1986,
+     "sky": 0.0,
+     "unwritten": 0.029
+    },
+    "score": 5.6433,
+    "letter": "C",
+    "measured_rank": 4
+   },
+   {
+    "id": "market_hall-10-1280-16960-84",
+    "pose": [
+     9728,
+     47104,
+     -24032,
+     1280,
+     84,
+     244
+    ],
+    "measure": {
+     "subject": 0.5758,
+     "things": 10,
+     "variety": 14,
+     "sectors": 8,
+     "dominant": 0.1367,
+     "sky": 0.0,
+     "unwritten": 0.019
+    },
+    "score": 5.7318,
+    "letter": "D",
+    "measured_rank": 2
+   },
+   {
+    "id": "market_hall-13-1792-16960-66",
+    "pose": [
+     7424,
+     46336,
+     -24032,
+     1792,
+     66,
+     244
+    ],
+    "measure": {
+     "subject": 0.7752,
+     "things": 9,
+     "variety": 13,
+     "sectors": 9,
+     "dominant": 0.2448,
+     "sky": 0.0,
+     "unwritten": 0.0159
+    },
+    "score": 5.689,
+    "letter": "E",
+    "measured_rank": 3
+   },
+   {
+    "id": "market_hall-18-1536-16960-84",
+    "pose": [
+     8960,
+     48640,
+     -24032,
+     1536,
+     84,
+     244
+    ],
+    "measure": {
+     "subject": 0.6481,
+     "things": 10,
+     "variety": 15,
+     "sectors": 9,
+     "dominant": 0.1484,
+     "sky": 0.0,
+     "unwritten": 0.0254
+    },
+    "score": 5.9638,
+    "letter": "F",
+    "measured_rank": 1
+   },
+   {
+    "id": "market_hall-03-1536-0-100",
+    "pose": [
+     10496,
+     49408,
+     -7072,
+     1536,
+     100,
+     255
+    ],
+    "measure": {
+     "subject": 0.7994,
+     "things": 7,
+     "variety": 14,
+     "sectors": 8,
+     "dominant": 0.2726,
+     "sky": 0.0,
+     "unwritten": 0.0122
+    },
+    "score": 4.7495,
+    "letter": "G",
+    "measured_rank": 5
+   },
+   {
+    "id": "market_hall-02-0512-16960-84",
+    "pose": [
+     10496,
+     41728,
+     -24032,
+     512,
+     84,
+     244
+    ],
+    "measure": {
+     "subject": 0.5845,
+     "things": 7,
+     "variety": 13,
+     "sectors": 7,
+     "dominant": 0.1504,
+     "sky": 0.0,
+     "unwritten": 0.0189
+    },
+    "score": 4.4618,
+    "letter": "H",
+    "measured_rank": 7
+   }
+  ]
+ }
+}

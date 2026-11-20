@@ -2,30 +2,30 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "18f89103fb3580748ae107feb08bc853abf76bce438a5ea3c0418a90e688b6d2",
-  "map_sha256": "6270e9d0016b42970427389f5b3f6bc5d10ae3110a94c4a7df9f05634a79402a",
+  "manifest_sha256": "365316bada8a35d2483fe625208dfa0bd1410f6a3dbdf03997ff37fac30ef698",
+  "map_sha256": "b2e83a357baca771e69bcc59d81c432254500afc65bf7682658d73d0bc51e540",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 493,
-  "walls": 3262,
-  "sprites": 874,
+  "sectors": 494,
+  "walls": 3268,
+  "sprites": 897,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.88,
+   "sectors": 0.879,
    "walls": 0.801,
-   "sprites": 0.947
+   "sprites": 0.945
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1090,
+   "note": 1104,
    "warning": 6,
-   "error": 14
+   "error": 10
   }
  },
  "stages": [
@@ -223,15 +223,15 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 466,
-  "reached": 466,
+  "space": 467,
+  "reached": 467,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 310,
+    "sectors": 311,
     "first_sector": 0
    },
    {
@@ -641,7 +641,7 @@
     "campaign_p50": 3
    },
    "metres": [
-    7.0,
+    7.6,
     8.8,
     3.5
    ],
@@ -1125,7 +1125,7 @@
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 261 and 172",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2032"
+   "at": "wall 2034"
   },
   {
    "kind": "rule-warning",
@@ -1133,7 +1133,7 @@
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 268 and 172",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2077"
+   "at": "wall 2079"
   },
   {
    "kind": "rule-error",
@@ -1149,23 +1149,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[485].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[487].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[487].ceiling"
+   "at": "sector[486].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1186,18 +1170,18 @@
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[491].floor"
+   "at": "sector[489].floor"
   },
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[491].ceiling"
+   "at": "sector[489].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1218,34 +1202,18 @@
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1916]"
+   "at": "sector[493].floor"
   },
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1917]"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1918]"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall[1919]"
+   "at": "sector[493].ceiling"
   },
   {
    "kind": "rule-warning",
@@ -1266,7 +1234,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2174, 2226) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2176, 2228) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[194]"
@@ -1278,13 +1246,6 @@
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[203]"
-  },
-  {
-   "kind": "refused",
-   "place": "market_hall_display_side_2_2937",
-   "says": "no room for a roast at (6451, 41344)",
-   "owner": "projects/blood-city/level/goods.py:dress",
-   "see": "the goods lines the build prints"
   },
   {
    "kind": "refused",
@@ -1429,7 +1390,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 677, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 685, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -1478,8 +1439,8 @@
   "lost-tile": 4,
   "missing-layer": 11,
   "never-critiqued": 7,
-  "refused": 8,
-  "rule-error": 14,
+  "refused": 7,
+  "rule-error": 10,
   "rule-warning": 6,
   "skipped": 6,
   "sprite-overlaps": 1,

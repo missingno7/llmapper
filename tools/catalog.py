@@ -85,6 +85,29 @@ def owner_names() -> dict[int, str]:
     return {int(a["picnum"]): a.get("label_en", "") for a in data["anchors"]}
 
 
+def tile_name(tile: int) -> tuple[str, str]:
+    """What a tile is, and whose word that is: ("owner", ...) outranks ("looks", ...)."""
+    owner = owner_names().get(int(tile))
+    if owner:
+        return "owner", owner
+    row = tile_looks().get(int(tile), {})
+    return "looks", str(row.get("depicts") or row.get("looks") or "")
+
+
+def tile_is(tile: int, *words: str) -> bool:
+    """Whether the tile's name says it is one of `words` (the owner's name
+    when there is one, the library's reading otherwise).
+
+    The guard against choosing a tile by what it was called in code: the
+    city stocked a grocer's window with tile 2937 as "a roast" (the owner's
+    "dead cultist"), and shelved its market hall with 202 (the owner's
+    "worn wall/facade texture").
+    """
+    _source, name = tile_name(tile)
+    name = name.lower()
+    return any(word.lower() in name for word in words)
+
+
 def used_tiles() -> list[int]:
     return sorted(int(k) for k in json.loads(USAGE.read_text("utf-8"))["tiles"])
 

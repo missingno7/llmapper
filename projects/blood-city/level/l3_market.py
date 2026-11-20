@@ -845,6 +845,10 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     sales = room("supermarket", 3.5, 40.5, 13.5, 48.0, shop,
                  "the market hall sales floor: tall E6M1 shelf banks and crate bays",
                  clear_height=MARKET_HALL_HEIGHT)
+    # Showcase round 7: the stall's pool (shade 8) against aisles at 28 still
+    # read as "even gloom". Light reads by contrast: the aisles step down so
+    # the counter and the meat over it are what is lit.
+    sales.surfaces(floor_shade=38, ceiling_shade=40)
     stock = room("stockroom", 3.5, 48.0, 13.5, 49.5, shop,
                  "staff-only rear stock: separate 452/95 crate bays")
     stock.surfaces(wall_picnum=63)
@@ -1008,7 +1012,44 @@ def dress_supermarket(layout, rooms) -> dict:
         t=0.25, height_player_heights=0.45, offset_player_widths=0.06,
         type=0, picnum=1050, cstat=144, shade=-4,
         x_repeat=32, y_repeat=32, status=0)
-    return {"wall_details": 2, "tiles": [1165, 1050]}
+    # THE STALL'S MEAT. Blood's markets sell meat, not produce: the town maps
+    # have no fruit or vegetable tile, and E3M2 hangs its carcasses (1351,
+    # type 416, cstat 385) from the ceiling of its meat rooms. Ours hang
+    # from the hall's ceiling over the stall, at repeat 56 where E3M2's are
+    # 104 by 88 in a room a body taller (ours would reach the counter); the
+    # size is ours. On the stall's middle lies DWE2M10's raw meat (2073,
+    # type 416, palette 2, repeat 40), as its kitchen lays it on a table.
+    stall = next((rid for rid in layout.regions
+                  if rid.endswith("supermarket_fittings/supermarket_stall")), None)
+    placed = 0
+    if stall is not None:
+        ceiling = layout.regions[stall].ceiling_z
+        top = layout.regions[stall].floor_z
+        for index, v in enumerate((0.3, 0.5, 0.7)):
+            drawn = 133 * 56 * 4                 # rows x repeat x 4
+            layout.place_on_floor(
+                f"market:carcass_{index}", stall, local=(0.5, v),
+                height_player_heights=(top - ceiling - drawn / 2) / 16960,
+                picnum=1351 if index != 1 else 1350, cstat=385,
+                x_repeat=66, y_repeat=56, shade=8, pal=0, type=416, status=0)
+            layout.place_on_floor(
+                f"market:meat_{index}", stall, local=(0.5, v - 0.05),
+                picnum=2073 + index, cstat=1, x_repeat=40, y_repeat=40,
+                shade=-8, pal=2, type=416, status=0)
+            placed += 2
+        # ...and the light over it: the owner's "lamp hanging on a chain"
+        # (641), which 42 of Blood's maps hang, between the carcasses.
+        for index, v in enumerate((0.4, 0.6)):
+            layout.place_on_ceiling(
+                f"market:stall_lamp_{index}", stall, local=(0.5, v),
+                # 641 has no hang point in its art: the ceiling seat puts its
+                # centre on the ceiling, so it drops half its drawn height
+                # (128 rows at repeat 48, 24,576 tall)
+                height_player_heights=12288 / 16960,
+                picnum=641, cstat=0, x_repeat=48, y_repeat=48, shade=-16,
+                pal=0, type=0, status=0)
+            placed += 1
+    return {"wall_details": 2, "tiles": [1165, 1050], "meat": placed}
 
 
 #: The monument's own words, and the register they are written in.

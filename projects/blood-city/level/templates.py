@@ -136,6 +136,20 @@ COUNTER_PASS = 1024
 WALL_STANDOFF = 256
 
 
+def tile_is(tile: int, *words: str, what: str = "") -> None:
+    """Refuse a tile whose name (the owner's first) is not one of `words`."""
+    import sys
+    import pathlib
+    root = pathlib.Path(__file__).resolve().parents[3]
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    from tools import catalog
+    if not catalog.tile_is(tile, *words):
+        source, name = catalog.tile_name(tile)
+        raise TemplateError(f"{what}: tile {tile} is not a {'/'.join(words)}; "
+                            f"its {source} name is {name!r}")
+
+
 class TemplateError(ValueError):
     """A template that cannot be built at the size it was handed."""
 
@@ -575,19 +589,19 @@ def supermarket(space, *, material, grade: int, host_clear: int,
     shelf_end = y1 - 2 * fixtures.PEDESTAL.depth
     bank_specs = (
         (x0 + 1536, x0 + 2560, y0 + 1024, shelf_end - 1024, 2026, 24576),
-        # 2026 rather than 2635, which is the same owner-anchored "shelf"
-        # but attested on two-sided walls (8 slots) where 2635 is attested
-        # only on one-sided ones. A raised solid's faces ARE two-sided -- the
-        # bank is a sector inside the room -- so 2635 here was eight
-        # attested-slot errors. Repeating 2026 at a different rise reads as a
-        # second bank of the same shelving, which is what a shop has.
-        (x0 + 4096, x0 + 5120, y0 + 1024, shelf_end, 2026, 20480),
-        (x0 + 6656, x0 + 7680, y0 + 1024, shelf_end - 1024, 202, 24576),
+        # (the middle bank is the market stall now, below)
+        # The east bank wore 202, the owner's "worn wall/facade texture,
+        # bricks showing through": a wall, and the showcase's blind reader
+        # saw a barrier in an empty room. It is shelving: 2027, the library's
+        # "wall shelf with books and jars, blue variant", which E6M1 and
+        # TEDE1M5 draw on raised blocks' faces (step_face, rise 1.3 bodies).
+        (x0 + 6656, x0 + 7680, y0 + 1024, shelf_end - 1024, 2027, 22528),
     )
     racks = []
     for index, (sx0, sx1, sy0, sy1, wall_tile, rise) in enumerate(bank_specs):
         if sx1 > x1 - 512 or sy1 <= sy0:
             continue
+        tile_is(wall_tile, "shelf", what=f"{space.node_id} shelf bank {index}")
         bank = setpieces.raised_solid(
             node, f"{space.node_id}_shelf_bank_{index}", space,
             (sx0, sy0, sx1, sy1), material, grade=grade, rise=rise,
@@ -599,6 +613,38 @@ def supermarket(space, *, material, grade: int, host_clear: int,
         bank.region_kwargs["portal_wall_picnum"] = wall_tile
         racks.append(bank)
 
+    # THE STALL. The middle of the floor was a shelf bank 1.2 bodies high,
+    # and the showcase's blind reader (round 2): "scattered props leave the
+    # central island looking like a barrier in an empty room ... turn it
+    # into a stall ... visible from both aisles". Blood's town maps carry
+    # goods at half a body (`fixtures.BAR`); this is one such counter, a
+    # body wide so both aisles reach it. What stands on it and what hangs
+    # over it is in `l3_market.dress_supermarket` and `goods.ON`.
+    # Round 6, with a lamp over it: "the butcher's display blends into the
+    # shelves ... under uniformly dim lighting; cast a warm pool of light
+    # over the counter". A room is one sector and one shade, so a pool is a
+    # sector of its own (`lightpools`' reason, indoors): flush, carved into
+    # the floor round the stall, which is carved into it in turn.
+    pool = setpieces.raised_solid(
+        node, f"{space.node_id}_stall_pool", space,
+        (x0 + 3584, y0 + 1024, x0 + 5632, shelf_end - 384), material, grade=grade,
+        rise=0, host_clear=host_clear, connector=connector,
+        note="the light on the floor round the market stall")
+    pool.surfaces(floor_shade=8)
+    stall = fixtures.place(f"{space.node_id}_stall", pool,
+                           (x0 + 4096, y0 + 1536, x0 + 5120, shelf_end - 896),
+                           material, family="bar", grade=grade,
+                           host_clear=host_clear, connector=connector, into=node,
+                           wall_picnum=fixtures.BAR_FACE)
+    # Round 5's reader: "the dim, even lighting gives the meat display
+    # little emphasis ... add one warm overhead light". Blood lights a
+    # counter top as its room's brightest surface (the saloon study: E1M2's
+    # bar at shade 5 over a floor at 30), and a source over it.
+    stall.surfaces(floor_shade=0)
+    space.light_source("stall_lamp",
+                       local=(4608 / width, (1536 + shelf_end - 896 - y0) / 2 / depth),
+                       height_player_heights=2.0)
+
     # Distinct crate bays on whole render-complete texture modules.  The west
     # and centre aisles take the smaller 452 unit; the wider east aisle takes
     # one full 95 unit.  Neither skin is cropped merely to fill an aisle.
@@ -609,9 +655,9 @@ def supermarket(space, *, material, grade: int, host_clear: int,
         (SMALL_CRATE, (x0 + 256, y0 + 3328,
                        x0 + 256 + SMALL_CRATE.side,
                        y0 + 3328 + SMALL_CRATE.side), SMALL_CRATE.rise),
-        (SMALL_CRATE, (x0 + 2816, y0 + 2304,
-                       x0 + 2816 + SMALL_CRATE.side,
-                       y0 + 2304 + SMALL_CRATE.side), SMALL_CRATE.rise),
+        # (the crate that stood in the middle aisle is gone: the stall's
+        # light pool is there, and the reader counted it among "scattered
+        # props")
         (LARGE_CRATE, (x1 - 256 - LARGE_CRATE.side, y0 + 2048,
                        x1 - 256, y0 + 2048 + LARGE_CRATE.side),
          LARGE_CRATE.rise),

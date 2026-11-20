@@ -239,6 +239,12 @@ def dress(city, ctx) -> dict:
         connector=canteen, wall_picnum=2453)
     griddle.surfaces(floor_picnum=376, ceiling_picnum=140, ceiling_shade=12,
                      floor_shade=4)
+    # The kitchen's shelf: a niche let into the west wall beside the pans,
+    # Blood's stocked shelf (`fixtures.shelf_niche`, E1M2 s213), holding the
+    # cook's jars and jugs (`goods.ROWS`).
+    import templates
+    fixtures.shelf_niche(main, templates._shelf_id(main), "west", width=2048,
+                         at=0.5, sells="kitchen")
     placed["rooms"] += [main.region_id, back.region_id]
 
     # The door: z-motion, push-to-use, marquee flicker on its own sector.
@@ -427,7 +433,7 @@ def dress_canteen(layout, dressing) -> list[str]:
                              **_transcribed("E1M2", type_id, tile))
         out.append(f"canteen:{pid}")
     layout.place_on_wall("canteen:extinguisher", main,
-                         a1=west[0], a2=west[1], t=0.62,
+                         a1=west[0], a2=west[1], t=0.82,
                          height_player_heights=1.1, offset_player_widths=0.04,
                          **_transcribed("E1M2", 416, 658))
     out.append("canteen:extinguisher")

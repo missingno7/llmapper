@@ -1,0 +1,37 @@
+{
+ "market_hall": {
+  "notes": {
+   "A": "Cuts and bottles line the counter against brick, but the hanging carcass is cropped.",
+   "B": "The pitcher and barrel shelves read clearly, but the cropped meat barely identifies the shop.",
+   "C": "Hanging meat and counter goods establish the trade, but the bright jar steals focus.",
+   "D": "Hanging cuts, counter, shelves, and aisle read together, though the nearest carcass hides some stock.",
+   "E": "Hanging cuts and the tiled aisle are visible, but a huge foreground carcass blocks shelving.",
+   "F": "The aisle explains the layout, but the long shelf crowds the meat counter.",
+   "G": "The floor and endcap show the layout, but the butcher counter recedes into shadow.",
+   "H": "The shelf top dominates, pushing the meat counter and hanging cuts to the right edge."
+  },
+  "place": "Indoor meat market",
+  "rank": [
+   "D",
+   "F",
+   "C",
+   "A",
+   "B",
+   "E",
+   "G",
+   "H"
+  ],
+  "best": "The diagonal view ties hanging cuts, the long sales counter, stocked shelves, and the checkerboard aisle into one readable scene.",
+  "lacks": "The dim, even lighting gives the meat display little emphasis, so the market\u2019s defining feature blends into the surrounding stock.",
+  "fix": "Add one warm overhead light that picks out the hanging cuts and the counter directly beneath them.",
+  "ok": true,
+  "blind_name": {
+   "name": "Butcher\u2019s stall",
+   "sure": 5,
+   "why": "Skinned carcasses hang above a wooden counter, with stocked shelves and crates behind it.",
+   "odd": "The bottle labels are too pixelated to read.",
+   "recognised": false
+  },
+  "winner": "market_hall-10-1280-16960-84"
+ }
+}

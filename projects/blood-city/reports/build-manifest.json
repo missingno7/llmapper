@@ -843,10 +843,9 @@
     ]
   },
   "goods": {
-    "placed": 135,
-    "tiles": 48,
+    "placed": 150,
+    "tiles": 47,
     "refused": [
-      "market_hall_display_side_2_2937: no room for a roast at (6451, 41344)",
       "gravesend_arcade_unit_a_window_0_1013: no room for a vase of dried flowers at (42432, 44160)",
       "saloon/back east: no room for portrait of a ghoul",
       "pawn_shop/shop west: no room for snake panel",
@@ -1273,17 +1272,18 @@
     "agrees": true
   },
   "lighting": {
-    "lights": 52,
-    "rays_cast": 913376,
-    "surfaces_lit": 1188,
-    "surfaces_protected": 445,
-    "walls_lit": 1201,
+    "lights": 53,
+    "rays_cast": 916434,
+    "surfaces_lit": 1175,
+    "surfaces_protected": 455,
+    "walls_lit": 1200,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
       "light:gravesend/theatre_row/pawn_shop/vault:pledge_lamp",
       "light:gravesend/foundry_ward/pump_station/gallery:gallery_lamp",
       "light:gravesend/market_slip/quay/ship_deck:ship_lamp",
+      "light:gravesend/market_slip/market_hall/supermarket:stall_lamp",
       "light:sewer:brazier_0",
       "light:sewer:brazier_1",
       "light:sewer:brazier_2",
@@ -1338,6 +1338,7 @@
       "light:gravesend/theatre_row/pawn_shop/vault:pledge_lamp": 1.0,
       "light:gravesend/foundry_ward/pump_station/gallery:gallery_lamp": 1.0,
       "light:gravesend/market_slip/quay/ship_deck:ship_lamp": 1.0,
+      "light:gravesend/market_slip/market_hall/supermarket:stall_lamp": 1.0,
       "light:sewer:brazier_0": 1.0,
       "light:sewer:brazier_1": 1.0,
       "light:sewer:brazier_2": 1.0,
@@ -1414,7 +1415,7 @@
     }
   },
   "split_bands": {
-    "pegged": 37,
+    "pegged": 38,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
@@ -1426,7 +1427,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 874,
+    "sprites": 897,
     "wall_sprites": 445,
     "planes": 97,
     "clashing_pairs": 4,
@@ -2484,35 +2485,35 @@
     ]
   },
   "rules": {
-    "total": 1110,
+    "total": 1120,
     "by_severity": {
-      "note": 1090,
+      "note": 1104,
       "warning": 6,
-      "error": 14
+      "error": 10
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 129,
+      "note:sprite-drawn-square": 132,
       "note:floor-aligned-sprite-rests-on-a-surface": 23,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 80,
+      "note:opening-clears-a-standing-body": 82,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "error:tile-sits-in-an-attested-slot": 14,
-      "note:wall-draws-its-own-tile": 847,
+      "error:tile-sits-in-an-attested-slot": 10,
+      "note:wall-draws-its-own-tile": 856,
       "warning:wall-tile-is-drawn-somewhere": 4
     },
     "open": [
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2032",
+        "at": "wall 2034",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 261 and 172"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2077",
+        "at": "wall 2079",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 268 and 172"
       },
       {
@@ -2524,20 +2525,8 @@
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[485].ceiling",
+        "at": "sector[486].ceiling",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[487].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[487].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
@@ -2554,14 +2543,14 @@
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[491].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
+        "at": "sector[489].floor",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[491].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
+        "at": "sector[489].ceiling",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
@@ -2578,26 +2567,14 @@
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1916]",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
+        "at": "sector[493].floor",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1917]",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1918]",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1919]",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
+        "at": "sector[493].ceiling",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "warning",
@@ -2615,7 +2592,7 @@
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[194]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2174, 2226) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2176, 2228) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       },
       {
         "severity": "warning",
@@ -2636,13 +2613,13 @@
     "as_readback_differences": [
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (121, 124, 131, 167, 169) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (655, 661, 662, 673, 737, 738) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (2174, 2226) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (2176, 2228) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (237, 242, 256) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 727,
+      "sprites": 750,
       "sunk": 0.0,
       "through": 0.001,
       "squeezed": 0.0
@@ -2650,7 +2627,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 677,
+        "sprite": 685,
         "tile": 793,
         "sector": 27
       }
@@ -2830,28 +2807,28 @@
         "wall_tiles": [
           [
             150,
-            0.685
-          ],
-          [
-            28,
-            0.149
-          ],
-          [
-            2453,
-            0.103
+            0.589
           ],
           [
             20,
-            0.047
+            0.164
+          ],
+          [
+            28,
+            0.137
+          ],
+          [
+            2453,
+            0.095
           ]
         ],
         "shade_spread": 12,
         "metres": [
-          7.0,
+          7.6,
           8.8,
           3.5
         ],
-        "free_floor_share": 0.81,
+        "free_floor_share": 0.78,
         "cramped": [],
         "relations": [],
         "study": "ratdogs-stand"

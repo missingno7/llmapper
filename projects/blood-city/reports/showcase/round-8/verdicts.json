@@ -1,0 +1,37 @@
+{
+ "market_hall": {
+  "notes": {
+   "A": "A long aisle shows the counter, but a crate and shelf dominate the view.",
+   "B": "Shows the full counter and surrounding aisles, though the hanging meat looks small.",
+   "C": "Looks down the laden counter, with a broad blank wall competing for space.",
+   "D": "Shows meat and lanterns up close, but one carcass hides much of the room.",
+   "E": "Shows the hanging poultry and counter goods, with cropped carcasses crowding the frame.",
+   "F": "Shows the stocked shelving and aisle layout, with the meat counter barely visible.",
+   "G": "Shows the butcher\u2019s display in context, though the far end fades into dark brick.",
+   "H": "Shows the counter between stocked shelves, but a foreground carcass blocks the aisle."
+  },
+  "place": "Indoor meat market",
+  "rank": [
+   "G",
+   "B",
+   "C",
+   "H",
+   "E",
+   "D",
+   "F",
+   "A"
+  ],
+  "best": "G makes the hanging carcasses, lanterns, butcher\u2019s counter, and stocked shelves readable together.",
+  "lacks": "The hall lacks a recognizable stall frontage. The butcher\u2019s display reads as a table in an aisle of storage shelves.",
+  "fix": "Build a timber-framed butcher\u2019s stall around the existing counter, with an open service front facing the main aisle.",
+  "ok": true,
+  "blind_name": {
+   "name": "Butcher\u2019s stall",
+   "sure": 5,
+   "why": "Large animal carcasses hang above a wooden counter, with stocked shelves and a checkered floor.",
+   "odd": "The smaller tan object hanging between the carcasses is hard to identify.",
+   "recognised": true
+  },
+  "winner": "market_hall-10-1280-16960-84"
+ }
+}

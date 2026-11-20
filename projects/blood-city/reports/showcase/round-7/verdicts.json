@@ -1,0 +1,37 @@
+{
+ "market_hall": {
+  "notes": {
+   "A": "Hanging cuts and lanterns frame the counter, but the nearest carcass blocks half the room.",
+   "B": "Lanterns, stock shelves, and counter goods are legible, but cropped meat crowds the foreground.",
+   "C": "The counter leads past hanging cuts and shelves, but its near end is cropped.",
+   "D": "Stock shelves and aisles dominate, with the butcher\u2019s counter squeezed against the left edge.",
+   "E": "Counter and shelving read clearly, though blank wall and ceiling take up much of it.",
+   "F": "Open floor and stacked stock establish depth, but a crate dominates the butcher\u2019s area.",
+   "G": "Meat and countertop goods show the trade, but a foreground carcass hides the layout.",
+   "H": "Counter, hanging cuts, and surrounding stock share the frame, though a foreground shelf intrudes."
+  },
+  "place": "Indoor butcher\u2019s market",
+  "rank": [
+   "H",
+   "C",
+   "E",
+   "B",
+   "G",
+   "D",
+   "F",
+   "A"
+  ],
+  "best": "H shows the whole butcher\u2019s counter, hanging meat, stock shelves, and aisles in one readable view.",
+  "lacks": "The counter lacks visual prominence. In the room\u2019s even gloom, the hanging cuts and countertop goods blend into the surrounding stock.",
+  "fix": "Concentrate warm light over the butcher\u2019s counter so the hanging cuts and work surface stand out from the darker aisles.",
+  "ok": true,
+  "blind_name": {
+   "name": "Butcher\u2019s market stall",
+   "sure": 5,
+   "why": "Skinned carcasses hang over a wooden counter, with stocked shelves and crates behind it.",
+   "odd": "The small red objects on the counter are hard to identify.",
+   "recognised": true
+  },
+  "winner": "market_hall-02-0768-16960-66"
+ }
+}

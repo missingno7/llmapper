@@ -23,7 +23,7 @@
   "harbour": {"outdoors": true, "title": "The harbour", "focus": [22.0, 58.0], "radius": 8, "camera_radius": 10,
               "accept": ["harbour", "harbor", "dock", "pier", "quay", "wharf", "jetty", "port", "ship", "boat"]},
   "market_hall": {"title": "The market hall", "focus": [11.0, 44.5], "radius": 4, "camera_radius": 4,
-                  "accept": ["market", "shop", "store", "grocery", "supermarket", "warehouse"]},
+                  "accept": ["market", "shop", "store", "grocery", "supermarket", "warehouse", "butcher", "stall", "deli"]},
   "arcade": {"title": "The arcade", "focus": [45.0, 46.0], "radius": 4, "camera_radius": 4,
              "accept": ["mall", "arcade", "shop", "store", "gallery", "concourse"]},
   "auditorium": {"title": "The Aldermack", "focus": [22.5, 7.5], "radius": 4, "camera_radius": 4,

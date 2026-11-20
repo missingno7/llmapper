@@ -159,6 +159,19 @@ result.
   as a grey prep island, not a flat-top grill, and the yard's hatch is easy
   to miss ("a brightly lit awning"). Not walked.
 
+- The market hall (owner: "focus on something else in the city ... free
+  hand"). Picked because the showcase's blind reader did not recognise it
+  (round 2: "tiled room with central counter"). Two faults of naming, not
+  of taste: its grocer's windows held tile 2937 as "a roast" (the owner's
+  "dead cultist"), and its east shelf bank wore 202 (the owner's "worn
+  wall/facade texture"), which is the "barrier" the reader saw. The middle
+  bank is a half-body market stall now, stocked from both aisles, with E3M2's
+  carcasses hanging over it and two chain lamps (641), on a lit floor pool;
+  the aisles are a step darker. Rounds 5-8: "indoor meat market", blind
+  "butcher's stall", sure 5, four rounds running. Next said: a timber-framed
+  stall front. `tests/test_goods_names.py` now holds every goods name to the
+  owner's word, and `templates.tile_is` refuses a shelf that is not one.
+
 **Open, said in the same walk and not done**
 
 - The avenue mouth of the underpass cut the facade's painted windows. After

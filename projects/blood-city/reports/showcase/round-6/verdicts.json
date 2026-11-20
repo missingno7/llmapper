@@ -1,0 +1,37 @@
+{
+ "market_hall": {
+  "notes": {
+   "A": "The diagonal reveals the counter and shelves, but overlapping carcasses crowd the far end.",
+   "B": "Lanterns, hanging meat and the tabletop are visible, but one enormous carcass blocks the aisle.",
+   "C": "The counter leads through the hall, though the nearest carcass hides much of the shelving.",
+   "D": "Stocked shelves and earthenware are clear, but the butcher display is clipped at the edge.",
+   "E": "Meat and jars give the counter character, but the tight crop loses the hall\u2019s layout.",
+   "F": "The wide view connects counter, carcasses and shelves, though a dark shelf intrudes at lower left.",
+   "G": "The open aisle clarifies the layout, but a large crate competes with the butcher display.",
+   "H": "Hanging cuts and tabletop goods give it depth, but the nearest carcass obscures the aisle."
+  },
+  "place": "Indoor butcher\u2019s market",
+  "rank": [
+   "F",
+   "C",
+   "A",
+   "H",
+   "E",
+   "G",
+   "D",
+   "B"
+  ],
+  "best": "F shows the full butcher\u2019s counter, hanging cuts, stocked shelves and aisles in one readable view.",
+  "lacks": "The hall lacks a clear focal point. The butcher\u2019s display blends into the shelves and crates under uniformly dim lighting.",
+  "fix": "Cast a warm pool of light over the butcher\u2019s counter and hanging cuts so they draw the eye from across the hall.",
+  "ok": true,
+  "blind_name": {
+   "name": "Butcher\u2019s market stall",
+   "sure": 5,
+   "why": "Meat carcasses hang from chains above a wooden counter, with shelves and crates behind it.",
+   "odd": "nothing",
+   "recognised": true
+  },
+  "winner": "market_hall-02-0768-16960-66"
+ }
+}
