@@ -95,6 +95,17 @@ kitchen wall moved to the west wall beside the counter), and the freezer
 moved north into the place of the rail-yard backdrop box, 4,096 by 1,792,
 with no window. The build no longer calls the place cramped.
 
+## The counter, from the showcase (2026-11-20, later)
+
+The blind showcase reader (`tools.showcase`, rounds 1-2) read the iron
+island as "a crate": a quarter-body block with no customer side. Blood's
+fixtures carry things at half a body (`fixtures.BAR`, 8,192, wood top 34);
+the counter is one such run with stools along it, and the kitchen behind it
+has a griddle range (E1M4's iron) under E1M2's pans. With the counter
+alone, the signs-hidden reader said "bar interior"; with the griddle,
+"diner counter". Rats on a counter read as vermin before they read as food:
+a grill has to look hot to cook them (open).
+
 ## What was built (2026-11-20)
 
 `l3_foundry.dress` restyles `main` and `back` and adds `freezer_door`;

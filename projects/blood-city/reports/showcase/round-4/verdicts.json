@@ -1,0 +1,37 @@
+{
+ "ratdogs": {
+  "notes": {
+   "A": "The long counter and checkerboard floor establish the diner, but the bare wall dominates.",
+   "B": "Foreground rats have real presence, but the close crop cuts out the seating.",
+   "C": "The tables and both counters explain the layout, but the rats are easy to miss.",
+   "D": "A rat, a can and hanging pans set the scene, but the near wall crowds it.",
+   "E": "The cleaver and rats suggest what\u2019s on the menu, but the seating is mostly cropped.",
+   "F": "The aisle shows how the counters fit together, but the window draws attention past them.",
+   "G": "The rats stand out on the metal counter, but the tight view loses the diner.",
+   "H": "Stools, tables and rat-covered counters tell the whole story, though the rats are small."
+  },
+  "place": "Rat-infested diner",
+  "rank": [
+   "H",
+   "E",
+   "C",
+   "F",
+   "B",
+   "D",
+   "G",
+   "A"
+  ],
+  "best": "The stools, tables, rat-covered counters and hanging pans show the diner and its infestation in one frame.",
+  "lacks": "The prep area lacks a recognizable cooking station. The rats give it character, but the plain counters give them little context.",
+  "fix": "Replace the gray prep island with a grease-stained flat-top grill, with a rat carcass on the cooking surface.",
+  "ok": true,
+  "blind_name": {
+   "name": "Diner counter",
+   "sure": 5,
+   "why": "A wooden service counter, red stools, round tables, checkerboard flooring, and hanging pans suggest a diner.",
+   "odd": "The objects on the counter are hard to identify.",
+   "recognised": true
+  },
+  "winner": "ratdogs-16-0768-0-100"
+ }
+}

@@ -146,6 +146,19 @@ result.
   rail-yard backdrop box, so it has no window onto the sky. The facades and
   the yard are unchanged. Not walked.
 
+- "Back to RAT DOGS" (after the showcase). The showcase's blind reader said
+  of the old iron island, in rounds 1 and 2, "the low grill reads as a
+  box ... no clear place to order or eat", and of the yard "add a small Rat
+  Dogs outdoor seating area". The counter is Blood's half-body wooden bar
+  (`fixtures.BAR`) running south from a pass, on the door's left, with
+  stools along its face and the cleaver and rats on it; the kitchen behind
+  it has a griddle range under the pans (iron 376, fans over it); two
+  stand-up tables stand out in the yard. Round 3 (counter only): "rat-meat
+  diner", but blind "bar interior"; round 4 (griddle added): "rat-infested
+  diner", blind "diner counter", recognised. Still said: the griddle reads
+  as a grey prep island, not a flat-top grill, and the yard's hatch is easy
+  to miss ("a brightly lit awning"). Not walked.
+
 **Open, said in the same walk and not done**
 
 - The avenue mouth of the underpass cut the facade's painted windows. After

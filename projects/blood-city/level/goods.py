@@ -137,7 +137,9 @@ ON_TOP = [
     ("gravesend_arcade/unit_a_window", [(1013, 0.5, 0.5)]),
     ("gravesend_arcade/unit_d_window", [(739, 0.5, 0.5)]),
     # the canteen, and the altar
-    ("foundry_ward/canteen/counter", [(802, 0.5, 0.3), (604, 0.5, 0.7)]),
+    # (RAT DOGS' counter is a bar run now; the rats and the cleaver hold its
+    # middle, so the stock stands at its ends)
+    ("canteen/main/canteen_counter/canteen_counter_0", [(802, 0.5, 0.12), (604, 0.5, 0.9)]),
     ("st_gallows/altar_mensa", [(938, 0.25, 0.5), (938, 0.75, 0.5)]),
 ]
 

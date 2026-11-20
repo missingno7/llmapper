@@ -1,0 +1,72 @@
+{
+ "works_yard": {
+  "notes": {
+   "A": "The close-up reveals rats on the counter and crops away almost the entire yard.",
+   "B": "The lamp dominates the foreground, drawing attention away from the patron and serving window.",
+   "C": "The high angle maps the courtyard, with the tower swallowing much of the view.",
+   "D": "The sign and checkerboard interior identify the snack bar, while the framing loses the courtyard.",
+   "E": "Tables, a lamp and two figures show courtyard life. The snack bar is clipped.",
+   "F": "The shop, tables and lamp read clearly. A blank passage wall dominates the left.",
+   "G": "The serving window and tables establish the courtyard\u2019s purpose. The tower crowds the right.",
+   "H": "The passage and tower frame the yard. Empty paving makes the snack bar feel distant."
+  },
+  "place": "Rat Dogs snack bar courtyard",
+  "rank": [
+   "G",
+   "H",
+   "F",
+   "E",
+   "C",
+   "D",
+   "B",
+   "A"
+  ],
+  "best": "The Rat Dogs window, tables, lamp and robed figures give the yard character, and the round tower anchors it.",
+  "lacks": "The courtyard lacks a focal point. Its serving hatch is easy to miss amid repeated windows, dark paving and scattered tables.",
+  "fix": "Extend the Rat Dogs counter into the yard beneath a brightly lit awning so the snack bar becomes the courtyard\u2019s focal point.",
+  "ok": true,
+  "blind_name": {
+   "name": "Cobblestone courtyard",
+   "sure": 5,
+   "why": "A lamppost and two stools stand on cobblestones between brick and stone buildings.",
+   "odd": "Deep shadows obscure the passage behind the lamppost.",
+   "recognised": true
+  },
+  "winner": "works_yard-04-1712-16960-84"
+ },
+ "ratdogs": {
+  "notes": {
+   "A": "The counter and street creature share the frame, but the creature is squeezed against the edge.",
+   "B": "Tables and a metal door establish the layout, but the cleaver is clipped.",
+   "C": "Stools and rats line the counter, but the near wall takes up a third.",
+   "D": "The cleaver, rats, and seating read clearly, but the gray door pulls attention away.",
+   "E": "The cleaver and rats tell the story beside the street opening, but seating disappears.",
+   "F": "The counter, seats, and hanging pans establish the diner, though foreground stools are cut off.",
+   "G": "Tables and the counter establish the room, but a long blank wall dominates.",
+   "H": "The rat and handwashing sign make a good joke, but the close-up hides the layout."
+  },
+  "place": "Rat-meat diner",
+  "rank": [
+   "F",
+   "E",
+   "D",
+   "A",
+   "H",
+   "C",
+   "B",
+   "G"
+  ],
+  "best": "F shows the rat-strewn counter, stools, checkerboard dining area, and kitchen signs together, making the diner\u2019s identity clear.",
+  "lacks": "The diner has no visible cooking station to connect the rats and cleaver to what\u2019s being served.",
+  "fix": "Build a greasy griddle behind the counter with rat skewers visibly cooking on it.",
+  "ok": true,
+  "blind_name": {
+   "name": "Bar interior",
+   "sure": 5,
+   "why": "A long wooden counter, red bar stools, and round pedestal tables sit on a checkered floor.",
+   "odd": "The small objects on the counter are hard to identify.",
+   "recognised": false
+  },
+  "winner": "ratdogs-16-0768-0-100"
+ }
+}

@@ -52,6 +52,9 @@ HATCH_SILL = 8192
 HATCH_CLEAR = CANTEEN_DOOR_H - HATCH_SILL
 #: The dine-in, north to south: its own 2,560 and the old back room's 2,048.
 DINE_DEEP = 4608
+#: The kitchen is the strip west of the counter, the hatch's width and more;
+#: the pass is the room the counter leaves at its north end for the cook.
+KITCHEN_W, COUNTER_PASS = 2048, 1792
 #: The freezer: two bays north of the dine-in, less a door's thickness.
 FREEZER_DEEP = 1792
 JAMB_TILE = 170
@@ -202,25 +205,40 @@ def dress(city, ctx) -> dict:
     canteen.connect(freezer_door.face("south"), main.face("north"),
                     connection_id="connection:canteen_back")
 
-    # Counter: geometry at rise 4096 (VP), an island in the main room.
-    grown = DINE_DEEP - 2560          # the counter stays where it stood
-    main.carve([(512, 512 + grown), (1536, 512 + grown), (1536, 2048 + grown),
-                (512, 2048 + grown)])
-    counter = canteen.room(
-        "counter", [(0, 0), (1024, 0), (1024, 1536), (0, 1536)],
-        role="detail", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 512, main_y1 - 512 - 2560 + 512),
-        note="the counter, rise 4096 (VP shop)",
-    )
-    counter.surfaces(floor_z=GRADE - 4096, clear_height=28672)
-    for face in ("north", "east", "south", "west"):
-        canteen.connect(counter.face(face), main.face("north"),
-                        connection_id=f"connection:counter_rim_{face}")
-    # The serving counter is the cook's: its top is the grill's ribbed iron.
-    counter.surfaces(floor_picnum=376, wall_picnum=2453, ceiling_picnum=140,
-                     ceiling_shade=12)
-    # (the wooden block that stood here as a table is gone: the tables are
-    # E1M2's round ones now, placed in `sprinkle`)
+    # THE COUNTER. It was an iron island a quarter of a body high in the
+    # middle of the floor, and the showcase's blind reader said of it, in
+    # both rounds: "the low grill reads as a box ... there's no clear place
+    # to order or eat" (`reports/showcase/round-2/showcase.md`). It is a
+    # serving counter now: Blood's own (`fixtures.BAR`, half a body, wood
+    # top 34, plank face 28), one run from the south wall to within a pass
+    # of the north, on the door's left as you come in. West of it is the
+    # kitchen: the hatch and its grill, the pans and the sign on its wall.
+    # East of it the customers stand, on stools along its face.
+    import fixtures
+    counter_run = fixtures.run_along(
+        "canteen_counter", main, axis="y",
+        start=main_y0 + COUNTER_PASS, end=main_y0 + DINE_DEEP - 256,
+        across0=main_x0 + KITCHEN_W, across1=main_x0 + KITCHEN_W + fixtures.BAR.depth,
+        family="bar", material=shop, grade=GRADE, host_clear=32768,
+        connector=canteen, whole=True, wall_picnum=fixtures.BAR_FACE)
+    counter = counter_run.children[0]
+    # The block's own sector runs to the room's ceiling: give it the hall's,
+    # or a dark slab of the stand's ceiling hangs over the counter.
+    counter.surfaces(ceiling_picnum=140, ceiling_shade=12)
+    # THE GRIDDLE. Showcase round 3, with the counter built: "the diner has
+    # no visible cooking station to connect the rats and cleaver to what's
+    # being served", and with the signs hidden the room was "a bar". The
+    # cook's range stands in the kitchen under the pans, a counter's height
+    # and E1M4's grill on top (ribbed iron 376 over riveted metal 2453, the
+    # stand's own), so the rats are seen cooking from the dine-in.
+    griddle = fixtures.place(
+        "canteen_griddle", main,
+        (main_x0 + 512, main_y0 + DINE_DEEP - 1792,
+         main_x0 + 512 + fixtures.BAR.depth, main_y0 + DINE_DEEP - 256),
+        shop, family="bar", grade=GRADE, host_clear=32768,
+        connector=canteen, wall_picnum=2453)
+    griddle.surfaces(floor_picnum=376, ceiling_picnum=140, ceiling_shade=12,
+                     floor_shade=4)
     placed["rooms"] += [main.region_id, back.region_id]
 
     # The door: z-motion, push-to-use, marquee flicker on its own sector.
@@ -345,6 +363,7 @@ def dress(city, ctx) -> dict:
 
     return {"placed": placed, "canteen_door": door.region_id,
             "hatch": hatch.region_id, "counter": counter.region_id,
+            "griddle": griddle.region_id,
             "freezer_world": (main_x0, main_y0 - 2048),
             "main_world": (main_x0, main_y0),
             "cart": cart.region_id, "cart_world": (cart_x0, cart_y0),
@@ -376,11 +395,12 @@ def dress_canteen(layout, dressing) -> list[str]:
     fx0, fy0 = dressing["freezer_world"]
 
     # The dine-in: E1M2's buffet tables (649, s185), round, on a pedestal,
-    # stood clear of the counter (the room's west half, its south end), of
-    # the way in from the door (south-east) and of the freezer door (north,
-    # middle). E1M2 stands three in 39 M; this room is about 19 M, so five.
-    for index, local in enumerate(((0.3, 0.3), (0.58, 0.4), (0.86, 0.24),
-                                   (0.62, 0.72), (0.86, 0.56))):
+    # in the hall north of the counter and east of its pass, clear of the
+    # way in from the door (south-east) and of the freezer door (north,
+    # middle). E1M2 stands three in 39 M; the customers' side here is about
+    # 10 M with the stools along the counter, so four.
+    for index, local in enumerate(((0.15, 0.2), (0.38, 0.25), (0.86, 0.2),
+                                   (0.84, 0.42))):
         layout.place_on_floor(f"canteen:table_{index}", main, local=local,
                               **_transcribed("E1M2", 417, 649))
         out.append(f"canteen:table_{index}")
@@ -411,6 +431,27 @@ def dress_canteen(layout, dressing) -> list[str]:
                          height_player_heights=1.1, offset_player_widths=0.04,
                          **_transcribed("E1M2", 416, 658))
     out.append("canteen:extinguisher")
+
+    # The customers' side of the counter: the saloon's stools (DWE3M1's,
+    # 768 apart), a stool's width off the counter's east face; and on the
+    # counter, E1M2's cleaver (2139) where its kitchen counter keeps one.
+    import l3_theatre
+    from fixtures import BAR
+    front = mx0 + KITCHEN_W + BAR.depth + 320
+    for index, y in enumerate(range(my0 + COUNTER_PASS + 640,
+                                    my0 + DINE_DEEP - 512, l3_theatre.STOOL_PITCH)):
+        local = ((front - mx0) / 4096, (y - my0) / DINE_DEEP)
+        layout.place_on_floor(f"canteen:stool_{index}", main, local=local,
+                              height_player_heights=l3_theatre.STOOL_LIFT / 16960.0,
+                              **l3_theatre.STOOL)
+        out.append(f"canteen:stool_{index}")
+    # E1M2 draws it centred (cstat 128) with its centre 2,304 over the
+    # counter top (sprite in s153: z -29952 over a floor at -27648), so the
+    # blade stands in the wood; so does ours.
+    layout.place_on_floor("canteen:cleaver", dressing["counter"], local=(0.5, 0.5),
+                          height_player_heights=2304 / 16960,
+                          **_transcribed_tile("E1M2", 2139))
+    out.append("canteen:cleaver")
 
     # The freezer: E1M3's carcasses on hooks (1351, one plucked 1350) over
     # its blood pools (1417, 1413, 732), each with the drip generator E1M3
@@ -587,7 +628,8 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
            "shade": 0, "type": 0, "status": 0}
     for place, region, spots in (
             ("grill", dressing["hatch"], (0.2, 0.55, 0.82)),
-            ("counter", dressing["counter"], (0.3, 0.7))):
+            ("counter", dressing["counter"], (0.3, 0.7)),
+            ("griddle", dressing["griddle"], (0.2, 0.5, 0.8))):
         for index, u in enumerate(spots):
             local = (u, 0.5) if place == "grill" else (0.5, u)
             rat = dict(rat_on_grill, picnum=1744 if index == 1 else 1743,
@@ -602,6 +644,10 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
         layout.place_on_ceiling(f"ratdogs:fan_{index}", dressing["hatch"],
                                 local=(u, 0.5), **fan)
         out.append(f"ratdogs:fan_{index}")
+    for index, u in enumerate((0.3, 0.7)):
+        layout.place_on_ceiling(f"ratdogs:griddle_fan_{index}", dressing["griddle"],
+                                local=(0.5, u), **fan)
+        out.append(f"ratdogs:griddle_fan_{index}")
     # The kitchen's light is E1M4's: a fluorescent tube laid flat on the
     # ceiling (796, its s170), over the counter.
     layout.place_on_ceiling(
@@ -645,4 +691,17 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
         a1=(yard_x0 + 1024, yard_y0), a2=(yard_x0 + 2048, yard_y0),
         t=0.93, height_player_heights=YARD_LAMP_HEIGHT, **YARD_LAMP)
     out += ["lamp:stair_mouth", "lamp:canteen_door"]
+
+    # RAT DOGS comes out into the yard. The showcase's reader, of the yard
+    # (round 2): "the courtyard has little purpose beyond passage ... add a
+    # small Rat Dogs outdoor seating area". Two of the dine-in's stand-up
+    # tables stand out on the paving, clear of the way to the hatch and of
+    # the works wall (the table is 720 across), where a works hand eats what
+    # he bought through it.
+    table = _transcribed("E1M2", 417, 649)
+    for index, (x, y) in enumerate(((yard_x0 + 448, yard_y0 + 2432),
+                                    (yard_x0 + 1664, yard_y0 + 2048))):
+        layout.add_sprite(f"ratdogs:yard_table_{index}", street_region, x=x, y=y,
+                          z=int(layout.regions[street_region].floor_z), **table)
+        out.append(f"ratdogs:yard_table_{index}")
     return out

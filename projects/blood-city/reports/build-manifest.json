@@ -1107,16 +1107,16 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 249",
-          "sprite 250"
+          "sprite 262",
+          "sprite 263"
         ],
         "answers": [
           "sector 93",
           "sector 94",
           "sector 95",
-          "sprite 251",
-          "sprite 252",
-          "sprite 253"
+          "sprite 264",
+          "sprite 265",
+          "sprite 266"
         ],
         "faults": []
       },
@@ -1126,13 +1126,13 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 319"
+          "sprite 332"
         ],
         "answers": [
-          "sector 203",
-          "sprite 320",
-          "sprite 321",
-          "sprite 322"
+          "sector 204",
+          "sprite 333",
+          "sprite 334",
+          "sprite 335"
         ],
         "faults": []
       },
@@ -1171,10 +1171,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 216"
+          "sprite 229"
         ],
         "answers": [
-          "sector 368"
+          "sector 369"
         ],
         "faults": []
       },
@@ -1184,10 +1184,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 209"
+          "sprite 222"
         ],
         "answers": [
-          "sector 394"
+          "sector 395"
         ],
         "faults": []
       },
@@ -1197,7 +1197,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 210"
+          "sprite 223"
         ],
         "answers": [],
         "faults": []
@@ -1208,7 +1208,7 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 393"
+          "sprite 406"
         ],
         "answers": [
           "sector 9"
@@ -1221,7 +1221,7 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "sprite 394"
+          "sprite 407"
         ],
         "answers": [
           "sector 18"
@@ -1234,7 +1234,7 @@
         "channel": 111,
         "engine": null,
         "senders": [
-          "sprite 395"
+          "sprite 408"
         ],
         "answers": [
           "sector 30"
@@ -1247,7 +1247,7 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 396"
+          "sprite 409"
         ],
         "answers": [
           "sector 32"
@@ -1260,7 +1260,7 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 397"
+          "sprite 410"
         ],
         "answers": [
           "sector 39"
@@ -1274,10 +1274,10 @@
   },
   "lighting": {
     "lights": 52,
-    "rays_cast": 913377,
+    "rays_cast": 913376,
     "surfaces_lit": 1188,
-    "surfaces_protected": 440,
-    "walls_lit": 1196,
+    "surfaces_protected": 445,
+    "walls_lit": 1201,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1426,9 +1426,9 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 861,
-    "wall_sprites": 444,
-    "planes": 96,
+    "sprites": 874,
+    "wall_sprites": 445,
+    "planes": 97,
     "clashing_pairs": 4,
     "sprites_involved": 6,
     "clash_rate_per_100_wall_sprites": 0.9,
@@ -2052,28 +2052,6 @@
       {
         "name": "region:gravesend/foundry_ward/canteen/freezer_door",
         "construct": "z_motion_door",
-        "sector": 155,
-        "sectors": [
-          155
-        ],
-        "sector_type": 600,
-        "state_pair": {
-          "sector": 155,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 32768,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/foundry_ward/canteen/door",
-        "construct": "z_motion_door",
         "sector": 157,
         "sectors": [
           157
@@ -2094,25 +2072,38 @@
         }
       },
       {
+        "name": "region:gravesend/foundry_ward/canteen/door",
+        "construct": "z_motion_door",
+        "sector": 158,
+        "sectors": [
+          158
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 158,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
         "name": "region:gravesend/foundry_ward/canteen/hatch",
         "construct": "sector",
-        "sector": 159,
+        "sector": 160,
         "sectors": [
-          159
+          160
         ],
         "sector_type": 618
       },
       {
         "name": "region:gravesend/market_slip/streets/lightpool_plaza_east",
-        "construct": "sector",
-        "sector": 172,
-        "sectors": [
-          172
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
         "construct": "sector",
         "sector": 173,
         "sectors": [
@@ -2121,15 +2112,24 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
+        "construct": "sector",
+        "sector": 174,
+        "sectors": [
+          174
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/market_slip/gravesend_arcade/entry_door",
         "construct": "z_motion_door",
-        "sector": 200,
+        "sector": 201,
         "sectors": [
-          200
+          201
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 200,
+          "sector": 201,
           "type": 600,
           "measured": [
             "headroom"
@@ -2145,13 +2145,13 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_door",
         "construct": "z_motion_door",
-        "sector": 202,
+        "sector": 203,
         "sectors": [
-          202
+          203
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 202,
+          "sector": 203,
           "type": 600,
           "measured": [
             "headroom"
@@ -2167,9 +2167,9 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal",
         "construct": "z_motion_door",
-        "sector": 203,
+        "sector": 204,
         "sectors": [
-          203
+          204
         ],
         "sector_type": 600,
         "wiring": {
@@ -2179,7 +2179,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 203,
+          "sector": 204,
           "type": 600,
           "measured": [
             "headroom"
@@ -2195,23 +2195,14 @@
       {
         "name": "region:gravesend/market_slip/plaza/fountain/fountain_tier2",
         "construct": "sector",
-        "sector": 210,
+        "sector": 211,
         "sectors": [
-          210
+          211
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/river",
-        "construct": "sector",
-        "sector": 215,
-        "sectors": [
-          215
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/market_slip/quay/sea_1",
         "construct": "sector",
         "sector": 216,
         "sectors": [
@@ -2220,38 +2211,25 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/market_slip/quay/sea_1",
+        "construct": "sector",
+        "sector": 217,
+        "sectors": [
+          217
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/market_slip/quay/sea_2",
         "construct": "sector",
-        "sector": 219,
+        "sector": 220,
         "sectors": [
-          219
+          220
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/market_hall/door",
-        "construct": "z_motion_door",
-        "sector": 272,
-        "sectors": [
-          272
-        ],
-        "sector_type": 600,
-        "state_pair": {
-          "sector": 272,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 32768,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/market_slip/market_hall/staff_door",
         "construct": "z_motion_door",
         "sector": 273,
         "sectors": [
@@ -2273,34 +2251,47 @@
         }
       },
       {
+        "name": "region:gravesend/market_slip/market_hall/staff_door",
+        "construct": "z_motion_door",
+        "sector": 274,
+        "sectors": [
+          274
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 274,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
         "name": "region:gravesend/sewer/trunk/junction",
         "construct": "sector",
-        "sector": 285,
+        "sector": 286,
         "sectors": [
-          285
+          286
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/trunk/main_duct",
         "construct": "sector",
-        "sector": 287,
+        "sector": 288,
         "sectors": [
-          287
+          288
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
-        "construct": "sector",
-        "sector": 291,
-        "sectors": [
-          291
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/cellar_pit_mouth_below",
         "construct": "sector",
         "sector": 292,
         "sectors": [
@@ -2309,7 +2300,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ring/nw_corner",
+        "name": "region:gravesend/sewer/mouths/cellar_pit_mouth_below",
         "construct": "sector",
         "sector": 293,
         "sectors": [
@@ -2318,16 +2309,16 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ring/n_channel",
+        "name": "region:gravesend/sewer/ring/nw_corner",
         "construct": "sector",
-        "sector": 295,
+        "sector": 294,
         "sectors": [
-          295
+          294
         ],
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ring/ne_corner",
+        "name": "region:gravesend/sewer/ring/n_channel",
         "construct": "sector",
         "sector": 296,
         "sectors": [
@@ -2336,16 +2327,16 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ring/se_corner",
+        "name": "region:gravesend/sewer/ring/ne_corner",
         "construct": "sector",
-        "sector": 303,
+        "sector": 297,
         "sectors": [
-          303
+          297
         ],
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ring/s_channel",
+        "name": "region:gravesend/sewer/ring/se_corner",
         "construct": "sector",
         "sector": 304,
         "sectors": [
@@ -2354,25 +2345,25 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/sewer/ring/s_channel",
+        "construct": "sector",
+        "sector": 305,
+        "sectors": [
+          305
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/sewer/ring/sw_corner",
         "construct": "sector",
-        "sector": 306,
+        "sector": 307,
         "sectors": [
-          306
+          307
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/pump_room",
-        "construct": "sector",
-        "sector": 314,
-        "sectors": [
-          314
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/silt_trap",
         "construct": "sector",
         "sector": 315,
         "sectors": [
@@ -2381,7 +2372,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/east_annex",
+        "name": "region:gravesend/sewer/chambers/silt_trap",
         "construct": "sector",
         "sector": 316,
         "sectors": [
@@ -2390,7 +2381,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/flooded",
+        "name": "region:gravesend/sewer/chambers/east_annex",
         "construct": "sector",
         "sector": 317,
         "sectors": [
@@ -2399,7 +2390,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/station_foot",
+        "name": "region:gravesend/sewer/chambers/flooded",
         "construct": "sector",
         "sector": 318,
         "sectors": [
@@ -2408,7 +2399,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/necks/west_adit",
+        "name": "region:gravesend/sewer/chambers/station_foot",
         "construct": "sector",
         "sector": 319,
         "sectors": [
@@ -2417,7 +2408,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/necks/neck_cistern",
+        "name": "region:gravesend/sewer/necks/west_adit",
         "construct": "sector",
         "sector": 320,
         "sectors": [
@@ -2426,11 +2417,20 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/sewer/necks/neck_cistern",
+        "construct": "sector",
+        "sector": 321,
+        "sectors": [
+          321
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 368,
+        "sector": 369,
         "sectors": [
-          368
+          369
         ],
         "sector_type": 600,
         "wiring": {
@@ -2440,7 +2440,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 368,
+          "sector": 369,
           "type": 600,
           "measured": [
             "headroom"
@@ -2456,9 +2456,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 394,
+        "sector": 395,
         "sectors": [
-          394
+          395
         ],
         "sector_type": 600,
         "wiring": {
@@ -2468,7 +2468,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 394,
+          "sector": 395,
           "type": 600,
           "measured": [
             "headroom"
@@ -2484,60 +2484,48 @@
     ]
   },
   "rules": {
-    "total": 1108,
+    "total": 1110,
     "by_severity": {
-      "note": 1088,
+      "note": 1090,
       "warning": 6,
       "error": 14
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 123,
+      "note:sprite-drawn-square": 129,
       "note:floor-aligned-sprite-rests-on-a-surface": 23,
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 80,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
       "error:tile-sits-in-an-attested-slot": 14,
-      "note:wall-draws-its-own-tile": 851,
+      "note:wall-draws-its-own-tile": 847,
       "warning:wall-tile-is-drawn-somewhere": 4
     },
     "open": [
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2024",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 260 and 171"
+        "at": "wall 2032",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 261 and 172"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2069",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 267 and 171"
+        "at": "wall 2077",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 268 and 172"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[394].ceiling",
+        "at": "sector[395].ceiling",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[484].ceiling",
+        "at": "sector[485].ceiling",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[486].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[486].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
@@ -2554,14 +2542,14 @@
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[490].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
+        "at": "sector[488].floor",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[490].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
+        "at": "sector[488].ceiling",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "error",
@@ -2578,25 +2566,37 @@
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1908]",
+        "at": "sector[492].floor",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
+      },
+      {
+        "severity": "error",
+        "code": "tile-sits-in-an-attested-slot",
+        "at": "sector[492].ceiling",
+        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
+      },
+      {
+        "severity": "error",
+        "code": "tile-sits-in-an-attested-slot",
+        "at": "wall[1916]",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1909]",
+        "at": "wall[1917]",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1910]",
+        "at": "wall[1918]",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
       },
       {
         "severity": "error",
         "code": "tile-sits-in-an-attested-slot",
-        "at": "wall[1911]",
+        "at": "wall[1919]",
         "says": "a tile goes in a slot the campaign is attested to use it in -- tile 202 in two_sided_lower; the campaign attests it only in one_sided_middle"
       },
       {
@@ -2615,7 +2615,7 @@
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[194]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2166, 2218) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2174, 2226) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       },
       {
         "severity": "warning",
@@ -2636,13 +2636,13 @@
     "as_readback_differences": [
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (121, 124, 131, 167, 169) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (655, 661, 662, 673, 737, 738) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (2166, 2218) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[194]: authored on 2 wall(s) (2174, 2226) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (237, 242, 256) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 714,
+      "sprites": 727,
       "sunk": 0.0,
       "through": 0.001,
       "squeezed": 0.0
@@ -2650,7 +2650,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 664,
+        "sprite": 677,
         "tile": 793,
         "sector": 27
       }
@@ -2659,8 +2659,8 @@
     "overlaps": [
       {
         "sprites": [
-          359,
-          360
+          372,
+          373
         ],
         "tiles": [
           73,
@@ -2816,9 +2816,9 @@
         "exemplar": "E1M4 s167 (the grill), s170 (the kitchen), s171 (the sign RATDOGS); E1M2 s185/s257 (the buffet and its kitchen wall); E1M3 s305 (the freezer); E3M2 s258 (the butcher and his tools); study canteen-freezer-dining",
         "layers": [
           "second",
+          "trim",
           "flat_art",
           "standing",
-          "levels",
           "light",
           "motion",
           "machines"
@@ -2830,11 +2830,19 @@
         "wall_tiles": [
           [
             150,
-            0.85
+            0.685
+          ],
+          [
+            28,
+            0.149
+          ],
+          [
+            2453,
+            0.103
           ],
           [
             20,
-            0.13
+            0.047
           ]
         ],
         "shade_spread": 12,
@@ -2843,7 +2851,7 @@
           8.8,
           3.5
         ],
-        "free_floor_share": 0.97,
+        "free_floor_share": 0.81,
         "cramped": [],
         "relations": [],
         "study": "ratdogs-stand"

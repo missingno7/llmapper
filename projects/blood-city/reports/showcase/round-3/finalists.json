@@ -1,0 +1,384 @@
+{
+ "works_yard": {
+  "title": "The works yard",
+  "candidates": 865,
+  "rendered": 735,
+  "finalists": [
+   {
+    "id": "works_yard-06-1792-16960-84",
+    "pose": [
+     50432,
+     15872,
+     -24032,
+     1792,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.6897,
+     "things": 9,
+     "variety": 15,
+     "sectors": 6,
+     "dominant": 0.2487,
+     "sky": 0.0,
+     "unwritten": 0.0334
+    },
+    "score": 4.7324,
+    "letter": "A",
+    "measured_rank": 2
+   },
+   {
+    "id": "works_yard-07-1024-16960-84",
+    "pose": [
+     55040,
+     16640,
+     -24032,
+     1024,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.9918,
+     "things": 6,
+     "variety": 12,
+     "sectors": 7,
+     "dominant": 0.195,
+     "sky": 0.0,
+     "unwritten": 0.0085
+    },
+    "score": 4.2017,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "works_yard-16-1590-50880-70",
+    "pose": [
+     51968,
+     23552,
+     -57952,
+     1590,
+     70,
+     117
+    ],
+    "measure": {
+     "subject": 0.9709,
+     "things": 6,
+     "variety": 10,
+     "sectors": 6,
+     "dominant": 0.1745,
+     "sky": 0.0055,
+     "unwritten": 0.0119
+    },
+    "score": 3.2968,
+    "letter": "C",
+    "measured_rank": 8
+   },
+   {
+    "id": "works_yard-14-1536-16960-66",
+    "pose": [
+     51200,
+     17408,
+     -24032,
+     1536,
+     66,
+     117
+    ],
+    "measure": {
+     "subject": 0.9232,
+     "things": 15,
+     "variety": 12,
+     "sectors": 5,
+     "dominant": 0.2377,
+     "sky": 0.0,
+     "unwritten": 0.0102
+    },
+    "score": 4.9235,
+    "letter": "D",
+    "measured_rank": 1
+   },
+   {
+    "id": "works_yard-08-1792-0-100",
+    "pose": [
+     50432,
+     19712,
+     -7072,
+     1792,
+     100,
+     117
+    ],
+    "measure": {
+     "subject": 0.7229,
+     "things": 8,
+     "variety": 11,
+     "sectors": 7,
+     "dominant": 0.3247,
+     "sky": 0.0,
+     "unwritten": 0.0245
+    },
+    "score": 4.2223,
+    "letter": "E",
+    "measured_rank": 4
+   },
+   {
+    "id": "works_yard-15-1536-0-100",
+    "pose": [
+     51200,
+     21248,
+     -7072,
+     1536,
+     100,
+     131
+    ],
+    "measure": {
+     "subject": 0.8476,
+     "things": 6,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.2242,
+     "sky": 0.0015,
+     "unwritten": 0.0151
+    },
+    "score": 3.6087,
+    "letter": "F",
+    "measured_rank": 7
+   },
+   {
+    "id": "works_yard-04-1712-16960-84",
+    "pose": [
+     50432,
+     22784,
+     -24032,
+     1712,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.9036,
+     "things": 6,
+     "variety": 12,
+     "sectors": 8,
+     "dominant": 0.208,
+     "sky": 0.0037,
+     "unwritten": 0.0162
+    },
+    "score": 4.375,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "works_yard-16-1590-0-100",
+    "pose": [
+     51968,
+     23552,
+     -7072,
+     1590,
+     100,
+     117
+    ],
+    "measure": {
+     "subject": 0.9688,
+     "things": 6,
+     "variety": 11,
+     "sectors": 8,
+     "dominant": 0.152,
+     "sky": 0.0083,
+     "unwritten": 0.0105
+    },
+    "score": 4.0456,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ },
+ "ratdogs": {
+  "title": "RAT DOGS",
+  "candidates": 274,
+  "rendered": 274,
+  "finalists": [
+   {
+    "id": "ratdogs-03-0000-0-100",
+    "pose": [
+     49408,
+     14080,
+     -7072,
+     0,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.8835,
+     "things": 13,
+     "variety": 18,
+     "sectors": 6,
+     "dominant": 0.1644,
+     "sky": 0.0,
+     "unwritten": 0.0052
+    },
+    "score": 5.2587,
+    "letter": "A",
+    "measured_rank": 1
+   },
+   {
+    "id": "ratdogs-09-1536-0-100",
+    "pose": [
+     50944,
+     14080,
+     -7072,
+     1536,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 10,
+     "variety": 10,
+     "sectors": 3,
+     "dominant": 0.2133,
+     "sky": 0.0,
+     "unwritten": 0.0081
+    },
+    "score": 3.6221,
+    "letter": "B",
+    "measured_rank": 8
+   },
+   {
+    "id": "ratdogs-17-0512-0-100",
+    "pose": [
+     52480,
+     12544,
+     -7072,
+     512,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.9228,
+     "things": 10,
+     "variety": 13,
+     "sectors": 5,
+     "dominant": 0.2916,
+     "sky": 0.0,
+     "unwritten": 0.0043
+    },
+    "score": 4.9678,
+    "letter": "C",
+    "measured_rank": 3
+   },
+   {
+    "id": "ratdogs-07-1431-0-100",
+    "pose": [
+     52480,
+     14080,
+     -7072,
+     1431,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 11,
+     "variety": 11,
+     "sectors": 3,
+     "dominant": 0.2001,
+     "sky": 0.0,
+     "unwritten": 0.0057
+    },
+    "score": 3.9988,
+    "letter": "D",
+    "measured_rank": 6
+   },
+   {
+    "id": "ratdogs-08-0256-0-100",
+    "pose": [
+     50176,
+     12544,
+     -7072,
+     256,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.8846,
+     "things": 10,
+     "variety": 16,
+     "sectors": 5,
+     "dominant": 0.1741,
+     "sky": 0.0,
+     "unwritten": 0.0042
+    },
+    "score": 4.9685,
+    "letter": "E",
+    "measured_rank": 2
+   },
+   {
+    "id": "ratdogs-16-0768-0-100",
+    "pose": [
+     52480,
+     11008,
+     -7072,
+     768,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.9538,
+     "things": 16,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.1914,
+     "sky": 0.0,
+     "unwritten": 0.0028
+    },
+    "score": 4.5641,
+    "letter": "F",
+    "measured_rank": 5
+   },
+   {
+    "id": "ratdogs-13-0256-0-100",
+    "pose": [
+     50944,
+     11008,
+     -7072,
+     256,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.9851,
+     "things": 10,
+     "variety": 9,
+     "sectors": 5,
+     "dominant": 0.3179,
+     "sky": 0.0,
+     "unwritten": 0.0041
+    },
+    "score": 3.6469,
+    "letter": "G",
+    "measured_rank": 7
+   },
+   {
+    "id": "ratdogs-07-1024-0-100",
+    "pose": [
+     52480,
+     14080,
+     -7072,
+     1024,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.9243,
+     "things": 11,
+     "variety": 13,
+     "sectors": 4,
+     "dominant": 0.2165,
+     "sky": 0.0,
+     "unwritten": 0.0086
+    },
+    "score": 4.6394,
+    "letter": "H",
+    "measured_rank": 4
+   }
+  ]
+ }
+}
