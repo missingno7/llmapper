@@ -166,11 +166,13 @@ class CandidateTests(unittest.TestCase):
              ("transmitter-reports-an-edge", "sector 37"),
              ("transmitter-reports-an-edge", "sector 96"),
              ("texture-continues-across-a-join",
-              "joins[collinear solid-portal].y"),
-             ("tile-sits-in-an-attested-slot", "wall[577]"),
-             ("tile-sits-in-an-attested-slot", "wall[579]"),
-             ("tile-sits-in-an-attested-slot", "wall[593]"),
-             ("tile-sits-in-an-attested-slot", "wall[595]")}
+              "joins[collinear solid-portal].y")}
+    #: (Walls 577, 579, 593 and 595 were known `tile-sits-in-an-attested-slot`
+    #: errors: cobblestone 110 drawn as a masked middle, which the campaign
+    #: never does. Since 2026-11-20 the rule takes wider evidence
+    #: (`bloodmap.tile_contexts`): 18 community maps draw 110 there 50 times,
+    #: so it is a use resting on community evidence, not an accident, and a
+    #: city build lists such uses as `outside-campaign`.)
 
     def test_the_candidate_breaks_no_engine_law(self):
         from bloodmap import rules_blood            # noqa: F401

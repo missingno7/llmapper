@@ -1,0 +1,7 @@
+{
+ "_doc": "The owner's own Blood maps, kept outside the repository (never copied in). Mined as the population 'owner-map' by tools/tile_contexts.py: his practice is evidence second only to his word and the campaign. Only the latest of each series, so near-identical saves do not count twice.",
+ "maps": [
+  {"name": "RABIDN09", "path": "D:/Games/DOS/BLOOD/Maps/RABID/RABIDN09.map", "note": "his city, March 2022 (latest of RABIDN01-09)"},
+  {"name": "RABID", "path": "D:/Games/DOS/BLOOD/Maps/RABID/RABID.map", "note": "his indoor map, February 2022"}
+ ]
+}

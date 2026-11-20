@@ -2502,11 +2502,10 @@
     ]
   },
   "rules": {
-    "total": 1139,
+    "total": 1129,
     "by_severity": {
       "note": 1123,
-      "warning": 6,
-      "error": 10
+      "warning": 6
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
@@ -2516,7 +2515,6 @@
       "note:opening-clears-a-standing-body": 84,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "error:tile-sits-in-an-attested-slot": 10,
       "note:wall-draws-its-own-tile": 875,
       "warning:wall-tile-is-drawn-somewhere": 4
     },
@@ -2532,66 +2530,6 @@
         "code": "wall-between-rooms-is-not-paper",
         "at": "wall 2135",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 276 and 176"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[403].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[499].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[501].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[501].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[502].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[502].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[505].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[505].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[506].floor",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided"
-      },
-      {
-        "severity": "error",
-        "code": "tile-sits-in-an-attested-slot",
-        "at": "sector[506].ceiling",
-        "says": "a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided"
       },
       {
         "severity": "warning",
@@ -2667,6 +2605,420 @@
     "flat_overlaps": [],
     "sunk_actors": [],
     "on_travelling_floor": []
+  },
+  "tile_contexts": {
+    "new": [],
+    "outside": [
+      {
+        "tile": 458,
+        "slot": "two_sided_lower",
+        "place": "outdoors",
+        "count": 27,
+        "source": "community-curated",
+        "maps": 6
+      },
+      {
+        "tile": 438,
+        "slot": "sprite_floor",
+        "place": "outdoors",
+        "count": 20,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 569,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 17,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 147,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 16,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 569,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 16,
+        "source": "community",
+        "maps": 1
+      },
+      {
+        "tile": 834,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 13,
+        "source": "community-curated",
+        "maps": 7
+      },
+      {
+        "tile": 470,
+        "slot": "two_sided_lower",
+        "place": "outdoors",
+        "count": 8,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 3810,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 8,
+        "source": "community-curated",
+        "maps": 9
+      },
+      {
+        "tile": 28,
+        "slot": "floor",
+        "place": "outdoors",
+        "count": 6,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 1743,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 5,
+        "source": "community",
+        "maps": 8
+      },
+      {
+        "tile": 2548,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 3825,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 758,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 4,
+        "source": "community",
+        "maps": 22
+      },
+      {
+        "tile": 925,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 7
+      },
+      {
+        "tile": 1744,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 3,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 517,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 3,
+        "source": "community-curated",
+        "maps": 5
+      },
+      {
+        "tile": 9,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 119,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 8
+      },
+      {
+        "tile": 119,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 14
+      },
+      {
+        "tile": 2294,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 2294,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 11
+      },
+      {
+        "tile": 2139,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 5
+      },
+      {
+        "tile": 506,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 2,
+        "source": "blood-bloodbath",
+        "maps": 1
+      },
+      {
+        "tile": 506,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community",
+        "maps": 16
+      },
+      {
+        "tile": 1165,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 3829,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 3815,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 389,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 588,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community",
+        "maps": 34
+      },
+      {
+        "tile": 3810,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 4
+      },
+      {
+        "tile": 3831,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 579,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 5
+      },
+      {
+        "tile": 346,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 35
+      },
+      {
+        "tile": 470,
+        "slot": "floor",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 502,
+        "slot": "sprite_floor",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 956,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 2304,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 35
+      },
+      {
+        "tile": 2305,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 25
+      },
+      {
+        "tile": 1413,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 30
+      },
+      {
+        "tile": 3824,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 3828,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 3832,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 645,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 32
+      },
+      {
+        "tile": 720,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 30
+      },
+      {
+        "tile": 265,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 54
+      },
+      {
+        "tile": 3830,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 2073,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 2074,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 2075,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 741,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 744,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community",
+        "maps": 53
+      }
+    ],
+    "misfit": []
   },
   "directional_floors": [],
   "character": {

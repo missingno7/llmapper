@@ -5,16 +5,6 @@ violation rates. Requires `bloodmap.rules_blood` to be imported: the
 registry is populated by that import's side effect, so a bare
 `evaluate` returns silence rather than a clean map.
 
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[403].ceiling)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[499].ceiling)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided (sector[501].floor)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[501].ceiling)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided (sector[502].floor)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[502].ceiling)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided (sector[505].floor)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[505].ceiling)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided (sector[506].floor)
-- **error** `tile-sits-in-an-attested-slot` -- a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided (sector[506].ceiling)
 - **note** `blocked-wall-not-invisible-kerb` -- a wall that blocks the player should either show why or stand at a drop they would not try to step -- blocks a 0 step with nothing drawn on it (wall[1745])
 - **note** `blocked-wall-not-invisible-kerb` -- a wall that blocks the player should either show why or stand at a drop they would not try to step -- blocks a 0 step with nothing drawn on it (wall[1759])
 - **note** `floor-aligned-sprite-rests-on-a-surface` -- a flat sprite is a plate and lies on a floor or a ceiling -- flat tile 191 floats 5149 from the nearest surface (sprite[122])

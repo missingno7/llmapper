@@ -235,6 +235,28 @@ def gather() -> dict[str, Any]:
                 item("critique", f"round {critique['round']} has no {reader} reading",
                      place=name, owner="tools/critique.py", see=critique["packet"])
 
+    uses = manifest.get("tile_contexts", {})
+    for row in uses.get("new", []):
+        item("uncatalogued-use",
+             f"tile {row['tile']} as {row['slot']} in {row['place']} ({row['count']}x): "
+             f"no map and no reading shows it there -- record what it is, or fix it",
+             owner="bloodmap/tile_contexts.py",
+             at=f"{row['first'][0]}[{row['first'][1]}]",
+             see=f"python -m tools.tile_contexts show {row['tile']}")
+    for row in uses.get("misfit", []):
+        item("misfit-use",
+             f"tile {row['tile']} as {row['slot']} in {row['place']} ({row['count']}x): "
+             f"recorded as a misfit there -- {row['said'][0]}",
+             owner="bloodmap/tile_contexts.py",
+             at=f"{row['first'][0]}[{row['first'][1]}]",
+             see=f"python -m tools.tile_contexts show {row['tile']}")
+    for row in uses.get("outside", []):
+        item("outside-campaign",
+             f"tile {row['tile']} as {row['slot']} in {row['place']} ({row['count']}x) "
+             f"rests on {row['source']} evidence ({row['maps']} maps), not the campaign's",
+             owner="bloodmap/tile_contexts.py",
+             see=f"python -m tools.tile_contexts show {row['tile']}")
+
     showcase = _showcase()
     for row in showcase:
         if not row["recognised"]:

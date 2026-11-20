@@ -11,6 +11,7 @@ calls for it. Commands are run from the repository root.
 | what a tile is, a part is, how a thing is wired, or where Blood has one | `python -m tools.catalog find <words>` |
 | one whole map: what it says of itself, its rooms, how it is finished, its wiring, how far our readers get | `python -m tools.catalog map E1M1` |
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
+| what a tile is used as in a slot and kind of place, on whose evidence; what to put in a slot; what a map does that nobody has shown; recording what you learn | `python -m tools.tile_contexts show 364`, `where <slot> --place <kind>`, `discover <MAP>`, `record` |
 | one part: engine name, how many, what sets it off, examples, lessons | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
 | a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
 | whether a mechanism visibly works: the same view at rest and fired | `python -m tools.mechanism_look MAP --root "sprite 51" -o work/mech/<name>`, then `python -m tools.critique change work/mech/<name>/pair.json` for blind readers |

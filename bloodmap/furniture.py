@@ -252,11 +252,14 @@ _define(Furniture("tomb", 706, 1 | 128 | 256, "floor", habitat="dry", shade=8))
 # -- the garden -------------------------------------------------------------
 _define(Furniture("statue", 536, 1 | 128 | 256, "floor", habitat="dry", shade=4))
 _define(Furniture("urn", 537, 1 | 128 | 256, "floor", shade=8))
-_define(Furniture("straw", 515, 1 | 128 | 256, "floor", habitat="dry", shade=8,
+_define(Furniture("straw", 515, 32 | 128 | 256, "floor", habitat="dry", shade=8,
                   note="owner-named in the pattern-zoo specification, "
-                       "2026-09-01: a loose tangle of straw. Campaign median "
-                       "height 0.97 player heights, so it is a heap you walk "
-                       "round, not a scatter underfoot"))
+                       "2026-09-01: a loose tangle of straw. LAID FLAT: the "
+                       "campaign floor-aligns all 34 of its straw sprites "
+                       "(E1M2 sprite 118: cstat 416), and no map stands it "
+                       "up outdoors (`tools.tile_contexts show 515`). It was "
+                       "stood up as a 0.97-body heap, which is the picture's "
+                       "height, not anything Blood does with it"))
 
 # -- shop fittings ----------------------------------------------------------
 _define(Furniture("mannequin", 2377, 1 | 128 | 256, "floor", habitat="dry",

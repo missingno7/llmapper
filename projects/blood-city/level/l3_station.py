@@ -244,6 +244,7 @@ BUFFER = (2560, CAR[1] + 256, 3584, CAR[3] - 256)
 POOLS = ((9216, -10752, 10752, -9216), (12544, -10240, 14080, -8704),
          (15872, -10752, 17408, -9216))
 LAMP, WALL_LAMP, CURTAIN = 945, 2183, 147
+STREET_TORCH = 506
 COLUMNS = tuple(HALL[0] + 1024 + k * 2560 for k in range(4))
 BENCHES = ((10240, -12032), (14848, -12032))      # seat's north-west corner
 CAR_DOOR_CHANNEL = wires.channel("station:car-door")
@@ -808,10 +809,13 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     words("STATION", street_region_id, (DOOR[2] + 256, 0),
           (DOOR[2] + 4352, 0), "fascia", 2.2)
     for name, a1, a2, tile, t_at, height, repeat in (
+            #: the campaign's wall torch (506, 186 uses at 1.03 bodies): the
+            #: recessed lamp 2183 is a recorded MISFIT outdoors, "small eye
+            #: symbols" to a blind reader (`tools.tile_contexts show 2183`)
             ("street_lamp_e", (DOOR[2] + 64, 0), (DOOR[2] + 704, 0),
-             WALL_LAMP, 0.5, 2.0, 40),
+             STREET_TORCH, 0.5, 1.03, 64),
             ("street_lamp_w", (DOOR[0] - 704, 0), (DOOR[0] - 64, 0),
-             WALL_LAMP, 0.5, 2.0, 40),
+             STREET_TORCH, 0.5, 1.03, 64),
             ("street_clock", (DOOR[0] - 2304, 0), (DOOR[0] - 768, 0),
              CLOCK["tile"], 0.5, 1.6, CLOCK["x_repeat"])):
         got = wallplane.sprite(

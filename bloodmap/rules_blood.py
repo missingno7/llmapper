@@ -1111,12 +1111,24 @@ def _tiles_sit_in_attested_slots(disk) -> Finding:
     table = load()
     if not table.get("usage"):
         return Finding(0, ())
+    from .tile_contexts import attestation
+
     population = (len(disk.sectors) * 2) + len(disk.walls)
-    found = unattested_uses(disk, table=table)
+    found = []
+    for item in unattested_uses(disk, table=table):
+        # Wider evidence (`bloodmap.tile_contexts`): the owner's own maps,
+        # the curated and community maps counted, an agent's recorded
+        # reading. A use one of them shows is not an accident; the build
+        # lists those as `outside-campaign` instead.
+        if attestation(item["picnum"], item["slot"]) is not None:
+            continue
+        found.append(item)
     return Finding(population, tuple(
         Violation(item["where"],
                   f"tile {item['picnum']} in {item['slot']}; the campaign "
-                  f"attests it only in {', '.join(item['attested'])}")
+                  f"attests it only in {', '.join(item['attested'])}, and no "
+                  f"other map or reading shows it there "
+                  f"(python -m tools.tile_contexts show {item['picnum']})")
         for item in found))
 
 
@@ -1131,7 +1143,10 @@ register(Rule(
         "be the first to do something. What it is not allowed to do is do it "
         "by accident, which is what this catches: shelf goods laid on a "
         "floor, a sprite cut-out painted on a wall, a facade backdrop used "
-        "as bulk fill. An owner anchor's dual_role note is the override. "
+        "as bulk fill. A use the campaign never shows passes when wider "
+        "evidence shows it (bloodmap.tile_contexts: the owner's own maps, the "
+        "curated and community maps, an agent's recorded reading); the owner's "
+        "dual_role notes are contexts there, and attest no slot by themselves. "
         "Walls are judged by the BAND the engine draws (usage-kinds-v2, "
         "bloodmap.render_slots) when that table is present: a tile stored on "
         "a two-sided wall may show on a step, in a mask, or nowhere, and the "

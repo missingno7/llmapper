@@ -809,6 +809,16 @@ def show(what: str) -> str:
                 f"{role} x{row['count']} in {row['maps']} maps"
                 for role, row in usage["roles"].items()))
         lines.append(f"  picture: python -m tools.tile_usage {tile}")
+        # What it is used as, where, on whose evidence (`bloodmap.tile_contexts`):
+        # the strongest few here, all of them with `tile_contexts show`.
+        from bloodmap import tile_contexts as _tc
+        counted = [r for r in _tc.contexts(tile) if r["source"] != "owner"][:6]
+        if counted:
+            lines.append("  contexts: " + "; ".join(
+                f"{r['slot']} in {r['place']} ({r['source']}"
+                + (f", {r['maps']} maps)" if "maps" in r else f": {r['is']})")
+                for r in counted))
+            lines.append(f"  every context: python -m tools.tile_contexts show {tile}")
         if PLACES.exists():
             hits = find_places([], tile, 8)
             labels = place_labels()

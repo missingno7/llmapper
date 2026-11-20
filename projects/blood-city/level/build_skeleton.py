@@ -2279,6 +2279,26 @@ def main() -> int:
                           for o in _lint["flat_overlaps"]],
         "sunk_actors": _lint["sunk_actors"],
         "on_travelling_floor": _lint["on_travelling_floor"]}
+    # What this map does that the campaign and the owner's maps never show
+    # (`bloodmap.tile_contexts.novel`): each is a discovery to catalogue
+    # with `tools.tile_contexts record`, or a mistake to fix. The owner,
+    # 2026-11-20: "agents should be able to discover things, catalogise them
+    # and easily browse them".
+    from bloodmap import tile_contexts as _contexts
+    _novel = _contexts.novel(disk)
+    _new = [r for r in _novel if r["evidence"] is None]
+    _outside = [r for r in _novel if r["evidence"] is not None]
+    ctx["manifest"]["tile_contexts"] = {
+        "new": [{k: r[k] for k in ("tile", "slot", "place", "count", "first")}
+                for r in _new],
+        "outside": [{"tile": r["tile"], "slot": r["slot"], "place": r["place"],
+                     "count": r["count"], "source": r["evidence"]["source"],
+                     "maps": r["evidence"].get("maps")} for r in _outside],
+        "misfit": [{"tile": r["tile"], "slot": r["slot"], "place": r["place"],
+                    "count": r["count"], "first": r["first"], "said": r["misfit"]}
+                   for r in _novel if r.get("misfit")]}
+    print("tile uses nobody has shown:", len(_new), "shown only outside the campaign:",
+          len(_outside), "(python -m tools.tile_contexts discover <MAP>)")
     print("decoration on a travelling floor:",
           len(_lint["on_travelling_floor"]))
     print("sprite fit:", _lint["rates"], "overlapping pairs:",

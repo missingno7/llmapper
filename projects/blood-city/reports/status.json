@@ -2,8 +2,8 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "dac26e7961a64ef44c2afc5921d59a7114df27675db6eb004b8d6c57d7f354f1",
-  "map_sha256": "4f272ec1ccfa9c4c9cd565d3ac25ced5ba16141024ee52eefab82de0da8f2942",
+  "manifest_sha256": "a689fa400daacbecc9a32a4044a22a8c6dd8dea6f9d8bc0f32ddbae6cbf6b5f2",
+  "map_sha256": "2ea8eda9146aefdc49d4c8449eecb5537e2b74f90d0f8e587f66ce282861c1f5",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
@@ -24,8 +24,7 @@
   "read_back_agrees": true,
   "rules": {
    "note": 1123,
-   "warning": 6,
-   "error": 10
+   "warning": 6
   }
  },
  "stages": [
@@ -182,7 +181,7 @@
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2316"
+   "at": "projects/blood-city/level/build_skeleton.py:2336"
   }
  ],
  "finish": {
@@ -1335,6 +1334,363 @@
    "see": "python -m tools.place_character --help"
   },
   {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 458 as two_sided_lower in outdoors (27x) rests on community-curated evidence (6 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 458"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 438 as sprite_floor in outdoors (20x) rests on community evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 438"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 569 as sprite_wall in indoors (17x) rests on community evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 569"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 147 as sprite_wall in outdoors (16x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 147"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 569 as sprite_wall in outdoors (16x) rests on community evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 569"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 834 as sprite_face in indoors (13x) rests on community-curated evidence (7 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 834"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 470 as two_sided_lower in outdoors (8x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 470"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3810 as sprite_wall in indoors (8x) rests on community-curated evidence (9 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3810"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 28 as floor in outdoors (6x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 28"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 1743 as sprite_face in indoors (5x) rests on community evidence (8 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1743"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2548 as sprite_floor in indoors (4x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2548"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3825 as sprite_wall in outdoors (4x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3825"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 758 as sprite_face in outdoors (4x) rests on community evidence (22 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 758"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 925 as sprite_face in outdoors (4x) rests on community-curated evidence (7 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 925"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 1744 as sprite_face in indoors (3x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1744"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 517 as sprite_face in indoors (3x) rests on community-curated evidence (5 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 517"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 9 as ceiling in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 9"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 119 as floor in indoors (2x) rests on community evidence (8 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 119"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 119 as ceiling in indoors (2x) rests on community evidence (14 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 119"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2294 as floor in indoors (2x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2294"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2294 as ceiling in indoors (2x) rests on community evidence (11 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2294"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2139 as sprite_wall in indoors (2x) rests on community-curated evidence (5 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2139"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 506 as sprite_face in outdoors (2x) rests on blood-bloodbath evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 506"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 506 as sprite_wall in outdoors (2x) rests on community evidence (16 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 506"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 1165 as sprite_wall in outdoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1165"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3829 as sprite_wall in outdoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3829"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3815 as sprite_wall in outdoors (2x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3815"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 389 as sprite_wall in outdoors (2x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 389"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 588 as sprite_wall in outdoors (2x) rests on community evidence (34 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 588"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3810 as sprite_wall in outdoors (2x) rests on community-curated evidence (4 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3810"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3831 as sprite_wall in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3831"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 579 as sprite_face in indoors (2x) rests on community-curated evidence (5 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 579"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 346 as floor in indoors (1x) rests on community evidence (35 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 346"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 470 as floor in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 470"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 502 as sprite_floor in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 502"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 956 as sprite_floor in indoors (1x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 956"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2304 as sprite_wall in indoors (1x) rests on community evidence (35 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2304"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2305 as sprite_wall in indoors (1x) rests on community evidence (25 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2305"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 1413 as sprite_floor in indoors (1x) rests on community evidence (30 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1413"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3824 as sprite_wall in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3824"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3828 as sprite_wall in outdoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3828"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3832 as sprite_wall in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3832"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 645 as sprite_wall in indoors (1x) rests on community evidence (32 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 645"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 720 as sprite_wall in indoors (1x) rests on community evidence (30 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 720"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 265 as sprite_wall in indoors (1x) rests on community evidence (54 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 265"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 3830 as sprite_wall in outdoors (1x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 3830"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2073 as sprite_face in indoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2073"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2074 as sprite_face in indoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2074"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2075 as sprite_face in indoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2075"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 741 as sprite_wall in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 741"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 744 as sprite_wall in outdoors (1x) rests on community evidence (53 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 744"
+  },
+  {
    "kind": "unrecognised",
    "place": "The arcade",
    "says": "named \"Ornate hallway with library alcove\" from its best view with signs hidden; the reader's fix: Install a tall, warmly lit freestanding clock in the concourse where shoppers can see it from several storefronts.",
@@ -1356,86 +1712,6 @@
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "wall 2135"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[403].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[499].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[501].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[501].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[502].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[502].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[505].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[505].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[506].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[506].ceiling"
   },
   {
    "kind": "rule-warning",
@@ -1661,8 +1937,8 @@
   "lost-tile": 4,
   "missing-layer": 10,
   "never-critiqued": 7,
+  "outside-campaign": 51,
   "refused": 7,
-  "rule-error": 10,
   "rule-warning": 6,
   "skipped": 6,
   "sprite-overlaps": 1,

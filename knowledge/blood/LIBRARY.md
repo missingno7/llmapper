@@ -9,6 +9,7 @@ rather than tons of texts, it needs to be a real library you can use."
 | Shelf | What an entry is | Id | Where |
 |---|---|---|---|
 | Tiles | what a tile shows (class, layout, a name, themes), the owner's name for it, every way Blood uses it | the tile number | `design/tile-looks/`, `design/owner-anchors-v1.json`, `design/tile-usage-v1.json` |
+| Tile contexts | what a tile is used as, in which slot and kind of place, and whose evidence says so: the owner's word, then counts over the campaign, the owner's own maps, the curated, multiplayer and community maps, then agents' readings; agents add readings as they learn | the tile number, or a slot and a place | `tile-contexts/` (`python -m tools.tile_contexts`) |
 | Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, its member sectors, what works and stands in it (by the Mechanisms keys), and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
@@ -67,6 +68,10 @@ python -m tools.catalog show 1129          # a tile: name, reading, uses, places
 python -m tools.catalog show E1M2:271      # a place: kind, signs, tiles, what works in it
 python -m tools.catalog find lift crypt    # words from two shelves: rooms that are both
 python -m tools.tile_usage 1129            # the tile's picture and every context
+python -m tools.tile_contexts show 364     # a tile's contexts: slot, place, whose evidence
+python -m tools.tile_contexts where two_sided_lower --place church   # what Blood puts there
+python -m tools.tile_contexts discover <MAP>   # what a map does that nobody has shown
+python -m tools.tile_contexts record 364 --slot two_sided_lower --is "..." --evidence "..."
 python -m tools.study station --seed E1M2:271!   # look at a place, start a study
 python -m tools.ideas list --grep curtain  # idea cards
 python -m tools.catalog status             # how much is catalogued

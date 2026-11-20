@@ -90,7 +90,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Rules and knowledge",
      "Graded claims about Blood, the owner's tile readings, and the indexes "
      "over `knowledge/blood/`.",
-     ["rules", "rules_blood", "owner_anchors", "usage_kinds", "curriculum",
+     ["rules", "rules_blood", "owner_anchors", "usage_kinds", "tile_contexts", "curriculum",
       "curriculum_laws", "examples", "assets", "knowledge_index"]),
     ("Evidence loop and observation",
      "Compile a candidate, read it back independently, look at it through "
@@ -146,7 +146,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "
      "the readers that criticise a place.",
      ["catalog", "study", "ideas", "place_character", "tile_naming_sheet",
-      "critique", "critic_bench", "critic_lab"]),
+      "critique", "critic_bench", "critic_lab", "tile_contexts"]),
     ("Decompiling an original map",
      "From one MAP to a project: hierarchy, fact store, review packs, and "
      "the round trip that rebuilds it.",

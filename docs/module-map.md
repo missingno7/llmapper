@@ -223,6 +223,7 @@ Graded claims about Blood, the owner's tile readings, and the indexes over `know
 | `rules_blood` | The rules themselves: claims about Blood, each with somewhere to check it. |
 | `owner_anchors` | The owner's tile readings, as a first-class input. |
 | `usage_kinds` | Where the campaign is attested to use each tile, and the laws that follow. |
+| `tile_contexts` | What a tile is used as, where, and on whose evidence: a catalogue that grows. |
 | `curriculum` | Mine the mechanism tutorials in `maps/blood/mechanism/`. |
 | `curriculum_laws` | The laws the mechanism tutorials teach, each with the citation that made it. |
 | `examples` | Where Blood does each thing: every type, sector effect and taught lesson, with the maps that show it. |
@@ -381,6 +382,7 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | `critique` | Criticism as a process: three readers who cannot be kind by accident. |
 | `critic_bench` | Which model is the best critic? |
 | `critic_lab` | The station as a laboratory: what can a critic tell, and from where? |
+| `tile_contexts` | Discover, catalogue and browse what tiles are used as, where, and on whose evidence. |
 
 ### Decompiling an original map
 
