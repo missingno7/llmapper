@@ -1,0 +1,3547 @@
+{
+ "slug": "canteen-freezer-dining",
+ "want": "a dine-in room and a walk-in freezer behind a works canteen: Blood's freezers (E1M3), meat processing (E3M2) and dining tables",
+ "date": "2026-11-20",
+ "seeds": [
+  {
+   "seed": "E1M3:305!",
+   "map": "maps\\blood\\campaign\\E1M3.MAP",
+   "host": 305,
+   "sectors": [
+    305,
+    306,
+    307
+   ],
+   "metres": [
+    4.8,
+    6.1,
+    2.7
+   ],
+   "area_M": 8.64,
+   "clear_bodies": 1.51,
+   "free_floor_share": 1.0,
+   "shade_spread": 4,
+   "floor": [
+    315,
+    "metal door texture"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     345,
+     0.856,
+     ""
+    ],
+    [
+     156,
+     0.135,
+     "door leaf texture"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 306,
+     "corners": 14,
+     "size": [
+      2816,
+      3072
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 315,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      345
+     ]
+    },
+    {
+     "sector": 307,
+     "corners": 10,
+     "size": [
+      1984,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 315,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      156,
+      195,
+      200,
+      345
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.89
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1350,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.2
+    },
+    {
+     "tile": 1413,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M3_305\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M3_305\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M2:258!",
+   "map": "maps\\blood\\campaign\\E3M2.MAP",
+   "host": 258,
+   "sectors": [
+    117,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    180,
+    201,
+    258,
+    259,
+    260,
+    261
+   ],
+   "metres": [
+    9.1,
+    17.0,
+    7.0
+   ],
+   "area_M": 32.06,
+   "clear_bodies": 3.86,
+   "free_floor_share": 0.87,
+   "shade_spread": 32,
+   "floor": [
+    253,
+    "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+   ],
+   "ceiling": [
+    174,
+    ""
+   ],
+   "walls": [
+    [
+     494,
+     0.186,
+     ""
+    ],
+    [
+     492,
+     0.173,
+     ""
+    ],
+    [
+     491,
+     0.152,
+     "metal plating; can also read as stone"
+    ],
+    [
+     495,
+     0.111,
+     "metal door"
+    ],
+    [
+     90,
+     0.107,
+     "worn large bricks with moss"
+    ],
+    [
+     497,
+     0.097,
+     "technical wall with pipes"
+    ],
+    [
+     21,
+     0.076,
+     "dark vertical planks"
+    ],
+    [
+     436,
+     0.054,
+     "metal threshold"
+    ],
+    [
+     195,
+     0.028,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 117,
+     "corners": 10,
+     "size": [
+      256,
+      4032
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      90,
+      195,
+      495
+     ]
+    },
+    {
+     "sector": 121,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 122,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 123,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 124,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 125,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 126,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 127,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 128,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 1.95,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 180,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      90,
+      195
+     ]
+    },
+    {
+     "sector": 201,
+     "corners": 4,
+     "size": [
+      256,
+      1280
+     ],
+     "rise_bodies": 0.02,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      153
+     ]
+    },
+    {
+     "sector": 259,
+     "corners": 4,
+     "size": [
+      256,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      494
+     ]
+    },
+    {
+     "sector": 260,
+     "corners": 6,
+     "size": [
+      3328,
+      448
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      21,
+      492,
+      494
+     ]
+    },
+    {
+     "sector": 261,
+     "corners": 4,
+     "size": [
+      256,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      21,
+      492,
+      494
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      104,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.49
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.55
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1715,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.0
+    },
+    {
+     "tile": 1708,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.92
+    },
+    {
+     "tile": 1709,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.95
+    },
+    {
+     "tile": 1714,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      112
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.81
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_258\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_258\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M2:306!",
+   "map": "maps\\blood\\campaign\\E3M2.MAP",
+   "host": 306,
+   "sectors": [
+    112,
+    303,
+    306,
+    474
+   ],
+   "metres": [
+    6.4,
+    14.3,
+    7.0
+   ],
+   "area_M": 22.93,
+   "clear_bodies": 3.86,
+   "free_floor_share": 1.0,
+   "shade_spread": 14,
+   "floor": [
+    438,
+    "embossed metal floor"
+   ],
+   "ceiling": [
+    174,
+    ""
+   ],
+   "walls": [
+    [
+     492,
+     0.429,
+     ""
+    ],
+    [
+     488,
+     0.224,
+     ""
+    ],
+    [
+     497,
+     0.216,
+     "technical wall with pipes"
+    ],
+    [
+     495,
+     0.112,
+     "metal door"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 112,
+     "corners": 11,
+     "size": [
+      256,
+      3008
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      195,
+      488,
+      495,
+      497
+     ]
+    },
+    {
+     "sector": 303,
+     "corners": 12,
+     "size": [
+      1536,
+      1792
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      497
+     ]
+    },
+    {
+     "sector": 474,
+     "corners": 5,
+     "size": [
+      1152,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      174
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 10,
+     "repeats": [
+      104,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.49
+    },
+    {
+     "tile": 810,
+     "type": 65,
+     "type_name": "kItemAmmoRemoteBombBundle",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2331,
+     "type": 6,
+     "type_name": "kMarkerLowLink",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.9
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1415,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.2
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_306\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_306\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M2:450!",
+   "map": "maps\\blood\\campaign\\E3M2.MAP",
+   "host": 450,
+   "sectors": [
+    79,
+    80,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    450,
+    555,
+    556
+   ],
+   "metres": [
+    15.2,
+    19.1,
+    5.3
+   ],
+   "area_M": 50.46,
+   "clear_bodies": 2.96,
+   "free_floor_share": 0.92,
+   "shade_spread": 52,
+   "floor": [
+    294,
+    ""
+   ],
+   "ceiling": [
+    296,
+    "grimy tiles"
+   ],
+   "walls": [
+    [
+     130,
+     0.438,
+     "clay wall"
+    ],
+    [
+     2453,
+     0.218,
+     "technical riveted metal cladding"
+    ],
+    [
+     181,
+     0.135,
+     "brick wall"
+    ],
+    [
+     28,
+     0.118,
+     "wooden wall"
+    ],
+    [
+     195,
+     0.067,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 79,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 345,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      2453
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 345,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      2453
+     ]
+    },
+    {
+     "sector": 248,
+     "corners": 4,
+     "size": [
+      3584,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 266,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      28,
+      84
+     ]
+    },
+    {
+     "sector": 249,
+     "corners": 5,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 375,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      262,
+      2453
+     ]
+    },
+    {
+     "sector": 250,
+     "corners": 5,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 375,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      262,
+      2453
+     ]
+    },
+    {
+     "sector": 251,
+     "corners": 5,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 297,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379,
+      492,
+      2453
+     ]
+    },
+    {
+     "sector": 252,
+     "corners": 5,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 375,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      262,
+      2453
+     ]
+    },
+    {
+     "sector": 253,
+     "corners": 5,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 297,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      379,
+      492,
+      2453
+     ]
+    },
+    {
+     "sector": 254,
+     "corners": 5,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 375,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      262,
+      2453
+     ]
+    },
+    {
+     "sector": 555,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 2039,
+     "sloped": false,
+     "type": 604,
+     "wall_tiles": [
+      492,
+      2453
+     ]
+    },
+    {
+     "sector": 556,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      130,
+      195
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2295,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      88,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.1
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.55
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 753,
+     "type": 146,
+     "type_name": "kItemFlagBBase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_450\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E3M2_450\\frames.png"
+   ]
+  },
+  {
+   "seed": "E2M4:613!",
+   "map": "maps\\blood\\campaign\\E2M4.MAP",
+   "host": 613,
+   "sectors": [
+    292,
+    293,
+    295,
+    296,
+    297,
+    298,
+    299,
+    300,
+    301,
+    302,
+    303,
+    314,
+    489,
+    491,
+    493,
+    495,
+    613
+   ],
+   "metres": [
+    17.5,
+    21.3,
+    9.6
+   ],
+   "area_M": 115.47,
+   "clear_bodies": 5.31,
+   "free_floor_share": 0.95,
+   "shade_spread": 24,
+   "floor": [
+    294,
+    ""
+   ],
+   "ceiling": [
+    307,
+    ""
+   ],
+   "walls": [
+    [
+     159,
+     0.408,
+     "crumpled curtain"
+    ],
+    [
+     100,
+     0.326,
+     ""
+    ],
+    [
+     123,
+     0.099,
+     ""
+    ],
+    [
+     43,
+     0.062,
+     "stone"
+    ],
+    [
+     41,
+     0.03,
+     "brown stone"
+    ],
+    [
+     436,
+     0.027,
+     "metal threshold"
+    ],
+    [
+     88,
+     0.024,
+     "wooden column/pilaster with base and capital"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 292,
+     "corners": 4,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 2.17,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      88,
+      473
+     ]
+    },
+    {
+     "sector": 293,
+     "corners": 4,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 2.17,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      88,
+      473
+     ]
+    },
+    {
+     "sector": 295,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 296,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      41,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 297,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      41,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 298,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      41,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 299,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      41,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 300,
+     "corners": 8,
+     "size": [
+      256,
+      2176
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 41,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      88
+     ]
+    },
+    {
+     "sector": 301,
+     "corners": 8,
+     "size": [
+      256,
+      2176
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 41,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      88
+     ]
+    },
+    {
+     "sector": 302,
+     "corners": 4,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      436,
+      473
+     ]
+    },
+    {
+     "sector": 303,
+     "corners": 4,
+     "size": [
+      1536,
+      256
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 300,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      100,
+      473
+     ]
+    },
+    {
+     "sector": 314,
+     "corners": 4,
+     "size": [
+      256,
+      1280
+     ],
+     "rise_bodies": 2.9,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      1011
+     ]
+    },
+    {
+     "sector": 489,
+     "corners": 16,
+     "size": [
+      256,
+      3968
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      159
+     ]
+    },
+    {
+     "sector": 491,
+     "corners": 16,
+     "size": [
+      256,
+      3968
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      159
+     ]
+    },
+    {
+     "sector": 493,
+     "corners": 16,
+     "size": [
+      256,
+      3968
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      159
+     ]
+    },
+    {
+     "sector": 495,
+     "corners": 16,
+     "size": [
+      320,
+      3968
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 294,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      159
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 588,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      48,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 5.25
+    },
+    {
+     "tile": 549,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 5.27
+    },
+    {
+     "tile": 526,
+     "type": 46,
+     "type_name": "kItemWeaponNapalmLauncher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 753,
+     "type": 146,
+     "type_name": "kItemFlagBBase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E2M4_613\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E2M4_613\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M2:257!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 257,
+   "sectors": [
+    149,
+    151,
+    152,
+    153,
+    154,
+    155,
+    217,
+    240,
+    241,
+    257,
+    261,
+    268,
+    269
+   ],
+   "metres": [
+    6.6,
+    8.9,
+    4.2
+   ],
+   "area_M": 15.61,
+   "clear_bodies": 2.35,
+   "free_floor_share": 0.9,
+   "shade_spread": 51,
+   "floor": [
+    296,
+    "grimy tiles"
+   ],
+   "ceiling": [
+    140,
+    ""
+   ],
+   "walls": [
+    [
+     1011,
+     0.281,
+     ""
+    ],
+    [
+     500,
+     0.149,
+     "technical door"
+    ],
+    [
+     497,
+     0.124,
+     "technical wall with pipes"
+    ],
+    [
+     414,
+     0.101,
+     ""
+    ],
+    [
+     20,
+     0.101,
+     "wood"
+    ],
+    [
+     57,
+     0.085,
+     ""
+    ],
+    [
+     489,
+     0.072,
+     "technical metal cladding"
+    ],
+    [
+     2453,
+     0.048,
+     "technical riveted metal cladding"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 149,
+     "corners": 10,
+     "size": [
+      1984,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      57,
+      150
+     ]
+    },
+    {
+     "sector": 151,
+     "corners": 8,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      297,
+      1011
+     ]
+    },
+    {
+     "sector": 152,
+     "corners": 4,
+     "size": [
+      320,
+      896
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 997,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      345
+     ]
+    },
+    {
+     "sector": 153,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 266,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      489,
+      1011
+     ]
+    },
+    {
+     "sector": 154,
+     "corners": 4,
+     "size": [
+      896,
+      64
+     ],
+     "rise_bodies": 1.87,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 617,
+     "wall_tiles": [
+      492
+     ]
+    },
+    {
+     "sector": 155,
+     "corners": 4,
+     "size": [
+      896,
+      64
+     ],
+     "rise_bodies": 1.87,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 617,
+     "wall_tiles": [
+      492
+     ]
+    },
+    {
+     "sector": 217,
+     "corners": 4,
+     "size": [
+      640,
+      640
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 296,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      500,
+      1011
+     ]
+    },
+    {
+     "sector": 240,
+     "corners": 4,
+     "size": [
+      512,
+      128
+     ],
+     "rise_bodies": 1.39,
+     "floor_tile": 417,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      417
+     ]
+    },
+    {
+     "sector": 241,
+     "corners": 4,
+     "size": [
+      384,
+      128
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 417,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      417
+     ]
+    },
+    {
+     "sector": 261,
+     "corners": 6,
+     "size": [
+      192,
+      512
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      379,
+      2453
+     ]
+    },
+    {
+     "sector": 268,
+     "corners": 6,
+     "size": [
+      704,
+      1792
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      497
+     ]
+    },
+    {
+     "sector": 269,
+     "corners": 4,
+     "size": [
+      64,
+      1792
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      489,
+      2453
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1745,
+     "type": 220,
+     "type_name": "kDudeRat",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.08
+    },
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.42
+    },
+    {
+     "tile": 904,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.26
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 742,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.83
+    },
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.21
+    },
+    {
+     "tile": 2334,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.26
+    },
+    {
+     "tile": 965,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.0
+    },
+    {
+     "tile": 658,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 1050,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.31
+    },
+    {
+     "tile": 929,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 2139,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.14
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 690,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.43
+    },
+    {
+     "tile": 689,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.43
+    },
+    {
+     "tile": 1719,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.42
+    },
+    {
+     "tile": 485,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 2305,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.94
+    },
+    {
+     "tile": 2304,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M2_257\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M2_257\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M2:185!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 185,
+   "sectors": [
+    149,
+    185
+   ],
+   "metres": [
+    4.3,
+    9.1,
+    7.8
+   ],
+   "area_M": 13.37,
+   "clear_bodies": 4.35,
+   "free_floor_share": 1.0,
+   "shade_spread": 15,
+   "floor": [
+    290,
+    "chequerboard paving"
+   ],
+   "ceiling": [
+    10,
+    "lattice window with a diamond grid"
+   ],
+   "walls": [
+    [
+     150,
+     0.66,
+     ""
+    ],
+    [
+     20,
+     0.184,
+     "wood"
+    ],
+    [
+     57,
+     0.155,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 149,
+     "corners": 10,
+     "size": [
+      1984,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      57,
+      150
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 649,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M2_185\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M2_185\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M2:268!",
+   "map": "maps\\blood\\campaign\\E1M2.MAP",
+   "host": 268,
+   "sectors": [
+    261,
+    268,
+    269
+   ],
+   "metres": [
+    1.6,
+    3.0,
+    4.5
+   ],
+   "area_M": 1.41,
+   "clear_bodies": 2.48,
+   "free_floor_share": 0.98,
+   "shade_spread": 0,
+   "floor": [
+    379,
+    "stone wall"
+   ],
+   "ceiling": [
+    439,
+    ""
+   ],
+   "walls": [
+    [
+     497,
+     0.699,
+     "technical wall with pipes"
+    ],
+    [
+     2453,
+     0.211,
+     "technical riveted metal cladding"
+    ],
+    [
+     379,
+     0.09,
+     "stone wall"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 261,
+     "corners": 6,
+     "size": [
+      192,
+      512
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      379,
+      2453
+     ]
+    },
+    {
+     "sector": 269,
+     "corners": 4,
+     "size": [
+      64,
+      1792
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      489,
+      2453
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 904,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.26
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 690,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.43
+    },
+    {
+     "tile": 689,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.43
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\E1M2_268\\plan.png",
+   "frames": []
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "10": {
+   "tile": 10,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-10.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-20.png"
+  },
+  "21": {
+   "tile": 21,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-21.png"
+  },
+  "28": {
+   "tile": 28,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-28.png"
+  },
+  "41": {
+   "tile": 41,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-41.png"
+  },
+  "43": {
+   "tile": 43,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-43.png"
+  },
+  "57": {
+   "tile": 57,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-57.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-68.png"
+  },
+  "88": {
+   "tile": 88,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-88.png"
+  },
+  "90": {
+   "tile": 90,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-90.png"
+  },
+  "100": {
+   "tile": 100,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-100.png"
+  },
+  "123": {
+   "tile": 123,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-123.png"
+  },
+  "130": {
+   "tile": 130,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-130.png"
+  },
+  "140": {
+   "tile": 140,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-140.png"
+  },
+  "150": {
+   "tile": 150,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-150.png"
+  },
+  "156": {
+   "tile": 156,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-156.png"
+  },
+  "159": {
+   "tile": 159,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-159.png"
+  },
+  "174": {
+   "tile": 174,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-174.png"
+  },
+  "181": {
+   "tile": 181,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-181.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-195.png"
+  },
+  "200": {
+   "tile": 200,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-200.png"
+  },
+  "253": {
+   "tile": 253,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-253.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-255.png"
+  },
+  "266": {
+   "tile": 266,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-266.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-281.png"
+  },
+  "290": {
+   "tile": 290,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-290.png"
+  },
+  "294": {
+   "tile": 294,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-294.png"
+  },
+  "296": {
+   "tile": 296,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-296.png"
+  },
+  "297": {
+   "tile": 297,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-297.png"
+  },
+  "300": {
+   "tile": 300,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-300.png"
+  },
+  "307": {
+   "tile": 307,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-307.png"
+  },
+  "315": {
+   "tile": 315,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-315.png"
+  },
+  "345": {
+   "tile": 345,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-345.png"
+  },
+  "375": {
+   "tile": 375,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-375.png"
+  },
+  "379": {
+   "tile": 379,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-379.png"
+  },
+  "414": {
+   "tile": 414,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-414.png"
+  },
+  "417": {
+   "tile": 417,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-417.png"
+  },
+  "436": {
+   "tile": 436,
+   "pixels": [
+    128,
+    16
+   ],
+   "world_at_repeat_8": [
+    2048,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-436.png"
+  },
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-438.png"
+  },
+  "439": {
+   "tile": 439,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-439.png"
+  },
+  "488": {
+   "tile": 488,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-488.png"
+  },
+  "489": {
+   "tile": 489,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-489.png"
+  },
+  "491": {
+   "tile": 491,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-491.png"
+  },
+  "492": {
+   "tile": 492,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-492.png"
+  },
+  "494": {
+   "tile": 494,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-494.png"
+  },
+  "495": {
+   "tile": 495,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-495.png"
+  },
+  "497": {
+   "tile": 497,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-497.png"
+  },
+  "500": {
+   "tile": 500,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-500.png"
+  },
+  "526": {
+   "tile": 526,
+   "pixels": [
+    67,
+    20
+   ],
+   "world_at_repeat_8": [
+    1072,
+    5120
+   ],
+   "see_through_share": 0.439,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-526.png"
+  },
+  "549": {
+   "tile": 549,
+   "pixels": [
+    67,
+    128
+   ],
+   "world_at_repeat_8": [
+    1072,
+    32768
+   ],
+   "see_through_share": 0.772,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-549.png"
+  },
+  "559": {
+   "tile": 559,
+   "pixels": [
+    61,
+    14
+   ],
+   "world_at_repeat_8": [
+    976,
+    3584
+   ],
+   "see_through_share": 0.492,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-559.png"
+  },
+  "588": {
+   "tile": 588,
+   "pixels": [
+    128,
+    48
+   ],
+   "world_at_repeat_8": [
+    2048,
+    12288
+   ],
+   "see_through_share": 0.424,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-588.png"
+  },
+  "589": {
+   "tile": 589,
+   "pixels": [
+    11,
+    25
+   ],
+   "world_at_repeat_8": [
+    176,
+    6400
+   ],
+   "see_through_share": 0.218,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-589.png"
+  },
+  "619": {
+   "tile": 619,
+   "pixels": [
+    18,
+    11
+   ],
+   "world_at_repeat_8": [
+    288,
+    2816
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-619.png"
+  },
+  "641": {
+   "tile": 641,
+   "pixels": [
+    15,
+    128
+   ],
+   "world_at_repeat_8": [
+    240,
+    32768
+   ],
+   "see_through_share": 0.702,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-641.png"
+  },
+  "649": {
+   "tile": 649,
+   "pixels": [
+    45,
+    32
+   ],
+   "world_at_repeat_8": [
+    720,
+    8192
+   ],
+   "see_through_share": 0.523,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-649.png"
+  },
+  "689": {
+   "tile": 689,
+   "pixels": [
+    23,
+    128
+   ],
+   "world_at_repeat_8": [
+    368,
+    32768
+   ],
+   "see_through_share": 0.695,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-689.png"
+  },
+  "690": {
+   "tile": 690,
+   "pixels": [
+    23,
+    128
+   ],
+   "world_at_repeat_8": [
+    368,
+    32768
+   ],
+   "see_through_share": 0.63,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-690.png"
+  },
+  "713": {
+   "tile": 713,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-713.png"
+  },
+  "732": {
+   "tile": 732,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.49,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-732.png"
+  },
+  "742": {
+   "tile": 742,
+   "pixels": [
+    32,
+    64
+   ],
+   "world_at_repeat_8": [
+    512,
+    16384
+   ],
+   "see_through_share": 0.356,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-742.png"
+  },
+  "753": {
+   "tile": 753,
+   "pixels": [
+    11,
+    64
+   ],
+   "world_at_repeat_8": [
+    176,
+    16384
+   ],
+   "see_through_share": 0.5,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-753.png"
+  },
+  "810": {
+   "tile": 810,
+   "pixels": [
+    22,
+    28
+   ],
+   "world_at_repeat_8": [
+    352,
+    7168
+   ],
+   "see_through_share": 0.239,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-810.png"
+  },
+  "904": {
+   "tile": 904,
+   "pixels": [
+    16,
+    16
+   ],
+   "world_at_repeat_8": [
+    256,
+    4096
+   ],
+   "see_through_share": 0.738,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-904.png"
+  },
+  "908": {
+   "tile": 908,
+   "pixels": [
+    42,
+    80
+   ],
+   "world_at_repeat_8": [
+    672,
+    20480
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-908.png"
+  },
+  "915": {
+   "tile": 915,
+   "pixels": [
+    50,
+    88
+   ],
+   "world_at_repeat_8": [
+    800,
+    22528
+   ],
+   "see_through_share": 0.703,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-915.png"
+  },
+  "997": {
+   "tile": 997,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-997.png"
+  },
+  "1011": {
+   "tile": 1011,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1011.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1170.png"
+  },
+  "1350": {
+   "tile": 1350,
+   "pixels": [
+    27,
+    54
+   ],
+   "world_at_repeat_8": [
+    432,
+    13824
+   ],
+   "see_through_share": 0.503,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1350.png"
+  },
+  "1351": {
+   "tile": 1351,
+   "pixels": [
+    57,
+    133
+   ],
+   "world_at_repeat_8": [
+    912,
+    34048
+   ],
+   "see_through_share": 0.551,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1351.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1370.png"
+  },
+  "1413": {
+   "tile": 1413,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.877,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1413.png"
+  },
+  "1415": {
+   "tile": 1415,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.668,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1415.png"
+  },
+  "1417": {
+   "tile": 1417,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.285,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1417.png"
+  },
+  "1708": {
+   "tile": 1708,
+   "pixels": [
+    24,
+    64
+   ],
+   "world_at_repeat_8": [
+    384,
+    16384
+   ],
+   "see_through_share": 0.527,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1708.png"
+  },
+  "1715": {
+   "tile": 1715,
+   "pixels": [
+    17,
+    27
+   ],
+   "world_at_repeat_8": [
+    272,
+    6912
+   ],
+   "see_through_share": 0.656,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1715.png"
+  },
+  "1745": {
+   "tile": 1745,
+   "pixels": [
+    35,
+    31
+   ],
+   "world_at_repeat_8": [
+    560,
+    7936
+   ],
+   "see_through_share": 0.195,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-1745.png"
+  },
+  "2039": {
+   "tile": 2039,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2039.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2169.png"
+  },
+  "2295": {
+   "tile": 2295,
+   "pixels": [
+    29,
+    10
+   ],
+   "world_at_repeat_8": [
+    464,
+    2560
+   ],
+   "see_through_share": 0.159,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2295.png"
+  },
+  "2331": {
+   "tile": 2331,
+   "pixels": [
+    9,
+    13
+   ],
+   "world_at_repeat_8": [
+    144,
+    3328
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2331.png"
+  },
+  "2334": {
+   "tile": 2334,
+   "pixels": [
+    71,
+    33
+   ],
+   "world_at_repeat_8": [
+    1136,
+    8448
+   ],
+   "see_through_share": 0.504,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2334.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2453.png"
+  },
+  "2552": {
+   "tile": 2552,
+   "pixels": [
+    25,
+    68
+   ],
+   "world_at_repeat_8": [
+    400,
+    17408
+   ],
+   "see_through_share": 0.545,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\canteen-freezer-dining\\tiles\\tile-2552.png"
+  }
+ }
+}

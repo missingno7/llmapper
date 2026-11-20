@@ -51,6 +51,8 @@ CANTEEN_DOOR_H = 31744
 #: standing over it, so it rises to the door's head as the door does.
 HATCH_SILL = 8192
 HATCH_CLEAR = CANTEEN_DOOR_H - HATCH_SILL
+#: The freezer is the canteen's old back room, less a door's thickness.
+FREEZER_DEEP = 1792
 JAMB_TILE = 170
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
@@ -151,14 +153,45 @@ def dress(city, ctx) -> dict:
         note="main room; counter and display are geometry (VP shop)",
         intent={"venue": "works_canteen", "type": "shop"},
     )
+    # THE DINE-IN. The owner, 2026-11-20: "Interior is bit empty, I would
+    # add dine in". The main room is E1M2's station buffet, s185: a black
+    # and grey marble chequer (290) under brown stucco (140), walls of clay
+    # over a dark stone base (150), and round stand-up tables (649) for
+    # eating on your feet, which is what a works canteen is. The counter and
+    # the hatch keep the stand's iron.
+    main.surfaces(wall_picnum=150, floor_picnum=290, ceiling_picnum=140,
+                  floor_shade=4, ceiling_shade=12, wall_shade=6)
+    # THE FREEZER. "... and maybe freezer to the back." The back room is a
+    # walk-in meat store: E1M3's (s305) riveted metal floor (315) under
+    # rusted metal (255), grey walls frosted with grime at the foot (345),
+    # carcasses on hooks, kept cold and dark (E1M2's locker, s268, stands
+    # at shade 46), behind a metal door (495, E3M2's). Its dressing is in
+    # `sprinkle`.
     back = canteen.room(
-        "back", [(0, 0), (3072, 0), (3072, 2048), (0, 2048)],
+        "back", [(0, 0), (3072, 0), (3072, FREEZER_DEEP),
+                 (0, FREEZER_DEEP)],
         role="interior", faces=dict(COMPASS),
         frame=Frame(main_x0 + 512, main_y1 - 512 - 2560 - 2048),
         region_kwargs=shop.region_kwargs(),
-        note="the back room; its high window is the backdrop frame",
+        note="the walk-in freezer; its high window is the backdrop frame",
     )
-    canteen.connect(back.face("south"), main.face("north"),
+    back.surfaces(wall_picnum=345, floor_picnum=315, ceiling_picnum=255,
+                  floor_shade=30, ceiling_shade=34, wall_shade=26)
+    freezer_door = canteen.room(
+        "freezer_door", [(0, 0), (1024, 0), (1024, 2048 - FREEZER_DEEP),
+                         (0, 2048 - FREEZER_DEEP)],
+        role="doorway", faces=dict(COMPASS),
+        frame=Frame(main_x0 + 2048, main_y1 - 512 - 2560 - (2048 - FREEZER_DEEP)),
+        region_kwargs={
+            "type": 600, "door_face": 495, "inherit_finish": "both",
+            "sector_behavior": z_motion_door(GRADE, GRADE - CANTEEN_DOOR_H),
+        },
+        note="the freezer's metal door: a push door like the canteen's own",
+    )
+    freezer_door.surfaces(wall_picnum=200, floor_z=GRADE, clear_height=0)
+    canteen.connect(freezer_door.face("north"), back.face("south"),
+                    connection_id="connection:freezer_door_in")
+    canteen.connect(freezer_door.face("south"), main.face("north"),
                     connection_id="connection:canteen_back")
 
     # Counter: geometry at rise 4096 (VP), an island in the main room.
@@ -174,21 +207,10 @@ def dress(city, ctx) -> dict:
         canteen.connect(counter.face(face), main.face("north"),
                         connection_id=f"connection:counter_rim_{face}")
     # The serving counter is the cook's: its top is the grill's ribbed iron.
-    counter.surfaces(floor_picnum=376, wall_picnum=2453)
-    # A table to eat at, where the display pedestal stood: a wooden block
-    # at table height, a body's width across and two long.
-    main.carve([(2816, 768), (3328, 768), (3328, 1792), (2816, 1792)])
-    pedestal = canteen.room(
-        "pedestal", [(0, 0), (512, 0), (512, 1024), (0, 1024)],
-        role="detail", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 2816, main_y1 - 512 - 2560 + 768),
-        note="the canteen's table, rise 7168, a wooden top",
-    )
-    pedestal.surfaces(floor_z=GRADE - 7168, clear_height=25600,
-                      floor_picnum=20, wall_picnum=20)
-    for face in ("north", "east", "south", "west"):
-        canteen.connect(pedestal.face(face), main.face("north"),
-                        connection_id=f"connection:pedestal_rim_{face}")
+    counter.surfaces(floor_picnum=376, wall_picnum=2453, ceiling_picnum=140,
+                     ceiling_shade=12)
+    # (the wooden block that stood here as a table is gone: the tables are
+    # E1M2's round ones now, placed in `sprinkle`)
     placed["rooms"] += [main.region_id, back.region_id]
 
     # The door: z-motion, push-to-use, marquee flicker on its own sector.
@@ -326,10 +348,111 @@ def dress(city, ctx) -> dict:
 
     return {"placed": placed, "canteen_door": door.region_id,
             "hatch": hatch.region_id, "counter": counter.region_id,
-            "table": pedestal.region_id,
+            "freezer_world": (main_x0 + 512, main_y1 - 512 - 2560 - 2048),
+            "main_world": (main_x0, main_y1 - 512 - 2560),
             "cart": cart.region_id, "cart_world": (cart_x0, cart_y0),
             "main": main.region_id,
             "back": back.region_id, "box": box.region_id}
+
+
+def _transcribed(map_name: str, type_id: int, picnum: int, **change) -> dict:
+    """A record copied from the campaign, its behavior folded in, then changed."""
+    spec = _attested(map_name, type_id, picnum)
+    fields = dict(spec["fields"])
+    if spec["behavior"]:
+        fields["behavior"] = dict(spec["behavior"])
+    fields.update(change)
+    return fields
+
+
+def dress_canteen(layout, dressing) -> list[str]:
+    """The dine-in, the kitchen wall and the freezer (owner, 2026-11-20).
+
+    Every thing is a record from the campaign room it was studied in
+    (`knowledge/blood/studies/canteen-freezer-dining/notes.md`); what is
+    ours is where it stands. Records keep their cstat: the layout's wall
+    and ceiling placements read the centring bit (128) themselves.
+    """
+    out = []
+    main, back = dressing["main"], dressing["back"]
+    mx0, my0 = dressing["main_world"]
+    fx0, fy0 = dressing["freezer_world"]
+
+    # The dine-in: E1M2's buffet tables (649, s185), round, on a pedestal,
+    # stood clear of the counter and of the way in from the door.
+    for index, local in enumerate(((0.58, 0.28), (0.84, 0.3), (0.58, 0.7))):
+        layout.place_on_floor(f"canteen:table_{index}", main, local=local,
+                              **_transcribed("E1M2", 417, 649))
+        out.append(f"canteen:table_{index}")
+
+    # The kitchen wall, over the counter, as E1M2's kitchen (s257) hangs
+    # it: two frying pans (2304, 2305), EMPLOYEES MUST WASH HANDS (1719),
+    # and the fire extinguisher (658) on the end wall.
+    north = ((mx0, my0), (mx0 + 2048, my0))
+    for pid, tile, type_id, t, high in (
+            ("pan_0", 2304, 417, 0.18, 1.35), ("pan_1", 2305, 417, 0.38, 1.3),
+            ("wash_hands", 1719, 417, 0.62, 1.45)):
+        layout.place_on_wall(f"canteen:{pid}", main, a1=north[0], a2=north[1],
+                             t=t, height_player_heights=high,
+                             offset_player_widths=0.04,
+                             **_transcribed("E1M2", type_id, tile))
+        out.append(f"canteen:{pid}")
+    layout.place_on_wall("canteen:extinguisher", main,
+                         a1=(mx0, my0 + 2560), a2=(mx0, my0), t=0.8,
+                         height_player_heights=1.1, offset_player_widths=0.04,
+                         **_transcribed("E1M2", 416, 658))
+    out.append("canteen:extinguisher")
+
+    # The freezer: E1M3's carcasses on hooks (1351, one plucked 1350) over
+    # its blood pools (1417, 1413, 732), each with the drip generator E1M3
+    # hangs in it (type 702, built running: state 1, every 40 ticks). E1M3
+    # wires its drips to a channel; these are not on one, and need none.
+    for index, (tile, local) in enumerate((
+            (1351, (0.22, 0.35)), (1351, (0.42, 0.62)), (1350, (0.6, 0.3)),
+            (1351, (0.78, 0.6)))):
+        hung = _transcribed("E1M3", 416, tile)
+        # Drawn centred and with no hang point in its art (690's has one,
+        # 1351's and 1350's do not), so the ceiling seat puts its centre on
+        # the ceiling. E1M3 hangs each half its drawn height down (1351:
+        # 133 rows at repeat 40, 21,280 tall, centre 10,560 down); so do we.
+        half = (133 if tile == 1351 else 54) * int(hung["y_repeat"]) * 2
+        layout.place_on_ceiling(f"freezer:carcass_{index}", back, local=local,
+                                height_player_heights=half / 16960, **hung)
+        layout.place_on_ceiling(
+            f"freezer:drip_{index}", back, local=local, picnum=tile,
+            x_repeat=40, y_repeat=40, cstat=32768, shade=-8, type=702,
+            status=0, behavior={"state": 1, "busy": 65536, "busy_time": 40,
+                                "data_1": 15})
+        out += [f"freezer:carcass_{index}", f"freezer:drip_{index}"]
+    for index, (tile, local) in enumerate((
+            (1417, (0.42, 0.62)), (732, (0.14, 0.22)), (1413, (0.78, 0.55)))):
+        layout.place_on_floor(f"freezer:blood_{index}", back, local=local,
+                              height_player_heights=0.0,
+                              **_transcribed_tile("E1M3", tile))
+        out.append(f"freezer:blood_{index}")
+    # The butcher's tools on the freezer's west wall, as E3M2 hangs them
+    # on its meat room's board (s258): the handsaw, the ice tongs, the axe.
+    west = ((fx0, fy0 + FREEZER_DEEP), (fx0, fy0))
+    for pid, tile, t in (("saw", 1714, 0.3), ("tongs", 1715, 0.5),
+                         ("axe", 1709, 0.7)):
+        layout.place_on_wall(f"freezer:{pid}", back, a1=west[0], a2=west[1],
+                             t=t, height_player_heights=1.2,
+                             offset_player_widths=0.04,
+                             **_transcribed_tile("E3M2", tile))
+        out.append(f"freezer:{pid}")
+    return out
+
+
+def _transcribed_tile(map_name: str, picnum: int) -> dict:
+    """A decoration's record by its tile, with its extension when it has one."""
+    disk = read_map(corpus_map_path(map_name))
+    for sprite in disk.sprites:
+        if int(sprite.fields["picnum"]) == picnum:
+            fields = {k: int(sprite.fields[k]) for k in
+                      ("picnum", "x_repeat", "y_repeat", "cstat", "type", "shade")}
+            fields["status"] = 0
+            return fields
+    raise KeyError(f"{map_name} has no sprite wearing tile {picnum}")
 
 
 def sprinkle(layout, ctx, dressing) -> list[str]:
@@ -372,7 +495,10 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
                  (yard_x0 + yard_x1) / 2, yard_y0 + 1024, cultist)
     world_sprite("pop:yard_cultist_b", street_region,
                  yard_x1 - 1024, (yard_y0 + yard_y1) / 2, cultist)
-    room_sprite("pop:canteen_zombie", dressing["back"], (0.35, 0.5), zombie)
+    # The freezer's keeper is a butcher: E3M2 works its meat rooms (s258)
+    # with the fat zombie (type 204, tile 1370) where this was an axe one.
+    butcher = _attested("E3M2", 204)
+    room_sprite("pop:canteen_zombie", dressing["back"], (0.35, 0.5), butcher)
     for index, room_key in enumerate(("trunk", "junction", "cistern")):
         room_sprite(f"pop:sewer_rat_{index}", ctx["sewer_rooms"][room_key],
                     (0.3 + 0.2 * index, 0.5), rat)
@@ -475,11 +601,13 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
         type=0, status=0)
     out.append("ratdogs:tube")
 
+    out += dress_canteen(layout, dressing)
+
     # Pickups.  The campaign runs 0.9 per dude; we had none, which the
     # discriminator ranked as one of our worst features.  Types and fields
     # are transcribed from E3M1's own placements, not invented.
     for index, (type_id, region, local) in enumerate((
-            (65, dressing["main"], (0.9, 0.3)),     # beside the table
+            (65, dressing["main"], (0.95, 0.1)),    # in the corner past the tables
             (62, dressing["back"], (0.5, 0.5)),
             (67, ctx["sewer_rooms"]["junction"], (0.3, 0.4)),
             (60, ctx["sewer_rooms"]["cistern"], (0.5, 0.5)),

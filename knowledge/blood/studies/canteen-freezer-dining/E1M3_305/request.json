@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/canteen-freezer-dining/E1M3_305/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/canteen-freezer-dining/E1M3_305",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 2699,
+   "y": 7817,
+   "z": 5632,
+   "angle": 241,
+   "horiz": 100,
+   "sector": 305,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 4235,
+   "y": 9609,
+   "z": 5632,
+   "angle": 1344,
+   "horiz": 100,
+   "sector": 305,
+   "screenshot": true
+  }
+ ]
+}

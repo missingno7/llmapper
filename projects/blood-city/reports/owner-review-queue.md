@@ -129,6 +129,19 @@ result.
   tube), the counter is grill iron with rats on it, and a wooden table
   stands where the display pedestal was. Frames: `look.py --set canteen`.
   Not walked, and no blind reader has seen it.
+- "Interior is bit empty, I would add dine in and maybe freezer to the
+  back." Studied in `knowledge/blood/studies/canteen-freezer-dining/`
+  (E1M3's freezer, E3M2's meat rooms, E1M2's station buffet). The main
+  room is E1M2's buffet: marble chequer, clay over a dark stone base, three
+  round stand-up tables (the campaign seats nobody at a table), and the
+  kitchen's wall over the counter (pans, EMPLOYEES MUST WASH HANDS, a fire
+  extinguisher). The back room is a walk-in freezer behind a metal push
+  door: E1M3's riveted floor and frosted walls, four carcasses on hooks
+  dripping blood, pools under them, the butcher's saw, tongs and axe on
+  the wall, and a butcher (E3M2's fat zombie) in place of the axe zombie.
+  Open: the front room alone is 11.2 M of floor against the 14.0 M the
+  build wants for a destination; the freezer keeps the back room's window
+  onto the rail yard. Not walked.
 
 **Open, said in the same walk and not done**
 

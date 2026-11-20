@@ -85,6 +85,20 @@
     "E1M4:170!"
    ],
    "date": "2026-11-20"
+  },
+  "canteen-freezer-dining": {
+   "want": "a dine-in room and a walk-in freezer behind a works canteen: Blood's freezers (E1M3), meat processing (E3M2) and dining tables",
+   "seeds": [
+    "E1M3:305!",
+    "E3M2:258!",
+    "E3M2:306!",
+    "E3M2:450!",
+    "E2M4:613!",
+    "E1M2:257!",
+    "E1M2:185!",
+    "E1M2:268!"
+   ],
+   "date": "2026-11-20"
   }
  }
 }
