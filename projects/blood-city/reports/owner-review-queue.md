@@ -190,6 +190,34 @@ result.
   (the owner's "metal plate"): that was slice 2's choice and is retired;
   the city's posts are 640.
 
+- "Train station facade looks bad, there are building textures with
+  windows and they are even cutoff ... maybe you can even do some arcs."
+  The windows were the bands over the two doors: a roofed doorway onto an
+  open street draws the wall over it to the STREET'S sky, in the street's
+  facade tile. The station has a forecourt now whose sky is the front's
+  top, and the front is its far wall: ashlar (427) with two pointed arches
+  (E1M2 s207's form: two half-sectors pitched from spring to apex), the pier
+  between them in meander stone (409) under the clock, GRAVESEND and
+  STATION over the arches, lamp posts, lit floor before each arch. Blind,
+  rounds 15-17: "train station entrance", three running.
+- "Rework that welcome to Gravesend ... bigger memorial with water", then,
+  of the first try (a block of falling water): "there should be that
+  combination of stone and water, to give it some shape", pointing at the
+  owner's street memorial in RABIDN09 (read for ideas, not copied): a rim
+  of light stone (253) round a pool, a dark backdrop with the ram skull
+  (1348) and WELCOME TO GRAVESEND, a dark box with one narrow moving fall
+  (1005, E3M6's panning) and foam (1037), two drums of meander stone (409)
+  in the water with crouching statues (536). 8 by 7.5 plan units; the old
+  fountain is gone into it. Blind, round 17: "stone fountain in a
+  courtyard". Open, said: the square around it lacks a destination.
+- "Haven't you spot that these statues are floating mid air?" No. Tiles
+  drawn to be centred (art y-offset half their height: statue 536, steam
+  754, smoke 672, the eye key 2553) were written without cstat 128 and the
+  renderer lifted them. All five are centred now, as the campaign writes
+  every one of them, and `tools.sprite_fit` reports `lifted` sprites (a
+  standing thing in the air where the campaign stands that tile on its
+  floor); it had declared the threshold and never used it.
+
 **Open, said in the same walk and not done**
 
 - The avenue mouth of the underpass cut the facade's painted windows. After

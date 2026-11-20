@@ -158,13 +158,12 @@ WAY_OUT: dict = {}
 STORE = (38912, -25856, 44032, -15616)
 #: The avenue front and the rooms behind it (`avenue_front`): the avenue's
 #: mouth is x 32,768 to 39,936 on the city's north edge (y 0). The hall
-#: starts behind the front's masonry and sky backing with a body of void
-#: between (a sky must not stand beside a roof); the
+#: starts behind the forecourt (3,072) and the arches (1,536); the
 #: concourse stops short of the goods store (x 38,912) and 512 clear of
 #: the track bed's edge (y -16,640), which is the platform's.
-EAST_HALL = (32768, -7168, 39936, -2560)
-EAST_STAIR = (34816, -11264, 37888, -7168)
-CONCOURSE = (30976, -16128, 38400, -11264)
+EAST_HALL = (32768, -8704, 39936, -4608)
+EAST_STAIR = (34816, -12800, 37888, -8704)
+CONCOURSE = (30976, -16128, 38400, -12800)
 EAST_LINK = (29696, -16128, 30976, -14592)
 #: the owner's "grey ashlar stone blocks", 13 maps; jambs his "stone column"
 FRONT_STONE, FRONT_JAMB = 427, 479
@@ -754,8 +753,8 @@ def build(city, street):
     ex0, ey0, ex1, ey1 = EAST_HALL
     east_hall = room("east_hall", EAST_HALL, floor_z=GRADE, clear=HALL_CLEAR,
                      note="the station's avenue entrance hall",
-                     wall_picnum=FRONT_STONE, floor_shade=12,
-                     ceiling_shade=30, wall_shade=18)
+                     wall_picnum=FRONT_STONE, floor_shade=4,
+                     ceiling_shade=16, wall_shade=8)
     east_hall.light_source("east_hall_lamp", local=(0.5, 0.5),
                            height_player_heights=2.2)
     sx0, sy0, sx1, sy1 = EAST_STAIR
@@ -820,81 +819,44 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
             x_repeat=repeat, y_repeat=repeat, cstat=16 | 64 | 128, t=t_at,
             height_player_heights=height, offset_player_widths=0.04, shade=-8)
         report["boards"] += bool(got)
-    #: THE AVENUE FRONT, from the avenue: the town's name over the west
-    #: door and STATION over the east, over the doors' heads; the station
-    #: clock high on the pier between them, over the front's roofline, where
-    #: the whole avenue sees it; a lamp either side of each door.
+    #: THE AVENUE FRONT, from the forecourt: GRAVESEND over the west arch
+    #: and STATION over the east, over the arches' crowns; the station clock
+    #: high on the pier between them; lamp posts (the avenue's own,
+    #: `props.STREET_LAMP`) before each jamb.
+    import props
     report["front"] = 0
-    pieces = AVENUE_FRONT.get("pieces", [])
-    by_street: dict = {}
-    for p in pieces:
-        by_street.setdefault(p["street"], []).append(p)
-    front_h = FRONT_RISE / 16960
-    for street_id, row in by_street.items():
-        lo, hi = min(p["a"] for p in row), max(p["b"] for p in row)
-        word = "GRAVESEND" if lo < 36352 else "STATION"
-        if wallplane.text(layout, f"sign:station_front_{word.lower()}", street_id,
-                          (lo + 384, 0), (hi - 384, 0), words=word, style="fascia",
-                          height_player_heights=PORTAL_H / 16960 + 0.5):
-            report["front"] += 1
-        # Lamp posts before the masonry either side of each door: the
-        # avenue's own (`props.STREET_LAMP`, DWE3M1's 640 at 2.1 bodies),
-        # lit. They were wall lamps (2183, "recessed wall lamp in metal
-        # frame"), which the round-9 reader saw as "small eye symbols".
-        import props
-        for p in row:
-            if p["kind"] == "porch":
+    fy0 = -FORECOURT_D
+    courts = AVENUE_FRONT.get("courts", [])
+    for court in courts:
+        region = court["region"]
+        floor_z = layout.regions[region].floor_z
+        for a, b in ARCHES:
+            if court["a"] <= a and b <= court["b"]:
+                word = "GRAVESEND" if a < 36352 else "STATION"
+                if wallplane.text(layout, f"sign:station_front_{word.lower()}", region,
+                                  (a - 256, fy0), (b + 256, fy0), words=word,
+                                  style="fascia",
+                                  height_player_heights=ARCH_APEX / 16960 + 0.55):
+                    report["front"] += 1
+        for x in (33024, 35840, 36864, 39680):
+            if not court["a"] < x < court["b"]:
                 continue
-            x = (p["a"] + p["b"]) // 2 if p["kind"] == "mass" else                 (p["a"] + 512 if p["a"] >= 36352 else p["b"] - 512)
-            y = 896
-            floor_z = layout.regions[street_id].floor_z
-            layout.add_sprite(f"station:front_post_{p['a']}", street_id, x=x, y=y,
+            layout.add_sprite(f"station:front_post_{x}", region, x=x, y=fy0 + 1024,
                               z=int(floor_z), **props.fields(
                                   props.STREET_LAMP, x_repeat=props.STREET_LAMP_REPEAT,
                                   y_repeat=props.STREET_LAMP_REPEAT))
             layout.add_light_source(
-                f"light:station_front_{p['a']}", street_id, x=x, y=y,
+                f"light:station_front_{x}", region, x=x, y=fy0 + 1024,
                 z=int(floor_z - props.STREET_LAMP_LIGHT * 16960), intensity=2.0)
             report["front"] += 1
-        # THE CANOPIES. Rounds 9 and 10, both: "add a lit canopy over the
-        # entrance, projecting above the pavement". A roofed sector in an
-        # open street draws its upper walls to the sky, so a canopy is what
-        # the carriage roof is: floor-aligned sprites, laid exactly by
-        # `flatsprite.cover`, in the carriage roof's iron (438, the owner's
-        # "embossed metal floor"), two-sided so it reads from under it, a
-        # little over the door's head and a body and a half out.
-        from bloodmap import flatsprite
-        import wallplane as _art
-        floor_z = layout.regions[street_id].floor_z
-        size = _art.art()[ROOF]
-        for p in row:
-            if p["kind"] != "porch":
-                continue
-            rect = (p["a"] - 256, 0, p["b"] + 256, 1536)
-            for k, piece in enumerate(flatsprite.cover(rect, size[:2])):
-                layout.add_sprite(
-                    f"station:canopy_{p['a']}_{k}", street_id, x=piece["x"],
-                    y=piece["y"], z=int(floor_z - PORTAL_H - 1024), type=0,
-                    picnum=ROOF, cstat=32 | 1 | 256, x_repeat=piece["x_repeat"],
-                    y_repeat=piece["y_repeat"], angle=piece["angle"], shade=4,
-                    status=0)
-                report["front"] += 1
-            layout.add_light_source(
-                f"light:station_canopy_{p['a']}", street_id,
-                x=(p["a"] + p["b"]) // 2, y=640,
-                z=int(floor_z - PORTAL_H), intensity=3.0)
-        piers = [p for p in row if p["kind"] == "pier"]
-        if piers and lo < 36352:
-            # Centred on the seam, so across both streets' halves of the pier:
-            # no single street's wall has room for it (`wallplane.sprite`
-            # finds a slot on one wall), and nothing else hangs up there.
-            # Hung on the west half's wall at its east end.
+        if court["a"] < FRONT_PIER[0] < court["b"]:
+            # centred on the pier, which the seam halves: hung on the west
+            # court's wall at its east end (no one wall has room for it)
             layout.place_on_wall(
-                "station:front_clock", street_id, a1=(piers[0]["a"], 0),
-                a2=(piers[0]["b"], 0), t=0.97,
-                height_player_heights=front_h + 0.9, offset_player_widths=0.04,
-                picnum=CLOCK["tile"], x_repeat=72, y_repeat=72,
-                cstat=16 | 64 | 128, shade=-8, type=0, status=0)
+                "station:front_clock", region, a1=(FRONT_PIER[0], fy0),
+                a2=(court["b"], fy0), t=0.97, height_player_heights=5.6,
+                offset_player_widths=0.04, picnum=CLOCK["tile"], x_repeat=72,
+                y_repeat=72, cstat=16 | 64 | 128, shade=-8, type=0, status=0)
             report["front"] += 1
     #: the town's name where a passenger on the platform reads it: the
     #: hall's own north wall is open, so it hangs over the ramp's head
@@ -1074,11 +1036,17 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                 break
             except Exception:                               # noqa: BLE001
                 continue
+    #: Both stand on the chimney's top, centred (cstat 128), as the campaign
+    #: writes every one of its 31 thin smokes and 20 plumes: their art is
+    #: offset by half its height to be drawn centred, and without the bit the
+    #: renderer lifts them by that (`tools.sprite_fit` "lifted"); the plume
+    #: was also stacked 0.9 bodies up, and the taller of the two rises over
+    #: the thin one from the chimney anyway.
     for name, tile, repeat, lift in (("smoke_thin", SMOKE_THIN, (56, 40), 0.0),
-                                     ("smoke_plume", SMOKE_PLUME, (48, 80), 0.9)):
+                                     ("smoke_plume", SMOKE_PLUME, (48, 80), 0.0)):
         layout.place_on_floor(
             f"station:{name}", chimney.region_id, local=(0.5, 0.5),
-            height_player_heights=lift, type=0, picnum=tile, cstat=2,
+            height_player_heights=lift, type=0, picnum=tile, cstat=2 | 128,
             x_repeat=repeat[0], y_repeat=repeat[1], shade=0, status=0)
         report["engine"] += 1
     #: and a bill on the carriage's side, as E1M3's wears JO-JO's
@@ -1272,128 +1240,155 @@ def keep(level) -> int:
     return len(KEPT)
 
 
-#: The front: six pieces across the avenue's mouth, west to east, each a
-#: room in the district it stands in. Two porches (the station's doors),
-#: a mass either side and a clock pier over the districts' seam.
-FRONT = (("mass", 32768, 33280), ("porch", 33280, 35328), ("pier", 35328, 36352),
-         ("pier", 36352, 37376), ("porch", 37376, 39424), ("mass", 39424, 39936))
-#: A terminus front stands over its street: 6.8 bodies of ashlar (the end
-#: walls stand 5.8, E3M1 s0/s343), the pier 8.7 for its clock; the doors are
-#: 2.4 bodies, a public door's head (`venues`: 87% of campaign ceilings)
-FRONT_RISE, PIER_RISE, PORTAL_H = 114688, 147456, 40960
-FRONT_DEPTH, FRONT_BACKING = 1024, 512
-#: a porch runs through the front and the backing and a body of void behind
-#: them to the hall, so no sky backing touches the roofed hall
-PORCH_DEPTH = 2560
-#: the top of a mass nobody stands on: the end walls' (`streets.END_WALL_TOP_TILE`)
-END_TOP = 379
-#: what `dress` reads to letter and light the front
+#: THE FRONT (second version, the owner's word on the first, 2026-11-20:
+#: "Train station facade looks bad, there are building textures with
+#: windows and they are even cutoff ... maybe you can even do some arcs").
+#: The windows were the bands over the two doors: a roofed doorway opening
+#: onto a street draws the wall over it from its head to the STREET'S sky,
+#: in the street's own facade tile (Theatre Row's 400, the foundry's 393),
+#: a slab of windows standing over a front of 6.8 bodies. A sector cannot
+#: wear another tile above a door; the band only reaches the sky of the
+#: sector in front of it. So the station has a FORECOURT: an open sector
+#: across the avenue's mouth whose sky stands at the front's height, and
+#: the front is the forecourt's far wall, one plane of stone. The doors are
+#: ARCHES, as E1M2's station entrance (s207 into s103) is a pointed one: two
+#: half-sectors whose ceilings slope from the spring to the apex, so the
+#: stone over each arch is the front's own and draws an arch.
+#:
+#: The forecourt is two rooms, one in each district the mouth crosses,
+#: joined at the seam (x 36,352).
+FORECOURT = ((32768, 36352), (36352, 39936))
+FORECOURT_D = 3072
+#: the front's height: the forecourt's sky (6.8 bodies; the end walls stand
+#: 5.8, E3M1 s0/s343), out of a body's reach as a lower sky must be
+FRONT_H = 114688
+#: the arches: (x0, x1) each, 2,048 wide; spring 2.4 bodies (a public
+#: door's head), apex 4.2; as deep as a jamb is thick
+ARCHES = ((33280, 35328), (37376, 39424))
+ARCH_SPRING, ARCH_APEX, ARCH_D = 40960, 71680, 1536
+#: the stone the front is: the owner's "grey ashlar stone blocks" (427), the
+#: pier between the arches his "grey stone wall with meander ornament"
+#: (409), the arches' soffits his "dressed/worked stone" (253)
+FRONT_PIER = (35328, 37376)
+PIER_STONE, SOFFIT = 409, 253
+#: what `furnish` reads to letter and light the front
 AVENUE_FRONT: dict = {}
 
 
 def avenue_front(city, streets, district_of, district_bounds, gates, *,
                  grade: int, street_sky: int, sky_tile: int) -> dict:
-    """The station's front across the avenue's north mouth (y 0).
+    """The station's forecourt and arched front across the avenue's mouth.
 
-    Built as the end walls are (`streets.end_walls`): rooms in each
-    district on the city's edge, each joined to the street by a gate whose
-    ends are made vertices of the street's outline, and a zero-height sky
-    backing behind every mass so the eye goes over it into the sky rather
-    than up a wall drawn to the sky (E3M1 s340/s338). The porches run
-    through the backing into the station's avenue hall.
+    The forecourt rooms stand on the city's edge in the districts the mouth
+    crosses (as `streets.end_walls` builds its masses), each joined to its
+    street by a gate along y 0 whose ends are made vertices of the street's
+    outline. Their sky is the front's height, so every band over an arch
+    ends at the front's top.
     """
     from bloodmap.levelprog import _compass_edges
     import streets as street_anatomy
 
     hall = ROOMS["east_hall"]
-    made = []
-    for index, (kind, a, b) in enumerate(FRONT):
+    fy0 = -FORECOURT_D
+    courts = []
+    for index, (a, b) in enumerate(FORECOURT):
         district = next(d for d, bounds in district_bounds.items()
                         if streets.get(d) is not None and bounds[1] == 0
                         and bounds[0] <= a and b <= bounds[2])
         owner = district_of[district]
-
-        def piece(name, y0, y1, *, note, kw, **surfaces):
-            r = owner.room(
-                name, [(0, 0), (b - a, 0), (b - a, y1 - y0), (0, y1 - y0)],
-                role="exterior", faces=dict(COMPASS), frame=Frame(a, y0),
-                note=note, region_kwargs=kw,
-                intent={"kind": "station_front", "street": "the_avenue"})
-            r.surfaces(**surfaces)
-            return r
-
-        if kind == "porch":
-            front = piece(f"station_porch_{index}", -PORCH_DEPTH, 0,
-                          note="a station door: the porch through the front",
-                          kw={}, floor_z=grade, clear_height=PORTAL_H,
-                          #: Round 11: "the streetlamps define the pavement
-                          #: more clearly than the recessed doorway ... a
-                          #: broad, warmly lit portal". The way in is lined
-                          #: in the station's warm wood and lit, where the
-                          #: front is grey stone: it reads by contrast.
-                          #: (479, the owner's "stone column", is never a
-                          #: two-sided lower wall in the campaign.)
-                          wall_picnum=WOOD, ceiling_picnum=WOOD,
-                          floor_picnum=FLOOR, floor_shade=-4, ceiling_shade=-2,
-                          wall_shade=-4, parallax_ceiling=False)
-            # Showcase round 9: "its doorway is swallowed by shadow". A
-            # station door is the lit thing in its front.
-            front.light_source("porch_lamp", local=(0.5, 0.35),
-                               height_player_heights=1.8)
-            back = None
-            city.connect(front.face("north"), hall.face("south"),
-                         connection_id=f"connection:station_front_{index}_in")
-        else:
-            rise = PIER_RISE if kind == "pier" else FRONT_RISE
-            front = piece(f"station_{kind}_{index}", -FRONT_DEPTH, 0,
-                          note=f"the station front: the {kind}",
-                          kw={"declared_zero_exit": True},
-                          floor_z=grade - rise, clear_height=street_sky - rise,
-                          wall_picnum=FRONT_STONE, floor_picnum=END_TOP,
-                          ceiling_picnum=int(sky_tile), parallax_ceiling=True,
-                          wall_shade=12)
-            back = piece(f"station_{kind}_{index}_sky", -FRONT_DEPTH - FRONT_BACKING,
-                         -FRONT_DEPTH, note="no height and a parallax ceiling: "
-                         "the sky behind the front (E3M1 s340)",
-                         #: at the top of the mass it backs, not at grade:
-                         #: a sky at grade stood below the porches' roofs
-                         kw={"declared_zero_exit": True}, floor_z=grade - rise,
-                         clear_height=0, wall_picnum=FRONT_STONE, floor_picnum=END_TOP,
-                         ceiling_picnum=int(sky_tile), parallax_ceiling=True)
-            city.connect(front.face("north"), back.face("south"),
-                         connection_id=f"connection:station_front_{index}_sky")
-        if made:
-            prev_front, prev_back, prev_kind = made[-1]
-            # the left face must lie within the right one: a mass's or a
-            # pier's face is shorter than a porch's
-            pairs = [(front.face("west"), prev_front.face("east"))]
-            if prev_kind == "porch" and kind != "porch":
-                pairs = [(front.face("west"), prev_front.face("east")),
-                         (back.face("west"), prev_front.face("east"))]
-            elif kind == "porch" and prev_kind != "porch":
-                pairs = [(prev_front.face("east"), front.face("west")),
-                         (prev_back.face("east"), front.face("west"))]
-            elif prev_back is not None and back is not None:
-                pairs.append((back.face("west"), prev_back.face("east")))
-            for k, (left, right) in enumerate(pairs):
-                city.connect(left, right,
-                             connection_id=f"connection:station_front_{index}_{k}")
-        made.append((front, back, kind))
-        # the gate: the stretch of the city's edge this piece stands on
+        court = owner.room(
+            f"station_forecourt_{index}",
+            [(0, 0), (b - a, 0), (b - a, FORECOURT_D), (0, FORECOURT_D)],
+            role="exterior", faces=dict(COMPASS), frame=Frame(a, fy0),
+            note="the station forecourt: its sky is the front's top",
+            intent={"kind": "station_front", "street": "the_avenue"})
+        court.surfaces(floor_z=grade, clear_height=FRONT_H, floor_picnum=FLOOR,
+                       wall_picnum=FRONT_STONE, ceiling_picnum=int(sky_tile),
+                       parallax_ceiling=True, floor_shade=10, wall_shade=10)
         street = streets[district]
         origin = (int(district_bounds[district][0]), int(district_bounds[district][1]))
-        p0, p1 = (a, 0), (b, 0)
         street.outline = street_anatomy._with_vertices(
             street.outline, [(a - origin[0], -origin[1]), (b - origin[0], -origin[1])])
         street.faces = {**{k: v for k, v in street.faces.items()
                            if k in street._hole_faces},
                         **_compass_edges(street.outline)}
-        gates.append((f"connection:station_front_{index}_mouth",
-                      front.region_id, street.region_id, p0, p1, 0))
-        AVENUE_FRONT.setdefault("pieces", []).append(
-            {"kind": kind, "a": a, "b": b, "street": street.region_id,
-             "region": front.region_id})
-    return {"pieces": len(made), "porches": sum(k == "porch" for _f, _b, k in made)}
+        gates.append((f"connection:station_forecourt_{index}_mouth",
+                      court.region_id, street.region_id, (a, 0), (b, 0), 0))
+        courts.append((court, owner, district, street, a, b))
+        AVENUE_FRONT.setdefault("courts", []).append(
+            {"region": court.region_id, "street": street.region_id, "a": a, "b": b})
+    city.connect(courts[1][0].face("west"), courts[0][0].face("east"),
+                 connection_id="connection:station_forecourt_seam")
+
+    arches = 0
+    for index, (a, b) in enumerate(ARCHES):
+        court, owner = next((c, o) for c, o, _d, _s, ca, cb in courts if ca <= a and b <= cb)
+        mid = (a + b) // 2
+        halves = []
+        for side, (x0, x1) in enumerate(((a, mid), (mid, b))):
+            half = owner.room(
+                f"station_arch_{index}_{side}",
+                [(0, 0), (x1 - x0, 0), (x1 - x0, ARCH_D), (0, ARCH_D)],
+                role="gateway", faces=dict(COMPASS),
+                frame=Frame(x0, fy0 - ARCH_D),
+                note="half of a pointed arch: its ceiling rises to the apex",
+                region_kwargs={"ceiling_slope": SlopeSpec(
+                    # each half pivots on its OUTER jamb (the sector's first
+                    # wall) and rises to the apex over the arch's middle
+                    hinge=(((x0, fy0), (x0, fy0 - ARCH_D)) if side == 0
+                           else ((x1, fy0 - ARCH_D), (x1, fy0))),
+                    rise_z=-(ARCH_APEX - ARCH_SPRING))},
+                intent={"kind": "station_front", "street": "the_avenue"})
+            half.surfaces(floor_z=grade, clear_height=ARCH_SPRING,
+                          parallax_ceiling=False, floor_picnum=FLOOR,
+                          wall_picnum=FRONT_STONE, ceiling_picnum=SOFFIT,
+                          floor_shade=-6, ceiling_shade=-4, wall_shade=-2)
+            half.light_source(f"arch_lamp_{index}_{side}", local=(0.5, 0.5),
+                              height_player_heights=1.8)
+            city.connect(half.face("south"), court.face("north"),
+                         connection_id=f"connection:station_arch_{index}_{side}_out")
+            city.connect(half.face("north"), hall.face("south"),
+                         connection_id=f"connection:station_arch_{index}_{side}_in")
+            halves.append(half)
+        city.connect(halves[1].face("west"), halves[0].face("east"),
+                     connection_id=f"connection:station_arch_{index}_crown")
+        # Round 15: "the archways look like dark recesses ... light the
+        # arch from within so a warm pool spills onto the cobbles". The
+        # passages are lit (above) and a pool of lit floor lies before each
+        # arch: a flush sector of its own, the forecourt being one sector
+        # and one shade (`lightpools`' reason).
+        import setpieces
+        from materials import INTERIORS
+        pool = setpieces.raised_solid(
+            owner, f"station_arch_{index}_pool", court,
+            (a - 256, fy0 + 256, b + 256, fy0 + 2048), INTERIORS["common"],
+            grade=grade, rise=0, host_clear=FRONT_H, connector=owner,
+            note="the light the arch spills onto the forecourt")
+        pool.surfaces(floor_picnum=FLOOR, floor_shade=0, ceiling_picnum=int(sky_tile),
+                      parallax_ceiling=True, clear_height=FRONT_H)
+        arches += 1
+    return {"forecourt": len(courts), "arches": arches}
+
+
+def front_stone(level) -> int:
+    """The pier between the arches wears the owner's meander-ornament stone.
+
+    A room has one wall tile; the forecourt's far wall is the front, and
+    the stretch of it between the arches is the pier. Kept (`KEPT`) so the
+    texture-framing pass does not repaint it.
+    """
+    count = 0
+    for w_id, wall in enumerate(level.walls):
+        w = wall.get("fields", wall) if isinstance(wall, dict) else wall.fields
+        n = level.walls[int(w["point2"])]
+        n = n.get("fields", n) if isinstance(n, dict) else n.fields
+        if (int(w["y"]) == int(n["y"]) == -FORECOURT_D and int(w["next_sector"]) < 0
+                and FRONT_PIER[0] <= min(int(w["x"]), int(n["x"]))
+                and max(int(w["x"]), int(n["x"])) <= FRONT_PIER[1]):
+            w["picnum"] = PIER_STONE
+            KEPT[w_id] = {k: w[k] for k in FRAME_FIELDS}
+            count += 1
+    return count
 
 
 def dress(level, compiled) -> dict:
@@ -1559,4 +1554,5 @@ def dress(level, compiled) -> dict:
             s["floor_y_panning"] = 0
     report["glass"] = glass.glaze(level, PANES, fit=True)["panes"]
     report["bars"] = len(glass.grille(level, GRILLES, tile=BARS)["barred"])
+    report["front_pier"] = front_stone(level)
     return report

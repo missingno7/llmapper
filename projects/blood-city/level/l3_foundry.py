@@ -634,7 +634,8 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     # dropped and the lift with it (the lint read them 46% sunk).
     rat_on_grill = {"picnum": 1743, "x_repeat": 24, "y_repeat": 24,
                     "cstat": 256, "shade": -8, "type": 0, "status": 0}
-    steam = {"picnum": 754, "x_repeat": 32, "y_repeat": 8, "cstat": 2,
+    #: (centred, as all 31 of the campaign's are: the art is offset to be)
+    steam = {"picnum": 754, "x_repeat": 32, "y_repeat": 8, "cstat": 2 | 128,
              "shade": -8, "type": 0, "status": 0}
     fan = {"picnum": 2548, "x_repeat": 32, "y_repeat": 32, "cstat": 160,
            "shade": 0, "type": 0, "status": 0}
@@ -649,8 +650,7 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
             layout.place_on_floor(f"ratdogs:{place}_rat_{index}", region,
                                   local=local, **rat)
             layout.place_on_floor(f"ratdogs:{place}_steam_{index}", region,
-                                  local=local, height_player_heights=0.1,
-                                  **steam)
+                                  local=local, **steam)
             out += [f"ratdogs:{place}_rat_{index}", f"ratdogs:{place}_steam_{index}"]
     for index, u in enumerate((0.25, 0.75)):
         layout.place_on_ceiling(f"ratdogs:fan_{index}", dressing["hatch"],

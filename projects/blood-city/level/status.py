@@ -322,7 +322,7 @@ def gather() -> dict[str, Any]:
         item("dropped", said, owner=from_pass("flat_dropped"),
              see="the 'flat sprites dropped' line the build prints")
     fit = manifest.get("sprite_fit", {})
-    for name in ("sunk", "through", "squeezed", "overlaps", "flat_overlaps",
+    for name in ("sunk", "through", "squeezed", "lifted", "overlaps", "flat_overlaps",
                  "sunk_actors", "on_travelling_floor"):
         for row in fit.get(name) or []:
             item(f"sprite-{name.replace('_', '-')}", json.dumps(row, sort_keys=True),

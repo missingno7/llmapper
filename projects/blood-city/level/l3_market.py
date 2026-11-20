@@ -373,18 +373,9 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     _rect = next(b["rect"] for b in _plan.BLOCKS if b["id"] == "monument")
     # The very outline the street carved, chamfers and all.
     _outline = _bs.mass_outline(_rect, [])
-    monument_node, monument_parts = _t.monument(
-        plaza, market_st, _outline,
-        # `opening` equal to `wall`, not the jamb tile.  A monument's step is
-        # not a doorway: with MASONRY's own opening (28, the boardwalk plank)
-        # the plinth's face came out as brown boards under the city's name.
-        material=Material(wall=MASONRY.wall, floor=MASONRY.floor,
-                          ceiling=MASONRY.ceiling, opening=MASONRY.wall,
-                          sky=True, note="the monument's stone"),
-        cap_material=Material(wall=MASONRY.wall, floor=MASONRY.floor,
-                              ceiling=facade.ceiling, opening=MASONRY.opening,
-                              sky=True, note="the pedestal's cap"),
-        grade=GRADE, clear_height=STREET_SKY, connector=district)
+    monument_node, monument_parts = memorial(
+        plaza, market_st, _outline, grade=GRADE, clear_height=STREET_SKY,
+        sky_tile=facade.ceiling, connector=district)
     citytree.declare_venue(monument_node, "monument", "free_standing",
                            built_by="l3_market")
     built["rooms"] += [r.region_id for r in monument_parts.values()]
@@ -395,35 +386,10 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     #: faces rather than reconstructing rectangles from region ids.
     built["monument_rooms"] = dict(monument_parts)
 
-    # ---- the fountain: L1 says centre-offset-west -------------------------
-    basin_w = 3 * PU
-    cx = px0 + (px1 - px0) // 3
-    cy = (py0 + py1) // 2
-    # Built through the set-piece constructor, from the mined basin class
-    # (36 pieces / 25 maps): concentric tiers descending in even steps to
-    # water, standing inside a raised rim.  The hand-built version was one
-    # sunk square -- a hole in the plaza, not a fountain.
-    import setpieces
-    fountain_assembly = plaza.assembly(
-        "fountain",
-        style=Style(floor_picnum=MASONRY.floor, wall_picnum=MASONRY.wall,
-                    ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                    floor_z=GRADE, clear_height=STREET_SKY, floor_shade=24),
-        note="the plaza fountain, modelled from the mined basin class")
-    water = Material(wall=MASONRY.wall, floor=WATER,
-                     ceiling=facade.ceiling, opening=MASONRY.opening, sky=True,
-                     note="E3M3's shallow water")
-    parts = setpieces.basin(
-        fountain_assembly, "fountain", market_st,
-        (cx - basin_w // 2, cy - basin_w // 2,
-         cx + basin_w // 2, cy + basin_w // 2),
-        MASONRY, water, grade=GRADE, host_clear=STREET_SKY,
-        tiers=2, wall_thickness=512, connector=city,
-        note="the plaza fountain")
-    basin = parts["rim"]
-    built["rooms"].append(parts["well"].region_id)
-    built["rooms"].append(basin.region_id)
-    built["street_joined"].append(basin.region_id)
+    # ---- the fountain: the memorial is it now (`memorial`) ----------------
+    # L1 asked for a fountain centre-offset-west beside the monument; the
+    # owner asked for one memorial with water, so the two are one.
+    built["rooms"].append(monument_parts["pool"].region_id)
 
     # ---- the stall run: three platforms along the plaza's west edge -------
     stall_w, stall_d = int(1.5 * PU), 2 * PU
@@ -1065,10 +1031,124 @@ def dress_supermarket(layout, rooms) -> dict:
 #: 12,288 units -- 0.72 player heights -- of solid masonry.  Both lines sit
 #: inside it: at 64 a letter is 2,816 tall, so 0.50 spans 0.42..0.58 and
 #: 0.24 spans 0.16..0.32.
+#: (On the memorial's backdrop, over the box the water falls from: the box
+#: stands 1.6 bodies over the plaza, the rim 0.24, so the lines start above
+#: it, measured from the rim; the emblem stands over them.)
 MONUMENT_WORDS = (
-    ("WELCOME TO", 0.50),
-    ("GRAVESEND", 0.24),
+    ("WELCOME TO", 2.15),
+    ("GRAVESEND", 1.8),
 )
+
+
+#: THE MEMORIAL (owner, 2026-11-20: "I would also rework that welcome to
+#: gravesend we can do some bigger memorial with water or something more
+#: eye catching"). The first rework was water everywhere -- a block whose
+#: four faces were waterfalls -- and the owner: "That one you created looks
+#: quite bad now, there should be that combination of stone and water, to
+#: give it some shape", pointing at his own street memorial in RABIDN09
+#: (sectors 153-158, 190-198, 346-354; not copied, read for its ideas):
+#: the STONE is the shape and the water fills what the stone leaves. A low
+#: rim of light dressed stone (253) round a pool (2915); a tall dark backdrop
+#: of grey brick (421) with an emblem high on it (his ram skull, 1348); in
+#: front of it a dark box rising out of the water with ONE narrow fall down
+#: its middle (1005, moving as E3M6's wall 450 moves) and foam at its foot
+#: (1037); either side, a drum of ornamented stone (409) standing in the
+#: water with a carved panel top (360) and a crouching statue (536).
+#: Heights in Build z, up from the plaza.
+PARAPET_RISE = 4096                 # the rim: a step up off the plaza
+BACKDROP_RISE = 59392               # 3.5 bodies over the rim
+BOX_RISE, FALL_RISE = 27136, 25088  # over the water; the fall's lip a little under the box's top
+DRUM_RISE = 16384                   # over the water: a body over the rim
+BAND = 2560                         # the rim's north band, which the backdrop stands on
+POOL_INSET = 768                    # the rim's width elsewhere
+RIM_STONE, DARK_STONE, MEMORIAL_WATER, FALLING = 253, 421, 2915, 1005
+#: (the owner's drums wear 364, an ogee lattice; the campaign never puts it
+#: on a step face, so ours wear his named meander-ornament stone, 409, the
+#: station pier's)
+DRUM_FACE, DRUM_TOP = 409, 360
+FALLS = {"pan_always": 1, "pan_y_velocity": -75, "y_pan_fraction": 32}
+
+
+def memorial(parent, street, outline, *, grade: int, clear_height: int,
+             sky_tile: int, connector) -> tuple:
+    """The plaza memorial, filling the hole the street cuts for it.
+
+    Concentric, as `templates.monument` and `setpieces.basin` are: the rim
+    fills the street's (chamfered) hole; the pool is carved out of the rim
+    and the backdrop stands on the rim's north band; the box, the fall and
+    the drums stand in the pool, none touching another, so every coincident
+    edge is a declared portal.
+    """
+    import citytree
+    import setpieces
+    from bloodmap.levelprog import Frame, _compass_edges
+
+    def mat(wall, floor, note):
+        return Material(wall=wall, floor=floor, ceiling=sky_tile, opening=wall,
+                        sky=True, note=note)
+
+    rim_m = mat(RIM_STONE, RIM_STONE, "the memorial's rim")
+    dark = mat(DARK_STONE, RIM_STONE, "the memorial's dark stone")
+    water = mat(RIM_STONE, MEMORIAL_WATER, "the memorial's water")
+    falls = mat(FALLING, MEMORIAL_WATER, "the falling water")
+    drum_m = mat(DRUM_FACE, DRUM_TOP, "a statue's drum")
+    node = parent.assembly("monument", note="the Gravesend memorial: stone and water")
+    points = [(int(px), int(py)) for px, py in outline]
+    ox, oy = min(p[0] for p in points), min(p[1] for p in points)
+    local = [(px - ox, py - oy) for px, py in points]
+    rim = citytree.make_room(
+        node, "parapet", local, role="detail", frame=Frame(ox, oy),
+        faces={f"edge{index}": index for index in range(len(points))},
+        region_kwargs=rim_m.region_kwargs(),
+        note="the rim round the pool: one low step off the plaza")
+    rim.surfaces(**rim_m.style_kwargs(floor_z=grade - PARAPET_RISE,
+                                      clear_height=clear_height - PARAPET_RISE))
+    rim.faces.update(_compass_edges(local))
+    for index in range(len(points)):
+        connector.connect(rim.face(f"edge{index}"), street.face("north"),
+                          connection_id=f"connection:memorial_rim_{index}")
+    x0, y0 = ox, oy
+    x1, y1 = max(p[0] for p in points), max(p[1] for p in points)
+    cx = (x0 + x1) // 2
+    made = {"rim": rim}
+    # the backdrop, on the rim's north band
+    made["backdrop"] = setpieces.raised_solid(
+        node, "backdrop", rim, (x0 + 1536, y0 + 512, x1 - 1536, y0 + BAND - 512),
+        dark, grade=grade - PARAPET_RISE, rise=BACKDROP_RISE,
+        host_clear=clear_height - PARAPET_RISE, connector=connector,
+        face_picnum=DARK_STONE, shade=12,
+        note="the backdrop: the city's name and the emblem over the water")
+    # the pool, the rest of the rim's middle
+    px0, py0, px1, py1 = x0 + POOL_INSET, y0 + BAND, x1 - POOL_INSET, y1 - POOL_INSET
+    setpieces._carve_into(rim, (px0, py0, px1, py1))
+    pool = setpieces._rect_room(node, "pool", (px0, py0, px1, py1), water,
+                                floor_z=grade, clear=clear_height,
+                                behavior={"depth": setpieces.WATER_DEPTH},
+                                note="the memorial's pool")
+    setpieces._rim(connector, pool, rim, "memorial_pool")
+    made["pool"] = pool
+    box = (cx - 1536, py0 + 256, cx + 1536, py0 + 1536)
+    # a sheet of water, not a block: a quarter of a body proud of the box
+    fall = (cx - 512, box[3] + 64, cx + 512, box[3] + 320)
+    for label, rect, material, rise, face, behavior, shade in (
+            ("box", box, dark, BOX_RISE, DARK_STONE, None, 14),
+            ("fall", fall, falls, FALL_RISE, FALLING, FALLS, 24),
+            ("drum_0", (px0 + 384, py0 + 640, px0 + 1664, py0 + 1920), drum_m,
+             DRUM_RISE, DRUM_FACE, None, 10),
+            ("drum_1", (px1 - 1664, py0 + 640, px1 - 384, py0 + 1920), drum_m,
+             DRUM_RISE, DRUM_FACE, None, 10)):
+        made[label] = setpieces.raised_solid(
+            node, label, pool, rect, material, grade=grade, rise=rise,
+            host_clear=clear_height, connector=connector, face_picnum=face,
+            wall_behavior=behavior, shade=shade,
+            note={"box": "the dark box the water falls from",
+                  "fall": "the one narrow fall, its lip under the box's top",
+                  "drum_0": "a statue's drum in the water",
+                  "drum_1": "a statue's drum in the water"}[label])
+    # `dress_monument` letters the backdrop from the rim it stands on and
+    # sets the flame on its top
+    made.update(base=rim, plinth=made["backdrop"], pedestal=made["backdrop"])
+    return node, made
 
 
 def _local_of(room, x, y):
@@ -1121,6 +1201,43 @@ def dress_monument(layout, parts, street=None) -> dict:
         report["lines"] += 1
         report["letters"] += len(ids)
 
+    # THE MEMORIAL'S FIGURES, as the owner's RABIDN09 memorial sets them
+    # (its sprites, read for their records): a crouching statue (536, repeat
+    # 64) on each drum, the foam (1037, repeat 32, cstat 144) where the fall
+    # meets the pool, and the emblem high on the backdrop (his ram skull,
+    # 1348, repeat 152, cstat 208).
+    for index in (0, 1):
+        drum = parts.get(f"drum_{index}")
+        if drum is not None:
+            layout.place_on_floor(
+                # his cstat, 385: centred (128), as all five of the
+                # campaign's 536 are -- the art is offset by half its height
+                # to be drawn so, and written without the bit it stood 0.83
+                # bodies in the air
+                f"monument:statue_{index}", drum.region_id, local=(0.5, 0.5),
+                picnum=536, cstat=385, x_repeat=64, y_repeat=64, shade=8, pal=0,
+                type=0, status=0)
+            report["statues"] = report.get("statues", 0) + 1
+    fall = parts.get("fall")
+    if fall is not None:
+        fx0, fy0, fx1, fy1 = props.room_rect(fall)
+        pool = parts["pool"]
+        layout.add_sprite("monument:foam", pool.region_id, x=(fx0 + fx1) // 2,
+                          y=fy1 + 32, z=int(layout.regions[pool.region_id].floor_z),
+                          picnum=1037, cstat=144, x_repeat=32, y_repeat=32,
+                          angle=512, shade=0, pal=0, type=0, status=0)
+    backdrop = parts.get("backdrop")
+    if backdrop is not None:
+        b2, b1 = props.face_segment(props.room_rect(backdrop), "south", inset=64)
+        got = wallplane.sprite(
+            # (his is at 152, 4,180 wide: on a backdrop five units wide that
+            # is the lettering's room; at 64 it stands over the letters)
+            layout, "monument:emblem", base.region_id, b1, b2, tile=1348,
+            x_repeat=64, y_repeat=64, cstat=16 | 64 | 128, t=0.5,
+            height_player_heights=3.05, offset_player_widths=0.06, shade=0,
+            over_steps=True)
+        report["emblem"] = bool(got)
+
     # The flame on the pedestal: the campaign's own monument statuary, and
     # the plaza's own light.
     if pedestal is not None:
@@ -1141,7 +1258,9 @@ def dress_monument(layout, parts, street=None) -> dict:
         # wide either side of the plinth, so a lamp standing on it stands
         # directly in front of the lettering -- the first render had the G
         # and the D of GRAVESEND behind lamp posts.
-        x0, y0, x1, y1 = props.room_rect(base)
+        # (off the memorial's parapet: its "base", which carries the name,
+        # stands in the middle of the pool)
+        x0, y0, x1, y1 = props.room_rect(parts.get("rim", base))
         for index, (px, py) in enumerate(((x0 - 1024, y1 + 1024),
                                           (x1 + 1024, y1 + 1024))):
             try:

@@ -453,6 +453,48 @@ def sunk_actors(disk, *, sunk: float = SUNK) -> list[dict[str, Any]]:
     return out
 
 
+def stood_on_floor() -> dict[int, float]:
+    """Each tile's typical height over its floor as a standing (face) sprite
+    across the campaign, in bodies (`knowledge/blood/design/tile-usage-v1.json`)."""
+    from tools import catalog
+
+    data = json.loads(catalog.USAGE.read_text("utf-8"))["tiles"]
+    out = {}
+    for key, row in data.items():
+        face = row.get("roles", {}).get("sprite_face")
+        if face and face.get("over_floor_bodies") is not None:
+            out[int(key)] = float(face["over_floor_bodies"])
+    return out
+
+
+def lifted(rows, *, lifted_by: float = LIFTED) -> list[dict[str, Any]]:
+    """Standing things drawn in the air over their floor.
+
+    The owner, 2026-11-20, of the memorial's statues: "Haven't you spot that
+    these statues are floating mid air?" They were 0.83 bodies up: tile 536
+    carries an art y-offset of half its height, made to be drawn CENTRED
+    (cstat 128), and was written without the bit, so the renderer lifted it
+    by that offset. Nothing reported it: `LIFTED` was declared and never
+    used. A face sprite is lifted when its drawn bottom stands more than
+    `lifted_by` bodies over its own sector's floor AND the campaign stands
+    that tile on its floor (its typical height is under half of that) --
+    lamps, torches, carcasses and smoke are in the air by nature and the
+    campaign says so. Measured over the campaign: no key and no statue 536
+    of 95 stands lifted.
+    """
+    typical = stood_on_floor()
+    out = []
+    for r in rows:
+        if r["align"] != "face" or r["over_floor"] <= lifted_by:
+            continue
+        usual = typical.get(r["tile"])
+        if usual is None or usual > lifted_by / 2:
+            continue
+        out.append({"sprite": r["sprite"], "tile": r["tile"], "sector": r["sector"],
+                    "over_floor": r["over_floor"], "campaign": usual})
+    return out
+
+
 def faults(rows, *, sunk: float = SUNK, squeezed: float = SQUEEZED) -> dict:
     return {
         "sunk": [r for r in rows if r["sunk"] > sunk],
@@ -485,7 +527,7 @@ def lint(disk) -> dict[str, Any]:
             "sunk_actors": sunk_actors(disk),
             "on_travelling_floor": on_travelling_floor(disk),
             "sunk": found["sunk"], "through": found["through"],
-            "squeezed": found["squeezed"]}
+            "squeezed": found["squeezed"], "lifted": lifted(rows)}
 
 
 def main(argv=None) -> int:
@@ -536,6 +578,11 @@ def main(argv=None) -> int:
                 print(f"  {kind:9s} sprite {r['sprite']:4d} tile {r['tile']:5d} "
                       f"{r['align']:5s} type {r['type']:3d} sector "
                       f"{r['sector']:4d} at ({r['x']}, {r['y']}): {detail}")
+        for r in lifted(rows):
+            print(f"  lifted    sprite {r['sprite']:4d} tile {r['tile']:5d} sector "
+                  f"{r['sector']:4d}: {r['over_floor']} bodies over its floor "
+                  f"(the campaign stands it at {r['campaign']})")
+        out[path.stem]["lifted"] = lifted(rows)
     if args.json:
         pathlib.Path(args.json).write_text(json.dumps(out, indent=1), "utf-8")
     return 0

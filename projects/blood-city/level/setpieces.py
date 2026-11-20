@@ -133,7 +133,7 @@ def _owner(node):
 
 
 def _rim(connector, piece, host, tag, *, face_picnum=None,
-         face_x_repeat_scale=None, face_y_repeat_scale=None):
+         face_x_repeat_scale=None, face_y_repeat_scale=None, wall_behavior=None):
     """Join a piece to its host on all four faces.
 
     Every coincident edge must be a declared portal -- the rule this
@@ -148,6 +148,12 @@ def _rim(connector, piece, host, tag, *, face_picnum=None,
         face["face_x_repeat_scale"] = float(face_x_repeat_scale)
     if face_y_repeat_scale is not None:
         face["face_y_repeat_scale"] = float(face_y_repeat_scale)
+    if wall_behavior:
+        #: an XWALL on every face's wall (E3M6's waterfall: pan_always and
+        #: pan_y_velocity on the step face), the layout attaching it to the
+        #: realised wall
+        face["wall_behavior"] = dict(wall_behavior)
+        face["attach_policy"] = "all_atomic"
     for side in ("north", "east", "south", "west"):
         connector.connect(piece.face(side), host.face("north"),
                           connection_id=f"connection:{tag}_{side}", **face)
@@ -160,7 +166,8 @@ def _rim(connector, piece, host, tag, *, face_picnum=None,
 def raised_solid(assembly, name, host, rect, material, *, grade,
                  rise=COUNTER, host_clear, note="", shade=None,
                  connector=None, face_picnum=None,
-                 face_x_repeat_scale=None, face_y_repeat_scale=None):
+                 face_x_repeat_scale=None, face_y_repeat_scale=None,
+                 wall_behavior=None):
     """One block standing above its host floor.  Class: raised block."""
     _carve_into(host, rect)
     piece = _rect_room(assembly, name, rect, material,
@@ -174,7 +181,7 @@ def raised_solid(assembly, name, host, rect, material, *, grade,
     _rim(connector or _owner(assembly), piece, host, name,
          face_picnum=material.wall if face_picnum is None else face_picnum,
          face_x_repeat_scale=face_x_repeat_scale,
-         face_y_repeat_scale=face_y_repeat_scale)
+         face_y_repeat_scale=face_y_repeat_scale, wall_behavior=wall_behavior)
     return piece
 
 

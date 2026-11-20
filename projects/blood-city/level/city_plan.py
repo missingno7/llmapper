@@ -157,8 +157,14 @@ BLOCKS = [
     # (monuments-v1.json: median 2.0, q1 1.5, q3 3.25), so this is between
     # its median and its q3 -- and 2,432 is the top of CN 2's free-standing
     # band, which `plan_review` checks at 700..2,500.
+    #: ... and then the owner, 2026-11-20: "I would also rework that welcome
+    #: to gravesend we can do some bigger memorial with water or something
+    #: more eye catching". It is the plaza's cascade fountain now
+    #: (`l3_market.memorial`), 8 by 7.5 plan units, and the owner's scale
+    #: outranks the mined band, which `plan_review` says.
     {"id": "monument", "district": "market_slip", "role": "free_standing",
-     "rect": (24.8125, 43.8125, 27.1875, 46.1875), "notches": []},   # 2.375 pu
+     "rect": (22.5, 41.25, 30.5, 48.75), "notches": [],
+     "owner_scale": "2026-11-20: a bigger memorial with water"},
     {"id": "gatehouse", "district": "foundry_ward", "role": "free_standing",
      "rect": (52, 19, 54.25, 21.25), "notches": []},          # 2.25 pu
 ]

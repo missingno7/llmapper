@@ -13,7 +13,7 @@
             "accept": ["crypt", "tomb", "vault", "catacomb", "mausoleum", "sarcophag", "burial"]},
   "churchyard": {"outdoors": true, "title": "The churchyard", "focus": [24.0, 29.0], "radius": 4, "camera_radius": 4.5,
                  "accept": ["graveyard", "cemetery", "churchyard", "garden", "yard"]},
-  "station_front": {"outdoors": true, "title": "Gravesend Station", "focus": [36.0, 0.0], "radius": 5, "camera_radius": 12,
+  "station_front": {"outdoors": true, "title": "Gravesend Station", "focus": [36.0, -1.5], "radius": 5, "camera_radius": 12,
                     "accept": ["station", "railway", "terminal", "depot"]},
   "platform": {"title": "The platform and the train", "focus": [19.0, -16.5], "floor": -12288, "band": 16384,
                "radius": 9, "camera_radius": 11,

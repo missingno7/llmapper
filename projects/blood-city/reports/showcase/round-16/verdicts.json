@@ -1,0 +1,37 @@
+{
+ "station_front": {
+  "notes": {
+   "A": "Street-level view shows the clock and both entrances, but the steep angle foreshortens the sign.",
+   "B": "The corner storefront and distant towers dominate while the station disappears behind a stone wall.",
+   "C": "The ornate building and broad plaza push the station entrances to the right edge.",
+   "D": "Both gables, the clock, and the brick alley establish the setting, but the name is clipped.",
+   "E": "The whole frontage reads clearly, though the elevated view makes the entrances feel small.",
+   "F": "The lamps lead toward the station, but the dark alley divides attention and the clock is clipped.",
+   "G": "Close framing shows the gables and lamps well, but crops the clock and station name.",
+   "H": "Pavement and lamps lead into the nearest doorway, but the clock and most lettering vanish."
+  },
+  "place": "Gravesend Station entrance plaza",
+  "rank": [
+   "E",
+   "D",
+   "A",
+   "G",
+   "H",
+   "C",
+   "F",
+   "B"
+  ],
+  "best": "E fits the full station name, clock, both entrances, and lamplit pavement into one view, with the brick alley alongside.",
+  "lacks": "The clock and lettering identify the station, but two similar dark entrances give the forecourt no clear point of arrival.",
+  "fix": "Turn the main doorway into a broad, warmly lit entrance with the ticket hall visible from the street.",
+  "ok": true,
+  "blind_name": {
+   "name": "Railway station entrance",
+   "sure": 3,
+   "why": "A round clock crowns the stone frontage, with recessed entrances and streetlamps along the cobbled pavement.",
+   "odd": "The far end of the alley is hard to make out.",
+   "recognised": true
+  },
+  "winner": "station_front-04-1792-50880-70"
+ }
+}

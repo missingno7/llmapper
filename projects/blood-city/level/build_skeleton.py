@@ -1206,10 +1206,10 @@ def build():
         return (int(centre - half), int(centre + half))
 
     # The avenue no longer ends in a wall: Gravesend Station fronts it
-    # (`l3_station.avenue_front`), its twin doors and clock pier across the
+    # (`l3_station.avenue_front`), a forecourt and two arches across the
     # mouth the end wall closed.
     import l3_station as _station
-    assert _mouth(SEAM_AVENUE, "avenue") == (_station.FRONT[0][1], _station.FRONT[-1][2]), \
+    assert _mouth(SEAM_AVENUE, "avenue") == (_station.FORECOURT[0][0], _station.FORECOURT[-1][1]), \
         "the station front must span the avenue's mouth exactly"
     ctx["manifest"]["station_front"] = _station.avenue_front(
         city, streets, district_of, DISTRICT_BOUNDS, gates, grade=GRADE,
@@ -2271,7 +2271,7 @@ def main() -> int:
         "rates": _lint["rates"],
         **{kind: [{k: row[k] for k in ("sprite", "tile", "sector")
                    if k in row} for row in _lint[kind]]
-           for kind in ("sunk", "through", "squeezed")},
+           for kind in ("sunk", "through", "squeezed", "lifted")},
         "overlaps": [{"sprites": [o["a"], o["b"]], "tiles": list(o["tiles"]),
                       "sector": o["sector"]} for o in _lint["overlaps"]],
         "flat_overlaps": [{"sprites": [o["a"], o["b"]],

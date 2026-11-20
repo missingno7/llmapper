@@ -125,11 +125,17 @@ def seated_z(*, seat: str, floor_z: int, ceiling_z: int, tile_height: int,
     or ``"centre"`` (z midway between, for something mounted on a wall). Build's
     z axis points down, so the floor is the larger number.
     """
-    above, below = sprite_extent(tile_height, y_repeat, cstat, y_offset=y_offset)
+    # Seated by the box the RENDERER draws (`drawn_extent`), not Blood's
+    # physics box: they agree only when bit 128 is set. A tile whose art
+    # carries a y-offset (536, a crouching statue: yofs 55, half its height)
+    # written without the bit was seated with its z on the floor by the
+    # physics box and DRAWN 0.83 bodies in the air (the owner, 2026-11-20:
+    # "these statues are floating mid air").
+    top, bottom = drawn_extent(tile_height, y_offset, y_repeat, cstat, 0)
     if seat == "floor":
-        return int(floor_z) - below - int(clearance)
+        return int(floor_z) - bottom - int(clearance)
     if seat == "ceiling":
-        return int(ceiling_z) + above + int(clearance)
+        return int(ceiling_z) - top + int(clearance)
     if seat == "centre":
         return (int(floor_z) + int(ceiling_z)) // 2
     raise PlacementError(f"unknown seat {seat!r}; use floor, ceiling or centre")

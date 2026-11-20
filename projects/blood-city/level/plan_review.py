@@ -66,6 +66,9 @@ def measure(data: dict) -> list[dict]:
     for block in data["blocks"]:
         x0, y0, x1, y1 = block["rect"]
         extent = max(x1 - x0, y1 - y0) * PU
+        if block.get("owner_scale"):
+            # sized by the owner's word, not the mined band (the memorial)
+            continue
         {"superblock": supers, "block": mids, "free_standing": smalls}[block["role"]].append(
             round(extent))
     row("2-3 superblocks at 24k..32k (CN 2)", f"{sorted(supers)}",

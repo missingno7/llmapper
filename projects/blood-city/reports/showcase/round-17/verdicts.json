@@ -1,0 +1,72 @@
+{
+ "monument": {
+  "notes": {
+   "A": "A statue and the start of the sign peek past an oversized stone ledge.",
+   "B": "The sign dominates, with a statue and a sliver of water. The skull is clipped.",
+   "C": "The flaming skull and a statue frame the street, with the sign cut off.",
+   "D": "The widest street view makes the fountain small and leaves much of the square dark.",
+   "E": "The tower and street give the fountain context. The left edge cuts into the monument.",
+   "F": "The fiery sky looms over the fountain ledge. The sign is nearly edge-on.",
+   "G": "The provisions shop faces the monument, whose sign and skull are cut off.",
+   "H": "The whole fountain composition reads clearly. The pool and right pedestal run off the frame."
+  },
+  "place": "Gravesend\u2019s fountain square",
+  "rank": [
+   "H",
+   "E",
+   "D",
+   "C",
+   "B",
+   "A",
+   "G",
+   "F"
+  ],
+  "best": "H shows the welcome sign, flaming skull, waterfall, and both statues alongside the street they belong to.",
+  "lacks": "The streets lack a clear destination. Repeated windows and dark storefronts give the square little identity beyond the fountain.",
+  "fix": "Build a lantern-lit cemetery gate at the far end of the street to give the square a destination tied to the Gravesend sign.",
+  "ok": true,
+  "blind_name": {
+   "name": "Stone fountain in a courtyard",
+   "sure": 5,
+   "why": "A waterfall spills from a stone wall into a pool flanked by statues.",
+   "odd": "The buildings in the background are very dark.",
+   "recognised": true
+  },
+  "winner": "monument-13-1280-50880-52"
+ },
+ "station_front": {
+  "notes": {
+   "A": "The ornate building across the street takes center stage, and the station is clipped.",
+   "B": "A corner storefront anchors the intersection, while the station\u2019s blank side wall hides its entrance.",
+   "C": "The facing block frames the approach, but the station frontage runs off the right edge.",
+   "D": "Both arches, the clock and lamps establish the station, though the entrances look dark.",
+   "E": "The arch reveals a passage inside, but the tight crop loses the clock.",
+   "F": "The facade and brick side street set the scene, but empty paving dominates.",
+   "G": "The arches and lamps fill the frame, but the steep angle crops the clock.",
+   "H": "The station sits convincingly on the street, but the oblique view foreshortens its name."
+  },
+  "place": "Gravesend Station street frontage",
+  "rank": [
+   "D",
+   "H",
+   "F",
+   "G",
+   "E",
+   "C",
+   "A",
+   "B"
+  ],
+  "best": "The clock, full station name, twin arches and lamps read together, with the brick side street grounding the station.",
+  "lacks": "The street has no visible sign of railway activity beyond the name and clock. The dark arches give arriving players little sense of where to go.",
+  "fix": "Turn the main entrance into a lit ticket hall with a ticket window and departure board visible from the street.",
+  "ok": true,
+  "blind_name": {
+   "name": "Train station entrance",
+   "sure": 3,
+   "why": "A large clock overlooks a stone entrance and lamplit forecourt beside rows of city buildings.",
+   "odd": "No station sign is visible, and the clock hands are hard to read.",
+   "recognised": true
+  },
+  "winner": "station_front-04-1792-50880-70"
+ }
+}

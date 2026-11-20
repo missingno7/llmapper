@@ -1,0 +1,193 @@
+{
+ "station_front": {
+  "title": "Gravesend Station",
+  "candidates": 880,
+  "rendered": 880,
+  "finalists": [
+   {
+    "id": "station_front-19-1024-16960-84",
+    "pose": [
+     42240,
+     3072,
+     -24032,
+     1024,
+     84,
+     118
+    ],
+    "measure": {
+     "subject": 0.2276,
+     "things": 4,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.3297,
+     "sky": 0.04,
+     "unwritten": 0.0423
+    },
+    "score": 2.9745,
+    "letter": "A",
+    "measured_rank": 4
+   },
+   {
+    "id": "station_front-19-1024-50880-70",
+    "pose": [
+     42240,
+     3072,
+     -57952,
+     1024,
+     70,
+     118
+    ],
+    "measure": {
+     "subject": 0.2666,
+     "things": 4,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.1576,
+     "sky": 0.0619,
+     "unwritten": 0.0443
+    },
+    "score": 3.388,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "station_front-04-1792-0-100",
+    "pose": [
+     33024,
+     4608,
+     -7072,
+     1792,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.3367,
+     "things": 5,
+     "variety": 11,
+     "sectors": 9,
+     "dominant": 0.3276,
+     "sky": 0.0195,
+     "unwritten": 0.0176
+    },
+    "score": 3.2758,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "station_front-05-1280-0-100",
+    "pose": [
+     39936,
+     4608,
+     -7072,
+     1280,
+     100,
+     118
+    ],
+    "measure": {
+     "subject": 0.3422,
+     "things": 6,
+     "variety": 10,
+     "sectors": 9,
+     "dominant": 0.3337,
+     "sky": 0.0221,
+     "unwritten": 0.0229
+    },
+    "score": 3.1243,
+    "letter": "D",
+    "measured_rank": 3
+   },
+   {
+    "id": "station_front-00-0768-0-100",
+    "pose": [
+     36864,
+     -1536,
+     -7072,
+     768,
+     100,
+     169
+    ],
+    "measure": {
+     "subject": 0.3692,
+     "things": 0,
+     "variety": 11,
+     "sectors": 11,
+     "dominant": 0.1817,
+     "sky": 0.0812,
+     "unwritten": 0.0242
+    },
+    "score": 2.7133,
+    "letter": "E",
+    "measured_rank": 8
+   },
+   {
+    "id": "station_front-18-0768-50880-52",
+    "pose": [
+     39168,
+     -2304,
+     -57952,
+     768,
+     52,
+     169
+    ],
+    "measure": {
+     "subject": 0.3156,
+     "things": 3,
+     "variety": 9,
+     "sectors": 11,
+     "dominant": 0.1915,
+     "sky": 0.0682,
+     "unwritten": 0.0666
+    },
+    "score": 2.7528,
+    "letter": "F",
+    "measured_rank": 5
+   },
+   {
+    "id": "station_front-15-1792-0-100",
+    "pose": [
+     33024,
+     768,
+     -7072,
+     1792,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.7861,
+     "things": 4,
+     "variety": 10,
+     "sectors": 10,
+     "dominant": 0.2288,
+     "sky": 0.0036,
+     "unwritten": 0.0134
+    },
+    "score": 2.7361,
+    "letter": "G",
+    "measured_rank": 7
+   },
+   {
+    "id": "station_front-15-1792-50880-70",
+    "pose": [
+     33024,
+     768,
+     -57952,
+     1792,
+     70,
+     0
+    ],
+    "measure": {
+     "subject": 0.8691,
+     "things": 11,
+     "variety": 9,
+     "sectors": 7,
+     "dominant": 0.1821,
+     "sky": 0.0189,
+     "unwritten": 0.0221
+    },
+    "score": 2.743,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ }
+}

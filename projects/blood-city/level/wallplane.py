@@ -488,12 +488,14 @@ def sprite(layout, placement_id: str, region_id: str, a1, a2, *, tile: int,
            x_repeat: int, y_repeat: int, cstat: int, t: float = 0.5,
            height_player_heights: float = 0.65,
            offset_player_widths: float = 0.10, required: bool = False,
-           **fields):
+           over_steps: bool = False, **fields):
     """Hang one wall sprite where it does not cover anything already there.
 
     Returns the placement id, or None if the wall had no room -- which is a
     legitimate answer for decoration.  `required=True` raises instead, for
-    the things that must appear (a key placard, a lever).
+    the things that must appear (a key placard, a lever). `over_steps` hangs
+    it on the face of a step (a raised block seen from below it), as
+    `text` does: the memorial's emblem on its backdrop.
     """
     size = extents(tile, x_repeat, y_repeat, cstat)
     if size is None:
@@ -502,7 +504,8 @@ def sprite(layout, placement_id: str, region_id: str, a1, a2, *, tile: int,
     slot = find_slot(layout, region_id, a1, a2, width=left + right,
                      above=above, below=below, t=t,
                      height_player_heights=height_player_heights,
-                     offset_player_widths=offset_player_widths)
+                     offset_player_widths=offset_player_widths,
+                     over_steps=over_steps)
     if slot is None:
         if required:
             raise WallPlaneError(

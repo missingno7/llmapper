@@ -1,0 +1,37 @@
+{
+ "station_front": {
+  "notes": {
+   "A": "The ornate block and cobbles establish the street, while the station slips off the edge.",
+   "B": "The higher view reveals the forecourt and lamp line, but clips the station entrance.",
+   "C": "Both arches and the clock read clearly, though the frame cuts into the station name.",
+   "D": "The signed frontage anchors the square, but deep shadow swallows the main arch.",
+   "E": "The pawnbroker gives the neighborhood character, while the foreground wall hides the station.",
+   "F": "The elevated view shows the pawnbroker corner, but blank masonry takes up the right side.",
+   "G": "The arch and lamps give a pedestrian\u2019s view, but the clock and lettering are cropped.",
+   "H": "The clock and lettering identify the station immediately, but the steep view shrinks the forecourt."
+  },
+  "place": "Gravesend Station forecourt",
+  "rank": [
+   "D",
+   "C",
+   "H",
+   "G",
+   "E",
+   "B",
+   "A",
+   "F"
+  ],
+  "best": "D puts the station clock, lettering and arches in context with the cobbled forecourt, street lamps and neighboring blocks.",
+  "lacks": "A recognizable arrival point at street level. The archways look like dark recesses, leaving the clock to do most of the work.",
+  "fix": "Light the main arch from within so a warm pool spills onto the cobbles and marks the station entrance.",
+  "ok": true,
+  "blind_name": {
+   "name": "Train station entrance",
+   "sure": 3,
+   "why": "A large clock hangs above pointed stone arches, with street lamps lining the entrance.",
+   "odd": "The arch interiors are too dark to make out.",
+   "recognised": true
+  },
+  "winner": "station_front-05-1280-0-100"
+ }
+}

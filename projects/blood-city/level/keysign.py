@@ -74,5 +74,7 @@ def item(layout, placement_id: str, region_id: str, key: int,
     _tile, type_id, item_tile, _name = KEYS[key]
     return layout.place_on_floor(
         placement_id, region_id, local=local, height_player_heights=0.0,
-        type=type_id, picnum=item_tile, cstat=0, shade=-8,
+        #: centred, as every one of the campaign's keys is (E1M4 sprite 316:
+        #: cstat 128); the key tiles' art is offset to be drawn so
+        type=type_id, picnum=item_tile, cstat=128, shade=-8,
         x_repeat=32, y_repeat=32, status=3)
