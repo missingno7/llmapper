@@ -246,6 +246,18 @@ POSE_SETS = {
         "freezer_in": (51.4, 9.6, 48.6, 8.2, LEVEL, "inside the freezer, among the carcasses"),
         "canteen_north": (49.6, 10.6, 51.9, 14.2, LEVEL, "the dine-in from its north-west corner to the door"),
     },
+    #: Gravesend Station's avenue front (2026-11-20): the avenue's vista, the
+    #: front, and the way in to the platform.
+    "terminus": {
+        "terminus_far": (35.5, 45.0, 35.5, 0.0, LEVEL, "from the market end: the avenue to the station"),
+        "terminus_mid": (35.5, 24.0, 35.5, 0.0, LEVEL, "mid-avenue: the station front ahead"),
+        "terminus_front": (35.5, 8.0, 35.5, 0.0, UP, "before the front, eyes raised to the clock"),
+        "terminus_door": (34.7, 3.0, 34.7, -2.0, LEVEL, "square on the west door"),
+        "terminus_hall": (34.0, -3.2, 36.4, -7.0, LEVEL, "inside: the avenue hall and its stair"),
+        "terminus_stair": (36.3, -6.6, 36.3, -12.0, LEVEL, "up the stair to the concourse"),
+        "terminus_concourse": (37.5, -12.0, 30.0, -15.4, LEVEL, "the concourse, to the platform", -12288),
+        "terminus_platform": (30.4, -15.4, 22.0, -15.8, LEVEL, "out onto the platform's east end", -12288),
+    },
     "underpass": {
         "underpass_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "from the yard stair's foot, down the passage"),
         "underpass_bars": (42.0, 22.4, 42.0, 26.5, LEVEL, "the barred mouth of the unfinished metro"),

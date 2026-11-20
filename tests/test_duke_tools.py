@@ -225,10 +225,11 @@ class CityProfileTests(unittest.TestCase):
         self.assertEqual(
             city["derived"]["glass"]["sharing_a_record_with_a_step_band_share"],
             0.0)
-        #: eight behind the street ends, and the sea's five horizon pieces
-        #: (a horizon is the same thing with the sky on its floor as well;
-        #: seven until the near band's ends became a building's flank)
-        self.assertEqual(city["native"]["sky_backings"], 13)
+        #: six behind the street ends, four behind the station's avenue
+        #: front, and the sea's five horizon pieces (a horizon is the same
+        #: thing with the sky on its floor as well; seven until the near
+        #: band's ends became a building's flank)
+        self.assertEqual(city["native"]["sky_backings"], 15)
 
     def test_bloods_city_is_deeper_indoors_than_ours(self):
         # The measure behind "more complex interiors": E3M1's median interior

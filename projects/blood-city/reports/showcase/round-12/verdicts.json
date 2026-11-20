@@ -1,0 +1,37 @@
+{
+ "station_front": {
+  "notes": {
+   "A": "The STATION lettering dominates, while the high angle hides the entrances beneath their awnings.",
+   "B": "The two signs tie the frontage together, but the near awning fills the foreground.",
+   "C": "The open doorway and receding lamps give the station depth, but the awnings interrupt the lettering.",
+   "D": "The wide view establishes the forecourt, but the station is pushed to the right edge.",
+   "E": "Both entrances and the facing facade frame the forecourt, but the station interior disappears into darkness.",
+   "F": "The narrow passage shows the tall facades, but the station frontage is barely visible.",
+   "G": "The lamps lead across the forecourt toward the station, whose nearest entrance is cropped.",
+   "H": "The open entrance has depth, but the foreground lamp and low awning dominate."
+  },
+  "place": "Gravesend Station forecourt",
+  "rank": [
+   "E",
+   "C",
+   "H",
+   "G",
+   "D",
+   "A",
+   "B",
+   "F"
+  ],
+  "best": "E shows both station entrances, the lamplit forecourt, and the ornate building across the way in one readable view.",
+  "lacks": "A recognizable station entrance. The timber-framed openings have little architectural presence, and the dark interior gives no hint of where passengers are headed.",
+  "fix": "Rebuild the main entrance as a broad, lit station portal with the full Gravesend Station name over the opening.",
+  "ok": true,
+  "blind_name": {
+   "name": "Lamp-lit cobblestone courtyard",
+   "sure": 5,
+   "why": "Streetlamps line a cobblestone square framed by tall brick and stone buildings.",
+   "odd": "The far end of the right passage is obscured by darkness.",
+   "recognised": false
+  },
+  "winner": "station_front-05-1280-16960-84"
+ }
+}

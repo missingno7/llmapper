@@ -172,6 +172,24 @@ result.
   stall front. `tests/test_goods_names.py` now holds every goods name to the
   owner's word, and `templates.tile_is` refuses a shelf that is not one.
 
+- Gravesend Station has a front on the avenue. The north-lane door was
+  "a brick building entrance" to the blind reader: a 2,048 slot in a long
+  wall on a lane where no view shows a front. The avenue, the city's long
+  axis, ended in a blank end wall a few units south of the platform's east
+  end, so the station now closes the avenue's vista
+  (`l3_station.avenue_front`): an ashlar front (427) with twin doors under
+  iron canopies (floor-aligned 438, as the carriage roof), GRAVESEND over
+  one and STATION over the other, a clock tower on the seam between the
+  districts, lamp posts before it; behind, a hall, a stair up 1.21 bodies,
+  and a concourse that walks out onto the platform beside the engine. The
+  north-lane door still works. Rounds 9-12: with the letters, "Gravesend
+  Station forecourt"; with signs hidden, still "lamp-lit cobblestone
+  courtyard". Open: a portal with real architectural presence (an arched
+  opening or a train-shed roof seen over the front), and a lit interior
+  seen through the doors. The street lamps in item 1 are not tile 510
+  (the owner's "metal plate"): that was slice 2's choice and is retired;
+  the city's posts are 640.
+
 **Open, said in the same walk and not done**
 
 - The avenue mouth of the underpass cut the facade's painted windows. After

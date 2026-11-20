@@ -277,14 +277,22 @@ class CityStreetEndTests(unittest.TestCase):
                 for w in range(int(f["wall_ptr"]),
                                int(f["wall_ptr"]) + int(f["wall_count"]))]
 
-    def test_four_streets_end_in_eight_backed_masses(self):
+    def test_three_streets_end_in_six_backed_masses(self):
         from bloodmap import skyline
 
         #: (the sea's horizon pieces are backings too, with the sky on their
         #: FLOOR as well: `l3_market`, DWE3M4 s648. These are the streets'.)
+        #: The avenue ended in one until 2026-11-20; the station fronts it
+        #: now (`l3_station.avenue_front`), its four backings raised to the
+        #: tops of the masses they back (a sky at grade stood below the
+        #: porches' roofs), which is how they are told apart here.
         backings = [b for b in skyline.sky_backings(self.disk)
                     if not int(self.disk.sectors[b].fields["floor_stat"]) & 1]
-        self.assertEqual(len(backings), 8)
+        front = [b for b in backings
+                 if int(self.disk.sectors[b].fields["floor_z"]) != 8192]
+        backings = [b for b in backings if b not in front]
+        self.assertEqual(len(front), 4)
+        self.assertEqual(len(backings), 6)
         for backing in backings:
             masses = {int(w["next_sector"]) for w in self._walls(backing)
                       if int(w["next_sector"]) >= 0

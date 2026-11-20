@@ -365,6 +365,7 @@ Render what the game shows, through the XMapEdit observer.
 | `mechanism_look` | Render one mechanism before and after it fires, from the same cameras, and measure the difference. |
 | `tile_usage` | What a tile LOOKS like, and every way Blood uses it. |
 | `showcase` | A competition of views for each named place: measured heats, blind finals, and what each place lacks. |
+| `plan_view` | A plan of one area of a map, drawn as the editor draws it, with each sector's id and floor. |
 
 ### The library of Blood
 

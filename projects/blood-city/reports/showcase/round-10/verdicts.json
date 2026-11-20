@@ -1,0 +1,37 @@
+{
+ "station_front": {
+  "notes": {
+   "A": "The close lettering and lamp row lead down the street, but the entrance is cropped.",
+   "B": "The station sign and lamps frame the approach, but the nearest lamp dominates.",
+   "C": "The narrow alley shows how tightly the buildings stand, but the steep angle obscures entrances.",
+   "D": "The recessed doorway and corner lamps show the threshold, but the tight crop loses the forecourt.",
+   "E": "The high angle ties the entrance to neighboring buildings, but the doorway blends into masonry.",
+   "F": "The full frontage anchors the forecourt, though the doorway reads as a dark slot.",
+   "G": "The opposite fa\u00e7ade and lamp row define the square, but the station slips offscreen.",
+   "H": "The open paving and opposite fa\u00e7ade establish scale, but the station entrance falls outside the frame."
+  },
+  "place": "Gravesend railway station forecourt",
+  "rank": [
+   "F",
+   "D",
+   "E",
+   "H",
+   "G",
+   "B",
+   "A",
+   "C"
+  ],
+  "best": "F shows both signs, the recessed entrance, the row of lamps, and how the station sits across from its neighbors.",
+  "lacks": "The station lacks a recognizable entrance. The green lettering carries most of its identity because the doorway disappears into the same dark stone as the surrounding walls.",
+  "fix": "Add a lit iron-and-glass canopy over the station entrance, projecting above the pavement so the way in is visible from across the forecourt.",
+  "ok": true,
+  "blind_name": {
+   "name": "Cobblestone city courtyard",
+   "sure": 4,
+   "why": "Glowing streetlamps light a cobblestone plaza surrounded by tall masonry buildings.",
+   "odd": "Deep shadows obscure the windows and the passage on the right.",
+   "recognised": false
+  },
+  "winner": "station_front-05-1280-16960-84"
+ }
+}

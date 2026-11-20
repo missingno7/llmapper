@@ -1,0 +1,72 @@
+{
+ "avenue": {
+  "notes": {
+   "A": "The junction and tower establish the setting, but the side street disappears into black.",
+   "B": "Low masonry and fiery sky frame the street, but a foreground lamp blocks the junction.",
+   "C": "A brick corner frames the open square, but the paving swallows its edges.",
+   "D": "Rows of windows and a doorway face a lane that fades into shadow.",
+   "E": "The view links the square to the street, but a blank wall dominates the foreground.",
+   "F": "The brick corner, lamps, and fiery skyline define the square, whose center feels empty.",
+   "G": "Parallel sidewalks lead between the tower and brick block toward a barely visible end.",
+   "H": "The doorway and narrow lane suggest a destination, but the foreground lamp dominates."
+  },
+  "place": "Lamplit crossroads in a hellish city",
+  "rank": [
+   "A",
+   "F",
+   "E",
+   "C",
+   "G",
+   "D",
+   "B",
+   "H"
+  ],
+  "best": "The elevated view ties together the cobbled junction, streetlamps, stone tower, brick blocks, and burning sky.",
+  "lacks": "The square has no recognizable destination. Repeated windows, paving, and lamps give the streets a consistent look but little identity at ground level.",
+  "fix": "Build a damaged stone fountain in the square, with a lamp at its base to make it recognizable from the adjoining streets.",
+  "ok": true,
+  "blind_name": {
+   "name": "Gothic city intersection",
+   "sure": 5,
+   "why": "Cobblestone streets meet between brick buildings, with glowing streetlamps under a red sky.",
+   "odd": "The street in the distance fades into near-total darkness.",
+   "recognised": true
+  },
+  "winner": "avenue-12-1672-50880-70"
+ },
+ "station_front": {
+  "notes": {
+   "A": "A high view down the narrow street reduces the station to cropped lettering.",
+   "B": "The entrance and glowing plaques read clearly. The steep angle compresses the street frontage.",
+   "C": "The streetlamp and opposite doors define the forecourt. The station entrance falls outside the frame.",
+   "D": "A close view shows the recessed entrance and plaques. The station name starts offscreen.",
+   "E": "The green lettering dominates the wall. The elevated view crops out the entrance.",
+   "F": "The oblique view connects the sign to the side street. The entrance slips below frame.",
+   "G": "The signed entrance and forecourt share the frame. The recess is almost black.",
+   "H": "The higher view opens up the forecourt. The entrance blends into the paving and shadow."
+  },
+  "place": "Gravesend Station entrance and forecourt",
+  "rank": [
+   "G",
+   "H",
+   "D",
+   "B",
+   "C",
+   "F",
+   "E",
+   "A"
+  ],
+  "best": "G shows the station name, recessed entrance, and lamplit forecourt together, with the opposite building framing the approach.",
+  "lacks": "The station lacks a recognizable public entrance. Its doorway is swallowed by shadow and repeated masonry, leaving the lettering to establish the building\u2019s purpose.",
+  "fix": "Add a lit canopy over the entrance, projecting into the forecourt so the station has a recognizable threshold from across the street.",
+  "ok": true,
+  "blind_name": {
+   "name": "Dark cobblestone courtyard",
+   "sure": 4,
+   "why": "Tall masonry facades with rows of windows surround a paved open area.",
+   "odd": "The right-hand passage is nearly black, and small eye symbols line the walls.",
+   "recognised": false
+  },
+  "winner": "station_front-05-1280-16960-84"
+ }
+}

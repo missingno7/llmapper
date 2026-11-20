@@ -1,0 +1,37 @@
+{
+ "station_front": {
+  "notes": {
+   "A": "Shows the station and forecourt together, though the doorway sinks into shadow.",
+   "B": "Shows the narrow street between tall fa\u00e7ades, with the station entrance out of sight.",
+   "C": "Shows the canopy and entrance close up, but an oversized foreground lamp steals attention.",
+   "D": "Shows the station frontage and corner building, but the high angle hides the doorway.",
+   "E": "Shows the sheltered passage and lamps, but the canopy dominates the view.",
+   "F": "Shows the full width of the forecourt, but the station sign runs offscreen.",
+   "G": "Shows the green lettering and projecting canopies, but crops away most of the forecourt.",
+   "H": "Shows how the forecourt meets the alley, but pushes the entrance to the edge."
+  },
+  "place": "Gravesend Station forecourt",
+  "rank": [
+   "A",
+   "D",
+   "F",
+   "H",
+   "E",
+   "G",
+   "C",
+   "B"
+  ],
+  "best": "A puts the station name, recessed entrance, lamp-lined forecourt, and ornate corner building in one readable view.",
+  "lacks": "The forecourt lacks a recognizable station entrance. The streetlamps define the pavement more clearly than the recessed doorway defines a destination.",
+  "fix": "Rebuild the entrance as a broad, warmly lit portal directly beneath the station sign.",
+  "ok": true,
+  "blind_name": {
+   "name": "Lamp-Lit Cobblestone Courtyard",
+   "sure": 4,
+   "why": "Streetlamps line a cobblestone clearing enclosed by tall masonry buildings with arched windows.",
+   "odd": "The passage on the right is nearly black.",
+   "recognised": false
+  },
+  "winner": "station_front-05-1280-16960-84"
+ }
+}

@@ -1205,8 +1205,16 @@ def build():
         half = WIDTH_UNITS[kind] // 2
         return (int(centre - half), int(centre + half))
 
+    # The avenue no longer ends in a wall: Gravesend Station fronts it
+    # (`l3_station.avenue_front`), its twin doors and clock pier across the
+    # mouth the end wall closed.
+    import l3_station as _station
+    assert _mouth(SEAM_AVENUE, "avenue") == (_station.FRONT[0][1], _station.FRONT[-1][2]), \
+        "the station front must span the avenue's mouth exactly"
+    ctx["manifest"]["station_front"] = _station.avenue_front(
+        city, streets, district_of, DISTRICT_BOUNDS, gates, grade=GRADE,
+        street_sky=STREET_SKY, sky_tile=_FACADES["theatre_row"].ceiling)
     ends = [
-        ("the_avenue", "north", *_mouth(SEAM_AVENUE, "avenue")),
         ("Theatre_Row", "west", *_mouth(SEAM_ROW, "row")),
         ("market_street_west", "west", *_mouth(SEAM_MARKET, "street")),
         ("market_street_east", "east", *_mouth(SEAM_MARKET, "street")),
