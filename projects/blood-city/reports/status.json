@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "e277d6033204a5a3db78a72306a0d382cf322fef8c28910da64aeb2ac870d471",
-  "map_sha256": "579db7ca3900abb2f2c254000563da1afa2266e801b0c7ce0b95c9e0ca57e8eb",
+  "manifest_sha256": "7203e2521b972c29076f061bd2a1eadac0c7fa1445ee7bdb3b0c54facf164d88",
+  "map_sha256": "9814e3b06aa156985bd0befcde9e92c111d26515e2131fe5aa22aa9c917d33ca",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 504,
-  "walls": 3330,
-  "sprites": 947,
+  "sectors": 508,
+  "walls": 3360,
+  "sprites": 957,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.877,
-   "walls": 0.797,
+   "sectors": 0.876,
+   "walls": 0.795,
    "sprites": 0.942
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1146,
+   "note": 1149,
    "warning": 6,
    "error": 10
   }
@@ -190,7 +190,7 @@
    {
     "root": "sprite 273",
     "cause": "push",
-    "sector": 403,
+    "sector": 406,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -209,11 +209,11 @@
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sector 209"
+     "sector 212"
     ],
-    "sector": 209,
+    "sector": 212,
     "answers": [
-     "sector 209"
+     "sector 212"
     ],
     "by_hand": true
    }
@@ -223,8 +223,8 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 481,
-  "reached": 481,
+  "space": 485,
+  "reached": 485,
   "gated_areas": [
    {
     "round": 0,
@@ -237,15 +237,15 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 207"
+     "operate mechanism sector 210"
     ],
-    "sectors": 34,
+    "sectors": 37,
     "first_sector": 181
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 456 (channel 109)"
+     "use switch sprite 460 (channel 109)"
     ],
     "sectors": 34,
     "first_sector": 3
@@ -253,7 +253,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 457 (channel 110)"
+     "use switch sprite 461 (channel 110)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -261,7 +261,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 458 (channel 111)"
+     "use switch sprite 462 (channel 111)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -269,7 +269,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 459 (channel 112)"
+     "use switch sprite 463 (channel 112)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -277,18 +277,18 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 279"
+     "operate mechanism sector 282"
     ],
     "sectors": 23,
-    "first_sector": 250
+    "first_sector": 253
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 280"
+     "operate mechanism sector 283"
     ],
     "sectors": 1,
-    "first_sector": 280
+    "first_sector": 283
    },
    {
     "round": 1,
@@ -304,12 +304,12 @@
      "use switch sprite 272 (channel 108)"
     ],
     "sectors": 9,
-    "first_sector": 401
+    "first_sector": 404
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 460 (channel 113)"
+     "use switch sprite 464 (channel 113)"
     ],
     "sectors": 7,
     "first_sector": 35
@@ -327,7 +327,7 @@
     "opened_by": [
      "operate mechanism sector 160"
     ],
-    "sectors": 3,
+    "sectors": 4,
     "first_sector": 159
    },
    {
@@ -368,7 +368,7 @@
      "destroy sprite 382 (channel 104)"
     ],
     "sectors": 3,
-    "first_sector": 210
+    "first_sector": 213
    }
   ]
  },
@@ -882,12 +882,12 @@
      "wall_art",
      "flat_art",
      "standing",
+     "light",
      "motion",
      "machines"
     ],
     "missing": [
-     "levels",
-     "light"
+     "levels"
     ],
     "campaign_p25": 2,
     "campaign_p50": 5
@@ -899,6 +899,228 @@
    ],
    "cramped": [],
    "critique": null
+  }
+ ],
+ "showcase": [
+  {
+   "key": "arcade",
+   "title": "The arcade",
+   "round": 14,
+   "called": "Indoor shopping arcade",
+   "blind": "Ornate hallway with library alcove",
+   "recognised": false,
+   "lacks": "The arcade lacks a focal point that ties its shops together. Repeated dark brick and similar openings make the storefronts run together.",
+   "fix": "Install a tall, warmly lit freestanding clock in the concourse where shoppers can see it from several storefronts.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "auditorium",
+   "title": "The Aldermack",
+   "round": 14,
+   "called": "Theater lobby",
+   "blind": "Ornate theater auditorium",
+   "recognised": true,
+   "lacks": "The lobby lacks a dominant architectural feature that tells visitors where the show is. Small signs carry that information against walls of equally busy ornament.",
+   "fix": "Turn a stretch of patterned wall into a recessed auditorium entrance with a lit marquee visible across the lobby.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "avenue",
+   "title": "The avenue",
+   "round": 14,
+   "called": "Lamplit city streets under red skies",
+   "blind": "Lamplit city street junction",
+   "recognised": true,
+   "lacks": "The junction lacks a landmark at street level. Repeated fa\u00e7ades and evenly spaced lamps give the eye few clues about where to look or go.",
+   "fix": "Give the low stone building a lit entrance facing the fork, with a distinctive marquee visible from both approaches.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "booking_hall",
+   "title": "The booking hall",
+   "round": 14,
+   "called": "Gravesend station booking hall",
+   "blind": "Waiting room",
+   "recognised": true,
+   "lacks": "The hall lacks a recognizable service point. The benches show where to wait, but the room gives arriving travelers no obvious destination.",
+   "fix": "Build a recessed, warmly lit ticket window beneath the arrivals and departures board.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "church_out",
+   "title": "St Gallow's",
+   "round": 14,
+   "called": "Church on a city street",
+   "blind": "Church exterior",
+   "recognised": true,
+   "lacks": "The church lacks a recognizable entrance. The small wooden door gets lost at the foot of the tower, leaving the repeated windows to carry the whole facade.",
+   "fix": "Rebuild the doorway as a recessed pointed-arch stone portal that gives the tower a recognizable entrance from the street.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "churchyard",
+   "title": "The churchyard",
+   "round": 14,
+   "called": "Walled urban churchyard",
+   "blind": "Walled churchyard",
+   "recognised": true,
+   "lacks": "The churchyard has no visible graves or memorials. The path leads to a tree against a wall, leaving little to distinguish the yard from an empty garden.",
+   "fix": "Add a small burial plot at the end of the dirt path, with a tall weathered headstone visible from the entrance.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "crypt",
+   "title": "The crypt",
+   "round": 14,
+   "called": "A torchlit stone crypt",
+   "blind": "Stone crypt with a sarcophagus",
+   "recognised": true,
+   "lacks": "The crypt lacks a sense of ceremony. The low, flat ceiling and repeating reliefs make the sarcophagus feel like furniture.",
+   "fix": "Raise a ribbed stone vault directly over the sarcophagus so the room\u2019s architecture draws the eye to the tomb.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "harbour",
+   "title": "The harbour",
+   "round": 14,
+   "called": "City harbour with a cargo barge",
+   "blind": "Pirate ship at a harbor",
+   "recognised": true,
+   "lacks": "The harbour lacks a distinctive vessel silhouette. The barge\u2019s straight sides and flat deck make it easy to mistake for another pier.",
+   "fix": "Reshape the existing barge with a tapered bow and a raised stern so its outline reads as a vessel from across the quay.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "machine_hall",
+   "title": "The pump station",
+   "round": 14,
+   "called": "Industrial sludge filtration hall",
+   "blind": "Industrial machine hall",
+   "recognised": true,
+   "lacks": "A recognizable piece of machinery that connects the sludge vats to the controls and shows what the hall does.",
+   "fix": "Install a large sludge filter above the vats, with exposed pipes that visibly feed into them.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "market_hall",
+   "title": "The market hall",
+   "round": 14,
+   "called": "Indoor meat market",
+   "blind": "Butcher shop",
+   "recognised": true,
+   "lacks": "The hall lacks an architectural focal point. The flat ceiling and repeated shelves make its distinctive butcher\u2019s counter feel incidental.",
+   "fix": "Build a timber-framed canopy over the butcher\u2019s counter to give the hanging cuts a distinct stall and the hall a recognizable centerpiece.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "monument",
+   "title": "Welcome to Gravesend",
+   "round": 14,
+   "called": "An urban memorial plaza",
+   "blind": "Flame monument in a city plaza",
+   "recognised": true,
+   "lacks": "The square lacks a memorial with a recognizable silhouette. The low stack of stone blocks gets lost against the broad paving and repetitive fa\u00e7ades.",
+   "fix": "Replace the block pedestal with a taller sculpted stone memorial that tapers toward the flame, giving the square a landmark visible from across the plaza.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "nave",
+   "title": "St Gallow's nave",
+   "round": 14,
+   "called": "A skeleton-haunted chapel nave",
+   "blind": "Chapel nave",
+   "recognised": true,
+   "lacks": "A clear processional aisle. The unbroken pew rows push circulation to the walls and interrupt the sightline from the back of the nave to the altar.",
+   "fix": "Split the pew rows down the middle to create a continuous aisle leading straight to the altar steps.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "pawn",
+   "title": "The pawn shop",
+   "round": 14,
+   "called": "Streetfront pawnshop",
+   "blind": "Pawn shop window display",
+   "recognised": true,
+   "lacks": "The pawn counter has little visual pull. The flat lighting gives the merchandise, checkerboard floor, and back door nearly equal weight.",
+   "fix": "Add a warm pool of light over the pawn counter so the goods and transaction area draw the eye from the street.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "platform",
+   "title": "The platform and the train",
+   "round": 14,
+   "called": "Enclosed railway station",
+   "blind": "Railway station platform",
+   "recognised": true,
+   "lacks": "A clear boarding point. The waiting-room doors blend into the long brick wall, leaving the platform without a focal point.",
+   "fix": "Install a lit canopy over the waiting-room doors, casting light across the boarding strip and onto the carriage.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "ratdogs",
+   "title": "RAT DOGS",
+   "round": 14,
+   "called": "Rat-infested diner kitchen",
+   "blind": "Rat-infested kitchen",
+   "recognised": true,
+   "lacks": "A recognizable cooking station. The rats and cleaver tell us what gets prepped, but the room gives that joke nowhere to go.",
+   "fix": "Install a lit industrial griddle against the back wall, with a row of rats sizzling beneath its hood.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "saloon",
+   "title": "The saloon",
+   "round": 14,
+   "called": "A frontier whiskey saloon",
+   "blind": "Wood-paneled saloon",
+   "recognised": true,
+   "lacks": "The counters, tables and walls blend into the same dark wood tones. The saloon lacks a focal point that makes it clear where drinks are served.",
+   "fix": "Build a warmly lit backbar with tiered bottle shelves behind the main counter.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "sewer",
+   "title": "The sewers",
+   "round": 14,
+   "called": "Low-ceilinged sewer tunnels",
+   "blind": "Industrial sewer corridor",
+   "recognised": true,
+   "lacks": "The sewer lacks a spatial focal point. The same low ceiling and wall panels repeat, and the channel has no visible destination.",
+   "fix": "Turn one junction into a tall outfall chamber where the channel drops into a catch basin.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "station_front",
+   "title": "Gravesend Station",
+   "round": 14,
+   "called": "Gravesend Station entrance plaza",
+   "blind": "Lamplit cobblestone courtyard",
+   "recognised": false,
+   "lacks": "A recognizable station entrance. The repeated timber openings blend into the block, leaving the green lettering to tell you what the building is.",
+   "fix": "Rebuild the main entrance as a tall, illuminated portal with a staircase visibly descending from the plaza.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "underpass",
+   "title": "The unfinished metro",
+   "round": 14,
+   "called": "Station underpass with ticket booth",
+   "blind": "Stone underpass",
+   "recognised": true,
+   "lacks": "The junction lacks a strong focal point. The ticket grille and signs suggest a station, but the booth blends into the masonry.",
+   "fix": "Rebuild the barred recess as a warmly lit ticket booth with a service counter visible from the foot of the stairs.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
+  },
+  {
+   "key": "works_yard",
+   "title": "The works yard",
+   "round": 14,
+   "called": "Rat Dogs takeaway courtyard",
+   "blind": "Brick courtyard with streetlamp",
+   "recognised": true,
+   "lacks": "The courtyard lacks a strong focal point. The serving hatch is its most distinctive feature, yet it reads as another opening in a wall of repeating windows.",
+   "fix": "Extend the Rat Dogs serving hatch into the courtyard as a roofed service counter that the tables can cluster around.",
+   "report": "projects/blood-city/reports/showcase/round-14/showcase.md"
   }
  ],
  "open": [
@@ -1113,27 +1335,34 @@
    "see": "python -m tools.place_character --help"
   },
   {
-   "kind": "missing-layer",
-   "place": "arcade concourse",
-   "says": "carries no light layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
+   "kind": "unrecognised",
+   "place": "The arcade",
+   "says": "named \"Ornate hallway with library alcove\" from its best view with signs hidden; the reader's fix: Install a tall, warmly lit freestanding clock in the concourse where shoppers can see it from several storefronts.",
+   "owner": "tools/showcase.py",
+   "see": "projects/blood-city/reports/showcase/round-14/showcase.md; python -m tools.showcase run --place arcade"
+  },
+  {
+   "kind": "unrecognised",
+   "place": "Gravesend Station",
+   "says": "named \"Lamplit cobblestone courtyard\" from its best view with signs hidden; the reader's fix: Rebuild the main entrance as a tall, illuminated portal with a staircase visibly descending from the plaza.",
+   "owner": "tools/showcase.py",
+   "see": "projects/blood-city/reports/showcase/round-14/showcase.md; python -m tools.showcase run --place station_front"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 267 and 178",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 270 and 178",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2070"
+   "at": "wall 2096"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 274 and 178",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 277 and 178",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2115"
+   "at": "wall 2141"
   },
   {
    "kind": "rule-error",
@@ -1141,7 +1370,7 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[401].ceiling"
+   "at": "sector[404].ceiling"
   },
   {
    "kind": "rule-error",
@@ -1149,44 +1378,12 @@
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 9 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[496].ceiling"
+   "at": "sector[500].ceiling"
   },
   {
    "kind": "rule-error",
    "place": null,
    "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[498].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[498].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[499].floor"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
-   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[499].ceiling"
-  },
-  {
-   "kind": "rule-error",
-   "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[502].floor"
@@ -1194,7 +1391,7 @@
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[502].ceiling"
@@ -1202,7 +1399,7 @@
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[503].floor"
@@ -1210,10 +1407,42 @@
   {
    "kind": "rule-error",
    "place": null,
-   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 119 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
    "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[503].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[506].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[506].ceiling"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in floor; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[507].floor"
+  },
+  {
+   "kind": "rule-error",
+   "place": null,
+   "says": "tile-sits-in-an-attested-slot: a tile goes in a slot the campaign is attested to use it in -- tile 2294 in ceiling; the campaign attests it only in wall_one_sided, wall_two_sided",
+   "owner": "bloodmap/rules_blood.py: tile-sits-in-an-attested-slot",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[507].ceiling"
   },
   {
    "kind": "rule-warning",
@@ -1234,7 +1463,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2212, 2264) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 2 wall(s) (2238, 2290) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[194]"
@@ -1390,7 +1619,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 735, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 739, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -1398,7 +1627,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 38, \"sprites\": [422, 423], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 38, \"sprites\": [426, 427], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[38]"
@@ -1437,7 +1666,7 @@
   "critique": 8,
   "dropped": 7,
   "lost-tile": 4,
-  "missing-layer": 11,
+  "missing-layer": 10,
   "never-critiqued": 7,
   "refused": 7,
   "rule-error": 10,
@@ -1445,6 +1674,7 @@
   "skipped": 6,
   "sprite-overlaps": 1,
   "sprite-through": 1,
+  "unrecognised": 2,
   "unstudied": 2
  },
  "not_verified": [

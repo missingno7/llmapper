@@ -58,6 +58,15 @@ SERVICE_H = 24576
 # and portal at its existing clear height.
 CONCOURSE_PITCH = 8192
 
+#: The concourse's pools of light (fractions of its length), their size,
+#: and the shades: lit floor against the hall's (`place_character`'s light
+#: layer wants a spread of 12)
+POOL_AT, POOL_W, POOL_INSET = (1 / 6, 1 / 2, 5 / 6), 1536, 768
+POOL_SHADE, CONCOURSE_FLOOR_SHADE = 6, 30
+#: The arcade's clock: the landmark the round-2 reader asked for, at the
+#: far (east) end, high, where the whole concourse sees it
+CLOCK_TILE, CLOCK_REPEAT = 1165, 96
+
 #: The key the service corridor needs.  2 is the eye; its placard is 2541
 #: and its item is sprite type 101.
 SERVICE_KEY = 2
@@ -182,6 +191,32 @@ def build(city, market_st):
             rk["ceiling_slope"] = SlopeSpec(
                 hinge=((x0, y1), (x0, y0)), rise_z=-CONCOURSE_PITCH)
         make(name, x0, y0, x1, y1, key, clear, note, rk=rk)
+
+    # LIGHT DOWN THE CONCOURSE. The build reports the arcade "lacks light"
+    # (floor shades spread under 12 across it), and the showcase's blind
+    # reader: "dim lighting ... the continuous dark brickwork". Three pools
+    # of lit floor down the hall's axis, each under a hanging lamp
+    # (`dress`), give it light and a rhythm. Each pool's ceiling keeps the
+    # concourse's pitch: in Build a slope pivots on the sector's first wall,
+    # so a pool hinged on its own west edge, at the roof's height there and
+    # rising at the same rate, lies flush with it.
+    cx0, cy0, cx1, cy1 = CONCOURSE
+    span = cx1 - cx0
+    for index, frac in enumerate(POOL_AT):
+        px0 = int(cx0 + frac * span - POOL_W / 2)
+        px1, py0, py1 = px0 + POOL_W, cy0 + POOL_INSET, cy1 - POOL_INSET
+        pool = setpieces.raised_solid(
+            arcade, f"concourse_pool_{index}", rooms["concourse"],
+            (px0, py0, px1, py1), INTERIORS["common"], grade=GRADE, rise=0,
+            host_clear=CONCOURSE_H, connector=arcade,
+            note="light on the concourse floor under a hanging lamp")
+        lift = CONCOURSE_PITCH * (px0 - cx0) / span
+        pool.surfaces(clear_height=int(round(CONCOURSE_H + lift)), floor_shade=POOL_SHADE)
+        pool.region_kwargs["ceiling_slope"] = SlopeSpec(
+            hinge=((px0, py1), (px0, py0)),
+            rise_z=-CONCOURSE_PITCH * (px1 - px0) / span)
+        rooms[f"concourse_pool_{index}"] = pool
+    rooms["concourse"].surfaces(floor_shade=CONCOURSE_FLOOR_SHADE)
 
     # Each unit reaches the concourse through its own neck, so the frontage
     # beside it is free for glass.
@@ -418,4 +453,37 @@ def dress(layout, rooms, attested) -> dict:
     for index, (face, t) in enumerate((("north", 0.08), ("south", 0.92))):
         props.mount_on_wall(layout, f"mall:brazier_{index}", concourse, face,
                             t=t)
+    # A brass lamp hung over each pool (945, "brass hanging lamp, lit shade",
+    # as E1M2, E2M4 and E3M2 hang it), seated half its drawn height under
+    # the roof, and a source at it.
+    report["lamps"] = 0
+    for index in range(len(POOL_AT)):
+        pool = rooms[f"concourse_pool_{index}"]
+        region = layout.regions[pool.region_id]
+        layout.place_on_ceiling(
+            f"mall:pool_lamp_{index}", pool.region_id, local=(0.5, 0.5),
+            height_player_heights=(30 * 64 * 2) / 16960, picnum=945, cstat=0,
+            x_repeat=64, y_repeat=64, shade=-16, pal=0, type=0, status=0)
+        xs = [p[0] for p in region.outer]
+        ys = [p[1] for p in region.outer]
+        layout.add_light_source(
+            f"light:mall_pool_{index}", pool.region_id,
+            x=(min(xs) + max(xs)) // 2, y=(min(ys) + max(ys)) // 2,
+            z=int(region.floor_z - 2.2 * 16960), intensity=2.0)
+        report["lamps"] += 1
+    # THE CLOCK. Round 2's reader: "the arcade lacks a landmark ... build a
+    # tall, illuminated clock into the far bay". The owner's "wall clock"
+    # (1165), large and high on the concourse's east end wall, over the
+    # keyed door, facing the whole hall; a lamp under it.
+    cx0, cy0, cx1, cy1 = CONCOURSE
+    # Over the door's head, which is where an arcade hangs its clock: the
+    # wall either side of the door is 1,024 and the clock 1,536, so
+    # `wallplane.sprite` (one free stretch of wall) has no slot for it; the
+    # wall over the opening is solid from the door's head up.
+    layout.place_on_wall(
+        "mall:clock", concourse.region_id, a1=(cx1, cy0), a2=(cx1, cy1), t=0.5,
+        height_player_heights=2.9, offset_player_widths=0.04,
+        picnum=CLOCK_TILE, x_repeat=CLOCK_REPEAT, y_repeat=CLOCK_REPEAT,
+        cstat=16 | 64 | 128, shade=-12, type=0, status=0)
+    report["clock"] = True
     return report

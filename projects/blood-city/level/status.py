@@ -138,6 +138,36 @@ def _critique(slug: str | None) -> dict[str, Any] | None:
     }
 
 
+SHOWCASE = ROOT / "projects" / "blood-city" / "reports" / "showcase"
+
+
+def _showcase() -> list[dict[str, Any]]:
+    """Each showcase place's latest judged round (`tools.showcase`).
+
+    The blind reader's word on the best of eight hundred views of a place:
+    what it called it, what it named the winner with every sign and person
+    hidden, whether that counts as recognised, and what the place lacks.
+    """
+    latest: dict[str, dict[str, Any]] = {}
+    rounds = sorted((int(p.name.split("-")[1]), p) for p in SHOWCASE.glob("round-*")
+                    if (p / "verdicts.json").exists())
+    for number, folder in rounds:
+        finals = json.loads((folder / "finalists.json").read_text("utf-8"))
+        for key, row in json.loads((folder / "verdicts.json").read_text("utf-8")).items():
+            if not row.get("ok"):
+                continue
+            blind = row.get("blind_name", {})
+            latest[key] = {
+                "key": key, "title": finals.get(key, {}).get("title", key),
+                "round": number, "called": row.get("place", ""),
+                "blind": blind.get("name", ""),
+                "recognised": bool(blind.get("recognised")),
+                "lacks": row.get("lacks", ""), "fix": row.get("fix", ""),
+                "report": f"projects/blood-city/reports/showcase/round-{number}/showcase.md",
+            }
+    return [latest[k] for k in sorted(latest)]
+
+
 def gather() -> dict[str, Any]:
     """Every source read once, into the one document both files come from."""
     from bloodmap.build_ir import BUILD_LIMITS
@@ -204,6 +234,15 @@ def gather() -> dict[str, Any]:
             for reader in critique["readers_missing"]:
                 item("critique", f"round {critique['round']} has no {reader} reading",
                      place=name, owner="tools/critique.py", see=critique["packet"])
+
+    showcase = _showcase()
+    for row in showcase:
+        if not row["recognised"]:
+            item("unrecognised",
+                 f"named \"{row['blind']}\" from its best view with signs hidden; "
+                 f"the reader's fix: {row['fix']}",
+                 place=row["title"], owner="tools/showcase.py",
+                 see=f"{row['report']}; python -m tools.showcase run --place {row['key']}")
 
     for name in sheet.get("thin", []):
         item("thin", "fewer layers than a quarter of the campaign's rooms of its size",
@@ -322,6 +361,7 @@ def gather() -> dict[str, Any]:
                                               "when", "then")}
                   for row in wires.get("declared", [])],
         "places": places,
+        "showcase": showcase,
         "open": open_items,
         "open_by_kind": dict(sorted(by_kind.items())),
         "not_verified": [
@@ -392,6 +432,19 @@ def brief(status: dict[str, Any]) -> str:
             f"| {place['name']} | {place['study'] or '**none**'} | "
             f"{len(layers['has'])} (campaign median {layers['campaign_p50']}){missing} | "
             f"{said} | {per_place.get(place['name'], 0)} |")
+    shown = status.get("showcase") or []
+    if shown:
+        known = sum(row["recognised"] for row in shown)
+        missed = [f"{row['title']} (\"{row['blind']}\", round {row['round']})"
+                  for row in shown if not row["recognised"]]
+        lines += [
+            "", "## Showcase", "",
+            f"Each place's best view of about 800, chosen and named by a blind "
+            f"reader (`python -m tools.showcase`): recognised from it with every "
+            f"sign hidden, {known} of {len(shown)}."
+            + (f" Not: {'; '.join(missed)}." if missed else "")
+            + " Every place's verdict, lacks and fix: `status.json` (showcase).",
+        ]
     lines += ["", "## Open", ""]
     for kind, count in status["open_by_kind"].items():
         lines.append(f"- `{kind}`: {count}")

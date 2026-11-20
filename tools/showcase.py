@@ -35,6 +35,10 @@ So a place's picture is not chosen by the mapper who built it:
     python -m tools.showcase run --place crypt --round 3
     python -m tools.showcase judge --round 3      # GPT-6.2 Sol, high
     python -m tools.showcase report --round 3
+    python -m tools.showcase calibrate            # does the measure follow the readers?
+
+Each place's latest verdict is read into the city's STATUS.md (`status.py`):
+a place not recognised from its best view is an open item, `unrecognised`.
 
 Rounds live in `projects/blood-city/reports/showcase/round-N/`: the JSON
 and the markdown are committed; the round's MAP and collage stay local and
@@ -480,15 +484,57 @@ def report(number: int) -> pathlib.Path:
     return md
 
 
+def calibrate() -> dict:
+    """How well each measured number, and the score, follow the readers.
+
+    Over every judged round: the mean rank correlation, within each set of
+    eight finalists, between a number and the reader's order, and how often
+    the score's own first pick was the reader's. Run it after new rounds,
+    before trusting or changing `bloodmap.view_score.score`.
+    """
+    keys = ("subject", "things", "variety", "sectors", "dominant", "sky", "unwritten")
+    acc: dict[str, list[float]] = {k: [] for k in keys + ("score",)}
+    firsts = n = 0
+    for folder in sorted(OUT.glob("round-*")):
+        if not (folder / "verdicts.json").exists():
+            continue
+        table = json.loads((folder / "finalists.json").read_text("utf-8"))
+        verdicts = json.loads((folder / "verdicts.json").read_text("utf-8"))
+        for key, entry in table.items():
+            v = verdicts.get(key)
+            if not v or not v.get("ok") or len(v.get("rank", [])) < len(entry["finalists"]):
+                continue
+            order = [r["letter"] for r in entry["finalists"]]
+            reader = v["rank"]
+            for k in keys:
+                values = {r["letter"]: r["measure"][k] for r in entry["finalists"]}
+                rho = _spearman(reader, sorted(order, key=lambda l: -values[l]))
+                if rho is not None:
+                    acc[k].append(rho)
+            scored = {r["letter"]: score(r["measure"]) for r in entry["finalists"]}
+            rho = _spearman(reader, sorted(order, key=lambda l: -scored[l]))
+            if rho is not None:
+                acc["score"].append(rho)
+            firsts += max(scored, key=scored.get) == reader[0]
+            n += 1
+    out = {k: round(sum(v) / len(v), 3) for k, v in acc.items() if v}
+    out["rankings"], out["score_first_is_readers"] = n, firsts
+    return out
+
+
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
+    sub.add_parser("calibrate", help="how well the measure follows the readers")
     for name in ("run", "judge", "report"):
         p = sub.add_parser(name)
         p.add_argument("--round", type=int, default=None)
         if name != "report":
             p.add_argument("--place", action="append", default=None)
     args = parser.parse_args(argv)
+    if args.command == "calibrate":
+        print(json.dumps(calibrate(), indent=1))
+        return 0
     if args.command == "run":
         print(run(args.round, args.place))
     else:

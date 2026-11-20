@@ -1,0 +1,37 @@
+{
+ "arcade": {
+  "notes": {
+   "A": "A counter and the bookshop frame the hall, but the bright canister steals attention.",
+   "B": "Shopfronts recede down the arcade, but the foreground skeleton overwhelms them.",
+   "C": "A robed figure stands among shop bays, but the bookshop sign is clipped.",
+   "D": "The clock and bookshop anchor the arcade, though the middle feels bare.",
+   "E": "The clock shop and checkerboard thresholds read clearly, but the head-on view flattens the arcade.",
+   "F": "The broad concourse connects several shops, but their signs and wares are hard to read.",
+   "G": "The clock shop\u2019s sign and shelves dominate, leaving little of the wider arcade visible.",
+   "H": "Brick piers frame a robed figure, but conceal most of the arcade."
+  },
+  "place": "Indoor shopping arcade",
+  "rank": [
+   "D",
+   "F",
+   "E",
+   "C",
+   "B",
+   "G",
+   "A",
+   "H"
+  ],
+  "best": "D ties the oversized clock, BOOKS storefront, patterned concourse, and skeletons into one readable view.",
+  "lacks": "The concourse lacks a focal point at eye level. The shops recede into a continuous band of dark brown trim, leaving the patterned floor to dominate.",
+  "fix": "Put a warmly lit clockmaker\u2019s kiosk with a tall working clock in the open concourse, leaving a clear route around it.",
+  "ok": true,
+  "blind_name": {
+   "name": "Ornate hallway beside a library",
+   "sure": 4,
+   "why": "A large wall clock and patterned floor frame a doorway into a room lined with bookshelves and lit by candles.",
+   "odd": "The clock is clipped at the left edge, and the framed picture is hard to make out.",
+   "recognised": false
+  },
+  "winner": "arcade-10-0256-0-100"
+ }
+}

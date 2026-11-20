@@ -162,6 +162,8 @@ ROWS = [
     ("saloon/main/shelf", [759, 605, 606, 759, 574, 605]),
     #: RAT DOGS' kitchen shelf: the cook's jars and jugs
     ("canteen/main/shelf", [834, 616, 802, 712]),
+    #: and its freezer's: kegs and jars kept cold
+    ("canteen/back/shelf", [604, 802, 604, 834]),
     #: the draper: the cloth hangs on the walls (ON_WALL); the shelf holds
     #: what a draper also sells
     ("gravesend_arcade/unit_a/shelf", [712, 616, 739, 616]),

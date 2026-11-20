@@ -140,17 +140,21 @@ def score(m: Mapping[str, float]) -> float:
     Each factor is 1 for an unremarkable frame. The weights are a first
     guess, written so a reader's ranking can be held against them.
     """
-    # Round 1 of the Gravesend showcase (20 places, 160 finalists, one blind
-    # reader ranking each eight): against the reader's order, things +0.20,
-    # variety +0.17, sectors +0.09, and the subject's share -0.17. Readers
-    # want the place in its surroundings, not the place filling the frame,
-    # so the subject is a threshold (it must be there), and things and
-    # variety carry the ranking.
-    value = min(m["subject"] / 0.35, 1.0)
-    value *= min(1.0 + 0.15 * m["things"], 2.5)
-    value *= min(m["variety"] / 6.0, 2.0)
-    value *= min(0.7 + 0.06 * m["sectors"], 1.3)
+    # Fitted to the Gravesend showcase's readers (`tools.showcase calibrate`):
+    # over 73 rankings of eight finalists (rounds 1-14), against the reader's
+    # order variety +0.20, sectors in view +0.17, things +0.11, and the
+    # subject's share -0.19 (a place in its surroundings beats a place
+    # filling the frame); a little unwritten void +0.21, because it comes
+    # with wide views, so only a real void is penalised. These weights took
+    # the score's agreement with the reader from 0.11 to 0.28 and its first
+    # pick from 10 to 16 of 73 (chance is about 9) -- in sample; the next
+    # rounds are the test.
+    value = min(m["subject"] / 0.25, 1.0)
+    value *= 1.0 - 0.6 * max(0.0, m["subject"] - 0.6)
+    value *= min(1.0 + 0.08 * m["things"], 2.0)
+    value *= min(m["variety"] / 6.0, 2.5)
+    value *= min(0.6 + 0.08 * m["sectors"], 1.6)
     value *= max(0.0, 1.0 - 1.2 * max(0.0, m["dominant"] - 0.3))
     value *= max(0.0, 1.0 - max(0.0, m["sky"] - 0.45))
-    value *= max(0.0, 1.0 - 1.5 * m["unwritten"])
+    value *= max(0.0, 1.0 - 3.0 * max(0.0, m["unwritten"] - 0.1))
     return round(value, 4)

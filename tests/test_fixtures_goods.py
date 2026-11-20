@@ -112,8 +112,8 @@ class StockedCityTests(unittest.TestCase):
         tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
         shelves = tags.get("shelf_niche", [])
         #: seven, the pawnbroker's behind his counter, and RAT DOGS'
-        #: kitchen shelf beside its pans
-        self.assertEqual(len(shelves), 9)
+        #: kitchen shelf beside its pans and its freezer's cold shelf
+        self.assertEqual(len(shelves), 10)
         disk = read_map(CITY)
         rows = 0
         for sector in shelves:

@@ -245,6 +245,12 @@ def dress(city, ctx) -> dict:
     import templates
     fixtures.shelf_niche(main, templates._shelf_id(main), "west", width=2048,
                          at=0.5, sells="kitchen")
+    # ...and the cold store's: a shelf let into the freezer's north wall,
+    # with the station gallery's body of void behind it, holding the kegs
+    # and jars a meat store keeps cold (E1M2's locker s268 keeps its stock
+    # on the wall the same way).
+    fixtures.shelf_niche(back, templates._shelf_id(back), "north", width=2048,
+                         at=0.5, sells="cold")
     placed["rooms"] += [main.region_id, back.region_id]
 
     # The door: z-motion, push-to-use, marquee flicker on its own sector.
