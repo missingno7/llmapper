@@ -1,0 +1,3822 @@
+{
+ "monument": {
+  "title": "Welcome to Gravesend",
+  "candidates": 880,
+  "rendered": 750,
+  "finalists": [
+   {
+    "id": "monument-07-0768-50880-70",
+    "pose": [
+     30464,
+     42240,
+     -57952,
+     768,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.4093,
+     "things": 2,
+     "variety": 15,
+     "sectors": 18,
+     "dominant": 0.3341,
+     "sky": 0.2562,
+     "unwritten": 0.1033
+    },
+    "score": 2.7394,
+    "letter": "A",
+    "measured_rank": 6
+   },
+   {
+    "id": "monument-08-1280-50880-70",
+    "pose": [
+     31232,
+     48384,
+     -57952,
+     1280,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.3472,
+     "things": 2,
+     "variety": 12,
+     "sectors": 16,
+     "dominant": 0.2665,
+     "sky": 0.1053,
+     "unwritten": 0.0743
+    },
+    "score": 2.9793,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "monument-14-0256-16960-66",
+    "pose": [
+     20480,
+     44544,
+     -24032,
+     256,
+     66,
+     171
+    ],
+    "measure": {
+     "subject": 0.556,
+     "things": 2,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.287,
+     "sky": 0.2455,
+     "unwritten": 0.0687
+    },
+    "score": 2.7791,
+    "letter": "C",
+    "measured_rank": 5
+   },
+   {
+    "id": "monument-12-1822-16960-84",
+    "pose": [
+     22016,
+     49920,
+     -24032,
+     1822,
+     84,
+     171
+    ],
+    "measure": {
+     "subject": 0.482,
+     "things": 2,
+     "variety": 11,
+     "sectors": 11,
+     "dominant": 0.2844,
+     "sky": 0.1171,
+     "unwritten": 0.0588
+    },
+    "score": 2.8251,
+    "letter": "D",
+    "measured_rank": 3
+   },
+   {
+    "id": "monument-12-1822-50880-70",
+    "pose": [
+     22016,
+     49920,
+     -57952,
+     1822,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.4155,
+     "things": 2,
+     "variety": 11,
+     "sectors": 14,
+     "dominant": 0.3064,
+     "sky": 0.1098,
+     "unwritten": 0.0846
+    },
+    "score": 2.6844,
+    "letter": "E",
+    "measured_rank": 8
+   },
+   {
+    "id": "monument-14-0256-50880-70",
+    "pose": [
+     20480,
+     44544,
+     -57952,
+     256,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.4111,
+     "things": 2,
+     "variety": 12,
+     "sectors": 13,
+     "dominant": 0.3192,
+     "sky": 0.3076,
+     "unwritten": 0.0981
+    },
+    "score": 2.8162,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "monument-19-0512-50880-70",
+    "pose": [
+     22016,
+     41472,
+     -57952,
+     512,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.3827,
+     "things": 2,
+     "variety": 13,
+     "sectors": 17,
+     "dominant": 0.2727,
+     "sky": 0.3796,
+     "unwritten": 0.0806
+    },
+    "score": 2.9714,
+    "letter": "G",
+    "measured_rank": 2
+   },
+   {
+    "id": "monument-08-1280-16960-84",
+    "pose": [
+     31232,
+     48384,
+     -24032,
+     1280,
+     84,
+     171
+    ],
+    "measure": {
+     "subject": 0.4669,
+     "things": 2,
+     "variety": 11,
+     "sectors": 12,
+     "dominant": 0.3492,
+     "sky": 0.11,
+     "unwritten": 0.05
+    },
+    "score": 2.6968,
+    "letter": "H",
+    "measured_rank": 7
+   }
+  ]
+ },
+ "avenue": {
+  "title": "The avenue",
+  "candidates": 875,
+  "rendered": 875,
+  "finalists": [
+   {
+    "id": "avenue-12-1672-50880-70",
+    "pose": [
+     33280,
+     45824,
+     -57952,
+     1672,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.2951,
+     "things": 3,
+     "variety": 9,
+     "sectors": 14,
+     "dominant": 0.1955,
+     "sky": 0.0742,
+     "unwritten": 0.0492
+    },
+    "score": 2.208,
+    "letter": "A",
+    "measured_rank": 8
+   },
+   {
+    "id": "avenue-09-0000-50880-70",
+    "pose": [
+     30208,
+     41216,
+     -57952,
+     0,
+     70,
+     171
+    ],
+    "measure": {
+     "subject": 0.3228,
+     "things": 3,
+     "variety": 9,
+     "sectors": 12,
+     "dominant": 0.2253,
+     "sky": 0.0326,
+     "unwritten": 0.0289
+    },
+    "score": 2.4947,
+    "letter": "B",
+    "measured_rank": 4
+   },
+   {
+    "id": "avenue-09-0000-16960-84",
+    "pose": [
+     30208,
+     41216,
+     -24032,
+     0,
+     84,
+     171
+    ],
+    "measure": {
+     "subject": 0.3631,
+     "things": 4,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.2775,
+     "sky": 0.0323,
+     "unwritten": 0.0245
+    },
+    "score": 2.6714,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "avenue-11-0343-50880-52",
+    "pose": [
+     33280,
+     33536,
+     -57952,
+     343,
+     52,
+     54
+    ],
+    "measure": {
+     "subject": 0.3572,
+     "things": 4,
+     "variety": 10,
+     "sectors": 12,
+     "dominant": 0.1581,
+     "sky": 0.1463,
+     "unwritten": 0.0582
+    },
+    "score": 3.164,
+    "letter": "D",
+    "measured_rank": 1
+   },
+   {
+    "id": "avenue-07-0768-50880-52",
+    "pose": [
+     39424,
+     32000,
+     -57952,
+     768,
+     52,
+     117
+    ],
+    "measure": {
+     "subject": 0.2957,
+     "things": 4,
+     "variety": 10,
+     "sectors": 15,
+     "dominant": 0.138,
+     "sky": 0.2058,
+     "unwritten": 0.1145
+    },
+    "score": 2.4258,
+    "letter": "E",
+    "measured_rank": 6
+   },
+   {
+    "id": "avenue-11-0343-16960-84",
+    "pose": [
+     33280,
+     33536,
+     -24032,
+     343,
+     84,
+     54
+    ],
+    "measure": {
+     "subject": 0.3494,
+     "things": 4,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.1527,
+     "sky": 0.1798,
+     "unwritten": 0.0443
+    },
+    "score": 2.5846,
+    "letter": "F",
+    "measured_rank": 3
+   },
+   {
+    "id": "avenue-17-0124-0-100",
+    "pose": [
+     32512,
+     37376,
+     -5024,
+     124,
+     100,
+     112
+    ],
+    "measure": {
+     "subject": 0.4988,
+     "things": 2,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.1436,
+     "sky": 0.0971,
+     "unwritten": 0.0131
+    },
+    "score": 2.2091,
+    "letter": "G",
+    "measured_rank": 7
+   },
+   {
+    "id": "avenue-07-0768-16960-84",
+    "pose": [
+     39424,
+     32000,
+     -24032,
+     768,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.3593,
+     "things": 4,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.1252,
+     "sky": 0.2922,
+     "unwritten": 0.0773
+    },
+    "score": 2.4518,
+    "letter": "H",
+    "measured_rank": 5
+   }
+  ]
+ },
+ "church_out": {
+  "title": "St Gallow's",
+  "candidates": 875,
+  "rendered": 740,
+  "finalists": [
+   {
+    "id": "church_out-07-0937-16960-84",
+    "pose": [
+     39168,
+     24832,
+     -24032,
+     937,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.3193,
+     "things": 7,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.1667,
+     "sky": 0.1112,
+     "unwritten": 0.0115
+    },
+    "score": 3.1857,
+    "letter": "A",
+    "measured_rank": 6
+   },
+   {
+    "id": "church_out-14-1280-50880-70",
+    "pose": [
+     34560,
+     34816,
+     -57952,
+     1280,
+     70,
+     54
+    ],
+    "measure": {
+     "subject": 0.2481,
+     "things": 5,
+     "variety": 14,
+     "sectors": 8,
+     "dominant": 0.2214,
+     "sky": 0.063,
+     "unwritten": 0.0235
+    },
+    "score": 2.8244,
+    "letter": "B",
+    "measured_rank": 8
+   },
+   {
+    "id": "church_out-13-1088-50880-52",
+    "pose": [
+     38400,
+     28672,
+     -57952,
+     1088,
+     52,
+     117
+    ],
+    "measure": {
+     "subject": 0.5117,
+     "things": 7,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.295,
+     "sky": 0.0208,
+     "unwritten": 0.0237
+    },
+    "score": 3.427,
+    "letter": "C",
+    "measured_rank": 4
+   },
+   {
+    "id": "church_out-12-1536-50880-70",
+    "pose": [
+     33792,
+     30976,
+     -57952,
+     1536,
+     70,
+     54
+    ],
+    "measure": {
+     "subject": 0.3855,
+     "things": 5,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.2514,
+     "sky": 0.0378,
+     "unwritten": 0.0256
+    },
+    "score": 2.9169,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "church_out-05-1239-50880-52",
+    "pose": [
+     37632,
+     32512,
+     -55904,
+     1239,
+     52,
+     164
+    ],
+    "measure": {
+     "subject": 0.3147,
+     "things": 7,
+     "variety": 10,
+     "sectors": 11,
+     "dominant": 0.2219,
+     "sky": 0.0125,
+     "unwritten": 0.0329
+    },
+    "score": 3.7966,
+    "letter": "E",
+    "measured_rank": 2
+   },
+   {
+    "id": "church_out-13-1088-16960-66",
+    "pose": [
+     38400,
+     28672,
+     -24032,
+     1088,
+     66,
+     117
+    ],
+    "measure": {
+     "subject": 0.4566,
+     "things": 7,
+     "variety": 9,
+     "sectors": 12,
+     "dominant": 0.2879,
+     "sky": 0.0096,
+     "unwritten": 0.0098
+    },
+    "score": 3.9387,
+    "letter": "F",
+    "measured_rank": 1
+   },
+   {
+    "id": "church_out-05-1239-16960-84",
+    "pose": [
+     37632,
+     32512,
+     -21984,
+     1239,
+     84,
+     164
+    ],
+    "measure": {
+     "subject": 0.3064,
+     "things": 7,
+     "variety": 10,
+     "sectors": 10,
+     "dominant": 0.2361,
+     "sky": 0.0509,
+     "unwritten": 0.0233
+    },
+    "score": 3.7525,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "church_out-07-0937-50880-52",
+    "pose": [
+     39168,
+     24832,
+     -57952,
+     937,
+     52,
+     117
+    ],
+    "measure": {
+     "subject": 0.3525,
+     "things": 7,
+     "variety": 8,
+     "sectors": 9,
+     "dominant": 0.2303,
+     "sky": 0.0808,
+     "unwritten": 0.023
+    },
+    "score": 3.2724,
+    "letter": "H",
+    "measured_rank": 5
+   }
+  ]
+ },
+ "nave": {
+  "title": "St Gallow's nave",
+  "candidates": 453,
+  "rendered": 429,
+  "finalists": [
+   {
+    "id": "nave-01-1536-16960-66",
+    "pose": [
+     28364,
+     30208,
+     -24032,
+     1536,
+     66,
+     79
+    ],
+    "measure": {
+     "subject": 0.9204,
+     "things": 10,
+     "variety": 12,
+     "sectors": 11,
+     "dominant": 0.2029,
+     "sky": 0.0,
+     "unwritten": 0.004
+    },
+    "score": 6.461,
+    "letter": "A",
+    "measured_rank": 3
+   },
+   {
+    "id": "nave-13-1385-16960-66",
+    "pose": [
+     30668,
+     28672,
+     -24032,
+     1385,
+     66,
+     79
+    ],
+    "measure": {
+     "subject": 0.8737,
+     "things": 9,
+     "variety": 16,
+     "sectors": 12,
+     "dominant": 0.1276,
+     "sky": 0.0,
+     "unwritten": 0.0069
+    },
+    "score": 6.0468,
+    "letter": "B",
+    "measured_rank": 6
+   },
+   {
+    "id": "nave-06-0617-16960-66",
+    "pose": [
+     30668,
+     24832,
+     -24032,
+     617,
+     66,
+     79
+    ],
+    "measure": {
+     "subject": 0.9042,
+     "things": 10,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.1186,
+     "sky": 0.0,
+     "unwritten": 0.0062
+    },
+    "score": 5.9029,
+    "letter": "C",
+    "measured_rank": 8
+   },
+   {
+    "id": "nave-12-0256-16960-84",
+    "pose": [
+     29132,
+     24832,
+     -24032,
+     256,
+     84,
+     79
+    ],
+    "measure": {
+     "subject": 0.8947,
+     "things": 14,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.1102,
+     "sky": 0.0,
+     "unwritten": 0.0049
+    },
+    "score": 5.9145,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "nave-08-1536-16960-66",
+    "pose": [
+     29132,
+     28672,
+     -24032,
+     1536,
+     66,
+     79
+    ],
+    "measure": {
+     "subject": 0.8616,
+     "things": 11,
+     "variety": 13,
+     "sectors": 10,
+     "dominant": 0.1168,
+     "sky": 0.0,
+     "unwritten": 0.0045
+    },
+    "score": 6.4561,
+    "letter": "E",
+    "measured_rank": 4
+   },
+   {
+    "id": "nave-05-1943-0-100",
+    "pose": [
+     27596,
+     27904,
+     -7072,
+     1943,
+     100,
+     86
+    ],
+    "measure": {
+     "subject": 0.9248,
+     "things": 10,
+     "variety": 13,
+     "sectors": 12,
+     "dominant": 0.1391,
+     "sky": 0.0,
+     "unwritten": 0.0028
+    },
+    "score": 6.4727,
+    "letter": "F",
+    "measured_rank": 2
+   },
+   {
+    "id": "nave-19-0000-0-100",
+    "pose": [
+     27596,
+     25600,
+     -7072,
+     0,
+     100,
+     86
+    ],
+    "measure": {
+     "subject": 0.8406,
+     "things": 11,
+     "variety": 16,
+     "sectors": 12,
+     "dominant": 0.1353,
+     "sky": 0.0,
+     "unwritten": 0.0027
+    },
+    "score": 6.4737,
+    "letter": "G",
+    "measured_rank": 1
+   },
+   {
+    "id": "nave-09-1280-16960-84",
+    "pose": [
+     30668,
+     30208,
+     -24032,
+     1280,
+     84,
+     79
+    ],
+    "measure": {
+     "subject": 0.8758,
+     "things": 10,
+     "variety": 14,
+     "sectors": 10,
+     "dominant": 0.2385,
+     "sky": 0.0,
+     "unwritten": 0.0078
+    },
+    "score": 6.4239,
+    "letter": "H",
+    "measured_rank": 5
+   }
+  ]
+ },
+ "crypt": {
+  "title": "The crypt",
+  "candidates": 436,
+  "rendered": 404,
+  "finalists": [
+   {
+    "id": "crypt-05-1280-0-100",
+    "pose": [
+     31641,
+     30208,
+     46176,
+     1280,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 13,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.1794,
+     "sky": 0.0,
+     "unwritten": 0.0029
+    },
+    "score": 5.2769,
+    "letter": "A",
+    "measured_rank": 1
+   },
+   {
+    "id": "crypt-04-1024-0-100",
+    "pose": [
+     31641,
+     27136,
+     46176,
+     1024,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 9,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.2004,
+     "sky": 0.0,
+     "unwritten": 0.0022
+    },
+    "score": 4.2941,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "crypt-03-0000-0-100",
+    "pose": [
+     28569,
+     30208,
+     46176,
+     0,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 13,
+     "variety": 13,
+     "sectors": 4,
+     "dominant": 0.3032,
+     "sky": 0.0,
+     "unwritten": 0.0183
+    },
+    "score": 4.5534,
+    "letter": "C",
+    "measured_rank": 3
+   },
+   {
+    "id": "crypt-12-0512-0-100",
+    "pose": [
+     30873,
+     27904,
+     40032,
+     512,
+     100,
+     98
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 10,
+     "variety": 10,
+     "sectors": 5,
+     "dominant": 0.2503,
+     "sky": 0.0,
+     "unwritten": 0.0046
+    },
+    "score": 4.1379,
+    "letter": "D",
+    "measured_rank": 6
+   },
+   {
+    "id": "crypt-09-1024-0-100",
+    "pose": [
+     31641,
+     28672,
+     46176,
+     1024,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 11,
+     "variety": 10,
+     "sectors": 4,
+     "dominant": 0.1661,
+     "sky": 0.0,
+     "unwritten": 0.0019
+    },
+    "score": 3.9055,
+    "letter": "E",
+    "measured_rank": 8
+   },
+   {
+    "id": "crypt-19-1687-0-100",
+    "pose": [
+     29337,
+     30208,
+     46176,
+     1687,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 12,
+     "variety": 10,
+     "sectors": 6,
+     "dominant": 0.2003,
+     "sky": 0.0,
+     "unwritten": 0.0039
+    },
+    "score": 4.3908,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "crypt-06-0256-0-100",
+    "pose": [
+     28569,
+     28672,
+     46176,
+     256,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 9,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.3475,
+     "sky": 0.0,
+     "unwritten": 0.0034
+    },
+    "score": 4.042,
+    "letter": "G",
+    "measured_rank": 7
+   },
+   {
+    "id": "crypt-02-0256-0-100",
+    "pose": [
+     28569,
+     27136,
+     46176,
+     256,
+     100,
+     92
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 17,
+     "variety": 12,
+     "sectors": 4,
+     "dominant": 0.3002,
+     "sky": 0.0,
+     "unwritten": 0.0113
+    },
+    "score": 4.6192,
+    "letter": "H",
+    "measured_rank": 2
+   }
+  ]
+ },
+ "churchyard": {
+  "title": "The churchyard",
+  "candidates": 865,
+  "rendered": 865,
+  "finalists": [
+   {
+    "id": "churchyard-10-1344-0-100",
+    "pose": [
+     26112,
+     32000,
+     -7072,
+     1344,
+     100,
+     57
+    ],
+    "measure": {
+     "subject": 0.7349,
+     "things": 5,
+     "variety": 12,
+     "sectors": 5,
+     "dominant": 0.2634,
+     "sky": 0.0254,
+     "unwritten": 0.0105
+    },
+    "score": 3.4449,
+    "letter": "A",
+    "measured_rank": 8
+   },
+   {
+    "id": "churchyard-02-0512-50880-52",
+    "pose": [
+     24576,
+     25088,
+     -57952,
+     512,
+     52,
+     57
+    ],
+    "measure": {
+     "subject": 0.3628,
+     "things": 4,
+     "variety": 14,
+     "sectors": 8,
+     "dominant": 0.1515,
+     "sky": 0.1303,
+     "unwritten": 0.0246
+    },
+    "score": 3.6367,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "churchyard-14-1536-16960-84",
+    "pose": [
+     23040,
+     33536,
+     -24032,
+     1536,
+     84,
+     57
+    ],
+    "measure": {
+     "subject": 0.6399,
+     "things": 5,
+     "variety": 13,
+     "sectors": 7,
+     "dominant": 0.1569,
+     "sky": 0.0386,
+     "unwritten": 0.0201
+    },
+    "score": 3.8018,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "churchyard-03-1536-50880-52",
+    "pose": [
+     24576,
+     34304,
+     -57952,
+     1536,
+     52,
+     57
+    ],
+    "measure": {
+     "subject": 0.5335,
+     "things": 5,
+     "variety": 15,
+     "sectors": 8,
+     "dominant": 0.1543,
+     "sky": 0.0085,
+     "unwritten": 0.0295
+    },
+    "score": 3.9472,
+    "letter": "D",
+    "measured_rank": 1
+   },
+   {
+    "id": "churchyard-13-0512-0-100",
+    "pose": [
+     23040,
+     25856,
+     -7072,
+     512,
+     100,
+     57
+    ],
+    "measure": {
+     "subject": 0.5667,
+     "things": 5,
+     "variety": 14,
+     "sectors": 6,
+     "dominant": 0.2032,
+     "sky": 0.1433,
+     "unwritten": 0.0113
+    },
+    "score": 3.6471,
+    "letter": "E",
+    "measured_rank": 4
+   },
+   {
+    "id": "churchyard-17-1360-50880-52",
+    "pose": [
+     26880,
+     33536,
+     -57952,
+     1360,
+     52,
+     57
+    ],
+    "measure": {
+     "subject": 0.3833,
+     "things": 5,
+     "variety": 15,
+     "sectors": 6,
+     "dominant": 0.1759,
+     "sky": 0.0033,
+     "unwritten": 0.0296
+    },
+    "score": 3.5453,
+    "letter": "F",
+    "measured_rank": 6
+   },
+   {
+    "id": "churchyard-14-1536-50880-52",
+    "pose": [
+     23040,
+     33536,
+     -57952,
+     1536,
+     52,
+     57
+    ],
+    "measure": {
+     "subject": 0.5083,
+     "things": 4,
+     "variety": 14,
+     "sectors": 9,
+     "dominant": 0.1407,
+     "sky": 0.0137,
+     "unwritten": 0.039
+    },
+    "score": 3.7359,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "churchyard-06-1792-16960-66",
+    "pose": [
+     21504,
+     32768,
+     -24032,
+     1792,
+     66,
+     57
+    ],
+    "measure": {
+     "subject": 0.7631,
+     "things": 5,
+     "variety": 12,
+     "sectors": 5,
+     "dominant": 0.2566,
+     "sky": 0.011,
+     "unwritten": 0.0064
+    },
+    "score": 3.4664,
+    "letter": "H",
+    "measured_rank": 7
+   }
+  ]
+ },
+ "station_front": {
+  "title": "Gravesend Station",
+  "candidates": 850,
+  "rendered": 850,
+  "finalists": [
+   {
+    "id": "station_front-02-1792-50880-70",
+    "pose": [
+     11929,
+     2816,
+     -57952,
+     1792,
+     70,
+     0
+    ],
+    "measure": {
+     "subject": 0.5146,
+     "things": 1,
+     "variety": 11,
+     "sectors": 4,
+     "dominant": 0.2829,
+     "sky": 0.0195,
+     "unwritten": 0.0443
+    },
+    "score": 1.8501,
+    "letter": "A",
+    "measured_rank": 4
+   },
+   {
+    "id": "station_front-10-1792-0-100",
+    "pose": [
+     13465,
+     2048,
+     -7072,
+     1792,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.419,
+     "things": 5,
+     "variety": 13,
+     "sectors": 7,
+     "dominant": 0.2893,
+     "sky": 0.0212,
+     "unwritten": 0.0354
+    },
+    "score": 3.7118,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "station_front-04-1280-16960-84",
+    "pose": [
+     14233,
+     512,
+     -24032,
+     1280,
+     84,
+     0
+    ],
+    "measure": {
+     "subject": 0.3254,
+     "things": 0,
+     "variety": 10,
+     "sectors": 7,
+     "dominant": 0.3156,
+     "sky": 0.0,
+     "unwritten": 0.0104
+    },
+    "score": 1.6764,
+    "letter": "C",
+    "measured_rank": 8
+   },
+   {
+    "id": "station_front-17-1280-50880-52",
+    "pose": [
+     17305,
+     2048,
+     -57952,
+     1280,
+     52,
+     0
+    ],
+    "measure": {
+     "subject": 0.6743,
+     "things": 6,
+     "variety": 10,
+     "sectors": 3,
+     "dominant": 0.5722,
+     "sky": 0.0,
+     "unwritten": 0.0272
+    },
+    "score": 1.7999,
+    "letter": "D",
+    "measured_rank": 5
+   },
+   {
+    "id": "station_front-05-1792-0-100",
+    "pose": [
+     15769,
+     2816,
+     -7072,
+     1792,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.3713,
+     "things": 6,
+     "variety": 7,
+     "sectors": 3,
+     "dominant": 0.3483,
+     "sky": 0.0294,
+     "unwritten": 0.0313
+    },
+    "score": 1.7513,
+    "letter": "E",
+    "measured_rank": 6
+   },
+   {
+    "id": "station_front-17-1280-16960-66",
+    "pose": [
+     17305,
+     2048,
+     -24032,
+     1280,
+     66,
+     0
+    ],
+    "measure": {
+     "subject": 0.5918,
+     "things": 7,
+     "variety": 12,
+     "sectors": 3,
+     "dominant": 0.5167,
+     "sky": 0.0,
+     "unwritten": 0.0306
+    },
+    "score": 2.5472,
+    "letter": "F",
+    "measured_rank": 2
+   },
+   {
+    "id": "station_front-02-1792-16960-84",
+    "pose": [
+     11929,
+     2816,
+     -24032,
+     1792,
+     84,
+     0
+    ],
+    "measure": {
+     "subject": 0.3678,
+     "things": 1,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.2572,
+     "sky": 0.0221,
+     "unwritten": 0.0415
+    },
+    "score": 1.9771,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "station_front-15-1943-16960-66",
+    "pose": [
+     15001,
+     1280,
+     -24032,
+     1943,
+     66,
+     0
+    ],
+    "measure": {
+     "subject": 0.4786,
+     "things": 7,
+     "variety": 8,
+     "sectors": 2,
+     "dominant": 0.4368,
+     "sky": 0.011,
+     "unwritten": 0.046
+    },
+    "score": 1.7441,
+    "letter": "H",
+    "measured_rank": 7
+   }
+  ]
+ },
+ "platform": {
+  "title": "The platform and the train",
+  "candidates": 789,
+  "rendered": 753,
+  "finalists": [
+   {
+    "id": "platform-01-0091-50880-52",
+    "pose": [
+     8704,
+     -19968,
+     -64096,
+     91,
+     52,
+     347
+    ],
+    "measure": {
+     "subject": 0.6806,
+     "things": 14,
+     "variety": 15,
+     "sectors": 17,
+     "dominant": 0.2161,
+     "sky": 0.0054,
+     "unwritten": 0.0092
+    },
+    "score": 6.4103,
+    "letter": "A",
+    "measured_rank": 7
+   },
+   {
+    "id": "platform-17-0000-50880-52",
+    "pose": [
+     10240,
+     -16896,
+     -64096,
+     0,
+     52,
+     350
+    ],
+    "measure": {
+     "subject": 0.7496,
+     "things": 12,
+     "variety": 16,
+     "sectors": 16,
+     "dominant": 0.0862,
+     "sky": 0.0029,
+     "unwritten": 0.0048
+    },
+    "score": 6.4532,
+    "letter": "B",
+    "measured_rank": 3
+   },
+   {
+    "id": "platform-13-0512-50880-70",
+    "pose": [
+     19456,
+     -21504,
+     -64096,
+     512,
+     70,
+     347
+    ],
+    "measure": {
+     "subject": 0.9382,
+     "things": 12,
+     "variety": 17,
+     "sectors": 19,
+     "dominant": 0.1098,
+     "sky": 0.0,
+     "unwritten": 0.0079
+    },
+    "score": 6.423,
+    "letter": "C",
+    "measured_rank": 5
+   },
+   {
+    "id": "platform-19-0000-16960-66",
+    "pose": [
+     16384,
+     -17664,
+     -44512,
+     0,
+     66,
+     360
+    ],
+    "measure": {
+     "subject": 0.7545,
+     "things": 11,
+     "variety": 12,
+     "sectors": 14,
+     "dominant": 0.1054,
+     "sky": 0.0,
+     "unwritten": 0.0011
+    },
+    "score": 6.4893,
+    "letter": "D",
+    "measured_rank": 1
+   },
+   {
+    "id": "platform-11-0512-50880-52",
+    "pose": [
+     14080,
+     -19968,
+     -64096,
+     512,
+     52,
+     347
+    ],
+    "measure": {
+     "subject": 0.8226,
+     "things": 11,
+     "variety": 12,
+     "sectors": 11,
+     "dominant": 0.0987,
+     "sky": 0.0,
+     "unwritten": 0.0113
+    },
+    "score": 6.3898,
+    "letter": "E",
+    "measured_rank": 8
+   },
+   {
+    "id": "platform-11-0169-50880-52",
+    "pose": [
+     14080,
+     -19968,
+     -64096,
+     169,
+     52,
+     347
+    ],
+    "measure": {
+     "subject": 0.7799,
+     "things": 11,
+     "variety": 15,
+     "sectors": 17,
+     "dominant": 0.1148,
+     "sky": 0.0,
+     "unwritten": 0.0054
+    },
+    "score": 6.4474,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "platform-04-0256-50880-52",
+    "pose": [
+     15616,
+     -24576,
+     -64096,
+     256,
+     52,
+     347
+    ],
+    "measure": {
+     "subject": 0.7977,
+     "things": 10,
+     "variety": 12,
+     "sectors": 14,
+     "dominant": 0.2736,
+     "sky": 0.0,
+     "unwritten": 0.0086
+    },
+    "score": 6.4162,
+    "letter": "G",
+    "measured_rank": 6
+   },
+   {
+    "id": "platform-07-1792-50880-52",
+    "pose": [
+     13312,
+     -15360,
+     -78432,
+     1792,
+     52,
+     338
+    ],
+    "measure": {
+     "subject": 0.443,
+     "things": 10,
+     "variety": 14,
+     "sectors": 13,
+     "dominant": 0.2942,
+     "sky": 0.0014,
+     "unwritten": 0.0033
+    },
+    "score": 6.4678,
+    "letter": "H",
+    "measured_rank": 2
+   }
+  ]
+ },
+ "booking_hall": {
+  "title": "The booking hall",
+  "candidates": 574,
+  "rendered": 574,
+  "finalists": [
+   {
+    "id": "booking_hall-16-0512-0-100",
+    "pose": [
+     13056,
+     -12800,
+     -27552,
+     512,
+     100,
+     324
+    ],
+    "measure": {
+     "subject": 0.8908,
+     "things": 10,
+     "variety": 9,
+     "sectors": 8,
+     "dominant": 0.2487,
+     "sky": 0.0,
+     "unwritten": 0.0499
+    },
+    "score": 4.0938,
+    "letter": "A",
+    "measured_rank": 4
+   },
+   {
+    "id": "booking_hall-08-0256-16960-66",
+    "pose": [
+     14592,
+     -13568,
+     -44512,
+     256,
+     66,
+     324
+    ],
+    "measure": {
+     "subject": 0.6649,
+     "things": 7,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.1953,
+     "sky": 0.0,
+     "unwritten": 0.0429
+    },
+    "score": 3.7275,
+    "letter": "B",
+    "measured_rank": 8
+   },
+   {
+    "id": "booking_hall-11-0768-0-100",
+    "pose": [
+     16128,
+     -15104,
+     -27552,
+     768,
+     100,
+     340
+    ],
+    "measure": {
+     "subject": 0.8757,
+     "things": 7,
+     "variety": 10,
+     "sectors": 10,
+     "dominant": 0.2059,
+     "sky": 0.0,
+     "unwritten": 0.0431
+    },
+    "score": 4.1545,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "booking_hall-08-0617-16960-66",
+    "pose": [
+     14592,
+     -13568,
+     -44512,
+     617,
+     66,
+     324
+    ],
+    "measure": {
+     "subject": 0.8723,
+     "things": 10,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.2643,
+     "sky": 0.0,
+     "unwritten": 0.0492
+    },
+    "score": 4.0135,
+    "letter": "D",
+    "measured_rank": 6
+   },
+   {
+    "id": "booking_hall-07-0000-16960-84",
+    "pose": [
+     11520,
+     -12032,
+     -44512,
+     0,
+     84,
+     324
+    ],
+    "measure": {
+     "subject": 0.7747,
+     "things": 4,
+     "variety": 12,
+     "sectors": 10,
+     "dominant": 0.2569,
+     "sky": 0.0,
+     "unwritten": 0.0576
+    },
+    "score": 3.8006,
+    "letter": "E",
+    "measured_rank": 7
+   },
+   {
+    "id": "booking_hall-04-1200-16960-66",
+    "pose": [
+     17664,
+     -8960,
+     -44512,
+     1200,
+     66,
+     324
+    ],
+    "measure": {
+     "subject": 0.7735,
+     "things": 6,
+     "variety": 12,
+     "sectors": 14,
+     "dominant": 0.2933,
+     "sky": 0.0,
+     "unwritten": 0.0545
+    },
+    "score": 4.5362,
+    "letter": "F",
+    "measured_rank": 1
+   },
+   {
+    "id": "booking_hall-17-0256-0-100",
+    "pose": [
+     15360,
+     -12032,
+     -27552,
+     256,
+     100,
+     324
+    ],
+    "measure": {
+     "subject": 0.5849,
+     "things": 7,
+     "variety": 13,
+     "sectors": 6,
+     "dominant": 0.2376,
+     "sky": 0.0,
+     "unwritten": 0.039
+    },
+    "score": 4.0918,
+    "letter": "G",
+    "measured_rank": 5
+   },
+   {
+    "id": "booking_hall-15-0000-16960-84",
+    "pose": [
+     12288,
+     -10496,
+     -44512,
+     0,
+     84,
+     324
+    ],
+    "measure": {
+     "subject": 0.7624,
+     "things": 6,
+     "variety": 12,
+     "sectors": 8,
+     "dominant": 0.2227,
+     "sky": 0.0,
+     "unwritten": 0.0568
+    },
+    "score": 4.102,
+    "letter": "H",
+    "measured_rank": 3
+   }
+  ]
+ },
+ "harbour": {
+  "title": "The harbour",
+  "candidates": 895,
+  "rendered": 895,
+  "finalists": [
+   {
+    "id": "harbour-04-0000-16960-66",
+    "pose": [
+     16384,
+     60928,
+     -31200,
+     0,
+     66,
+     238
+    ],
+    "measure": {
+     "subject": 0.3278,
+     "things": 1,
+     "variety": 13,
+     "sectors": 11,
+     "dominant": 0.1424,
+     "sky": 0.2306,
+     "unwritten": 0.1136
+    },
+    "score": 2.3232,
+    "letter": "A",
+    "measured_rank": 4
+   },
+   {
+    "id": "harbour-00-1280-0-100",
+    "pose": [
+     22528,
+     59392,
+     -14240,
+     1280,
+     100,
+     238
+    ],
+    "measure": {
+     "subject": 0.3741,
+     "things": 1,
+     "variety": 12,
+     "sectors": 7,
+     "dominant": 0.1755,
+     "sky": 0.111,
+     "unwritten": 0.0701
+    },
+    "score": 2.3051,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "harbour-17-1024-16960-66",
+    "pose": [
+     30208,
+     57088,
+     -24032,
+     1024,
+     66,
+     171
+    ],
+    "measure": {
+     "subject": 0.3149,
+     "things": 1,
+     "variety": 12,
+     "sectors": 9,
+     "dominant": 0.1696,
+     "sky": 0.1637,
+     "unwritten": 0.0625
+    },
+    "score": 2.3254,
+    "letter": "C",
+    "measured_rank": 3
+   },
+   {
+    "id": "harbour-05-0644-16960-66",
+    "pose": [
+     24832,
+     54016,
+     -24032,
+     644,
+     66,
+     171
+    ],
+    "measure": {
+     "subject": 0.3699,
+     "things": 1,
+     "variety": 10,
+     "sectors": 9,
+     "dominant": 0.2495,
+     "sky": 0.3554,
+     "unwritten": 0.0688
+    },
+    "score": 2.1314,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "harbour-06-1280-0-100",
+    "pose": [
+     27136,
+     62464,
+     -7072,
+     1280,
+     100,
+     227
+    ],
+    "measure": {
+     "subject": 0.3671,
+     "things": 1,
+     "variety": 12,
+     "sectors": 8,
+     "dominant": 0.1897,
+     "sky": 0.1875,
+     "unwritten": 0.0567
+    },
+    "score": 2.4832,
+    "letter": "E",
+    "measured_rank": 1
+   },
+   {
+    "id": "harbour-11-0117-50880-52",
+    "pose": [
+     16384,
+     57088,
+     -57952,
+     117,
+     52,
+     171
+    ],
+    "measure": {
+     "subject": 0.3286,
+     "things": 1,
+     "variety": 12,
+     "sectors": 10,
+     "dominant": 0.1089,
+     "sky": 0.2362,
+     "unwritten": 0.1292
+    },
+    "score": 2.2632,
+    "letter": "F",
+    "measured_rank": 6
+   },
+   {
+    "id": "harbour-12-1536-16960-66",
+    "pose": [
+     19456,
+     58624,
+     -35296,
+     1536,
+     66,
+     237
+    ],
+    "measure": {
+     "subject": 0.4567,
+     "things": 1,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.3073,
+     "sky": 0.0609,
+     "unwritten": 0.102
+    },
+    "score": 1.8763,
+    "letter": "G",
+    "measured_rank": 8
+   },
+   {
+    "id": "harbour-11-0117-16960-66",
+    "pose": [
+     16384,
+     57088,
+     -24032,
+     117,
+     66,
+     171
+    ],
+    "measure": {
+     "subject": 0.3654,
+     "things": 1,
+     "variety": 12,
+     "sectors": 9,
+     "dominant": 0.1313,
+     "sky": 0.2463,
+     "unwritten": 0.1013
+    },
+    "score": 2.4186,
+    "letter": "H",
+    "measured_rank": 2
+   }
+  ]
+ },
+ "market_hall": {
+  "title": "The market hall",
+  "candidates": 468,
+  "rendered": 342,
+  "finalists": [
+   {
+    "id": "market_hall-15-0256-0-100",
+    "pose": [
+     12032,
+     41728,
+     -7072,
+     256,
+     100,
+     243
+    ],
+    "measure": {
+     "subject": 0.5292,
+     "things": 3,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.2985,
+     "sky": 0.0234,
+     "unwritten": 0.0001
+    },
+    "score": 2.6579,
+    "letter": "A",
+    "measured_rank": 3
+   },
+   {
+    "id": "market_hall-02-0256-16960-84",
+    "pose": [
+     10496,
+     41728,
+     -24032,
+     256,
+     84,
+     243
+    ],
+    "measure": {
+     "subject": 0.5129,
+     "things": 1,
+     "variety": 12,
+     "sectors": 7,
+     "dominant": 0.1374,
+     "sky": 0.0005,
+     "unwritten": 0.0016
+    },
+    "score": 2.5698,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "market_hall-06-1536-16960-84",
+    "pose": [
+     8960,
+     47104,
+     -24032,
+     1536,
+     84,
+     243
+    ],
+    "measure": {
+     "subject": 0.4055,
+     "things": 1,
+     "variety": 12,
+     "sectors": 8,
+     "dominant": 0.1523,
+     "sky": 0.0,
+     "unwritten": 0.0071
+    },
+    "score": 2.6851,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "market_hall-05-1024-16960-84",
+    "pose": [
+     13568,
+     43264,
+     -24032,
+     1024,
+     84,
+     243
+    ],
+    "measure": {
+     "subject": 0.5708,
+     "things": 1,
+     "variety": 10,
+     "sectors": 8,
+     "dominant": 0.2557,
+     "sky": 0.0,
+     "unwritten": 0.0008
+    },
+    "score": 2.259,
+    "letter": "D",
+    "measured_rank": 8
+   },
+   {
+    "id": "market_hall-09-1536-16960-66",
+    "pose": [
+     9728,
+     44800,
+     -24032,
+     1536,
+     66,
+     243
+    ],
+    "measure": {
+     "subject": 0.3655,
+     "things": 1,
+     "variety": 11,
+     "sectors": 8,
+     "dominant": 0.1092,
+     "sky": 0.0,
+     "unwritten": 0.0104
+    },
+    "score": 2.449,
+    "letter": "E",
+    "measured_rank": 6
+   },
+   {
+    "id": "market_hall-13-1792-16960-84",
+    "pose": [
+     8960,
+     48640,
+     -24032,
+     1792,
+     84,
+     243
+    ],
+    "measure": {
+     "subject": 0.7661,
+     "things": 1,
+     "variety": 11,
+     "sectors": 9,
+     "dominant": 0.2302,
+     "sky": 0.0,
+     "unwritten": 0.0017
+    },
+    "score": 2.6077,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "market_hall-05-0256-16960-66",
+    "pose": [
+     13568,
+     43264,
+     -24032,
+     256,
+     66,
+     243
+    ],
+    "measure": {
+     "subject": 0.435,
+     "things": 2,
+     "variety": 12,
+     "sectors": 9,
+     "dominant": 0.226,
+     "sky": 0.0048,
+     "unwritten": 0.0011
+    },
+    "score": 3.2187,
+    "letter": "G",
+    "measured_rank": 1
+   },
+   {
+    "id": "market_hall-08-1792-0-100",
+    "pose": [
+     8960,
+     43264,
+     -7072,
+     1792,
+     100,
+     243
+    ],
+    "measure": {
+     "subject": 0.373,
+     "things": 1,
+     "variety": 11,
+     "sectors": 7,
+     "dominant": 0.2332,
+     "sky": 0.0,
+     "unwritten": 0.0
+    },
+    "score": 2.3613,
+    "letter": "H",
+    "measured_rank": 7
+   }
+  ]
+ },
+ "arcade": {
+  "title": "The arcade",
+  "candidates": 396,
+  "rendered": 396,
+  "finalists": [
+   {
+    "id": "arcade-12-0768-0-100",
+    "pose": [
+     46848,
+     43264,
+     -6144,
+     768,
+     100,
+     177
+    ],
+    "measure": {
+     "subject": 0.8485,
+     "things": 5,
+     "variety": 14,
+     "sectors": 11,
+     "dominant": 0.1513,
+     "sky": 0.0,
+     "unwritten": 0.0081
+    },
+    "score": 4.4947,
+    "letter": "A",
+    "measured_rank": 4
+   },
+   {
+    "id": "arcade-00-0256-0-100",
+    "pose": [
+     46080,
+     47104,
+     -7072,
+     256,
+     100,
+     174
+    ],
+    "measure": {
+     "subject": 0.929,
+     "things": 6,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.1854,
+     "sky": 0.0,
+     "unwritten": 0.0155
+    },
+    "score": 3.6065,
+    "letter": "B",
+    "measured_rank": 8
+   },
+   {
+    "id": "arcade-17-0512-0-100",
+    "pose": [
+     45312,
+     48640,
+     -6144,
+     512,
+     100,
+     183
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 9,
+     "variety": 12,
+     "sectors": 3,
+     "dominant": 0.2891,
+     "sky": 0.0,
+     "unwritten": 0.0691
+    },
+    "score": 3.7073,
+    "letter": "C",
+    "measured_rank": 7
+   },
+   {
+    "id": "arcade-08-0512-0-100",
+    "pose": [
+     43776,
+     44800,
+     -7072,
+     512,
+     100,
+     174
+    ],
+    "measure": {
+     "subject": 0.8096,
+     "things": 5,
+     "variety": 13,
+     "sectors": 9,
+     "dominant": 0.2545,
+     "sky": 0.0,
+     "unwritten": 0.0026
+    },
+    "score": 4.3231,
+    "letter": "D",
+    "measured_rank": 5
+   },
+   {
+    "id": "arcade-01-0256-16960-84",
+    "pose": [
+     42240,
+     46336,
+     -24032,
+     256,
+     84,
+     174
+    ],
+    "measure": {
+     "subject": 0.8707,
+     "things": 10,
+     "variety": 11,
+     "sectors": 10,
+     "dominant": 0.1193,
+     "sky": 0.0,
+     "unwritten": 0.006
+    },
+    "score": 5.9047,
+    "letter": "E",
+    "measured_rank": 1
+   },
+   {
+    "id": "arcade-19-0768-0-100",
+    "pose": [
+     46848,
+     45568,
+     -7072,
+     768,
+     100,
+     174
+    ],
+    "measure": {
+     "subject": 0.8401,
+     "things": 8,
+     "variety": 12,
+     "sectors": 9,
+     "dominant": 0.267,
+     "sky": 0.0,
+     "unwritten": 0.0128
+    },
+    "score": 5.3512,
+    "letter": "F",
+    "measured_rank": 2
+   },
+   {
+    "id": "arcade-10-0256-0-100",
+    "pose": [
+     45312,
+     45568,
+     -7072,
+     256,
+     100,
+     174
+    ],
+    "measure": {
+     "subject": 0.8224,
+     "things": 8,
+     "variety": 11,
+     "sectors": 8,
+     "dominant": 0.2622,
+     "sky": 0.0,
+     "unwritten": 0.0138
+    },
+    "score": 4.6608,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "arcade-04-1536-0-100",
+    "pose": [
+     43776,
+     49408,
+     -6144,
+     1536,
+     100,
+     181
+    ],
+    "measure": {
+     "subject": 0.8725,
+     "things": 4,
+     "variety": 13,
+     "sectors": 10,
+     "dominant": 0.2483,
+     "sky": 0.0,
+     "unwritten": 0.0007
+    },
+    "score": 4.1556,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ },
+ "auditorium": {
+  "title": "The Aldermack",
+  "candidates": 667,
+  "rendered": 577,
+  "finalists": [
+   {
+    "id": "auditorium-15-1280-0-100",
+    "pose": [
+     26880,
+     8448,
+     -7072,
+     1280,
+     100,
+     27
+    ],
+    "measure": {
+     "subject": 0.6676,
+     "things": 3,
+     "variety": 9,
+     "sectors": 7,
+     "dominant": 0.2185,
+     "sky": 0.0,
+     "unwritten": 0.0076
+    },
+    "score": 2.4082,
+    "letter": "A",
+    "measured_rank": 2
+   },
+   {
+    "id": "auditorium-13-0256-0-100",
+    "pose": [
+     24576,
+     6912,
+     -7072,
+     256,
+     100,
+     20
+    ],
+    "measure": {
+     "subject": 0.5741,
+     "things": 1,
+     "variety": 8,
+     "sectors": 10,
+     "dominant": 0.1993,
+     "sky": 0.0,
+     "unwritten": 0.0031
+    },
+    "score": 1.9841,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "auditorium-18-1897-0-100",
+    "pose": [
+     19968,
+     9216,
+     -7072,
+     1897,
+     100,
+     20
+    ],
+    "measure": {
+     "subject": 0.7957,
+     "things": 2,
+     "variety": 7,
+     "sectors": 10,
+     "dominant": 0.1666,
+     "sky": 0.0,
+     "unwritten": 0.0069
+    },
+    "score": 1.9513,
+    "letter": "C",
+    "measured_rank": 6
+   },
+   {
+    "id": "auditorium-12-0768-0-100",
+    "pose": [
+     23808,
+     5376,
+     -8192,
+     768,
+     100,
+     21
+    ],
+    "measure": {
+     "subject": 0.8199,
+     "things": 1,
+     "variety": 9,
+     "sectors": 7,
+     "dominant": 0.1975,
+     "sky": 0.0,
+     "unwritten": 0.0012
+    },
+    "score": 1.9285,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "auditorium-08-1280-0-100",
+    "pose": [
+     23040,
+     9984,
+     -7072,
+     1280,
+     100,
+     20
+    ],
+    "measure": {
+     "subject": 0.7038,
+     "things": 1,
+     "variety": 10,
+     "sectors": 10,
+     "dominant": 0.1625,
+     "sky": 0.0,
+     "unwritten": 0.0012
+    },
+    "score": 2.4872,
+    "letter": "E",
+    "measured_rank": 1
+   },
+   {
+    "id": "auditorium-10-1536-0-100",
+    "pose": [
+     25344,
+     8448,
+     -8096,
+     1536,
+     100,
+     24
+    ],
+    "measure": {
+     "subject": 0.5646,
+     "things": 2,
+     "variety": 9,
+     "sectors": 6,
+     "dominant": 0.15,
+     "sky": 0.0,
+     "unwritten": 0.0044
+    },
+    "score": 2.0534,
+    "letter": "F",
+    "measured_rank": 3
+   },
+   {
+    "id": "auditorium-09-1280-0-100",
+    "pose": [
+     20736,
+     8448,
+     -8096,
+     1280,
+     100,
+     24
+    ],
+    "measure": {
+     "subject": 0.3981,
+     "things": 1,
+     "variety": 10,
+     "sectors": 6,
+     "dominant": 0.1882,
+     "sky": 0.0,
+     "unwritten": 0.0073
+    },
+    "score": 2.0094,
+    "letter": "G",
+    "measured_rank": 4
+   },
+   {
+    "id": "auditorium-04-0512-0-100",
+    "pose": [
+     23040,
+     3840,
+     -10752,
+     512,
+     100,
+     487
+    ],
+    "measure": {
+     "subject": 0.8695,
+     "things": 1,
+     "variety": 9,
+     "sectors": 8,
+     "dominant": 0.3537,
+     "sky": 0.0,
+     "unwritten": 0.0021
+    },
+    "score": 1.8983,
+    "letter": "H",
+    "measured_rank": 8
+   }
+  ]
+ },
+ "saloon": {
+  "title": "The saloon",
+  "candidates": 501,
+  "rendered": 501,
+  "finalists": [
+   {
+    "id": "saloon-04-1536-16960-84",
+    "pose": [
+     9676,
+     13004,
+     -24032,
+     1536,
+     84,
+     3
+    ],
+    "measure": {
+     "subject": 0.7683,
+     "things": 12,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.3124,
+     "sky": 0.0,
+     "unwritten": 0.0659
+    },
+    "score": 4.3129,
+    "letter": "A",
+    "measured_rank": 8
+   },
+   {
+    "id": "saloon-07-1024-0-100",
+    "pose": [
+     9676,
+     10700,
+     -7072,
+     1024,
+     100,
+     3
+    ],
+    "measure": {
+     "subject": 0.7309,
+     "things": 13,
+     "variety": 12,
+     "sectors": 7,
+     "dominant": 0.1434,
+     "sky": 0.0,
+     "unwritten": 0.0342
+    },
+    "score": 5.3127,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "saloon-15-0105-16960-84",
+    "pose": [
+     5068,
+     10700,
+     -24032,
+     105,
+     84,
+     3
+    ],
+    "measure": {
+     "subject": 0.8553,
+     "things": 12,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.1797,
+     "sky": 0.0,
+     "unwritten": 0.0432
+    },
+    "score": 4.5435,
+    "letter": "C",
+    "measured_rank": 7
+   },
+   {
+    "id": "saloon-05-0256-0-100",
+    "pose": [
+     6604,
+     9164,
+     -7072,
+     256,
+     100,
+     3
+    ],
+    "measure": {
+     "subject": 0.8076,
+     "things": 12,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.1985,
+     "sky": 0.0,
+     "unwritten": 0.0584
+    },
+    "score": 4.8357,
+    "letter": "D",
+    "measured_rank": 4
+   },
+   {
+    "id": "saloon-19-1792-16960-66",
+    "pose": [
+     5836,
+     11468,
+     -29120,
+     1792,
+     66,
+     5
+    ],
+    "measure": {
+     "subject": 0.5798,
+     "things": 12,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.1709,
+     "sky": 0.0,
+     "unwritten": 0.0505
+    },
+    "score": 4.8985,
+    "letter": "E",
+    "measured_rank": 3
+   },
+   {
+    "id": "saloon-03-1024-16960-66",
+    "pose": [
+     8908,
+     9164,
+     -24032,
+     1024,
+     66,
+     3
+    ],
+    "measure": {
+     "subject": 0.4626,
+     "things": 10,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.1971,
+     "sky": 0.0,
+     "unwritten": 0.0325
+    },
+    "score": 4.6215,
+    "letter": "F",
+    "measured_rank": 6
+   },
+   {
+    "id": "saloon-09-1536-0-100",
+    "pose": [
+     8140,
+     13004,
+     -7072,
+     1536,
+     100,
+     3
+    ],
+    "measure": {
+     "subject": 0.6395,
+     "things": 15,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.1431,
+     "sky": 0.0,
+     "unwritten": 0.0449
+    },
+    "score": 4.943,
+    "letter": "G",
+    "measured_rank": 2
+   },
+   {
+    "id": "saloon-08-1792-0-100",
+    "pose": [
+     5068,
+     11468,
+     -7072,
+     1792,
+     100,
+     3
+    ],
+    "measure": {
+     "subject": 0.6464,
+     "things": 17,
+     "variety": 11,
+     "sectors": 7,
+     "dominant": 0.1355,
+     "sky": 0.0,
+     "unwritten": 0.0456
+    },
+    "score": 4.7822,
+    "letter": "H",
+    "measured_rank": 5
+   }
+  ]
+ },
+ "pawn": {
+  "title": "The pawn shop",
+  "candidates": 347,
+  "rendered": 347,
+  "finalists": [
+   {
+    "id": "pawn-09-1280-0-100",
+    "pose": [
+     31488,
+     4249,
+     -4096,
+     1280,
+     100,
+     35
+    ],
+    "measure": {
+     "subject": 0.6614,
+     "things": 7,
+     "variety": 14,
+     "sectors": 7,
+     "dominant": 0.3039,
+     "sky": 0.0,
+     "unwritten": 0.0009
+    },
+    "score": 4.5643,
+    "letter": "A",
+    "measured_rank": 6
+   },
+   {
+    "id": "pawn-09-0768-0-100",
+    "pose": [
+     31488,
+     4249,
+     -4096,
+     768,
+     100,
+     35
+    ],
+    "measure": {
+     "subject": 0.9245,
+     "things": 10,
+     "variety": 12,
+     "sectors": 5,
+     "dominant": 0.2301,
+     "sky": 0.0,
+     "unwritten": 0.0204
+    },
+    "score": 4.847,
+    "letter": "B",
+    "measured_rank": 4
+   },
+   {
+    "id": "pawn-01-0000-0-100",
+    "pose": [
+     28416,
+     4249,
+     -8192,
+     0,
+     100,
+     36
+    ],
+    "measure": {
+     "subject": 0.917,
+     "things": 12,
+     "variety": 13,
+     "sectors": 9,
+     "dominant": 0.2633,
+     "sky": 0.0,
+     "unwritten": 0.0071
+    },
+    "score": 6.134,
+    "letter": "C",
+    "measured_rank": 1
+   },
+   {
+    "id": "pawn-17-1536-0-100",
+    "pose": [
+     29952,
+     5017,
+     -4096,
+     1536,
+     100,
+     35
+    ],
+    "measure": {
+     "subject": 0.725,
+     "things": 7,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.173,
+     "sky": 0.0,
+     "unwritten": 0.0003
+    },
+    "score": 4.344,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "pawn-15-0768-0-100",
+    "pose": [
+     29952,
+     2713,
+     -7072,
+     768,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.5374,
+     "things": 3,
+     "variety": 16,
+     "sectors": 8,
+     "dominant": 0.161,
+     "sky": 0.0014,
+     "unwritten": 0.0069
+    },
+    "score": 3.3866,
+    "letter": "E",
+    "measured_rank": 8
+   },
+   {
+    "id": "pawn-11-1943-0-100",
+    "pose": [
+     28416,
+     5785,
+     -4096,
+     1943,
+     100,
+     35
+    ],
+    "measure": {
+     "subject": 0.9414,
+     "things": 8,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.2078,
+     "sky": 0.0,
+     "unwritten": 0.0029
+    },
+    "score": 4.6437,
+    "letter": "F",
+    "measured_rank": 5
+   },
+   {
+    "id": "pawn-15-0256-0-100",
+    "pose": [
+     29952,
+     2713,
+     -7072,
+     256,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.9171,
+     "things": 8,
+     "variety": 16,
+     "sectors": 9,
+     "dominant": 0.3739,
+     "sky": 0.0014,
+     "unwritten": 0.0037
+    },
+    "score": 4.9446,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "pawn-03-0768-0-100",
+    "pose": [
+     31488,
+     2713,
+     -7072,
+     768,
+     100,
+     0
+    ],
+    "measure": {
+     "subject": 0.8692,
+     "things": 12,
+     "variety": 16,
+     "sectors": 9,
+     "dominant": 0.3548,
+     "sky": 0.0013,
+     "unwritten": 0.0087
+    },
+    "score": 5.7167,
+    "letter": "H",
+    "measured_rank": 2
+   }
+  ]
+ },
+ "machine_hall": {
+  "title": "The pump station",
+  "candidates": 808,
+  "rendered": 763,
+  "finalists": [
+   {
+    "id": "machine_hall-08-1616-0-100",
+    "pose": [
+     44288,
+     11776,
+     -7072,
+     1616,
+     100,
+     137
+    ],
+    "measure": {
+     "subject": 0.8995,
+     "things": 0,
+     "variety": 13,
+     "sectors": 9,
+     "dominant": 0.0915,
+     "sky": 0.0,
+     "unwritten": 0.0005
+    },
+    "score": 2.4781,
+    "letter": "A",
+    "measured_rank": 7
+   },
+   {
+    "id": "machine_hall-12-0000-0-100",
+    "pose": [
+     42752,
+     10240,
+     -11168,
+     0,
+     100,
+     139
+    ],
+    "measure": {
+     "subject": 0.9296,
+     "things": 5,
+     "variety": 10,
+     "sectors": 8,
+     "dominant": 0.2201,
+     "sky": 0.0,
+     "unwritten": 0.0048
+    },
+    "score": 3.4169,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "machine_hall-14-1024-0-100",
+    "pose": [
+     46592,
+     11008,
+     -7072,
+     1024,
+     100,
+     152
+    ],
+    "measure": {
+     "subject": 0.9879,
+     "things": 3,
+     "variety": 13,
+     "sectors": 7,
+     "dominant": 0.1903,
+     "sky": 0.0,
+     "unwritten": 0.0037
+    },
+    "score": 3.23,
+    "letter": "C",
+    "measured_rank": 2
+   },
+   {
+    "id": "machine_hall-01-0220-50880-52",
+    "pose": [
+     41216,
+     5632,
+     -57952,
+     220,
+     52,
+     137
+    ],
+    "measure": {
+     "subject": 0.979,
+     "things": 0,
+     "variety": 11,
+     "sectors": 11,
+     "dominant": 0.2248,
+     "sky": 0.0,
+     "unwritten": 0.001
+    },
+    "score": 2.3798,
+    "letter": "D",
+    "measured_rank": 8
+   },
+   {
+    "id": "machine_hall-01-0256-16960-84",
+    "pose": [
+     41216,
+     5632,
+     -24032,
+     256,
+     84,
+     137
+    ],
+    "measure": {
+     "subject": 0.97,
+     "things": 0,
+     "variety": 12,
+     "sectors": 11,
+     "dominant": 0.1955,
+     "sky": 0.0,
+     "unwritten": 0.0018
+    },
+    "score": 2.593,
+    "letter": "E",
+    "measured_rank": 5
+   },
+   {
+    "id": "machine_hall-17-1024-16960-84",
+    "pose": [
+     47360,
+     5632,
+     -24032,
+     1024,
+     84,
+     137
+    ],
+    "measure": {
+     "subject": 0.9584,
+     "things": 4,
+     "variety": 11,
+     "sectors": 5,
+     "dominant": 0.2384,
+     "sky": 0.0,
+     "unwritten": 0.0209
+    },
+    "score": 2.8414,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "machine_hall-00-0768-0-100",
+    "pose": [
+     45056,
+     8704,
+     -7072,
+     768,
+     100,
+     137
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 5,
+     "variety": 10,
+     "sectors": 5,
+     "dominant": 0.1489,
+     "sky": 0.0,
+     "unwritten": 0.0054
+    },
+    "score": 2.893,
+    "letter": "G",
+    "measured_rank": 3
+   },
+   {
+    "id": "machine_hall-16-0512-16960-66",
+    "pose": [
+     42752,
+     4864,
+     -24032,
+     512,
+     66,
+     137
+    ],
+    "measure": {
+     "subject": 0.9922,
+     "things": 0,
+     "variety": 12,
+     "sectors": 9,
+     "dominant": 0.2123,
+     "sky": 0.0,
+     "unwritten": 0.0002
+    },
+    "score": 2.4793,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ },
+ "sewer": {
+  "title": "The sewers",
+  "candidates": 178,
+  "rendered": 161,
+  "finalists": [
+   {
+    "id": "sewer-18-1280-0-100",
+    "pose": [
+     49152,
+     7424,
+     51200,
+     1280,
+     100,
+     295
+    ],
+    "measure": {
+     "subject": 0.9246,
+     "things": 3,
+     "variety": 6,
+     "sectors": 5,
+     "dominant": 0.2126,
+     "sky": 0.0,
+     "unwritten": 0.0008
+    },
+    "score": 1.4483,
+    "letter": "A",
+    "measured_rank": 1
+   },
+   {
+    "id": "sewer-09-0768-0-100",
+    "pose": [
+     46848,
+     21248,
+     49152,
+     768,
+     100,
+     287
+    ],
+    "measure": {
+     "subject": 0.9832,
+     "things": 3,
+     "variety": 5,
+     "sectors": 5,
+     "dominant": 0.2913,
+     "sky": 0.0,
+     "unwritten": 0.0052
+    },
+    "score": 1.1989,
+    "letter": "B",
+    "measured_rank": 3
+   },
+   {
+    "id": "sewer-10-0000-0-100",
+    "pose": [
+     44544,
+     6656,
+     49152,
+     0,
+     100,
+     294
+    ],
+    "measure": {
+     "subject": 0.976,
+     "things": 1,
+     "variety": 5,
+     "sectors": 4,
+     "dominant": 0.3144,
+     "sky": 0.0,
+     "unwritten": 0.0006
+    },
+    "score": 0.8845,
+    "letter": "C",
+    "measured_rank": 5
+   },
+   {
+    "id": "sewer-18-1792-0-100",
+    "pose": [
+     49152,
+     7424,
+     51200,
+     1792,
+     100,
+     295
+    ],
+    "measure": {
+     "subject": 0.7223,
+     "things": 0,
+     "variety": 5,
+     "sectors": 4,
+     "dominant": 0.1912,
+     "sky": 0.0,
+     "unwritten": 0.0
+    },
+    "score": 0.7833,
+    "letter": "D",
+    "measured_rank": 7
+   },
+   {
+    "id": "sewer-10-1024-0-100",
+    "pose": [
+     44544,
+     6656,
+     49152,
+     1024,
+     100,
+     294
+    ],
+    "measure": {
+     "subject": 0.9929,
+     "things": 2,
+     "variety": 6,
+     "sectors": 3,
+     "dominant": 0.3181,
+     "sky": 0.0,
+     "unwritten": 0.0011
+    },
+    "score": 1.1173,
+    "letter": "E",
+    "measured_rank": 4
+   },
+   {
+    "id": "sewer-11-1024-0-100",
+    "pose": [
+     39936,
+     22016,
+     49152,
+     1024,
+     100,
+     290
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 4,
+     "variety": 7,
+     "sectors": 1,
+     "dominant": 0.1721,
+     "sky": 0.0,
+     "unwritten": 0.0
+    },
+    "score": 1.4187,
+    "letter": "F",
+    "measured_rank": 2
+   },
+   {
+    "id": "sewer-14-0838-0-100",
+    "pose": [
+     53760,
+     7424,
+     49152,
+     838,
+     100,
+     296
+    ],
+    "measure": {
+     "subject": 0.5344,
+     "things": 1,
+     "variety": 4,
+     "sectors": 5,
+     "dominant": 0.2124,
+     "sky": 0.0,
+     "unwritten": 0.0021
+    },
+    "score": 0.7643,
+    "letter": "G",
+    "measured_rank": 8
+   },
+   {
+    "id": "sewer-07-0000-0-100",
+    "pose": [
+     36864,
+     6656,
+     49152,
+     0,
+     100,
+     294
+    ],
+    "measure": {
+     "subject": 0.9955,
+     "things": 2,
+     "variety": 5,
+     "sectors": 2,
+     "dominant": 0.3655,
+     "sky": 0.0,
+     "unwritten": 0.0023
+    },
+    "score": 0.8157,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ },
+ "underpass": {
+  "title": "The unfinished metro",
+  "candidates": 174,
+  "rendered": 174,
+  "finalists": [
+   {
+    "id": "underpass-09-1687-0-100",
+    "pose": [
+     42240,
+     24064,
+     9312,
+     1687,
+     100,
+     124
+    ],
+    "measure": {
+     "subject": 0.9561,
+     "things": 2,
+     "variety": 6,
+     "sectors": 6,
+     "dominant": 0.3234,
+     "sky": 0.0,
+     "unwritten": 0.0028
+    },
+    "score": 1.3337,
+    "letter": "A",
+    "measured_rank": 7
+   },
+   {
+    "id": "underpass-19-0256-0-100",
+    "pose": [
+     42240,
+     20224,
+     12288,
+     256,
+     100,
+     122
+    ],
+    "measure": {
+     "subject": 0.9173,
+     "things": 2,
+     "variety": 9,
+     "sectors": 7,
+     "dominant": 0.3241,
+     "sky": 0.0,
+     "unwritten": 0.0104
+    },
+    "score": 2.0878,
+    "letter": "B",
+    "measured_rank": 1
+   },
+   {
+    "id": "underpass-16-0256-0-100",
+    "pose": [
+     40704,
+     23296,
+     12288,
+     256,
+     100,
+     427
+    ],
+    "measure": {
+     "subject": 0.9372,
+     "things": 1,
+     "variety": 7,
+     "sectors": 5,
+     "dominant": 0.2247,
+     "sky": 0.0,
+     "unwritten": 0.0098
+    },
+    "score": 1.3219,
+    "letter": "C",
+    "measured_rank": 8
+   },
+   {
+    "id": "underpass-10-0256-0-100",
+    "pose": [
+     43776,
+     18688,
+     12288,
+     256,
+     100,
+     122
+    ],
+    "measure": {
+     "subject": 0.7644,
+     "things": 1,
+     "variety": 7,
+     "sectors": 13,
+     "dominant": 0.1055,
+     "sky": 0.0,
+     "unwritten": 0.0015
+    },
+    "score": 1.7402,
+    "letter": "D",
+    "measured_rank": 3
+   },
+   {
+    "id": "underpass-12-1792-0-100",
+    "pose": [
+     42240,
+     20992,
+     9312,
+     1792,
+     100,
+     124
+    ],
+    "measure": {
+     "subject": 0.7531,
+     "things": 1,
+     "variety": 6,
+     "sectors": 18,
+     "dominant": 0.2193,
+     "sky": 0.0,
+     "unwritten": 0.0027
+    },
+    "score": 1.4889,
+    "letter": "E",
+    "measured_rank": 5
+   },
+   {
+    "id": "underpass-05-1856-0-100",
+    "pose": [
+     40704,
+     24064,
+     9312,
+     1856,
+     100,
+     125
+    ],
+    "measure": {
+     "subject": 0.9852,
+     "things": 1,
+     "variety": 6,
+     "sectors": 11,
+     "dominant": 0.1801,
+     "sky": 0.0,
+     "unwritten": 0.0003
+    },
+    "score": 1.4943,
+    "letter": "F",
+    "measured_rank": 4
+   },
+   {
+    "id": "underpass-01-0256-0-100",
+    "pose": [
+     42240,
+     18688,
+     12288,
+     256,
+     100,
+     122
+    ],
+    "measure": {
+     "subject": 0.862,
+     "things": 1,
+     "variety": 8,
+     "sectors": 13,
+     "dominant": 0.1975,
+     "sky": 0.0,
+     "unwritten": 0.0065
+    },
+    "score": 1.9739,
+    "letter": "G",
+    "measured_rank": 2
+   },
+   {
+    "id": "underpass-00-1536-0-100",
+    "pose": [
+     43008,
+     22528,
+     9312,
+     1536,
+     100,
+     124
+    ],
+    "measure": {
+     "subject": 0.9202,
+     "things": 1,
+     "variety": 6,
+     "sectors": 8,
+     "dominant": 0.2207,
+     "sky": 0.0,
+     "unwritten": 0.0045
+    },
+    "score": 1.3478,
+    "letter": "H",
+    "measured_rank": 6
+   }
+  ]
+ },
+ "works_yard": {
+  "title": "The works yard",
+  "candidates": 865,
+  "rendered": 735,
+  "finalists": [
+   {
+    "id": "works_yard-14-1536-16960-84",
+    "pose": [
+     51200,
+     17408,
+     -24032,
+     1536,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.9211,
+     "things": 14,
+     "variety": 12,
+     "sectors": 6,
+     "dominant": 0.2393,
+     "sky": 0.0,
+     "unwritten": 0.0079
+    },
+    "score": 5.2372,
+    "letter": "A",
+    "measured_rank": 1
+   },
+   {
+    "id": "works_yard-16-1536-16960-66",
+    "pose": [
+     51968,
+     23552,
+     -24032,
+     1536,
+     66,
+     117
+    ],
+    "measure": {
+     "subject": 0.9732,
+     "things": 4,
+     "variety": 10,
+     "sectors": 9,
+     "dominant": 0.2063,
+     "sky": 0.0018,
+     "unwritten": 0.013
+    },
+    "score": 3.2422,
+    "letter": "B",
+    "measured_rank": 6
+   },
+   {
+    "id": "works_yard-04-1712-16960-84",
+    "pose": [
+     50432,
+     22784,
+     -24032,
+     1712,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.9019,
+     "things": 4,
+     "variety": 11,
+     "sectors": 8,
+     "dominant": 0.2094,
+     "sky": 0.0037,
+     "unwritten": 0.0163
+    },
+    "score": 3.3767,
+    "letter": "C",
+    "measured_rank": 4
+   },
+   {
+    "id": "works_yard-07-1024-16960-84",
+    "pose": [
+     55040,
+     16640,
+     -24032,
+     1024,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.9917,
+     "things": 4,
+     "variety": 11,
+     "sectors": 7,
+     "dominant": 0.1975,
+     "sky": 0.0,
+     "unwritten": 0.0087
+    },
+    "score": 3.2425,
+    "letter": "D",
+    "measured_rank": 5
+   },
+   {
+    "id": "works_yard-06-1792-16960-84",
+    "pose": [
+     50432,
+     15872,
+     -24032,
+     1792,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.6851,
+     "things": 8,
+     "variety": 14,
+     "sectors": 6,
+     "dominant": 0.2476,
+     "sky": 0.0,
+     "unwritten": 0.0315
+    },
+    "score": 4.4436,
+    "letter": "E",
+    "measured_rank": 2
+   },
+   {
+    "id": "works_yard-08-1792-50880-52",
+    "pose": [
+     50432,
+     19712,
+     -57952,
+     1792,
+     52,
+     117
+    ],
+    "measure": {
+     "subject": 0.7164,
+     "things": 5,
+     "variety": 9,
+     "sectors": 7,
+     "dominant": 0.2375,
+     "sky": 0.0,
+     "unwritten": 0.026
+    },
+    "score": 2.8253,
+    "letter": "F",
+    "measured_rank": 7
+   },
+   {
+    "id": "works_yard-15-1536-0-100",
+    "pose": [
+     51200,
+     21248,
+     -7072,
+     1536,
+     100,
+     131
+    ],
+    "measure": {
+     "subject": 0.8456,
+     "things": 4,
+     "variety": 10,
+     "sectors": 6,
+     "dominant": 0.2273,
+     "sky": 0.0016,
+     "unwritten": 0.0151
+    },
+    "score": 2.7626,
+    "letter": "G",
+    "measured_rank": 8
+   },
+   {
+    "id": "works_yard-08-1792-16960-84",
+    "pose": [
+     50432,
+     19712,
+     -24032,
+     1792,
+     84,
+     117
+    ],
+    "measure": {
+     "subject": 0.7111,
+     "things": 6,
+     "variety": 11,
+     "sectors": 6,
+     "dominant": 0.2932,
+     "sky": 0.0,
+     "unwritten": 0.0256
+    },
+    "score": 3.5505,
+    "letter": "H",
+    "measured_rank": 3
+   }
+  ]
+ },
+ "ratdogs": {
+  "title": "RAT DOGS",
+  "candidates": 274,
+  "rendered": 274,
+  "finalists": [
+   {
+    "id": "ratdogs-09-1280-0-100",
+    "pose": [
+     50944,
+     14080,
+     -7072,
+     1280,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 10,
+     "variety": 12,
+     "sectors": 2,
+     "dominant": 0.4083,
+     "sky": 0.0,
+     "unwritten": 0.0004
+    },
+    "score": 3.565,
+    "letter": "A",
+    "measured_rank": 6
+   },
+   {
+    "id": "ratdogs-07-1280-0-100",
+    "pose": [
+     52480,
+     14080,
+     -7072,
+     1280,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 13,
+     "variety": 11,
+     "sectors": 3,
+     "dominant": 0.2176,
+     "sky": 0.0,
+     "unwritten": 0.0023
+    },
+    "score": 4.0194,
+    "letter": "B",
+    "measured_rank": 5
+   },
+   {
+    "id": "ratdogs-00-0768-0-100",
+    "pose": [
+     51712,
+     11776,
+     -7072,
+     768,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.9116,
+     "things": 14,
+     "variety": 12,
+     "sectors": 4,
+     "dominant": 0.2532,
+     "sky": 0.0,
+     "unwritten": 0.0009
+    },
+    "score": 4.6937,
+    "letter": "C",
+    "measured_rank": 4
+   },
+   {
+    "id": "ratdogs-15-0768-0-100",
+    "pose": [
+     51712,
+     13312,
+     -7072,
+     768,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.8336,
+     "things": 11,
+     "variety": 12,
+     "sectors": 4,
+     "dominant": 0.2298,
+     "sky": 0.0,
+     "unwritten": 0.0005
+    },
+    "score": 4.6965,
+    "letter": "D",
+    "measured_rank": 3
+   },
+   {
+    "id": "ratdogs-05-0256-0-100",
+    "pose": [
+     49408,
+     11008,
+     -7072,
+     256,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.91,
+     "things": 11,
+     "variety": 8,
+     "sectors": 5,
+     "dominant": 0.2437,
+     "sky": 0.0,
+     "unwritten": 0.0009
+    },
+    "score": 3.3288,
+    "letter": "E",
+    "measured_rank": 7
+   },
+   {
+    "id": "ratdogs-08-0256-0-100",
+    "pose": [
+     50176,
+     12544,
+     -7072,
+     256,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.8944,
+     "things": 10,
+     "variety": 14,
+     "sectors": 5,
+     "dominant": 0.1912,
+     "sky": 0.0,
+     "unwritten": 0.001
+    },
+    "score": 4.9925,
+    "letter": "F",
+    "measured_rank": 2
+   },
+   {
+    "id": "ratdogs-03-1536-0-100",
+    "pose": [
+     49408,
+     14080,
+     -7072,
+     1536,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 1.0,
+     "things": 8,
+     "variety": 11,
+     "sectors": 3,
+     "dominant": 0.4022,
+     "sky": 0.0,
+     "unwritten": 0.0
+    },
+    "score": 3.114,
+    "letter": "G",
+    "measured_rank": 8
+   },
+   {
+    "id": "ratdogs-03-0000-0-100",
+    "pose": [
+     49408,
+     14080,
+     -7072,
+     0,
+     100,
+     153
+    ],
+    "measure": {
+     "subject": 0.8898,
+     "things": 13,
+     "variety": 17,
+     "sectors": 6,
+     "dominant": 0.1903,
+     "sky": 0.0,
+     "unwritten": 0.0035
+    },
+    "score": 5.2722,
+    "letter": "H",
+    "measured_rank": 1
+   }
+  ]
+ }
+}

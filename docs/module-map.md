@@ -239,6 +239,7 @@ Compile a candidate, read it back independently, look at it through the observer
 | `visual` | Structured visual observation through the XMapEdit fork. |
 | `viewplan` | Hierarchy-aware viewpoint planning. |
 | `viewpoints` | Declared viewpoint poses and the temporary MAP variants that realize them. |
+| `view_score` | How much of a place one rendered view shows, measured from the observer's surface list. |
 | `oracle` | NBlood as a runtime oracle. |
 | `workspace` | Persistent, replayable workspace records for an eventual design agent. |
 
@@ -363,6 +364,7 @@ Render what the game shows, through the XMapEdit observer.
 | `look_at` | Walk round a THING in one of Blood's maps and photograph it. |
 | `mechanism_look` | Render one mechanism before and after it fires, from the same cameras, and measure the difference. |
 | `tile_usage` | What a tile LOOKS like, and every way Blood uses it. |
+| `showcase` | A competition of views for each named place: measured heats, blind finals, and what each place lacks. |
 
 ### The library of Blood
 

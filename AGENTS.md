@@ -22,6 +22,7 @@ calls for it. Commands are run from the repository root.
 | which module owns a kind of fact | [docs/architecture.md](docs/architecture.md) |
 | what to reach for when authoring | [docs/toolkit-index.md](docs/toolkit-index.md) |
 | how Blood built a kind of place | `python -m tools.study <slug> --want "..." --seed MAP:sector!` then read its frames |
+| which view shows a city place best, and what each place lacks (blind) | `python -m tools.showcase run`, `judge`, `report`; read `projects/blood-city/reports/showcase/round-N/showcase.md` |
 
 The shelves behind `catalog` are described in
 [knowledge/blood/LIBRARY.md](knowledge/blood/LIBRARY.md). The owner's name for a

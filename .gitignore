@@ -93,3 +93,5 @@ knowledge/blood/ideas/**/*.[Mm][Aa][Pp]
 knowledge/blood/critic-bench/**/*.png
 knowledge/blood/critic-bench/**/*.[Mm][Aa][Pp]
 reports/tiles/**/*.png
+projects/*/reports/showcase/**/*.png
+projects/*/reports/showcase/**/*.MAP

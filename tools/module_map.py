@@ -95,8 +95,8 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Evidence loop and observation",
      "Compile a candidate, read it back independently, look at it through "
      "the observer, and keep the packet.",
-     ["authoring_loop", "visual", "viewplan", "viewpoints", "oracle",
-      "workspace"]),
+     ["authoring_loop", "visual", "viewplan", "viewpoints", "view_score",
+      "oracle", "workspace"]),
     ("Cross-game conversion",
      "A converted map is a new authored map with a fidelity report, never a "
      "roundtrip.",
@@ -140,7 +140,8 @@ TOOLS: list[tuple[str, str, list[str]]] = [
       "whatif", "judge_experiment"]),
     ("Looking",
      "Render what the game shows, through the XMapEdit observer.",
-     ["observe", "render_precedent", "sweep_views", "look_at", "mechanism_look", "tile_usage"]),
+     ["observe", "render_precedent", "sweep_views", "look_at", "mechanism_look", "tile_usage",
+      "showcase"]),
     ("The library of Blood",
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "
      "the readers that criticise a place.",

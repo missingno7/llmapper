@@ -1,0 +1,702 @@
+{
+ "monument": {
+  "notes": {
+   "A": "The memorial anchors the square, though its stepped base hides part of the pool.",
+   "B": "The flame and inscription sit below a walled churchyard, but the pedestal is cropped.",
+   "C": "The pool reads clearly beneath the fiery sky, but the monument recedes to the left.",
+   "D": "The pool, memorial, and church spire share the view, but a lamppost interrupts the inscription.",
+   "E": "The elevated view explains the square\u2019s layout, but the nearest lamp crowds the memorial.",
+   "F": "The flame stands against the fiery skyline, but the pool barely enters the frame.",
+   "G": "The sky and open paving dominate, with the memorial clipped at the left edge.",
+   "H": "The flame and inscription read well, but a large foreground lamp competes for attention."
+  },
+  "place": "Flame memorial in a city square",
+  "rank": [
+   "A",
+   "D",
+   "E",
+   "C",
+   "H",
+   "F",
+   "B",
+   "G"
+  ],
+  "best": "The eternal flame, sunken pool, streetlamps, and corner storefront share the frame beneath the fiery sky.",
+  "lacks": "The plaza lacks a landmark at the scale of its surroundings. The low stone memorial gets lost against the broad paving and tall fa\u00e7ades.",
+  "fix": "Replace the squat pedestal with a tall, tapered stone monument that raises the flame and gives the square a recognizable silhouette.",
+  "ok": true,
+  "blind_name": {
+   "name": "Flame Monument Plaza",
+   "sure": 5,
+   "why": "A flame crowns a stepped stone pedestal in a cobblestone square with streetlamps and a brick building.",
+   "odd": "The fiery sky dwarfs the buildings, and deep shadows obscure the far side of the square.",
+   "recognised": true
+  },
+  "winner": "monument-07-0768-50880-70"
+ },
+ "avenue": {
+  "notes": {
+   "A": "The tower and branching streets give the city depth, but the near fa\u00e7ade hides one corner.",
+   "B": "The entrance and side street are clear, but the head-on fa\u00e7ade flattens the junction.",
+   "C": "It shows the entrance and paving, but the foreground lamp crowds out the street.",
+   "D": "The junction and square read together, but the broad paving feels empty.",
+   "E": "The lamps trace the square\u2019s edge, but the near wall cuts off the street.",
+   "F": "The corner block anchors the avenue, but its repetitive windows dominate the view.",
+   "G": "Street level gives the buildings height, but the narrow view hides most of the square.",
+   "H": "The lamp and burning sky set the mood, but the foreground pole interrupts the junction."
+  },
+  "place": "Lamplit city avenue and square",
+  "rank": [
+   "D",
+   "A",
+   "F",
+   "E",
+   "G",
+   "B",
+   "H",
+   "C"
+  ],
+  "best": "D shows how the cobbled streets meet the lamplit square, with tall brick blocks and a fiery skyline.",
+  "lacks": "The square lacks a destination. The lamps mark its edges, but the empty center gives the surrounding streets little reason to meet there.",
+  "fix": "Build a lit stone fountain in the square so the approaching streets lead to a shared landmark.",
+  "ok": true,
+  "blind_name": {
+   "name": "Cobblestone city intersection",
+   "sure": 5,
+   "why": "Cobblestone streets meet beside a tall brick building, with glowing streetlamps lining the sidewalks.",
+   "odd": "The fiery sky looks heavily pixelated.",
+   "recognised": true
+  },
+  "winner": "avenue-11-0343-50880-52"
+ },
+ "church_out": {
+  "notes": {
+   "A": "Stained glass and tower masonry frame the pavement, but the entrance disappears behind the tower.",
+   "B": "The raised angle reveals the roof and enclosed yard, but the foreground wall hides the approach.",
+   "C": "The full window row and recessed door read clearly, but the flat angle compresses the church.",
+   "D": "The long street gives the church an urban setting, but foreshortening squeezes its windows together.",
+   "E": "The roof, windows, and doorway read together, though the foreground wall crowds the church.",
+   "F": "The windows and door are clear, but blank pavement dominates and the roof is cropped.",
+   "G": "The church and street read together, though the doorway sinks into shadow.",
+   "H": "The red sky frames the roof and tower, but the tower hides the entrance."
+  },
+  "place": "Church on a dark city street",
+  "rank": [
+   "G",
+   "E",
+   "B",
+   "D",
+   "C",
+   "F",
+   "H",
+   "A"
+  ],
+  "best": "G shows how the stained-glass nave, tower, and doorway sit along the cobbled street beneath the red sky.",
+  "lacks": "The church lacks a focal point at street level. Its repeated windows draw the eye past a small doorway that barely registers as the entrance.",
+  "fix": "Give the tower a tall, recessed pointed-arch stone portal that marks the entrance from down the street.",
+  "ok": true,
+  "blind_name": {
+   "name": "Church exterior",
+   "sure": 5,
+   "why": "Tall stained-glass windows line the stone wall beside a square tower and recessed wooden door.",
+   "odd": "The tower is cropped at the top, and the doorway is very dark.",
+   "recognised": true
+  },
+  "winner": "church_out-05-1239-16960-84"
+ },
+ "nave": {
+  "notes": {
+   "A": "Two pew rows lead toward a distant altar, while the low overhang crowds the view.",
+   "B": "Altar, pews, and skeletons share the frame, though the nearest pew is cut off.",
+   "C": "The crest and pew rows give the reverse view character, but a foreground skeleton intrudes.",
+   "D": "Colored windows and a skeleton frame the pews, but the stone pier hides the sanctuary.",
+   "E": "The altar reads immediately, but a pew blocks the central approach.",
+   "F": "The portrait and side windows add detail, while the altar is clipped at left.",
+   "G": "Candles mark the sanctuary edge, but close pew backs dominate the frame.",
+   "H": "High windows and pew rows show the nave\u2019s scale, but the altar hugs the edge."
+  },
+  "place": "A Gothic chapel nave",
+  "rank": [
+   "B",
+   "E",
+   "A",
+   "H",
+   "C",
+   "G",
+   "F",
+   "D"
+  ],
+  "best": "B ties together the candlelit altar, pews, colored windows, wall hanging, and skeletons in one readable view.",
+  "lacks": "The nave lacks a clear processional aisle. The pews interrupt the route to the altar, weakening the room\u2019s focal point.",
+  "fix": "Arrange the pews in two banks with an uninterrupted central aisle leading straight to the altar steps.",
+  "ok": true,
+  "blind_name": {
+   "name": "Chapel interior",
+   "sure": 5,
+   "why": "Wooden pews face a raised altar flanked by candles, with stained glass behind it.",
+   "odd": "The figure in the stained glass is hard to make out.",
+   "recognised": true
+  },
+  "winner": "nave-13-1385-16960-66"
+ },
+ "crypt": {
+  "notes": {
+   "A": "Sarcophagus, reliefs, and skeleton read clearly. A blank pillar takes up the right edge.",
+   "B": "A bloody aisle leads toward the skeleton. The near pillar blocks the room.",
+   "C": "The hooded cultist fills the frame, hiding nearly everything that identifies the crypt.",
+   "D": "Paired reliefs and barrels frame the tomb. The coffin and cultist are both clipped.",
+   "E": "Both figures stand among the reliefs. The coffin\u2019s near side dominates the foreground.",
+   "F": "Cobwebs, barrels, and coffin carvings show clearly. The skeleton is clipped at the edge.",
+   "G": "A hooded cultist stands beneath a relief. The coffin runs out of frame.",
+   "H": "The coffin and barrels give the room depth. A looming skeleton steals the focus."
+  },
+  "place": "A cobwebbed stone crypt",
+  "rank": [
+   "A",
+   "E",
+   "H",
+   "G",
+   "D",
+   "F",
+   "B",
+   "C"
+  ],
+  "best": "The angled view gives the sarcophagus depth and shows it among carved reliefs, cobwebs, torchlight, and a skeleton.",
+  "lacks": "The crypt lacks a distinct burial area. Repeated reliefs and flat, dim walls give the sarcophagus little architectural emphasis.",
+  "fix": "Give the sarcophagus an arched burial alcove raised one step above the crypt floor.",
+  "ok": true,
+  "blind_name": {
+   "name": "Stone crypt with a sarcophagus",
+   "sure": 5,
+   "why": "A stone sarcophagus, skeletal wall reliefs, cobwebs, and a torch fill the chamber.",
+   "odd": "The sarcophagus lid\u2019s carving is hard to make out.",
+   "recognised": true
+  },
+  "winner": "crypt-05-1280-0-100"
+ },
+ "churchyard": {
+  "notes": {
+   "A": "A bare tree marks the bend, but the near wall hides most of the yard.",
+   "B": "The roof crowds out the path and trees beneath the fiery sky.",
+   "C": "Trees frame the path and battered walls, but the path leads to a blank wall.",
+   "D": "The elevated view explains the layout, but the church wall fills the right side.",
+   "E": "The path, street opening, and red sky establish the setting, but masonry hides the church.",
+   "F": "The alley opening connects the yard to the city, but foreground masonry blocks the view.",
+   "G": "The full path and surrounding walls read clearly, but the repetitive skyline pulls attention upward.",
+   "H": "The church profile is clearest here, but a foreground tree hides the path."
+  },
+  "place": "Walled urban churchyard",
+  "rank": [
+   "C",
+   "G",
+   "E",
+   "D",
+   "H",
+   "F",
+   "A",
+   "B"
+  ],
+  "best": "C follows the dirt path between autumn trees, with crumbling walls, the church flank, and the city skyline in view.",
+  "lacks": "The path has no recognizable destination. Bare trees and battered masonry give the yard atmosphere, but little identifies it as a churchyard.",
+  "fix": "Place a low, weathered stone tomb with a carved cross where the path meets the back wall.",
+  "ok": true,
+  "blind_name": {
+   "name": "Walled churchyard",
+   "sure": 4,
+   "why": "A dirt path runs between sparse trees and stone walls beneath a building with rows of arched windows.",
+   "odd": "Deep shadows obscure parts of the ground.",
+   "recognised": true
+  },
+  "winner": "churchyard-14-1536-16960-84"
+ },
+ "station_front": {
+  "notes": {
+   "A": "The high angle shows both fa\u00e7ades. The entrance sinks into the bottom edge.",
+   "B": "The sign is legible. The foreground brick wall hides much of the passage.",
+   "C": "The clock marks the passage. A low brick wall dominates the view.",
+   "D": "The clock and entrance read clearly. The angle crops the station sign.",
+   "E": "Repeated windows lead toward the red sky. The entrance is out of frame.",
+   "F": "The clock and passage sit beside the station frontage. The sign runs offscreen.",
+   "G": "The sign, passage, and street read together. The doorway itself is hard to distinguish.",
+   "H": "The lettering and opposite fa\u00e7ade frame a long alley. The entrance gets lost."
+  },
+  "place": "Station entrance on a narrow street",
+  "rank": [
+   "G",
+   "F",
+   "B",
+   "D",
+   "A",
+   "C",
+   "H",
+   "E"
+  ],
+  "best": "G shows the full station sign, the recessed entrance, and the narrow street under a red sky.",
+  "lacks": "The station lacks a recognizable front door. Its sign identifies the building, and the recessed passage looks like another gap in the wall.",
+  "fix": "Give the existing passage a tall, illuminated entrance arch that breaks the repetitive window line and marks where to go.",
+  "ok": true,
+  "blind_name": {
+   "name": "Brick building entrance",
+   "sure": 4,
+   "why": "A recessed passage opens beside a long brick fa\u00e7ade with rows of windows and a paved walkway.",
+   "odd": "The small illuminated signs are unreadable, and the far end of the walkway fades into black.",
+   "recognised": false
+  },
+  "winner": "station_front-02-1792-16960-84"
+ },
+ "platform": {
+  "notes": {
+   "A": "Tracks and carriage lead toward the station clock, but the roof hides most windows.",
+   "B": "Posters, benches and a waiting figure give the platform life, but the roof dominates.",
+   "C": "Curtained carriage windows stand out, but the tight crop loses the tracks.",
+   "D": "The carriage roof leads to the track gate, but hides nearly everything at platform level.",
+   "E": "Clock, benches and iron gates define the waiting room, but the foreground hides the rails.",
+   "F": "Rails, carriage and clock share the frame, but the station entrance is clipped.",
+   "G": "Locomotive and carriage make the railway unmistakable, though the waiting room recedes into shadow.",
+   "H": "The high angle shows the track layout, but a blank wall dominates."
+  },
+  "place": "Rail station platform",
+  "rank": [
+   "G",
+   "A",
+   "F",
+   "B",
+   "E",
+   "H",
+   "C",
+   "D"
+  ],
+  "best": "G shows the locomotive, green carriage, parallel tracks and brick station facade together.",
+  "lacks": "A clear focal point at the boarding area. The dim lighting lets the carriage and station entrance blend into the dark masonry.",
+  "fix": "Install warm platform lamps above the waiting-room entrance to light the boarding area and catch the side of the carriage.",
+  "ok": true,
+  "blind_name": {
+   "name": "Railway loading platform",
+   "sure": 5,
+   "why": "Parallel tracks run beside a raised platform with wooden crates, and a small locomotive sits on one track.",
+   "odd": "The lighting makes details in the rear doorway hard to read.",
+   "recognised": true
+  },
+  "winner": "platform-04-0256-50880-52"
+ },
+ "booking_hall": {
+  "notes": {
+   "A": "The passage and arrivals board read clearly, but the head-on view flattens the hall.",
+   "B": "Posters, clock and telephone give the corner character, but the waiting figure is cropped.",
+   "C": "The waiting figure and columns show the hall\u2019s scale, but the nearest column dominates.",
+   "D": "The passage and benches establish the layout, but blank brick and paving dominate.",
+   "E": "The platform edge, waiting figure and far wall fit together, but the station name clips.",
+   "F": "Benches and columns show the hall\u2019s length and platform connection, but the station name clips.",
+   "G": "The clock, telephone and wrestling poster read clearly, but the foreground bench crowds everything.",
+   "H": "The sign, waiting figure and benches anchor the view, though the platform barely registers."
+  },
+  "place": "Gravesend railway station booking hall",
+  "rank": [
+   "H",
+   "E",
+   "F",
+   "B",
+   "C",
+   "G",
+   "A",
+   "D"
+  ],
+  "best": "The Gravesend sign, clock, posters, telephone, benches and waiting figure give the hall an identity, with the platform visible beyond.",
+  "lacks": "The hall lacks a clear focal point. The low ceiling and continuous dark brick give the booking area the same visual weight as the passage.",
+  "fix": "Rebuild the ticket counter as a broad, warmly lit service window at the end of the hall.",
+  "ok": true,
+  "blind_name": {
+   "name": "Reception hall",
+   "sure": 4,
+   "why": "A low wooden divider runs across the tiled hall, with a wall clock beside an interior doorway.",
+   "odd": "The room is dim, and the clock face is hard to read.",
+   "recognised": true
+  },
+  "winner": "booking_hall-15-0000-16960-84"
+ },
+ "harbour": {
+  "notes": {
+   "A": "Shows flag, cargo, and open water, but the mast splits the view and hides town.",
+   "B": "Shows where the boardwalk meets town, but an oversized foreground crate hides the harbor.",
+   "C": "Shows the dock, cargo, and waterfront shops, but the near platform blocks the water.",
+   "D": "Shows the inlet and raised cargo deck clearly, but leaves most of the town out.",
+   "E": "Shows cargo, pilings, flag, and town together, but thick foreground posts crowd the waterline.",
+   "F": "Shows the channel and flagged cargo deck, but the city disappears into shadow.",
+   "G": "Shows the lamplit square and monument, but only a strip of boardwalk suggests the harbor.",
+   "H": "Shows the flagged deck alongside the quay, but the far end disappears into darkness."
+  },
+  "place": "Pirate harbor beside a city",
+  "rank": [
+   "E",
+   "F",
+   "H",
+   "C",
+   "D",
+   "A",
+   "B",
+   "G"
+  ],
+  "best": "E puts the skull flag, cargo, timber piers, and lamplit city in one view, with water between the docks.",
+  "lacks": "The harbor lacks a landmark on the water. Crates and flags suggest a pirate port, but low wooden decks give it little identity beyond the waterfront textures.",
+  "fix": "Berth one tall-masted cargo ship beside the quay, with a gangplank linking its deck to the crates.",
+  "ok": true,
+  "blind_name": {
+   "name": "Harbour docks",
+   "sure": 5,
+   "why": "Wooden piers, mooring posts, and crates sit beside dark water with brick buildings behind them.",
+   "odd": "Deep shadows obscure much of the background.",
+   "recognised": true
+  },
+  "winner": "harbour-06-1280-0-100"
+ },
+ "market_hall": {
+  "notes": {
+   "A": "Jugs and a loaf line the open frontage, but a wooden partition dominates.",
+   "B": "The frontage and wooden partitions share the frame, but a counter blocks the aisle.",
+   "C": "Parallel counters define the main aisle, though their bare tops dominate the view.",
+   "D": "The clock anchors a side aisle, but a close wooden partition hides most stalls.",
+   "E": "The aisle leads to a clock and a few wares, but counters crowd both edges.",
+   "F": "The island, shelves, and frontage read together, though the island looks bare.",
+   "G": "The entrance connects the market to the courtyard, but the low lintel hides the interior.",
+   "H": "The clock and jugs give the frontage character, but a counter end cuts off the aisle."
+  },
+  "place": "Indoor market hall",
+  "rank": [
+   "F",
+   "C",
+   "E",
+   "B",
+   "A",
+   "H",
+   "D",
+   "G"
+  ],
+  "best": "F shows how the central island, wall shelving, wooden partitions, and open frontage fit around the checkerboard aisles.",
+  "lacks": "The hall lacks a distinctive display of goods. Scattered props leave the central island looking like a barrier in an empty room.",
+  "fix": "Turn the central island into a produce stall with open crates of colorful fruit and vegetables visible from both aisles.",
+  "ok": true,
+  "blind_name": {
+   "name": "Tiled room with central counter",
+   "sure": 4,
+   "why": "A large brick-faced counter stands on a checkerboard floor, with wooden panels along the back wall.",
+   "odd": "The passage on the right is too dark to make out clearly.",
+   "recognised": false
+  },
+  "winner": "market_hall-13-1792-16960-84"
+ },
+ "arcade": {
+  "notes": {
+   "A": "A silver vessel and bottles give the shop character, but the foreground wall hides it.",
+   "B": "The poster and checkerboard threshold frame the bookstall, but the corner cuts it in half.",
+   "C": "Candles, bookshelves, and a long counter define the bookshop, but crowd out the arcade.",
+   "D": "The clock faces and display window identify the clock shop, but the bookstall barely registers.",
+   "E": "The raised view reveals the clock shop\u2019s display, but crops its sign and storefront.",
+   "F": "The bookstall anchors the concourse, though the neighboring shopfronts blend into the brickwork.",
+   "G": "The bookstall and figures give the arcade scale, but the blank bay dominates.",
+   "H": "The tiled passage frames a glimpse of the arcade, but hides most shopfronts."
+  },
+  "place": "Indoor shopping arcade",
+  "rank": [
+   "F",
+   "D",
+   "G",
+   "E",
+   "C",
+   "A",
+   "H",
+   "B"
+  ],
+  "best": "F shows the bookstall, neighboring shopfronts, and figures in a single view of the patterned concourse.",
+  "lacks": "The arcade lacks a landmark. Its shop signs and display objects are too small to compete with the continuous dark brickwork.",
+  "fix": "Build a tall, illuminated pendulum clock into the far bay so the clock shop announces itself across the concourse.",
+  "ok": true,
+  "blind_name": {
+   "name": "Ornate hallway beside a library",
+   "sure": 4,
+   "why": "Bookshelves and candles sit in a checkered alcove off the patterned hallway.",
+   "odd": "Deep shadows obscure some wall and shelf details.",
+   "recognised": false
+  },
+  "winner": "arcade-19-0768-0-100"
+ },
+ "auditorium": {
+  "notes": {
+   "A": "The corner reveals the raised platform, but a post interrupts the view across the lobby.",
+   "B": "The ticket sign and Jo-Jo poster establish the theater, but the foreground post crowds them.",
+   "C": "The floor tracks lead past potted plants, but a close cultist blocks the left side.",
+   "D": "Two enemies flank the manager\u2019s entrance, but the broad overhang hides the ticket area.",
+   "E": "The stage door and both enemies anchor the view, though the signage is dim.",
+   "F": "The raised platform and molding fill the frame, leaving few clues to the room\u2019s purpose.",
+   "G": "The manager and stage door signs read clearly, but a cultist obscures the approach.",
+   "H": "The ticket sign and poster identify the lobby, but the low ceiling dominates."
+  },
+  "place": "Theater lobby",
+  "rank": [
+   "E",
+   "G",
+   "H",
+   "A",
+   "B",
+   "D",
+   "C",
+   "F"
+  ],
+  "best": "E shows how the manager\u2019s entrance, stage door, and raised platform fit together, with both enemies visible.",
+  "lacks": "The lobby lacks a focal point. The ticket area blends into the patterned walls, leaving the signs to explain what the room is for.",
+  "fix": "Turn the ticket area into a recessed, warmly lit box office that stands out across the lobby.",
+  "ok": true,
+  "blind_name": {
+   "name": "Ornate auditorium",
+   "sure": 4,
+   "why": "Patterned walls, decorative molding, and a low raised platform suggest a theater interior.",
+   "odd": "The room is dim, and the small wall sign is hard to read.",
+   "recognised": true
+  },
+  "winner": "auditorium-08-1280-0-100"
+ },
+ "saloon": {
+  "notes": {
+   "A": "Patrons and stools peek past a close wall that takes up half the frame.",
+   "B": "The aisle reveals both counters and the wall art, but a tall chair interrupts it.",
+   "C": "The full whiskey sign identifies the room, but a blank partition dominates the right.",
+   "D": "The whiskey sign and bottles set the scene, but oversized foreground bottles crowd out seating.",
+   "E": "The high angle shows the bar and stools, but crops the sign and diminishes patrons.",
+   "F": "Paintings and drinks line the counter, but the near partition cuts off the room.",
+   "G": "The long bar and its patrons read clearly, but an empty tabletop dominates the foreground.",
+   "H": "Patrons, stools, drinks, and signage come together, though the central chair partly blocks the bar."
+  },
+  "place": "Western whiskey saloon",
+  "rank": [
+   "H",
+   "G",
+   "B",
+   "D",
+   "E",
+   "C",
+   "F",
+   "A"
+  ],
+  "best": "H shows the saloon\u2019s character in one frame, with patrons, drinks, red stools, wall art, and the whiskey sign.",
+  "lacks": "A distinctive focal point behind the bar. The counter blends into the dark paneling, so scattered props have to carry the saloon\u2019s identity.",
+  "fix": "Install a warmly lit, mirrored bottle display behind the main counter to give the saloon a recognizable centerpiece.",
+  "ok": true,
+  "blind_name": {
+   "name": "Saloon interior",
+   "sure": 5,
+   "why": "A long wooden bar, liquor bottles, stemmed glasses, and red bar stools fill the room.",
+   "odd": "The tall chair backs look like tangled metal, and the painting is hard to make out.",
+   "recognised": true
+  },
+  "winner": "saloon-08-1792-0-100"
+ },
+ "pawn": {
+  "notes": {
+   "A": "The window ledge and skeletal clerk frame a view dominated by the opposite building.",
+   "B": "The signs, coats, and counter sell the shop immediately, but the storefront display is out of frame.",
+   "C": "The display ledge and barred window establish the layout, but the closed door dominates.",
+   "D": "The goblets, candle, and jug read clearly against a street fa\u00e7ade that overwhelms the shop.",
+   "E": "The skeletal clerk gives the counter character, but a thick mullion splits the view.",
+   "F": "The coats and checkerboard aisle lead toward a plain door, with the nearest coat cropped.",
+   "G": "The corner window shows pottery, the barred window, and LOANS, but cuts off the pawn counter.",
+   "H": "The storefront pulls the goods and signage together, though the dark ceiling takes up considerable space."
+  },
+  "place": "Streetfront pawn and loan shop",
+  "rank": [
+   "H",
+   "B",
+   "G",
+   "E",
+   "A",
+   "C",
+   "F",
+   "D"
+  ],
+  "best": "H shows the streetfront, window display, hanging coats, and pawn counter together, with both signs readable.",
+  "lacks": "The shop feels understocked. A few widely spaced props leave the open floor bare and give the storefront no focal point.",
+  "fix": "Add a low, brightly lit display case of mismatched watches, tools, and jewelry on the open floor where passersby can see it.",
+  "ok": true,
+  "blind_name": {
+   "name": "Pawn shop window",
+   "sure": 4,
+   "why": "Coats hang behind a counter, with pottery, goblets, and candles displayed in a street-facing window.",
+   "odd": "The tiny display labels are unreadable.",
+   "recognised": true
+  },
+  "winner": "pawn-03-0768-0-100"
+ },
+ "machine_hall": {
+  "notes": {
+   "A": "Broad grating and low machinery establish the hall, but the sludge basin stays hidden.",
+   "B": "Parallel grates lead beneath a low overhang that hides most of the room.",
+   "C": "Sludge lettering and an orange control panel frame the walkway, but the basin is hidden.",
+   "D": "A striped upright marks the narrow catwalk, while foreground columns obscure its destination.",
+   "E": "The basin and curving catwalk show the layout, but the near pillar blocks the center.",
+   "F": "The basin and controls share a sightline, but close walls squeeze them into a slot.",
+   "G": "Hazard stripes and partial sludge lettering mark a grated platform that leads into shadow.",
+   "H": "Sludge, catwalk, and controls surround a column that blocks the view across the basin."
+  },
+  "place": "Sludge processing hall",
+  "rank": [
+   "H",
+   "C",
+   "E",
+   "F",
+   "A",
+   "G",
+   "B",
+   "D"
+  ],
+  "best": "H ties the sludge basin, central column, grated walkway, hazard stripes, and control bank together in one view.",
+  "lacks": "A focal machine that makes the hall\u2019s purpose visible. The controls, grates, and sludge suggest a process the room never shows.",
+  "fix": "Replace the central column with a lit sludge processor whose outlet visibly pours into the basin.",
+  "ok": true,
+  "blind_name": {
+   "name": "Industrial machine hall",
+   "sure": 4,
+   "why": "Rusted metal walls, hazard stripes, grated walkways, and control panels surround a pit of green liquid.",
+   "odd": "The central pillar blocks much of the view, and the control panel markings are unreadable.",
+   "recognised": true
+  },
+  "winner": "machine_hall-16-0512-16960-66"
+ },
+ "sewer": {
+  "notes": {
+   "A": "The channel skirts an open junction, but the broad dark floor dominates.",
+   "B": "A sludge basin, small creature, and stone block compete for attention in the gloom.",
+   "C": "Moss and a distant torch mark the passage, but repeating panels swallow the view.",
+   "D": "A torch lights the junction, but the sludge channel barely makes the frame.",
+   "E": "Moss, debris, and a grate define the walkway, though the far end fades into darkness.",
+   "F": "A gray stone block fills the alcove and hides almost everything distinctive about the sewer.",
+   "G": "The channel bends around a corner, but a blank wall takes up half the frame.",
+   "H": "An overhead grate and a small creature frame the channel, though the passage beyond disappears."
+  },
+  "place": "Rusted industrial sewer",
+  "rank": [
+   "E",
+   "H",
+   "A",
+   "B",
+   "C",
+   "D",
+   "G",
+   "F"
+  ],
+  "best": "E shows the sludge channel, narrow walkway, moss, scattered debris, and overhead grate together in one readable view.",
+  "lacks": "The sewer lacks a landmark that gives its channels a purpose. The same low ceiling and wall panels make every turn feel alike.",
+  "fix": "Turn the open junction into a taller sluice chamber where a lit floodgate visibly feeds the existing channel.",
+  "ok": true,
+  "blind_name": {
+   "name": "Sewer corridor",
+   "sure": 5,
+   "why": "A green sludge channel runs along rust-streaked walls under round ceiling lights.",
+   "odd": "The orange tangle on the floor is hard to identify.",
+   "recognised": true
+  },
+  "winner": "sewer-10-1024-0-100"
+ },
+ "underpass": {
+  "notes": {
+   "A": "The approach corridor ends at a dark opening that conceals the stairs and ticket grille.",
+   "B": "The EXIT sign and ticket grille establish the setting, but the stairs are mostly cropped.",
+   "C": "The TICKETS sign and grille read clearly, but a foreground pillar cuts off the landing.",
+   "D": "The stairs lead toward a brighter opening, but the thick divider hides the ticket booth.",
+   "E": "The stairs climb toward a sliver of light, but the low, dark ceiling dominates.",
+   "F": "The stairs and ticket wall peek around a corner that takes up half the view.",
+   "G": "The stairs and ticket grille explain the layout, though the booth sinks into shadow.",
+   "H": "The EXIT sign marks the entrance, but the dark recess hides where the stairs lead."
+  },
+  "place": "Underground station ticket concourse",
+  "rank": [
+   "G",
+   "B",
+   "C",
+   "D",
+   "E",
+   "H",
+   "A",
+   "F"
+  ],
+  "best": "The stairs, EXIT sign, and barred ticket booth share one view, with the landing showing how they connect.",
+  "lacks": "The landing lacks a focal point. The ticket booth gives the place its identity, yet its grille recedes into the same murk as the surrounding walls.",
+  "fix": "Add a warm light inside the ticket booth so the grille stands out and light spills onto the landing.",
+  "ok": true,
+  "blind_name": {
+   "name": "Gated stone underpass",
+   "sure": 5,
+   "why": "Stone steps rise on the left, and a metal gate blocks the passage on the right.",
+   "odd": "Deep shadows obscure details behind the gate.",
+   "recognised": true
+  },
+  "winner": "underpass-01-0256-0-100"
+ },
+ "works_yard": {
+  "notes": {
+   "A": "The sign, food counter and door read clearly, but the tight crop hides the yard.",
+   "B": "The approach leads toward the shop, but the near stone wall crowds the view.",
+   "C": "The corner reveals the yard\u2019s bend and both figures, but the stone pier dominates.",
+   "D": "The reverse angle shows the recessed passage, but the foreground lamp blocks much of it.",
+   "E": "Checkerboard tiles and stools identify the eatery, but the close angle barely shows the courtyard.",
+   "F": "The high angle shows the yard\u2019s footprint, but the cropped storefront weakens its identity.",
+   "G": "The shop and side passage share the frame, but the dark recess dominates the left.",
+   "H": "The shop, lamp and figures establish the courtyard, though the empty brick frontage feels monotonous."
+  },
+  "place": "Paved courtyard outside Rat Dogs",
+  "rank": [
+   "H",
+   "G",
+   "C",
+   "B",
+   "F",
+   "D",
+   "A",
+   "E"
+  ],
+  "best": "H shows the Rat Dogs storefront, checkerboard interior, lamppost and robed figures together, with room to read the yard.",
+  "lacks": "The courtyard has little purpose beyond passage. The eatery gives one corner character, while the long brick wall borders an expanse of paving with no distinct use.",
+  "fix": "Add a small Rat Dogs outdoor seating area along the brick wall, extending the eatery into the courtyard.",
+  "ok": true,
+  "blind_name": {
+   "name": "Cobblestone courtyard with streetlamp",
+   "sure": 5,
+   "why": "A glowing streetlamp stands on dark paving between a windowed building and a tall brick wall.",
+   "odd": "The tall brick wall has rows of identical tiny windows.",
+   "recognised": true
+  },
+  "winner": "works_yard-08-1792-16960-84"
+ },
+ "ratdogs": {
+  "notes": {
+   "A": "Pans, safety signs and one stool frame a grill cut off by the bottom edge.",
+   "B": "The grill and stools suggest a diner, but the steel door dominates the back wall.",
+   "C": "The grill, pans and street opening establish the diner, though the seating barely registers.",
+   "D": "Rats line the sill beside the grill, but the corner hides most of the room.",
+   "E": "Stools, grill and street opening show the layout, though blank walls flatten the diner\u2019s character.",
+   "F": "Stools and the street opening show where customers sit, but the grill is mostly cropped.",
+   "G": "The door, stools and grill peek past a wall that fills the foreground.",
+   "H": "The stools and street opening give the room depth, but the grill is cropped."
+  },
+  "place": "A grimy street-side diner",
+  "rank": [
+   "C",
+   "E",
+   "B",
+   "H",
+   "F",
+   "D",
+   "A",
+   "G"
+  ],
+  "best": "C puts the rat-covered grill, hanging pans, handwashing sign and street opening in one readable view.",
+  "lacks": "The stools have nowhere to pull up, and the low grill looks like a crate. There\u2019s no clear place to order or eat.",
+  "fix": "Rebuild the rat-covered grill as a waist-high lunch counter with a serving ledge facing the stools.",
+  "ok": true,
+  "blind_name": {
+   "name": "Kitchen with a central grill",
+   "sure": 4,
+   "why": "Two frying pans hang above a checkerboard floor, and a raised grate sits in the center.",
+   "odd": "Small brown shapes on the grate look like rats, but the pixelation makes them hard to identify.",
+   "recognised": true
+  },
+  "winner": "ratdogs-00-0768-0-100"
+ }
+}
