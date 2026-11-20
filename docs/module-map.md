@@ -158,6 +158,7 @@ What a surface is made of, where its texture sits, and how it is lit.
 | `lighting` | Light a room the way Blood lights one: wall by wall, from its lamps. |
 | `lightbomb` | XMapEdit's light bomb: shade from rays that actually travel through the map. |
 | `light_field` | Light as a field, and the shadow as one of its iso-lines. |
+| `sunlight` | One sun over a map's open sky: outdoor walls shaded by which way they face, and the measure of it. |
 
 ### Authoring: things and mechanisms
 
@@ -339,6 +340,7 @@ Lints and comparisons of one map against the engine or the campaign.
 | Module | What it is |
 | --- | --- |
 | `sprite_fit` | Does every sprite fit where it was put? |
+| `light_profile` | The outdoor light of maps, against the campaign's town maps: spread, facing, ground. |
 | `reading_check` | Mark our map readers against the campaign: can they finish what is known to be finishable. |
 | `unattested_values` | Authored values the campaign never uses for that type. |
 | `map_discriminator` | Could you tell this level from a Blood level, on the evidence available? |

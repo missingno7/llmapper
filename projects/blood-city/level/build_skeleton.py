@@ -82,6 +82,10 @@ COMPASS = dict(zip(RECT_FACES, range(4)))
 SEAM_ROW = (city_plan.Y_ROWST + city_plan.ROW / 2) * PU
 SEAM_MARKET = (city_plan.Y_MARKST + city_plan.STREET / 2) * PU
 SEAM_AVENUE = (city_plan.X_AVENUE + city_plan.AVENUE / 2) * PU
+#: The exterior's sun (`bloodmap.sunlight`): None (off), "facing" (outdoor
+#: walls shaded by which way they face one sun) or "full" (and their base
+#: brought to the ground's). Off until the owner chooses; see the write stage.
+SUNLIGHT = None
 CITY_W = city_plan.CITY_W * PU
 CITY_D = city_plan.CITY_D * PU
 
@@ -2335,6 +2339,31 @@ def main() -> int:
           _sheet["engine_channels_wired"] or "none")
     STAGE("write",
           "the map, its sector tags, the manifest and the status")
+    # ONE SUN (owner, 2026-11-20: "there is no real direction of natural
+    # light and shadows in the city exterior"). Last, so nothing after it
+    # repaints a wall: every wall the street sees is shaded by which way it
+    # faces one sun, on a base brought to the ground's (`bloodmap.sunlight`;
+    # the campaign's towns measure wall spread 10.5-17.5 and a facing step of
+    # 8-18, `python -m tools.light_profile`).
+    #
+    # OFF until the owner chooses. A blind reader, shown each of 23 street
+    # views before and after with the order hidden, preferred the sun in 4
+    # (facades darkened to the ground) and 8 (facing only) of them: "harder to
+    # read corners, doorways and the street's far end". The owner asked for the
+    # direction; his eye decides. "full" or "facing" turns it on.
+    from bloodmap import sunlight as _sun
+    if SUNLIGHT == "full":
+        _light = _sun.apply(disk)
+    elif SUNLIGHT == "facing":
+        _light = _sun.apply(disk, base=_sun.measure(disk)["wall_median"])
+    else:
+        _measured = _sun.measure(disk)
+        _light = {"before": _measured, "after": _measured}
+    ctx["manifest"]["sunlight"] = {"mode": SUNLIGHT, "azimuth": _light.get("azimuth"),
+                                   "shift": _light.get("shift"),
+                                   "before": _light["before"], "after": _light["after"]}
+    print("sunlight:", SUNLIGHT, {k: _light["after"][k] for k in (
+        "wall_sd", "by_facing", "facing_step", "ground_median")})
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")

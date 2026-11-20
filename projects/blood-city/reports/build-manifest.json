@@ -3585,6 +3585,39 @@
     "dangling_channels": [],
     "engine_channels_wired": []
   },
+  "sunlight": {
+    "mode": null,
+    "azimuth": null,
+    "shift": null,
+    "before": {
+      "walls": 583,
+      "wall_sd": 5.1,
+      "wall_median": 9,
+      "by_facing": {
+        "N": 9,
+        "E": 9.0,
+        "S": 9.0,
+        "W": 9.0
+      },
+      "facing_step": 0,
+      "ground_median": 30.0,
+      "ground_sd": 8.8
+    },
+    "after": {
+      "walls": 583,
+      "wall_sd": 5.1,
+      "wall_median": 9,
+      "by_facing": {
+        "N": 9,
+        "E": 9.0,
+        "S": 9.0,
+        "W": 9.0
+      },
+      "facing_step": 0,
+      "ground_median": 30.0,
+      "ground_sd": 8.8
+    }
+  },
   "stages": [
     {
       "name": "districts",

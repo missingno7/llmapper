@@ -86,6 +86,29 @@ sentence, so a failure names one building rather than the city.
 
 ---
 
+## 5. One sun over the exterior: which version? (A/B/C, with the frames)
+
+The owner, 2026-11-20: "there is no real direction of natural light and
+shadows in the city exterior". Measured (`python -m tools.light_profile`):
+the campaign's towns spread their outdoor wall shades sd 10.5-17.5 with one
+or two facings 8-18 darker; the city 5.1 and 0, its facades brighter than
+its ground.
+
+`bloodmap.sunlight` gives the exterior one sun (from the south-east). Three
+versions, frames in `work/light-three-ways.png` (rebuilt by the build with
+`SUNLIGHT` set): **A** as it was; **B** "full", facades brought to the
+ground's shade and lit by facing (step 13); **C** "facing", the facing term
+only. A blind reader, each of 23 street views as a hidden-order pair, chose
+B over A for clearer light 12/23, deeper 9/23, preferred 4/23; C over A 8,
+9, 8: "corners, doorways and the far end harder to read".
+
+**Built: A** (`build_skeleton.SUNLIGHT = None`), because the blind readers
+did not take the sun. The owner asked for the direction; his eye decides.
+
+Not built and worth knowing: ground shadows. A street's pavement is its
+district's one sector, so a shadowed side cannot be darker without splitting
+the streets into per-side pieces (E3M1 lays a T of streets as 20 sectors).
+
 ## The owner's walk of 2026-11-20 (Foundry Ward and the underpass)
 
 Recorded by the agent that was told these things, the same night. "Done"
