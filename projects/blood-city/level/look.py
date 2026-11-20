@@ -233,6 +233,15 @@ POSE_SETS = {
         "low_door_near": (50.75, 16.2, 50.75, 14.0, LEVEL, "the same, two steps closer"),
         "low_door_east": (52.7, 16.6, 52.7, 14.0, LEVEL, "its neighbour to the east"),
     },
+    #: The canteen, for its rebuild as a rat-dog stand (owner, 2026-11-20).
+    "canteen": {
+        "canteen_front": (51.0, 18.5, 51.0, 14.5, LEVEL, "the canteen's whole yard face"),
+        "canteen_face": (51.9, 17.2, 51.9, 15.0, LEVEL, "square on the canteen entrance"),
+        "canteen_in": (51.6, 13.2, 50.2, 13.2, LEVEL, "inside the canteen, facing the counter"),
+        "canteen_back": (52.5, 14.2, 49.5, 11.5, LEVEL, "inside, from the door corner to the back"),
+        "canteen_hatch": (50.7, 16.6, 50.7, 15.0, LEVEL, "square on the RAT DOGS hatch from the yard"),
+        "canteen_cook": (51.8, 12.5, 50.7, 14.8, LEVEL, "the hatch from inside, past the table"),
+    },
     "underpass": {
         "underpass_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "from the yard stair's foot, down the passage"),
         "underpass_bars": (42.0, 22.4, 42.0, 26.5, LEVEL, "the barred mouth of the unfinished metro"),

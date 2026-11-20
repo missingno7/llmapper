@@ -101,6 +101,10 @@ SIGNS = [
 STREET_SIGNS = [
     ("street:market_slip", ((39936, 46592), (39936, 48128)),
      "THE ARCADE", "fascia", SIGN_HEIGHT_PH),
+    # The works canteen is a rat-dog stand, named over its grill hatch as
+    # E1M4 names its own: two bodies up, just over the hatch's head.
+    ("street:foundry_ward", ((50176, 15360), (52224, 15360)),
+     "RAT DOGS", "ratdogs", 2.2),
 ]
 
 

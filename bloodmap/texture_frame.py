@@ -987,6 +987,24 @@ def _floor_origin(level: Any, run: Sequence[int], tile: int, y_repeat: int,
     return run_floor(level, run, owners) - (height * 2048) // max(1, y_repeat)
 
 
+def _straight_legs(level: Any, run: Sequence[int]) -> list[list[int]]:
+    """A run cut where its direction changes: the walls of one straight face."""
+    def direction(index):
+        face = _fields(level.walls[index])
+        nxt = _fields(level.walls[int(face["point2"])])
+        dx = int(nxt["x"]) - int(face["x"])
+        dy = int(nxt["y"]) - int(face["y"])
+        return ((dx > 0) - (dx < 0), (dy > 0) - (dy < 0))
+
+    legs: list[list[int]] = []
+    for index in run:
+        if legs and direction(legs[-1][-1]) == direction(index):
+            legs[-1].append(index)
+        else:
+            legs.append([index])
+    return legs
+
+
 def frame_map(level: Any, *,
               art_sizes: dict[int, tuple[int, int]] | None = None,
               carry_scale: bool = True,
@@ -1079,27 +1097,54 @@ def frame_map(level: Any, *,
             continue
         head = _fields(level.walls[run[0]])
         tile = int(head["picnum"])
-        length = wall_length(level, run[0]) or 1
-        scale = (int(head["x_repeat"]) * 8.0 / length if carry_scale
+        #: The run's scale is the one its walls carry TOGETHER: texels over
+        #: length summed along it. It used to be the first wall's alone, and
+        #: a generated wall's repeat is its length rounded to a whole number:
+        #: a 724-unit corner chamfer rounds 5.66 to 6, 6% too fine, and the
+        #: whole works block carried that 6% round its facade, so its painted
+        #: windows came every 910 units and every doorway on the 1,024 grid
+        #: cut one in half (owner, 2026-11-20: "it is cutting off middle of
+        #: windows"). A run a person scaled has the one scale on every wall,
+        #: and the sum keeps it.
+        total_length = sum(wall_length(level, w) for w in run) or 1
+        total_texels = sum(int(_fields(level.walls[w])["x_repeat"]) * 8
+                           for w in run)
+        scale = (total_texels / total_length if carry_scale
                  else NATURAL_TEXELS_PER_UNIT)
         #: A DISTRICT FRAME: a run whose first wall is named here takes its
         #: u-origin from world space rather than from zero, so every street
         #: front in the district shares one bay grid while each run still
         #: accumulates across its own doorways.
         world = world_phase is not None and run[0] in world_phase
-        frame = WallRunFrame(
-            tile=tile,
-            texels_per_unit=max(scale, 1e-6),
-            u0=(world_u(level, run[0], texels_per_unit=max(scale, 1e-6))
-                if world else int(head["x_panning"])),
-            v0=(_floor_origin(level, run, tile, int(head["y_repeat"]) or 8,
-                              art_sizes, owners)
-                if v_anchor == "floor"
-                else wall_z_peg(level, run[0], owners)),
-            y_repeat=int(head["y_repeat"]) or 8,
-            flip=int(head["cstat"]) & WALL_FLIP_MASK,
-        )
-        changed += resolve_run(level, run, frame, art_sizes, owners)
+        #: A district run is ON the bay grid, which exists only at the
+        #: natural scale: a sum of per-wall roundings comes out a hair off
+        #: it (0.0627 for the works block), and that hair times a world
+        #: coordinate of 50,000 is a phase anywhere in the tile.
+        if world and abs(scale / NATURAL_TEXELS_PER_UNIT - 1.0) < 0.1:
+            scale = NATURAL_TEXELS_PER_UNIT
+        v0 = (_floor_origin(level, run, tile, int(head["y_repeat"]) or 8,
+                            art_sizes, owners)
+              if v_anchor == "floor"
+              else wall_z_peg(level, run[0], owners))
+        #: ...and a district run is on the world's bay grid along EVERY
+        #: straight leg, not only its first. Carried round a building, the
+        #: phase picks up the length of each 45-degree corner chamfer (724
+        #: units: 45.25 texels), so every face after the first chamfer stood
+        #: off the grid and every opening on it cut a painted window. Along a
+        #: straight leg the world phase IS the carried one, so nothing that
+        #: continued across a doorway stops continuing; only the corner joins
+        #: are re-phased, where the campaign's mappers stop a run anyway.
+        for leg in (_straight_legs(level, run) if world else [run]):
+            frame = WallRunFrame(
+                tile=tile,
+                texels_per_unit=max(scale, 1e-6),
+                u0=(world_u(level, leg[0], texels_per_unit=max(scale, 1e-6))
+                    if world else int(head["x_panning"])),
+                v0=v0,
+                y_repeat=int(head["y_repeat"]) or 8,
+                flip=int(head["cstat"]) & WALL_FLIP_MASK,
+            )
+            changed += resolve_run(level, leg, frame, art_sizes, owners)
         if records is not None:
             records.claim_all(run, owner)
         framed += len(run)

@@ -107,22 +107,33 @@ result.
   put there bars ... bloody stuff behind bars." It is a cage: bars across a
   reveal in its mouth, three corpses on chains (690, 698) over a pool of
   blood (956, 730), the two barrels kept.
+- "When you look at that canteen facade it is cutting off middle of windows,
+  we should align it properly." Two faults in `texture_frame.frame_map`,
+  both city-wide. A run took its scale from its FIRST wall, and on the works
+  block that was a 724-unit corner chamfer whose repeat rounds 5.66 to 6, so
+  the whole facade was drawn 6% fine (windows every 910 units). And a
+  district run took its world-grid phase once and carried it round every
+  chamfer (45.25 texels each), so every face after the first stood off the
+  grid. The scale is now the run's total, snapped to the natural one on a
+  district run, and each straight leg of a district run is phased to the
+  world grid. The canteen's face is 64 texels a bay at panning 0: a door or
+  a hatch takes a whole window and the piers keep theirs. The torch beside
+  the door hung across a window and is moved to the jamb.
+- "Canteen should look more like a canteen ... give it some unique style,
+  like rat dogs (similar to E1M4)." It is RAT DOGS: studied first
+  (`knowledge/blood/studies/ratdogs-stand/notes.md`), then rebuilt. Its west
+  door is a serving hatch at half a body with E1M4's grill on the sill (a
+  burning damage sector with a flickering glow, rats and steam on it, fans
+  over it); the word RAT DOGS is over it in E1M4's own lettering; inside it
+  wears E1M4's kitchen (rusted metal, diamond-plate floor, a fluorescent
+  tube), the counter is grill iron with rats on it, and a wooden table
+  stands where the display pedestal was. Frames: `look.py --set canteen`.
+  Not walked, and no blind reader has seen it.
 
 **Open, said in the same walk and not done**
 
-- "When you look at that canteen facade it is cutting off middle of windows,
-  we should align it properly." Measured, not fixed: the yard's north face
-  (walls 838-841, y 15,360, x 50,176..53,760) wears tile 393 at `x_repeat`
-  9 on its 1,024-long walls, which is 72 texels a wall where the tile is 64
-  wide. So its painted windows stand every 910 units and the doors, which
-  are on the 1,024 grid, cut them. `texture_frame.frame_map` sets the
-  natural scale (64 texels a wall, `x_repeat` 8) for these walls; something
-  after it, or the face's length of 3.5 bays (one corner is chamfered), is
-  squeezing four tiles into it. Find which pass writes the 9. The raised
-  doors also end partway up the window row, and the torch between them
-  hangs across a window.
-- "Canteen should look more like a canteen." Not started. It has no study;
-  by this project's rule it gets one before it is rebuilt.
-- The avenue mouth of the underpass cuts the facade's painted windows too.
+- The avenue mouth of the underpass cut the facade's painted windows. After
+  the facade fix below its wall (850) is two whole bays at panning 0, so by
+  measurement it takes two whole windows; not looked at in a frame.
 - The breach that is to be the foundry's staged moment is not built; the
   wire `foundry:staged-moment` is in the plan with no ends.

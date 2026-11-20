@@ -969,6 +969,10 @@ STYLES = {
         "carnival", 64, cycle((4, 11, 0, 13)), -8, tracking=2.0, jitter=0.73,
         source=("E1M4 ROTTEN CANDY: 11 letters, palettes 4/11/0/13, tracked "
                 "2.0 drawn widths and jittered 0.73 heights")),
+    "ratdogs": TextStyle(
+        "ratdogs", 72, "rust", 48,
+        source=("E1M4 RATDOGS over its grill hatch: 7 letters at 72, palette "
+                "12, shade 48, pitched 1.44 drawn widths, no jitter")),
     "fortune": TextStyle(
         "fortune", 64, cycle((4, 3, 12, 11)), -8, tracking=1.5,
         source=("E1M4 FORTUNES: the corpus's ONE regular cycle, period 4 "

@@ -1,0 +1,862 @@
+{
+ "slug": "ratdogs-stand",
+ "want": "a cheap meat food stand: the RATDOGS carnival booth in E1M4, its counter, sign, goods and materials, as the model for the city's canteen",
+ "date": "2026-11-20",
+ "seeds": [
+  {
+   "seed": "E1M4:171!",
+   "map": "maps\\blood\\campaign\\E1M4.MAP",
+   "host": 169,
+   "sectors": [
+    169,
+    171
+   ],
+   "metres": [
+    0.3,
+    2.8,
+    1.3
+   ],
+   "area_M": 0.19,
+   "clear_bodies": 0.72,
+   "free_floor_share": 0.86,
+   "shade_spread": 6,
+   "floor": [
+    20,
+    "wood"
+   ],
+   "ceiling": [
+    20,
+    "wood"
+   ],
+   "walls": [
+    [
+     1004,
+     0.521,
+     ""
+    ],
+    [
+     20,
+     0.479,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 171,
+     "corners": 5,
+     "size": [
+      1664,
+      32
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 250,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      245,
+      1004
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 3825,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3808,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3827,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3811,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3822,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3814,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3826,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\E1M4_171\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "E1M4:167!",
+   "map": "maps\\blood\\campaign\\E1M4.MAP",
+   "host": 167,
+   "sectors": [
+    167
+   ],
+   "metres": [
+    0.9,
+    3.5,
+    1.7
+   ],
+   "area_M": 1.05,
+   "clear_bodies": 0.97,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    376,
+    ""
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     255,
+     1.0,
+     "metal wall, lightly rusted"
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 2548,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      169,
+      19
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 1743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 1744,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\E1M4_167\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "E1M4:170!",
+   "map": "maps\\blood\\campaign\\E1M4.MAP",
+   "host": 170,
+   "sectors": [
+    167,
+    168,
+    169,
+    170,
+    171
+   ],
+   "metres": [
+    3.5,
+    3.7,
+    3.5
+   ],
+   "area_M": 4.25,
+   "clear_bodies": 1.93,
+   "free_floor_share": 0.71,
+   "shade_spread": 8,
+   "floor": [
+    438,
+    "embossed metal floor"
+   ],
+   "ceiling": [
+    568,
+    ""
+   ],
+   "walls": [
+    [
+     255,
+     0.708,
+     "metal wall, lightly rusted"
+    ],
+    [
+     2453,
+     0.112,
+     "technical riveted metal cladding"
+    ],
+    [
+     20,
+     0.101,
+     "wood"
+    ],
+    [
+     1004,
+     0.079,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 167,
+     "corners": 4,
+     "size": [
+      2048,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 376,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 168,
+     "corners": 4,
+     "size": [
+      128,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      49
+     ]
+    },
+    {
+     "sector": 169,
+     "corners": 4,
+     "size": [
+      1280,
+      128
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      49
+     ]
+    },
+    {
+     "sector": 171,
+     "corners": 5,
+     "size": [
+      1664,
+      32
+     ],
+     "rise_bodies": -0.06,
+     "floor_tile": 250,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      245,
+      1004
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2548,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      169,
+      19
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 1743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1744,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 796,
+     "type": 407,
+     "type_name": "kThingFluorescent",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      48,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 3825,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3808,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3827,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3811,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3822,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3814,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 3826,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 12,
+     "over_floor_bodies": 2.05
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\E1M4_170\\plan.png",
+   "frames": []
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-20.png"
+  },
+  "250": {
+   "tile": 250,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-250.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-255.png"
+  },
+  "376": {
+   "tile": 376,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-376.png"
+  },
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-438.png"
+  },
+  "568": {
+   "tile": 568,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-568.png"
+  },
+  "754": {
+   "tile": 754,
+   "pixels": [
+    16,
+    125
+   ],
+   "world_at_repeat_8": [
+    256,
+    32000
+   ],
+   "see_through_share": 0.508,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-754.png"
+  },
+  "796": {
+   "tile": 796,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-796.png"
+  },
+  "1004": {
+   "tile": 1004,
+   "pixels": [
+    32,
+    64
+   ],
+   "world_at_repeat_8": [
+    512,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-1004.png"
+  },
+  "1743": {
+   "tile": 1743,
+   "pixels": [
+    61,
+    24
+   ],
+   "world_at_repeat_8": [
+    976,
+    6144
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-1743.png"
+  },
+  "1744": {
+   "tile": 1744,
+   "pixels": [
+    61,
+    24
+   ],
+   "world_at_repeat_8": [
+    976,
+    6144
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-1744.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-2169.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-2453.png"
+  },
+  "2548": {
+   "tile": 2548,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.413,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-2548.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-2820.png"
+  },
+  "3808": {
+   "tile": 3808,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.125,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3808.png"
+  },
+  "3811": {
+   "tile": 3811,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.102,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3811.png"
+  },
+  "3814": {
+   "tile": 3814,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.136,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3814.png"
+  },
+  "3822": {
+   "tile": 3822,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.205,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3822.png"
+  },
+  "3825": {
+   "tile": 3825,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.057,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3825.png"
+  },
+  "3826": {
+   "tile": 3826,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.261,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3826.png"
+  },
+  "3827": {
+   "tile": 3827,
+   "pixels": [
+    8,
+    11
+   ],
+   "world_at_repeat_8": [
+    128,
+    2816
+   ],
+   "see_through_share": 0.364,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\ratdogs-stand\\tiles\\tile-3827.png"
+  }
+ }
+}

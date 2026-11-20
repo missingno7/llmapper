@@ -45,6 +45,12 @@ CAGE: dict = {}
 #: something what is not finished properly". They take the height every
 #: other venue in the city already uses.
 CANTEEN_DOOR_H = 31744
+#: E1M4's RATDOGS hatch: its grill stands 8,192 above the midway (s167).
+#: Its opening there is 16,384 high; here it takes the place of a painted
+#: window, and a hatch that stopped at 16,384 left the window's arch
+#: standing over it, so it rises to the door's head as the door does.
+HATCH_SILL = 8192
+HATCH_CLEAR = CANTEEN_DOOR_H - HATCH_SILL
 JAMB_TILE = 170
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
@@ -111,16 +117,25 @@ def dress(city, ctx) -> dict:
     yard_x0, yard_y0, yard_x1, yard_y1 = (int(v * PU) for v in yard)
     fx0, fy0 = ctx["foundry_origin"]
 
-    # ---- the works canteen (VP shop, scaled) ------------------------------
-    shop = INTERIORS["shop"]
+    # ---- the works canteen: RAT DOGS -----------------------------------
+    # The owner, 2026-11-20: "canteen should look more like a canteen" and
+    # "I would give it some unique style, like rat dogs (similar to E1M4)".
+    # It was the VP shop in brick and chequer; it is E1M4's rat-dog stand
+    # now, scaled to a works canteen: that stand's kitchen materials, its
+    # grill seen through a hatch in the street wall, and its name over the
+    # hatch (`knowledge/blood/studies/ratdogs-stand/notes.md`).
+    shop = INTERIORS["ratdogs"]
     import citytree
     canteen = city.assembly(
         "canteen",
         # The campaign's median room is one wall-texture repeat tall
         # (33,280); ours were 20,480 and the discriminator saw it.
-        style=Style(**shop.style_kwargs(floor_shade=36, floor_z=GRADE,
-                                        clear_height=32768)),
-        note="the works canteen: VP shop anatomy behind a z-motion door",
+        # E1M4's kitchen is lit at shade 8 to 16 (s170); rusted metal is
+        # dark art, and at the city's interior shades it read as black.
+        style=Style(**shop.style_kwargs(floor_shade=8, ceiling_shade=12,
+                                        wall_shade=8,
+                                        floor_z=GRADE, clear_height=32768)),
+        note="the works canteen, RAT DOGS: E1M4's stand, behind a z-motion door",
     )
     citytree.declare_venue(canteen, "works_canteen", "open_front",
                            built_by="l3_foundry")
@@ -158,15 +173,19 @@ def dress(city, ctx) -> dict:
     for face in ("north", "east", "south", "west"):
         canteen.connect(counter.face(face), main.face("north"),
                         connection_id=f"connection:counter_rim_{face}")
-    # Display pedestal: 512 square at rise 2048 (E6M1 module).
-    main.carve([(2816, 1024), (3328, 1024), (3328, 1536), (2816, 1536)])
+    # The serving counter is the cook's: its top is the grill's ribbed iron.
+    counter.surfaces(floor_picnum=376, wall_picnum=2453)
+    # A table to eat at, where the display pedestal stood: a wooden block
+    # at table height, a body's width across and two long.
+    main.carve([(2816, 768), (3328, 768), (3328, 1792), (2816, 1792)])
     pedestal = canteen.room(
-        "pedestal", [(0, 0), (512, 0), (512, 512), (0, 512)],
+        "pedestal", [(0, 0), (512, 0), (512, 1024), (0, 1024)],
         role="detail", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 2816, main_y1 - 512 - 2560 + 1024),
-        note="display pedestal, rise 2048 (E6M1)",
+        frame=Frame(main_x0 + 2816, main_y1 - 512 - 2560 + 768),
+        note="the canteen's table, rise 7168, a wooden top",
     )
-    pedestal.surfaces(floor_z=GRADE - 2048, clear_height=30720)
+    pedestal.surfaces(floor_z=GRADE - 7168, clear_height=25600,
+                      floor_picnum=20, wall_picnum=20)
     for face in ("north", "east", "south", "west"):
         canteen.connect(pedestal.face(face), main.face("north"),
                         connection_id=f"connection:pedestal_rim_{face}")
@@ -209,35 +228,35 @@ def dress(city, ctx) -> dict:
     city.connect(porch.face("south"), foundry_st.face("west"),
                  connection_id="connection:canteen_door_street")
 
-    # A second mouth on the yard: one-door venues are why our dead-end
-    # fraction sits at 0.33 against the campaign's 0.16.
-    side_door = canteen.room(
-        "side_door", [(0, 0), (1024, 0), (1024, 256), (0, 256)],
-        role="doorway", faces=dict(COMPASS),
+    # THE HATCH. The second door on the yard is the stand's serving hatch:
+    # E1M4's RATDOGS sells through one, at half a body, its grill on the
+    # sill. The grill is that stand's sector 167 transcribed: ribbed iron
+    # 376 under rusted metal 255, a kSectorDamage (618) that burns
+    # (damage_type 1, data 30), and its shade flickering like a fire. It is
+    # the wall's thickness deep and a body high, so the yard sees the grill
+    # and the room behind it, and nobody walks through.
+    hatch = canteen.room(
+        "hatch", [(0, 0), (1024, 0), (1024, 512), (0, 512)],
+        role="detail", faces=dict(COMPASS),
         frame=Frame(main_x0 + 1024, main_y1 - 512),
         region_kwargs={
-            "type": 600,
-            "door_face": DOOR_FACE_TILE,
-            "inherit_finish": "both",
-            "sector_behavior": z_motion_door(GRADE, GRADE - CANTEEN_DOOR_H),
+            "type": 618,
+            "sector_behavior": {
+                "data": 30, "damage_type": 1,
+                "amplitude": -3, "shade_frequency": 5, "shade_wave": 6,
+                "shade_always": 1, "shade_floor": 1, "shade_ceiling": 1,
+                "shade_walls": 1,
+            },
         },
-        note="the canteen's second mouth, west end of the yard face",
+        note="the RAT DOGS hatch: E1M4 s167's grill at counter height",
     )
-    side_door.surfaces(wall_picnum=JAMB_TILE, floor_z=GRADE, clear_height=0)
-    canteen.connect(side_door.face("north"), main.face("south"),
-                    connection_id="connection:canteen_side_in")
-    side_porch = canteen.room(
-        "side_porch", [(0, 0), (1024, 0), (1024, 256), (0, 256)],
-        role="gateway", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 1024, main_y1 - 256),
-        note="the second mouth's reveal",
-    )
-    side_porch.surfaces(wall_picnum=MASONRY.wall, ceiling_picnum=MASONRY.wall,
-                        floor_z=GRADE, clear_height=CANTEEN_DOOR_H)
-    canteen.connect(side_porch.face("north"), side_door.face("south"),
-                    connection_id="connection:canteen_side_porch")
-    city.connect(side_porch.face("south"), foundry_st.face("west"),
-                 connection_id="connection:canteen_side_street")
+    hatch.surfaces(floor_z=GRADE - HATCH_SILL, clear_height=HATCH_CLEAR,
+                   floor_picnum=376, ceiling_picnum=255, wall_picnum=20,
+                   floor_shade=16, ceiling_shade=40)
+    canteen.connect(hatch.face("north"), main.face("south"),
+                    connection_id="connection:canteen_hatch_in")
+    city.connect(hatch.face("south"), foundry_st.face("west"),
+                 connection_id="connection:canteen_hatch_street")
 
     # ---- backdrop window: the rail yard behind the works ------------------
     box = city.room(
@@ -306,6 +325,8 @@ def dress(city, ctx) -> dict:
     placed["rooms"].append(cart.region_id)
 
     return {"placed": placed, "canteen_door": door.region_id,
+            "hatch": hatch.region_id, "counter": counter.region_id,
+            "table": pedestal.region_id,
             "cart": cart.region_id, "cart_world": (cart_x0, cart_y0),
             "main": main.region_id,
             "back": back.region_id, "box": box.region_id}
@@ -416,11 +437,49 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
                               local=local, **_cage_props.fields(tile))
         out.append(f"cage:blood_{index}")
 
+    # RAT DOGS on the grill, as E1M4 cooks them (its s167): rats lying on
+    # the ribs at repeat 24, one of them flipped, steam rising off each, and
+    # extractor fans laid flat on the ceiling over them. Every record is
+    # that stand's own; only where it lies is ours, and one bit: E1M4 draws
+    # them centred on their z (cstat 128) and lifts each half its height,
+    # where `place_on_floor` stands a sprite on its feet, so the bit is
+    # dropped and the lift with it (the lint read them 46% sunk).
+    rat_on_grill = {"picnum": 1743, "x_repeat": 24, "y_repeat": 24,
+                    "cstat": 256, "shade": -8, "type": 0, "status": 0}
+    steam = {"picnum": 754, "x_repeat": 32, "y_repeat": 8, "cstat": 2,
+             "shade": -8, "type": 0, "status": 0}
+    fan = {"picnum": 2548, "x_repeat": 32, "y_repeat": 32, "cstat": 160,
+           "shade": 0, "type": 0, "status": 0}
+    for place, region, spots in (
+            ("grill", dressing["hatch"], (0.2, 0.55, 0.82)),
+            ("counter", dressing["counter"], (0.3, 0.7))):
+        for index, u in enumerate(spots):
+            local = (u, 0.5) if place == "grill" else (0.5, u)
+            rat = dict(rat_on_grill, picnum=1744 if index == 1 else 1743,
+                       cstat=260 if index % 2 else 256)
+            layout.place_on_floor(f"ratdogs:{place}_rat_{index}", region,
+                                  local=local, **rat)
+            layout.place_on_floor(f"ratdogs:{place}_steam_{index}", region,
+                                  local=local, height_player_heights=0.1,
+                                  **steam)
+            out += [f"ratdogs:{place}_rat_{index}", f"ratdogs:{place}_steam_{index}"]
+    for index, u in enumerate((0.25, 0.75)):
+        layout.place_on_ceiling(f"ratdogs:fan_{index}", dressing["hatch"],
+                                local=(u, 0.5), **fan)
+        out.append(f"ratdogs:fan_{index}")
+    # The kitchen's light is E1M4's: a fluorescent tube laid flat on the
+    # ceiling (796, its s170), over the counter.
+    layout.place_on_ceiling(
+        "ratdogs:tube", dressing["counter"], local=(0.5, 0.5),
+        picnum=796, x_repeat=48, y_repeat=32, cstat=416, shade=-8,
+        type=0, status=0)
+    out.append("ratdogs:tube")
+
     # Pickups.  The campaign runs 0.9 per dude; we had none, which the
     # discriminator ranked as one of our worst features.  Types and fields
     # are transcribed from E3M1's own placements, not invented.
     for index, (type_id, region, local) in enumerate((
-            (65, dressing["main"], (0.75, 0.35)),
+            (65, dressing["main"], (0.9, 0.3)),     # beside the table
             (62, dressing["back"], (0.5, 0.5)),
             (67, ctx["sewer_rooms"]["junction"], (0.3, 0.4)),
             (60, ctx["sewer_rooms"]["cistern"], (0.5, 0.5)),
@@ -442,10 +501,11 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
         a1=(yard_x0, top_y0 + 2048), a2=(yard_x0, top_y0),
         #: over the mouth's head (the mouth is 1.45 bodies), not in it
         t=0.5, height_player_heights=1.9, **YARD_LAMP)
-    door_region = dressing["canteen_door"]
+    # Beside the door on the pier between it and the hatch, at the pier's
+    # edge: centred on the pier it hung across the painted window there.
     layout.place_on_wall(
         "lamp:canteen_door", street_region,
-        a1=(yard_x0 + 1536, yard_y0), a2=(yard_x0 + 3072, yard_y0),
-        t=0.15, height_player_heights=YARD_LAMP_HEIGHT, **YARD_LAMP)
+        a1=(yard_x0 + 1024, yard_y0), a2=(yard_x0 + 2048, yard_y0),
+        t=0.93, height_player_heights=YARD_LAMP_HEIGHT, **YARD_LAMP)
     out += ["lamp:stair_mouth", "lamp:canteen_door"]
     return out

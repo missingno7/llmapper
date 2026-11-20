@@ -179,8 +179,15 @@ class SecondWalkTests(unittest.TestCase):
 
         x0, y0, x1, y1 = l3_shed.MACHINE_HALL
         self.assertGreaterEqual((x1 - x0) * (y1 - y0), 40 * 1024 * 1024)
+        #: in the hall: 376 is ribbed iron, and the RAT DOGS grill wears it
+        #: too, as E1M4's own grill does
+        def in_hall(sector):
+            corner = self.disk.walls[int(sector.fields["wall_ptr"])].fields
+            return x0 <= int(corner["x"]) <= x1 and y0 <= int(corner["y"]) <= y1
+
         belts = [s for s in self.disk.sectors
-                 if int(s.fields["floor_picnum"]) == l3_shed.BELT_TILE]
+                 if int(s.fields["floor_picnum"]) == l3_shed.BELT_TILE
+                 and in_hall(s)]
         self.assertEqual(len(belts), len(l3_shed.BELT_SECTIONS))
         for sector in belts:
             extra = sector.extra or {}

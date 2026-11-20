@@ -678,7 +678,11 @@ def readback_report(result: ReadBack) -> str:
 #: declarable membership. 600/602 move in z and have neither.
 _SWEPT_TYPES = (613, 614, 615, 616, 617)
 #: Types whose whole point is that something differs between the two states.
-_STATEFUL_TYPES = _SWEPT_TYPES + (600, 602, 606, 612, 618, 619, 620, 621)
+#: Not 618, kSectorDamage: it hurts whatever its state in a map that is not
+#: a modern one (actor.cpp:3942, state is consulted only under gModernMap at
+#: :3945), and its shape never changes, so a state pair has nothing to
+#: measure. E1M4's own grill (s167) carries state 0 and burns.
+_STATEFUL_TYPES = _SWEPT_TYPES + (600, 602, 606, 612, 619, 620, 621)
 
 
 def sentences_from_layout(compiled: Any, *, layout: Any = None,

@@ -76,6 +76,15 @@
     "maps/blood/conversions/DNE3L6.map:371!"
    ],
    "date": "2026-11-20"
+  },
+  "ratdogs-stand": {
+   "want": "a cheap meat food stand: the RATDOGS carnival booth in E1M4, its counter, sign, goods and materials, as the model for the city's canteen",
+   "seeds": [
+    "E1M4:171!",
+    "E1M4:167!",
+    "E1M4:170!"
+   ],
+   "date": "2026-11-20"
   }
  }
 }

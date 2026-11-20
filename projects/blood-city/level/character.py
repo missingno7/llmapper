@@ -46,6 +46,13 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M2 s103-105 (the passage to the waiting hall); the "
                     "owner's DNE3L6 for the metro beyond the bars",
     },
+    "RAT DOGS": {
+        "at": (52800, 12800), "study": "ratdogs-stand",
+        "hero": "a works canteen that sells rats: a hatch on the yard with "
+                "rats steaming on a burning grill, RAT DOGS over it",
+        "exemplar": "E1M4 s167 (the grill), s170 (the kitchen), s171 (the "
+                    "sign RATDOGS)",
+    },
     "St Gallow's nave": {
         "at": (29440, 30500), "study": "church",
         "hero": "a clerestory of stained glass over the aisle, the "

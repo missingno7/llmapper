@@ -160,6 +160,13 @@ INTERIORS = {
     "shop": Material(wall=2294, floor=290, ceiling=40, opening=2293,
                      note="brick over wainscot: E6M1's shop, the open-front "
                           "reference"),
+    # The works canteen is a rat-dog stand (owner, 2026-11-20: "give it some
+    # unique style, like rat dogs (similar to E1M4)"). E1M4's RATDOGS
+    # kitchen, s170, runs rusted metal walls 255 round an embossed metal
+    # floor 438 under rough stone 568; its hatch is framed in wood 20
+    # (`knowledge/blood/studies/ratdogs-stand/notes.md`).
+    "ratdogs": Material(wall=255, floor=438, ceiling=568, opening=20,
+                        note="E1M4's RATDOGS kitchen, s170"),
     "service": Material(wall=379, floor=304, ceiling=379, opening=28,
                         note="plain stone: stairs, cellars, back-of-house"),
     # The church, from Blood's own church.  E1M5's main interior is 194 of
