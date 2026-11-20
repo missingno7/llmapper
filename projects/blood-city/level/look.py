@@ -242,8 +242,9 @@ POSE_SETS = {
         "canteen_hatch": (50.7, 16.6, 50.7, 15.0, LEVEL, "square on the RAT DOGS hatch from the yard"),
         "canteen_cook": (51.8, 12.5, 50.7, 14.8, LEVEL, "the hatch from inside, past the table"),
         "canteen_dine": (51.85, 14.5, 49.6, 12.4, LEVEL, "the dine-in from the door: tables, counter, kitchen wall"),
-        "freezer_door": (50.5, 14.0, 50.5, 11.0, LEVEL, "the freezer door from the counter side"),
-        "freezer_in": (51.4, 11.6, 49.0, 10.2, LEVEL, "inside the freezer, among the carcasses"),
+        "freezer_door": (50.5, 14.0, 50.5, 9.0, LEVEL, "the freezer door from the counter side"),
+        "freezer_in": (51.4, 9.6, 48.6, 8.2, LEVEL, "inside the freezer, among the carcasses"),
+        "canteen_north": (49.6, 10.6, 51.9, 14.2, LEVEL, "the dine-in from its north-west corner to the door"),
     },
     "underpass": {
         "underpass_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "from the yard stair's foot, down the passage"),

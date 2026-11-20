@@ -139,9 +139,12 @@ result.
   door: E1M3's riveted floor and frosted walls, four carcasses on hooks
   dripping blood, pools under them, the butcher's saw, tongs and axe on
   the wall, and a butcher (E3M2's fat zombie) in place of the axe zombie.
-  Open: the front room alone is 11.2 M of floor against the 14.0 M the
-  build wants for a destination; the freezer keeps the back room's window
-  onto the rail yard. Not walked.
+  Not walked.
+- "You can even change shape of the building." The dine-in took the old
+  back room's floor (now 4,096 by 4,608, 19 M against a destination's
+  14 M; five tables) and the freezer moved north into the place of the
+  rail-yard backdrop box, so it has no window onto the sky. The facades and
+  the yard are unchanged. Not walked.
 
 **Open, said in the same walk and not done**
 

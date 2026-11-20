@@ -83,13 +83,17 @@ tables and bar counters (E2M4's bar has stools at its counter).
 
 ## What I still do not know
 
-- The canteen is now two rooms behind a door, and the front room alone is
-  11.2 M of floor where the build wants a destination to have 14.0 M
-  (`status.py --kind cramped`). It may feel small.
-- The freezer keeps the back room's high window onto the rail yard. A cold
-  store with a window is odd; it was left because the window is the
-  backdrop for the whole block.
 - What blind readers make of it: not run.
+
+## The canteen grew (2026-11-20, later)
+
+First built, the dine-in was 11.2 M where a destination wants 14.0 M, and
+the freezer kept the old back room's high window onto the rail yard. The
+owner then allowed the building to change shape. The dine-in took the back
+room's floor (4,096 by 4,608, five tables, a second tube over them, the
+kitchen wall moved to the west wall beside the counter), and the freezer
+moved north into the place of the rail-yard backdrop box, 4,096 by 1,792,
+with no window. The build no longer calls the place cramped.
 
 ## What was built (2026-11-20)
 

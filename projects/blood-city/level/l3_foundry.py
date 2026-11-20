@@ -3,8 +3,7 @@
 Attached to the L2 skeleton by names and anchors (design-layers.md): the
 works canteen venue (venue-patterns `shop`), the yard's furniture
 (street-furniture.md industrial vocabulary), the staged destruction moment
-on the grate approach (the district's channel reserve), a backdrop window
-(backdrop-and-weave.md), population and breakables at campaign registers,
+on the grate approach (the district's channel reserve), population and breakables at campaign registers,
 and the sewer's E3M3 dressing (animated shade, a wet trunk).
 
 Sprite and door specs are attested: looked up from campaign maps at build
@@ -29,7 +28,7 @@ from resolution import (
     DISTRICT_STYLE, FLOOR_BOARDWALK, FLOOR_GROUND, GRADE, PU, SEWER_CLEAR,
     SKY_TILE, STREET_SKY,
 )
-from materials import BACKDROP, FACADES, INTERIORS, MASONRY
+from materials import FACADES, INTERIORS, MASONRY
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
@@ -51,7 +50,9 @@ CANTEEN_DOOR_H = 31744
 #: standing over it, so it rises to the door's head as the door does.
 HATCH_SILL = 8192
 HATCH_CLEAR = CANTEEN_DOOR_H - HATCH_SILL
-#: The freezer is the canteen's old back room, less a door's thickness.
+#: The dine-in, north to south: its own 2,560 and the old back room's 2,048.
+DINE_DEEP = 4608
+#: The freezer: two bays north of the dine-in, less a door's thickness.
 FREEZER_DEEP = 1792
 JAMB_TILE = 170
 
@@ -145,10 +146,17 @@ def dress(city, ctx) -> dict:
     # 1024 grid, so every opening in its face cut the painted windows.  On
     # the grid, its doors can be whole bays with piers between them.
     main_x0, main_y1 = yard_x0 - 1024, yard_y0       # north of the yard
+    # THE CANTEEN GREW NORTH (owner, 2026-11-20: "you can even change shape
+    # of the building"). The dine-in was 4,096 by 2,560 with a back room
+    # behind it, 11.2 M of floor where a destination wants 14.0 M; the back
+    # room is now part of it, and the freezer took the place of the rail-
+    # yard backdrop box that stood north of the back room, whose window
+    # made a cold store look out on a sky.
+    main_y0 = main_y1 - 512 - DINE_DEEP
     main = canteen.room(
-        "main", [(0, 0), (4096, 0), (4096, 2560), (0, 2560)],
+        "main", [(0, 0), (4096, 0), (4096, DINE_DEEP), (0, DINE_DEEP)],
         role="interior", faces=dict(COMPASS),
-        frame=Frame(main_x0, main_y1 - 512 - 2560),
+        frame=Frame(main_x0, main_y0),
         region_kwargs=shop.region_kwargs(),
         note="main room; counter and display are geometry (VP shop)",
         intent={"venue": "works_canteen", "type": "shop"},
@@ -166,14 +174,14 @@ def dress(city, ctx) -> dict:
     # rusted metal (255), grey walls frosted with grime at the foot (345),
     # carcasses on hooks, kept cold and dark (E1M2's locker, s268, stands
     # at shade 46), behind a metal door (495, E3M2's). Its dressing is in
-    # `sprinkle`.
+    # `sprinkle`. It has no window.
     back = canteen.room(
-        "back", [(0, 0), (3072, 0), (3072, FREEZER_DEEP),
+        "back", [(0, 0), (4096, 0), (4096, FREEZER_DEEP),
                  (0, FREEZER_DEEP)],
         role="interior", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 512, main_y1 - 512 - 2560 - 2048),
+        frame=Frame(main_x0, main_y0 - 2048),
         region_kwargs=shop.region_kwargs(),
-        note="the walk-in freezer; its high window is the backdrop frame",
+        note="the walk-in freezer, north of the dine-in",
     )
     back.surfaces(wall_picnum=345, floor_picnum=315, ceiling_picnum=255,
                   floor_shade=30, ceiling_shade=34, wall_shade=26)
@@ -181,7 +189,7 @@ def dress(city, ctx) -> dict:
         "freezer_door", [(0, 0), (1024, 0), (1024, 2048 - FREEZER_DEEP),
                          (0, 2048 - FREEZER_DEEP)],
         role="doorway", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 2048, main_y1 - 512 - 2560 - (2048 - FREEZER_DEEP)),
+        frame=Frame(main_x0 + 2048, main_y0 - (2048 - FREEZER_DEEP)),
         region_kwargs={
             "type": 600, "door_face": 495, "inherit_finish": "both",
             "sector_behavior": z_motion_door(GRADE, GRADE - CANTEEN_DOOR_H),
@@ -195,7 +203,9 @@ def dress(city, ctx) -> dict:
                     connection_id="connection:canteen_back")
 
     # Counter: geometry at rise 4096 (VP), an island in the main room.
-    main.carve([(512, 512), (1536, 512), (1536, 2048), (512, 2048)])
+    grown = DINE_DEEP - 2560          # the counter stays where it stood
+    main.carve([(512, 512 + grown), (1536, 512 + grown), (1536, 2048 + grown),
+                (512, 2048 + grown)])
     counter = canteen.room(
         "counter", [(0, 0), (1024, 0), (1024, 1536), (0, 1536)],
         role="detail", faces=dict(COMPASS),
@@ -280,21 +290,8 @@ def dress(city, ctx) -> dict:
     city.connect(hatch.face("south"), foundry_st.face("west"),
                  connection_id="connection:canteen_hatch_street")
 
-    # ---- backdrop window: the rail yard behind the works ------------------
-    box = city.room(
-        "railyard_scene", [(0, 0), (4096, 0), (4096, 2048), (0, 2048)],
-        role="detail", faces=dict(COMPASS),
-        frame=Frame(main_x0 + 256, main_y1 - 512 - 2560 - 2048 - 2048),
-        note="backdrop-and-weave.md: 12-wall depth behind the canteen "
-             "window; sill 8192 keeps it scenery",
-    )
-    box.style = Style(**BACKDROP.style_kwargs(floor_shade=44,
-                                              floor_z=GRADE - 8192,
-                                              clear_height=STREET_SKY))
-    box.carve([(1024, 512), (2560, 512), (2560, 1024), (1024, 1024)])
-    city.connect(back.face("north"), box.face("south"),
-                 connection_id="connection:backdrop_window")
-    placed["rooms"].append(box.region_id)
+    # (The rail-yard backdrop box that stood here, seen through the back
+    # room's high window, is gone: the freezer stands in its place.)
 
     # ---- yard furniture: the loading dock (street-furniture.md industrial
     # vocabulary; recessed into the works face so it edges the yard rather
@@ -348,11 +345,11 @@ def dress(city, ctx) -> dict:
 
     return {"placed": placed, "canteen_door": door.region_id,
             "hatch": hatch.region_id, "counter": counter.region_id,
-            "freezer_world": (main_x0 + 512, main_y1 - 512 - 2560 - 2048),
-            "main_world": (main_x0, main_y1 - 512 - 2560),
+            "freezer_world": (main_x0, main_y0 - 2048),
+            "main_world": (main_x0, main_y0),
             "cart": cart.region_id, "cart_world": (cart_x0, cart_y0),
             "main": main.region_id,
-            "back": back.region_id, "box": box.region_id}
+            "back": back.region_id}
 
 
 def _transcribed(map_name: str, type_id: int, picnum: int, **change) -> dict:
@@ -379,26 +376,38 @@ def dress_canteen(layout, dressing) -> list[str]:
     fx0, fy0 = dressing["freezer_world"]
 
     # The dine-in: E1M2's buffet tables (649, s185), round, on a pedestal,
-    # stood clear of the counter and of the way in from the door.
-    for index, local in enumerate(((0.58, 0.28), (0.84, 0.3), (0.58, 0.7))):
+    # stood clear of the counter (the room's west half, its south end), of
+    # the way in from the door (south-east) and of the freezer door (north,
+    # middle). E1M2 stands three in 39 M; this room is about 19 M, so five.
+    for index, local in enumerate(((0.3, 0.3), (0.58, 0.4), (0.86, 0.24),
+                                   (0.62, 0.72), (0.86, 0.56))):
         layout.place_on_floor(f"canteen:table_{index}", main, local=local,
                               **_transcribed("E1M2", 417, 649))
         out.append(f"canteen:table_{index}")
+    # ...and the dining half gets the kitchen's light too: E1M4's tube
+    # laid flat on the ceiling, over the tables.
+    layout.place_on_ceiling(
+        "canteen:tube_dining", main, local=(0.72, 0.4),
+        picnum=796, x_repeat=48, y_repeat=32, cstat=416, shade=-8,
+        type=0, status=0)
+    out.append("canteen:tube_dining")
 
-    # The kitchen wall, over the counter, as E1M2's kitchen (s257) hangs
+    # The kitchen wall, beside the counter, as E1M2's kitchen (s257) hangs
     # it: two frying pans (2304, 2305), EMPLOYEES MUST WASH HANDS (1719),
-    # and the fire extinguisher (658) on the end wall.
-    north = ((mx0, my0), (mx0 + 2048, my0))
+    # and the fire extinguisher (658) further along. It is the west wall,
+    # run from the south end (t 0) to the north; the counter stands at t
+    # 0.11 to 0.44.
+    west = ((mx0, my0 + DINE_DEEP), (mx0, my0))
     for pid, tile, type_id, t, high in (
-            ("pan_0", 2304, 417, 0.18, 1.35), ("pan_1", 2305, 417, 0.38, 1.3),
-            ("wash_hands", 1719, 417, 0.62, 1.45)):
-        layout.place_on_wall(f"canteen:{pid}", main, a1=north[0], a2=north[1],
+            ("pan_0", 2304, 417, 0.16, 1.35), ("pan_1", 2305, 417, 0.27, 1.3),
+            ("wash_hands", 1719, 417, 0.39, 1.45)):
+        layout.place_on_wall(f"canteen:{pid}", main, a1=west[0], a2=west[1],
                              t=t, height_player_heights=high,
                              offset_player_widths=0.04,
                              **_transcribed("E1M2", type_id, tile))
         out.append(f"canteen:{pid}")
     layout.place_on_wall("canteen:extinguisher", main,
-                         a1=(mx0, my0 + 2560), a2=(mx0, my0), t=0.8,
+                         a1=west[0], a2=west[1], t=0.62,
                          height_player_heights=1.1, offset_player_widths=0.04,
                          **_transcribed("E1M2", 416, 658))
     out.append("canteen:extinguisher")
