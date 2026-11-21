@@ -346,7 +346,7 @@ POSE_SETS = {
     "church": {
         "nave": (29.4, 28.6, 29.4, 24.2, LEVEL, "the nave, north to the chancel"),
         "nave_up": (29.4, 28.6, 29.4, 24.2, UP, "the same, up into the roof"),
-        "chancel": (29.4, 24.6, 29.4, 22.7, LEVEL, "the chancel and its altar"),
+        "chancel": (29.4, 25.8, 29.4, 22.7, LEVEL, "the chancel and its altar, from the head of the nave (at 24.6 a candelabrum stood in front of the camera)"),
         "aisle": (27.6, 29.4, 27.6, 25.6, LEVEL, "the west aisle"),
         "narthex": (31.2, 29.3, 31.2, 27.5, LEVEL, "the narthex and the font"),
         "tower_up": (31.0, 23.3, 31.0, 22.8, UP, "up the bell tower"),

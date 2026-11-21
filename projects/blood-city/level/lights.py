@@ -12,7 +12,8 @@ place's region path wins, so a narrower place goes above the place it is in.
 Nothing else is needed; the stage lights the finished map from scratch on
 every build.
 
-    form      "panel"   a recessed ceiling sector of the tile, in whole tiles
+    form      "none"    the room's own lights only
+              "panel"   a recessed ceiling sector of the tile, in whole tiles
               "ceiling" a flat sprite on the ceiling
               "hanging" a sprite on a chain (a round glass lamp where the
                         room is too low for it)
@@ -42,17 +43,29 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("canteen", Rule("ceiling", 795, 2560, 2560)),
     ("theatre_row/saloon", Rule("hanging", 641, 3072, 3072)),
     ("theatre_row", Rule("ceiling", 676, 2560, 2560)),
+    # its own two candelabra and its stained glass (`light_kinds`: glass on a
+    # roofed wall lets daylight in); the pairs the stage stood along the nave
+    # blocked the views (the owner, 2026-11-21)
+    ("st_gallows", Rule("none", 0, 0)),
 )
 #: places whose light their own module sets, from a study: the stage leaves
 #: them as they are (not cut, not lit in rows, their shades not written). The
 #: harbour: its water is dark (38 and more) because two blind readers took it
-#: for grass, and its deck, jetty and crates are one sector each. St Gallow's:
-#: lit from the floor toward the altar, by its own two candelabra, after the
-#: church study found every surface at shade 32. Remove a line to have the
-#: stage light the place like any other.
+#: for grass, and its deck, jetty and crates are one sector each. Remove a line
+#: to have the stage light the place like any other. (St Gallow's was here
+#: until the owner, 2026-11-21: "We can make it lit by model, the stained
+#: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
     "market_slip/quay",
-    "st_gallows",
+    # E1M1's crypt, field for field (`l3_church`): dark (floor 34, ceiling
+    # 28) and flickering; lit by the model its two torches made it shade 0
+    "st_gallows/crypt",
+)
+#: how strong a place's lamps are, against the model's 1 (the first match
+#: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
+#: little bit too much light for the church".
+LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    ("st_gallows", 0.5),
 )
 #: a room no rule names: a round light flat on the ceiling
 DEFAULT = Rule("ceiling", 795, 2560, 2560)
@@ -60,6 +73,10 @@ DEFAULT = Rule("ceiling", 795, 2560, 2560)
 
 def rule_for(region: str) -> Rule:
     return next((rule for key, rule in RULES if key in region), DEFAULT)
+
+
+def lamp_scale(region: str) -> float:
+    return next((value for key, value in LAMP_SCALE if key in region), 1.0)
 
 
 def own_light(region: str) -> bool:

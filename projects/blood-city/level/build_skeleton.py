@@ -2413,7 +2413,8 @@ def main() -> int:
             _region_of[int(_piece)] = _region_of.get(int(_parent), "")
         _was_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
                                       if d.severity in ("error", "warning"))
-        _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light)
+        _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
+                                    lamp_scale=_lights.lamp_scale)
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
         _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
         _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)

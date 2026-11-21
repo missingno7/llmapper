@@ -295,14 +295,26 @@ def light_point(disk, scan, p: Sample, dome, sun_vector, lamps) -> int:
         c = (nx * dx + ny * dy + nz * dz) / dist
         if c <= 0:
             continue
+        # a light with a direction (a window: daylight comes in and down)
+        # throws it as a lit surface does, by the cosine to its face
+        facing = lamp[5] if len(lamp) > 5 else None
+        if facing is not None:
+            emit = -(facing[0] * dx + facing[1] * dy + facing[2] * dz) / dist
+            if emit <= 0:
+                continue
+            c *= emit
         rays += 1
         hit = hitscan(disk, p.x, p.y, p.z, p.sector, dx / dist, dy / dist,
                       dz / dist * Z_SCALE, index=scan)
         if hit.kind != "void":
-            # a lamp hangs on a wall or under a ceiling: the ray meets that
-            # surface a hand's width short of it, and that is reaching it
-            gap = math.sqrt((hit.x - lx) ** 2 + (hit.y - ly) ** 2 + ((hit.z - lz) / Z_SCALE) ** 2)
-            if gap > LAMP_SURFACE:
+            # the ray reaches the lamp if it stops no nearer than the lamp: a
+            # lamp in the air (a street lamp's head, a candelabrum, the light
+            # inside a window) is passed and the ray stops beyond it; one on a
+            # wall or under a ceiling is met a hand's width short of it. (Until
+            # 2026-11-21 only the second counted, and every lamp in the air
+            # lit nothing: the owner asked why the stained glass gave no light.)
+            reach = math.sqrt((hit.x - p.x) ** 2 + (hit.y - p.y) ** 2 + ((hit.z - p.z) / Z_SCALE) ** 2)
+            if reach < dist - LAMP_SURFACE:
                 continue
         p.lamp += strength * c / (1.0 + (dist / LAMP_CORE) ** 2)
     return rays

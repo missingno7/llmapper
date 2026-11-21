@@ -32,7 +32,7 @@ from .model import record_fields as _f
 class LightKind:
     tile: int
     name: str
-    form: str                 # "panel", "ceiling", "hanging", "standing" or "wall"
+    form: str                 # "panel", "ceiling", "hanging", "standing", "wall" or "window"
     texture: bool             # may be a ceiling or wall texture
     sprite: bool              # may be a sprite
     point: float = 0.5        # light point, share of the drawn height from its top
@@ -68,12 +68,27 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(908, "flame", "standing", False, True, point=0.4, intensity=1.0),
     LightKind(2183, "recessed wall lamp, lit", "wall", False, True, point=0.5, intensity=1.0),
     LightKind(693, "lit brass lantern", "standing", False, True, point=0.5, intensity=0.8),
+    # windows: daylight through glass, into the room the glass hangs in (the
+    # owner, 2026-11-21: "the stained glass should be giving some light in")
+    # (the owner, on the first strength, 0.7 and 1.2: "it looks little bit
+    # too much light for the church")
+    LightKind(569, "stained glass lancet", "window", False, True, point=0.5, intensity=0.35),
+    LightKind(265, "stained glass, a haloed figure", "window", False, True, point=0.5, intensity=0.6),
 )}
 
 #: textures that look lit but give no light (the owner)
 NOT_LIGHTS = frozenset({261, 511})
 #: a panel ceiling counts as lit at or below this shade
 PANEL_SHADE = 8
+#: a window's light stands this far inside the glass (plan units): far enough
+#: that the wall it hangs on stops it from lighting the far side
+WINDOW_INSET = 512
+
+
+def is_lamp(picnum: int) -> bool:
+    """A light someone hung or set down, as against daylight through a window."""
+    kind = KINDS.get(int(picnum))
+    return kind is not None and kind.form != "window"
 
 
 def _drawn(f, art) -> tuple[int, int]:
@@ -86,8 +101,8 @@ def _drawn(f, art) -> tuple[int, int]:
                         int(f["cstat"]), int(f["z"]))
 
 
-def sprite_lights(disk, art=None) -> list[tuple[float, float, float, int, float]]:
-    """(x, y, z, sector, intensity) for every visible light sprite, at its light point."""
+def sprite_lights(disk, art=None) -> list[tuple]:
+    """(x, y, z, sector, intensity) for every visible light sprite, at its light point; a window adds the way it faces."""
     if art is None:
         from .shade_table import _art
         art = _art()
@@ -97,6 +112,11 @@ def sprite_lights(disk, art=None) -> list[tuple[float, float, float, int, float]
         kind = KINDS.get(int(f["picnum"]))
         if kind is None or not kind.sprite or int(f["cstat"]) & 0x8000 or int(f["sector"]) < 0:
             continue
+        if kind.form == "window":
+            light = _window(disk, f, art, kind)
+            if light is not None:
+                out.append(light)
+            continue
         if int(f["cstat"]) & 48 == 32:                   # flat: the light is where it lies
             z = int(f["z"])
         else:
@@ -104,6 +124,36 @@ def sprite_lights(disk, art=None) -> list[tuple[float, float, float, int, float]
             z = top + (bottom - top) * kind.point
         out.append((float(f["x"]), float(f["y"]), float(z), int(f["sector"]), kind.intensity))
     return out
+
+
+def _window(disk, f, art, kind):
+    """Glass on a roofed room's wall lets daylight in: a light just inside it; glass under the sky gives none."""
+    import math
+
+    from shapely.geometry import Point, Polygon
+
+    from .sector_geom import outline_and_holes
+
+    sector = int(f["sector"])
+    if int(_f(disk.sectors[sector])["ceiling_stat"]) & 1:
+        return None
+    try:
+        outline, holes = outline_and_holes(disk, sector)
+    except Exception:
+        return None
+    room = Polygon(outline, holes)
+    top, bottom = _drawn(f, art)
+    z = top + (bottom - top) * kind.point
+    a = int(f["angle"]) * 2 * math.pi / 2048
+    x, y = float(f["x"]), float(f["y"])
+    for sign in (1, -1):                                 # into the room, whichever way the glass faces
+        ix, iy = sign * math.cos(a), sign * math.sin(a)
+        px, py = x + ix * WINDOW_INSET, y + iy * WINDOW_INSET
+        if room.contains(Point(px, py)):
+            # daylight through glass travels in and down (z grows downward)
+            down = math.sqrt(0.5)
+            return (px, py, float(z), sector, kind.intensity, (ix * down, iy * down, down))
+    return None
 
 
 def panel_lights(disk) -> list[tuple[float, float, float, int, float]]:

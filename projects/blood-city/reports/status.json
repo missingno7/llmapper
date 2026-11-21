@@ -2,13 +2,13 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "815839013a62cc8953b980d7ce58c4402874477faacabecb5d92d201100827fb",
-  "map_sha256": "20ebf0396a85aa36f34716b4bc19e3eecd22eaac57367dcf2e85d2388ce9234e",
+  "manifest_sha256": "db4f5f4f664445060d5ef74209a37e66fdbe896923568a8e644ddb3439cf5f94",
+  "map_sha256": "74e08977fd600ade717a63a86835948ea35ec858ec45f4ece1dce6d03b9f0040",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 760,
-  "walls": 7492,
+  "sectors": 722,
+  "walls": 7668,
   "sprites": 1016,
   "limits": {
    "sectors": 4096,
@@ -16,8 +16,8 @@
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.814,
-   "walls": 0.543,
+   "sectors": 0.824,
+   "walls": 0.532,
    "sprites": 0.938
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
@@ -222,23 +222,39 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 737,
-  "reached": 737,
+  "space": 699,
+  "reached": 699,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 543,
+    "sectors": 504,
     "first_sector": 0
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 281"
+    ],
+    "sectors": 46,
+    "first_sector": 252
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 282"
+    ],
+    "sectors": 1,
+    "first_sector": 282
    },
    {
     "round": 1,
     "opened_by": [
      "operate mechanism sector 208"
     ],
-    "sectors": 40,
+    "sectors": 37,
     "first_sector": 179
    },
    {
@@ -246,7 +262,7 @@
     "opened_by": [
      "use switch sprite 452 (channel 109)"
     ],
-    "sectors": 38,
+    "sectors": 34,
     "first_sector": 3
    },
    {
@@ -276,25 +292,9 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 281"
-    ],
-    "sectors": 32,
-    "first_sector": 252
-   },
-   {
-    "round": 1,
-    "opened_by": [
-     "operate mechanism sector 282"
-    ],
-    "sectors": 1,
-    "first_sector": 282
-   },
-   {
-    "round": 1,
-    "opened_by": [
      "use switch sprite 264 (channel 108)"
     ],
-    "sectors": 27,
+    "sectors": 19,
     "first_sector": 403
    },
    {
@@ -358,7 +358,7 @@
     "opened_by": [
      "several of this round's acts together"
     ],
-    "sectors": 4,
+    "sectors": 6,
     "first_sector": 192
    },
    {

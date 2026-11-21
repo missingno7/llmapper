@@ -93,5 +93,48 @@ class LightStageTests(unittest.TestCase):
         self.assertEqual([d for d in validate_map(disk) if d.severity == "error"], [])
 
 
+class LampReachTests(unittest.TestCase):
+    def _floor_light(self, disk, lamp):
+        from bloodmap import daylight as D
+        from bloodmap.lightbomb import ScanIndex
+
+        p = D.Sample(3000.0, 3000.0, -64.0, 0, (0.0, 0.0, -1.0), indoor=True)
+        D.light_point(disk, ScanIndex(disk), p, D._hemisphere(8), D.Sun().vector(), [lamp])
+        return p.lamp
+
+    def test_a_lamp_in_the_air_lights_the_floor_below_it(self):
+        """Until 2026-11-21 a lamp the ray passed (a candelabrum's flame, a
+        street lamp's head) counted as hidden: only one the ray stopped
+        beside lit anything."""
+        disk, region_of = _hall()
+        hall = next(s for s, r in region_of.items() if r == "town/hall")
+        self.assertGreater(self._floor_light(disk, (3500.0, 3000.0, -12000.0, hall, 1.0)), 0.3)
+
+    def test_glass_lets_light_into_its_room_and_none_onto_the_street(self):
+        from bloodmap import light_kinds as K
+        from bloodmap.model import DiskObject
+
+        disk, region_of = _hall()
+        hall = next(s for s, r in region_of.items() if r == "town/hall")
+        yard = next(s for s, r in region_of.items() if r == "town/yard")
+
+        def glass(x, y, sector, angle):
+            f = {"x": x, "y": y, "z": -12000, "cstat": 16 | 64, "picnum": 569, "shade": 8, "pal": 0,
+                 "clipdist": 32, "detail": 0, "x_repeat": 48, "y_repeat": 192, "x_offset": 0, "y_offset": 0,
+                 "sector": sector, "status": 0, "angle": angle, "owner": -1, "index": len(disk.sprites),
+                 "y_velocity": 0, "initial_type": 0, "type": 0, "flags": 0, "extra": -1}
+            disk.sprites.append(DiskObject(fields=f))
+
+        glass(6000, 16, hall, 512)          # on the hall's north wall, facing in (south)
+        glass(16000, 16, yard, 512)         # on the yard's edge, under the sky
+        found = K.sprite_lights(disk)
+        self.assertEqual(len(found), 1)
+        x, y, z, sector, strength, facing = found[0]
+        self.assertEqual(sector, hall)
+        self.assertGreater(y, 16)                         # inside the room
+        self.assertGreater(facing[1], 0)                  # in ...
+        self.assertGreater(facing[2], 0)                  # ... and down
+
+
 if __name__ == "__main__":
     unittest.main()

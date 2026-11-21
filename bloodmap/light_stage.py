@@ -62,8 +62,13 @@ class Model:
     #: due west, 45 degrees up: the one azimuth that predicts the campaign's
     #: road shade cuts (10 of 11 in E3M1; no other above 7)
     sun: D.Sun = field(default_factory=lambda: D.Sun(270, 45))
+    #: lamp 0.8: until 2026-11-21 a lamp in the air lit nothing (`daylight`'s
+    #: reach test), and 1.3 was set with only lamps on walls and ceilings
+    #: lighting; with every lamp lighting, 0.8 gives the rooms the light the
+    #: owner walked and approved (floor shades p10/p50/p90 4/21/30 against
+    #: 4/19/31; 1.3 gives 0/13/28)
     weights: D.Weights = field(default_factory=lambda: D.Weights(
-        sun=2.0, lamp=1.3, dark=39.0, bright=8.0, reference=1.3, bounce=1.0,
+        sun=2.0, lamp=0.8, dark=39.0, bright=8.0, reference=1.3, bounce=1.0,
         indoor_ambient=0.30))
     #: a roofed sector with its floor this deep is under the street (the sewer,
     #: the crypt): near dark between its lights, its lamps a little stronger,
@@ -71,14 +76,18 @@ class Model:
     underground_z: int = 40000
     underground_ambient: float = 0.05
     underground_lamp: float = 1.2
+    #: how strong the lamps of a sector are, where a place asks for other
+    #: than 1 (a church is dimmer than a shop); filled by `run`
+    lamp_scale_by_sector: dict = field(default_factory=dict)
 
     def underground(self, disk, sector: int) -> bool:
         f = _f(disk.sectors[sector])
         return int(f["floor_z"]) >= self.underground_z and not int(f["ceiling_stat"]) & 1
 
     def lamps(self, disk) -> list:
-        return [(x, y, z, sector, strength * (self.underground_lamp if self.underground(disk, sector) else 1.0))
-                for x, y, z, sector, strength in D.lights_of(disk)]
+        return [(x, y, z, sector, strength * (self.underground_lamp if self.underground(disk, sector) else 1.0)
+                 * self.lamp_scale_by_sector.get(sector, 1.0), *rest)
+                for x, y, z, sector, strength, *rest in D.lights_of(disk)]
 
     def prepare(self, disk) -> None:
         self.weights.ambient_by_sector = {i: self.underground_ambient
@@ -122,10 +131,16 @@ PARALLEL_FROM = 4000
 CHUNK = 64
 
 _STATE: dict[str, Any] = {}
+#: `daylight`'s settings a worker must share with this process: a worker
+#: imports the module afresh, and a value set here would not reach it
+TUNABLES = ("LAMP_CORE", "LAMP_SURFACE", "LAMP_REACH", "SKY_RAYS", "GATHER_RAYS", "REFLECTANCE")
 
 
-def _start(disk_or_path, sun, lamps, cache_points) -> None:
+def _start(disk_or_path, sun, lamps, cache_points, tunables=None) -> None:
     from .lightbomb import ScanIndex
+
+    for name, value in (tunables or {}).items():
+        setattr(D, name, value)
 
     if isinstance(disk_or_path, str):
         from .format import read_map
@@ -182,8 +197,9 @@ def _parallel(disk, sun, lamps, cache_points, job, samples: list) -> list:
     with tempfile.TemporaryDirectory() as tmp:
         path = os.path.join(tmp, "trace.MAP")
         write_map(disk, path)
+        tunables = {name: getattr(D, name) for name in TUNABLES}
         with ProcessPoolExecutor(WORKERS, initializer=_start,
-                                 initargs=(path, sun, lamps, cache_points)) as pool:
+                                 initargs=(path, sun, lamps, cache_points, tunables)) as pool:
             return [r for part in pool.map(job, chunks) for r in part]
 
 
@@ -194,7 +210,8 @@ def _parallel(disk, sun, lamps, cache_points, job, samples: list) -> list:
 class Rule:
     """How a room is lit: the form, its tile, and the spacing along and across the room."""
 
-    form: str            # "panel", "ceiling", "hanging" or "pairs" (standing, along the two long walls)
+    form: str            # "panel", "ceiling", "hanging", "pairs" (standing, along the two long walls),
+    #                      or "none" (the room's own lights only)
     tile: int
     along: int
     across: int = 0
@@ -315,7 +332,7 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
     existing: dict[str, int] = defaultdict(int)
     for sp in disk.sprites:
         f = _f(sp)
-        if int(f["picnum"]) in K.KINDS and not int(f["cstat"]) & 0x8000 and int(f["sector"]) in room_of:
+        if K.is_lamp(int(f["picnum"])) and not int(f["cstat"]) & 0x8000 and int(f["sector"]) in room_of:
             existing[room_of[int(f["sector"])]] += 1
     polys = {}
     for secs in rooms.values():
@@ -333,6 +350,9 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
         if room.is_empty or room.area < ROOM_AREA or not any(height(i) >= ROOM_HEIGHT for i in secs):
             continue
         rule = rule_for(name)
+        if rule.form == "none":
+            placed[name] = {"its own lights": existing[name]}
+            continue
         inner = room.buffer(-MARGIN, join_style=2)
         if inner.is_empty:
             continue
@@ -420,7 +440,7 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
                          "ceiling_x_panning": 0, "ceiling_y_panning": 0,
                          "ceiling_z": int(S[sec]["ceiling_z"]) - RECESS}))
         jobs[sec] = specs
-    cut = O.cut_sectors(disk, jobs)
+    cut = _cut(disk, jobs)
     return {"rooms": placed, "cut": cut}
 
 
@@ -498,7 +518,7 @@ def cut_shadows(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, 
                 overlay_id=f"shadow:{sector}", region_id=str(sector),
                 shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])),
                               tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts))]
-    cut = O.cut_sectors(disk, jobs)
+    cut = _cut(disk, jobs)
     cut["looked_at"] = len(grids)
     return cut
 
@@ -525,6 +545,24 @@ FLOOR_PIECE = 512 * 512
 FLOOR_MIN_AREA = 2048 * 2048
 
 
+def raised(disk, sector: int) -> bool:
+    """A roofed floor that rises above a floor it opens onto and under none: furniture (a display, a shelf, a counter, a pew), never cut.
+
+    Furniture is often a run of level pieces (a display of three sectors), so
+    it is what has a floor below it beside it and none above.
+
+    A light band across a shop's display left the goods on it standing on a
+    sliver the shelf miner (`tools.mine_stands`) no longer reads as a shelf.
+    """
+    f = _f(disk.sectors[sector])
+    z = int(f["floor_z"])
+    others = [int(_f(disk.walls[w])["next_sector"])
+              for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"]))]
+    levels = [int(_f(disk.sectors[o])["floor_z"]) for o in others if o >= 0]
+    return (not int(f["ceiling_stat"]) & 1 and any(level > z for level in levels)
+            and not any(level < z for level in levels))
+
+
 def band_floors(disk, model: Model, found: list | None = None, keep: frozenset = frozenset()) -> dict[str, Any]:
     """Cut every floor whose light spans many shades along the contours of that light."""
     import contourpy
@@ -547,8 +585,9 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
                 or rows.get(("floor", s.index), {}).get("spread", 0) < FLOOR_SPREAD):
             continue
         f = _f(disk.sectors[s.index])
-        if not O.shade_only(disk.sectors[s.index]) or (int(f["floor_stat"]) | int(f["ceiling_stat"])) & 2:
-            continue                                  # the cutter would refuse it: do not trace it
+        if (not O.shade_only(disk.sectors[s.index]) or (int(f["floor_stat"]) | int(f["ceiling_stat"])) & 2
+                or raised(disk, s.index)):
+            continue                                  # the cutter would refuse it, or it is furniture
         o, h = outline_and_holes(disk, s.index)
         poly = Polygon(o, h)
         if poly.area < FLOOR_MIN_AREA:
@@ -604,7 +643,7 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
                                   tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts)))
         if specs:
             jobs[sector] = specs
-    cut = O.cut_sectors(disk, jobs)
+    cut = _cut(disk, jobs)
     cut["looked_at"] = len(grids)
     return cut
 
@@ -660,7 +699,7 @@ def band_walls(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, A
         if cuts:
             points[s.index] = [((ax, int(round(ay + (by - ay) * d / length))) if ax == bx
                                 else (int(round(ax + (bx - ax) * d / length)), ay)) for d in cuts]
-    cut = O.cut_sectors(disk, {}, wall_points=points)
+    cut = _cut(disk, {}, points)
     cut["looked_at"] = looked
     return cut
 
@@ -668,38 +707,115 @@ def band_walls(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, A
 # --- 4. the shades --------------------------------------------------------------
 
 
+#: how bright glass that lets daylight in is drawn (Blood draws a sprite
+#: indoors at its own shade plus the floor's): the owner, 2026-11-21, "That
+#: stained glass itself should be lighter"
+WINDOW_DRAWN = 0
+
+
+def glow_windows(disk, keep: frozenset = frozenset()) -> int:
+    """Set the shade of glass on a roofed wall so it draws at `WINDOW_DRAWN` over its floor."""
+    count = 0
+    for sprite in disk.sprites:
+        f = _f(sprite)
+        kind = K.KINDS.get(int(f["picnum"]))
+        sector = int(f["sector"])
+        if kind is None or kind.form != "window" or not 0 <= sector < len(disk.sectors) or sector in keep:
+            continue
+        s = _f(disk.sectors[sector])
+        if int(s["ceiling_stat"]) & 1:
+            continue
+        f["shade"] = max(-128, min(127, WINDOW_DRAWN - int(s["floor_shade"])))
+        count += 1
+    return count
+
+
 def shade(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
-    """Trace the map and write every floor, ceiling and wall its light (but those of `keep`'s sectors); one sky shade."""
+    """Trace the map and write every floor, ceiling and wall its light (but those of `keep`'s sectors); one sky shade; glass glows."""
     found = model.trace(disk)
     rows = [r for r in D.collapse(found, model.weights) if r["sector"] not in keep]
     D.apply(disk, rows)
-    return {"surfaces": len(rows), "spread_12": sum(1 for r in rows if r["kind"] == "floor" and r["spread"] >= 12)}
+    glowing = glow_windows(disk, keep)
+    return {"surfaces": len(rows), "windows": glowing,
+            "spread_12": sum(1 for r in rows if r["kind"] == "floor" and r["spread"] >= 12)}
+
+
+# --- cutting, whole or not at all ----------------------------------------------
+
+
+def _cut(disk, jobs: dict, wall_points: dict | None = None) -> dict[str, Any]:
+    """`overlays.cut_sectors` on a copy; where the cutter cannot pair an edge, those sectors stay whole.
+
+    The cutter raises when a cut would leave a wall without its twin (a
+    corner case at the edge of a piece). One such edge must not stop a
+    build: the sectors and walls the error names are left out, reported in
+    `refused`, and the rest is cut again. The map is only ever replaced by a
+    cut that completed.
+    """
+    import copy
+    import re
+
+    jobs, wall_points = dict(jobs), dict(wall_points or {})
+    owner = {}
+    for index, sector in enumerate(disk.sectors):
+        f = _f(sector)
+        for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+            owner[w] = index
+    left_whole: dict[int, str] = {}
+    for _ in range(len(jobs) + len(wall_points) + 1):
+        trial = copy.deepcopy(disk)
+        try:
+            report = O.cut_sectors(trial, jobs, wall_points=wall_points or None)
+        except O.OverlayError as error:
+            walls = [int(n) for n in re.findall(r"wall (\d+)", str(error))]
+            sectors = {int(n) for n in re.findall(r"sector (\d+)", str(error))}
+            sectors |= {owner[w] for w in walls if w in owner}
+            twins = {int(_f(disk.walls[w])["next_wall"]) for w in walls if w < len(disk.walls)}
+            dropped = [s for s in sectors if s in jobs] + [w for w in set(walls) | twins if w in wall_points]
+            if not dropped:
+                raise
+            for s in sectors:
+                if jobs.pop(s, None) is not None:
+                    left_whole[s] = str(error)
+            for w in set(walls) | twins:
+                if wall_points.pop(w, None) is not None:
+                    left_whole[-1 - w] = str(error)
+            continue
+        vars(disk).update(vars(trial))
+        report["left_whole"] = {str(k): v for k, v in sorted(left_whole.items())}
+        return report
+    raise O.OverlayError("the cut could not be completed")
 
 
 # --- the stage ------------------------------------------------------------------
 
 
-def _chain(parent: dict, cut: dict) -> None:
+def _chain(parent: dict, cut: dict, scale: dict | None = None) -> None:
     for piece, source in cut.get("parent", {}).items():
         source = int(source)
         parent[int(piece)] = parent.get(source, source)
+        if scale is not None and source in scale:
+            scale[int(piece)] = scale[source]
 
 
 def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model: Model | None = None,
-        *, keep: Callable[[str], bool] = lambda region: False, art=None) -> dict[str, Any]:
+        *, keep: Callable[[str], bool] = lambda region: False,
+        lamp_scale: Callable[[str], float] = lambda region: 1.0, art=None) -> dict[str, Any]:
     """Light a finished map: the sun's shadows, its lights, its floor bands, its wall bands, then every shade.
 
     A sector whose region `keep` names keeps the light its own module gave
     it: it is not cut, not lit in rows, and its shades are not written. It
     still stands in the scene, and its lamps still light the rest.
+    `lamp_scale` says how strong a place's lamps are (1 is the model's).
     """
     model = model or Model()
     kept = frozenset(i for i, region in region_of.items() if keep(region))
+    scale = model.lamp_scale_by_sector = {i: lamp_scale(r) for i, r in region_of.items() if lamp_scale(r) != 1.0}
     report: dict[str, Any] = {"sectors_before": len(disk.sectors), "walls_before": len(disk.walls),
                               "sprites_before": len(disk.sprites)}
     parent: dict[int, int] = {}
     shadows = cut_shadows(disk, model, kept)
-    _chain(parent, shadows)
+    _chain(parent, shadows, scale)
     report["shadow_cut"] = {k: v for k, v in shadows.items() if k != "parent"}
     # the pieces of a room are still that room
     region_of = dict(region_of)
@@ -707,11 +823,11 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
         region_of[piece] = region_of.get(source, "")
     rooms = rooms_by_region(disk, region_of, kept)
     laid = lay_lights(disk, rooms, rule_for, art)
-    _chain(parent, laid["cut"])
+    _chain(parent, laid["cut"], scale)
     report["rooms"] = laid["rooms"]
     report["panel_cut"] = {k: v for k, v in laid["cut"].items() if k != "parent"}
     floors = band_floors(disk, model, keep=kept)
-    _chain(parent, floors)
+    _chain(parent, floors, scale)
     report["floor_cut"] = {k: v for k, v in floors.items() if k != "parent"}
     walls = band_walls(disk, model, kept)
     report["wall_cut"] = {k: v for k, v in walls.items() if k != "parent"}
