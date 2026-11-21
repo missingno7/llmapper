@@ -158,7 +158,12 @@ What a surface is made of, where its texture sits, and how it is lit.
 | `lighting` | Light a room the way Blood lights one: wall by wall, from its lamps. |
 | `lightbomb` | XMapEdit's light bomb: shade from rays that actually travel through the map. |
 | `light_field` | Light as a field, and the shadow as one of its iso-lines. |
-| `sunlight` | One sun over a map's open sky: outdoor walls shaded by which way they face, and the measure of it. |
+| `sunlight` | One light over a map's open sky: outdoor faces shaded as the campaign shades them, the sun's reach traced with the engine's hitscan, and the measure of it. |
+| `overlays` | Surface overlays: patches on a region's floor, cut into the finished map after everything else has run. |
+| `shade_table` | Blood's palette and shade table, read from BLOOD.RFF: how bright a tile is actually drawn at each shade. |
+| `daylight` | A map lit as the 3D scene it is: sky, sun and lamps traced with the engine's hitscan, giving every floor and wall a mean shade and a spread. |
+| `light_kinds` | What gives light in Blood and how each is set down: the tiles, whether each may be a texture or only a sprite, where on it the light sits, and how strong it is. |
+| `light_stage` | Light a finished map as the 3D scene it is: lights set in rows where its rooms want them, the light traced, and floors and walls cut where it changes. |
 
 ### Authoring: things and mechanisms
 
@@ -340,7 +345,8 @@ Lints and comparisons of one map against the engine or the campaign.
 | Module | What it is |
 | --- | --- |
 | `sprite_fit` | Does every sprite fit where it was put? |
-| `light_profile` | The outdoor light of maps, against the campaign's town maps: spread, facing, ground. |
+| `light_profile` | The outdoor light of maps, against the campaign's town maps: corners, facing within a building, tone, ground. |
+| `light_sources` | How Blood's maps show things that give light: tiles drawn brighter than the room around them, as sprites or surfaces, and how the room is shaded around them. |
 | `reading_check` | Mark our map readers against the campaign: can they finish what is known to be finishable. |
 | `unattested_values` | Authored values the campaign never uses for that type. |
 | `map_discriminator` | Could you tell this level from a Blood level, on the evidence available? |

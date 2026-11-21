@@ -2,23 +2,23 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "2bb41ee4e14fd156fa87495953cd6f2532022dea1c181ba8c64f0ae066998f91",
-  "map_sha256": "2ea8eda9146aefdc49d4c8449eecb5537e2b74f90d0f8e587f66ce282861c1f5",
+  "manifest_sha256": "815839013a62cc8953b980d7ce58c4402874477faacabecb5d92d201100827fb",
+  "map_sha256": "20ebf0396a85aa36f34716b4bc19e3eecd22eaac57367dcf2e85d2388ce9234e",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 507,
-  "walls": 3356,
-  "sprites": 952,
+  "sectors": 760,
+  "walls": 7492,
+  "sprites": 1016,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.876,
-   "walls": 0.795,
-   "sprites": 0.942
+   "sectors": 0.814,
+   "walls": 0.543,
+   "sprites": 0.938
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
@@ -31,157 +31,157 @@
   {
    "name": "districts",
    "says": "the plan as district assemblies: one street region each, blocks carved out",
-   "at": "projects/blood-city/level/build_skeleton.py:318"
+   "at": "projects/blood-city/level/build_skeleton.py:340"
   },
   {
    "name": "cemetery",
    "says": "the cemetery as a walled, gated ground carved from its district",
-   "at": "projects/blood-city/level/build_skeleton.py:424"
+   "at": "projects/blood-city/level/build_skeleton.py:446"
   },
   {
    "name": "sewer",
    "says": "the sewer declared at depth beneath Foundry Ward",
-   "at": "projects/blood-city/level/build_skeleton.py:537"
+   "at": "projects/blood-city/level/build_skeleton.py:559"
   },
   {
    "name": "works-stair",
    "says": "the first way down: the works stair, in flights, to the cellar",
-   "at": "projects/blood-city/level/build_skeleton.py:620"
+   "at": "projects/blood-city/level/build_skeleton.py:642"
   },
   {
    "name": "stack-links",
    "says": "the two room-over-room links between street and sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:788"
+   "at": "projects/blood-city/level/build_skeleton.py:810"
   },
   {
    "name": "sewer-network",
    "says": "the sewer's ring, its chambers and the necks between them",
-   "at": "projects/blood-city/level/build_skeleton.py:899"
+   "at": "projects/blood-city/level/build_skeleton.py:921"
   },
   {
    "name": "pumping-station",
    "says": "the second way down: the pumping station's stairs",
-   "at": "projects/blood-city/level/build_skeleton.py:949"
+   "at": "projects/blood-city/level/build_skeleton.py:971"
   },
   {
    "name": "light-pools",
    "says": "patches of lit floor in the streets, declared as regions",
-   "at": "projects/blood-city/level/build_skeleton.py:997"
+   "at": "projects/blood-city/level/build_skeleton.py:1019"
   },
   {
    "name": "church",
    "says": "St Gallow's: nave, tower, crypt",
-   "at": "projects/blood-city/level/build_skeleton.py:1036"
+   "at": "projects/blood-city/level/build_skeleton.py:1058"
   },
   {
    "name": "arcade",
    "says": "the Gravesend Arcade and its shops",
-   "at": "projects/blood-city/level/build_skeleton.py:1051"
+   "at": "projects/blood-city/level/build_skeleton.py:1073"
   },
   {
    "name": "theatre",
    "says": "Theatre Row: the Aldermack, the saloon, the pawnshop",
-   "at": "projects/blood-city/level/build_skeleton.py:1057"
+   "at": "projects/blood-city/level/build_skeleton.py:1079"
   },
   {
    "name": "station",
    "says": "Gravesend Station behind the north wall",
-   "at": "projects/blood-city/level/build_skeleton.py:1065"
+   "at": "projects/blood-city/level/build_skeleton.py:1087"
   },
   {
    "name": "market",
    "says": "Market Slip: the quay, the harbour and the ship",
-   "at": "projects/blood-city/level/build_skeleton.py:1071"
+   "at": "projects/blood-city/level/build_skeleton.py:1093"
   },
   {
    "name": "foundry",
    "says": "Foundry Ward, the pilot district, with its machine hall",
-   "at": "projects/blood-city/level/build_skeleton.py:1082"
+   "at": "projects/blood-city/level/build_skeleton.py:1104"
   },
   {
    "name": "undeclared-venues",
    "says": "venues on the plan that nobody has built, declared as such",
-   "at": "projects/blood-city/level/build_skeleton.py:1107"
+   "at": "projects/blood-city/level/build_skeleton.py:1129"
   },
   {
    "name": "start",
    "says": "the player's start on the quay, and the manifest begins",
-   "at": "projects/blood-city/level/build_skeleton.py:1139"
+   "at": "projects/blood-city/level/build_skeleton.py:1161"
   },
   {
    "name": "street-anatomy",
    "says": "pavement, carriageway and kerb along every street",
-   "at": "projects/blood-city/level/build_skeleton.py:1173"
+   "at": "projects/blood-city/level/build_skeleton.py:1195"
   },
   {
    "name": "street-ends",
    "says": "the walls where the main streets stop",
-   "at": "projects/blood-city/level/build_skeleton.py:1198"
+   "at": "projects/blood-city/level/build_skeleton.py:1220"
   },
   {
    "name": "connect",
    "says": "the program becomes a planar layout; gates join the regions",
-   "at": "projects/blood-city/level/build_skeleton.py:1411"
+   "at": "projects/blood-city/level/build_skeleton.py:1433"
   },
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1436"
+   "at": "projects/blood-city/level/build_skeleton.py:1458"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1546"
+   "at": "projects/blood-city/level/build_skeleton.py:1568"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1653"
+   "at": "projects/blood-city/level/build_skeleton.py:1675"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1725"
+   "at": "projects/blood-city/level/build_skeleton.py:1747"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1760"
+   "at": "projects/blood-city/level/build_skeleton.py:1782"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1815"
+   "at": "projects/blood-city/level/build_skeleton.py:1837"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1855"
+   "at": "projects/blood-city/level/build_skeleton.py:1877"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1868"
+   "at": "projects/blood-city/level/build_skeleton.py:1896"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2011"
+   "at": "projects/blood-city/level/build_skeleton.py:2039"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2088"
+   "at": "projects/blood-city/level/build_skeleton.py:2116"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2141"
+   "at": "projects/blood-city/level/build_skeleton.py:2169"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2340"
+   "at": "projects/blood-city/level/build_skeleton.py:2368"
   }
  ],
  "finish": {
@@ -222,15 +222,15 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 484,
-  "reached": 484,
+  "space": 737,
+  "reached": 737,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 324,
+    "sectors": 543,
     "first_sector": 0
    },
    {
@@ -238,7 +238,7 @@
     "opened_by": [
      "operate mechanism sector 208"
     ],
-    "sectors": 37,
+    "sectors": 40,
     "first_sector": 179
    },
    {
@@ -246,7 +246,7 @@
     "opened_by": [
      "use switch sprite 452 (channel 109)"
     ],
-    "sectors": 34,
+    "sectors": 38,
     "first_sector": 3
    },
    {
@@ -278,7 +278,7 @@
     "opened_by": [
      "operate mechanism sector 281"
     ],
-    "sectors": 23,
+    "sectors": 32,
     "first_sector": 252
    },
    {
@@ -292,18 +292,18 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 304 (channel 103)"
+     "use switch sprite 264 (channel 108)"
     ],
-    "sectors": 9,
-    "first_sector": 94
+    "sectors": 27,
+    "first_sector": 403
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 264 (channel 108)"
+     "destroy sprite 304 (channel 103)"
     ],
     "sectors": 9,
-    "first_sector": 403
+    "first_sector": 94
    },
    {
     "round": 1,
@@ -1840,49 +1840,49 @@
    "kind": "dropped",
    "place": null,
    "says": "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:8 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg:9 (tile 795) would lie through run:sewer_w_leg:7",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_e_leg (tile 795) would lie through run:sewer_e_leg:10",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_se_corner (tile 795) would lie through run:sewer_se_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1850",
+   "owner": "projects/blood-city/level/build_skeleton.py:1872",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {

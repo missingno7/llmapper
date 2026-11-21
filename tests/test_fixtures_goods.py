@@ -131,6 +131,23 @@ class StockedCityTests(unittest.TestCase):
         self.assertGreaterEqual(rows, 6)
 
 
+def _level_floor(disk, start):
+    """A sector and every sector joined to it at the same floor, ceiling and floor tile."""
+    def key(s):
+        f = disk.sectors[s].fields
+        return int(f["floor_z"]), int(f["ceiling_z"]), int(f["floor_picnum"])
+
+    seen, todo = {start}, [start]
+    while todo:
+        f = disk.sectors[todo.pop()].fields
+        for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+            other = int(disk.walls[w].fields["next_sector"])
+            if other >= 0 and other not in seen and key(other) == key(start):
+                seen.add(other)
+                todo.append(other)
+    return sorted(seen)
+
+
 @unittest.skipUnless(CITY.exists(), "the city is not built")
 class NothingIsShutBehindACounterTests(unittest.TestCase):
     def test_every_find_and_actor_in_the_arcade_units_stands_on_the_floor(self):
@@ -152,8 +169,11 @@ class NothingIsShutBehindACounterTests(unittest.TestCase):
             seen += 1
             under = describe(disk, int(f["sector"]))
             self.assertEqual(under["kind"], "floor", (kind, x, y))
-            #: the unit's own floor, joined to its mouth round the counter
-            self.assertGreater(under["area"], 3.0, (kind, x, y))
+            #: the unit's own floor, joined to its mouth round the counter;
+            #: the light stage cuts a floor into lit pieces level with each
+            #: other, so the floor is the piece and every piece level with it
+            area = sum(describe(disk, s)["area"] for s in _level_floor(disk, int(f["sector"])))
+            self.assertGreater(area, 3.0, (kind, x, y))
         self.assertGreaterEqual(seen, 5)
 
     def test_a_counter_leaves_a_way_round_it(self):

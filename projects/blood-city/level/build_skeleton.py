@@ -82,10 +82,32 @@ COMPASS = dict(zip(RECT_FACES, range(4)))
 SEAM_ROW = (city_plan.Y_ROWST + city_plan.ROW / 2) * PU
 SEAM_MARKET = (city_plan.Y_MARKST + city_plan.STREET / 2) * PU
 SEAM_AVENUE = (city_plan.X_AVENUE + city_plan.AVENUE / 2) * PU
-#: The exterior's sun (`bloodmap.sunlight`): None (off), "facing" (outdoor
-#: walls shaded by which way they face one sun) or "full" (and their base
-#: brought to the ground's). Off until the owner chooses; see the write stage.
-SUNLIGHT = None
+#: The light the finished map is drawn in, last of all:
+#:
+#: * "model" -- the map lit as a 3D scene (`bloodmap.light_stage`): lights of
+#:   the kind each place wants, in rows (`level/lights.py`), sun, lamps and a
+#:   bounce traced, floors and long walls cut where their light changes,
+#:   every shade written, one sky. The owner walked it on 2026-11-21 ("It is
+#:   good") and asked that it not make the map harder to change: it is
+#:   derived from the finished map on every build, never written into the
+#:   layout, and "faces" or None builds the map without it.
+#: * "faces" -- each building's tone and a step by facing
+#:   (`bloodmap.sunlight.apply`), the pass before it.
+#: * None -- the shades the passes set.
+LIGHTING = "model"
+#: EXPERIMENTAL, off. The sun's shadow on the open ground
+#: (`bloodmap.sunlight.cast_shadows`), laid as overlays cut into the finished
+#: map (`bloodmap.overlays`). The owner, 2026-11-20: "keep that shadows
+#: sector splitting as separate experimental thing for now" -- it was not
+#: walked by him. Known when it was set aside: shadows fall where masses
+#: throw them (work/shadow/check_plan.py: 0 of 848 shadow points without a
+#: caster), a blind reader preferred it in 19 of 23 street views, but the
+#: city-wide sunlit shift took the sea from 38 to 24 (the harbour study's
+#: floor), and pieces break tests that find a place by one sector (the ship's
+#: deck, the jetty, a crate). The read-back gate does not run on the cut map.
+GROUND_SHADOWS = False
+#: (shadow, sunlit) floor shade offsets when it is on
+GROUND_SUN = (12, -14)
 CITY_W = city_plan.CITY_W * PU
 CITY_D = city_plan.CITY_D * PU
 
@@ -1860,6 +1882,12 @@ def main() -> int:
     ctx["manifest"]["wires"] = {"declared": circuit.apply(), "idle": _idle}
     print("wires declared:", [f"{row['name']} on {row['channel']}"
                               for row in ctx["manifest"]["wires"]["declared"]])
+    if GROUND_SHADOWS:
+        from bloodmap import sunlight as _sun_ground
+        ctx["manifest"]["ground_shadows"] = _sun_ground.cast_shadows(
+            layout, shade=GROUND_SUN[0], sunlit=GROUND_SUN[1])
+        print("ground shadows:", {k: v for k, v in ctx["manifest"]["ground_shadows"].items()
+                                   if k not in ("skipped", "shadowed")})
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
     # place, so the reference stays current.
@@ -2339,31 +2367,83 @@ def main() -> int:
           _sheet["engine_channels_wired"] or "none")
     STAGE("write",
           "the map, its sector tags, the manifest and the status")
-    # ONE SUN (owner, 2026-11-20: "there is no real direction of natural
-    # light and shadows in the city exterior"). Last, so nothing after it
-    # repaints a wall: every wall the street sees is shaded by which way it
-    # faces one sun, on a base brought to the ground's (`bloodmap.sunlight`;
-    # the campaign's towns measure wall spread 10.5-17.5 and a facing step of
-    # 8-18, `python -m tools.light_profile`).
-    #
-    # OFF until the owner chooses. A blind reader, shown each of 23 street
-    # views before and after with the order hidden, preferred the sun in 4
-    # (facades darkened to the ground) and 8 (facing only) of them: "harder to
-    # read corners, doorways and the street's far end". The owner asked for the
-    # direction; his eye decides. "full" or "facing" turns it on.
+    # THE OVERLAYS (the sun's shadows on the ground, declared on the layout
+    # before compile): cut into the finished map here, after every pass and
+    # gate has seen each region whole (`bloodmap.overlays`). Every other
+    # sector keeps its index. The cut is then held to the same gates: it may
+    # add no rule warning or error and break no mechanism's sweep.
+    _overlay_report = {}
+    if layout.overlays:
+        from bloodmap import overlays as _overlays
+        _overlay_report = _overlays.lay(disk, compiled)
+        _cut_diags = _evaluate_rules(disk)
+        _cut_by = collections.Counter((d.severity, d.code) for d in _cut_diags
+                                      if d.severity in ("error", "warning"))
+        _was_by = collections.Counter((d.severity, d.code) for d in _diags
+                                      if d.severity in ("error", "warning"))
+        _added = _cut_by - _was_by
+        _cut_swept = _swept_run(disk)
+        print("overlays laid:", {k: v for k, v in _overlay_report.items()
+                                 if k not in ("parent", "refused")},
+              "refused:", len(_overlay_report["refused"]))
+        if _added or _cut_swept["problems"]:
+            print("FAIL: the overlays added", dict(_added), "and broke",
+                  _cut_swept["problems"], "; the map was not written")
+            return 1
+        ctx["manifest"]["overlays"] = {
+            k: v for k, v in _overlay_report.items() if k != "parent"}
+    # THE LIGHT ON THE FACES (owner, 2026-11-20: "there is no real direction
+    # of natural light and shadows in the city exterior"). Last, so nothing
+    # after it repaints a wall. `bloodmap.sunlight` says what the campaign
+    # does and why the first version (one sun at 45 degrees, facades
+    # darkened to the ground) was preferred by a blind reader in only 4 and 8
+    # of 23 views; the second, at a step of 8 on facades at shade 9, was
+    # invisible. The owner asked for it rebuilt at the measured scale.
     from bloodmap import sunlight as _sun
-    if SUNLIGHT == "full":
+    _lit_parent: dict = {}
+    if LIGHTING == "model":
+        # THE LIGHT AS A SCENE (`bloodmap.light_stage`), from the finished
+        # map: which room each sector is in comes from the compiled layout,
+        # its kind of light from `lights.py`. It cuts only sectors that
+        # carry nothing but their shade, and is held to the same gates.
+        from bloodmap import light_stage as _light_stage
+        import lights as _lights
+        _region_of = {_a.sector_id: _rid for _rid, _a in sorted(compiled.allocations.items())}
+        for _piece, _parent in sorted(_overlay_report.get("parent", {}).items()):
+            _region_of[int(_piece)] = _region_of.get(int(_parent), "")
+        _was_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
+                                      if d.severity in ("error", "warning"))
+        _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light)
+        _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
+        _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
+        _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
+                                      if d.severity in ("error", "warning"))
+        _lit_added = _lit_by - _was_by
+        _lit_swept = _swept_run(disk)
+        _unnamed = _lights.unnamed(_lit["rooms"])
+        ctx["manifest"]["light_stage"] = {
+            **{k: v for k, v in _lit.items() if k != "parent"},
+            "pieces": len(_lit_parent), "default_rooms": _unnamed}
+        print("light stage:", {k: _lit[k] for k in ("sectors_before", "sectors", "walls_before",
+                                                     "walls", "sprites_before", "sprites")},
+              "rooms lit:", len(_lit["rooms"]), "by the default:", _unnamed or "none")
+        if _lit_added or _lit_swept["problems"]:
+            print("FAIL: the light stage added", dict(_lit_added), "and broke",
+                  _lit_swept["problems"], "; the map was not written")
+            return 1
+        _measured = _sun.measure(disk)
+        _light = {"before": _measured, "after": _measured}
+    elif LIGHTING == "faces":
         _light = _sun.apply(disk)
-    elif SUNLIGHT == "facing":
-        _light = _sun.apply(disk, base=_sun.measure(disk)["wall_median"])
     else:
         _measured = _sun.measure(disk)
         _light = {"before": _measured, "after": _measured}
-    ctx["manifest"]["sunlight"] = {"mode": SUNLIGHT, "azimuth": _light.get("azimuth"),
-                                   "shift": _light.get("shift"),
-                                   "before": _light["before"], "after": _light["after"]}
-    print("sunlight:", SUNLIGHT, {k: _light["after"][k] for k in (
-        "wall_sd", "by_facing", "facing_step", "ground_median")})
+    ctx["manifest"]["sunlight"] = {
+        "mode": LIGHTING,
+        **{k: v for k, v in _light.items() if k not in ("before", "after")},
+        "before": _light["before"], "after": _light["after"]}
+    print("sunlight:", LIGHTING, {k: _light["after"][k] for k in (
+        "wall_sd", "corner_equal", "corner_step", "within_building", "tile_sd")})
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")
@@ -2378,6 +2458,11 @@ def main() -> int:
         _allocation = compiled.allocations.get(_region_id)
         if _kind and _allocation is not None:
             _tags.setdefault(str(_kind), []).append(_allocation.sector_id)
+    # a sector the overlays cut off its region is still that region
+    for _piece, _parent in list(_overlay_report.get("parent", {}).items()) + sorted(_lit_parent.items()):
+        for _sectors in _tags.values():
+            if int(_parent) in _sectors:
+                _sectors.append(int(_piece))
     _tags["lit_shop"] = sorted({
         compiled.allocations[_front["shop"]].sector_id
         for _front in _glass_tags.FRONTS

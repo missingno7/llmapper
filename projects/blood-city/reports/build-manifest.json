@@ -3585,37 +3585,269 @@
     "dangling_channels": [],
     "engine_channels_wired": []
   },
-  "sunlight": {
-    "mode": null,
-    "azimuth": null,
-    "shift": null,
-    "before": {
-      "walls": 583,
-      "wall_sd": 5.1,
-      "wall_median": 9,
-      "by_facing": {
-        "N": 9,
-        "E": 9.0,
-        "S": 9.0,
-        "W": 9.0
+  "light_stage": {
+    "sectors_before": 507,
+    "walls_before": 3356,
+    "sprites_before": 952,
+    "shadow_cut": {
+      "sectors": 17,
+      "pieces": 84,
+      "slivers_merged": 1,
+      "slivers_dropped": 0,
+      "walls_split": 282,
+      "seams": 720,
+      "refused": {},
+      "looked_at": 18
+    },
+    "rooms": {
+      "region:gravesend/foundry_ward/canteen/back": {},
+      "region:gravesend/foundry_ward/canteen/main": {
+        "ceiling 795": 2
       },
-      "facing_step": 0,
-      "ground_median": 30.0,
-      "ground_sd": 8.8
+      "region:gravesend/foundry_ward/pump_station/machine_hall": {},
+      "region:gravesend/foundry_ward/works_stair/landing": {
+        "ceiling 795": 1
+      },
+      "region:gravesend/foundry_ward/works_stair/metro_bore": {
+        "ceiling 795": 1
+      },
+      "region:gravesend/foundry_ward/works_stair/passage": {
+        "ceiling 795": 2
+      },
+      "region:gravesend/foundry_ward/works_stair/top": {
+        "ceiling 795": 1
+      },
+      "region:gravesend/foundry_ward/yard_dock": {
+        "ceiling 795": 1
+      },
+      "region:gravesend/gravesend_station/concourse": {
+        "panel 2290": 3
+      },
+      "region:gravesend/gravesend_station/east_hall": {
+        "panel 2290": 3
+      },
+      "region:gravesend/gravesend_station/east_stair": {
+        "ceiling 2290": 2
+      },
+      "region:gravesend/gravesend_station/goods_store": {
+        "panel 501": 4
+      },
+      "region:gravesend/gravesend_station/hall": {},
+      "region:gravesend/gravesend_station/office": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/gravesend_station/passage": {
+        "panel 2290": 2
+      },
+      "region:gravesend/gravesend_station/ramp": {
+        "ceiling 2290": 2
+      },
+      "region:gravesend/gravesend_station/signal_box": {},
+      "region:gravesend/gravesend_station/tunnel_0": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/gravesend_station/tunnel_1": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/market_slip/gravesend_arcade/concourse": {},
+      "region:gravesend/market_slip/gravesend_arcade/service": {
+        "kept the map's own": 3
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_a": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_b": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_c": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_d": {
+        "kept the map's own": 5
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_e": {
+        "kept the map's own": 4
+      },
+      "region:gravesend/market_slip/gravesend_arcade/unit_f": {
+        "ceiling 2290": 1
+      },
+      "region:gravesend/market_slip/market_hall/supermarket": {
+        "ceiling 2290": 12
+      },
+      "region:gravesend/sewer/chambers/east_annex": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/sewer/chambers/flooded": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/sewer/chambers/pump_room": {
+        "kept the map's own": 2
+      },
+      "region:gravesend/sewer/chambers/silt_trap": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/necks/west_adit": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/sewer/ring/e_leg": {
+        "ceiling 796": 4
+      },
+      "region:gravesend/sewer/ring/ne_corner": {
+        "kept the map's own": 2
+      },
+      "region:gravesend/sewer/ring/nw_corner": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/ring/se_corner": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/ring/sw_corner": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/ring/w_leg": {
+        "panel 796": 4
+      },
+      "region:gravesend/sewer/trunk/cistern": {
+        "panel 796": 2
+      },
+      "region:gravesend/sewer/trunk/junction": {
+        "panel 796": 1
+      },
+      "region:gravesend/sewer/trunk/main_duct": {
+        "ceiling 796": 2
+      },
+      "region:gravesend/sewer/trunk/stash": {
+        "ceiling 796": 1
+      },
+      "region:gravesend/theatre_row/aldermack/auditorium": {
+        "ceiling 676": 6
+      },
+      "region:gravesend/theatre_row/aldermack/backstage": {
+        "ceiling 676": 3
+      },
+      "region:gravesend/theatre_row/aldermack/dressing": {},
+      "region:gravesend/theatre_row/aldermack/foyer": {
+        "ceiling 676": 2
+      },
+      "region:gravesend/theatre_row/parlor/gallery": {
+        "ceiling 676": 2
+      },
+      "region:gravesend/theatre_row/parlor/range": {
+        "ceiling 676": 2
+      },
+      "region:gravesend/theatre_row/pawn_shop/shop": {
+        "ceiling 2290": 2
+      },
+      "region:gravesend/theatre_row/saloon/back": {
+        "ceiling 676": 1
+      },
+      "region:gravesend/theatre_row/saloon/main": {
+        "hanging 641": 4
+      }
+    },
+    "panel_cut": {
+      "sectors": 7,
+      "pieces": 26,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 150,
+      "refused": {}
+    },
+    "floor_cut": {
+      "sectors": 28,
+      "pieces": 195,
+      "slivers_merged": 10,
+      "slivers_dropped": 8,
+      "walls_split": 630,
+      "seams": 1784,
+      "refused": {},
+      "looked_at": 29
+    },
+    "wall_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 1473,
+      "seams": 0,
+      "refused": {},
+      "walls_cut": 362,
+      "walls_refused": 15,
+      "looked_at": 941
+    },
+    "shades": {
+      "surfaces": 3777,
+      "spread_12": 26
+    },
+    "kept": 79,
+    "sectors": 760,
+    "walls": 7492,
+    "sprites": 1016,
+    "pieces": 253,
+    "default_rooms": []
+  },
+  "sunlight": {
+    "mode": "model",
+    "before": {
+      "walls": 816,
+      "wall_sd": 10.7,
+      "wall_median": 25.0,
+      "by_facing": {
+        "N": 30.0,
+        "E": 23.5,
+        "S": 25,
+        "W": 22
+      },
+      "facing_step": 8.0,
+      "ground_median": 25,
+      "ground_sd": 12.2,
+      "corners": 218,
+      "corner_equal": 0.37,
+      "corner_step": 5.0,
+      "corner_darker": {
+        "N": 0.17,
+        "E": 0.37,
+        "S": 0.14,
+        "W": 0.32
+      },
+      "within_building": {
+        "N": 0.0,
+        "E": 0.1,
+        "S": 0.0,
+        "W": 0.2
+      },
+      "tile_sd": 5.5
     },
     "after": {
-      "walls": 583,
-      "wall_sd": 5.1,
-      "wall_median": 9,
+      "walls": 816,
+      "wall_sd": 10.7,
+      "wall_median": 25.0,
       "by_facing": {
-        "N": 9,
-        "E": 9.0,
-        "S": 9.0,
-        "W": 9.0
+        "N": 30.0,
+        "E": 23.5,
+        "S": 25,
+        "W": 22
       },
-      "facing_step": 0,
-      "ground_median": 30.0,
-      "ground_sd": 8.8
+      "facing_step": 8.0,
+      "ground_median": 25,
+      "ground_sd": 12.2,
+      "corners": 218,
+      "corner_equal": 0.37,
+      "corner_step": 5.0,
+      "corner_darker": {
+        "N": 0.17,
+        "E": 0.37,
+        "S": 0.14,
+        "W": 0.32
+      },
+      "within_building": {
+        "N": 0.0,
+        "E": 0.1,
+        "S": 0.0,
+        "W": 0.2
+      },
+      "tile_sd": 5.5
     }
   },
   "stages": [

@@ -69,7 +69,8 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Authoring: surfaces and light",
      "What a surface is made of, where its texture sits, and how it is lit.",
      ["surface", "surfaces", "joins", "texture_frame", "texture_align",
-      "glass", "lettering", "lighting", "lightbomb", "light_field", "sunlight"]),
+      "glass", "lettering", "lighting", "lightbomb", "light_field", "sunlight",
+      "overlays", "shade_table", "daylight", "light_kinds", "light_stage"]),
     ("Authoring: things and mechanisms",
      "Sprites, fixtures, controls and moving parts, built from mined "
      "templates.",
@@ -134,7 +135,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
       "read_duke_signs", "duke_view"]),
     ("Checking a built map",
      "Lints and comparisons of one map against the engine or the campaign.",
-     ["sprite_fit", "light_profile", "reading_check", "unattested_values", "map_discriminator", "symmetry_diff",
+     ["sprite_fit", "light_profile", "light_sources", "reading_check", "unattested_values", "map_discriminator", "symmetry_diff",
       "inspect_mechanisms", "verify_motion", "render_conflicts",
       "vector_solver", "vector_report", "bunch_order", "build2d_core",
       "whatif", "judge_experiment"]),

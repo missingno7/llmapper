@@ -1,0 +1,722 @@
+"""Light a finished map as the 3D scene it is: lights set in rows where its rooms want them, the light traced, and floors and walls cut where it changes.
+
+The owner, 2026-11-20 and 21, over one evening of walking the city: the
+light must come from a sun and from lamps ("we should be able to map the
+light like it is 3D thing with real shadows"), a big floor whose light
+conflicts is cut where it changes, along the light's own contour and not in
+blocks; rooms are lit by lights of the kind that fits them, in regular rows
+("it looks like you are just scattering stuff on the ceiling"); sewers keep
+"more light vs shadow"; long walls fade along their length. And, of putting
+it into the build: "Lighting shouldn't make modifying and extending map
+harder."
+
+So this is a STAGE on a finished map, never a part of its source. It reads
+the map and which room each sector belongs to; it adds light sprites and
+panel sectors, cuts pieces off floors and walls, and writes every shade. It
+changes no sector's index (pieces are appended, `report["parent"]` names
+each one's original), cuts no sector that carries anything but its shade
+(`overlays.shade_only`), and is the same map every time it runs on the same
+input (the rays are fixed directions, every loop is in index order). A
+level that changes is lit again from scratch; nothing here is kept.
+
+The steps, each its own function:
+
+0. `cut_shadows` -- an open floor the sun half lights is cut along its
+   shadow's edge, one straight edge (cut by bands alone, a sharp edge
+   becomes a stack of strips).
+1. `lay_lights` -- per room, a `Rule` (its kind of light and the spacing);
+   points in rows along the room's long axis; a panel is a recessed sector
+   of a whole tile, a sprite is a clean record (`SPRITES`).
+2. `band_floors` -- a floor whose traced light spans `FLOOR_SPREAD` shades
+   is traced on a grid, smoothed, and cut along the filled contours of every
+   `FLOOR_BAND` shades, simplified to straight runs.
+3. `band_walls` -- a straight wall at least `WALL_LONG` long is traced
+   every `WALL_STEP` along and split where its light crosses a
+   `WALL_BAND`-shade band.
+4. `shade` -- the whole map traced once more and every floor, ceiling and
+   wall given its light; the sky takes one shade and its sprites the floor's.
+
+The model's terms and their calibration are `daylight`'s.
+"""
+
+from __future__ import annotations
+
+import math
+import os
+from collections import defaultdict
+from dataclasses import dataclass, field
+from typing import Any, Callable
+
+from . import daylight as D
+from . import light_kinds as K
+from . import overlays as O
+from .model import DiskObject, record_fields as _f
+
+# --- the model -----------------------------------------------------------------
+
+
+@dataclass
+class Model:
+    """The light the city is drawn in: one sun, its lamps, a bounce, and the dark underground."""
+
+    #: due west, 45 degrees up: the one azimuth that predicts the campaign's
+    #: road shade cuts (10 of 11 in E3M1; no other above 7)
+    sun: D.Sun = field(default_factory=lambda: D.Sun(270, 45))
+    weights: D.Weights = field(default_factory=lambda: D.Weights(
+        sun=2.0, lamp=1.3, dark=39.0, bright=8.0, reference=1.3, bounce=1.0,
+        indoor_ambient=0.30))
+    #: a roofed sector with its floor this deep is under the street (the sewer,
+    #: the crypt): near dark between its lights, its lamps a little stronger,
+    #: so the light lies in pools with darkness between
+    underground_z: int = 40000
+    underground_ambient: float = 0.05
+    underground_lamp: float = 1.2
+
+    def underground(self, disk, sector: int) -> bool:
+        f = _f(disk.sectors[sector])
+        return int(f["floor_z"]) >= self.underground_z and not int(f["ceiling_stat"]) & 1
+
+    def lamps(self, disk) -> list:
+        return [(x, y, z, sector, strength * (self.underground_lamp if self.underground(disk, sector) else 1.0))
+                for x, y, z, sector, strength in D.lights_of(disk)]
+
+    def prepare(self, disk) -> None:
+        self.weights.ambient_by_sector = {i: self.underground_ambient
+                                          for i in range(len(disk.sectors)) if self.underground(disk, i)}
+
+    def trace(self, disk, *, wall_spacing: int = D.WALL_SPACING, wall_max: int = D.WALL_MAX) -> list:
+        """Every surface's samples, lit by sky, sun, lamps and one bounce.
+
+        The same numbers as `daylight.light_with_bounce`, traced by
+        `WORKERS` processes: the direct light first, then the bounce
+        gathered from it.
+        """
+        self.prepare(disk)
+        saved = D.WALL_SPACING, D.WALL_MAX
+        D.WALL_SPACING, D.WALL_MAX = wall_spacing, wall_max
+        try:
+            found = D.surfaces(disk)
+        finally:
+            D.WALL_SPACING, D.WALL_MAX = saved
+        samples = [p for s in found for p in s.samples]
+        sun, lamps = self.sun.vector(), self.lamps(disk)
+        for p, (sky, sunlit, lamp) in zip(samples, _parallel(disk, sun, lamps, None, _direct_job, samples)):
+            p.sky, p.sun, p.lamp = sky, sunlit, lamp
+        cache = D.BounceCache(found, D.Weights(sun=self.weights.sun, lamp=self.weights.lamp))
+        for p, bounce in zip(samples, _parallel(disk, sun, lamps, cache.points, _bounce_job, samples)):
+            p.bounce = bounce
+        return found
+
+
+# --- tracing in parallel --------------------------------------------------------
+#
+# Each worker reads the map once and keeps its own hitscan index; a job is a
+# run of samples, and the answers come back in order, so the result is the
+# same whatever the number of workers. A small map is traced in this process.
+
+#: processes tracing at once
+WORKERS = max(1, min(24, (os.cpu_count() or 1) - 2))
+#: below this many samples the pool costs more than it saves
+PARALLEL_FROM = 4000
+#: samples per job
+CHUNK = 64
+
+_STATE: dict[str, Any] = {}
+
+
+def _start(disk_or_path, sun, lamps, cache_points) -> None:
+    from .lightbomb import ScanIndex
+
+    if isinstance(disk_or_path, str):
+        from .format import read_map
+        disk = read_map(disk_or_path)
+    else:
+        disk = disk_or_path
+    cache = None
+    if cache_points is not None:
+        cache = D.BounceCache([], D.Weights())
+        cache.points = cache_points
+    _STATE.clear()
+    _STATE.update(disk=disk, scan=ScanIndex(disk), dome=D._hemisphere(D.SKY_RAYS),
+                  sphere=D._sphere(D.GATHER_RAYS), sun=sun, lamps=lamps, cache=cache)
+
+
+def _direct_job(samples: list) -> list:
+    s = _STATE
+    out = []
+    for p in samples:
+        D.light_point(s["disk"], s["scan"], p, s["dome"], s["sun"], s["lamps"])
+        out.append((p.sky, p.sun, p.lamp))
+    return out
+
+
+def _bounce_job(samples: list) -> list:
+    s = _STATE
+    return [D.bounce_point(s["disk"], s["scan"], p, s["sphere"], s["cache"]) for p in samples]
+
+
+def _full_job(samples: list) -> list:
+    """Direct light and bounce for points that no surface's cache holds (a floor's grid)."""
+    s = _STATE
+    out = []
+    for p in samples:
+        D.light_point(s["disk"], s["scan"], p, s["dome"], s["sun"], s["lamps"])
+        p.bounce = D.bounce_point(s["disk"], s["scan"], p, s["sphere"], s["cache"])
+        out.append((p.sky, p.sun, p.lamp, p.bounce))
+    return out
+
+
+def _parallel(disk, sun, lamps, cache_points, job, samples: list) -> list:
+    chunks = [samples[i:i + CHUNK] for i in range(0, len(samples), CHUNK)]
+    if WORKERS <= 1 or len(samples) < PARALLEL_FROM:
+        _start(disk, sun, lamps, cache_points)
+        try:
+            return [r for chunk in chunks for r in job(chunk)]
+        finally:
+            _STATE.clear()
+    import tempfile
+    from concurrent.futures import ProcessPoolExecutor
+
+    from .format import write_map
+
+    with tempfile.TemporaryDirectory() as tmp:
+        path = os.path.join(tmp, "trace.MAP")
+        write_map(disk, path)
+        with ProcessPoolExecutor(WORKERS, initializer=_start,
+                                 initargs=(path, sun, lamps, cache_points)) as pool:
+            return [r for part in pool.map(job, chunks) for r in part]
+
+
+# --- 1. the lights --------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class Rule:
+    """How a room is lit: the form, its tile, and the spacing along and across the room."""
+
+    form: str            # "panel", "ceiling", "hanging" or "pairs" (standing, along the two long walls)
+    tile: int
+    along: int
+    across: int = 0
+
+
+#: a light sprite as the campaign sets it down (its first use, E1M1/E1M2/E1M4),
+#: without what that use was wired to: (cstat, shade, x_repeat, y_repeat).
+#: The first version copied those sprites whole, and 19 panels in the city
+#: became toggle switches sending on the campaign's channel 114.
+SPRITES: dict[int, tuple[int, int, int, int]] = {
+    795: (160, -8, 48, 48),
+    676: (160, -128, 40, 40),
+    641: (129, 0, 64, 64),
+    560: (385, -128, 64, 64),
+    580: (384, -128, 64, 64),
+    2290: (160, -8, 64, 64),
+    796: (160, -128, 64, 48),
+}
+#: no light nearer a wall than this (plan units)
+MARGIN = 768
+#: a panel is recessed this far above its room's ceiling (the campaign: 1024)
+RECESS = 1024
+#: a room is a roofed space at least this high somewhere, and this large
+ROOM_HEIGHT = 12000
+ROOM_AREA = 0.5e6
+#: the lowest a roofed sector may be to count toward a room at all
+LOW = 4096
+
+
+def rooms_by_region(disk, region_of: dict[int, str], skip: frozenset = frozenset()) -> dict[str, list[int]]:
+    """Roofed sectors grouped into rooms: a region and the regions named under it that are its furniture.
+
+    A light hangs above a pew: a region under another (`a/b` under `a`) is
+    folded into it when `a` has the height of a room.
+    """
+    by_region: dict[str, list[int]] = defaultdict(list)
+    for i, sector in enumerate(disk.sectors):
+        f = _f(sector)
+        if i in skip or int(f["ceiling_stat"]) & 1 or int(f["floor_z"]) - int(f["ceiling_z"]) < LOW:
+            continue
+        by_region[region_of.get(i, "")].append(i)
+
+    def tall(secs):
+        return any(int(_f(disk.sectors[i])["floor_z"]) - int(_f(disk.sectors[i])["ceiling_z"]) >= ROOM_HEIGHT
+                   for i in secs)
+
+    keys = sorted(by_region, key=lambda k: (len(k), k))
+    rooms: dict[str, list[int]] = defaultdict(list)
+    for region in keys:
+        home = next((k for k in keys if k != region and region.startswith(k + "/") and tall(by_region[k])), region)
+        rooms[home].extend(by_region[region])
+    return {k: sorted(v) for k, v in sorted(rooms.items())}
+
+
+def _grid(poly, along: int, across: int, margin: int):
+    """Points in rows along the polygon's long axis, evenly spaced and centred."""
+    minx, miny, maxx, maxy = poly.bounds
+    long_x = (maxx - minx) >= (maxy - miny)
+    length = (maxx - minx) if long_x else (maxy - miny)
+    width = (maxy - miny) if long_x else (maxx - minx)
+    n = max(1, int(round((length - 2 * margin) / along)) + 1) if length > 2 * margin else 1
+    m = max(1, int(round((width - 2 * margin) / across)) + 1) if across and width > 2 * margin + across else 1
+    pts = []
+    for i in range(n):
+        t = (i + 0.5) / n
+        for j in range(m):
+            u = (j + 0.5) / m
+            x = minx + (t * (maxx - minx) if long_x else u * (maxx - minx))
+            y = miny + (u * (maxy - miny) if long_x else t * (maxy - miny))
+            pts.append((x, y))
+    return pts, long_x
+
+
+def _add_sprite(disk, art, tile: int, x: float, y: float, sector: int, form: str) -> bool:
+    from .placement import drawn_extent
+
+    cstat, shade, xr, yr = SPRITES[tile]
+    sec = _f(disk.sectors[sector])
+    f = {"x": int(x), "y": int(y), "z": 0, "cstat": cstat, "picnum": tile, "shade": shade, "pal": 0,
+         "clipdist": 32, "detail": 0, "x_repeat": xr, "y_repeat": yr, "x_offset": 0, "y_offset": 0,
+         "sector": int(sector), "status": 0, "angle": 0, "owner": -1, "index": len(disk.sprites),
+         "y_velocity": 0, "initial_type": 0, "type": 0, "flags": 0, "extra": -1}
+    if form == "ceiling":
+        f["cstat"] = 160                                  # flat on the ceiling, centred
+        f["z"] = int(sec["ceiling_z"]) + 64
+        f["shade"] = min(shade, -16)
+    else:
+        a = art[tile]
+        top, bottom = drawn_extent(a.height, int(a.animation["yofs"]), yr, cstat, 0)
+        if form == "hanging":
+            f["z"] = int(sec["ceiling_z"]) - top
+            if f["z"] + bottom > int(sec["floor_z"]) - LOW:
+                return False
+        else:                                             # standing on the floor
+            f["z"] = int(sec["floor_z"]) - bottom
+            if f["z"] + top < int(sec["ceiling_z"]) + 512:
+                return False
+    disk.sprites.append(DiskObject(fields=f))
+    return True
+
+
+def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule], art=None) -> dict[str, Any]:
+    """Light every room by its rule; a room that has the map's own lights keeps them and is filled up to its count."""
+    from shapely.geometry import Point, Polygon, box
+    from shapely.ops import unary_union
+
+    from .sector_geom import outline_and_holes
+
+    if art is None:
+        from .shade_table import _art
+        art = _art()
+    S = [_f(s) for s in disk.sectors]
+
+    def height(i):
+        return int(S[i]["floor_z"]) - int(S[i]["ceiling_z"])
+
+    room_of = {i: name for name, secs in rooms.items() for i in secs}
+    existing: dict[str, int] = defaultdict(int)
+    for sp in disk.sprites:
+        f = _f(sp)
+        if int(f["picnum"]) in K.KINDS and not int(f["cstat"]) & 0x8000 and int(f["sector"]) in room_of:
+            existing[room_of[int(f["sector"])]] += 1
+    polys = {}
+    for secs in rooms.values():
+        for i in secs:
+            try:
+                o, h = outline_and_holes(disk, i)
+                polys[i] = Polygon(o, h).buffer(0)
+            except Exception:
+                pass
+
+    placed: dict[str, dict[str, int]] = {}
+    panels: dict[int, list] = defaultdict(list)
+    for name, secs in sorted(rooms.items()):
+        room = unary_union([polys[i] for i in secs if i in polys])
+        if room.is_empty or room.area < ROOM_AREA or not any(height(i) >= ROOM_HEIGHT for i in secs):
+            continue
+        rule = rule_for(name)
+        inner = room.buffer(-MARGIN, join_style=2)
+        if inner.is_empty:
+            continue
+        got: dict[str, int] = defaultdict(int)
+        if rule.form == "pairs":                         # along the two long walls, in matching pairs
+            minx, miny, maxx, maxy = room.bounds
+            pts, long_x = _grid(room, rule.along, 0, MARGIN)
+            for x, y in pts:
+                for side in (0, 1):
+                    px, py = ((x, miny + 512 if side == 0 else maxy - 512) if long_x
+                              else (minx + 512 if side == 0 else maxx - 512, y))
+                    sec = next((i for i in secs if i in polys and polys[i].buffer(-64).contains(Point(px, py))), None)
+                    if sec is not None and _add_sprite(disk, art, rule.tile, px, py, sec, "standing"):
+                        got[f"{rule.tile} pair"] += 1
+            placed[name] = dict(got)
+            continue
+        pts, long_x = _grid(room, rule.along, rule.across, MARGIN)
+        if len(pts) <= existing[name]:
+            placed[name] = {"kept the map's own": existing[name]}
+            continue
+        tall = [i for i in secs if i in polys and height(i) >= ROOM_HEIGHT]
+        spots = []
+        for x, y in pts:
+            p = Point(x, y)
+            if not inner.contains(p):
+                continue
+            sec = next((i for i in tall if polys[i].contains(p)), None)
+            if sec is None:                               # over furniture: from the nearest ceiling of the room
+                sec = min(tall, key=lambda i: (polys[i].distance(p), i), default=None)
+                if sec is not None and polys[sec].distance(p) > 256:
+                    sec = None
+            if sec is not None:
+                spots.append((x, y, sec))
+        if rule.form == "panel":
+            # one kind per room: panels only if every spot takes a whole panel
+            w, l = K.KINDS[rule.tile].panel
+            wx, wy = (l, w) if long_x else (w, l)        # along the room's long axis
+            rects = []
+            for x, y, sec in spots:
+                x0 = round((x - wx / 2) / wx) * wx         # whole tiles on the texture grid
+                y0 = round((y - wy / 2) / wy) * wy
+                rect = box(x0, y0, x0 + wx, y0 + wy)
+                ok = (polys[sec].buffer(-256, join_style=2).contains(rect) and O.shade_only(disk.sectors[sec])
+                      and not (int(S[sec]["floor_stat"]) | int(S[sec]["ceiling_stat"])) & 2
+                      and height(sec) >= 16960 + RECESS)
+                rects.append((rect, sec) if ok else None)
+            if rects and all(rects):
+                for rect, sec in rects:
+                    panels[sec].append((rect, rule.tile, long_x))
+                    got[f"panel {rule.tile}"] += 1
+                placed[name] = dict(got)
+                continue
+            tile = rule.tile if rule.tile in SPRITES else 795
+            for x, y, sec in spots:
+                if _add_sprite(disk, art, tile, x, y, sec, "ceiling"):
+                    got[f"ceiling {tile}"] += 1
+        elif rule.form == "hanging":
+            # one kind per room: chain lamps only if every spot has the height
+            cstat, _, _, yr = SPRITES[rule.tile]
+            a = art[rule.tile]
+            from .placement import drawn_extent
+            top, bottom = drawn_extent(a.height, int(a.animation["yofs"]), yr, cstat, 0)
+            fits = all(int(S[sec]["ceiling_z"]) - top + bottom <= int(S[sec]["floor_z"]) - LOW for _, _, sec in spots)
+            tile, form = (rule.tile, "hanging") if fits else (676, "ceiling")
+            for x, y, sec in spots:
+                if _add_sprite(disk, art, tile, x, y, sec, form):
+                    got[f"{form} {tile}"] += 1
+        else:
+            for x, y, sec in spots:
+                if _add_sprite(disk, art, rule.tile, x, y, sec, "ceiling"):
+                    got[f"ceiling {rule.tile}"] += 1
+        placed[name] = dict(got)
+
+    jobs = {}
+    for sec, items in sorted(panels.items()):
+        specs = []
+        for k, (rect, tile, swapped) in enumerate(items):
+            stat = int(S[sec]["ceiling_stat"]) & ~(64 | 4)
+            if swapped:
+                stat |= 4
+            specs.append(O.OverlaySpec(
+                overlay_id=f"panel{k}:{sec}", region_id=str(sec),
+                shapes=((tuple(map(tuple, rect.exterior.coords[:-1])), ()),),
+                surface={"ceiling_picnum": tile, "ceiling_shade": 0, "ceiling_pal": 0, "ceiling_stat": stat,
+                         "ceiling_x_panning": 0, "ceiling_y_panning": 0,
+                         "ceiling_z": int(S[sec]["ceiling_z"]) - RECESS}))
+        jobs[sec] = specs
+    cut = O.cut_sectors(disk, jobs)
+    return {"rooms": placed, "cut": cut}
+
+
+# --- 0. the sun's shadows -------------------------------------------------------
+
+#: an open floor is cut along the sun's shadow where its light spans this many shades
+SHADOW_SPREAD = 16
+#: whether the sun reaches is looked at on a grid this fine (plan units)
+SHADOW_CELL = 128
+#: no shadow piece smaller than this (plan units squared)
+SHADOW_PIECE = 512 * 512
+
+
+def _sun_job(points: list) -> list:
+    s = _STATE
+    return [D._sky_hit(s["disk"], D._trace(s["disk"], s["scan"], p, s["sun"])) for p in points]
+
+
+def cut_shadows(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Cut every open floor the sun half lights along the edge of its shadow: one straight edge, before any band.
+
+    A shadow's edge is sharp; cut by light bands alone it becomes a stack of
+    thin strips. With the sun due west the edges run along the axes, so the
+    shadowed cells are joined and closed square.
+    """
+    from shapely import set_precision
+    from shapely.geometry import Point, Polygon, box
+    from shapely.ops import unary_union
+
+    from .sector_geom import outline_and_holes
+
+    found = model.trace(disk)
+    rows = {(r["kind"], r["index"]): r for r in D.collapse(found, model.weights)}
+    grids = []
+    for s in found:
+        if s.kind != "floor" or s.index in keep:
+            continue
+        f = _f(disk.sectors[s.index])
+        if (not int(f["ceiling_stat"]) & 1
+                or rows.get(("floor", s.index), {}).get("spread", 0) < SHADOW_SPREAD
+                or not O.shade_only(disk.sectors[s.index]) or (int(f["floor_stat"]) | int(f["ceiling_stat"])) & 2):
+            continue
+        o, h = outline_and_holes(disk, s.index)
+        poly = Polygon(o, h)
+        if poly.area < FLOOR_MIN_AREA:
+            continue
+        minx, miny, maxx, maxy = poly.bounds
+        pts = []
+        y = miny + SHADOW_CELL / 2
+        while y < maxy:
+            x = minx + SHADOW_CELL / 2
+            while x < maxx:
+                if poly.contains(Point(x, y)):
+                    pts.append(D.Sample(x, y, int(f["floor_z"]) - 64, s.index, (0.0, 0.0, -1.0)))
+                x += SHADOW_CELL
+            y += SHADOW_CELL
+        grids.append((s.index, poly, pts))
+    flat = [p for _, _, pts in grids for p in pts]
+    lit = iter(_parallel(disk, model.sun.vector(), [], None, _sun_job, flat))
+    jobs = {}
+    for sector, poly, pts in grids:
+        reached = [next(lit) for _ in pts]
+        cells = [box(p.x - SHADOW_CELL / 2, p.y - SHADOW_CELL / 2, p.x + SHADOW_CELL / 2, p.y + SHADOW_CELL / 2)
+                 for p, r in zip(pts, reached) if not r]
+        if not cells or all(not r for r in reached):
+            continue
+        shadow = unary_union(cells)
+        # close small gaps and open small notches, keeping corners square
+        shadow = shadow.buffer(SHADOW_CELL, join_style=2).buffer(-2 * SHADOW_CELL, join_style=2) \
+            .buffer(SHADOW_CELL, join_style=2)
+        shadow = set_precision(shadow.intersection(poly), 1.0)
+        parts = [g for g in getattr(shadow, "geoms", [shadow]) if g.geom_type == "Polygon" and g.area > SHADOW_PIECE]
+        if parts:
+            jobs[sector] = [O.OverlaySpec(
+                overlay_id=f"shadow:{sector}", region_id=str(sector),
+                shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])),
+                              tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts))]
+    cut = O.cut_sectors(disk, jobs)
+    cut["looked_at"] = len(grids)
+    return cut
+
+
+# --- 2. floors ------------------------------------------------------------------
+
+#: a floor is cut where its light spans at least this many shades ...
+FLOOR_SPREAD = 12
+#: ... into bands this many shades apart
+FLOOR_BAND = 8
+#: traced on a grid this fine (plan units)
+FLOOR_CELL = 192
+#: the field smoothed by this many cells: a few dozen rays a point are noisy
+FLOOR_SMOOTH = 1.5
+#: a band's edge simplified to straight runs within this (plan units); the
+#: owner of the first, cell-joined version: "unnecessary blocky where it can
+#: be connected with 1 line"
+FLOOR_SIMPLIFY = 256
+#: a band piece smaller than this is not cut (plan units squared)
+FLOOR_PIECE = 512 * 512
+#: a floor smaller than this is one light, cut neither by bands nor by a
+#: shadow: a shop unit of three square metres shows nothing by being cut, and
+#: what stands on it would stand on a sliver of it
+FLOOR_MIN_AREA = 2048 * 2048
+
+
+def band_floors(disk, model: Model, found: list | None = None, keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Cut every floor whose light spans many shades along the contours of that light."""
+    import contourpy
+    import numpy as np
+    from scipy import ndimage
+    from shapely import set_precision
+    from shapely.geometry import Point, Polygon
+    from shapely.ops import unary_union
+
+    from .sector_geom import outline_and_holes
+
+    if found is None:
+        found = model.trace(disk)
+    W = model.weights
+    rows = {(r["kind"], r["index"]): r for r in D.collapse(found, W)}
+    cache = D.BounceCache(found, D.Weights(sun=W.sun, lamp=W.lamp))
+    grids = []
+    for s in found:
+        if (s.kind != "floor" or s.index in keep
+                or rows.get(("floor", s.index), {}).get("spread", 0) < FLOOR_SPREAD):
+            continue
+        f = _f(disk.sectors[s.index])
+        if not O.shade_only(disk.sectors[s.index]) or (int(f["floor_stat"]) | int(f["ceiling_stat"])) & 2:
+            continue                                  # the cutter would refuse it: do not trace it
+        o, h = outline_and_holes(disk, s.index)
+        poly = Polygon(o, h)
+        if poly.area < FLOOR_MIN_AREA:
+            continue
+        minx, miny, maxx, maxy = poly.bounds
+        xs = np.arange(minx + FLOOR_CELL / 2, maxx, FLOOR_CELL)
+        ys = np.arange(miny + FLOOR_CELL / 2, maxy, FLOOR_CELL)
+        if len(xs) < 2 or len(ys) < 2:
+            continue
+        indoor = not int(f["ceiling_stat"]) & 1
+        cells = [(j, i, D.Sample(float(x), float(y), int(f["floor_z"]) - 64, s.index, (0.0, 0.0, -1.0),
+                                 indoor=indoor))
+                 for j, y in enumerate(ys) for i, x in enumerate(xs) if poly.contains(Point(x, y))]
+        grids.append((s.index, poly, xs, ys, cells))
+    flat = [p for *_, cells in grids for _, _, p in cells]
+    traced = iter(_parallel(disk, model.sun.vector(), model.lamps(disk), cache.points, _full_job, flat))
+    jobs: dict[int, list] = {}
+    for sector, poly, xs, ys, cells in grids:
+        z = np.full((len(ys), len(xs)), np.nan)
+        for j, i, p in cells:
+            p.sky, p.sun, p.lamp, p.bounce = next(traced)
+            z[j, i] = W.shade(W.total(p))
+        inside = ~np.isnan(z)
+        if inside.sum() < 4:
+            continue
+        # outside the floor, the nearest value inside: the contours do not bend to the walls
+        _, (jj, ii) = ndimage.distance_transform_edt(~inside, return_indices=True)
+        z = ndimage.gaussian_filter(z[jj, ii], FLOOR_SMOOTH)
+        lo, hi = int(np.floor(z.min() / FLOOR_BAND)), int(np.ceil(z.max() / FLOOR_BAND))
+        thresholds = [t for t in (b * FLOOR_BAND + FLOOR_BAND / 2 for b in range(lo, hi))
+                      if float(z.min()) < t < float(z.max())]
+        gen = contourpy.contour_generator(xs, ys, z, fill_type=contourpy.FillType.OuterOffset)
+        specs = []
+        for t in sorted(thresholds, reverse=True):     # darkest threshold (largest region) first
+            points, offsets = gen.filled(float(z.min()) - 1.0, t)
+            polys = []
+            for pts, offs in zip(points, offsets):
+                rings = [pts[offs[k]:offs[k + 1]] for k in range(len(offs) - 1)]
+                if rings:
+                    g = Polygon(rings[0], rings[1:])
+                    if g.is_valid and g.area > 0:
+                        polys.append(g)
+            if not polys:
+                continue
+            region = set_precision(unary_union(polys).simplify(FLOOR_SIMPLIFY, preserve_topology=True)
+                                   .intersection(poly), 1.0)
+            parts = [g for g in getattr(region, "geoms", [region])
+                     if g.geom_type == "Polygon" and g.area > FLOOR_PIECE]
+            if parts and sum(g.area for g in parts) < poly.area * 0.97:
+                specs.append(O.OverlaySpec(
+                    overlay_id=f"band{t:.0f}:{sector}", region_id=str(sector),
+                    shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])),
+                                  tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts)))
+        if specs:
+            jobs[sector] = specs
+    cut = O.cut_sectors(disk, jobs)
+    cut["looked_at"] = len(grids)
+    return cut
+
+
+# --- 3. walls -------------------------------------------------------------------
+
+#: a straight, axis-aligned wall at least this long is traced along its length
+WALL_LONG = 1024
+#: every this far (plan units)
+WALL_STEP = 256
+#: and split where its light crosses a band this many shades wide
+WALL_BAND = 6
+#: no piece shorter than this
+WALL_MIN_PART = 384
+
+
+def band_walls(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Split long walls where their light changes along them."""
+    import numpy as np
+
+    found = model.trace(disk, wall_spacing=WALL_STEP, wall_max=256)
+    W = model.weights
+    points: dict[int, list] = {}
+    looked = 0
+    for s in found:
+        if s.kind != "wall" or not s.samples or s.sector in keep:
+            continue
+        f = _f(disk.walls[s.index])
+        if int(f["next_sector"]) in keep:
+            continue
+        n = _f(disk.walls[int(f["point2"])])
+        ax, ay, bx, by = int(f["x"]), int(f["y"]), int(n["x"]), int(n["y"])
+        length = math.hypot(bx - ax, by - ay)
+        if length < WALL_LONG or (ax != bx and ay != by):
+            continue
+        looked += 1
+        along: dict[float, list] = defaultdict(list)       # the light at each position, heights averaged
+        for p in s.samples:
+            t = ((p.x - ax) * (bx - ax) + (p.y - ay) * (by - ay)) / (length * length)
+            along[round(t, 4)].append(W.shade(W.total(p)))
+        ts = sorted(along)
+        shades = np.array([np.mean(along[t]) for t in ts])
+        if len(shades) >= 3:
+            shades = np.convolve(np.pad(shades, 1, mode="edge"), np.ones(3) / 3, mode="valid")
+        bands = np.round(shades / WALL_BAND).astype(int)
+        cuts: list[float] = []
+        for k in range(1, len(ts)):
+            if bands[k] != bands[k - 1]:
+                d = (ts[k - 1] + ts[k]) / 2 * length
+                if d < WALL_MIN_PART or length - d < WALL_MIN_PART or (cuts and d - cuts[-1] < WALL_MIN_PART):
+                    continue
+                cuts.append(d)
+        if cuts:
+            points[s.index] = [((ax, int(round(ay + (by - ay) * d / length))) if ax == bx
+                                else (int(round(ax + (bx - ax) * d / length)), ay)) for d in cuts]
+    cut = O.cut_sectors(disk, {}, wall_points=points)
+    cut["looked_at"] = looked
+    return cut
+
+
+# --- 4. the shades --------------------------------------------------------------
+
+
+def shade(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Trace the map and write every floor, ceiling and wall its light (but those of `keep`'s sectors); one sky shade."""
+    found = model.trace(disk)
+    rows = [r for r in D.collapse(found, model.weights) if r["sector"] not in keep]
+    D.apply(disk, rows)
+    return {"surfaces": len(rows), "spread_12": sum(1 for r in rows if r["kind"] == "floor" and r["spread"] >= 12)}
+
+
+# --- the stage ------------------------------------------------------------------
+
+
+def _chain(parent: dict, cut: dict) -> None:
+    for piece, source in cut.get("parent", {}).items():
+        source = int(source)
+        parent[int(piece)] = parent.get(source, source)
+
+
+def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model: Model | None = None,
+        *, keep: Callable[[str], bool] = lambda region: False, art=None) -> dict[str, Any]:
+    """Light a finished map: the sun's shadows, its lights, its floor bands, its wall bands, then every shade.
+
+    A sector whose region `keep` names keeps the light its own module gave
+    it: it is not cut, not lit in rows, and its shades are not written. It
+    still stands in the scene, and its lamps still light the rest.
+    """
+    model = model or Model()
+    kept = frozenset(i for i, region in region_of.items() if keep(region))
+    report: dict[str, Any] = {"sectors_before": len(disk.sectors), "walls_before": len(disk.walls),
+                              "sprites_before": len(disk.sprites)}
+    parent: dict[int, int] = {}
+    shadows = cut_shadows(disk, model, kept)
+    _chain(parent, shadows)
+    report["shadow_cut"] = {k: v for k, v in shadows.items() if k != "parent"}
+    # the pieces of a room are still that room
+    region_of = dict(region_of)
+    for piece, source in parent.items():
+        region_of[piece] = region_of.get(source, "")
+    rooms = rooms_by_region(disk, region_of, kept)
+    laid = lay_lights(disk, rooms, rule_for, art)
+    _chain(parent, laid["cut"])
+    report["rooms"] = laid["rooms"]
+    report["panel_cut"] = {k: v for k, v in laid["cut"].items() if k != "parent"}
+    floors = band_floors(disk, model, keep=kept)
+    _chain(parent, floors)
+    report["floor_cut"] = {k: v for k, v in floors.items() if k != "parent"}
+    walls = band_walls(disk, model, kept)
+    report["wall_cut"] = {k: v for k, v in walls.items() if k != "parent"}
+    report["shades"] = shade(disk, model, kept)
+    report["kept"] = len(kept)
+    report["parent"] = dict(sorted(parent.items()))
+    report.update(sectors=len(disk.sectors), walls=len(disk.walls), sprites=len(disk.sprites))
+    return report
