@@ -1,4 +1,4 @@
-"""The outdoor light of maps, against the campaign's town maps: spread, facing, ground.
+"""The outdoor light of maps, against the campaign's town maps: corners, facing within a building, tone, ground.
 
 `bloodmap.sunlight.measure` over a set of maps, one line each, with the
 campaign's own range printed first so a number is read against something.
@@ -34,10 +34,12 @@ def profile(name: str) -> dict:
 
 
 def line(name: str, row: dict) -> str:
-    by = row["by_facing"]
-    return (f"{name:28s} walls {row['walls']:5d}  wall sd {row['wall_sd']:5.1f}  "
-            f"by facing N/E/S/W {by['N']}/{by['E']}/{by['S']}/{by['W']}  "
-            f"step {row['facing_step']}  ground {row['ground_median']} (sd {row['ground_sd']})")
+    wb, cd = row["within_building"], row["corner_darker"]
+    return (f"{name:24s} faces {row['walls']:4d}  sd {row['wall_sd']:4.1f}  "
+            f"corners equal {row['corner_equal']} step {row['corner_step']}  "
+            f"darker at a corner N/E/S/W {cd['N']}/{cd['E']}/{cd['S']}/{cd['W']}  "
+            f"in a building N/E/S/W {wb['N']}/{wb['E']}/{wb['S']}/{wb['W']}  "
+            f"one tile sd {row['tile_sd']}  walls {row['wall_median']} on ground {row['ground_median']}")
 
 
 def main(argv=None) -> int:
@@ -49,9 +51,6 @@ def main(argv=None) -> int:
     for name in TOWNS:
         out[name] = profile(name)
         print(line(name, out[name]))
-    sds = [out[n]["wall_sd"] for n in TOWNS]
-    steps = [out[n]["facing_step"] for n in TOWNS]
-    print(f"{'campaign towns':28s} wall sd {min(sds)}..{max(sds)}, facing step {min(steps)}..{max(steps)}")
     for name in args.maps:
         out[name] = profile(name)
         print(line(pathlib.Path(name).name, out[name]))

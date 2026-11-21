@@ -36,6 +36,11 @@ with no tolerance anywhere. A rectangle is four cuts. Anything this cannot
 resolve -- a concave region, a cut that would leave a sliver -- is refused
 loudly, because "insert a sector where there is room" is the idiom being
 replaced and silently declining to cut is the same failure wearing a hat.
+
+This module serves the street-model pipeline (`pipeline`, `city`). The city
+that `projects/blood-city` builds through `PlanarLayout` lays its floor
+patches -- the sun's shadows among them -- with `bloodmap.overlays`, which
+cuts the finished map after every pass has seen each region whole.
 """
 
 from __future__ import annotations

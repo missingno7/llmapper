@@ -809,6 +809,10 @@ class PlanarLayout:
         #: heights, neither of which a region declaration has. A hook must not
         #: change what walls or sectors exist, only how they are dressed.
         self.post_compile: list[Any] = []
+        #: What the floor looks like over part of a region: shadows, worn
+        #: paving, a rug. Not spaces: cut into the finished map. See
+        #: `add_overlay` and `bloodmap.overlays`.
+        self.overlays: dict[str, Any] = {}
 
     def add_region(
         self,
@@ -1207,6 +1211,44 @@ class PlanarLayout:
             role=role, a1=a1, a2=a2, **kwargs,
         )
         return connection_id
+
+    def add_overlay(self, overlay_id: str, region_id: str,
+                    shapes: Iterable[Any], *, floor_shade_offset: int = 0,
+                    note: str = "", **surface: Any) -> str:
+        """Lay a patch over part of a region's floor, without touching the space.
+
+        `shapes` is one ring, or a list of rings, or of (ring, holes) pairs;
+        anything outside the region is clipped away. `floor_shade_offset` is
+        added to whatever the lamps made of the floor (a shadow is darker
+        than the lit ground beside it); `surface` sets floor fields
+        (`floor_picnum`, `floor_shade`, `floor_pal` ...) on the patch.
+        Compile does not touch it: `bloodmap.overlays.lay` cuts it into the
+        finished map, after every pass has seen the region whole.
+        """
+        from .overlays import OverlaySpec, SURFACE_FIELDS
+
+        if overlay_id in self.overlays:
+            raise PlanarLayoutError(f"duplicate overlay id {overlay_id!r}")
+        if region_id not in self.regions:
+            raise PlanarLayoutError(f"overlay {overlay_id!r} on unknown region {region_id!r}")
+        unknown = set(surface) - set(SURFACE_FIELDS)
+        if unknown:
+            raise PlanarLayoutError(
+                f"overlay {overlay_id!r}: an overlay sets only how a floor or ceiling looks, not {sorted(unknown)}")
+        items = list(shapes)
+        if items and isinstance(items[0][0], (int, float)):
+            items = [items]                      # one bare ring
+        normal = []
+        for item in items:
+            if len(item) == 2 and isinstance(item[0][0], (tuple, list)):
+                normal.append((tuple(map(tuple, item[0])),
+                               tuple(tuple(map(tuple, h)) for h in item[1])))
+            else:
+                normal.append((tuple(map(tuple, item)), ()))
+        self.overlays[overlay_id] = OverlaySpec(
+            overlay_id=overlay_id, region_id=region_id, shapes=tuple(normal),
+            floor_shade_offset=int(floor_shade_offset), surface=dict(surface), note=note)
+        return overlay_id
 
     def add_partition(
         self,
