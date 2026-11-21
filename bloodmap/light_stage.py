@@ -62,14 +62,17 @@ class Model:
     #: due west, 45 degrees up: the one azimuth that predicts the campaign's
     #: road shade cuts (10 of 11 in E3M1; no other above 7)
     sun: D.Sun = field(default_factory=lambda: D.Sun(270, 45))
-    #: lamp 0.8: until 2026-11-21 a lamp in the air lit nothing (`daylight`'s
-    #: reach test), and 1.3 was set with only lamps on walls and ceilings
-    #: lighting; with every lamp lighting, 0.8 gives the rooms the light the
-    #: owner walked and approved (floor shades p10/p50/p90 4/21/30 against
-    #: 4/19/31; 1.3 gives 0/13/28)
+    #: lamp 2.4 at `daylight.LAMP_POWER` 4 with a base light indoors of 0.10:
+    #: tight pools, bright under a light and dark between (the owner,
+    #: 2026-11-21: "make like the lighting like more visible", and of the
+    #: frames: "it looks good"). Each view's light-to-dark spread grew (the
+    #: concourse 54 to 62, the chancel 47 to 62) with the rooms about as
+    #: bright, and the streets as they were. (History: 1.3 with only lamps on
+    #: walls and ceilings lighting; 0.8 once every lamp lit, at power 2 and
+    #: base light 0.30.)
     weights: D.Weights = field(default_factory=lambda: D.Weights(
-        sun=2.0, lamp=0.8, dark=39.0, bright=8.0, reference=1.3, bounce=1.0,
-        indoor_ambient=0.30))
+        sun=2.0, lamp=2.4, dark=39.0, bright=8.0, reference=1.3, bounce=1.0,
+        indoor_ambient=0.10))
     #: a roofed sector with its floor this deep is under the street (the sewer,
     #: the crypt): near dark between its lights, its lamps a little stronger,
     #: so the light lies in pools with darkness between
@@ -133,7 +136,7 @@ CHUNK = 64
 _STATE: dict[str, Any] = {}
 #: `daylight`'s settings a worker must share with this process: a worker
 #: imports the module afresh, and a value set here would not reach it
-TUNABLES = ("LAMP_CORE", "LAMP_SURFACE", "LAMP_REACH", "SKY_RAYS", "GATHER_RAYS", "REFLECTANCE")
+TUNABLES = ("LAMP_CORE", "LAMP_POWER", "LAMP_PIVOT", "LAMP_SURFACE", "LAMP_REACH", "SKY_RAYS", "GATHER_RAYS", "REFLECTANCE")
 
 
 def _start(disk_or_path, sun, lamps, cache_points, tunables=None) -> None:
@@ -527,12 +530,19 @@ def cut_shadows(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, 
 
 #: a floor is cut where its light spans at least this many shades ...
 FLOOR_SPREAD = 12
-#: ... into bands this many shades apart
-FLOOR_BAND = 8
+#: ... into bands this many shades apart: the campaign's own step between
+#: two floors cut only for light is 10 to 14 (E1M4 10, E3M1 12, E3M2 14,
+#: E3M5 14.5; `work/lightstage/budget.py`); at 6 the city cut three times as
+#: often for steps nobody sees
+FLOOR_BAND = 12
+#: a band piece is kept only if its light differs from the piece around it by
+#: at least this many shades, and it is at least `FLOOR_PIECE` in area: a cut
+#: must show (409 of the fine cut's 3,291 seams ended within a shade)
+FLOOR_SHOW = 6
 #: traced on a grid this fine (plan units)
-FLOOR_CELL = 192
+FLOOR_CELL = 128
 #: the field smoothed by this many cells: a few dozen rays a point are noisy
-FLOOR_SMOOTH = 1.5
+FLOOR_SMOOTH = 1.0
 #: a band's edge simplified to straight runs within this (plan units); the
 #: owner of the first, cell-joined version: "unnecessary blocky where it can
 #: be connected with 1 line"
@@ -610,6 +620,7 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
         for j, i, p in cells:
             p.sky, p.sun, p.lamp, p.bounce = next(traced)
             z[j, i] = W.shade(W.total(p))
+        traced_cells = [(p.x, p.y, float(z[j, i])) for j, i, p in cells]
         inside = ~np.isnan(z)
         if inside.sum() < 4:
             continue
@@ -620,7 +631,7 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
         thresholds = [t for t in (b * FLOOR_BAND + FLOOR_BAND / 2 for b in range(lo, hi))
                       if float(z.min()) < t < float(z.max())]
         gen = contourpy.contour_generator(xs, ys, z, fill_type=contourpy.FillType.OuterOffset)
-        specs = []
+        levels = []
         for t in sorted(thresholds, reverse=True):     # darkest threshold (largest region) first
             points, offsets = gen.filled(float(z.min()) - 1.0, t)
             polys = []
@@ -637,15 +648,54 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
             parts = [g for g in getattr(region, "geoms", [region])
                      if g.geom_type == "Polygon" and g.area > FLOOR_PIECE]
             if parts and sum(g.area for g in parts) < poly.area * 0.97:
-                specs.append(O.OverlaySpec(
-                    overlay_id=f"band{t:.0f}:{sector}", region_id=str(sector),
-                    shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])),
-                                  tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts)))
+                levels.append((t, parts))
+        specs = [O.OverlaySpec(
+            overlay_id=f"band{t:.0f}:{sector}", region_id=str(sector),
+            shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])),
+                          tuple(tuple(map(tuple, r.coords[:-1])) for r in g.interiors)) for g in parts))
+            for t, parts in _showing(poly, levels, traced_cells)]
         if specs:
             jobs[sector] = specs
     cut = _cut(disk, jobs)
     cut["looked_at"] = len(grids)
     return cut
+
+
+def _showing(poly, levels: list, cells: list) -> list:
+    """The band levels whose piece would show: as large as `FLOOR_PIECE`, and `FLOOR_SHOW` shades from the piece around it.
+
+    `levels` run from the largest region (the darkest threshold) inward; each
+    level's piece is its region less the next one's. A level that would not
+    show is dropped, its piece joining the one around it, until all show.
+    """
+    from shapely.geometry import Point
+    from shapely.ops import unary_union
+    from shapely.prepared import prep
+
+    levels = [(t, parts, unary_union(parts)) for t, parts in levels]
+    points = [(Point(x, y), shade) for x, y, shade in cells]
+
+    def piece(k):
+        outer = poly if k < 0 else levels[k][2]
+        return outer.difference(levels[k + 1][2]) if k + 1 < len(levels) else outer
+
+    def mean(region):
+        test = prep(region)
+        values = [shade for point, shade in points if test.contains(point)]
+        return sum(values) / len(values) if values else None
+
+    changed = True
+    while changed and levels:
+        changed = False
+        for k in range(len(levels)):
+            inner, outer = piece(k), piece(k - 1)
+            a, b = mean(inner), mean(outer)
+            if (inner.area < FLOOR_PIECE or outer.area < FLOOR_PIECE or a is None or b is None
+                    or abs(a - b) < FLOOR_SHOW):
+                del levels[k]
+                changed = True
+                break
+    return [(t, parts) for t, parts, _ in levels]
 
 
 # --- 3. walls -------------------------------------------------------------------
@@ -654,8 +704,9 @@ def band_floors(disk, model: Model, found: list | None = None, keep: frozenset =
 WALL_LONG = 1024
 #: every this far (plan units)
 WALL_STEP = 256
-#: and split where its light crosses a band this many shades wide
-WALL_BAND = 6
+#: and split where its light crosses a band this many shades wide (on a
+#: textured wall a step under ~10 does not show: `shade_table`)
+WALL_BAND = 10
 #: no piece shorter than this
 WALL_MIN_PART = 384
 
@@ -743,6 +794,36 @@ def shade(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
 # --- cutting, whole or not at all ----------------------------------------------
 
 
+def _unpaired(disk) -> set[int]:
+    """Sectors with a two-sided wall whose twin does not point back along the same edge."""
+    walls = disk.walls
+    owner = {}
+    for index, sector in enumerate(disk.sectors):
+        f = _f(sector)
+        for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+            owner[w] = index
+    bad: set[int] = set()
+    for w, wall in enumerate(walls):
+        f = _f(wall)
+        twin = int(f["next_wall"])
+        if twin < 0:
+            continue
+        ok = 0 <= twin < len(walls)
+        if ok:
+            t = _f(walls[twin])
+            a2 = _f(walls[int(f["point2"])])
+            b2 = _f(walls[int(t["point2"])])
+            ok = (int(t["next_wall"]) == w and int(f["next_sector"]) == owner.get(twin)
+                  and (int(f["x"]), int(f["y"])) == (int(b2["x"]), int(b2["y"]))
+                  and (int(t["x"]), int(t["y"])) == (int(a2["x"]), int(a2["y"])))
+        if not ok:
+            bad.add(owner.get(w, -1))
+            if int(f["next_sector"]) >= 0:
+                bad.add(int(f["next_sector"]))
+    bad.discard(-1)
+    return bad
+
+
 def _cut(disk, jobs: dict, wall_points: dict | None = None) -> dict[str, Any]:
     """`overlays.cut_sectors` on a copy; where the cutter cannot pair an edge, those sectors stay whole.
 
@@ -780,6 +861,22 @@ def _cut(disk, jobs: dict, wall_points: dict | None = None) -> dict[str, Any]:
             for w in set(walls) | twins:
                 if wall_points.pop(w, None) is not None:
                     left_whole[-1 - w] = str(error)
+            continue
+        bad = _unpaired(trial)
+        if bad:
+            parent = {int(k): int(v) for k, v in report.get("parent", {}).items()}
+            sectors = {parent.get(s, s) for s in bad}
+            dropped = [s for s in sectors if s in jobs]
+            walls = [w for w in wall_points if owner.get(w) in sectors
+                     or int(_f(disk.walls[w])["next_sector"]) in sectors]
+            if not dropped and not walls:
+                raise O.OverlayError(f"the cut left walls without their twins in sectors {sorted(sectors)}")
+            for s in dropped:
+                jobs.pop(s)
+                left_whole[s] = "a wall of the cut had no twin"
+            for w in walls:
+                wall_points.pop(w)
+                left_whole[-1 - w] = "a wall of the cut had no twin"
             continue
         vars(disk).update(vars(trial))
         report["left_whole"] = {str(k): v for k, v in sorted(left_whole.items())}

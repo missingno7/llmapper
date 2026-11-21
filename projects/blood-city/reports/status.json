@@ -2,13 +2,13 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "db4f5f4f664445060d5ef74209a37e66fdbe896923568a8e644ddb3439cf5f94",
-  "map_sha256": "74e08977fd600ade717a63a86835948ea35ec858ec45f4ece1dce6d03b9f0040",
+  "manifest_sha256": "f9714acfc4057f615ad9d1e52cad3b8b419de49264800f254aa15f061de0eb42",
+  "map_sha256": "b27fcf9b1f60d75a18bc9128817b85f42d304ee1f648c5b83c91aee92aa43952",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 722,
-  "walls": 7668,
+  "sectors": 815,
+  "walls": 8548,
   "sprites": 1016,
   "limits": {
    "sectors": 4096,
@@ -16,8 +16,8 @@
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.824,
-   "walls": 0.532,
+   "sectors": 0.801,
+   "walls": 0.478,
    "sprites": 0.938
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
@@ -222,15 +222,15 @@
    "credited_normal": 3,
    "credited_super": 0
   },
-  "space": 699,
-  "reached": 699,
+  "space": 792,
+  "reached": 792,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 504,
+    "sectors": 590,
     "first_sector": 0
    },
    {
@@ -238,7 +238,7 @@
     "opened_by": [
      "operate mechanism sector 281"
     ],
-    "sectors": 46,
+    "sectors": 47,
     "first_sector": 252
    },
    {
@@ -252,17 +252,9 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 208"
-    ],
-    "sectors": 37,
-    "first_sector": 179
-   },
-   {
-    "round": 1,
-    "opened_by": [
      "use switch sprite 452 (channel 109)"
     ],
-    "sectors": 34,
+    "sectors": 45,
     "first_sector": 3
    },
    {
@@ -292,9 +284,17 @@
    {
     "round": 1,
     "opened_by": [
+     "operate mechanism sector 208"
+    ],
+    "sectors": 38,
+    "first_sector": 179
+   },
+   {
+    "round": 1,
+    "opened_by": [
      "use switch sprite 264 (channel 108)"
     ],
-    "sectors": 19,
+    "sectors": 15,
     "first_sector": 403
    },
    {
@@ -358,7 +358,7 @@
     "opened_by": [
      "several of this round's acts together"
     ],
-    "sectors": 6,
+    "sectors": 4,
     "first_sector": 192
    },
    {

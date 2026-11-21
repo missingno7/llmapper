@@ -3590,15 +3590,15 @@
     "walls_before": 3356,
     "sprites_before": 952,
     "shadow_cut": {
-      "sectors": 20,
-      "pieces": 93,
+      "sectors": 21,
+      "pieces": 95,
       "slivers_merged": 1,
       "slivers_dropped": 0,
-      "walls_split": 314,
-      "seams": 792,
+      "walls_split": 318,
+      "seams": 794,
       "refused": {},
       "left_whole": {},
-      "looked_at": 21
+      "looked_at": 22
     },
     "rooms": {
       "region:gravesend/foundry_ward/canteen/back": {},
@@ -3793,102 +3793,104 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 18,
-      "pieces": 141,
-      "slivers_merged": 9,
-      "slivers_dropped": 14,
-      "walls_split": 554,
-      "seams": 1918,
+      "sectors": 41,
+      "pieces": 256,
+      "slivers_merged": 20,
+      "slivers_dropped": 18,
+      "walls_split": 913,
+      "seams": 2698,
       "refused": {},
-      "left_whole": {},
-      "looked_at": 19
+      "left_whole": {
+        "323": "a wall of the cut had no twin"
+      },
+      "looked_at": 43
     },
     "wall_cut": {
       "sectors": 0,
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1487,
+      "walls_split": 1249,
       "seams": 0,
       "refused": {},
-      "walls_cut": 374,
-      "walls_refused": 11,
+      "walls_cut": 316,
+      "walls_refused": 8,
       "left_whole": {},
-      "looked_at": 1052
+      "looked_at": 1056
     },
     "shades": {
-      "surfaces": 3803,
+      "surfaces": 3978,
       "windows": 18,
-      "spread_12": 19
+      "spread_12": 55
     },
     "kept": 35,
-    "sectors": 722,
-    "walls": 7668,
+    "sectors": 815,
+    "walls": 8548,
     "sprites": 1016,
-    "pieces": 215,
+    "pieces": 308,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 901,
-      "wall_sd": 10.8,
+      "walls": 893,
+      "wall_sd": 11.2,
       "wall_median": 20,
       "by_facing": {
-        "N": 26,
-        "E": 18,
+        "N": 23.5,
+        "E": 17.0,
         "S": 22.0,
-        "W": 16
+        "W": 19
       },
-      "facing_step": 10,
-      "ground_median": 21.0,
-      "ground_sd": 11.4,
-      "corners": 215,
+      "facing_step": 6.5,
+      "ground_median": 18.0,
+      "ground_sd": 11.7,
+      "corners": 214,
       "corner_equal": 0.36,
       "corner_step": 5.0,
       "corner_darker": {
         "N": 0.17,
-        "E": 0.37,
+        "E": 0.38,
         "S": 0.14,
-        "W": 0.32
+        "W": 0.31
       },
       "within_building": {
         "N": 0.0,
-        "E": 0.2,
+        "E": 0.1,
         "S": 0.0,
-        "W": 0.5
+        "W": 0.8
       },
-      "tile_sd": 6.1
+      "tile_sd": 6.5
     },
     "after": {
-      "walls": 901,
-      "wall_sd": 10.8,
+      "walls": 893,
+      "wall_sd": 11.2,
       "wall_median": 20,
       "by_facing": {
-        "N": 26,
-        "E": 18,
+        "N": 23.5,
+        "E": 17.0,
         "S": 22.0,
-        "W": 16
+        "W": 19
       },
-      "facing_step": 10,
-      "ground_median": 21.0,
-      "ground_sd": 11.4,
-      "corners": 215,
+      "facing_step": 6.5,
+      "ground_median": 18.0,
+      "ground_sd": 11.7,
+      "corners": 214,
       "corner_equal": 0.36,
       "corner_step": 5.0,
       "corner_darker": {
         "N": 0.17,
-        "E": 0.37,
+        "E": 0.38,
         "S": 0.14,
-        "W": 0.32
+        "W": 0.31
       },
       "within_building": {
         "N": 0.0,
-        "E": 0.2,
+        "E": 0.1,
         "S": 0.0,
-        "W": 0.5
+        "W": 0.8
       },
-      "tile_sd": 6.1
+      "tile_sd": 6.5
     }
   },
   "stages": [

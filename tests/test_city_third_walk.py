@@ -306,6 +306,7 @@ class ThirdWalkTests(unittest.TestCase):
         glass = bars = 0
         to_street = to_room = 0
         for i in ids:
+            opens = set()
             s = self.sectors[i]
             self.assertEqual(int(s["floor_z"]), 8192 - windows.THROUGH_SILL)
             self.assertEqual(int(s["floor_z"]) - int(s["ceiling_z"]),
@@ -329,10 +330,11 @@ class ThirdWalkTests(unittest.TestCase):
                         glass += 1
                 else:
                     self.assertFalse(int(wall["cstat"]) & 16)
-                    if int(self.sectors[other]["ceiling_stat"]) & 1:
-                        to_street += 1
-                    else:
-                        to_room += 1
+                    opens.add("street" if int(self.sectors[other]["ceiling_stat"]) & 1 else "room")
+            #: counted by window, not by wall: the light stage may cut the
+            #: room behind a window into lit pieces, and its mouth with it
+            to_street += "street" in opens
+            to_room += "room" in opens
         #: every window opens on a street one side and a room the other
         self.assertEqual(to_street, len(ids) // 2)
         self.assertEqual(to_room, len(ids) // 2)

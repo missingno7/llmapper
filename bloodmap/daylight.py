@@ -61,6 +61,24 @@ LAMP_REACH = 8192
 #: under them 12 to 20 lighter (`tools/light_sources.py`): 1600, with the lamp
 #: weight 1.3, gives about 16.
 LAMP_CORE = 1600
+#: how sharply a lamp's light falls off: 2 is the inverse square past the
+#: core; higher makes tighter, more visible pools (the owner, 2026-11-21:
+#: "make like the lighting like more visible"), one setting for every map.
+#: 4, with `light_stage.Model`'s lamp weight 2.4, is what he approved.
+#: It pivots at `LAMP_PIVOT`, about a body and a half -- a ceiling light to
+#: the floor under it -- so the floor under a light keeps its brightness
+#: whatever the power; nearer is brighter, further falls off faster.
+LAMP_POWER = 4.0
+LAMP_PIVOT = 1600
+
+
+def lamp_falloff(dist: float) -> float:
+    """A lamp's light at `dist` (plan units), before its strength and the cosine."""
+    base = 1.0 / (1.0 + (dist / LAMP_CORE) ** 2)
+    if LAMP_POWER == 2.0:
+        return base
+    pivot = 1.0 / (1.0 + (LAMP_PIVOT / LAMP_CORE) ** 2)
+    return pivot * (base / pivot) ** (LAMP_POWER / 2)
 #: a ray that stops this close to a lamp (plan units) has reached it: the
 #: wall or ceiling it hangs from
 LAMP_SURFACE = 256
@@ -316,7 +334,7 @@ def light_point(disk, scan, p: Sample, dome, sun_vector, lamps) -> int:
             reach = math.sqrt((hit.x - p.x) ** 2 + (hit.y - p.y) ** 2 + ((hit.z - p.z) / Z_SCALE) ** 2)
             if reach < dist - LAMP_SURFACE:
                 continue
-        p.lamp += strength * c / (1.0 + (dist / LAMP_CORE) ** 2)
+        p.lamp += strength * c * lamp_falloff(dist)
     return rays
 
 
