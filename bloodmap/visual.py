@@ -87,8 +87,41 @@ EMPTY_TYPES = (set(range(200, 255)) | set(range(40, 52))
                | set(range(60, 82)) | set(range(100, 150)))
 
 
+def sprite_shades_as_drawn(disk) -> int:
+    """Bake Blood's sprite lighting into each sprite's shade, as the game draws it.
+
+    Blood does not draw a sprite at its own shade (NBlood
+    `blood/src/view.cpp:2864-2883`, `viewProcessSprites`): it adds the
+    sector's CEILING shade when the sector is open to the sky (floorstat
+    bit 15 clear), otherwise the sector's FLOOR shade, plus a per-tile
+    offset from SHADE.DAT (`tileShade`; the file is not in our resources,
+    so those offsets are 0 here, as they are in a game without it). The
+    XMapEdit observer is a bare Build renderer and draws the sprite's own
+    shade, so until 2026-11-20 every frame showed sprites lighter or
+    darker than the game -- outdoors, every sprite of the city was drawn
+    as if its sector's sky shade (0 everywhere) did not exist, and the
+    owner saw in the game that sprites did not follow the light.
+    Returns how many sprites changed.
+    """
+    changed = 0
+    for sprite in disk.sprites:
+        f = sprite.fields
+        sector = int(f["sector"])
+        if not 0 <= sector < len(disk.sectors):
+            continue
+        s = disk.sectors[sector].fields
+        if int(s["ceiling_stat"]) & 1 and not int(s["floor_stat"]) & 0x8000:
+            add = int(s["ceiling_shade"])
+        else:
+            add = int(s["floor_shade"])
+        if add:
+            f["shade"] = max(-128, min(127, int(f["shade"]) + add))
+            changed += 1
+    return changed
+
+
 def as_played(map_path, out_dir, empty: bool = False) -> Path:
-    """A copy of the map with the game's invisible things made invisible.
+    """A copy of the map with the game's invisible things made invisible, and sprites lit as the game lights them.
 
     A frame is evidence of what a player sees. A reviewer shown a start
     flag or a charge takes it for part of the room -- one read the
@@ -112,12 +145,14 @@ def as_played(map_path, out_dir, empty: bool = False) -> Path:
             if not int(f["cstat"]) & 32768:
                 f["cstat"] = int(f["cstat"]) | 32768
                 hidden += 1
+    lit = sprite_shades_as_drawn(disk)
     out = Path(out_dir) / ("as-empty.MAP" if empty
                                    else "as-played.MAP")
     out.parent.mkdir(parents=True, exist_ok=True)
     write_map(disk, out)
     print(f"as played: {hidden} control sprites hidden"
-          + (f"; emptied of {emptied} enemies and pickups" if empty else ""))
+          + (f"; emptied of {emptied} enemies and pickups" if empty else "")
+          + f"; {lit} sprites lit by their sector as Blood draws them")
     return out
 
 

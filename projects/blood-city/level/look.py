@@ -406,11 +406,13 @@ POSE_SETS = {
         "quay_lamp": (36.0, 52.0, 37.0, 52.0, LEVEL, "close to the quay-gate lamp pool"),
     },
     "sewer": {
-        "north_walk": (38.0, 6.5, 42.0, 7.5, LEVEL, "the north walk beside its channel"),
-        "pump_room": (31.0, 15.0, 28.0, 14.0, LEVEL, "the pumping chamber"),
-        "flooded": (42.0, 34.5, 42.5, 38.0, LEVEL, "into the flooded branch"),
-        "east_leg": (52.0, 20.0, 52.0, 16.0, LEVEL, "the east leg of the ring"),
-        "annex": (52.5, 17.0, 56.0, 17.5, LEVEL, "the eastern annex"),
+        #: the sewer floor, named: without it a pose stands on the street above
+        #: (the set predates the stacked city, and rendered the street until 2026-11-20)
+        "north_walk": (38.0, 6.5, 42.0, 7.5, LEVEL, "the north walk beside its channel", 61440),
+        "pump_room": (31.0, 15.0, 28.0, 14.0, LEVEL, "the pumping chamber", 61440),
+        "flooded": (42.0, 34.5, 42.5, 38.0, LEVEL, "into the flooded branch", 61440),
+        "east_leg": (52.0, 20.0, 52.0, 16.0, LEVEL, "the east leg of the ring", 61440),
+        "annex": (52.5, 17.0, 56.0, 17.5, LEVEL, "the eastern annex", 61440),
     },
     "entrances": {
         "canteen_face": (51.9, 17.2, 51.9, 15.0, LEVEL, "square on the canteen entrance"),
