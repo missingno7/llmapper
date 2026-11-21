@@ -16,6 +16,7 @@ calls for it. Commands are run from the repository root.
 | a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
 | whether a mechanism visibly works: the same view at rest and fired | `python -m tools.mechanism_look MAP --root "sprite 51" -o work/mech/<name>`, then `python -m tools.critique change work/mech/<name>/pair.json` for blind readers |
 | the phrases Blood's wiring is written in, each counted | `python -m tools.catalog idioms` (shot switch, secret, cascade, closet relay, breach ...) |
+| what players wrote about a campaign level: its walkthrough, keys in order, secrets and rewards | `python -m tools.wiki_levels show E3M3` (facts in `knowledge/blood/wiki/levels.json`; `fetch` caches the pages) |
 | how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set, and the room it is in) |
 | which rooms have a mechanic, and what one room has | `python -m tools.catalog find lift crypt`, then `python -m tools.catalog show E1M8:243` |
 | what a thing is wired to | `python -m tools.catalog mechanisms E2M4 --place E2M4:613` |

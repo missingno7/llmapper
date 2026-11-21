@@ -14,6 +14,7 @@ rather than tons of texts, it needs to be a real library you can use."
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
 | Parts | what a mechanism is made of: every sector, wall and sprite type the campaign uses, every sector effect, every engine channel and every tutorial lesson, each with maps that show it, what sets it off and what it drives | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` (`entries`) |
+| What players wrote | each campaign level's Blood Wiki page as facts: designer, song, enemies per difficulty, secrets and their rewards, keys in the walkthrough's order, the words its walkthrough, secrets and trivia use; the prose itself is cached locally, not committed | the map (`E3M3`) | `wiki/levels.json` (`python -m tools.wiki_levels fetch`, `mine`, `show E3M3`; shown in `catalog map`, searched by `catalog find`) |
 | Wiring | the mechanisms themselves: every shape of chain the campaign has, an act on a sender and what answers, with how often, how many are keyed, and where | words (`catalog wiring switch door`) | `design/mechanism-examples-v1.json` (`wiring`) |
 
 The owner's names outrank the mapper's readings wherever both exist.

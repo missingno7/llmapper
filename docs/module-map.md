@@ -391,6 +391,7 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | `critic_bench` | Which model is the best critic? |
 | `critic_lab` | The station as a laboratory: what can a critic tell, and from where? |
 | `tile_contexts` | Discover, catalogue and browse what tiles are used as, where, and on whose evidence. |
+| `wiki_levels` | What players wrote about each campaign level on the Blood Wiki, mined into facts the catalog can show and search. |
 
 ### Decompiling an original map
 

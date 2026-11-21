@@ -980,6 +980,21 @@ def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
                  f"{secrets['credited_normal']} senders credit a normal one and "
                  f"{secrets['credited_super']} a super secret")
 
+    # What players wrote about it (`tools.wiki_levels`): a walkthrough's
+    # keys and secrets beside the map's own, so a reading that disagrees with
+    # the people who played it is seen.
+    from tools import wiki_levels
+
+    said = wiki_levels.summary(key)
+    if said:
+        lines.append("WHAT PLAYERS WROTE  (the Blood Wiki: python -m tools.wiki_levels show "
+                     f"{key})")
+        lines.extend(said)
+        row = wiki_levels.facts().get(key, {})
+        if "secrets_declared" in row:
+            lines.append(f"  the wiki counts {row['secrets_declared']} secrets"
+                         + (f" + {row['super_secrets']} super" if row.get("super_secrets") else "")
+                         + f"; the map declares {secrets['declared']}")
     lines.append("HOW IT IS PLAYED  (gated areas: what each act opens; the "
                  "engine decides where one ends)")
     for area in mark["gated_areas"][:14]:
@@ -1091,6 +1106,10 @@ def find_all(words: list[str]) -> str:
             out.append(f"  {path.stem}: [{card['kind']}] {card['title']}")
     out.append("WRITTEN")
     out.extend(find_written(words))
+    from tools import wiki_levels
+
+    out.append("WHAT PLAYERS WROTE  (Blood Wiki level pages: python -m tools.wiki_levels show <map>)")
+    out.extend(wiki_levels.find(words)[:12])
     return "\n".join(out)
 
 

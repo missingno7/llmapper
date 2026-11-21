@@ -1,0 +1,4589 @@
+{
+ "source": "Blood Wiki (https://www.blood-wiki.org), level pages; facts only, the prose is cached locally under work/wiki/ by `python -m tools.wiki_levels fetch`",
+ "mined": "2026-11-21",
+ "levels": {
+  "E1M1": {
+   "map": "E1M1",
+   "title": "Cradle to Grave",
+   "url": "https://www.blood-wiki.org/index.php/E1M1%3A_Cradle_to_Grave",
+   "designer": "James Wilson",
+   "song": "3 - Unholy Voices (CD-Audio), UNHOLY (MIDI), cblood2 (MIDI) (Shareware Version only)",
+   "enemies_by_difficulty": [
+    "10",
+    "13",
+    "18",
+    "25",
+    "26"
+   ],
+   "secrets_declared": 11,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "skull",
+    "dagger"
+   ],
+   "enemies": [
+    "Bat",
+    "Rats",
+    "Axe Zombie",
+    "Cultist"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Dynamite Bundle",
+    "Sawed-Off Shotgun (random drop from Cultist)",
+    "Napalm Launcher (Secret, see below)"
+   ],
+   "secrets": [
+    {
+     "reward": "Box of Flares",
+     "words": [
+      "box",
+      "coffin",
+      "grave"
+     ]
+    },
+    {
+     "reward": "Case of TNT",
+     "words": []
+    },
+    {
+     "reward": "Body Armor",
+     "words": [
+      "grave"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "chapel",
+      "roof",
+      "window"
+     ]
+    },
+    {
+     "reward": "Box of Flares",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Beastvision",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Body Armor",
+     "words": [
+      "coffin",
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": []
+    },
+    {
+     "reward": "Fire Armor (it may be smart to get this before getting the above secret)",
+     "words": [
+      "door",
+      "coffin",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Box of Flares x2",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Box of Flares",
+     "words": [
+      "box",
+      "coffin"
+     ]
+    },
+    {
+     "reward": "Napalm Launcher",
+     "words": [
+      "box",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "door",
+     "gate",
+     "button",
+     "symbol",
+     "key",
+     "crypt",
+     "tomb",
+     "grave",
+     "cemetery",
+     "morgue",
+     "window"
+    ],
+    "secrets": [
+     "door",
+     "key",
+     "box",
+     "coffin",
+     "grave",
+     "chapel",
+     "roof",
+     "window",
+     "dynamite",
+     "fire"
+    ],
+    "trivia": [
+     "fan",
+     "barrel",
+     "grave",
+     "morgue"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M2": {
+   "map": "E1M2",
+   "title": "Wrong Side of the Tracks",
+   "url": "https://www.blood-wiki.org/index.php/E1M2%3A_Wrong_Side_of_the_Tracks",
+   "designer": "Craig Hubbard",
+   "song": "8 - Fate of the Damned (CD-Audio), cblood10 (MIDI), cblood6 (MIDI) (Shareware Version only)",
+   "enemies_by_difficulty": [
+    "39",
+    "45",
+    "64",
+    "71",
+    "84"
+   ],
+   "secrets_declared": 8,
+   "keys_in_route_order": [
+    "moon",
+    "fire"
+   ],
+   "enemies": [
+    "Innocent",
+    "Bat",
+    "Rat",
+    "Axe Zombie",
+    "Cultist",
+    "Fanatic"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Dynamite Bundle",
+    "Sawed-Off Shotgun",
+    "Tommy Gun"
+   ],
+   "secrets": [
+    {
+     "reward": "Basic Armor",
+     "words": [
+      "box",
+      "train"
+     ]
+    },
+    {
+     "reward": "Box of Flares, Case of TNT",
+     "words": [
+      "box",
+      "kitchen",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "button",
+      "kitchen"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "window"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": []
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": []
+    },
+    {
+     "reward": "Body Armor",
+     "words": []
+    },
+    {
+     "reward": "Box of Shells, Case of Dynamite",
+     "words": [
+      "door",
+      "box",
+      "train",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "stairs",
+     "door",
+     "gate",
+     "button",
+     "symbol",
+     "key",
+     "barrel",
+     "train",
+     "car",
+     "rail",
+     "fire"
+    ],
+    "secrets": [
+     "door",
+     "button",
+     "box",
+     "train",
+     "kitchen",
+     "window",
+     "dynamite",
+     "fire"
+    ],
+    "trivia": [
+     "fan",
+     "train",
+     "ship",
+     "tunnel"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M3": {
+   "map": "E1M3",
+   "title": "Phantom Express",
+   "url": "https://www.blood-wiki.org/index.php/E1M3%3A_Phantom_Express",
+   "designer": "James Wilson",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), None (the .ini file says PESTIS, but is commented out) (MIDI), UNHOLY (MIDI) (Shareware Version only)",
+   "enemies_by_difficulty": [
+    "31",
+    "49",
+    "72",
+    "84",
+    "111"
+   ],
+   "secrets_declared": 6,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "fire",
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Cultist",
+    "Fanatic",
+    "Rat"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Dynamite Bundle",
+    "Sawed-Off Shotgun",
+    "Tommy Gun"
+   ],
+   "secrets": [
+    {
+     "reward": "Life Seed",
+     "words": [
+      "crate",
+      "box",
+      "train",
+      "car"
+     ]
+    },
+    {
+     "reward": "Beastvision",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Reflective Shots",
+     "words": [
+      "switch",
+      "car",
+      "bar"
+     ]
+    },
+    {
+     "reward": "Flare Gun",
+     "words": [
+      "kitchen"
+     ]
+    },
+    {
+     "reward": "Tommy Gun, Dynamite Bundles, Box of Flares",
+     "words": [
+      "box",
+      "car",
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Tommy Gun, Sawed-Off Shotgun, Flare Gun, Life Seed (in Multiplayer, there is also a Super Armor and Guns Akimbo)",
+     "words": [
+      "grate",
+      "train"
+     ]
+    },
+    {
+     "reward": "Sawed-Off Shotgun, Tommy Gun, Super Armor, Life Seed, Guns Akimbo",
+     "words": [
+      "train",
+      "car",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "elevator",
+     "door",
+     "switch",
+     "lever",
+     "key",
+     "train",
+     "car",
+     "explode",
+     "fire"
+    ],
+    "secrets": [
+     "door",
+     "switch",
+     "grate",
+     "crate",
+     "box",
+     "train",
+     "car",
+     "bar",
+     "kitchen",
+     "dynamite"
+    ],
+    "trivia": [
+     "lava",
+     "fan",
+     "door",
+     "train",
+     "car",
+     "mine",
+     "fire"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M4": {
+   "map": "E1M4",
+   "title": "Dark Carnival",
+   "url": "https://www.blood-wiki.org/index.php/E1M4%3A_Dark_Carnival",
+   "designer": "Kevin Kilstrom, James Wilson",
+   "song": "4 - Dark Carnival (CD-Audio), cblood4 (MIDI)",
+   "enemies_by_difficulty": [
+    "58",
+    "73",
+    "109",
+    "134",
+    "159"
+   ],
+   "secrets_declared": 12,
+   "keys_in_route_order": [
+    "moon",
+    "dagger",
+    "eye"
+   ],
+   "enemies": [
+    "Innocent",
+    "Bone Eel",
+    "Rat",
+    "Axe Zombie",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand (found caged in the freak show)"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Dynamite Bundle",
+    "Sawed-Off Shotgun",
+    "Napalm Launcher"
+   ],
+   "secrets": [
+    {
+     "reward": "Dynamite Bundles, Body Armor, Box of Shells",
+     "words": [
+      "box",
+      "train",
+      "car",
+      "dynamite",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Flare Gun, Sawed-Off Shotgun, Tommy Gun, Guns Akimbo",
+     "words": [
+      "water",
+      "swim",
+      "bridge"
+     ]
+    },
+    {
+     "reward": "Life seed",
+     "words": []
+    },
+    {
+     "reward": "Beastvision",
+     "words": []
+    },
+    {
+     "reward": "Death Mask (Invincibility)",
+     "words": []
+    },
+    {
+     "reward": "Invisibility Cloak",
+     "words": []
+    },
+    {
+     "reward": "Drum of Bullets",
+     "words": [
+      "window"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "bars",
+      "bar"
+     ]
+    },
+    {
+     "reward": "Box of Flares x2, Box of Shells",
+     "words": [
+      "door",
+      "box"
+     ]
+    },
+    {
+     "reward": "Box of Flares, Doctor's Bag",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Life Seed, Super Armor",
+     "words": [
+      "bridge",
+      "symbol",
+      "key",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "pool",
+     "bridge",
+     "lift",
+     "door",
+     "button",
+     "key",
+     "car",
+     "cave"
+    ],
+    "secrets": [
+     "water",
+     "swim",
+     "bridge",
+     "door",
+     "symbol",
+     "key",
+     "bars",
+     "box",
+     "train",
+     "car",
+     "bar",
+     "window",
+     "dynamite",
+     "fire"
+    ],
+    "trivia": [
+     "fan",
+     "key",
+     "grave"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M5": {
+   "map": "E1M5",
+   "title": "Hallowed Grounds",
+   "url": "https://www.blood-wiki.org/index.php/E1M5%3A_Hallowed_Grounds",
+   "designer": "Nick Newhard, Craig Hubbard, Terry Hamel",
+   "song": "None (CD-Audio), None (MIDI)",
+   "enemies_by_difficulty": [
+    "68",
+    "84",
+    "111",
+    "132",
+    "139"
+   ],
+   "secrets_declared": 9,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "skull",
+    "moon",
+    "spider"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Rat"
+   ],
+   "weapons": [
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle"
+   ],
+   "secrets": [
+    {
+     "reward": "Doctor's Bag",
+     "words": []
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Death Mask/Invincibility",
+     "words": [
+      "statue"
+     ]
+    },
+    {
+     "reward": "Box of Flares, Box of Shells",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Body Armour",
+     "words": [
+      "elevator",
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Reflective Shots",
+     "words": [
+      "key",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "underwater",
+      "switch",
+      "tunnel"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "stairs",
+      "door"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "bridge",
+      "gate",
+      "button",
+      "symbol"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "swim",
+     "pool",
+     "bridge",
+     "stairs",
+     "lift",
+     "door",
+     "gate",
+     "switch",
+     "symbol",
+     "key"
+    ],
+    "secrets": [
+     "underwater",
+     "bridge",
+     "stairs",
+     "elevator",
+     "door",
+     "gate",
+     "switch",
+     "button",
+     "symbol",
+     "key",
+     "box",
+     "tunnel",
+     "fire",
+     "statue"
+    ],
+    "trivia": [
+     "switch",
+     "altar"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M6": {
+   "map": "E1M6",
+   "title": "The Great Temple",
+   "url": "https://www.blood-wiki.org/index.php/E1M6%3A_The_Great_Temple",
+   "designer": "Terry Hamel, James Wilson",
+   "song": "5 - Infuscomus (CD-Audio), cblood5 (MIDI)",
+   "enemies_by_difficulty": [
+    "144",
+    "167",
+    "210",
+    "251",
+    "276"
+   ],
+   "secrets_declared": 6,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "skull",
+    "fire",
+    "spider",
+    "moon"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bat",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Rat"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle"
+   ],
+   "secrets": [
+    {
+     "reward": "Dynamite Bundles",
+     "words": [
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "bridge",
+      "switch"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "water",
+      "swim",
+      "bridge"
+     ]
+    },
+    {
+     "reward": "Box of Shells",
+     "words": [
+      "box",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Napalm Launcher, Dynamite Bundles, Box of Flares, Life Seed",
+     "words": [
+      "button",
+      "key",
+      "box",
+      "dynamite",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Death Mask/Invincibility (also Life Seed and Super Armour in BloodBath)",
+     "words": [
+      "switch"
+     ]
+    },
+    {
+     "reward": "Everything available in Shareware Blood (Flare Gun, Sawed-Off Shotgun, Tommy Gun, Napalm Launcher, Death Mask/Invincibility, Guns Akimbo, Cloak of Invisibility, Doctor's Bag, Life Seed, Super Armour)",
+     "words": [
+      "door",
+      "temple"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "pool",
+     "bridge",
+     "stairs",
+     "door",
+     "switch",
+     "lever",
+     "symbol",
+     "key",
+     "altar",
+     "temple",
+     "glass",
+     "fire",
+     "ritual"
+    ],
+    "secrets": [
+     "water",
+     "swim",
+     "bridge",
+     "door",
+     "switch",
+     "button",
+     "key",
+     "box",
+     "temple",
+     "dynamite",
+     "fire"
+    ],
+    "trivia": [
+     "symbol",
+     "temple"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M7": {
+   "map": "E1M7",
+   "title": "Altar of Stone",
+   "url": "https://www.blood-wiki.org/index.php/E1M7%3A_Altar_of_Stone",
+   "keys_in_route_order": [],
+   "enemies": [
+    "Fanatic",
+    "Gargoyle",
+    "Cheogh"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Dynamite Bundle",
+    "Sawed-Off Shotgun",
+    "Tommy Gun"
+   ],
+   "secrets": [
+    {
+     "reward": "Super Armour",
+     "words": [
+      "stairs",
+      "window"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "stairs",
+      "window"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo, Sawed-Off Shotgun, Box of Shells",
+     "words": [
+      "box",
+      "altar"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "bridge",
+     "stairs",
+     "altar",
+     "temple",
+     "fire"
+    ],
+    "secrets": [
+     "stairs",
+     "box",
+     "altar",
+     "window"
+    ],
+    "trivia": [
+     "fan",
+     "altar",
+     "temple"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E1M8": {
+   "map": "E1M8",
+   "title": "House of Horrors",
+   "url": "https://www.blood-wiki.org/index.php/E1M8%3A_House_of_Horrors",
+   "designer": "James Wilson",
+   "song": "8 - Fate of the Damned (CD-Audio), cblood4 (MIDI)",
+   "enemies_by_difficulty": [
+    "47",
+    "53",
+    "85",
+    "122",
+    "129"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Rat"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle"
+   ],
+   "secrets": [
+    {
+     "reward": "Tommy Gun, Drum of Bullets",
+     "words": [
+      "gate"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": []
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "water",
+      "pool"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "stairs",
+      "door"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag, Dynamite Bundles",
+     "words": [
+      "barrel",
+      "window",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "waterfall",
+     "pool",
+     "crusher",
+     "stairs",
+     "lift",
+     "door",
+     "gate",
+     "switch",
+     "lever",
+     "symbol",
+     "key",
+     "bars",
+     "barrel",
+     "bar",
+     "window"
+    ],
+    "secrets": [
+     "water",
+     "pool",
+     "stairs",
+     "door",
+     "gate",
+     "barrel",
+     "window",
+     "dynamite"
+    ],
+    "trivia": [
+     "mill"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M1": {
+   "map": "E2M1",
+   "title": "Shipwrecked",
+   "url": "https://www.blood-wiki.org/index.php/E2M1%3A_Shipwrecked",
+   "designer": "Craig Hubbard",
+   "song": "7 - Waiting for the End (CD-Audio), cblood2 (MIDI)",
+   "enemies_by_difficulty": [
+    "26",
+    "32",
+    "49",
+    "65",
+    "67"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "fire",
+    "moon",
+    "eye",
+    "skull"
+   ],
+   "enemies": [
+    "Innocent",
+    "Rat",
+    "Axe Zombie",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Bone Eel",
+    "Red Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Diving Suit",
+     "words": [
+      "water",
+      "ice",
+      "boat",
+      "ship"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll",
+     "words": [
+      "water",
+      "boat",
+      "cave"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "ice",
+      "ship",
+      "cave"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "key",
+      "box",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Life Seed, Super Armour",
+     "words": [
+      "underwater",
+      "swim",
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "pool",
+     "wheel",
+     "stairs",
+     "door",
+     "switch",
+     "symbol",
+     "key",
+     "crate",
+     "barrel",
+     "boat",
+     "ship",
+     "fire"
+    ],
+    "secrets": [
+     "water",
+     "underwater",
+     "swim",
+     "ice",
+     "key",
+     "box",
+     "boat",
+     "ship",
+     "cave",
+     "fire"
+    ],
+    "trivia": [
+     "swim",
+     "fan",
+     "boat",
+     "ship"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M2": {
+   "map": "E2M2",
+   "title": "The Lumber Mill",
+   "url": "https://www.blood-wiki.org/index.php/E2M2%3A_The_Lumber_Mill",
+   "designer": "Craig Hubbard",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), cblood3 (MIDI)",
+   "enemies_by_difficulty": [
+    "47",
+    "50",
+    "53",
+    "57",
+    "57"
+   ],
+   "secrets_declared": 2,
+   "keys_in_route_order": [
+    "dagger",
+    "fire",
+    "skull",
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Red Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Dynamite Bundle",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Super Armour, Dynamite Bundles",
+     "words": [
+      "window",
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Box of Flares, Dynamite Bundles (multiplayer also includes Life Leech)",
+     "words": [
+      "box",
+      "roof",
+      "dynamite"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "swim",
+     "stairs",
+     "door",
+     "switch",
+     "button",
+     "symbol",
+     "key",
+     "window",
+     "fire"
+    ],
+    "secrets": [
+     "box",
+     "roof",
+     "window",
+     "dynamite"
+    ],
+    "trivia": [
+     "mill",
+     "blade"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M3": {
+   "map": "E2M3",
+   "title": "Rest for the Wicked",
+   "url": "https://www.blood-wiki.org/index.php/E2M3%3A_Rest_for_the_Wicked",
+   "designer": "Kevin Kilstrom & Craig Hubbard",
+   "song": "5 - Infuscomus (CD-Audio), cblood5 (MIDI)",
+   "enemies_by_difficulty": [
+    "43",
+    "49",
+    "64",
+    "90",
+    "105"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "moon",
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Rat",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Body Armour",
+     "words": [
+      "stairs",
+      "switch"
+     ]
+    },
+    {
+     "reward": "Proximity Detonators",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": []
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "water",
+      "pool"
+     ]
+    },
+    {
+     "reward": "Death mask/Invulnerability",
+     "words": [
+      "statue"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "pool",
+     "door",
+     "button",
+     "symbol",
+     "key"
+    ],
+    "secrets": [
+     "water",
+     "pool",
+     "stairs",
+     "switch",
+     "key",
+     "statue"
+    ],
+    "trivia": [
+     "hotel",
+     "window"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M4": {
+   "map": "E2M4",
+   "title": "The Overlooked Hotel",
+   "url": "https://www.blood-wiki.org/index.php/E2M4%3A_The_Overlooked_Hotel",
+   "designer": "Kevin Kilstrom & Craig Hubbard",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), cblood1 (MIDI)",
+   "enemies_by_difficulty": [
+    "91",
+    "102",
+    "136",
+    "170",
+    "190"
+   ],
+   "secrets_declared": 17,
+   "keys_in_route_order": [
+    "skull",
+    "fire",
+    "dagger",
+    "spider",
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Sawed-Off Shotgun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Box of Flares",
+     "words": [
+      "lift",
+      "box"
+     ]
+    },
+    {
+     "reward": "Body Armour",
+     "words": [
+      "stairs",
+      "hotel"
+     ]
+    },
+    {
+     "reward": "Dynamite Bundles, Box of Shells",
+     "words": [
+      "box",
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Tome",
+     "words": [
+      "bookcase"
+     ]
+    },
+    {
+     "reward": "Access to Secret Passage",
+     "words": [
+      "fire",
+      "bed"
+     ]
+    },
+    {
+     "reward": "Voodoo doll",
+     "words": []
+    },
+    {
+     "reward": "Access to Secret Passage",
+     "words": []
+    },
+    {
+     "reward": "Teleporter (avoids Spider Door)",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Teleporter",
+     "words": []
+    },
+    {
+     "reward": "Tome, Cloak of Invisibility",
+     "words": [
+      "library"
+     ]
+    },
+    {
+     "reward": "Access to secret passage",
+     "words": []
+    },
+    {
+     "reward": "Access to Secret Passage",
+     "words": [
+      "library"
+     ]
+    },
+    {
+     "reward": "Tome",
+     "words": [
+      "lift",
+      "library"
+     ]
+    },
+    {
+     "reward": "Gasoline",
+     "words": []
+    },
+    {
+     "reward": "Drum of Bullets, Guns Akimbo, other stuff",
+     "words": []
+    },
+    {
+     "reward": "Box of TNT, Drum of Bullets, Body Armour",
+     "words": [
+      "stairs",
+      "box"
+     ]
+    },
+    {
+     "reward": "Dynamite Bundles, Box of Shells, Voodoo Doll, Guns Akimbo",
+     "words": [
+      "key",
+      "box",
+      "dynamite",
+      "fireplace"
+     ]
+    },
+    {
+     "reward": "Box of TNT, Box of Shells",
+     "words": [
+      "key",
+      "box"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": []
+    },
+    {
+     "reward": "",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "",
+     "words": []
+    },
+    {
+     "reward": "",
+     "words": [
+      "library"
+     ]
+    },
+    {
+     "reward": "",
+     "words": [
+      "library"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "stairs",
+     "door",
+     "key",
+     "hotel",
+     "library",
+     "fire",
+     "statue",
+     "bookcase",
+     "fireplace"
+    ],
+    "secrets": [
+     "ice",
+     "stairs",
+     "lift",
+     "door",
+     "key",
+     "box",
+     "hotel",
+     "library",
+     "dynamite",
+     "fire",
+     "bed",
+     "bookcase",
+     "fireplace"
+    ],
+    "trivia": [
+     "ice",
+     "hotel"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M5": {
+   "map": "E2M5",
+   "title": "The Haunting",
+   "url": "https://www.blood-wiki.org/index.php/E2M5%3A_The_Haunting",
+   "designer": "James Wilson & Kevin Kilstrom",
+   "song": "6 - Father Time (CD-Audio), cblood7 (MIDI)",
+   "enemies_by_difficulty": [
+    "70",
+    "81",
+    "113",
+    "144",
+    "150"
+   ],
+   "secrets_declared": 8,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "moon",
+    "dagger",
+    "spider",
+    "eye",
+    "fire",
+    "skull"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand",
+    "Phantasm",
+    "Rat",
+    "Red Spider",
+    "Green Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Aerosol Can x2, Body Armour, Sawed-Off Shotgun",
+     "words": [
+      "stairs"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Fire Armour",
+     "words": [
+      "library",
+      "fire",
+      "fireplace"
+     ]
+    },
+    {
+     "reward": "TNT Crate",
+     "words": [
+      "lift",
+      "crate",
+      "library"
+     ]
+    },
+    {
+     "reward": "Box of Shells, Cloak of Invisibility",
+     "words": [
+      "box",
+      "library"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "library",
+      "window"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll, Doctor's Bag, Spirit Armour",
+     "words": []
+    },
+    {
+     "reward": "Beastvision",
+     "words": [
+      "key",
+      "window"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll, Super Armour, Proximity Detonators x4, Remote Detonators x4",
+     "words": [
+      "pool",
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "pool",
+     "stairs",
+     "lift",
+     "door",
+     "symbol",
+     "key",
+     "barrel",
+     "rail",
+     "kitchen",
+     "window",
+     "fire",
+     "statue"
+    ],
+    "secrets": [
+     "pool",
+     "stairs",
+     "lift",
+     "key",
+     "crate",
+     "box",
+     "library",
+     "window",
+     "fire",
+     "fireplace"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M6": {
+   "map": "E2M6",
+   "title": "The Cold Rush",
+   "url": "https://www.blood-wiki.org/index.php/E2M6%3A_The_Cold_Rush",
+   "designer": "James Wilson",
+   "song": "8 - Fate of the Damned (CD-Audio), cblood10 (MIDI)",
+   "enemies_by_difficulty": [
+    "38",
+    "42",
+    "53",
+    "63",
+    "63"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Bullets, Shells",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "ice"
+     ]
+    },
+    {
+     "reward": "Aerosol Can x2, Jump Boots",
+     "words": [
+      "ice"
+     ]
+    },
+    {
+     "reward": "Box of TNT, Sawed-Off Shotgun, Tommy Gun",
+     "words": [
+      "key",
+      "box",
+      "cave"
+     ]
+    },
+    {
+     "reward": "Proximity Detonators x2, Remote Detonators x3",
+     "words": []
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "ice",
+     "stairs",
+     "door",
+     "switch",
+     "button",
+     "lever",
+     "symbol",
+     "key",
+     "tunnel",
+     "window",
+     "spinning",
+     "dynamite"
+    ],
+    "secrets": [
+     "ice",
+     "key",
+     "box",
+     "cave"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M7": {
+   "map": "E2M7",
+   "title": "Bowels of the Earth",
+   "url": "https://www.blood-wiki.org/index.php/E2M7%3A_Bowels_of_the_Earth",
+   "designer": "James Wilson",
+   "song": "7 - Waiting for the End (CD-Audio), cblood2 (MIDI)",
+   "enemies_by_difficulty": [
+    "89",
+    "92",
+    "107",
+    "135",
+    "141"
+   ],
+   "secrets_declared": 2,
+   "keys_in_route_order": [],
+   "enemies": [
+    "Axe Zombie",
+    "Bat",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Life Seed, Shells x2",
+     "words": []
+    },
+    {
+     "reward": "Diving Suit, other",
+     "words": [
+      "underwater",
+      "lever"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "underwater",
+     "pool",
+     "conveyor",
+     "bridge",
+     "lift",
+     "door",
+     "switch",
+     "lever",
+     "symbol",
+     "car",
+     "mine",
+     "cave",
+     "temple"
+    ],
+    "secrets": [
+     "underwater",
+     "lever"
+    ],
+    "trivia": [
+     "ice",
+     "mine"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M8": {
+   "map": "E2M8",
+   "title": "The Lair of Shial",
+   "url": "https://www.blood-wiki.org/index.php/E2M8%3A_The_Lair_of_Shial",
+   "keys_in_route_order": [],
+   "enemies": [
+    "Shial",
+    "Green Spider",
+    "Red Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun"
+   ],
+   "secrets": [],
+   "words": {
+    "walkthrough": [
+     "water",
+     "stairs",
+     "lift"
+    ],
+    "secrets": [],
+    "trivia": [
+     "darkness"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E2M9": {
+   "map": "E2M9",
+   "title": "Thin Ice",
+   "url": "https://www.blood-wiki.org/index.php/E2M9%3A_Thin_Ice",
+   "designer": "James Wilson",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), cblood3 (MIDI)",
+   "enemies_by_difficulty": [
+    "45",
+    "51",
+    "71",
+    "90",
+    "102"
+   ],
+   "secrets_declared": 2,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bat",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Phantasm",
+    "Red Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Super Armour, Doctor's Bag",
+     "words": [
+      "swim",
+      "ice"
+     ]
+    },
+    {
+     "reward": "Drum of Bullets, Box of Shells",
+     "words": [
+      "water",
+      "swim",
+      "ice",
+      "box"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "ice",
+     "lift",
+     "door",
+     "symbol",
+     "key",
+     "barrel",
+     "dynamite",
+     "fire"
+    ],
+    "secrets": [
+     "water",
+     "swim",
+     "ice",
+     "box"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M1": {
+   "map": "E3M1",
+   "title": "Ghost Town",
+   "url": "https://www.blood-wiki.org/index.php/E3M1%3A_Ghost_Town",
+   "designer": "James Wilson",
+   "song": "6 - Father Time (CD-Audio), cblood8 (MIDI)",
+   "enemies_by_difficulty": [
+    "48",
+    "50",
+    "55",
+    "71",
+    "75"
+   ],
+   "secrets_declared": 9,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "fire",
+    "spider",
+    "moon",
+    "skull",
+    "dagger"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Drum of Bullets",
+     "words": [
+      "door",
+      "painting"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "door",
+      "fire",
+      "painting"
+     ]
+    },
+    {
+     "reward": "Reflective Shots",
+     "words": [
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Napalm Launcher",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "office"
+     ]
+    },
+    {
+     "reward": "Remote Detonators x2, Proximity Detonator",
+     "words": []
+    },
+    {
+     "reward": "Tesla Cannon, Tesla Charge x2",
+     "words": [
+      "door",
+      "key",
+      "bed"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll, Proximity Detonator",
+     "words": [
+      "window"
+     ]
+    },
+    {
+     "reward": "Life Seed, super Armour",
+     "words": [
+      "elevator"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "stairs",
+     "door",
+     "symbol",
+     "key",
+     "office",
+     "street",
+     "alley",
+     "window",
+     "fire"
+    ],
+    "secrets": [
+     "elevator",
+     "door",
+     "key",
+     "office",
+     "window",
+     "fire",
+     "bed",
+     "painting"
+    ],
+    "trivia": [
+     "stairs",
+     "explode",
+     "bed"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M2": {
+   "map": "E3M2",
+   "title": "The Siege",
+   "url": "https://www.blood-wiki.org/index.php/E3M2%3A_The_Siege",
+   "designer": "Craig Hubbard & Terry Hamel",
+   "song": "None (CD-Audio), None (MIDI)",
+   "enemies_by_difficulty": [
+    "61",
+    "64",
+    "86",
+    "112",
+    "125"
+   ],
+   "secrets_declared": 3,
+   "keys_in_route_order": [
+    "skull",
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand",
+    "Hell Hound",
+    "Rat",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Jump Boots",
+     "words": [
+      "vent",
+      "box",
+      "roof"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": []
+    },
+    {
+     "reward": "Voodoo Doll",
+     "words": [
+      "button"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "pool",
+     "fan",
+     "stairs",
+     "lift",
+     "door",
+     "switch",
+     "button",
+     "symbol",
+     "key",
+     "barrel",
+     "kitchen",
+     "roof",
+     "window"
+    ],
+    "secrets": [
+     "button",
+     "vent",
+     "box",
+     "roof"
+    ],
+    "trivia": [
+     "hotel"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M3": {
+   "map": "E3M3",
+   "title": "Raw Sewage",
+   "url": "https://www.blood-wiki.org/index.php/E3M3%3A_Raw_Sewage",
+   "designer": "James Wilson",
+   "song": "8 - Fate of the Damned (CD-Audio), cblood10 (MIDI)",
+   "enemies_by_difficulty": [
+    "39",
+    "39",
+    "61'",
+    "82'",
+    "83'"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull",
+    "eye",
+    "fire"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gill Beast",
+    "Hand",
+    "Hell Hound",
+    "Rat",
+    "Green Spider",
+    "Mother Spider"
+   ],
+   "weapons": [
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Diving Suit",
+     "words": []
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "underwater",
+      "wheel"
+     ]
+    },
+    {
+     "reward": "Tesla Cannon, Tesla Charges x2",
+     "words": [
+      "sewer",
+      "slime",
+      "waterfall",
+      "door",
+      "box"
+     ]
+    },
+    {
+     "reward": "Beastvision",
+     "words": [
+      "bed",
+      "straw"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll",
+     "words": [
+      "machine",
+      "button",
+      "key",
+      "spinning",
+      "plant"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "sewage",
+     "waterfall",
+     "pool",
+     "valve",
+     "bridge",
+     "catwalk",
+     "stairs",
+     "lift",
+     "door",
+     "gate",
+     "switch",
+     "button",
+     "symbol",
+     "seal",
+     "key",
+     "fire"
+    ],
+    "secrets": [
+     "underwater",
+     "sewer",
+     "slime",
+     "waterfall",
+     "wheel",
+     "machine",
+     "door",
+     "button",
+     "key",
+     "box",
+     "spinning",
+     "bed",
+     "straw",
+     "plant"
+    ],
+    "trivia": [
+     "sewer",
+     "summoning"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M4": {
+   "map": "E3M4",
+   "title": "The Sick Ward",
+   "url": "https://www.blood-wiki.org/index.php/E3M4%3A_The_Sick_Ward",
+   "designer": "Craig Hubbard & James Wilson",
+   "song": "7 - Waiting for the End (CD-Audio), cblood9 (MIDI)",
+   "enemies_by_difficulty": [
+    "51",
+    "53",
+    "68",
+    "82",
+    "84"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "eye",
+    "fire",
+    "skull",
+    "dagger"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Phantasm"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Voodoo Doll",
+     "words": []
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "machine",
+      "bed"
+     ]
+    },
+    {
+     "reward": "Super Armour, Life Seed, Various Items (note, you must kill the innocents to get them)",
+     "words": [
+      "elevator",
+      "button",
+      "window"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll, Super Armour",
+     "words": [
+      "box",
+      "morgue"
+     ]
+    },
+    {
+     "reward": "Beastvision",
+     "words": [
+      "elevator",
+      "button",
+      "coffin",
+      "morgue"
+     ]
+    },
+    {
+     "reward": "",
+     "words": [
+      "door",
+      "button",
+      "altar",
+      "chapel"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "lift",
+     "door",
+     "symbol",
+     "key",
+     "chapel",
+     "fire"
+    ],
+    "secrets": [
+     "machine",
+     "elevator",
+     "door",
+     "button",
+     "box",
+     "coffin",
+     "altar",
+     "chapel",
+     "morgue",
+     "window",
+     "bed"
+    ],
+    "trivia": [
+     "fan"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M5": {
+   "map": "E3M5",
+   "title": "Spare Parts",
+   "url": "https://www.blood-wiki.org/index.php/E3M5%3A_Spare_Parts",
+   "designer": "James Wilson & Craig Hubbard",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), cblood1 (MIDI)",
+   "enemies_by_difficulty": [
+    "52",
+    "53",
+    "57",
+    "74",
+    "76"
+   ],
+   "secrets_declared": 4,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon"
+   ],
+   "secrets": [
+    {
+     "reward": "Death mask/Invulnerability",
+     "words": [
+      "lava",
+      "rotating"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "conveyor",
+      "elevator"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Tesla Cannon",
+     "words": [
+      "box"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "crusher",
+     "conveyor",
+     "catwalk",
+     "stairs",
+     "lift",
+     "door",
+     "switch",
+     "button",
+     "lever",
+     "symbol",
+     "key",
+     "office",
+     "window"
+    ],
+    "secrets": [
+     "lava",
+     "conveyor",
+     "elevator",
+     "door",
+     "box",
+     "rotating"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M6": {
+   "map": "E3M6",
+   "title": "Monster Bait",
+   "url": "https://www.blood-wiki.org/index.php/E3M6%3A_Monster_Bait",
+   "designer": "James Wilson & Terry Hamel",
+   "song": "7 - Waiting for the End (CD-Audio), cblood7 (MIDI)",
+   "enemies_by_difficulty": [
+    "38",
+    "41",
+    "63",
+    "77",
+    "98"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "moon",
+    "fire"
+   ],
+   "enemies": [
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hell Hound",
+    "Phantasm",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "waterfall",
+      "window"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": []
+    },
+    {
+     "reward": "Beastvision",
+     "words": []
+    },
+    {
+     "reward": "Life Seed, Gasoline Can",
+     "words": [
+      "door",
+      "key",
+      "rotating"
+     ]
+    },
+    {
+     "reward": "Drum of Bullets, Box of Shells",
+     "words": [
+      "box"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "pipe",
+     "bridge",
+     "catwalk",
+     "stairs",
+     "lift",
+     "door",
+     "switch",
+     "button",
+     "lever",
+     "key",
+     "box",
+     "barrel",
+     "cave",
+     "warehouse",
+     "fire"
+    ],
+    "secrets": [
+     "waterfall",
+     "door",
+     "key",
+     "box",
+     "window",
+     "rotating"
+    ],
+    "trivia": [
+     "plant"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E3M7": {
+   "map": "E3M7",
+   "title": "The Pit of Cerberus",
+   "url": "https://www.blood-wiki.org/index.php/E3M7%3A_The_Pit_of_Cerberus",
+   "keys_in_route_order": [],
+   "enemies": [
+    "Hell Hound",
+    "Cerberus"
+   ],
+   "weapons": [
+    "Sawed-Off Shotgun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can"
+   ],
+   "secrets": [],
+   "words": {
+    "walkthrough": [
+     "bridge",
+     "stairs",
+     "elevator",
+     "door",
+     "symbol",
+     "explode"
+    ],
+    "secrets": [],
+    "trivia": [
+     "car",
+     "trap"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": false,
+    "trivia": true
+   }
+  },
+  "E3M8": {
+   "map": "E3M8",
+   "title": "Catacombs",
+   "url": "https://www.blood-wiki.org/index.php/E3M8%3A_Catacombs",
+   "designer": "James Wilson & Craig Hubbard",
+   "song": "5 - Infuscomus (CD-Audio), cblood7 (MIDI)",
+   "enemies_by_difficulty": [
+    "106",
+    "106",
+    "116",
+    "134",
+    "138"
+   ],
+   "secrets_declared": 6,
+   "keys_in_route_order": [
+    "eye",
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Voodoo Doll, Tesla Cannon, Box of TNT",
+     "words": [
+      "door",
+      "box"
+     ]
+    },
+    {
+     "reward": "Cloak of invisibility",
+     "words": []
+    },
+    {
+     "reward": "Drum of Bullets, Tesla Charge, Box of TNT x2",
+     "words": [
+      "slime",
+      "box"
+     ]
+    },
+    {
+     "reward": "Death mask/Invulnerability",
+     "words": []
+    },
+    {
+     "reward": "Napalm Launcher",
+     "words": [
+      "stairs",
+      "door",
+      "switch",
+      "painting"
+     ]
+    },
+    {
+     "reward": "Super Armour, Tesla Charges x2",
+     "words": [
+      "button",
+      "altar",
+      "glass"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "door",
+     "switch",
+     "button",
+     "lever",
+     "symbol",
+     "key",
+     "bars",
+     "tomb",
+     "bar"
+    ],
+    "secrets": [
+     "slime",
+     "stairs",
+     "door",
+     "switch",
+     "button",
+     "box",
+     "altar",
+     "glass",
+     "painting"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M1": {
+   "map": "E4M1",
+   "title": "Butchery Loves Company",
+   "url": "https://www.blood-wiki.org/index.php/E4M1%3A_Butchery_Loves_Company",
+   "designer": "James Wilson",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio), cblood4 (MIDI)",
+   "enemies_by_difficulty": [
+    "22",
+    "22",
+    "29",
+    "33",
+    "39"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull",
+    "eye"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast (caged)",
+    "Hand",
+    "Hell Hound",
+    "Innocent (caged)",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Body Armour",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "ladder"
+     ]
+    },
+    {
+     "reward": "Voodoo Doll",
+     "words": [
+      "stairs"
+     ]
+    },
+    {
+     "reward": "Cloak Of Invisibility",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Life Leech, Trapped Soul",
+     "words": [
+      "lift",
+      "button"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "bridge",
+     "stairs",
+     "door",
+     "symbol",
+     "key"
+    ],
+    "secrets": [
+     "ladder",
+     "stairs",
+     "lift",
+     "door",
+     "button",
+     "key"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M2": {
+   "map": "E4M2",
+   "title": "Breeding Grounds",
+   "url": "https://www.blood-wiki.org/index.php/E4M2%3A_Breeding_Grounds",
+   "designer": "James Wilson, Craig Hubbard, & Terry Hamel",
+   "song": "8 - Fate of the Damned (CD-Audio), cblood10 (MIDI)",
+   "enemies_by_difficulty": [
+    "53'",
+    "57'",
+    "63'",
+    "83'",
+    "87'"
+   ],
+   "secrets_declared": 3,
+   "keys_in_route_order": [
+    "skull",
+    "eye"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hell Hound",
+    "Green Spider",
+    "Mother Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Life Seed",
+     "words": [
+      "door",
+      "lever"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "gate"
+     ]
+    },
+    {
+     "reward": "Diving Suit, Super Armour",
+     "words": [
+      "swim",
+      "pool"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "underwater",
+     "pool",
+     "stairs",
+     "door",
+     "symbol",
+     "key",
+     "vent"
+    ],
+    "secrets": [
+     "swim",
+     "pool",
+     "door",
+     "gate",
+     "lever"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M3": {
+   "map": "E4M3",
+   "title": "Charnel House",
+   "url": "https://www.blood-wiki.org/index.php/E4M3%3A_Charnel_House",
+   "designer": "Craig Hubbard & James Wilson",
+   "song": "5 - Infuscomus (CD-Audio), cblood7 (MIDI)",
+   "enemies_by_difficulty": [
+    "48",
+    "50",
+    "69",
+    "86",
+    "89"
+   ],
+   "secrets_declared": 2,
+   "keys_in_route_order": [],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hell Hound",
+    "Red Spider",
+    "Green Spider"
+   ],
+   "weapons": [
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Life Seed",
+     "words": [
+      "pool",
+      "stairs",
+      "dynamite"
+     ]
+    },
+    {
+     "reward": "Body Armour",
+     "words": [
+      "water"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "waterfall",
+     "stairs",
+     "door",
+     "switch",
+     "symbol",
+     "barrel",
+     "window",
+     "fire"
+    ],
+    "secrets": [
+     "water",
+     "pool",
+     "stairs",
+     "dynamite"
+    ],
+    "trivia": [
+     "office"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M4": {
+   "map": "E4M4",
+   "title": "Crystal Lake",
+   "url": "https://www.blood-wiki.org/index.php/E4M4%3A_Crystal_Lake",
+   "designer": "Kevin Kilstrom & James Wilson",
+   "song": "7 - Waiting for the End (CD-Audio), cblood2 (MIDI)",
+   "enemies_by_difficulty": [
+    "57'",
+    "60'",
+    "84'",
+    "101'",
+    "136'"
+   ],
+   "secrets_declared": 6,
+   "keys_in_route_order": [
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bat",
+    "Bloated Butcher",
+    "Bone Eel",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand",
+    "Hell Hound",
+    "Phantasm",
+    "Red Spider",
+    "Green Spider",
+    "Mother Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Voodoo Doll",
+     "words": []
+    },
+    {
+     "reward": "Tesla Charge x2, Proximity Detonators x2, Box of Shells, Super Armour",
+     "words": [
+      "lift",
+      "box",
+      "window",
+      "fireplace"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "river",
+      "bridge"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Trapped Soul x2",
+     "words": [
+      "sewer",
+      "gate",
+      "bars",
+      "bar"
+     ]
+    },
+    {
+     "reward": "Access to secret level",
+     "words": [
+      "symbol"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "bridge",
+     "lift",
+     "door",
+     "switch",
+     "lever",
+     "symbol",
+     "key",
+     "fireplace"
+    ],
+    "secrets": [
+     "sewer",
+     "river",
+     "bridge",
+     "lift",
+     "door",
+     "gate",
+     "symbol",
+     "bars",
+     "box",
+     "bar",
+     "window",
+     "fireplace"
+    ],
+    "trivia": [
+     "underwater",
+     "lake",
+     "gate",
+     "mall"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M5": {
+   "map": "E4M5",
+   "title": "Fire and Brimstone",
+   "url": "https://www.blood-wiki.org/index.php/E4M5%3A_Fire_and_Brimstone",
+   "designer": "James Wilson",
+   "song": "none (CD-Audio), none (MIDI)",
+   "enemies_by_difficulty": [
+    "40",
+    "40",
+    "52",
+    "69'",
+    "84'"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bat",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Green Spider",
+    "Mother Spider"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Jump Boots",
+     "words": []
+    },
+    {
+     "reward": "Super Armour",
+     "words": []
+    },
+    {
+     "reward": "Doctor's Bag, Gasoline Can x2, Box of Shells",
+     "words": [
+      "bridge",
+      "box",
+      "tunnel"
+     ]
+    },
+    {
+     "reward": "Nothing",
+     "words": []
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "lift",
+      "temple"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "lava",
+     "bridge",
+     "stairs",
+     "door",
+     "symbol",
+     "key",
+     "cave",
+     "altar",
+     "temple"
+    ],
+    "secrets": [
+     "bridge",
+     "lift",
+     "box",
+     "tunnel",
+     "temple"
+    ],
+    "trivia": [
+     "fire"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M6": {
+   "map": "E4M6",
+   "title": "The Ganglion Depths",
+   "url": "https://www.blood-wiki.org/index.php/E4M6%3A_The_Ganglion_Depths",
+   "designer": "James Wilson & Terry Hamel",
+   "song": "none (CD-Audio), none (MIDI)",
+   "enemies_by_difficulty": [
+    "72'",
+    "72'",
+    "91'",
+    "114'",
+    "120'"
+   ],
+   "secrets_declared": 1,
+   "keys_in_route_order": [
+    "fire",
+    "skull",
+    "eye",
+    "spider"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Phantasm",
+    "Mother Spider",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Doctor's Bag, Box of Shells, Basic Armour",
+     "words": [
+      "box",
+      "statue"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "bridge",
+     "stairs",
+     "lift",
+     "door",
+     "gate",
+     "symbol",
+     "key",
+     "fire"
+    ],
+    "secrets": [
+     "box",
+     "statue"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M7": {
+   "map": "E4M7",
+   "title": "In The Flesh",
+   "url": "https://www.blood-wiki.org/index.php/E4M7%3A_In_The_Flesh",
+   "designer": "Craig Hubbard & James Wilson",
+   "song": "none (CD-Audio), none (MIDI)",
+   "enemies_by_difficulty": [
+    "24",
+    "25",
+    "37",
+    "47",
+    "46"
+   ],
+   "secrets_declared": 3,
+   "keys_in_route_order": [],
+   "enemies": [
+    "Cerberus",
+    "Gargoyle",
+    "Gill Beast",
+    "Hand",
+    "Hell Hound",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Box of Flares, Box of Shells",
+     "words": [
+      "box"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": [
+      "button",
+      "tunnel"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "button"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "swim",
+     "slime",
+     "pool",
+     "lift",
+     "elevator",
+     "symbol"
+    ],
+    "secrets": [
+     "button",
+     "box",
+     "tunnel"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M8": {
+   "map": "E4M8",
+   "title": "The Hall of the Epiphany",
+   "url": "https://www.blood-wiki.org/index.php/E4M8%3A_The_Hall_of_the_Epiphany",
+   "keys_in_route_order": [],
+   "enemies": [
+    "Stone Gargoyle",
+    "Mother Spider",
+    "Cerberus",
+    "Tchernobog"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [],
+   "words": {
+    "walkthrough": [
+     "pool",
+     "door",
+     "symbol",
+     "temple",
+     "fire"
+    ],
+    "secrets": [
+     "button"
+    ],
+    "trivia": [
+     "fan",
+     "machine",
+     "temple",
+     "darkness"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E4M9": {
+   "map": "E4M9",
+   "title": "Mall of the Dead",
+   "url": "https://www.blood-wiki.org/index.php/E4M9%3A_Mall_of_the_Dead",
+   "designer": "Craig Hubbard",
+   "song": "none (CD-Audio), none (MIDI)",
+   "enemies_by_difficulty": [
+    "81",
+    "82",
+    "94",
+    "103",
+    "103"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gill Beast",
+    "Hand",
+    "Hell Hound",
+    "Phantasm",
+    "Stone Gargoyle"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Life Leech",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Life Seed",
+     "words": [
+      "pipe"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": []
+    },
+    {
+     "reward": "Super Armour",
+     "words": [
+      "fan",
+      "door"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "pipe",
+      "grate"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": []
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "door",
+     "symbol",
+     "key",
+     "vent",
+     "crate",
+     "store",
+     "roof"
+    ],
+    "secrets": [
+     "pipe",
+     "fan",
+     "door",
+     "grate"
+    ],
+    "trivia": [
+     "elevator",
+     "mall",
+     "store",
+     "roof",
+     "window"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M1": {
+   "map": "E6M1",
+   "title": "Welcome To Your Life",
+   "url": "https://www.blood-wiki.org/index.php/E6M1%3A_Welcome_To_Your_Life",
+   "designer": "James Wilson",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio) cblood4 (MIDI)",
+   "enemies_by_difficulty": [
+    "37",
+    "39",
+    "49",
+    "59",
+    "62"
+   ],
+   "secrets_declared": 4,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "eye",
+    "skull",
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Ackolyte",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Zealot"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Dynamite Bundle",
+    "Remote Detonator",
+    "Life Leech"
+   ],
+   "secrets": [
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "store"
+     ]
+    },
+    {
+     "reward": "Basic Armour",
+     "words": [
+      "office"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "fan",
+      "roof"
+     ]
+    },
+    {
+     "reward": "Tommy Gun",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Life Leech",
+     "words": [
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "door",
+     "symbol",
+     "key",
+     "crate",
+     "store",
+     "office",
+     "alley",
+     "roof"
+    ],
+    "secrets": [
+     "fan",
+     "key",
+     "store",
+     "office",
+     "roof"
+    ],
+    "trivia": [
+     "mall"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M2": {
+   "map": "E6M2",
+   "title": "They Are Here",
+   "url": "https://www.blood-wiki.org/index.php/E6M2%3A_They_Are_Here",
+   "designer": "Craig Hubbard",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio) cblood3 (MIDI)",
+   "enemies_by_difficulty": [
+    "54",
+    "56",
+    "71",
+    "88",
+    "88"
+   ],
+   "secrets_declared": 2,
+   "keys_in_route_order": [
+    "skull"
+   ],
+   "enemies": [
+    "Innocent",
+    "Acid Pod",
+    "Ackolyte",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Fire Pod",
+    "Gargoyle",
+    "Hell Hound",
+    "Stone Gargoyle",
+    "Little Caleb",
+    "Zealot"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Dynamite Bundle",
+    "Remote Detonator",
+    "Aerosol Can"
+   ],
+   "secrets": [
+    {
+     "reward": "Guns Akimbo",
+     "words": []
+    },
+    {
+     "reward": "Jump Boots",
+     "words": [
+      "door",
+      "crate"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "crate"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "stairs",
+     "door",
+     "symbol",
+     "key",
+     "alley",
+     "fire",
+     "statue"
+    ],
+    "secrets": [
+     "door",
+     "crate"
+    ],
+    "trivia": [
+     "shop",
+     "darkness",
+     "plant"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M3": {
+   "map": "E6M3",
+   "title": "Public Storage",
+   "url": "https://www.blood-wiki.org/index.php/E6M3%3A_Public_Storage",
+   "designer": "James Wilson",
+   "song": "5 - Infuscomus (CD-Audio) cblood5 (MIDI)",
+   "enemies_by_difficulty": [
+    "55",
+    "60",
+    "86",
+    "114",
+    "123"
+   ],
+   "secrets_declared": 7,
+   "keys_in_route_order": [
+    "skull",
+    "dagger"
+   ],
+   "enemies": [
+    "Ackolyte",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Hand",
+    "Hell Hound",
+    "Stone Gargoyle",
+    "Zealot"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Dynamite Bundle",
+    "Proximity Detonator",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Reflective Shots",
+     "words": [
+      "door",
+      "key",
+      "crate"
+     ]
+    },
+    {
+     "reward": "Sawed-Off Shotgun",
+     "words": [
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Proximity Detonators",
+     "words": [
+      "key",
+      "bookcase"
+     ]
+    },
+    {
+     "reward": "Invulnerability/Death Mask",
+     "words": [
+      "key",
+      "straw"
+     ]
+    },
+    {
+     "reward": "Tesla Cannon, Basic Armour",
+     "words": []
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "key",
+      "crate"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "conveyor"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "conveyor",
+     "lift",
+     "door",
+     "switch",
+     "symbol",
+     "key",
+     "vent",
+     "crate",
+     "box",
+     "office",
+     "window"
+    ],
+    "secrets": [
+     "conveyor",
+     "door",
+     "key",
+     "crate",
+     "straw",
+     "bookcase"
+    ],
+    "trivia": [
+     "crate"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M4": {
+   "map": "E6M4",
+   "title": "Aqueducts",
+   "url": "https://www.blood-wiki.org/index.php/E6M4%3A_Aqueducts",
+   "designer": "James Wilson & Nick Newhard",
+   "song": "9 - Double, Double, Toil and Trouble (CD-Audio) cblood1 (MIDI)",
+   "enemies_by_difficulty": [
+    "64'",
+    "83'",
+    "114'",
+    "120'",
+    "??"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull",
+    "fire",
+    "spider",
+    "moon"
+   ],
+   "enemies": [],
+   "weapons": [
+    "Aerosol Can",
+    "Dynamite Bundle",
+    "Flare Gun",
+    "Napalm Launcher",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Voodoo Doll"
+   ],
+   "secrets": [
+    {
+     "reward": "Super Armour",
+     "words": [
+      "swim"
+     ]
+    },
+    {
+     "reward": "Life Leech, Life Seed",
+     "words": [
+      "water",
+      "underwater",
+      "spinning"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility, Guns Akimbo",
+     "words": [
+      "water",
+      "door",
+      "button",
+      "key",
+      "window",
+      "fire"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag, Diving Suit",
+     "words": [
+      "key",
+      "boat"
+     ]
+    },
+    {
+     "reward": "Tesla Cannon",
+     "words": [
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "underwater",
+     "swim",
+     "pool",
+     "stairs",
+     "door",
+     "gate",
+     "switch",
+     "button",
+     "symbol",
+     "key",
+     "crate",
+     "barrel",
+     "ship",
+     "tunnel",
+     "window",
+     "spinning",
+     "fire"
+    ],
+    "secrets": [
+     "water",
+     "underwater",
+     "swim",
+     "door",
+     "button",
+     "key",
+     "boat",
+     "window",
+     "spinning",
+     "fire"
+    ],
+    "trivia": [
+     "underwater"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M5": {
+   "map": "E6M5",
+   "title": "The Ruined Temple",
+   "url": "https://www.blood-wiki.org/index.php/E6M5%3A_The_Ruined_Temple",
+   "designer": "Kevin Kilstrom & James Wilson",
+   "song": "6 - Father Time (CD-Audio) cblood7 (MIDI)",
+   "enemies_by_difficulty": [
+    "117",
+    "129",
+    "140'",
+    "114'",
+    "??"
+   ],
+   "secrets_declared": 5,
+   "super_secrets": 1,
+   "keys_in_route_order": [
+    "eye",
+    "fire"
+   ],
+   "enemies": [],
+   "weapons": [],
+   "secrets": [
+    {
+     "reward": "Fire Armour, TNT Bundle",
+     "words": [
+      "fire"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag",
+     "words": [
+      "window"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": []
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "key"
+     ]
+    },
+    {
+     "reward": "Invulnerability/Death Mask",
+     "words": []
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "swim",
+     "stairs",
+     "door",
+     "symbol",
+     "key",
+     "pier",
+     "fire"
+    ],
+    "secrets": [
+     "key",
+     "window",
+     "fire"
+    ],
+    "trivia": [
+     "temple"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M6": {
+   "map": "E6M6",
+   "title": "Forbidden Rituals",
+   "url": "https://www.blood-wiki.org/index.php/E6M6%3A_Forbidden_Rituals",
+   "designer": "Kevin Kilstrom & James Wilson",
+   "song": "8 - Fate of the Damned (CD-Audio) cblood10 (MIDI)",
+   "enemies_by_difficulty": [
+    "113",
+    "113",
+    "113",
+    "117",
+    "??"
+   ],
+   "secrets_declared": 10,
+   "keys_in_route_order": [
+    "dagger",
+    "moon"
+   ],
+   "enemies": [
+    "Acolyte",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Choking Hand",
+    "Chrysalid Pod",
+    "Cultist",
+    "Fanatic",
+    "Gargoyle",
+    "Green Spider",
+    "Hell Hound",
+    "Phantasm",
+    "Stone Gargoyle",
+    "Zealot"
+   ],
+   "weapons": [
+    "Dynamite Bundle",
+    "Flare Gun"
+   ],
+   "secrets": [
+    {
+     "reward": "Reflective Shots, Voodoo Doll",
+     "words": [
+      "door",
+      "button",
+      "key"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo, Flares",
+     "words": [
+      "door",
+      "button"
+     ]
+    },
+    {
+     "reward": "Beastvision, Shotgun Shells",
+     "words": [
+      "gate"
+     ]
+    },
+    {
+     "reward": "Basic Armour, Gasoline Can, Proximity Detonators",
+     "words": []
+    },
+    {
+     "reward": "Life Seed, Fire Armour",
+     "words": [
+      "fire"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": [
+      "lift"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility, Flare Gun",
+     "words": [
+      "switch"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "stairs",
+      "lift",
+      "crate"
+     ]
+    },
+    {
+     "reward": "Invulnerability/Death Mask",
+     "words": [
+      "water",
+      "pool",
+      "stairs",
+      "ritual"
+     ]
+    },
+    {
+     "reward": "Super Armour",
+     "words": []
+    },
+    {
+     "reward": "",
+     "words": [
+      "door",
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "water",
+     "pool",
+     "lift",
+     "door",
+     "symbol",
+     "key",
+     "grate",
+     "ritual"
+    ],
+    "secrets": [
+     "water",
+     "pool",
+     "stairs",
+     "lift",
+     "door",
+     "gate",
+     "switch",
+     "button",
+     "key",
+     "crate",
+     "fire",
+     "ritual"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M7": {
+   "map": "E6M7",
+   "title": "The Dungeon",
+   "url": "https://www.blood-wiki.org/index.php/E6M7%3A_The_Dungeon",
+   "designer": "James Wilson & Nick Newhard",
+   "song": "7 - Waiting for the End (CD-Audio) cblood2 (MIDI)",
+   "enemies_by_difficulty": [
+    "199'",
+    "199'",
+    "199'",
+    "199'",
+    "??"
+   ],
+   "secrets_declared": 3,
+   "keys_in_route_order": [
+    "dagger",
+    "skull",
+    "moon"
+   ],
+   "enemies": [
+    "Innocent",
+    "Axe Zombie",
+    "Bloated Butcher",
+    "Cultist",
+    "Fanatic",
+    "Ackolyte",
+    "Zealot",
+    "Mother Spider",
+    "Spider",
+    "Hell Hound",
+    "Fire Pod",
+    "Acid Pod",
+    "Phantasm",
+    "Gargoyle"
+   ],
+   "weapons": [],
+   "secrets": [
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "door"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "lift",
+      "door",
+      "symbol",
+      "key"
+     ]
+    },
+    {
+     "reward": "Guns Akimbo",
+     "words": [
+      "bridge",
+      "door",
+      "key"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "stairs",
+     "lift",
+     "door",
+     "switch",
+     "lever",
+     "symbol",
+     "key",
+     "window",
+     "fire",
+     "statue"
+    ],
+    "secrets": [
+     "bridge",
+     "lift",
+     "door",
+     "symbol",
+     "key"
+    ],
+    "trivia": [
+     "switch"
+    ]
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  },
+  "E6M8": {
+   "map": "E6M8",
+   "title": "Beauty and the Beast",
+   "url": "https://www.blood-wiki.org/index.php/E6M8%3A_Beauty_and_the_Beast",
+   "keys_in_route_order": [],
+   "enemies": [
+    "Chrysalid Pod",
+    "Priest/Beast"
+   ],
+   "weapons": [
+    "Flare Gun",
+    "Sawed-Off Shotgun",
+    "Tommy Gun",
+    "Napalm Launcher",
+    "Remote Detonator",
+    "Aerosol Can",
+    "Tesla Cannon",
+    "Voodoo Doll",
+    "Life Leech",
+    "Dynamite Bundle"
+   ],
+   "secrets": [],
+   "words": {
+    "walkthrough": [
+     "symbol"
+    ],
+    "secrets": [],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": false,
+    "trivia": true
+   }
+  },
+  "E6M9": {
+   "map": "E6M9",
+   "title": "Forgotten Catacombs",
+   "url": "https://www.blood-wiki.org/index.php/E6M9%3A_Forgotten_Catacombs",
+   "designer": "Nick Newhard & James Wilson",
+   "song": "6 - Father Time (CD-Audio) cblood6 (MIDI)",
+   "enemies_by_difficulty": [
+    "55",
+    "56",
+    "71",
+    "86",
+    "??"
+   ],
+   "secrets_declared": 5,
+   "keys_in_route_order": [
+    "skull",
+    "eye",
+    "fire"
+   ],
+   "enemies": [
+    "Axe Zombie",
+    "Cultist",
+    "Fanatic",
+    "Hell Hound",
+    "Phantasm",
+    "Green Spider",
+    "Red Spider",
+    "Stone Gargoyle",
+    "Zealot"
+   ],
+   "weapons": [],
+   "secrets": [
+    {
+     "reward": "Flare Gun",
+     "words": []
+    },
+    {
+     "reward": "Life Leech",
+     "words": [
+      "door",
+      "switch",
+      "key"
+     ]
+    },
+    {
+     "reward": "Life Seed",
+     "words": [
+      "bridge",
+      "lift",
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Cloak of Invisibility",
+     "words": [
+      "door",
+      "key"
+     ]
+    },
+    {
+     "reward": "Doctor's Bag, Proximity Detonators",
+     "words": [
+      "lift",
+      "gate",
+      "switch",
+      "key",
+      "fire"
+     ]
+    }
+   ],
+   "words": {
+    "walkthrough": [
+     "bridge",
+     "lift",
+     "door",
+     "switch",
+     "symbol",
+     "key",
+     "fire"
+    ],
+    "secrets": [
+     "bridge",
+     "lift",
+     "door",
+     "gate",
+     "switch",
+     "key",
+     "fire"
+    ],
+    "trivia": []
+   },
+   "has_text": {
+    "walkthrough": true,
+    "enemies": true,
+    "weapons": true,
+    "secrets": true,
+    "trivia": true
+   }
+  }
+ }
+}
