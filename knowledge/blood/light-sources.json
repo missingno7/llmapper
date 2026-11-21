@@ -1,0 +1,181 @@
+{
+ "tiles": [
+  {
+   "tile": 506,
+   "name": "looks burning wall torch",
+   "uses": 138,
+   "maps": 15,
+   "panel": null,
+   "bright_share": 0.99,
+   "bright_as": {
+    "standing sprite": 136
+   },
+   "shade_median": -128.0,
+   "room_median": 20.0
+  },
+  {
+   "tile": 2101,
+   "name": "owner flame (small fire)",
+   "uses": 91,
+   "maps": 19,
+   "panel": null,
+   "bright_share": 0.89,
+   "bright_as": {
+    "standing sprite": 81
+   },
+   "shade_median": -128,
+   "room_median": 19
+  },
+  {
+   "tile": 641,
+   "name": "owner lamp hanging on a chain",
+   "uses": 71,
+   "maps": 11,
+   "panel": null,
+   "bright_share": 0.89,
+   "bright_as": {
+    "standing sprite": 63
+   },
+   "shade_median": -128,
+   "room_median": 16
+  },
+  {
+   "tile": 3566,
+   "name": "owner large flame / bonfire",
+   "uses": 65,
+   "maps": 23,
+   "panel": null,
+   "bright_share": 0.88,
+   "bright_as": {
+    "standing sprite": 57
+   },
+   "shade_median": -128,
+   "room_median": 16
+  },
+  {
+   "tile": 580,
+   "name": "owner standing candelabrum, three candles",
+   "uses": 59,
+   "maps": 8,
+   "panel": null,
+   "bright_share": 0.86,
+   "bright_as": {
+    "standing sprite": 51
+   },
+   "shade_median": -128,
+   "room_median": 16
+  },
+  {
+   "tile": 1701,
+   "name": "looks hanging chain lamp with burning bowl",
+   "uses": 53,
+   "maps": 11,
+   "panel": null,
+   "bright_share": 0.92,
+   "bright_as": {
+    "standing sprite": 49
+   },
+   "shade_median": -128,
+   "room_median": 20
+  },
+  {
+   "tile": 501,
+   "name": "owner technical light",
+   "uses": 78,
+   "maps": 17,
+   "panel": {
+    "n": 38,
+    "recess": 1024.0,
+    "pool_under": 0.0,
+    "walls": 4.0
+   },
+   "bright_share": 0.56,
+   "bright_as": {
+    "ceiling panel": 39,
+    "wall": 5
+   },
+   "shade_median": 0.0,
+   "room_median": 6.5
+  },
+  {
+   "tile": 2493,
+   "name": "owner street lamp, snow-covered",
+   "uses": 43,
+   "maps": 4,
+   "panel": null,
+   "bright_share": 0.84,
+   "bright_as": {
+    "standing sprite": 36
+   },
+   "shade_median": -128,
+   "room_median": 8
+  },
+  {
+   "tile": 2290,
+   "name": "owner fluorescent light",
+   "uses": 39,
+   "maps": 8,
+   "panel": {
+    "n": 36,
+    "recess": 1024.0,
+    "pool_under": 0.0,
+    "walls": 4.0
+   },
+   "bright_share": 0.92,
+   "bright_as": {
+    "ceiling panel": 36
+   },
+   "shade_median": 0,
+   "room_median": 1
+  },
+  {
+   "tile": 2288,
+   "name": "owner fluorescent light, vertical tile",
+   "uses": 56,
+   "maps": 12,
+   "panel": {
+    "n": 22,
+    "recess": 1024.0,
+    "pool_under": 14.0,
+    "walls": 4.0
+   },
+   "bright_share": 0.62,
+   "bright_as": {
+    "ceiling panel": 22,
+    "wall": 13
+   },
+   "shade_median": 0.0,
+   "room_median": 10.5
+  },
+  {
+   "tile": 261,
+   "name": "owner small door, like a furnace's",
+   "uses": 59,
+   "maps": 6,
+   "panel": null,
+   "bright_share": 0.51,
+   "bright_as": {
+    "wall": 30
+   },
+   "shade_median": 13,
+   "room_median": 24
+  },
+  {
+   "tile": 511,
+   "name": "owner small metal strip/plate (?)",
+   "uses": 29,
+   "maps": 6,
+   "panel": null,
+   "bright_share": 0.62,
+   "bright_as": {
+    "wall sprite": 18
+   },
+   "shade_median": -18,
+   "room_median": 21
+  }
+ ],
+ "pool": {
+  "median": 0.0,
+  "n": 3600
+ }
+}
