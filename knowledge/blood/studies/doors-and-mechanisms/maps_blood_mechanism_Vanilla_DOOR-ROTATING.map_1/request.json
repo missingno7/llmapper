@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "work/mech/study-views/maps_blood_mechanism_Vanilla_DOOR-ROTATING.map_1/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-mech/knowledge/blood/studies/doors-and-mechanisms/maps_blood_mechanism_Vanilla_DOOR-ROTATING.map_1",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -1664,
+   "y": -5760,
+   "z": 17504,
+   "angle": 120,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 1664,
+   "y": -5760,
+   "z": 17504,
+   "angle": 904,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -2176,
+   "y": -4224,
+   "z": 17504,
+   "angle": 1921,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 2176,
+   "y": -4224,
+   "z": 17504,
+   "angle": 1151,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  }
+ ]
+}

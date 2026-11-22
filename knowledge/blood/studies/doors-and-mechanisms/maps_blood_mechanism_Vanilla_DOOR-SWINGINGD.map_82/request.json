@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "work/mech/study-views/maps_blood_mechanism_Vanilla_DOOR-SWINGINGD.map_82/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-mech/knowledge/blood/studies/doors-and-mechanisms/maps_blood_mechanism_Vanilla_DOOR-SWINGINGD.map_82",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 640,
+   "y": 6016,
+   "z": -7072,
+   "angle": 1574,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 640,
+   "y": -10112,
+   "z": -7072,
+   "angle": 464,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -128,
+   "y": 1408,
+   "z": -7072,
+   "angle": 1665,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 1408,
+   "y": -5504,
+   "z": -7072,
+   "angle": 475,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  }
+ ]
+}

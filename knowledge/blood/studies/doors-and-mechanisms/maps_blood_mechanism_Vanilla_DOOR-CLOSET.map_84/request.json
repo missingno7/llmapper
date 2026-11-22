@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "work/mech/study-views/maps_blood_mechanism_Vanilla_DOOR-CLOSET.map_84/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-mech/knowledge/blood/studies/doors-and-mechanisms/maps_blood_mechanism_Vanilla_DOOR-CLOSET.map_84",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 8660,
+   "y": 14883,
+   "z": -15264,
+   "angle": 1633,
+   "horiz": 100,
+   "sector": 84,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 12242,
+   "y": 15480,
+   "z": -15264,
+   "angle": 1465,
+   "horiz": 100,
+   "sector": 84,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 9257,
+   "y": 3540,
+   "z": -15264,
+   "angle": 420,
+   "horiz": 100,
+   "sector": 84,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 12839,
+   "y": 2346,
+   "z": -15264,
+   "angle": 625,
+   "horiz": 100,
+   "sector": 84,
+   "screenshot": true
+  }
+ ]
+}

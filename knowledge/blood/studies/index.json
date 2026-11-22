@@ -111,6 +111,18 @@
     "maps/blood/community/HNTDGRVY.MAP:128"
    ],
    "date": "2026-11-22"
+  },
+  "doors-and-mechanisms": {
+   "want": "Find vanilla Blood doors, lifts, moving machinery and switch logic that fit Gravesend's places.",
+   "seeds": [
+    "maps/blood/mechanism/Vanilla/DOOR-SLIDINGD.map:1!",
+    "maps/blood/mechanism/Vanilla/DOOR-SWINGINGD.map:82!",
+    "maps/blood/mechanism/Vanilla/DOOR-ROTATING.map:1!",
+    "maps/blood/mechanism/Vanilla/MACHINERY-LIFT.map:0!",
+    "maps/blood/mechanism/Vanilla/DOOR-COMBIDOORS.map:1!",
+    "maps/blood/mechanism/Vanilla/DOOR-CLOSET.map:84!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

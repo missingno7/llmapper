@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "work/mech/study-views/maps_blood_mechanism_Vanilla_MACHINERY-LIFT.map_0/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-mech/knowledge/blood/studies/doors-and-mechanisms/maps_blood_mechanism_Vanilla_MACHINERY-LIFT.map_0",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -556,
+   "y": 2595,
+   "z": -7072,
+   "angle": 1678,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -1750,
+   "y": -9942,
+   "z": -7072,
+   "angle": 298,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 3623,
+   "y": 3192,
+   "z": -7072,
+   "angle": 1493,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 3623,
+   "y": -9942,
+   "z": -7072,
+   "angle": 568,
+   "horiz": 100,
+   "sector": 0,
+   "screenshot": true
+  }
+ ]
+}
