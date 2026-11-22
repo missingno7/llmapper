@@ -230,6 +230,37 @@ class ReadBackTests(unittest.TestCase):
         self.assertEqual(row["channel"], 400)
         self.assertEqual((len(row["senders"]), len(row["listeners"])), (1, 1))
 
+    def test_engine_broadcast_subscriptions_read_back_independently(self):
+        layout = _layout()
+        circuit = wiring.Circuit(layout)
+        for name, target in (("open_yard", YARD), ("open_vault", VAULT)):
+            circuit.wire(name, f"open {target} at level start",
+                         engine="kChannelLevelStart").then(wiring.region(target))
+        compiled, disk = _built(layout, circuit)
+        self.assertTrue(circuit.read_back(compiled, disk)["agrees"])
+
+        sector = compiled.allocations[YARD].sector_id
+        disk.sectors[sector].extra.fields["rx_id"] = 0
+        yard, vault = circuit.read_back(compiled, disk)["wires"]
+        self.assertTrue(yard["faults"])
+        self.assertEqual(vault["faults"], [])
+
+    def test_a_listener_no_engine_wire_declared_is_still_a_fault(self):
+        """Sharing the level-start broadcast must not let a stray listener through:
+        built with two subscriptions, read back with one, the other is named."""
+        layout = _layout()
+        circuit = wiring.Circuit(layout)
+        for name, target in (("open_yard", YARD), ("open_vault", VAULT)):
+            circuit.wire(name, f"open {target} at level start",
+                         engine="kChannelLevelStart").then(wiring.region(target))
+        compiled, disk = _built(layout, circuit)
+        circuit.wires = [w for w in circuit.wires if w.name == "open_yard"]
+        result = circuit.read_back(compiled, disk)
+        self.assertFalse(result["agrees"])
+        vault = compiled.allocations[VAULT].sector_id
+        self.assertTrue(any(f"sector {vault}" in f and "no wire on it declared" in f
+                            for f in result["wires"][0]["faults"]))
+
     def test_a_fault_names_the_object_that_is_not_as_declared(self):
         layout = _layout()
         circuit = self._circuit(layout)

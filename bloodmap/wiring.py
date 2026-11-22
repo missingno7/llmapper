@@ -580,6 +580,13 @@ class Circuit:
                 and node[slot] == channel)
 
         owned, report = set(), []
+        #: an engine broadcast (level start) is heard by several wires' own
+        #: subscribers: each wire checks its own, and what no wire on the
+        #: channel declared is checked once, after them all
+        shared: dict[int, dict] = {}
+        #: who hears level start as a SENDER of some wire (a starter): it is
+        #: declared, as that wire's root, not as an answer
+        starters: set[str] = set()
         for wire in self.wires:
             owned.add(wire.channel)
             faults: list[str] = []
@@ -593,6 +600,8 @@ class Circuit:
                     faults.append(f"{_said(row['ref'])} does not send on channel "
                                   f"{wire.channel} in the map")
                     continue
+                if row["cause"] == LEVEL_START:
+                    starters.update(found)
                 for ident in found:
                     if row["cause"] == LEVEL_START:
                         fires = by_id[ident]["rx"] == LEVEL_START_CHANNEL
@@ -619,8 +628,13 @@ class Circuit:
                                   f"{wire.channel} in the map")
             for ident in sorted(sending - set(senders)):
                 faults.append(f"{ident} sends on the wire and was not declared")
-            for ident in sorted(hearing - set(answers)):
-                faults.append(f"{ident} answers the wire and was not declared")
+            if wire.engine is not None and wire.channel in ENGINE_SENDS:
+                row = shared.setdefault(wire.channel, {"hearing": hearing, "answers": set(),
+                                                       "faults": faults})
+                row["answers"].update(answers)
+            else:
+                for ident in sorted(hearing - set(answers)):
+                    faults.append(f"{ident} answers the wire and was not declared")
             for ident in senders:
                 if ident not in roots:
                     continue              # a relay, or already reported above
@@ -631,6 +645,15 @@ class Circuit:
             report.append({"name": wire.name, "says": wire.says, "channel": wire.channel,
                            "engine": wire.engine, "senders": sorted(set(senders)),
                            "answers": sorted(set(answers)), "faults": faults})
+        for channel, row in shared.items():
+            # and what hears the broadcast only to tell the engine something
+            # (the secret total: level start in, channel 1 out) is the
+            # engine's own business, not a level wire's
+            relays = {node["id"] for node in every
+                      if node["rx"] == channel and 0 < node["tx"] < USER_CHANNELS_FROM}
+            for ident in sorted(row["hearing"] - row["answers"] - starters - relays):
+                row["faults"].append(f"{ident} answers channel {channel} and no wire on it "
+                                     f"declared it")
         undeclared = []
         for channel in sorted({node["tx"] for node in every} | {node["rx"] for node in every}):
             if not channel or channel in owned:

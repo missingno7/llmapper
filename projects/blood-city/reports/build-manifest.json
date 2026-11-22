@@ -1070,6 +1070,16 @@
         "then": []
       },
       {
+        "name": "station:fare-turnstile",
+        "says": "when the level starts the station's fare turnstile begins cycling",
+        "channel": 7,
+        "engine": "kChannelLevelStart",
+        "when": [],
+        "then": [
+          "region region:gravesend/gravesend_station/fare_turnstile"
+        ]
+      },
+      {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
         "channel": 112,
@@ -1168,17 +1178,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 444",
-          "sprite 445"
+          "sprite 448",
+          "sprite 449"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 446",
-          "sprite 447",
-          "sprite 448"
+          "sprite 450",
+          "sprite 451",
+          "sprite 452"
         ],
         "faults": []
       },
@@ -1188,16 +1198,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 514"
+          "sprite 518"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 515",
-          "sprite 516",
-          "sprite 517"
+          "sprite 519",
+          "sprite 520",
+          "sprite 521"
         ],
         "faults": []
       },
@@ -1236,10 +1246,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 411"
+          "sprite 415"
         ],
         "answers": [
-          "sector 452"
+          "sector 453"
         ],
         "faults": []
       },
@@ -1249,10 +1259,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 404"
+          "sprite 408"
         ],
         "answers": [
-          "sector 478"
+          "sector 479"
         ],
         "faults": []
       },
@@ -1262,16 +1272,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 174"
+          "sprite 179"
         ],
         "answers": [
           "sector 389",
           "sector 390",
           "sector 391",
           "sector 392",
-          "sprite 175",
-          "sprite 176",
-          "sprite 177"
+          "sprite 180",
+          "sprite 181",
+          "sprite 182"
         ],
         "faults": []
       },
@@ -1320,9 +1330,20 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 405"
+          "sprite 409"
         ],
         "answers": [],
+        "faults": []
+      },
+      {
+        "name": "station:fare-turnstile",
+        "says": "when the level starts the station's fare turnstile begins cycling",
+        "channel": 7,
+        "engine": "kChannelLevelStart",
+        "senders": [],
+        "answers": [
+          "sector 413"
+        ],
         "faults": []
       },
       {
@@ -1331,7 +1352,7 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 592"
+          "sprite 596"
         ],
         "answers": [
           "sector 9"
@@ -1344,7 +1365,7 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 593"
+          "sprite 597"
         ],
         "answers": [
           "sector 18"
@@ -1357,7 +1378,7 @@
         "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 594"
+          "sprite 598"
         ],
         "answers": [
           "sector 30"
@@ -1370,7 +1391,7 @@
         "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 595"
+          "sprite 599"
         ],
         "answers": [
           "sector 32"
@@ -1383,7 +1404,7 @@
         "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 596"
+          "sprite 600"
         ],
         "answers": [
           "sector 42"
@@ -1578,17 +1599,17 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1114,
-    "wall_sprites": 506,
-    "planes": 120,
+    "sprites": 1118,
+    "wall_sprites": 509,
+    "planes": 122,
     "clashing_pairs": 4,
     "sprites_involved": 6,
     "clash_rate_per_100_wall_sprites": 0.79,
     "fully_hidden": 0
   },
   "apertures": {
-    "findings": 232,
-    "seams": 159,
+    "findings": 233,
+    "seams": 160,
     "real": 73,
     "by_kind": {
       "pinch": 40,
@@ -1620,8 +1641,8 @@
     }
   ],
   "swept_closure": {
-    "mechanisms": 4,
-    "sound": 4,
+    "mechanisms": 5,
+    "sound": 5,
     "deforming_neighbours": 2,
     "problems": [],
     "notes": []
@@ -1630,7 +1651,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 90,
+    "sentences": 91,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -3110,11 +3131,76 @@
         }
       },
       {
+        "name": "region:gravesend/gravesend_station/fare_turnstile",
+        "construct": "turnstile",
+        "sector": 413,
+        "sectors": [
+          413
+        ],
+        "sector_type": 615,
+        "wiring": {
+          "rx_id": 7,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "closure": {
+          "loops": 0,
+          "problems": [],
+          "notes": [],
+          "graze_tolerance": 16.0,
+          "grazing_loops": []
+        },
+        "conformance": {
+          "construct": "turnstile sector 413",
+          "measured": {
+            "blades": 4,
+            "axis": [
+              10752,
+              -13568
+            ],
+            "radial_stand_off": [
+              384
+            ],
+            "bearings": [
+              0.0,
+              90.0,
+              180.0,
+              270.0
+            ],
+            "span": [
+              32768
+            ],
+            "clear": 32768,
+            "bearing_minus_own_angle": [
+              90.0
+            ],
+            "axis_turn": -8192
+          },
+          "deviations": []
+        },
+        "state_pair": {
+          "sector": 413,
+          "type": 615,
+          "measured": [
+            "turn"
+          ],
+          "headroom_change": 0,
+          "area_off": 4194304.0,
+          "area_on": 4194304.0,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": -8192,
+          "whole_circles": true,
+          "changes": true
+        }
+      },
+      {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 452,
+        "sector": 453,
         "sectors": [
-          452
+          453
         ],
         "sector_type": 600,
         "wiring": {
@@ -3124,7 +3210,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 452,
+          "sector": 453,
           "type": 600,
           "measured": [
             "headroom"
@@ -3140,9 +3226,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 478,
+        "sector": 479,
         "sectors": [
-          478
+          479
         ],
         "sector_type": 600,
         "wiring": {
@@ -3152,7 +3238,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 478,
+          "sector": 479,
           "type": 600,
           "measured": [
             "headroom"
@@ -3168,20 +3254,20 @@
     ]
   },
   "rules": {
-    "total": 1220,
+    "total": 1226,
     "by_severity": {
-      "note": 1215,
+      "note": 1221,
       "warning": 5
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 148,
+      "note:sprite-drawn-square": 151,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 108,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "note:wall-draws-its-own-tile": 927,
+      "note:wall-draws-its-own-tile": 930,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [
@@ -3232,7 +3318,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 897,
+      "sprites": 900,
       "sunk": 0.0,
       "through": 0.001,
       "squeezed": 0.0
@@ -3240,7 +3326,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 897,
+        "sprite": 901,
         "tile": 793,
         "sector": 27
       }
@@ -3250,8 +3336,8 @@
     "overlaps": [
       {
         "sprites": [
-          558,
-          559
+          562,
+          563
         ],
         "tiles": [
           73,
@@ -3346,6 +3432,14 @@
         "count": 6,
         "source": "community-curated",
         "maps": 3
+      },
+      {
+        "tile": 115,
+        "slot": "two_sided_upper",
+        "place": "outdoors",
+        "count": 4,
+        "source": "community",
+        "maps": 5
       },
       {
         "tile": 1744,
@@ -4134,38 +4228,38 @@
       },
       "Gravesend Station": {
         "hero": "a green-banded carriage standing at a platform under a plank canopy, seen through a line of riveted columns",
-        "exemplar": "E1M2 s271/s272/s34 (hall, platform, track); STATION s128 (the solid car, livery 1665); tunnel STATION s131-137; an enterable car is NOT built",
+        "exemplar": "E1M2 s271/s272/s34 (hall, platform, track); STATION s128 (the solid car, livery 1665); tunnel STATION s131-137; an enterable car is NOT built. DOOR-ROTATING s4 (fare turnstile)",
         "layers": [
           "second",
           "wall_art",
           "levels",
           "masked",
           "light",
+          "motion",
           "machines"
         ],
-        "layer_count": 6,
+        "layer_count": 7,
         "campaign_p25": 4,
         "campaign_p50": 6,
         "missing": [
-          "trim",
-          "motion"
+          "trim"
         ],
         "wall_tiles": [
           [
             414,
-            0.362
+            0.332
           ],
           [
             90,
-            0.321
-          ],
-          [
-            34,
-            0.162
+            0.295
           ],
           [
             115,
-            0.154
+            0.224
+          ],
+          [
+            34,
+            0.149
           ]
         ],
         "shade_spread": 28,
@@ -4174,7 +4268,7 @@
           24.8,
           5.3
         ],
-        "free_floor_share": 0.72,
+        "free_floor_share": 0.71,
         "cramped": [
           "short side 10752 (campaign p25 11776)"
         ],
@@ -4450,9 +4544,9 @@
     "whole": 3
   },
   "light_stage": {
-    "sectors_before": 582,
-    "walls_before": 3795,
-    "sprites_before": 1114,
+    "sectors_before": 583,
+    "walls_before": 3801,
+    "sprites_before": 1118,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -4493,6 +4587,9 @@
       },
       "region:gravesend/gravesend_station/east_stair": {
         "ceiling 2290": 2
+      },
+      "region:gravesend/gravesend_station/fare_turnstile": {
+        "ceiling 2290": 1
       },
       "region:gravesend/gravesend_station/goods_store": {
         "panel 501": 4
@@ -4717,17 +4814,17 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 55,
+      "sectors": 56,
       "pieces": 320,
-      "slivers_merged": 20,
+      "slivers_merged": 16,
       "slivers_dropped": 31,
-      "walls_split": 834,
-      "seams": 3274,
+      "walls_split": 802,
+      "seams": 3268,
       "refused": {},
       "left_whole": {
         "327": "a wall of the cut had no twin"
       },
-      "looked_at": 57
+      "looked_at": 58
     },
     "slope_cut": {
       "sectors": 20,
@@ -4748,87 +4845,87 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1678,
+      "walls_split": 1688,
       "seams": 0,
       "refused": {},
-      "walls_cut": 437,
+      "walls_cut": 439,
       "walls_refused": 10,
       "left_whole": {},
-      "looked_at": 1345
+      "looked_at": 1351
     },
     "shades": {
-      "surfaces": 5079,
+      "surfaces": 5085,
       "windows": 18,
       "spread_12": 81
     },
     "kept": 36,
     "sectors": 1039,
-    "walls": 10337,
-    "sprites": 1189,
-    "pieces": 457,
+    "walls": 10320,
+    "sprites": 1194,
+    "pieces": 456,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 901,
+      "walls": 908,
       "wall_sd": 11.2,
-      "wall_median": 20,
+      "wall_median": 20.0,
       "by_facing": {
-        "N": 22.5,
+        "N": 22.0,
         "E": 17.0,
-        "S": 22,
+        "S": 22.0,
         "W": 19.0
       },
-      "facing_step": 5.5,
-      "ground_median": 18,
-      "ground_sd": 11.8,
+      "facing_step": 5.0,
+      "ground_median": 18.0,
+      "ground_sd": 11.7,
       "corners": 223,
       "corner_equal": 0.35,
-      "corner_step": 5,
+      "corner_step": 5.0,
       "corner_darker": {
-        "N": 0.16,
+        "N": 0.15,
         "E": 0.39,
         "S": 0.14,
-        "W": 0.31
+        "W": 0.32
       },
       "within_building": {
-        "N": 0.0,
-        "E": 0.5,
+        "N": 0.2,
+        "E": 0.8,
         "S": 0.0,
-        "W": 0.9
+        "W": 0.8
       },
-      "tile_sd": 6.5
+      "tile_sd": 6.3
     },
     "after": {
-      "walls": 901,
+      "walls": 908,
       "wall_sd": 11.2,
-      "wall_median": 20,
+      "wall_median": 20.0,
       "by_facing": {
-        "N": 22.5,
+        "N": 22.0,
         "E": 17.0,
-        "S": 22,
+        "S": 22.0,
         "W": 19.0
       },
-      "facing_step": 5.5,
-      "ground_median": 18,
-      "ground_sd": 11.8,
+      "facing_step": 5.0,
+      "ground_median": 18.0,
+      "ground_sd": 11.7,
       "corners": 223,
       "corner_equal": 0.35,
-      "corner_step": 5,
+      "corner_step": 5.0,
       "corner_darker": {
-        "N": 0.16,
+        "N": 0.15,
         "E": 0.39,
         "S": 0.14,
-        "W": 0.31
+        "W": 0.32
       },
       "within_building": {
-        "N": 0.0,
-        "E": 0.5,
+        "N": 0.2,
+        "E": 0.8,
         "S": 0.0,
-        "W": 0.9
+        "W": 0.8
       },
-      "tile_sd": 6.5
+      "tile_sd": 6.3
     }
   },
   "stages": [

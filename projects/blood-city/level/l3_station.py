@@ -23,7 +23,7 @@ in order, and each step has a thing:
                it, a TICKETS board over it, and a door round the side.
 ``wait``       benches down the hall, a clock, the arrivals board, bills.
 ``pass``       iron gates between the columns (E1M2 sprites 473-477),
-               two bays left open.
+               a revolving fare gate, and two open bays.
 ``board``      a carriage with a DOOR and glazed WINDOWS, standing under
                a train-shed roof. (A free-standing car under the sky can
                have neither in this engine: the wall over an opening runs
@@ -63,8 +63,8 @@ buildings") and 2.4 bodies over the rail, its door 1,024, its windows
 half a body up.
 
 Still owed, and said so: the tunnel leads nowhere (it should reach the
-quay); no guard's van, luggage or water tower; nothing moves but the
-door. Tiles with no owner name: 1665 (train livery), 174, 414, 2320
+quay); no guard's van, luggage or water tower. Tiles with no owner name:
+1665 (train livery), 174, 414, 2320
 (locomotive wheels), 431 and 943 (the boards).
 """
 
@@ -75,6 +75,7 @@ from bloodmap import wiring
 
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, Style
+from bloodmap.mechanism import DISTINCT_ANGLES, turnstile_spec
 from bloodmap.slope import SlopeSpec
 
 from materials import FACADES
@@ -246,7 +247,11 @@ POOLS = ((9216, -10752, 10752, -9216), (12544, -10240, 14080, -8704),
 LAMP, WALL_LAMP, CURTAIN = 945, 2183, 147
 STREET_TORCH = 506
 COLUMNS = tuple(HALL[0] + 1024 + k * 2560 for k in range(4))
-BENCHES = ((10240, -12032), (14848, -12032))      # seat's north-west corner
+#: Replace the fenced bay between the first two columns with a roofed rotor.
+FARE_JAMBS = (COLUMNS[0], COLUMNS[1] + 512)
+FARE_ROTOR = (COLUMNS[0] + 512, HALL[1], COLUMNS[1], HALL[1] + 2048)
+FARE_CLEAR = 32768
+BENCHES = ((10240, -11392), (14848, -12032))      # clear landing in front of the fare gate
 CAR_DOOR_CHANNEL = wires.channel("station:car-door")
 
 #: tiles (the owner's names in quotes)
@@ -321,11 +326,12 @@ def build(city, street):
                            built_by="l3_station")
 
     def room(name, rect, *, floor_z, clear, note, role="interior",
-             sky_open=False, rk=None, intent=None, **surfaces):
+             sky_open=False, rk=None, intent=None, outline=None, faces=COMPASS,
+             **surfaces):
         x0, y0, x1, y1 = (int(v) for v in rect)
         made = station.room(
-            name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
-            role=role, faces=dict(COMPASS), frame=Frame(x0, y0),
+            name, outline or [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
+            role=role, faces=dict(faces), frame=Frame(x0, y0),
             region_kwargs=dict(rk or {}), note=note,
             #: every room here is furnished by `furnish`, not by the
             #: city's generic dressing (see `dressing.dress`)
@@ -380,7 +386,15 @@ def build(city, street):
                 rk={"floor_slope": SlopeSpec(
                     hinge=((rx1, ry1), (rx0, ry1)), rise_z=-HALL_UP)},
                 wall_picnum=PASSAGE_WALL, floor_shade=14, wall_shade=26)
+    hx0, hy0, hx1, hy1 = HALL
+    rx0, _, rx1, ry1 = FARE_ROTOR
+    jx0, jx1 = FARE_JAMBS
+    hall_outline = [(x - hx0, y - hy0) for x, y in (
+        (hx0, hy0), (jx0, hy0), (jx0, ry1), (jx1, ry1), (jx1, hy0),
+        (hx1, hy0), (hx1, hy1), (hx0, hy1))]
     hall = room("hall", HALL, floor_z=HALL_Z, clear=HALL_CLEAR,
+                outline=hall_outline, faces={"north_west": 0, "fare_gate": 2,
+                "north": 4, "east": 5, "south": 6, "west": 7},
                 note="the booking hall: mossy brick under dark planks",
                 floor_shade=26, ceiling_shade=44, wall_shade=34)
     city.connect(door.face("south"), street.face("north"),
@@ -425,13 +439,43 @@ def build(city, street):
     GRILLES.append((mid - 16, wy0, mid + 16, wy1))
 
     # ---- the hall: columns on the platform line, benches to wait on -----
-    for cx in COLUMNS:
+    for cx in COLUMNS[2:]:
         box = (cx, HALL[1] + 128, cx + 512, HALL[1] + 640)
         hall.carve([(box[0] - HALL[0], box[1] - HALL[1]),
                     (box[2] - HALL[0], box[1] - HALL[1]),
                     (box[2] - HALL[0], box[3] - HALL[1]),
                     (box[0] - HALL[0], box[3] - HALL[1])])
         COLUMN_BOXES.append(box)
+    COLUMN_BOXES.extend(((jx0, hy0, rx0, ry1), (rx1, hy0, jx1, ry1)))
+
+    # DOOR-ROTATING s4: four carried vanes, a fixed outline and a central axis.
+    # The campaign rotor's iron lattice matches the hall's fixed grilles.
+    # At its stock size each vane reaches 768, leaving 256 to either jamb.
+    fare = turnstile_spec(period=255, floor_z=HALL_Z, ceiling_z=HALL_Z - FARE_CLEAR,
+                          arrangement=DISTINCT_ANGLES)
+    fare["behavior"].pop("rx_id")  # the city's named engine wire supplies RX
+    rotor = room("fare_turnstile", FARE_ROTOR, floor_z=HALL_Z, clear=FARE_CLEAR,
+                 role="gateway", note="the four-vane fare gate beside the open bays",
+                 rk={"type": fare["sector_type"], "sector_behavior": fare["behavior"]},
+                 wall_picnum=COLUMN, ceiling_picnum=PLANKS,
+                 floor_shade=8, ceiling_shade=18, wall_shade=8)
+    station.connect(rotor.face("south"), hall.face("fare_gate"),
+                    connection_id="connection:station_fare_hall")
+    wires.wire("station:fare-turnstile").then(wiring.region(rotor.region_id))
+    pivot = ((rx0 + rx1) // 2, (hy0 + ry1) // 2)
+
+    def place_fare_rotor(layout, room):
+        px, py = pivot
+        layout.add_sprite("placement:station:fare_turnstile:axis", room.region_id,
+                          x=px, y=py, **fare["axis"])
+        for index, blade in enumerate(fare["blades"]):
+            fields = dict(blade)
+            dx, dy = fields.pop("dx"), fields.pop("dy")
+            layout.add_sprite(f"placement:station:fare_turnstile:vane:{index}",
+                              room.region_id, x=px + dx, y=py + dy, shade=8, **fields)
+
+    rotor.raw("Fit the campaign axis marker and four floor-to-roof grates.",
+              place_fare_rotor)
     for index, (bx, by) in enumerate(BENCHES):
         #: round 3: "bench seats are 1.06 m deep (real: about 0.45 m) and
         #: read as crates". A seat 0.6 m deep and knee high, a thin back.
@@ -465,9 +509,15 @@ def build(city, street):
         if parts:
             station.connect(parts[-1].face("east"), part.face("west"),
                             connection_id=f"connection:station_platform_{index}")
-        if HALL[0] <= x0 and x1 <= HALL[2]:
-            station.connect(part.face("south"), hall.face("north"),
+        if hx0 <= x0 and x1 <= hx1:
+            face = "north_west" if x0 < jx0 else "north"
+            span = min(x1, jx0) - x0 if face == "north_west" else x1 - max(x0, jx1)
+            station.connect(part.face("south"), hall.face(face), min_width=span,
                             connection_id=f"connection:station_hall_platform_{index}")
+        fare_span = min(x1, rx1) - max(x0, rx0)
+        if fare_span > 0:
+            station.connect(part.face("south"), rotor.face("north"), min_width=fare_span,
+                            connection_id=f"connection:station_fare_platform_{index}")
         parts.append(part)
     dx0, dy0, dx1, dy1 = DOWN_RAMP
     down = room("platform_ramp", DOWN_RAMP, floor_z=HALL_Z, clear=OPEN_CLEAR,
@@ -948,11 +998,11 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                 except Exception:                           # noqa: BLE001
                     pass
 
-    #: iron gates between the columns, two bays left open (E1M2 gates all)
+    #: iron gates between the columns, with the rotor and two open bays
     edges = [hx0] + [x for c in COLUMNS for x in (c, c + 512)] + [hx1]
     bays = [(edges[i], edges[i + 1]) for i in range(0, len(edges), 2)]
     for index, (x0, x1) in enumerate(bays):
-        if index in (2, 3) or x1 - x0 < 768:
+        if (x0, x1) == (FARE_ROTOR[0], FARE_ROTOR[2]) or index in (2, 3) or x1 - x0 < 768:
             continue
         layout.place_on_wall(
             f"station:gate_{index}", hall.region_id, a1=(x0, hy0),

@@ -105,7 +105,8 @@ PLACES: dict[str, dict[str, Any]] = {
                 "plank canopy, seen through a line of riveted columns",
         "exemplar": "E1M2 s271/s272/s34 (hall, platform, track); STATION "
                     "s128 (the solid car, livery 1665); tunnel STATION "
-                    "s131-137; an enterable car is NOT built",
+                    "s131-137; an enterable car is NOT built. "
+                    "DOOR-ROTATING s4 (fare turnstile)",
     },
     "saloon": {
         "at": (7168, 11800), "study": "saloon",

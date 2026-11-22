@@ -63,6 +63,9 @@ ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
      "pushing the switch at the end of the tunnel the line leaves by, past "
      "the roll-up gate the signal box's lever raises, ends the level",
      "kChannelLevelExitNormal"),
+    ("station:fare-turnstile",
+     "when the level starts the station's fare turnstile begins cycling",
+     "kChannelLevelStart"),
 )
 
 #: Levers beside street doors come after the plan, one wire a door.
