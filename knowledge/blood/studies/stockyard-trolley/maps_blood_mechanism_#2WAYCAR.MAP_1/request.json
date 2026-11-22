@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-trolley/knowledge/blood/studies/stockyard-trolley/maps_blood_mechanism_#2WAYCAR.MAP_1/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-trolley/knowledge/blood/studies/stockyard-trolley/maps_blood_mechanism_#2WAYCAR.MAP_1",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 30848,
+   "y": 46208,
+   "z": 7264,
+   "angle": 256,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 30848,
+   "y": 48000,
+   "z": 7264,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 32640,
+   "y": 46208,
+   "z": 7264,
+   "angle": 768,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 32640,
+   "y": 48000,
+   "z": 7264,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 1,
+   "screenshot": true
+  }
+ ]
+}

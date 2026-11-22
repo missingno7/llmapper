@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "96983cf63dd6e5e7b0d2c40fc51775266d20159867990b72a30af0ff610cf258",
-  "map_sha256": "23fc233e97a9e88df9d140f01448d4275e95bac7bc0a066b0cc2d4a49f41ac10",
+  "manifest_sha256": "be2a0e842a22cf0c28cee2e6f29bb26e446fca8b1df5a015fc921f5fc67a51cf",
+  "map_sha256": "04df0f384a3aa2746bc0169d2b3bd1cb6d429a584ba7a3cfebcf7c864ca3361b",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1048,
-  "walls": 10397,
-  "sprites": 1198,
+  "sectors": 1066,
+  "walls": 10531,
+  "sprites": 1213,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.744,
-   "walls": 0.365,
-   "sprites": 0.927
+   "sectors": 0.74,
+   "walls": 0.357,
+   "sprites": 0.926
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1223,
+   "note": 1239,
    "warning": 5
   }
  },
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 414",
+    "root": "sprite 425",
     "cause": "push",
-    "sector": 483,
+    "sector": 489,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 531,
+    "sprite": 542,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -227,15 +227,15 @@
    "credited_normal": 6,
    "credited_super": 0
   },
-  "space": 1025,
-  "reached": 1025,
+  "space": 1043,
+  "reached": 1043,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 810,
+    "sectors": 828,
     "first_sector": 0
    },
    {
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 601 (channel 113)"
+     "use switch sprite 612 (channel 114)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 602 (channel 114)"
+     "use switch sprite 613 (channel 115)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 603 (channel 115)"
+     "use switch sprite 614 (channel 116)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 604 (channel 116)"
+     "use switch sprite 615 (channel 117)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,15 +297,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 413 (channel 108)"
+     "use switch sprite 424 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 481
+    "first_sector": 487
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 453 (channel 103)"
+     "destroy sprite 464 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 605 (channel 117)"
+     "use switch sprite 616 (channel 118)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,7 +321,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 184 (channel 109)"
+     "destroy sprite 195 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 390
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 523 (channel 104)"
+     "destroy sprite 534 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -569,6 +569,20 @@
    ]
   },
   {
+   "name": "sewer:stockyard-trolley",
+   "says": "each dry berth calls the sampling deck to its own stop and the carried button sends the boarded rider across the blood channel",
+   "channel": 113,
+   "engine": null,
+   "when": [
+    "push on placement sewer:trolley_call_west",
+    "push on placement sewer:trolley_call_east",
+    "push on placement sewer:trolley_depart"
+   ],
+   "then": [
+    "region region:gravesend/sewer/sampling/trolley_track_deck"
+   ]
+  },
+  {
    "name": "station:way-out",
    "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
    "channel": 4,
@@ -591,7 +605,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 113,
+   "channel": 114,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -603,7 +617,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 114,
+   "channel": 115,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -615,7 +629,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 115,
+   "channel": 116,
    "engine": null,
    "when": [
     "push on placement lever:aldermack"
@@ -627,7 +641,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 116,
+   "channel": 117,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -639,7 +653,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 117,
+   "channel": 118,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -895,7 +909,6 @@
    "layers": {
     "has": [
      "trim",
-     "wall_art",
      "motion",
      "machines"
     ],
@@ -916,6 +929,42 @@
     "short side 4864 (campaign p25 6144)",
     "height 1.81 bodies (campaign p25 1.93)",
     "1.81 bodies high (a destination wants 1.93)"
+   ],
+   "critique": null
+  },
+  {
+   "name": "Stockyard sampling chamber",
+   "at": [
+    55424,
+    59264
+   ],
+   "hero": "a low iron sampling trolley runs across the blood to a lit valve alcove, with a call button on each dry berth",
+   "study": "stockyard-trolley",
+   "layers": {
+    "has": [
+     "second",
+     "wall_art",
+     "flat_art",
+     "motion"
+    ],
+    "missing": [
+     "trim",
+     "levels",
+     "light",
+     "machines"
+    ],
+    "campaign_p25": 2,
+    "campaign_p50": 5
+   },
+   "metres": [
+    9.1,
+    18.5,
+    2.0
+   ],
+   "cramped": [
+    "short side 5376 (campaign p25 6144)",
+    "height 1.09 bodies (campaign p25 1.93)",
+    "1.09 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -1576,6 +1625,62 @@
    "see": "python -m tools.critique prepare stockyard-drain --poses <set> --kind <kind>"
   },
   {
+   "kind": "missing-layer",
+   "place": "Stockyard sampling chamber",
+   "says": "carries no trim layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Stockyard sampling chamber",
+   "says": "carries no levels layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Stockyard sampling chamber",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Stockyard sampling chamber",
+   "says": "carries no machines layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "cramped",
+   "place": "Stockyard sampling chamber",
+   "says": "short side 5376 (campaign p25 6144)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Stockyard sampling chamber",
+   "says": "height 1.09 bodies (campaign p25 1.93)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Stockyard sampling chamber",
+   "says": "1.09 bodies high (a destination wants 1.93)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Stockyard sampling chamber",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare stockyard-trolley --poses <set> --kind <kind>"
+  },
+  {
    "kind": "cramped",
    "place": "Settling Hall service lift",
    "says": "short side 1024 (campaign p25 1536)",
@@ -1931,6 +2036,20 @@
    "says": "tile 499 as two_sided_upper in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 499"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 155 as sprite_wall in indoors (2x) rests on community evidence (42 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 155"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 708 as sprite_wall in indoors (2x) rests on community evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 708"
   },
   {
    "kind": "outside-campaign",
@@ -2339,7 +2458,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 906, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 920, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2347,7 +2466,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [567, 568], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [578, 579], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"
@@ -2375,13 +2494,13 @@
   }
  ],
  "open_by_kind": {
-  "cramped": 12,
+  "cramped": 15,
   "critique": 12,
   "dropped": 6,
   "lost-tile": 3,
-  "missing-layer": 16,
-  "never-critiqued": 11,
-  "outside-campaign": 56,
+  "missing-layer": 20,
+  "never-critiqued": 12,
+  "outside-campaign": 58,
   "refused": 7,
   "rule-warning": 5,
   "skipped": 6,

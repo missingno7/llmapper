@@ -395,6 +395,69 @@ class SolidDoubleSlideReadBack(unittest.TestCase):
                                              swept.position(step, vertex))
 
 
+class SlideShuttleReadBack(unittest.TestCase):
+    def _layout(self):
+        from bloodmap.planar_layout import PlanarLayout
+
+        layout = PlanarLayout(name="shuttle bay")
+        layout.add_region("bay", [(0, 0), (4096, 0), (4096, 2048), (0, 2048)],
+                          floor_z=2048, ceiling_z=-28672)
+        layout.set_player_start("bay", x=2048, y=256, z=2048, angle=512)
+        return layout
+
+    def _deck(self, layout, travel=(2432, 0)):
+        from bloodmap.mechanism import slide_shuttle
+        from bloodmap.wiring import USER_CHANNELS_FROM
+
+        return slide_shuttle(
+            layout, "shuttle", host_region="bay", deck_region="deck",
+            footprint=(2688, 512, 3840, 1536), travel=travel,
+            floor_z=0, channel=USER_CHANNELS_FROM)
+
+    def test_readback_moves_deck_and_matching_hole_as_one(self):
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.motion import marker_pair, motion_set
+        from bloodmap.motion_sim import blood_poses
+        from bloodmap.sector_geom import sector_walls
+        from bloodmap.swept_state import sweep_sector
+        from bloodmap.wiring import USER_CHANNELS_FROM
+
+        layout = self._layout()
+        markers = self._deck(layout)
+        compiled = layout.compile()
+        disk = compiled.level.to_disk_map()
+        deck = compiled.allocations["deck"].sector_id
+        bay = compiled.allocations["bay"].sector_id
+        sector = disk.sectors[deck]
+        self.assertEqual(record_fields(sector)["type"], 616)
+        extra = record_extra(sector)
+        self.assertEqual([extra[key] for key in ("state", "busy", "drag", "rx_id")],
+                         [1, 65536, 1, USER_CHANNELS_FROM])
+        self.assertEqual([extra[f"marker_{i}"] for i in range(2)],
+                         [compiled.placement_sprites[name] for name in markers])
+        self.assertEqual(marker_pair(disk, deck)["travel"], (2432, 0))
+        walls = sector_walls(disk, deck)
+        self.assertEqual([record_fields(disk.walls[i])["next_sector"] for i in walls],
+                         [bay] * 4)
+        self.assertEqual(sorted(motion_set(disk, deck)["sectors"]), sorted([deck, bay]))
+        off, on = blood_poses(disk, deck)
+        self.assertEqual([(x + 2432, y) for x, y in off], on)
+        swept = sweep_sector(disk, deck)
+        self.assertTrue(swept.sound, swept.problems)
+
+    def test_refuses_a_sweep_through_fixed_geometry_before_carving(self):
+        from bloodmap.mechanism import MechanismError
+
+        layout = self._layout()
+        with self.assertRaisesRegex(MechanismError, "strictly inside"):
+            self._deck(layout, travel=(2688, 0))
+        self.assertEqual(layout.regions["bay"].holes, ())
+        layout.carve_hole("bay", [(1536, 768), (1792, 768), (1792, 1280), (1536, 1280)])
+        with self.assertRaisesRegex(MechanismError, "meets a hole"):
+            self._deck(layout)
+        self.assertEqual(list(layout.regions), ["bay"])
+
+
 class LiftReadBack(unittest.TestCase):
     """`mechanism.lift`: a floor that travels in z."""
 
@@ -746,6 +809,8 @@ COVERED: dict[str, str] = {
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.furnish_solid_double_slide":
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
+    "bloodmap.mechanism.slide_shuttle":
+        "SlideShuttleReadBack.test_readback_moves_deck_and_matching_hole_as_one",
     "bloodmap.mechanism.lift":
         "LiftReadBack.test_a_lift_reads_back_as_a_z_motion_that_changes_state",
     "bloodmap.doors.z_motion_door":

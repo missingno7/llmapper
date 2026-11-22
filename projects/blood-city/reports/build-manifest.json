@@ -1074,6 +1074,20 @@
         ]
       },
       {
+        "name": "sewer:stockyard-trolley",
+        "says": "each dry berth calls the sampling deck to its own stop and the carried button sends the boarded rider across the blood channel",
+        "channel": 113,
+        "engine": null,
+        "when": [
+          "push on placement sewer:trolley_call_west",
+          "push on placement sewer:trolley_call_east",
+          "push on placement sewer:trolley_depart"
+        ],
+        "then": [
+          "region region:gravesend/sewer/sampling/trolley_track_deck"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1096,7 +1110,7 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 113,
+        "channel": 114,
         "engine": null,
         "when": [
           "push on placement lever:saloon"
@@ -1108,7 +1122,7 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 114,
+        "channel": 115,
         "engine": null,
         "when": [
           "push on placement lever:parlor"
@@ -1120,7 +1134,7 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 115,
+        "channel": 116,
         "engine": null,
         "when": [
           "push on placement lever:aldermack"
@@ -1132,7 +1146,7 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 116,
+        "channel": 117,
         "engine": null,
         "when": [
           "push on placement lever:lobby"
@@ -1144,7 +1158,7 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 117,
+        "channel": 118,
         "engine": null,
         "when": [
           "push on placement lever:pawn"
@@ -1192,17 +1206,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 453",
-          "sprite 454"
+          "sprite 464",
+          "sprite 465"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 455",
-          "sprite 456",
-          "sprite 457"
+          "sprite 466",
+          "sprite 467",
+          "sprite 468"
         ],
         "faults": []
       },
@@ -1212,16 +1226,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 523"
+          "sprite 534"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 524",
-          "sprite 525",
-          "sprite 526"
+          "sprite 535",
+          "sprite 536",
+          "sprite 537"
         ],
         "faults": []
       },
@@ -1260,10 +1274,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 420"
+          "sprite 431"
         ],
         "answers": [
-          "sector 455"
+          "sector 461"
         ],
         "faults": []
       },
@@ -1273,10 +1287,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 413"
+          "sprite 424"
         ],
         "answers": [
-          "sector 481"
+          "sector 487"
         ],
         "faults": []
       },
@@ -1286,16 +1300,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 184"
+          "sprite 195"
         ],
         "answers": [
           "sector 391",
           "sector 392",
           "sector 393",
           "sector 394",
-          "sprite 185",
-          "sprite 186",
-          "sprite 187"
+          "sprite 196",
+          "sprite 197",
+          "sprite 198"
         ],
         "faults": []
       },
@@ -1349,7 +1363,22 @@
           "sprite 27"
         ],
         "answers": [
-          "sector 549"
+          "sector 555"
+        ],
+        "faults": []
+      },
+      {
+        "name": "sewer:stockyard-trolley",
+        "says": "each dry berth calls the sampling deck to its own stop and the carried button sends the boarded rider across the blood channel",
+        "channel": 113,
+        "engine": null,
+        "senders": [
+          "sprite 30",
+          "sprite 32",
+          "sprite 34"
+        ],
+        "answers": [
+          "sector 556"
         ],
         "faults": []
       },
@@ -1359,7 +1388,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 414"
+          "sprite 425"
         ],
         "answers": [],
         "faults": []
@@ -1371,17 +1400,17 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 415"
+          "sector 421"
         ],
         "faults": []
       },
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 113,
+        "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 601"
+          "sprite 612"
         ],
         "answers": [
           "sector 9"
@@ -1391,10 +1420,10 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 114,
+        "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 602"
+          "sprite 613"
         ],
         "answers": [
           "sector 18"
@@ -1404,10 +1433,10 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 115,
+        "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 603"
+          "sprite 614"
         ],
         "answers": [
           "sector 30"
@@ -1417,10 +1446,10 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 116,
+        "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 604"
+          "sprite 615"
         ],
         "answers": [
           "sector 32"
@@ -1430,10 +1459,10 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 117,
+        "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 605"
+          "sprite 616"
         ],
         "answers": [
           "sector 42"
@@ -1446,11 +1475,11 @@
     "agrees": true
   },
   "lighting": {
-    "lights": 68,
-    "rays_cast": 1187711,
-    "surfaces_lit": 1366,
-    "surfaces_protected": 619,
-    "walls_lit": 1454,
+    "lights": 70,
+    "rays_cast": 1226059,
+    "surfaces_lit": 1409,
+    "surfaces_protected": 632,
+    "walls_lit": 1487,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1464,6 +1493,8 @@
       "light:gravesend/market_slip/market_hall/supermarket:stall_lamp",
       "light:gravesend/sewer/settling_hall/lift_gallery:work_light",
       "light:gravesend/sewer/settling_hall/lift_quay:work_light",
+      "light:gravesend/sewer/sampling/trolley_ledge:work_light",
+      "light:gravesend/sewer/sampling/trolley_alcove:work_light",
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp",
       "light:gravesend/gravesend_station/concourse:concourse_lamp",
       "loading:lamp",
@@ -1534,6 +1565,8 @@
       "light:gravesend/market_slip/market_hall/supermarket:stall_lamp": 1.0,
       "light:gravesend/sewer/settling_hall/lift_gallery:work_light": 1.0,
       "light:gravesend/sewer/settling_hall/lift_quay:work_light": 1.0,
+      "light:gravesend/sewer/sampling/trolley_ledge:work_light": 1.0,
+      "light:gravesend/sewer/sampling/trolley_alcove:work_light": 1.0,
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp": 1.0,
       "light:gravesend/gravesend_station/concourse:concourse_lamp": 1.0,
       "loading:lamp": 1.0,
@@ -1623,21 +1656,21 @@
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
-    "lined": 77,
-    "too_long": 110,
+    "lined": 83,
+    "too_long": 126,
     "no_band": 128,
     "outside": 7,
     "tile": 194,
-    "moving": 26
+    "moving": 34
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1122,
-    "wall_sprites": 511,
-    "planes": 123,
+    "sprites": 1136,
+    "wall_sprites": 518,
+    "planes": 130,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.78,
+    "clash_rate_per_100_wall_sprites": 0.77,
     "fully_hidden": 0
   },
   "apertures": {
@@ -1674,9 +1707,9 @@
     }
   ],
   "swept_closure": {
-    "mechanisms": 5,
-    "sound": 5,
-    "deforming_neighbours": 2,
+    "mechanisms": 6,
+    "sound": 6,
+    "deforming_neighbours": 3,
     "problems": [],
     "notes": []
   },
@@ -1684,7 +1717,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 92,
+    "sentences": 95,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -1716,7 +1749,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 113,
+          "rx_id": 114,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1744,7 +1777,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 114,
+          "rx_id": 115,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1787,7 +1820,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 115,
+          "rx_id": 116,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1815,7 +1848,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 116,
+          "rx_id": 117,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2001,7 +2034,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 117,
+          "rx_id": 118,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -3164,11 +3197,29 @@
         }
       },
       {
+        "name": "region:gravesend/sewer/sampling/trolley_inlet",
+        "construct": "sector",
+        "sector": 407,
+        "sectors": [
+          407
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_tail",
+        "construct": "sector",
+        "sector": 409,
+        "sectors": [
+          409
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
-        "sector": 415,
+        "sector": 421,
         "sectors": [
-          415
+          421
         ],
         "sector_type": 615,
         "wiring": {
@@ -3185,7 +3236,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 415",
+          "construct": "turnstile sector 421",
           "measured": {
             "blades": 4,
             "axis": [
@@ -3213,7 +3264,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 415,
+          "sector": 421,
           "type": 615,
           "measured": [
             "turn"
@@ -3231,9 +3282,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 455,
+        "sector": 461,
         "sectors": [
-          455
+          461
         ],
         "sector_type": 600,
         "wiring": {
@@ -3243,7 +3294,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 455,
+          "sector": 461,
           "type": 600,
           "measured": [
             "headroom"
@@ -3259,9 +3310,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 481,
+        "sector": 487,
         "sectors": [
-          481
+          487
         ],
         "sector_type": 600,
         "wiring": {
@@ -3271,7 +3322,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 481,
+          "sector": 487,
           "type": 600,
           "measured": [
             "headroom"
@@ -3287,9 +3338,9 @@
       {
         "name": "region:gravesend/sewer/settling_hall/service_lift",
         "construct": "z_motion_door",
-        "sector": 549,
+        "sector": 555,
         "sectors": [
-          549
+          555
         ],
         "sector_type": 600,
         "wiring": {
@@ -3299,7 +3350,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 549,
+          "sector": 555,
           "type": 600,
           "measured": [
             "headroom"
@@ -3311,24 +3362,70 @@
           "whole_circles": false,
           "changes": true
         }
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_track_deck",
+        "construct": "unmarked_mover",
+        "sector": 556,
+        "sectors": [
+          556
+        ],
+        "sector_type": 616,
+        "motion_set": [
+          408,
+          556
+        ],
+        "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
+        "declared_members": [
+          408,
+          556
+        ],
+        "wiring": {
+          "rx_id": 113,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        },
+        "closure": {
+          "loops": 2,
+          "problems": [],
+          "notes": [],
+          "graze_tolerance": 16.0,
+          "grazing_loops": []
+        },
+        "state_pair": {
+          "sector": 556,
+          "type": 616,
+          "measured": [
+            "travel"
+          ],
+          "headroom_change": 0,
+          "area_off": 1310720.0,
+          "area_on": 1310720.0,
+          "area_change": 0.0,
+          "declared_travel": 2624.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
       }
     ]
   },
   "rules": {
-    "total": 1228,
+    "total": 1244,
     "by_severity": {
-      "note": 1223,
+      "note": 1239,
       "warning": 5
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 151,
+      "note:sprite-drawn-square": 155,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 108,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "note:wall-draws-its-own-tile": 932,
+      "note:wall-draws-its-own-tile": 944,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [
@@ -3379,7 +3476,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 901,
+      "sprites": 907,
       "sunk": 0.0,
       "through": 0.001,
       "squeezed": 0.0
@@ -3387,7 +3484,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 906,
+        "sprite": 920,
         "tile": 793,
         "sector": 27
       }
@@ -3397,8 +3494,8 @@
     "overlaps": [
       {
         "sprites": [
-          567,
-          568
+          578,
+          579
         ],
         "tiles": [
           73,
@@ -3605,6 +3702,22 @@
         "count": 2,
         "source": "community-curated",
         "maps": 1
+      },
+      {
+        "tile": 155,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 42
+      },
+      {
+        "tile": 708,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 3
       },
       {
         "tile": 956,
@@ -4216,11 +4329,10 @@
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
         "layers": [
           "trim",
-          "wall_art",
           "motion",
           "machines"
         ],
-        "layer_count": 4,
+        "layer_count": 3,
         "campaign_p25": 2,
         "campaign_p50": 5,
         "missing": [
@@ -4231,11 +4343,11 @@
         "wall_tiles": [
           [
             296,
-            0.953
+            0.951
           ],
           [
             194,
-            0.045
+            0.047
           ]
         ],
         "shade_spread": 2,
@@ -4252,6 +4364,49 @@
         ],
         "relations": [],
         "study": "stockyard-drain"
+      },
+      "Stockyard sampling chamber": {
+        "hero": "a low iron sampling trolley runs across the blood to a lit valve alcove, with a call button on each dry berth",
+        "exemplar": "#2WAYCAR s1 (rigid floor that carries its rider); E1M2 s34 and sprites 384\u2013391 (track and wheels)",
+        "layers": [
+          "second",
+          "wall_art",
+          "flat_art",
+          "motion"
+        ],
+        "layer_count": 4,
+        "campaign_p25": 2,
+        "campaign_p50": 5,
+        "missing": [
+          "trim",
+          "levels",
+          "light",
+          "machines"
+        ],
+        "wall_tiles": [
+          [
+            296,
+            0.81
+          ],
+          [
+            499,
+            0.19
+          ]
+        ],
+        "shade_spread": 8,
+        "metres": [
+          9.1,
+          18.5,
+          2.0
+        ],
+        "free_floor_share": 1.0,
+        "cramped": [
+          "short side 5376 (campaign p25 6144)",
+          "height 1.09 bodies (campaign p25 1.93)",
+          "1.09 bodies high (a destination wants 1.93)"
+        ],
+        "relations": [],
+        "study": "stockyard-trolley"
       },
       "Settling Hall service lift": {
         "hero": "a metal filter deck on the west quay that rises past the tanks to the gallery, with a work light and call button at each landing",
@@ -4620,6 +4775,11 @@
         "height 1.81 bodies (campaign p25 1.93)",
         "1.81 bodies high (a destination wants 1.93)"
       ],
+      "Stockyard sampling chamber": [
+        "short side 5376 (campaign p25 6144)",
+        "height 1.09 bodies (campaign p25 1.93)",
+        "1.09 bodies high (a destination wants 1.93)"
+      ],
       "Settling Hall service lift": [
         "short side 1024 (campaign p25 1536)",
         "height 1.45 bodies (campaign p25 1.57)",
@@ -4648,12 +4808,12 @@
     "walls_split": 0,
     "seams": 0,
     "refused": {},
-    "whole": 3
+    "whole": 6
   },
   "light_stage": {
-    "sectors_before": 586,
-    "walls_before": 3827,
-    "sprites_before": 1122,
+    "sectors_before": 593,
+    "walls_before": 3865,
+    "sprites_before": 1136,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -4848,6 +5008,18 @@
       "region:gravesend/sewer/ring/w_leg": {
         "panel 796": 4
       },
+      "region:gravesend/sewer/sampling/trolley_alcove": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/sampling/trolley_ledge": {
+        "kept the map's own": 1
+      },
+      "region:gravesend/sewer/sampling/trolley_tail": {
+        "ceiling 796": 1
+      },
+      "region:gravesend/sewer/sampling/trolley_walk": {
+        "panel 796": 2
+      },
       "region:gravesend/sewer/secrets/molly_crawl": {
         "its own lights": 0
       },
@@ -4911,35 +5083,35 @@
       }
     },
     "panel_cut": {
-      "sectors": 12,
-      "pieces": 46,
+      "sectors": 13,
+      "pieces": 49,
       "slivers_merged": 0,
       "slivers_dropped": 0,
       "walls_split": 0,
-      "seams": 268,
+      "seams": 282,
       "refused": {},
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 56,
-      "pieces": 323,
+      "sectors": 58,
+      "pieces": 331,
       "slivers_merged": 16,
-      "slivers_dropped": 31,
+      "slivers_dropped": 32,
       "walls_split": 808,
-      "seams": 3298,
+      "seams": 3348,
       "refused": {},
       "left_whole": {
         "327": "a wall of the cut had no twin"
       },
-      "looked_at": 58
+      "looked_at": 60
     },
     "slope_cut": {
       "sectors": 20,
-      "pieces": 104,
+      "pieces": 107,
       "slivers_merged": 3,
       "slivers_dropped": 0,
-      "walls_split": 385,
-      "seams": 174,
+      "walls_split": 397,
+      "seams": 180,
       "refused": {
         "329": "a slope not cut across it",
         "335": "a slope not cut across it"
@@ -4952,24 +5124,24 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1695,
+      "walls_split": 1724,
       "seams": 0,
       "refused": {},
-      "walls_cut": 442,
+      "walls_cut": 452,
       "walls_refused": 10,
       "left_whole": {},
-      "looked_at": 1366
+      "looked_at": 1388
     },
     "shades": {
-      "surfaces": 5132,
+      "surfaces": 5202,
       "windows": 18,
-      "spread_12": 83
+      "spread_12": 87
     },
-    "kept": 36,
-    "sectors": 1048,
-    "walls": 10397,
-    "sprites": 1198,
-    "pieces": 462,
+    "kept": 38,
+    "sectors": 1066,
+    "walls": 10531,
+    "sprites": 1213,
+    "pieces": 473,
     "default_rooms": []
   },
   "sunlight": {

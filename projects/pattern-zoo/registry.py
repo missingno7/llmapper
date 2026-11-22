@@ -880,6 +880,9 @@ SKIP: dict[str, str] = {
     "bloodmap.mechanism.furnish_solid_double_slide":
         "Gravesend's loading shutter shows both approaches and the fixed "
         "pockets together, with its own saved-map and sweep checks",
+    "bloodmap.mechanism.slide_shuttle":
+        "Gravesend's stockyard sampling chamber shows the deck and both berths, "
+        "and SlideShuttleReadBack checks the deck and its swept redwalls",
     "bloodmap.mechanism.leaf_repeat_for":
         "a sizing helper, not a thing to stand in front of",
     "bloodmap.mechanism.blade_offset":

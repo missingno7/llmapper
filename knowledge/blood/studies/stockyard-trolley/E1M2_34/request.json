@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-trolley/knowledge/blood/studies/stockyard-trolley/E1M2_34/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-trolley/knowledge/blood/studies/stockyard-trolley/E1M2_34",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -42230,
+   "y": -6390,
+   "z": -100256,
+   "angle": 515,
+   "horiz": 100,
+   "sector": 34,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -42230,
+   "y": 52973,
+   "z": -100256,
+   "angle": 1530,
+   "horiz": 100,
+   "sector": 34,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -42230,
+   "y": 24582,
+   "z": -100256,
+   "angle": 523,
+   "horiz": 100,
+   "sector": 34,
+   "screenshot": true
+  }
+ ]
+}

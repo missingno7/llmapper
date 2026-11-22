@@ -151,6 +151,14 @@
     "E1M4:167"
    ],
    "date": "2026-11-22"
+  },
+  "stockyard-trolley": {
+   "want": "A small hand-operated sampling deck on a straight rail across a blood channel, beside a continuous maintenance walk",
+   "seeds": [
+    "maps/blood/mechanism/#2WAYCAR.MAP:1!",
+    "E1M2:34!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

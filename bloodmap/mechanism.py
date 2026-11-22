@@ -26,6 +26,7 @@ from typing import Any
 from . import motion
 from . import wiring
 from .model import record_fields as _fields
+from .planar_geom import point_in_loop, polygon_relation
 from .planar_layout import PlanarLayout
 from .texture_align import natural_x_repeat
 from .player_space import PLAYER_PROFILES
@@ -1019,6 +1020,81 @@ def curtain(
         "markers": markers,
         "declared_motion": [leaf_region],
     }
+
+
+def slide_shuttle(
+    layout: PlanarLayout,
+    name: str,
+    *,
+    host_region: str,
+    deck_region: str,
+    footprint: tuple[int, int, int, int],
+    travel: tuple[int, int],
+    floor_z: int,
+    channel: int,
+    busy_time: int = 32,
+    **surfaces: Any,
+) -> list[str]:
+    """Build the rideable, two-stop floor of `#2WAYCAR` sector 1.
+
+    The footprint is drawn at ON, and travel points from OFF to ON.
+    The deck and the host's matching hole share four redwalls. Type 616
+    translates the entire loop. Drag carries grounded actors, while
+    fittings placed in the deck sector need `CARRY_WITH` in their cstat.
+    The host has a flat ceiling shared by the deck. Stops and controls
+    are supplied by the caller.
+    """
+    host = layout.regions[host_region]
+    x0, y0, x1, y1 = footprint
+    dx, dy = travel
+    if bool(dx) == bool(dy):
+        raise MechanismError(f"{name}: travel must follow one axis and be nonzero")
+    body = PLAYER_PROFILES["blood"]
+    if min(x1 - x0, y1 - y0) < body.body_width:
+        raise MechanismError(f"{name}: deck has less than one body of clear width")
+    if (host.ceiling_slope is not None or host.floor_slope is not None
+            or floor_z >= host.floor_z
+            or floor_z - host.ceiling_z < body.standing_height):
+        raise MechanismError(f"{name}: deck needs a flat bay, floor drop and standing headroom")
+    if not 1 <= busy_time <= 4095:
+        raise MechanismError(f"{name}: stroke time must fit a nonzero XSECTOR busy time")
+
+    deck = ((x0, y0), (x1, y0), (x1, y1), (x0, y1))
+    left, right = x0 - max(dx, 0), x1 - min(dx, 0)
+    top, bottom = y0 - max(dy, 0), y1 - min(dy, 0)
+    sweep = ((left, top), (right, top), (right, bottom), (left, bottom))
+    relation = polygon_relation([sweep], [host.outer])
+    if (relation["kind"] != "full_containment_a_in_b"
+            or any(point_in_loop(p, host.outer) != 1 for p in sweep)
+            or any(point_in_loop(p, sweep) == -1 for p in host.outer)):
+        raise MechanismError(f"{name}: the swept deck must stay strictly inside {host_region}")
+    for hole in host.holes:
+        if (polygon_relation([sweep], [hole])["kind"] != "disjoint"
+                or any(point_in_loop(p, sweep) != 0 for p in hole)
+                or any(point_in_loop(p, hole) != 0 for p in sweep)):
+            raise MechanismError(f"{name}: the swept deck meets a hole in {host_region}")
+
+    layout.add_region(
+        deck_region, deck, type=616, floor_z=floor_z,
+        ceiling_z=host.ceiling_z, layer=host.layer,
+        sector_behavior={
+            **motion.wiring(route="remote", channel=channel, receiver_state=1),
+            "state": 1, "busy": 65536, "drag": 1,
+            "busy_time_a": busy_time, "busy_time_b": busy_time,
+        },
+        **surfaces)
+    layout.carve_hole(host_region, deck)
+    for index, a in enumerate(deck):
+        layout.add_connection(f"{deck_region}:edge:{index}", deck_region, host_region,
+                              a1=a, a2=deck[(index + 1) % len(deck)],
+                              min_width=body.body_width, min_opening=body.standing_height)
+    layout.declare_motion(deck_region, [deck_region, host_region])
+    on = ((x0 + x1) // 2, (y0 + y1) // 2)
+    off = (on[0] - dx, on[1] - dy)
+    return motion.place_markers(
+        layout, name, driven_region=deck_region,
+        off_at=off, on_at=on, z=floor_z,
+        off_region=deck_region if point_in_loop(off, deck) else host_region)
 
 
 def planar_door(

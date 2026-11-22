@@ -57,6 +57,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("sewer:settling-hall-lift",
      "the landing buttons recall the deck to their own stop and the rider's "
      "button sends it to the other stop"),
+    ("sewer:stockyard-trolley",
+     "each dry berth calls the sampling deck to its own stop and the carried "
+     "button sends the boarded rider across the blood channel"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

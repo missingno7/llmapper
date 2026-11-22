@@ -92,6 +92,13 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); "
                     "TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
     },
+    "Stockyard sampling chamber": {
+        "at": (55424, 59264), "floor": 63488, "study": "stockyard-trolley",
+        "hero": "a low iron sampling trolley runs across the blood to a lit "
+                "valve alcove, with a call button on each dry berth",
+        "exemplar": "#2WAYCAR s1 (rigid floor that carries its rider); "
+                    "E1M2 s34 and sprites 384–391 (track and wheels)",
+    },
     "Settling Hall service lift": {
         "at": (19968, 45184), "floor": 102400, "study": "doors-and-mechanisms",
         "hero": "a metal filter deck on the west quay that rises past the "

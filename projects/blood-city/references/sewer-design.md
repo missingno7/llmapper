@@ -225,6 +225,20 @@ room with its rectangle and kind).
   sewer's vault above them. The race, landing and ford all carry E1M8's
   current (speed 60, north, drag on) in red-brown 1120, palette 7
   (study `knowledge/blood/studies/stockyard-drain`).
+* **The Stockyard Drain sampling trolley** runs east–west under the
+  river, across the wider chamber at the end of the race. The west
+  maintenance walk continues along the chamber, and the east berth opens
+  into the valve alcove. Both dry berths are level with the deck and have
+  their own call buttons. The button inside the deck railing sends it
+  across when the rider is aboard. The blood on either side of the rail
+  bed pans north at speed 8, with drag clear. The adjoining race keeps its
+  fast current. `#2WAYCAR` supplies the type-616 floor and drag, and
+  E1M2 supplies the rail bed and wheels (study
+  `knowledge/blood/studies/stockyard-trolley`). The deck travels 2,624
+  units. At either end there is a 96-unit docking gap and 18,432 of
+  headroom. The shallow pools are a 3,072-unit step below the dry walk.
+  The observer pairs are under `work/trolley` in `departure`,
+  `east-call` and `west-call`.
 * **The Rat King's Shrine** is through a low pipe off the drain's east
   walk, its corners sloped and a candle inside the throat. Two shallow
   steps raise the altar. E1M5's candles

@@ -71,6 +71,9 @@ RULES: tuple[tuple[str, Rule], ...] = (
 #: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
     "market_slip/quay",
+    # The deck's hole moves through the rail bed. Keep its lighting in
+    # the authored sectors so the band cutter leaves the sweep clear.
+    "sewer/sampling/trolley_track",
     # E1M1's crypt, field for field (`l3_church`): dark (floor 34, ceiling
     # 28) and flickering; lit by the model its two torches made it shade 0
     "st_gallows/crypt",

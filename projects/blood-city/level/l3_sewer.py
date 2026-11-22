@@ -469,6 +469,9 @@ HALL_LIFT_UPPER = [
 ]
 HALL_LIFT_LOWER = (19.0, 43.5, 20.0, 44.75)
 HALL_LIFT_WIRE = "sewer:settling-hall-lift"
+TROLLEY_WIRE = "sewer:stockyard-trolley"
+TROLLEY_LAYER = "stockyard_sampling"
+TROLLEY_CEILING = SEWER_FLOOR - 18432
 
 #: Graves Brook's walks: E3M3's stone walk (568) between rubble walls. (Not
 #: the crypt's earth, 270: at the crypt's own depth that is what makes the
@@ -495,6 +498,159 @@ STOCKYARD_ROOMS = [
     ("rat_king_step", (55.25, 45.625, 55.625, 48.125), SHRINE_STONE, 3072, SEWER_CHAMBER_CLEAR, "interior"),
     ("rat_king_altar", (55.625, 45.625, 56.75, 48.125), SHRINE_STONE, 6144, SEWER_CHAMBER_CLEAR, "interior"),
 ]
+
+# The terminal chamber is wider than the race. The west walk continues
+# along it to the tail, and the opposing berth is the inspection alcove.
+STOCKYARD_TROLLEY_ROOMS = (
+    ("trolley_inlet", (49.25, 55.75, 56.125, 57.25), "blood at the end of the race"),
+    ("trolley_track", (52.125, 57.25, 56.125, 59.25), "straight rail at the waterline"),
+    ("trolley_tail", (52.125, 59.25, 56.125, 61.0), "blood below the slaughterhouse pipe"),
+    ("trolley_walk", (47.5, 55.75, 49.25, 61.0), "the continuous dry maintenance walk"),
+    ("trolley_ledge", (49.25, 57.25, 52.125, 61.0), "dry west boarding ledge"),
+    ("trolley_alcove", (56.125, 57.25, 58.125, 59.25), "dry sampling and inspection alcove"),
+)
+
+def stockyard_trolley(city, sewer, rooms: dict) -> None:
+    """Extend the stockyard race with the sampling chamber and its two berths."""
+    import citytree
+
+    # The terminal basin reaches under Market Slip's river. Leave a slab
+    # between the harbour's band and the sampling chamber's flat roof.
+    city.declare_layer(TROLLEY_LAYER, ceiling_z=TROLLEY_CEILING,
+                       floor_z=SEWER_FLOOR + CHANNEL_DROP,
+                       note="the stockyard sampling chamber under the river")
+    part = sewer.assembly("sampling", style=Style(layer=TROLLEY_LAYER),
+                          note="the stockyard's cross-channel sampling chamber")
+    for name, rect, note in STOCKYARD_TROLLEY_ROOMS:
+        x0, y0, x1, y1 = (round(v * PU) for v in rect)
+        dry = name in {"trolley_walk", "trolley_ledge", "trolley_alcove"}
+        material = BRANCH_DRY["stockyard_drain"] if dry else STOCKYARD_WET
+        room = part.rect_room(
+            name, origin=(x0, y0), size=(x1 - x0, y1 - y0),
+            role="interior", note=note, intent={"kind": "furnished"},
+            region_kwargs=material.region_kwargs())
+        drop = 0 if dry else CHANNEL_DROP
+        room.surfaces(**material.style_kwargs(
+            ceiling_picnum=253,
+            floor_z=SEWER_FLOOR + drop, clear_height=SEWER_FLOOR + drop - TROLLEY_CEILING,
+            floor_shade=24 if dry else 30))
+        if name in {"trolley_inlet", "trolley_tail"}:
+            angle = FLOW["stockyard_drain"][0]
+            room.region_kwargs["sector_behavior"] = {"depth": 1, **flow_behavior(angle, 8, False)}
+        if name in {"trolley_ledge", "trolley_alcove"}:
+            room.light_source("work_light", local=(0.5, (58.25 - rect[1]) / (rect[3] - rect[1])),
+                              height_player_heights=1.0)
+        if name == "trolley_alcove":
+            room.surfaces(wall_picnum=499)
+        rooms[name] = room
+
+    for a, face_a, b, face_b in (
+        ("stockyard_drain", "south", "trolley_inlet", "north"),
+        ("stockyard_drain_walk_b", "south", "trolley_inlet", "north"),
+        ("stockyard_drain_walk_a", "south", "trolley_walk", "north"),
+        ("trolley_track", "north", "trolley_inlet", "south"),
+        ("trolley_tail", "north", "trolley_track", "south"),
+        ("trolley_inlet", "west", "trolley_walk", "east"),
+        ("trolley_ledge", "west", "trolley_walk", "east"),
+        ("trolley_ledge", "north", "trolley_inlet", "south"),
+        ("trolley_track", "west", "trolley_ledge", "east"),
+        ("trolley_tail", "west", "trolley_ledge", "east"),
+        ("trolley_track", "east", "trolley_alcove", "west"),
+    ):
+        citytree.join(rooms[a], rooms[b], at_a=face_a, at_b=face_b,
+                      connection_id=f"connection:{a}_{b}")
+    rooms["trolley_track"].raw(
+        "#2WAYCAR: full-wall slide, dry calls, and a carried departure button",
+        lambda layout, track: _furnish_trolley(layout, track, rooms))
+
+
+def _furnish_trolley(layout, track, rooms: dict) -> None:
+    """Fit the moving floor, mount its controls and dress the fixed berths."""
+    from bloodmap import mechanism, motion, wiring
+    from bloodmap.placement import drawn_extent
+    from bloodmap.player_space import PLAYER_PROFILES
+    from bloodmap.shade_table import _art
+    from l3_foundry import _attested
+    import props
+    import wires
+
+    body = PLAYER_PROFILES["blood"]
+    x0, y0, x1, y1 = props.room_rect(track)
+    cy = (y0 + y1) // 2
+    deck_id = track.region_id + "_deck"
+    rail_to_berth = 96
+    length, width = 1280, 1024
+    deck_x = x0 + rail_to_berth
+    deck = (deck_x, cy - width // 2, deck_x + length, cy + width // 2)
+
+    wire = wires.wire(TROLLEY_WIRE)
+    wire.then(wiring.region(deck_id))
+    mechanism.slide_shuttle(
+        layout, "stockyard_trolley", host_region=track.region_id, deck_region=deck_id,
+        footprint=deck, travel=(length + 2 * rail_to_berth - (x1 - x0), 0),
+        channel=wire.channel, floor_z=SEWER_FLOOR,
+        wall_picnum=499, portal_wall_picnum=499, floor_picnum=209, ceiling_picnum=253,
+        wall_shade=22, floor_shade=22, ceiling_shade=30, intent={"kind": "furnished"})
+
+    call = _attested("E1M4", 21, 1046)
+    drive = _attested("E1M2", 20, 1046)
+    lamp = _attested("E3M4", 0, 501)
+    for end, name, state, face in (
+        ("west", "trolley_ledge", motion.CMD_ON, "south"),
+        ("east", "trolley_alcove", motion.CMD_OFF, "east"),
+    ):
+        berth = rooms[name]
+        bx0, by0, bx1, by1 = props.room_rect(berth)
+        if face == "south":
+            a, b, t = (bx1, by1), (bx0, by1), 0.25
+        else:
+            a, b, t = (bx1, by0), (bx1, by1), (cy - by0) / (by1 - by0)
+        button = f"sewer:trolley_call_{end}"
+        wire.when(wiring.placement(button), "push", command=state, wait_time=1)
+        layout.place_on_wall(
+            button, berth.region_id, a1=a, a2=b, t=t,
+            height_player_heights=0.62, shade=-12,
+            behavior={**call["behavior"], "data_2": 0}, **call["fields"])
+        lamp_at = (0.5, (cy - by0) / (by1 - by0))
+        layout.place_on_ceiling(f"sewer:trolley_light_{end}", berth.region_id, local=lamp_at,
+                                **{**lamp["fields"], "x_repeat": 30, "y_repeat": 30, "shade": -16})
+
+    cx = deck_x + length // 2
+    rider = "sewer:trolley_depart"
+    wire.when(wiring.placement(rider), "push", command=motion.CMD_TOGGLE, off=True)
+    # The button is on the inside face of the north railing. Both ends
+    # of the deck stay clear for boarding.
+    layout.add_sprite(
+        rider, deck_id, x=cx, y=cy - 352, z=SEWER_FLOOR - 7936, angle=512,
+        shade=-12, behavior=dict(drive["behavior"]),
+        **{**drive["fields"], "cstat": drive["fields"]["cstat"] | mechanism.CARRY_WITH})
+
+    rail = _attested("E2M5", 0, 155)
+    wheels = _attested("E1M2", 0, 708)
+    for end, side, angle in (("north", -1, 1536), ("south", 1, 512)):
+        for label, spec, inset, repeats, flags in (
+            ("rail", rail, 416, (76, 40), 16 | 128 | 1),
+            ("wheels", wheels, 480, (49, 16), 16 | 64 | 128),
+        ):
+            fields = {**spec["fields"], "x_repeat": repeats[0], "y_repeat": repeats[1],
+                      "cstat": flags | mechanism.CARRY_WITH}
+            art = _art()[fields["picnum"]]
+            _, bottom = drawn_extent(art.height, art.animation["yofs"],
+                                     fields["y_repeat"], fields["cstat"])
+            layout.add_sprite(
+                f"sewer:trolley_{label}_{end}", deck_id, x=cx, y=cy + side * inset,
+                z=SEWER_FLOOR - 8 - bottom, angle=angle, shade=12,
+                behavior=dict(spec["behavior"]), **fields)
+
+    for name in ("trolley_inlet", "trolley_tail"):
+        wet = layout.regions[rooms[name].region_id]
+        layout.add_overlay(f"blood:{name}", wet.region_id, wet.outer, floor_pal=7)
+    # The station paints over track tile on raised floors during its trim
+    # pass. Lay this floor finish afterwards, over the whole moving hole's
+    # host without cutting it. Relative alignment centres the half-scale rails.
+    bed = layout.regions[track.region_id]
+    layout.add_overlay("sewer:trolley_rail_bed", bed.region_id, bed.outer,
+                       floor_picnum=1129, floor_stat=64 | 8)
 
 _FACES = {"x": {"low": "north", "high": "south", "start": "west", "end": "east"},
           "y": {"low": "west", "high": "east", "start": "north", "end": "south"}}
@@ -1233,6 +1389,7 @@ def expand(city, sewer, existing: dict) -> dict:
         citytree.join(rooms[entry["name"]], target, at_a=inner, at_b=outer,
                       connection_id=f"connection:sewer_{entry['name']}")
     stockyard_side_rooms(sewer, rooms)
+    stockyard_trolley(city, sewer, rooms)
     return rooms
 
 
@@ -1672,6 +1829,10 @@ def dress_stockyard(layout, rooms) -> list[str]:
     placed = []
 
     def seat(room_name, name, source, point, *, from_ceiling=None, **overrides):
+        if name == "stockyard_outlet":
+            room_name, point = "trolley_tail", (54.125, 61.0 - 8 / PU)
+            from_ceiling = 768
+            overrides.update(x_repeat=66, y_repeat=58)
         region = layout.regions[rooms[room_name].region_id]
         source_map, type_id, tile = source
         spec = _attested(source_map, type_id, picnum=tile)
