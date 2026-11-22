@@ -874,6 +874,12 @@ SKIP: dict[str, str] = {
         "the pure-facts function behind curtain; the CURTAIN stall exercises "
         "the constructor that consumes it, and blood-city's curtains.py is "
         "the tree-side consumer",
+    "bloodmap.mechanism.solid_double_slide_spec":
+        "the outline and moving edges of Gravesend's loading shutter, "
+        "exercised with its furnishing in SolidDoubleSlideReadBack",
+    "bloodmap.mechanism.furnish_solid_double_slide":
+        "Gravesend's loading shutter shows both approaches and the fixed "
+        "pockets together, with its own saved-map and sweep checks",
     "bloodmap.mechanism.leaf_repeat_for":
         "a sizing helper, not a thing to stand in front of",
     "bloodmap.mechanism.blade_offset":

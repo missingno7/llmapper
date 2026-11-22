@@ -22,6 +22,8 @@ from bloodmap.doors import z_motion_door
 from bloodmap.format import read_map
 from bloodmap.corpus import corpus_map_path
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.mechanism import furnish_solid_double_slide, solid_double_slide_spec
+from bloodmap.motion import MARKER_OFF, MARKER_ON
 from bloodmap.prefab import breakable
 
 from resolution import (
@@ -391,6 +393,72 @@ def _transcribed(map_name: str, type_id: int, picnum: int, **change) -> dict:
         fields["behavior"] = dict(spec["behavior"])
     fields.update(change)
     return fields
+
+
+def build_loading_shutter(city, stair, passage, *, east, middle, floor) -> dict:
+    """Add the covered freight recess to the east side of the underpass."""
+    # At the south end, the whole sweep is clear in plan of the trunk below.
+    low, high = middle - 768, middle + 768
+    front, back = east + 1024, east + 1536
+    end = back + 2560
+    spec = solid_double_slide_spec((front, low, back, high), axis="y", travel=832)
+    surfaces = dict(layer="underpass", floor_z=floor, wall_picnum=417,
+                    floor_picnum=281, ceiling_picnum=120)
+
+    def room(name, x0, x1, shade, note):
+        outline = [(x0, low), (x1, low), (x1, high), (x0, high)]
+        return stair.room(name, outline, frame=Frame(0, 0), role="interior",
+                          faces=dict(COMPASS), note=note,
+                          intent={"kind": "furnished"}).surfaces(
+            **surfaces, clear_height=28672, wall_shade=shade,
+            floor_shade=shade, ceiling_shade=shade)
+
+    recess = room("freight_recess", east, front, 22, "covered freight approach")
+    alcove = room("loading_alcove", back, end, 13, "lit loading alcove with shells")
+    east_edge, west_edge = spec["portals"]
+    shutter = stair.room(
+        "loading_shutter", spec["outline"], frame=Frame(0, 0), role="doorway",
+        faces={"west": spec["outline"].index(west_edge[0]),
+               "east": spec["outline"].index(east_edge[0])},
+        note="opposed freight leaves retract into pockets behind fixed jambs",
+    ).surfaces(**surfaces, clear_height=24576, wall_shade=17,
+               floor_shade=20, ceiling_shade=20)
+    for a, b, name in (
+        (passage.face("east"), recess.face("west"), "freight_recess"),
+        (recess.face("east"), shutter.face("west"), "loading_shutter_front"),
+        (shutter.face("east"), alcove.face("west"), "loading_shutter_back"),
+    ):
+        city.connect(a, b, connection_id=f"connection:{name}")
+
+    return {"spec": spec, "shutter": shutter.region_id,
+            "recess": recess.region_id, "alcove": alcove.region_id,
+            "light_at": (back + 1536, middle, floor - 18432)}
+
+
+def furnish_loading_shutter(layout, loading) -> dict:
+    """Set the leaf motion and supply the alcove from campaign records."""
+    import wires
+
+    region, alcove = loading["shutter"], loading["alcove"]
+    wire = wires.wire("foundry:loading-shutter")
+    furnish_solid_double_slide(
+        layout, region, loading["spec"], wire, leaf_picnum=DOOR_FACE_TILE,
+        marker_fields={kind: _attested("E1M1", kind, 3997)["fields"]
+                       for kind in (MARKER_OFF, MARKER_ON)})
+    for a, b in loading["spec"]["returns"]:
+        layout.paint_wall(region, a, b, picnum=JAMB_TILE)
+
+    # E1M4's full-size chain hangs through this floor. At repeat 22 the
+    # 128-pixel fixture hangs 11264 down, clearing a standing player.
+    layout.place_on_ceiling(
+        "loading:lamp", alcove, local=(0.6, 0.5),
+        **_transcribed("E1M4", 0, LAMP_TILE, x_repeat=22, y_repeat=22, shade=-16))
+    x, y, z = loading["light_at"]
+    layout.add_light_source("loading:lamp", alcove, x=x, y=y, z=z)
+    shells = _attested("E1M4", 68)
+    layout.place_on_floor("loading:shells", alcove, local=(0.72, 0.5),
+                          **shells["fields"], behavior=shells["behavior"])
+    return {key: loading[key] for key in ("shutter", "recess", "alcove")}
 
 
 def dress_canteen(layout, dressing) -> list[str]:

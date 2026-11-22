@@ -24,6 +24,7 @@ from math import atan2, hypot, pi
 from typing import Any
 
 from . import motion
+from . import wiring
 from .model import record_fields as _fields
 from .planar_layout import PlanarLayout
 from .texture_align import natural_x_repeat
@@ -604,6 +605,93 @@ def sliding_gate(
         "pushable": pushable,
         "leaves": int(leaves),
     }
+
+
+def solid_double_slide_spec(
+    opening: tuple[int, int, int, int],
+    *,
+    axis: str,
+    travel: int,
+    reveal: int = 96,
+    tail: int = 64,
+) -> dict[str, Any]:
+    """Draw the ON loop of a solid double slider with two fixed portal edges.
+
+    The opening rectangle gives the two approach planes and the clear jamb
+    span. The leaves travel along `axis`; pockets extend beyond that span.
+    Each leaf starts behind a fixed return of depth `reveal` at each approach.
+    `tail` is the overlap beyond its jamb even when shut. The opposing tips
+    leave a two-unit seam at OFF so the loop stays simple at full closure.
+
+    As in DOOR-SLIDINGD s3, three one-sided edges on each leaf drive all
+    four of its vertices. The two portals and their vertices stay fixed.
+    """
+    x0, y0, x1, y1 = opening
+    if axis not in ("x", "y") or x0 >= x1 or y0 >= y1:
+        raise MechanismError("a double slide needs an ordered rectangle and an x or y axis")
+    low, high, near, far = (x0, x1, y0, y1) if axis == "x" else (y0, y1, x0, x1)
+    mid = (low + high) // 2
+    if travel <= max(mid - low, high - mid) or tail <= 0:
+        raise MechanismError("double slide travel must park both tips beyond their jambs")
+    if reveal <= 0 or far - near <= 4 * reveal or min(mid - low, high - mid) <= 1:
+        raise MechanismError("double slide opening needs room for the returns, leaves and seam")
+
+    def point(along, depth):
+        return (along, depth) if axis == "x" else (near + far - depth, along)
+
+    outline = [point(a, b) for a, b in (
+        (low, near), (high, near),
+        (high, near + reveal), (high + travel + tail, near + 2 * reveal),
+        (mid + travel + 1, near + 2 * reveal),
+        (mid + travel + 1, far - 2 * reveal),
+        (high + travel + tail, far - 2 * reveal), (high, far - reveal),
+        (high, far), (low, far),
+        (low, far - reveal), (low - travel - tail, far - 2 * reveal),
+        (mid - travel - 1, far - 2 * reveal),
+        (mid - travel - 1, near + 2 * reveal),
+        (low - travel - tail, near + 2 * reveal), (low, near + reveal),
+    )]
+    edges = list(zip(outline, outline[1:] + outline[:1]))
+    track = (near + far) // 2
+    return {
+        "outline": outline,
+        "portals": (edges[0], edges[8]),
+        "returns": tuple(edges[i] for i in (1, 7, 9, 15)),
+        "leaves": {"with": edges[3:6], "against": edges[11:14]},
+        "markers": {motion.MARKER_OFF: point(mid - travel // 2, track),
+                    motion.MARKER_ON: point(mid + (travel + 1) // 2, track)},
+    }
+
+
+def furnish_solid_double_slide(
+    layout: PlanarLayout,
+    region_id: str,
+    spec: dict[str, Any],
+    wire: wiring.Wire,
+    *,
+    leaf_picnum: int,
+    marker_fields: dict[int, dict[str, Any]],
+    busy_time: int = 15,
+) -> None:
+    """Set up a region drawn by `solid_double_slide_spec` and wire its leaves.
+
+    Marker records are supplied by the caller, keyed by OFF and ON type.
+    Run before applying the circuit and compiling the layout.
+    """
+    region = layout.regions[region_id]
+    region.type = 614
+    region.sector_behavior.update(state=0, busy=0,
+                                  busy_time_a=busy_time, busy_time_b=busy_time)
+    for kind, (x, y) in spec["markers"].items():
+        layout.add_sprite(f"{region_id}:marker{kind}", region_id,
+                          x=x, y=y, z=region.floor_z, **marker_fields[kind])
+    layout.declare_motion(region_id, [])
+    wire.then(wiring.region(region_id))
+    for moves, edges in spec["leaves"].items():
+        for a, b in edges:
+            layout.carry_wall(region_id, a, b, moves=moves)
+            layout.paint_wall(region_id, a, b, picnum=leaf_picnum)
+            wire.when(wiring.face(region_id, a, b), "push", on=True, off=True)
 
 
 # `bind_markers` moved into `planar_layout`, because it is structural rather

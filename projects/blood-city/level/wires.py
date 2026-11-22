@@ -48,6 +48,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("sewer:plague-pit",
      "blowing the crack in Graves Brook's south wall by the churchyard, once, "
      "opens the bricked-up plague pit and fires three charges"),
+    ("foundry:loading-shutter",
+     "pushing either freight leaf from either approach parts both leaves "
+     "to open the loading alcove"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

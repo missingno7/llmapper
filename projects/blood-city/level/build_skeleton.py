@@ -712,6 +712,10 @@ def build():
                      floor_shade=26, ceiling_shade=26, wall_shade=24)
     city.connect(landing.face("south"), passage.face("north"),
                  connection_id="connection:underpass_from_yard_stair")
+    from l3_foundry import build_loading_shutter
+    UNDERPASS["loading"] = build_loading_shutter(
+        city, stair, passage, east=int(landing_x0) + CORRIDOR_W,
+        middle=top_y0 + CORRIDOR_W + PASSAGE_LEN - 832, floor=PASSAGE_Z)
     # The avenue stair. It is half the corridor's width and stands one
     # width in from the works' west face, because a flight laid ALONG the
     # block's edge makes every tread a neighbour of the street: the compiler
@@ -1337,6 +1341,9 @@ def dress_underpass(layout) -> dict:
             # toward the stairs, on the same wall and on the one facing it
             ("exit_yard", u["passage"], (u["x1"], u["y0"]), (u["x1"], u["y1"]), 0.12, 761),
             ("exit_avenue", u["passage"], (u["x0"], u["y1"]), (u["x0"], u["y0"]), 0.62, 761)):
+        if name == "tickets":
+            # Beside the loading recess, on the remaining solid east wall.
+            t = 0.55
         layout.place_on_wall(
             f"underpass:{name}", region, a1=a1, a2=a2, t=t,
             # the campaign hangs EXIT at 1.85 bodies; under a ceiling 1.93
@@ -1539,6 +1546,8 @@ def main() -> int:
               ctx["manifest"].get("stage_light", {}).get("lines"))
     import l3_foundry
     l3_foundry.sprinkle(layout, ctx, dressing)
+    ctx["manifest"]["loading_shutter"] = l3_foundry.furnish_loading_shutter(
+        layout, UNDERPASS["loading"])
     # Declare the secret count.  A `secret=True` region emits the campaign's
     # per-sector wiring, but the *count* is a separate sprite transmitting
     # 64+n on channel 1 -- E3M1 carries one at command 73 (nine secrets).

@@ -319,6 +319,82 @@ class SlidingGateReadBack(unittest.TestCase):
         _assert_agrees(self, result)
 
 
+class SolidDoubleSlideReadBack(unittest.TestCase):
+    def test_both_leaves_push_and_park_past_fixed_jambs(self):
+        from bloodmap import motion, posed, wiring
+        from bloodmap.mechanism import furnish_solid_double_slide, solid_double_slide_spec
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.motion_sim import closure_health, closure_sweep
+        from bloodmap.planar_layout import PlanarLayout
+
+        for axis in ("x", "y"):
+            with self.subTest(axis=axis):
+                along = 0 if axis == "x" else 1
+                opening = (0, 0, 2048, 512) if axis == "x" else (0, 0, 512, 2048)
+                spec = solid_double_slide_spec(opening, axis=axis, travel=1216)
+                layout = PlanarLayout(name="Solid double slide")
+                layout.add_region("shutter", spec["outline"], floor_z=24576, ceiling_z=0)
+                for i, (a, b) in enumerate(spec["portals"]):
+                    x0, x1 = sorted((a[0], b[0]))
+                    y0, y1 = sorted((a[1], b[1]))
+                    if axis == "x":
+                        y0, y1 = (-1024, 0) if y0 == 0 else (512, 1536)
+                    else:
+                        x0, x1 = (-1024, 0) if x0 == 0 else (512, 1536)
+                    room = f"approach{i}"
+                    layout.add_region(room, [(x0, y0), (x1, y0), (x1, y1), (x0, y1)],
+                                      floor_z=24576, ceiling_z=0)
+                    layout.add_connection(room, "shutter", room, a1=a, a2=b)
+                    layout.set_player_start(room, x=(x0 + x1) // 2, y=(y0 + y1) // 2, z=8192)
+                circuit = wiring.Circuit(layout)
+                wire = circuit.wire("shutter", "Pushing a leaf opens the freight shutter.")
+                markers = {kind: {"type": kind, "picnum": motion.MARKER_PICNUM,
+                                  "status": motion.MARKER_STATNUM, "cstat": motion.MARKER_CSTAT}
+                           for kind in (motion.MARKER_OFF, motion.MARKER_ON)}
+                furnish_solid_double_slide(layout, "shutter", spec, wire,
+                                           leaf_picnum=22, marker_fields=markers)
+                circuit.apply()
+                compiled = layout.compile()
+                disk = compiled.level.to_disk_map()
+                sector = compiled.allocations["shutter"].sector_id
+
+                self.assertEqual(record_fields(disk.sectors[sector])["type"], 614)
+                self.assertEqual(motion.marker_pair(disk, sector)["travel"],
+                                 (1216, 0) if axis == "x" else (0, 1216))
+                swept = closure_sweep(disk, sector)
+                self.assertTrue(closure_health(disk, sector)["healthy"])
+                self.assertEqual(swept.closure["sectors"], [sector])
+                groups = {sign: [w for w, row in swept.closure["moved"].items()
+                                 if row["sign"] == sign] for sign in (-1, 1)}
+                self.assertEqual([len(group) for group in groups.values()], [4, 4])
+                def tips(step):
+                    return (max(swept.position(step, w)[along] for w in groups[-1]),
+                            min(swept.position(step, w)[along] for w in groups[1]))
+
+                self.assertEqual(tips(0), (1023, 1025))
+                self.assertEqual(tips(swept.steps), (-193, 2241))
+
+                senders = wiring.chains(disk)
+                self.assertEqual(len(senders), 6)
+                for chain in senders:
+                    wall = int(chain["root"].split()[1])
+                    extra = record_extra(disk.walls[wall])
+                    self.assertEqual(extra["command"], motion.CMD_TOGGLE)
+                    self.assertTrue(all(extra[name] for name in
+                                        ("trigger_push", "trigger_on", "trigger_off")))
+                    self.assertEqual([step["to"] for step in chain["steps"]],
+                                     [f"sector {sector}"])
+                    self.assertFalse(chain["silent"])
+                    shut, _ = posed.rested(disk, chain)
+                    opened, report = posed.posed(disk, chain)
+                    self.assertEqual(report["objects"][1]["state"], [0, 1])
+                    for copy, step in ((shut, 0), (opened, swept.steps)):
+                        for vertex in swept.closure["walls"]:
+                            fields = record_fields(copy.walls[vertex])
+                            self.assertEqual((fields["x"], fields["y"]),
+                                             swept.position(step, vertex))
+
+
 class LiftReadBack(unittest.TestCase):
     """`mechanism.lift`: a floor that travels in z."""
 
@@ -666,6 +742,10 @@ COVERED: dict[str, str] = {
     "bloodmap.mechanism.sliding_gate":
         "SlidingGateReadBack."
         "test_a_sliding_gate_reads_back_as_the_sprite_payload_it_declared",
+    "bloodmap.mechanism.solid_double_slide_spec":
+        "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
+    "bloodmap.mechanism.furnish_solid_double_slide":
+        "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.lift":
         "LiftReadBack.test_a_lift_reads_back_as_a_z_motion_that_changes_state",
     "bloodmap.doors.z_motion_door":

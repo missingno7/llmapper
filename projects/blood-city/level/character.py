@@ -46,6 +46,12 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M2 s103-105 (the passage to the waiting hall); the "
                     "owner's DNE3L6 for the metro beyond the bars",
     },
+    "foundry loading alcove": {
+        "at": (47104, 24768), "floor": 24576, "study": "doors-and-mechanisms",
+        "hero": "two iron-banded freight leaves part into recessed tracks "
+                "to reveal a chain-lit loading alcove with shotgun shells",
+        "exemplar": "DOOR-SLIDINGD s3 (opposed solid slider)",
+    },
     "RAT DOGS": {
         "at": (52800, 12800), "study": "ratdogs-stand",
         "hero": "a works canteen that sells rats: a hatch on the yard with "
