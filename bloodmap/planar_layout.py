@@ -788,6 +788,7 @@ class PlanarLayout:
         #: (region_id, edge) -> wall fields written after emit. See
         #: `paint_wall`.
         self.painted: dict[tuple[str, tuple], dict[str, int]] = {}
+        self.fixed_wall_frames: set[tuple[str, tuple]] = set()
         #: XWALL behaviour, keyed the same way. Separate from `painted`
         #: because these fields need an extra record, not a field poke.
         self.wired_walls: dict[tuple[str, tuple], dict[str, int]] = {}
@@ -965,8 +966,8 @@ class PlanarLayout:
                 behavior={"data_1": int(link_id)}))
         return (made[0], made[1])
 
-    def paint_wall(self, region_id: str, a1: Point, a2: Point,
-                   **fields: int) -> None:
+    def paint_wall(self, region_id: str, a1: Point, a2: Point, *,
+                   fixed_frame: bool = False, **fields: int) -> None:
         """Set fields on one named wall of a region, after it is emitted.
 
         `carry_wall` writes a payload flag this way; a masked panel needs to
@@ -976,12 +977,18 @@ class PlanarLayout:
 
         Matched by geometry rather than index, for the same reason
         `carry_wall` is: the compiler may rotate a loop.
+
+        With `fixed_frame`, the emitted wall keeps its authored repeats and
+        phase through `texture_frame.frame_map`, which treats it as a run
+        boundary. Use it for a surface with an independently authored frame.
         """
         if region_id not in self.regions:
             raise PlanarLayoutError(f"paint_wall: no region {region_id!r}")
         key = (region_id, _cycle((a1, a2)))
         self.painted.setdefault(key, {}).update(
             {k: int(v) for k, v in fields.items()})
+        if fixed_frame:
+            self.fixed_wall_frames.add(key)
 
     def _preflight_motion_set(self, disk, allocations) -> None:
         """Diff each mechanism's ACTUAL motion set against what it declared."""
@@ -1033,7 +1040,7 @@ class PlanarLayout:
 
     def wire_wall(self, region_id: str, a1: Point, a2: Point,
                   **fields: int) -> None:
-        """Give one wall of a region an XWALL -- make the surface a button.
+        """Give a named wall an XWALL for behavior such as triggering or panning.
 
         The tutorials wire a shove this way rather than with the sector's
         `trigger_wall_push`: the curtain's three fabric faces each carry an
@@ -1054,7 +1061,7 @@ class PlanarLayout:
             {k: int(v) for k, v in fields.items()})
 
     def _apply_wired_walls(self, builder, allocations) -> None:
-        """Wire every wall lying ON the named face, not just a whole edge.
+        """Set XWALL fields on every compiled wall within the named face.
 
         A button is a SURFACE, and the compiler is free to split that surface
         into several walls where neighbours meet it. Naming one edge and
@@ -1102,7 +1109,10 @@ class PlanarLayout:
         for (region_id, edge), fields in self.painted.items():
             wall_id = self._wall_named(builder, allocations, region_id, edge,
                                        "paint_wall")
-            target = builder.level.walls[wall_id]["fields"]
+            wall = builder.level.walls[wall_id]
+            if (region_id, edge) in self.fixed_wall_frames:
+                wall["fixed_texture_frame"] = True
+            target = wall["fields"]
             for key, value in fields.items():
                 if key == "cstat":
                     target["cstat"] = int(target["cstat"]) | int(value)

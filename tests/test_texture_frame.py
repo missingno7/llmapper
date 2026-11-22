@@ -364,6 +364,35 @@ class MovingWallsAreNotProjectable(unittest.TestCase):
             self.assertEqual(int(disk.walls[wall].fields["x_repeat"]), repeat,
                              f"wall {wall} of a mover was re-projected")
 
+    def test_a_panning_wall_keeps_its_own_phase_and_scale(self):
+        from bloodmap.format import encode_map, parse_map
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.planar_layout import PlanarLayout
+        from bloodmap.texture_frame import frame_map
+
+        layout = PlanarLayout()
+        edge = ((0, 0), (1024, 0))
+        layout.add_region("mouth", [*edge, (1024, 1024), (0, 1024)],
+                          wall_picnum=1120, declared_zero_exit=True)
+        layout.set_player_start("mouth", x=512, y=512, z=0)
+        finish = dict(picnum=1120, x_repeat=8, y_repeat=8,
+                      x_panning=16, y_panning=242)
+        behavior = dict(pan_always=1, pan_x_velocity=0, pan_y_velocity=-20,
+                        y_pan_fraction=128)
+        layout.paint_wall("mouth", *edge, fixed_frame=True, **finish)
+        layout.wire_wall("mouth", *edge, **behavior)
+        compiled = layout.compile()
+        level = compiled.level
+        report = frame_map(level, art_sizes={1120: (64, 64)}, v_anchor="floor")
+
+        disk = parse_map(encode_map(level.to_disk_map()))
+        walls = [wall for wall in disk.walls if record_extra(wall)]
+        self.assertEqual(report["walls_left_to_their_fixed_frame"], 1)
+        self.assertEqual(report["walls_framed"], 3)
+        self.assertEqual(len(walls), 1)
+        self.assertEqual({key: record_fields(walls[0])[key] for key in finish}, finish)
+        self.assertEqual({key: record_extra(walls[0])[key] for key in behavior}, behavior)
+
 
 class TheCampaignSetsTheStandard(unittest.TestCase):
     """The gate is calibrated on the corpus, and the corpus passes it."""

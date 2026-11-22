@@ -207,9 +207,15 @@ room with its rectangle and kind).
   - the critique packet numbers views alphabetically by pose name, so a
     brief must give that order.
   Frames: `work/spider/look9/lair-sheet.png` (`work/spider/lair_look.py`).
-* **Open:** the gallery's step face over the tanks is one tall bare wall
-  (a sewagefall there wants the wall below the outfall's mouth in 1120,
-  panned, and a per-edge texture the layout does not give); the walks carry only floor debris: anything hung on their walls
+* **Built: The Settling Hall sewagefall.** The gallery channel feeds a
+  crawl-height outfall across its south walk into Tank 1. The water drops
+  43,008 z units (2.54 standing bodies). E3M3's animated tile 1120 and
+  always-on XWALL pan of −20 run down the lower band. Bottom swap gives
+  the falling water its own wall record and leaves a metal lintel above
+  the mouth. E3M3's ambient water sound sits at the foot. See the
+  [sewagefall study](../../../knowledge/blood/studies/sewagefall/notes.md)
+  and the gallery, tank and circle quay frames in `work/fall/frames/`.
+* **Open:** the walks carry only floor debris: anything hung on their walls
   (E3M3's drips at 1.21 bodies, its moss, the vault grates) lands in the
   sloped ceiling, because the detail runs read a flat ceiling's height; and
   E3M3's X-brace pilasters (487) are wall textures in E3M3, a wall split we

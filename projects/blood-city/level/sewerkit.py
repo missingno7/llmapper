@@ -137,6 +137,7 @@ def line_mouths(level, sectors, *, tile: int = MOUTH_TILE,
     Only the ones that are mouths: short, with a real band of wall above
     them.  `sectors` is the set of sector ids the sewer occupies, so a
     mouth onto a stack link or the street keeps its own treatment.
+    A wall with a fixed texture frame already has a surface treatment.
     """
     import math
 
@@ -153,7 +154,10 @@ def line_mouths(level, sectors, *, tile: int = MOUTH_TILE,
             continue
         start = int(sector_fields["wall_ptr"])
         for offset in range(int(sector_fields["wall_count"])):
-            wall = fields_of(level.walls[start + offset])
+            record = level.walls[start + offset]
+            if isinstance(record, dict) and record.get("fixed_texture_frame"):
+                continue
+            wall = fields_of(record)
             neighbour = int(wall["next_sector"])
             if neighbour < 0:
                 continue

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-fall/knowledge/blood/studies/sewagefall/E1M8_243/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-fall/knowledge/blood/studies/sewagefall/E1M8_243",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 6865,
+   "y": 11813,
+   "z": 19552,
+   "angle": 1636,
+   "horiz": 100,
+   "sector": 243,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 9847,
+   "y": 11813,
+   "z": 19552,
+   "angle": 1592,
+   "horiz": 100,
+   "sector": 243,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 12403,
+   "y": 10961,
+   "z": 19552,
+   "angle": 1553,
+   "horiz": 100,
+   "sector": 243,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 6439,
+   "y": 9257,
+   "z": 19552,
+   "angle": 1656,
+   "horiz": 100,
+   "sector": 243,
+   "screenshot": true
+  }
+ ]
+}

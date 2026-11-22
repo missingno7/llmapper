@@ -444,6 +444,8 @@ HALL_JOINS = [
 #: The stair: down from the gallery's south walk at x 33.5, a column 1024
 #: wide clear of the tanks (which end at 32.5), onto the circle quay.
 HALL_STAIR = {"at_x": 33.5, "width": 1024, "tread": 512, "step_rise": 4096}
+#: The last metre of the tank's north edge, just west of the ring's outfall.
+HALL_OUTFALL = (31.5, 32.5)
 #: Graves Brook's walks: E3M3's stone walk (568) between rubble walls. (Not
 #: the crypt's earth, 270: at the crypt's own depth that is what makes the
 #: crypt the crypt.)
@@ -599,7 +601,12 @@ def edge(rooms: dict, leg: str, face: str, at: float | None = None):
 
 
 def hall(sewer, rooms: dict) -> dict:
-    """The settling hall's rooms, joins and stair, in its own layer (`HALL`)."""
+    """Build the settling hall's tanks, gallery outfall and stair."""
+    from dataclasses import replace
+
+    from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+    from bloodmap.model import record_extra, record_fields
     import citytree
 
     part = sewer.assembly(HALL_LAYER, note="the settling hall: tanks under the gallery")
@@ -623,16 +630,88 @@ def hall(sewer, rooms: dict) -> dict:
     for a, fa, b, fb in HALL_JOINS:
         citytree.join(rooms[a], rooms[b], at_a=fa, at_b=fb,
                       connection_id=f"connection:hall_{a}_{fa}_{b}")
-    # the gallery's south walk is the ledge over the hall: the tanks and the
-    # west quay open off it, a drop of 2.4 bodies (no harm: `conformance`)
+    # Route the channel across the south walk through E3M3's low spillway.
     ledge = edge(rooms, "gallery", "south", 26.0)
-    for name in ("tank_1", "west_quay"):
-        citytree.join(rooms[name], ledge, at_a="north", at_b="south",
-                      connection_id=f"connection:hall_{name}_gallery")
-    x0, _y0, x1, _y1 = next(e["rect"] for e in plan() if e["name"] == ledge_name(rooms, ledge))
-    rooms[ledge_name(rooms, ledge)].staircase(
+    x0, y0, x1, y1 = next(e["rect"] for e in plan() if e["name"] == ledge_name(rooms, ledge))
+    wx0, wy0, wx1, wy1 = (round(v * PU) for v in (x0, y0, x1, y1))
+    left, right = (round(x * PU) for x in HALL_OUTFALL)
+    depth = wy1 - wy0
+    slope = ledge.region_kwargs["ceiling_slope"]
+    ledge.outline = [(0, 0), (left - wx0, 0), (left - wx0, depth), (0, depth)]
+    ledge.region_kwargs["ceiling_slope"] = replace(slope, hinge=((wx0, wy0), (left, wy0)))
+    east = ledge.parent.rect_room(
+        "gallery_walk_east", origin=(right, wy0), size=(wx1 - right, depth),
+        role=ledge.role, style=ledge.style,
+        region_kwargs={**ledge.region_kwargs, "ceiling_slope":
+                       replace(slope, hinge=((right, wy0), (wx1, wy0)))},
+        note="the gallery walk at the head of the settling hall stair")
+
+    example = read_map(corpus_map_path("E3M3"))
+    feed = record_fields(example.sectors[173])
+    floor = SEWER_FLOOR + CHANNEL_DROP
+    mouth = part.rect_room(
+        "outfall_mouth", origin=(left, wy0), size=(right - left, depth),
+        role="interior", note="the gallery's low outfall into the first settling tank",
+        region_kwargs={**SEWER_WET.region_kwargs(), "sector_behavior":
+                       flow_behavior(512, record_extra(example.sectors[173])["pan_velocity"], False)})
+    mouth.surfaces(layer=ledge.effective_style()["layer"], **SEWER_WET.style_kwargs(
+        floor_z=floor, clear_height=feed["floor_z"] - feed["ceiling_z"],
+        floor_shade=38))
+
+    tank = rooms["tank_1"]
+    for a, fa, b, fb in (
+        (rooms["west_quay"], "north", ledge, "south"),
+        (east, "north", rooms["gallery"], "south"),
+        (mouth, "north", rooms["gallery"], "south"),
+        (mouth, "west", ledge, "east"),
+        (mouth, "east", east, "west"),
+        (mouth, "south", tank, "north"),
+    ):
+        citytree.join(a, b, at_a=fa, at_b=fb,
+                      connection_id=f"connection:hall_{a.node_id}_{fa}_{b.node_id}")
+    north_a, north_b = tank.local_edge("north")
+    tank_width = north_b[0] - north_a[0]
+    dry_width = left - tank.frame.dx
+    citytree.join(tank, ledge,
+                  at_a=tank.face("north", at=dry_width / (2 * tank_width), width=dry_width),
+                  at_b="south", connection_id="connection:hall_tank_1_gallery")
+
+    # Bottom swap gives the water its own texture frame below the metal lintel.
+    source = example.walls[1307]
+    mouth_finish = {key: record_fields(source)[key] for key in
+                    ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
+    pan = {key: record_extra(source)[key] for key in
+           ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
+    pool_cstat = record_fields(example.walls[1319])["cstat"]
+
+    def spill(layout, room):
+        a, b = (room.world_frame().apply(p) for p in room.local_edge("south"))
+        layout.paint_wall(room.region_id, a, b, fixed_frame=True, **mouth_finish)
+        layout.wire_wall(room.region_id, a, b, **pan)
+        layout.paint_wall(tank.region_id, a, b, cstat=pool_cstat)
+
+    mouth.raw("E3M3 walls 1307/1319: panned sewage beneath a metal lintel", spill)
+
+    sample = example.sprites[393]
+    sound = record_fields(sample)
+    sound_fields = {key: sound[key] for key in
+                    ("picnum", "type", "cstat", "status", "shade", "x_repeat", "y_repeat")}
+    sound_behavior = {key: record_extra(sample)[key] for key in
+                      ("state", "busy", "data_1", "data_2", "data_3", "data_4")}
+    sound_height = record_fields(example.sectors[174])["floor_z"] - sound["z"]
+
+    def water_sound(layout, room):
+        x, y = mouth.world_frame().apply(((right - left) // 2, depth + 512))
+        z = room.world_frame().apply_z(HALL_WATER - sound_height)
+        layout.add_sprite("placement:settling_hall:outfall_sound", room.region_id,
+                          x=x, y=y, z=z, behavior=sound_behavior, **sound_fields)
+
+    tank.raw("E3M3 sprite 393: falling water sound at the foot", water_sound)
+
+    east.staircase(
         # a south face runs east to west: `at` is measured from its east end
-        "hall_stair", "south", at=(x1 - HALL_STAIR["at_x"]) / (x1 - x0), width=HALL_STAIR["width"],
+        "hall_stair", "south", at=(x1 - HALL_STAIR["at_x"]) / (x1 - HALL_OUTFALL[1]),
+        width=HALL_STAIR["width"],
         total_rise=HALL_WALK - SEWER_FLOOR, tread=HALL_STAIR["tread"],
         step_rise=HALL_STAIR["step_rise"], arrive_at=rooms["circle_quay"].region_id,
         connection={"role": "portal"})

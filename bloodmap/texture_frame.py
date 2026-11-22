@@ -1058,6 +1058,10 @@ def frame_map(level: Any, *,
     -- silently replaces a designed number with a meaningless one. The zoo's
     read-back caught exactly that the first time this pass ran: texel 2.0
     became 0.02.
+
+    A wall painted with `PlanarLayout.paint_wall(..., fixed_frame=True)`
+    keeps its authored repeats and starting phase. It also ends the static
+    texture run on either side.
     """
     if v_anchor not in ("first_wall", "floor"):
         raise FrameError(f"unknown v_anchor {v_anchor!r}")
@@ -1087,8 +1091,11 @@ def frame_map(level: Any, *,
             for wall in range(start, start + int(fields["wall_count"])):
                 skip.add(wall)
                 moving += 1
+    fixed = {index for index, wall in enumerate(level.walls)
+             if isinstance(wall, dict) and wall.get("fixed_texture_frame")}
+    skip.update(fixed)
     runs = run_partition(level, art_sizes=art_sizes, owners=owners,
-                         boundaries=boundaries,
+                         boundaries=fixed.union(boundaries),
                          break_degrees=break_degrees)
     framed = changed = singles = district = 0
     for run in runs:
@@ -1156,6 +1163,7 @@ def frame_map(level: Any, *,
             "single_wall_runs": singles, "fields_changed": changed,
             "walls_unframed": len(level.walls) - framed,
             "walls_left_to_their_mechanism": moving,
+            "walls_left_to_their_fixed_frame": len(fixed),
             "basis": ("one WallRunFrame per run, resolved in closed form; "
                       "the editor's AutoAlignWalls has nothing left to change")}
 

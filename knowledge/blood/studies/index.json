@@ -123,6 +123,15 @@
     "maps/blood/mechanism/Vanilla/DOOR-CLOSET.map:84!"
    ],
    "date": "2026-11-22"
+  },
+  "sewagefall": {
+   "want": "A low gallery outfall that visibly pours sewage into the Settling Hall tanks.",
+   "seeds": [
+    "E3M3:174!",
+    "E1M8:243",
+    "maps/blood/community/chronicles1/FULLMOON.MAP:116!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }
