@@ -20,9 +20,14 @@ than inferred:
 * `data_4` is the volume: 50 in 1,177 of 1,778;
 * `state` must be 1 (1,582 of 1,778).
 
-Sound ids are attested per context from the maps that are that context:
-E3M3, Blood's sewer, runs sound **30** (21 of its 41 emitters); E3M1's
-town runs **8** (22 of 35); E1M5's church runs **50** and **32**.
+Sound ids are attested per context from the campaign rooms that are that
+context, and checked against what each id IS (`python -m tools.catalog show
+sound:<id>`; the counts are in knowledge/blood/studies/ambient-sounds/):
+the street keeps E3M1's distant machinery (8), the sewer E3M3's drips (30).
+Two were wrong until the sound catalogue named them: "interior" was 32, a
+torch's fire, now E1M2's enclosed-room hum (2); "church" was 50, steam, now
+E3M4's chapel wind (1). Works moved from wind (18) to E3M6's conveyor hum
+(20), and the crypt has E1M1's crypt wind (17).
 """
 
 from __future__ import annotations
@@ -34,25 +39,37 @@ AMBIENT_SHADE = -128
 #: All 1,778 campaign ambient emitters carry this tile.
 AMBIENT_TILE = 2521
 
-#: (near, far, volume) -- the campaign's modal envelope.
-NEAR, FAR, VOLUME = 100, 300, 50
-
-#: sound id by context, each taken from the campaign map that IS that
-#: context.  Named for what it is for, not for what it sounds like.
+# See knowledge/blood/studies/ambient-sounds/notes.md for the counts and rooms.
 SOUNDS = {
-    "street": 8,        # E3M1's town, 22 of its 35 emitters
-    "interior": 32,     # common across E3M1, E1M1 and E1M5
-    "sewer": 30,        # E3M3, 21 of its 41
-    "church": 50,       # E1M5
-    "fare_turnstile": 21,  # both E1M4 fare rotors, sectors 151 and 314
-    "works": 18,        # E3M1 and E1M5 both use it in machine spaces
-    "mall": 65,         # E4M9, the campaign's shopping mall and the
-                        # corpus's heaviest user of this sound (5 of 11)        # E3M1 and E1M5 both use it in machine spaces
+    "street": 8,
+    "interior": 2,
+    "sewer": 30,
+    "church": 1,
+    "crypt": 17,
+    "fare_turnstile": 21,
+    "works": 20,
+    "mall": 65,
+}
+
+# Near radius, far radius and volume from comparable campaign placements.
+ENVELOPES = {
+    "street": (150, 350, 50),
+    "interior": (300, 600, 50),
+    "sewer": (100, 300, 50),
+    "church": (400, 800, 40),
+    "crypt": (200, 500, 50),
+    "fare_turnstile": (250, 700, 20),
+    "works": (200, 400, 50),
+    "mall": (900, 1500, 50),
 }
 
 
-def fields(context: str, *, near=NEAR, far=FAR, volume=VOLUME) -> dict:
+def fields(context: str, *, near=None, far=None, volume=None) -> dict:
     """The sprite and XSPRITE fields for one ambient emitter."""
+    default_near, default_far, default_volume = ENVELOPES[context]
+    near = default_near if near is None else int(near)
+    far = default_far if far is None else int(far)
+    volume = default_volume if volume is None else int(volume)
     if near >= far:
         raise ValueError(
             f"ambient near {near} must be less than far {far}: ambInit "
@@ -61,8 +78,8 @@ def fields(context: str, *, near=NEAR, far=FAR, volume=VOLUME) -> dict:
         "type": AMBIENT_TYPE, "picnum": AMBIENT_TILE, "status": AMBIENT_STATNUM,
         "cstat": AMBIENT_CSTAT, "shade": AMBIENT_SHADE,
         "x_repeat": 64, "y_repeat": 64,
-        "behavior": {"data_1": int(near), "data_2": int(far),
-                     "data_3": int(SOUNDS[context]), "data_4": int(volume),
+        "behavior": {"data_1": near, "data_2": far,
+                     "data_3": SOUNDS[context], "data_4": volume,
                      "state": 1},
     }
 

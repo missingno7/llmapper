@@ -1554,6 +1554,8 @@ def ghost_station(sewer, silt_trap):
     tunnel.raw("the brick infill at the end of the tunnel",
                lambda layout, room: layout.paint_wall(
                    room.region_id, (60736, track_wall), (60736, track_side), picnum=383))
+    from caleb import ghost_tunnel
+    tunnel.raw("Caleb comments on the end of the line", ghost_tunnel)
 
     for index, x in enumerate((50816, 55424)):
         for name, y, depth, rise in (("seat", foot - 768, 384, 4352),
@@ -1833,6 +1835,8 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
 
     source, type_id, tile = MANHOLE_COVER["source"]
     spec = _attested(source, type_id, picnum=tile)
+    # Use the metal grate break from E3M4 in place of E4M9's record scratch.
+    spec = {**spec, "behavior": {**spec["behavior"], "data_4": 314}}
     placed = []
     for name, upper in sorted(mouths.items()):
         size = next(m[3] for m in MANHOLES if m[0] == name)
@@ -2327,6 +2331,8 @@ def dress_lair(layout, rooms, attested) -> list[str]:
     x, y = at(LAIR_MOTHER)
     placed.append(_lair_sprite(layout, "sewer:lair_mother", hall_room, x, y, fields["mother"],
                                spec["mother"], top=ceiling + 32))
+    from caleb import spider_mother
+    spider_mother(layout, hall_room.region_id, placed[-1], int(x), int(y))
     # the dead: one wrapped, two on chains
     chained = _attested("E1M2", 416, picnum=689)
     for k, (local, kind) in enumerate(LAIR_VICTIMS):

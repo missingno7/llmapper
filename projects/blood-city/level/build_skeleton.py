@@ -1514,6 +1514,8 @@ def main() -> int:
     from bloodmap import wiring as _wiring
     import wires as _wires
     circuit = ctx["circuit"] = _wires.circuit().bind(layout)
+    import caleb
+    caleb.level_opening(layout)
     for gate in gates:
         gate_id, region_a, region_b, a1, a2 = gate[:5]
         # A sixth field states a narrower span on purpose: a roof's edge or a
@@ -1795,15 +1797,20 @@ def main() -> int:
         if index % 2 == 0:
             amb.append((room.region_id, "sewer", (0.5, 0.5)))
     for index, (name, room) in enumerate(ctx["church_rooms"].items()):
+        if name != "nave":
+            continue
         if name.endswith(("_door", "_porch")) or index % 2:
             continue
         amb.append((room.region_id, "church", (0.5, 0.5)))
+    amb.append((ctx["church_rooms"]["crypt"].region_id, "crypt", (0.5, 0.5)))
     for index, (name, room) in enumerate(ctx["theatre_rooms"].items()):
         if (name.endswith(("_door", "_porch")) or name.startswith("furniture")
                 or index % 2):
             continue
         amb.append((room.region_id, "interior", (0.5, 0.5)))
     for name, room in ctx["station_rooms"].items():
+        if name != "machine_hall":
+            continue
         if name.startswith("_"):
             continue                      # the assembly handle, not a room
         amb.append((room.region_id, "works", (0.5, 0.5)))

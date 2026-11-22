@@ -395,6 +395,7 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | `tile_contexts` | Discover, catalogue and browse what tiles are used as, where, and on whose evidence. |
 | `wiki_levels` | What players wrote about each campaign level on the Blood Wiki, mined into facts the catalog can show and search. |
 | `sound_catalog` | Mine Blood's sound IDs, mapper-authored uses, and speech from the local game archive. |
+| `sound_readback` | List mapper-authored sound references in a compiled Blood map. |
 
 ### Decompiling an original map
 

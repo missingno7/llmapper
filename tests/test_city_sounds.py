@@ -1,0 +1,97 @@
+"""Check Gravesend's sound fields and causes after map serialization."""
+
+from pathlib import Path
+import sys
+import unittest
+
+from bloodmap import wiring
+from bloodmap.format import read_map
+from bloodmap.mechanism import CMD_ON
+from bloodmap.model import record_extra, record_fields
+from bloodmap.visual import HIDDEN_TYPES
+
+LEVEL = Path("projects/blood-city/level")
+CITY = LEVEL / "blood-city-current.MAP"
+
+
+def _ambience():
+    if str(LEVEL) not in sys.path:
+        sys.path.insert(0, str(LEVEL))
+    import ambience
+    return ambience
+
+
+class AmbientFieldsTests(unittest.TestCase):
+    def test_context_supplies_campaign_envelope_and_allows_overrides(self):
+        fields = _ambience().fields
+        self.assertEqual(fields("mall")["behavior"], {
+            "data_1": 900, "data_2": 1500, "data_3": 65, "data_4": 50, "state": 1})
+        self.assertEqual(fields("mall", volume=30)["behavior"]["data_4"], 30)
+        with self.assertRaises(ValueError):
+            fields("mall", near=1500)
+
+
+@unittest.skipUnless(CITY.exists(), "the city is not built")
+class CitySoundTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.disk = read_map(CITY)
+        cls.sprites = [(record_fields(sprite), record_extra(sprite) or {})
+                       for sprite in cls.disk.sprites]
+        cls.sectors = [record_extra(sector) or {} for sector in cls.disk.sectors]
+
+    def test_ambience_uses_room_envelopes_and_both_outfalls_sound(self):
+        ambience = _ambience()
+        envelopes = set()
+        outfalls = 0
+        for fields, extra in self.sprites:
+            if fields["type"] != 710:
+                continue
+            self.assertEqual(fields["status"], 12)
+            self.assertEqual(fields["picnum"], 2521)
+            self.assertTrue(fields["cstat"] & 32768)
+            self.assertEqual(extra["state"], 1)
+            self.assertLess(extra["data_1"], extra["data_2"])
+            sound = extra["data_3"]
+            envelopes.add((sound, extra["data_1"], extra["data_2"], extra["data_4"]))
+            outfalls += sound == 56
+        expected = {(sound, *ambience.ENVELOPES[context])
+                    for context, sound in ambience.SOUNDS.items()}
+        self.assertEqual(envelopes, expected | {(56, 150, 350, 50)})
+        self.assertEqual(outfalls, 2)
+
+    def test_metal_drain_covers_have_a_metal_break_sound(self):
+        covers = [extra["data_4"] for fields, extra in self.sprites
+                  if fields["type"] == 416 and fields["picnum"] == 219]
+        self.assertEqual(covers, [314] * 4)
+
+    def test_caleb_remarks_have_one_invisible_speaker_and_the_intended_cause(self):
+        speakers = [(fields, extra) for fields, extra in self.sprites if fields["type"] == 711]
+        self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034])
+        self.assertIn(711, HIDDEN_TYPES)
+        for fields, extra in speakers:
+            sound = extra["data_1"]
+            with self.subTest(sound=sound):
+                self.assertTrue(fields["cstat"] & 32768)
+                self.assertEqual((fields["picnum"], fields["status"]), (2519, 0))
+                self.assertGreaterEqual(extra["rx_id"], wiring.USER_CHANNELS_FROM)
+                senders = [(source["type"], data) for source, data in self.sprites
+                           if data.get("tx_id") == extra["rx_id"]]
+                senders += [(None, data) for data in self.sectors
+                            if data.get("tx_id") == extra["rx_id"]]
+                self.assertEqual(len(senders), 1)
+                type_id, cause = senders[0]
+                self.assertEqual(cause["trigger_once"], 1)
+                self.assertEqual(cause["command"], CMD_ON)
+                if sound == 4509:
+                    self.assertEqual(type_id, 21)
+                    self.assertEqual(cause["rx_id"], wiring.LEVEL_START_CHANNEL)
+                    self.assertEqual((cause["state"], cause["wait_time"], cause["rest_state"]), (0, 5, 0))
+                    self.assertEqual((cause["trigger_on"], cause["trigger_off"]), (0, 1))
+                elif sound == 4537:
+                    self.assertEqual(type_id, 216)
+                    self.assertEqual((cause["decoupled"], cause["trigger_off"]), (1, 1))
+                else:
+                    self.assertIsNone(type_id)
+                    self.assertEqual((cause["trigger_enter"], cause["dude_lockout"]), (1, 1))
+                    self.assertEqual(cause, self.sectors[fields["sector"]])

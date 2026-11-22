@@ -67,6 +67,12 @@ PLAN: tuple[tuple[str, str], ...] = (
      "three simultaneous matches set the service hatch's latch"),
     ("ghost:hatch-open",
      "the first match opens the sliding hatch and sounds the latch once"),
+    ("caleb:opening",
+     "half a second after the level starts, Caleb says he will paint the town red"),
+    ("caleb:spider-mother",
+     "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once"),
+    ("caleb:ghost-tunnel",
+     "entering the bricked-up track stub at Ghost Station prompts Caleb once"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

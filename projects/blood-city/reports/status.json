@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "606712e65773991e1acf3562da6ff907cf4ce263fdab8b5da238ebd706b9543d",
-  "map_sha256": "aa66201e69a9d044552d0dbf697ea68a0b3e10147b827c02b55f12cf3dba93d1",
+  "manifest_sha256": "54dee7f171398ca47128e4410c8c2e8fe1dcdab88bee572fa509ed1d37e2fa39",
+  "map_sha256": "71e479647e128114f2a1bd27d4480d97ff9b41e819a521fe83f749055dc42c8a",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1104,
-  "walls": 10775,
-  "sprites": 1288,
+  "walls": 10773,
+  "sprites": 1283,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -18,7 +18,7 @@
   "headroom": {
    "sectors": 0.73,
    "walls": 0.342,
-   "sprites": 0.921
+   "sprites": 0.922
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
@@ -131,68 +131,68 @@
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1535"
+   "at": "projects/blood-city/level/build_skeleton.py:1537"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1656"
+   "at": "projects/blood-city/level/build_skeleton.py:1658"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1763"
+   "at": "projects/blood-city/level/build_skeleton.py:1765"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1841"
+   "at": "projects/blood-city/level/build_skeleton.py:1848"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1876"
+   "at": "projects/blood-city/level/build_skeleton.py:1883"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1931"
+   "at": "projects/blood-city/level/build_skeleton.py:1938"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1974"
+   "at": "projects/blood-city/level/build_skeleton.py:1981"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1993"
+   "at": "projects/blood-city/level/build_skeleton.py:2000"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2140"
+   "at": "projects/blood-city/level/build_skeleton.py:2147"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2217"
+   "at": "projects/blood-city/level/build_skeleton.py:2224"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2272"
+   "at": "projects/blood-city/level/build_skeleton.py:2279"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2471"
+   "at": "projects/blood-city/level/build_skeleton.py:2478"
   }
  ],
  "finish": {
   "exits": [
    {
-    "root": "sprite 473",
+    "root": "sprite 477",
     "cause": "push",
     "sector": 499,
     "to": "kChannelLevelExitNormal",
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 590,
+    "sprite": 594,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 660 (channel 117)"
+     "use switch sprite 664 (channel 120)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 661 (channel 118)"
+     "use switch sprite 665 (channel 121)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 662 (channel 119)"
+     "use switch sprite 666 (channel 122)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 663 (channel 120)"
+     "use switch sprite 667 (channel 123)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,7 +297,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 472 (channel 108)"
+     "use switch sprite 476 (channel 108)"
     ],
     "sectors": 15,
     "first_sector": 497
@@ -305,7 +305,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 512 (channel 103)"
+     "destroy sprite 516 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 664 (channel 121)"
+     "use switch sprite 668 (channel 124)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,7 +321,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 245 (channel 109)"
+     "destroy sprite 248 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 390
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 582 (channel 104)"
+     "destroy sprite 586 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -622,6 +622,42 @@
    ]
   },
   {
+   "name": "caleb:opening",
+   "says": "half a second after the level starts, Caleb says he will paint the town red",
+   "channel": 117,
+   "engine": null,
+   "when": [
+    "level start on placement caleb:start-relay"
+   ],
+   "then": [
+    "placement caleb:opening"
+   ]
+  },
+  {
+   "name": "caleb:spider-mother",
+   "says": "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once",
+   "channel": 118,
+   "engine": null,
+   "when": [
+    "killed on placement sewer:lair_mother"
+   ],
+   "then": [
+    "placement caleb:spider-mother"
+   ]
+  },
+  {
+   "name": "caleb:ghost-tunnel",
+   "says": "entering the bricked-up track stub at Ghost Station prompts Caleb once",
+   "channel": 119,
+   "engine": null,
+   "when": [
+    "enter on region region:gravesend/sewer/ghost_station/blind_tunnel"
+   ],
+   "then": [
+    "placement caleb:ghost-tunnel"
+   ]
+  },
+  {
    "name": "station:way-out",
    "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
    "channel": 4,
@@ -644,7 +680,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 117,
+   "channel": 120,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -656,7 +692,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 118,
+   "channel": 121,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -668,7 +704,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 119,
+   "channel": 122,
    "engine": null,
    "when": [
     "push on placement lever:aldermack"
@@ -680,7 +716,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 120,
+   "channel": 123,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -692,7 +728,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 121,
+   "channel": 124,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -2519,48 +2555,48 @@
    "kind": "dropped",
    "place": null,
    "says": "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg_walk_w_2:3 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg_walk_w_2:5 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1969",
+   "owner": "projects/blood-city/level/build_skeleton.py:1976",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 968, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 963, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2568,7 +2604,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [626, 627], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [630, 631], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"

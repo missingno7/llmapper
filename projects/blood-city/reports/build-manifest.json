@@ -1127,6 +1127,42 @@
         ]
       },
       {
+        "name": "caleb:opening",
+        "says": "half a second after the level starts, Caleb says he will paint the town red",
+        "channel": 117,
+        "engine": null,
+        "when": [
+          "level start on placement caleb:start-relay"
+        ],
+        "then": [
+          "placement caleb:opening"
+        ]
+      },
+      {
+        "name": "caleb:spider-mother",
+        "says": "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once",
+        "channel": 118,
+        "engine": null,
+        "when": [
+          "killed on placement sewer:lair_mother"
+        ],
+        "then": [
+          "placement caleb:spider-mother"
+        ]
+      },
+      {
+        "name": "caleb:ghost-tunnel",
+        "says": "entering the bricked-up track stub at Ghost Station prompts Caleb once",
+        "channel": 119,
+        "engine": null,
+        "when": [
+          "enter on region region:gravesend/sewer/ghost_station/blind_tunnel"
+        ],
+        "then": [
+          "placement caleb:ghost-tunnel"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1149,7 +1185,7 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 117,
+        "channel": 120,
         "engine": null,
         "when": [
           "push on placement lever:saloon"
@@ -1161,7 +1197,7 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 118,
+        "channel": 121,
         "engine": null,
         "when": [
           "push on placement lever:parlor"
@@ -1173,7 +1209,7 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 119,
+        "channel": 122,
         "engine": null,
         "when": [
           "push on placement lever:aldermack"
@@ -1185,7 +1221,7 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 120,
+        "channel": 123,
         "engine": null,
         "when": [
           "push on placement lever:lobby"
@@ -1197,7 +1233,7 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 121,
+        "channel": 124,
         "engine": null,
         "when": [
           "push on placement lever:pawn"
@@ -1245,17 +1281,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 512",
-          "sprite 513"
+          "sprite 516",
+          "sprite 517"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 514",
-          "sprite 515",
-          "sprite 516"
+          "sprite 518",
+          "sprite 519",
+          "sprite 520"
         ],
         "faults": []
       },
@@ -1265,16 +1301,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 582"
+          "sprite 586"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 583",
-          "sprite 584",
-          "sprite 585"
+          "sprite 587",
+          "sprite 588",
+          "sprite 589"
         ],
         "faults": []
       },
@@ -1313,7 +1349,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 479"
+          "sprite 483"
         ],
         "answers": [
           "sector 471"
@@ -1326,7 +1362,7 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 472"
+          "sprite 476"
         ],
         "answers": [
           "sector 497"
@@ -1339,16 +1375,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 245"
+          "sprite 248"
         ],
         "answers": [
           "sector 391",
           "sector 392",
           "sector 393",
           "sector 394",
-          "sprite 246",
-          "sprite 247",
-          "sprite 248"
+          "sprite 249",
+          "sprite 250",
+          "sprite 251"
         ],
         "faults": []
       },
@@ -1464,12 +1500,51 @@
         "faults": []
       },
       {
+        "name": "caleb:opening",
+        "says": "half a second after the level starts, Caleb says he will paint the town red",
+        "channel": 117,
+        "engine": null,
+        "senders": [
+          "sprite 95"
+        ],
+        "answers": [
+          "sprite 96"
+        ],
+        "faults": []
+      },
+      {
+        "name": "caleb:spider-mother",
+        "says": "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once",
+        "channel": 118,
+        "engine": null,
+        "senders": [
+          "sprite 288"
+        ],
+        "answers": [
+          "sprite 289"
+        ],
+        "faults": []
+      },
+      {
+        "name": "caleb:ghost-tunnel",
+        "says": "entering the bricked-up track stub at Ghost Station prompts Caleb once",
+        "channel": 119,
+        "engine": null,
+        "senders": [
+          "sector 418"
+        ],
+        "answers": [
+          "sprite 88"
+        ],
+        "faults": []
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 473"
+          "sprite 477"
         ],
         "answers": [],
         "faults": []
@@ -1488,10 +1563,10 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 117,
+        "channel": 120,
         "engine": null,
         "senders": [
-          "sprite 660"
+          "sprite 664"
         ],
         "answers": [
           "sector 9"
@@ -1501,10 +1576,10 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 118,
+        "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 661"
+          "sprite 665"
         ],
         "answers": [
           "sector 18"
@@ -1514,10 +1589,10 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 119,
+        "channel": 122,
         "engine": null,
         "senders": [
-          "sprite 662"
+          "sprite 666"
         ],
         "answers": [
           "sector 30"
@@ -1527,10 +1602,10 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 120,
+        "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 663"
+          "sprite 667"
         ],
         "answers": [
           "sector 32"
@@ -1540,10 +1615,10 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 121,
+        "channel": 124,
         "engine": null,
         "senders": [
-          "sprite 664"
+          "sprite 668"
         ],
         "answers": [
           "sector 42"
@@ -1910,7 +1985,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1210,
+    "sprites": 1205,
     "wall_sprites": 555,
     "planes": 132,
     "clashing_pairs": 4,
@@ -1962,7 +2037,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 96,
+    "sentences": 97,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -1994,7 +2069,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 117,
+          "rx_id": 120,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2022,7 +2097,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 118,
+          "rx_id": 121,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2065,7 +2140,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 119,
+          "rx_id": 122,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2093,7 +2168,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 120,
+          "rx_id": 123,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2279,7 +2354,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 121,
+          "rx_id": 124,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -3460,6 +3535,21 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/sewer/ghost_station/blind_tunnel",
+        "construct": "sector",
+        "sector": 418,
+        "sectors": [
+          418
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 0,
+          "tx_id": 119,
+          "command": 1,
+          "state": 0
+        }
+      },
+      {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
         "sector": 431,
@@ -3775,7 +3865,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 968,
+        "sprite": 963,
         "tile": 793,
         "sector": 27
       }
@@ -3785,8 +3875,8 @@
     "overlaps": [
       {
         "sprites": [
-          626,
-          627
+          630,
+          631
         ],
         "tiles": [
           73,
@@ -5166,7 +5256,7 @@
   "light_stage": {
     "sectors_before": 632,
     "walls_before": 4054,
-    "sprites_before": 1210,
+    "sprites_before": 1205,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -5495,23 +5585,23 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1778,
+      "walls_split": 1774,
       "seams": 0,
       "refused": {},
-      "walls_cut": 465,
-      "walls_refused": 11,
+      "walls_cut": 464,
+      "walls_refused": 12,
       "left_whole": {},
       "looked_at": 1469
     },
     "shades": {
-      "surfaces": 5468,
+      "surfaces": 5467,
       "windows": 18,
       "spread_12": 88
     },
     "kept": 38,
     "sectors": 1104,
-    "walls": 10775,
-    "sprites": 1288,
+    "walls": 10773,
+    "sprites": 1283,
     "pieces": 472,
     "default_rooms": []
   },

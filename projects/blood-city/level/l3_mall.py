@@ -24,8 +24,8 @@ Three lessons from elsewhere land here:
   arcade is locked, carries `XSECTOR.key`, and the eye emblem hangs beside
   it because that is what the emblem is for.  The key itself is in a unit,
   reachable.
-* **Ambience.**  Sound 65 is E4M9's own, and E4M9 is its heaviest user in
-  the corpus (5 of its 11 instances).
+* **Ambience.** Sound 65 plays on five of E4M9's 11 ambient emitters and
+  nowhere else in the campaign.
 """
 
 from __future__ import annotations

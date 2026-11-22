@@ -148,7 +148,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
      "the readers that criticise a place.",
      ["catalog", "study", "ideas", "place_character", "tile_naming_sheet",
       "critique", "critic_bench", "critic_lab", "tile_contexts", "wiki_levels",
-      "sound_catalog"]),
+      "sound_catalog", "sound_readback"]),
     ("Decompiling an original map",
      "From one MAP to a project: hierarchy, fact store, review packs, and "
      "the round trip that rebuilds it.",
