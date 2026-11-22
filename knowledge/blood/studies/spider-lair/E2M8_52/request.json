@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/E2M8_52/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/E2M8_52",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -17824,
+   "y": 17376,
+   "z": -39840,
+   "angle": 1116,
+   "horiz": 100,
+   "sector": 52,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -25184,
+   "y": 17376,
+   "z": -39840,
+   "angle": 1956,
+   "horiz": 100,
+   "sector": 52,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -19424,
+   "y": 18976,
+   "z": -39840,
+   "angle": 1319,
+   "horiz": 100,
+   "sector": 52,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -23584,
+   "y": 18976,
+   "z": -39840,
+   "angle": 1752,
+   "horiz": 100,
+   "sector": 52,
+   "screenshot": true
+  }
+ ]
+}

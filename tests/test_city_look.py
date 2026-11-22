@@ -42,6 +42,32 @@ class AsPlayedTests(unittest.TestCase):
                 if int(s.fields["picnum"]) == 128
                 and not int(s.fields["cstat"]) & 32768))
 
+    def test_a_lit_torch_is_drawn_lit_with_its_flame(self):
+        #: view.cpp:2930: a kDecorationTorch with no XSPRITE (or state 1)
+        #: is drawn as the next tile with a flame (2101) at its top; the
+        #: spider lair's readers saw "empty brown sconces" without this
+        from bloodmap.corpus import corpus_map_path
+        from bloodmap.format import read_map
+        from bloodmap.visual import TORCH_FLAME, TORCH_TYPE, as_played
+
+        source = corpus_map_path("E2M1")
+        original = read_map(source)
+        torches = [s.fields for s in original.sprites if int(s.fields["type"]) == TORCH_TYPE
+                   and not int(s.fields["cstat"]) & 32768 and s.extra is None]
+        self.assertTrue(torches)
+        with tempfile.TemporaryDirectory() as folder:
+            played = read_map(as_played(source, folder))
+        lit = [s.fields for s in played.sprites if int(s.fields["type"]) == TORCH_TYPE
+               and not int(s.fields["cstat"]) & 32768 and s.extra is None]
+        self.assertEqual(sorted(int(f["picnum"]) for f in lit),
+                         sorted(int(f["picnum"]) + 1 for f in torches))
+        flames = [s.fields for s in played.sprites if int(s.fields["picnum"]) == TORCH_FLAME
+                  and int(s.fields["shade"]) == -128]
+        self.assertGreaterEqual(len(flames), len(torches))
+        for torch in lit:
+            self.assertTrue(any((f["x"], f["y"]) == (torch["x"], torch["y"])
+                                and int(f["z"]) < int(torch["z"]) for f in flames))
+
     def test_a_place_can_be_seen_with_nobody_and_nothing_in_it(self):
         #: the owner: "check how it looks like without enemies and pickups
         #: for example to get rid of visual noise"
@@ -65,9 +91,11 @@ class AsPlayedTests(unittest.TestCase):
         self.assertGreater(sum(1 for s in original.sprites if int(
             s.fields["type"]) in range(100, 150)), 3)
         #: decoration is the room and stays: every type-0 sprite a player
-        #: sees is still there
+        #: sees is still there (the flames the engine adds over lit torches,
+        #: `visual.light_torches`, come after the map's own and are not
+        #: counted)
         def decor(disk):
-            return sum(1 for s in disk.sprites
+            return sum(1 for s in disk.sprites[:len(original.sprites)]
                        if int(s.fields["type"]) == 0
                        and int(s.fields.get("status", 0)) != 10
                        and not int(s.fields["cstat"]) & 32768)

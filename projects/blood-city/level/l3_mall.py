@@ -40,7 +40,7 @@ from bloodmap.slope import SlopeSpec
 import keysign
 import setpieces
 import templates
-from materials import FACADES, INTERIORS, MASONRY
+from materials import FACADES, INTERIORS, MASONRY, Material
 from resolution import GRADE, PU
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
@@ -327,25 +327,31 @@ def build(city, market_st):
     # triggers.cpp:103), a closed Z-motion sector in the wall behind it
     # opens in a tenth of a second, and exploders on the same channel go
     # off staggered. None of the campaign's nine uses a gib WALL.
-    seal = make("service_seal", *SECRET_SEAL, "service", 0,
-                "the wall behind the extinguisher: blown open, once",
-                role="doorway",
-                rk={"type": 600, "inherit_finish": "both",
-                    "sector_behavior": {
-                        **z_motion_door(GRADE, GRADE - SECRET_HOLE,
-                                        interaction="remote",
-                                        rx_id=SECRET_CHANNEL, open_time=1),
-                        "trigger_once": 1}})
-    seal.surfaces(floor_z=GRADE, clear_height=0)
-    wires.wire("arcade:cache").then(wiring.region(seal.region_id))
     cache = make("service_cache", *SECRET_CACHE, "service", SERVICE_H,
                  "the cache behind the service corridor's wall: a secret",
                  role="secret",
                  rk={"secret": True, "declared_zero_exit": True})
-    arcade.connect(seal.face("south"), rooms["service"].face("north"),
-                   connection_id="connection:arcade_cache_blast")
-    arcade.connect(seal.face("north"), cache.face("south"),
-                   connection_id="connection:arcade_cache_in")
+    # the hole the blast leaves: ragged, the way Blood's are (the owner,
+    # 2026-11-22: "Blown out holes are usually using sloped floor and
+    # ceiling and usually aren't regular"), blown from the corridor
+    # (its near side, the north wall at y 44,544) through to the cache
+    from bloodmap import breach
+    x0, y0, x1, y1 = SECRET_SEAL
+    wall = INTERIORS["service"]
+    material = Material(wall=wall.wall, floor=wall.wall, ceiling=wall.wall, opening=wall.wall,
+                        note="the blown wall: its own plaster and brick")
+    for index, piece in enumerate(breach.lay(
+            arcade, "service_seal", secret_pieces(), origin=(x1, y1), along=(-1, 0), through=(0, -1),
+            near_floor=GRADE, region_kwargs=material.region_kwargs(), rx_id=SECRET_CHANNEL,
+            note="the wall behind the extinguisher: blown open, once",
+            surfaces=material.style_kwargs(floor_z=GRADE, clear_height=0))):
+        rooms[piece.node_id] = piece
+        wires.wire("arcade:cache").then(wiring.region(piece.region_id))
+        LATE_TYPES[piece.region_id] = 600
+        arcade.connect(piece.face("near"), rooms["service"].face("north"),
+                       connection_id=f"connection:arcade_cache_blast_{index}")
+        arcade.connect(piece.face("far"), cache.face("south"),
+                       connection_id=f"connection:arcade_cache_in_{index}")
 
     # The four hand-placed counters that used to sit here are gone: they
     # were four of six units furnished, each a literal rect derived from
@@ -356,9 +362,25 @@ def build(city, market_st):
 
 #: The extinguisher's channel, the blast hole and the cache behind it.
 SECRET_CHANNEL = wires.channel("arcade:cache")
-SECRET_SEAL = (52480, 44032, 53120, 44544)      # 640 wide: E3M4 wall 2361
+#: the blown wall: 1,280 wide, the campaign's median blast hole (E3M4's
+#: wall 2361 was 640, too narrow to leave a ragged hole a body walks
+#: through), the cache's whole width, in four pieces
+SECRET_SEAL = (52224, 44032, 53504, 44544)
 SECRET_CACHE = (52224, 43008, 53504, 44032)
 SECRET_HOLE = 20480                              # E3M4 s320: 18,432-26,624
+#: its sills over the corridor's floor, and its ragged top under the
+#: corridor's ceiling, or that ceiling's edge is all that shows of it
+SECRET_SILL, SECRET_TOP = (256, 1536), SERVICE_H - 512
+#: region id -> sector type, set by the build once the doors are framed
+LATE_TYPES: dict = {}
+
+
+def secret_pieces() -> list:
+    """The blown wall's pieces, in its own frame (`bloodmap.breach.ragged`)."""
+    from bloodmap import breach
+    x0, y0, x1, y1 = SECRET_SEAL
+    return breach.ragged(x1 - x0, y1 - y0, seed="arcade:service_seal", pieces=4,
+                         sill=SECRET_SILL, top=SECRET_TOP)
 #: E3M4 sprite 331, field for field
 EXTINGUISHER = {"type": 416, "picnum": 658, "cstat": 464, "x_repeat": 40,
                 "y_repeat": 40, "status": 4,

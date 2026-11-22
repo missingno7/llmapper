@@ -63,7 +63,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Writing a level as source. `LevelProgram` is the editable form; it "
      "lowers through `PlanarLayout` into `LevelIR`.",
      ["levelprog", "planar_layout", "layout", "layers", "vocabulary",
-      "prefab", "aperture", "slope", "spiral", "roomoverroom", "skyline",
+      "prefab", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
       "overlay", "construction", "composition", "fragment", "recipe",
       "designs"]),
     ("Authoring: surfaces and light",

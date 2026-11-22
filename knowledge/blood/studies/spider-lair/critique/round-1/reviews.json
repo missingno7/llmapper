@@ -1,0 +1,36 @@
+{
+ "recognition": {
+  "named": "spider nest in a stone cellar",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest / egg lair cave",
+  "sure": 4,
+  "score": 2,
+  "blocking": [
+   "the hanging victims taper to a point above the floor and read as floating columns",
+   "evenly dim with too few landmarks: four views are interchangeable"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the victims hang so low they stand like pillars"
+  ]
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "victims too long: columns, not bodies on a strand",
+   "the mother is not against the ceiling",
+   "cocoons read as carvings in the alcove walls",
+   "no bones and no torn silk to be seen"
+  ]
+ }
+}

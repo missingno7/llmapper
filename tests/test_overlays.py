@@ -43,6 +43,65 @@ def _walls_of(disk, sector):
     return range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"]))
 
 
+class SlopedCutTests(unittest.TestCase):
+    """A sloped sector is cut only across its slope, and each piece is the same plane."""
+
+    def _walk(self):
+        from bloodmap.slope import SlopeSpec
+
+        layout = PlanarLayout(name="sloped-walk")
+        # a walk 512 wide and 8192 long, its ceiling falling to the east wall
+        layout.add_region("walk", [(0, 0), (512, 0), (512, 8192), (0, 8192)],
+                          floor_z=0, ceiling_z=-28672,
+                          ceiling_slope=SlopeSpec(hinge=((0, 8192), (0, 0)), rise_z=8192),
+                          declared_zero_exit=True)
+        layout.set_player_start("walk", x=256, y=1000, z=0)
+        compiled = layout.compile()
+        return compiled.level.to_disk_map()
+
+    @staticmethod
+    def _ceiling_at(disk, sector, x, y):
+        from bloodmap.slope import rise_at, signed_distance
+        f = _f(disk.sectors[sector])
+        first = int(f["wall_ptr"])
+        a = _f(disk.walls[first])
+        b = _f(disk.walls[int(a["point2"])])
+        hinge = ((int(a["x"]), int(a["y"])), (int(b["x"]), int(b["y"])))
+        heinum = int(f["ceiling_heinum"]) if int(f["ceiling_stat"]) & 2 else 0
+        return int(f["ceiling_z"]) + rise_at(heinum, signed_distance((x, y), hinge))
+
+    def test_a_cut_across_the_slope_keeps_each_piece_on_the_plane(self):
+        disk = self._walk()
+        before = [self._ceiling_at(disk, 0, x, y) for x, y in ((100, 1000), (400, 1000), (400, 6000))]
+        spec = overlays.OverlaySpec(overlay_id="band", region_id="0",
+                                    shapes=((((0, 4096), (512, 4096), (512, 8192), (0, 8192)), ()),),
+                                    surface={})
+        report = overlays.cut_sectors(disk, {0: [spec]}, slopes_across=True)
+        self.assertEqual(report["refused"], {})
+        self.assertEqual(len(disk.sectors), 2)
+        piece = next(int(k) for k in report["parent"])
+        after = [self._ceiling_at(disk, 0, 100, 1000), self._ceiling_at(disk, 0, 400, 1000),
+                 self._ceiling_at(disk, piece, 400, 6000)]
+        for was, now in zip(before, after):
+            self.assertAlmostEqual(was, now, delta=16)
+        self.assertEqual([d for d in validate_map(disk) if d.severity == "error"], [])
+
+    def test_a_cut_along_the_slope_is_refused(self):
+        disk = self._walk()
+        spec = overlays.OverlaySpec(overlay_id="band", region_id="0",
+                                    shapes=((((256, 0), (512, 0), (512, 8192), (256, 8192)), ()),),
+                                    surface={})
+        report = overlays.cut_sectors(disk, {0: [spec]}, slopes_across=True)
+        self.assertIn(0, report["refused"])
+        self.assertEqual(len(disk.sectors), 1)
+        # and without leave, any cut of a slope is refused
+        disk = self._walk()
+        spec = overlays.OverlaySpec(overlay_id="band", region_id="0",
+                                    shapes=((((0, 4096), (512, 4096), (512, 8192), (0, 8192)), ()),),
+                                    surface={})
+        self.assertIn(0, overlays.cut_sectors(disk, {0: [spec]})["refused"])
+
+
 class OverlayTests(unittest.TestCase):
     def test_a_shadow_cuts_the_floor_and_only_the_floor(self):
         layout = _yard()

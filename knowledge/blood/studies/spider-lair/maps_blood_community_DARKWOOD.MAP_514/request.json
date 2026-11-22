@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_DARKWOOD.MAP_514/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_DARKWOOD.MAP_514",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -85840,
+   "y": -119664,
+   "z": -16288,
+   "angle": 1670,
+   "horiz": 100,
+   "sector": 514,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -84080,
+   "y": -126704,
+   "z": -16288,
+   "angle": 539,
+   "horiz": 100,
+   "sector": 514,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -84080,
+   "y": -121072,
+   "z": -16288,
+   "angle": 1485,
+   "horiz": 100,
+   "sector": 514,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -85136,
+   "y": -123536,
+   "z": -16288,
+   "angle": 201,
+   "horiz": 100,
+   "sector": 514,
+   "screenshot": true
+  }
+ ]
+}

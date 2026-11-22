@@ -89,8 +89,14 @@ SILT = (
 #: Every element above, for a run that wants the whole register.
 TUNNEL = TUNNEL_WALL + VAULT + SILT
 
+#: What runs along a walk under E3M3's vault: its ceiling falls to the wall
+#: (20,480 over the walk there), so only what lies on the floor. The drips
+#: (1.21 bodies), the moss and the vault's grates (1.9) all land in it; the
+#: walls' variety is the niches (`l3_sewer.NICHES`).
+WALKSIDE = SILT
+
 ELEMENTS = {"wall": TUNNEL_WALL, "vault": VAULT, "water": WATERLINE,
-            "silt": SILT, "tunnel": TUNNEL}
+            "silt": SILT, "tunnel": TUNNEL, "walkside": WALKSIDE}
 
 
 def elements_for(kind: str):
@@ -155,6 +161,11 @@ def line_mouths(level, sectors, *, tile: int = MOUTH_TILE,
                 report["outside"] += 1
                 continue
             other = fields_of(level.sectors[neighbour])
+            if int(other.get("type", 0)) or int(sector_fields.get("type", 0)):
+                # a sector that moves is a door or a blown hole, not a mouth:
+                # the plague pit's hole was lined like a tunnel, shut or open
+                report["moving"] = report.get("moving", 0) + 1
+                continue
             far = fields_of(level.walls[int(wall["point2"])])
             length = math.hypot(far["x"] - wall["x"], far["y"] - wall["y"])
             if length > max_length:

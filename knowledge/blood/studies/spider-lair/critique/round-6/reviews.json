@@ -1,0 +1,32 @@
+{
+ "recognition": {
+  "named": "spider nest cave with egg sacs",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest lair with egg sacs",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the large flat lit ceiling",
+   "the alcove interiors read as cardboard boxes",
+   "the culvert's stone at the corridor mouth does not match"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the plain grey nest walls read as museum vitrines"
+  ]
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 4,
+  "blocking": []
+ }
+}

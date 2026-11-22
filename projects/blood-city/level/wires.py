@@ -45,6 +45,9 @@ PLAN: tuple[tuple[str, str], ...] = (
      "the lever in the station hall sinks the carriage's door into its floor"),
     ("station:gate",
      "the signal box's lever raises the roll-up gate in the tunnel's mouth"),
+    ("sewer:plague-pit",
+     "blowing the crack in Graves Brook's south wall by the churchyard, once, "
+     "opens the bricked-up plague pit and fires three charges"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

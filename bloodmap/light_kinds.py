@@ -106,11 +106,16 @@ def sprite_lights(disk, art=None) -> list[tuple]:
     if art is None:
         from .shade_table import _art
         art = _art()
+    # what the game never draws gives no light: an exploder wears the flame
+    # tile (908) and lit the bricked-up room it waits in
+    from .visual import HIDDEN_STATUS, HIDDEN_TYPES
     out = []
     for sprite in disk.sprites:
         f = _f(sprite)
         kind = KINDS.get(int(f["picnum"]))
         if kind is None or not kind.sprite or int(f["cstat"]) & 0x8000 or int(f["sector"]) < 0:
+            continue
+        if int(f["type"]) in HIDDEN_TYPES or int(f["status"]) in HIDDEN_STATUS:
             continue
         if kind.form == "window":
             light = _window(disk, f, art, kind)

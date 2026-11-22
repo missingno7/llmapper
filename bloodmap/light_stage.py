@@ -244,7 +244,8 @@ ROOM_AREA = 0.5e6
 LOW = 4096
 
 
-def rooms_by_region(disk, region_of: dict[int, str], skip: frozenset = frozenset()) -> dict[str, list[int]]:
+def rooms_by_region(disk, region_of: dict[int, str], skip: frozenset = frozenset(),
+                    room_key: Callable[[str], str] | None = None) -> dict[str, list[int]]:
     """Roofed sectors grouped into rooms: a region and the regions named under it that are its furniture.
 
     A light hangs above a pew: a region under another (`a/b` under `a`) is
@@ -255,7 +256,8 @@ def rooms_by_region(disk, region_of: dict[int, str], skip: frozenset = frozenset
         f = _f(sector)
         if i in skip or int(f["ceiling_stat"]) & 1 or int(f["floor_z"]) - int(f["ceiling_z"]) < LOW:
             continue
-        by_region[region_of.get(i, "")].append(i)
+        region = region_of.get(i, "")
+        by_region[room_key(region) if room_key else region].append(i)
 
     def tall(secs):
         return any(int(_f(disk.sectors[i])["floor_z"]) - int(_f(disk.sectors[i])["ceiling_z"]) >= ROOM_HEIGHT
@@ -305,8 +307,14 @@ def _add_sprite(disk, art, tile: int, x: float, y: float, sector: int, form: str
         a = art[tile]
         top, bottom = drawn_extent(a.height, int(a.animation["yofs"]), yr, cstat, 0)
         if form == "hanging":
-            f["z"] = int(sec["ceiling_z"]) - top
-            if f["z"] + bottom > int(sec["floor_z"]) - LOW:
+            # hung from the ceiling; if the chain is longer than the room
+            # allows, lifted so its foot clears the floor and its chain runs
+            # up into the ceiling (the owner, 2026-11-21: "lanterns on chain,
+            # you can simply let it sink into ceiling and it looks good") --
+            # as long as the lamp itself is below the ceiling
+            f["z"] = min(int(sec["ceiling_z"]) - top, int(sec["floor_z"]) - LOW - bottom)
+            head = f["z"] + top + (bottom - top) * K.KINDS[tile].point
+            if head < int(sec["ceiling_z"]) + 512:
                 return False
         else:                                             # standing on the floor
             f["z"] = int(sec["floor_z"]) - bottom
@@ -418,7 +426,14 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
             a = art[rule.tile]
             from .placement import drawn_extent
             top, bottom = drawn_extent(a.height, int(a.animation["yofs"]), yr, cstat, 0)
-            fits = all(int(S[sec]["ceiling_z"]) - top + bottom <= int(S[sec]["floor_z"]) - LOW for _, _, sec in spots)
+            # a chain may run up into the ceiling; the lamp must hang below it
+            point = K.KINDS[rule.tile].point
+
+            def head(sec):
+                z = min(int(S[sec]["ceiling_z"]) - top, int(S[sec]["floor_z"]) - LOW - bottom)
+                return z + top + (bottom - top) * point
+
+            fits = all(head(sec) >= int(S[sec]["ceiling_z"]) + 512 for _, _, sec in spots)
             tile, form = (rule.tile, "hanging") if fits else (676, "ceiling")
             for x, y, sec in spots:
                 if _add_sprite(disk, art, tile, x, y, sec, form):
@@ -698,6 +713,123 @@ def _showing(poly, levels: list, cells: list) -> list:
     return [(t, parts) for t, parts, _ in levels]
 
 
+# --- 2b. sloped floors ------------------------------------------------------------
+
+#: light is traced along a sloped floor this often (plan units)
+SLOPE_STEP = 256
+#: and no piece of it shorter than this along its slope's hinge
+SLOPE_MIN_PIECE = 1024
+
+
+def band_slopes(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Cut every sloped floor whose light changes along it, straight ACROSS its slope.
+
+    A sewer's walk has its ceiling sloped down to the wall (E3M3's vault), so
+    it cannot be cut along a contour: a piece is the same plane only if its
+    first wall lies on the slope's hinge line (`overlays.cut_sectors`,
+    `slopes_across`). Its light is traced every `SLOPE_STEP` along the hinge,
+    cut where it crosses a `FLOOR_BAND` band and kept only where each piece
+    is `SLOPE_MIN_PIECE` long and `FLOOR_SHOW` shades from its neighbour.
+    """
+    import numpy as np
+    from shapely import set_precision
+    from shapely.geometry import Point, Polygon
+
+    from .sector_geom import outline_and_holes
+
+    found = model.trace(disk)
+    W = model.weights
+    rows = {(r["kind"], r["index"]): r for r in D.collapse(found, W)}
+    cache = D.BounceCache(found, D.Weights(sun=W.sun, lamp=W.lamp))
+    lines = []
+    for s in found:
+        if s.kind != "floor" or s.index in keep:
+            continue
+        f = _f(disk.sectors[s.index])
+        if not (int(f["floor_stat"]) | int(f["ceiling_stat"])) & 2 or not O.shade_only(disk.sectors[s.index]):
+            continue
+        if rows.get(("floor", s.index), {}).get("spread", 0) < FLOOR_BAND / 2:
+            continue
+        a = _f(disk.walls[int(f["wall_ptr"])])
+        b = _f(disk.walls[int(a["point2"])])
+        hp = (int(a["x"]), int(a["y"]))
+        ux, uy = int(b["x"]) - hp[0], int(b["y"]) - hp[1]
+        ulen = (ux * ux + uy * uy) ** 0.5
+        if ulen < 1:
+            continue
+        ux, uy = ux / ulen, uy / ulen
+        poly = Polygon(*outline_and_holes(disk, s.index))
+        ring = list(poly.exterior.coords)
+        along = [(x - hp[0]) * ux + (y - hp[1]) * uy for x, y in ring]
+        across = [-(x - hp[0]) * uy + (y - hp[1]) * ux for x, y in ring]
+        t0, t1 = min(along), max(along)
+        if t1 - t0 < 2 * SLOPE_MIN_PIECE:
+            continue
+        mid = (min(across) + max(across)) / 2
+        indoor = not int(f["ceiling_stat"]) & 1
+        points = []
+        for t in np.arange(t0 + SLOPE_STEP / 2, t1, SLOPE_STEP):
+            x, y = hp[0] + ux * t - uy * mid, hp[1] + uy * t + ux * mid
+            if poly.contains(Point(x, y)):
+                points.append((float(t), D.Sample(float(x), float(y), int(f["floor_z"]) - 64, s.index,
+                                                   (0.0, 0.0, -1.0), indoor=indoor)))
+        if len(points) >= 4:
+            lines.append((s.index, poly, hp, (ux, uy), (min(across), max(across)), points))
+    flat = [p for *_, pts in lines for _, p in pts]
+    traced = iter(_parallel(disk, model.sun.vector(), model.lamps(disk), cache.points, _full_job, flat))
+    jobs: dict[int, list] = {}
+    for sector, poly, hp, (ux, uy), (a0, a1), points in lines:
+        ts, shades = [], []
+        for t, p in points:
+            p.sky, p.sun, p.lamp, p.bounce = next(traced)
+            ts.append(t)
+            shades.append(W.shade(W.total(p)))
+        shades = np.array(shades)
+        if len(shades) >= 3:
+            shades = np.convolve(np.pad(shades, 1, mode="edge"), np.ones(3) / 3, mode="valid")
+        bands = np.round(shades / FLOOR_BAND).astype(int)
+        cuts = [ts[0] - SLOPE_STEP / 2]
+        for k in range(1, len(ts)):
+            if bands[k] != bands[k - 1]:
+                cuts.append((ts[k - 1] + ts[k]) / 2)
+        cuts.append(ts[-1] + SLOPE_STEP / 2)
+        # a piece must be long enough and show: merge until both hold
+        segments = [[cuts[i], cuts[i + 1]] for i in range(len(cuts) - 1)]
+
+        def mean(seg):
+            values = [v for t, v in zip(ts, shades) if seg[0] <= t < seg[1]]
+            return sum(values) / len(values) if values else 0.0
+
+        merged = True
+        while merged and len(segments) > 1:
+            merged = False
+            for i in range(len(segments) - 1):
+                left, right = segments[i], segments[i + 1]
+                if (left[1] - left[0] < SLOPE_MIN_PIECE or right[1] - right[0] < SLOPE_MIN_PIECE
+                        or abs(mean(left) - mean(right)) < FLOOR_SHOW):
+                    segments[i:i + 2] = [[left[0], right[1]]]
+                    merged = True
+                    break
+        if len(segments) < 2:
+            continue
+        specs = []
+        pad = 4096
+        for k, (lo, hi) in enumerate(segments[1:], start=1):
+            corners = [(lo, a0 - pad), (hi, a0 - pad), (hi, a1 + pad), (lo, a1 + pad)]
+            strip = Polygon([(hp[0] + ux * t - uy * c, hp[1] + uy * t + ux * c) for t, c in corners])
+            piece = set_precision(strip.intersection(poly), 1.0)
+            parts = [g for g in getattr(piece, "geoms", [piece]) if g.geom_type == "Polygon" and g.area > 0]
+            if parts:
+                specs.append(O.OverlaySpec(
+                    overlay_id=f"slope{k}:{sector}", region_id=str(sector),
+                    shapes=tuple((tuple(map(tuple, g.exterior.coords[:-1])), ()) for g in parts)))
+        if specs:
+            jobs[sector] = specs
+    cut = _cut(disk, jobs, slopes_across=True)
+    cut["looked_at"] = len(lines)
+    return cut
+
+
 # --- 3. walls -------------------------------------------------------------------
 
 #: a straight, axis-aligned wall at least this long is traced along its length
@@ -824,7 +956,7 @@ def _unpaired(disk) -> set[int]:
     return bad
 
 
-def _cut(disk, jobs: dict, wall_points: dict | None = None) -> dict[str, Any]:
+def _cut(disk, jobs: dict, wall_points: dict | None = None, slopes_across: bool = False) -> dict[str, Any]:
     """`overlays.cut_sectors` on a copy; where the cutter cannot pair an edge, those sectors stay whole.
 
     The cutter raises when a cut would leave a wall without its twin (a
@@ -846,7 +978,8 @@ def _cut(disk, jobs: dict, wall_points: dict | None = None) -> dict[str, Any]:
     for _ in range(len(jobs) + len(wall_points) + 1):
         trial = copy.deepcopy(disk)
         try:
-            report = O.cut_sectors(trial, jobs, wall_points=wall_points or None)
+            report = O.cut_sectors(trial, jobs, wall_points=wall_points or None,
+                                   slopes_across=slopes_across)
         except O.OverlayError as error:
             walls = [int(n) for n in re.findall(r"wall (\d+)", str(error))]
             sectors = {int(n) for n in re.findall(r"sector (\d+)", str(error))}
@@ -897,13 +1030,16 @@ def _chain(parent: dict, cut: dict, scale: dict | None = None) -> None:
 
 def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model: Model | None = None,
         *, keep: Callable[[str], bool] = lambda region: False,
-        lamp_scale: Callable[[str], float] = lambda region: 1.0, art=None) -> dict[str, Any]:
+        lamp_scale: Callable[[str], float] = lambda region: 1.0,
+        room_key: Callable[[str], str] | None = None, art=None) -> dict[str, Any]:
     """Light a finished map: the sun's shadows, its lights, its floor bands, its wall bands, then every shade.
 
     A sector whose region `keep` names keeps the light its own module gave
     it: it is not cut, not lit in rows, and its shades are not written. It
     still stands in the scene, and its lamps still light the rest.
     `lamp_scale` says how strong a place's lamps are (1 is the model's).
+    `room_key` names the room a region belongs to, where several regions are
+    one room to be lit (a corridor's walks and its channel).
     """
     model = model or Model()
     kept = frozenset(i for i, region in region_of.items() if keep(region))
@@ -918,7 +1054,7 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     region_of = dict(region_of)
     for piece, source in parent.items():
         region_of[piece] = region_of.get(source, "")
-    rooms = rooms_by_region(disk, region_of, kept)
+    rooms = rooms_by_region(disk, region_of, kept, room_key)
     laid = lay_lights(disk, rooms, rule_for, art)
     _chain(parent, laid["cut"], scale)
     report["rooms"] = laid["rooms"]
@@ -926,6 +1062,9 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     floors = band_floors(disk, model, keep=kept)
     _chain(parent, floors, scale)
     report["floor_cut"] = {k: v for k, v in floors.items() if k != "parent"}
+    slopes = band_slopes(disk, model, kept)
+    _chain(parent, slopes, scale)
+    report["slope_cut"] = {k: v for k, v in slopes.items() if k != "parent"}
     walls = band_walls(disk, model, kept)
     report["wall_cut"] = {k: v for k, v in walls.items() if k != "parent"}
     report["shades"] = shade(disk, model, kept)

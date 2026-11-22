@@ -146,14 +146,54 @@ def as_played(map_path, out_dir, empty: bool = False) -> Path:
                 f["cstat"] = int(f["cstat"]) | 32768
                 hidden += 1
     lit = sprite_shades_as_drawn(disk)
+    flames = light_torches(disk)
     out = Path(out_dir) / ("as-empty.MAP" if empty
                                    else "as-played.MAP")
     out.parent.mkdir(parents=True, exist_ok=True)
     write_map(disk, out)
     print(f"as played: {hidden} control sprites hidden"
           + (f"; emptied of {emptied} enemies and pickups" if empty else "")
-          + f"; {lit} sprites lit by their sector as Blood draws them")
+          + f"; {lit} sprites lit by their sector as Blood draws them"
+          + (f"; {flames} torches lit" if flames else ""))
     return out
+
+
+#: Blood's torch, as the game draws it (view.cpp:2930-2937): a
+#: kDecorationTorch with no XSPRITE, or one whose state is 1, is drawn one
+#: tile on (570 the sconce, 571 the lit one) with a flame (tile 2101, shade
+#: -128, repeat its tile's width times its own over 32) stood at its top
+#: (view.cpp:2461-2472). The observer drew the bare sconce: round 2 of the
+#: spider lair's readers saw "empty brown sconces" in a room they light.
+TORCH_TYPE, TORCH_FLAME = 30, 2101
+
+
+def light_torches(disk) -> int:
+    """Draw every lit torch as the game does: the next tile, and its flame on top."""
+    from .model import DiskObject
+    from .placement import drawn_extent
+    from .shade_table import _art
+
+    art = _art()
+    lit = 0
+    for sprite in list(disk.sprites):
+        f = sprite.fields
+        if int(f.get("type", 0)) != TORCH_TYPE or int(f["cstat"]) & 32768:
+            continue
+        extra = record_extra(sprite) or {}
+        if extra and int(extra.get("state", 0)) != 1:
+            continue
+        f["picnum"] = int(f["picnum"]) + 1
+        tile = art[int(f["picnum"])]
+        top, _bottom = drawn_extent(tile.height, int(tile.animation["yofs"]), int(f["y_repeat"]),
+                                    int(f["cstat"]), int(f["z"]))
+        flame = dict(f)
+        size = max(1, min(255, tile.width * int(f["x_repeat"]) // 32))
+        flame.update(picnum=TORCH_FLAME, shade=-128, x_repeat=size, y_repeat=size, z=int(top),
+                     type=0, extra=-1, index=len(disk.sprites),
+                     cstat=int(f["cstat"]) & ~(16 | 32 | 64))
+        disk.sprites.append(DiskObject(fields=flame))
+        lit += 1
+    return lit
 
 
 class ObservationError(RuntimeError):

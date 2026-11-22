@@ -135,6 +135,29 @@ class LampReachTests(unittest.TestCase):
         self.assertGreater(facing[1], 0)                  # in ...
         self.assertGreater(facing[2], 0)                  # ... and down
 
+    def test_a_sprite_the_game_never_draws_gives_no_light(self):
+        """An exploder (type 459) wears the flame tile, 908; until 2026-11-21
+        the three waiting behind the plague pit's seal lit the bricked-up
+        room to shade 7."""
+        from bloodmap import light_kinds as K
+        from bloodmap.model import DiskObject
+
+        disk, region_of = _hall()
+        hall = next(s for s, r in region_of.items() if r == "town/hall")
+
+        def flame(type_id):
+            f = {"x": 3000, "y": 3000, "z": -64, "cstat": 128, "picnum": 908, "shade": 0, "pal": 0,
+                 "clipdist": 32, "detail": 0, "x_repeat": 64, "y_repeat": 64, "x_offset": 0, "y_offset": 0,
+                 "sector": hall, "status": 0, "angle": 0, "owner": -1, "index": len(disk.sprites),
+                 "y_velocity": 0, "initial_type": 0, "type": type_id, "flags": 0, "extra": -1}
+            disk.sprites.append(DiskObject(fields=f))
+
+        before = len(K.sprite_lights(disk))
+        flame(0)
+        self.assertEqual(len(K.sprite_lights(disk)), before + 1)
+        flame(459)
+        self.assertEqual(len(K.sprite_lights(disk)), before + 1)
+
 
 if __name__ == "__main__":
     unittest.main()

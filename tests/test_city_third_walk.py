@@ -180,11 +180,13 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertTrue(int(x["trigger_vector"]) and int(x["trigger_off"]))
         seals = [s for s in self.disk.sectors
                  if int(_extra(s).get("rx_id", 0)) == channel]
-        self.assertEqual(len(seals), 1)
-        seal = seals[0].fields
-        self.assertEqual(int(seal["type"]), 600)
-        self.assertEqual(int(seal["floor_z"]), int(seal["ceiling_z"]))  # shut
-        self.assertEqual(int(_extra(seals[0])["busy_time_a"]), 1)
+        #: a ragged hole of pieces (`bloodmap.breach`), every one shut
+        self.assertEqual(len(seals), len(l3_mall.secret_pieces()))
+        for one in seals:
+            seal = one.fields
+            self.assertEqual(int(seal["type"]), 600)
+            self.assertEqual(int(seal["floor_z"]), int(seal["ceiling_z"]))  # shut
+            self.assertEqual(int(_extra(one)["busy_time_a"]), 1)
         charges = [s for s in self.disk.sprites
                    if int(s.fields["type"]) == 459
                    and int(_extra(s).get("rx_id", 0)) == channel]
@@ -193,7 +195,8 @@ class ThirdWalkTests(unittest.TestCase):
         secrets = [s for s in self.disk.sectors
                    if int(_extra(s).get("tx_id", 0)) == 2
                    and int(_extra(s).get("command", 0)) == 64]
-        self.assertEqual(len(secrets), 3)
+        # the stash, the flooded branch, the cache, Molly's nest, the plague pit
+        self.assertEqual(len(secrets), 5)
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266
@@ -403,8 +406,14 @@ class ThirdWalkTests(unittest.TestCase):
                  if int(s["picnum"]) == l3_church.GREAT_WINDOW["tile"]]
         self.assertEqual(len(great), 1)
         self.assertLess(int(great[0]["shade"]), 0)
+        #: the church's own two candelabra (the settling hall's circle has
+        #: its own, under the plaza)
+        import city_plan
+        cx0, cy0, cx1, cy1 = (v * 1024 for v in next(
+            b["rect"] for b in city_plan.BLOCKS if b["id"] == "church_mass"))
         self.assertEqual(sum(1 for s in self.sprites
-                             if int(s["picnum"]) == 580), 2)
+                             if int(s["picnum"]) == 580
+                             and cx0 <= int(s["x"]) <= cx1 and cy0 <= int(s["y"]) <= cy1), 2)
 
     def test_nothing_is_laid_on_the_belt(self):
         #: "that pipe entrance decoration on the conveyor belt instead on
@@ -442,9 +451,17 @@ class ThirdWalkTests(unittest.TestCase):
         _level()
         import l3_church
 
+        #: inside the crypt's own rectangle: the sewer's spider lair is at
+        #: the same depth on the same earth
+        cx0, cy0, cx1, cy1 = l3_church.CRYPT
+
+        def inside(s):
+            w = self.walls[int(s["wall_ptr"])]
+            return cx0 <= int(w["x"]) <= cx1 and cy0 <= int(w["y"]) <= cy1
+
         crypts = [s for s in self.sectors
                   if int(s["floor_z"]) == l3_church.CRYPT_FLOOR
-                  and int(s["floor_picnum"]) == l3_church.CRYPT_EARTH]
+                  and int(s["floor_picnum"]) == l3_church.CRYPT_EARTH and inside(s)]
         self.assertEqual(len(crypts), 1)
         crypt = crypts[0]
         rubble = sum(1 for w in range(
@@ -467,7 +484,8 @@ class ThirdWalkTests(unittest.TestCase):
         plaques = [s for s in self.sprites if int(s["picnum"]) == 128
                    and int(s["pal"]) == 8 and int(s["type"]) == 417]
         webs = [s for s in self.sprites
-                if int(s["picnum"]) in (1067, 1068) and int(s["cstat"]) & 2]
+                if int(s["picnum"]) in (1067, 1068) and int(s["cstat"]) & 2
+                and cx0 <= int(s["x"]) <= cx1 and cy0 <= int(s["y"]) <= cy1]
         self.assertEqual(len(plaques), len(l3_church.PLAQUES))
         self.assertEqual(len(webs), len(l3_church.COBWEBS))
         #: room to walk round it: a body's aisle on every side
@@ -490,8 +508,8 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertEqual(len(cracks), 2)             # crypt side, sewer side
         seals = [i for i, s in enumerate(self.disk.sectors)
                  if int(_extra(s).get("rx_id", 0)) == channel]
-        #: a ragged hole: three pieces that open to different heights
-        self.assertEqual(len(seals), len(l3_church.BREACH_PIECES))
+        #: a ragged hole: pieces that open to different heights
+        self.assertEqual(len(seals), len(l3_church.breach_pieces()))
         opens = set()
         for i in seals:
             seal = self.disk.sectors[i].fields
@@ -532,7 +550,8 @@ class ThirdWalkTests(unittest.TestCase):
                                 scale.LIFT_MEDIAN[0] * scale.LIFT_MEDIAN[1])
         width = l3_church.BREACH[3] - l3_church.BREACH[1]
         self.assertGreaterEqual(width, scale.HOLE_MEDIAN[0])
-        tallest = max(h for _a, _b, h in l3_church.BREACH_PIECES)
+        #: the least height anywhere in the hole's tallest piece
+        tallest = max(p.clearance() for p in l3_church.breach_pieces())
         self.assertGreaterEqual(tallest, scale.bodies(scale.HOLE_MEDIAN[1]))
         self.assertGreaterEqual(l3_church.CRYPT_CLEAR,
                                 scale.bodies(scale.ROOM_HEIGHT[0]))

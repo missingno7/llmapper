@@ -1,0 +1,1 @@
+SCORE 4. OK: the passage web; corner webs (faint); nests; cocoon clusters on their floors; lintel cobwebs and inside strands; the panel; eggs at the pillar; chains to the ceiling (bodies near the floor); corner strands; torches; ceiling spiders; the mother; skull piles; the TNT box. Not seen: the pickups behind the eggs. BLOCKING: none.

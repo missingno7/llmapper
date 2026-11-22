@@ -77,6 +77,10 @@ def fill(layout, regions, *, target_per_100_sectors: float = 23.6) -> dict:
     report = {"placed": 0, "skipped": 0, "by_context": {}}
     for index, (region_id, context, local) in enumerate(regions):
         region = layout.regions.get(region_id)
+        if region is not None and int(region.ceiling_z) >= int(region.floor_z):
+            # shut at rest (a blown hole's pieces): no room for a sprite
+            report["shut"] = report.get("shut", 0) + 1
+            continue
         # A street region is a rectangle with the building masses cut out of
         # it, so a local can land inside a mass.  The same containment test
         # the dressing pass needs.

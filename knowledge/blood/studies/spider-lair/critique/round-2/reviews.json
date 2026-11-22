@@ -1,0 +1,34 @@
+{
+ "recognition": {
+  "named": "spider nest cave with egg sacs",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest: egg-lined stone lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the victims' fanned tops read as light fittings",
+   "the pillar's silk looks smeared",
+   "the single side eggs read as painted shapes"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the side cocoons look see-through",
+   "the torches show no flame",
+   "no bones visible"
+  ]
+ }
+}

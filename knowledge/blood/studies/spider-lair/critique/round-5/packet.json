@@ -1,0 +1,17 @@
+{
+ "slug": "spider-lair",
+ "kind": "spider",
+ "round": 5,
+ "poses": [
+  "lair"
+ ],
+ "views": 7,
+ "references": 2,
+ "readers": [
+  "recognition",
+  "comparison",
+  "use",
+  "sense"
+ ],
+ "reference_note": "E2M8:52 and CHORROR:414 only; the other four seeds were not lairs"
+}

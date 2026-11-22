@@ -275,7 +275,7 @@ def snap_opening(start: int, width: int) -> tuple[int, int]:
 #: and the frame DEPENDS on that bit rather than deciding it.
 
 
-def face_landmark(level, rect, tile, *, frieze=None, band=None) -> dict:
+def face_landmark(level, rect, tile, *, frieze=None, band=None, deepest=None) -> dict:
     """Give one mass its own face, overriding the district's.
 
     A landmark that wears the district's brick is not a landmark.  St
@@ -290,12 +290,25 @@ def face_landmark(level, rect, tile, *, frieze=None, band=None) -> dict:
     every solid wall lying on the mass's boundary -- the porch reveal
     included, which is what closes the patch -- and optionally runs the
     frieze along the walls whose bottom sits in a named height band.
+
+    The mass's outline is a line in plan, and the sewer runs under it: a
+    wall whose room's floor is deeper than ``deepest`` is under the street
+    and is left as it is. (The west leg's walk and the plague pit beside
+    the churchyard wore the church's pale stone.)
     """
     x0, y0, x1, y1 = rect
     painted = friezed = 0
+    floor_of = {}
+    if deepest is not None:
+        for sector in level.sectors:
+            f = _fields(sector)
+            for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+                floor_of[w] = int(f["floor_z"])
     for index in range(len(level.walls)):
         fields = _fields(level.walls[index])
         if int(fields.get("next_sector", -1)) >= 0:
+            continue
+        if deepest is not None and floor_of.get(index, 0) > deepest:
             continue
         after = _fields(level.walls[int(fields["point2"])])
         ax, ay = int(fields["x"]), int(fields["y"])

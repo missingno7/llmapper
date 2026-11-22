@@ -30,7 +30,7 @@ from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
 
 import setpieces
-from materials import FACADES, INTERIORS, MASONRY
+from materials import FACADES, INTERIORS, MASONRY, Material
 from resolution import GRADE, PU
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
@@ -220,13 +220,35 @@ CRYPT_FACES: dict = {}
 #: sewer; a bundle of TNT lies by a tomb. E6M1 sprite 262 is the assembly:
 #: a kThingWallCrack (tile 1127, which only an explosion breaks) sending
 #: on its death to a shut Z-motion sector, with E3M1's staggered charges.
-#: The hole: 1,536 wide in three pieces that open to different heights
-#: (campaign blast holes: median 1,280 wide and 1.45 bodies, upper
-#: quartile 1,792 and 1.8), so what is left is a ragged arch and not a
-#: doorway. (y0, y1, how high it opens)
+#: The hole: 1,536 wide (campaign blast holes: median 1,280 wide and 1.45
+#: bodies, upper quartile 1,792 and 1.8), ragged the way Blood's are
+#: (`bloodmap.breach`; the owner, 2026-11-22: "Blown out holes are usually
+#: using sloped floor and ceiling and usually aren't regular"): four pieces
+#: with slanted seams, each pitched its own way, the middle two at least
+#: 1.45 bodies clear and the ends low rubble shoulders. Its near side is
+#: the crypt, where the fuse of barrels is lit and the hole is seen from;
+#: the sewer's vault, 1.2 bodies at its wall, cuts its top on the far side.
 BREACH = (32256, 28672, 32768, 30208)
-BREACH_PIECES = ((28672, 29056, 18432), (29056, 29824, 30720),
-                 (29824, 30208, 14336))
+BREACH_SILL = (256, 1536)
+#: a standing body and this, everywhere in a middle piece: 1.47 bodies, over
+#: the campaign's median hole (1.45, `scale.HOLE_MEDIAN`)
+BREACH_HEADROOM = 7936
+BREACH_TOP = 32768
+#: the broken faces are the crypt wall's own rubble
+BREACH_MATERIAL = Material(wall=CRYPT_WALL, floor=CRYPT_WALL, ceiling=CRYPT_WALL,
+                           opening=CRYPT_WALL, note="the crypt breach: its own rubble")
+
+
+def breach_pieces() -> list:
+    """The crypt breach's pieces, in its own frame (`bloodmap.breach.ragged`)."""
+    from bloodmap import breach
+    x0, y0, x1, y1 = BREACH
+    return breach.ragged(y1 - y0, x1 - x0, seed="church:crypt_breach", sill=BREACH_SILL,
+                         top=BREACH_TOP, headroom=BREACH_HEADROOM)
+
+
+#: the breach's rooms as built, west to east they open crypt to sewer
+BREACH_ROOMS: list = []
 BREACH_CHANNEL = wires.channel("church:breach")
 BREACH_HOLE = 20480
 #: The powder store. The owner again: "Maybe we can have it as a TNT
@@ -845,28 +867,25 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
                    connection_id="connection:church_crypt_lift_top")
     parish.connect(lift.face("south"), crypt.face("north"),
                    connection_id="connection:church_crypt_lift_bottom")
-    previous = None
-    for index, (by0, by1, opens) in enumerate(BREACH_PIECES):
-        piece = make(f"crypt_breach_{index}", BREACH[0], by0, BREACH[2], by1,
-                     "crypt", 0,
-                     "the cracked wall between the crypt and the sewer",
-                     role="doorway", floor_z=CRYPT_FLOOR,
-                     rk={"sector_behavior": {
-                         **z_motion_door(CRYPT_FLOOR, CRYPT_FLOOR - opens,
-                                         interaction="remote",
-                                         rx_id=BREACH_CHANNEL, open_time=1),
-                         "trigger_once": 1}})
-        piece.surfaces(layer="crypt", floor_z=CRYPT_FLOOR, clear_height=0)
+    from bloodmap import breach
+    # the near side is the crypt's east wall (x 32,256), the hole running
+    # north along it from its south end and east through it to the sewer
+    BREACH_ROOMS.clear()
+    for index, piece in enumerate(breach.lay(
+            parish, "crypt_breach", breach_pieces(), origin=(BREACH[0], BREACH[3]),
+            along=(0, -1), through=(1, 0), near_floor=CRYPT_FLOOR,
+            region_kwargs=BREACH_MATERIAL.region_kwargs(), rx_id=BREACH_CHANNEL,
+            note="the cracked wall between the crypt and the sewer",
+            surfaces={**BREACH_MATERIAL.style_kwargs(floor_z=CRYPT_FLOOR, clear_height=0),
+                      "layer": "crypt"})):
+        rooms[piece.node_id] = piece
+        BREACH_ROOMS.append(piece.node_id)
         wires.wire("church:breach").then(wiring.region(piece.region_id))
-        #: typed after the door pass, like the lift: three pieces side by
-        #: side are a hole, not three doors
+        #: typed after the door pass, like the lift: pieces side by side
+        #: are a hole, not doors
         LATE_TYPES[piece.region_id] = 600
-        parish.connect(piece.face("west"), crypt.face("east"),
+        parish.connect(piece.face("near"), crypt.face("east"),
                        connection_id=f"connection:church_crypt_breach_{index}")
-        if previous is not None:
-            parish.connect(previous.face("south"), piece.face("north"),
-                           connection_id=f"connection:crypt_breach_join_{index}")
-        previous = piece
     crypt.surfaces(wall_picnum=CRYPT_WALL, floor_picnum=CRYPT_EARTH,
                    ceiling_picnum=CRYPT_VAULT, floor_shade=34,
                    ceiling_shade=28, wall_shade=30)

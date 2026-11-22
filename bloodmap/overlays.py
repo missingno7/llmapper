@@ -381,11 +381,21 @@ def lay(disk: Any, compiled: Any) -> dict[str, Any]:
 
 
 def cut_sectors(disk: Any, jobs: dict[int, list],
-                wall_points: dict[int, list] | None = None) -> dict[str, Any]:
+                wall_points: dict[int, list] | None = None,
+                slopes_across: bool = False) -> dict[str, Any]:
     """Cut each sector by its overlays; every other sector keeps its index.
 
     Returns a report with `parent` (new sector -> the sector it was cut from)
     and `refused` (sector -> why it was left whole).
+
+    A sloped sector is refused unless `slopes_across`, and then cut only
+    ACROSS its slope: Build hinges a slope on a sector's first wall
+    (`bloodmap.slope`), so a piece whose first wall lies on the original
+    hinge line, with the same heinum and the same z on that line, is the same
+    plane. Every new edge must be perpendicular to the hinge and every piece
+    must keep a stretch of it, or the sector is left whole. (The owner,
+    2026-11-21: "be careful about slopes, I think we still can split it
+    perpendicularly to not break it".)
     """
     from shapely.geometry import LineString, Point, Polygon
     from shapely.ops import unary_union
@@ -402,6 +412,7 @@ def cut_sectors(disk: Any, jobs: dict[int, list],
     plans: dict[int, list] = {}
     inserts: dict[int, set] = defaultdict(set)
     original: dict[int, dict] = {}
+    hinge_of: dict[int, tuple] = {}
     for sector, specs in sorted(jobs.items()):
         sf = _f(disk.sectors[sector])
         loops = snap.loops[sector]
@@ -426,7 +437,8 @@ def cut_sectors(disk: Any, jobs: dict[int, list],
         if int(sf["extra"]) > 0 and not shade_only(disk.sectors[sector]):
             report["refused"][sector] = "an XSECTOR"
             continue
-        if (int(sf["floor_stat"]) | int(sf["ceiling_stat"])) & 2:
+        sloped = bool((int(sf["floor_stat"]) | int(sf["ceiling_stat"])) & 2)
+        if sloped and not slopes_across:
             report["refused"][sector] = "a slope"
             continue
         if not base.is_valid:
@@ -453,6 +465,35 @@ def cut_sectors(disk: Any, jobs: dict[int, list],
             continue
         if len(made) <= 1:
             continue
+        if sloped:
+            # across the slope only: every new edge perpendicular to the
+            # hinge (the sector's first wall), every piece holding a stretch
+            # of the hinge line to be its own first wall
+            hp, hq = snap.segment(loops[0][0])
+            hx, hy = hq[0] - hp[0], hq[1] - hp[1]
+            hlen = (hx * hx + hy * hy) ** 0.5
+            outline = [snap.segment(w) for w in walls]
+
+            def on_hinge_line(a, b):
+                return all(abs(hx * (v[1] - hp[1]) - hy * (v[0] - hp[0])) <= hlen for v in (a, b))
+
+            fine = True
+            for polygon, _spec in made:
+                ring = list(polygon.exterior.coords)[:-1]
+                edges = list(zip(ring, ring[1:] + ring[:1]))
+                if not any(on_hinge_line(a, b) for a, b in edges):
+                    fine = False
+                for a, b in edges:
+                    a, b = tuple(map(int, a)), tuple(map(int, b))
+                    if any(_covers(p, q, a, b) for p, q in outline):
+                        continue
+                    ex, ey = b[0] - a[0], b[1] - a[1]
+                    if abs(ex * hx + ey * hy) > 0.01 * hlen * (ex * ex + ey * ey) ** 0.5:
+                        fine = False
+            if not fine:
+                report["refused"][sector] = "a slope not cut across it"
+                continue
+            hinge_of[sector] = (hp, hq)
         # every vertex a piece puts on this sector's boundary is exactly on
         # a wall (it is then added to that wall and its twin), or the sector
         # is left whole: the piece would leave the neighbour's line
@@ -564,6 +605,17 @@ def cut_sectors(disk: Any, jobs: dict[int, list],
                     chain = [a, *sorted(cuts, key=lambda v: (v[0] - a[0]) ** 2
                                         + (v[1] - a[1]) ** 2), b]
                     loop += [(s, t, template, sector) for s, t in zip(chain, chain[1:])]
+                if k == 0 and sector in hinge_of:
+                    # the piece's first wall on the hinge line, running the
+                    # hinge's way: the slope is then the parent's plane
+                    hp, hq = hinge_of[sector]
+                    hx, hy = hq[0] - hp[0], hq[1] - hp[1]
+                    hlen = (hx * hx + hy * hy) ** 0.5
+                    start = next(i for i, (s, t, _tp, _g) in enumerate(loop)
+                                 if all(abs(hx * (v[1] - hp[1]) - hy * (v[0] - hp[0])) <= hlen
+                                        for v in (s, t))
+                                 and (t[0] - s[0]) * hx + (t[1] - s[1]) * hy > 0)
+                    loop = loop[start:] + loop[:start]
                 loops_out.append(loop)
             layout_loops[target] = loops_out
         report["sectors"] += 1
@@ -678,11 +730,15 @@ SHADE_ANIMATION = frozenset({
     "amplitude", "shade_frequency", "shade_phase", "shade_wave", "shade_always",
     "shade_floor", "shade_ceiling", "shade_walls", "shade_pal",
     "reference", "marker_0", "marker_1", "state",
+    # a surface's current and its water: per sector, nothing moves, and each
+    # piece copies them exactly (E3M3's channels pan and drag; the sewer's
+    # walks stood beside them uncut because a panning neighbour counted as busy)
+    "pan_floor", "pan_ceiling", "pan_always", "pan_velocity", "pan_angle", "drag", "depth",
 })
 
 
 def shade_only(sector) -> bool:
-    """A sector whose XSECTOR (if any) does nothing but animate its shade."""
+    """A sector whose XSECTOR (if any) does nothing but animate its surface: its shade, its current, its water's depth."""
     from .model import record_extra
 
     if int(_f(sector)["extra"]) <= 0:

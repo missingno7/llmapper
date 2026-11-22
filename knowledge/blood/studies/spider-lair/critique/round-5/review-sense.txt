@@ -1,0 +1,1 @@
+SCORE 3. OK: the passage web spans the mouth; nests and cocoons of different sizes on their floors; lintel cobwebs; the panel; eggs at the pillar's foot; corner strands; torches; ceiling spiders (the mother barely bigger); skull piles; the TNT box. Faults: the silk sack floats with no cord; the chained skeleton's feet near the floor. BLOCKING: the silk sack floats in mid-air.

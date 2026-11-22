@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_DEDRIVER.MAP_27/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_DEDRIVER.MAP_27",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -27570,
+   "y": 91517,
+   "z": 50272,
+   "angle": 1652,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 66462,
+   "y": 3362,
+   "z": 50272,
+   "angle": 1012,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -39324,
+   "y": 44501,
+   "z": 50272,
+   "angle": 1811,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 37077,
+   "y": -37777,
+   "z": 50272,
+   "angle": 723,
+   "horiz": 100,
+   "sector": 2,
+   "screenshot": true
+  }
+ ]
+}

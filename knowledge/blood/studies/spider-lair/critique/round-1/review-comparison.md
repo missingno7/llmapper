@@ -1,0 +1,5 @@
+KIND: spider nest / egg lair cave. BETTER: B, because its nests are lit, framed set pieces (a spider relief over a web-dripping alcove full of cocoons, a pillar with egg niches) in a space that hides its corners; A is one bare, evenly dim room with the same small egg panel repeated. SCORE_A 2.
+A_LACKS: a carved spider panel over the nest opening; ragged web fringes over the nest mouth; one deep nest recess with several cocoons on pale web walls, with web spilling onto the stone; real light sources throwing pools; solid masses (a pillar, corners that turn into side passages) so the room cannot be seen at once; a second wall material and small details.
+A_HAS: web-wrapped hangings in the room's middle; the webbed tunnel entrance; a large open chamber to fight in.
+THIN_COPY: the egg niches: one egg tile on a flat panel in a shallow box, three times the same.
+BLOCKING: the hanging web columns taper to a point just above the floor and read as floating or misplaced; the room is so evenly dim with so few landmarks that four views are interchangeable.

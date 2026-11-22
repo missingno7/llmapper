@@ -28,6 +28,17 @@ from bloodmap.light_stage import Rule
 
 #: (part of a region path, its rule). The first match wins.
 RULES: tuple[tuple[str, Rule], ...] = (
+    # Graves Brook is older than the ring: lamps hung on chains far apart,
+    # not the ring's tubes (`references/sewer-design.md`: "almost none")
+    ("graves_brook", Rule("hanging", 641, 8192)),
+    # the settling hall: chain lamps over the tanks, their chains in the roof
+    ("settling_hall", Rule("hanging", 641, 4096, 4096)),
+    # the sewer's secret rooms: nobody keeps a lamp in a hermit's lair or a
+    # bricked-up plague pit; the sewer's own dark, and the shade's flicker
+    ("sewer/secrets/", Rule("none", 0, 0)),
+    # the Weaver's Cellars: nobody lights a spiders' nest; the brook's lamps
+    # through the passage, and the dark
+    ("sewer/lair/", Rule("none", 0, 0)),
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
     ("pump_station", Rule("panel", 501, 3072, 3072)),
     ("works_stair", Rule("ceiling", 795, 2560, 2560)),
@@ -66,6 +77,10 @@ OWN_LIGHT: tuple[str, ...] = (
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
     ("st_gallows", 0.5),
+    # the lair's two torches at full strength over the sewer's dark: their
+    # light falls off steeply enough for the light stage to cut pools in
+    # the hall's floor; at 0.35 there was no change to cut and the hall
+    # was one even grey (round 5: "the torches throw no pools")
 )
 #: a room no rule names: a round light flat on the ceiling
 DEFAULT = Rule("ceiling", 795, 2560, 2560)
@@ -73,6 +88,24 @@ DEFAULT = Rule("ceiling", 795, 2560, 2560)
 
 def rule_for(region: str) -> Rule:
     return next((rule for key, rule in RULES if key in region), DEFAULT)
+
+
+def room_key(region: str) -> str:
+    """The room a region is lit as: a sewer corridor's walks, fords and channel are one room."""
+    import l3_sewer
+    # the settling hall's tanks, walks and quays are one hall
+    marker = "/" + l3_sewer.HALL_LAYER + "/"
+    if marker in region:
+        return region[: region.index(marker) + len(marker) - 1]
+    tail = region.rsplit("/", 1)[-1]
+    corridor = _CORRIDOR_OF.get(tail)
+    if corridor is None:
+        _CORRIDOR_OF.update({e["name"]: e["corridor"] for e in l3_sewer.plan() if e.get("corridor")})
+        corridor = _CORRIDOR_OF.get(tail)
+    return region[: -len(tail)] + corridor if corridor else region
+
+
+_CORRIDOR_OF: dict[str, str] = {}
 
 
 def lamp_scale(region: str) -> float:

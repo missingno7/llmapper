@@ -1,0 +1,83 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/critique/round-5/ours/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/critique/round-5/ours",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "way_in",
+   "x": 12032,
+   "y": 20070,
+   "z": 48224,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 804,
+   "screenshot": true
+  },
+  {
+   "id": "hall",
+   "x": 11673,
+   "y": 16998,
+   "z": 46176,
+   "angle": 1571,
+   "horiz": 100,
+   "sector": 378,
+   "screenshot": true
+  },
+  {
+   "id": "north_brood",
+   "x": 12288,
+   "y": 13926,
+   "z": 46176,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 378,
+   "screenshot": true
+  },
+  {
+   "id": "west_brood",
+   "x": 11468,
+   "y": 16179,
+   "z": 46176,
+   "angle": 1191,
+   "horiz": 100,
+   "sector": 378,
+   "screenshot": true
+  },
+  {
+   "id": "east_brood",
+   "x": 13721,
+   "y": 16179,
+   "z": 46176,
+   "angle": 1877,
+   "horiz": 100,
+   "sector": 378,
+   "screenshot": true
+  },
+  {
+   "id": "ceiling",
+   "x": 10444,
+   "y": 15769,
+   "z": 46176,
+   "angle": 1787,
+   "horiz": 160,
+   "sector": 378,
+   "screenshot": true
+  },
+  {
+   "id": "back",
+   "x": 15360,
+   "y": 12492,
+   "z": 46176,
+   "angle": 792,
+   "horiz": 100,
+   "sector": 378,
+   "screenshot": true
+  }
+ ]
+}

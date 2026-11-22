@@ -131,6 +131,7 @@ Writing a level as source. `LevelProgram` is the editable form; it lowers throug
 | `vocabulary` | Authoring vocabulary: composable structures over :class:`PlanarLayout`. |
 | `prefab` | Detail at volume: the small sectors a Blood level is mostly made of. |
 | `aperture` | A way through a wall, as a thing rather than an absence. |
+| `breach` | A hole blown through a wall, shaped the way Blood shapes one: ragged pieces with tilted sills and tops. |
 | `slope` | Sloped floors and ceilings, which this project had never built. |
 | `spiral` | A spiral stair, and the observation that it is nothing new. |
 | `roomoverroom` | One room over another, built from one declaration. |

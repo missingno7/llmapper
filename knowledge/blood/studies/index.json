@@ -99,6 +99,18 @@
     "E1M2:268!"
    ],
    "date": "2026-11-20"
+  },
+  "spider-lair": {
+   "want": "a spider lair: a nest of webs, cocoons and spiders round a mother spider, in a forgotten place under Gravesend",
+   "seeds": [
+    "E2M8:52",
+    "maps/blood/community/DARKWOOD.MAP:514",
+    "maps/blood/community/CHORROR.MAP:414",
+    "maps/blood/community/chronicles1/FOULKEEP.MAP:264",
+    "maps/blood/community/DEDRIVER.MAP:27",
+    "maps/blood/community/HNTDGRVY.MAP:128"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

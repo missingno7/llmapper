@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_chronicles1_FOULKEEP.MAP_264/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/spider-lair/maps_blood_community_chronicles1_FOULKEEP.MAP_264",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 51122,
+   "y": -24658,
+   "z": 22624,
+   "angle": 960,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 40174,
+   "y": -24658,
+   "z": 22624,
+   "angle": 66,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 50646,
+   "y": -21802,
+   "z": 22624,
+   "angle": 1132,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 40650,
+   "y": -21802,
+   "z": 22624,
+   "angle": 1937,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,2955 @@
+{
+ "slug": "spider-lair",
+ "want": "a spider lair: a nest of webs, cocoons and spiders round a mother spider, in a forgotten place under Gravesend",
+ "date": "2026-11-22",
+ "seeds": [
+  {
+   "seed": "E2M8:52",
+   "map": "maps\\blood\\campaign\\E2M8.MAP",
+   "host": 52,
+   "sectors": [
+    44,
+    52,
+    54
+   ],
+   "metres": [
+    8.7,
+    13.0,
+    4.3
+   ],
+   "area_M": 25.12,
+   "clear_bodies": 2.42,
+   "free_floor_share": 0.99,
+   "shade_spread": 0,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    253,
+    "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+   ],
+   "walls": [
+    [
+     411,
+     0.606,
+     "cobblestone"
+    ],
+    [
+     110,
+     0.204,
+     "cobblestone"
+    ],
+    [
+     1057,
+     0.169,
+     "cobweb (wall)"
+    ],
+    [
+     458,
+     0.021,
+     "rock"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 44,
+     "corners": 6,
+     "size": [
+      3072,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411,
+      1057
+     ]
+    },
+    {
+     "sector": 54,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      458
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1930,
+     "type": 216,
+     "type_name": "kDudeSpiderMother",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.2
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 1058,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 829,
+     "type": 117,
+     "type_name": "kItemTwoGuns",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 1061,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.12
+    },
+    {
+     "tile": 318,
+     "type": 21,
+     "type_name": "kSwitchOneWay",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\E2M8_52\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\E2M8_52\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/DARKWOOD.MAP:514",
+   "map": "maps\\blood\\community\\DARKWOOD.MAP",
+   "host": 514,
+   "sectors": [
+    514
+   ],
+   "metres": [
+    5.7,
+    14.3,
+    13.0
+   ],
+   "area_M": 9.01,
+   "clear_bodies": 7.25,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    295,
+    ""
+   ],
+   "ceiling": [
+    295,
+    ""
+   ],
+   "walls": [
+    [
+     295,
+     1.0,
+     ""
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2602,
+     "type": 143,
+     "type_name": "kItemArmorSpirit",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1470,
+     "type": 206,
+     "type_name": "kDudeGargoyleFlesh",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.52
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_DARKWOOD.MAP_514\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_DARKWOOD.MAP_514\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/CHORROR.MAP:414",
+   "map": "maps\\blood\\community\\CHORROR.MAP",
+   "host": 413,
+   "sectors": [
+    385,
+    386,
+    387,
+    388,
+    389,
+    390,
+    391,
+    392,
+    393,
+    394,
+    395,
+    396,
+    397,
+    398,
+    399,
+    400,
+    401,
+    402,
+    403,
+    404,
+    413,
+    414,
+    415,
+    416,
+    417,
+    418
+   ],
+   "metres": [
+    27.8,
+    30.9,
+    12.8
+   ],
+   "area_M": 180.11,
+   "clear_bodies": 7.12,
+   "free_floor_share": 0.58,
+   "shade_spread": 30,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    253,
+    "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+   ],
+   "walls": [
+    [
+     411,
+     0.752,
+     "cobblestone"
+    ],
+    [
+     415,
+     0.23,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 385,
+     "corners": 6,
+     "size": [
+      5632,
+      1024
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 386,
+     "corners": 7,
+     "size": [
+      6400,
+      1024
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 387,
+     "corners": 6,
+     "size": [
+      1024,
+      7168
+     ],
+     "rise_bodies": 2.72,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 388,
+     "corners": 6,
+     "size": [
+      1280,
+      7168
+     ],
+     "rise_bodies": 2.72,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 389,
+     "corners": 7,
+     "size": [
+      7936,
+      1024
+     ],
+     "rise_bodies": 5.01,
+     "floor_tile": 280,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 390,
+     "corners": 7,
+     "size": [
+      6144,
+      1024
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 280,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 391,
+     "corners": 4,
+     "size": [
+      3840,
+      1024
+     ],
+     "rise_bodies": -0.36,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411,
+      1057
+     ]
+    },
+    {
+     "sector": 392,
+     "corners": 12,
+     "size": [
+      7680,
+      4096
+     ],
+     "rise_bodies": -0.36,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 393,
+     "corners": 8,
+     "size": [
+      768,
+      1408
+     ],
+     "rise_bodies": -0.36,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 394,
+     "corners": 8,
+     "size": [
+      768,
+      1280
+     ],
+     "rise_bodies": -0.36,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 395,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 396,
+     "corners": 4,
+     "size": [
+      1536,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 397,
+     "corners": 6,
+     "size": [
+      4352,
+      2816
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      415
+     ]
+    },
+    {
+     "sector": 398,
+     "corners": 20,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      411,
+      415
+     ]
+    },
+    {
+     "sector": 399,
+     "corners": 4,
+     "size": [
+      128,
+      192
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 400,
+     "corners": 4,
+     "size": [
+      128,
+      192
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 401,
+     "corners": 4,
+     "size": [
+      128,
+      256
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 402,
+     "corners": 4,
+     "size": [
+      128,
+      256
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 200,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 403,
+     "corners": 6,
+     "size": [
+      5632,
+      6912
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 404,
+     "corners": 10,
+     "size": [
+      7168,
+      6912
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411,
+      415
+     ]
+    },
+    {
+     "sector": 414,
+     "corners": 4,
+     "size": [
+      1920,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411,
+      415
+     ]
+    },
+    {
+     "sector": 415,
+     "corners": 4,
+     "size": [
+      2048,
+      1920
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 416,
+     "corners": 5,
+     "size": [
+      3968,
+      2688
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 417,
+     "corners": 4,
+     "size": [
+      1024,
+      1280
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 418,
+     "corners": 6,
+     "size": [
+      3072,
+      2816
+     ],
+     "rise_bodies": 5.07,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1920,
+     "type": 213,
+     "type_name": "kDudeSpiderBrown",
+     "align": "face",
+     "count": 18,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 7,
+     "over_floor_bodies": 2.7
+    },
+    {
+     "tile": 1067,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 11,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.78
+    },
+    {
+     "tile": 3798,
+     "type": 245,
+     "type_name": "kDudeInnocent",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.51
+    },
+    {
+     "tile": 1068,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.78
+    },
+    {
+     "tile": 570,
+     "type": 30,
+     "type_name": "kDecorationTorch",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 1058,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 5,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 1061,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.33
+    },
+    {
+     "tile": 1059,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.78
+    },
+    {
+     "tile": 1059,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.48
+    },
+    {
+     "tile": 818,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 819,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 820,
+     "type": 66,
+     "type_name": "kItemAmmoTrappedSoul",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": -1.81
+    },
+    {
+     "tile": 1069,
+     "type": 410,
+     "type_name": "kThingSpiderWeb",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      66,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 1930,
+     "type": 216,
+     "type_name": "kDudeSpiderMother",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.21
+    },
+    {
+     "tile": 2330,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.42
+    },
+    {
+     "tile": 643,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.74
+    },
+    {
+     "tile": 1048,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 744,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      112
+     ],
+     "pal": 10,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 942,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_CHORROR.MAP_414\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_CHORROR.MAP_414\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/chronicles1/FOULKEEP.MAP:264",
+   "map": "maps\\blood\\community\\chronicles1\\FOULKEEP.MAP",
+   "host": 264,
+   "sectors": [
+    264
+   ],
+   "metres": [
+    17.5,
+    19.4,
+    7.0
+   ],
+   "area_M": 83.47,
+   "clear_bodies": 3.86,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    2915,
+    "water surface; sometimes clouds seen from above"
+   ],
+   "ceiling": [
+    568,
+    ""
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 550,
+     "type": 30,
+     "type_name": "kDecorationTorch",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.41
+    },
+    {
+     "tile": 800,
+     "type": 50,
+     "type_name": "kItemWeaponLifeLeech",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 2332,
+     "type": 9,
+     "type_name": "kMarkerUpWater",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 1701,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      88,
+      80
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.82
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_chronicles1_FOULKEEP.MAP_264\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_chronicles1_FOULKEEP.MAP_264\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/DEDRIVER.MAP:27",
+   "map": "maps\\blood\\community\\DEDRIVER.MAP",
+   "host": 2,
+   "sectors": [
+    0,
+    1,
+    2,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    25,
+    26,
+    27,
+    28
+   ],
+   "metres": [
+    209.5,
+    239.5,
+    4.7
+   ],
+   "area_M": 3876.09,
+   "clear_bodies": 2.6,
+   "free_floor_share": 0.99,
+   "shade_spread": 8,
+   "floor": [
+    362,
+    ""
+   ],
+   "ceiling": [
+    3491,
+    "red sky parallax"
+   ],
+   "walls": [
+    [
+     8,
+     0.379,
+     ""
+    ],
+    [
+     0,
+     0.359,
+     ""
+    ],
+    [
+     20,
+     0.073,
+     "wood"
+    ],
+    [
+     177,
+     0.06,
+     "wooden wall"
+    ],
+    [
+     16,
+     0.056,
+     ""
+    ],
+    [
+     80,
+     0.049,
+     "weathered vertical stone wall with hints of moss"
+    ],
+    [
+     480,
+     0.023,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 0,
+     "corners": 9,
+     "size": [
+      8704,
+      6656
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      8
+     ]
+    },
+    {
+     "sector": 1,
+     "corners": 4,
+     "size": [
+      3328,
+      2048
+     ],
+     "rise_bodies": -0.66,
+     "floor_tile": 2915,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 4,
+     "corners": 36,
+     "size": [
+      116992,
+      133376
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 2915,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 5,
+     "corners": 12,
+     "size": [
+      35584,
+      24064
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      8,
+      106
+     ]
+    },
+    {
+     "sector": 6,
+     "corners": 5,
+     "size": [
+      3584,
+      5376
+     ],
+     "rise_bodies": 1.51,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 7,
+     "corners": 4,
+     "size": [
+      2816,
+      3584
+     ],
+     "rise_bodies": 1.57,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 8,
+     "corners": 4,
+     "size": [
+      6144,
+      3328
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      16
+     ]
+    },
+    {
+     "sector": 9,
+     "corners": 5,
+     "size": [
+      2816,
+      2304
+     ],
+     "rise_bodies": 1.03,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 10,
+     "corners": 4,
+     "size": [
+      2560,
+      1792
+     ],
+     "rise_bodies": -0.78,
+     "floor_tile": 2915,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 11,
+     "corners": 4,
+     "size": [
+      3072,
+      2304
+     ],
+     "rise_bodies": -0.78,
+     "floor_tile": 2915,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 25,
+     "corners": 12,
+     "size": [
+      3840,
+      6400
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      177
+     ]
+    },
+    {
+     "sector": 26,
+     "corners": 4,
+     "size": [
+      2560,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      177
+     ]
+    },
+    {
+     "sector": 27,
+     "corners": 4,
+     "size": [
+      2816,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 362,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      177
+     ]
+    },
+    {
+     "sector": 28,
+     "corners": 4,
+     "size": [
+      1792,
+      1536
+     ],
+     "rise_bodies": -0.18,
+     "floor_tile": 2915,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      177
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 907,
+     "type": 400,
+     "type_name": "kThingTNTBarrel",
+     "align": "face",
+     "count": 40,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.33
+    },
+    {
+     "tile": 1570,
+     "type": 217,
+     "type_name": "kDudeGillBeast",
+     "align": "face",
+     "count": 22,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.54
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 21,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 18,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 16,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    },
+    {
+     "tile": 1069,
+     "type": 410,
+     "type_name": "kThingSpiderWeb",
+     "align": "face",
+     "count": 15,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 9,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 8,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 797,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 8,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.44
+    },
+    {
+     "tile": 1142,
+     "type": 409,
+     "type_name": "Wood Beam",
+     "align": "wall",
+     "count": 7,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 540,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3798,
+     "type": 245,
+     "type_name": "kDudeInnocent",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.51
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 526,
+     "type": 46,
+     "type_name": "kItemWeaponNapalmLauncher",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 541,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1925,
+     "type": 214,
+     "type_name": "kDudeSpiderRed",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 1792,
+     "type": 221,
+     "type_name": "kDudePodGreen",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 558,
+     "type": 42,
+     "type_name": "kItemWeaponTommygun",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 816,
+     "type": 76,
+     "type_name": "kItemAmmoFlares",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 539,
+     "type": 45,
+     "type_name": "kItemWeaponTeslaCannon",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 1470,
+     "type": 206,
+     "type_name": "kDudeGargoyleFlesh",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.52
+    },
+    {
+     "tile": 519,
+     "type": 107,
+     "type_name": "kItemHealthDoctorBag",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 829,
+     "type": 117,
+     "type_name": "kItemTwoGuns",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 525,
+     "type": 70,
+     "type_name": "kItemAmmoVoodooDoll",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 1935,
+     "type": 215,
+     "type_name": "kDudeSpiderBlack",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.17
+    },
+    {
+     "tile": 1270,
+     "type": 211,
+     "type_name": "kDudeHellHound",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 618,
+     "type": 60,
+     "type_name": "kItemAmmoSprayCan",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2433,
+     "type": 110,
+     "type_name": "kItemHealthLifeSeed",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 827,
+     "type": 115,
+     "type_name": "kItemJumpBoots",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2586,
+     "type": 141,
+     "type_name": "kItemArmorBody",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2428,
+     "type": 124,
+     "type_name": "kItemReflectShots",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 524,
+     "type": 43,
+     "type_name": "kItemWeaponFlarePistol",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1530,
+     "type": 208,
+     "type_name": "kDudeGargoyleStatueFlesh",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1209,
+     "type": 244,
+     "type_name": "kDudeZombieAxeLaying",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 810,
+     "type": 65,
+     "type_name": "kItemAmmoRemoteBombBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 811,
+     "type": 64,
+     "type_name": "kItemAmmoProxBombBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3060,
+     "type": 210,
+     "type_name": "kDudePhantasm",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.7
+    },
+    {
+     "tile": 1930,
+     "type": 216,
+     "type_name": "kDudeSpiderMother",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.21
+    },
+    {
+     "tile": 801,
+     "type": 79,
+     "type_name": "kItemAmmoGasolineCan",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 3385,
+     "type": 230,
+     "type_name": "kDudeCultistTommyProne",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 1080,
+     "type": 457,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.87
+    },
+    {
+     "tile": 3444,
+     "type": 401,
+     "type_name": "kThingArmedProxBomb",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.07
+    },
+    {
+     "tile": 896,
+     "type": 113,
+     "type_name": "kItemShadowCloak",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    },
+    {
+     "tile": 518,
+     "type": 136,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 830,
+     "type": 118,
+     "type_name": "kItemDivingSuit",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      80,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1142,
+     "type": 409,
+     "type_name": "Wood Beam",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 266,
+     "type": 406,
+     "type_name": "kThingGlassWindow",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 839,
+     "type": 125,
+     "type_name": "kItemBeastVision",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 793,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 2534,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      56,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 2540,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 2544,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 813,
+     "type": 69,
+     "type_name": "kItemAmmoTommygunFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2680,
+     "type": 227,
+     "type_name": "kDudeCerberusTwoHead",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.74
+    },
+    {
+     "tile": 820,
+     "type": 66,
+     "type_name": "kItemAmmoTrappedSoul",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 523,
+     "type": 138,
+     "type_name": "",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 2594,
+     "type": 144,
+     "type_name": "kItemArmorSuper",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 545,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 2541,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.27
+    },
+    {
+     "tile": 2628,
+     "type": 140,
+     "type_name": "kItemArmorBasic",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.23
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_DEDRIVER.MAP_27\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_DEDRIVER.MAP_27\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/HNTDGRVY.MAP:128",
+   "map": "maps\\blood\\community\\HNTDGRVY.MAP",
+   "host": 128,
+   "sectors": [
+    128
+   ],
+   "metres": [
+    3.0,
+    6.3,
+    3.2
+   ],
+   "area_M": 0.79,
+   "clear_bodies": 1.75,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    283,
+    ""
+   ],
+   "ceiling": [
+    283,
+    ""
+   ],
+   "walls": [
+    [
+     283,
+     1.0,
+     ""
+    ]
+   ],
+   "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_HNTDGRVY.MAP_128\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\maps_blood_community_HNTDGRVY.MAP_128\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "0": {
+   "tile": 0,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-0.png"
+  },
+  "8": {
+   "tile": 8,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-8.png"
+  },
+  "16": {
+   "tile": 16,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-16.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-20.png"
+  },
+  "80": {
+   "tile": 80,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-80.png"
+  },
+  "110": {
+   "tile": 110,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-110.png"
+  },
+  "177": {
+   "tile": 177,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-177.png"
+  },
+  "200": {
+   "tile": 200,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-200.png"
+  },
+  "253": {
+   "tile": 253,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-253.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-270.png"
+  },
+  "280": {
+   "tile": 280,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-280.png"
+  },
+  "283": {
+   "tile": 283,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-283.png"
+  },
+  "295": {
+   "tile": 295,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-295.png"
+  },
+  "318": {
+   "tile": 318,
+   "pixels": [
+    78,
+    44
+   ],
+   "world_at_repeat_8": [
+    1248,
+    11264
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-318.png"
+  },
+  "362": {
+   "tile": 362,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-362.png"
+  },
+  "411": {
+   "tile": 411,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-411.png"
+  },
+  "415": {
+   "tile": 415,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-415.png"
+  },
+  "458": {
+   "tile": 458,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-458.png"
+  },
+  "480": {
+   "tile": 480,
+   "pixels": [
+    128,
+    256
+   ],
+   "world_at_repeat_8": [
+    2048,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-480.png"
+  },
+  "548": {
+   "tile": 548,
+   "pixels": [
+    23,
+    62
+   ],
+   "world_at_repeat_8": [
+    368,
+    15872
+   ],
+   "see_through_share": 0.16,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-548.png"
+  },
+  "550": {
+   "tile": 550,
+   "pixels": [
+    30,
+    27
+   ],
+   "world_at_repeat_8": [
+    480,
+    6912
+   ],
+   "see_through_share": 0.146,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-550.png"
+  },
+  "568": {
+   "tile": 568,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-568.png"
+  },
+  "570": {
+   "tile": 570,
+   "pixels": [
+    15,
+    23
+   ],
+   "world_at_repeat_8": [
+    240,
+    5888
+   ],
+   "see_through_share": 0.545,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-570.png"
+  },
+  "589": {
+   "tile": 589,
+   "pixels": [
+    11,
+    25
+   ],
+   "world_at_repeat_8": [
+    176,
+    6400
+   ],
+   "see_through_share": 0.218,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-589.png"
+  },
+  "800": {
+   "tile": 800,
+   "pixels": [
+    16,
+    82
+   ],
+   "world_at_repeat_8": [
+    256,
+    20992
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-800.png"
+  },
+  "801": {
+   "tile": 801,
+   "pixels": [
+    32,
+    36
+   ],
+   "world_at_repeat_8": [
+    512,
+    9216
+   ],
+   "see_through_share": 0.174,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-801.png"
+  },
+  "829": {
+   "tile": 829,
+   "pixels": [
+    59,
+    31
+   ],
+   "world_at_repeat_8": [
+    944,
+    7936
+   ],
+   "see_through_share": 0.583,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-829.png"
+  },
+  "907": {
+   "tile": 907,
+   "pixels": [
+    33,
+    45
+   ],
+   "world_at_repeat_8": [
+    528,
+    11520
+   ],
+   "see_through_share": 0.154,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-907.png"
+  },
+  "1057": {
+   "tile": 1057,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1057.png"
+  },
+  "1058": {
+   "tile": 1058,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.335,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1058.png"
+  },
+  "1059": {
+   "tile": 1059,
+   "pixels": [
+    37,
+    127
+   ],
+   "world_at_repeat_8": [
+    592,
+    32512
+   ],
+   "see_through_share": 0.569,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1059.png"
+  },
+  "1061": {
+   "tile": 1061,
+   "pixels": [
+    72,
+    108
+   ],
+   "world_at_repeat_8": [
+    1152,
+    27648
+   ],
+   "see_through_share": 0.244,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1061.png"
+  },
+  "1067": {
+   "tile": 1067,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.881,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1067.png"
+  },
+  "1068": {
+   "tile": 1068,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.798,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1068.png"
+  },
+  "1069": {
+   "tile": 1069,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.734,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1069.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1170.png"
+  },
+  "1470": {
+   "tile": 1470,
+   "pixels": [
+    167,
+    115
+   ],
+   "world_at_repeat_8": [
+    2672,
+    29440
+   ],
+   "see_through_share": 0.642,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1470.png"
+  },
+  "1570": {
+   "tile": 1570,
+   "pixels": [
+    63,
+    96
+   ],
+   "world_at_repeat_8": [
+    1008,
+    24576
+   ],
+   "see_through_share": 0.403,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1570.png"
+  },
+  "1701": {
+   "tile": 1701,
+   "pixels": [
+    30,
+    119
+   ],
+   "world_at_repeat_8": [
+    480,
+    30464
+   ],
+   "see_through_share": 0.536,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1701.png"
+  },
+  "1920": {
+   "tile": 1920,
+   "pixels": [
+    122,
+    43
+   ],
+   "world_at_repeat_8": [
+    1952,
+    11008
+   ],
+   "see_through_share": 0.681,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1920.png"
+  },
+  "1930": {
+   "tile": 1930,
+   "pixels": [
+    100,
+    45
+   ],
+   "world_at_repeat_8": [
+    1600,
+    11520
+   ],
+   "see_through_share": 0.647,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-1930.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2169.png"
+  },
+  "2332": {
+   "tile": 2332,
+   "pixels": [
+    9,
+    13
+   ],
+   "world_at_repeat_8": [
+    144,
+    3328
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2332.png"
+  },
+  "2602": {
+   "tile": 2602,
+   "pixels": [
+    39,
+    37
+   ],
+   "world_at_repeat_8": [
+    624,
+    9472
+   ],
+   "see_through_share": 0.283,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2602.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2825.png"
+  },
+  "2915": {
+   "tile": 2915,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-2915.png"
+  },
+  "3054": {
+   "tile": 3054,
+   "pixels": [
+    61,
+    120
+   ],
+   "world_at_repeat_8": [
+    976,
+    30720
+   ],
+   "see_through_share": 0.444,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-3054.png"
+  },
+  "3491": {
+   "tile": 3491,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-3491.png"
+  },
+  "3798": {
+   "tile": 3798,
+   "pixels": [
+    60,
+    107
+   ],
+   "world_at_repeat_8": [
+    960,
+    27392
+   ],
+   "see_through_share": 0.589,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\spider-lair\\tiles\\tile-3798.png"
+  }
+ }
+}

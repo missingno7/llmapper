@@ -1,0 +1,31 @@
+{
+ "recognition": {
+  "named": "spider nest in a stone cave",
+  "sure": 4,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest / egg-sac lair dungeon",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "flat, even light",
+   "an egg floats above the niche wall line"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the silk sack floats in mid-air"
+  ]
+ }
+}

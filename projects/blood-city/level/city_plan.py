@@ -245,8 +245,9 @@ SEWER = {
                  "return is the stair"},
         {"id": "works_stair", "form": "stair", "link_form": "see_through",
          "at": (48.5, 19),
-         "note": "flights down to the works cellar; the cellar pit is a "
-                 "ROR shaft into the adjacent under-city junction"},
+         "note": "flights down to the underpass under the works; its cellar "
+                 "and the pit into the sewer were removed (owner, 2026-11-21: "
+                 "the sewer's entrances were too close together)"},
         {"id": "pump_spiral", "form": "spiral", "link_form": "solid",
          "at": (44.5, 5),
          "note": "the pump station's road-level stair reaches a cellar, then "

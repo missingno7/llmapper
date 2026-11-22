@@ -81,6 +81,17 @@ POSE_SETS = {
         "back": (27.8, 29.8, 31.2, 26.8, LEVEL, "the crypt from its far corner", 61440),
         "fuse": (30.9, 26.6, 31.0, 30.0, LEVEL, "down the east aisle: the barrels", 61440),
     },
+    #: the Weaver's Cellars, a spider lair off Graves Brook (the owner,
+    #: 2026-11-22: "We can also add spider lair somewhere, similar to E2M8")
+    "lair": {
+        "way_in": (11.75, 19.6, 11.75, 16.0, LEVEL, "from Graves Brook up the passage", 63488),
+        "hall": (11.4, 16.6, 12.0, 11.0, LEVEL, "the hall from the top of the passage", 61440),
+        "north_brood": (12.0, 13.6, 12.0, 10.5, LEVEL, "the north alcove", 61440),
+        "west_brood": (11.2, 15.8, 8.0, 14.0, LEVEL, "across to the west alcove", 61440),
+        "east_brood": (13.4, 15.8, 16.5, 14.0, LEVEL, "across to the east alcove", 61440),
+        "ceiling": (10.2, 15.4, 13.5, 12.0, UP, "up at the ceiling", 61440),
+        "back": (15.0, 12.2, 10.0, 16.5, LEVEL, "from the far corner back to the way in", 61440),
+    },
     #: the owner, 2026-11-18: "We should have more windows in buildings
     #: around the city"
     "windows": {

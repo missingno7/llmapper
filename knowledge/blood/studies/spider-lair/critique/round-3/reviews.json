@@ -1,0 +1,35 @@
+{
+ "recognition": {
+  "named": "spider nest cave with egg sacs",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest / egg-chamber lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "two poses against geometry (pillar, passage mouth)",
+   "the nest jamb silk reads as blank panels",
+   "the wrapped victims read as palm trees or posts",
+   "the passage brick does not match the hall"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the wrapped victims are as tall as the room",
+   "a dark rod floats in the east nest mouth",
+   "the TNT is not visible"
+  ]
+ }
+}

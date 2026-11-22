@@ -1,0 +1,32 @@
+{
+ "recognition": {
+  "named": "spider nest / egg-sac cave chamber",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "spider nest lair in stone dungeon",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "a tall white web stalk is hard to read",
+   "the culvert brick at the corridor mouth clashes"
+  ]
+ },
+ "use": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": []
+ },
+ "sense": {
+  "named": "spider lair",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the passage web reads as a floor decal",
+   "the wrapped body reads as a white column"
+  ]
+ }
+}

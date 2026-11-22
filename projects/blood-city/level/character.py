@@ -71,6 +71,14 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M1 s150 (rubble 110, earth 270), its sarcophagus "
                     "s1-3/27/28, plaques sprites 185-189, cobwebs 150-154",
     },
+    "the Weaver's Cellars": {
+        "at": (11264, 12800), "floor": 61440, "study": "spider-lair",
+        "hero": "brood alcoves walled in silk, a cocoon in each, under a "
+                "ceiling where the spiders and their mother hang upside down",
+        "exemplar": "E2M8 s52 (silk 1057 alcoves, cocoon 1061, victims 1059, "
+                    "mothers on the ceiling); CHORROR s414 (web fringe 1067/1068, "
+                    "ceiling spiders, the web 410 across the way in)",
+    },
     "Gravesend Station": {
         "at": (13312, -11500), "floor": -12288, "study": "station",
         "hero": "a green-banded carriage standing at a platform under a "

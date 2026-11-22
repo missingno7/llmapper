@@ -371,6 +371,11 @@ def build():
     city.declare_layer("sewer", ceiling_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
                        floor_z=SEWER_FLOOR + 4096,
                        note="the wet undercity beneath Foundry Ward")
+    import l3_sewer as _l3_sewer_layers
+    city.declare_layer(_l3_sewer_layers.HALL_LAYER,
+                       ceiling_z=SEWER_FLOOR - _l3_sewer_layers.WALK_CLEAR,
+                       floor_z=_l3_sewer_layers.HALL_WATER,
+                       note="the settling hall under the plaza: tanks below the sewer's level")
 
     areas = {a["id"]: a for a in data["areas"]}
     alleys = {a["id"]: a for a in data["dead_end_alleys"]}
@@ -677,35 +682,21 @@ def build():
     # over the sewer's trunk: `bloodmap.layers` lets two plans share ground
     # only when their height bands are apart, and the sewer's band starts
     # at 28,672, so the passage's floor and its bore's bed stay above that.
-    # The yard flight keeps its eight treads and takes them at 2,048 each;
-    # the old lower flight keeps its run and its cellar and becomes the
-    # SERVICE STAIR to the hatch.
+    # The yard flight keeps its eight treads and takes them at 2,048 each.
+    # The lower flight and the works cellar it reached were the service stair
+    # to the cellar pit, the sewer entrance the owner had removed
+    # (2026-11-21: "We can ditch that underground passage sewer
+    # enterance"); they went with it.
     PASSAGE_Z = GRADE + 16384
     PASSAGE_LEN, PASSAGE_CLEAR = 5120, 32768
     city.declare_layer("underpass", ceiling_z=PASSAGE_Z - PASSAGE_CLEAR,
                        floor_z=PASSAGE_Z,
                        note="the passage under the works, between street and sewer")
     landing.surfaces(floor_z=PASSAGE_Z)
-    cellar = stair.room(
-        "cellar",
-        [(0, 0), (3072, 0), (3072, 3072), (0, 3072)],
-        role="gateway", faces=dict(COMPASS),
-        frame=Frame(int(landing_x0 - 1024),
-                    int(top_y0 - LOWER_STEPS * LOWER_TREAD - 3072)),
-        region_kwargs=service.region_kwargs(),
-        note="the works cellar; its pit is the solid stack into the sewer",
-    )
-    cellar.surfaces(floor_z=CELLAR_FLOOR)
     top_room.staircase("flight_upper", "west", total_rise=PASSAGE_Z - GRADE,
                        tread=UPPER_TREAD, step_rise=2048,
                        arrive_at=landing.region_id,
                        connection={"role": "portal"})
-    # eight steep treads over the old three's run: a service stair
-    landing.staircase("flight_lower", "north",
-                      total_rise=CELLAR_FLOOR - PASSAGE_Z,
-                      tread=LOWER_STEPS * LOWER_TREAD // 8, step_rise=3584,
-                      arrive_at=cellar.region_id,
-                      connection={"role": "portal"})
     # The passage: south from the landing, over the sewer's trunk, in E1M2's
     # passage materials (brick 417, stone 281, clay tiles 120), two bodies
     # clear because no street lies over it.
@@ -811,7 +802,7 @@ def build():
           "the two room-over-room links between street and sewer")
     # ---- the two stack links (hand-built per stacks-v1; grammar req #7) ---
     def mouth_pair(name, upper_parent, upper_frame_xy, upper_floor,
-                   upper_style, landing_depth, see_through):
+                   upper_style, landing_depth, see_through, size=SHAFT):
         """A congruent stack mouth pair: upper pit + aligned lower tube.
 
         The lower tube's ceiling is the link plane (set at compile time by
@@ -823,7 +814,7 @@ def build():
         # singleton assemblies at the top of the city -- `yard_grate_mouth`
         # holding `yard_grate_upper`, and nothing else, ever.
         upper = (upper_parent or city).room(
-            f"{name}_mouth", [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
+            f"{name}_mouth", [(0, 0), (size, 0), (size, size), (0, size)],
             role="gateway", faces=dict(COMPASS), frame=Frame(int(ux), int(uy)),
             note=f"{name}: upper mouth (link plane at its floor)",
         )
@@ -836,7 +827,7 @@ def build():
         import citytree
         lower = mouths_part.room(
             f"{name}_mouth_below",
-            [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
+            [(0, 0), (size, 0), (size, size), (0, size)],
             role="gateway", faces=dict(COMPASS),
             frame=Frame(int(ux + park_dx), int(uy + park_dy)),
             # All 6 paired links in E1M1/E3M1 have an XSector on both
@@ -931,42 +922,20 @@ def build():
     # The station foot joins the silt trap in l3_sewer's chamber list.  That
     # puts the lower approach on the long, east-facing side of the final tread
     # instead of asking the player to turn through a short wall.
-    city.connect(grate_lower.face("east"), sewer_net["e_leg"].face("west"),
+    city.connect(grate_lower.face("east"),
+                 l3_sewer.edge(sewer_net, "e_leg", "west", at=gy / PU).face("west"),
                  connection_id="connection:grate_shaft_ring")
     # The towpath, from E3M3's own ledge family.  The two long legs are 24
     # plan units of bare tunnel each and the ring's most repetitive stretch.
     print("sewer towpaths:", l3_sewer.ledges(
         sewer, sewer_net, grade=SEWER_FLOOR, host_clear=SEWER_CLEAR))
 
-    # Cellar pit: solid, the stair's last leg; jump-out depth.
-    pit_xy = (int(landing_x0 - 1024 + 1024), int(top_y0 - LOWER_STEPS * LOWER_TREAD - 3072 + 1024))
-    cellar.carve([(1024 + dx, 1024 + dy)
-                  for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
-    pit_upper, pit_lower = mouth_pair(
-        "cellar_pit", stair, pit_xy, CELLAR_FLOOR,
-        Style(**INTERIORS["service"].style_kwargs(floor_shade=38,
-                                                  clear_height=SEWER_CLEAR)),
-        # See-through, not solid.  `rules_blood.stack-portal-wears-the-mirror-tile`
-        # is an ERROR sourced from mirrors.cpp IsRorSector: without the mirror
-        # tile the link still moves the player, who crosses it blind looking at
-        # an ordinary floor.  The original "solid where transparency is not
-        # wanted" fallback was a choice made before that rule was gradable.
-        PIT_LANDING_DEPTH, see_through=True)
-    for face in ("north", "east", "south", "west"):
-        city.connect(pit_upper.face(face), cellar.face("north"),
-                     connection_id=f"connection:cellar_pit_rim_{face}")
-    # The pit's aligned landing opens into the junction (it sits inside the
-    # junction's footprint area -- adjacency via a carved island there).
-    junction.carve([(pit_xy[0] - int(jx - jw / 2) + dx,
-                     pit_xy[1] - int(jy - jd / 2) + dy)
-                    for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
-    # All four rims, not just north and south: an edge that coincides and is
-    # solid on both sides is a fault no campaign map contains (the
-    # discriminator's coincident_solid_pairs is 0.000 across all 43), and it
-    # is what the two leftover rims here were.
-    for face in ("north", "east", "south", "west"):
-        city.connect(pit_lower.face(face), junction.face("north"),
-                     connection_id=f"connection:pit_landing_{face}")
+    # The cellar pit is gone: a shaft from the works cellar into the junction,
+    # a third way down within a few units of the pump station's spiral and
+    # the yard. The owner, 2026-11-21: "You are always putting these sewers
+    # enterances so close to each other ... We can ditch that underground
+    # passage sewer enterance, keep the pump station one". The stair still
+    # reaches the cellar; the ways down are the spiral and the manholes.
 
     STAGE("pumping-station",
           "the second way down: the pumping station's stairs")
@@ -1008,12 +977,98 @@ def build():
         "spiral: the pump station cellar down into the under-city",
         wind_into_sewer)
 
-    stack_links = [
-        {"stack_id": "stack:cellar_pit", "upper": pit_upper.region_id,
-         "lower": pit_lower.region_id, "link_id": 2,
-         "at_upper": (pit_xy[0] + SHAFT_HALF, pit_xy[1] + SHAFT_HALF),
-         "see_through": False},
-    ]
+    stack_links = []
+
+    STAGE("manholes",
+          "drain covers in the streets that a blast opens onto a shaft into the sewer")
+    # ---- manholes (`l3_sewer.MANHOLES`): a shaft from a street into the
+    # sewer; its cover is laid with the set pieces. The street keeps its
+    # level; the shaft drops a recess to a see-through link plane, and the
+    # landing below is the sewer's floor, a fall `conformance` checks does
+    # no harm.
+    manhole_mouths = {}
+    for link_id, (name, mx0, my0, size, district, how, leg, leg_face, _note) in enumerate(
+            l3_sewer.MANHOLES, start=10):
+        ux, uy = int(mx0 * PU), int(my0 * PU)
+        host = streets[district]
+        ox, oy = (int(v) for v in DISTRICT_BOUNDS[district][:2])
+        host.carve([(ux - ox + dx, uy - oy + dy)
+                    for dx, dy in ((0, 0), (size, 0), (size, size), (0, size))])
+        # the shaft lands in water, one step below the walks, running fast
+        # toward the ring (the owner: "You should fall into water")
+        water_floor = SEWER_FLOOR + l3_sewer.CHANNEL_DROP
+        m_upper, m_lower = mouth_pair(
+            name, district_of[district], (ux, uy),
+            GRADE + l3_sewer.MANHOLE_RECESS,
+            Style(**MASONRY.style_kwargs(
+                clear_height=STREET_SKY + l3_sewer.MANHOLE_RECESS)),
+            water_floor - GRADE - l3_sewer.MANHOLE_RECESS,
+            see_through=True, size=size)
+        run = (l3_sewer.flow_behavior(
+            {"east": 1024, "west": 0, "north": 512, "south": 1536}[leg_face],
+            *l3_sewer.LANDING_FLOW) if how == "beside"
+            else l3_sewer.flow_behavior(*l3_sewer.FLOW[leg]))
+        m_lower.region_kwargs["sector_behavior"].update(
+            {"depth": l3_sewer.WATER_DEPTH, **run})
+        m_lower.style = Style(**SEWER_WET.style_kwargs(
+            floor_shade=38, floor_z=water_floor,
+            clear_height=water_floor - GRADE - l3_sewer.MANHOLE_RECESS))
+        for face in ("north", "east", "south", "west"):
+            city.connect(m_upper.face(face), host.face("east"),
+                         connection_id=f"connection:{name}_rim_{face}")
+        if how == "inside":
+            # it lands in the water of a room it lies within: an island cut
+            # out of that room, open on all four sides
+            rx0, ry0, _rx1, _ry1 = l3_sewer._rects()[leg]
+            sewer_net[leg].carve([(ux - int(rx0) + dx, uy - int(ry0) + dy)
+                                  for dx, dy in ((0, 0), (size, 0), (size, size), (0, size))])
+            for face in ("north", "east", "south", "west"):
+                city.connect(m_lower.face(face), sewer_net[leg].face("north"),
+                             connection_id=f"connection:{name}_landing_{face}")
+            stack_links.append({
+                "stack_id": f"stack:{name}", "upper": m_upper.region_id,
+                "lower": m_lower.region_id, "link_id": link_id,
+                "at_upper": (ux + size // 2, uy + size // 2), "see_through": True,
+                "recess": 0})
+            manhole_mouths[name] = m_upper
+            continue
+        opposite = {"east": "west", "west": "east",
+                    "north": "south", "south": "north"}
+        # the landing opens off the leg through a short passage across the
+        # gap between the leg's wall and the shaft
+        lx0, ly0, lx1, ly1 = l3_sewer._rects()[leg]
+        span = {"east": (lx1, uy, ux, uy + size), "west": (ux + size, uy, lx0, uy + size),
+                "north": (ux, uy + size, ux + size, ly0),
+                "south": (ux, ly1, ux + size, uy)}[leg_face]
+        px0, py0, px1, py1 = (int(v) for v in span)
+        if px1 - px0 > 0 and py1 - py0 > 0:
+            passage = mouths_part.room(
+                f"{name}_passage",
+                [(0, 0), (px1 - px0, 0), (px1 - px0, py1 - py0), (0, py1 - py0)],
+                role="gateway", faces=dict(COMPASS), frame=Frame(px0, py0),
+                region_kwargs={"sector_behavior": {
+                    "depth": l3_sewer.WATER_DEPTH, "amplitude": -4,
+                    "shade_frequency": 4, **run}},
+                note=f"{name}: the shaft's water running onto the {leg}")
+            passage.style = Style(**SEWER_WET.style_kwargs(
+                floor_shade=38, floor_z=water_floor,
+                clear_height=SEWER_CLEAR + l3_sewer.CHANNEL_DROP))
+            city.connect(passage.face(opposite[leg_face]),
+                         sewer_net[leg].face(leg_face),
+                         connection_id=f"connection:{name}_passage_leg")
+            city.connect(m_lower.face(opposite[leg_face]),
+                         passage.face(leg_face),
+                         connection_id=f"connection:{name}_landing")
+        else:
+            city.connect(m_lower.face(opposite[leg_face]),
+                         sewer_net[leg].face(leg_face),
+                         connection_id=f"connection:{name}_landing")
+        stack_links.append({
+            "stack_id": f"stack:{name}", "upper": m_upper.region_id,
+            "lower": m_lower.region_id, "link_id": link_id,
+            "at_upper": (ux + size // 2, uy + size // 2), "see_through": True})
+        manhole_mouths[name] = m_upper
+    print("manholes:", sorted(manhole_mouths))
 
 
     STAGE("light-pools",
@@ -1065,9 +1120,12 @@ def build():
                                    gate_rects.get("cemetery", ()))
     # The crypt's cracked wall is the sewer trunk's west wall, seen from
     # the other side: 512 of earth under the avenue's kerb.
-    for _index in range(len(l3_church.BREACH_PIECES)):
-        city.connect(church_rooms[f"crypt_breach_{_index}"].face("east"),
-                     sewer_net["w_leg"].face("west"),
+    from bloodmap import breach as _breach
+    for _index, _name in enumerate(l3_church.BREACH_ROOMS):
+        _piece = church_rooms[_name]
+        city.connect(_piece.face("far"),
+                     l3_sewer.edge(sewer_net, "w_leg", "west",
+                                   at=_breach.face_middle(_piece, "far")[1] / PU).face("west"),
                      connection_id=f"connection:crypt_breach_sewer_{_index}")
 
     STAGE("arcade",
@@ -1115,6 +1173,7 @@ def build():
                         "cistern": cistern.region_id,
                         "stash": stash.region_id},
         "sewer_rooms_new": sewer_net,
+        "manholes": manhole_mouths,
         "station_rooms": shed,
         "theatre_rooms": theatre_rooms,
         "door_levers": door_levers,
@@ -1293,8 +1352,10 @@ def build_stack_link(layout, spec, offset_d, *, see_through):
     upper = layout.regions[spec["upper"]]
     lower = layout.regions[spec["lower"]]
     from bloodmap.roomoverroom import align_lower_mouth
+    # a landing that is an island in a room's water keeps that water's level
+    # (`recess` 0); the default keeps a drop 2048 below its neighbours
     lower_ceiling, _lower_floor = align_lower_mouth(
-        layout, spec["upper"], spec["lower"])
+        layout, spec["upper"], spec["lower"], recess=spec.get("recess", 2048))
     if see_through:
         upper.floor_picnum = MIRROR_TILE
         lower.ceiling_picnum = MIRROR_TILE
@@ -1488,7 +1549,9 @@ def main() -> int:
         # and the count was never actually declared -- the player would never
         # have been told a secret was found. The rule caught it; the helper
         # cannot forget it.
-        behavior=motion.secret_total(3))            # stash + flooded branch
+        # the stash, the flooded branch, the arcade's cache, and the sewer's
+        # two legends: Old Molly's nest and the plague pit
+        behavior=motion.secret_total(5))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -1526,6 +1589,7 @@ def main() -> int:
 
     l3_sewer.populate(layout, ctx["sewer_rooms_new"], _attested_or_none,
                       torch_fields, flame_stand=FLAME_STAND)
+    print("manhole covers:", l3_sewer.cover_manholes(layout, ctx["manholes"]))
     # Parametric detail runs along the sewer ring: the declaration is a
     # table of faces, the emission is a rhythm along the whole network.
     import runs as run_layer
@@ -1546,7 +1610,9 @@ def main() -> int:
     print("ship flag:", _harbour.fly_flag(layout))
     print("crypt breach:", l3_church.crack(
         layout, ctx["church_rooms"],
-        ctx["sewer_rooms_new"]["w_leg"].region_id))
+        l3_sewer.edge(ctx["sewer_rooms_new"], "w_leg", "west",
+                      at=sum(__import__("props").room_rect(ctx["church_rooms"]["crypt"])[1::2]) / 2 / PU
+                      ).region_id))
     print("church populated:", l3_church.populate(
         layout, ctx["church_rooms"], _attested_or_none, torch_fields,
         FLAME_STAND))
@@ -1701,6 +1767,9 @@ def main() -> int:
         for spot in ((0.25, 0.3), (0.5, 0.6), (0.75, 0.35)):
             amb.append((region_id, "street", spot))
     for index, (name, room) in enumerate(ctx["sewer_rooms_new"].items()):
+        _shut = layout.regions.get(room.region_id)
+        if _shut is not None and int(_shut.ceiling_z) >= int(_shut.floor_z):
+            continue                      # shut at rest: a blown hole's pieces
         if index % 2 == 0:
             amb.append((room.region_id, "sewer", (0.5, 0.5)))
     for index, (name, room) in enumerate(ctx["church_rooms"].items()):
@@ -1728,7 +1797,10 @@ def main() -> int:
             continue
         _fx.signature(layout, f"sig:mall_{_key}", _room.region_id)
         _sig += 1
-    for _key, _room in list(ctx["sewer_rooms_new"].items())[:8]:
+    # not in a corridor's walk: its ceiling slopes, and the porthole hangs
+    # from a flat ceiling's height
+    _sewer_sig = [(k, r) for k, r in ctx["sewer_rooms_new"].items() if "_walk" not in k]
+    for _key, _room in _sewer_sig[:8]:
         _fx.signature(layout, f"sig:sewer_{_key}", _room.region_id)
         _sig += 1
     print(f"signature portholes: {_sig}")
@@ -1849,7 +1921,10 @@ def main() -> int:
     print("door frames:", len(door_frames["doors"]))
     import l3_shed as _late_shed
     import l3_station as _late_station
+    import l3_mall as _late_mall
     for _region_id, _type in {**l3_church.LATE_TYPES,
+                              **l3_sewer.LATE_TYPES,
+                              **_late_mall.LATE_TYPES,
                               **_late_shed.LATE_TYPES,
                               **_late_station.LATE_TYPES}.items():
         layout.regions[_region_id].type = _type
@@ -1949,8 +2024,10 @@ def main() -> int:
 
     # The landmark wears its own stone, inside and out, as E1M5's does.
     import l3_church
+    from resolution import CELLAR_FLOOR as _CELLAR_FLOOR
     print("church face:", facade_pass.face_landmark(
-        compiled.level, l3_church.MASS, INTERIORS["church"].wall))
+        compiled.level, l3_church.MASS, INTERIORS["church"].wall,
+        deepest=_CELLAR_FLOOR))
     # ...and its roofs and yard wall wear theirs on the side that sees them.
     from bloodmap import skyline
     print("church roofs:", skyline.dress_steps(compiled.level, {
@@ -2414,7 +2491,7 @@ def main() -> int:
         _was_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
                                       if d.severity in ("error", "warning"))
         _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
-                                    lamp_scale=_lights.lamp_scale)
+                                    lamp_scale=_lights.lamp_scale, room_key=_lights.room_key)
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
         _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
         _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
