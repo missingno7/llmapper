@@ -357,6 +357,18 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertTrue(all(fields["floor_picnum"] == 1129 and not fields["floor_stat"] & 4
                             for fields in rails))
 
+    def test_a_manhole_cover_breaks_to_an_explosion(self):
+        #: the owner: "Manhole covers can't be destroyed by explosion" -- they
+        #: were on status 0, and actRadiusDamage damages only the dude and
+        #: thing lists (actor.cpp:2728, 2762). E4M3 sprite 130 is on 4.
+        import l3_sewer
+        covers = [s.fields for s in self.disk.sprites
+                  if int(s.fields["picnum"]) == l3_sewer.MANHOLE_COVER["picnum"]
+                  and int(s.fields["type"]) == 417]
+        self.assertGreaterEqual(len(covers), len(l3_sewer.MANHOLES))
+        for cover in covers:
+            self.assertEqual(int(cover["status"]), 4)
+
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266
                   and int(w["cstat"]) & 16]

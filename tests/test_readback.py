@@ -444,6 +444,10 @@ class SlideShuttleReadBack(unittest.TestCase):
         self.assertEqual([(x + 2432, y) for x, y in off], on)
         swept = sweep_sector(disk, deck)
         self.assertTrue(swept.sound, swept.problems)
+        #: its floor texture rides with it (floor_stat 64): the owner, riding
+        #: the stockyard trolley, "should have relative texture instead of
+        #: absolute on the floor to move together with sector"
+        self.assertTrue(int(record_fields(sector)["floor_stat"]) & 64)
 
     def test_refuses_a_sweep_through_fixed_geometry_before_carving(self):
         from bloodmap.mechanism import MechanismError

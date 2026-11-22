@@ -471,7 +471,18 @@ HALL_LIFT_LOWER = (19.0, 43.5, 20.0, 44.75)
 HALL_LIFT_WIRE = "sewer:settling-hall-lift"
 TROLLEY_WIRE = "sewer:stockyard-trolley"
 TROLLEY_LAYER = "stockyard_sampling"
-TROLLEY_CEILING = SEWER_FLOOR - 18432
+#: The owner, after playing it: "that whole room has too low ceiling. Rails
+#: it moves through are really short", and: "If there is no room to raise
+#: ceiling you can probably just put it lower and connect it with stairs".
+#: The harbour's sea layer reaches down to 41,984 over its west half, so the
+#: roof stays a slab under that (43,008) and the chamber SINKS two full steps
+#: (4,096 each, the most a body climbs: the Settling Hall's stair) down from
+#: the drain's west walk, the blood pouring over the drop into the inlet:
+#: 26,624 clear, 1.57 bodies, where it was 18,432.
+TROLLEY_CEILING = 41984 + 1024
+TROLLEY_STEP = 4096
+TROLLEY_SINK = 2 * TROLLEY_STEP
+TROLLEY_FLOOR = SEWER_FLOOR + TROLLEY_SINK
 
 #: Graves Brook's walks: E3M3's stone walk (568) between rubble walls. (Not
 #: the crypt's earth, 270: at the crypt's own depth that is what makes the
@@ -502,13 +513,75 @@ STOCKYARD_ROOMS = [
 # The terminal chamber is wider than the race. The west walk continues
 # along it to the tail, and the opposing berth is the inspection alcove.
 STOCKYARD_TROLLEY_ROOMS = (
-    ("trolley_inlet", (49.25, 55.75, 56.125, 57.25), "blood at the end of the race"),
-    ("trolley_track", (52.125, 57.25, 56.125, 59.25), "straight rail at the waterline"),
-    ("trolley_tail", (52.125, 59.25, 56.125, 61.0), "blood below the slaughterhouse pipe"),
-    ("trolley_walk", (47.5, 55.75, 49.25, 61.0), "the continuous dry maintenance walk"),
+    ("trolley_inlet", (49.25, 55.75, 60.125, 57.25), "blood at the end of the race"),
+    ("trolley_track", (52.125, 57.25, 60.125, 59.25), "straight rail at the waterline"),
+    ("trolley_tail", (52.125, 59.25, 60.125, 61.0), "blood below the slaughterhouse pipe"),
+    ("trolley_step", (47.5, 55.75, 49.25, 57.25), "a step down from the drain's walk, beside the inlet"),
+    ("trolley_walk", (47.5, 57.25, 49.25, 61.0), "the continuous dry maintenance walk"),
     ("trolley_ledge", (49.25, 57.25, 52.125, 61.0), "dry west boarding ledge"),
-    ("trolley_alcove", (56.125, 57.25, 58.125, 59.25), "dry sampling and inspection alcove"),
+    ("trolley_alcove", (60.125, 57.25, 62.125, 59.25), "dry sampling and inspection alcove"),
 )
+
+#: A channel's water falling down a drop into a lower room, as the Settling
+#: Hall's sewagefall does it (E3M3 wall 1307's panned 1120 under a lintel,
+#: wall 1319's bottom swap on the lower side, sprite 393's water sound at the
+#: foot). The owner, 2026-11-22: "you will have stairs down and waterfall
+#: between them ... some sort of technical junction ... can add more depth".
+POUR_SOURCE = ("E3M3", 1307, 1319, 393, 174)
+
+
+def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: float = 0.5):
+    """Make the drop on `upper`'s `face` into `lower` a fall of water (or, at pal 7, blood).
+
+    `upper` is the room the water comes from, `lower` the room under the
+    drop it falls into; their faces must be joined. Both get a `raw` step:
+    the upper wall wears E3M3's panned falling-water finish in its own fixed
+    frame, the lower wall shows it (bottom swap), and the falling-water sound
+    stands at the foot, `sound_at` along the face.
+    """
+    from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+    from bloodmap.model import record_extra, record_fields
+
+    source, wall_id, pool_id, sound_sprite, sound_sector = POUR_SOURCE
+    example = read_map(corpus_map_path(source))
+    wall = example.walls[wall_id]
+    finish = {key: record_fields(wall)[key] for key in
+              ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
+    if pal:
+        finish["pal"] = int(pal)
+    pan = {key: record_extra(wall)[key] for key in
+           ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
+    pool_cstat = record_fields(example.walls[pool_id])["cstat"]
+    sound = example.sprites[sound_sprite]
+    sound_fields = {key: record_fields(sound)[key] for key in
+                    ("picnum", "type", "cstat", "status", "shade", "x_repeat", "y_repeat")}
+    sound_behavior = {key: record_extra(sound)[key] for key in
+                      ("state", "busy", "data_1", "data_2", "data_3", "data_4")}
+    sound_height = record_fields(example.sectors[sound_sector])["floor_z"] - record_fields(sound)["z"]
+
+    def spill(layout, room):
+        a, b = (room.world_frame().apply(p) for p in room.local_edge(face))
+        layout.paint_wall(room.region_id, a, b, fixed_frame=True, **finish)
+        layout.wire_wall(room.region_id, a, b, **pan)
+        layout.paint_wall(lower.region_id, a, b, cstat=pool_cstat)
+
+    def foot(layout, room):
+        a, b = (upper.world_frame().apply(p) for p in upper.local_edge(face))
+        x = a[0] + (b[0] - a[0]) * sound_at
+        y = a[1] + (b[1] - a[1]) * sound_at
+        # half a unit into the lower room
+        cx, cy = (sum(p[0] for p in room.world_outline()) / len(room.outline),
+                  sum(p[1] for p in room.world_outline()) / len(room.outline))
+        norm = ((cx - x) ** 2 + (cy - y) ** 2) ** 0.5 or 1.0
+        x, y = x + (cx - x) / norm * 512, y + (cy - y) / norm * 512
+        floor = layout.regions[room.region_id].floor_z
+        layout.add_sprite(sound_id, room.region_id, x=int(x), y=int(y),
+                          z=int(floor - sound_height), behavior=sound_behavior, **sound_fields)
+
+    upper.raw(f"{source} walls {wall_id}/{pool_id}: falling water on the drop", spill)
+    lower.raw(f"{source} sprite {sound_sprite}: falling water sound at the foot", foot)
+
 
 def stockyard_trolley(city, sewer, rooms: dict) -> None:
     """Extend the stockyard race with the sampling chamber and its two berths."""
@@ -517,22 +590,23 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
     # The terminal basin reaches under Market Slip's river. Leave a slab
     # between the harbour's band and the sampling chamber's flat roof.
     city.declare_layer(TROLLEY_LAYER, ceiling_z=TROLLEY_CEILING,
-                       floor_z=SEWER_FLOOR + CHANNEL_DROP,
+                       floor_z=TROLLEY_FLOOR + CHANNEL_DROP,
                        note="the stockyard sampling chamber under the river")
     part = sewer.assembly("sampling", style=Style(layer=TROLLEY_LAYER),
                           note="the stockyard's cross-channel sampling chamber")
     for name, rect, note in STOCKYARD_TROLLEY_ROOMS:
         x0, y0, x1, y1 = (round(v * PU) for v in rect)
-        dry = name in {"trolley_walk", "trolley_ledge", "trolley_alcove"}
+        dry = name in {"trolley_step", "trolley_walk", "trolley_ledge", "trolley_alcove"}
         material = BRANCH_DRY["stockyard_drain"] if dry else STOCKYARD_WET
         room = part.rect_room(
             name, origin=(x0, y0), size=(x1 - x0, y1 - y0),
             role="interior", note=note, intent={"kind": "furnished"},
             region_kwargs=material.region_kwargs())
         drop = 0 if dry else CHANNEL_DROP
+        floor = (SEWER_FLOOR + TROLLEY_STEP if name == "trolley_step" else TROLLEY_FLOOR) + drop
         room.surfaces(**material.style_kwargs(
             ceiling_picnum=253,
-            floor_z=SEWER_FLOOR + drop, clear_height=SEWER_FLOOR + drop - TROLLEY_CEILING,
+            floor_z=floor, clear_height=floor - TROLLEY_CEILING,
             floor_shade=24 if dry else 30))
         if name in {"trolley_inlet", "trolley_tail"}:
             angle = FLOW["stockyard_drain"][0]
@@ -547,10 +621,11 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
     for a, face_a, b, face_b in (
         ("stockyard_drain", "south", "trolley_inlet", "north"),
         ("stockyard_drain_walk_b", "south", "trolley_inlet", "north"),
-        ("stockyard_drain_walk_a", "south", "trolley_walk", "north"),
+        ("stockyard_drain_walk_a", "south", "trolley_step", "north"),
+        ("trolley_walk", "north", "trolley_step", "south"),
+        ("trolley_inlet", "west", "trolley_step", "east"),
         ("trolley_track", "north", "trolley_inlet", "south"),
         ("trolley_tail", "north", "trolley_track", "south"),
-        ("trolley_inlet", "west", "trolley_walk", "east"),
         ("trolley_ledge", "west", "trolley_walk", "east"),
         ("trolley_ledge", "north", "trolley_inlet", "south"),
         ("trolley_track", "west", "trolley_ledge", "east"),
@@ -559,6 +634,10 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
     ):
         citytree.join(rooms[a], rooms[b], at_a=face_a, at_b=face_b,
                       connection_id=f"connection:{a}_{b}")
+    # the drain's blood falls over the sunk chamber's edge beside the stair
+    # down: a pour in E1M8's blood palette (7)
+    pour(rooms["stockyard_drain"], "south", rooms["trolley_inlet"], pal=7,
+         sound_id="placement:stockyard:pour_sound")
     rooms["trolley_track"].raw(
         "#2WAYCAR: full-wall slide, dry calls, and a carried departure button",
         lambda layout, track: _furnish_trolley(layout, track, rooms))
@@ -588,7 +667,7 @@ def _furnish_trolley(layout, track, rooms: dict) -> None:
     mechanism.slide_shuttle(
         layout, "stockyard_trolley", host_region=track.region_id, deck_region=deck_id,
         footprint=deck, travel=(length + 2 * rail_to_berth - (x1 - x0), 0),
-        channel=wire.channel, floor_z=SEWER_FLOOR,
+        channel=wire.channel, floor_z=TROLLEY_FLOOR,
         wall_picnum=499, portal_wall_picnum=499, floor_picnum=209, ceiling_picnum=253,
         wall_shade=22, floor_shade=22, ceiling_shade=30, intent={"kind": "furnished"})
 
@@ -621,7 +700,7 @@ def _furnish_trolley(layout, track, rooms: dict) -> None:
     # The button is on the inside face of the north railing. Both ends
     # of the deck stay clear for boarding.
     layout.add_sprite(
-        rider, deck_id, x=cx, y=cy - 352, z=SEWER_FLOOR - 7936, angle=512,
+        rider, deck_id, x=cx, y=cy - 352, z=TROLLEY_FLOOR - 7936, angle=512,
         shade=-12, behavior=dict(drive["behavior"]),
         **{**drive["fields"], "cstat": drive["fields"]["cstat"] | mechanism.CARRY_WITH})
 
@@ -639,7 +718,7 @@ def _furnish_trolley(layout, track, rooms: dict) -> None:
                                      fields["y_repeat"], fields["cstat"])
             layout.add_sprite(
                 f"sewer:trolley_{label}_{end}", deck_id, x=cx, y=cy + side * inset,
-                z=SEWER_FLOOR - 8 - bottom, angle=angle, shade=12,
+                z=TROLLEY_FLOOR - 8 - bottom, angle=angle, shade=12,
                 behavior=dict(spec["behavior"]), **fields)
 
     for name in ("trolley_inlet", "trolley_tail"):
@@ -1754,7 +1833,13 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
             height_player_heights=MANHOLE_RECESS / PROFILE.standing_height,
             type=type_id, picnum=MANHOLE_COVER["picnum"],
             cstat=MANHOLE_COVER["cstat"], x_repeat=MANHOLE_COVER["repeat"],
-            y_repeat=MANHOLE_COVER["repeat"], angle=1536, shade=16, status=0,
+            y_repeat=MANHOLE_COVER["repeat"], angle=1536, shade=16,
+            # on the thing list (4), as E4M3's sprite 130 is: an explosion
+            # damages only dudes and things (actor.cpp actRadiusDamage, 2728
+            # and 2762), and on status 0 the owner found "Manhole covers
+            # can't be destroyed by explosion". A 417's physics flags are 0
+            # (thingInfo "Explode Object"): it does not fall into the shaft.
+            status=4,
             behavior=dict(spec["behavior"]))
         placed.append(name)
     return placed

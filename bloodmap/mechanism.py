@@ -1074,6 +1074,11 @@ def slide_shuttle(
                 or any(point_in_loop(p, hole) != 0 for p in sweep)):
             raise MechanismError(f"{name}: the swept deck meets a hole in {host_region}")
 
+    # The deck's floor is aligned to the deck (floor_stat 64), so its
+    # texture rides with it: the owner, riding the trolley, "should have
+    # relative texture instead of absolute on the floor to move together
+    # with sector".
+    surfaces = {"relative_alignment": "floor", **surfaces}
     layout.add_region(
         deck_region, deck, type=616, floor_z=floor_z,
         ceiling_z=host.ceiling_z, layer=host.layer,

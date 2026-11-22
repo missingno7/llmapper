@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "36a80874abc29bf8d06a4a3430e929293fc5e6f6dd6ec18330a0467d4c37e91c",
-  "map_sha256": "3abe6ad14f89069c79afa560dc8870e8ca86be360e8f766df1bedbb4cb0c1ee0",
+  "manifest_sha256": "f829a243dae475d8257d5f531dafa3b8050c47028105be9a88f24d620defcb81",
+  "map_sha256": "1ae89ea7d48191b3dd0f1f0f4ed71249cb3e87fe380b74fa249ddcec78f1cf2f",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1106,
-  "walls": 10773,
-  "sprites": 1259,
+  "sectors": 1104,
+  "walls": 10775,
+  "sprites": 1261,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -23,7 +23,7 @@
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1246,
+   "note": 1245,
    "warning": 5
   }
  },
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 471",
+    "root": "sprite 472",
     "cause": "push",
-    "sector": 498,
+    "sector": 499,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 588,
+    "sprite": 589,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -227,15 +227,15 @@
    "credited_normal": 7,
    "credited_super": 0
   },
-  "space": 1083,
-  "reached": 1083,
+  "space": 1081,
+  "reached": 1081,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 868,
+    "sectors": 866,
     "first_sector": 0
    },
    {
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 658 (channel 117)"
+     "use switch sprite 659 (channel 117)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 659 (channel 118)"
+     "use switch sprite 660 (channel 118)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 660 (channel 119)"
+     "use switch sprite 661 (channel 119)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 661 (channel 120)"
+     "use switch sprite 662 (channel 120)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,15 +297,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 470 (channel 108)"
+     "use switch sprite 471 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 496
+    "first_sector": 497
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 510 (channel 103)"
+     "destroy sprite 511 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 662 (channel 121)"
+     "use switch sprite 663 (channel 121)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,7 +321,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 243 (channel 109)"
+     "destroy sprite 244 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 390
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 580 (channel 104)"
+     "destroy sprite 581 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -984,26 +984,26 @@
      "second",
      "wall_art",
      "flat_art",
-     "motion"
+     "levels",
+     "motion",
+     "machines"
     ],
     "missing": [
      "trim",
-     "levels",
-     "light",
-     "machines"
+     "light"
     ],
     "campaign_p25": 2,
     "campaign_p50": 5
    },
    "metres": [
     9.1,
-    18.5,
-    2.0
+    25.4,
+    3.0
    ],
    "cramped": [
     "short side 5376 (campaign p25 6144)",
-    "height 1.09 bodies (campaign p25 1.93)",
-    "1.09 bodies high (a destination wants 1.93)"
+    "height 1.69 bodies (campaign p25 1.93)",
+    "1.69 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -1708,21 +1708,7 @@
   {
    "kind": "missing-layer",
    "place": "Stockyard sampling chamber",
-   "says": "carries no levels layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "Stockyard sampling chamber",
    "says": "carries no light layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "Stockyard sampling chamber",
-   "says": "carries no machines layer",
    "owner": "projects/blood-city/level/detailing.py",
    "see": "python -m tools.place_character --help"
   },
@@ -1736,14 +1722,14 @@
   {
    "kind": "cramped",
    "place": "Stockyard sampling chamber",
-   "says": "height 1.09 bodies (campaign p25 1.93)",
+   "says": "height 1.69 bodies (campaign p25 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
    "place": "Stockyard sampling chamber",
-   "says": "1.09 bodies high (a destination wants 1.93)",
+   "says": "1.69 bodies high (a destination wants 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
@@ -2574,7 +2560,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 966, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 967, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2582,7 +2568,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [624, 625], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [625, 626], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"
@@ -2614,7 +2600,7 @@
   "critique": 12,
   "dropped": 6,
   "lost-tile": 3,
-  "missing-layer": 22,
+  "missing-layer": 20,
   "never-critiqued": 13,
   "outside-campaign": 59,
   "refused": 7,
