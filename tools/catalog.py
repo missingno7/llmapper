@@ -784,6 +784,10 @@ def record(map_name: str, kind: str, index: int) -> str:
 
 def show(what: str) -> str:
     """One entry, with everything the library links to it."""
+    if what.lower().startswith("sound:"):
+        from tools import sound_catalog
+
+        return sound_catalog.show(what.split(":", 1)[1])
     lines = []
     if not what.isdigit():
         from bloodmap import examples
@@ -1110,6 +1114,10 @@ def find_all(words: list[str]) -> str:
 
     out.append("WHAT PLAYERS WROTE  (Blood Wiki level pages: python -m tools.wiki_levels show <map>)")
     out.extend(wiki_levels.find(words)[:12])
+    from tools import sound_catalog
+
+    out.append("SOUNDS  (python -m tools.catalog show sound:<id>)")
+    out.extend(sound_catalog.find(words))
     return "\n".join(out)
 
 

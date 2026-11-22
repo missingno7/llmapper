@@ -15,6 +15,7 @@ rather than tons of texts, it needs to be a real library you can use."
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
 | Parts | what a mechanism is made of: every sector, wall and sprite type the campaign uses, every sector effect, every engine channel and every tutorial lesson, each with maps that show it, what sets it off and what it drives | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` (`entries`) |
 | What players wrote | each campaign level's Blood Wiki page as facts: designer, song, enemies per difficulty, secrets and their rewards, keys in the walkthrough's order, the words its walkthrough, secrets and trivia use; the prose itself is cached locally, not committed | the map (`E3M3`) | `wiki/levels.json` (`python -m tools.wiki_levels fetch`, `mine`, `show E3M3`; shown in `catalog map`, searched by `catalog find`) |
+| Sounds | numbered SFX entries, sample lengths and loops, sourced descriptions, Whisper transcripts, and configured campaign uses with examples | `sound:3001` | `sounds.json` (`python -m tools.sound_catalog`) |
 | Wiring | the mechanisms themselves: every shape of chain the campaign has, an act on a sender and what answers, with how often, how many are keyed, and where | words (`catalog wiring switch door`) | `design/mechanism-examples-v1.json` (`wiring`) |
 
 The owner's names outrank the mapper's readings wherever both exist.
@@ -58,6 +59,8 @@ one thing keeps one name and a search for it finds all of it.
 python -m tools.catalog find rail          # every shelf at once
 python -m tools.catalog map E1M1           # one whole map: rooms, how it ends, wiring, materials
 python -m tools.catalog find conveyor      # ...a part is found the same way
+python -m tools.catalog find door creaking open
+python -m tools.catalog show sound:3001
 python -m tools.catalog show conveyor      # what it is, how often, where to look
 python -m tools.catalog show sector:614    # a type: readings, what sets it off, examples
 python -m tools.catalog wiring switch door # mechanisms: an act, a sender, what answers
@@ -77,6 +80,33 @@ python -m tools.study station --seed E1M2:271!   # look at a place, start a stud
 python -m tools.ideas list --grep curtain  # idea cards
 python -m tools.catalog status             # how much is catalogued
 ```
+
+## Sounds
+
+Search by the words in the recording or the description. A sound entry
+shows both when they disagree. Ronald Allen's 1997 list is credited on each
+entry it describes. Archive-name readings and engine use are credited
+separately. Whisper confidence is the geometric mean token probability,
+with the model's no-speech probability alongside it.
+The shelf keeps the decoded wording when a name, engine call, or published
+caption supports a correction. Cabal spellings cite the vocabulary used
+to interpret those sounds. Entries marked unresolved have speech evidence
+but conflicting or unintelligible decodes.
+
+The shelf covers the numbered SFX namespace in `SOUNDS.RFF`. MIDI and
+standalone WAV resources use separate namespaces. Duration is one pass at
+the header's format rate, with nominal pitched 3D duration also shown if
+different. Campaign counts are sound slots, including indirect glass sounds
+from XWALL gib types. Sector movement sounds live on sprites in the sector.
+
+Regenerate with `python -m tools.sound_catalog --transcribe` and the cached
+Whisper medium.en weights. The miner takes Allen's supplied list from
+`work/briefs/sector_ambient_sfx.json` (override with `--published`). It
+writes WAVs and decoding scores to `work/sound-catalog/`. An existing
+shelf supplies the published descriptions when the brief is absent.
+With cached decodes, run `python -m tools.sound_catalog` to rebuild the
+shelf. Use
+`--verify ID ...` for a second decode with full context and timestamps.
 
 ## The loop
 
