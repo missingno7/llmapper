@@ -282,7 +282,7 @@ class StationTests(unittest.TestCase):
     def test_the_track_is_seen_and_the_tunnel_darkens(self):
         s = self.station
         tracks = [i for i, sec in enumerate(self.sectors)
-                  if int(sec["floor_picnum"]) == s.TRACK]
+                  if int(sec["floor_picnum"]) == s.TRACK and int(sec["floor_z"]) == s.BED_Z]
         self.assertGreaterEqual(len(tracks), 5)   # three beds, two bores
         #: "You didn't spot that rails are going 90 degrees from train than
         #: they should really go?" -- the track runs east-west, tile 1129's

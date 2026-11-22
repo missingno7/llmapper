@@ -159,6 +159,14 @@
     "E1M2:34!"
    ],
    "date": "2026-11-22"
+  },
+  "ghost-station": {
+   "want": "A tiled underground platform with the lights still on, behind the pump station's maintenance hatch",
+   "seeds": [
+    "E1M2:272!",
+    "E1M2:264!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

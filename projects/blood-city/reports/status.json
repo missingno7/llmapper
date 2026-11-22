@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "be2a0e842a22cf0c28cee2e6f29bb26e446fca8b1df5a015fc921f5fc67a51cf",
-  "map_sha256": "04df0f384a3aa2746bc0169d2b3bd1cb6d429a584ba7a3cfebcf7c864ca3361b",
+  "manifest_sha256": "36a80874abc29bf8d06a4a3430e929293fc5e6f6dd6ec18330a0467d4c37e91c",
+  "map_sha256": "3abe6ad14f89069c79afa560dc8870e8ca86be360e8f766df1bedbb4cb0c1ee0",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1066,
-  "walls": 10531,
-  "sprites": 1213,
+  "sectors": 1106,
+  "walls": 10773,
+  "sprites": 1259,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.74,
-   "walls": 0.357,
-   "sprites": 0.926
+   "sectors": 0.73,
+   "walls": 0.342,
+   "sprites": 0.923
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1239,
+   "note": 1246,
    "warning": 5
   }
  },
@@ -36,165 +36,165 @@
   {
    "name": "cemetery",
    "says": "the cemetery as a walled, gated ground carved from its district",
-   "at": "projects/blood-city/level/build_skeleton.py:451"
+   "at": "projects/blood-city/level/build_skeleton.py:454"
   },
   {
    "name": "sewer",
    "says": "the sewer declared at depth beneath Foundry Ward",
-   "at": "projects/blood-city/level/build_skeleton.py:564"
+   "at": "projects/blood-city/level/build_skeleton.py:567"
   },
   {
    "name": "works-stair",
    "says": "the first way down: the works stair, in flights, to the cellar",
-   "at": "projects/blood-city/level/build_skeleton.py:647"
+   "at": "projects/blood-city/level/build_skeleton.py:650"
   },
   {
    "name": "stack-links",
    "says": "the two room-over-room links between street and sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:805"
+   "at": "projects/blood-city/level/build_skeleton.py:808"
   },
   {
    "name": "sewer-network",
    "says": "the sewer's ring, its chambers and the necks between them",
-   "at": "projects/blood-city/level/build_skeleton.py:916"
+   "at": "projects/blood-city/level/build_skeleton.py:919"
   },
   {
    "name": "pumping-station",
    "says": "the second way down: the pumping station's stairs",
-   "at": "projects/blood-city/level/build_skeleton.py:944"
+   "at": "projects/blood-city/level/build_skeleton.py:947"
   },
   {
    "name": "manholes",
    "says": "drain covers in the streets that a blast opens onto a shaft into the sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:986"
+   "at": "projects/blood-city/level/build_skeleton.py:990"
   },
   {
    "name": "light-pools",
    "says": "patches of lit floor in the streets, declared as regions",
-   "at": "projects/blood-city/level/build_skeleton.py:1081"
+   "at": "projects/blood-city/level/build_skeleton.py:1085"
   },
   {
    "name": "church",
    "says": "St Gallow's: nave, tower, crypt",
-   "at": "projects/blood-city/level/build_skeleton.py:1120"
+   "at": "projects/blood-city/level/build_skeleton.py:1124"
   },
   {
    "name": "arcade",
    "says": "the Gravesend Arcade and its shops",
-   "at": "projects/blood-city/level/build_skeleton.py:1138"
+   "at": "projects/blood-city/level/build_skeleton.py:1142"
   },
   {
    "name": "theatre",
    "says": "Theatre Row: the Aldermack, the saloon, the pawnshop",
-   "at": "projects/blood-city/level/build_skeleton.py:1144"
+   "at": "projects/blood-city/level/build_skeleton.py:1148"
   },
   {
    "name": "station",
    "says": "Gravesend Station behind the north wall",
-   "at": "projects/blood-city/level/build_skeleton.py:1153"
+   "at": "projects/blood-city/level/build_skeleton.py:1157"
   },
   {
    "name": "market",
    "says": "Market Slip: the quay, the harbour and the ship",
-   "at": "projects/blood-city/level/build_skeleton.py:1159"
+   "at": "projects/blood-city/level/build_skeleton.py:1163"
   },
   {
    "name": "foundry",
    "says": "Foundry Ward, the pilot district, with its machine hall",
-   "at": "projects/blood-city/level/build_skeleton.py:1170"
+   "at": "projects/blood-city/level/build_skeleton.py:1174"
   },
   {
    "name": "undeclared-venues",
    "says": "venues on the plan that nobody has built, declared as such",
-   "at": "projects/blood-city/level/build_skeleton.py:1196"
+   "at": "projects/blood-city/level/build_skeleton.py:1200"
   },
   {
    "name": "start",
    "says": "the player's start on the quay, and the manifest begins",
-   "at": "projects/blood-city/level/build_skeleton.py:1228"
+   "at": "projects/blood-city/level/build_skeleton.py:1232"
   },
   {
    "name": "street-anatomy",
    "says": "pavement, carriageway and kerb along every street",
-   "at": "projects/blood-city/level/build_skeleton.py:1263"
+   "at": "projects/blood-city/level/build_skeleton.py:1267"
   },
   {
    "name": "street-ends",
    "says": "the walls where the main streets stop",
-   "at": "projects/blood-city/level/build_skeleton.py:1288"
+   "at": "projects/blood-city/level/build_skeleton.py:1292"
   },
   {
    "name": "connect",
    "says": "the program becomes a planar layout; gates join the regions",
-   "at": "projects/blood-city/level/build_skeleton.py:1506"
+   "at": "projects/blood-city/level/build_skeleton.py:1510"
   },
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1531"
+   "at": "projects/blood-city/level/build_skeleton.py:1535"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1652"
+   "at": "projects/blood-city/level/build_skeleton.py:1656"
   },
   {
    "name": "street-dressing",
    "says": "levers by doors, ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1759"
+   "at": "projects/blood-city/level/build_skeleton.py:1763"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1837"
+   "at": "projects/blood-city/level/build_skeleton.py:1841"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1872"
+   "at": "projects/blood-city/level/build_skeleton.py:1876"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1927"
+   "at": "projects/blood-city/level/build_skeleton.py:1931"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1970"
+   "at": "projects/blood-city/level/build_skeleton.py:1974"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1989"
+   "at": "projects/blood-city/level/build_skeleton.py:1993"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2134"
+   "at": "projects/blood-city/level/build_skeleton.py:2140"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2211"
+   "at": "projects/blood-city/level/build_skeleton.py:2217"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2264"
+   "at": "projects/blood-city/level/build_skeleton.py:2270"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2463"
+   "at": "projects/blood-city/level/build_skeleton.py:2469"
   }
  ],
  "finish": {
   "exits": [
    {
-    "root": "sprite 425",
+    "root": "sprite 471",
     "cause": "push",
-    "sector": 489,
+    "sector": 498,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 542,
+    "sprite": 588,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -223,19 +223,19 @@
    }
   ],
   "secrets": {
-   "declared": 6,
-   "credited_normal": 6,
+   "declared": 7,
+   "credited_normal": 7,
    "credited_super": 0
   },
-  "space": 1043,
-  "reached": 1043,
+  "space": 1083,
+  "reached": 1083,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 828,
+    "sectors": 868,
     "first_sector": 0
    },
    {
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 612 (channel 114)"
+     "use switch sprite 658 (channel 117)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 613 (channel 115)"
+     "use switch sprite 659 (channel 118)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 614 (channel 116)"
+     "use switch sprite 660 (channel 119)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 615 (channel 117)"
+     "use switch sprite 661 (channel 120)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,15 +297,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 424 (channel 108)"
+     "use switch sprite 470 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 487
+    "first_sector": 496
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 464 (channel 103)"
+     "destroy sprite 510 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 616 (channel 118)"
+     "use switch sprite 662 (channel 121)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,7 +321,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 195 (channel 109)"
+     "destroy sprite 243 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 390
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 534 (channel 104)"
+     "destroy sprite 580 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -583,6 +583,45 @@
    ]
   },
   {
+   "name": "ghost:dial-matches",
+   "says": "each maintenance dial adds a match when it reaches its setting and subtracts it when turned past",
+   "channel": 114,
+   "engine": null,
+   "when": [
+    "push on placement ghost:dial_A",
+    "push on placement ghost:dial_B",
+    "push on placement ghost:dial_C"
+   ],
+   "then": [
+    "placement ghost:tally"
+   ]
+  },
+  {
+   "name": "ghost:all-matched",
+   "says": "three simultaneous matches set the service hatch's latch",
+   "channel": 115,
+   "engine": null,
+   "when": [
+    "relay on placement ghost:tally"
+   ],
+   "then": [
+    "placement ghost:latch"
+   ]
+  },
+  {
+   "name": "ghost:hatch-open",
+   "says": "the first match opens the sliding hatch and sounds the latch once",
+   "channel": 116,
+   "engine": null,
+   "when": [
+    "relay on placement ghost:latch"
+   ],
+   "then": [
+    "placement ghost:latch_sound",
+    "region region:gravesend/sewer/ghost_station/hatch:panel"
+   ]
+  },
+  {
    "name": "station:way-out",
    "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
    "channel": 4,
@@ -605,7 +644,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 114,
+   "channel": 117,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -617,7 +656,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 115,
+   "channel": 118,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -629,7 +668,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 116,
+   "channel": 119,
    "engine": null,
    "when": [
     "push on placement lever:aldermack"
@@ -641,7 +680,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 117,
+   "channel": 120,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -653,7 +692,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 118,
+   "channel": 121,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -1026,6 +1065,41 @@
     3.5
    ],
    "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "Ghost Station",
+   "at": [
+    52736,
+    -10112
+   ],
+   "hero": "a lit, tiled platform with empty benches and rails leading to a bricked-up tunnel under the pump landing",
+   "study": "ghost-station",
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "standing",
+     "levels",
+     "machines"
+    ],
+    "missing": [
+     "light",
+     "motion"
+    ],
+    "campaign_p25": 4,
+    "campaign_p50": 6
+   },
+   "metres": [
+    14.1,
+    24.0,
+    3.5
+   ],
+   "cramped": [
+    "short side 8288 (campaign p25 11776)",
+    "height 1.93 bodies (campaign p25 2.84)"
+   ],
    "critique": null
   },
   {
@@ -1731,6 +1805,41 @@
   },
   {
    "kind": "missing-layer",
+   "place": "Ghost Station",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Ghost Station",
+   "says": "carries no motion layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "cramped",
+   "place": "Ghost Station",
+   "says": "short side 8288 (campaign p25 11776)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Ghost Station",
+   "says": "height 1.93 bodies (campaign p25 2.84)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Ghost Station",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare ghost-station --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "missing-layer",
    "place": "Gravesend Station",
    "says": "carries no trim layer",
    "owner": "projects/blood-city/level/detailing.py",
@@ -1914,16 +2023,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 470 as two_sided_lower in outdoors (8x) rests on community-curated evidence (1 maps), not the campaign's",
+   "says": "tile 3810 as sprite_wall in indoors (11x) rests on community-curated evidence (9 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 470"
+   "see": "python -m tools.tile_contexts show 3810"
   },
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 3810 as sprite_wall in indoors (8x) rests on community-curated evidence (9 maps), not the campaign's",
+   "says": "tile 470 as two_sided_lower in outdoors (8x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 3810"
+   "see": "python -m tools.tile_contexts show 470"
   },
   {
    "kind": "outside-campaign",
@@ -2148,6 +2257,13 @@
    "says": "tile 470 as floor in outdoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 470"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 383 as one_sided_middle in indoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 383"
   },
   {
    "kind": "outside-campaign",
@@ -2417,48 +2533,48 @@
    "kind": "dropped",
    "place": null,
    "says": "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg_walk_w_2:3 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_w_leg_walk_w_2:5 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1965",
+   "owner": "projects/blood-city/level/build_skeleton.py:1969",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 920, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 966, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2466,7 +2582,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [578, 579], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [624, 625], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"
@@ -2494,13 +2610,13 @@
   }
  ],
  "open_by_kind": {
-  "cramped": 15,
+  "cramped": 17,
   "critique": 12,
   "dropped": 6,
   "lost-tile": 3,
-  "missing-layer": 20,
-  "never-critiqued": 12,
-  "outside-campaign": 58,
+  "missing-layer": 22,
+  "never-critiqued": 13,
+  "outside-campaign": 59,
   "refused": 7,
   "rule-warning": 5,
   "skipped": 6,

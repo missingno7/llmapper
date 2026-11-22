@@ -249,12 +249,24 @@ room with its rectangle and kind).
   but their tied tails are hard to read. The two places are shown in
   `work/drain/final/stockyard-drain.png` and
   `work/drain/final/rat-king-shrine.png` (`work/drain/drain_look.py`).
+* **The Ghost Station** opens off the silt trap, just past the pump
+  spiral's lower landing. Three four-position maintenance dials (E3M2's
+  1161) share a tally. The east wall's inspection plate records their
+  positions. A match sounds the latch and draws the whole hatch into a
+  blind pocket, as in `DOOR-CLOSET`. It stays open for the walk back up
+  the 28-step service stair. The narrowest portal is 768 wide, the lowest
+  headroom is 20480, and each step rises 2048. Crossing onto the tiled
+  platform at z 118784 counts the seventh secret. Three lamps are still
+  burning over the benches, and the rails end in a bricked-up mouth.
+  Supplies lie under the station name. Read-back covers all six setting
+  orders and a return after solving. The latch sound still needs a
+  walk in Blood. See the [Ghost Station study](../../../knowledge/blood/studies/ghost-station/notes.md)
+  and the frames in `work/ghost/posed/frames/`.
 * **Open:** the walks carry only floor debris: anything hung on their walls
   (E3M3's drips at 1.21 bodies, its moss, the vault grates) lands in the
   sloped ceiling, because the detail runs read a flat ceiling's height; and
   E3M3's X-brace pilasters (487) are wall textures in E3M3, a wall split we
-  have not made. The Ghost Station through the pump station's hatch
-  and the Toshers' Cache are still to build. The blown seal
+  have not made. The Toshers' Cache is still to build. The blown seal
   is seen in a frame only with its sector opened by hand; nobody has blown
   it in the game.
 

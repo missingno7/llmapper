@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-ghost/knowledge/blood/studies/ghost-station/E1M2_264/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-ghost/knowledge/blood/studies/ghost-station/E1M2_264",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -41488,
+   "y": 65808,
+   "z": -100256,
+   "angle": 1529,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -41488,
+   "y": 62448,
+   "z": -100256,
+   "angle": 1526,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -41488,
+   "y": 59088,
+   "z": -100256,
+   "angle": 1519,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -41008,
+   "y": 56208,
+   "z": -100256,
+   "angle": 1412,
+   "horiz": 100,
+   "sector": 264,
+   "screenshot": true
+  }
+ ]
+}

@@ -1445,7 +1445,7 @@ def front_stone(level) -> int:
     return count
 
 
-def dress(level, compiled) -> dict:
+def dress(level, compiled, *, keep_tracks=()) -> dict:
     """Faces, columns, sleepers, glass and bars, and the platform's edge."""
     from bloodmap import glass
 
@@ -1597,11 +1597,12 @@ def dress(level, compiled) -> dict:
                 w["cstat"] = int(w["cstat"]) | 4
                 w["shade"] = 10
                 report["openings"] += 1
-    for sector in level.sectors:
+    protected_track = sectors(keep_tracks)
+    for index, sector in enumerate(level.sectors):
         s = f(sector)
         #: the carriage door's reveals took the shed's floor: sleepers on
         #: a doorstep
-        if (int(s["floor_picnum"]) == TRACK
+        if (index not in protected_track and int(s["floor_picnum"]) == TRACK
                 and int(s["floor_z"]) != BED_Z):
             s["floor_picnum"] = WOOD
             s["floor_stat"] = int(s["floor_stat"]) & ~4

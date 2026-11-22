@@ -60,6 +60,13 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("sewer:stockyard-trolley",
      "each dry berth calls the sampling deck to its own stop and the carried "
      "button sends the boarded rider across the blood channel"),
+    ("ghost:dial-matches",
+     "each maintenance dial adds a match when it reaches its setting and "
+     "subtracts it when turned past"),
+    ("ghost:all-matched",
+     "three simultaneous matches set the service hatch's latch"),
+    ("ghost:hatch-open",
+     "the first match opens the sliding hatch and sounds the latch once"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

@@ -376,6 +376,9 @@ def build():
                        ceiling_z=SEWER_FLOOR - _l3_sewer_layers.WALK_CLEAR,
                        floor_z=_l3_sewer_layers.HALL_WATER,
                        note="the settling hall under the plaza: tanks below the sewer's level")
+    city.declare_layer("ghost_station", ceiling_z=SEWER_FLOOR - 24576,
+                       floor_z=_l3_sewer_layers.GHOST_FLOOR + 2048,
+                       note="the Ghost Station and its descending service stair")
 
     areas = {a["id"]: a for a in data["areas"]}
     alleys = {a["id"]: a for a in data["dead_end_alleys"]}
@@ -980,6 +983,7 @@ def build():
     shed["cellar"].raw(
         "spiral: the pump station cellar down into the under-city",
         wind_into_sewer)
+    l3_sewer.ghost_station(sewer, sewer_net["silt_trap"])
 
     stack_links = []
 
@@ -1569,7 +1573,7 @@ def main() -> int:
         # cannot forget it.
         # The stash, flooded branch, arcade cache, Old Molly's Nest,
         # Plague Pit and Rat King's Shrine.
-        behavior=motion.secret_total(6))
+        behavior=motion.secret_total(7))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -2096,7 +2100,9 @@ def main() -> int:
         compiled.allocations[region_id].sector_id: tile
         for region_id, tile in _station_dress.FACES.items()
         if region_id in compiled.allocations}))
-    print("station:", _station_dress.dress(compiled.level, compiled))
+    _ghost_track = (region_id for region_id, region in layout.regions.items()
+                    if region.layer == "ghost_station" and region.floor_picnum == _station_dress.TRACK)
+    print("station:", _station_dress.dress(compiled.level, compiled, keep_tracks=_ghost_track))
     print("sarcophagus faces:", skyline.dress_steps(compiled.level, {
         compiled.allocations[region_id].sector_id: tile
         for region_id, tile in l3_church.CRYPT_FACES.items()

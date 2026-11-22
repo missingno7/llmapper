@@ -156,7 +156,7 @@ class CityStatusTests(unittest.TestCase):
     def test_no_channel_in_the_city_is_typed_by_hand(self):
         """Thirteen were, in six modules, until 2026-11-19. Every wire is now
         a line of `wires.py` saying what it is for, numbered by its place."""
-        from bloodmap.wiring import ENGINE_SENDS
+        from bloodmap.wiring import ENGINE_SENDS, USER_CHANNELS_FROM, USER_CHANNELS_TO
 
         manifest = json.loads((REPORTS / "build-manifest.json").read_text("utf-8"))
         wires = manifest["wires"]
@@ -168,7 +168,8 @@ class CityStatusTests(unittest.TestCase):
         numbers = sorted(row["channel"] for row in wires["declared"]
                          if row["engine"] is None)
         self.assertEqual(len(set(numbers)), len(numbers))
-        self.assertTrue(all(100 <= number < 120 for number in numbers))
+        self.assertTrue(all(USER_CHANNELS_FROM <= number <= USER_CHANNELS_TO
+                            for number in numbers))
         for row in wires["wires"]:
             engine_sends = row["engine"] is not None and row["channel"] in ENGINE_SENDS
             self.assertEqual(bool(row["senders"]), not engine_sends, row["name"])

@@ -195,8 +195,167 @@ class ThirdWalkTests(unittest.TestCase):
         secrets = [s for s in self.disk.sectors
                    if int(_extra(s).get("tx_id", 0)) == 2
                    and int(_extra(s).get("command", 0)) == 64]
-        # The stash, flooded branch, cache, Molly's nest, plague pit and Rat King's Shrine.
-        self.assertEqual(len(secrets), 6)
+        # The stash, flooded branch, cache, Molly's nest, plague pit,
+        # Rat King's Shrine and Ghost Station.
+        self.assertEqual(len(secrets), 7)
+
+    def test_ghost_station_dials_latch_only_the_first_complete_match(self):
+        from itertools import permutations
+
+        from bloodmap import motion, wiring
+        from bloodmap.model import record_extra, record_fields
+
+        _level()
+        import wires
+
+        matches = wires.channel("ghost:dial-matches")
+        complete = wires.channel("ghost:all-matched")
+        opened = wires.channel("ghost:hatch-open")
+        nodes = wiring.nodes(self.disk)
+
+        def select(kind, fields, channel, type_id, count=1):
+            found = [n for n in nodes if n["kind"] == kind and n[fields] == channel]
+            self.assertEqual([n["type"] for n in found], [type_id] * count)
+            records = self.disk.sprites if kind == "sprite" else self.disk.sectors
+            return [records[n["index"]] for n in found]
+
+        dial_records = select("sprite", "tx", matches, 22, 3)
+        self.assertEqual([record_fields(s)["picnum"] for s in dial_records], [1161] * 3)
+        dials = [record_extra(s) for s in dial_records]
+        tally = record_extra(select("sprite", "rx", matches, 22)[0])
+        latch = record_extra(select("sprite", "rx", complete, 20)[0])
+        sound = record_extra(select("sprite", "rx", opened, 708)[0])
+        hatch = record_extra(select("sector", "rx", opened, 616)[0])
+        self.assertEqual([n["kind"] for n in nodes if n["rx"] == opened],
+                         ["sprite", "sector"])
+        for dial in dials:
+            self.assertEqual((dial["state"], dial["data_1"], dial["data_3"]), (0, 0, 4))
+            self.assertTrue(0 < dial["data_2"] < dial["data_3"])
+            self.assertEqual(dial["command"], motion.CMD_STATE)
+            self.assertTrue(dial["trigger_push"] and dial["trigger_on"] and dial["trigger_off"])
+            self.assertFalse(dial["decoupled"] or dial["trigger_once"] or dial["wait_time"])
+            self.assertFalse(dial["locked"] or dial["rx_id"])
+        self.assertEqual((tally["data_1"], tally["data_2"], tally["data_3"]), (0, 3, 0))
+        for relay, output in ((tally, complete), (latch, opened)):
+            self.assertEqual((relay["tx_id"], relay["command"]), (output, motion.CMD_ON))
+            self.assertTrue(relay["trigger_on"])
+            self.assertFalse(relay["trigger_off"] or relay["state"] or relay["wait_time"])
+        self.assertEqual(sound["data_2"], 360)
+        self.assertFalse(sound["state"] or sound["busy_time"])
+        self.assertFalse(hatch["state"] or hatch["retrigger_a"] or hatch["trigger_wall_push"])
+        self.assertGreater(hatch["busy_time_a"], 0)
+
+        # Model OperateSprite's combo steps and State's ON/OFF messages using
+        # the on-disk settings. An explicit ON changes the latch just once.
+        for order in permutations(range(3)):
+            with self.subTest(order=order):
+                settings = [dial["data_1"] for dial in dials]
+                targets = [dial["data_2"] for dial in dials]
+                count = tally["data_1"]
+                latched = latch["state"]
+                outputs = 0
+
+                def push(index):
+                    nonlocal count, latched, outputs
+                    before = settings[index] == targets[index]
+                    settings[index] = (settings[index] + 1) % dials[index]["data_3"]
+                    after = settings[index] == targets[index]
+                    was_full = count == tally["data_2"]
+                    count += int(after) - int(before)
+                    self.assertEqual(count, sum(a == b for a, b in zip(settings, targets)))
+                    if count == tally["data_2"] and not was_full and not latched:
+                        latched = 1
+                        outputs += 1
+
+                def match(index):
+                    while settings[index] != targets[index]:
+                        push(index)
+
+                first = order[0]
+                match(first)
+                self.assertEqual((count, outputs), (1, 0))
+                push(first)
+                self.assertEqual((count, outputs), (0, 0))
+                for index in order:
+                    match(index)
+                self.assertEqual((count, latched, outputs), (3, 1, 1))
+                push(first)
+                self.assertEqual((count, latched, outputs), (2, 1, 1))
+                match(first)
+                self.assertEqual((count, latched, outputs), (3, 1, 1))
+
+    def test_ghost_station_hatch_and_stair_leave_a_way_back(self):
+        from math import hypot
+
+        from shapely.geometry import LineString, Point, Polygon, box
+
+        from bloodmap import motion, wiring
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.motion_sim import blood_poses, closure_health
+        from bloodmap.player_space import PLAYER_PROFILES
+        from bloodmap.sector_geom import outline_and_holes
+
+        _level()
+        import wires
+
+        body = PLAYER_PROFILES["blood"]
+        panel, = [n["index"] for n in wiring.nodes(self.disk)
+                  if n["kind"] == "sector" and n["rx"] == wires.channel("ghost:hatch-open")]
+
+        def sector_walls(index):
+            sector = record_fields(self.disk.sectors[index])
+            return self.walls[sector["wall_ptr"]:sector["wall_ptr"] + sector["wall_count"]]
+
+        host, = {wall["next_sector"] for wall in sector_walls(panel)}
+        self.assertGreaterEqual(host, 0)
+        self.assertEqual(motion.marker_pair(self.disk, panel)["travel"], (1600, 0))
+        self.assertFalse(closure_health(self.disk, panel)["problems"])
+        off, on = (Polygon(points) for points in blood_poses(self.disk, panel))
+
+        route = LineString([(48448, 2048), (48448, 1024)])
+        self.assertTrue(off.intersects(route))
+        self.assertGreaterEqual(on.distance(route), body.body_width / 2)
+        self.assertLessEqual(self.sectors[panel]["floor_z"], self.sectors[host]["ceiling_z"])
+        outer, _ = outline_and_holes(self.disk, host)
+        through = Polygon(outer).union(box(47808, 768, 49088, 2304))
+        near, far = Point(48448, 2112), Point(48448, 960)
+        for plug, opened in ((off, False), (on, True)):
+            free = through.difference(plug).buffer(-body.body_width / 2)
+            parts = free.geoms if free.geom_type == "MultiPolygon" else (free,)
+            self.assertEqual(any(part.covers(near) and part.covers(far) for part in parts),
+                             opened)
+
+        secret_bus = motion.secret_credit()["tx_id"]
+        # Each portal is reciprocal and has standing clearance. Follow only
+        # the full-width wall that crosses the service stair's northward line.
+        previous, current = None, host
+        width, clearance, rises = [], [], []
+        for y in range(1024, -7937, -320):
+            a, = [wall for wall in sector_walls(current)
+                  if wall["y"] == y and self.walls[wall["point2"]]["y"] == y
+                  and wall["next_sector"] >= 0 and wall["next_sector"] != previous
+                  and min(wall["x"], self.walls[wall["point2"]]["x"]) < 48448
+                  < max(wall["x"], self.walls[wall["point2"]]["x"])]
+            b = self.walls[a["point2"]]
+            self.assertEqual(self.walls[a["next_wall"]]["next_sector"], current)
+            self.assertFalse((a["cstat"] | self.walls[a["next_wall"]]["cstat"]) & 1)
+            previous, current = current, a["next_sector"]
+            near, far = self.sectors[previous], self.sectors[current]
+            width.append(hypot(a["x"] - b["x"], a["y"] - b["y"]))
+            clearance.append(min(near["floor_z"], far["floor_z"])
+                             - max(near["ceiling_z"], far["ceiling_z"]))
+            rises.append(abs(near["floor_z"] - far["floor_z"]))
+        self.assertGreaterEqual(min(width), body.body_width)
+        self.assertGreaterEqual(min(clearance), body.standing_height)
+        self.assertLessEqual(max(rises), body.max_step)
+        self.assertEqual(self.sectors[current]["floor_z"], 118784)
+        secret = record_extra(self.disk.sectors[current])
+        self.assertEqual(secret["tx_id"], secret_bus)
+        self.assertTrue(secret["trigger_enter"] and secret["trigger_once"])
+        rails = [fields for fields in self.sectors if fields["floor_z"] == 120832]
+        self.assertGreaterEqual(len(rails), 2)
+        self.assertTrue(all(fields["floor_picnum"] == 1129 and not fields["floor_stat"] & 4
+                            for fields in rails))
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266
