@@ -92,6 +92,12 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); "
                     "TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
     },
+    "Settling Hall service lift": {
+        "at": (19968, 45184), "floor": 102400, "study": "doors-and-mechanisms",
+        "hero": "a metal filter deck on the west quay that rises past the "
+                "tanks to the gallery, with a work light and call button at each landing",
+        "exemplar": "MACHINERY-LIFT s2/s14 and sprite 9 (fixed-roof floor lift and remote call)",
+    },
     "the Rat King's Shrine": {
         "at": (55040, 48000), "floor": 61440, "study": "rat-king-shrine",
         "hero": "a low pipe leading to candles around a knot of rats and "

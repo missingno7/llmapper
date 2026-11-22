@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f9127c101b00737322f1e13b3f7ac17f28e49b6caaa9609ea24f2a22c50b52b8",
-  "map_sha256": "ddb34a0534fc5c2c1e93b42d897dabd457730a493a6d2006b2cd63861bdb1cc8",
+  "manifest_sha256": "96983cf63dd6e5e7b0d2c40fc51775266d20159867990b72a30af0ff610cf258",
+  "map_sha256": "23fc233e97a9e88df9d140f01448d4275e95bac7bc0a066b0cc2d4a49f41ac10",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1039,
-  "walls": 10320,
-  "sprites": 1194,
+  "sectors": 1048,
+  "walls": 10397,
+  "sprites": 1198,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.746,
-   "walls": 0.37,
+   "sectors": 0.744,
+   "walls": 0.365,
    "sprites": 0.927
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1221,
+   "note": 1223,
    "warning": 5
   }
  },
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 409",
+    "root": "sprite 414",
     "cause": "push",
-    "sector": 481,
+    "sector": 483,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 526,
+    "sprite": 531,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -227,15 +227,15 @@
    "credited_normal": 6,
    "credited_super": 0
   },
-  "space": 1016,
-  "reached": 1016,
+  "space": 1025,
+  "reached": 1025,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 801,
+    "sectors": 810,
     "first_sector": 0
    },
    {
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 596 (channel 112)"
+     "use switch sprite 601 (channel 113)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 597 (channel 113)"
+     "use switch sprite 602 (channel 114)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 598 (channel 114)"
+     "use switch sprite 603 (channel 115)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 599 (channel 115)"
+     "use switch sprite 604 (channel 116)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,15 +297,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 408 (channel 108)"
+     "use switch sprite 413 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 479
+    "first_sector": 481
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 448 (channel 103)"
+     "destroy sprite 453 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 600 (channel 116)"
+     "use switch sprite 605 (channel 117)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,10 +321,10 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 179 (channel 109)"
+     "destroy sprite 184 (channel 109)"
     ],
     "sectors": 5,
-    "first_sector": 388
+    "first_sector": 390
    },
    {
     "round": 1,
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 518 (channel 104)"
+     "destroy sprite 523 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -555,6 +555,20 @@
    ]
   },
   {
+   "name": "sewer:settling-hall-lift",
+   "says": "the landing buttons recall the deck to their own stop and the rider's button sends it to the other stop",
+   "channel": 112,
+   "engine": null,
+   "when": [
+    "push on placement sewer:hall_lift_upper_call",
+    "push on placement sewer:hall_lift_lower_call",
+    "push on placement sewer:hall_lift_rider"
+   ],
+   "then": [
+    "region region:gravesend/sewer/settling_hall/service_lift"
+   ]
+  },
+  {
    "name": "station:way-out",
    "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
    "channel": 4,
@@ -577,7 +591,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 112,
+   "channel": 113,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -589,7 +603,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 113,
+   "channel": 114,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -601,7 +615,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 114,
+   "channel": 115,
    "engine": null,
    "when": [
     "push on placement lever:aldermack"
@@ -613,7 +627,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 115,
+   "channel": 116,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -625,7 +639,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 116,
+   "channel": 117,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -902,6 +916,35 @@
     "short side 4864 (campaign p25 6144)",
     "height 1.81 bodies (campaign p25 1.93)",
     "1.81 bodies high (a destination wants 1.93)"
+   ],
+   "critique": null
+  },
+  {
+   "name": "Settling Hall service lift",
+   "at": [
+    19968,
+    45184
+   ],
+   "hero": "a metal filter deck on the west quay that rises past the tanks to the gallery, with a work light and call button at each landing",
+   "study": "doors-and-mechanisms",
+   "layers": {
+    "has": [
+     "flat_art"
+    ],
+    "missing": [],
+    "campaign_p25": 0,
+    "campaign_p50": 1
+   },
+   "metres": [
+    1.7,
+    2.2,
+    2.6
+   ],
+   "cramped": [
+    "short side 1024 (campaign p25 1536)",
+    "height 1.45 bodies (campaign p25 1.57)",
+    "1.31M of floor (a destination wants 14.0M)",
+    "1.45 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -1533,6 +1576,41 @@
    "see": "python -m tools.critique prepare stockyard-drain --poses <set> --kind <kind>"
   },
   {
+   "kind": "cramped",
+   "place": "Settling Hall service lift",
+   "says": "short side 1024 (campaign p25 1536)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Settling Hall service lift",
+   "says": "height 1.45 bodies (campaign p25 1.57)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Settling Hall service lift",
+   "says": "1.31M of floor (a destination wants 14.0M)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Settling Hall service lift",
+   "says": "1.45 bodies high (a destination wants 1.93)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Settling Hall service lift",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare doors-and-mechanisms --poses <set> --kind <kind>"
+  },
+  {
    "kind": "missing-layer",
    "place": "the Rat King's Shrine",
    "says": "carries no motion layer",
@@ -1846,6 +1924,13 @@
    "says": "tile 2294 as ceiling in indoors (2x) rests on community evidence (11 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2294"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 499 as two_sided_upper in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 499"
   },
   {
    "kind": "outside-campaign",
@@ -2254,7 +2339,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 901, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 906, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2262,7 +2347,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [562, 563], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [567, 568], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"
@@ -2290,13 +2375,13 @@
   }
  ],
  "open_by_kind": {
-  "cramped": 8,
+  "cramped": 12,
   "critique": 12,
   "dropped": 6,
   "lost-tile": 3,
   "missing-layer": 16,
-  "never-critiqued": 10,
-  "outside-campaign": 55,
+  "never-critiqued": 11,
+  "outside-campaign": 56,
   "refused": 7,
   "rule-warning": 5,
   "skipped": 6,

@@ -54,6 +54,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("theatre:fire-doors",
      "pushing either Aldermack fire-door leaf from either room toggles both "
      "leaves, which stay where they stop until pushed again"),
+    ("sewer:settling-hall-lift",
+     "the landing buttons recall the deck to their own stop and the rider's "
+     "button sends it to the other stop"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

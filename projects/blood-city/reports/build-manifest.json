@@ -1060,6 +1060,20 @@
         ]
       },
       {
+        "name": "sewer:settling-hall-lift",
+        "says": "the landing buttons recall the deck to their own stop and the rider's button sends it to the other stop",
+        "channel": 112,
+        "engine": null,
+        "when": [
+          "push on placement sewer:hall_lift_upper_call",
+          "push on placement sewer:hall_lift_lower_call",
+          "push on placement sewer:hall_lift_rider"
+        ],
+        "then": [
+          "region region:gravesend/sewer/settling_hall/service_lift"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1082,7 +1096,7 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 112,
+        "channel": 113,
         "engine": null,
         "when": [
           "push on placement lever:saloon"
@@ -1094,7 +1108,7 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 113,
+        "channel": 114,
         "engine": null,
         "when": [
           "push on placement lever:parlor"
@@ -1106,7 +1120,7 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 114,
+        "channel": 115,
         "engine": null,
         "when": [
           "push on placement lever:aldermack"
@@ -1118,7 +1132,7 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 115,
+        "channel": 116,
         "engine": null,
         "when": [
           "push on placement lever:lobby"
@@ -1130,7 +1144,7 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 116,
+        "channel": 117,
         "engine": null,
         "when": [
           "push on placement lever:pawn"
@@ -1178,17 +1192,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 448",
-          "sprite 449"
+          "sprite 453",
+          "sprite 454"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 450",
-          "sprite 451",
-          "sprite 452"
+          "sprite 455",
+          "sprite 456",
+          "sprite 457"
         ],
         "faults": []
       },
@@ -1198,16 +1212,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 518"
+          "sprite 523"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 519",
-          "sprite 520",
-          "sprite 521"
+          "sprite 524",
+          "sprite 525",
+          "sprite 526"
         ],
         "faults": []
       },
@@ -1246,10 +1260,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 415"
+          "sprite 420"
         ],
         "answers": [
-          "sector 453"
+          "sector 455"
         ],
         "faults": []
       },
@@ -1259,10 +1273,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 408"
+          "sprite 413"
         ],
         "answers": [
-          "sector 479"
+          "sector 481"
         ],
         "faults": []
       },
@@ -1272,16 +1286,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 179"
+          "sprite 184"
         ],
         "answers": [
-          "sector 389",
-          "sector 390",
           "sector 391",
           "sector 392",
-          "sprite 180",
-          "sprite 181",
-          "sprite 182"
+          "sector 393",
+          "sector 394",
+          "sprite 185",
+          "sprite 186",
+          "sprite 187"
         ],
         "faults": []
       },
@@ -1325,12 +1339,27 @@
         "faults": []
       },
       {
+        "name": "sewer:settling-hall-lift",
+        "says": "the landing buttons recall the deck to their own stop and the rider's button sends it to the other stop",
+        "channel": 112,
+        "engine": null,
+        "senders": [
+          "sprite 23",
+          "sprite 25",
+          "sprite 27"
+        ],
+        "answers": [
+          "sector 549"
+        ],
+        "faults": []
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 409"
+          "sprite 414"
         ],
         "answers": [],
         "faults": []
@@ -1342,17 +1371,17 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 413"
+          "sector 415"
         ],
         "faults": []
       },
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 112,
+        "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 596"
+          "sprite 601"
         ],
         "answers": [
           "sector 9"
@@ -1362,10 +1391,10 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 113,
+        "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 597"
+          "sprite 602"
         ],
         "answers": [
           "sector 18"
@@ -1375,10 +1404,10 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 114,
+        "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 598"
+          "sprite 603"
         ],
         "answers": [
           "sector 30"
@@ -1388,10 +1417,10 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 115,
+        "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 599"
+          "sprite 604"
         ],
         "answers": [
           "sector 32"
@@ -1401,10 +1430,10 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 116,
+        "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 600"
+          "sprite 605"
         ],
         "answers": [
           "sector 42"
@@ -1417,11 +1446,11 @@
     "agrees": true
   },
   "lighting": {
-    "lights": 66,
-    "rays_cast": 1149311,
-    "surfaces_lit": 1309,
-    "surfaces_protected": 596,
-    "walls_lit": 1400,
+    "lights": 68,
+    "rays_cast": 1187711,
+    "surfaces_lit": 1366,
+    "surfaces_protected": 619,
+    "walls_lit": 1454,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1433,6 +1462,8 @@
       "light:gravesend/foundry_ward/station_arch_1_1:arch_lamp_1_1",
       "light:gravesend/market_slip/quay/ship_deck:ship_lamp",
       "light:gravesend/market_slip/market_hall/supermarket:stall_lamp",
+      "light:gravesend/sewer/settling_hall/lift_gallery:work_light",
+      "light:gravesend/sewer/settling_hall/lift_quay:work_light",
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp",
       "light:gravesend/gravesend_station/concourse:concourse_lamp",
       "loading:lamp",
@@ -1501,6 +1532,8 @@
       "light:gravesend/foundry_ward/station_arch_1_1:arch_lamp_1_1": 1.0,
       "light:gravesend/market_slip/quay/ship_deck:ship_lamp": 1.0,
       "light:gravesend/market_slip/market_hall/supermarket:stall_lamp": 1.0,
+      "light:gravesend/sewer/settling_hall/lift_gallery:work_light": 1.0,
+      "light:gravesend/sewer/settling_hall/lift_quay:work_light": 1.0,
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp": 1.0,
       "light:gravesend/gravesend_station/concourse:concourse_lamp": 1.0,
       "loading:lamp": 1.0,
@@ -1586,25 +1619,25 @@
     }
   },
   "split_bands": {
-    "pegged": 50,
+    "pegged": 51,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
     "lined": 77,
-    "too_long": 108,
-    "no_band": 126,
+    "too_long": 110,
+    "no_band": 128,
     "outside": 7,
     "tile": 194,
-    "moving": 22
+    "moving": 26
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1118,
-    "wall_sprites": 509,
-    "planes": 122,
+    "sprites": 1122,
+    "wall_sprites": 511,
+    "planes": 123,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.79,
+    "clash_rate_per_100_wall_sprites": 0.78,
     "fully_hidden": 0
   },
   "apertures": {
@@ -1651,7 +1684,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 91,
+    "sentences": 92,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -1683,7 +1716,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 112,
+          "rx_id": 113,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1711,7 +1744,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 113,
+          "rx_id": 114,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1754,7 +1787,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 114,
+          "rx_id": 115,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1782,7 +1815,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 115,
+          "rx_id": 116,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -1968,7 +2001,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 116,
+          "rx_id": 117,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -3003,79 +3036,23 @@
       {
         "name": "region:gravesend/sewer/secrets/molly_nest",
         "construct": "sector",
-        "sector": 387,
+        "sector": 389,
         "sectors": [
-          387
+          389
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/plague_pit",
         "construct": "sector",
-        "sector": 388,
+        "sector": 390,
         "sectors": [
-          388
+          390
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/plague_seal_0",
-        "construct": "z_motion_door",
-        "sector": 389,
-        "sectors": [
-          389
-        ],
-        "sector_type": 600,
-        "wiring": {
-          "rx_id": 109,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "state_pair": {
-          "sector": 389,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 11311,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/plague_seal_1",
-        "construct": "z_motion_door",
-        "sector": 390,
-        "sectors": [
-          390
-        ],
-        "sector_type": 600,
-        "wiring": {
-          "rx_id": 109,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "state_pair": {
-          "sector": 390,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 18683,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/plague_seal_2",
         "construct": "z_motion_door",
         "sector": 391,
         "sectors": [
@@ -3094,7 +3071,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 18607,
+          "headroom_change": 11311,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3103,7 +3080,7 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "name": "region:gravesend/sewer/secrets/plague_seal_1",
         "construct": "z_motion_door",
         "sector": 392,
         "sectors": [
@@ -3122,6 +3099,62 @@
           "measured": [
             "headroom"
           ],
+          "headroom_change": 18683,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_seal_2",
+        "construct": "z_motion_door",
+        "sector": 393,
+        "sectors": [
+          393
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 109,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 393,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 18607,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "construct": "z_motion_door",
+        "sector": 394,
+        "sectors": [
+          394
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 109,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 394,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
           "headroom_change": 11579,
           "area_change": 0.0,
           "declared_travel": 0.0,
@@ -3133,9 +3166,9 @@
       {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
-        "sector": 413,
+        "sector": 415,
         "sectors": [
-          413
+          415
         ],
         "sector_type": 615,
         "wiring": {
@@ -3152,7 +3185,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 413",
+          "construct": "turnstile sector 415",
           "measured": {
             "blades": 4,
             "axis": [
@@ -3180,7 +3213,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 413,
+          "sector": 415,
           "type": 615,
           "measured": [
             "turn"
@@ -3198,9 +3231,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 453,
+        "sector": 455,
         "sectors": [
-          453
+          455
         ],
         "sector_type": 600,
         "wiring": {
@@ -3210,7 +3243,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 453,
+          "sector": 455,
           "type": 600,
           "measured": [
             "headroom"
@@ -3226,9 +3259,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 479,
+        "sector": 481,
         "sectors": [
-          479
+          481
         ],
         "sector_type": 600,
         "wiring": {
@@ -3238,7 +3271,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 479,
+          "sector": 481,
           "type": 600,
           "measured": [
             "headroom"
@@ -3250,13 +3283,41 @@
           "whole_circles": false,
           "changes": true
         }
+      },
+      {
+        "name": "region:gravesend/sewer/settling_hall/service_lift",
+        "construct": "z_motion_door",
+        "sector": 549,
+        "sectors": [
+          549
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 112,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 549,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": -40960,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
       }
     ]
   },
   "rules": {
-    "total": 1226,
+    "total": 1228,
     "by_severity": {
-      "note": 1221,
+      "note": 1223,
       "warning": 5
     },
     "by_code": {
@@ -3267,7 +3328,7 @@
       "note:opening-clears-a-standing-body": 108,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "note:wall-draws-its-own-tile": 930,
+      "note:wall-draws-its-own-tile": 932,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [
@@ -3318,7 +3379,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 900,
+      "sprites": 901,
       "sunk": 0.0,
       "through": 0.001,
       "squeezed": 0.0
@@ -3326,7 +3387,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 901,
+        "sprite": 906,
         "tile": 793,
         "sector": 27
       }
@@ -3336,8 +3397,8 @@
     "overlaps": [
       {
         "sprites": [
-          562,
-          563
+          567,
+          568
         ],
         "tiles": [
           73,
@@ -3536,6 +3597,14 @@
         "count": 2,
         "source": "community",
         "maps": 11
+      },
+      {
+        "tile": 499,
+        "slot": "two_sided_upper",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
       },
       {
         "tile": 956,
@@ -4184,6 +4253,38 @@
         "relations": [],
         "study": "stockyard-drain"
       },
+      "Settling Hall service lift": {
+        "hero": "a metal filter deck on the west quay that rises past the tanks to the gallery, with a work light and call button at each landing",
+        "exemplar": "MACHINERY-LIFT s2/s14 and sprite 9 (fixed-roof floor lift and remote call)",
+        "layers": [
+          "flat_art"
+        ],
+        "layer_count": 1,
+        "campaign_p25": 0,
+        "campaign_p50": 1,
+        "missing": [],
+        "wall_tiles": [
+          [
+            492,
+            1.0
+          ]
+        ],
+        "shade_spread": 0,
+        "metres": [
+          1.7,
+          2.2,
+          2.6
+        ],
+        "free_floor_share": 1.0,
+        "cramped": [
+          "short side 1024 (campaign p25 1536)",
+          "height 1.45 bodies (campaign p25 1.57)",
+          "1.31M of floor (a destination wants 14.0M)",
+          "1.45 bodies high (a destination wants 1.93)"
+        ],
+        "relations": [],
+        "study": "doors-and-mechanisms"
+      },
       "the Rat King's Shrine": {
         "hero": "a low pipe leading to candles around a knot of rats and a heart on a stepped stone altar",
         "exemplar": "E1M5 s71 (candle recess); DWE1M5 s610 (candles and remains on stone); E1M4 s167 (rats on the grill)",
@@ -4519,6 +4620,12 @@
         "height 1.81 bodies (campaign p25 1.93)",
         "1.81 bodies high (a destination wants 1.93)"
       ],
+      "Settling Hall service lift": [
+        "short side 1024 (campaign p25 1536)",
+        "height 1.45 bodies (campaign p25 1.57)",
+        "1.31M of floor (a destination wants 14.0M)",
+        "1.45 bodies high (a destination wants 1.93)"
+      ],
       "Gravesend Station": [
         "short side 10752 (campaign p25 11776)"
       ],
@@ -4544,9 +4651,9 @@
     "whole": 3
   },
   "light_stage": {
-    "sectors_before": 583,
-    "walls_before": 3801,
-    "sprites_before": 1118,
+    "sectors_before": 586,
+    "walls_before": 3827,
+    "sprites_before": 1122,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -4815,11 +4922,11 @@
     },
     "floor_cut": {
       "sectors": 56,
-      "pieces": 320,
+      "pieces": 323,
       "slivers_merged": 16,
       "slivers_dropped": 31,
-      "walls_split": 802,
-      "seams": 3268,
+      "walls_split": 808,
+      "seams": 3298,
       "refused": {},
       "left_whole": {
         "327": "a wall of the cut had no twin"
@@ -4828,11 +4935,11 @@
     },
     "slope_cut": {
       "sectors": 20,
-      "pieces": 101,
+      "pieces": 104,
       "slivers_merged": 3,
       "slivers_dropped": 0,
-      "walls_split": 374,
-      "seams": 168,
+      "walls_split": 385,
+      "seams": 174,
       "refused": {
         "329": "a slope not cut across it",
         "335": "a slope not cut across it"
@@ -4845,24 +4952,24 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1688,
+      "walls_split": 1695,
       "seams": 0,
       "refused": {},
-      "walls_cut": 439,
+      "walls_cut": 442,
       "walls_refused": 10,
       "left_whole": {},
-      "looked_at": 1351
+      "looked_at": 1366
     },
     "shades": {
-      "surfaces": 5085,
+      "surfaces": 5132,
       "windows": 18,
-      "spread_12": 81
+      "spread_12": 83
     },
     "kept": 36,
-    "sectors": 1039,
-    "walls": 10320,
-    "sprites": 1194,
-    "pieces": 456,
+    "sectors": 1048,
+    "walls": 10397,
+    "sprites": 1198,
+    "pieces": 462,
     "default_rooms": []
   },
   "sunlight": {

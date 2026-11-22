@@ -454,6 +454,22 @@ HALL_JOINS = [
 HALL_STAIR = {"at_x": 33.5, "width": 1024, "tread": 512, "step_rise": 4096}
 #: The last metre of the tank's north edge, just west of the ring's outfall.
 HALL_OUTFALL = (31.5, 32.5)
+
+# The shaft is west of the dry quay and gallery walk. Its two east openings
+# are offset along the shaft, with solid wall between them. The upper lobby
+# turns at a raised sill before opening onto the shaft.
+HALL_LIFT_SHAFT = (17.5, 41.25, 19.0, 45.0)
+HALL_LIFT_UPPER_JAMB = 19.1875
+HALL_LIFT_UPPER_MOUTH = (41.75, 42.5)
+HALL_LIFT_UPPER = [
+    (HALL_LIFT_UPPER_JAMB, 41.5), (19.75, 41.5), (19.75, 42.5), (20, 42.5),
+    (20, 43), (19.75, 43), (19.75, 43.25), (HALL_LIFT_UPPER_JAMB, 43.25),
+    (HALL_LIFT_UPPER_JAMB, HALL_LIFT_UPPER_MOUTH[1]), (19, HALL_LIFT_UPPER_MOUTH[1]),
+    (19, HALL_LIFT_UPPER_MOUTH[0]), (HALL_LIFT_UPPER_JAMB, HALL_LIFT_UPPER_MOUTH[0]),
+]
+HALL_LIFT_LOWER = (19.0, 43.5, 20.0, 44.75)
+HALL_LIFT_WIRE = "sewer:settling-hall-lift"
+
 #: Graves Brook's walks: E3M3's stone walk (568) between rubble walls. (Not
 #: the crypt's earth, 270: at the crypt's own depth that is what makes the
 #: crypt the crypt.)
@@ -627,7 +643,7 @@ def edge(rooms: dict, leg: str, face: str, at: float | None = None):
 
 
 def hall(sewer, rooms: dict) -> dict:
-    """Build the settling hall's tanks, gallery outfall and stair."""
+    """Build the tanks, gallery outfall, stair and service lift."""
     from dataclasses import replace
 
     from bloodmap.corpus import corpus_map_path
@@ -741,7 +757,101 @@ def hall(sewer, rooms: dict) -> dict:
         total_rise=HALL_WALK - SEWER_FLOOR, tread=HALL_STAIR["tread"],
         step_rise=HALL_STAIR["step_rise"], arrive_at=rooms["circle_quay"].region_id,
         connection={"role": "portal"})
+    _hall_service_lift(part, ledge, rooms["west_quay"])
     return rooms
+
+
+def _hall_service_lift(part, gallery, quay) -> None:
+    """Join the dry walk and quay through a fixed shaft with a moving deck."""
+    from bloodmap import mechanism, motion, wiring
+    from bloodmap.player_space import PLAYER_PROFILES
+    from l3_foundry import _attested
+    import citytree
+    import wires
+
+    body = PLAYER_PROFILES["blood"]
+    high_z, low_z = (room.effective_style()["floor_z"] for room in (gallery, quay))
+    ceiling_z = SEWER_FLOOR - WALK_CLEAR
+    shaft_id = f"region:{part.path()}/service_lift"
+    sx0, sy0, sx1, sy1 = (round(v * PU) for v in HALL_LIFT_SHAFT)
+    uy0, uy1 = (round(v * PU) for v in HALL_LIFT_UPPER_MOUTH)
+    upper_jamb = round(HALL_LIFT_UPPER_JAMB * PU)
+    lx0, ly0, lx1, ly1 = (round(v * PU) for v in HALL_LIFT_LOWER)
+
+    upper = part.room(
+        "lift_gallery", [(round(x * PU), round(y * PU)) for x, y in HALL_LIFT_UPPER],
+        role="gateway", faces={"gallery": 3}, intent={"kind": "furnished"},
+        note="the lift's upper landing: a return wall and a raised sill at the shaft")
+    upper.surfaces(layer=gallery.effective_style()["layer"],
+                   **SEWER.style_kwargs(floor_z=high_z - 2048,
+                                        clear_height=22528, floor_shade=24))
+    lower = part.rect_room(
+        "lift_quay", origin=(lx0, ly0), size=(lx1 - lx0, ly1 - ly0),
+        role="gateway", intent={"kind": "furnished"},
+        note="the lift's lower landing: a dry loading bay off the west quay")
+    lower.surfaces(layer=HALL_LAYER, **SEWER.style_kwargs(
+        floor_z=low_z, clear_height=SEWER_CLEAR, floor_shade=24))
+    lamp_at = (0.47, 0.45)
+    for landing in (upper, lower):
+        landing.light_source("work_light", local=lamp_at, height_player_heights=1.15)
+    citytree.join(upper, gallery, at_a="gallery", at_b="west",
+                  connection_id="connection:hall_lift_gallery_walk",
+                  min_opening=body.standing_height)
+    citytree.join(lower, quay, at_a="east", at_b="west",
+                  connection_id="connection:hall_lift_west_quay",
+                  min_opening=body.standing_height)
+
+    wire = wires.wire(HALL_LIFT_WIRE)
+    upper_call = "sewer:hall_lift_upper_call"
+    lower_call = "sewer:hall_lift_lower_call"
+    rider = "sewer:hall_lift_rider"
+    # A momentary OneWay reports its press, then silently resets. Both
+    # buttons address the same receiver with explicit destination commands.
+    wire.when(wiring.placement(upper_call), "push", command=motion.CMD_ON, wait_time=1)
+    wire.when(wiring.placement(lower_call), "push", command=motion.CMD_OFF, wait_time=1)
+    wire.when(wiring.placement(rider), "push", command=motion.CMD_TOGGLE, off=True)
+    wire.then(wiring.region(shaft_id))
+
+    def furnish(layout, _room):
+        mechanism.lift(
+            layout, "settling hall service lift", footprint=(sx0, sy0, sx1, sy1),
+            region=shaft_id, low_z=low_z, high_z=high_z, ceiling_z=ceiling_z,
+            channel=wire.channel, route="remote", busy_up=24, busy_down=24,
+            layer=HALL_LAYER, wall_picnum=499, floor_picnum=209, ceiling_picnum=438,
+            wall_shade=26, floor_shade=24, ceiling_shade=28)
+        # The city's type-600 door pass would otherwise turn the deck into a door.
+        LATE_TYPES[shaft_id] = layout.regions[shaft_id].type
+        layout.regions[shaft_id].type = 0
+
+        for landing, end, y0, y1 in ((upper, "upper", uy0, uy1),
+                                     (lower, "lower", ly0, ly1)):
+            layout.add_connection(
+                f"connection:hall_lift_{end}_shaft", landing.region_id, shaft_id,
+                a1=(sx1, y1), a2=(sx1, y0), min_width=body.body_width,
+                min_opening=body.standing_height)
+
+        call = _attested("E1M4", 21, 1046)
+        drive = _attested("E1M2", 20, 1046)
+        lamp = _attested("E3M4", 0, 501)
+        for placement, landing, wall in (
+            (upper_call, upper, ((upper_jamb, round(43.25 * PU)), (upper_jamb, uy1))),
+            (lower_call, lower, ((lx0, ly0), (lx1, ly0))),
+        ):
+            layout.place_on_wall(
+                placement, landing.region_id, a1=wall[0], a2=wall[1],
+                height_player_heights=body.eye_height / body.standing_height,
+                shade=-12, behavior={**call["behavior"], "data_2": 0}, **call["fields"])
+            layout.place_on_ceiling(
+                f"sewer:hall_lift_{landing.node_id}_light", landing.region_id,
+                local=lamp_at,
+                **{**lamp["fields"], "x_repeat": 30, "y_repeat": 30, "shade": -16})
+        layout.place_on_wall(
+            rider, shaft_id, a1=(sx0, sy1), a2=(sx0, sy0),
+            height_player_heights=body.eye_height / body.standing_height,
+            shade=-12, behavior=drive["behavior"],
+            **{**drive["fields"], "cstat": drive["fields"]["cstat"] | mechanism.CARRY_WITH})
+
+    upper.raw("MACHINERY-LIFT: two dry landings, two calls and a deck switch", furnish)
 
 
 #: region id -> sector type, set by the build once the doors are framed
