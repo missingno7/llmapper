@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/studies/door-sounds/E1M5_183/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "knowledge/blood/studies/door-sounds/E1M5_183",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 11008,
+   "y": 16128,
+   "z": 86112,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 183,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 11008,
+   "y": 18176,
+   "z": 86112,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 183,
+   "screenshot": true
+  }
+ ]
+}

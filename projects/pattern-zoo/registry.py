@@ -807,6 +807,9 @@ def section_of(label: str) -> Section:
 
 
 SKIP: dict[str, str] = {
+    "bloodmap.mechanism.add_sector_sound":
+        "Invisible audio control. The Gravesend build and motion-sound "
+        "read-back check the emitted marker and all four sound fields.",
     # --- bloodmap.glass: one exhibit covers `glaze`, the rest are its parts
     "bloodmap.glass.attach_xwall":
         "the record-writing half of glaze; a pane without it is the defect "

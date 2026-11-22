@@ -118,7 +118,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
      ["mine_apertures", "mine_assemblies", "mine_decoration", "mine_keys",
       "mine_layers", "mine_mechanisms", "mine_monuments", "mine_overlooks",
       "mine_patterns", "mine_prefabs", "mine_prop_catalogue",
-      "mine_run_rhythm", "mine_set_pieces", "mine_skylines",
+      "mine_run_rhythm", "mine_sector_motion_sounds", "mine_set_pieces", "mine_skylines",
       "mine_sprite_heights", "mine_stacks", "mine_storeys",
       "mine_structures", "mine_style_combinations", "mine_surface_items",
       "mine_surface_palettes", "mine_switches", "mine_texture_fit",

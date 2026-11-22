@@ -167,6 +167,15 @@
     "E1M2:264!"
    ],
    "date": "2026-11-22"
+  },
+  "door-sounds": {
+   "want": "Campaign sound profiles for moving doors, lifts and machinery",
+   "seeds": [
+    "E1M1:4!",
+    "E1M5:183!",
+    "E3M5:64!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

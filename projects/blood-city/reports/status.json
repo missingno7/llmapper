@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f8be9bc9b37be2447ab8ee26d4ed8df71304694d0d9d0548e4b5f1132ca8490e",
-  "map_sha256": "0ec667201b09ebfca38b63d630b48622383112dad903089d2876f3a89e156f22",
+  "manifest_sha256": "606712e65773991e1acf3562da6ff907cf4ce263fdab8b5da238ebd706b9543d",
+  "map_sha256": "a207aa583ea026dab9956ef119cd534e2354976c7fb46ecdd7e4f42fdb02bd73",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1104,
   "walls": 10775,
-  "sprites": 1261,
+  "sprites": 1288,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -18,7 +18,7 @@
   "headroom": {
    "sectors": 0.73,
    "walls": 0.342,
-   "sprites": 0.923
+   "sprites": 0.921
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
@@ -181,18 +181,18 @@
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2270"
+   "at": "projects/blood-city/level/build_skeleton.py:2272"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2469"
+   "at": "projects/blood-city/level/build_skeleton.py:2471"
   }
  ],
  "finish": {
   "exits": [
    {
-    "root": "sprite 472",
+    "root": "sprite 473",
     "cause": "push",
     "sector": 499,
     "to": "kChannelLevelExitNormal",
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 589,
+    "sprite": 590,
     "name": "kItemKeyEye",
     "sector": 199,
     "reached": true
@@ -257,7 +257,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 659 (channel 117)"
+     "use switch sprite 660 (channel 117)"
     ],
     "sectors": 47,
     "first_sector": 3
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 660 (channel 118)"
+     "use switch sprite 661 (channel 118)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 661 (channel 119)"
+     "use switch sprite 662 (channel 119)"
     ],
     "sectors": 1,
     "first_sector": 30
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 662 (channel 120)"
+     "use switch sprite 663 (channel 120)"
     ],
     "sectors": 1,
     "first_sector": 32
@@ -297,7 +297,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 471 (channel 108)"
+     "use switch sprite 472 (channel 108)"
     ],
     "sectors": 15,
     "first_sector": 497
@@ -305,7 +305,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 511 (channel 103)"
+     "destroy sprite 512 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 98
@@ -313,7 +313,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 663 (channel 121)"
+     "use switch sprite 664 (channel 121)"
     ],
     "sectors": 7,
     "first_sector": 38
@@ -321,7 +321,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 244 (channel 109)"
+     "destroy sprite 245 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 390
@@ -377,7 +377,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 581 (channel 104)"
+     "destroy sprite 582 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 220
@@ -2560,7 +2560,7 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 27, \"sprite\": 967, \"tile\": 793}",
+   "says": "{\"sector\": 27, \"sprite\": 968, \"tile\": 793}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[27]"
@@ -2568,7 +2568,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 41, \"sprites\": [625, 626], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 41, \"sprites\": [626, 627], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[41]"

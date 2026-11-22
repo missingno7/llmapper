@@ -1245,17 +1245,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 511",
-          "sprite 512"
+          "sprite 512",
+          "sprite 513"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 513",
           "sprite 514",
-          "sprite 515"
+          "sprite 515",
+          "sprite 516"
         ],
         "faults": []
       },
@@ -1265,16 +1265,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 581"
+          "sprite 582"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 582",
           "sprite 583",
-          "sprite 584"
+          "sprite 584",
+          "sprite 585"
         ],
         "faults": []
       },
@@ -1313,7 +1313,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 478"
+          "sprite 479"
         ],
         "answers": [
           "sector 471"
@@ -1326,7 +1326,7 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 471"
+          "sprite 472"
         ],
         "answers": [
           "sector 497"
@@ -1339,16 +1339,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 244"
+          "sprite 245"
         ],
         "answers": [
           "sector 391",
           "sector 392",
           "sector 393",
           "sector 394",
-          "sprite 245",
           "sprite 246",
-          "sprite 247"
+          "sprite 247",
+          "sprite 248"
         ],
         "faults": []
       },
@@ -1469,7 +1469,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 472"
+          "sprite 473"
         ],
         "answers": [],
         "faults": []
@@ -1491,7 +1491,7 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 659"
+          "sprite 660"
         ],
         "answers": [
           "sector 9"
@@ -1504,7 +1504,7 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 660"
+          "sprite 661"
         ],
         "answers": [
           "sector 18"
@@ -1517,7 +1517,7 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sprite 661"
+          "sprite 662"
         ],
         "answers": [
           "sector 30"
@@ -1530,7 +1530,7 @@
         "channel": 120,
         "engine": null,
         "senders": [
-          "sprite 662"
+          "sprite 663"
         ],
         "answers": [
           "sector 32"
@@ -1543,7 +1543,7 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 663"
+          "sprite 664"
         ],
         "answers": [
           "sector 42"
@@ -1750,9 +1750,167 @@
     "tile": 194,
     "moving": 42
   },
+  "motion_sounds": {
+    "9": {
+      "region": "region:gravesend/theatre_row/saloon/door",
+      "profile": "stone_door"
+    },
+    "18": {
+      "region": "region:gravesend/theatre_row/parlor/door",
+      "profile": "stone_door"
+    },
+    "30": {
+      "region": "region:gravesend/theatre_row/aldermack/door",
+      "profile": "stone_door"
+    },
+    "32": {
+      "region": "region:gravesend/theatre_row/aldermack/lobby_door",
+      "profile": "stone_door"
+    },
+    "34": {
+      "region": "region:gravesend/theatre_row/aldermack/stage_curtain",
+      "profile": "curtain"
+    },
+    "36": {
+      "region": "region:gravesend/theatre_row/aldermack/fire_leaf_south",
+      "profile": "metal_swing"
+    },
+    "37": {
+      "region": "region:gravesend/theatre_row/aldermack/fire_leaf_north",
+      "profile": "metal_swing"
+    },
+    "42": {
+      "region": "region:gravesend/theatre_row/pawn_shop/pawn_door",
+      "profile": "stone_door"
+    },
+    "97": {
+      "region": "region:gravesend/old_crossing/st_gallows/crypt_lift",
+      "profile": "stone_door"
+    },
+    "99": {
+      "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_0",
+      "profile": "blast"
+    },
+    "100": {
+      "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
+      "profile": "blast"
+    },
+    "101": {
+      "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
+      "profile": "blast"
+    },
+    "102": {
+      "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
+      "profile": "blast"
+    },
+    "108": {
+      "region": "region:gravesend/old_crossing/st_gallows/tower_door",
+      "profile": "stone_door"
+    },
+    "110": {
+      "region": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
+      "profile": "stone_door"
+    },
+    "133": {
+      "region": "region:gravesend/foundry_ward/works_stair/loading_shutter",
+      "profile": "heavy_slide"
+    },
+    "142": {
+      "region": "region:gravesend/foundry_ward/pump_station/door",
+      "profile": "stone_door"
+    },
+    "148": {
+      "region": "region:gravesend/foundry_ward/pump_station/belt_1",
+      "profile": "ceiling_press"
+    },
+    "150": {
+      "region": "region:gravesend/foundry_ward/pump_station/belt_3",
+      "profile": "ceiling_press"
+    },
+    "166": {
+      "region": "region:gravesend/foundry_ward/canteen/freezer_door",
+      "profile": "stone_door"
+    },
+    "167": {
+      "region": "region:gravesend/foundry_ward/canteen/door",
+      "profile": "stone_door"
+    },
+    "217": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/entry_door",
+      "profile": "stone_door"
+    },
+    "219": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/service_door",
+      "profile": "stone_door"
+    },
+    "221": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_0",
+      "profile": "blast"
+    },
+    "222": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
+      "profile": "blast"
+    },
+    "223": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
+      "profile": "blast"
+    },
+    "224": {
+      "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
+      "profile": "blast"
+    },
+    "293": {
+      "region": "region:gravesend/market_slip/market_hall/door",
+      "profile": "stone_door"
+    },
+    "294": {
+      "region": "region:gravesend/market_slip/market_hall/staff_door",
+      "profile": "stone_door"
+    },
+    "391": {
+      "region": "region:gravesend/sewer/secrets/plague_seal_0",
+      "profile": "blast"
+    },
+    "392": {
+      "region": "region:gravesend/sewer/secrets/plague_seal_1",
+      "profile": "blast"
+    },
+    "393": {
+      "region": "region:gravesend/sewer/secrets/plague_seal_2",
+      "profile": "blast"
+    },
+    "394": {
+      "region": "region:gravesend/sewer/secrets/plague_seal_3",
+      "profile": "blast"
+    },
+    "431": {
+      "region": "region:gravesend/gravesend_station/fare_turnstile",
+      "profile": "fare_ambient"
+    },
+    "471": {
+      "region": "region:gravesend/gravesend_station/carriage_door",
+      "profile": "metal_z_door"
+    },
+    "497": {
+      "region": "region:gravesend/gravesend_station/tunnel_gate",
+      "profile": "chain_lift"
+    },
+    "593": {
+      "region": "region:gravesend/sewer/settling_hall/service_lift",
+      "profile": "winch_lift"
+    },
+    "594": {
+      "region": "region:gravesend/sewer/sampling/trolley_track_deck",
+      "profile": "rail_shuttle"
+    },
+    "595": {
+      "region": "region:gravesend/sewer/ghost_station/hatch:panel",
+      "profile": "hydraulic_slide"
+    }
+  },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1183,
+    "sprites": 1210,
     "wall_sprites": 555,
     "planes": 132,
     "clashing_pairs": 4,
@@ -3617,7 +3775,7 @@
     "sunk": [],
     "through": [
       {
-        "sprite": 967,
+        "sprite": 968,
         "tile": 793,
         "sector": 27
       }
@@ -3627,8 +3785,8 @@
     "overlaps": [
       {
         "sprites": [
-          625,
-          626
+          626,
+          627
         ],
         "tiles": [
           73,
@@ -5008,7 +5166,7 @@
   "light_stage": {
     "sectors_before": 632,
     "walls_before": 4054,
-    "sprites_before": 1183,
+    "sprites_before": 1210,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -5353,7 +5511,7 @@
     "kept": 38,
     "sectors": 1104,
     "walls": 10775,
-    "sprites": 1261,
+    "sprites": 1288,
     "pieces": 472,
     "default_rooms": []
   },

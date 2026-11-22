@@ -2249,6 +2249,8 @@ def main() -> int:
     print("shelf frames:", _fixtures.frame_shelves(
         compiled.level, compiled, layout, _art_sizes()))
     disk = compiled.level.to_disk_map()
+    import motion_sounds
+    ctx["manifest"]["motion_sounds"] = motion_sounds.apply(disk, compiled.allocations, circuit)
     # Wall sprites, as rectangles on the surfaces they hang from.  This was
     # 18.86 clashing pairs per 100 against a campaign 0.0-8.0, with 26
     # sprites entirely hidden behind another where no campaign map has more

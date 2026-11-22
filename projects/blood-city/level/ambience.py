@@ -44,6 +44,7 @@ SOUNDS = {
     "interior": 32,     # common across E3M1, E1M1 and E1M5
     "sewer": 30,        # E3M3, 21 of its 41
     "church": 50,       # E1M5
+    "fare_turnstile": 21,  # both E1M4 fare rotors, sectors 151 and 314
     "works": 18,        # E3M1 and E1M5 both use it in machine spaces
     "mall": 65,         # E4M9, the campaign's shopping mall and the
                         # corpus's heaviest user of this sound (5 of 11)        # E3M1 and E1M5 both use it in machine spaces

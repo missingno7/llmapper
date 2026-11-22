@@ -25,9 +25,14 @@ from typing import Any
 
 from . import motion
 from . import wiring
-from .model import record_fields as _fields
-from .planar_geom import point_in_loop, polygon_relation
+from .analysis import BLOOD_X_LIMITS
+from .build_ir import BUILD_LIMITS
+from .format import SPRITE_FIELDS, XSPRITE_SCHEMA
+from .model import DiskMap, DiskObject, PackedExtra, record_extra, record_fields as _fields
+from .planar_geom import point_in_loop, polygon_relation, sample_strict_interior
 from .planar_layout import PlanarLayout
+from .render_slots import surface_z
+from .sector_geom import outline_and_holes
 from .texture_align import natural_x_repeat
 from .player_space import PLAYER_PROFILES
 
@@ -76,6 +81,86 @@ POSE_DRAWN_OPEN = (0, 0)
 
 class MechanismError(ValueError):
     pass
+
+
+SECTOR_SOUND_TYPE = 709
+SECTOR_SOUND_TILE = 2520
+SECTOR_SOUND_STAT = 0
+SECTOR_SOUND_CSTAT = 32768 | 128
+TRIGGERED_MOTION_TYPES = frozenset({600, 602, 613, 614, 615, 616, 617})
+
+# Complete campaign tuples and their witnesses are in the door-sounds study.
+SECTOR_SOUND_PROFILES = {
+    "stone_door": (106, 157, 106, 157),
+    "metal_z_door": (110, 150, 110, 150),
+    "chain_lift": (105, 153, 105, 153),
+    "winch_lift": (116, 157, 116, 157),
+    "heavy_slide": (103, 0, 103, 0),
+    "metal_swing": (101, 0, 100, 150),
+    "curtain": (0, 159, 0, 159),
+    "rail_shuttle": (115, 153, 115, 153),
+    "hydraulic_slide": (111, 159, 111, 159),
+    "ceiling_press": (302, 309, 0, 0),
+}
+
+
+def add_sector_sound(disk: DiskMap, sector_id: int, kind: str | None = None, *,
+                     sounds: tuple[int, int, int, int] | None = None,
+                     carry: bool = False) -> int:
+    """Add an invisible sound source to a compiled Blood motion sector.
+
+    Supply a campaign profile name or four explicit IDs in order: start
+    toward ON, stop at ON, start toward OFF, stop at OFF. Zero skips a phase.
+    Set carry for a source that should move with the driven floor or walls.
+    Returns the new sprite index. Type 612 path motion uses waypoint sounds.
+    """
+    if (kind is None) == (sounds is None):
+        raise MechanismError("supply one sector sound kind or four explicit sound IDs")
+    if kind is not None:
+        if kind not in SECTOR_SOUND_PROFILES:
+            raise MechanismError(f"unknown sector sound kind {kind!r}")
+        sounds = SECTOR_SOUND_PROFILES[kind]
+    limits = (32767, 32767, 32767, 65535)
+    if len(sounds) != 4 or any(type(sound) is not int or not 0 <= sound <= limit
+                               for sound, limit in zip(sounds, limits)):
+        raise MechanismError("sector sound IDs must fit XSPRITE data_1 through data_4")
+
+    if not 0 <= sector_id < len(disk.sectors):
+        raise MechanismError(f"sound sector {sector_id} is out of range")
+    sector = disk.sectors[sector_id]
+    if _fields(sector)["type"] not in TRIGGERED_MOTION_TYPES or record_extra(sector) is None:
+        raise MechanismError(f"sector {sector_id} needs a triggered motion XSECTOR")
+
+    outline, holes = outline_and_holes(disk, sector_id)
+    point = sample_strict_interior([outline, *holes])
+    if point is None:
+        raise MechanismError(f"sound sector {sector_id} has no interior placement point")
+    x, y = point
+    ceiling, floor = surface_z(disk, sector_id, x, y)
+    sprite_id = len(disk.sprites)
+    if sprite_id >= BUILD_LIMITS["sprites"]:
+        raise MechanismError("no free Blood sprite slot remains")
+    used = {_fields(sprite)["extra"] for sprite in disk.sprites}
+    identity = next(number for number in range(1, sprite_id + 2) if number not in used)
+    if identity >= BLOOD_X_LIMITS["sprite"]:
+        raise MechanismError("no free XSPRITE slot remains")
+    fields = dict.fromkeys((name for name, _ in SPRITE_FIELDS), 0)
+    fields.update(
+        x=x, y=y, z=(ceiling + floor) // 2, sector=sector_id,
+        type=SECTOR_SOUND_TYPE, picnum=SECTOR_SOUND_TILE, status=SECTOR_SOUND_STAT,
+        cstat=SECTOR_SOUND_CSTAT | (CARRY_WITH if carry else 0), shade=-128,
+        x_repeat=64, y_repeat=64, clipdist=32, owner=-1, index=sprite_id, extra=identity,
+    )
+    data = dict.fromkeys((name for name, _, _ in XSPRITE_SCHEMA), 0)
+    # The file stores the sprite reference as a signed 14-bit field.
+    reference = sprite_id if sprite_id < 8192 else sprite_id - 16384
+    data.update(reference=reference, target=-1, burn_source=-1)
+    data.update({f"data_{index}": sound for index, sound in enumerate(sounds, 1)})
+    size = disk.extra_header.xsprite_size if disk.extra_header is not None else 56
+    known = sum(bits for _, bits, _ in XSPRITE_SCHEMA) // 8
+    tail = bytes(size - known)
+    disk.sprites.append(DiskObject(fields, PackedExtra("XSPRITE", data, tail)))
+    return sprite_id
 
 
 def _direction(a: tuple[int, int], b: tuple[int, int]) -> int:

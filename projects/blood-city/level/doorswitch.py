@@ -90,6 +90,8 @@ def place(layout, placement_id: str, street_region_id: str, segment,
     from bloodmap.switches import pressed_switch
 
     spec = dict(pressed_switch(tile=LEVER_TILE, tx_id=int(channel)))
+    # The modal sound pair for pushed tile-1070 toggles (40 of 97).
+    spec["behavior"].update(data_1=203, data_2=203)
     height = spec.pop("height_player_heights", LEVER_HEIGHT)
     a1, a2 = segment
     return layout.place_on_wall(

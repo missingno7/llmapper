@@ -468,6 +468,13 @@ def build(city, street):
         px, py = pivot
         layout.add_sprite("placement:station:fare_turnstile:axis", room.region_id,
                           x=px, y=py, **fare["axis"])
+        # E1M4:151 and :314 loop ambient 21 in both fare rotors.
+        from ambience import fields as ambient_fields
+
+        layout.place_on_floor(
+            "placement:station:fare_turnstile:sound", room.region_id,
+            local=(0.5, 0.5), height_player_heights=0,
+            **ambient_fields("fare_turnstile", near=250, far=700, volume=20))
         for index, blade in enumerate(fare["blades"]):
             fields = dict(blade)
             dx, dy = fields.pop("dx"), fields.pop("dy")

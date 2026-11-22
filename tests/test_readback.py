@@ -96,6 +96,63 @@ def _assert_agrees(case, result):
 # 1. bloodmap.mechanism
 # ---------------------------------------------------------------------------
 
+class SectorSoundReadBack(unittest.TestCase):
+    def setUp(self):
+        from bloodmap.construction import LevelBuilder
+        from bloodmap.doors import z_motion_door
+
+        builder = LevelBuilder()
+        builder.add_sector([(0, 0), (1024, 0), (1024, 512), (0, 512)],
+                           type=600, ceiling_z=0, floor_z=0)
+        builder.set_behavior("sector", 0, **z_motion_door(0, -24576))
+        self.disk = builder.level.to_disk_map()
+
+    def test_named_sound_survives_on_a_shut_leaf(self):
+        from bloodmap.format import encode_map, parse_map
+        from bloodmap.mechanism import add_sector_sound
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.sector_geom import sector_contains
+        from bloodmap.visual import HIDDEN_TYPES
+
+        index = add_sector_sound(self.disk, 0, "stone_door")
+        disk = parse_map(encode_map(self.disk))
+        sprite = disk.sprites[index]
+        fields = record_fields(sprite)
+        data = record_extra(sprite)
+        self.assertEqual((fields["type"], fields["picnum"], fields["status"]), (709, 2520, 0))
+        self.assertEqual((fields["sector"], fields["z"]), (0, 0))
+        self.assertTrue(sector_contains(disk, 0, fields["x"], fields["y"]))
+        self.assertIn(fields["type"], HIDDEN_TYPES)
+        self.assertTrue(fields["cstat"] & 32768)
+        self.assertEqual(tuple(data[f"data_{i}"] for i in range(1, 5)), (106, 157, 106, 157))
+        self.assertEqual((data["tx_id"], data["rx_id"]), (0, 0))
+
+    def test_explicit_sound_fields_and_carry(self):
+        from bloodmap.format import encode_map, parse_map
+        from bloodmap.mechanism import add_sector_sound
+        from bloodmap.model import record_extra, record_fields
+
+        first = add_sector_sound(self.disk, 0, sounds=(107, 0, 108, 150))
+        second = add_sector_sound(self.disk, 0, sounds=(114, 151, 0, 65535), carry=True)
+        disk = parse_map(encode_map(self.disk))
+        one, two = disk.sprites[first], disk.sprites[second]
+        self.assertNotEqual(record_fields(one)["extra"], record_fields(two)["extra"])
+        self.assertEqual(tuple(record_extra(two)[f"data_{i}"] for i in range(1, 5)),
+                         (114, 151, 0, 65535))
+        self.assertTrue(record_fields(two)["cstat"] & 8192)
+
+    def test_rejects_invalid_sound_or_path_without_mutation(self):
+        from bloodmap.mechanism import MechanismError, add_sector_sound
+        from bloodmap.model import record_fields
+
+        with self.assertRaises(MechanismError):
+            add_sector_sound(self.disk, 0, sounds=(32768, 0, 0, 0))
+        record_fields(self.disk.sectors[0])["type"] = 612
+        with self.assertRaises(MechanismError):
+            add_sector_sound(self.disk, 0, "stone_door")
+        self.assertEqual(self.disk.sprites, [])
+
+
 class CurtainReadBack(unittest.TestCase):
     """`mechanism.curtain`, both leaf counts, built and read back."""
 
@@ -798,6 +855,8 @@ READBACK_MODULES = ("bloodmap.mechanism", "bloodmap.doors", "bloodmap.glass",
 #: back. Named rather than discovered, so deleting the test fails the gate
 #: instead of silently shrinking it.
 COVERED: dict[str, str] = {
+    "bloodmap.mechanism.add_sector_sound":
+        "SectorSoundReadBack.test_named_sound_survives_on_a_shut_leaf",
     "bloodmap.mechanism.curtain":
         "CurtainReadBack.test_a_one_leaf_curtain_reads_back_as_what_it_declared",
     "bloodmap.mechanism.planar_door":

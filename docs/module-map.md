@@ -294,6 +294,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_prefabs` | What a Blood level is made of, below the size of a room. |
 | `mine_prop_catalogue` | A measured catalogue of every prop the campaign uses more than rarely. |
 | `mine_run_rhythm` | How often the campaign places detail along a run. |
+| `mine_sector_motion_sounds` | Count sector motion sound profiles in the Blood campaign and tutorials. |
 | `mine_set_pieces` | Set-pieces: the furniture Blood builds out of sectors, mined by shape. |
 | `mine_skylines` | How the campaign makes a building look tall: the two techniques, counted. |
 | `mine_sprite_heights` | How tall Blood draws each of its sprite tiles. |
