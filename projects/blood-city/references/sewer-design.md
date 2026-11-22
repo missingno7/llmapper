@@ -278,13 +278,34 @@ room with its rectangle and kind).
   hole; `apertures.continue_lintels` now leaves fixed-frame walls alone.
   The owner pointed to **E1M8's moving-water corridors** as the next thing
   to study for the sewers.
-* **Open:** the walks carry only floor debris: anything hung on their walls
-  (E3M3's drips at 1.21 bodies, its moss, the vault grates) lands in the
-  sloped ceiling, because the detail runs read a flat ceiling's height; and
-  E3M3's X-brace pilasters (487) are wall textures in E3M3, a wall split we
-  have not made. The Toshers' Cache is still to build. The blown seal
-  is seen in a frame only with its sector opened by hand; nobody has blown
-  it in the game.
+* **Moving water in Graves Brook and the Settling Hall.** The west end of
+  the brook is fed by a low cross-street culvert, 6,144 z units above its
+  channel. Its water runs east at 30 and the drop wears E1M8 wall 1309's
+  always-on vertical pan of -85 on animated dirty water 1120. The brook
+  inlet and the existing Settling Hall spillway carry E3M6 sprite 157's
+  animated foam (1037) at the waterline. The main outfall's southward
+  surface pans at 24 with drag clear, between the slower walking channels
+  and the ride-like blood race. The corridor masonry follows the still
+  walls alongside E1M8's ride and E3M6's factory race. See the
+  [moving-water study](../../../knowledge/blood/studies/e1m8-moving-water/notes.md).
+* **Walk walls and vaults.** Wall runs use the ceiling and floor at the
+  mount, with the drawn sprite box checked against the vault. Drips (54)
+  start from E3M3 sprite 82's 1.21-body mount and sit lower where the
+  vault needs it. Moss (793) follows E3M3 sprite 2. The owner's 795
+  "flat round light" is a round ceiling lamp. Nine sit just below the
+  flat crown over Graves Brook, the gallery and the east leg, with
+  E3M3 sprites 77 and 278's cstat 160 and shade -128. The light stage
+  reads those lamps as corridor lights. The panel lights in the gallery
+  and east leg therefore no longer get cut, accounting for the original
+  drop from 1,104 to 1,064 sectors when the lamps were added. Read-back
+  checks the drawn bounds of the drips, moss, round lamps and foam. Compare the
+  fixed poses in `work/water/brook-comparison.jpg` and
+  `work/water/settling-comparison.jpg`.
+* **Open:** look at the culvert arrival from the west manhole and how
+  the outfall reads in motion during a Blood walk. E3M3's X-brace
+  pilasters (487) are a separate wall-texture split. The Toshers' Cache
+  is still to build. The blown seal has been observed with its sector
+  opened by hand and still needs to be blown in-game.
 
 ## The history, oldest first
 

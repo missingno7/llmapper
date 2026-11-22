@@ -806,6 +806,8 @@ def section_of(label: str) -> Section:
     raise KeyError(label)
 
 
+# RegionSpec.surface_z measures a plane for sprite placement. It is a query
+# on a region, outside the catalogue of module-level constructors below.
 SKIP: dict[str, str] = {
     "bloodmap.mechanism.add_sector_sound":
         "Invisible audio control. The Gravesend build and motion-sound "

@@ -433,6 +433,8 @@ def resolve_anchor(
     facing: str = "into_region",
     local: tuple[float, float] | None = None,
     outer: list[tuple[int, int]] | None = None,
+    surface_at=None,
+    wall_extent: tuple[int, int] | None = None,
 ) -> dict[str, int]:
     """Derive x/y/z/angle from a wall, floor, or ceiling anchor."""
     if kind == "wall":
@@ -444,8 +446,16 @@ def resolve_anchor(
         offset = offset_player_widths * PLAYER_WIDTH
         x = int(round(mx + nx * offset))
         y = int(round(my + ny * offset))
+        if surface_at is not None:
+            ceiling_z, floor_z = surface_at((x, y))
         z = int(round(floor_z - height_player_heights * PLAYER_HEIGHT))
-        z = max(ceiling_z + 256, min(floor_z - 256, z))
+        low, high = ceiling_z + 256, floor_z - 256
+        if wall_extent is not None:
+            above, below = wall_extent
+            box_low, box_high = max(low, ceiling_z + above), min(high, floor_z - below)
+            if box_low <= box_high:
+                low, high = box_low, box_high
+        z = max(low, min(high, z))
         angle = build_angle(nx, ny)
         if facing == "outward":
             angle = (angle + 1024) & 2047

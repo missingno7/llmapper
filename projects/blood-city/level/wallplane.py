@@ -28,7 +28,7 @@ This module is the surface those decisions need.
 
 **A rectangle, from the tile.**  Along the wall a sprite runs from
 ``-(w/2 + xofs) * x_repeat / 4`` to ``+(w - w/2 - xofs) * x_repeat / 4``;
-up and down it runs by `bloodmap.placement.sprite_extent`.  Both come from
+up and down it runs by `bloodmap.placement.drawn_extent`.  Both come from
 the ART, so a decal reserves a decal's worth and a window reserves a
 window's.
 
@@ -74,7 +74,7 @@ from bloodmap.lettering import (
     SIZES, tile_for,
 )
 from bloodmap.placement import (
-    PLAYER_HEIGHT, PLAYER_WIDTH, inward_normal, sprite_extent,
+    PLAYER_HEIGHT, drawn_extent, resolve_anchor,
 )
 
 ALIGN_MASK = 0x30
@@ -119,12 +119,6 @@ STACK_STEPS = 12
 #: the floor.  Below 0.25 a sprite is on the skirting; above 2.6 it is out
 #: of sight in most of this city's rooms.
 STACK_LOW, STACK_HIGH = 0.25, 2.60
-#: How close to the floor or the ceiling a reserved rectangle may come.
-#: `resolve_anchor` clamps a wall sprite to 256 units inside the room, and a
-#: reservation that ignored that would be honoured by moving the sprite.
-ROOM_MARGIN = 256
-
-
 class WallPlaneError(ValueError):
     """A wall composition that will not fit, naming what was in the way."""
 
@@ -159,9 +153,8 @@ def extents(tile: int, x_repeat: int, y_repeat: int, cstat: int):
         centre = width - centre
     left = (int(x_repeat) * centre) // 4
     right = (int(x_repeat) * (width - centre)) // 4
-    above, below = sprite_extent(height, int(y_repeat), int(cstat),
-                                 y_offset=int(yofs))
-    return left, right, above, below
+    top, bottom = drawn_extent(height, yofs, y_repeat, cstat)
+    return left, right, -top, bottom
 
 
 # ---------------------------------------------------------------------------
@@ -228,29 +221,30 @@ def _plane_key(point, unit) -> tuple:
     return (round(ux, 3), round(uy, 3), round(offset / PLANE_TOLERANCE))
 
 
-def anchor_point(a1, a2, t: float, offset_player_widths: float):
-    """Where the compiler will put a wall sprite anchored like this.
-
-    Copied from `placement.resolve_anchor`'s wall branch rather than
-    guessed: an occupancy model that predicts a different point from the one
-    the compiler uses is worse than none.
-    """
-    mx = a1[0] + (a2[0] - a1[0]) * t
-    my = a1[1] + (a2[1] - a1[1]) * t
-    nx, ny = inward_normal(a1[0], a1[1], a2[0], a2[1])
-    push = offset_player_widths * PLAYER_WIDTH
-    return (mx + nx * push, my + ny * push)
+def _wall_anchor(region, a1, a2, t, height, offset, *, extent=None):
+    return resolve_anchor(
+        kind="wall", a1=a1, a2=a2, t=t, height_player_heights=height,
+        offset_player_widths=offset, floor_z=region.floor_z,
+        ceiling_z=region.ceiling_z, surface_at=region.surface_z, wall_extent=extent,
+    )
 
 
-def anchor_z(region, height_player_heights: float, above: int, below: int) -> int:
-    """The z the compiler will settle on, including its two clamps."""
-    floor_z = int(region.floor_z)
-    ceiling_z = int(region.ceiling_z)
-    z = int(round(floor_z - height_player_heights * PLAYER_HEIGHT))
-    z = max(ceiling_z + 256, min(floor_z - 256, z))
-    if above + below <= abs(floor_z - ceiling_z):
-        z = max(ceiling_z + above, min(floor_z - below, z))
-    return z
+def _anchor_rect(layout, placement, a1, a2, size, unit):
+    left, right, above, below = size
+    anchor = placement.anchor
+    region = layout.regions[placement.region_id]
+    got = _wall_anchor(region, a1, a2, anchor["t"], anchor["height_player_heights"],
+                       anchor["offset_player_widths"], extent=(above, below))
+    point = got["x"], got["y"]
+    along = point[0] * unit[0] + point[1] * unit[1]
+    # The sprite's horizontal axis is opposite the wall's directed edge.
+    if _forward(a1, a2, unit) == (anchor.get("facing") != "outward"):
+        left, right = right, left
+    return point, Rect(along - left, along + right, got["z"] - above, got["z"] + below)
+
+
+def _forward(a1, a2, unit):
+    return (a2[0] - a1[0]) * unit[0] + (a2[1] - a1[1]) * unit[1] > 0
 
 
 def occupancy(layout) -> dict:
@@ -267,6 +261,9 @@ def occupancy(layout) -> dict:
             continue
         if int(placement.cstat) & ALIGN_MASK != ALIGN_WALL:
             continue
+        region = layout.regions.get(placement.region_id)
+        if region is None:
+            continue
         size = extents(placement.picnum, placement.x_repeat,
                        placement.y_repeat, placement.cstat)
         if size is None:
@@ -277,16 +274,8 @@ def occupancy(layout) -> dict:
             unit, _length = _unit_and_offset(a1, a2)
         except WallPlaneError:
             continue
-        point = anchor_point(a1, a2, float(anchor.get("t", 0.5)),
-                             float(anchor.get("offset_player_widths") or 0.08))
-        region = layout.regions.get(placement.region_id)
-        if region is None:
-            continue
-        z = anchor_z(region, float(anchor.get("height_player_heights") or 0.0),
-                     above, below)
+        point, rect = _anchor_rect(layout, placement, a1, a2, size, unit)
         key = _plane_key(point, unit)
-        along = point[0] * unit[0] + point[1] * unit[1]
-        rect = Rect(along - left, along + right, z - above, z + below)
         # In its own bucket AND the two beside it. A key is a rounded
         # offset, so two sprites 8 units apart in depth -- a letter at 0.12
         # of a player width off the wall, a painting at 0.10 -- could fall
@@ -394,7 +383,7 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
               below: int, t: float = 0.5, height_player_heights: float = 0.65,
               offset_player_widths: float = 0.10,
               slide: bool = True, stack: bool = True,
-              over_steps: bool = False):
+              over_steps: bool = False, bounds=None, top_z_min=None):
     """A free (t, height) for a rectangle this size, or None.
 
     Tries the asked-for spot, then slides along the wall keeping the height,
@@ -414,48 +403,44 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
     # carries no z, so the caller says which case this is.
     blocked = [] if over_steps else portal_spans(layout, region_id, a1, a2)
     walls = edge_spans(layout, region_id, a1, a2)
-    half = width / 2.0
-
-    clear = abs(int(region.floor_z) - int(region.ceiling_z))
-    if above + below > clear - 2 * ROOM_MARGIN:
-        return None                 # the room is not tall enough to hold it
+    before, after = bounds if bounds is not None else (width / 2.0, width / 2.0)
+    left, right = (before, after) if _forward(a1, a2, unit) else (after, before)
 
     def fits(candidate_t, candidate_h):
-        point = anchor_point(a1, a2, candidate_t, offset_player_widths)
-        plane = planes.get(_plane_key(point, unit))
-        z = anchor_z(region, candidate_h, above, below)
-        # A height the room clamps is not the height that was asked for, and
-        # reserving one rectangle while the sprites land at another is how
-        # four letters of a vertical word ended up stacked at one z against
-        # the ceiling.  Only an honest height counts as a fit.
-        raw = int(round(int(region.floor_z) - candidate_h * PLAYER_HEIGHT))
-        if z != raw:
-            return None
+        got = _wall_anchor(region, a1, a2, candidate_t, candidate_h,
+                           offset_player_widths, extent=(above, below))
+        point, z = (got["x"], got["y"]), got["z"]
+        _, floor = region.surface_z(point)
+        if z != round(floor - candidate_h * PLAYER_HEIGHT):
+            return False  # the compiler would move the anchor
         along = point[0] * unit[0] + point[1] * unit[1]
-        #: most of it on real wall (where any outline lies on this line at
-        #: all). Not ALL of it: a light let into a wall an eighth of its
-        #: width from a corner is hung, and was refused by a stricter rule;
-        #: the notice this is for hung wholly over a yard.
+        rect = Rect(along - left, along + right, z - above, z + below)
+        if top_z_min is not None and rect.z0 < top_z_min:
+            return False
+        for side in (-left, right):
+            ceiling, floor = region.surface_z(
+                (point[0] + side * unit[0], point[1] + side * unit[1]))
+            if rect.z0 < ceiling or rect.z1 > floor:
+                return False
+
+        # Some fitted lamps intentionally project across a corner.
         if walls:
-            on_wall = sum(max(0.0, min(along + half, high) - max(along - half, low))
+            on_wall = sum(max(0.0, min(rect.along1, high) - max(rect.along0, low))
                           for low, high in walls)
             if on_wall < 0.6 * width:
-                return None
-        if any(along - half < high and low < along + half
-               and (top is None or (z - above < bottom and top < z + below))
+                return False
+        if any(rect.along0 < high and low < rect.along1
+               and (top is None or (rect.z0 < bottom and top < rect.z1))
                for low, high, top, bottom in blocked):
-            return None                  # nothing behind it
-        if plane is None:
-            return z
-        rect = Rect(along - half, along + half, z - above, z + below)
-        return z if plane.free(rect) else None
+            return False
+        plane = planes.get(_plane_key(point, unit))
+        return plane is None or plane.free(rect)
 
-    margin = half / length
-    low, high = margin, 1.0 - margin
+    low, high = before / length, 1.0 - after / length
     if low > high:
         return None
     want_t = min(high, max(low, float(t)))
-    if fits(want_t, height_player_heights) is not None:
+    if fits(want_t, height_player_heights):
         return (want_t, height_player_heights)
 
     heights = [height_player_heights]
@@ -479,7 +464,7 @@ def find_slot(layout, region_id: str, a1, a2, *, width: float, above: int,
 
     for candidate_h in heights:
         for candidate_t in slots:
-            if fits(candidate_t, candidate_h) is not None:
+            if fits(candidate_t, candidate_h):
                 return (candidate_t, candidate_h)
     return None
 
@@ -488,7 +473,7 @@ def sprite(layout, placement_id: str, region_id: str, a1, a2, *, tile: int,
            x_repeat: int, y_repeat: int, cstat: int, t: float = 0.5,
            height_player_heights: float = 0.65,
            offset_player_widths: float = 0.10, required: bool = False,
-           over_steps: bool = False, **fields):
+           over_steps: bool = False, top_z_min=None, **fields):
     """Hang one wall sprite where it does not cover anything already there.
 
     Returns the placement id, or None if the wall had no room -- which is a
@@ -505,7 +490,8 @@ def sprite(layout, placement_id: str, region_id: str, a1, a2, *, tile: int,
                      above=above, below=below, t=t,
                      height_player_heights=height_player_heights,
                      offset_player_widths=offset_player_widths,
-                     over_steps=over_steps)
+                     over_steps=over_steps, bounds=(right, left),
+                     top_z_min=top_z_min)
     if slot is None:
         if required:
             raise WallPlaneError(
@@ -621,62 +607,52 @@ def _advances(words: str, size, *, vertical: bool, tracking: float | None = None
     return out
 
 
+def _letters(words, size, *, vertical=False, tracking=None, jitter=0.0, sign_id=""):
+    """Glyph anchors and their drawn boxes, relative to the word's anchor."""
+    steps = _advances(words, size, vertical=vertical, tracking=tracking)
+    if not steps:
+        return []
+    run = sum(advance for _, advance in steps[:-1]) + steps[-1][0]
+    cursor = -run / 2
+    letters = []
+    for index, (character, (drawn, advance)) in enumerate(zip(words, steps)):
+        centre = cursor + drawn / 2
+        cursor += advance
+        tile = tile_for(character)
+        if tile is None:
+            continue
+        repeat = int(_per_letter(size, index, 64))
+        box = extents(tile, repeat, repeat, LETTER_CSTAT)
+        if box is None:
+            continue
+        along, dz = (0.0, centre) if vertical else (centre, 0.0)
+        if jitter and not vertical:
+            _, height = letter_size(repeat)
+            dz -= (_roll(f"{sign_id}:jitter:{index}", 201) - 100) * jitter * height / 200
+        letters.append((index, tile, repeat, along, round(dz), box))
+    return letters
+
+
+def _letter_bounds(letters):
+    # The word advances along the directed segment. The glyph's horizontal
+    # axis points back along that segment, so right extends toward its start.
+    return (
+        max(-along + box[1] for _, _, _, along, _, box in letters),
+        max(along + box[0] for _, _, _, along, _, box in letters),
+        max(box[2] - z for _, _, _, _, z, box in letters),
+        max(z + box[3] for _, _, _, _, z, box in letters),
+    )
+
+
 def text_box(words: str, size, *, vertical: bool = False,
-             tracking: float | None = None, jitter: float = 0.0):
-    """(along, above, below) for a word, from the letter tiles themselves.
-
-    A letter is not centred on its own z: the alphabet carries an ART y
-    offset, so `sprite_extent` puts more of it below the anchor than above.
-    Reserving a symmetric box around the centre therefore under-reserves the
-    bottom by that offset, which is exactly the 144 units by which the
-    arcade's sign and its caption came to touch.
-    """
-    above = below = 0
-    for index, character in enumerate(words):
-        tile = tile_for(character)
-        if tile is None:
-            continue
-        this = _per_letter(size, index, 64)
-        got = extents(tile, this, this, LETTER_CSTAT)
-        if got is None:
-            continue
-        above = max(above, got[2])
-        below = max(below, got[3])
-    run, across = text_extent(words, size, vertical=vertical,
-                              tracking=tracking)
-    if jitter:
-        # A jittered sign occupies the band its letters wander over, not the
-        # band one letter occupies.
-        swing = int(round(jitter * max(1, across if vertical else across)))
-        above += swing // 2
-        below += swing - swing // 2
-    if not vertical:
-        return float(run), above, below
-    # A vertical stack's extent ALREADY runs from the top of the first letter
-    # to the bottom of the last, so adding a whole letter's above and below
-    # to it reserves one letter too many -- which is what refused a five
-    # letter word on a wall with room for it.  Only the ART offset's
-    # asymmetry is left to add.
-    first, last = _end_letters(words, size)
-    top = across // 2 + (first[0] - first[2] // 2 if first else 0)
-    bottom = across - across // 2 + (last[1] - last[2] // 2 if last else 0)
-    return float(run), max(0, top), max(0, bottom)
-
-
-def _end_letters(words: str, size):
-    """(above, below, drawn) for the first and last real letters of a word."""
-    found = []
-    for index, character in enumerate(words):
-        tile = tile_for(character)
-        if tile is None:
-            continue
-        this = _per_letter(size, index, 64)
-        got = extents(tile, this, this, LETTER_CSTAT)
-        if got is not None:
-            found.append((got[2], got[3], got[2] + got[3]))
-    if not found:
-        return None, None
-    return found[0], found[-1]
+             tracking: float | None = None, jitter: float = 0.0, sign_id=""):
+    """The width and vertical offsets of the renderer's envelope of the glyphs."""
+    letters = _letters(words, size, vertical=vertical, tracking=tracking,
+                       jitter=jitter, sign_id=sign_id)
+    if not letters:
+        return 0.0, 0, 0
+    left, right, above, below = _letter_bounds(letters)
+    return left + right, above, below
 
 
 def text_extent(words: str, size, *, vertical: bool = False,
@@ -697,7 +673,8 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
          style=None, size=64, palette="default", shade=LETTER_SHADE,
          t: float = 0.5, height_player_heights: float = 1.2,
          offset_player_widths: float = 0.12, vertical: bool = False,
-         required: bool = False, over_steps: bool = False):
+         required: bool = False, over_steps: bool = False, top_z=None,
+         top_z_min=None):
     """Write a word on a wall, in the space the wall actually has free.
 
     `size`, `palette` and `shade` each take a scalar or a sequence: a
@@ -731,24 +708,31 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
     else:
         attempts = [None]
 
-    slot = tried = None
+    region = layout.regions.get(region_id)
+    if region is None:
+        return None
+    slot = None
     for trial in attempts:
         if trial is not None:
             size, palette = trial.sizes(), trial.palettes()
             shade, vertical = trial.shade, trial.vertical
             tracking, jitter = trial.tracking, trial.jitter
-        wide, tall = text_extent(words, size, vertical=vertical,
-                                 tracking=tracking)
-        if not vertical and wide > span:
+        letters = _letters(words, size, vertical=vertical, tracking=tracking,
+                           jitter=jitter, sign_id=sign_id)
+        if not letters:
             continue
-        _run, above, below = text_box(words, size, vertical=vertical,
-                                      tracking=tracking, jitter=jitter)
-        slot = find_slot(layout, region_id, a1, a2, width=wide,
+        left, right, above, below = _letter_bounds(letters)
+        height = height_player_heights
+        if top_z is not None:
+            origin = _wall_anchor(region, a1, a2, t, 0, offset_player_widths)
+            _, floor = region.surface_z((origin["x"], origin["y"]))
+            height = (floor - top_z - above) / PLAYER_HEIGHT
+        slot = find_slot(layout, region_id, a1, a2, width=left + right,
                          above=above, below=below, t=t,
-                         height_player_heights=height_player_heights,
+                         height_player_heights=height,
                          offset_player_widths=offset_player_widths,
-                         over_steps=over_steps)
-        tried = trial
+                         over_steps=over_steps, bounds=(left, right),
+                         top_z_min=top_z_min)
         if slot is not None:
             break
     if slot is None:
@@ -759,70 +743,24 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
                 + (f" at any step of the {chosen.name} style {chosen.steps()}"
                    if style is not None else ""))
         return None
-    if tried is not None:
-        size, palette = tried.sizes(), tried.palettes()
-        shade, vertical = tried.shade, tried.vertical
-        tracking, jitter = tried.tracking, tried.jitter
-        wide, tall = text_extent(words, size, vertical=vertical,
-                                 tracking=tracking)
     got_t, got_h = slot
-
-    _unit, length = _unit_and_offset(a1, a2)
+    centre = _wall_anchor(region, a1, a2, got_t, got_h, offset_player_widths)
+    _, floor = region.surface_z((centre["x"], centre["y"]))
+    z = round(floor - got_h * PLAYER_HEIGHT)
     out = []
-    steps = _advances(words, size, vertical=vertical, tracking=tracking)
-    if vertical:
-        # Top of the word, then down: the first letter is highest, which is
-        # how every campaign stack reads.  The cursor tracks each letter's
-        # own centre, so mixed sizes stay on one column.
-        cursor = got_h + (tall / 2.0) / PLAYER_HEIGHT
-        for index, character in enumerate(words):
-            this_size = _per_letter(size, index, 64)
-            drawn, advance = steps[index]
-            cursor -= (drawn / 2.0) / PLAYER_HEIGHT
-            picnum = tile_for(character)
-            if picnum is None:
-                continue
-            placement_id = f"{sign_id}_{index:02d}"
-            layout.place_on_wall(
-                placement_id, region_id, a1=a1, a2=a2, t=got_t,
-                height_player_heights=cursor,
-                offset_player_widths=offset_player_widths,
-                type=0, picnum=picnum, cstat=LETTER_CSTAT,
-                shade=int(_per_letter(shade, index, LETTER_SHADE, words)),
-                pal=_palette(_per_letter(palette, index, "default", words)),
-                x_repeat=int(this_size), y_repeat=int(this_size))
-            out.append(placement_id)
-            cursor -= (advance - drawn / 2.0) / PLAYER_HEIGHT
-        return out
-
-    cursor = -wide / 2.0
-    for index, character in enumerate(words):
-        this_size = _per_letter(size, index, 64)
-        drawn, advance = steps[index]
-        centre = cursor + drawn / 2.0
-        cursor += advance
-        picnum = tile_for(character)
-        if picnum is None:
-            continue
+    for index, picnum, repeat, along, dz, _box in letters:
+        glyph_t = got_t + along / span
+        point = _wall_anchor(region, a1, a2, glyph_t, 0, offset_player_widths)
+        _, glyph_floor = region.surface_z((point["x"], point["y"]))
         placement_id = f"{sign_id}_{index:02d}"
-        # Jitter is deterministic in the sign's own identity, like every
-        # other choice in this project: the same sign rebuilds identically
-        # and two signs wander differently.
-        wobble = 0.0
-        if jitter:
-            _w, letter_h = letter_size(this_size)
-            swing = jitter * letter_h
-            wobble = (_roll(f"{sign_id}:jitter:{index}", 201) - 100) / 100.0
-            wobble = wobble * swing / 2.0 / PLAYER_HEIGHT
         layout.place_on_wall(
-            placement_id, region_id, a1=a1, a2=a2,
-            t=got_t + centre / length,
-            height_player_heights=got_h + wobble,
+            placement_id, region_id, a1=a1, a2=a2, t=glyph_t,
+            height_player_heights=(glyph_floor - z - dz) / PLAYER_HEIGHT,
             offset_player_widths=offset_player_widths,
             type=0, picnum=picnum, cstat=LETTER_CSTAT,
             shade=int(_per_letter(shade, index, LETTER_SHADE, words)),
             pal=_palette(_per_letter(palette, index, "default", words)),
-            x_repeat=int(this_size), y_repeat=int(this_size))
+            x_repeat=repeat, y_repeat=repeat)
         out.append(placement_id)
     return out
 
@@ -1082,42 +1020,49 @@ def composition(layout, group_id: str, region_id: str, a1, a2, *,
     next to it and the next thing hung cannot cover the composition.
     """
     report = {"group": group_id, "placed": [], "skipped": []}
-    cursor = float(top_player_heights)
+    region = layout.regions[region_id]
+    unit, _ = _unit_and_offset(a1, a2)
+    origin = _wall_anchor(region, a1, a2, t, 0, offset_player_widths)
+    _, floor = region.surface_z((origin["x"], origin["y"]))
+    cursor = round(floor - top_player_heights * PLAYER_HEIGHT)
+    minimum_top = None
     for index, block in enumerate(blocks):
+        first = len(layout.placements)
         if block.kind == "sprite":
-            size = extents(block.tile, block.x_repeat, block.y_repeat,
-                           block.cstat)
+            size = extents(block.tile, block.x_repeat, block.y_repeat, block.cstat)
             if size is None:
                 report["skipped"].append(f"{index}: tile {block.tile} not in ART")
                 continue
-            _l, _r, above, below = size
-            centre = cursor - (above / PLAYER_HEIGHT)
             got = sprite(layout, f"{group_id}_{index}", region_id, a1, a2,
                          tile=block.tile, x_repeat=block.x_repeat,
-                         y_repeat=block.y_repeat, cstat=block.cstat,
-                         t=t, height_player_heights=centre,
-                         offset_player_widths=offset_player_widths,
+                         y_repeat=block.y_repeat, cstat=block.cstat, t=t,
+                         height_player_heights=(floor - cursor - size[2]) / PLAYER_HEIGHT,
+                         offset_player_widths=offset_player_widths, top_z_min=minimum_top,
                          shade=block.shade if block.shade is not None else -8)
             if got is None:
                 report["skipped"].append(f"{index}: tile {block.tile} did not fit")
                 continue
             report["placed"].append(got)
-            cursor = centre - (below / PLAYER_HEIGHT) - block.gap
+            t = layout.placements[-1].anchor["t"]
+            origin = _wall_anchor(region, a1, a2, t, 0, offset_player_widths)
+            _, floor = region.surface_z((origin["x"], origin["y"]))
         else:
-            _wide, above, below = text_box(block.words, block.size,
-                                           vertical=block.vertical)
-            centre = cursor - above / PLAYER_HEIGHT
             got = text(layout, f"{group_id}_{index}", region_id, a1, a2,
                        words=block.words, style=block.style,
                        size=block.size, palette=block.palette,
-                       shade=block.shade if block.shade is not None
-                       else LETTER_SHADE,
-                       t=t, height_player_heights=centre,
-                       offset_player_widths=offset_player_widths,
-                       vertical=block.vertical)
+                       shade=block.shade if block.shade is not None else LETTER_SHADE,
+                       t=t, top_z=cursor, top_z_min=minimum_top,
+                       offset_player_widths=offset_player_widths, vertical=block.vertical)
             if not got:
                 report["skipped"].append(f"{index}: {block.words!r} did not fit")
                 continue
             report["placed"].extend(got)
-            cursor = centre - below / PLAYER_HEIGHT - block.gap
+        bottoms = []
+        for placement in layout.placements[first:]:
+            box = extents(placement.picnum, placement.x_repeat,
+                          placement.y_repeat, placement.cstat)
+            _, rect = _anchor_rect(layout, placement, a1, a2, box, unit)
+            bottoms.append(rect.z1)
+        cursor = max(bottoms) + round(block.gap * PLAYER_HEIGHT)
+        minimum_top = cursor
     return report

@@ -15,6 +15,7 @@ from __future__ import annotations
 
 from typing import Any
 
+from bloodmap.placement import PLAYER_HEIGHT
 import props
 import wallplane
 
@@ -37,8 +38,7 @@ WALL_DETAILS = (
     ("mall", "unit_c", "north", 0.68, 610),
     ("mall", "unit_d", "west", 0.30, 965),
     ("mall", "unit_e", "east", 0.72, 269),
-    ("church", "nave", "north", 0.20, 847),
-    ("church", "nave", "west", 0.62, 167),
+    ("church", "nave", "west", 0.62, 167, {"preferred_only": True}),
     ("church", "narthex", "north", 0.45, 617),
     ("church", "crypt_stair", "east", 0.35, 789),
     ("station", "cellar", "east", 0.62, 52),
@@ -64,10 +64,11 @@ COMPOSITIONS = (
     # units and the nave has exactly ONE solid wall; every letter of the
     # nave's sign used to be written across that wall at a fixed height,
     # straight through the hanging, at 100% coverage. Now the word is the
-    # hanging's caption. The nave is 3.86 player heights clear, so 1.93 of
-    # tapestry and 0.17 of lettering leave room to breathe.
-    ("church", "nave", "south", 0.50, 3.10, "nave_hanging", (
-        ("painting", 847, {"gap": 0.12}),
+    # hanging's caption. Shorten the hanging by three repeat units so its
+    # corner clears the vault at the original anchor z. Keep the caption
+    # at the original gap of 19,379 from its drawn lower edge.
+    ("church", "nave", "south", 0.50, 67424 / PLAYER_HEIGHT, "nave_hanging", (
+        ("painting", 847, {"y_repeat": 61, "gap": 19379 / PLAYER_HEIGHT}),
         ("caption", "ST GALLOWS", {"style": "fascia"}),
     )),
     # A drop capital and a coloured initial: a sequence pads with its last
@@ -76,7 +77,7 @@ COMPOSITIONS = (
     # heights, on the inside face -- the fascia over the street door is a
     # separate sign in `signage.SIGNS`, which is what a theatre has.
     ("theatre", "aldermack_foyer", "north", 0.32, 2.20, "aldermack_board", (
-        ("painting", 793, {}),
+        ("painting", 793, {"cstat": 16 | 128}),
         ("caption", "THE ALDERMACK",
          {"style": wallplane.style("fascia", initial=(1.4, "warning"))}),
         ("caption", "BOX OFFICE", {"style": "label"}),
@@ -118,11 +119,11 @@ LIGHT_DETAILS = (
 )
 
 
-def _solid_face(layout: Any, room: Any, preferred: str) -> str | None:
+def _solid_face(layout: Any, room: Any, preferred: str, *, preferred_only=False) -> str | None:
     faces = props.solid_faces(layout, room.region_id, props.room_rect(room))
     if preferred in faces:
         return preferred
-    if not faces:
+    if not faces or preferred_only:
         return None
     # Preserve a strong composition even if a future geometry revision moves a
     # doorway: select the longest remaining wall instead of mounting over it.
@@ -138,8 +139,8 @@ def _solid_face(layout: Any, room: Any, preferred: str) -> str | None:
 
 def _mount(layout: Any, placement_id: str, room: Any, preferred: str,
            t: float, tile: int, *, emits_light: bool = False,
-           light_intensity: float | None = None) -> bool:
-    face = _solid_face(layout, room, preferred)
+           light_intensity: float | None = None, preferred_only=False) -> bool:
+    face = _solid_face(layout, room, preferred, preferred_only=preferred_only)
     if face is None:
         return False
     return props.mount_on_wall(layout, placement_id, room, face, tile, t=t,
@@ -178,13 +179,13 @@ def apply(layout: Any, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:
         for note in got["skipped"]:
             report["skipped"].append(f"composition:{group}:{note}")
 
-    for index, (context, room_name, face, t, tile) in enumerate(WALL_DETAILS):
+    for index, (context, room_name, face, t, tile, *options) in enumerate(WALL_DETAILS):
         room = contexts.get(context, {}).get(room_name)
         if room is None:
             report["skipped"].append(f"{context}:{room_name}:missing")
             continue
         if _mount(layout, f"venue:{context}:{room_name}:{index}", room,
-                  face, t, tile):
+                    face, t, tile, **(options[0] if options else {})):
             report["wall_details"] += 1
         else:
             report["skipped"].append(f"{context}:{room_name}:no_room")

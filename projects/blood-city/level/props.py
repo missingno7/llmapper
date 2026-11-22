@@ -263,6 +263,7 @@ def face_segment(rect, face: str, *, inset: int = 256):
 
 def mount_on_wall(layout, placement_id: str, room, face: str,
                   tile: int = FLAME, *, t: float = 0.5,
+                  height_player_heights: float | None = None,
                   emits_light: bool | None = None,
                   light_intensity: float | None = None,
                   required: bool = False, **overrides):
@@ -295,7 +296,7 @@ def mount_on_wall(layout, placement_id: str, room, face: str,
         layout, placement_id, region_id, a1, a2,
         tile=tile, x_repeat=spec["x_repeat"], y_repeat=spec["y_repeat"],
         cstat=spec["cstat"], t=t,
-        height_player_heights=height_of(tile),
+        height_player_heights=height_of(tile) if height_player_heights is None else height_player_heights,
         offset_player_widths=0.10,
         emits_light=emits_light, light_intensity=light_intensity,
         shade=spec["shade"], status=spec.get("status", 0),

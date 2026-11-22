@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-water/knowledge/blood/studies/e1m8-moving-water/E1M8_389/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-water/knowledge/blood/studies/e1m8-moving-water/E1M8_389",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 23273,
+   "y": 33811,
+   "z": -11168,
+   "angle": 96,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 25955,
+   "y": 32917,
+   "z": -11168,
+   "angle": 372,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 28637,
+   "y": 33811,
+   "z": -11168,
+   "angle": 845,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  }
+ ]
+}

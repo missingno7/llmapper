@@ -27,7 +27,7 @@ the channel. Length free, depth and rise pinned -- already a family.
 | 54 | dripping water | wall | 1.21 |
 | 793 | hanging moss | wall | 0.97 |
 | 191 | drain grate | floor-aligned | 1.99 |
-| 795 | round grate | floor-aligned | 1.93 |
+| 795 | flat round light | floor-aligned | 1.93 |
 | 668 | bubbles | face | 0.00 |
 | 660 | kelp | face | 0.00 |
 | 546 | reeds | face | 0.00 |
@@ -43,7 +43,10 @@ tables and one wall treatment, for `runs.py` and `fixtures.py` to emit.
 
 from __future__ import annotations
 
+from bloodmap.player_space import PLAYER_PROFILES
 from runs import Element
+
+BODY = PLAYER_PROFILES["blood"].standing_height
 
 #: The circular tunnel lining. E3M3: 29 two-sided walls, 47 solid.
 MOUTH_TILE = 194
@@ -71,7 +74,7 @@ VAULT = (
     Element(191, note="drain grate, E3M3 x18 at 1.99 -- and one of the "
                       "campaign's walkable floor-sprite decks, so it is a "
                       "surface as well as a detail"),
-    Element(795, note="round grate, E3M3 x15 at 1.93"),
+    Element(795, note="flat round light, E3M3 x15 at 1.93"),
 )
 
 #: What stands in the water. Face sprites at the floor, all three of them.
@@ -89,11 +92,14 @@ SILT = (
 #: Every element above, for a run that wants the whole register.
 TUNNEL = TUNNEL_WALL + VAULT + SILT
 
-#: What runs along a walk under E3M3's vault: its ceiling falls to the wall
-#: (20,480 over the walk there), so only what lies on the floor. The drips
-#: (1.21 bodies), the moss and the vault's grates (1.9) all land in it; the
-#: walls' variety is the niches (`l3_sewer.NICHES`).
-WALKSIDE = SILT
+#: The drips ask for E3M3 sprite 82's height. The mount searches down
+#: to seat the art where headroom is tighter. Moss carries sprite 2's palette.
+WALKSIDE = (
+    Element(54, note="E3M3 sprites 82 and 270", height=20480 / BODY,
+            fields=(("cstat", 150), ("x_repeat", 32), ("y_repeat", 40), ("shade", -8))),
+    Element(793, note="E3M3 sprite 2", height=16384 / BODY,
+            fields=(("cstat", 208), ("x_repeat", 48), ("y_repeat", 48), ("pal", 9))),
+) + SILT
 
 ELEMENTS = {"wall": TUNNEL_WALL, "vault": VAULT, "water": WATERLINE,
             "silt": SILT, "tunnel": TUNNEL, "walkside": WALKSIDE}

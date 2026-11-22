@@ -416,6 +416,14 @@ POSE_SETS = {
         "forecourt_lamp": (30.0, 13.0, 31.0, 13.0, LEVEL, "close to the forecourt lamp pool"),
         "quay_lamp": (36.0, 52.0, 37.0, 52.0, LEVEL, "close to the quay-gate lamp pool"),
     },
+    "sewer-water": {
+        "brook_inlet": (3.6, 19.65, 1.0, 19.5, LEVEL, "Graves Brook, west toward the feeder", 63488),
+        "brook_walk": (6.0, 19.3, 15.0, 18.6, LEVEL, "Graves Brook, east along the north wall", 63488),
+        "brook_drip": (24.1, 19.65, 23.33, 18.54, LEVEL, "Graves Brook, across to the north walk", 63488),
+        "outfall": (33.0, 37.5, 33.0, 42.0, LEVEL, "the outfall running south into the gallery", 63488),
+        "gallery": (34.1, 41.65, 31.5, 42.4, LEVEL, "the gallery channel toward the settling tank spillway", 63488),
+        "tank_foot": (32.0, 45.7, 32.0, 42.75, LEVEL, "tank 1 facing the spillway", 106496),
+    },
     "sewer": {
         #: the sewer floor, named: without it a pose stands on the street above
         #: (the set predates the stacked city, and rendered the street until 2026-11-20)

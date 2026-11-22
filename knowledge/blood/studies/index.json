@@ -176,6 +176,18 @@
     "E3M5:64!"
    ],
    "date": "2026-11-22"
+  },
+  "e1m8-moving-water": {
+   "want": "A shallow working sewer with a readable current, wet drops and dressed towpaths",
+   "seeds": [
+    "E1M8:389!",
+    "E1M8:157!",
+    "E1M8:243!",
+    "E1M8:251!",
+    "E3M6:74!",
+    "E4M3:219!"
+   ],
+   "date": "2026-11-22"
   }
  }
 }

@@ -21,7 +21,7 @@ from .geometry_audit import (
     validate_authored_level,
 )
 from .model import LevelIR
-from .placement import PLAYER_HEIGHT, seated_z, sprite_extent
+from .placement import PLAYER_HEIGHT, drawn_extent, seated_z, sprite_extent
 
 #: Blood's own event channels. Channel 2 is "a secret was found"; channel 1
 #: carries the level's secret total as `NUMERIC_COMMAND_BASE + n`.
@@ -382,6 +382,23 @@ class RegionSpec:
     #: door is a thing rather than an opening.
     portal_wall_picnum: int | None = None
     intent: dict[str, Any] = field(default_factory=dict)
+
+    def surface_z(self, point: Point) -> tuple[int, int]:
+        """Return the ceiling and floor z at a point in the authored region."""
+        heights = []
+        for base, spec in ((self.ceiling_z, self.ceiling_slope),
+                           (self.floor_z, self.floor_slope)):
+            if spec is not None:
+                distance = _slope.signed_distance(point, spec.hinge)
+                base += int(_slope.rise_at(_slope_heinum(self, spec), distance))
+            heights.append(base)
+        return heights[0], heights[1]
+
+
+def _slope_heinum(region: RegionSpec, spec: _slope.SlopeSpec) -> int:
+    if spec.heinum is not None:
+        return int(spec.heinum)
+    return _slope.heinum_for_rise(region.outer, spec.hinge, float(spec.rise_z))
 
 
 @dataclass
@@ -1789,20 +1806,29 @@ class PlanarLayout:
         for placement in self.placements:
             region = self.regions[placement.region_id]
             sector_id = allocations[placement.region_id].sector_id
+            wall_anchor = (placement.anchor or {}).get("kind") == "wall"
+            extent = self.tile_extents.get(int(placement.picnum))
             if placement.anchor:
                 from .placement import resolve_anchor
+                wall_extent = None
+                if wall_anchor and extent is not None and not placement.seat:
+                    top, bottom = drawn_extent(
+                        extent[0], extent[1], placement.y_repeat, placement.cstat)
+                    wall_extent = (-top, bottom)
                 resolved = resolve_anchor(
                     kind=str(placement.anchor["kind"]),
                     a1=tuple(placement.anchor.get("a1") or (0, 0)),
                     a2=tuple(placement.anchor.get("a2") or (0, 0)),
                     floor_z=region.floor_z,
                     ceiling_z=region.ceiling_z,
-                    t=float(placement.anchor.get("t") or 0.5),
+                    t=float(placement.anchor.get("t", 0.5)),
                     height_player_heights=float(placement.anchor.get("height_player_heights") or 0.0),
-                    offset_player_widths=float(placement.anchor.get("offset_player_widths") or 0.08),
+                    offset_player_widths=float(placement.anchor.get("offset_player_widths", 0.08)),
                     facing=str(placement.anchor.get("facing") or "into_region"),
                     local=tuple(placement.anchor["local"]) if placement.anchor.get("local") else None,
                     outer=list(region.outer),
+                    surface_at=region.surface_z if wall_anchor else None,
+                    wall_extent=wall_extent,
                 )
                 placement.x, placement.y, placement.z = resolved["x"], resolved["y"], resolved["z"]
                 if placement.anchor.get("kind") == "wall":
@@ -1818,19 +1844,12 @@ class PlanarLayout:
                         f"tile {placement.picnum} carries floor alignment (cstat "
                         f"{placement.cstat}); a floor sprite on a wall hangs in the air"
                     )
-            if not placement.seat and self.tile_extents:
-                # A wall mount is positioned by its centre, so a tall tile can
-                # still hang through the floor or poke out of the ceiling --
-                # 15 of this level's 58 decorations did. Pull the whole sprite
-                # back inside the room it is in, rather than only its z, which
-                # is all `resolve_anchor` can do without knowing the tile.
-                extent = self.tile_extents.get(int(placement.picnum))
-                if extent is not None:
-                    above, below = sprite_extent(
-                        extent[0], placement.y_repeat, placement.cstat, y_offset=extent[1])
-                    if above + below <= abs(region.floor_z - region.ceiling_z):
-                        placement.z = max(region.ceiling_z + above,
-                                          min(region.floor_z - below, placement.z))
+            if not placement.seat and not wall_anchor and extent is not None:
+                ceiling, floor = region.ceiling_z, region.floor_z
+                above, below = sprite_extent(
+                    extent[0], placement.y_repeat, placement.cstat, y_offset=extent[1])
+                if above + below <= abs(floor - ceiling):
+                    placement.z = max(ceiling + above, min(floor - below, placement.z))
             if placement.seat:
                 extent = self.tile_extents.get(int(placement.picnum))
                 if extent is None:
@@ -2551,10 +2570,7 @@ class PlanarLayout:
                                   ("floor", region.floor_slope)):
                 if spec is None:
                     continue
-                heinum = (
-                    int(spec.heinum) if spec.heinum is not None
-                    else _slope.heinum_for_rise(
-                        region.outer, spec.hinge, float(spec.rise_z)))
+                heinum = _slope_heinum(region, spec)
                 fields[f"{surface}_heinum"] = heinum
                 fields[f"{surface}_stat"] = int(fields.get(f"{surface}_stat", 0)) | 2
                 note = _slope.steeper_than_campaign(heinum, surface)

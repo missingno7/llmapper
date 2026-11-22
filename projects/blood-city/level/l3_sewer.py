@@ -64,7 +64,7 @@ FLOW = {
     "stockyard_drain": (1536, 60, True),
     # out of the ring under the plaza: the outfall south, the basin west
     # toward the river
-    "outfall": (512, 12, False),
+    "outfall": (512, 24, False),
     "gallery": (1024, 8, False),
     # the tanks barely move: that is what settling is
     "tank_1": (1024, 2, False), "tank_2": (1024, 2, False), "tank_3": (1024, 2, False),
@@ -543,14 +543,54 @@ STOCKYARD_TROLLEY_ROOMS = (
 POUR_SOURCE = ("E1M8", 1309, "E3M3", 393, 174)
 
 
+def _waterfall(upper, face: str, lower, wall, *, pal: int = 0, bottom_swap: bool = False):
+    from bloodmap.model import record_extra, record_fields
+
+    finish = {key: record_fields(wall)[key] for key in
+              ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
+    if pal:
+        finish["pal"] = int(pal)
+    pan = {key: record_extra(wall)[key] for key in
+           ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
+
+    def spill(layout, room):
+        a, b = (upper.world_frame().apply(p) for p in upper.local_edge(face))
+        wet_side = upper if bottom_swap else lower
+        layout.paint_wall(wet_side.region_id, a, b, fixed_frame=True, **finish)
+        layout.wire_wall(wet_side.region_id, a, b, **pan)
+        if bottom_swap:
+            # The lower sector has a lintel as well as a drop on this edge.
+            # The lower band borrows the water-facing record from the feeder.
+            layout.paint_wall(lower.region_id, a, b, cstat=2, fixed_frame=True)
+
+    upper.raw("falling water on the receiving wall", spill)
+
+
+def _foam_at_foot(upper, face: str, lower, name: str):
+    """E3M6's animated waterline across the foot of a drop."""
+    from bloodmap.placement import build_angle, inward_normal
+
+    def foam(layout, room):
+        a, b = (upper.world_frame().apply(p) for p in upper.local_edge(face))
+        nx, ny = inward_normal(*b, *a)
+        # E3M6 sprite 157: 1037's centred ART offset puts its visible foot at z.
+        layout.add_sprite(f"sewer:{name}_foam", room.region_id, picnum=1037,
+                          x=round((a[0] + b[0]) / 2 + 32 * nx),
+                          y=round((a[1] + b[1]) / 2 + 32 * ny),
+                          z=layout.regions[room.region_id].floor_z,
+                          angle=build_angle(nx, ny), cstat=210,
+                          x_repeat=28, y_repeat=32, shade=-33)
+
+    lower.raw("E3M6 sprite 157: foam at the fall's foot", foam)
+
+
 def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: float = 0.5):
     """Make the drop on `upper`'s `face` into `lower` a fall of water (or, at pal 7, blood).
 
     `upper` is the room the water comes from, `lower` the room under the
-    drop it falls into; their faces must be joined. Both get a `raw` step:
-    the upper wall wears E3M3's panned falling-water finish in its own fixed
-    frame, the lower wall shows it (bottom swap), and the falling-water sound
-    stands at the foot, `sound_at` along the face.
+    drop it falls into; their faces must be joined. The lower wall wears
+    E1M8's panned falling-water finish and the sound stands at its foot,
+    `sound_at` along the face.
     """
     from bloodmap.corpus import corpus_map_path
     from bloodmap.format import read_map
@@ -558,25 +598,14 @@ def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: floa
 
     source, wall_id, sound_source, sound_sprite, sound_sector = POUR_SOURCE
     wall = read_map(corpus_map_path(source)).walls[wall_id]
+    _waterfall(upper, face, lower, wall, pal=pal)
     example = read_map(corpus_map_path(sound_source))
-    finish = {key: record_fields(wall)[key] for key in
-              ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
-    if pal:
-        finish["pal"] = int(pal)
-    pan = {key: record_extra(wall)[key] for key in
-           ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
     sound = example.sprites[sound_sprite]
     sound_fields = {key: record_fields(sound)[key] for key in
                     ("picnum", "type", "cstat", "status", "shade", "x_repeat", "y_repeat")}
     sound_behavior = {key: record_extra(sound)[key] for key in
                       ("state", "busy", "data_1", "data_2", "data_3", "data_4")}
     sound_height = record_fields(example.sectors[sound_sector])["floor_z"] - record_fields(sound)["z"]
-
-    def spill(layout, room):
-        a, b = (room.world_frame().apply(p) for p in room.local_edge(face))
-        # the lower room's own wall: the face a player below sees
-        layout.paint_wall(lower.region_id, a, b, fixed_frame=True, **finish)
-        layout.wire_wall(lower.region_id, a, b, **pan)
 
     def foot(layout, room):
         a, b = (upper.world_frame().apply(p) for p in upper.local_edge(face))
@@ -591,7 +620,6 @@ def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: floa
         layout.add_sprite(sound_id, room.region_id, x=int(x), y=int(y),
                           z=int(floor - sound_height), behavior=sound_behavior, **sound_fields)
 
-    upper.raw(f"{source} wall {wall_id}: falling water on the drop", spill)
     lower.raw(f"{sound_source} sprite {sound_sprite}: falling water sound at the foot", foot)
 
 
@@ -980,6 +1008,7 @@ def hall(sewer, rooms: dict) -> dict:
         layout.paint_wall(tank.region_id, a, b, cstat=pool_cstat)
 
     mouth.raw("E3M3 walls 1307/1319: panned sewage beneath a metal lintel", spill)
+    _foam_at_foot(mouth, "south", tank, "settling_spillway")
 
     sample = example.sprites[393]
     sound = record_fields(sample)
@@ -1295,6 +1324,28 @@ def ledge_name(rooms: dict, room) -> str:
 RESOLVED: dict = {}
 
 
+def _brook_feeder(part, brook):
+    """A low cross-street culvert feeding the west end of Graves Brook."""
+    import citytree
+    from bloodmap.corpus import corpus_map_path
+    from bloodmap.format import read_map
+
+    material = Material(wall=110, floor=1120, ceiling=253, opening=194)
+    feeder = part.rect_room(
+        "brook_feeder", origin=(PU // 2, 19 * PU), size=(PU // 2, PU),
+        role="interior", note="a low culvert feeding Graves Brook from the west",
+        region_kwargs={**material.region_kwargs(),
+                       "sector_behavior": flow_behavior(0, 30, False)})
+    feeder.surfaces(**material.style_kwargs(floor_z=SEWER_FLOOR + CHANNEL_DROP - 6144,
+                                            clear_height=8192, floor_shade=32))
+    citytree.join(feeder, brook, at_a="east", at_b="west",
+                  connection_id="connection:sewer_brook_feeder")
+    wall = read_map(corpus_map_path(POUR_SOURCE[0])).walls[POUR_SOURCE[1]]
+    _waterfall(feeder, "east", brook, wall, bottom_swap=True)
+    _foam_at_foot(feeder, "east", brook, "brook_feeder")
+    return feeder
+
+
 def expand(city, sewer, existing: dict) -> dict:
     """Build the ring, its branches, its chambers and the necks onto the under-city."""
     import citytree
@@ -1462,6 +1513,7 @@ def expand(city, sewer, existing: dict) -> dict:
             RESOLVED[(name, own_face)] = (target, other_face)
             sewer.connect(rooms[name].face(own_face), target.face(other_face),
                           connection_id=f"connection:{name}_{own_face}")
+    rooms["brook_feeder"] = _brook_feeder(parts["ring"], rooms["graves_brook"])
     hall(sewer, rooms)
     secret_rooms(sewer, rooms)
     spider_lair(sewer, rooms)
@@ -1811,8 +1863,7 @@ RUN_FACES = {
     # The two long legs, 24 plan units each and until now completely bare.
     # They are the most repetitive stretch in the city, which is exactly
     # where a rhythm earns its keep.
-    # The corridors' outer walks, under E3M3's vault: only what hangs low
-    # and what lies on the floor (`sewerkit.WALKSIDE`)
+    # The corridors' outer walks carry low details below the vault.
     "n_walk": ("north", (), "walkside"),
     "s_walk": ("south", (), "walkside"),
     "e_leg_walk_e": ("east", (), "walkside"),
@@ -1820,6 +1871,9 @@ RUN_FACES = {
     "w_leg_walk_w_2": ("west", (), "walkside"),
     "graves_brook_walk_a": ("north", (), "walkside"),
     "graves_brook_walk_b": ("south", (), "walkside"),
+    "gallery_walk_a": ("north", (), "walkside"),
+    "outfall_walk_a": ("west", (), "walkside"),
+    "outfall_walk_b": ("east", (), "walkside"),
 }
 
 
@@ -2464,6 +2518,23 @@ def detail_runs(layout, rooms) -> list:
     import props
     import runs as run_layer
     import sewerkit
+
+    # The owner's flat round light, 795, lies flush in E3M3's ceilings
+    # (sprites 77 and 278). The crown between the slopes seats the lamp.
+    for name, positions in (("graves_brook", (0.13, 0.48, 0.83)),
+                            ("gallery", (0.18, 0.52, 0.87)),
+                            ("e_leg", (0.23, 0.60, 0.85))):
+        if name not in rooms:
+            continue
+        room = rooms[name]
+        region = layout.regions[room.region_id]
+        x0, y0, x1, y1 = props.room_rect(room)
+        for index, t in enumerate(positions):
+            u, v = (t, 0.5) if x1 - x0 > y1 - y0 else (0.5, t)
+            layout.add_sprite(f"sewer:{name}_vault_lamp_{index}", room.region_id,
+                              x=round(x0 + u * (x1 - x0)), y=round(y0 + v * (y1 - y0)),
+                              z=region.ceiling_z + 64, picnum=795, cstat=160,
+                              x_repeat=48, y_repeat=48, shade=-128)
 
     attached = {}
     names = {id(room): name for name, room in rooms.items()}

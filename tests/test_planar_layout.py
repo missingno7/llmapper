@@ -15,6 +15,29 @@ def _rect(x0: int, y0: int, x1: int, y1: int) -> list[tuple[int, int]]:
 
 
 class PlanarLayoutTests(unittest.TestCase):
+    def test_wall_anchor_seats_drawn_box_at_sloped_ceiling(self):
+        from bloodmap.placement import drawn_extent
+        from bloodmap.render_slots import surface_z
+        from bloodmap.slope import SlopeSpec
+
+        layout = PlanarLayout(name="sloped-towpath", tile_extents={54: (64, 0)})
+        layout.add_region("walk", _rect(0, 0, 4096, 512),
+                          ceiling_z=0, floor_z=28672, declared_zero_exit=True,
+                          ceiling_slope=SlopeSpec(hinge=((0, 0), (4096, 0)), rise_z=8192))
+        # Uncentred wall art renders upward from the anchor, by the full tile height.
+        layout.place_on_wall("drip", "walk", a1=(4096, 512), a2=(0, 512),
+                             picnum=54, cstat=16, x_repeat=32, y_repeat=40,
+                             height_player_heights=1.21, offset_player_widths=0.10)
+        layout.set_player_start("walk", x=2048, y=256, z=15000)
+
+        disk = layout.compile().level.to_disk_map()
+        sprite = disk.sprites[0]
+        ceiling, floor = surface_z(disk, sprite.sector, sprite.x, sprite.y)
+        top, bottom = drawn_extent(64, 0, sprite.y_repeat, sprite.cstat, sprite.z)
+        self.assertEqual(ceiling, 7584)
+        self.assertEqual(top, ceiling)
+        self.assertLessEqual(bottom, floor)
+
     def test_declared_light_generates_shades_but_respects_explicit_override(self):
         layout = PlanarLayout(name="declared-light")
         layout.add_region("region:room", _rect(0, 0, 4096, 4096),

@@ -182,6 +182,72 @@ class NothingIsShutBehindACounterTests(unittest.TestCase):
 
 
 class SignOverAnOpeningTests(unittest.TestCase):
+    def test_sloped_composition_reserves_what_the_compiler_draws(self):
+        from unittest.mock import patch
+        from bloodmap.lettering import tile_for
+        from bloodmap.placement import drawn_extent
+        from bloodmap.planar_layout import PlanarLayout
+        from bloodmap.render_slots import surface_z
+        from bloodmap.slope import SlopeSpec
+
+        wallplane = _level_module("wallplane")
+        art = {847: (64, 64, 5, -96), tile_for("A"): (8, 11, 0, -2),
+               tile_for("B"): (10, 11, 1, 2)}
+        layout = PlanarLayout(tile_extents={tile: (h, y) for tile, (_, h, _, y) in art.items()})
+        hinge = ((0, 1024), (0, 0))
+        layout.add_region("walk", [(0, 0), (8192, 0), (8192, 1024), (0, 1024)],
+                          ceiling_z=-16384, floor_z=16384, declared_zero_exit=True,
+                          ceiling_slope=SlopeSpec(hinge=hinge, heinum=512),
+                          floor_slope=SlopeSpec(hinge=hinge, heinum=64))
+        layout.set_player_start("walk", x=4096, y=512, z=4000)
+        with patch.object(wallplane, "art", return_value=art):
+            made = wallplane.composition(
+                layout, "sloped", "walk", (8192, 1024), (0, 1024), t=0.503,
+                top_player_heights=2.5,
+                blocks=(wallplane.painting(847, x_repeat=32, y_repeat=32),
+                        wallplane.caption("AB", size=(40, 48))))
+            self.assertEqual(made["skipped"], [])
+            self.assertIsNone(wallplane.sprite(
+                layout, "too-tall", "walk", (8192, 1024), (0, 1024),
+                tile=847, x_repeat=32, y_repeat=200, cstat=16))
+            reserved = wallplane.occupancy(layout)
+
+        disk = layout.compile().level.to_disk_map()
+        rendered = []
+        for sprite in disk.sprites:
+            width, height, x_offset, y_offset = art[sprite.picnum]
+            top, bottom = drawn_extent(height, y_offset, sprite.y_repeat, sprite.cstat, sprite.z)
+            centre = width // 2 + x_offset
+            left = sprite.x - sprite.x_repeat * centre // 4
+            right = sprite.x + sprite.x_repeat * (width - centre) // 4
+            rendered.append(wallplane.Rect(left, right, top, bottom))
+            for x in (left, right):
+                ceiling, floor = surface_z(disk, sprite.sector, x, sprite.y)
+                self.assertLessEqual(ceiling, top)
+                self.assertLessEqual(bottom, floor)
+        banner, *caption = rendered
+        self.assertEqual(len(caption), 2)
+        self.assertGreaterEqual(min(glyph.z0 for glyph in caption) - banner.z1, 1696)
+        point = (disk.sprites[0].x, disk.sprites[0].y)
+        self.assertEqual(reserved[wallplane._plane_key(point, (1.0, 0.0))].taken, rendered)
+
+    def test_wall_slot_search_lowers_a_drip_under_the_sewer_vault(self):
+        from unittest.mock import patch
+        from bloodmap.planar_layout import PlanarLayout
+        from bloodmap.slope import SlopeSpec
+
+        wallplane = _level_module("wallplane")
+        layout = PlanarLayout()
+        layout.add_region("walk", [(0, 0), (4096, 0), (4096, 512), (0, 512)],
+                          ceiling_z=0, floor_z=28672,
+                          ceiling_slope=SlopeSpec(hinge=((0, 0), (4096, 0)), rise_z=8192))
+        with patch.object(wallplane, "art", return_value={54: (128, 64, 0, 0)}):
+            got = wallplane.sprite(layout, "drip", "walk", (4096, 512), (0, 512),
+                                   tile=54, x_repeat=32, y_repeat=40, cstat=150,
+                                   height_player_heights=1.21, required=True)
+        self.assertEqual(got, "drip")
+        self.assertLess(layout.placements[0].anchor["height_player_heights"], 1.21)
+
     def test_an_opening_blocks_a_sprite_only_where_it_is_open(self):
         """A sign over a shelf's head has wall behind it."""
         import types

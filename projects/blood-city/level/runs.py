@@ -58,6 +58,8 @@ class Element:
     tile: int
     walls: int = 0            # emitted walls; sprites are free
     note: str = ""
+    height: float | None = None
+    fields: tuple[tuple[str, int], ...] = ()
 
     @property
     def kind(self) -> str:
@@ -73,7 +75,7 @@ class Element:
 #: `mine_run_rhythm` and identified by looking at it:
 #:
 #:   694  a pipe with an elbow      692  a hanging chain
-#:   795  a round wall grate         54  drips
+#:   795  a flat round light        54  drips
 #:  1060  an X-braced truss         104  a railing
 #: Only the wall-aligned ones run along a wall; 694 and 692 hang high
 #: (+2.88 and +3.44 player heights) and 795 is floor-aligned, so they are
@@ -231,8 +233,12 @@ def emit(layout, run: Run) -> dict:
         element = choose(run, index)
         try:
             if element.kind in ("wall_aligned", "bracket"):
-                props.mount_on_wall(layout, f"run:{run.name}:{index}",
-                                    run.room, run.face, element.tile, t=t)
+                got = props.mount_on_wall(layout, f"run:{run.name}:{index}",
+                                          run.room, run.face, element.tile, t=t,
+                                          height_player_heights=element.height, **dict(element.fields))
+                if got is None:
+                    report["skipped"] += 1
+                    continue
             else:
                 props.stand_on_floor(layout, f"run:{run.name}:{index}",
                                      run.room.region_id, local=(t, 0.5),

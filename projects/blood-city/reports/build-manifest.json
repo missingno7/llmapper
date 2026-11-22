@@ -841,7 +841,6 @@
       "theatre:pawn_shop:no_room",
       "mall:unit_c:no_room",
       "church:nave:no_room",
-      "church:nave:no_room",
       "church:crypt_stair:no_room",
       "station:hall:no_room"
     ]
@@ -883,8 +882,7 @@
   "flat_dropped": [
     "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
     "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-    "run:sewer_w_leg_walk_w_2:3 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
-    "run:sewer_w_leg_walk_w_2:5 (tile 515) would lie through run:sewer_w_leg_walk_w_2:2",
+    "run:sewer_outfall_walk_a:2 (tile 515) would lie through run:sewer_outfall_walk_a:0",
     "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
     "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0"
   ],
@@ -1281,17 +1279,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 516",
-          "sprite 517"
+          "sprite 540",
+          "sprite 541"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
           "sector 99",
-          "sprite 518",
-          "sprite 519",
-          "sprite 520"
+          "sprite 542",
+          "sprite 543",
+          "sprite 544"
         ],
         "faults": []
       },
@@ -1301,16 +1299,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 586"
+          "sprite 610"
         ],
         "answers": [
           "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 587",
-          "sprite 588",
-          "sprite 589"
+          "sprite 611",
+          "sprite 612",
+          "sprite 613"
         ],
         "faults": []
       },
@@ -1349,10 +1347,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 483"
+          "sprite 507"
         ],
         "answers": [
-          "sector 471"
+          "sector 472"
         ],
         "faults": []
       },
@@ -1362,10 +1360,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 476"
+          "sprite 500"
         ],
         "answers": [
-          "sector 497"
+          "sector 498"
         ],
         "faults": []
       },
@@ -1375,16 +1373,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 248"
+          "sprite 250"
         ],
         "answers": [
-          "sector 391",
           "sector 392",
           "sector 393",
           "sector 394",
-          "sprite 249",
-          "sprite 250",
-          "sprite 251"
+          "sector 395",
+          "sprite 251",
+          "sprite 252",
+          "sprite 253"
         ],
         "faults": []
       },
@@ -1433,12 +1431,12 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 32",
           "sprite 34",
-          "sprite 36"
+          "sprite 36",
+          "sprite 38"
         ],
         "answers": [
-          "sector 593"
+          "sector 594"
         ],
         "faults": []
       },
@@ -1448,12 +1446,12 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 40",
           "sprite 42",
-          "sprite 44"
+          "sprite 44",
+          "sprite 46"
         ],
         "answers": [
-          "sector 594"
+          "sector 595"
         ],
         "faults": []
       },
@@ -1463,12 +1461,12 @@
         "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 22",
-          "sprite 24",
-          "sprite 26"
+          "sprite 23",
+          "sprite 25",
+          "sprite 27"
         ],
         "answers": [
-          "sprite 28"
+          "sprite 29"
         ],
         "faults": []
       },
@@ -1478,10 +1476,10 @@
         "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 28"
+          "sprite 29"
         ],
         "answers": [
-          "sprite 29"
+          "sprite 30"
         ],
         "faults": []
       },
@@ -1491,11 +1489,11 @@
         "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 29"
+          "sprite 30"
         ],
         "answers": [
-          "sector 595",
-          "sprite 30"
+          "sector 596",
+          "sprite 31"
         ],
         "faults": []
       },
@@ -1505,10 +1503,10 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 95"
+          "sprite 97"
         ],
         "answers": [
-          "sprite 96"
+          "sprite 98"
         ],
         "faults": []
       },
@@ -1518,10 +1516,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 288"
+          "sprite 290"
         ],
         "answers": [
-          "sprite 289"
+          "sprite 291"
         ],
         "faults": []
       },
@@ -1531,10 +1529,10 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sector 418"
+          "sector 419"
         ],
         "answers": [
-          "sprite 88"
+          "sprite 90"
         ],
         "faults": []
       },
@@ -1544,7 +1542,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 477"
+          "sprite 501"
         ],
         "answers": [],
         "faults": []
@@ -1556,7 +1554,7 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 431"
+          "sector 432"
         ],
         "faults": []
       },
@@ -1566,7 +1564,7 @@
         "channel": 120,
         "engine": null,
         "senders": [
-          "sprite 664"
+          "sprite 688"
         ],
         "answers": [
           "sector 9"
@@ -1579,7 +1577,7 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 665"
+          "sprite 689"
         ],
         "answers": [
           "sector 18"
@@ -1592,7 +1590,7 @@
         "channel": 122,
         "engine": null,
         "senders": [
-          "sprite 666"
+          "sprite 690"
         ],
         "answers": [
           "sector 30"
@@ -1605,7 +1603,7 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 667"
+          "sprite 691"
         ],
         "answers": [
           "sector 32"
@@ -1618,7 +1616,7 @@
         "channel": 124,
         "engine": null,
         "senders": [
-          "sprite 668"
+          "sprite 692"
         ],
         "answers": [
           "sector 42"
@@ -1633,9 +1631,9 @@
   "lighting": {
     "lights": 73,
     "rays_cast": 1283639,
-    "surfaces_lit": 1449,
+    "surfaces_lit": 1450,
     "surfaces_protected": 701,
-    "walls_lit": 1560,
+    "walls_lit": 1561,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1942,55 +1940,55 @@
       "region": "region:gravesend/market_slip/market_hall/staff_door",
       "profile": "stone_door"
     },
-    "391": {
+    "392": {
       "region": "region:gravesend/sewer/secrets/plague_seal_0",
       "profile": "blast"
     },
-    "392": {
+    "393": {
       "region": "region:gravesend/sewer/secrets/plague_seal_1",
       "profile": "blast"
     },
-    "393": {
+    "394": {
       "region": "region:gravesend/sewer/secrets/plague_seal_2",
       "profile": "blast"
     },
-    "394": {
+    "395": {
       "region": "region:gravesend/sewer/secrets/plague_seal_3",
       "profile": "blast"
     },
-    "431": {
+    "432": {
       "region": "region:gravesend/gravesend_station/fare_turnstile",
       "profile": "fare_ambient"
     },
-    "471": {
+    "472": {
       "region": "region:gravesend/gravesend_station/carriage_door",
       "profile": "metal_z_door"
     },
-    "497": {
+    "498": {
       "region": "region:gravesend/gravesend_station/tunnel_gate",
       "profile": "chain_lift"
     },
-    "593": {
+    "594": {
       "region": "region:gravesend/sewer/settling_hall/service_lift",
       "profile": "winch_lift"
     },
-    "594": {
+    "595": {
       "region": "region:gravesend/sewer/sampling/trolley_track_deck",
       "profile": "rail_shuttle"
     },
-    "595": {
+    "596": {
       "region": "region:gravesend/sewer/ghost_station/hatch:panel",
       "profile": "hydraulic_slide"
     }
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1205,
-    "wall_sprites": 555,
-    "planes": 132,
+    "sprites": 1230,
+    "wall_sprites": 570,
+    "planes": 138,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.72,
+    "clash_rate_per_100_wall_sprites": 0.7,
     "fully_hidden": 0
   },
   "apertures": {
@@ -2037,7 +2035,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 97,
+    "sentences": 98,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -3306,16 +3304,16 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/pump_room",
+        "name": "region:gravesend/sewer/ring/brook_feeder",
         "construct": "sector",
-        "sector": 359,
+        "sector": 358,
         "sectors": [
-          359
+          358
         ],
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/silt_trap",
+        "name": "region:gravesend/sewer/chambers/pump_room",
         "construct": "sector",
         "sector": 360,
         "sectors": [
@@ -3324,7 +3322,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/east_annex",
+        "name": "region:gravesend/sewer/chambers/silt_trap",
         "construct": "sector",
         "sector": 361,
         "sectors": [
@@ -3333,7 +3331,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/flooded",
+        "name": "region:gravesend/sewer/chambers/east_annex",
         "construct": "sector",
         "sector": 362,
         "sectors": [
@@ -3342,7 +3340,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/chambers/station_foot",
+        "name": "region:gravesend/sewer/chambers/flooded",
         "construct": "sector",
         "sector": 363,
         "sectors": [
@@ -3351,52 +3349,52 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/sewer/chambers/station_foot",
+        "construct": "sector",
+        "sector": 364,
+        "sectors": [
+          364
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/sewer/settling_hall/tank_1",
         "construct": "sector",
-        "sector": 379,
+        "sector": 380,
         "sectors": [
-          379
+          380
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/tank_2",
         "construct": "sector",
-        "sector": 381,
+        "sector": 382,
         "sectors": [
-          381
+          382
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/tank_3",
         "construct": "sector",
-        "sector": 383,
+        "sector": 384,
         "sectors": [
-          383
+          384
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/outfall_mouth",
         "construct": "sector",
-        "sector": 385,
+        "sector": 386,
         "sectors": [
-          385
+          386
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/molly_nest",
-        "construct": "sector",
-        "sector": 389,
-        "sectors": [
-          389
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/plague_pit",
         "construct": "sector",
         "sector": 390,
         "sectors": [
@@ -3405,35 +3403,16 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_0",
-        "construct": "z_motion_door",
+        "name": "region:gravesend/sewer/secrets/plague_pit",
+        "construct": "sector",
         "sector": 391,
         "sectors": [
           391
         ],
-        "sector_type": 600,
-        "wiring": {
-          "rx_id": 109,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "state_pair": {
-          "sector": 391,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 11311,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
+        "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_1",
+        "name": "region:gravesend/sewer/secrets/plague_seal_0",
         "construct": "z_motion_door",
         "sector": 392,
         "sectors": [
@@ -3452,7 +3431,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 18683,
+          "headroom_change": 11311,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3461,7 +3440,7 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_2",
+        "name": "region:gravesend/sewer/secrets/plague_seal_1",
         "construct": "z_motion_door",
         "sector": 393,
         "sectors": [
@@ -3480,7 +3459,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 18607,
+          "headroom_change": 18683,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3489,7 +3468,7 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "name": "region:gravesend/sewer/secrets/plague_seal_2",
         "construct": "z_motion_door",
         "sector": 394,
         "sectors": [
@@ -3508,6 +3487,34 @@
           "measured": [
             "headroom"
           ],
+          "headroom_change": 18607,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "construct": "z_motion_door",
+        "sector": 395,
+        "sectors": [
+          395
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 109,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 395,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
           "headroom_change": 11579,
           "area_change": 0.0,
           "declared_travel": 0.0,
@@ -3519,27 +3526,27 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_inlet",
         "construct": "sector",
-        "sector": 407,
+        "sector": 408,
         "sectors": [
-          407
+          408
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_tail",
         "construct": "sector",
-        "sector": 409,
+        "sector": 410,
         "sectors": [
-          409
+          410
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ghost_station/blind_tunnel",
         "construct": "sector",
-        "sector": 418,
+        "sector": 419,
         "sectors": [
-          418
+          419
         ],
         "sector_type": 0,
         "wiring": {
@@ -3552,9 +3559,9 @@
       {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
-        "sector": 431,
+        "sector": 432,
         "sectors": [
-          431
+          432
         ],
         "sector_type": 615,
         "wiring": {
@@ -3571,7 +3578,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 431",
+          "construct": "turnstile sector 432",
           "measured": {
             "blades": 4,
             "axis": [
@@ -3599,7 +3606,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 431,
+          "sector": 432,
           "type": 615,
           "measured": [
             "turn"
@@ -3617,9 +3624,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 471,
+        "sector": 472,
         "sectors": [
-          471
+          472
         ],
         "sector_type": 600,
         "wiring": {
@@ -3629,7 +3636,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 471,
+          "sector": 472,
           "type": 600,
           "measured": [
             "headroom"
@@ -3645,9 +3652,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 497,
+        "sector": 498,
         "sectors": [
-          497
+          498
         ],
         "sector_type": 600,
         "wiring": {
@@ -3657,7 +3664,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 497,
+          "sector": 498,
           "type": 600,
           "measured": [
             "headroom"
@@ -3673,9 +3680,9 @@
       {
         "name": "region:gravesend/sewer/settling_hall/service_lift",
         "construct": "z_motion_door",
-        "sector": 593,
+        "sector": 594,
         "sectors": [
-          593
+          594
         ],
         "sector_type": 600,
         "wiring": {
@@ -3685,7 +3692,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 593,
+          "sector": 594,
           "type": 600,
           "measured": [
             "headroom"
@@ -3701,19 +3708,19 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_track_deck",
         "construct": "unmarked_mover",
-        "sector": 594,
+        "sector": 595,
         "sectors": [
-          594
+          595
         ],
         "sector_type": 616,
         "motion_set": [
-          408,
-          594
+          409,
+          595
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          408,
-          594
+          409,
+          595
         ],
         "wiring": {
           "rx_id": 113,
@@ -3729,7 +3736,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 594,
+          "sector": 595,
           "type": 616,
           "measured": [
             "travel"
@@ -3747,19 +3754,19 @@
       {
         "name": "region:gravesend/sewer/ghost_station/hatch:panel",
         "construct": "unmarked_mover",
-        "sector": 595,
+        "sector": 596,
         "sectors": [
-          595
+          596
         ],
         "sector_type": 616,
         "motion_set": [
-          414,
-          595
+          415,
+          596
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          414,
-          595
+          415,
+          596
         ],
         "wiring": {
           "rx_id": 116,
@@ -3775,7 +3782,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 595,
+          "sector": 596,
           "type": 616,
           "measured": [
             "travel"
@@ -3793,17 +3800,17 @@
     ]
   },
   "rules": {
-    "total": 1249,
+    "total": 1262,
     "by_severity": {
-      "note": 1244,
+      "note": 1257,
       "warning": 5
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 155,
+      "note:sprite-drawn-square": 166,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 110,
+      "note:opening-clears-a-standing-body": 112,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
       "note:wall-draws-its-own-tile": 947,
@@ -3857,26 +3864,20 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 945,
+      "sprites": 956,
       "sunk": 0.0,
-      "through": 0.001,
+      "through": 0.0,
       "squeezed": 0.0
     },
     "sunk": [],
-    "through": [
-      {
-        "sprite": 963,
-        "tile": 793,
-        "sector": 27
-      }
-    ],
+    "through": [],
     "squeezed": [],
     "lifted": [],
     "overlaps": [
       {
         "sprites": [
-          630,
-          631
+          654,
+          655
         ],
         "tiles": [
           73,
@@ -5254,9 +5255,9 @@
     "whole": 6
   },
   "light_stage": {
-    "sectors_before": 632,
-    "walls_before": 4054,
-    "sprites_before": 1205,
+    "sectors_before": 633,
+    "walls_before": 4058,
+    "sprites_before": 1230,
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -5431,10 +5432,10 @@
         "ceiling 796": 2
       },
       "region:gravesend/sewer/ring/e_leg": {
-        "panel 796": 4
+        "kept the map's own": 4
       },
       "region:gravesend/sewer/ring/gallery": {
-        "panel 796": 2
+        "kept the map's own": 3
       },
       "region:gravesend/sewer/ring/graves_brook": {
         "hanging 641": 5
@@ -5544,65 +5545,67 @@
       }
     },
     "panel_cut": {
-      "sectors": 14,
-      "pieces": 50,
+      "sectors": 12,
+      "pieces": 42,
       "slivers_merged": 0,
       "slivers_dropped": 0,
       "walls_split": 0,
-      "seams": 284,
+      "seams": 236,
       "refused": {},
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 58,
-      "pieces": 334,
-      "slivers_merged": 16,
-      "slivers_dropped": 31,
-      "walls_split": 816,
-      "seams": 3386,
+      "sectors": 55,
+      "pieces": 298,
+      "slivers_merged": 14,
+      "slivers_dropped": 22,
+      "walls_split": 766,
+      "seams": 3134,
       "refused": {},
       "left_whole": {
-        "327": "a wall of the cut had no twin"
+        "324": "a wall of the cut had no twin",
+        "327": "a seam of sector 327 from (51008, 33519) to (52132, 33347) has no twin"
       },
-      "looked_at": 60
+      "looked_at": 58
     },
     "slope_cut": {
-      "sectors": 20,
-      "pieces": 103,
+      "sectors": 19,
+      "pieces": 100,
       "slivers_merged": 3,
       "slivers_dropped": 0,
-      "walls_split": 382,
-      "seams": 172,
+      "walls_split": 365,
+      "seams": 168,
       "refused": {
         "329": "a slope not cut across it",
-        "335": "a slope not cut across it"
+        "335": "a slope not cut across it",
+        "347": "a slope not cut across it"
       },
       "left_whole": {},
-      "looked_at": 25
+      "looked_at": 26
     },
     "wall_cut": {
       "sectors": 0,
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1774,
+      "walls_split": 1750,
       "seams": 0,
       "refused": {},
-      "walls_cut": 464,
+      "walls_cut": 460,
       "walls_refused": 12,
       "left_whole": {},
-      "looked_at": 1469
+      "looked_at": 1456
     },
     "shades": {
-      "surfaces": 5467,
+      "surfaces": 5340,
       "windows": 18,
-      "spread_12": 88
+      "spread_12": 80
     },
     "kept": 38,
-    "sectors": 1104,
-    "walls": 10773,
-    "sprites": 1283,
-    "pieces": 472,
+    "sectors": 1064,
+    "walls": 10426,
+    "sprites": 1308,
+    "pieces": 431,
     "default_rooms": []
   },
   "sunlight": {

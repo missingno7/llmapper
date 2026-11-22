@@ -1,0 +1,1525 @@
+{
+ "slug": "e1m8-moving-water",
+ "want": "A shallow working sewer with a readable current, wet drops and dressed towpaths",
+ "date": "2026-11-22",
+ "seeds": [
+  {
+   "seed": "E1M8:389!",
+   "map": "maps\\blood\\campaign\\E1M8.MAP",
+   "host": 389,
+   "sectors": [
+    46,
+    47,
+    389,
+    394
+   ],
+   "metres": [
+    4.3,
+    12.4,
+    7.0
+   ],
+   "area_M": 14.58,
+   "clear_bodies": 3.86,
+   "free_floor_share": 0.93,
+   "shade_spread": 11,
+   "floor": [
+    1120,
+    "green dirty water"
+   ],
+   "ceiling": [
+    1030,
+    ""
+   ],
+   "walls": [
+    [
+     255,
+     0.235,
+     "metal wall, lightly rusted"
+    ],
+    [
+     234,
+     0.218,
+     ""
+    ],
+    [
+     233,
+     0.145,
+     ""
+    ],
+    [
+     22,
+     0.093,
+     ""
+    ],
+    [
+     231,
+     0.073,
+     ""
+    ],
+    [
+     232,
+     0.073,
+     ""
+    ],
+    [
+     230,
+     0.073,
+     "flesh wall"
+    ],
+    [
+     235,
+     0.07,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 46,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      232,
+      255
+     ]
+    },
+    {
+     "sector": 47,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 394,
+     "corners": 4,
+     "size": [
+      128,
+      1344
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 20,
+     "sloped": true,
+     "type": 600,
+     "wall_tiles": [
+      20,
+      568
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 908,
+     "type": 459,
+     "type_name": "kTrapExploder",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      4,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      48,
+      72
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.57
+    },
+    {
+     "tile": 776,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 335,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 777,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.69
+    },
+    {
+     "tile": 691,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.42
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_389\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_389\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M8:157!",
+   "map": "maps\\blood\\campaign\\E1M8.MAP",
+   "host": 158,
+   "sectors": [
+    157,
+    158,
+    159,
+    160,
+    161,
+    162,
+    163,
+    164,
+    165,
+    166,
+    167,
+    168,
+    169,
+    170,
+    171,
+    172
+   ],
+   "metres": [
+    10.4,
+    13.9,
+    3.5
+   ],
+   "area_M": 19.72,
+   "clear_bodies": 1.93,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    1120,
+    "green dirty water"
+   ],
+   "ceiling": [
+    1030,
+    ""
+   ],
+   "walls": [
+    [
+     487,
+     0.66,
+     ""
+    ],
+    [
+     230,
+     0.17,
+     "flesh wall"
+    ],
+    [
+     231,
+     0.085,
+     ""
+    ],
+    [
+     232,
+     0.084,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 157,
+     "corners": 4,
+     "size": [
+      2048,
+      826
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      231,
+      487
+     ]
+    },
+    {
+     "sector": 159,
+     "corners": 4,
+     "size": [
+      2035,
+      1481
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      232,
+      487
+     ]
+    },
+    {
+     "sector": 160,
+     "corners": 4,
+     "size": [
+      1924,
+      1732
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      232,
+      487
+     ]
+    },
+    {
+     "sector": 161,
+     "corners": 4,
+     "size": [
+      1741,
+      1916
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      232,
+      487
+     ]
+    },
+    {
+     "sector": 162,
+     "corners": 4,
+     "size": [
+      1491,
+      2029
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      232,
+      487
+     ]
+    },
+    {
+     "sector": 163,
+     "corners": 4,
+     "size": [
+      1219,
+      2071
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      231,
+      487
+     ]
+    },
+    {
+     "sector": 164,
+     "corners": 4,
+     "size": [
+      826,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      231,
+      487
+     ]
+    },
+    {
+     "sector": 165,
+     "corners": 4,
+     "size": [
+      2048,
+      826
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 166,
+     "corners": 4,
+     "size": [
+      2074,
+      1219
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 167,
+     "corners": 4,
+     "size": [
+      2035,
+      1481
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 168,
+     "corners": 4,
+     "size": [
+      1924,
+      1732
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 169,
+     "corners": 4,
+     "size": [
+      1741,
+      1916
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 170,
+     "corners": 4,
+     "size": [
+      1491,
+      2029
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 171,
+     "corners": 4,
+     "size": [
+      1219,
+      2071
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    },
+    {
+     "sector": 172,
+     "corners": 4,
+     "size": [
+      826,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1120,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      230,
+      487
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 746,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 8,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.89
+    },
+    {
+     "tile": 692,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.89
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_157\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "E1M8:243!",
+   "map": "maps\\blood\\campaign\\E1M8.MAP",
+   "host": 243,
+   "sectors": [
+    243
+   ],
+   "metres": [
+    8.7,
+    17.4,
+    7.0
+   ],
+   "area_M": 44.04,
+   "clear_bodies": 3.86,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    504,
+    "mirror / room-over-room surface"
+   ],
+   "ceiling": [
+    1030,
+    ""
+   ],
+   "walls": [
+    [
+     232,
+     1.0,
+     ""
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 746,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 5,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.83
+    },
+    {
+     "tile": 692,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.82
+    },
+    {
+     "tile": 694,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.82
+    },
+    {
+     "tile": 2332,
+     "type": 11,
+     "type_name": "kMarkerUpStack",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 690,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.82
+    },
+    {
+     "tile": 697,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.82
+    },
+    {
+     "tile": 924,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.88
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_243\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_243\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M8:251!",
+   "map": "maps\\blood\\campaign\\E1M8.MAP",
+   "host": 251,
+   "sectors": [
+    251
+   ],
+   "metres": [
+    16.5,
+    24.3,
+    3.5
+   ],
+   "area_M": 56.62,
+   "clear_bodies": 1.93,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    1120,
+    "green dirty water"
+   ],
+   "ceiling": [
+    1030,
+    ""
+   ],
+   "walls": [
+    [
+     232,
+     1.0,
+     ""
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    },
+    {
+     "tile": 977,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 830,
+     "type": 118,
+     "type_name": "kItemDivingSuit",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      80,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 753,
+     "type": 146,
+     "type_name": "kItemFlagBBase",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_251\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E1M8_251\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M6:74!",
+   "map": "maps\\blood\\campaign\\E3M6.MAP",
+   "host": 74,
+   "sectors": [
+    74,
+    161,
+    247,
+    248,
+    262
+   ],
+   "metres": [
+    12.4,
+    14.7,
+    11.6
+   ],
+   "area_M": 41.2,
+   "clear_bodies": 6.46,
+   "free_floor_share": 0.97,
+   "shade_spread": 11,
+   "floor": [
+    1005,
+    "waterfall"
+   ],
+   "ceiling": [
+    458,
+    "rock"
+   ],
+   "walls": [
+    [
+     369,
+     0.594,
+     "concrete/plaster with light cornice band"
+    ],
+    [
+     1005,
+     0.402,
+     "waterfall"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 161,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 3.74,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 247,
+     "corners": 3,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 3.86,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 248,
+     "corners": 3,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 3.86,
+     "floor_tile": 274,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    },
+    {
+     "sector": 262,
+     "corners": 4,
+     "size": [
+      128,
+      6016
+     ],
+     "rise_bodies": 2.66,
+     "floor_tile": 1005,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      411
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1037,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      64,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E3M6_74\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E3M6_74\\frames.png"
+   ]
+  },
+  {
+   "seed": "E4M3:219!",
+   "map": "maps\\blood\\campaign\\E4M3.MAP",
+   "host": 219,
+   "sectors": [
+    219
+   ],
+   "metres": [
+    2.6,
+    4.3,
+    13.9
+   ],
+   "area_M": 3.93,
+   "clear_bodies": 7.73,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    1005,
+    "waterfall"
+   ],
+   "ceiling": [
+    379,
+    "stone wall"
+   ],
+   "walls": [
+    [
+     281,
+     0.769,
+     "irregular grey stone masonry"
+    ],
+    [
+     1005,
+     0.231,
+     "waterfall"
+    ]
+   ],
+   "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E4M3_219\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\E4M3_219\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-20.png"
+  },
+  "22": {
+   "tile": 22,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-22.png"
+  },
+  "230": {
+   "tile": 230,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-230.png"
+  },
+  "231": {
+   "tile": 231,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-231.png"
+  },
+  "232": {
+   "tile": 232,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-232.png"
+  },
+  "233": {
+   "tile": 233,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-233.png"
+  },
+  "234": {
+   "tile": 234,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-234.png"
+  },
+  "235": {
+   "tile": 235,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-235.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-255.png"
+  },
+  "274": {
+   "tile": 274,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-274.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-281.png"
+  },
+  "335": {
+   "tile": 335,
+   "pixels": [
+    113,
+    69
+   ],
+   "world_at_repeat_8": [
+    1808,
+    17664
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-335.png"
+  },
+  "369": {
+   "tile": 369,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-369.png"
+  },
+  "379": {
+   "tile": 379,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-379.png"
+  },
+  "458": {
+   "tile": 458,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-458.png"
+  },
+  "487": {
+   "tile": 487,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-487.png"
+  },
+  "504": {
+   "tile": 504,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-504.png"
+  },
+  "690": {
+   "tile": 690,
+   "pixels": [
+    23,
+    128
+   ],
+   "world_at_repeat_8": [
+    368,
+    32768
+   ],
+   "see_through_share": 0.63,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-690.png"
+  },
+  "691": {
+   "tile": 691,
+   "pixels": [
+    20,
+    128
+   ],
+   "world_at_repeat_8": [
+    320,
+    32768
+   ],
+   "see_through_share": 0.642,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-691.png"
+  },
+  "692": {
+   "tile": 692,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.748,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-692.png"
+  },
+  "694": {
+   "tile": 694,
+   "pixels": [
+    10,
+    128
+   ],
+   "world_at_repeat_8": [
+    160,
+    32768
+   ],
+   "see_through_share": 0.596,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-694.png"
+  },
+  "697": {
+   "tile": 697,
+   "pixels": [
+    22,
+    128
+   ],
+   "world_at_repeat_8": [
+    352,
+    32768
+   ],
+   "see_through_share": 0.612,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-697.png"
+  },
+  "713": {
+   "tile": 713,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-713.png"
+  },
+  "746": {
+   "tile": 746,
+   "pixels": [
+    20,
+    126
+   ],
+   "world_at_repeat_8": [
+    320,
+    32256
+   ],
+   "see_through_share": 0.795,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-746.png"
+  },
+  "753": {
+   "tile": 753,
+   "pixels": [
+    11,
+    64
+   ],
+   "world_at_repeat_8": [
+    176,
+    16384
+   ],
+   "see_through_share": 0.5,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-753.png"
+  },
+  "776": {
+   "tile": 776,
+   "pixels": [
+    60,
+    64
+   ],
+   "world_at_repeat_8": [
+    960,
+    16384
+   ],
+   "see_through_share": 0.911,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-776.png"
+  },
+  "777": {
+   "tile": 777,
+   "pixels": [
+    60,
+    64
+   ],
+   "world_at_repeat_8": [
+    960,
+    16384
+   ],
+   "see_through_share": 0.933,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-777.png"
+  },
+  "830": {
+   "tile": 830,
+   "pixels": [
+    28,
+    66
+   ],
+   "world_at_repeat_8": [
+    448,
+    16896
+   ],
+   "see_through_share": 0.288,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-830.png"
+  },
+  "908": {
+   "tile": 908,
+   "pixels": [
+    42,
+    80
+   ],
+   "world_at_repeat_8": [
+    672,
+    20480
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-908.png"
+  },
+  "915": {
+   "tile": 915,
+   "pixels": [
+    50,
+    88
+   ],
+   "world_at_repeat_8": [
+    800,
+    22528
+   ],
+   "see_through_share": 0.703,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-915.png"
+  },
+  "924": {
+   "tile": 924,
+   "pixels": [
+    20,
+    128
+   ],
+   "world_at_repeat_8": [
+    320,
+    32768
+   ],
+   "see_through_share": 0.552,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-924.png"
+  },
+  "977": {
+   "tile": 977,
+   "pixels": [
+    38,
+    73
+   ],
+   "world_at_repeat_8": [
+    608,
+    18688
+   ],
+   "see_through_share": 0.47,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-977.png"
+  },
+  "1005": {
+   "tile": 1005,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-1005.png"
+  },
+  "1030": {
+   "tile": 1030,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-1030.png"
+  },
+  "1037": {
+   "tile": 1037,
+   "pixels": [
+    128,
+    32
+   ],
+   "world_at_repeat_8": [
+    2048,
+    8192
+   ],
+   "see_through_share": 0.362,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-1037.png"
+  },
+  "1120": {
+   "tile": 1120,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-1120.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-2169.png"
+  },
+  "2332": {
+   "tile": 2332,
+   "pixels": [
+    9,
+    13
+   ],
+   "world_at_repeat_8": [
+    144,
+    3328
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-2332.png"
+  },
+  "3054": {
+   "tile": 3054,
+   "pixels": [
+    61,
+    120
+   ],
+   "world_at_repeat_8": [
+    976,
+    30720
+   ],
+   "see_through_share": 0.444,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-water\\knowledge\\blood\\studies\\e1m8-moving-water\\tiles\\tile-3054.png"
+  }
+ }
+}
