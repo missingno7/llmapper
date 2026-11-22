@@ -79,6 +79,20 @@ PLACES: dict[str, dict[str, Any]] = {
                     "mothers on the ceiling); CHORROR s414 (web fringe 1067/1068, "
                     "ceiling spiders, the web 410 across the way in)",
     },
+    "Stockyard Drain": {
+        "at": (50944, 54272), "floor": 63488, "study": "stockyard-drain",
+        "hero": "a tiled race of blood running north from the slaughterhouse "
+                "pipe and carcass rack into the Foundry Main",
+        "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); "
+                    "TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
+    },
+    "the Rat King's Shrine": {
+        "at": (55040, 48000), "floor": 61440, "study": "rat-king-shrine",
+        "hero": "a low pipe leading to candles around a knot of rats and "
+                "a heart on a stepped stone altar",
+        "exemplar": "E1M5 s71 (candle recess); DWE1M5 s610 (candles and remains "
+                    "on stone); E1M4 s167 (rats on the grill)",
+    },
     "Gravesend Station": {
         "at": (13312, -11500), "floor": -12288, "study": "station",
         "hero": "a green-banded carriage standing at a platform under a "

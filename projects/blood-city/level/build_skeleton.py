@@ -1013,6 +1013,9 @@ def build():
         m_lower.style = Style(**SEWER_WET.style_kwargs(
             floor_shade=38, floor_z=water_floor,
             clear_height=water_floor - GRADE - l3_sewer.MANHOLE_RECESS))
+        if leg == "stockyard_drain":
+            m_lower.surfaces(wall_picnum=l3_sewer.STOCKYARD_WET.wall)
+            sewer_net["stockyard_landing"] = m_lower
         for face in ("north", "east", "south", "west"):
             city.connect(m_upper.face(face), host.face("east"),
                          connection_id=f"connection:{name}_rim_{face}")
@@ -1549,9 +1552,9 @@ def main() -> int:
         # and the count was never actually declared -- the player would never
         # have been told a secret was found. The rule caught it; the helper
         # cannot forget it.
-        # the stash, the flooded branch, the arcade's cache, and the sewer's
-        # two legends: Old Molly's nest and the plague pit
-        behavior=motion.secret_total(5))
+        # The stash, flooded branch, arcade cache, Old Molly's Nest,
+        # Plague Pit and Rat King's Shrine.
+        behavior=motion.secret_total(6))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows

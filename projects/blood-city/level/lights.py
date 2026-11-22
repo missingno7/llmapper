@@ -39,6 +39,9 @@ RULES: tuple[tuple[str, Rule], ...] = (
     # the Weaver's Cellars: nobody lights a spiders' nest; the brook's lamps
     # through the passage, and the dark
     ("sewer/lair/", Rule("none", 0, 0)),
+    ("stockyard_drain", Rule("panel", 501, 5632)),
+    ("stockyard_rack", Rule("panel", 501, 4096)),
+    ("rat_king_", Rule("none", 0, 0)),
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
     ("pump_station", Rule("panel", 501, 3072, 3072)),
     ("works_stair", Rule("ceiling", 795, 2560, 2560)),

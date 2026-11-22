@@ -61,6 +61,7 @@ FLOW = {
     "graves_brook": (0, 8, False),
     "se_spur": (1024, 8, False),
     "se_drain": (1536, 8, False),
+    "stockyard_drain": (1536, 60, True),
     # out of the ring under the plaza: the outfall south, the basin west
     # toward the river
     "outfall": (512, 12, False),
@@ -90,13 +91,18 @@ BRANCHES = [
      "the south-east drain, north into the ring's corner"),
     ("se_spur", 53.0, 34.5, 56.0, 36.5, "se_drain", "east", "west", "ring",
      "the south-east spur under the market road's north pavement, to its manhole"),
+    ("stockyard_drain", 48.75, 34.0, 50.75, 55.75, "s_channel", "south", "north", "ring",
+     "the slaughterhouse outfall: a tiled blood race north from the east quay"),
 ]
 SOUTH = BRANCHES
 #: Graves Brook is older than the ring and looks it: the crypt's rubble
 #: walls (110, E1M1's crypt) and its dark worked stone overhead (253).
+STOCKYARD_WET = Material(wall=296, floor=1120, ceiling=1030, opening=296,
+                         note="the stockyard race: grimy tile over a blood current")
 BRANCH_MATERIAL = {
     "graves_brook": Material(wall=110, floor=1120, ceiling=253, opening=110,
                              note="Graves Brook: rubble culvert, older than the ring"),
+    "stockyard_drain": STOCKYARD_WET,
 }
 #: A manhole's landing and its passage run fast toward the ring and carry
 #: whoever fell in onto it.
@@ -178,6 +184,8 @@ MANHOLES = [
     # its water, not the tanks 2.7 bodies further down (a fall that far hurts)
     ("memorial_manhole", 31.0, 41.625, 768, "market_slip", "inside", "gallery", None,
      "a drain cover in the plaza beside the memorial, over the settling hall's gallery"),
+    ("stockyard_manhole", 49.375, 51.0, 768, "market_slip", "inside", "stockyard_drain", None,
+     "a drain cover on the east quay's landward pavement, just below the stockyard intake"),
 ]
 #: The cover: the owner's tile 219 ("drain", round), laid flat and blocking
 #: at street level, wider than the shaft is across its corners (768 square,
@@ -452,7 +460,25 @@ HALL_OUTFALL = (31.5, 32.5)
 BRANCH_DRY = {
     "graves_brook": Material(wall=110, floor=568, ceiling=253, opening=110,
                              note="Graves Brook's walks: stone between rubble walls"),
+    "stockyard_drain": Material(wall=296, floor=291, ceiling=1030, opening=296,
+                                note="the stockyard's blood-stained tiled walks"),
 }
+
+# E1M8's pipe and River Ride, and the candle shelves in E1M5's chapel.
+STOCKYARD_RACK = Material(wall=296, floor=291, ceiling=255, opening=296,
+                          note="the tiled carcass rack beside the intake")
+SHRINE_PIPE = Material(wall=194, floor=438, ceiling=194, opening=194,
+                       note="the old pipe mouth off the tiled walk")
+SHRINE_STONE = Material(wall=406, floor=253, ceiling=286, opening=405,
+                        note="the shrine's worked stone and temple trim")
+# Rectangles in plan units. Floors rise in two steps to the offering.
+STOCKYARD_ROOMS = [
+    ("stockyard_rack", (47.25, 51.75, 48.75, 54.25), STOCKYARD_RACK, 0, WALK_CLEAR, "interior"),
+    ("rat_king_pipe", (50.75, 46.375, 52.0, 47.125), SHRINE_PIPE, 0, 18432, "gateway"),
+    ("rat_king_shrine", (52.0, 45.0, 55.25, 48.75), SHRINE_STONE, 0, SEWER_CHAMBER_CLEAR, "secret"),
+    ("rat_king_step", (55.25, 45.625, 55.625, 48.125), SHRINE_STONE, 3072, SEWER_CHAMBER_CLEAR, "interior"),
+    ("rat_king_altar", (55.625, 45.625, 56.75, 48.125), SHRINE_STONE, 6144, SEWER_CHAMBER_CLEAR, "interior"),
+]
 
 _FACES = {"x": {"low": "north", "high": "south", "start": "west", "end": "east"},
           "y": {"low": "west", "high": "east", "start": "north", "end": "south"}}
@@ -812,6 +838,63 @@ def spider_lair(sewer, rooms: dict) -> dict:
     return rooms
 
 
+def stockyard_side_rooms(sewer, rooms: dict) -> None:
+    """Build the carcass rack and the counted shrine off the drain's walks."""
+    import citytree
+
+    part = sewer.assembly("stockyard", note="the slaughterhouse intake and the Rat King's Shrine")
+    for name, rect, material, rise, clear, role in STOCKYARD_ROOMS:
+        x0, y0, x1, y1 = (int(v * PU) for v in rect)
+        room = part.rect_room(
+            name, origin=(x0, y0), size=(x1 - x0, y1 - y0),
+            role=role, note=material.note, intent={"kind": "furnished"},
+            region_kwargs={**material.region_kwargs(), "secret": role == "secret"})
+        room.surfaces(**material.style_kwargs(floor_z=SEWER_FLOOR - rise,
+                                              clear_height=clear - rise, floor_shade=38))
+        rooms[name] = room
+
+    walk = edge(rooms, "stockyard_drain", "east", 46.75)
+    shrine = rooms["rat_king_shrine"]
+    joins = [
+        ("stockyard_rack", "east", edge(rooms, "stockyard_drain", "west", 53.0), "west"),
+        ("rat_king_pipe", "west", walk, "east"),
+        ("rat_king_pipe", "east", shrine, "west"),
+        ("rat_king_step", "west", shrine, "east"),
+        ("rat_king_step", "east", rooms["rat_king_altar"], "west"),
+    ]
+    for name, face, other, other_face in joins:
+        citytree.join(rooms[name], other, at_a=face, at_b=other_face,
+                      connection_id=f"connection:sewer_{name}_{face}")
+    stockyard_pipe_bevels(part, rooms["rat_king_pipe"], walk, shrine)
+
+
+def stockyard_pipe_bevels(part, pipe, walk, shrine) -> None:
+    """Slope both sides of the old pipe so its mouth has bevelled corners."""
+    import citytree
+    from bloodmap.slope import SlopeSpec
+
+    x0, y0 = pipe.frame.dx, pipe.frame.dy
+    width, depth = pipe.outline[2]
+    x1, y1 = x0 + width, y0 + depth
+    band = 128
+    for end, y, hinge, pipe_face in (
+        ("north", y0 - band, ((x1, y0), (x0, y0)), "north"),
+        ("south", y1, ((x0, y1), (x1, y1)), "south"),
+    ):
+        name = f"rat_king_pipe_{end}"
+        bevel = part.rect_room(
+            name, origin=(x0, y), size=(width, band), style=pipe.style,
+            role="detail", intent={"kind": "furnished"},
+            region_kwargs={**SHRINE_PIPE.region_kwargs(),
+                           "floor_slope": SlopeSpec(hinge, rise_z=-3072),
+                           "ceiling_slope": SlopeSpec(hinge, rise_z=5120)})
+        inner = "south" if end == "north" else "north"
+        for face, other, other_face in (("west", walk, "east"), ("east", shrine, "west"),
+                                        (inner, pipe, pipe_face)):
+            citytree.join(bevel, other, at_a=face, at_b=other_face,
+                          connection_id=f"connection:sewer_{name}_{face}")
+
+
 def blown_hole(part, rooms: dict, name: str, rect, joined, note: str) -> list:
     """The plague pit's seal: a ragged hole through the brook's south wall, shut until it is blown.
 
@@ -885,7 +968,7 @@ def expand(city, sewer, existing: dict) -> dict:
             behavior = {"amplitude": -4, "shade_frequency": 4}
             if entry.get("flow") in FLOW:
                 behavior.update(flow_behavior(*FLOW[entry["flow"]]))
-            if kind == "chamber":
+            if kind == "chamber" or entry.get("flow") == "stockyard_drain":
                 behavior["depth"] = WATER_DEPTH
         elif kind == "chamber":
             behavior = {"amplitude": -16, "shade_frequency": 9}
@@ -901,6 +984,7 @@ def expand(city, sewer, existing: dict) -> dict:
         made = parts[entry["part"]].room(
             name, [(0, 0), (wx1 - wx0, 0), (wx1 - wx0, wy1 - wy0), (0, wy1 - wy0)],
             role="secret" if name == "flooded" else ("gateway" if kind == "neck" else "interior"),
+            intent={"kind": "furnished"} if corridor == "stockyard_drain" else None,
             faces=dict(COMPASS), frame=Frame(wx0, wy0), region_kwargs=region_kwargs, note=note)
         if name == "flooded":
             # SP's secret branch: `secret=True` emits the campaign's own
@@ -1038,6 +1122,7 @@ def expand(city, sewer, existing: dict) -> dict:
         RESOLVED[(entry["name"], inner)] = (target, outer)
         citytree.join(rooms[entry["name"]], target, at_a=inner, at_b=outer,
                       connection_id=f"connection:sewer_{entry['name']}")
+    stockyard_side_rooms(sewer, rooms)
     return rooms
 
 
@@ -1111,6 +1196,7 @@ def populate(layout, rooms, attested, flame_fields,
     placed += dress_circle(layout, rooms)
     placed += dress_secrets(layout, rooms, attested)
     placed += dress_lair(layout, rooms, attested)
+    placed += dress_stockyard(layout, rooms)
     # No aquatic dressing here.  `rules_blood.aquatic-sprite-is-under-water`
     # is graded off the corpus -- 664 appears in 82 campaign sectors and every
     # one is submerged, 660 in 142 likewise -- and it wants the sector's
@@ -1458,6 +1544,65 @@ def _lair_sprite(layout, pid, room, x, y, fields, spec, *, top=None, bottom=None
     layout.add_sprite(pid, room.region_id, x=int(x), y=int(y), z=int(z), **fields,
                       behavior=dict(spec["behavior"]))
     return pid
+
+
+def dress_stockyard(layout, rooms) -> list[str]:
+    """Dress the intake and altar, and tint the running water all the way to the Main."""
+    from bloodmap.placement import drawn_extent
+    from bloodmap.shade_table import _art
+    from l3_foundry import _attested
+
+    # SPIDER1.PLU (7) draws tile 1120's greens in red-brown. Cover the whole
+    # floor, including the ROR landing, so panning and topology survive.
+    current = [entry["name"] for entry in plan_rooms() if entry.get("flow") == "stockyard_drain"]
+    for name in (*current, "stockyard_landing"):
+        room = rooms[name].region_id
+        layout.add_overlay(f"blood:{name}", room, layout.regions[room].outer, floor_pal=7)
+
+    placed = []
+
+    def seat(room_name, name, source, point, *, from_ceiling=None, **overrides):
+        region = layout.regions[rooms[room_name].region_id]
+        source_map, type_id, tile = source
+        spec = _attested(source_map, type_id, picnum=tile)
+        fields = dict(spec["fields"], **overrides)
+        art = _art()[tile]
+        top, bottom = drawn_extent(art.height, art.animation["yofs"],
+                                   fields["y_repeat"], fields["cstat"])
+        z = (region.floor_z - 8 - bottom if from_ceiling is None
+             else region.ceiling_z + from_ceiling - top)
+        x, y = (round(v * PU) for v in point)
+        placed.append(layout.add_sprite(f"sewer:{name}", region.region_id, x=x, y=y, z=z,
+                                        behavior=dict(spec["behavior"]), **fields))
+
+    # A stained outlet sits high on the south wall. The rack is off the
+    # walk so the hooks and bodies stay clear of the manhole's landing.
+    seat("stockyard_drain", "stockyard_outlet", ("E1M8", 0, 977), (49.75, 55.75 - 8 / PU),
+         from_ceiling=5120, angle=1536, x_repeat=84, y_repeat=70, shade=-8)
+    seat("stockyard_rack", "stockyard_hook", ("E1M8", 417, 692), (47.875, 52.25),
+         from_ceiling=128, x_repeat=42, y_repeat=42)
+    for i, point in enumerate(((48.125, 53.0), (47.875, 53.75))):
+        seat("stockyard_rack", f"stockyard_carcass_{i}", ("E3M2", 416, 1351), point,
+             from_ceiling=256, x_repeat=48, y_repeat=42)
+
+    candle = ("E1M5", 32, 938)
+    seat("rat_king_pipe", "rat_king_clue", candle, (51.375, 46.4375),
+         x_repeat=32, y_repeat=36, cstat=384, shade=-16)
+    for i, point in enumerate(((55.875, 45.875), (55.875, 47.875), (56.5, 45.875), (56.5, 47.875))):
+        seat("rat_king_altar", f"rat_king_candle_{i}", candle, point,
+             x_repeat=42, y_repeat=48, cstat=384, shade=-16)
+    seat("rat_king_altar", "rat_king_plaque", ("E1M5", 0, 187), (56.75 - 8 / PU, 46.875),
+         from_ceiling=6656, cstat=144, angle=1024, x_repeat=102, y_repeat=102, shade=-12)
+    seat("rat_king_altar", "rat_king_blood", ("E2M4", 0, 713), (56.25, 46.875),
+         x_repeat=50, y_repeat=50, cstat=32, shade=-16)
+    for i, (point, tile, cstat) in enumerate((
+            ((56.34, 46.55), 1743, 384), ((56.13, 47.06), 1744, 388),
+            ((56.54, 46.88), 1743, 388))):
+        seat("rat_king_altar", f"rat_king_rat_{i}", ("E1M4", 0, tile), point,
+             x_repeat=23, y_repeat=30, cstat=cstat, shade=-10)
+    seat("rat_king_altar", "rat_king_offering", ("E1M4", 109, 2169), (55.93, 47.56),
+         shade=-6)
+    return placed
 
 
 def dress_lair(layout, rooms, attested) -> list[str]:

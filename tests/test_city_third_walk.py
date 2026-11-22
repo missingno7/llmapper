@@ -195,8 +195,8 @@ class ThirdWalkTests(unittest.TestCase):
         secrets = [s for s in self.disk.sectors
                    if int(_extra(s).get("tx_id", 0)) == 2
                    and int(_extra(s).get("command", 0)) == 64]
-        # the stash, the flooded branch, the cache, Molly's nest, the plague pit
-        self.assertEqual(len(secrets), 5)
+        # The stash, flooded branch, cache, Molly's nest, plague pit and Rat King's Shrine.
+        self.assertEqual(len(secrets), 6)
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266

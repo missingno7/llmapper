@@ -33,8 +33,8 @@ room with its rectangle and kind).
   OUTFALL south from the ring into the SETTLING BASIN under the plaza by the
   memorial; a south-east branch under the market road's north pavement.
   Map: `work/sewer-study/sewer-built.png`.
-* **One way in per quarter of the city**: the pump station's spiral (north
-  east, kept), and three manholes at the far ends of the branches -- the
+* **The first four ways in**: the pump station's spiral (north east, kept),
+  and three manholes at the far ends of the branches -- the
   brook's west end, the plaza by the memorial, the corner where the market
   road meets the east street. The east and church manholes, the works cellar,
   its service stair and its pit into the junction are gone (the owner: "You
@@ -106,7 +106,7 @@ room with its rectangle and kind).
   the tanks, their chains in the roof. The drop from the gallery does no
   harm (45,056); there is no way back up but the stair.
 * **Two secret rooms off Graves Brook** (`l3_sewer.SECRET_ROOMS`, its own
-  assembly `secrets`), both counted (the level's total is now 5):
+  assembly `secrets`), both counted:
   OLD MOLLY'S NEST, through a crawl-height arch (14,336; crouching clears
   13,376) in the brook's south wall at x 5, a low lair of rubble and bones
   with a gill beast and a doctor's bag; and THE PLAGUE PIT under the
@@ -215,13 +215,32 @@ room with its rectangle and kind).
   the mouth. E3M3's ambient water sound sits at the foot. See the
   [sewagefall study](../../../knowledge/blood/studies/sewagefall/notes.md)
   and the gallery, tank and circle quay frames in `work/fall/frames/`.
+* **The Stockyard Drain**, the slaughterhouse outfall, runs north from the
+  east quay into a ford
+  across the Foundry Main's south walk. The quay's landward pavement
+  has a blast-open cover at x 49.75, 16.5 plan units from the
+  market-road cover. The intake has a dripping blood pipe (E1M8's 977)
+  and a tiled rack with an empty chain and two of E3M2's flayed
+  carcasses. The walks are surfaced in bloody tile (291), with the
+  sewer's vault above them. The race, landing and ford all carry E1M8's
+  current (speed 60, north, drag on) in red-brown 1120, palette 7
+  (study `knowledge/blood/studies/stockyard-drain`).
+* **The Rat King's Shrine** is through a low pipe off the drain's east
+  walk, its corners sloped and a candle inside the throat. Two shallow
+  steps raise the altar. E1M5's candles
+  and skull plaque frame three rats from E1M4's grill on a blood mark,
+  with a life essence at the front. Crossing into the shrine
+  counts the secret (the level's sixth). The study is in
+  `knowledge/blood/studies/rat-king-shrine`. The rats share a blood mark,
+  but their tied tails are hard to read. The two places are shown in
+  `work/drain/final/stockyard-drain.png` and
+  `work/drain/final/rat-king-shrine.png` (`work/drain/drain_look.py`).
 * **Open:** the walks carry only floor debris: anything hung on their walls
   (E3M3's drips at 1.21 bodies, its moss, the vault grates) lands in the
   sloped ceiling, because the detail runs read a flat ceiling's height; and
   E3M3's X-brace pilasters (487) are wall textures in E3M3, a wall split we
-  have not made. Not built: the stockyard drain, and the later legends
-  (the Ghost Station through the pump station's hatch, the Toshers' Cache,
-  the Rat King's shrine, which wants the stockyard drain). The blown seal
+  have not made. The Ghost Station through the pump station's hatch
+  and the Toshers' Cache are still to build. The blown seal
   is seen in a frame only with its sector opened by hand; nobody has blown
   it in the game.
 
