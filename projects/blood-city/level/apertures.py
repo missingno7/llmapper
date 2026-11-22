@@ -56,9 +56,15 @@ def continue_lintels(level, disk) -> dict:
     lintel, and it is the only thing this touches: the masked middle
     (`over_picnum`) and the one-sided facade walls are left alone.
     """
-    report = {"repainted": 0, "left": 0, "by_tile": {}}
+    report = {"repainted": 0, "left": 0, "by_tile": {}, "fixed": 0}
     for row in _rows(disk):
         if row["lintel_player_heights"] <= 0 or row["lintel_continues_facade"]:
+            continue
+        record = level.walls[int(row["wall"])]
+        if isinstance(record, dict) and record.get("fixed_texture_frame"):
+            # a wall painted with its own frame (`paint_wall(fixed_frame=
+            # True)`): a fall of water whose tile is also its band
+            report["fixed"] += 1
             continue
         want = int(row["facade_picnum"])
         fields = level.walls[int(row["wall"])]["fields"]

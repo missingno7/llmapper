@@ -522,12 +522,20 @@ STOCKYARD_TROLLEY_ROOMS = (
     ("trolley_alcove", (60.125, 57.25, 62.125, 59.25), "dry sampling and inspection alcove"),
 )
 
-#: A channel's water falling down a drop into a lower room, as the Settling
-#: Hall's sewagefall does it (E3M3 wall 1307's panned 1120 under a lintel,
-#: wall 1319's bottom swap on the lower side, sprite 393's water sound at the
-#: foot). The owner, 2026-11-22: "you will have stairs down and waterfall
-#: between them ... some sort of technical junction ... can add more depth".
-POUR_SOURCE = ("E3M3", 1307, 1319, 393, 174)
+#: A channel's water falling down a drop into a lower room. The owner,
+#: 2026-11-22: "you will have stairs down and waterfall between them ...
+#: some sort of technical junction ... can add more depth". The falling
+#: tile and its downward pan go on the LOWER room's own wall, the face seen
+#: from below, as the campaign's falls do (E2M7 wall 482 and E4M3 wall 59:
+#: tile 1005, pan_always, y velocity -80 / -120). The first version painted
+#: the upper wall and showed it below by bottom swap, as E3M3 does under a
+#: lintel; but that wall's tile is also the band above the opening, and the
+#: lintel pass repainted it the drain's tile 296: the owner, "the waterfall
+#: has no muddy water texture on the front, without it looks cutoff". The
+#: tile stays E3M3's muddy 1120 (E1M8 wall 1309 pans it down too, at -85).
+#: (the falling wall's map and index; the sound's map, sprite and sector)
+#: E1M8's 1120 fall pans at -85 -- E3M3's at -20 read as standing still
+POUR_SOURCE = ("E1M8", 1309, "E3M3", 393, 174)
 
 
 def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: float = 0.5):
@@ -543,16 +551,15 @@ def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: floa
     from bloodmap.format import read_map
     from bloodmap.model import record_extra, record_fields
 
-    source, wall_id, pool_id, sound_sprite, sound_sector = POUR_SOURCE
-    example = read_map(corpus_map_path(source))
-    wall = example.walls[wall_id]
+    source, wall_id, sound_source, sound_sprite, sound_sector = POUR_SOURCE
+    wall = read_map(corpus_map_path(source)).walls[wall_id]
+    example = read_map(corpus_map_path(sound_source))
     finish = {key: record_fields(wall)[key] for key in
               ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
     if pal:
         finish["pal"] = int(pal)
     pan = {key: record_extra(wall)[key] for key in
            ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
-    pool_cstat = record_fields(example.walls[pool_id])["cstat"]
     sound = example.sprites[sound_sprite]
     sound_fields = {key: record_fields(sound)[key] for key in
                     ("picnum", "type", "cstat", "status", "shade", "x_repeat", "y_repeat")}
@@ -562,9 +569,9 @@ def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: floa
 
     def spill(layout, room):
         a, b = (room.world_frame().apply(p) for p in room.local_edge(face))
-        layout.paint_wall(room.region_id, a, b, fixed_frame=True, **finish)
-        layout.wire_wall(room.region_id, a, b, **pan)
-        layout.paint_wall(lower.region_id, a, b, cstat=pool_cstat)
+        # the lower room's own wall: the face a player below sees
+        layout.paint_wall(lower.region_id, a, b, fixed_frame=True, **finish)
+        layout.wire_wall(lower.region_id, a, b, **pan)
 
     def foot(layout, room):
         a, b = (upper.world_frame().apply(p) for p in upper.local_edge(face))
@@ -579,8 +586,8 @@ def pour(upper, face: str, lower, *, pal: int = 0, sound_id: str, sound_at: floa
         layout.add_sprite(sound_id, room.region_id, x=int(x), y=int(y),
                           z=int(floor - sound_height), behavior=sound_behavior, **sound_fields)
 
-    upper.raw(f"{source} walls {wall_id}/{pool_id}: falling water on the drop", spill)
-    lower.raw(f"{source} sprite {sound_sprite}: falling water sound at the foot", foot)
+    upper.raw(f"{source} wall {wall_id}: falling water on the drop", spill)
+    lower.raw(f"{sound_source} sprite {sound_sprite}: falling water sound at the foot", foot)
 
 
 def stockyard_trolley(city, sewer, rooms: dict) -> None:

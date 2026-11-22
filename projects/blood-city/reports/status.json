@@ -2,8 +2,8 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f829a243dae475d8257d5f531dafa3b8050c47028105be9a88f24d620defcb81",
-  "map_sha256": "1ae89ea7d48191b3dd0f1f0f4ed71249cb3e87fe380b74fa249ddcec78f1cf2f",
+  "manifest_sha256": "f8be9bc9b37be2447ab8ee26d4ed8df71304694d0d9d0548e4b5f1132ca8490e",
+  "map_sha256": "0ec667201b09ebfca38b63d630b48622383112dad903089d2876f3a89e156f22",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
@@ -23,7 +23,7 @@
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1245,
+   "note": 1244,
    "warning": 5
   }
  },

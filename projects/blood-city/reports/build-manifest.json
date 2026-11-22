@@ -3545,9 +3545,9 @@
     ]
   },
   "rules": {
-    "total": 1250,
+    "total": 1249,
     "by_severity": {
-      "note": 1245,
+      "note": 1244,
       "warning": 5
     },
     "by_code": {
@@ -3558,7 +3558,7 @@
       "note:opening-clears-a-standing-body": 110,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "note:wall-draws-its-own-tile": 948,
+      "note:wall-draws-its-own-tile": 947,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [

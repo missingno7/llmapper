@@ -262,6 +262,19 @@ room with its rectangle and kind).
   orders and a return after solving. The latch sound still needs a
   walk in Blood. See the [Ghost Station study](../../../knowledge/blood/studies/ghost-station/notes.md)
   and the frames in `work/ghost/posed/frames/`.
+* **The stockyard junction** (after the owner's playthrough, 2026-11-22):
+  the trolley chamber sinks two full steps (4,096 each) under the harbour's
+  sea layer, to 26,624 clear, down a step from the drain's west walk. Its
+  rails run four units further east, and the deck's floor moves with it
+  (relative alignment). The drain's blood falls over the chamber's edge
+  beside the stair (`l3_sewer.pour`): E1M8 wall 1309's muddy 1120, panned
+  down at -85, in the blood palette, on the LOWER room's own wall (the
+  campaign's way: E2M7 wall 482, E4M3 wall 59), with E3M3's water sound at
+  its foot. Painted on the upper wall and shown by bottom swap, the lintel
+  pass had repainted it with the drain's tile, and the owner saw a cut-off
+  hole; `apertures.continue_lintels` now leaves fixed-frame walls alone.
+  The owner pointed to **E1M8's moving-water corridors** as the next thing
+  to study for the sewers.
 * **Open:** the walks carry only floor debris: anything hung on their walls
   (E3M3's drips at 1.21 bodies, its moss, the vault grates) lands in the
   sloped ceiling, because the detail runs read a flat ceiling's height; and
