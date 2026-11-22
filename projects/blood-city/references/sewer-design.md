@@ -43,8 +43,11 @@ room with its rectangle and kind).
   level with its street (8,192, checked); the market road itself is sunk
   2,048, so its manhole is on the pavement corner, not in the road.
 * **A manhole** is a 768-unit shaft, a recess of 4,096 to a see-through link,
-  and its cover: E4M3 sprite 130's record (type 417, debris 5, sound 314) on
-  the owner's drain tile 219 at repeat 72, flat and blocking at street level.
+  and its cover: a gib object (416) with E4M9 sprite 290's record (its
+  floor-lying vent grate: metal shards, data_1 5, sound 370) on the owner's
+  drain tile 219 at repeat 72, flat and blocking at street level, on the
+  thing list so anything breaks it (the owner: "it should just break into
+  gibs like normal brekable object").
   It lands in water, an island in the branch's channel (or the basin) at the
   water's level; the fall is 51,200 units and `conformance.py` reads 0
   damage on all three links. The blown state is not seen in a frame: the

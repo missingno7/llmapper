@@ -196,7 +196,12 @@ MANHOLES = [
 #: falls or fire (NBlood `thingInfo`); blast damage ignores the hitscan bit,
 #: so this cover opens only to a blast. (The owner would take one that
 #: anything breaks: type 416.)
-MANHOLE_COVER = {"source": ("E4M3", 417, 191), "picnum": 219,
+#: The cover is a gib object (416), as E4M9's floor-lying vent grate (sprite
+#: 290, tile 218) is: anything that hurts it breaks it into metal shards
+#: (data_1 5 = gib type 4, gib.cpp gibList) with sound 370, and it is freed
+#: (actor.cpp actActivateGibObject). The owner, 2026-11-22: "it should just
+#: break into gibs like normal brekable object".
+MANHOLE_COVER = {"source": ("E4M9", 416, 218), "picnum": 219,
                  "cstat": 1 | 32 | 128 | 256, "repeat": 72}
 #: The shaft drops this far below the street to its link plane, so the cover
 #: lies ABOVE its sector's floor, as a flat sprite must to hold a player up
@@ -1841,11 +1846,10 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
             type=type_id, picnum=MANHOLE_COVER["picnum"],
             cstat=MANHOLE_COVER["cstat"], x_repeat=MANHOLE_COVER["repeat"],
             y_repeat=MANHOLE_COVER["repeat"], angle=1536, shade=16,
-            # on the thing list (4), as E4M3's sprite 130 is: an explosion
-            # damages only dudes and things (actor.cpp actRadiusDamage, 2728
+            # on the thing list (4), as every campaign breakable is: damage
+            # reaches only dudes and things (actor.cpp actRadiusDamage, 2728
             # and 2762), and on status 0 the owner found "Manhole covers
-            # can't be destroyed by explosion". A 417's physics flags are 0
-            # (thingInfo "Explode Object"): it does not fall into the shaft.
+            # can't be destroyed by explosion".
             status=4,
             behavior=dict(spec["behavior"]))
         placed.append(name)

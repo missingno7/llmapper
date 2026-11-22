@@ -357,17 +357,21 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertTrue(all(fields["floor_picnum"] == 1129 and not fields["floor_stat"] & 4
                             for fields in rails))
 
-    def test_a_manhole_cover_breaks_to_an_explosion(self):
+    def test_a_manhole_cover_breaks_into_gibs(self):
         #: the owner: "Manhole covers can't be destroyed by explosion" -- they
         #: were on status 0, and actRadiusDamage damages only the dude and
-        #: thing lists (actor.cpp:2728, 2762). E4M3 sprite 130 is on 4.
+        #: thing lists (actor.cpp:2728, 2762) -- then "it should just break
+        #: into gibs like normal brekable object": a 416 with E4M9's vent
+        #: grate data (metal shards, sound 370), on the thing list.
         import l3_sewer
-        covers = [s.fields for s in self.disk.sprites
+        covers = [s for s in self.disk.sprites
                   if int(s.fields["picnum"]) == l3_sewer.MANHOLE_COVER["picnum"]
-                  and int(s.fields["type"]) == 417]
+                  and int(s.fields["type"]) == 416]
         self.assertGreaterEqual(len(covers), len(l3_sewer.MANHOLES))
         for cover in covers:
-            self.assertEqual(int(cover["status"]), 4)
+            self.assertEqual(int(cover.fields["status"]), 4)
+            self.assertIsNotNone(cover.extra)
+            self.assertEqual(int(cover.extra.fields["data_1"]), 5)
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266
