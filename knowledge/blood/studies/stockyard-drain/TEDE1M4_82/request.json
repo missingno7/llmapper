@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/stockyard-drain/TEDE1M4_82/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/stockyard-drain/TEDE1M4_82",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -1024,
+   "y": 37184,
+   "z": -928,
+   "angle": 1698,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 1024,
+   "y": 37696,
+   "z": -928,
+   "angle": 1433,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -768,
+   "y": 35136,
+   "z": -928,
+   "angle": 2011,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 768,
+   "y": 36160,
+   "z": -928,
+   "angle": 1373,
+   "horiz": 100,
+   "sector": 82,
+   "screenshot": true
+  }
+ ]
+}

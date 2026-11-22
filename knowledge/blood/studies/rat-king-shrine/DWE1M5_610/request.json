@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/rat-king-shrine/DWE1M5_610/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/rat-king-shrine/DWE1M5_610",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 15918,
+   "y": 63966,
+   "z": 7264,
+   "angle": 1105,
+   "horiz": 100,
+   "sector": 610,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 10932,
+   "y": 64243,
+   "z": 7264,
+   "angle": 1940,
+   "horiz": 100,
+   "sector": 610,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 12594,
+   "y": 64520,
+   "z": 7264,
+   "angle": 1754,
+   "horiz": 100,
+   "sector": 610,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 14256,
+   "y": 64243,
+   "z": 7264,
+   "angle": 1309,
+   "horiz": 100,
+   "sector": 610,
+   "screenshot": true
+  }
+ ]
+}

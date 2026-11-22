@@ -1,0 +1,1644 @@
+{
+ "slug": "rat-king-shrine",
+ "want": "the Rat King's shrine: a legend secret off the stockyard drain, rats knotted on a blood mark at a stepped altar between candles, reached through a low pipe",
+ "date": "2026-11-22",
+ "seeds": [
+  {
+   "seed": "E1M5:71",
+   "map": "maps\\blood\\campaign\\E1M5.MAP",
+   "host": 71,
+   "sectors": [
+    62,
+    68,
+    69,
+    70,
+    71,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    196,
+    197
+   ],
+   "metres": [
+    8.6,
+    10.9,
+    3.9
+   ],
+   "area_M": 18.99,
+   "clear_bodies": 2.17,
+   "free_floor_share": 0.57,
+   "shade_spread": 30,
+   "floor": [
+    90,
+    "worn large bricks with moss"
+   ],
+   "ceiling": [
+    286,
+    ""
+   ],
+   "walls": [
+    [
+     406,
+     0.737,
+     "grey stone wall"
+    ],
+    [
+     22,
+     0.119,
+     ""
+    ],
+    [
+     88,
+     0.056,
+     "wooden column/pilaster with base and capital"
+    ],
+    [
+     175,
+     0.037,
+     ""
+    ],
+    [
+     405,
+     0.03,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 62,
+     "corners": 4,
+     "size": [
+      512,
+      2048
+     ],
+     "rise_bodies": -0.24,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 68,
+     "corners": 5,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      405,
+      406
+     ]
+    },
+    {
+     "sector": 69,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 70,
+     "corners": 5,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      405,
+      406
+     ]
+    },
+    {
+     "sector": 75,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 76,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 77,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 78,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 79,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 80,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 81,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 82,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 83,
+     "corners": 8,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 273,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 84,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 85,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 86,
+     "corners": 4,
+     "size": [
+      128,
+      1280
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      406
+     ]
+    },
+    {
+     "sector": 196,
+     "corners": 7,
+     "size": [
+      2304,
+      2048
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      88,
+      175,
+      406
+     ]
+    },
+    {
+     "sector": 197,
+     "corners": 18,
+     "size": [
+      768,
+      3456
+     ],
+     "rise_bodies": -0.48,
+     "floor_tile": 90,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      22,
+      88,
+      115,
+      175,
+      321,
+      406
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 30,
+     "repeats": [
+      64,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 268,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 813,
+     "type": 69,
+     "type_name": "kItemAmmoTommygunFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\E1M5_71\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\E1M5_71\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE1M5:610",
+   "map": "maps\\blood\\curated\\DWE1M5.MAP",
+   "host": 610,
+   "sectors": [
+    385,
+    386,
+    387,
+    388,
+    389,
+    608,
+    610,
+    611
+   ],
+   "metres": [
+    5.9,
+    11.3,
+    3.5
+   ],
+   "area_M": 15.56,
+   "clear_bodies": 1.93,
+   "free_floor_share": 0.92,
+   "shade_spread": 20,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    449,
+    "rough rock face / rubble stone"
+   ],
+   "walls": [
+    [
+     386,
+     0.317,
+     ""
+    ],
+    [
+     449,
+     0.282,
+     "rough rock face / rubble stone"
+    ],
+    [
+     373,
+     0.19,
+     ""
+    ],
+    [
+     273,
+     0.099,
+     "rock/cliff"
+    ],
+    [
+     110,
+     0.055,
+     "cobblestone"
+    ],
+    [
+     20,
+     0.051,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 385,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      449
+     ]
+    },
+    {
+     "sector": 386,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 387,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      449
+     ]
+    },
+    {
+     "sector": 388,
+     "corners": 8,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      68,
+      110,
+      178,
+      373
+     ]
+    },
+    {
+     "sector": 389,
+     "corners": 4,
+     "size": [
+      2304,
+      384
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      110,
+      373,
+      449
+     ]
+    },
+    {
+     "sector": 608,
+     "corners": 4,
+     "size": [
+      512,
+      64
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      386
+     ]
+    },
+    {
+     "sector": 611,
+     "corners": 10,
+     "size": [
+      2304,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      110,
+      373
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1745,
+     "type": 220,
+     "type_name": "kDudeRat",
+     "align": "face",
+     "count": 7,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.08
+    },
+    {
+     "tile": 505,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.44
+    },
+    {
+     "tile": 690,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      72,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.89
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      48,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 563,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.21
+    },
+    {
+     "tile": 826,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      112,
+      112
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.91
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      104,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 518,
+     "type": 136,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1270,
+     "type": 211,
+     "type_name": "kDudeHellHound",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 938,
+     "type": 32,
+     "type_name": "kDecorationCandle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2555,
+     "type": 103,
+     "type_name": "kItemKeyDagger",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 687,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 604,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3405,
+     "type": 427,
+     "type_name": "kThingZombieHead",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      24,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 682,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.09
+    },
+    {
+     "tile": 809,
+     "type": 63,
+     "type_name": "kItemAmmoTNTBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 693,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.45
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\DWE1M5_610\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\DWE1M5_610\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M4:167",
+   "map": "maps\\blood\\campaign\\E1M4.MAP",
+   "host": 170,
+   "sectors": [
+    167,
+    168,
+    169,
+    170
+   ],
+   "metres": [
+    3.5,
+    3.7,
+    3.5
+   ],
+   "area_M": 4.23,
+   "clear_bodies": 1.93,
+   "free_floor_share": 0.71,
+   "shade_spread": 8,
+   "floor": [
+    438,
+    "embossed metal floor"
+   ],
+   "ceiling": [
+    568,
+    ""
+   ],
+   "walls": [
+    [
+     255,
+     0.806,
+     "metal wall, lightly rusted"
+    ],
+    [
+     2453,
+     0.128,
+     "technical riveted metal cladding"
+    ],
+    [
+     20,
+     0.066,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 167,
+     "corners": 4,
+     "size": [
+      2048,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 376,
+     "sloped": false,
+     "type": 618,
+     "wall_tiles": [
+      255
+     ]
+    },
+    {
+     "sector": 168,
+     "corners": 4,
+     "size": [
+      128,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      49
+     ]
+    },
+    {
+     "sector": 169,
+     "corners": 4,
+     "size": [
+      1280,
+      128
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      49
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2548,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 2,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 754,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      169,
+      19
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    },
+    {
+     "tile": 796,
+     "type": 407,
+     "type_name": "kThingFluorescent",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      48,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1744,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.06
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\E1M4_167\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\E1M4_167\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-20.png"
+  },
+  "22": {
+   "tile": 22,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-22.png"
+  },
+  "88": {
+   "tile": 88,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-88.png"
+  },
+  "90": {
+   "tile": 90,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-90.png"
+  },
+  "110": {
+   "tile": 110,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-110.png"
+  },
+  "175": {
+   "tile": 175,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-175.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-195.png"
+  },
+  "253": {
+   "tile": 253,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-253.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-255.png"
+  },
+  "268": {
+   "tile": 268,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-268.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-270.png"
+  },
+  "272": {
+   "tile": 272,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-272.png"
+  },
+  "273": {
+   "tile": 273,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-273.png"
+  },
+  "286": {
+   "tile": 286,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-286.png"
+  },
+  "373": {
+   "tile": 373,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-373.png"
+  },
+  "376": {
+   "tile": 376,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-376.png"
+  },
+  "386": {
+   "tile": 386,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-386.png"
+  },
+  "405": {
+   "tile": 405,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-405.png"
+  },
+  "406": {
+   "tile": 406,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-406.png"
+  },
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-438.png"
+  },
+  "449": {
+   "tile": 449,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-449.png"
+  },
+  "505": {
+   "tile": 505,
+   "pixels": [
+    33,
+    62
+   ],
+   "world_at_repeat_8": [
+    528,
+    15872
+   ],
+   "see_through_share": 0.102,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-505.png"
+  },
+  "563": {
+   "tile": 563,
+   "pixels": [
+    56,
+    79
+   ],
+   "world_at_repeat_8": [
+    896,
+    20224
+   ],
+   "see_through_share": 0.069,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-563.png"
+  },
+  "568": {
+   "tile": 568,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-568.png"
+  },
+  "690": {
+   "tile": 690,
+   "pixels": [
+    23,
+    128
+   ],
+   "world_at_repeat_8": [
+    368,
+    32768
+   ],
+   "see_through_share": 0.63,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-690.png"
+  },
+  "754": {
+   "tile": 754,
+   "pixels": [
+    16,
+    125
+   ],
+   "world_at_repeat_8": [
+    256,
+    32000
+   ],
+   "see_through_share": 0.508,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-754.png"
+  },
+  "796": {
+   "tile": 796,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-796.png"
+  },
+  "813": {
+   "tile": 813,
+   "pixels": [
+    11,
+    11
+   ],
+   "world_at_repeat_8": [
+    176,
+    2816
+   ],
+   "see_through_share": 0.231,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-813.png"
+  },
+  "826": {
+   "tile": 826,
+   "pixels": [
+    49,
+    31
+   ],
+   "world_at_repeat_8": [
+    784,
+    7936
+   ],
+   "see_through_share": 0.684,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-826.png"
+  },
+  "915": {
+   "tile": 915,
+   "pixels": [
+    50,
+    88
+   ],
+   "world_at_repeat_8": [
+    800,
+    22528
+   ],
+   "see_through_share": 0.703,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-915.png"
+  },
+  "938": {
+   "tile": 938,
+   "pixels": [
+    9,
+    28
+   ],
+   "world_at_repeat_8": [
+    144,
+    7168
+   ],
+   "see_through_share": 0.472,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-938.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-1370.png"
+  },
+  "1417": {
+   "tile": 1417,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.285,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-1417.png"
+  },
+  "1743": {
+   "tile": 1743,
+   "pixels": [
+    61,
+    24
+   ],
+   "world_at_repeat_8": [
+    976,
+    6144
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-1743.png"
+  },
+  "1744": {
+   "tile": 1744,
+   "pixels": [
+    61,
+    24
+   ],
+   "world_at_repeat_8": [
+    976,
+    6144
+   ],
+   "see_through_share": 0.366,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-1744.png"
+  },
+  "1745": {
+   "tile": 1745,
+   "pixels": [
+    35,
+    31
+   ],
+   "world_at_repeat_8": [
+    560,
+    7936
+   ],
+   "see_through_share": 0.195,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-1745.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-2169.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-2453.png"
+  },
+  "2548": {
+   "tile": 2548,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.413,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-2548.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\rat-king-shrine\\tiles\\tile-2825.png"
+  }
+ }
+}

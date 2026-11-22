@@ -132,6 +132,25 @@
     "maps/blood/community/chronicles1/FULLMOON.MAP:116!"
    ],
    "date": "2026-11-22"
+  },
+  "stockyard-drain": {
+   "want": "the stockyard drain: the slaughterhouses' outfall, a tiled race of blood with a current running into the Foundry Main, a dripping blood pipe and a rack of hung carcasses",
+   "seeds": [
+    "E1M8:389",
+    "E1M8:251",
+    "TEDE1M4:82",
+    "E3M2:258"
+   ],
+   "date": "2026-11-22"
+  },
+  "rat-king-shrine": {
+   "want": "the Rat King's shrine: a legend secret off the stockyard drain, rats knotted on a blood mark at a stepped altar between candles, reached through a low pipe",
+   "seeds": [
+    "E1M5:71",
+    "DWE1M5:610",
+    "E1M4:167"
+   ],
+   "date": "2026-11-22"
   }
  }
 }
