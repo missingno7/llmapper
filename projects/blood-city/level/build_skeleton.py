@@ -1147,6 +1147,7 @@ def build():
     import l3_theatre
     theatre_rooms, door_levers, stage_curtain = l3_theatre.build(
         district_of['theatre_row'], theatre_st)
+    fire_doors = l3_theatre.add_fire_doors(theatre_rooms)
     ctx_stage_curtain = stage_curtain
 
     STAGE("station",
@@ -1236,6 +1237,7 @@ def build():
     ctx["street_regions"] = {room.region_id: name
                              for name, room in streets.items()}
     ctx["stage_curtain"] = ctx_stage_curtain
+    ctx["fire_doors"] = fire_doors
     ctx["greens"] = ctx_greens
     ctx["light_pools"] = ctx_pools
     ctx["market_dressing"] = market_dressing
@@ -1532,6 +1534,10 @@ def main() -> int:
     # A second pass, the way `turnstiles.populate` is: the fin is carved in
     # the tree and furnished once its walls exist.
     import curtains as stage_curtains
+
+    import l3_theatre
+    ctx["manifest"]["fire_doors"] = l3_theatre.furnish_fire_doors(
+        layout, ctx["fire_doors"])
 
     curtain = ctx.get("stage_curtain")
     if curtain is not None:

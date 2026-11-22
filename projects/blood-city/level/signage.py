@@ -69,8 +69,6 @@ SIGNS = [
     # fairground's lettering: E1M4's ROTTEN CANDY tracking and jitter.
     ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "carnival", SIGN_HEIGHT_PH),
     ("pawn", "theatre:pawn_shop", "west", "PAWN", "fascia", SIGN_HEIGHT_PH),
-    ("backstage", "theatre:aldermack_backstage", "north", "STAGE DOOR",
-     "notice", NOTICE_HEIGHT_PH),
     # --- the church -------------------------------------------------------
     # The nave's name is written by `venue_detail.COMPOSITIONS` instead --
     # under the hanging it belongs to, rather than as a loose word competing

@@ -31,7 +31,6 @@ WALL_DETAILS = (
     ("theatre", "saloon_main", "west", 0.72, 965),
     ("theatre", "parlor_gallery", "north", 0.25, 823),
     ("theatre", "parlor_range", "west", 0.62, 761),
-    ("theatre", "aldermack_backstage", "south", 0.45, 431),
     ("theatre", "pawn_shop", "north", 0.75, 269),
     ("mall", "unit_a", "north", 0.30, 965),
     ("mall", "unit_b", "west", 0.68, 269),

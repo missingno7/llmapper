@@ -51,6 +51,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("foundry:loading-shutter",
      "pushing either freight leaf from either approach parts both leaves "
      "to open the loading alcove"),
+    ("theatre:fire-doors",
+     "pushing either Aldermack fire-door leaf from either room toggles both "
+     "leaves, which stay where they stop until pushed again"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

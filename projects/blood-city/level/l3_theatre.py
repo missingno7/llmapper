@@ -22,9 +22,12 @@ needs and land on the 1024 bay grid.
 
 from __future__ import annotations
 
+from bloodmap import motion, wiring
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.placement import seated_z
 from bloodmap.slope import SlopeSpec
+from bloodmap.texture_align import sprite_tile_extents
 
 import fixtures
 import setpieces
@@ -233,6 +236,20 @@ ROOM_HEIGHT = {
     "aldermack_dressing": 24576,
 }
 
+# The doorway takes a bite out of the backstage corridor's east wall.
+# Its two mouths are narrower than the chamber, leaving a pocket at each jamb.
+FIRE_WEST, FIRE_EAST = 18048, 19456
+FIRE_MIDDLE, FIRE_HALF = 9472, 1024
+FIRE_HINGE_X = 19264
+FIRE_THICKNESS, FIRE_SIDE_CLEAR = 192, 32
+FIRE_JAMB, FIRE_SEAM = 32, 4
+FIRE_POCKET_MASONRY = 160
+FIRE_POCKET_LOW = FIRE_MIDDLE - FIRE_HALF - FIRE_THICKNESS - FIRE_SIDE_CLEAR
+FIRE_POCKET_HIGH = FIRE_MIDDLE + FIRE_HALF + FIRE_THICKNESS + FIRE_SIDE_CLEAR
+FIRE_CLEAR = 32768
+FIRE_FACE, FIRE_EDGE = 495, 315  # panelled metal door, riveted metal
+FIRE_WIRE = "theatre:fire-doors"
+
 #: (small room, its face, big room, its face) -- always anchored from the
 #: smaller face, which is the rule this project keeps relearning.
 JOINS = [
@@ -240,7 +257,6 @@ JOINS = [
     ("saloon_passage", "north", "saloon_main", "south"),
     ("parlor_range", "south", "parlor_gallery", "north"),
     ("parlor_passage", "north", "parlor_gallery", "south"),
-    ("aldermack_backstage", "east", "aldermack_auditorium", "west"),
     ("aldermack_dressing", "north", "aldermack_backstage", "south"),
     ("aldermack_foyer", "west", "aldermack_auditorium", "east"),
     ("aldermack_lobby", "west", "aldermack_foyer", "east"),
@@ -349,9 +365,21 @@ def build(district, theatre_st):
              floor_z=GRADE, clear=ROOM_H, rk=None):
         material = INTERIORS[material_key]
         venue_id, local = venue_for(name)
+        outline = [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)]
+        faces = dict(COMPASS)
+        if name == "aldermack_backstage":
+            # Masonry between the corridor and house and on both sides of
+            # the threshold. Leave the west wall and dressing-room join.
+            east = x1 - x0 - 256
+            low = FIRE_POCKET_LOW - y0 - FIRE_POCKET_MASONRY
+            high = FIRE_POCKET_HIGH - y0 + FIRE_POCKET_MASONRY
+            inset = FIRE_WEST - x0
+            outline = [(0, 0), (east, 0), (east, low), (inset, low),
+                       (inset, high), (east, high), (east, y1 - y0),
+                       (0, y1 - y0)]
+            faces = {"north": 0, "fire_doors": 3, "south": 6, "west": 7}
         made = venue_nodes[venue_id].room(
-            local, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)],
-            role=role, faces=dict(COMPASS), frame=Frame(int(x0), int(y0)),
+            local, outline, role=role, faces=faces, frame=Frame(int(x0), int(y0)),
             region_kwargs={**material.region_kwargs(), **(rk or {})},
             note=note)
         made.surfaces(**material.style_kwargs(floor_z=floor_z,
@@ -524,6 +552,114 @@ def build(district, theatre_st):
                                   wall_shade=SALOON_SHADES["wall"])
 
     return rooms, levers, curtain
+
+
+def add_fire_doors(rooms):
+    """Build the pocketed threshold and the two solid leaves in their ON pose."""
+    import citytree
+
+    backstage = rooms["aldermack_backstage"]
+    house = rooms["aldermack_auditorium"]
+    venue = backstage.parent
+    low = FIRE_MIDDLE - FIRE_HALF + FIRE_JAMB
+    high = FIRE_MIDDLE + FIRE_HALF - FIRE_JAMB
+    west_jamb, east_jamb = FIRE_WEST + 128, FIRE_HINGE_X + 64
+    outline = [(FIRE_WEST, low), (west_jamb, low),
+               (west_jamb, FIRE_POCKET_LOW), (east_jamb, FIRE_POCKET_LOW),
+               (east_jamb, low), (FIRE_EAST, low), (FIRE_EAST, high),
+               (east_jamb, high), (east_jamb, FIRE_POCKET_HIGH),
+               (west_jamb, FIRE_POCKET_HIGH), (west_jamb, high),
+               (FIRE_WEST, high)]
+    material = INTERIORS["service"]
+    threshold = venue.room(
+        "fire_doors", outline, role="gateway", faces={"west": 11, "east": 5},
+        region_kwargs=material.region_kwargs(),
+        note="The backstage fire-door threshold with recessed swing pockets.")
+    threshold.surfaces(**material.style_kwargs(
+        floor_z=GRADE, clear_height=FIRE_CLEAR, floor_shade=12))
+    for face, room, room_face in (("west", backstage, "fire_doors"),
+                                   ("east", house, "west")):
+        citytree.join(threshold, room, at_a=face, at_b=room_face,
+                      connection_id=f"connection:fire_doors_{face}",
+                      min_opening=FIRE_CLEAR)
+
+    leaves = []
+    for name, sense in (("south", 1), ("north", -1)):
+        hinge = (FIRE_HINGE_X, FIRE_MIDDLE - sense * FIRE_HALF)
+        x, y = hinge
+        tip = x - (FIRE_HALF - FIRE_SEAM // 2)
+        y0, y1 = sorted((y, y - sense * FIRE_THICKNESS))
+        leaf_outline = [(tip, y0), (x, y0), (x, y1), (tip, y1)]
+        hole = len(threshold.holes)
+        threshold.carve(leaf_outline)
+        leaf = venue.room(
+            f"fire_leaf_{name}", leaf_outline, role="doorway",
+            faces=dict(COMPASS),
+            region_kwargs={"type": 617, "sector_behavior": {
+                "busy_time_a": 15, "busy_time_b": 15,
+                "interruptable": 1, "drag": 1,
+            }},
+            note="Solid hinged leaf, saved open and initialized shut.")
+        # Like DOOR-SWINGINGD, the raised floor forms the visible solid
+        # below the shared ceiling, with the XWALL on the surrounding loop.
+        leaf.surfaces(**material.style_kwargs(
+            floor_z=GRADE - FIRE_CLEAR, clear_height=4096))
+        for face in RECT_FACES:
+            citytree.join(
+                threshold, leaf, at_a=threshold.hole_face(hole, face), at_b=face,
+                connection_id=f"connection:fire_leaf_{name}_{face}",
+                min_width=1, min_opening=0, gated=True)
+        leaves.append((leaf, leaf_outline, hinge, sense * 512))
+    return backstage, threshold, leaves
+
+
+def furnish_fire_doors(layout, built):
+    """Bind each axis and put repeatable Push on every exposed leaf face."""
+    from l3_foundry import _attested
+    import props
+    import signage
+    import wallplane
+    import wires
+
+    backstage, threshold, leaves = built
+    surround = threshold.region_id
+    wire = wires.wire(FIRE_WIRE)
+    for leaf, outline, (x, y), angle in leaves:
+        region = leaf.region_id
+        # DOOR-SWINGINGD axis sprites 206/213, including the signed quarter-turn.
+        layout.add_sprite(
+            f"placement:{leaf.node_id}:axis", region,
+            x=x, y=y, z=GRADE - FIRE_CLEAR, type=motion.MARKER_AXIS,
+            picnum=motion.MARKER_PICNUM, status=motion.MARKER_STATNUM,
+            cstat=motion.MARKER_CSTAT, x_repeat=64, y_repeat=64,
+            angle=angle, marker_owner=region)
+        wire.then(wiring.region(region))
+        layout.declare_motion(region, [region, surround])
+        for a, b in zip(outline, outline[1:] + outline[:1]):
+            broad = a[1] == b[1]
+            layout.paint_wall(surround, a, b, picnum=FIRE_FACE if broad else FIRE_EDGE,
+                              x_repeat=8, y_repeat=8, fixed_frame=broad)
+            wire.when(wiring.face(surround, a, b), "push", on=True, off=True)
+    backstage_id = backstage.region_id
+    lamp = _attested("E4M3", 0, 469)["fields"]
+    tile_height, y_offset = sprite_tile_extents()[lamp["picnum"]]
+    room = layout.regions[backstage_id]
+    lamp_z = seated_z(seat="ceiling", floor_z=room.floor_z, ceiling_z=room.ceiling_z,
+                      tile_height=tile_height, y_offset=y_offset,
+                      y_repeat=lamp["y_repeat"], cstat=lamp["cstat"])
+    layout.add_sprite("theatre:fire_door_work_light", backstage_id,
+                      x=FIRE_WEST - 320, y=FIRE_MIDDLE, z=lamp_z, shade=-40, **lamp)
+
+    # The notch makes this room non-rectangular, so its existing sign and
+    # notice board need explicit wall placement.
+    north = backstage.face("north", width=1536).anchor()
+    wallplane.text(layout, "sign:backstage", backstage_id, north.a, north.b,
+                   words="STAGE DOOR", style="notice",
+                   height_player_heights=signage.NOTICE_HEIGHT_PH)
+    props.mount_on_wall(layout, "venue:theatre:aldermack_backstage:431",
+                        backstage, "west", tile=431, t=0.83)
+    return {"threshold": surround, "leaves": [leaf.region_id for leaf, *_ in leaves],
+            "wire": wire.name}
 
 
 #: Who is in here, and what is worth finding.  Cultists hold the venues
