@@ -404,7 +404,7 @@ def gather() -> dict[str, Any]:
 
 
 def brief(status: dict[str, Any]) -> str:
-    """The page to read first: forty lines, generated from the data."""
+    """The page to read first: under seventy lines, generated from the data."""
     build = status["build"]
     lines = [
         "# Blood City: where it stands",
@@ -416,14 +416,10 @@ def brief(status: dict[str, Any]) -> str:
         f"**Build**: {build['sectors']} sectors, {build['walls']} walls, "
         f"{build['sprites']} sprites "
         f"({round(100 * (1 - build['headroom']['walls']))}% of NBlood's wall limit). "
-        f"`{build['command']}` takes about a minute and is deterministic. "
-        f"Read-back {'agrees' if build['read_back_agrees'] else 'DISAGREES'}; "
-        f"rules: {build['rules']}.",
-        "",
-        f"The build runs {len(status['stages'])} named stages in order "
-        "(" + ", ".join(row["name"] for row in status["stages"]) + "). "
-        "`python projects/blood-city/level/status.py --stages` gives each "
-        "one's line in the build and what it took.",
+        f"`{build['command']}` is deterministic. "
+        f"Read-back {'agrees' if build['read_back_agrees'] else 'DISAGREES'}. "
+        f"Rule diagnostics {build['rules']}. "
+        "`python projects/blood-city/level/status.py --stages` lists the stages and timings.",
         "",
         f"**Can it be finished**: "
         + ("yes by our reader" if status["finish"]["exit_reached"]

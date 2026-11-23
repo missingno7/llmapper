@@ -204,8 +204,6 @@ ON_WALL = [
     ("saloon/back", "north", 163, 0.5, None),
     ("aldermack/foyer", "south", 943, 0.75, None),
     ("aldermack/foyer", "south", 356, 0.2, None),
-    ("aldermack/backstage", "west", 751, 0.5, None),
-    ("aldermack/backstage", "west", 658, 0.8, None),
     ("saloon/back", "east", 621, 0.5, None),
     ("pawn_shop/shop", "west", 268, 0.5, None),
     ("market_hall/supermarket", "west", 2139, 0.4, 0.9),

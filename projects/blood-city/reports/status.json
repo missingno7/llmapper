@@ -2,29 +2,29 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "3ba5770e4b45d58abf7a5949b6b19d0bd81e2ef499cd17015ab34bca14400be8",
-  "map_sha256": "3bb05258e72f4787c5a496d89c405ddfae869809d368840031ae690b3463ea1f",
+  "manifest_sha256": "aad171137581d73b3dd0005a483bcd27f72222088b47abe821d728272eaf7f9f",
+  "map_sha256": "47d7c2cf4b9ada2c30aaa6faff9d1c21e9b5329ae12a8d2c520bbf8946de451b",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1068,
-  "walls": 10433,
-  "sprites": 1312,
+  "sectors": 1082,
+  "walls": 10580,
+  "sprites": 1394,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.739,
-   "walls": 0.363,
-   "sprites": 0.92
+   "sectors": 0.736,
+   "walls": 0.354,
+   "sprites": 0.915
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1298,
-   "warning": 5
+   "note": 1373,
+   "warning": 8
   }
  },
  "stages": [
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 502",
+    "root": "sprite 491",
     "cause": "push",
-    "sector": 505,
+    "sector": 515,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,9 +202,9 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 619,
+    "sprite": 608,
     "name": "kItemKeyEye",
-    "sector": 200,
+    "sector": 210,
     "reached": true
    }
   ],
@@ -213,11 +213,11 @@
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sector 220"
+     "sector 230"
     ],
-    "sector": 220,
+    "sector": 230,
     "answers": [
-     "sector 220"
+     "sector 230"
     ],
     "by_hand": true
    }
@@ -227,8 +227,8 @@
    "credited_normal": 7,
    "credited_super": 0
   },
-  "space": 1043,
-  "reached": 1043,
+  "space": 1057,
+  "reached": 1057,
   "gated_areas": [
    {
     "round": 0,
@@ -241,15 +241,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 689 (channel 120)"
+     "use switch sprite 775 (channel 120)"
     ],
-    "sectors": 48,
+    "sectors": 62,
     "first_sector": 3
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 690 (channel 121)"
+     "use switch sprite 776 (channel 121)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -257,114 +257,114 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 691 (channel 122)"
+     "use switch sprite 777 (channel 122)"
     ],
     "sectors": 1,
-    "first_sector": 30
+    "first_sector": 40
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 692 (channel 123)"
+     "use switch sprite 778 (channel 123)"
     ],
     "sectors": 1,
-    "first_sector": 32
+    "first_sector": 42
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 294"
+     "operate mechanism sector 304"
     ],
     "sectors": 47,
-    "first_sector": 265
+    "first_sector": 275
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 295"
+     "operate mechanism sector 305"
     ],
     "sectors": 1,
-    "first_sector": 295
+    "first_sector": 305
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 218"
+     "operate mechanism sector 228"
     ],
     "sectors": 39,
-    "first_sector": 189
+    "first_sector": 199
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 501 (channel 108)"
+     "use switch sprite 490 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 503
+    "first_sector": 513
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 541 (channel 103)"
+     "destroy sprite 530 (channel 103)"
     ],
     "sectors": 10,
-    "first_sector": 99
+    "first_sector": 109
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 693 (channel 124)"
+     "use switch sprite 779 (channel 124)"
     ],
     "sectors": 7,
-    "first_sector": 39
+    "first_sector": 49
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 250 (channel 109)"
+     "destroy sprite 239 (channel 109)"
     ],
     "sectors": 5,
-    "first_sector": 392
+    "first_sector": 402
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 109"
+     "operate mechanism sector 119"
     ],
     "sectors": 4,
-    "first_sector": 85
+    "first_sector": 95
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 167"
+     "operate mechanism sector 177"
     ],
     "sectors": 4,
-    "first_sector": 166
+    "first_sector": 176
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 143"
+     "operate mechanism sector 153"
     ],
     "sectors": 1,
-    "first_sector": 143
+    "first_sector": 153
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 168"
+     "operate mechanism sector 178"
     ],
     "sectors": 1,
-    "first_sector": 168
+    "first_sector": 178
    },
    {
     "round": 2,
     "opened_by": [
-     "operate mechanism sector 111"
+     "operate mechanism sector 121"
     ],
     "sectors": 23,
-    "first_sector": 82
+    "first_sector": 92
    },
    {
     "round": 2,
@@ -372,15 +372,15 @@
      "several of this round's acts together"
     ],
     "sectors": 3,
-    "first_sector": 202
+    "first_sector": 212
    },
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 611 (channel 104)"
+     "destroy sprite 600 (channel 104)"
     ],
     "sectors": 5,
-    "first_sector": 221
+    "first_sector": 231
    }
   ]
  },
@@ -1242,25 +1242,91 @@
      "second",
      "trim",
      "wall_art",
+     "flat_art",
      "standing",
      "levels",
      "masked",
+     "light",
      "motion",
      "machines"
     ],
-    "missing": [
-     "light"
-    ],
+    "missing": [],
     "campaign_p25": 4,
     "campaign_p50": 6
    },
    "metres": [
-    18.3,
+    13.5,
     27.1,
     10.2
    ],
    "cramped": [
-    "short side 10752 (campaign p25 11776)"
+    "short side 7936 (campaign p25 11776)"
+   ],
+   "critique": null
+  },
+  {
+   "name": "Aldermack backstage",
+   "at": [
+    18400,
+    7680
+   ],
+   "hero": "a callboard and keeper's lamp across from the parlor passage",
+   "study": "aldermack-rebuild",
+   "layers": {
+    "has": [
+     "second",
+     "trim",
+     "wall_art",
+     "flat_art",
+     "standing",
+     "levels",
+     "light",
+     "motion",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 1,
+    "campaign_p50": 3
+   },
+   "metres": [
+    5.2,
+    13.5,
+    3.5
+   ],
+   "cramped": [],
+   "critique": null
+  },
+  {
+   "name": "Aldermack dressing room",
+   "at": [
+    18368,
+    12032
+   ],
+   "hero": "a lit run of mirrors leading to a portrait against the red drapes",
+   "study": "aldermack-rebuild",
+   "layers": {
+    "has": [
+     "second",
+     "wall_art",
+     "flat_art",
+     "standing",
+     "levels",
+     "light",
+     "machines"
+    ],
+    "missing": [],
+    "campaign_p25": 0,
+    "campaign_p50": 1
+   },
+   "metres": [
+    3.5,
+    6.2,
+    2.6
+   ],
+   "cramped": [
+    "height 1.45 bodies (campaign p25 1.57)",
+    "7.0M of floor (a destination wants 14.0M)",
+    "1.45 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -1947,16 +2013,9 @@
    "see": "python -m tools.critique prepare saloon --poses <set> --kind <kind>"
   },
   {
-   "kind": "missing-layer",
-   "place": "Aldermack auditorium",
-   "says": "carries no light layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
    "kind": "cramped",
    "place": "Aldermack auditorium",
-   "says": "short side 10752 (campaign p25 11776)",
+   "says": "short side 7936 (campaign p25 11776)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
@@ -1966,6 +2025,41 @@
    "says": "no blind reader has looked at this place",
    "owner": "tools/critique.py",
    "see": "python -m tools.critique prepare theatre --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Aldermack backstage",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare aldermack-rebuild --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "cramped",
+   "place": "Aldermack dressing room",
+   "says": "height 1.45 bodies (campaign p25 1.57)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Aldermack dressing room",
+   "says": "7.0M of floor (a destination wants 14.0M)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "cramped",
+   "place": "Aldermack dressing room",
+   "says": "1.45 bodies high (a destination wants 1.93)",
+   "owner": "projects/blood-city/level/scale.py",
+   "see": "the scale lines the build prints"
+  },
+  {
+   "kind": "never-critiqued",
+   "place": "Aldermack dressing room",
+   "says": "no blind reader has looked at this place",
+   "owner": "tools/critique.py",
+   "see": "python -m tools.critique prepare aldermack-rebuild --poses <set> --kind <kind>"
   },
   {
    "kind": "never-critiqued",
@@ -1994,6 +2088,14 @@
    "says": "2026-11-23: \"Later I would do a major overhaul of the whole aldermack to make it look better. There are other places that were done with old process and old knoweledge which we would do today much better.\"",
    "owner": "the owner",
    "see": "study it (tools.study), then rebuild; which other old places: the never-critiqued and missing-layer items here"
+  },
+  {
+   "kind": "uncatalogued-use",
+   "place": null,
+   "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2633",
+   "at": "sprite[670]"
   },
   {
    "kind": "outside-campaign",
@@ -2033,14 +2135,14 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 834 as sprite_face in indoors (13x) rests on community-curated evidence (7 maps), not the campaign's",
+   "says": "tile 834 as sprite_face in indoors (15x) rests on community-curated evidence (7 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 834"
   },
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 3810 as sprite_wall in indoors (11x) rests on community-curated evidence (9 maps), not the campaign's",
+   "says": "tile 3810 as sprite_wall in indoors (14x) rests on community-curated evidence (9 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 3810"
   },
@@ -2110,6 +2212,20 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 517 as sprite_face in indoors (4x) rests on community-curated evidence (5 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 517"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 822 as sprite_face in indoors (4x) rests on community-curated evidence (4 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 822"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 194 as ceiling in indoors (3x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 194"
@@ -2117,9 +2233,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 517 as sprite_face in indoors (3x) rests on community-curated evidence (5 maps), not the campaign's",
+   "says": "tile 290 as two_sided_lower in indoors (3x) rests on community-curated evidence (4 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 517"
+   "see": "python -m tools.tile_contexts show 290"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 251 as sprite_wall in indoors (3x) rests on community evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 251"
   },
   {
    "kind": "outside-campaign",
@@ -2243,6 +2366,34 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 523 as sprite_face in indoors (2x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 523"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 522 as sprite_face in indoors (2x) rests on community-curated evidence (3 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 522"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 77 as sprite_wall in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 77"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 166 as sprite_wall in indoors (2x) rests on community evidence (36 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 166"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 3810 as sprite_wall in outdoors (2x) rests on community-curated evidence (4 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 3810"
@@ -2260,6 +2411,13 @@
    "says": "tile 579 as sprite_face in indoors (2x) rests on community-curated evidence (5 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 579"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 295 as floor in indoors (1x) rests on community-curated evidence (4 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 295"
   },
   {
    "kind": "outside-campaign",
@@ -2369,6 +2527,55 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 417 as sprite_wall in indoors (1x) rests on community evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 417"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 179 as sprite_wall in indoors (1x) rests on community evidence (9 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 179"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 20 as sprite_wall in indoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 20"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 116 as sprite_wall in indoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 116"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 1115 as sprite_wall in indoors (1x) rests on community evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1115"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 955 as sprite_floor in indoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 955"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2377 as sprite_face in indoors (1x) rests on community evidence (19 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2377"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 3830 as sprite_wall in outdoors (1x) rests on community-curated evidence (3 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 3830"
@@ -2418,31 +2625,55 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 282 and 184",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 48 units (0.12 body widths) of stone between sectors 20 and 30",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2187"
+   "at": "wall 188"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 289 and 184",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 28 and 32",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2232"
+   "at": "wall 250"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 5 wall(s) (121, 124, 131, 167, 169) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-   "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 28 and 30",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "tile[68]"
+   "at": "wall 259"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (711, 717, 718, 729, 798, 799) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 28 and 29",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall 279"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 292 and 194",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall 2280"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 299 and 194",
+   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
+   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
+   "at": "wall 2325"
+  },
+  {
+   "kind": "rule-warning",
+   "place": null,
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (804, 810, 811, 822, 891, 892) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[93]"
@@ -2450,7 +2681,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 3 wall(s) (244, 249, 263) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 3 wall(s) (229, 234, 248) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[203]"
@@ -2577,17 +2808,10 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 42, \"sprites\": [655, 656], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 52, \"sprites\": [741, 742], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[42]"
-  },
-  {
-   "kind": "lost-tile",
-   "place": null,
-   "says": "tile[68] is authored on walls and drawn on no band",
-   "owner": "bloodmap/render_slots.py decides what is drawn",
-   "see": "the READ-BACK DIFF lines the build prints"
+   "at": "sector[52]"
   },
   {
    "kind": "lost-tile",
@@ -2605,18 +2829,19 @@
   }
  ],
  "open_by_kind": {
-  "cramped": 17,
+  "cramped": 20,
   "critique": 12,
   "dropped": 5,
-  "lost-tile": 3,
-  "missing-layer": 18,
-  "never-critiqued": 13,
-  "outside-campaign": 59,
+  "lost-tile": 2,
+  "missing-layer": 17,
+  "never-critiqued": 15,
+  "outside-campaign": 74,
   "owner-rework": 1,
   "refused": 7,
-  "rule-warning": 5,
+  "rule-warning": 8,
   "skipped": 5,
   "sprite-overlaps": 1,
+  "uncatalogued-use": 1,
   "unrecognised": 1,
   "unstudied": 2
  },

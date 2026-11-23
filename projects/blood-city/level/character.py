@@ -149,6 +149,21 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "SCHOOL_ s154/s244, FORDTHEA s252 (height); the "
                     "framed proscenium and raked seats NOT yet built",
     },
+    "Aldermack backstage": {
+        "at": (18400, 7680), "study": "aldermack-rebuild",
+        # The saved-open fire doors are wide enough for the room reader
+        # to include the auditorium. Stop it at their shared frame.
+        "stop_at": ((19392, 9472),),
+        "hero": "a callboard and keeper's lamp across from the parlor passage",
+        "exemplar": "E3M4 s391 (framed service bays); E3M6 s458 (workbench); "
+                    "HUNT s673 and sprites 1681/1683-1685 (trick table and balloon)",
+    },
+    "Aldermack dressing room": {
+        "at": (18368, 12032), "study": "aldermack-rebuild",
+        "hero": "a lit run of mirrors leading to a portrait against the red drapes",
+        "exemplar": "REALM4 s181 (drapery and candelabra); E2M4 sprite 275 "
+                    "(vanity mirror); E6M1 s47 (clothes rail)",
+    },
     "harbour": {
         "at": (30720, 58368), "floor": 37888, "study": "harbour",
         "hero": "a moored hull between two rock headlands, the sea "
@@ -241,7 +256,11 @@ def sheet(disk) -> dict[str, Any]:
         if seed is None:
             report["unfound"].append(name)
             continue
-        profile = pc.profile(geom, pc.place_of(geom, seed))
+        stops = spec.get("stop_at", ())
+        boundary = [i for i, sector in enumerate(geom.sectors)
+                    if int(sector["floor_z"]) == want
+                    and any(geom.contains(i, *point) for point in stops)]
+        profile = pc.profile(geom, pc.place_of(geom, seed, avoid=boundary))
         verdict = pc.judge(profile, reference) if reference else {}
         report["places"][name] = {
             "hero": spec["hero"], "exemplar": spec["exemplar"],

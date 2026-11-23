@@ -57,6 +57,9 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("station_arch", Rule("ceiling", 795, 2560, 2560)),
     ("pawn_shop", Rule("panel", 2290, 3072, 3072)),
     ("canteen", Rule("ceiling", 795, 2560, 2560)),
+    ("aldermack/backstage", Rule("none", 0, 0)),
+    ("aldermack/dressing", Rule("none", 0, 0)),
+    ("aldermack/fire_", Rule("none", 0, 0)),
     ("theatre_row/saloon", Rule("hanging", 641, 3072, 3072)),
     ("theatre_row", Rule("ceiling", 676, 2560, 2560)),
     # its own two candelabra and its stained glass (`light_kinds`: glass on a
@@ -73,6 +76,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
 #: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
     "market_slip/quay",
+    # Hand-painted pools at the work lights and mirrors, and in the swept bay.
+    "aldermack/backstage",
+    "aldermack/dressing",
+    "aldermack/fire_",
     # The deck's hole moves through the rail bed. Keep its lighting in
     # the authored sectors so the band cutter leaves the sweep clear.
     "sewer/sampling/trolley_track",
@@ -85,6 +92,8 @@ OWN_LIGHT: tuple[str, ...] = (
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
     ("st_gallows", 0.5),
+    ("aldermack/backstage", 0.45),
+    ("aldermack/dressing", 0.35),
     # the lair's two torches at full strength over the sewer's dark: their
     # light falls off steeply enough for the light stage to cut pools in
     # the hall's floor; at 0.35 there was no change to cut and the hall

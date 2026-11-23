@@ -25,10 +25,9 @@ from __future__ import annotations
 from bloodmap import motion, wiring
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
-from bloodmap.placement import seated_z
 from bloodmap.slope import SlopeSpec
-from bloodmap.texture_align import sprite_tile_extents
 
+import aldermack_backstage
 import fixtures
 import setpieces
 import templates
@@ -92,10 +91,6 @@ ROOMS = [
     # --- the Aldermack ---------------------------------------------------
     ("aldermack_auditorium", 19456, 4096, 26624, 11264, "theatre",
      "the auditorium: the house, under the city's tallest interior"),
-    ("aldermack_backstage", 17408, 4096, 19456, 11264, "service",
-     "the backstage corridor"),
-    ("aldermack_dressing", 17408, 11264, 19456, 14336, "service",
-     "the dressing room"),
     ("aldermack_foyer", 26624, 6656, 30720, 10752, "theatre",
      "the foyer, opening on the forecourt"),
     ("aldermack_lobby", 30720, 7680, 32256, 9728, "theatre",
@@ -144,8 +139,6 @@ MEMBERSHIP = {
     "parlor_range": ("parlor", "range"),
     "parlor_passage": ("parlor", "passage"),
     "aldermack_auditorium": ("aldermack", "auditorium"),
-    "aldermack_backstage": ("aldermack", "backstage"),
-    "aldermack_dressing": ("aldermack", "dressing"),
     "aldermack_foyer": ("aldermack", "foyer"),
     "aldermack_lobby": ("aldermack", "lobby"),
     "back_passage_west": ("back_of_house", "west"),
@@ -233,7 +226,6 @@ ROOM_HEIGHT = {
     "pawn_shop": 24576,
     "back_passage_west": 20480,
     "back_passage_east": 20480,
-    "aldermack_dressing": 24576,
 }
 
 # The stage doors between the backstage corridor and the house: two wooden
@@ -265,7 +257,6 @@ JOINS = [
     ("saloon_passage", "north", "saloon_main", "south"),
     ("parlor_range", "south", "parlor_gallery", "north"),
     ("parlor_passage", "north", "parlor_gallery", "south"),
-    ("aldermack_dressing", "north", "aldermack_backstage", "south"),
     ("aldermack_foyer", "west", "aldermack_auditorium", "east"),
     ("aldermack_lobby", "west", "aldermack_foyer", "east"),
     ("back_passage_west", "west", "saloon_back", "east"),
@@ -375,16 +366,6 @@ def build(district, theatre_st):
         venue_id, local = venue_for(name)
         outline = [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)]
         faces = dict(COMPASS)
-        if name == "aldermack_backstage":
-            # The stage doors' bay is a sector of its own in the east wall's
-            # middle, open to the corridor on its three sides.
-            east = FIRE_WALL_X - x0
-            low, high, inset = FIRE_BAY_LOW - y0, FIRE_BAY_HIGH - y0, FIRE_WEST - x0
-            outline = [(0, 0), (east, 0), (east, low), (inset, low),
-                       (inset, high), (east, high), (east, y1 - y0),
-                       (0, y1 - y0)]
-            faces = {"north": 0, "bay_north": 2, "bay_west": 3, "bay_south": 4,
-                     "south": 6, "west": 7}
         made = venue_nodes[venue_id].room(
             local, outline, role=role, faces=faces, frame=Frame(int(x0), int(y0)),
             region_kwargs={**material.region_kwargs(), **(rk or {})},
@@ -403,6 +384,8 @@ def build(district, theatre_st):
                 hinge=((x0, y0), (x1, y0)), rise_z=-AUDITORIUM_PITCH)}
         make(name, x0, y0, x1, y1, key, note,
              clear=ROOM_HEIGHT.get(name, ROOM_H), rk=rk)
+    rooms.update(aldermack_backstage.build(
+        venue_nodes["aldermack"], fire_bay=(FIRE_WEST, FIRE_BAY_LOW, FIRE_BAY_HIGH)))
     # A join is declared on the node that owns BOTH ends: inside a venue
     # that is the venue, between two venues it is the district.
     for small, sf, big, bf in JOINS:
@@ -624,13 +607,9 @@ def add_fire_doors(rooms):
 
 def furnish_fire_doors(layout, built):
     """Bind each axis and put repeatable Push on every exposed leaf face."""
-    from l3_foundry import _attested
-    import props
-    import signage
-    import wallplane
     import wires
 
-    backstage, threshold, leaves = built
+    _, threshold, leaves = built
     surround = threshold.region_id
     wire = wires.wire(FIRE_WIRE)
     for leaf, outline, (x, y), angle in leaves:
@@ -651,24 +630,6 @@ def furnish_fire_doors(layout, built):
                               x_repeat=8 if broad else 1, y_repeat=10 if broad else 8,
                               cstat=8 if broad and (a[0] < b[0]) else 0, fixed_frame=True)
             wire.when(wiring.face(surround, a, b), "push", on=True, off=True)
-    backstage_id = backstage.region_id
-    lamp = _attested("E4M3", 0, 469)["fields"]
-    tile_height, y_offset = sprite_tile_extents()[lamp["picnum"]]
-    room = layout.regions[backstage_id]
-    lamp_z = seated_z(seat="ceiling", floor_z=room.floor_z, ceiling_z=room.ceiling_z,
-                      tile_height=tile_height, y_offset=y_offset,
-                      y_repeat=lamp["y_repeat"], cstat=lamp["cstat"])
-    layout.add_sprite("theatre:fire_door_work_light", backstage_id,
-                      x=FIRE_WEST - 512, y=FIRE_MIDDLE, z=lamp_z, shade=-40, **lamp)
-
-    # The notch makes this room non-rectangular, so its existing sign and
-    # notice board need explicit wall placement.
-    north = backstage.face("north", width=1536).anchor()
-    wallplane.text(layout, "sign:backstage", backstage_id, north.a, north.b,
-                   words="STAGE DOOR", style="notice",
-                   height_player_heights=signage.NOTICE_HEIGHT_PH)
-    props.mount_on_wall(layout, "venue:theatre:aldermack_backstage:431",
-                        backstage, "west", tile=431, t=0.83)
     return {"threshold": surround, "leaves": [leaf.region_id for leaf, *_ in leaves],
             "wire": wire.name}
 
@@ -740,6 +701,7 @@ def stools(layout, rooms) -> int:
 
 def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
     import props
+    aldermack_backstage.furnish(layout, rooms)
     placed = 0
     for name, type_id, local in POPULATION + PICKUPS:
         spec = attested(type_id)

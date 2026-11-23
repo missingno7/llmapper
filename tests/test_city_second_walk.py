@@ -202,11 +202,14 @@ class SecondWalkTests(unittest.TestCase):
         self.assertGreaterEqual(len(halls), 1)
 
     def test_the_pawnbroker_has_no_mannequins_and_a_stocked_shelf(self):
+        from bloodmap.model import record_fields
+
         report = json.loads((LEVEL.parent / "reports" / "build-manifest.json")
                             .read_text("utf-8"))
         self.assertEqual(report["sprite_fit"]["squeezed"], [])
-        mannequins = [s for s in self.disk.sprites
-                      if int(s.fields["picnum"]) == 2377]
+        # Include the pawnbroker's window, sales floor, and pledge room.
+        mannequins = [f for s in self.disk.sprites if (f := record_fields(s))["picnum"] == 2377
+                      and 27136 <= f["x"] <= 32768 and 3072 <= f["y"] <= 7424]
         self.assertEqual(mannequins, [])
 
 
