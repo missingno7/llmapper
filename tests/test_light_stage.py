@@ -43,6 +43,23 @@ def _bytes(disk):
 
 
 class LightStageTests(unittest.TestCase):
+    def test_a_rooms_shade_bias_follows_its_cut_pieces(self):
+        disk, region_of = _hall()
+        hall = next(i for i, name in region_of.items() if name == "town/hall")
+        yard = next(i for i, name in region_of.items() if name == "town/yard")
+        darker = copy.deepcopy(disk)
+        baseline = L.Rule("panel", 2290, 3072, 3072)
+        offset = L.Rule("panel", 2290, 3072, 3072, shade_bias=(12, 16, 8))
+        report = L.run(disk, region_of, lambda name: baseline)
+        L.run(darker, region_of, lambda name: offset if name == "town/hall" else baseline)
+        pieces = [i for i, parent in report["parent"].items() if parent == hall]
+        self.assertTrue(pieces)
+        for i in (hall, *pieces):
+            original, shaded = _f(disk.sectors[i]), _f(darker.sectors[i])
+            self.assertEqual(shaded["floor_shade"] - original["floor_shade"], 12)
+            self.assertEqual(shaded["ceiling_shade"] - original["ceiling_shade"], 16)
+        self.assertEqual(_f(disk.sectors[yard]), _f(darker.sectors[yard]))
+
     def test_panels_lie_in_rows_and_sprites_carry_no_wiring(self):
         disk, region_of = _hall()
         hall = next(s for s, r in region_of.items() if r == "town/hall")

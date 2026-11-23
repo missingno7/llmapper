@@ -660,13 +660,17 @@
     ],
     "wire": "theatre:fire-doors"
   },
-  "stage_curtain": {
+  "box_curtain": {
     "leaves": 1,
     "slot": "void",
     "markers": 2,
     "flagged": 1,
     "fabric": 3,
     "buttons": 3
+  },
+  "stage_curtain": {
+    "type": 600,
+    "region": "region:gravesend/theatre_row/aldermack/house/main_curtain"
   },
   "stage_light": {
     "$schema": "llmapper.arbitration",
@@ -677,8 +681,8 @@
     "wired": {
       "channel": 102,
       "command": 5,
-      "from": "region:gravesend/theatre_row/aldermack/stage_curtain",
-      "to": "region:gravesend/theatre_row/aldermack/auditorium/house/stage"
+      "from": "region:gravesend/theatre_row/aldermack/house/main_curtain",
+      "to": "region:gravesend/theatre_row/aldermack/house/stage"
     }
   },
   "loading_shutter": {
@@ -860,11 +864,10 @@
   },
   "door_frames": 14,
   "windows": {
-    "cut": 3,
-    "glass": 2,
+    "cut": 2,
+    "glass": 1,
     "bars": 1,
     "rooms": [
-      "auditorium",
       "back",
       "supermarket"
     ]
@@ -878,7 +881,7 @@
     ],
     "vertices": 23
   },
-  "seated_actors": 40,
+  "seated_actors": 39,
   "flat_dropped": [
     "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
     "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
@@ -890,16 +893,16 @@
     "declared": [
       {
         "name": "theatre:curtain",
-        "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
+        "says": "the conductor and fly levers raise the house cloth; the prize relay drops it",
         "channel": 101,
         "engine": null,
         "when": [
-          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25600, 7072) to (25472, 7072)",
-          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25472, 7072) to (25472, 7008)",
-          "push on the face of region:gravesend/theatre_row/aldermack/stage_curtain from (25472, 7008) to (25600, 7008)"
+          "relay on placement aldermack:curtain_drop",
+          "push on placement aldermack:fly_lever",
+          "push on placement aldermack:conductor"
         ],
         "then": [
-          "region region:gravesend/theatre_row/aldermack/stage_curtain"
+          "region region:gravesend/theatre_row/aldermack/house/main_curtain"
         ]
       },
       {
@@ -908,10 +911,15 @@
         "channel": 102,
         "engine": null,
         "when": [
-          "relay on region region:gravesend/theatre_row/aldermack/stage_curtain"
+          "relay on region region:gravesend/theatre_row/aldermack/house/main_curtain"
         ],
         "then": [
-          "region region:gravesend/theatre_row/aldermack/auditorium/house/stage"
+          "region region:gravesend/theatre_row/aldermack/house/stage",
+          "region region:gravesend/theatre_row/aldermack/house/stage/scenic_flat_west",
+          "region region:gravesend/theatre_row/aldermack/house/stage/scenic_flat_east",
+          "region region:gravesend/theatre_row/aldermack/house/stage/trap",
+          "region region:gravesend/theatre_row/aldermack/house/backcloth",
+          "region region:gravesend/theatre_row/aldermack/house/stage/light_slit"
         ]
       },
       {
@@ -1161,6 +1169,79 @@
         ]
       },
       {
+        "name": "theatre:show-latch",
+        "says": "the Aldermack stage light reaching its ON stop sets the show latch",
+        "channel": 120,
+        "engine": null,
+        "when": [
+          "relay on region region:gravesend/theatre_row/aldermack/house/stage"
+        ],
+        "then": [
+          "placement aldermack:show_latch"
+        ]
+      },
+      {
+        "name": "theatre:show",
+        "says": "the first curtain opening plays Caleb's line and raises two patrons",
+        "channel": 121,
+        "engine": null,
+        "when": [
+          "relay on placement aldermack:show_latch"
+        ],
+        "then": [
+          "placement theatre:show",
+          "placement aldermack:patron_rousing_0",
+          "placement aldermack:rouse_0",
+          "placement aldermack:patron_rousing_2",
+          "placement aldermack:rouse_2"
+        ]
+      },
+      {
+        "name": "theatre:pit-piano",
+        "says": "playing the keys in the Aldermack's orchestra pit sounds the organ riff",
+        "channel": 122,
+        "engine": null,
+        "when": [
+          "push on the face of region:gravesend/theatre_row/aldermack/house/orchestra_pit from (22304, 7816) to (22304, 8568)"
+        ],
+        "then": [
+          "placement aldermack:piano_sound"
+        ]
+      },
+      {
+        "name": "theatre:prize",
+        "says": "taking the fire armour drops the house cloth, blacks out the beam and opens the wings",
+        "channel": 123,
+        "engine": null,
+        "when": [
+          "pickup on placement aldermack:fire_armour"
+        ],
+        "then": [
+          "placement aldermack:curtain_drop",
+          "region region:gravesend/theatre_row/aldermack/house/stage_wing_door_0",
+          "region region:gravesend/theatre_row/aldermack/house/stage_wing_door_1",
+          "region region:gravesend/theatre_row/aldermack/house/stage_wing_door_2",
+          "region region:gravesend/theatre_row/aldermack/house/stage_wing_door_3",
+          "placement aldermack:beam_0",
+          "placement aldermack:beam_1",
+          "placement aldermack:beam_pool"
+        ]
+      },
+      {
+        "name": "theatre:box-curtain",
+        "says": "pushing the second west box's cloth draws it aside or shuts it again",
+        "channel": 124,
+        "engine": null,
+        "when": [
+          "push on the face of region:gravesend/theatre_row/aldermack/house/box_curtain from (20424, 13056) to (20424, 12928)",
+          "push on the face of region:gravesend/theatre_row/aldermack/house/box_curtain from (20424, 12928) to (20360, 12928)",
+          "push on the face of region:gravesend/theatre_row/aldermack/house/box_curtain from (20360, 12928) to (20360, 13056)"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/house/box_curtain"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1183,7 +1264,7 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 120,
+        "channel": 125,
         "engine": null,
         "when": [
           "push on placement lever:saloon"
@@ -1195,7 +1276,7 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 121,
+        "channel": 126,
         "engine": null,
         "when": [
           "push on placement lever:parlor"
@@ -1207,7 +1288,7 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 124,
+        "channel": 129,
         "engine": null,
         "when": [
           "push on placement lever:pawn"
@@ -1219,7 +1300,7 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 122,
+        "channel": 127,
         "engine": null,
         "when": [
           "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
@@ -1240,7 +1321,7 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 123,
+        "channel": 128,
         "engine": null,
         "when": [
           "push on placement lever:lobby"
@@ -1256,16 +1337,16 @@
     "wires": [
       {
         "name": "theatre:curtain",
-        "says": "pushing the Aldermack's curtain draws it, and pushing it again closes it",
+        "says": "the conductor and fly levers raise the house cloth; the prize relay drops it",
         "channel": 101,
         "engine": null,
         "senders": [
-          "wall 420",
-          "wall 421",
-          "wall 422"
+          "sprite 413",
+          "sprite 432",
+          "sprite 433"
         ],
         "answers": [
-          "sector 46"
+          "sector 64"
         ],
         "faults": []
       },
@@ -1275,10 +1356,15 @@
         "channel": 102,
         "engine": null,
         "senders": [
-          "sector 46"
+          "sector 64"
         ],
         "answers": [
-          "sector 21"
+          "sector 47",
+          "sector 48",
+          "sector 49",
+          "sector 50",
+          "sector 51",
+          "sector 52"
         ],
         "faults": []
       },
@@ -1288,17 +1374,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 648",
-          "sprite 649"
+          "sprite 853",
+          "sprite 854"
         ],
         "answers": [
-          "sector 123",
-          "sector 124",
-          "sector 125",
-          "sector 126",
-          "sprite 650",
-          "sprite 651",
-          "sprite 652"
+          "sector 219",
+          "sector 220",
+          "sector 221",
+          "sector 222",
+          "sprite 855",
+          "sprite 856",
+          "sprite 857"
         ],
         "faults": []
       },
@@ -1308,16 +1394,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 718"
+          "sprite 923"
         ],
         "answers": [
-          "sector 245",
-          "sector 246",
-          "sector 247",
-          "sector 248",
-          "sprite 719",
-          "sprite 720",
-          "sprite 721"
+          "sector 341",
+          "sector 342",
+          "sector 343",
+          "sector 344",
+          "sprite 924",
+          "sprite 925",
+          "sprite 926"
         ],
         "faults": []
       },
@@ -1330,9 +1416,9 @@
           "sprite 119"
         ],
         "answers": [
-          "sector 171",
-          "sector 173",
-          "sector 175"
+          "sector 267",
+          "sector 269",
+          "sector 271"
         ],
         "faults": []
       },
@@ -1345,8 +1431,8 @@
           "sprite 118"
         ],
         "answers": [
-          "sector 172",
-          "sector 174"
+          "sector 268",
+          "sector 270"
         ],
         "faults": []
       },
@@ -1356,10 +1442,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 615"
+          "sprite 820"
         ],
         "answers": [
-          "sector 500"
+          "sector 596"
         ],
         "faults": []
       },
@@ -1369,10 +1455,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 608"
+          "sprite 813"
         ],
         "answers": [
-          "sector 526"
+          "sector 622"
         ],
         "faults": []
       },
@@ -1382,16 +1468,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 357"
+          "sprite 562"
         ],
         "answers": [
-          "sector 416",
-          "sector 417",
-          "sector 418",
-          "sector 419",
-          "sprite 358",
-          "sprite 359",
-          "sprite 360"
+          "sector 512",
+          "sector 513",
+          "sector 514",
+          "sector 515",
+          "sprite 563",
+          "sprite 564",
+          "sprite 565"
         ],
         "faults": []
       },
@@ -1401,15 +1487,15 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "wall 1174",
-          "wall 1175",
-          "wall 1176",
-          "wall 1182",
-          "wall 1183",
-          "wall 1184"
+          "wall 1701",
+          "wall 1702",
+          "wall 1703",
+          "wall 1709",
+          "wall 1710",
+          "wall 1711"
         ],
         "answers": [
-          "sector 157"
+          "sector 253"
         ],
         "faults": []
       },
@@ -1419,18 +1505,18 @@
         "channel": 111,
         "engine": null,
         "senders": [
-          "wall 490",
-          "wall 491",
-          "wall 492",
-          "wall 493",
-          "wall 494",
-          "wall 495",
-          "wall 496",
-          "wall 497"
+          "wall 1017",
+          "wall 1018",
+          "wall 1019",
+          "wall 1020",
+          "wall 1021",
+          "wall 1022",
+          "wall 1023",
+          "wall 1024"
         ],
         "answers": [
-          "sector 60",
-          "sector 61"
+          "sector 156",
+          "sector 157"
         ],
         "faults": []
       },
@@ -1445,7 +1531,7 @@
           "sprite 156"
         ],
         "answers": [
-          "sector 622"
+          "sector 718"
         ],
         "faults": []
       },
@@ -1460,7 +1546,7 @@
           "sprite 164"
         ],
         "answers": [
-          "sector 623"
+          "sector 719"
         ],
         "faults": []
       },
@@ -1501,7 +1587,7 @@
           "sprite 148"
         ],
         "answers": [
-          "sector 624",
+          "sector 720",
           "sprite 149"
         ],
         "faults": []
@@ -1525,10 +1611,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 397"
+          "sprite 602"
         ],
         "answers": [
-          "sprite 398"
+          "sprite 603"
         ],
         "faults": []
       },
@@ -1538,10 +1624,88 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sector 447"
+          "sector 543"
         ],
         "answers": [
           "sprite 208"
+        ],
+        "faults": []
+      },
+      {
+        "name": "theatre:show-latch",
+        "says": "the Aldermack stage light reaching its ON stop sets the show latch",
+        "channel": 120,
+        "engine": null,
+        "senders": [
+          "sector 47"
+        ],
+        "answers": [
+          "sprite 420"
+        ],
+        "faults": []
+      },
+      {
+        "name": "theatre:show",
+        "says": "the first curtain opening plays Caleb's line and raises two patrons",
+        "channel": 121,
+        "engine": null,
+        "senders": [
+          "sprite 420"
+        ],
+        "answers": [
+          "sprite 421",
+          "sprite 424",
+          "sprite 425",
+          "sprite 430",
+          "sprite 431"
+        ],
+        "faults": []
+      },
+      {
+        "name": "theatre:pit-piano",
+        "says": "playing the keys in the Aldermack's orchestra pit sounds the organ riff",
+        "channel": 122,
+        "engine": null,
+        "senders": [
+          "wall 561"
+        ],
+        "answers": [
+          "sprite 411"
+        ],
+        "faults": []
+      },
+      {
+        "name": "theatre:prize",
+        "says": "taking the fire armour drops the house cloth, blacks out the beam and opens the wings",
+        "channel": 123,
+        "engine": null,
+        "senders": [
+          "sprite 412"
+        ],
+        "answers": [
+          "sector 56",
+          "sector 58",
+          "sector 60",
+          "sector 62",
+          "sprite 413",
+          "sprite 417",
+          "sprite 418",
+          "sprite 419"
+        ],
+        "faults": []
+      },
+      {
+        "name": "theatre:box-curtain",
+        "says": "pushing the second west box's cloth draws it aside or shuts it again",
+        "channel": 124,
+        "engine": null,
+        "senders": [
+          "wall 916",
+          "wall 917",
+          "wall 918"
+        ],
+        "answers": [
+          "sector 135"
         ],
         "faults": []
       },
@@ -1551,7 +1715,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 609"
+          "sprite 814"
         ],
         "answers": [],
         "faults": []
@@ -1563,17 +1727,17 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 460"
+          "sector 556"
         ],
         "faults": []
       },
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 120,
+        "channel": 125,
         "engine": null,
         "senders": [
-          "sprite 893"
+          "sprite 1096"
         ],
         "answers": [
           "sector 9"
@@ -1583,10 +1747,10 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 121,
+        "channel": 126,
         "engine": null,
         "senders": [
-          "sprite 894"
+          "sprite 1097"
         ],
         "answers": [
           "sector 18"
@@ -1596,48 +1760,48 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 124,
+        "channel": 129,
         "engine": null,
         "senders": [
-          "sprite 895"
+          "sprite 1098"
         ],
         "answers": [
-          "sector 66"
+          "sector 162"
         ],
         "faults": []
       },
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 122,
+        "channel": 127,
         "engine": null,
         "senders": [
-          "sprite 896",
-          "wall 440",
-          "wall 441",
-          "wall 442",
-          "wall 443",
-          "wall 444",
-          "wall 445",
-          "wall 446",
-          "wall 447"
+          "sprite 1099",
+          "wall 967",
+          "wall 968",
+          "wall 969",
+          "wall 970",
+          "wall 971",
+          "wall 972",
+          "wall 973",
+          "wall 974"
         ],
         "answers": [
-          "sector 50",
-          "sector 51"
+          "sector 146",
+          "sector 147"
         ],
         "faults": []
       },
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 123,
+        "channel": 128,
         "engine": null,
         "senders": [
-          "sprite 897"
+          "sprite 1100"
         ],
         "answers": [
-          "sector 53"
+          "sector 149"
         ],
         "faults": []
       }
@@ -1647,11 +1811,11 @@
     "agrees": true
   },
   "lighting": {
-    "lights": 73,
-    "rays_cast": 1283639,
-    "surfaces_lit": 1435,
-    "surfaces_protected": 771,
-    "walls_lit": 1602,
+    "lights": 72,
+    "rays_cast": 1264439,
+    "surfaces_lit": 1399,
+    "surfaces_protected": 739,
+    "walls_lit": 1552,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1691,7 +1855,6 @@
       "light:mall_pool_1",
       "light:mall_pool_2",
       "light:theatre:brazier_0",
-      "light:theatre:brazier_1",
       "light:station_cellar",
       "light:pool_0",
       "light:lamp_1",
@@ -1766,7 +1929,6 @@
       "light:mall_pool_1": 2.0,
       "light:mall_pool_2": 2.0,
       "light:theatre:brazier_0": 1.0,
-      "light:theatre:brazier_1": 1.0,
       "light:station_cellar": 1.0,
       "light:pool_0": 2.0,
       "light:lamp_1": 2.0,
@@ -1830,7 +1992,7 @@
     }
   },
   "split_bands": {
-    "pegged": 55,
+    "pegged": 68,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
@@ -1850,189 +2012,209 @@
       "region": "region:gravesend/theatre_row/parlor/door",
       "profile": "wood_z_door"
     },
-    "46": {
-      "region": "region:gravesend/theatre_row/aldermack/stage_curtain",
+    "56": {
+      "region": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_0",
       "profile": "curtain"
     },
-    "50": {
+    "58": {
+      "region": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_1",
+      "profile": "curtain"
+    },
+    "60": {
+      "region": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_2",
+      "profile": "curtain"
+    },
+    "62": {
+      "region": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_3",
+      "profile": "curtain"
+    },
+    "64": {
+      "region": "region:gravesend/theatre_row/aldermack/house/main_curtain",
+      "profile": "curtain"
+    },
+    "135": {
+      "region": "region:gravesend/theatre_row/aldermack/house/box_curtain",
+      "profile": "curtain"
+    },
+    "146": {
       "region": "region:gravesend/theatre_row/aldermack/front_leaf_a",
       "profile": "wood_swing"
     },
-    "51": {
+    "147": {
       "region": "region:gravesend/theatre_row/aldermack/front_leaf_b",
       "profile": "wood_swing"
     },
-    "53": {
+    "149": {
       "region": "region:gravesend/theatre_row/aldermack/lobby_door",
       "profile": "wood_z_door"
     },
-    "60": {
+    "156": {
       "region": "region:gravesend/theatre_row/aldermack/fire_leaf_a",
       "profile": "wood_swing"
     },
-    "61": {
+    "157": {
       "region": "region:gravesend/theatre_row/aldermack/fire_leaf_b",
       "profile": "wood_swing"
     },
-    "66": {
+    "162": {
       "region": "region:gravesend/theatre_row/pawn_shop/pawn_door",
       "profile": "wood_z_door"
     },
-    "121": {
+    "217": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_lift",
       "profile": "stone_door"
     },
-    "123": {
+    "219": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_0",
       "profile": "blast"
     },
-    "124": {
+    "220": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
       "profile": "blast"
     },
-    "125": {
+    "221": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
       "profile": "blast"
     },
-    "126": {
+    "222": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
       "profile": "blast"
     },
-    "132": {
+    "228": {
       "region": "region:gravesend/old_crossing/st_gallows/tower_door",
       "profile": "wood_z_door"
     },
-    "134": {
+    "230": {
       "region": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
       "profile": "wood_z_door"
     },
-    "157": {
+    "253": {
       "region": "region:gravesend/foundry_ward/works_stair/loading_shutter",
       "profile": "heavy_slide"
     },
-    "166": {
+    "262": {
       "region": "region:gravesend/foundry_ward/pump_station/door",
       "profile": "wood_z_door"
     },
-    "172": {
+    "268": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_1",
       "profile": "ceiling_press"
     },
-    "174": {
+    "270": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_3",
       "profile": "ceiling_press"
     },
-    "190": {
+    "286": {
       "region": "region:gravesend/foundry_ward/canteen/freezer_door",
       "profile": "iron_z_door"
     },
-    "191": {
+    "287": {
       "region": "region:gravesend/foundry_ward/canteen/door",
       "profile": "wood_z_door"
     },
-    "241": {
+    "337": {
       "region": "region:gravesend/market_slip/gravesend_arcade/entry_door",
       "profile": "wood_z_door"
     },
-    "243": {
+    "339": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_door",
       "profile": "wood_z_door"
     },
-    "245": {
+    "341": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_0",
       "profile": "blast"
     },
-    "246": {
+    "342": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
       "profile": "blast"
     },
-    "247": {
+    "343": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
       "profile": "blast"
     },
-    "248": {
+    "344": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
       "profile": "blast"
     },
-    "317": {
+    "413": {
       "region": "region:gravesend/market_slip/market_hall/door",
       "profile": "wood_z_door"
     },
-    "318": {
+    "414": {
       "region": "region:gravesend/market_slip/market_hall/staff_door",
       "profile": "wood_z_door"
     },
-    "416": {
+    "512": {
       "region": "region:gravesend/sewer/secrets/plague_seal_0",
       "profile": "blast"
     },
-    "417": {
+    "513": {
       "region": "region:gravesend/sewer/secrets/plague_seal_1",
       "profile": "blast"
     },
-    "418": {
+    "514": {
       "region": "region:gravesend/sewer/secrets/plague_seal_2",
       "profile": "blast"
     },
-    "419": {
+    "515": {
       "region": "region:gravesend/sewer/secrets/plague_seal_3",
       "profile": "blast"
     },
-    "460": {
+    "556": {
       "region": "region:gravesend/gravesend_station/fare_turnstile",
       "profile": "fare_ambient"
     },
-    "500": {
+    "596": {
       "region": "region:gravesend/gravesend_station/carriage_door",
       "profile": "metal_z_door"
     },
-    "526": {
+    "622": {
       "region": "region:gravesend/gravesend_station/tunnel_gate",
       "profile": "chain_lift"
     },
-    "622": {
+    "718": {
       "region": "region:gravesend/sewer/settling_hall/service_lift",
       "profile": "winch_lift"
     },
-    "623": {
+    "719": {
       "region": "region:gravesend/sewer/sampling/trolley_track_deck",
       "profile": "rail_shuttle"
     },
-    "624": {
+    "720": {
       "region": "region:gravesend/sewer/ghost_station/hatch:panel",
       "profile": "hydraulic_slide"
     }
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1400,
-    "wall_sprites": 691,
-    "planes": 168,
+    "sprites": 1611,
+    "wall_sprites": 772,
+    "planes": 190,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.58,
+    "clash_rate_per_100_wall_sprites": 0.52,
     "fully_hidden": 0
   },
   "apertures": {
-    "findings": 236,
-    "seams": 160,
-    "real": 76,
+    "findings": 308,
+    "seams": 202,
+    "real": 106,
     "by_kind": {
-      "pinch": 43,
-      "lintel": 31,
+      "pinch": 59,
+      "lintel": 45,
       "door_sector": 2
     }
   },
   "curtain_conformance": [
     {
-      "sector": 46,
+      "sector": 135,
       "measured": {
         "leaves": 1,
         "flag_directions": [
           1
         ],
         "motion_set": [
-          46
+          135
         ],
         "undeclared_neighbours": [],
         "fabric_walls": 3,
@@ -2057,7 +2239,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 103,
+    "sentences": 113,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -2089,7 +2271,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 120,
+          "rx_id": 125,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2117,7 +2299,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 121,
+          "rx_id": 126,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2137,11 +2319,26 @@
         }
       },
       {
-        "name": "region:gravesend/theatre_row/aldermack/auditorium/house/stage",
+        "name": "region:gravesend/theatre_row/aldermack/house/stage",
         "construct": "sector",
-        "sector": 21,
+        "sector": 47,
         "sectors": [
-          21
+          47
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 102,
+          "tx_id": 120,
+          "command": 1,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage/scenic_flat_west",
+        "construct": "sector",
+        "sector": 48,
+        "sectors": [
+          48
         ],
         "sector_type": 0,
         "wiring": {
@@ -2152,17 +2349,224 @@
         }
       },
       {
-        "name": "region:gravesend/theatre_row/aldermack/stage_curtain",
-        "construct": "curtain",
-        "sector": 46,
+        "name": "region:gravesend/theatre_row/aldermack/house/stage/scenic_flat_east",
+        "construct": "sector",
+        "sector": 49,
         "sectors": [
-          46
+          49
         ],
-        "sector_type": 614,
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 102,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage/trap",
+        "construct": "sector",
+        "sector": 50,
+        "sectors": [
+          50
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 102,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage/light_slit",
+        "construct": "sector",
+        "sector": 51,
+        "sectors": [
+          51
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 102,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/backcloth",
+        "construct": "sector",
+        "sector": 52,
+        "sectors": [
+          52
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 102,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_0",
+        "construct": "z_motion_door",
+        "sector": 56,
+        "sectors": [
+          56
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 123,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 56,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 28672,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_1",
+        "construct": "z_motion_door",
+        "sector": 58,
+        "sectors": [
+          58
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 123,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 58,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 28672,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_2",
+        "construct": "z_motion_door",
+        "sector": 60,
+        "sectors": [
+          60
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 123,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 60,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 28672,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/stage_wing_door_3",
+        "construct": "z_motion_door",
+        "sector": 62,
+        "sectors": [
+          62
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 123,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 62,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 28672,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/main_curtain",
+        "construct": "z_motion_door",
+        "sector": 64,
+        "sectors": [
+          64
+        ],
+        "sector_type": 600,
         "wiring": {
           "rx_id": 101,
           "tx_id": 102,
           "command": 5,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 64,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 61056,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/house/box_curtain",
+        "construct": "curtain",
+        "sector": 135,
+        "sectors": [
+          135
+        ],
+        "sector_type": 614,
+        "motion_set": [
+          135
+        ],
+        "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
+        "declared_members": [
+          135
+        ],
+        "wiring": {
+          "rx_id": 124,
+          "tx_id": 0,
+          "command": 0,
           "state": 0
         },
         "closure": {
@@ -2180,14 +2584,14 @@
           }
         },
         "conformance": {
-          "construct": "curtain sector 46",
+          "construct": "curtain sector 135",
           "measured": {
             "leaves": 1,
             "flag_directions": [
               1
             ],
             "motion_set": [
-              46
+              135
             ],
             "undeclared_neighbours": [],
             "fabric_walls": 3,
@@ -2201,17 +2605,17 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 46,
+          "sector": 135,
           "type": 614,
           "measured": [
             "area",
             "travel"
           ],
           "headroom_change": 0,
-          "area_off": 983040.0,
-          "area_on": 1302528.0,
-          "area_change": 319488.0,
-          "declared_travel": 4992.0,
+          "area_off": 157696.0,
+          "area_on": 239616.0,
+          "area_change": 81920.0,
+          "declared_travel": 1280.0,
           "turn": null,
           "whole_circles": false,
           "changes": true
@@ -2220,22 +2624,22 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/front_leaf_a",
         "construct": "unmarked_mover",
-        "sector": 50,
+        "sector": 146,
         "sectors": [
-          50
+          146
         ],
         "sector_type": 617,
         "motion_set": [
-          48,
-          50
+          144,
+          146
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          48,
-          50
+          144,
+          146
         ],
         "wiring": {
-          "rx_id": 122,
+          "rx_id": 127,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2248,7 +2652,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 50,
+          "sector": 146,
           "type": 617,
           "measured": [
             "turn"
@@ -2266,22 +2670,22 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/front_leaf_b",
         "construct": "unmarked_mover",
-        "sector": 51,
+        "sector": 147,
         "sectors": [
-          51
+          147
         ],
         "sector_type": 617,
         "motion_set": [
-          48,
-          51
+          144,
+          147
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          48,
-          51
+          144,
+          147
         ],
         "wiring": {
-          "rx_id": 122,
+          "rx_id": 127,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2294,7 +2698,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 51,
+          "sector": 147,
           "type": 617,
           "measured": [
             "turn"
@@ -2312,19 +2716,19 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/lobby_door",
         "construct": "z_motion_door",
-        "sector": 53,
+        "sector": 149,
         "sectors": [
-          53
+          149
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 123,
+          "rx_id": 128,
           "tx_id": 0,
           "command": 0,
           "state": 0
         },
         "state_pair": {
-          "sector": 53,
+          "sector": 149,
           "type": 600,
           "measured": [
             "headroom"
@@ -2340,19 +2744,19 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/fire_leaf_a",
         "construct": "unmarked_mover",
-        "sector": 60,
+        "sector": 156,
         "sectors": [
-          60
+          156
         ],
         "sector_type": 617,
         "motion_set": [
-          58,
-          60
+          154,
+          156
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          58,
-          60
+          154,
+          156
         ],
         "wiring": {
           "rx_id": 111,
@@ -2368,7 +2772,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 60,
+          "sector": 156,
           "type": 617,
           "measured": [
             "turn"
@@ -2386,19 +2790,19 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/fire_leaf_b",
         "construct": "unmarked_mover",
-        "sector": 61,
+        "sector": 157,
         "sectors": [
-          61
+          157
         ],
         "sector_type": 617,
         "motion_set": [
-          58,
-          61
+          154,
+          157
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          58,
-          61
+          154,
+          157
         ],
         "wiring": {
           "rx_id": 111,
@@ -2414,7 +2818,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 61,
+          "sector": 157,
           "type": 617,
           "measured": [
             "turn"
@@ -2432,19 +2836,19 @@
       {
         "name": "region:gravesend/theatre_row/pawn_shop/pawn_door",
         "construct": "z_motion_door",
-        "sector": 66,
+        "sector": 162,
         "sectors": [
-          66
+          162
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 124,
+          "rx_id": 129,
           "tx_id": 0,
           "command": 0,
           "state": 0
         },
         "state_pair": {
-          "sector": 66,
+          "sector": 162,
           "type": 600,
           "measured": [
             "headroom"
@@ -2460,31 +2864,31 @@
       {
         "name": "region:gravesend/old_crossing/streets/lightpool_lychgate",
         "construct": "sector",
-        "sector": 84,
+        "sector": 180,
         "sectors": [
-          84
+          180
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/old_crossing/streets/lightpool_well_square",
         "construct": "sector",
-        "sector": 85,
+        "sector": 181,
         "sectors": [
-          85
+          181
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_lift",
         "construct": "z_motion_door",
-        "sector": 121,
+        "sector": 217,
         "sectors": [
-          121
+          217
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 121,
+          "sector": 217,
           "type": 600,
           "measured": [
             "headroom"
@@ -2500,9 +2904,9 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_0",
         "construct": "z_motion_door",
-        "sector": 123,
+        "sector": 219,
         "sectors": [
-          123
+          219
         ],
         "sector_type": 600,
         "wiring": {
@@ -2512,7 +2916,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 123,
+          "sector": 219,
           "type": 600,
           "measured": [
             "headroom"
@@ -2528,9 +2932,9 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
         "construct": "z_motion_door",
-        "sector": 124,
+        "sector": 220,
         "sectors": [
-          124
+          220
         ],
         "sector_type": 600,
         "wiring": {
@@ -2540,7 +2944,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 124,
+          "sector": 220,
           "type": 600,
           "measured": [
             "headroom"
@@ -2556,9 +2960,9 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
         "construct": "z_motion_door",
-        "sector": 125,
+        "sector": 221,
         "sectors": [
-          125
+          221
         ],
         "sector_type": 600,
         "wiring": {
@@ -2568,7 +2972,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 125,
+          "sector": 221,
           "type": 600,
           "measured": [
             "headroom"
@@ -2584,9 +2988,9 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
         "construct": "z_motion_door",
-        "sector": 126,
+        "sector": 222,
         "sectors": [
-          126
+          222
         ],
         "sector_type": 600,
         "wiring": {
@@ -2596,7 +3000,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 126,
+          "sector": 222,
           "type": 600,
           "measured": [
             "headroom"
@@ -2612,13 +3016,13 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/tower_door",
         "construct": "z_motion_door",
-        "sector": 132,
+        "sector": 228,
         "sectors": [
-          132
+          228
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 132,
+          "sector": 228,
           "type": 600,
           "measured": [
             "headroom"
@@ -2634,13 +3038,13 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
         "construct": "z_motion_door",
-        "sector": 134,
+        "sector": 230,
         "sectors": [
-          134
+          230
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 134,
+          "sector": 230,
           "type": 600,
           "measured": [
             "headroom"
@@ -2656,44 +3060,44 @@
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_yard_stair",
         "construct": "sector",
-        "sector": 149,
+        "sector": 245,
         "sectors": [
-          149
+          245
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_yard_gate",
         "construct": "sector",
-        "sector": 150,
+        "sector": 246,
         "sectors": [
-          150
+          246
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_spur_junction",
         "construct": "sector",
-        "sector": 151,
+        "sector": 247,
         "sectors": [
-          151
+          247
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/works_stair/loading_shutter",
         "construct": "marked_slide",
-        "sector": 157,
+        "sector": 253,
         "sectors": [
-          157
+          253
         ],
         "sector_type": 614,
         "motion_set": [
-          157
+          253
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          157
+          253
         ],
         "wiring": {
           "rx_id": 110,
@@ -2709,7 +3113,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 157,
+          "sector": 253,
           "type": 614,
           "measured": [
             "area",
@@ -2728,13 +3132,13 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/door",
         "construct": "z_motion_door",
-        "sector": 166,
+        "sector": 262,
         "sectors": [
-          166
+          262
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 166,
+          "sector": 262,
           "type": 600,
           "measured": [
             "headroom"
@@ -2750,9 +3154,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_0",
         "construct": "sector",
-        "sector": 171,
+        "sector": 267,
         "sectors": [
-          171
+          267
         ],
         "sector_type": 0,
         "wiring": {
@@ -2765,9 +3169,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_1",
         "construct": "z_motion_door",
-        "sector": 172,
+        "sector": 268,
         "sectors": [
-          172
+          268
         ],
         "sector_type": 600,
         "wiring": {
@@ -2777,7 +3181,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 172,
+          "sector": 268,
           "type": 600,
           "measured": [
             "headroom"
@@ -2793,9 +3197,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_2",
         "construct": "sector",
-        "sector": 173,
+        "sector": 269,
         "sectors": [
-          173
+          269
         ],
         "sector_type": 0,
         "wiring": {
@@ -2808,9 +3212,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_3",
         "construct": "z_motion_door",
-        "sector": 174,
+        "sector": 270,
         "sectors": [
-          174
+          270
         ],
         "sector_type": 600,
         "wiring": {
@@ -2820,7 +3224,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 174,
+          "sector": 270,
           "type": 600,
           "measured": [
             "headroom"
@@ -2836,9 +3240,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_4",
         "construct": "sector",
-        "sector": 175,
+        "sector": 271,
         "sectors": [
-          175
+          271
         ],
         "sector_type": 0,
         "wiring": {
@@ -2851,22 +3255,22 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/tank_0",
         "construct": "sector",
-        "sector": 177,
+        "sector": 273,
         "sectors": [
-          177
+          273
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/canteen/freezer_door",
         "construct": "z_motion_door",
-        "sector": 190,
+        "sector": 286,
         "sectors": [
-          190
+          286
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 190,
+          "sector": 286,
           "type": 600,
           "measured": [
             "headroom"
@@ -2882,13 +3286,13 @@
       {
         "name": "region:gravesend/foundry_ward/canteen/door",
         "construct": "z_motion_door",
-        "sector": 191,
+        "sector": 287,
         "sectors": [
-          191
+          287
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 191,
+          "sector": 287,
           "type": 600,
           "measured": [
             "headroom"
@@ -2904,40 +3308,40 @@
       {
         "name": "region:gravesend/foundry_ward/canteen/hatch",
         "construct": "sector",
-        "sector": 193,
+        "sector": 289,
         "sectors": [
-          193
+          289
         ],
         "sector_type": 618
       },
       {
         "name": "region:gravesend/market_slip/streets/lightpool_plaza_east",
         "construct": "sector",
-        "sector": 208,
+        "sector": 304,
         "sectors": [
-          208
+          304
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
         "construct": "sector",
-        "sector": 209,
+        "sector": 305,
         "sectors": [
-          209
+          305
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/entry_door",
         "construct": "z_motion_door",
-        "sector": 241,
+        "sector": 337,
         "sectors": [
-          241
+          337
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 241,
+          "sector": 337,
           "type": 600,
           "measured": [
             "headroom"
@@ -2953,13 +3357,13 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_door",
         "construct": "z_motion_door",
-        "sector": 243,
+        "sector": 339,
         "sectors": [
-          243
+          339
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 243,
+          "sector": 339,
           "type": 600,
           "measured": [
             "headroom"
@@ -2975,9 +3379,9 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_0",
         "construct": "z_motion_door",
-        "sector": 245,
+        "sector": 341,
         "sectors": [
-          245
+          341
         ],
         "sector_type": 600,
         "wiring": {
@@ -2987,7 +3391,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 245,
+          "sector": 341,
           "type": 600,
           "measured": [
             "headroom"
@@ -3003,9 +3407,9 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
         "construct": "z_motion_door",
-        "sector": 246,
+        "sector": 342,
         "sectors": [
-          246
+          342
         ],
         "sector_type": 600,
         "wiring": {
@@ -3015,7 +3419,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 246,
+          "sector": 342,
           "type": 600,
           "measured": [
             "headroom"
@@ -3031,9 +3435,9 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
         "construct": "z_motion_door",
-        "sector": 247,
+        "sector": 343,
         "sectors": [
-          247
+          343
         ],
         "sector_type": 600,
         "wiring": {
@@ -3043,7 +3447,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 247,
+          "sector": 343,
           "type": 600,
           "measured": [
             "headroom"
@@ -3059,9 +3463,9 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
         "construct": "z_motion_door",
-        "sector": 248,
+        "sector": 344,
         "sectors": [
-          248
+          344
         ],
         "sector_type": 600,
         "wiring": {
@@ -3071,7 +3475,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 248,
+          "sector": 344,
           "type": 600,
           "measured": [
             "headroom"
@@ -3087,49 +3491,49 @@
       {
         "name": "region:gravesend/market_slip/plaza/monument/pool",
         "construct": "sector",
-        "sector": 251,
+        "sector": 347,
         "sectors": [
-          251
+          347
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/river",
         "construct": "sector",
-        "sector": 260,
+        "sector": 356,
         "sectors": [
-          260
+          356
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/sea_1",
         "construct": "sector",
-        "sector": 261,
+        "sector": 357,
         "sectors": [
-          261
+          357
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/sea_2",
         "construct": "sector",
-        "sector": 264,
+        "sector": 360,
         "sectors": [
-          264
+          360
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/market_hall/door",
         "construct": "z_motion_door",
-        "sector": 317,
+        "sector": 413,
         "sectors": [
-          317
+          413
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 317,
+          "sector": 413,
           "type": 600,
           "measured": [
             "headroom"
@@ -3145,13 +3549,13 @@
       {
         "name": "region:gravesend/market_slip/market_hall/staff_door",
         "construct": "z_motion_door",
-        "sector": 318,
+        "sector": 414,
         "sectors": [
-          318
+          414
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 318,
+          "sector": 414,
           "type": 600,
           "measured": [
             "headroom"
@@ -3167,342 +3571,342 @@
       {
         "name": "region:gravesend/sewer/trunk/junction",
         "construct": "sector",
-        "sector": 330,
+        "sector": 426,
         "sectors": [
-          330
+          426
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/trunk/main_duct",
         "construct": "sector",
-        "sector": 332,
+        "sector": 428,
         "sectors": [
-          332
+          428
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
         "construct": "sector",
-        "sector": 336,
+        "sector": 432,
         "sectors": [
-          336
+          432
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/west_manhole_mouth_below",
         "construct": "sector",
-        "sector": 337,
+        "sector": 433,
         "sectors": [
-          337
+          433
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/se_manhole_mouth_below",
         "construct": "sector",
-        "sector": 338,
+        "sector": 434,
         "sectors": [
-          338
+          434
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/memorial_manhole_mouth_below",
         "construct": "sector",
-        "sector": 339,
+        "sector": 435,
         "sectors": [
-          339
+          435
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/mouths/stockyard_manhole_mouth_below",
         "construct": "sector",
-        "sector": 340,
+        "sector": 436,
         "sectors": [
-          340
+          436
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/nw_corner",
         "construct": "sector",
-        "sector": 341,
+        "sector": 437,
         "sectors": [
-          341
+          437
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/ne_corner",
         "construct": "sector",
-        "sector": 342,
+        "sector": 438,
         "sectors": [
-          342
+          438
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/se_corner",
         "construct": "sector",
-        "sector": 343,
+        "sector": 439,
         "sectors": [
-          343
+          439
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/sw_corner",
         "construct": "sector",
-        "sector": 344,
+        "sector": 440,
         "sectors": [
-          344
+          440
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/n_channel",
         "construct": "sector",
-        "sector": 345,
+        "sector": 441,
         "sectors": [
-          345
+          441
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/e_leg",
         "construct": "sector",
-        "sector": 348,
+        "sector": 444,
         "sectors": [
-          348
+          444
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/s_channel",
         "construct": "sector",
-        "sector": 351,
+        "sector": 447,
         "sectors": [
-          351
+          447
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/s_walk_ford",
         "construct": "sector",
-        "sector": 354,
+        "sector": 450,
         "sectors": [
-          354
+          450
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/w_leg",
         "construct": "sector",
-        "sector": 356,
+        "sector": 452,
         "sectors": [
-          356
+          452
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/w_leg_walk_w_ford",
         "construct": "sector",
-        "sector": 358,
+        "sector": 454,
         "sectors": [
-          358
+          454
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/outfall",
         "construct": "sector",
-        "sector": 361,
+        "sector": 457,
         "sectors": [
-          361
+          457
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/gallery",
         "construct": "sector",
-        "sector": 364,
+        "sector": 460,
         "sectors": [
-          364
+          460
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/gallery_walk_a_ford",
         "construct": "sector",
-        "sector": 366,
+        "sector": 462,
         "sectors": [
-          366
+          462
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/graves_brook",
         "construct": "sector",
-        "sector": 369,
+        "sector": 465,
         "sectors": [
-          369
+          465
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/se_drain",
         "construct": "sector",
-        "sector": 372,
+        "sector": 468,
         "sectors": [
-          372
+          468
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/se_drain_walk_b_ford",
         "construct": "sector",
-        "sector": 375,
+        "sector": 471,
         "sectors": [
-          375
+          471
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/se_spur",
         "construct": "sector",
-        "sector": 376,
+        "sector": 472,
         "sectors": [
-          376
+          472
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/stockyard_drain",
         "construct": "sector",
-        "sector": 379,
+        "sector": 475,
         "sectors": [
-          379
+          475
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ring/brook_feeder",
         "construct": "sector",
-        "sector": 382,
+        "sector": 478,
         "sectors": [
-          382
+          478
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/pump_room",
         "construct": "sector",
-        "sector": 384,
+        "sector": 480,
         "sectors": [
-          384
+          480
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/silt_trap",
         "construct": "sector",
-        "sector": 385,
+        "sector": 481,
         "sectors": [
-          385
+          481
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/east_annex",
         "construct": "sector",
-        "sector": 386,
+        "sector": 482,
         "sectors": [
-          386
+          482
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/flooded",
         "construct": "sector",
-        "sector": 387,
+        "sector": 483,
         "sectors": [
-          387
+          483
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/chambers/station_foot",
         "construct": "sector",
-        "sector": 388,
+        "sector": 484,
         "sectors": [
-          388
+          484
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/tank_1",
         "construct": "sector",
-        "sector": 404,
+        "sector": 500,
         "sectors": [
-          404
+          500
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/tank_2",
         "construct": "sector",
-        "sector": 406,
+        "sector": 502,
         "sectors": [
-          406
+          502
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/tank_3",
         "construct": "sector",
-        "sector": 408,
+        "sector": 504,
         "sectors": [
-          408
+          504
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/settling_hall/outfall_mouth",
         "construct": "sector",
-        "sector": 410,
+        "sector": 506,
         "sectors": [
-          410
+          506
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/molly_nest",
         "construct": "sector",
-        "sector": 414,
+        "sector": 510,
         "sectors": [
-          414
+          510
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/plague_pit",
         "construct": "sector",
-        "sector": 415,
+        "sector": 511,
         "sectors": [
-          415
+          511
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/secrets/plague_seal_0",
         "construct": "z_motion_door",
-        "sector": 416,
+        "sector": 512,
         "sectors": [
-          416
+          512
         ],
         "sector_type": 600,
         "wiring": {
@@ -3512,7 +3916,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 416,
+          "sector": 512,
           "type": 600,
           "measured": [
             "headroom"
@@ -3528,9 +3932,9 @@
       {
         "name": "region:gravesend/sewer/secrets/plague_seal_1",
         "construct": "z_motion_door",
-        "sector": 417,
+        "sector": 513,
         "sectors": [
-          417
+          513
         ],
         "sector_type": 600,
         "wiring": {
@@ -3540,7 +3944,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 417,
+          "sector": 513,
           "type": 600,
           "measured": [
             "headroom"
@@ -3556,9 +3960,9 @@
       {
         "name": "region:gravesend/sewer/secrets/plague_seal_2",
         "construct": "z_motion_door",
-        "sector": 418,
+        "sector": 514,
         "sectors": [
-          418
+          514
         ],
         "sector_type": 600,
         "wiring": {
@@ -3568,7 +3972,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 418,
+          "sector": 514,
           "type": 600,
           "measured": [
             "headroom"
@@ -3584,9 +3988,9 @@
       {
         "name": "region:gravesend/sewer/secrets/plague_seal_3",
         "construct": "z_motion_door",
-        "sector": 419,
+        "sector": 515,
         "sectors": [
-          419
+          515
         ],
         "sector_type": 600,
         "wiring": {
@@ -3596,7 +4000,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 419,
+          "sector": 515,
           "type": 600,
           "measured": [
             "headroom"
@@ -3612,63 +4016,63 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_inlet",
         "construct": "sector",
-        "sector": 432,
+        "sector": 528,
         "sectors": [
-          432
+          528
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_tail",
         "construct": "sector",
-        "sector": 434,
+        "sector": 530,
         "sectors": [
-          434
+          530
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_culvert_north_mouth",
         "construct": "sector",
-        "sector": 439,
+        "sector": 535,
         "sectors": [
-          439
+          535
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_culvert_north",
         "construct": "sector",
-        "sector": 440,
+        "sector": 536,
         "sectors": [
-          440
+          536
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_culvert_south_mouth",
         "construct": "sector",
-        "sector": 441,
+        "sector": 537,
         "sectors": [
-          441
+          537
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_culvert_south",
         "construct": "sector",
-        "sector": 442,
+        "sector": 538,
         "sectors": [
-          442
+          538
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ghost_station/blind_tunnel",
         "construct": "sector",
-        "sector": 447,
+        "sector": 543,
         "sectors": [
-          447
+          543
         ],
         "sector_type": 0,
         "wiring": {
@@ -3681,9 +4085,9 @@
       {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
-        "sector": 460,
+        "sector": 556,
         "sectors": [
-          460
+          556
         ],
         "sector_type": 615,
         "wiring": {
@@ -3700,7 +4104,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 460",
+          "construct": "turnstile sector 556",
           "measured": {
             "blades": 4,
             "axis": [
@@ -3728,7 +4132,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 460,
+          "sector": 556,
           "type": 615,
           "measured": [
             "turn"
@@ -3746,9 +4150,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 500,
+        "sector": 596,
         "sectors": [
-          500
+          596
         ],
         "sector_type": 600,
         "wiring": {
@@ -3758,7 +4162,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 500,
+          "sector": 596,
           "type": 600,
           "measured": [
             "headroom"
@@ -3774,9 +4178,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 526,
+        "sector": 622,
         "sectors": [
-          526
+          622
         ],
         "sector_type": 600,
         "wiring": {
@@ -3786,7 +4190,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 526,
+          "sector": 622,
           "type": 600,
           "measured": [
             "headroom"
@@ -3802,9 +4206,9 @@
       {
         "name": "region:gravesend/sewer/settling_hall/service_lift",
         "construct": "z_motion_door",
-        "sector": 622,
+        "sector": 718,
         "sectors": [
-          622
+          718
         ],
         "sector_type": 600,
         "wiring": {
@@ -3814,7 +4218,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 622,
+          "sector": 718,
           "type": 600,
           "measured": [
             "headroom"
@@ -3830,19 +4234,19 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_track_deck",
         "construct": "unmarked_mover",
-        "sector": 623,
+        "sector": 719,
         "sectors": [
-          623
+          719
         ],
         "sector_type": 616,
         "motion_set": [
-          433,
-          623
+          529,
+          719
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          433,
-          623
+          529,
+          719
         ],
         "wiring": {
           "rx_id": 113,
@@ -3858,7 +4262,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 623,
+          "sector": 719,
           "type": 616,
           "measured": [
             "travel"
@@ -3876,19 +4280,19 @@
       {
         "name": "region:gravesend/sewer/ghost_station/hatch:panel",
         "construct": "unmarked_mover",
-        "sector": 624,
+        "sector": 720,
         "sectors": [
-          624
+          720
         ],
         "sector_type": 616,
         "motion_set": [
-          443,
-          624
+          539,
+          720
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          443,
-          624
+          539,
+          720
         ],
         "wiring": {
           "rx_id": 116,
@@ -3904,7 +4308,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 624,
+          "sector": 720,
           "type": 616,
           "measured": [
             "travel"
@@ -3922,79 +4326,81 @@
     ]
   },
   "rules": {
-    "total": 1510,
+    "total": 1658,
     "by_severity": {
-      "note": 1503,
+      "note": 1651,
       "warning": 7
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 283,
+      "note:sprite-drawn-square": 327,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 192,
+      "note:opening-clears-a-standing-body": 212,
       "note:lintel-continues-the-facade": 5,
-      "warning:wall-between-rooms-is-not-paper": 6,
-      "note:wall-draws-its-own-tile": 996,
-      "warning:wall-tile-is-drawn-somewhere": 1
+      "warning:wall-between-rooms-is-not-paper": 5,
+      "note:wall-draws-its-own-tile": 1080,
+      "warning:wall-tile-is-drawn-somewhere": 2
     },
     "open": [
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 194",
-        "says": "the mass between two rooms is at least 128 units thick -- 48 units (0.12 body widths) of stone between sectors 20 and 36"
+        "at": "wall 265",
+        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 33"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 313",
-        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 34 and 38"
+        "at": "wall 274",
+        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 31"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 322",
-        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 34 and 36"
+        "at": "wall 294",
+        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 30"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 342",
-        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 34 and 35"
+        "at": "wall 2910",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 401 and 303"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2383",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 305 and 207"
-      },
-      {
-        "severity": "warning",
-        "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2428",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 312 and 207"
+        "at": "wall 2955",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 408 and 303"
       },
       {
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[93]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (907, 913, 914, 925, 994, 995) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1434, 1440, 1441, 1452, 1521, 1522) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+      },
+      {
+        "severity": "warning",
+        "code": "wall-tile-is-drawn-somewhere",
+        "at": "tile[448]",
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 8 wall(s) (459, 460, 461, 462, 475, 476 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       }
     ]
   },
   "lost_wall_tiles": {
-    "population": 92,
+    "population": 94,
     "tiles": [
-      "tile[93]"
+      "tile[93]",
+      "tile[448]"
     ],
     "as_readback_differences": [
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (907, 913, 914, 925, 994, 995) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (1434, 1440, 1441, 1452, 1521, 1522) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[448]: authored on 8 wall(s) (459, 460, 461, 462, 475, 476 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1120,
+      "sprites": 1312,
       "sunk": 0.0,
       "through": 0.0,
       "squeezed": 0.0
@@ -4006,14 +4412,14 @@
     "overlaps": [
       {
         "sprites": [
-          859,
-          860
+          1062,
+          1063
         ],
         "tiles": [
           73,
           73
         ],
-        "sector": 65
+        "sector": 161
       }
     ],
     "flat_overlaps": [],
@@ -4029,11 +4435,35 @@
         "count": 1,
         "first": [
           "sprite",
-          788
+          993
         ]
       }
     ],
     "outside": [
+      {
+        "tile": 624,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 72,
+        "source": "community-curated",
+        "maps": 28
+      },
+      {
+        "tile": 306,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 44,
+        "source": "community-curated",
+        "maps": 8
+      },
+      {
+        "tile": 104,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 36,
+        "source": "community-curated",
+        "maps": 4
+      },
       {
         "tile": 458,
         "slot": "two_sided_lower",
@@ -4094,9 +4524,17 @@
         "tile": 3810,
         "slot": "sprite_wall",
         "place": "indoors",
-        "count": 13,
+        "count": 14,
         "source": "community-curated",
         "maps": 9
+      },
+      {
+        "tile": 1004,
+        "slot": "two_sided_lower",
+        "place": "indoors",
+        "count": 9,
+        "source": "community-curated",
+        "maps": 2
       },
       {
         "tile": 470,
@@ -4131,12 +4569,36 @@
         "maps": 3
       },
       {
-        "tile": 306,
+        "tile": 2330,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 6,
+        "source": "community",
+        "maps": 7
+      },
+      {
+        "tile": 676,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 6,
+        "source": "community",
+        "maps": 2
+      },
+      {
+        "tile": 159,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 5,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 409,
         "slot": "floor",
         "place": "indoors",
         "count": 4,
-        "source": "community-curated",
-        "maps": 8
+        "source": "community",
+        "maps": 6
       },
       {
         "tile": 796,
@@ -4152,6 +4614,14 @@
         "place": "indoors",
         "count": 4,
         "source": "community-curated",
+        "maps": 9
+      },
+      {
+        "tile": 159,
+        "slot": "masked_middle",
+        "place": "indoors",
+        "count": 4,
+        "source": "community",
         "maps": 9
       },
       {
@@ -4259,6 +4729,14 @@
         "maps": 4
       },
       {
+        "tile": 20,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 3,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
         "tile": 251,
         "slot": "sprite_wall",
         "place": "indoors",
@@ -4273,22 +4751,6 @@
         "count": 2,
         "source": "community-curated",
         "maps": 1
-      },
-      {
-        "tile": 119,
-        "slot": "floor",
-        "place": "indoors",
-        "count": 2,
-        "source": "community",
-        "maps": 8
-      },
-      {
-        "tile": 119,
-        "slot": "ceiling",
-        "place": "indoors",
-        "count": 2,
-        "source": "community",
-        "maps": 14
       },
       {
         "tile": 2294,
@@ -4435,6 +4897,30 @@
         "maps": 3
       },
       {
+        "tile": 2453,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 5
+      },
+      {
+        "tile": 457,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 1
+      },
+      {
+        "tile": 3129,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
         "tile": 956,
         "slot": "sprite_floor",
         "place": "indoors",
@@ -4571,6 +5057,30 @@
         "maps": 4
       },
       {
+        "tile": 409,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 8
+      },
+      {
+        "tile": 1004,
+        "slot": "ceiling",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 5
+      },
+      {
+        "tile": 620,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
         "tile": 346,
         "slot": "floor",
         "place": "indoors",
@@ -4635,20 +5145,36 @@
         "maps": 4
       },
       {
-        "tile": 2330,
-        "slot": "sprite_wall",
-        "place": "indoors",
-        "count": 1,
-        "source": "community",
-        "maps": 7
-      },
-      {
         "tile": 225,
         "slot": "sprite_wall",
         "place": "indoors",
         "count": 1,
         "source": "community-curated",
         "maps": 1
+      },
+      {
+        "tile": 698,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 5
+      },
+      {
+        "tile": 624,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 10
+      },
+      {
+        "tile": 625,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 7
       },
       {
         "tile": 502,
@@ -4761,14 +5287,6 @@
         "count": 1,
         "source": "community",
         "maps": 9
-      },
-      {
-        "tile": 20,
-        "slot": "sprite_wall",
-        "place": "indoors",
-        "count": 1,
-        "source": "community-curated",
-        "maps": 1
       },
       {
         "tile": 116,
@@ -5499,8 +6017,8 @@
         "study": "saloon"
       },
       "Aldermack auditorium": {
-        "hero": "a tall house facing a curtained stage",
-        "exemplar": "SCHOOL_ s154/s244, FORDTHEA s252 (height); the framed proscenium and raked seats NOT yet built",
+        "hero": "a hanged performer over a bloodied trap, framed by the curtain and seen past the last audience still in its seats",
+        "exemplar": "DWE1M9 s245\u2013249 and s274\u2013279 (terraces, cloth and apse), sprites 752, 832\u2013833 and 963\u2013964 (rails, step lights and beam); SCHOOL_ s177\u2013182 (frame); HUNT s674 (performer and shadow)",
         "layers": [
           "second",
           "trim",
@@ -5514,51 +6032,65 @@
           "machines"
         ],
         "layer_count": 10,
-        "campaign_p25": 4,
-        "campaign_p50": 6,
+        "campaign_p25": 2,
+        "campaign_p50": 5,
         "missing": [],
         "wall_tiles": [
           [
-            119,
-            0.501
+            88,
+            0.411
           ],
           [
             369,
-            0.162
+            0.11
+          ],
+          [
+            119,
+            0.092
+          ],
+          [
+            203,
+            0.064
           ],
           [
             30,
-            0.086
+            0.064
           ],
           [
             28,
-            0.058
-          ],
-          [
-            179,
-            0.044
+            0.043
           ],
           [
             409,
             0.038
           ],
           [
+            1004,
+            0.033
+          ],
+          [
+            179,
+            0.032
+          ],
+          [
             379,
-            0.036
+            0.027
+          ],
+          [
+            84,
+            0.026
           ]
         ],
-        "shade_spread": 14,
+        "shade_spread": 35,
         "metres": [
-          13.5,
+          19.3,
           24.3,
-          10.2
+          4.3
         ],
-        "free_floor_share": 0.98,
-        "cramped": [
-          "short side 7936 (campaign p25 11776)"
-        ],
+        "free_floor_share": 0.61,
+        "cramped": [],
         "relations": [],
-        "study": "theatre"
+        "study": "aldermack-rebuild"
       },
       "Aldermack backstage": {
         "hero": "a callboard and keeper's lamp across from the parlor passage",
@@ -5581,42 +6113,42 @@
         "wall_tiles": [
           [
             369,
-            0.425
+            0.397
           ],
           [
             28,
-            0.139
+            0.142
           ],
           [
             30,
-            0.113
+            0.115
           ],
           [
             409,
-            0.1
+            0.102
           ],
           [
             379,
-            0.086
+            0.088
           ],
           [
             146,
-            0.036
+            0.037
           ],
           [
             498,
-            0.027
-          ],
-          [
-            452,
-            0.023
+            0.028
           ],
           [
             290,
             0.023
+          ],
+          [
+            452,
+            0.023
           ]
         ],
-        "shade_spread": 14,
+        "shade_spread": 27,
         "metres": [
           5.2,
           13.5,
@@ -5694,11 +6226,11 @@
         "wall_tiles": [
           [
             417,
-            0.138
+            0.139
           ],
           [
             380,
-            0.128
+            0.129
           ],
           [
             384,
@@ -5852,9 +6384,6 @@
       "Gravesend Station": [
         "short side 10752 (campaign p25 11776)"
       ],
-      "Aldermack auditorium": [
-        "short side 7936 (campaign p25 11776)"
-      ],
       "Aldermack dressing room": [
         "height 1.45 bodies (campaign p25 1.57)",
         "7.0M of floor (a destination wants 14.0M)",
@@ -5879,12 +6408,12 @@
     "whole": 8
   },
   "light_stage": {
-    "sectors_before": 666,
-    "walls_before": 4346,
-    "sprites_before": 1400,
+    "sectors_before": 760,
+    "walls_before": 4865,
+    "sprites_before": 1611,
     "mover_hosts": [
-      48,
-      443
+      144,
+      539
     ],
     "shadow_cut": {
       "sectors": 21,
@@ -6146,14 +6675,44 @@
       "region:gravesend/sewer/trunk/stash": {
         "ceiling 796": 1
       },
-      "region:gravesend/theatre_row/aldermack/auditorium": {
-        "ceiling 676": 6
-      },
       "region:gravesend/theatre_row/aldermack/foyer": {
         "its own lights": 5
       },
       "region:gravesend/theatre_row/aldermack/front_bay": {
         "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/auditorium": {
+        "its own lights": 1
+      },
+      "region:gravesend/theatre_row/aldermack/house/circle_front": {
+        "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/circle_parapet": {
+        "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/circle_rear": {
+        "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/circle_west_passage": {
+        "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/orchestra_pit": {
+        "its own lights": 0
+      },
+      "region:gravesend/theatre_row/aldermack/house/pass_door_passage": {
+        "its own lights": 1
+      },
+      "region:gravesend/theatre_row/aldermack/house/vomitory": {
+        "its own lights": 1
+      },
+      "region:gravesend/theatre_row/aldermack/house/west_box_0": {
+        "its own lights": 1
+      },
+      "region:gravesend/theatre_row/aldermack/house/west_box_1": {
+        "its own lights": 1
+      },
+      "region:gravesend/theatre_row/aldermack/house/west_box_2": {
+        "its own lights": 1
       },
       "region:gravesend/theatre_row/aldermack/lobby": {
         "its own lights": 1
@@ -6189,15 +6748,15 @@
     },
     "floor_cut": {
       "sectors": 54,
-      "pieces": 296,
-      "slivers_merged": 18,
+      "pieces": 298,
+      "slivers_merged": 17,
       "slivers_dropped": 24,
-      "walls_split": 802,
-      "seams": 3148,
+      "walls_split": 815,
+      "seams": 3170,
       "refused": {},
       "left_whole": {
-        "348": "a wall of the cut had no twin",
-        "351": "a seam of sector 351 from (51008, 33519) to (52132, 33347) has no twin"
+        "444": "a wall of the cut had no twin",
+        "447": "a seam of sector 447 from (51008, 33519) to (52132, 33347) has no twin"
       },
       "looked_at": 57
     },
@@ -6209,43 +6768,43 @@
       "walls_split": 367,
       "seams": 168,
       "refused": {
-        "353": "a slope not cut across it",
-        "359": "a slope not cut across it",
-        "371": "a slope not cut across it"
+        "449": "a slope not cut across it",
+        "455": "a slope not cut across it",
+        "467": "a slope not cut across it"
       },
       "left_whole": {},
-      "looked_at": 26
+      "looked_at": 25
     },
     "wall_cut": {
       "sectors": 0,
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1756,
+      "walls_split": 1808,
       "seams": 0,
       "refused": {},
-      "walls_cut": 458,
-      "walls_refused": 12,
+      "walls_cut": 467,
+      "walls_refused": 10,
       "left_whole": {},
-      "looked_at": 1441
+      "looked_at": 1460
     },
     "shades": {
-      "surfaces": 5387,
+      "surfaces": 5627,
       "windows": 18,
-      "spread_12": 83,
+      "spread_12": 84,
       "movers_evened": 3
     },
-    "kept": 64,
-    "sectors": 1096,
-    "walls": 10757,
-    "sprites": 1475,
-    "pieces": 430,
+    "kept": 114,
+    "sectors": 1192,
+    "walls": 11339,
+    "sprites": 1680,
+    "pieces": 432,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 909,
+      "walls": 907,
       "wall_sd": 11.2,
       "wall_median": 20,
       "by_facing": {
@@ -6275,7 +6834,7 @@
       "tile_sd": 6.3
     },
     "after": {
-      "walls": 909,
+      "walls": 907,
       "wall_sd": 11.2,
       "wall_median": 20,
       "by_facing": {

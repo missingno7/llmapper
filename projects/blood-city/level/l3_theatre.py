@@ -25,7 +25,6 @@ from __future__ import annotations
 from bloodmap import motion, wiring
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
-from bloodmap.slope import SlopeSpec
 
 import aldermack_backstage
 import wing_doors
@@ -55,11 +54,6 @@ DOOR_D = PORCH_D = 256    # the reveal chain, inside the mass
 COUNTER_RISE = setpieces.COUNTER      # 8140
 TABLE_RISE = setpieces.COUNTER        # a table is the same class as a counter
 PEDESTAL_RISE = setpieces.LOW_STEP    # 4070, the shallow-tier class
-STAGE_RISE = 4096         # one max step: the player can get up on it
-STAGE_CLEAR = 24576       # low, so the wall over the stage front is an arch
-# A shallow roof pitch gives the largest interior a readable volume without
-# compromising the already generous 2.9-player-height headroom.
-AUDITORIUM_PITCH = 8192
 
 #: The superblock's south face (on Theatre Row street) and east face (on
 #: the avenue); the forecourt's north edge is where the Aldermack fronts.
@@ -90,8 +84,6 @@ ROOMS = [
     ("parlor_passage", 13312, 13312, 14336, 14848, "parlor",
      "the parlor's entry passage"),
     # --- the Aldermack ---------------------------------------------------
-    ("aldermack_auditorium", 19456, 4096, 26624, 11264, "theatre",
-     "the auditorium: the house, under the city's tallest interior"),
     ("aldermack_foyer", 26624, 6656, 30720, 10752, "theatre",
      "the foyer, opening on the forecourt"),
     ("aldermack_lobby", 30720, 7680, 32256, 9728, "theatre",
@@ -139,7 +131,6 @@ MEMBERSHIP = {
     "parlor_gallery": ("parlor", "gallery"),
     "parlor_range": ("parlor", "range"),
     "parlor_passage": ("parlor", "passage"),
-    "aldermack_auditorium": ("aldermack", "auditorium"),
     "aldermack_foyer": ("aldermack", "foyer"),
     "aldermack_lobby": ("aldermack", "lobby"),
     "back_passage_west": ("back_of_house", "west"),
@@ -214,11 +205,6 @@ STOOL = {"type": 416, "picnum": 284, "cstat": 385, "x_repeat": 32,
 STOOL_PITCH, STOOL_LIFT = 768, 2880          # its drawn half height at 24
 ROOM_HEIGHT = {
     "saloon_main": 45056,            # 2.66: E1M2's station bar
-    #: 5.7 bodies. The theatre study (`knowledge/blood/studies/theatre`):
-    #: "every exemplar house is 5.7 to 6.8 bodies tall" (SCHOOL_ s154,
-    #: FORDTHEA s252); ours was 2.9. The study's other moves -- a framed
-    #: three-bay proscenium, raked rows of real seats -- are NOT built yet.
-    "aldermack_auditorium": 96256,
     "aldermack_foyer": 40960,
     "aldermack_lobby": 40960,
     "parlor_gallery": 28672,
@@ -245,7 +231,6 @@ JOINS = [
     ("saloon_passage", "north", "saloon_main", "south"),
     ("parlor_range", "south", "parlor_gallery", "north"),
     ("parlor_passage", "north", "parlor_gallery", "south"),
-    ("aldermack_foyer", "west", "aldermack_auditorium", "east"),
     ("back_passage_west", "west", "saloon_back", "east"),
     ("back_passage_west", "east", "parlor_range", "west"),
     ("back_passage_east", "west", "parlor_range", "east"),
@@ -278,27 +263,6 @@ WINDOWS = [
     ("pawn_display", "pawn_shop", "north", 27648, 3072, 31744, 3584, 4096),
 ]
 
-#: Furniture cut into a room's floor: (room, x0, y0, x1, y1, rise, ceiling,
-#: note).  `ceiling` is the clear height over the piece; None means it keeps
-#: its host's ceiling, which is what a counter or a table does.
-#:
-#: The stage is the exception, and it is the whole point of a theatre: give
-#: it a LOWER ceiling than the house and the wall between the two becomes a
-#: proscenium arch, twenty thousand units of it, facing the audience.  With
-#: the house's own ceiling carried over the stage the auditorium was a hall
-#: with a step in it.
-#: The saloon's three rows -- a counter and two card tables -- are gone from
-#: this table: they are what every bar has, so they are `templates.bar` with
-#: a length rather than three literal rects.
-#: The hand table that used to live here is gone.  It iterated nine
-#: rectangles into `furniture_0` .. `furniture_8`, so the Aldermack's stage,
-#: its three rows of seating and its box office all wore one name and the
-#: meaning lived only in a prose note -- `citytree find stage` returned
-#: `backstage`.  `templates.theatre_house`, `templates.box_office` and
-#: `templates.shooting_range` place the same geometry and name it, because
-#: whoever builds a thing knows what the thing is.
-
-
 def build(district, theatre_st):
     """Everything on the Aldermack superblock, as venues under the district.
 
@@ -306,6 +270,7 @@ def build(district, theatre_st):
     on Theatre Row is IN Theatre Row, and used to be its sibling.
     """
     import aldermack_front
+    import aldermack_house
     import citytree
     facade = FACADES["theatre_row"]
     city = district
@@ -364,14 +329,7 @@ def build(district, theatre_st):
         return made
 
     for name, x0, y0, x1, y1, key, note in ROOMS:
-        rk = None
-        if name == "aldermack_auditorium":
-            # The first wall is deliberately the south stage edge, so the
-            # ceiling rises through the seating toward the rear of the house.
-            rk = {"ceiling_slope": SlopeSpec(
-                hinge=((x0, y0), (x1, y0)), rise_z=-AUDITORIUM_PITCH)}
-        make(name, x0, y0, x1, y1, key, note,
-             clear=ROOM_HEIGHT.get(name, ROOM_H), rk=rk)
+        make(name, x0, y0, x1, y1, key, note, clear=ROOM_HEIGHT.get(name, ROOM_H))
     rooms.update(aldermack_backstage.build(
         venue_nodes["aldermack"], fire_bay=(FIRE_DOORS.bay()[0], FIRE_DOORS.bay()[1], FIRE_DOORS.bay()[3])))
     # A join is declared on the node that owns BOTH ends: inside a venue
@@ -485,31 +443,7 @@ def build(district, theatre_st):
     # mined class is authored through that class: `raised_solid` is the
     # idiom, and the rise defaults come from the class, not from here.
     # Each venue's fittings come from a template that knows what it places.
-    house = templates.theatre_house(
-        rooms["aldermack_auditorium"], material=INTERIORS["theatre"],
-        grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_auditorium"],
-        stage_clear=STAGE_CLEAR, rows=3)
-    # The curtain across the proscenium. A theatre whose stage has no curtain
-    # is a room with a step in it, and the Aldermack is the district's
-    # landmark -- so it gets the mechanism, not a painted stripe.
-    import curtains
-
-    ax0, ay0, ax1, _ay1 = next(
-        (x0, y0, x1, y1) for name, x0, y0, x1, y1, _k, _n in ROOMS
-        if name == "aldermack_auditorium")
-    stage_rect = (ax0 + templates.HOUSE_MARGIN,
-                  ay0 + templates.STAGE_INSET,
-                  ax1 - templates.HOUSE_MARGIN,
-                  ay0 + templates.STAGE_INSET + templates.STAGE_DEPTH)
-    curtain = curtains.hang(
-        rooms["aldermack_auditorium"], venue_nodes["aldermack"], stage_rect,
-        grade=GRADE, clear=STAGE_CLEAR)
-    #: The stage is what the curtain's light follows, so the link needs its
-    #: region. It is a raised solid under the house node, named by whoever
-    #: built it -- which is the point of naming things.
-    curtain["stage_region"] = next(
-        (room.region_id for room in citytree.rooms_under(house)
-         if room.node_id == "stage"), None)
+    house = aldermack_house.build(venue_nodes["aldermack"], rooms)
     aldermack_front.build(rooms["aldermack_foyer"], rooms["aldermack_lobby"],
                           theatre_st, levers)
     templates.shooting_range(
@@ -530,7 +464,7 @@ def build(district, theatre_st):
                                   ceiling_shade=SALOON_SHADES["ceiling"],
                                   wall_shade=SALOON_SHADES["wall"])
 
-    return rooms, levers, curtain
+    return rooms, levers, house
 
 
 def add_fire_doors(rooms):
@@ -541,7 +475,7 @@ def add_fire_doors(rooms):
     return wing_doors.build(
         backstage.parent, FIRE_DOORS, room=backstage,
         room_faces={side: f"bay_{side}" for side in ("north", "west", "south")},
-        outside=rooms["aldermack_auditorium"], outside_face="west", wall=FIRE_EAST - FIRE_WALL_X,
+        outside=rooms["aldermack_pass_door_passage"], outside_face="west", wall=FIRE_EAST - FIRE_WALL_X,
         material=material, room_clear=clear, grade=GRADE,
         bay_style=material.style_kwargs(floor_z=GRADE, clear_height=clear),
         frame_style=material.style_kwargs(floor_z=GRADE, clear_height=wing_doors.LEAF_HEIGHT))
@@ -560,7 +494,6 @@ POPULATION = [
     ("saloon_main", 202, (0.78, 0.22)),      # clear of the counter island
     ("saloon_back", 203, (0.5, 0.5)),
     ("parlor_range", 202, (0.6, 0.4)),
-    ("aldermack_auditorium", 202, (0.12, 0.6)),   # between stage and tier
     ("aldermack_backstage", 203, (0.5, 0.3)),
     ("pawn_shop", 203, (0.15, 0.08)),   # the strip north of the kit fixtures
 ]
@@ -593,7 +526,7 @@ SHOP_MANNEQUIN_ABOVE_FLOOR = 10976
 #: a room with sector shade, not with lamp sprites.  We had one per room.
 #: These are one per venue -- the light you actually navigate by -- and the
 #: rest of the brightness comes from the shade passes.
-LIT = [("saloon_main", "east", 0.30), ("aldermack_auditorium", "north", 0.12)]
+LIT = [("saloon_main", "east", 0.30)]
 
 
 def stools(layout, rooms) -> int:

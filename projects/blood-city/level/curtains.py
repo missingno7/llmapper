@@ -1,4 +1,4 @@
-"""The Aldermack's stage curtains, and the light that follows them.
+"""The Aldermack's sliding box cloth and the light link for the house cloth.
 
 The city speaks the levelprog TREE and `mechanism.curtain` speaks
 PlanarLayout, so this follows the route `turnstiles.py` already established:
@@ -156,13 +156,14 @@ def hang(auditorium, district, stage_rect, *, grade: int, clear: int,
             "channel": CH_CURTAIN, "opening": opening}
 
 
-def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
+def furnish(layout, built, *, grade: int, stage_region: str | None = None) -> dict:
     """Markers, flags, fabric and wiring, once the layout exists.
 
     Everything here needs compiled walls, which is why it is a second pass --
     the same split `turnstiles.populate` uses.
     """
     spec = built["spec"]
+    wire = wires.wire(built.get("wire", "theatre:curtain"))
     region = built["room"].region_id
     out = {"leaves": spec["leaves"], "slot": spec["slot"], "markers": 0,
            "flagged": 0, "fabric": 0, "buttons": 0}
@@ -189,7 +190,7 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
         layout.carry_wall(region, edge[0], edge[1], moves=flag["moves"])
         out["flagged"] += 1
 
-    wires.wire("theatre:curtain").then(wiring.region(region))
+    wire.then(wiring.region(region))
     #: The fabric, sized for the span it hangs ACROSS.
     for edge, repeat in zip(spec["fabric"], spec["x_repeats"]):
         layout.paint_wall(region, edge[0], edge[1],
@@ -198,16 +199,16 @@ def furnish(layout, built, *, stage_region: str, grade: int) -> dict:
         #: and each fabric face is a button, the way the tutorial wires a
         #: shove: an XWALL on the cloth, not `trigger_wall_push` on the
         #: sector, so pushing the proscenium arch does nothing.
-        motion.wall_button(layout, region, edge, channel=CH_CURTAIN,
+        motion.wall_button(layout, region, edge, channel=wire.channel,
                            command=motion.CMD_TOGGLE, receiver_state=0)
-        wires.wire("theatre:curtain").when(
+        wire.when(
             wiring.face(region, edge[0], edge[1]), "push", on=True, off=True)
         out["buttons"] += 1
 
     return out
 
 
-def link_stage_light(layout, built, *, stage_region: str) -> dict:
+def link_stage_light(layout, curtain_id: str, *, stage_region: str) -> dict:
     """Wire the stage light to follow the curtain, arbitrating the collision.
 
     The curtain's sector has ONE tx and its rx is already spent on the
@@ -231,7 +232,7 @@ def link_stage_light(layout, built, *, stage_region: str) -> dict:
     #: A region's `sector_behavior` is the XSECTOR the compiler will write,
     #: and it is still open between the program's compile and the layout's --
     #: which is exactly the window this pass runs in.
-    curtain_region = layout.regions[built["room"].region_id]
+    curtain_region = layout.regions[curtain_id]
     curtain_region.sector_behavior.update(
         {"tx_id": CH_STAGE_LIGHT, "command": motion.CMD_LINK})
     stage = layout.regions.get(stage_region)
@@ -244,11 +245,11 @@ def link_stage_light(layout, built, *, stage_region: str) -> dict:
         {"rx_id": CH_STAGE_LIGHT, "amplitude": STAGE_AMPLITUDE,
          "shade_floor": 1, "shade_ceiling": 1, "shade_walls": 1})
     wires.wire("theatre:stage-light").when(
-        wiring.region(built["room"].region_id), wiring.RELAY,
+        wiring.region(curtain_id), wiring.RELAY,
         command=motion.CMD_LINK, on=False).then(wiring.region(stage_region))
     payload = report(decisions)
     payload["wired"] = {"channel": CH_STAGE_LIGHT,
                         "command": motion.CMD_LINK,
-                        "from": built["room"].region_id,
+                        "from": curtain_id,
                         "to": stage_region}
     return payload

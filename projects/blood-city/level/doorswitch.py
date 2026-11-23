@@ -26,6 +26,8 @@ door and a player who walks past a wall.
 
 from __future__ import annotations
 
+from bloodmap.mechanism import CMD_TOGGLE
+
 #: The lever, exactly as the campaign carries it.
 LEVER_TILE = 1070
 LEVER_TYPE = 20            # kSwitchToggle
@@ -76,7 +78,7 @@ def lever_segment(face: str, x0: int, y0: int, x1: int, y1: int,
 
 
 def place(layout, placement_id: str, street_region_id: str, segment,
-          channel: int) -> str:
+          channel: int, *, command: int = CMD_TOGGLE) -> str:
     """One lever, wired to a channel.
 
     Delegates to `bloodmap.switches.pressed_switch`, which is the general
@@ -89,7 +91,7 @@ def place(layout, placement_id: str, street_region_id: str, segment,
     """
     from bloodmap.switches import pressed_switch
 
-    spec = dict(pressed_switch(tile=LEVER_TILE, tx_id=int(channel)))
+    spec = dict(pressed_switch(tile=LEVER_TILE, tx_id=int(channel), command=command))
     # The modal sound pair for pushed tile-1070 toggles (40 of 97).
     spec["behavior"].update(data_1=203, data_2=203)
     height = spec.pop("height_player_heights", LEVER_HEIGHT)

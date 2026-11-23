@@ -65,6 +65,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("theatre_row/aldermack/front_", Rule("none", 0, 0)),
     ("theatre_row/aldermack/lobby", Rule("none", 0, 0)),
     ("theatre_row/aldermack/porch", Rule("none", 0, 0)),
+    # Keep the chandelier and sconce pools against the dark red and black house.
+    ("aldermack/house/", Rule("none", 0, 0, shade_bias=(19, 18, 15))),
     ("theatre_row", Rule("ceiling", 676, 2560, 2560)),
     # its own two candelabra and its stained glass (`light_kinds`: glass on a
     # roofed wall lets daylight in); the pairs the stage stood along the nave
@@ -86,6 +88,19 @@ OWN_LIGHT: tuple[str, ...] = (
     "aldermack/backstage",
     "aldermack/dressing",
     "aldermack/fire_",
+    # Preserve the frame, the shade wave and the fin's untouched bay.
+    "aldermack/house/stage",
+    "aldermack/house/backcloth",
+    "aldermack/house/main_curtain",
+    "aldermack/house/box_curtain",
+    "aldermack/house/light_slit",
+    "aldermack/house/terrace",
+    "aldermack/house/west_aisle_step",
+    "aldermack/house/east_aisle_step",
+    "aldermack/house/pelmet",
+    "aldermack/house/apron",
+    "aldermack/house/west_drape",
+    "aldermack/house/east_drape",
     # The deck's hole moves through the rail bed. Keep its lighting in
     # the authored sectors so the band cutter leaves the sweep clear.
     "sewer/sampling/trolley_track",
@@ -103,6 +118,7 @@ LAMP_SCALE: tuple[tuple[str, float], ...] = (
     ("st_gallows", 0.5),
     ("aldermack/backstage", 0.45),
     ("aldermack/dressing", 0.35),
+    ("aldermack/house/", 0.42),
     # the lair's two torches at full strength over the sewer's dark: their
     # light falls off steeply enough for the light stage to cut pools in
     # the hall's floor; at 0.35 there was no change to cut and the hall

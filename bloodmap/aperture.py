@@ -1111,7 +1111,8 @@ def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
 def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
                   door_types: tuple[int, ...] = (600, 602),
                   face_y_repeat: int = 8, reveal: float = 0.34,
-                  strict: bool = True) -> dict[str, Any]:
+                  strict: bool = True,
+                  already_framed: frozenset[str] = frozenset()) -> dict[str, Any]:
     """Apply :func:`framed_door` to every declared Z-door in a layout.
 
     This is the project-boundary adapter for a level whose room program has
@@ -1125,10 +1126,14 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
     level setting: a door with an unknown face tile, a non-rectangular outline,
     or anything other than two named edges is a missing declaration, not a
     reason to silently fall back to the old broken style.
+    `already_framed` names cloth or other apertures whose own geometry supplies
+    their reveals and head heights.
     """
     built: list[dict[str, Any]] = []
     skipped: list[dict[str, str]] = []
     for region_id, door in tuple(layout.regions.items()):
+        if region_id in already_framed:
+            continue
         if int(door.type) not in {int(value) for value in door_types}:
             continue
         edges = [

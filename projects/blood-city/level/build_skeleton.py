@@ -1149,10 +1149,9 @@ def build():
           "Theatre Row: the Aldermack, the saloon, the pawnshop")
     # ---- L3: Theatre Row's venues (the entertainment district) ----------
     import l3_theatre
-    theatre_rooms, door_levers, stage_curtain = l3_theatre.build(
+    theatre_rooms, door_levers, aldermack_house = l3_theatre.build(
         district_of['theatre_row'], theatre_st)
     fire_doors = l3_theatre.add_fire_doors(theatre_rooms)
-    ctx_stage_curtain = stage_curtain
 
     STAGE("station",
           "Gravesend Station behind the north wall")
@@ -1240,7 +1239,7 @@ def build():
                    angle=1536)
     ctx["street_regions"] = {room.region_id: name
                              for name, room in streets.items()}
-    ctx["stage_curtain"] = ctx_stage_curtain
+    ctx["aldermack_house"] = aldermack_house
     ctx["fire_doors"] = fire_doors
     ctx["greens"] = ctx_greens
     ctx["light_pools"] = ctx_pools
@@ -1536,26 +1535,15 @@ def main() -> int:
 
     STAGE("set-pieces",
           "what each venue is furnished with: curtain, flames, sewer runs, pews, stock")
-    # ---- the Aldermack's curtain: markers, flags, fabric, and the link ----
-    # A second pass, the way `turnstiles.populate` is: the fin is carved in
-    # the tree and furnished once its walls exist.
-    import curtains as stage_curtains
-
+    import aldermack_house
     import l3_theatre
     ctx["manifest"]["fire_doors"] = l3_theatre.furnish_fire_doors(
         layout, ctx["fire_doors"])
 
-    curtain = ctx.get("stage_curtain")
-    if curtain is not None:
-        ctx["manifest"]["stage_curtain"] = stage_curtains.furnish(
-            layout, curtain, stage_region=curtain.get("stage_region"),
-            grade=GRADE)
-        if curtain.get("stage_region"):
-            ctx["manifest"]["stage_light"] = stage_curtains.link_stage_light(
-                layout, curtain, stage_region=curtain["stage_region"])
-        print("stage curtain:", ctx["manifest"]["stage_curtain"])
-        print("stage light:",
-              ctx["manifest"].get("stage_light", {}).get("lines"))
+    ctx["manifest"].update(aldermack_house.furnish(layout, ctx["aldermack_house"]))
+    print("stage curtain:", ctx["manifest"]["stage_curtain"])
+    print("west box curtain:", ctx["manifest"]["box_curtain"])
+    print("stage light:", ctx["manifest"]["stage_light"].get("lines"))
     import l3_foundry
     l3_foundry.sprinkle(layout, ctx, dressing)
     ctx["manifest"]["loading_shutter"] = l3_foundry.furnish_loading_shutter(
@@ -1945,7 +1933,9 @@ def main() -> int:
     # shading workaround.
     from bloodmap.aperture import frame_z_doors
     from bloodmap.rules import art_sizes
-    door_frames = frame_z_doors(layout, art_sizes=art_sizes())
+    house = ctx["aldermack_house"]
+    cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
+    door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals)
     ctx["manifest"]["door_frames"] = len(door_frames["doors"])
     print("door frames:", len(door_frames["doors"]))
     import l3_shed as _late_shed

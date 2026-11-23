@@ -44,6 +44,21 @@ LEVEL, UP, DOWN = HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN
 #: Fixed sets stay stable across iterations so before/after pairs line up;
 #: fresh sets are added per iteration and never reused.
 POSE_SETS = {
+    "aldermack-house": {
+        "vomitory": (25.18, 9.79, 22.5, 6.75, LEVEL, "from the vomitory toward the stage"),
+        "stalls": (22.5, 12.24, 22.5, 6.75, LEVEL, "rear terrace above the lit steps"),
+        "west_aisle": (20.48, 12.74, 22.5, 7.5, LEVEL - 15, "down the west stair past the terraces"),
+        "circle": (22.5, 14.2, 22.5, 5.2, LEVEL + 9, "dress circle looking over the parapet"),
+        "circle_edge": (22.5, 13.37, 22.5, 7.4, LEVEL - 24, "over the parapet to the stalls and stage"),
+        "pit": (23.30, 8.04, 21.3, 8.08, LEVEL + 10, "the upright piano from the orchestra pit"),
+        "conductor": (22.79, 8.31, 22.79, 6.75, LEVEL - 15, "the lever on the conductor's stand"),
+        "wing": (20.2, 5.9, 22.5, 5.15, LEVEL, "west wing looking across the stage"),
+        "shadow": (23.85, 6.12, 23.06, 4.25, LEVEL, "on the stage toward the performer and cloth"),
+        "watchers": (24.06, 4.5, 24.75, 3.64, LEVEL, "the drape door in the east wing"),
+        "dome": (22.5, 12.25, 22.5, 9.25, LEVEL + 104, "from the stalls up to the dome"),
+        "box": (19.62, 12.1, 22.5, 7.0, LEVEL, "from the second west box toward the opening"),
+        "box_cloth": (20.52, 12.34, 19.65, 12.12, LEVEL, "the sliding box curtain from the west stairs"),
+    },
     #: The opening moment.  The monument is not a single object -- it is the
     #: first thing the player sees -- so its acceptance is the frame from the
     #: spawn at standing eye height, with the plaza behind it, the market

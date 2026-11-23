@@ -89,7 +89,7 @@ class CitySoundTests(unittest.TestCase):
 
     def test_caleb_remarks_have_one_invisible_speaker_and_the_intended_cause(self):
         speakers = [(fields, extra) for fields, extra in self.sprites if fields["type"] == 711]
-        self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034])
+        self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034, 3101])
         self.assertIn(711, HIDDEN_TYPES)
         for fields, extra in speakers:
             sound = extra["data_1"]
@@ -103,8 +103,9 @@ class CitySoundTests(unittest.TestCase):
                             if data.get("tx_id") == extra["rx_id"]]
                 self.assertEqual(len(senders), 1)
                 type_id, cause = senders[0]
-                self.assertEqual(cause["trigger_once"], 1)
                 self.assertEqual(cause["command"], CMD_ON)
+                if sound != 3101:
+                    self.assertEqual(cause["trigger_once"], 1)
                 if sound == 4509:
                     self.assertEqual(type_id, 21)
                     self.assertEqual(cause["rx_id"], wiring.LEVEL_START_CHANNEL)
@@ -113,7 +114,15 @@ class CitySoundTests(unittest.TestCase):
                 elif sound == 4537:
                     self.assertEqual(type_id, 216)
                     self.assertEqual((cause["decoupled"], cause["trigger_off"]), (1, 1))
-                else:
+                elif sound == 3034:
                     self.assertIsNone(type_id)
                     self.assertEqual((cause["trigger_enter"], cause["dude_lockout"]), (1, 1))
                     self.assertEqual(cause, self.sectors[fields["sector"]])
+                else:
+                    # The show uses a latch which stays ON across curtain cycles.
+                    self.assertEqual(type_id, 0)
+                    self.assertEqual((cause["trigger_on"], cause["trigger_off"]), (1, 0))
+                    self.assertEqual((cause["state"], cause["wait_time"], cause["rest_state"]), (0, 0, 0))
+                    (stage,) = [data for data in self.sectors if data.get("tx_id") == cause["rx_id"]]
+                    self.assertEqual((stage["command"], stage["trigger_on"], stage["trigger_off"]),
+                                     (CMD_ON, 1, 0))

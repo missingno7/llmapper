@@ -53,6 +53,7 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(641, "lamp hanging on a chain", "hanging", False, True, point=0.92, intensity=1.0),
     LightKind(1701, "hanging chain lamp", "hanging", False, True, point=0.85, intensity=1.1),
     LightKind(945, "brass hanging lamp", "hanging", False, True, point=0.85, intensity=1.0),
+    LightKind(549, "iron ring chandelier", "hanging", False, True, point=0.89, intensity=1.2),
     LightKind(640, "street lamp post", "standing", False, True, point=0.08, intensity=1.6),
     LightKind(2493, "street lamp", "standing", False, True, point=0.08, intensity=1.6),
     LightKind(506, "burning wall torch", "wall", False, True, point=0.15, intensity=1.0),

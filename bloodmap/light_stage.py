@@ -218,6 +218,7 @@ class Rule:
     tile: int
     along: int
     across: int = 0
+    shade_bias: tuple[int, int, int] = (0, 0, 0)  # floor, ceiling, wall
 
 
 #: a light sprite as the campaign sets it down (its first use, E1M1/E1M2/E1M4),
@@ -914,10 +915,18 @@ def glow_windows(disk, keep: frozenset = frozenset()) -> int:
     return count
 
 
-def shade(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
+def shade(disk, model: Model, keep: frozenset = frozenset(), *,
+          bias: dict[int, tuple[int, int, int]] | None = None) -> dict[str, Any]:
     """Trace the map and write every floor, ceiling and wall its light (but those of `keep`'s sectors); one sky shade; glass glows."""
     found = model.trace(disk)
     rows = [r for r in D.collapse(found, model.weights) if r["sector"] not in keep]
+    if bias:
+        surface_index = {"floor": 0, "ceiling": 1, "wall": 2}
+        for row in rows:
+            offset = bias.get(row["sector"])
+            if offset:
+                value = row["shade"] + offset[surface_index[row["kind"]]]
+                row["shade"] = max(-128, min(127, value))
     D.apply(disk, rows)
     glowing = glow_windows(disk, keep)
     return {"surfaces": len(rows), "windows": glowing,
@@ -1068,6 +1077,7 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     `lamp_scale` says how strong a place's lamps are (1 is the model's).
     `room_key` names the room a region belongs to, where several regions are
     one room to be lit (a corridor's walks and its channel).
+    A rule's shade bias sets the base darkness while keeping the traced pools.
     """
     model = model or Model()
     kept = frozenset(i for i, region in region_of.items() if keep(region))
@@ -1098,7 +1108,15 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     report["slope_cut"] = {k: v for k, v in slopes.items() if k != "parent"}
     walls = band_walls(disk, model, whole)
     report["wall_cut"] = {k: v for k, v in walls.items() if k != "parent"}
-    report["shades"] = shade(disk, model, kept)
+    bias = {}
+    for i, region in region_of.items():
+        offset = rule_for(region).shade_bias
+        if any(offset):
+            bias[i] = offset
+    for piece, source in parent.items():
+        if source in bias:
+            bias[piece] = bias[source]
+    report["shades"] = shade(disk, model, kept, bias=bias)
     report["shades"]["movers_evened"] = even_movers(disk, kept)
     report["kept"] = len(kept)
     report["parent"] = dict(sorted(parent.items()))

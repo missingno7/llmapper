@@ -32,9 +32,9 @@ from typing import Any
 #: Places the owner has asked to have rebuilt with what is known now, in their
 #: words. `status.py` lists each as an open item ("owner-rework").
 OWNER_REWORK: dict[str, str] = {
-    "the Aldermack": "2026-11-23: \"Later I would do a major overhaul of the whole aldermack to make it look "
-                     "better. There are other places that were done with old process and old knoweledge which "
-                     "we would do today much better.\"",
+    # The Aldermack, the first they named, was rebuilt 2026-11-23 and waits for their walk.
+    "other old places": "2026-11-23: \"There are other places that were done with old process and old "
+                        "knoweledge which we would do today much better.\"",
 }
 
 #: name -> a point inside it (world units), its hero and its exemplar
@@ -144,10 +144,12 @@ PLACES: dict[str, dict[str, Any]] = {
                     "(stools); soffit and back bar NOT yet built",
     },
     "Aldermack auditorium": {
-        "at": (23040, 9500), "study": "theatre",
-        "hero": "a tall house facing a curtained stage",
-        "exemplar": "SCHOOL_ s154/s244, FORDTHEA s252 (height); the "
-                    "framed proscenium and raked seats NOT yet built",
+        "at": (23040, 9500), "study": "aldermack-rebuild",
+        "hero": "a hanged performer over a bloodied trap, framed by the curtain "
+                "and seen past the last audience still in its seats",
+        "exemplar": "DWE1M9 s245–249 and s274–279 (terraces, cloth and apse), "
+                    "sprites 752, 832–833 and 963–964 (rails, step lights and beam); "
+                    "SCHOOL_ s177–182 (frame); HUNT s674 (performer and shadow)",
     },
     "Aldermack backstage": {
         "at": (18400, 7680), "study": "aldermack-rebuild",

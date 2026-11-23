@@ -23,6 +23,8 @@ from bloodmap.sector_geom import sector_contains
 
 WIRE_PROFILES = {
     "theatre:curtain": "curtain",
+    "theatre:box-curtain": "curtain",
+    "theatre:prize": "curtain",
     "church:breach": "blast",
     "arcade:cache": "blast",
     "pump:presses": "ceiling_press",

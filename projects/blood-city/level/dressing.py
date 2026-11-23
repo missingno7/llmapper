@@ -222,6 +222,9 @@ def dress(layout, regions=None) -> dict:
     report["bare"] += max(0, len(dressable) - quota)
 
     for region_id, region, candidates, faces, place in dressable[:quota]:
+        if (getattr(region, "intent", None) or {}).get("furnished"):
+            # This room already received its share during its own furnish pass.
+            continue
         count = props.GRIME_COUNTS[
             _roll(f"{place}:count", len(props.GRIME_COUNTS))]
         put = 0

@@ -94,7 +94,7 @@ class StudyTests(unittest.TestCase):
         #: the four studied the same day name their study
         for name, slug in (("harbour", "harbour"), ("saloon", "saloon"),
                            ("St Gallow's nave", "church"),
-                           ("Aldermack auditorium", "theatre")):
+                           ("Aldermack auditorium", "aldermack-rebuild")):
             self.assertEqual(sheet["places"][name]["study"], slug)
             self.assertNotIn(name, sheet["unstudied"])
 

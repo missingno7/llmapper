@@ -8,6 +8,7 @@ is under every standing thing in Blood's town maps; `fixtures.BAR` and
 
 from __future__ import annotations
 
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -90,7 +91,12 @@ class StockedCityTests(unittest.TestCase):
     def setUpClass(cls):
         from tools.mine_stands import stands, summary
 
-        cls.rows = stands([str(CITY)])
+        tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
+        auditorium = {sector for kind, sectors in tags.items()
+                      if kind.startswith("aldermack_") for sector in sectors}
+        # The auditorium's seats, step lights and stage furniture are scenery.
+        # The thresholds below compare stocked fixtures with campaign shops.
+        cls.rows = [row for row in stands([str(CITY)]) if row["sector"] not in auditorium]
         cls.found = summary(cls.rows)
 
     def test_the_citys_fixtures_stand_as_high_as_the_towns(self):

@@ -27,7 +27,7 @@ PLAN: tuple[tuple[str, str], ...] = (
      "stepping onto the yard grate, once, fires the cart's two charges and a "
      "sound cue"),
     ("theatre:curtain",
-     "pushing the Aldermack's curtain draws it, and pushing it again closes it"),
+     "the conductor and fly levers raise the house cloth; the prize relay drops it"),
     ("theatre:stage-light",
      "the stage's light follows the curtain as it travels: dark shut, lit open"),
     ("church:breach",
@@ -73,6 +73,16 @@ PLAN: tuple[tuple[str, str], ...] = (
      "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once"),
     ("caleb:ghost-tunnel",
      "entering the bricked-up track stub at Ghost Station prompts Caleb once"),
+    ("theatre:show-latch",
+     "the Aldermack stage light reaching its ON stop sets the show latch"),
+    ("theatre:show",
+     "the first curtain opening plays Caleb's line and raises two patrons"),
+    ("theatre:pit-piano",
+     "playing the keys in the Aldermack's orchestra pit sounds the organ riff"),
+    ("theatre:prize",
+     "taking the fire armour drops the house cloth, blacks out the beam and opens the wings"),
+    ("theatre:box-curtain",
+     "pushing the second west box's cloth draws it aside or shuts it again"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

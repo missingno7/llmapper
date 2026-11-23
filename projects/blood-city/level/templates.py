@@ -796,14 +796,6 @@ def bar(space, *, material, grade: int, host_clear: int, name: str = "fittings",
 # come from `setpieces`' mined classes, and the insets are stated as
 # proportions of the host so the same call furnishes a different-sized room.
 
-#: A stage's own depth, how far it stands off the back wall, and its rise:
-#: one max step, so the player can get up on it.
-STAGE_DEPTH, STAGE_INSET, STAGE_RISE = 2048, 512, 4096
-#: A seating row: how deep, how far apart, and how much each rises over the
-#: one in front. `setpieces.LOW_STEP` is the mined shallow tier.
-ROW_DEPTH, ROW_PITCH, ROW_RAKE = 512, 1024, 1024
-#: How far the fittings of a house stand off its side walls.
-HOUSE_MARGIN = 1024
 #: A counter across the front of a room: depth, and its inset.
 DESK_DEPTH, DESK_INSET = 512, 512
 #: A shooting range: the line you stand behind, and what you shoot at.
@@ -825,55 +817,6 @@ FONT_RISE = 4096
 def _host_rect(space):
     import props
     return tuple(int(v) for v in props.room_rect(space))
-
-
-def theatre_house(space, *, material, grade: int, host_clear: int,
-                  stage_clear: int, rows: int = 3, name: str = "house",
-                  margin: int = HOUSE_MARGIN, connector=None):
-    """The stage under its proscenium, and the raked rows facing it.
-
-    The stage gets a LOWER ceiling than the house, which is what turns the
-    wall between the two into a proscenium arch -- with the house's own
-    ceiling carried over it the auditorium is a hall with a step in it.
-
-    Each row is an island in the floor, so no two share an undeclared edge,
-    and each rises `ROW_RAKE` over the one in front. The rows are a rhythm
-    and share one note; the stage is not and does not.
-    """
-    import citytree
-    import setpieces
-
-    x0, y0, x1, y1 = _host_rect(space)
-    if x1 - x0 < 2 * margin + 1024 or y1 - y0 < STAGE_DEPTH + rows * ROW_PITCH:
-        raise TemplateError(
-            f"{space.node_id}: {x1 - x0}x{y1 - y0} will not hold a stage and "
-            f"{rows} rows")
-    node = citytree.sub(space, name, note="the house: stage and seating")
-
-    setpieces.raised_solid(
-        node, "stage", space,
-        (x0 + margin, y0 + STAGE_INSET,
-         x1 - margin, y0 + STAGE_INSET + STAGE_DEPTH),
-        material, grade=grade, rise=STAGE_RISE,
-        host_clear=host_clear, connector=connector or citytree.owner(space),
-        note="the stage, under its proscenium").surfaces(
-            floor_z=grade - STAGE_RISE, clear_height=stage_clear)
-
-    # Laid from the back of the house forward, so the last row is always
-    # against the rear wall however many there are -- and the rake counts
-    # DOWN from the back, because a raked house lifts the rows furthest from
-    # the stage.  Laying the rise up from the front instead put the tallest
-    # row nearest the stage, which is a grandstand facing the wrong way.
-    seating = citytree.sub(node, "seating", note="raked rows facing the stage")
-    for index in range(rows):
-        back = y1 - STAGE_INSET - index * ROW_PITCH
-        setpieces.raised_solid(
-            seating, f"row_{rows - 1 - index}", space,
-            (x0 + margin, back - ROW_DEPTH, x1 - margin, back),
-            material, grade=grade, rise=(rows - index) * ROW_RAKE,
-            host_clear=host_clear, connector=connector or citytree.owner(space),
-            note="a raked row of seating")
-    return node
 
 
 def box_office(space, *, material, grade: int, host_clear: int,

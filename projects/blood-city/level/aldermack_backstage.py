@@ -75,7 +75,7 @@ def _service(venue, fire_bay):
         (WEST, PARLOR[1]), (WEST, PARLOR[0]), (WEST, 6912),
         (17792, 6912), (17792, 5120), (WEST, 5120),
     ], PASSAGE, CORRIDOR_CLEAR, (35, 38, 46), faces={
-        "north": 2, "east": 6, "keeper": 9,
+        "north": 2, "east": 6, "stage_stair": 6, "keeper": 9,
         "bay_north": 12, "bay_west": 13, "bay_south": 14,
         "south": 16, "west": 18, "scenery": 21,
     }, note="Stage service passage, with a scenery rack and a keeper's post.")

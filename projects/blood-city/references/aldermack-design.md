@@ -22,6 +22,19 @@ with the records; build from these and cite them:
 | boxes, circle, the star's room: drapes, candelabra, chandeliers | REALM4.MAP s181; NUTHOUSE.MAP s263 for boxes over the seats |
 | the name in lights over the street | THESLUMS.MAP s484 |
 
+## As built (2026-11-23)
+
+`aldermack_house.py`, `aldermack_front.py`, `aldermack_backstage.py`, and
+`wing_doors.py` (the mirrored pair at the stage door and the front: the
+owner, "Shouldn't the front door be like mirror wings to each other?").
+The house keeps the plan's circulation; the stalls are DWE1M9's three
+terraces with one bench pair each, and the stage DWE1M9's apse, narrower
+than the table (the opening is 3,328). The levers on the conductor's
+stand and in the west wing raise the cloth; the prize (fire armour, E1M6
+sprite 685) drops it and opens four wing doors on three watchers; the wing
+lever and the backstage stair are the way out. Looked at shut and open;
+heard and walked by nobody yet.
+
 ## What was wrong
 
 One wallpapered box, 7 x 7, with a slab for a stage, three carpet stripes for

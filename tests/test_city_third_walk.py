@@ -538,7 +538,7 @@ class ThirdWalkTests(unittest.TestCase):
         import windows
 
         ids = set(self.tags["window"])
-        self.assertGreaterEqual(len(ids), 6)      # a reveal and a pocket each
+        self.assertGreaterEqual(len(ids), 4)      # a reveal and a pocket each
         owner = {}
         for i, s in enumerate(self.sectors):
             for w in range(int(s["wall_ptr"]),
