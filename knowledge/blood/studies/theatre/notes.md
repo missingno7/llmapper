@@ -40,7 +40,9 @@ where three map files are named for the thing, plus two campaign pieces:
   (the house) and `SCHOOL_.map:244!` (the stage). A school auditorium with a
   raked floor of 48 seats, an orchestra pit, an apron, a three-bay proscenium
   hung with a static curtain (159), and a deep stage with risers behind.
-- **FORDTHEA.MAP (community, untiered) -- a cinema.** Seed `FORDTHEA.MAP:252`.
+- **FORDTHEA.MAP (community, untiered) -- a cinema.** (Since 2026-11-23 known
+  to be Duke E1L1 converted: `knowledge/blood/duke-conversions.json`. Read
+  every FORDTHEA size below as Duke's.) Seed `FORDTHEA.MAP:252`.
   House s252 with three sector benches facing a screen that is tile 2047
   ("COMING SOON to a theater near you -- BLOOD THE MOVIE"); a lobby (s119,
   s239) with a panelled ticket/concession window.

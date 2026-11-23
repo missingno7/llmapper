@@ -24,12 +24,14 @@ posters. About forty rooms were rendered; `posed/` has the sheets, rendered loca
   with a drape wall; a mime stands in the light and his black SHADOW is on
   the drape behind him; a trick table, a balloon and a sack each throw
   theirs. Fourteen robed figures stand watching.
-- **AFTSHOCK.MAP, s269 (house) with s223-s238: the exemplar for the
-  proscenium.** A dark grey frame round a black opening, orange drape legs
-  at both sides, a planked apron, a curtain sector (s238, type 614, masked
-  146) in front of the backcloth, footlight boxes, EXIT signs over the side
-  doors, lamps in a ceiling recess. (Its house has the dimensions of Duke
-  E1L1's cinema, sector 302; so has FORDTHEA's.)
+- **AFTSHOCK.MAP, s269 with s223-s238: Duke's, not Blood's.** The owner,
+  2026-11-23: "AFTSHOCK is actually conversion of E1L1 map from Duke3D".
+  Measured, so are melte1m1 (its copy) and FORDTHEA
+  (`knowledge/blood/duke-conversions.json`: 73, 72 and 141 distinctive
+  sectors of E1L1's 325), so the three are ONE source, a well-known cinema
+  that is not to be rebuilt. The proscenium's exemplar is SCHOOL_'s
+  (study `theatre`). What is taken from AFTSHOCK is an idea, at our own
+  sizes: a dark frame with bright drape legs, which the converter drew.
 - **EU11_.MAP, s346/s349: the exemplar for footlights.** Ten flames 1,024
   apart along the stage's front edge; a stage face of upright panels (149);
   drapes 28,672 long behind; tied-back drapes (146, masked) at the entrance.
@@ -61,7 +63,7 @@ room of sofas), hallfame (a museum), DACOM1, OMEGAMAN, FOULKEEP, CAFEDRAL.
    ceiling IS the projector's beam.
 4. **The performer's shadow.** HUNT's silhouettes make a spotlight with no
    light at all: the same tile again, black, flat on the cloth.
-5. **A proscenium is a dark frame with bright legs.** AFTSHOCK: the opening
+5. **A proscenium is a dark frame with bright legs.** AFTSHOCK (Duke's): the opening
    is the darkest thing in the wall and the drape legs the brightest.
 6. **Seats are plush, not slabs:** damask cushions (260), a lighter back.
 
@@ -87,8 +89,8 @@ room of sofas), hallfame (a museum), DACOM1, OMEGAMAN, FOULKEEP, CAFEDRAL.
 ## What I will transcribe
 
 THESLUMS's bench pair, pitch, rake, aisle carpet, seated dead (with its gib
-record) and beam of flares; HUNT's performer and shadows; AFTSHOCK's
-dark frame, drape legs and planked apron; EU11_'s footlight row and
+record) and beam of flares; HUNT's performer and shadows; SCHOOL_'s
+three-bay frame and drape legs (study `theatre`); EU11_'s footlight row and
 panelled stage face; REALM4's drape walls and candelabra in the boxes; the
 CINEMA sign's lit discs for ALDERMACK over the street.
 

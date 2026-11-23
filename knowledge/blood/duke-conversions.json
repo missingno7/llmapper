@@ -1,0 +1,67 @@
+{
+ "rule": "A sector's signature is its box, its wall count and its height, unmoved by a conversion that keeps the geometry. The owner, 2026-11-23: \"AFTSHOCK is actually conversion of E1L1 map from Duke3D\". Such a map is evidence of Duke's design and not of Blood's. Writes knowledge/blood/duke-conversions.json.",
+ "duke_levels": 46,
+ "blood_maps": 1504,
+ "conversions": [
+  {
+   "map": "community/E1L1.MAP",
+   "duke": "E1L1.MAP",
+   "sectors": 197,
+   "share_of_duke_level": 0.61
+  },
+  {
+   "map": "community/E1L3.MAP",
+   "duke": "E1L3.MAP",
+   "sectors": 261,
+   "share_of_duke_level": 0.55
+  },
+  {
+   "map": "community/Duke1.map",
+   "duke": "E1L1.MAP",
+   "sectors": 159,
+   "share_of_duke_level": 0.49
+  },
+  {
+   "map": "community/HollHolo.map",
+   "duke": "E1L1.MAP",
+   "sectors": 159,
+   "share_of_duke_level": 0.49
+  },
+  {
+   "map": "community/FORDTHEA.MAP",
+   "duke": "E1L1.MAP",
+   "sectors": 141,
+   "share_of_duke_level": 0.43
+  },
+  {
+   "map": "community/Intime~2.map",
+   "duke": "E1L1.MAP",
+   "sectors": 141,
+   "share_of_duke_level": 0.43
+  },
+  {
+   "map": "community/AFTSHOCK.MAP",
+   "duke": "E1L1.MAP",
+   "sectors": 73,
+   "share_of_duke_level": 0.22
+  },
+  {
+   "map": "community/melte1m1.map",
+   "duke": "E1L1.MAP",
+   "sectors": 72,
+   "share_of_duke_level": 0.22
+  },
+  {
+   "map": "community/melte1m2.map",
+   "duke": "E1L2.MAP",
+   "sectors": 54,
+   "share_of_duke_level": 0.19
+  },
+  {
+   "map": "community/melte1m3.map",
+   "duke": "E1L3.MAP",
+   "sectors": 68,
+   "share_of_duke_level": 0.14
+  }
+ ]
+}

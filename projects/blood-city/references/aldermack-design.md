@@ -16,7 +16,7 @@ with the records; build from these and cite them:
 | --- | --- |
 | the house and its first look, seats, aisle, the seated dead, the beam | THESLUMS.MAP s508, s509-s549 |
 | the performer, the spotlight and its shadows | HUNT.MAP s672-s675 |
-| proscenium, drape legs, apron, exits | AFTSHOCK.MAP s269, s223-s238 |
+| proscenium, drape legs, apron | SCHOOL_.MAP s177-s182 (study `theatre`); AFTSHOCK.MAP is Duke E1L1 converted: an idea (dark frame, bright legs), never its room |
 | footlights, stage face, tied-back drapes | EU11_.MAP s346, s349 |
 | boxes, circle, the star's room: drapes, candelabra, chandeliers | REALM4.MAP s181; NUTHOUSE.MAP s263 for boxes over the seats |
 | the name in lights over the street | THESLUMS.MAP s484 |

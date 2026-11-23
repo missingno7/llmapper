@@ -18,6 +18,7 @@ maps/blood/
   curated/       DWE*, TEDE*, SS* hand-picked   population community-curated
     multiplayer/ DWBB*, DM*, SSFACE             community-curated, mode=multiplayer
   conversions/   DNE* owner Duke3D->Blood       population own-conversion
+                 (ten community maps are Duke conversions too: knowledge/blood/duke-conversions.json)
   community/     ~1500 bulk community maps      population community
   tiered/        the same maps, S/A/B/C/questionable/multiplayer/mechanism;
                  tier is metadata on the community population, not a
