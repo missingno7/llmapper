@@ -188,6 +188,18 @@
     "E4M3:219!"
    ],
    "date": "2026-11-22"
+  },
+  "aldermack-rebuild": {
+   "want": "a landmark playhouse: raked plush stalls with the dead still in them facing a framed, curtained, spotlit stage; boxes, a dress circle, footlights, a street front in lights",
+   "seeds": [
+    "maps/blood/community/THESLUMS.MAP:508!",
+    "maps/blood/community/HUNT.MAP:672!",
+    "maps/blood/community/AFTSHOCK.MAP:269!",
+    "maps/blood/community/EU11_.MAP:349!",
+    "maps/blood/community/NUTHOUSE.MAP:263!",
+    "maps/blood/community/REALM4.MAP:181!"
+   ],
+   "date": "2026-11-23"
   }
  }
 }

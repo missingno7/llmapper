@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_NUTHOUSE.MAP_263/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_NUTHOUSE.MAP_263",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 23436,
+   "y": 94164,
+   "z": -144288,
+   "angle": 1531,
+   "horiz": 100,
+   "sector": 263,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 23436,
+   "y": 87724,
+   "z": -144288,
+   "angle": 518,
+   "horiz": 100,
+   "sector": 263,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 23436,
+   "y": 92204,
+   "z": -144288,
+   "angle": 1522,
+   "horiz": 100,
+   "sector": 263,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 23436,
+   "y": 89684,
+   "z": -144288,
+   "angle": 526,
+   "horiz": 100,
+   "sector": 263,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_EU11_.MAP_349/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_EU11_.MAP_349",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 22153,
+   "y": 74419,
+   "z": 31840,
+   "angle": 1998,
+   "horiz": 100,
+   "sector": 349,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 23773,
+   "y": 72394,
+   "z": 31840,
+   "angle": 56,
+   "horiz": 100,
+   "sector": 349,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 25393,
+   "y": 74419,
+   "z": 31840,
+   "angle": 1957,
+   "horiz": 100,
+   "sector": 349,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 27013,
+   "y": 72394,
+   "z": 31840,
+   "angle": 134,
+   "horiz": 100,
+   "sector": 349,
+   "screenshot": true
+  }
+ ]
+}

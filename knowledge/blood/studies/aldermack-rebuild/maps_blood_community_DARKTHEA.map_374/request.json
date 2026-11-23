@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_DARKTHEA.map_374/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_DARKTHEA.map_374",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -111936,
+   "y": 79424,
+   "z": -17312,
+   "angle": 1666,
+   "horiz": 100,
+   "sector": 555,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -101056,
+   "y": 79424,
+   "z": -17312,
+   "angle": 1419,
+   "horiz": 100,
+   "sector": 555,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -108096,
+   "y": 80064,
+   "z": -17312,
+   "angle": 1579,
+   "horiz": 100,
+   "sector": 555,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -100416,
+   "y": 75584,
+   "z": -17312,
+   "angle": 1363,
+   "horiz": 100,
+   "sector": 555,
+   "screenshot": true
+  }
+ ]
+}

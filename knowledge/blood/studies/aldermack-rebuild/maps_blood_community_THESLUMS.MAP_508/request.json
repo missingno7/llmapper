@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_THESLUMS.MAP_508/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/maps_blood_community_THESLUMS.MAP_508",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -4610,
+   "y": -62550,
+   "z": 28768,
+   "angle": 548,
+   "horiz": 100,
+   "sector": 508,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -5974,
+   "y": -60845,
+   "z": 28768,
+   "angle": 475,
+   "horiz": 100,
+   "sector": 508,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -4610,
+   "y": -59140,
+   "z": 28768,
+   "angle": 582,
+   "horiz": 100,
+   "sector": 508,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -5974,
+   "y": -57435,
+   "z": 28768,
+   "angle": 409,
+   "horiz": 100,
+   "sector": 508,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/DWE3M5_382/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/DWE3M5_382",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 48416,
+   "y": 10848,
+   "z": -49056,
+   "angle": 1088,
+   "horiz": 100,
+   "sector": 382,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 47584,
+   "y": 5024,
+   "z": -49056,
+   "angle": 908,
+   "horiz": 100,
+   "sector": 382,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 30112,
+   "y": 9184,
+   "z": -49056,
+   "angle": 2027,
+   "horiz": 100,
+   "sector": 382,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 43424,
+   "y": 12512,
+   "z": -49056,
+   "angle": 1215,
+   "horiz": 100,
+   "sector": 382,
+   "screenshot": true
+  }
+ ]
+}
