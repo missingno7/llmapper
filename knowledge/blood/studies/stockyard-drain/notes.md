@@ -43,3 +43,5 @@ Surfaces: walls 296, the rack's floor 291, and the race's floor 1120 at palette 
 ## What I still do not know
 
 - How the current feels to ride, and whether the drop from the quay cover reads as safe. The owner will walk it.
+
+**Since 2026-11-23** the race runs SOUTH, from the Main to its fall into the sampling chamber (the owner: the water went against the fall), green as far as the carcass rack and blood below it; see `projects/blood-city/references/sewer-design.md`.

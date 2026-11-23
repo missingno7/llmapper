@@ -52,7 +52,7 @@ PLAN: tuple[tuple[str, str], ...] = (
      "pushing either freight leaf from either approach parts both leaves "
      "to open the loading alcove"),
     ("theatre:fire-doors",
-     "pushing either Aldermack fire-door leaf from either room toggles both "
+     "pushing either of the Aldermack's stage doors from either room toggles both "
      "leaves, which stay where they stop until pushed again"),
     ("sewer:settling-hall-lift",
      "the landing buttons recall the deck to their own stop and the rider's "

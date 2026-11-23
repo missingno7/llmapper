@@ -61,7 +61,12 @@ FLOW = {
     "graves_brook": (0, 8, False),
     "se_spur": (1024, 8, False),
     "se_drain": (1536, 8, False),
-    "stockyard_drain": (1536, 60, True),
+    # south, to the fall into the sampling chamber (the owner, 2026-11-23:
+    # "the rest of the water is going the other direction than the waterfall
+    # would suggest"); it ran north into the ring before the chamber sank
+    "stockyard_drain": (512, 60, True),
+    # the sampling chamber, from the fall and the pipe to its east culverts
+    "sampling": (0, 24, False),
     # out of the ring under the plaza: the outfall south, the basin west
     # toward the river
     "outfall": (512, 24, False),
@@ -92,7 +97,7 @@ BRANCHES = [
     ("se_spur", 53.0, 34.5, 56.0, 36.5, "se_drain", "east", "west", "ring",
      "the south-east spur under the market road's north pavement, to its manhole"),
     ("stockyard_drain", 48.75, 34.0, 50.75, 55.75, "s_channel", "south", "north", "ring",
-     "the slaughterhouse outfall: a tiled blood race north from the east quay"),
+     "the slaughterhouse race: the ring's overflow running south past the carcass rack to the fall"),
 ]
 SOUTH = BRANCHES
 #: Graves Brook is older than the ring and looks it: the crypt's rubble
@@ -196,12 +201,14 @@ MANHOLES = [
 #: falls or fire (NBlood `thingInfo`); blast damage ignores the hitscan bit,
 #: so this cover opens only to a blast. (The owner would take one that
 #: anything breaks: type 416.)
-#: The cover is a gib object (416), as E4M9's floor-lying vent grate (sprite
-#: 290, tile 218) is: anything that hurts it breaks it into metal shards
-#: (data_1 5 = gib type 4, gib.cpp gibList) with sound 370, and it is freed
-#: (actor.cpp actActivateGibObject). The owner, 2026-11-22: "it should just
-#: break into gibs like normal brekable object".
-MANHOLE_COVER = {"source": ("E4M9", 416, 218), "picnum": 219,
+#: The cover breaks into metal shards, as E4M9's floor-lying vent grate does
+#: (sprite 290: data_1 5 = gib type 4, gib.cpp gibList), but only to an
+#: explosion: type 417, whose thingInfo takes damage from explosions (256)
+#: and tesla (128) and nothing else, where a 416 also takes bullets and falls
+#: (actor.cpp, "Gib Object" and "Explode Object"). The owner, 2026-11-23:
+#: "Manhole covers are breakable now, I would try to make them explosion
+#: breakable only if it will work".
+MANHOLE_COVER = {"source": ("E4M9", 416, 218), "type": 417, "picnum": 219,
                  "cstat": 1 | 32 | 128 | 256, "repeat": 72}
 #: The shaft drops this far below the street to its link plane, so the cover
 #: lies ABOVE its sector's floor, as a flat sprite must to hold a player up
@@ -526,6 +533,19 @@ STOCKYARD_TROLLEY_ROOMS = (
     ("trolley_ledge", (49.25, 57.25, 52.125, 61.0), "dry west boarding ledge"),
     ("trolley_alcove", (60.125, 57.25, 62.125, 59.25), "dry sampling and inspection alcove"),
 )
+#: Where the chamber's water goes: a low barred culvert at the east end of
+#: each pool, out under the river. (name, rect, the pool it drains)
+SAMPLING_CULVERTS = (
+    ("trolley_culvert_north", (60.125, 55.875, 60.875, 57.125), "trolley_inlet"),
+    ("trolley_culvert_south", (60.125, 59.375, 60.875, 60.875), "trolley_tail"),
+)
+CULVERT_CLEAR, CULVERT_MOUTH = 8192, 128
+#: the owner's "sewer grate" (502) as E4M6 hangs it on a two-sided wall (3275:
+#: masked, blocking, bottom-aligned, hitscan)
+CULVERT_GRATE = {"over_picnum": 502, "cstat": 1 | 4 | 16 | 64}
+#: Blood enters the race at the carcass rack (its mouth is y 51.75 to 54.25);
+#: upstream of it the water is the ring's own.
+RACE_BLOOD_FROM = 52.0
 
 #: A channel's water falling down a drop into a lower room. The owner,
 #: 2026-11-22: "you will have stairs down and waterfall between them ...
@@ -649,8 +669,7 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
             floor_z=floor, clear_height=floor - TROLLEY_CEILING,
             floor_shade=24 if dry else 30))
         if name in {"trolley_inlet", "trolley_tail"}:
-            angle = FLOW["stockyard_drain"][0]
-            room.region_kwargs["sector_behavior"] = {"depth": 1, **flow_behavior(angle, 8, False)}
+            room.region_kwargs["sector_behavior"] = {"depth": 1, **flow_behavior(*FLOW["sampling"])}
         if name in {"trolley_ledge", "trolley_alcove"}:
             room.light_source("work_light", local=(0.5, (58.25 - rect[1]) / (rect[3] - rect[1])),
                               height_player_heights=1.0)
@@ -674,6 +693,27 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
     ):
         citytree.join(rooms[a], rooms[b], at_a=face_a, at_b=face_b,
                       connection_id=f"connection:{a}_{b}")
+    for name, rect, pool in SAMPLING_CULVERTS:
+        x0, y0, x1, y1 = (round(v * PU) for v in rect)
+        # The bars hang just inside the mouth, between two lengths of one
+        # culvert: at the mouth itself the grate would share its wall record,
+        # and so its repeats, with the tiled band over the opening.
+        before = rooms[pool]
+        for part_name, left, right in ((f"{name}_mouth", x0, x0 + CULVERT_MOUTH), (name, x0 + CULVERT_MOUTH, x1)):
+            culvert = part.rect_room(
+                part_name, origin=(left, y0), size=(right - left, y1 - y0), role="interior",
+                intent={"kind": "furnished"}, note="a barred culvert draining the sampling chamber under the river",
+                region_kwargs={**STOCKYARD_WET.region_kwargs(), "declared_zero_exit": True,
+                               "sector_behavior": {"depth": 1, **flow_behavior(*FLOW["sampling"])}})
+            culvert.surfaces(**STOCKYARD_WET.style_kwargs(
+                ceiling_picnum=253, floor_z=TROLLEY_FLOOR + CHANNEL_DROP, clear_height=CULVERT_CLEAR,
+                floor_shade=44, wall_shade=48))
+            rooms[part_name] = culvert
+            citytree.join(culvert, before, at_a="west", at_b="east",
+                          connection_id=f"connection:{part_name}", min_opening=0)
+            before = culvert
+        culvert.raw("bars across the culvert, inside its mouth",
+                    lambda layout, room, outer=rooms[f"{name}_mouth"]: _bar_culvert(layout, room, outer))
     # the drain's blood falls over the sunk chamber's edge beside the stair
     # down: a pour in E1M8's blood palette (7)
     pour(rooms["stockyard_drain"], "south", rooms["trolley_inlet"], pal=7,
@@ -681,6 +721,14 @@ def stockyard_trolley(city, sewer, rooms: dict) -> None:
     rooms["trolley_track"].raw(
         "#2WAYCAR: full-wall slide, dry calls, and a carried departure button",
         lambda layout, track: _furnish_trolley(layout, track, rooms))
+
+
+def _bar_culvert(layout, culvert, outer) -> None:
+    """Hang the grate across a culvert, on both faces of the line it shares with `outer`."""
+    a, b = (culvert.world_frame().apply(p) for p in culvert.local_edge("west"))
+    repeat = max(1, round(abs(a[1] - b[1]) / 128))          # 16 units to the pixel
+    for room in (culvert, outer):
+        layout.paint_wall(room.region_id, a, b, x_repeat=repeat, y_repeat=8, **CULVERT_GRATE)
 
 
 def _furnish_trolley(layout, track, rooms: dict) -> None:
@@ -761,7 +809,7 @@ def _furnish_trolley(layout, track, rooms: dict) -> None:
                 z=TROLLEY_FLOOR - 8 - bottom, angle=angle, shade=12,
                 behavior=dict(spec["behavior"]), **fields)
 
-    for name in ("trolley_inlet", "trolley_tail"):
+    for name in ("trolley_inlet", "trolley_tail", *(n for row in SAMPLING_CULVERTS for n in (row[0], f"{row[0]}_mouth"))):
         wet = layout.regions[rooms[name].region_id]
         layout.add_overlay(f"blood:{name}", wet.region_id, wet.outer, floor_pal=7)
     # The station paints over track tile on raised floors during its trim
@@ -1901,7 +1949,7 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
             # the shaft's floor is the recess below the street: the cover
             # lies across its rim, at the street's own level
             height_player_heights=MANHOLE_RECESS / PROFILE.standing_height,
-            type=type_id, picnum=MANHOLE_COVER["picnum"],
+            type=MANHOLE_COVER["type"], picnum=MANHOLE_COVER["picnum"],
             cstat=MANHOLE_COVER["cstat"], x_repeat=MANHOLE_COVER["repeat"],
             y_repeat=MANHOLE_COVER["repeat"], angle=1536, shade=16,
             # on the thing list (4), as every campaign breakable is: damage
@@ -2191,12 +2239,14 @@ def dress_stockyard(layout, rooms) -> list[str]:
     from bloodmap.shade_table import _art
     from l3_foundry import _attested
 
-    # SPIDER1.PLU (7) draws tile 1120's greens in red-brown. Cover the whole
-    # floor, including the ROR landing, so panning and topology survive.
-    current = [entry["name"] for entry in plan_rooms() if entry.get("flow") == "stockyard_drain"]
-    for name in (*current, "stockyard_landing"):
-        room = rooms[name].region_id
-        layout.add_overlay(f"blood:{name}", room, layout.regions[room].outer, floor_pal=7)
+    # SPIDER1.PLU (7) draws tile 1120's greens in red-brown. The race is the
+    # ring's own water as far as the carcass rack, and blood from there down.
+    race = rooms["stockyard_drain"].region_id
+    xs, ys = zip(*layout.regions[race].outer)
+    top = round(RACE_BLOOD_FROM * PU)
+    layout.add_overlay("blood:stockyard_drain", race,
+                       [(min(xs), top), (max(xs), top), (max(xs), max(ys)), (min(xs), max(ys))],
+                       floor_pal=7)
 
     placed = []
 
@@ -2224,6 +2274,9 @@ def dress_stockyard(layout, rooms) -> list[str]:
          from_ceiling=5120, angle=1536, x_repeat=84, y_repeat=70, shade=-8)
     seat("stockyard_rack", "stockyard_hook", ("E1M8", 417, 692), (47.875, 52.25),
          from_ceiling=128, x_repeat=42, y_repeat=42)
+    # the rack bleeds across the walk into the race
+    seat("stockyard_drain_walk_a", "stockyard_bleed", ("E2M4", 0, 713), (49.0, 52.75),
+         x_repeat=40, y_repeat=40, cstat=32, shade=8)
     for i, point in enumerate(((48.125, 53.0), (47.875, 53.75))):
         seat("stockyard_rack", f"stockyard_carcass_{i}", ("E3M2", 416, 1351), point,
              from_ceiling=256, x_repeat=48, y_repeat=42)

@@ -416,6 +416,17 @@ POSE_SETS = {
         "forecourt_lamp": (30.0, 13.0, 31.0, 13.0, LEVEL, "close to the forecourt lamp pool"),
         "quay_lamp": (36.0, 52.0, 37.0, 52.0, LEVEL, "close to the quay-gate lamp pool"),
     },
+    # the owner's walk of 2026-11-23: the sampling chamber's water and its
+    # way out, the race down to its fall, and the Aldermack's stage doors
+    "walk-1123": {
+        "chamber_fall": (51.25, 57.1, 49.75, 55.75, LEVEL, "the fall, from the inlet below it", 71680),
+        "chamber_culvert": (54.0, 56.5, 60.1, 56.5, LEVEL, "the inlet, east to its culvert", 71680),
+        "tail_culvert": (54.5, 60.0, 60.1, 60.1, LEVEL, "the tail, east to its culvert", 71680),
+        "race_down": (49.0, 48.0, 49.75, 55.75, LEVEL, "down the race to the rack and the fall", 61440),
+        "corridor": (17.9, 4.6, 18.6, 9.25, LEVEL, "the Aldermack's backstage corridor, south"),
+        "corridor_doors": (17.4, 9.25, 19.2, 9.25, LEVEL, "the stage doors from the corridor"),
+        "house_doors": (22.5, 9.25, 19.0, 9.25, LEVEL, "the stage doors from the house"),
+    },
     "sewer-water": {
         "brook_inlet": (3.6, 19.65, 1.0, 19.5, LEVEL, "Graves Brook, west toward the feeder", 63488),
         "brook_walk": (6.0, 19.3, 15.0, 18.6, LEVEL, "Graves Brook, east along the north wall", 63488),

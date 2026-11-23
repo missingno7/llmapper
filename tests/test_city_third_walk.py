@@ -357,21 +357,84 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertTrue(all(fields["floor_picnum"] == 1129 and not fields["floor_stat"] & 4
                             for fields in rails))
 
-    def test_a_manhole_cover_breaks_into_gibs(self):
+    def test_a_manhole_cover_breaks_to_explosions_only(self):
         #: the owner: "Manhole covers can't be destroyed by explosion" -- they
         #: were on status 0, and actRadiusDamage damages only the dude and
         #: thing lists (actor.cpp:2728, 2762) -- then "it should just break
-        #: into gibs like normal brekable object": a 416 with E4M9's vent
-        #: grate data (metal shards, sound 370), on the thing list.
+        #: into gibs like normal brekable object" -- then "explosion
+        #: breakable only": a 417 (thingInfo takes explosions and tesla) with
+        #: E4M9's vent grate's metal shards, on the thing list.
         import l3_sewer
         covers = [s for s in self.disk.sprites
                   if int(s.fields["picnum"]) == l3_sewer.MANHOLE_COVER["picnum"]
-                  and int(s.fields["type"]) == 416]
+                  and int(s.fields["type"]) == 417]
         self.assertGreaterEqual(len(covers), len(l3_sewer.MANHOLES))
         for cover in covers:
             self.assertEqual(int(cover.fields["status"]), 4)
             self.assertIsNotNone(cover.extra)
             self.assertEqual(int(cover.extra.fields["data_1"]), 5)
+
+    def test_water_runs_to_the_fall_it_goes_over(self):
+        #: the owner, of the sampling chamber: "the rest of the water is going
+        #: the other direction than the waterfall would suggest". At every
+        #: wall of falling water the room above runs at the wall, and the
+        #: room below does not run back at it.
+        import math
+        owner = {w: i for i, s in enumerate(self.sectors)
+                 for w in range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"])}
+        falls = 0
+        for index, wall in enumerate(self.walls):
+            if (wall["picnum"] != 1120 or wall["next_sector"] < 0
+                    or not _extra(self.disk.walls[index]).get("pan_always")):
+                continue
+            end = self.walls[wall["point2"]]
+            near, far = owner[index], wall["next_sector"]
+            # the room is on a wall's right, so across it is to the left
+            out = (end["y"] - wall["y"], -(end["x"] - wall["x"]))
+            upper, lower = near, far
+            if self.sectors[near]["floor_z"] > self.sectors[far]["floor_z"]:
+                upper, lower, out = far, near, (-out[0], -out[1])
+            for sector, least in ((upper, 0.9), (lower, -0.1)):
+                pan = _extra(self.disk.sectors[sector])
+                self.assertTrue(pan.get("pan_floor") and pan.get("pan_velocity"), sector)
+                angle = pan["pan_angle"] * math.pi / 1024
+                along = (math.cos(angle) * out[0] + math.sin(angle) * out[1]) / math.hypot(*out)
+                self.assertGreaterEqual(along, least, (index, sector))
+            falls += 1
+        self.assertEqual(falls, 3)
+
+    def test_no_moving_sector_leaves_the_one_it_stands_in(self):
+        #: the owner: "moving or rotating sector can never leave it's parent
+        #: sector this is the rule of build engine"
+        from bloodmap import swept_state
+        from bloodmap.motion_sim import blood_sweep
+        from bloodmap.sector_geom import sector_walls
+        rigid = [i for i in swept_state.moving_sectors(self.disk)
+                 if self.sectors[i]["type"] in (616, 617)]
+        self.assertEqual(len(rigid), 4)
+        for mover in rigid:
+            frames = blood_sweep(self.disk, mover)
+            self.assertIsNone(swept_state.escape(self.disk, mover, frames))
+            # and it can fail: the same sweep a room away is outside
+            moved = [[(x + 20000, y) for x, y in frame] for frame in frames]
+            self.assertIn("leaves sector", swept_state.escape(self.disk, mover, moved))
+            # alone with its host, which lighting leaves whole
+            host = {self.walls[w]["next_sector"] for w in sector_walls(self.disk, mover)}
+            self.assertEqual(len(host), 1)
+            self.assertIn(host.pop(), swept_state.hosts(self.disk))
+
+    def test_the_stage_doors_are_thin_wood_lit_alike(self):
+        #: the owner: "they are metal and quite thick"; and a leaf is drawn
+        #: open but starts shut, so no face may keep the light of one pose
+        leaves = [i for i, s in enumerate(self.sectors) if s["type"] == 617]
+        self.assertEqual(len(leaves), 2)
+        for leaf in leaves:
+            s = self.sectors[leaf]
+            walls = [self.walls[w] for w in range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"])]
+            faces = [self.walls[w["next_wall"]] for w in walls]
+            self.assertEqual({f["picnum"] for f in faces}, {30, 20})
+            self.assertEqual(len({f["shade"] for f in faces}), 1)
+            self.assertEqual(max(w["y"] for w in walls) - min(w["y"] for w in walls), 64)
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266

@@ -111,3 +111,18 @@ Allen gives no description for 110 (`QDOORMV1`) or 115 (`QTRAIN1`).
 The fan list repeats 720 and assigns two descriptions to 742. There was
 no Whisper transcript in the brief. The map records determine which IDs
 to play.
+
+## Doors by what the leaf wears (2026-11-23)
+
+The owner, of our wooden doors on 106/157: "sounds like a moving stone". The profile was taken from the sector type (106 leads the 600s) and not from the leaf. Campaign ceiling-only 600s (floor still) by the tile their neighbours show, first 709 each:
+
+| Tile | Campaign tuples |
+| --- | --- |
+| 22 (wooden door) | 110/160 x4, 105/160 x3, 105/151 x3, 105/153 x3, 111/158 x2, 120/168 x2 |
+| 495 (panelled metal) | 119/169 x4, 111/165 x4 (two tuples), 113/164 x2, 120/169 x2, 111/159 x2, 111/160 x1 |
+| 110 (rubble) | 106/160 x8, 106/157 x4 |
+| 1011 (slab) | 106/157 x3 |
+
+So the city takes `motion_sounds.LEAF_PROFILES`: wood 110/160, panelled metal 111/165, stone 106/157.
+
+Rotating leaves (617): the 64-thick wooden leaves of tile 30 edged with 20 are 101/0/100/160 (E2M5 ×12) or 117/0/117/156 (E2M4); the Aldermack's stage doors are E2M5's.

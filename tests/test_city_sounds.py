@@ -25,10 +25,32 @@ class AmbientFieldsTests(unittest.TestCase):
     def test_context_supplies_campaign_envelope_and_allows_overrides(self):
         fields = _ambience().fields
         self.assertEqual(fields("mall")["behavior"], {
-            "data_1": 900, "data_2": 1500, "data_3": 65, "data_4": 50, "state": 1})
+            "data_1": 150, "data_2": 350, "data_3": 65, "data_4": 50, "state": 1})
         self.assertEqual(fields("mall", volume=30)["behavior"]["data_4"], 30)
         with self.assertRaises(ValueError):
             fields("mall", near=1500)
+
+
+@unittest.skipUnless(CITY.exists(), "the city is not built")
+class DoorSoundTests(unittest.TestCase):
+    """The owner: "These wooden zdoor sound 106 sounds like a moving stone"."""
+
+    def test_a_rising_door_sounds_like_what_its_leaf_is(self):
+        _ambience()
+        import motion_sounds
+        from bloodmap.mechanism import SECTOR_SOUND_PROFILES
+
+        disk = read_map(CITY)
+        marks = {record_fields(s)["sector"]: tuple((record_extra(s) or {}).get(f"data_{k}") for k in (1, 2, 3, 4))
+                 for s in disk.sprites if record_fields(s)["type"] == 709}
+        wooden = 0
+        for index, sector in enumerate(disk.sectors):
+            if record_fields(sector)["type"] != 600 or index not in marks:
+                continue
+            if 22 in motion_sounds._leaf_faces(disk, index):
+                self.assertEqual(marks[index], SECTOR_SOUND_PROFILES["wood_z_door"], index)
+                wooden += 1
+        self.assertGreaterEqual(wooden, 10)
 
 
 @unittest.skipUnless(CITY.exists(), "the city is not built")
@@ -62,7 +84,7 @@ class CitySoundTests(unittest.TestCase):
 
     def test_metal_drain_covers_have_a_metal_break_sound(self):
         covers = [extra["data_4"] for fields, extra in self.sprites
-                  if fields["type"] == 416 and fields["picnum"] == 219]
+                  if fields["type"] == 417 and fields["picnum"] == 219]
         self.assertEqual(covers, [314] * 4)
 
     def test_caleb_remarks_have_one_invisible_speaker_and_the_intended_cause(self):

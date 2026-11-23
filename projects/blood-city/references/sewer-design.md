@@ -43,11 +43,11 @@ room with its rectangle and kind).
   level with its street (8,192, checked); the market road itself is sunk
   2,048, so its manhole is on the pavement corner, not in the road.
 * **A manhole** is a 768-unit shaft, a recess of 4,096 to a see-through link,
-  and its cover: a gib object (416) with E4M9 sprite 290's record (its
-  floor-lying vent grate: metal shards, data_1 5, sound 370) on the owner's
+  and its cover: an explode object (417, hurt only by explosions) with
+  E4M9 sprite 290's metal shards (data_1 5) and sound 314 on the owner's
   drain tile 219 at repeat 72, flat and blocking at street level, on the
-  thing list so anything breaks it (the owner: "it should just break into
-  gibs like normal brekable object").
+  thing list (the owner: "it should just break into gibs like normal
+  brekable object", then "explosion breakable only if it will work").
   It lands in water, an island in the branch's channel (or the basin) at the
   water's level; the fall is 51,200 units and `conformance.py` reads 0
   damage on all three links. The blown state is not seen in a frame: the
@@ -218,15 +218,19 @@ room with its rectangle and kind).
   the mouth. E3M3's ambient water sound sits at the foot. See the
   [sewagefall study](../../../knowledge/blood/studies/sewagefall/notes.md)
   and the gallery, tank and circle quay frames in `work/fall/frames/`.
-* **The Stockyard Drain**, the slaughterhouse outfall, runs north from the
-  east quay into a ford
-  across the Foundry Main's south walk. The quay's landward pavement
+* **The Stockyard Drain**, the slaughterhouse race, takes the Foundry
+  Main's overflow from a ford across the Main's south walk and runs south
+  under the east quay to its fall into the sampling chamber (it ran north
+  until the owner, 2026-11-23: "the rest of the water is going the other
+  direction than the waterfall would suggest"). The quay's landward pavement
   has a blast-open cover at x 49.75, 16.5 plan units from the
   market-road cover. The intake has a dripping blood pipe (E1M8's 977)
   and a tiled rack with an empty chain and two of E3M2's flayed
   carcasses. The walks are surfaced in bloody tile (291), with the
-  sewer's vault above them. The race, landing and ford all carry E1M8's
-  current (speed 60, north, drag on) in red-brown 1120, palette 7
+  sewer's vault above them. The race and ford carry E1M8's current
+  (speed 60, south, drag on: it takes a body over the fall, half a body
+  down, with the stair beside it). The water is the Main's own as far as
+  the carcass rack (plan y 52) and red-brown 1120, palette 7, from there
   (study `knowledge/blood/studies/stockyard-drain`).
 * **The Stockyard Drain sampling trolley** runs east–west under the
   river, across the wider chamber at the end of the race. The west
@@ -234,8 +238,10 @@ room with its rectangle and kind).
   into the valve alcove. Both dry berths are level with the deck and have
   their own call buttons. The button inside the deck railing sends it
   across when the rider is aboard. The blood on either side of the rail
-  bed pans north at speed 8, with drag clear. The adjoining race keeps its
-  fast current. `#2WAYCAR` supplies the type-616 floor and drag, and
+  bed pans east at speed 24, with drag clear, from the fall and the pipe
+  to a low barred culvert at each pool's east end (the owner's sewer grate,
+  502, hung as E4M6 wall 3275 is), out under the river. The adjoining race
+  keeps its fast current. `#2WAYCAR` supplies the type-616 floor and drag, and
   E1M2 supplies the rail bed and wheels (study
   `knowledge/blood/studies/stockyard-trolley`). The deck travels 2,624
   units. At either end there is a 96-unit docking gap and 18,432 of

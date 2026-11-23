@@ -93,10 +93,13 @@ TRIGGERED_MOTION_TYPES = frozenset({600, 602, 613, 614, 615, 616, 617})
 SECTOR_SOUND_PROFILES = {
     "stone_door": (106, 157, 106, 157),
     "metal_z_door": (110, 150, 110, 150),
+    "wood_z_door": (110, 160, 110, 160),
+    "iron_z_door": (111, 165, 111, 165),
     "chain_lift": (105, 153, 105, 153),
     "winch_lift": (116, 157, 116, 157),
     "heavy_slide": (103, 0, 103, 0),
     "metal_swing": (101, 0, 100, 150),
+    "wood_swing": (101, 0, 100, 160),
     "curtain": (0, 159, 0, 159),
     "rail_shuttle": (115, 153, 115, 153),
     "hydraulic_slide": (111, 159, 111, 159),

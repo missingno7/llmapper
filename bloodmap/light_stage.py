@@ -324,8 +324,9 @@ def _add_sprite(disk, art, tile: int, x: float, y: float, sector: int, form: str
     return True
 
 
-def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule], art=None) -> dict[str, Any]:
-    """Light every room by its rule; a room that has the map's own lights keeps them and is filled up to its count."""
+def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule], art=None,
+               whole: frozenset = frozenset()) -> dict[str, Any]:
+    """Light every room by its rule; a room that has the map's own lights keeps them and is filled up to its count; a panel is never let into a sector of `whole`."""
     from shapely.geometry import Point, Polygon, box
     from shapely.ops import unary_union
 
@@ -408,7 +409,7 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
                 rect = box(x0, y0, x0 + wx, y0 + wy)
                 ok = (polys[sec].buffer(-256, join_style=2).contains(rect) and O.shade_only(disk.sectors[sec])
                       and not (int(S[sec]["floor_stat"]) | int(S[sec]["ceiling_stat"])) & 2
-                      and height(sec) >= 16960 + RECESS)
+                      and sec not in whole and height(sec) >= 16960 + RECESS)
                 rects.append((rect, sec) if ok else None)
             if rects and all(rects):
                 for rect, sec in rects:
@@ -923,6 +924,31 @@ def shade(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:
             "spread_12": sum(1 for r in rows if r["kind"] == "floor" and r["spread"] >= 12)}
 
 
+def even_movers(disk, keep: frozenset = frozenset()) -> int:
+    """Give the faces of each sector that moves whole (616, 617) one shade: the mean of theirs, by length.
+
+    The trace sees the pose the map is saved in. A door leaf drawn open is
+    lit on one side, and shut it would carry that light into the other
+    leaf's shade; its faces turn through every direction, so none keeps one.
+    """
+    from .sector_geom import sector_walls, wall_length
+
+    evened = 0
+    for index, sector in enumerate(disk.sectors):
+        if int(_f(sector)["type"]) not in (616, 617):
+            continue
+        faces = [int(_f(disk.walls[w])["next_wall"]) for w in sector_walls(disk, index)]
+        faces = [w for w in faces if w >= 0]
+        if not faces or any(int(_f(disk.walls[w])["next_sector"]) in keep for w in sector_walls(disk, index)):
+            continue
+        total = sum(wall_length(disk, w) for w in faces)
+        mean = round(sum(int(_f(disk.walls[w])["shade"]) * wall_length(disk, w) for w in faces) / total)
+        for w in faces:
+            _f(disk.walls[w])["shade"] = mean
+        evened += 1
+    return evened
+
+
 # --- cutting, whole or not at all ----------------------------------------------
 
 
@@ -1037,6 +1063,8 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     A sector whose region `keep` names keeps the light its own module gave
     it: it is not cut, not lit in rows, and its shades are not written. It
     still stands in the scene, and its lamps still light the rest.
+    A sector a moving sector sweeps through (`swept_state.hosts`) is lit but
+    never cut: a cut across the sweep would be a wall in the mover's way.
     `lamp_scale` says how strong a place's lamps are (1 is the model's).
     `room_key` names the room a region belongs to, where several regions are
     one room to be lit (a corridor's walks and its channel).
@@ -1047,7 +1075,10 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     report: dict[str, Any] = {"sectors_before": len(disk.sectors), "walls_before": len(disk.walls),
                               "sprites_before": len(disk.sprites)}
     parent: dict[int, int] = {}
-    shadows = cut_shadows(disk, model, kept)
+    from .swept_state import hosts
+    whole = kept | frozenset(hosts(disk))
+    report["mover_hosts"] = sorted(whole - kept)
+    shadows = cut_shadows(disk, model, whole)
     _chain(parent, shadows, scale)
     report["shadow_cut"] = {k: v for k, v in shadows.items() if k != "parent"}
     # the pieces of a room are still that room
@@ -1055,19 +1086,20 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     for piece, source in parent.items():
         region_of[piece] = region_of.get(source, "")
     rooms = rooms_by_region(disk, region_of, kept, room_key)
-    laid = lay_lights(disk, rooms, rule_for, art)
+    laid = lay_lights(disk, rooms, rule_for, art, whole)
     _chain(parent, laid["cut"], scale)
     report["rooms"] = laid["rooms"]
     report["panel_cut"] = {k: v for k, v in laid["cut"].items() if k != "parent"}
-    floors = band_floors(disk, model, keep=kept)
+    floors = band_floors(disk, model, keep=whole)
     _chain(parent, floors, scale)
     report["floor_cut"] = {k: v for k, v in floors.items() if k != "parent"}
-    slopes = band_slopes(disk, model, kept)
+    slopes = band_slopes(disk, model, whole)
     _chain(parent, slopes, scale)
     report["slope_cut"] = {k: v for k, v in slopes.items() if k != "parent"}
-    walls = band_walls(disk, model, kept)
+    walls = band_walls(disk, model, whole)
     report["wall_cut"] = {k: v for k, v in walls.items() if k != "parent"}
     report["shades"] = shade(disk, model, kept)
+    report["shades"]["movers_evened"] = even_movers(disk, kept)
     report["kept"] = len(kept)
     report["parent"] = dict(sorted(parent.items()))
     report.update(sectors=len(disk.sectors), walls=len(disk.walls), sprites=len(disk.sprites))

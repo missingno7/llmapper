@@ -60,7 +60,10 @@ ENVELOPES = {
     "crypt": (200, 500, 50),
     "fare_turnstile": (250, 700, 20),
     "works": (200, 400, 50),
-    "mall": (900, 1500, 50),
+    # the campaign's is (900, 1500), over E4M9's whole mall; the owner,
+    # 2026-11-23: "you can hear that shop music from arcades too broad ...
+    # it should be enough to have just 150/350"
+    "mall": (150, 350, 50),
 }
 
 

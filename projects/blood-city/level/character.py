@@ -29,6 +29,14 @@ from __future__ import annotations
 
 from typing import Any
 
+#: Places the owner has asked to have rebuilt with what is known now, in their
+#: words. `status.py` lists each as an open item ("owner-rework").
+OWNER_REWORK: dict[str, str] = {
+    "the Aldermack": "2026-11-23: \"Later I would do a major overhaul of the whole aldermack to make it look "
+                     "better. There are other places that were done with old process and old knoweledge which "
+                     "we would do today much better.\"",
+}
+
 #: name -> a point inside it (world units), its hero and its exemplar
 PLACES: dict[str, dict[str, Any]] = {
     "pump machine hall": {

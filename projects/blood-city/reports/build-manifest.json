@@ -1039,18 +1039,18 @@
       },
       {
         "name": "theatre:fire-doors",
-        "says": "pushing either Aldermack fire-door leaf from either room toggles both leaves, which stay where they stop until pushed again",
+        "says": "pushing either of the Aldermack's stage doors from either room toggles both leaves, which stay where they stop until pushed again",
         "channel": 111,
         "engine": null,
         "when": [
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18242, 8256) to (19264, 8256)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19264, 8256) to (19264, 8448)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19264, 8448) to (18242, 8448)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18242, 8448) to (18242, 8256)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18242, 10496) to (19264, 10496)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19264, 10496) to (19264, 10688)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19264, 10688) to (18242, 10688)",
-          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18242, 10688) to (18242, 10496)"
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18496, 8608) to (19296, 8608)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19296, 8608) to (19296, 8672)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19296, 8672) to (18496, 8672)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18496, 8672) to (18496, 8608)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18496, 10272) to (19296, 10272)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19296, 10272) to (19296, 10336)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (19296, 10336) to (18496, 10336)",
+          "push on the face of region:gravesend/theatre_row/aldermack/fire_doors from (18496, 10336) to (18496, 10272)"
         ],
         "then": [
           "region region:gravesend/theatre_row/aldermack/fire_leaf_south",
@@ -1251,9 +1251,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "wall 282",
-          "wall 283",
-          "wall 284"
+          "wall 280",
+          "wall 281",
+          "wall 282"
         ],
         "answers": [
           "sector 34"
@@ -1279,17 +1279,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 540",
-          "sprite 541"
+          "sprite 541",
+          "sprite 542"
         ],
         "answers": [
           "sector 100",
           "sector 101",
           "sector 102",
-          "sector 99",
-          "sprite 542",
+          "sector 103",
           "sprite 543",
-          "sprite 544"
+          "sprite 544",
+          "sprite 545"
         ],
         "faults": []
       },
@@ -1299,16 +1299,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 610"
+          "sprite 611"
         ],
         "answers": [
-          "sector 221",
           "sector 222",
           "sector 223",
           "sector 224",
-          "sprite 611",
+          "sector 225",
           "sprite 612",
-          "sprite 613"
+          "sprite 613",
+          "sprite 614"
         ],
         "faults": []
       },
@@ -1321,9 +1321,9 @@
           "sprite 1"
         ],
         "answers": [
-          "sector 147",
-          "sector 149",
-          "sector 151"
+          "sector 148",
+          "sector 150",
+          "sector 152"
         ],
         "faults": []
       },
@@ -1336,8 +1336,8 @@
           "sprite 0"
         ],
         "answers": [
-          "sector 148",
-          "sector 150"
+          "sector 149",
+          "sector 151"
         ],
         "faults": []
       },
@@ -1347,10 +1347,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 507"
+          "sprite 508"
         ],
         "answers": [
-          "sector 472"
+          "sector 477"
         ],
         "faults": []
       },
@@ -1360,10 +1360,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 500"
+          "sprite 501"
         ],
         "answers": [
-          "sector 498"
+          "sector 503"
         ],
         "faults": []
       },
@@ -1376,10 +1376,10 @@
           "sprite 250"
         ],
         "answers": [
-          "sector 392",
           "sector 393",
           "sector 394",
           "sector 395",
+          "sector 396",
           "sprite 251",
           "sprite 252",
           "sprite 253"
@@ -1392,36 +1392,36 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "wall 982",
-          "wall 983",
-          "wall 984",
-          "wall 990",
-          "wall 991",
-          "wall 992"
+          "wall 978",
+          "wall 979",
+          "wall 980",
+          "wall 986",
+          "wall 987",
+          "wall 988"
         ],
         "answers": [
-          "sector 133"
+          "sector 134"
         ],
         "faults": []
       },
       {
         "name": "theatre:fire-doors",
-        "says": "pushing either Aldermack fire-door leaf from either room toggles both leaves, which stay where they stop until pushed again",
+        "says": "pushing either of the Aldermack's stage doors from either room toggles both leaves, which stay where they stop until pushed again",
         "channel": 111,
         "engine": null,
         "senders": [
-          "wall 302",
-          "wall 303",
-          "wall 304",
-          "wall 305",
-          "wall 306",
-          "wall 307",
-          "wall 308",
-          "wall 309"
+          "wall 294",
+          "wall 295",
+          "wall 296",
+          "wall 297",
+          "wall 298",
+          "wall 299",
+          "wall 300",
+          "wall 301"
         ],
         "answers": [
-          "sector 36",
-          "sector 37"
+          "sector 37",
+          "sector 38"
         ],
         "faults": []
       },
@@ -1436,7 +1436,7 @@
           "sprite 38"
         ],
         "answers": [
-          "sector 594"
+          "sector 599"
         ],
         "faults": []
       },
@@ -1451,7 +1451,7 @@
           "sprite 46"
         ],
         "answers": [
-          "sector 595"
+          "sector 600"
         ],
         "faults": []
       },
@@ -1492,7 +1492,7 @@
           "sprite 30"
         ],
         "answers": [
-          "sector 596",
+          "sector 601",
           "sprite 31"
         ],
         "faults": []
@@ -1529,7 +1529,7 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sector 419"
+          "sector 424"
         ],
         "answers": [
           "sprite 90"
@@ -1542,7 +1542,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 501"
+          "sprite 502"
         ],
         "answers": [],
         "faults": []
@@ -1554,7 +1554,7 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 432"
+          "sector 437"
         ],
         "faults": []
       },
@@ -1564,7 +1564,7 @@
         "channel": 120,
         "engine": null,
         "senders": [
-          "sprite 688"
+          "sprite 689"
         ],
         "answers": [
           "sector 9"
@@ -1577,7 +1577,7 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 689"
+          "sprite 690"
         ],
         "answers": [
           "sector 18"
@@ -1590,7 +1590,7 @@
         "channel": 122,
         "engine": null,
         "senders": [
-          "sprite 690"
+          "sprite 691"
         ],
         "answers": [
           "sector 30"
@@ -1603,7 +1603,7 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 691"
+          "sprite 692"
         ],
         "answers": [
           "sector 32"
@@ -1616,10 +1616,10 @@
         "channel": 124,
         "engine": null,
         "senders": [
-          "sprite 692"
+          "sprite 693"
         ],
         "answers": [
-          "sector 42"
+          "sector 43"
         ],
         "faults": []
       }
@@ -1631,9 +1631,9 @@
   "lighting": {
     "lights": 73,
     "rays_cast": 1283639,
-    "surfaces_lit": 1450,
-    "surfaces_protected": 701,
-    "walls_lit": 1561,
+    "surfaces_lit": 1456,
+    "surfaces_protected": 709,
+    "walls_lit": 1572,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1817,7 +1817,7 @@
   },
   "sewer_mouths": {
     "lined": 90,
-    "too_long": 152,
+    "too_long": 160,
     "no_band": 136,
     "outside": 9,
     "tile": 194,
@@ -1826,164 +1826,164 @@
   "motion_sounds": {
     "9": {
       "region": "region:gravesend/theatre_row/saloon/door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
     "18": {
       "region": "region:gravesend/theatre_row/parlor/door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
     "30": {
       "region": "region:gravesend/theatre_row/aldermack/door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
     "32": {
       "region": "region:gravesend/theatre_row/aldermack/lobby_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
     "34": {
       "region": "region:gravesend/theatre_row/aldermack/stage_curtain",
       "profile": "curtain"
     },
-    "36": {
-      "region": "region:gravesend/theatre_row/aldermack/fire_leaf_south",
-      "profile": "metal_swing"
-    },
     "37": {
+      "region": "region:gravesend/theatre_row/aldermack/fire_leaf_south",
+      "profile": "wood_swing"
+    },
+    "38": {
       "region": "region:gravesend/theatre_row/aldermack/fire_leaf_north",
-      "profile": "metal_swing"
+      "profile": "wood_swing"
     },
-    "42": {
+    "43": {
       "region": "region:gravesend/theatre_row/pawn_shop/pawn_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "97": {
+    "98": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_lift",
       "profile": "stone_door"
     },
-    "99": {
+    "100": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_0",
       "profile": "blast"
     },
-    "100": {
+    "101": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
       "profile": "blast"
     },
-    "101": {
+    "102": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
       "profile": "blast"
     },
-    "102": {
+    "103": {
       "region": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
       "profile": "blast"
     },
-    "108": {
+    "109": {
       "region": "region:gravesend/old_crossing/st_gallows/tower_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "110": {
+    "111": {
       "region": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "133": {
+    "134": {
       "region": "region:gravesend/foundry_ward/works_stair/loading_shutter",
       "profile": "heavy_slide"
     },
-    "142": {
+    "143": {
       "region": "region:gravesend/foundry_ward/pump_station/door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "148": {
+    "149": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_1",
       "profile": "ceiling_press"
     },
-    "150": {
+    "151": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_3",
       "profile": "ceiling_press"
     },
-    "166": {
-      "region": "region:gravesend/foundry_ward/canteen/freezer_door",
-      "profile": "stone_door"
-    },
     "167": {
+      "region": "region:gravesend/foundry_ward/canteen/freezer_door",
+      "profile": "iron_z_door"
+    },
+    "168": {
       "region": "region:gravesend/foundry_ward/canteen/door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "217": {
+    "218": {
       "region": "region:gravesend/market_slip/gravesend_arcade/entry_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "219": {
+    "220": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_door",
-      "profile": "stone_door"
+      "profile": "wood_z_door"
     },
-    "221": {
+    "222": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_0",
       "profile": "blast"
     },
-    "222": {
+    "223": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
       "profile": "blast"
     },
-    "223": {
+    "224": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
       "profile": "blast"
     },
-    "224": {
+    "225": {
       "region": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
       "profile": "blast"
     },
-    "293": {
-      "region": "region:gravesend/market_slip/market_hall/door",
-      "profile": "stone_door"
-    },
     "294": {
-      "region": "region:gravesend/market_slip/market_hall/staff_door",
-      "profile": "stone_door"
+      "region": "region:gravesend/market_slip/market_hall/door",
+      "profile": "wood_z_door"
     },
-    "392": {
+    "295": {
+      "region": "region:gravesend/market_slip/market_hall/staff_door",
+      "profile": "wood_z_door"
+    },
+    "393": {
       "region": "region:gravesend/sewer/secrets/plague_seal_0",
       "profile": "blast"
     },
-    "393": {
+    "394": {
       "region": "region:gravesend/sewer/secrets/plague_seal_1",
       "profile": "blast"
     },
-    "394": {
+    "395": {
       "region": "region:gravesend/sewer/secrets/plague_seal_2",
       "profile": "blast"
     },
-    "395": {
+    "396": {
       "region": "region:gravesend/sewer/secrets/plague_seal_3",
       "profile": "blast"
     },
-    "432": {
+    "437": {
       "region": "region:gravesend/gravesend_station/fare_turnstile",
       "profile": "fare_ambient"
     },
-    "472": {
+    "477": {
       "region": "region:gravesend/gravesend_station/carriage_door",
       "profile": "metal_z_door"
     },
-    "498": {
+    "503": {
       "region": "region:gravesend/gravesend_station/tunnel_gate",
       "profile": "chain_lift"
     },
-    "594": {
+    "599": {
       "region": "region:gravesend/sewer/settling_hall/service_lift",
       "profile": "winch_lift"
     },
-    "595": {
+    "600": {
       "region": "region:gravesend/sewer/sampling/trolley_track_deck",
       "profile": "rail_shuttle"
     },
-    "596": {
+    "601": {
       "region": "region:gravesend/sewer/ghost_station/hatch:panel",
       "profile": "hydraulic_slide"
     }
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1230,
+    "sprites": 1233,
     "wall_sprites": 570,
     "planes": 138,
     "clashing_pairs": 4,
@@ -2035,7 +2035,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 98,
+    "sentences": 102,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -2254,52 +2254,6 @@
       {
         "name": "region:gravesend/theatre_row/aldermack/fire_leaf_south",
         "construct": "unmarked_mover",
-        "sector": 36,
-        "sectors": [
-          36
-        ],
-        "sector_type": 617,
-        "motion_set": [
-          35,
-          36
-        ],
-        "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
-        "declared_members": [
-          35,
-          36
-        ],
-        "wiring": {
-          "rx_id": 111,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "closure": {
-          "loops": 2,
-          "problems": [],
-          "notes": [],
-          "graze_tolerance": 16.0,
-          "grazing_loops": []
-        },
-        "state_pair": {
-          "sector": 36,
-          "type": 617,
-          "measured": [
-            "turn"
-          ],
-          "headroom_change": 0,
-          "area_off": 196224.0,
-          "area_on": 196224.0,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": 512,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/theatre_row/aldermack/fire_leaf_north",
-        "construct": "unmarked_mover",
         "sector": 37,
         "sectors": [
           37
@@ -2334,8 +2288,54 @@
             "turn"
           ],
           "headroom_change": 0,
-          "area_off": 196224.0,
-          "area_on": 196224.0,
+          "area_off": 51200.0,
+          "area_on": 51200.0,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": 512,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/theatre_row/aldermack/fire_leaf_north",
+        "construct": "unmarked_mover",
+        "sector": 38,
+        "sectors": [
+          38
+        ],
+        "sector_type": 617,
+        "motion_set": [
+          35,
+          38
+        ],
+        "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
+        "declared_members": [
+          35,
+          38
+        ],
+        "wiring": {
+          "rx_id": 111,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "closure": {
+          "loops": 2,
+          "problems": [],
+          "notes": [],
+          "graze_tolerance": 16.0,
+          "grazing_loops": []
+        },
+        "state_pair": {
+          "sector": 38,
+          "type": 617,
+          "measured": [
+            "turn"
+          ],
+          "headroom_change": 0,
+          "area_off": 51200.0,
+          "area_on": 51200.0,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": -512,
@@ -2346,9 +2346,9 @@
       {
         "name": "region:gravesend/theatre_row/pawn_shop/pawn_door",
         "construct": "z_motion_door",
-        "sector": 42,
+        "sector": 43,
         "sectors": [
-          42
+          43
         ],
         "sector_type": 600,
         "wiring": {
@@ -2358,7 +2358,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 42,
+          "sector": 43,
           "type": 600,
           "measured": [
             "headroom"
@@ -2374,15 +2374,6 @@
       {
         "name": "region:gravesend/old_crossing/streets/lightpool_lychgate",
         "construct": "sector",
-        "sector": 60,
-        "sectors": [
-          60
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/old_crossing/streets/lightpool_well_square",
-        "construct": "sector",
         "sector": 61,
         "sectors": [
           61
@@ -2390,15 +2381,24 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/old_crossing/streets/lightpool_well_square",
+        "construct": "sector",
+        "sector": 62,
+        "sectors": [
+          62
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_lift",
         "construct": "z_motion_door",
-        "sector": 97,
+        "sector": 98,
         "sectors": [
-          97
+          98
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 97,
+          "sector": 98,
           "type": 600,
           "measured": [
             "headroom"
@@ -2413,34 +2413,6 @@
       },
       {
         "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_0",
-        "construct": "z_motion_door",
-        "sector": 99,
-        "sectors": [
-          99
-        ],
-        "sector_type": 600,
-        "wiring": {
-          "rx_id": 103,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "state_pair": {
-          "sector": 99,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 13102,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
         "construct": "z_motion_door",
         "sector": 100,
         "sectors": [
@@ -2459,7 +2431,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 26337,
+          "headroom_change": 13102,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -2468,7 +2440,7 @@
         }
       },
       {
-        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
+        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_1",
         "construct": "z_motion_door",
         "sector": 101,
         "sectors": [
@@ -2487,7 +2459,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 28512,
+          "headroom_change": 26337,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -2496,7 +2468,7 @@
         }
       },
       {
-        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
+        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_2",
         "construct": "z_motion_door",
         "sector": 102,
         "sectors": [
@@ -2515,6 +2487,34 @@
           "measured": [
             "headroom"
           ],
+          "headroom_change": 28512,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/old_crossing/st_gallows/crypt_breach_3",
+        "construct": "z_motion_door",
+        "sector": 103,
+        "sectors": [
+          103
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 103,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 103,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
           "headroom_change": 16679,
           "area_change": 0.0,
           "declared_travel": 0.0,
@@ -2526,13 +2526,13 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/tower_door",
         "construct": "z_motion_door",
-        "sector": 108,
+        "sector": 109,
         "sectors": [
-          108
+          109
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 108,
+          "sector": 109,
           "type": 600,
           "measured": [
             "headroom"
@@ -2548,13 +2548,13 @@
       {
         "name": "region:gravesend/old_crossing/st_gallows/tower_inner_door",
         "construct": "z_motion_door",
-        "sector": 110,
+        "sector": 111,
         "sectors": [
-          110
+          111
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 110,
+          "sector": 111,
           "type": 600,
           "measured": [
             "headroom"
@@ -2570,15 +2570,6 @@
       {
         "name": "region:gravesend/foundry_ward/streets/lightpool_yard_stair",
         "construct": "sector",
-        "sector": 125,
-        "sectors": [
-          125
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/foundry_ward/streets/lightpool_yard_gate",
-        "construct": "sector",
         "sector": 126,
         "sectors": [
           126
@@ -2586,7 +2577,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/foundry_ward/streets/lightpool_spur_junction",
+        "name": "region:gravesend/foundry_ward/streets/lightpool_yard_gate",
         "construct": "sector",
         "sector": 127,
         "sectors": [
@@ -2595,19 +2586,28 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/foundry_ward/streets/lightpool_spur_junction",
+        "construct": "sector",
+        "sector": 128,
+        "sectors": [
+          128
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/foundry_ward/works_stair/loading_shutter",
         "construct": "marked_slide",
-        "sector": 133,
+        "sector": 134,
         "sectors": [
-          133
+          134
         ],
         "sector_type": 614,
         "motion_set": [
-          133
+          134
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          133
+          134
         ],
         "wiring": {
           "rx_id": 110,
@@ -2623,7 +2623,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 133,
+          "sector": 134,
           "type": 614,
           "measured": [
             "area",
@@ -2642,13 +2642,13 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/door",
         "construct": "z_motion_door",
-        "sector": 142,
+        "sector": 143,
         "sectors": [
-          142
+          143
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 142,
+          "sector": 143,
           "type": 600,
           "measured": [
             "headroom"
@@ -2664,9 +2664,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_0",
         "construct": "sector",
-        "sector": 147,
+        "sector": 148,
         "sectors": [
-          147
+          148
         ],
         "sector_type": 0,
         "wiring": {
@@ -2679,9 +2679,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_1",
         "construct": "z_motion_door",
-        "sector": 148,
+        "sector": 149,
         "sectors": [
-          148
+          149
         ],
         "sector_type": 600,
         "wiring": {
@@ -2691,7 +2691,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 148,
+          "sector": 149,
           "type": 600,
           "measured": [
             "headroom"
@@ -2707,9 +2707,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_2",
         "construct": "sector",
-        "sector": 149,
+        "sector": 150,
         "sectors": [
-          149
+          150
         ],
         "sector_type": 0,
         "wiring": {
@@ -2722,9 +2722,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_3",
         "construct": "z_motion_door",
-        "sector": 150,
+        "sector": 151,
         "sectors": [
-          150
+          151
         ],
         "sector_type": 600,
         "wiring": {
@@ -2734,7 +2734,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 150,
+          "sector": 151,
           "type": 600,
           "measured": [
             "headroom"
@@ -2750,9 +2750,9 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/belt_4",
         "construct": "sector",
-        "sector": 151,
+        "sector": 152,
         "sectors": [
-          151
+          152
         ],
         "sector_type": 0,
         "wiring": {
@@ -2765,36 +2765,14 @@
       {
         "name": "region:gravesend/foundry_ward/pump_station/tank_0",
         "construct": "sector",
-        "sector": 153,
+        "sector": 154,
         "sectors": [
-          153
+          154
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/foundry_ward/canteen/freezer_door",
-        "construct": "z_motion_door",
-        "sector": 166,
-        "sectors": [
-          166
-        ],
-        "sector_type": 600,
-        "state_pair": {
-          "sector": 166,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 32768,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/foundry_ward/canteen/door",
         "construct": "z_motion_door",
         "sector": 167,
         "sectors": [
@@ -2816,25 +2794,38 @@
         }
       },
       {
+        "name": "region:gravesend/foundry_ward/canteen/door",
+        "construct": "z_motion_door",
+        "sector": 168,
+        "sectors": [
+          168
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 168,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 32768,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
         "name": "region:gravesend/foundry_ward/canteen/hatch",
         "construct": "sector",
-        "sector": 169,
+        "sector": 170,
         "sectors": [
-          169
+          170
         ],
         "sector_type": 618
       },
       {
         "name": "region:gravesend/market_slip/streets/lightpool_plaza_east",
-        "construct": "sector",
-        "sector": 184,
-        "sectors": [
-          184
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
         "construct": "sector",
         "sector": 185,
         "sectors": [
@@ -2843,15 +2834,24 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/market_slip/streets/lightpool_quay_gate",
+        "construct": "sector",
+        "sector": 186,
+        "sectors": [
+          186
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/market_slip/gravesend_arcade/entry_door",
         "construct": "z_motion_door",
-        "sector": 217,
+        "sector": 218,
         "sectors": [
-          217
+          218
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 217,
+          "sector": 218,
           "type": 600,
           "measured": [
             "headroom"
@@ -2867,13 +2867,13 @@
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_door",
         "construct": "z_motion_door",
-        "sector": 219,
+        "sector": 220,
         "sectors": [
-          219
+          220
         ],
         "sector_type": 600,
         "state_pair": {
-          "sector": 219,
+          "sector": 220,
           "type": 600,
           "measured": [
             "headroom"
@@ -2888,34 +2888,6 @@
       },
       {
         "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_0",
-        "construct": "z_motion_door",
-        "sector": 221,
-        "sectors": [
-          221
-        ],
-        "sector_type": 600,
-        "wiring": {
-          "rx_id": 104,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
-        "state_pair": {
-          "sector": 221,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 11890,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
         "construct": "z_motion_door",
         "sector": 222,
         "sectors": [
@@ -2934,7 +2906,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 19135,
+          "headroom_change": 11890,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -2943,7 +2915,7 @@
         }
       },
       {
-        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
+        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_1",
         "construct": "z_motion_door",
         "sector": 223,
         "sectors": [
@@ -2962,7 +2934,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 19300,
+          "headroom_change": 19135,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -2971,7 +2943,7 @@
         }
       },
       {
-        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
+        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_2",
         "construct": "z_motion_door",
         "sector": 224,
         "sectors": [
@@ -2990,6 +2962,34 @@
           "measured": [
             "headroom"
           ],
+          "headroom_change": 19300,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/market_slip/gravesend_arcade/service_seal_3",
+        "construct": "z_motion_door",
+        "sector": 225,
+        "sectors": [
+          225
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 104,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 225,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
           "headroom_change": 10043,
           "area_change": 0.0,
           "declared_travel": 0.0,
@@ -3001,23 +3001,14 @@
       {
         "name": "region:gravesend/market_slip/plaza/monument/pool",
         "construct": "sector",
-        "sector": 227,
+        "sector": 228,
         "sectors": [
-          227
+          228
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/quay/river",
-        "construct": "sector",
-        "sector": 236,
-        "sectors": [
-          236
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/market_slip/quay/sea_1",
         "construct": "sector",
         "sector": 237,
         "sectors": [
@@ -3026,38 +3017,25 @@
         "sector_type": 0
       },
       {
+        "name": "region:gravesend/market_slip/quay/sea_1",
+        "construct": "sector",
+        "sector": 238,
+        "sectors": [
+          238
+        ],
+        "sector_type": 0
+      },
+      {
         "name": "region:gravesend/market_slip/quay/sea_2",
         "construct": "sector",
-        "sector": 240,
+        "sector": 241,
         "sectors": [
-          240
+          241
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/market_slip/market_hall/door",
-        "construct": "z_motion_door",
-        "sector": 293,
-        "sectors": [
-          293
-        ],
-        "sector_type": 600,
-        "state_pair": {
-          "sector": 293,
-          "type": 600,
-          "measured": [
-            "headroom"
-          ],
-          "headroom_change": 32768,
-          "area_change": 0.0,
-          "declared_travel": 0.0,
-          "turn": null,
-          "whole_circles": false,
-          "changes": true
-        }
-      },
-      {
-        "name": "region:gravesend/market_slip/market_hall/staff_door",
         "construct": "z_motion_door",
         "sector": 294,
         "sectors": [
@@ -3079,359 +3057,20 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/trunk/junction",
-        "construct": "sector",
-        "sector": 306,
-        "sectors": [
-          306
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/trunk/main_duct",
-        "construct": "sector",
-        "sector": 308,
-        "sectors": [
-          308
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
-        "construct": "sector",
-        "sector": 312,
-        "sectors": [
-          312
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/west_manhole_mouth_below",
-        "construct": "sector",
-        "sector": 313,
-        "sectors": [
-          313
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/se_manhole_mouth_below",
-        "construct": "sector",
-        "sector": 314,
-        "sectors": [
-          314
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/memorial_manhole_mouth_below",
-        "construct": "sector",
-        "sector": 315,
-        "sectors": [
-          315
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/mouths/stockyard_manhole_mouth_below",
-        "construct": "sector",
-        "sector": 316,
-        "sectors": [
-          316
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/nw_corner",
-        "construct": "sector",
-        "sector": 317,
-        "sectors": [
-          317
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/ne_corner",
-        "construct": "sector",
-        "sector": 318,
-        "sectors": [
-          318
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/se_corner",
-        "construct": "sector",
-        "sector": 319,
-        "sectors": [
-          319
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/sw_corner",
-        "construct": "sector",
-        "sector": 320,
-        "sectors": [
-          320
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/n_channel",
-        "construct": "sector",
-        "sector": 321,
-        "sectors": [
-          321
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/e_leg",
-        "construct": "sector",
-        "sector": 324,
-        "sectors": [
-          324
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/s_channel",
-        "construct": "sector",
-        "sector": 327,
-        "sectors": [
-          327
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/s_walk_ford",
-        "construct": "sector",
-        "sector": 330,
-        "sectors": [
-          330
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/w_leg",
-        "construct": "sector",
-        "sector": 332,
-        "sectors": [
-          332
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/w_leg_walk_w_ford",
-        "construct": "sector",
-        "sector": 334,
-        "sectors": [
-          334
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/outfall",
-        "construct": "sector",
-        "sector": 337,
-        "sectors": [
-          337
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/gallery",
-        "construct": "sector",
-        "sector": 340,
-        "sectors": [
-          340
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/gallery_walk_a_ford",
-        "construct": "sector",
-        "sector": 342,
-        "sectors": [
-          342
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/graves_brook",
-        "construct": "sector",
-        "sector": 345,
-        "sectors": [
-          345
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/se_drain",
-        "construct": "sector",
-        "sector": 348,
-        "sectors": [
-          348
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/se_drain_walk_b_ford",
-        "construct": "sector",
-        "sector": 351,
-        "sectors": [
-          351
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/se_spur",
-        "construct": "sector",
-        "sector": 352,
-        "sectors": [
-          352
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/stockyard_drain",
-        "construct": "sector",
-        "sector": 355,
-        "sectors": [
-          355
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/ring/brook_feeder",
-        "construct": "sector",
-        "sector": 358,
-        "sectors": [
-          358
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/pump_room",
-        "construct": "sector",
-        "sector": 360,
-        "sectors": [
-          360
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/silt_trap",
-        "construct": "sector",
-        "sector": 361,
-        "sectors": [
-          361
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/east_annex",
-        "construct": "sector",
-        "sector": 362,
-        "sectors": [
-          362
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/flooded",
-        "construct": "sector",
-        "sector": 363,
-        "sectors": [
-          363
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/chambers/station_foot",
-        "construct": "sector",
-        "sector": 364,
-        "sectors": [
-          364
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/settling_hall/tank_1",
-        "construct": "sector",
-        "sector": 380,
-        "sectors": [
-          380
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/settling_hall/tank_2",
-        "construct": "sector",
-        "sector": 382,
-        "sectors": [
-          382
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/settling_hall/tank_3",
-        "construct": "sector",
-        "sector": 384,
-        "sectors": [
-          384
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/settling_hall/outfall_mouth",
-        "construct": "sector",
-        "sector": 386,
-        "sectors": [
-          386
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/molly_nest",
-        "construct": "sector",
-        "sector": 390,
-        "sectors": [
-          390
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/plague_pit",
-        "construct": "sector",
-        "sector": 391,
-        "sectors": [
-          391
-        ],
-        "sector_type": 0
-      },
-      {
-        "name": "region:gravesend/sewer/secrets/plague_seal_0",
+        "name": "region:gravesend/market_slip/market_hall/staff_door",
         "construct": "z_motion_door",
-        "sector": 392,
+        "sector": 295,
         "sectors": [
-          392
+          295
         ],
         "sector_type": 600,
-        "wiring": {
-          "rx_id": 109,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
         "state_pair": {
-          "sector": 392,
+          "sector": 295,
           "type": 600,
           "measured": [
             "headroom"
           ],
-          "headroom_change": 11311,
+          "headroom_change": 32768,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3440,7 +3079,340 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_1",
+        "name": "region:gravesend/sewer/trunk/junction",
+        "construct": "sector",
+        "sector": 307,
+        "sectors": [
+          307
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/trunk/main_duct",
+        "construct": "sector",
+        "sector": 309,
+        "sectors": [
+          309
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/yard_grate_mouth_below",
+        "construct": "sector",
+        "sector": 313,
+        "sectors": [
+          313
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/west_manhole_mouth_below",
+        "construct": "sector",
+        "sector": 314,
+        "sectors": [
+          314
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/se_manhole_mouth_below",
+        "construct": "sector",
+        "sector": 315,
+        "sectors": [
+          315
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/memorial_manhole_mouth_below",
+        "construct": "sector",
+        "sector": 316,
+        "sectors": [
+          316
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/mouths/stockyard_manhole_mouth_below",
+        "construct": "sector",
+        "sector": 317,
+        "sectors": [
+          317
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/nw_corner",
+        "construct": "sector",
+        "sector": 318,
+        "sectors": [
+          318
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/ne_corner",
+        "construct": "sector",
+        "sector": 319,
+        "sectors": [
+          319
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/se_corner",
+        "construct": "sector",
+        "sector": 320,
+        "sectors": [
+          320
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/sw_corner",
+        "construct": "sector",
+        "sector": 321,
+        "sectors": [
+          321
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/n_channel",
+        "construct": "sector",
+        "sector": 322,
+        "sectors": [
+          322
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/e_leg",
+        "construct": "sector",
+        "sector": 325,
+        "sectors": [
+          325
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/s_channel",
+        "construct": "sector",
+        "sector": 328,
+        "sectors": [
+          328
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/s_walk_ford",
+        "construct": "sector",
+        "sector": 331,
+        "sectors": [
+          331
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/w_leg",
+        "construct": "sector",
+        "sector": 333,
+        "sectors": [
+          333
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/w_leg_walk_w_ford",
+        "construct": "sector",
+        "sector": 335,
+        "sectors": [
+          335
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/outfall",
+        "construct": "sector",
+        "sector": 338,
+        "sectors": [
+          338
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/gallery",
+        "construct": "sector",
+        "sector": 341,
+        "sectors": [
+          341
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/gallery_walk_a_ford",
+        "construct": "sector",
+        "sector": 343,
+        "sectors": [
+          343
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/graves_brook",
+        "construct": "sector",
+        "sector": 346,
+        "sectors": [
+          346
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/se_drain",
+        "construct": "sector",
+        "sector": 349,
+        "sectors": [
+          349
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/se_drain_walk_b_ford",
+        "construct": "sector",
+        "sector": 352,
+        "sectors": [
+          352
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/se_spur",
+        "construct": "sector",
+        "sector": 353,
+        "sectors": [
+          353
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/stockyard_drain",
+        "construct": "sector",
+        "sector": 356,
+        "sectors": [
+          356
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ring/brook_feeder",
+        "construct": "sector",
+        "sector": 359,
+        "sectors": [
+          359
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/pump_room",
+        "construct": "sector",
+        "sector": 361,
+        "sectors": [
+          361
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/silt_trap",
+        "construct": "sector",
+        "sector": 362,
+        "sectors": [
+          362
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/east_annex",
+        "construct": "sector",
+        "sector": 363,
+        "sectors": [
+          363
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/flooded",
+        "construct": "sector",
+        "sector": 364,
+        "sectors": [
+          364
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/chambers/station_foot",
+        "construct": "sector",
+        "sector": 365,
+        "sectors": [
+          365
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/settling_hall/tank_1",
+        "construct": "sector",
+        "sector": 381,
+        "sectors": [
+          381
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/settling_hall/tank_2",
+        "construct": "sector",
+        "sector": 383,
+        "sectors": [
+          383
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/settling_hall/tank_3",
+        "construct": "sector",
+        "sector": 385,
+        "sectors": [
+          385
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/settling_hall/outfall_mouth",
+        "construct": "sector",
+        "sector": 387,
+        "sectors": [
+          387
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/molly_nest",
+        "construct": "sector",
+        "sector": 391,
+        "sectors": [
+          391
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_pit",
+        "construct": "sector",
+        "sector": 392,
+        "sectors": [
+          392
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_seal_0",
         "construct": "z_motion_door",
         "sector": 393,
         "sectors": [
@@ -3459,7 +3431,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 18683,
+          "headroom_change": 11311,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3468,7 +3440,7 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_2",
+        "name": "region:gravesend/sewer/secrets/plague_seal_1",
         "construct": "z_motion_door",
         "sector": 394,
         "sectors": [
@@ -3487,7 +3459,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 18607,
+          "headroom_change": 18683,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -3496,7 +3468,7 @@
         }
       },
       {
-        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "name": "region:gravesend/sewer/secrets/plague_seal_2",
         "construct": "z_motion_door",
         "sector": 395,
         "sectors": [
@@ -3515,6 +3487,34 @@
           "measured": [
             "headroom"
           ],
+          "headroom_change": 18607,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/secrets/plague_seal_3",
+        "construct": "z_motion_door",
+        "sector": 396,
+        "sectors": [
+          396
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 109,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 396,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
           "headroom_change": 11579,
           "area_change": 0.0,
           "declared_travel": 0.0,
@@ -3526,27 +3526,63 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_inlet",
         "construct": "sector",
-        "sector": 408,
+        "sector": 409,
         "sectors": [
-          408
+          409
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/sampling/trolley_tail",
         "construct": "sector",
-        "sector": 410,
+        "sector": 411,
         "sectors": [
-          410
+          411
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_culvert_north_mouth",
+        "construct": "sector",
+        "sector": 416,
+        "sectors": [
+          416
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_culvert_north",
+        "construct": "sector",
+        "sector": 417,
+        "sectors": [
+          417
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_culvert_south_mouth",
+        "construct": "sector",
+        "sector": 418,
+        "sectors": [
+          418
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/sampling/trolley_culvert_south",
+        "construct": "sector",
+        "sector": 419,
+        "sectors": [
+          419
         ],
         "sector_type": 0
       },
       {
         "name": "region:gravesend/sewer/ghost_station/blind_tunnel",
         "construct": "sector",
-        "sector": 419,
+        "sector": 424,
         "sectors": [
-          419
+          424
         ],
         "sector_type": 0,
         "wiring": {
@@ -3559,9 +3595,9 @@
       {
         "name": "region:gravesend/gravesend_station/fare_turnstile",
         "construct": "turnstile",
-        "sector": 432,
+        "sector": 437,
         "sectors": [
-          432
+          437
         ],
         "sector_type": 615,
         "wiring": {
@@ -3578,7 +3614,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 432",
+          "construct": "turnstile sector 437",
           "measured": {
             "blades": 4,
             "axis": [
@@ -3606,7 +3642,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 432,
+          "sector": 437,
           "type": 615,
           "measured": [
             "turn"
@@ -3624,9 +3660,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 472,
+        "sector": 477,
         "sectors": [
-          472
+          477
         ],
         "sector_type": 600,
         "wiring": {
@@ -3636,7 +3672,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 472,
+          "sector": 477,
           "type": 600,
           "measured": [
             "headroom"
@@ -3652,9 +3688,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 498,
+        "sector": 503,
         "sectors": [
-          498
+          503
         ],
         "sector_type": 600,
         "wiring": {
@@ -3664,7 +3700,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 498,
+          "sector": 503,
           "type": 600,
           "measured": [
             "headroom"
@@ -3680,9 +3716,9 @@
       {
         "name": "region:gravesend/sewer/settling_hall/service_lift",
         "construct": "z_motion_door",
-        "sector": 594,
+        "sector": 599,
         "sectors": [
-          594
+          599
         ],
         "sector_type": 600,
         "wiring": {
@@ -3692,7 +3728,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 594,
+          "sector": 599,
           "type": 600,
           "measured": [
             "headroom"
@@ -3708,19 +3744,19 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_track_deck",
         "construct": "unmarked_mover",
-        "sector": 595,
+        "sector": 600,
         "sectors": [
-          595
+          600
         ],
         "sector_type": 616,
         "motion_set": [
-          409,
-          595
+          410,
+          600
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          409,
-          595
+          410,
+          600
         ],
         "wiring": {
           "rx_id": 113,
@@ -3736,7 +3772,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 595,
+          "sector": 600,
           "type": 616,
           "measured": [
             "travel"
@@ -3754,19 +3790,19 @@
       {
         "name": "region:gravesend/sewer/ghost_station/hatch:panel",
         "construct": "unmarked_mover",
-        "sector": 596,
+        "sector": 601,
         "sectors": [
-          596
+          601
         ],
         "sector_type": 616,
         "motion_set": [
-          415,
-          596
+          420,
+          601
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
-          415,
-          596
+          420,
+          601
         ],
         "wiring": {
           "rx_id": 116,
@@ -3782,7 +3818,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 596,
+          "sector": 601,
           "type": 616,
           "measured": [
             "travel"
@@ -3800,9 +3836,9 @@
     ]
   },
   "rules": {
-    "total": 1262,
+    "total": 1303,
     "by_severity": {
-      "note": 1257,
+      "note": 1298,
       "warning": 5
     },
     "by_code": {
@@ -3810,24 +3846,24 @@
       "note:sprite-drawn-square": 166,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 112,
+      "note:opening-clears-a-standing-body": 136,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 2,
-      "note:wall-draws-its-own-tile": 947,
+      "note:wall-draws-its-own-tile": 964,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2191",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 281 and 183"
+        "at": "wall 2187",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 282 and 184"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2236",
-        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 288 and 183"
+        "at": "wall 2232",
+        "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 289 and 184"
       },
       {
         "severity": "warning",
@@ -3839,13 +3875,13 @@
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[93]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (715, 721, 722, 733, 802, 803) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (711, 717, 718, 729, 798, 799) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       },
       {
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[203]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 3 wall(s) (246, 251, 265) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 3 wall(s) (244, 249, 263) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       }
     ]
   },
@@ -3858,8 +3894,8 @@
     ],
     "as_readback_differences": [
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[68]: authored on 5 wall(s) (121, 124, 131, 167, 169) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (715, 721, 722, 733, 802, 803) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (246, 251, 265) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (711, 717, 718, 729, 798, 799) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[203]: authored on 3 wall(s) (244, 249, 263) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
@@ -3876,14 +3912,14 @@
     "overlaps": [
       {
         "sprites": [
-          654,
-          655
+          655,
+          656
         ],
         "tiles": [
           73,
           73
         ],
-        "sector": 41
+        "sector": 42
       }
     ],
     "flat_overlaps": [],
@@ -4719,10 +4755,11 @@
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
         "layers": [
           "trim",
+          "flat_art",
           "motion",
           "machines"
         ],
-        "layer_count": 3,
+        "layer_count": 4,
         "campaign_p25": 2,
         "campaign_p50": 5,
         "missing": [
@@ -4763,27 +4800,28 @@
           "wall_art",
           "flat_art",
           "levels",
+          "masked",
+          "light",
           "motion",
           "machines"
         ],
-        "layer_count": 6,
+        "layer_count": 8,
         "campaign_p25": 2,
         "campaign_p50": 5,
         "missing": [
-          "trim",
-          "light"
+          "trim"
         ],
         "wall_tiles": [
           [
             296,
-            0.851
+            0.853
           ],
           [
             499,
-            0.149
+            0.147
           ]
         ],
-        "shade_spread": 8,
+        "shade_spread": 22,
         "metres": [
           9.1,
           25.4,
@@ -5016,31 +5054,35 @@
         "exemplar": "SCHOOL_ s154/s244, FORDTHEA s252 (height); the framed proscenium and raked seats NOT yet built",
         "layers": [
           "second",
+          "trim",
           "wall_art",
           "standing",
           "levels",
           "masked",
-          "light",
-          "motion"
+          "motion",
+          "machines"
         ],
-        "layer_count": 7,
+        "layer_count": 8,
         "campaign_p25": 4,
         "campaign_p50": 6,
         "missing": [
-          "trim",
-          "machines"
+          "light"
         ],
         "wall_tiles": [
           [
             119,
-            0.606
+            0.624
           ],
           [
             379,
-            0.385
+            0.321
+          ],
+          [
+            30,
+            0.042
           ]
         ],
-        "shade_spread": 20,
+        "shade_spread": 7,
         "metres": [
           18.3,
           27.1,
@@ -5245,19 +5287,23 @@
     "engine_channels_wired": []
   },
   "overlays": {
-    "sectors": 0,
-    "pieces": 0,
-    "slivers_merged": 0,
+    "sectors": 1,
+    "pieces": 2,
+    "slivers_merged": 1,
     "slivers_dropped": 0,
-    "walls_split": 0,
-    "seams": 0,
+    "walls_split": 12,
+    "seams": 2,
     "refused": {},
-    "whole": 6
+    "whole": 7
   },
   "light_stage": {
-    "sectors_before": 633,
-    "walls_before": 4058,
-    "sprites_before": 1230,
+    "sectors_before": 639,
+    "walls_before": 4084,
+    "sprites_before": 1233,
+    "mover_hosts": [
+      35,
+      420
+    ],
     "shadow_cut": {
       "sectors": 21,
       "pieces": 98,
@@ -5522,7 +5568,7 @@
         "ceiling 676": 6
       },
       "region:gravesend/theatre_row/aldermack/backstage": {
-        "ceiling 676": 1
+        "ceiling 676": 2
       },
       "region:gravesend/theatre_row/aldermack/dressing": {},
       "region:gravesend/theatre_row/aldermack/foyer": {
@@ -5556,15 +5602,15 @@
     },
     "floor_cut": {
       "sectors": 55,
-      "pieces": 298,
-      "slivers_merged": 14,
+      "pieces": 296,
+      "slivers_merged": 15,
       "slivers_dropped": 22,
-      "walls_split": 766,
-      "seams": 3134,
+      "walls_split": 780,
+      "seams": 3112,
       "refused": {},
       "left_whole": {
-        "324": "a wall of the cut had no twin",
-        "327": "a seam of sector 327 from (51008, 33519) to (52132, 33347) has no twin"
+        "325": "a wall of the cut had no twin",
+        "328": "a seam of sector 328 from (51008, 33519) to (52132, 33347) has no twin"
       },
       "looked_at": 58
     },
@@ -5573,12 +5619,12 @@
       "pieces": 100,
       "slivers_merged": 3,
       "slivers_dropped": 0,
-      "walls_split": 365,
+      "walls_split": 367,
       "seams": 168,
       "refused": {
-        "329": "a slope not cut across it",
-        "335": "a slope not cut across it",
-        "347": "a slope not cut across it"
+        "330": "a slope not cut across it",
+        "336": "a slope not cut across it",
+        "348": "a slope not cut across it"
       },
       "left_whole": {},
       "looked_at": 26
@@ -5588,24 +5634,25 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1750,
+      "walls_split": 1744,
       "seams": 0,
       "refused": {},
-      "walls_cut": 460,
+      "walls_cut": 458,
       "walls_refused": 12,
       "left_whole": {},
-      "looked_at": 1456
+      "looked_at": 1450
     },
     "shades": {
-      "surfaces": 5340,
+      "surfaces": 5342,
       "windows": 18,
-      "spread_12": 80
+      "spread_12": 80,
+      "movers_evened": 3
     },
     "kept": 38,
-    "sectors": 1064,
-    "walls": 10426,
-    "sprites": 1308,
-    "pieces": 431,
+    "sectors": 1068,
+    "walls": 10433,
+    "sprites": 1312,
+    "pieces": 429,
     "default_rooms": []
   },
   "sunlight": {

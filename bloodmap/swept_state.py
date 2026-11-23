@@ -82,6 +82,52 @@ class SweptFinding:
         return not self.problems
 
 
+def hosts(disk: Any) -> dict[int, set[int]]:
+    """The sectors each moving sector's dragged walls border: {host: {movers}}.
+
+    A mover sweeps through these. Cutting one along the sweep would put a
+    wall in the way of a moving one, so a pass that splits sectors leaves
+    them whole (`light_stage`).
+    """
+    from .motion import moved_points
+    from .sector_geom import sector_walls
+
+    out: dict[int, set[int]] = {}
+    for mover in moving_sectors(disk):
+        moved = set(moved_points(disk, mover))
+        for wall in sector_walls(disk, mover):
+            f = disk.walls[wall].fields
+            end = disk.walls[int(f["point2"])].fields
+            other = int(f["next_sector"])
+            if other >= 0 and {(int(f["x"]), int(f["y"])), (int(end["x"]), int(end["y"]))} & moved:
+                out.setdefault(other, set()).add(mover)
+    return out
+
+
+def escape(disk: Any, sector_id: int, frames: Any) -> str | None:
+    """Why an island's sweep leaves the one sector it stands in, or None.
+
+    The rule of the engine (the owner, 2026-11-23): "moving or rotating
+    sector can never leave it's parent sector". It is asked of a mover whose
+    every wall borders the same sector; one set between several rooms moves
+    its boundary with them, and the closure check answers for that.
+    """
+    from shapely.geometry import Polygon
+
+    from .sector_geom import outline_and_holes, sector_walls
+
+    around = {int(disk.walls[w].fields["next_sector"]) for w in sector_walls(disk, sector_id)}
+    if len(around) != 1 or -1 in around:
+        return None
+    host = around.pop()
+    room = Polygon(outline_and_holes(disk, host)[0]).buffer(1)
+    for step, frame in enumerate(frames):
+        left = Polygon(frame).buffer(0).difference(room).area
+        if left > 1:
+            return f"step {step}: it leaves sector {host}, the one it stands in, by {left:.0f} square units"
+    return None
+
+
 def moving_sectors(disk: Any) -> list[int]:
     return [index for index, sector in enumerate(disk.sectors)
             if int(sector.fields["type"]) in MOVING_TYPES
@@ -109,7 +155,10 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"way, so it is inside out from here on")
             break
     for index, value in enumerate(signed):
-        if abs(value) >= MIN_AREA:
+        # Collapse is losing area. A leaf turned or slid whole keeps its own,
+        # however thin it is drawn: the campaign hangs its wooden doors 64
+        # thick and 1,024 long (E2M5 569), under this threshold at every pose.
+        if abs(value) >= MIN_AREA or abs(value) >= 0.9 * max(abs(v) for v in signed):
             continue
         #: A curtain drawn fully across has no interior left, and
         #: DOOR-CURTAINS s24 does exactly that at its OFF pose. That is a
@@ -133,6 +182,9 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"a degenerate loop the renderer cannot draw")
             break
 
+    left = escape(disk, sector_id, frames)
+    if left:
+        found.problems.append(left)
     found.problems.extend(_closure(disk, sector_id, found, steps=steps))
     return found
 

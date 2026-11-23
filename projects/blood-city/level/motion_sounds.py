@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -30,12 +30,19 @@ WIRE_PROFILES = {
     "station:gate": "chain_lift",
     "sewer:plague-pit": "blast",
     "foundry:loading-shutter": "heavy_slide",
-    "theatre:fire-doors": "metal_swing",
+    "theatre:fire-doors": "wood_swing",
     "sewer:settling-hall-lift": "winch_lift",
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",
     "station:fare-turnstile": "fare_ambient",
 }
+#: A door that rises (600), by the tile its leaf wears: what the campaign's
+#: ceiling doors wearing it sound like. 22, the wooden door: 110/160 leads
+#: (x4) and stone's 106 is never used. 495, panelled metal: 111 starts the
+#: most, 165 its commonest stop. 110 and 1011, stone: 106.
+#: (The owner, 2026-11-23: "These wooden zdoor sound 106 sounds like a moving
+#: stone ... example 110 would be better".)
+LEAF_PROFILES = {22: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door"}
 MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
 FARE_AMBIENT = (250, 700, 21, 20)
@@ -55,13 +62,25 @@ def apply(disk, allocations, circuit):
         data = record_extra(sector) or {}
         profile = profiles.get(data.get("rx_id"))
         if profile is None and type_id == 600:
-            profile = "stone_door"
+            profile = next((LEAF_PROFILES[tile] for tile in _leaf_faces(disk, index)
+                            if tile in LEAF_PROFILES), None)
         if profile is None:
             raise ValueError(f"{region} (sector {index}) needs a campaign sound profile")
         if profile in SECTOR_SOUND_PROFILES:
             add_sector_sound(disk, index, profile, carry=profile == "rail_shuttle")
         rows[str(index)] = {"region": region, "profile": profile}
     return rows
+
+
+def _leaf_faces(disk, index):
+    """The tiles a moving sector's neighbours show of it, commonest first."""
+    fields = record_fields(disk.sectors[index])
+    tiles = Counter()
+    for wall in range(fields["wall_ptr"], fields["wall_ptr"] + fields["wall_count"]):
+        other = record_fields(disk.walls[wall])["next_wall"]
+        if other >= 0:
+            tiles[record_fields(disk.walls[other])["picnum"]] += 1
+    return [tile for tile, _ in sorted(tiles.items(), key=lambda row: (-row[1], row[0]))]
 
 
 def check(disk, expected, wires):

@@ -235,6 +235,11 @@ def gather() -> dict[str, Any]:
                 item("critique", f"round {critique['round']} has no {reader} reading",
                      place=name, owner="tools/critique.py", see=critique["packet"])
 
+    for name, said in character.OWNER_REWORK.items():
+        item("owner-rework", said, place=name, owner="the owner",
+             see="study it (tools.study), then rebuild; which other old places: the never-critiqued "
+                 "and missing-layer items here")
+
     uses = manifest.get("tile_contexts", {})
     for row in uses.get("new", []):
         item("uncatalogued-use",
