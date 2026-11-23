@@ -1487,12 +1487,12 @@
         "channel": 110,
         "engine": null,
         "senders": [
+          "wall 1699",
+          "wall 1700",
           "wall 1701",
-          "wall 1702",
-          "wall 1703",
-          "wall 1709",
-          "wall 1710",
-          "wall 1711"
+          "wall 1707",
+          "wall 1708",
+          "wall 1709"
         ],
         "answers": [
           "sector 253"
@@ -1505,14 +1505,14 @@
         "channel": 111,
         "engine": null,
         "senders": [
+          "wall 1015",
+          "wall 1016",
           "wall 1017",
           "wall 1018",
           "wall 1019",
           "wall 1020",
           "wall 1021",
-          "wall 1022",
-          "wall 1023",
-          "wall 1024"
+          "wall 1022"
         ],
         "answers": [
           "sector 156",
@@ -1667,7 +1667,7 @@
         "channel": 122,
         "engine": null,
         "senders": [
-          "wall 561"
+          "wall 559"
         ],
         "answers": [
           "sprite 420"
@@ -1700,9 +1700,9 @@
         "channel": 124,
         "engine": null,
         "senders": [
-          "wall 916",
-          "wall 917",
-          "wall 918"
+          "wall 914",
+          "wall 915",
+          "wall 916"
         ],
         "answers": [
           "sector 135"
@@ -1777,14 +1777,14 @@
         "engine": null,
         "senders": [
           "sprite 1108",
+          "wall 965",
+          "wall 966",
           "wall 967",
           "wall 968",
           "wall 969",
           "wall 970",
           "wall 971",
-          "wall 972",
-          "wall 973",
-          "wall 974"
+          "wall 972"
         ],
         "answers": [
           "sector 146",
@@ -2189,7 +2189,7 @@
     "map": "<in memory>",
     "sprites": 1620,
     "wall_sprites": 778,
-    "planes": 191,
+    "planes": 192,
     "clashing_pairs": 4,
     "sprites_involved": 6,
     "clash_rate_per_100_wall_sprites": 0.51,
@@ -4326,10 +4326,10 @@
     ]
   },
   "rules": {
-    "total": 1661,
+    "total": 1660,
     "by_severity": {
       "note": 1654,
-      "warning": 7
+      "warning": 6
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
@@ -4338,7 +4338,7 @@
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 212,
       "note:lintel-continues-the-facade": 5,
-      "warning:wall-between-rooms-is-not-paper": 5,
+      "warning:wall-between-rooms-is-not-paper": 4,
       "note:wall-draws-its-own-tile": 1080,
       "warning:wall-tile-is-drawn-somewhere": 2
     },
@@ -4346,44 +4346,38 @@
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 265",
-        "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 33"
-      },
-      {
-        "severity": "warning",
-        "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 274",
+        "at": "wall 272",
         "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 31"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 294",
+        "at": "wall 292",
         "says": "the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 30"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2910",
+        "at": "wall 2908",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 401 and 303"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2955",
+        "at": "wall 2953",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 408 and 303"
       },
       {
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[93]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1434, 1440, 1441, 1452, 1521, 1522) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1432, 1438, 1439, 1450, 1519, 1520) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       },
       {
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[448]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 8 wall(s) (459, 460, 461, 462, 475, 476 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 8 wall(s) (457, 458, 459, 460, 473, 474 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       }
     ]
   },
@@ -4394,8 +4388,8 @@
       "tile[448]"
     ],
     "as_readback_differences": [
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (1434, 1440, 1441, 1452, 1521, 1522) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[448]: authored on 8 wall(s) (459, 460, 461, 462, 475, 476 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (1432, 1438, 1439, 1450, 1519, 1520) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[448]: authored on 8 wall(s) (457, 458, 459, 460, 473, 474 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
@@ -6020,7 +6014,6 @@
         "hero": "a hanged performer over a bloodied trap, framed by the curtain and seen past the last audience still in its seats",
         "exemplar": "DWE1M9 s245\u2013249 and s274\u2013279 (terraces, cloth and apse), sprites 752, 832\u2013833 and 963\u2013964 (rails, step lights and beam); SCHOOL_ s177\u2013182 (frame); HUNT s674 (performer and shadow)",
         "layers": [
-          "second",
           "trim",
           "wall_art",
           "flat_art",
@@ -6031,38 +6024,40 @@
           "motion",
           "machines"
         ],
-        "layer_count": 10,
+        "layer_count": 9,
         "campaign_p25": 2,
         "campaign_p50": 5,
-        "missing": [],
+        "missing": [
+          "second"
+        ],
         "wall_tiles": [
           [
             88,
-            0.411
-          ],
-          [
-            369,
-            0.113
+            0.421
           ],
           [
             119,
-            0.092
+            0.094
+          ],
+          [
+            369,
+            0.089
           ],
           [
             203,
-            0.064
+            0.066
           ],
           [
             30,
-            0.064
+            0.066
           ],
           [
             28,
-            0.043
+            0.045
           ],
           [
             409,
-            0.038
+            0.039
           ],
           [
             1004,
@@ -6070,11 +6065,11 @@
           ],
           [
             179,
-            0.032
+            0.033
           ],
           [
             379,
-            0.027
+            0.028
           ],
           [
             84,
@@ -6113,39 +6108,43 @@
         "wall_tiles": [
           [
             369,
-            0.405
+            0.344
           ],
           [
             28,
-            0.142
+            0.156
           ],
           [
             30,
-            0.115
+            0.127
           ],
           [
             409,
-            0.102
+            0.112
           ],
           [
             379,
-            0.088
+            0.097
           ],
           [
             146,
-            0.037
+            0.041
           ],
           [
             498,
-            0.028
+            0.031
           ],
           [
             290,
-            0.023
+            0.026
           ],
           [
             452,
-            0.023
+            0.026
+          ],
+          [
+            179,
+            0.02
           ]
         ],
         "shade_spread": 27,
@@ -6409,7 +6408,7 @@
   },
   "light_stage": {
     "sectors_before": 760,
-    "walls_before": 4869,
+    "walls_before": 4867,
     "sprites_before": 1620,
     "mover_hosts": [
       144,
@@ -6780,23 +6779,23 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1810,
+      "walls_split": 1804,
       "seams": 0,
       "refused": {},
-      "walls_cut": 468,
+      "walls_cut": 466,
       "walls_refused": 10,
       "left_whole": {},
       "looked_at": 1461
     },
     "shades": {
-      "surfaces": 5630,
+      "surfaces": 5628,
       "windows": 18,
       "spread_12": 84,
       "movers_evened": 3
     },
     "kept": 114,
     "sectors": 1192,
-    "walls": 11344,
+    "walls": 11339,
     "sprites": 1689,
     "pieces": 432,
     "default_rooms": []

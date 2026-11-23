@@ -2,13 +2,13 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "27ee62f6f28e000164d372db5c32084170108c5c17a8232334d98398ea7169a1",
-  "map_sha256": "f3ee9b2cc68c8de2ad41e82208887f12af79d33254267fe028e516172756869c",
+  "manifest_sha256": "e975dcc951cf00cc794296ddfacdd348281bb6bc1417b8f3d7d9548bd75f21de",
+  "map_sha256": "09607e901139d9152e56e03ee6af47f73bc5130c7852717fa581978872420416",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1192,
-  "walls": 11344,
+  "walls": 11339,
   "sprites": 1689,
   "limits": {
    "sectors": 4096,
@@ -24,7 +24,7 @@
   "read_back_agrees": true,
   "rules": {
    "note": 1654,
-   "warning": 7
+   "warning": 6
   }
  },
  "stages": [
@@ -337,7 +337,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1108"
+     "operate mechanism sector 1104"
     ],
     "sectors": 1,
     "first_sector": 150
@@ -345,7 +345,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1118"
+     "operate mechanism sector 1114"
     ],
     "sectors": 1,
     "first_sector": 152
@@ -1342,7 +1342,6 @@
    "study": "aldermack-rebuild",
    "layers": {
     "has": [
-     "second",
      "trim",
      "wall_art",
      "flat_art",
@@ -1353,7 +1352,9 @@
      "motion",
      "machines"
     ],
-    "missing": [],
+    "missing": [
+     "second"
+    ],
     "campaign_p25": 2,
     "campaign_p50": 5
    },
@@ -2151,6 +2152,13 @@
    "says": "no blind reader has looked at this place",
    "owner": "tools/critique.py",
    "see": "python -m tools.critique prepare saloon --poses <set> --kind <kind>"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "Aldermack auditorium",
+   "says": "carries no second layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
   },
   {
    "kind": "cramped",
@@ -3031,18 +3039,10 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 33",
-   "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
-   "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 265"
-  },
-  {
-   "kind": "rule-warning",
-   "place": null,
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 31",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 274"
+   "at": "wall 272"
   },
   {
    "kind": "rule-warning",
@@ -3050,7 +3050,7 @@
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 80 units (0.21 body widths) of stone between sectors 29 and 30",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 294"
+   "at": "wall 292"
   },
   {
    "kind": "rule-warning",
@@ -3058,7 +3058,7 @@
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 401 and 303",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2910"
+   "at": "wall 2908"
   },
   {
    "kind": "rule-warning",
@@ -3066,12 +3066,12 @@
    "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 408 and 303",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2955"
+   "at": "wall 2953"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1434, 1440, 1441, 1452, 1521, 1522) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1432, 1438, 1439, 1450, 1519, 1520) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[93]"
@@ -3079,7 +3079,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 8 wall(s) (459, 460, 461, 462, 475, 476 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 8 wall(s) (457, 458, 459, 460, 473, 474 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[448]"
@@ -3231,12 +3231,12 @@
   "critique": 12,
   "dropped": 5,
   "lost-tile": 2,
-  "missing-layer": 17,
+  "missing-layer": 18,
   "never-critiqued": 12,
   "outside-campaign": 116,
   "owner-rework": 1,
   "refused": 7,
-  "rule-warning": 7,
+  "rule-warning": 6,
   "skipped": 5,
   "sprite-overlaps": 1,
   "uncatalogued-use": 1,

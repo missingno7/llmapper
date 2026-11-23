@@ -473,6 +473,7 @@ POSE_SETS = {
         "from_parlor": (16.68, 7.5, 18.35, 6.92, LEVEL, "across the passage to the keeper's callboard"),
         "scenery_rack": (18.32, 6.9, 17.25, 5.75, LEVEL, "the flats, paint and stage service lamps"),
         "prop_store": (17.95, 4.86, 17.95, 3.63, LEVEL, "HUNT's trick table and balloon in the north recess"),
+        "silence": (17.9, 8.2, 17.95, 4.6, LEVEL + 10, "up the corridor to the prop store's sign"),
         "stage_turn": (18.14, 5.52, 18.87, 5.91, LEVEL, "stage sign beside the reserved stair opening"),
         "fire_doors": (17.45, 9.28, 19.1, 9.25, LEVEL, "the paired stage doors across the corridor"),
         "fly_rail": (17.63, 8.12, 17.06, 8.79, DOWN, "the pin rail's lines and their sandbags"),

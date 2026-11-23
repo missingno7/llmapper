@@ -67,17 +67,19 @@ def _service(venue, fire_bay):
     # Keep the old door host's three edges exact. The parlor and future
     # stage stair have named faces so the other ends can anchor to them.
     corridor = _room(venue, "backstage", [
-        (WEST, 4096), (17536, 4096), (17536, 4736), (19200, 4736),
-        (19200, 4096), (EAST, 4096), (EAST, STAIR[0]), (EAST, STAIR[1]),
+        # flat across the prop store's front: two 128-wide slots ran on north
+        # beside it, and hid most of the sign hung on one (the owner, 2026-11-24)
+        (WEST, 4736), (17536, 4736), (19200, 4736),
+        (EAST, 4736), (EAST, STAIR[0]), (EAST, STAIR[1]),
         (EAST, 6272), (18944, 6272), (18944, 7552), (EAST, 7552),
         (EAST, bay_north), (bay_x, bay_north), (bay_x, bay_south),
         (EAST, bay_south), (EAST, 11264), (WEST, 11264),
         (WEST, PARLOR[1]), (WEST, PARLOR[0]), (WEST, 6912),
         (17792, 6912), (17792, 5120), (WEST, 5120),
     ], PASSAGE, CORRIDOR_CLEAR, (35, 38, 46), faces={
-        "north": 2, "east": 6, "stage_stair": 6, "keeper": 9,
-        "bay_north": 12, "bay_west": 13, "bay_south": 14,
-        "south": 16, "west": 18, "scenery": 21,
+        "north": 1, "east": 4, "stage_stair": 4, "keeper": 7,
+        "bay_north": 10, "bay_west": 11, "bay_south": 12,
+        "south": 14, "west": 16, "scenery": 19,
     }, note="Stage service passage, with a scenery rack and a keeper's post.")
 
     rack = _room(corridor, "scenery_rack", [
@@ -242,8 +244,8 @@ def _dress_service(layout, corridor):
 
     _sign(layout, corridor, "STAGE", ((EAST, STAIR[0]), (EAST, STAIR[1])), up=28200, size=60,
           over_steps=True)
-    _sign(layout, corridor, "SILENCE", ((WEST, 5120), (WEST, 4096)),
-          up=16900, size=51)
+    _sign(layout, corridor, "SILENCE", ((17536, 4736), (19200, 4736)),
+          up=28200, size=60, over_steps=True)
     _sign(layout, corridor, "DRESSING", ((EAST, 11264), (WEST, 11264)),
           up=28200, size=68, over_steps=True)
 
@@ -268,7 +270,7 @@ def _dress_service(layout, corridor):
     _sprite(layout, corridor, "second_trunk", 522, (17622, 9632),
             repeat=(56, 56), shade=5)
 
-    for name, point, width, depth in (("scenery", (18400, 5736), 768, 1120),
+    for name, point, width, depth in (("scenery", (18848, 5736), 768, 1120),
                                       ("doors", (17920, 9472), 768, 960),
                                       ("dressing", (18880, 10560), 768, 760)):
         _sprite(layout, corridor, f"gas_lamp_{name}", 641, point,
