@@ -2008,10 +2008,10 @@ def main() -> int:
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
-    import glass, l3_theatre, l3_mall, l3_market
+    import aldermack_front, glass, l3_theatre, l3_mall, l3_market
     #: Only the pane's own plane, at the back of each sash pocket.  The
     #: street-side record of a window is the facade's (owner, 2026-11-17).
-    spans = []
+    spans = aldermack_front.glass_spans()
     for w in l3_theatre.WINDOWS:
         spans += glass.shopfront((w[3], w[4], w[5], w[6]), w[2])["panes"]
     for _unit, wx0, wx1, side, _plinth in l3_mall.WINDOWS:

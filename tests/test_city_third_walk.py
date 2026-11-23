@@ -411,7 +411,7 @@ class ThirdWalkTests(unittest.TestCase):
         from bloodmap.sector_geom import sector_walls
         rigid = [i for i in swept_state.moving_sectors(self.disk)
                  if self.sectors[i]["type"] in (616, 617)]
-        self.assertEqual(len(rigid), 4)
+        self.assertEqual(len(rigid), 6)
         for mover in rigid:
             frames = blood_sweep(self.disk, mover)
             self.assertIsNone(swept_state.escape(self.disk, mover, frames))
@@ -427,14 +427,14 @@ class ThirdWalkTests(unittest.TestCase):
         #: the owner: "they are metal and quite thick"; and a leaf is drawn
         #: open but starts shut, so no face may keep the light of one pose
         leaves = [i for i, s in enumerate(self.sectors) if s["type"] == 617]
-        self.assertEqual(len(leaves), 2)
+        self.assertEqual(len(leaves), 4)      # the stage doors and the front
         for leaf in leaves:
             s = self.sectors[leaf]
             walls = [self.walls[w] for w in range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"])]
             faces = [self.walls[w["next_wall"]] for w in walls]
             self.assertEqual({f["picnum"] for f in faces}, {30, 20})
             self.assertEqual(len({f["shade"] for f in faces}), 1)
-            self.assertEqual(max(w["y"] for w in walls) - min(w["y"] for w in walls), 64)
+            self.assertEqual(min(max(w[k] for w in walls) - min(w[k] for w in walls) for k in "xy"), 64)
 
     def test_shop_glass_can_be_shot_out(self):
         glazed = [w for w in self.walls if int(w["over_picnum"]) == 266

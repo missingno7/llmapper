@@ -61,9 +61,6 @@ SIGN_HEIGHT_PH = 2.54
 NOTICE_HEIGHT_PH = 1.3
 SIGNS = [
     # --- Theatre Row: the commercial frontages ---------------------------
-    # A marquee cycles its colours; E1M4 FORTUNES is the corpus's one
-    # regular cycle and the only place this pattern is attested.
-    ("aldermack", "theatre:aldermack_foyer", "south", "ALDERMACK", "fortune", SIGN_HEIGHT_PH),
     ("saloon", "theatre:saloon_main", "east", "WHISKEY", "banner", SIGN_HEIGHT_PH),
     # A shooting gallery is a fairground attraction, so it gets the
     # fairground's lettering: E1M4's ROTTEN CANDY tracking and jitter.

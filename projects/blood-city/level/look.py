@@ -342,12 +342,26 @@ POSE_SETS = {
         "parlor_mouth": (13.8, 16.2, 13.8, 14.6, LEVEL, "the parlor's one-bay mouth"),
         "parlor_deep": (13.8, 12.6, 13.8, 9.2, LEVEL, "the gallery, north into the range"),
         "foyer_in": (28.2, 9.5, 28.2, 7.4, LEVEL, "the foyer and its box office"),
-        "aldermack_front": (28.2, 12.6, 28.2, 10.9, LEVEL, "the Aldermack door off the forecourt"),
+        "aldermack_front": (27.30, 13.62, 28.05, 11.0, 143, "the Aldermack marquee and its forecourt entrances"),
         "auditorium": (22.5, 10.4, 22.5, 5.6, LEVEL, "the house, facing the stage"),
         "stage_up": (22.5, 8.4, 22.5, 5.2, UP, "the stage and the wall above it"),
-        "lobby_avenue": (33.4, 8.7, 32.3, 8.7, LEVEL, "the avenue lobby, the complex's second front"),
+        "lobby_avenue": (35.0, 8.66, 32.0, 8.6, 112, "the Aldermack's avenue entrance"),
         "pawn_front": (33.4, 5.1, 32.3, 5.1, LEVEL, "the pawn shop off the avenue"),
         "pawn_in": (28.9, 4.6, 31.6, 4.6, LEVEL, "inside the pawn shop, down the pedestal run"),
+    },
+    # The kiosk clips the frontage from the middle of the square.
+    # These exterior poses follow the clear western approach to the porch.
+    "aldermack-front": {
+        "forecourt": (27.30, 13.62, 28.05, 11.0, 143, "from the west side of the forecourt to the marquee and bills"),
+        "theatre_row": (26.55, 16.24, 28.50, 11.0, 135, "the lit blade from Theatre Row"),
+        "porch": (28.2, 12.2, 27.95, 10.65, LEVEL, "the raised double entrance"),
+        "box_office": (28.2, 10.2, 28.05, 6.5, LEVEL, "from the entrance to the ticket windows"),
+        "cloakroom": (27.7, 8.5, 29.55, 6.8, LEVEL, "towards the cloak counter and broken mirror"),
+        "house_route": (29.65, 8.95, 26.0, 9.25, LEVEL, "the carpet, queue rail and last patron"),
+        "chandelier": (28.2, 9.7, 27.8, 7.85, UP, "the chandelier and the foyer's ceiling"),
+        "avenue_front": (35.0, 8.66, 32.0, 8.6, 112, "the Aldermack's avenue entrance"),
+        "avenue_lobby": (31.30, 8.9, 30.65, 7.55, 116, "the bills and gold lettering in the lobby"),
+        "avenue_settee": (30.40, 7.80, 31.1, 9.35, LEVEL, "the framed bill and the waiting settee"),
     },
     "diag": {
         "pawn_west": (31.6, 4.6, 28.9, 4.6, LEVEL, "the shop looking back west"),

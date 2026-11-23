@@ -73,13 +73,15 @@ class AldermackBackstageTests(unittest.TestCase):
         self.assertEqual(coverage(self.plan.WEST, self.plan.PARLOR, portal=True), 1024)
         self.assertEqual(coverage(self.plan.EAST, self.plan.STAIR), 1024)
         t = self.theatre
-        frame = (t.FIRE_MIDDLE - t.FIRE_HALF, t.FIRE_MIDDLE + t.FIRE_HALF)
-        self.assertEqual(coverage(t.FIRE_EAST, frame, portal=True), 2 * t.FIRE_HALF)
+        pair = t.FIRE_DOORS
+        frame = (pair.middle[1] - pair.half, pair.middle[1] + pair.half)
+        self.assertEqual(coverage(t.FIRE_EAST, frame, portal=True), 2 * pair.half)
         self.assertFalse(any(self.plan.EAST - 384 < s["x"] < self.plan.EAST
                              and self.plan.STAIR[0] < s["y"] < self.plan.STAIR[1]
                              and s["cstat"] & 1 for s in self.sprites))
 
     def test_fire_doors_share_their_original_empty_bay(self):
+        import wing_doors
         import wires
 
         t = self.theatre
@@ -90,7 +92,7 @@ class AldermackBackstageTests(unittest.TestCase):
         self.assertEqual({self.sectors[i]["type"] for i in receivers}, {617})
         bay, = [host for host, movers in hosts(self.disk).items() if movers == receivers]
         outline, holes = outline_and_holes(self.disk, bay)
-        expected = box(t.FIRE_WEST, t.FIRE_BAY_LOW, t.FIRE_WALL_X, t.FIRE_BAY_HIGH)
+        expected = box(*t.FIRE_DOORS.bay())
         self.assertTrue(Polygon(outline).equals(expected))
         self.assertEqual(len(holes), 2)
         self.assertFalse(any(s["sector"] == bay for s in self.sprites))
@@ -100,7 +102,7 @@ class AldermackBackstageTests(unittest.TestCase):
             with self.subTest(leaf=leaf):
                 self.assertTrue(sweep_sector(self.disk, leaf).sound)
                 self.assertEqual(Polygon(outline_and_holes(self.disk, leaf)[0]).area,
-                                 t.FIRE_LEAF * t.FIRE_THICKNESS)
+                                 t.FIRE_DOORS.hinge * wing_doors.THICKNESS)
                 self.assertEqual({record_fields(self.disk.walls[w])["next_sector"]
                                   for w in sector_walls(self.disk, leaf)}, {bay})
 

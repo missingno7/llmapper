@@ -31,6 +31,8 @@ WIRE_PROFILES = {
     "sewer:plague-pit": "blast",
     "foundry:loading-shutter": "heavy_slide",
     "theatre:fire-doors": "wood_swing",
+    "lever:aldermack": "wood_swing",
+    "lever:lobby": "wood_z_door",
     "sewer:settling-hall-lift": "winch_lift",
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",

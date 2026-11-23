@@ -76,12 +76,6 @@ COMPOSITIONS = (
     # `("warning", "sign")` colours only the first. Three blocks, three
     # heights, on the inside face -- the fascia over the street door is a
     # separate sign in `signage.SIGNS`, which is what a theatre has.
-    ("theatre", "aldermack_foyer", "north", 0.32, 2.20, "aldermack_board", (
-        ("painting", 793, {"cstat": 16 | 128}),
-        ("caption", "THE ALDERMACK",
-         {"style": wallplane.style("fascia", initial=(1.4, "warning"))}),
-        ("caption", "BOX OFFICE", {"style": "label"}),
-    )),
     # (The pawn shop's LOANS column used to be composed here, on whichever
     # of its walls was the longest solid one. The pledge room pierced that
     # wall and the column moved to the far end of the shop, out of every

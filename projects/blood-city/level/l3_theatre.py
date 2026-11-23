@@ -28,6 +28,7 @@ from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
 
 import aldermack_backstage
+import wing_doors
 import fixtures
 import setpieces
 import templates
@@ -228,26 +229,13 @@ ROOM_HEIGHT = {
     "back_passage_east": 20480,
 }
 
-# The stage doors between the backstage corridor and the house: two wooden
-# leaves hung as E2M5's are (sectors 569 and 570: 64 thick, the owner's wooden
-# door 30 with wood 20 on its edges, 24,576 tall), alone in an open bay of the
-# corridor. The owner, 2026-11-23, of the metal pair in pockets: "they are
-# metal and quite thick ... make the room behind it much smaller ... you can
-# let them alone in that sector". The bay is a sector of its own, at the
-# corridor's floor and ceiling, big enough for the whole sweep: "moving or
-# rotating sector can never leave it's parent sector".
+# The stage doors between the backstage corridor and the house: a pair of
+# wooden wings alone in an open bay of the corridor (`wing_doors`). The owner,
+# 2026-11-23, of the metal pair in pockets they replaced: "they are metal and
+# quite thick ... make the room behind it much smaller ... you can let them
+# alone in that sector".
 FIRE_WALL_X, FIRE_EAST = 19328, 19456     # the corridor's east wall; the house's
-FIRE_MIDDLE, FIRE_HALF = 9472, 768        # the opening, 1,536 wide
-FIRE_OVERLAP = 32                         # a shut leaf laps its jamb; the two meet, as E2M5's do
-FIRE_THICKNESS = 64
-FIRE_HINGE_X = FIRE_WALL_X - 32
-FIRE_LEAF = FIRE_HALF + FIRE_OVERLAP
-FIRE_BAY_MARGIN = 96
-FIRE_WEST = 18432                          # the bay's open west side
-FIRE_BAY_LOW = FIRE_MIDDLE - FIRE_HALF - FIRE_OVERLAP - FIRE_THICKNESS - FIRE_BAY_MARGIN
-FIRE_BAY_HIGH = FIRE_MIDDLE + FIRE_HALF + FIRE_OVERLAP + FIRE_THICKNESS + FIRE_BAY_MARGIN
-FIRE_CLEAR = 24576
-FIRE_FACE, FIRE_EDGE = 30, 20              # the owner's wooden door; wood
+FIRE_DOORS = wing_doors.Pair("fire", "east", (FIRE_WALL_X, 9472), 768)
 FIRE_WIRE = "theatre:fire-doors"
 
 #: (small room, its face, big room, its face) -- always anchored from the
@@ -258,7 +246,6 @@ JOINS = [
     ("parlor_range", "south", "parlor_gallery", "north"),
     ("parlor_passage", "north", "parlor_gallery", "south"),
     ("aldermack_foyer", "west", "aldermack_auditorium", "east"),
-    ("aldermack_lobby", "west", "aldermack_foyer", "east"),
     ("back_passage_west", "west", "saloon_back", "east"),
     ("back_passage_west", "east", "parlor_range", "west"),
     ("back_passage_east", "west", "parlor_range", "east"),
@@ -318,6 +305,7 @@ def build(district, theatre_st):
     `district` is Theatre Row's own assembly, not the city: a venue standing
     on Theatre Row is IN Theatre Row, and used to be its sibling.
     """
+    import aldermack_front
     import citytree
     facade = FACADES["theatre_row"]
     city = district
@@ -385,7 +373,7 @@ def build(district, theatre_st):
         make(name, x0, y0, x1, y1, key, note,
              clear=ROOM_HEIGHT.get(name, ROOM_H), rk=rk)
     rooms.update(aldermack_backstage.build(
-        venue_nodes["aldermack"], fire_bay=(FIRE_WEST, FIRE_BAY_LOW, FIRE_BAY_HIGH)))
+        venue_nodes["aldermack"], fire_bay=(FIRE_DOORS.bay()[0], FIRE_DOORS.bay()[1], FIRE_DOORS.bay()[3])))
     # A join is declared on the node that owns BOTH ends: inside a venue
     # that is the venue, between two venues it is the district.
     for small, sf, big, bf in JOINS:
@@ -418,6 +406,8 @@ def build(district, theatre_st):
     import doorswitch
     levers = []
     for door_index, (name, room_name, x0, y0, x1, y1, face) in enumerate(DOORS):
+        if name in ('aldermack', 'lobby'):
+            continue  # aldermack_front owns these two entrances
         import wires
         from bloodmap import wiring
         lever_wire = wires.lever(door_index, name)
@@ -520,9 +510,8 @@ def build(district, theatre_st):
     curtain["stage_region"] = next(
         (room.region_id for room in citytree.rooms_under(house)
          if room.node_id == "stage"), None)
-    templates.box_office(
-        rooms["aldermack_foyer"], material=INTERIORS["theatre"],
-        grade=GRADE, host_clear=ROOM_HEIGHT["aldermack_foyer"])
+    aldermack_front.build(rooms["aldermack_foyer"], rooms["aldermack_lobby"],
+                          theatre_st, levers)
     templates.shooting_range(
         rooms["parlor_range"], material=INTERIORS["parlor"],
         grade=GRADE, host_clear=ROOM_HEIGHT["parlor_range"], targets=3)
@@ -545,93 +534,24 @@ def build(district, theatre_st):
 
 
 def add_fire_doors(rooms):
-    """Build the stage doors' open bay, their frame and the two leaves in the ON pose."""
-    import citytree
-
+    """The stage doors, between the corridor and the house."""
     backstage = rooms["aldermack_backstage"]
-    house = rooms["aldermack_auditorium"]
-    venue = backstage.parent
     material = INTERIORS["service"]
-    # in world coordinates, as the leaves carved out of it are
-    bay = venue.room(
-        "fire_doors", [(FIRE_WEST, FIRE_BAY_LOW), (FIRE_WALL_X, FIRE_BAY_LOW),
-                       (FIRE_WALL_X, FIRE_BAY_HIGH), (FIRE_WEST, FIRE_BAY_HIGH)],
-        role="interior", faces=dict(COMPASS), region_kwargs=material.region_kwargs(),
-        note="The stage doors' bay: the corridor's own space, holding both leaves' whole swing.")
-    room_h = ROOM_HEIGHT.get("aldermack_backstage", ROOM_H)
-    bay.surfaces(**material.style_kwargs(floor_z=GRADE, clear_height=room_h))
-    for face in ("north", "west", "south"):
-        citytree.join(bay, backstage, at_a=face, at_b=f"bay_{face}",
-                      connection_id=f"connection:fire_bay_{face}", min_opening=room_h)
-    frame = venue.rect_room(
-        "fire_frame", origin=(FIRE_WALL_X, FIRE_MIDDLE - FIRE_HALF),
-        size=(FIRE_EAST - FIRE_WALL_X, 2 * FIRE_HALF), role="gateway",
-        region_kwargs=material.region_kwargs(),
-        note="The stage doors' frame in the wall between the corridor and the house.")
-    frame.surfaces(**material.style_kwargs(floor_z=GRADE, clear_height=FIRE_CLEAR))
-    for face, room, room_face in (("west", bay, "east"), ("east", house, "west")):
-        citytree.join(frame, room, at_a=face, at_b=room_face,
-                      connection_id=f"connection:fire_doors_{face}",
-                      min_opening=FIRE_CLEAR)
-    threshold = bay
-
-    leaves = []
-    for name, sense in (("south", 1), ("north", -1)):
-        hinge = (FIRE_HINGE_X, FIRE_MIDDLE - sense * (FIRE_HALF + FIRE_OVERLAP))
-        x, y = hinge
-        tip = x - FIRE_LEAF
-        y0, y1 = sorted((y, y - sense * FIRE_THICKNESS))
-        leaf_outline = [(tip, y0), (x, y0), (x, y1), (tip, y1)]
-        hole = len(threshold.holes)
-        threshold.carve(leaf_outline)
-        leaf = venue.room(
-            f"fire_leaf_{name}", leaf_outline, role="doorway",
-            faces=dict(COMPASS),
-            region_kwargs={"type": 617, "sector_behavior": {
-                "busy_time_a": 15, "busy_time_b": 15,
-                "interruptable": 1, "drag": 1,
-            }},
-            note="Wooden hinged leaf, saved open and initialized shut.")
-        # As E2M5's 50 and 51: the raised floor is the leaf's top, under the
-        # corridor's own ceiling, with the XWALL on the surrounding loop.
-        leaf.surfaces(**material.style_kwargs(
-            floor_z=GRADE - FIRE_CLEAR, clear_height=room_h - FIRE_CLEAR))
-        for face in RECT_FACES:
-            citytree.join(
-                threshold, leaf, at_a=threshold.hole_face(hole, face), at_b=face,
-                connection_id=f"connection:fire_leaf_{name}_{face}",
-                min_width=1, min_opening=0, gated=True)
-        leaves.append((leaf, leaf_outline, hinge, sense * 512))
-    return backstage, threshold, leaves
+    clear = ROOM_HEIGHT.get("aldermack_backstage", ROOM_H)
+    return wing_doors.build(
+        backstage.parent, FIRE_DOORS, room=backstage,
+        room_faces={side: f"bay_{side}" for side in ("north", "west", "south")},
+        outside=rooms["aldermack_auditorium"], outside_face="west", wall=FIRE_EAST - FIRE_WALL_X,
+        material=material, room_clear=clear, grade=GRADE,
+        bay_style=material.style_kwargs(floor_z=GRADE, clear_height=clear),
+        frame_style=material.style_kwargs(floor_z=GRADE, clear_height=wing_doors.LEAF_HEIGHT))
 
 
 def furnish_fire_doors(layout, built):
-    """Bind each axis and put repeatable Push on every exposed leaf face."""
+    """Hang the stage doors on their wire."""
     import wires
 
-    _, threshold, leaves = built
-    surround = threshold.region_id
-    wire = wires.wire(FIRE_WIRE)
-    for leaf, outline, (x, y), angle in leaves:
-        region = leaf.region_id
-        # DOOR-SWINGINGD axis sprites 206/213, including the signed quarter-turn.
-        layout.add_sprite(
-            f"placement:{leaf.node_id}:axis", region,
-            x=x, y=y, z=GRADE - FIRE_CLEAR, type=motion.MARKER_AXIS,
-            picnum=motion.MARKER_PICNUM, status=motion.MARKER_STATNUM,
-            cstat=motion.MARKER_CSTAT, x_repeat=64, y_repeat=64,
-            angle=angle, marker_owner=region)
-        wire.then(wiring.region(region))
-        layout.declare_motion(region, [region, surround])
-        for a, b in zip(outline, outline[1:] + outline[:1]):
-            broad = a[1] == b[1]
-            # E2M5 sector 569's repeats, its far face mirrored
-            layout.paint_wall(surround, a, b, picnum=FIRE_FACE if broad else FIRE_EDGE,
-                              x_repeat=8 if broad else 1, y_repeat=10 if broad else 8,
-                              cstat=8 if broad and (a[0] < b[0]) else 0, fixed_frame=True)
-            wire.when(wiring.face(surround, a, b), "push", on=True, off=True)
-    return {"threshold": surround, "leaves": [leaf.region_id for leaf, *_ in leaves],
-            "wire": wire.name}
+    return wing_doors.furnish(layout, built, wires.wire(FIRE_WIRE))
 
 
 #: Who is in here, and what is worth finding.  Cultists hold the venues

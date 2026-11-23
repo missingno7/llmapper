@@ -61,6 +61,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("aldermack/dressing", Rule("none", 0, 0)),
     ("aldermack/fire_", Rule("none", 0, 0)),
     ("theatre_row/saloon", Rule("hanging", 641, 3072, 3072)),
+    ("theatre_row/aldermack/foyer", Rule("none", 0, 0)),
+    ("theatre_row/aldermack/front_", Rule("none", 0, 0)),
+    ("theatre_row/aldermack/lobby", Rule("none", 0, 0)),
+    ("theatre_row/aldermack/porch", Rule("none", 0, 0)),
     ("theatre_row", Rule("ceiling", 676, 2560, 2560)),
     # its own two candelabra and its stained glass (`light_kinds`: glass on a
     # roofed wall lets daylight in); the pairs the stage stood along the nave
@@ -75,6 +79,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
 #: until the owner, 2026-11-21: "We can make it lit by model, the stained
 #: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
+    # The narrow sash and box carry the poster pane and its measured contrast.
+    "theatre_row/aldermack/bill_",
     "market_slip/quay",
     # Hand-painted pools at the work lights and mirrors, and in the swept bay.
     "aldermack/backstage",
@@ -91,6 +97,9 @@ OWN_LIGHT: tuple[str, ...] = (
 #: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    ("theatre_row/aldermack/foyer", 0.55),
+    ("theatre_row/aldermack/front_", 0.55),
+    ("theatre_row/aldermack/lobby", 0.55),
     ("st_gallows", 0.5),
     ("aldermack/backstage", 0.45),
     ("aldermack/dressing", 0.35),

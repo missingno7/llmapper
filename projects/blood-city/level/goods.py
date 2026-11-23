@@ -186,8 +186,6 @@ ROWS = [
 #: Things standing on a room's own floor, hard by a wall or a corner:
 #: (path suffix, [(tile, u, v)]).
 ON_FLOOR = [
-    ("aldermack/foyer", [(1009, 0.06, 0.08), (1013, 0.94, 0.08)]),
-    ("aldermack/lobby", [(1010, 0.5, 0.1)]),
     #: a plant in the corner, and a chair at each card table: E3M1's and
     #: E6M1's rooms have them and a reviewer said so ("no chairs or stools
     #: anywhere")
@@ -202,8 +200,6 @@ ON_FLOOR = [
 ON_WALL = [
     ("saloon/main", "west", 613, 0.5, None),
     ("saloon/back", "north", 163, 0.5, None),
-    ("aldermack/foyer", "south", 943, 0.75, None),
-    ("aldermack/foyer", "south", 356, 0.2, None),
     ("saloon/back", "east", 621, 0.5, None),
     ("pawn_shop/shop", "west", 268, 0.5, None),
     ("market_hall/supermarket", "west", 2139, 0.4, 0.9),
