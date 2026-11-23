@@ -1341,9 +1341,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "sprite 413",
-          "sprite 432",
-          "sprite 433"
+          "sprite 422",
+          "sprite 441",
+          "sprite 442"
         ],
         "answers": [
           "sector 64"
@@ -1374,17 +1374,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 853",
-          "sprite 854"
+          "sprite 862",
+          "sprite 863"
         ],
         "answers": [
           "sector 219",
           "sector 220",
           "sector 221",
           "sector 222",
-          "sprite 855",
-          "sprite 856",
-          "sprite 857"
+          "sprite 864",
+          "sprite 865",
+          "sprite 866"
         ],
         "faults": []
       },
@@ -1394,16 +1394,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 923"
+          "sprite 932"
         ],
         "answers": [
           "sector 341",
           "sector 342",
           "sector 343",
           "sector 344",
-          "sprite 924",
-          "sprite 925",
-          "sprite 926"
+          "sprite 933",
+          "sprite 934",
+          "sprite 935"
         ],
         "faults": []
       },
@@ -1413,7 +1413,7 @@
         "channel": 105,
         "engine": null,
         "senders": [
-          "sprite 119"
+          "sprite 125"
         ],
         "answers": [
           "sector 267",
@@ -1428,7 +1428,7 @@
         "channel": 106,
         "engine": null,
         "senders": [
-          "sprite 118"
+          "sprite 124"
         ],
         "answers": [
           "sector 268",
@@ -1442,7 +1442,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 820"
+          "sprite 829"
         ],
         "answers": [
           "sector 596"
@@ -1455,7 +1455,7 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 813"
+          "sprite 822"
         ],
         "answers": [
           "sector 622"
@@ -1468,16 +1468,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 562"
+          "sprite 571"
         ],
         "answers": [
           "sector 512",
           "sector 513",
           "sector 514",
           "sector 515",
-          "sprite 563",
-          "sprite 564",
-          "sprite 565"
+          "sprite 572",
+          "sprite 573",
+          "sprite 574"
         ],
         "faults": []
       },
@@ -1526,9 +1526,9 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 152",
-          "sprite 154",
-          "sprite 156"
+          "sprite 158",
+          "sprite 160",
+          "sprite 162"
         ],
         "answers": [
           "sector 718"
@@ -1541,9 +1541,9 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 160",
-          "sprite 162",
-          "sprite 164"
+          "sprite 166",
+          "sprite 168",
+          "sprite 170"
         ],
         "answers": [
           "sector 719"
@@ -1556,12 +1556,12 @@
         "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 141",
-          "sprite 143",
-          "sprite 145"
+          "sprite 147",
+          "sprite 149",
+          "sprite 151"
         ],
         "answers": [
-          "sprite 147"
+          "sprite 153"
         ],
         "faults": []
       },
@@ -1571,10 +1571,10 @@
         "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 147"
+          "sprite 153"
         ],
         "answers": [
-          "sprite 148"
+          "sprite 154"
         ],
         "faults": []
       },
@@ -1584,11 +1584,11 @@
         "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 148"
+          "sprite 154"
         ],
         "answers": [
           "sector 720",
-          "sprite 149"
+          "sprite 155"
         ],
         "faults": []
       },
@@ -1598,10 +1598,10 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 215"
+          "sprite 221"
         ],
         "answers": [
-          "sprite 216"
+          "sprite 222"
         ],
         "faults": []
       },
@@ -1611,10 +1611,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 602"
+          "sprite 611"
         ],
         "answers": [
-          "sprite 603"
+          "sprite 612"
         ],
         "faults": []
       },
@@ -1627,7 +1627,7 @@
           "sector 543"
         ],
         "answers": [
-          "sprite 208"
+          "sprite 214"
         ],
         "faults": []
       },
@@ -1640,7 +1640,7 @@
           "sector 47"
         ],
         "answers": [
-          "sprite 420"
+          "sprite 429"
         ],
         "faults": []
       },
@@ -1650,14 +1650,14 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 420"
+          "sprite 429"
         ],
         "answers": [
-          "sprite 421",
-          "sprite 424",
-          "sprite 425",
           "sprite 430",
-          "sprite 431"
+          "sprite 433",
+          "sprite 434",
+          "sprite 439",
+          "sprite 440"
         ],
         "faults": []
       },
@@ -1670,7 +1670,7 @@
           "wall 561"
         ],
         "answers": [
-          "sprite 411"
+          "sprite 420"
         ],
         "faults": []
       },
@@ -1680,17 +1680,17 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 412"
+          "sprite 421"
         ],
         "answers": [
           "sector 56",
           "sector 58",
           "sector 60",
           "sector 62",
-          "sprite 413",
-          "sprite 417",
-          "sprite 418",
-          "sprite 419"
+          "sprite 422",
+          "sprite 426",
+          "sprite 427",
+          "sprite 428"
         ],
         "faults": []
       },
@@ -1715,7 +1715,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 814"
+          "sprite 823"
         ],
         "answers": [],
         "faults": []
@@ -1737,7 +1737,7 @@
         "channel": 125,
         "engine": null,
         "senders": [
-          "sprite 1096"
+          "sprite 1105"
         ],
         "answers": [
           "sector 9"
@@ -1750,7 +1750,7 @@
         "channel": 126,
         "engine": null,
         "senders": [
-          "sprite 1097"
+          "sprite 1106"
         ],
         "answers": [
           "sector 18"
@@ -1763,7 +1763,7 @@
         "channel": 129,
         "engine": null,
         "senders": [
-          "sprite 1098"
+          "sprite 1107"
         ],
         "answers": [
           "sector 162"
@@ -1776,7 +1776,7 @@
         "channel": 127,
         "engine": null,
         "senders": [
-          "sprite 1099",
+          "sprite 1108",
           "wall 967",
           "wall 968",
           "wall 969",
@@ -1798,7 +1798,7 @@
         "channel": 128,
         "engine": null,
         "senders": [
-          "sprite 1100"
+          "sprite 1109"
         ],
         "answers": [
           "sector 149"
@@ -1992,7 +1992,7 @@
     }
   },
   "split_bands": {
-    "pegged": 68,
+    "pegged": 69,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
@@ -2187,12 +2187,12 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1611,
-    "wall_sprites": 772,
-    "planes": 190,
+    "sprites": 1620,
+    "wall_sprites": 778,
+    "planes": 191,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.52,
+    "clash_rate_per_100_wall_sprites": 0.51,
     "fully_hidden": 0
   },
   "apertures": {
@@ -4326,14 +4326,14 @@
     ]
   },
   "rules": {
-    "total": 1658,
+    "total": 1661,
     "by_severity": {
-      "note": 1651,
+      "note": 1654,
       "warning": 7
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 327,
+      "note:sprite-drawn-square": 330,
       "note:floor-aligned-sprite-rests-on-a-surface": 21,
       "note:threshold-follows-the-roofed-side": 4,
       "note:opening-clears-a-standing-body": 212,
@@ -4400,7 +4400,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1312,
+      "sprites": 1321,
       "sunk": 0.0,
       "through": 0.0,
       "squeezed": 0.0
@@ -4412,8 +4412,8 @@
     "overlaps": [
       {
         "sprites": [
-          1062,
-          1063
+          1071,
+          1072
         ],
         "tiles": [
           73,
@@ -4435,7 +4435,7 @@
         "count": 1,
         "first": [
           "sprite",
-          993
+          1002
         ]
       }
     ],
@@ -6042,7 +6042,7 @@
           ],
           [
             369,
-            0.11
+            0.113
           ],
           [
             119,
@@ -6113,7 +6113,7 @@
         "wall_tiles": [
           [
             369,
-            0.397
+            0.405
           ],
           [
             28,
@@ -6402,15 +6402,15 @@
     "pieces": 10,
     "slivers_merged": 1,
     "slivers_dropped": 0,
-    "walls_split": 24,
-    "seams": 68,
+    "walls_split": 38,
+    "seams": 64,
     "refused": {},
     "whole": 8
   },
   "light_stage": {
     "sectors_before": 760,
-    "walls_before": 4865,
-    "sprites_before": 1611,
+    "walls_before": 4869,
+    "sprites_before": 1620,
     "mover_hosts": [
       144,
       539
@@ -6780,24 +6780,24 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1808,
+      "walls_split": 1810,
       "seams": 0,
       "refused": {},
-      "walls_cut": 467,
+      "walls_cut": 468,
       "walls_refused": 10,
       "left_whole": {},
-      "looked_at": 1460
+      "looked_at": 1461
     },
     "shades": {
-      "surfaces": 5627,
+      "surfaces": 5630,
       "windows": 18,
       "spread_12": 84,
       "movers_evened": 3
     },
     "kept": 114,
     "sectors": 1192,
-    "walls": 11339,
-    "sprites": 1680,
+    "walls": 11344,
+    "sprites": 1689,
     "pieces": 432,
     "default_rooms": []
   },

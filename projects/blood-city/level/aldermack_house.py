@@ -210,7 +210,10 @@ def _stage(parent, backstage, apron):
     _join(cloth, "south", stage, "north", face_picnum=DRAPE, face_shade=62)
     steps = _flight(parent, "west_wing_step", (19328, 4864, 19712, 5888),
                     (3840, 7680, STAGE_RISE), axis="x", roof=32768, tile=PLANKS)
-    _join(steps[0], "west", backstage, "stage_stair")
+    # A lintel over the stair's mouth carries its sign (aldermack_backstage):
+    # the use reader could not tell how the dressing room reaches the stage.
+    steps[0].surfaces(floor_z=GRADE - 3840, clear_height=26624 - 3840)
+    _join(steps[0], "west", backstage, "stage_stair", face_picnum=WOOD)
     _join(steps[-1], "east", stage, "west")
     flats = [
         _inset(stage, f"scenic_flat_{side}", rect, floor=STAGE_RISE + 3072, roof=FLIES,
@@ -278,10 +281,13 @@ def _stalls(parent, approach):
         y = 10240 + i * 1024
         rise = 3072 + i * 6144
         rect = (TERRACE_WEST, y, TERRACE_EAST, y + 448)
-        front = _room(parent, f"terrace_{i + 1}", rect, floor=rise)
+        # A low warm wash over the rows: at the house's 49 the dead, the benches
+        # and the rails ran together (critique round 1, the recognition and
+        # use readers both).
+        front = _room(parent, f"terrace_{i + 1}", rect, floor=rise, shades=(34, 49, 38))
         rear = _room(parent, f"terrace_tier_{i + 1}",
                      (TERRACE_WEST, y + 448, TERRACE_EAST, y + 1024),
-                     floor=rise + 3072, wall=WOOD)
+                     floor=rise + 3072, wall=WOOD, shades=(32, 49, 36))
         _join(front, "south", rear, "north", face_picnum=WOOD)
         if terraces:
             _join(front, "north", terraces[-1][1], "south", face_picnum=WOOD)
@@ -310,10 +316,10 @@ def _bench(block, name, x0, x1, y, rise):
     hole = _hole(block, (x0, y, x1, y + 512))
     seat = _room(block, name + "_seat", (x0, y, x1, y + 256),
                  floor=rise + 3072, tile=SEAT, wall=WOOD,
-                 shades=(48, 48, 50), role="detail")
+                 shades=(20, 48, 34), role="detail")
     back = _room(block, name + "_back", (x0, y + 256, x1, y + 512),
                  floor=rise + 8192, tile=BACK, wall=WOOD,
-                 shades=(48, 48, 50), role="detail")
+                 shades=(26, 48, 34), role="detail")
     for piece, edge in ((seat, "north"), (back, "south")):
         for face in ("west", "east", edge):
             _join(piece, face, block, block.hole_face(hole, face),
@@ -541,6 +547,10 @@ def _dress_stage(layout, built):
                 angle=512, shade=34)
         _hanger(layout, f"stage_lamp_{i}", stage, 945, (22440, 23640)[i], y,
                 30848 + i * 4096, xr=42, yr=44, shade=-18)
+    # The ghost light, left burning on a dark stage: what shows through the
+    # stair's mouth (round 2: "the opening reads as a black rectangle").
+    _hanger(layout, "ghost_light", stage, 641, 20224, 4672, 8192,
+            xr=56, yr=44, shade=-90)
     for i, x in enumerate((20992, 22016, 23040, 24064, 25088)):
         # EU11_ sprites 519–528 at 1024 centres. The flames sit in small cups.
         _sprite(layout, f"footlight_cup_{i}", apron, 554, x, 7536,

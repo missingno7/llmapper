@@ -240,8 +240,8 @@ def _dress_service(layout, corridor):
     _mount(layout, keeper, "call_bill", 356, keeper_wall,
            up=13100, repeat=(27, 26), t=0.68)
 
-    north_pier = ((EAST, STAIR[1]), (EAST, 6272))
-    _sign(layout, corridor, "STAGE", north_pier, up=18400, size=22)
+    _sign(layout, corridor, "STAGE", ((EAST, STAIR[0]), (EAST, STAIR[1])), up=28200, size=60,
+          over_steps=True)
     _sign(layout, corridor, "SILENCE", ((WEST, 5120), (WEST, 4096)),
           up=16900, size=51)
     _sign(layout, corridor, "DRESSING", ((EAST, 11264), (WEST, 11264)),
@@ -270,7 +270,7 @@ def _dress_service(layout, corridor):
 
     for name, point, width, depth in (("scenery", (18400, 5736), 768, 1120),
                                       ("doors", (17920, 9472), 768, 960),
-                                      ("dressing", (18420, 10820), 768, 760)):
+                                      ("dressing", (18880, 10560), 768, 760)):
         _sprite(layout, corridor, f"gas_lamp_{name}", 641, point,
                 repeat=(62, 24), seat="ceiling", shade=-55)
         _pool(layout, corridor, name, point, width, depth, 21)

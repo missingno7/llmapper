@@ -1,0 +1,16 @@
+{
+ "slug": "aldermack-rebuild",
+ "kind": "theatre",
+ "round": 2,
+ "poses": [
+  "aldermack"
+ ],
+ "views": 10,
+ "references": 7,
+ "readers": [
+  "recognition",
+  "comparison",
+  "use",
+  "sense"
+ ]
+}

@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "f06d494ca571f550a81fa953206e74749fdb0cbe9ae8d446e7d4242fab5a63ca",
-  "map_sha256": "956067342f62eebf24318971dacb999c337d652e1247615905f0070563cea0aa",
+  "manifest_sha256": "27ee62f6f28e000164d372db5c32084170108c5c17a8232334d98398ea7169a1",
+  "map_sha256": "f3ee9b2cc68c8de2ad41e82208887f12af79d33254267fe028e516172756869c",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1192,
-  "walls": 11339,
-  "sprites": 1680,
+  "walls": 11344,
+  "sprites": 1689,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -23,7 +23,7 @@
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 1651,
+   "note": 1654,
    "warning": 7
   }
  },
@@ -192,7 +192,7 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 814",
+    "root": "sprite 823",
     "cause": "push",
     "sector": 624,
     "to": "kChannelLevelExitNormal",
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 931,
+    "sprite": 940,
     "name": "kItemKeyEye",
     "sector": 319,
     "reached": true
@@ -265,7 +265,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 813 (channel 108)"
+     "use switch sprite 822 (channel 108)"
     ],
     "sectors": 15,
     "first_sector": 622
@@ -273,7 +273,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 853 (channel 103)"
+     "destroy sprite 862 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 218
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "pick up sprite 412 (channel 123)"
+     "pick up sprite 421 (channel 123)"
     ],
     "sectors": 9,
     "first_sector": 56
@@ -289,7 +289,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1098 (channel 129)"
+     "use switch sprite 1107 (channel 129)"
     ],
     "sectors": 7,
     "first_sector": 158
@@ -297,7 +297,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 562 (channel 109)"
+     "destroy sprite 571 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 511
@@ -353,7 +353,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1096 (channel 125)"
+     "use switch sprite 1105 (channel 125)"
     ],
     "sectors": 1,
     "first_sector": 9
@@ -361,7 +361,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1097 (channel 126)"
+     "use switch sprite 1106 (channel 126)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -369,7 +369,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1100 (channel 128)"
+     "use switch sprite 1109 (channel 128)"
     ],
     "sectors": 1,
     "first_sector": 149
@@ -393,7 +393,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 923 (channel 104)"
+     "destroy sprite 932 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 340
@@ -1363,7 +1363,20 @@
     4.3
    ],
    "cramped": [],
-   "critique": null
+   "critique": {
+    "round": 2,
+    "passes": true,
+    "scores": {
+     "recognition": 4,
+     "use": 3,
+     "sense": 4,
+     "comparison": 4
+    },
+    "named_as": "small theater or cabaret",
+    "readers_missing": [],
+    "blocking": [],
+    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+   }
   },
   {
    "name": "Aldermack backstage",
@@ -1395,7 +1408,20 @@
     3.5
    ],
    "cramped": [],
-   "critique": null
+   "critique": {
+    "round": 2,
+    "passes": true,
+    "scores": {
+     "recognition": 4,
+     "use": 3,
+     "sense": 4,
+     "comparison": 4
+    },
+    "named_as": "small theater or cabaret",
+    "readers_missing": [],
+    "blocking": [],
+    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+   }
   },
   {
    "name": "Aldermack dressing room",
@@ -1429,7 +1455,20 @@
     "7.0M of floor (a destination wants 14.0M)",
     "1.45 bodies high (a destination wants 1.93)"
    ],
-   "critique": null
+   "critique": {
+    "round": 2,
+    "passes": true,
+    "scores": {
+     "recognition": 4,
+     "use": 3,
+     "sense": 4,
+     "comparison": 4
+    },
+    "named_as": "small theater or cabaret",
+    "readers_missing": [],
+    "blocking": [],
+    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+   }
   },
   {
    "name": "harbour",
@@ -2114,20 +2153,6 @@
    "see": "python -m tools.critique prepare saloon --poses <set> --kind <kind>"
   },
   {
-   "kind": "never-critiqued",
-   "place": "Aldermack auditorium",
-   "says": "no blind reader has looked at this place",
-   "owner": "tools/critique.py",
-   "see": "python -m tools.critique prepare aldermack-rebuild --poses <set> --kind <kind>"
-  },
-  {
-   "kind": "never-critiqued",
-   "place": "Aldermack backstage",
-   "says": "no blind reader has looked at this place",
-   "owner": "tools/critique.py",
-   "see": "python -m tools.critique prepare aldermack-rebuild --poses <set> --kind <kind>"
-  },
-  {
    "kind": "cramped",
    "place": "Aldermack dressing room",
    "says": "height 1.45 bodies (campaign p25 1.57)",
@@ -2147,13 +2172,6 @@
    "says": "1.45 bodies high (a destination wants 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
-  },
-  {
-   "kind": "never-critiqued",
-   "place": "Aldermack dressing room",
-   "says": "no blind reader has looked at this place",
-   "owner": "tools/critique.py",
-   "see": "python -m tools.critique prepare aldermack-rebuild --poses <set> --kind <kind>"
   },
   {
    "kind": "never-critiqued",
@@ -2189,7 +2207,7 @@
    "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
-   "at": "sprite[993]"
+   "at": "sprite[1002]"
   },
   {
    "kind": "outside-campaign",
@@ -3188,7 +3206,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 161, \"sprites\": [1062, 1063], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 161, \"sprites\": [1071, 1072], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[161]"
@@ -3214,7 +3232,7 @@
   "dropped": 5,
   "lost-tile": 2,
   "missing-layer": 17,
-  "never-critiqued": 15,
+  "never-critiqued": 12,
   "outside-campaign": 116,
   "owner-rework": 1,
   "refused": 7,

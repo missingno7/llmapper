@@ -44,6 +44,19 @@ LEVEL, UP, DOWN = HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN
 #: Fixed sets stay stable across iterations so before/after pairs line up;
 #: fresh sets are added per iteration and never reused.
 POSE_SETS = {
+    # the Aldermack as a visitor walks it (critique rounds number frames by name)
+    "aldermack": {
+        "a_forecourt": (27.30, 13.62, 28.05, 11.0, 143, "from the west side of the forecourt to the entrance"),
+        "b_foyer": (28.2, 9.4, 28.05, 6.5, LEVEL, "the foyer and its ticket windows"),
+        "d_vomitory": (25.18, 9.79, 22.5, 6.75, LEVEL, "from the vomitory toward the stage"),
+        "e_stalls": (22.5, 12.24, 22.5, 6.75, LEVEL, "rear terrace above the lit steps"),
+        "f_circle": (22.5, 14.2, 22.5, 5.2, LEVEL + 9, "dress circle looking over the parapet"),
+        "g_back": (22.5, 8.6, 22.5, 14.0, LEVEL + 12, "from the pit rail back over the seats to the circle"),
+        "c_to_house": (29.2, 9.1, 26.0, 9.25, LEVEL, "from the foyer to the way into the house"),
+        "j_stage_way": (18.1, 6.55, 18.9, 5.3, LEVEL, "backstage, to the stair onto the stage"),
+        "h_corridor": (17.65, 9.51, 17.97, 12.07, LEVEL, "backstage, past the prop crate to the dressing room"),
+        "i_dressing": (17.94, 11.05, 18.15, 14.45, LEVEL, "the star's room from its door"),
+    },
     "aldermack-house": {
         "vomitory": (25.18, 9.79, 22.5, 6.75, LEVEL, "from the vomitory toward the stage"),
         "stalls": (22.5, 12.24, 22.5, 6.75, LEVEL, "rear terrace above the lit steps"),

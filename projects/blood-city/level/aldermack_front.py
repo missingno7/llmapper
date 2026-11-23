@@ -354,6 +354,10 @@ def furnish(layout, foyer, lobby, street, porch, side, booth, cases, runner, cou
                    words="BOX OFFICE", size=82, palette="default", shade=-30,
                    height_player_heights=1.65, over_steps=True, required=True)
     # Silhouette in the left opening, light and an abandoned till on the right.
+    # over the vomitory's mouth, in sight of the ticket windows
+    wallplane.text(layout, "sign:aldermack_stalls", foyer.region_id, (26624, 10240), (26624, 8704),
+                   words="STALLS", size=82, palette="default", shade=-30,
+                   height_player_heights=1.72, over_steps=True, required=True)
     _seated(layout, booth, "clerk", (28160, 6416), 2330, (37, 37),
             shade=0, cstat=208, angle=512)
     _seated(layout, booth, "ticket_candle", (29456, 6416), 938, (31, 31),

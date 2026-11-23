@@ -1,0 +1,93 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/critique/round-1/ours_empty/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/aldermack-rebuild/critique/round-1/ours_empty",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "a_forecourt",
+   "x": 27955,
+   "y": 13946,
+   "z": -7072,
+   "angle": 1627,
+   "horiz": 143,
+   "sector": 1030,
+   "screenshot": true
+  },
+  {
+   "id": "b_foyer",
+   "x": 28876,
+   "y": 9625,
+   "z": -7840,
+   "angle": 1519,
+   "horiz": 100,
+   "sector": 25,
+   "screenshot": true
+  },
+  {
+   "id": "c_vomitory",
+   "x": 25784,
+   "y": 10024,
+   "z": -4096,
+   "angle": 1300,
+   "horiz": 100,
+   "sector": 45,
+   "screenshot": true
+  },
+  {
+   "id": "d_stalls",
+   "x": 23040,
+   "y": 12533,
+   "z": -22432,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 91,
+   "screenshot": true
+  },
+  {
+   "id": "e_circle",
+   "x": 23040,
+   "y": 14540,
+   "z": -33696,
+   "angle": 1536,
+   "horiz": 109,
+   "sector": 113,
+   "screenshot": true
+  },
+  {
+   "id": "f_back",
+   "x": 23040,
+   "y": 8806,
+   "z": -7072,
+   "angle": 512,
+   "horiz": 112,
+   "sector": 41,
+   "screenshot": true
+  },
+  {
+   "id": "g_corridor",
+   "x": 18073,
+   "y": 9738,
+   "z": -7072,
+   "angle": 471,
+   "horiz": 100,
+   "sector": 754,
+   "screenshot": true
+  },
+  {
+   "id": "h_dressing",
+   "x": 18370,
+   "y": 11315,
+   "z": -4096,
+   "angle": 492,
+   "horiz": 100,
+   "sector": 36,
+   "screenshot": true
+  }
+ ]
+}

@@ -1,0 +1,26 @@
+{
+ "recognition": {
+  "named": "small theater or cabaret",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "use": {
+  "named": "playhouse",
+  "sure": 5,
+  "score": 3,
+  "blocking": []
+ },
+ "sense": {
+  "named": "theatre",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "tall ornate theater",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ }
+}

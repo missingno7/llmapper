@@ -155,8 +155,9 @@ def verdict(slug: str) -> list[dict]:
         #: a round owes the readers the process had when it was run
         owed = meta.get("readers", ["recognition", "comparison", "use"])
         missing = [r for r in owed if r not in reviews]
-        recognised = (meta["kind"].lower() in
-                      reviews.get("recognition", {}).get("named", "").lower())
+        # an American reader's "theater" names a theatre
+        plain = lambda text: text.lower().replace("theater", "theatre")  # noqa: E731
+        recognised = plain(meta["kind"]) in plain(reviews.get("recognition", {}).get("named", ""))
         blocking = [f"{reader}: {b}" for reader, row in reviews.items()
                     for b in row["blocking"]]
         out.append({

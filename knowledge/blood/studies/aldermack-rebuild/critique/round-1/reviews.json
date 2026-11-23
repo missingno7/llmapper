@@ -1,0 +1,28 @@
+{
+ "recognition": {
+  "named": "small theater or cabaret",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "ornate proscenium theater",
+  "sure": 5,
+  "score": 5,
+  "blocking": []
+ },
+ "use": {
+  "named": "playhouse",
+  "sure": 5,
+  "score": 3,
+  "blocking": [
+   "no dressing-room-to-stage route is shown"
+  ]
+ },
+ "sense": {
+  "named": "theatre",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ }
+}
