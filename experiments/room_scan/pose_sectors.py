@@ -13,7 +13,7 @@ from bloodmap.visual import HORIZ_LEVEL, ObservationRequest, Viewpoint, as_playe
 from PIL import Image, ImageDraw  # noqa: E402
 
 tag, cols = sys.argv[1], 4
-BR = 1.8
+BR = 2.6
 jobs = {}
 for a in sys.argv[2:]:
     path, spec = a.rsplit(':', 1)

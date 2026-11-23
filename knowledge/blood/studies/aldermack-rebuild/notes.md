@@ -16,7 +16,17 @@ scan (`experiments/room_scan/scan_rooms.py`, ranked by `rank.py`, rendered by `p
 sprite grids, wide curtains in tall rooms, lettered words and theatre
 posters. About forty rooms were rendered; `posed/` has the sheets, rendered locally and not committed.
 
-- **THESLUMS.MAP (community), the cinema: the exemplar for the house.** From
+- **DWE1M9 (Death Wish), the Pandemonium Shadow Show, s236-s299, s322-s326,
+  s429, s800: THE exemplar, for the whole.** The owner: "I know that something
+  like theatre was in one of the DW maps". Three terraces falling 15,360 each
+  (s274, s275, s277), bench pairs the width of the middle (s245/s246), side
+  stairs with a flare at both ends of every step, railings, striped walls, an
+  apse of drapes for a stage (s279), a beam of light (sprites 963, 964) with
+  cultists as silhouettes before it, nine seated innocents (type 245), and a
+  trap: the key in the beam (961) drops the CURTAIN behind the player (s276,
+  type 600, walls 159) and opens the wings (s280, s281, s322, s323).
+  `posed/pose-dw2.png`, `pose-dw3.png`, the plan `dwe1m9.png`.
+- **THESLUMS.MAP (community), the cinema: for the first look down the aisle.** From
   its door (s549 looking at s543; `posed/pose-5.png`): a chevron-carpet aisle
   (s508) runs between two blocks of benches (s509-s540) down to a lit, framed
   screen in black. Bloodied dead sit on the benches.
@@ -71,6 +81,12 @@ room of sofas), hallfame (a museum), DACOM1, OMEGAMAN, FOULKEEP, CAFEDRAL.
 
 | Thing | Exemplar | Record |
 | --- | --- | --- |
+| terraces | DWE1M9 s274, s275, s277 | 12,288 x 3,584, 15,360 apart; tier s249 at its rear, 9,216 up; floor 306 at 48-50, ceiling 28 at 48-50, 68,608 to 99,328 clear |
+| benches | DWE1M9 s245/s246 | 4,608 x 256 + 256; back +8,192 (68), seat +3,072 (42), faces 88 |
+| side stairs, step lights | DWE1M9 s252-s254, 60 pairs | 1,536 wide, 512 deep, 3,072 a step; 624 cstat 8322 rep 8 + cstat 8320 rep 4, shade -30, pal 8, at each end |
+| railings | DWE1M9 sprites 752-... | 104, cstat 401, repeat 32, every 512, 4,096 up |
+| curtain (rising) | DWE1M9 s276 | 11,776 x 512, type 600, walls and ceiling 159, ceiling -18,432 to 80,896, busy 10, once |
+| beam | DWE1M9 963, 964 | 3129 (417), cstat 650 / 654, repeat 104 / 96 x 232, shade -62 |
 | bench pair | THESLUMS s515/s516 | 2,304 long; seat 384 deep, floor and front 260 at shade 42/37; back 128 deep, 4,096 over the seat, faces 409, top 260 at 47 |
 | pitch, rake | THESLUMS s509-s523 | 1,024; 2,048 a row; 7 rows; block floor s524 2,816 wide, 8,192 long |
 | aisle | THESLUMS s508 | 1,536 wide, carpet 471 at shade 38, ceiling 364 at 54 |
@@ -93,6 +109,10 @@ record) and beam of flares; HUNT's performer and shadows; SCHOOL_'s
 three-bay frame and drape legs (study `theatre`); EU11_'s footlight row and
 panelled stage face; REALM4's drape walls and candelabra in the boxes; the
 CINEMA sign's lit discs for ALDERMACK over the street.
+
+From DWE1M9: the terraces, step lights, railings, rising curtain, beam and
+silhouettes, and the trap's shape. The owner: "curtains can be z motion or
+sliding": the house curtain rises; a sliding one is on a box.
 
 ## What I will not do, and why
 

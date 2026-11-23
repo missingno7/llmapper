@@ -14,6 +14,7 @@ with the records; build from these and cite them:
 
 | Part | Exemplar |
 | --- | --- |
+| the whole house, stage, curtain, beam, audience and trap | DWE1M9 s236-s299, s322-s326, s800 (the owner pointed to Death Wish) |
 | the house and its first look, seats, aisle, the seated dead, the beam | THESLUMS.MAP s508, s509-s549 |
 | the performer, the spotlight and its shadows | HUNT.MAP s672-s675 |
 | proscenium, drape legs, apron | SCHOOL_.MAP s177-s182 (study `theatre`); AFTSHOCK.MAP is Duke E1L1 converted: an idea (dark frame, bright legs), never its room |
@@ -79,6 +80,14 @@ door `(y 11)`.
 
 Free: the sewer's layers start at z 28672, so the pit may sink; no other
 room lies under x 17 to 26.
+
+## The curtains
+
+The owner, 2026-11-23: "There are design choices we can do about it, like
+curtains can be z motion or sliding, etc." The house curtain is Z-motion
+(DWE1M9 s276): shut, it is the room's far wall; it rises on the show and falls
+behind whoever takes the prize. A sliding curtain (the fin) hangs on the
+second west box.
 
 ## Rules that outlast this build
 
