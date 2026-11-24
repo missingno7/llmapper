@@ -28,9 +28,10 @@ PU = 1024
 STREET_BELOW = 40000                                     # a floor deeper than this is underground
 #: (name, underground, x0, y0, x1, y1 in plan units): the first that holds a point is where it is
 AREAS = (
+    ("the Toshers' Den", True, 8, 41, 19.9, 50),
     ("the Cabal's chamber", True, 19, 50, 36, 72), ("the settling hall", True, 17, 41, 36, 50),
     ("the Phantom Terminus", True, 35, -22, 72, 2), ("the Weaver's Cellars", True, 6, 8.5, 18, 17.6),
-    ("St Gallow's crypt", True, 27, 26, 32, 30.5), ("the stockyard", True, 47, 34, 63, 62),
+    ("St Gallow's crypt", True, 27, 26, 32, 30.5), ("the stockyard", True, 46.1, 34.2, 63, 62),
     ("Graves Brook", True, 0, 17.6, 32, 26), ("the sewers", True, 26, 1, 58, 41),
     ("Gravesend Station", False, 0, -27, 60, 0), ("theatre row", False, 0, 0, 32, 15),
     ("foundry ward", False, 39, 2, 60, 37), ("the market hall", False, 3, 39.5, 15, 50), ("the arcade", False, 39, 39, 54, 50),

@@ -33,7 +33,7 @@ up to the signal box, its lever opens the tunnel, and the way out is in the bore
 | **eye** | a shop of the arcade (it also opens the arcade's service passage) | the concourse's cultists | four more come into the concourse, between you and the street |
 | **flame** | on the belt in the pump station's machine hall, between the two presses | the presses slam and the belt carries you into them; the console lever stops the belt | the dead come out of the hall's corners |
 | **moon** | on the Aldermack's trap, in the light | the house's gunmen; the show | the curtain drops, the light goes, the wings open on the watchers (as it did for the armour) |
-| **spider** | in the Weaver's Cellars, in front of the north nest | the brood and its mother | five more spiders |
+| **spider** | in the Weaver's Cellars, on a stone in the north nest, in the one light there | the great web across the nest, the brood, and its mother over the pit | five more spiders |
 | **dagger** | the Cabal's chamber, in the throat behind the rose | the stone beast; the rose bursts only when it dies | phantoms between it and the way out |
 
 Underground are the flame's neighbour, the spider and the dagger. The sewers are entered by the pump
@@ -72,10 +72,17 @@ is a required order, and a player with dynamite has shorter ways.
 | guns akimbo, super armor | the Gullet | secret |
 | death mask | the Rat King's shrine | secret |
 | body armor | the arcade's cache | secret |
-| spirit armor | across the blood by the trolley | off the way |
+| spirit armor | across the blood by the trolley | off the way; taking it wakes two gill beasts |
 
 Ammunition lies in threes along a wall past the fight it is for; a foe in six carries a life essence; bags and pouches stand where a
 fight has just been.
+
+## The sewers
+
+A place to be hunted in, not a place to clear: eight rats and four beasts in three hundred metres of corridor before 2026-11-25. Now the
+stockyard branch has a fight of its own (the bleeding floor: a butcher, two axe zombies, rats, gill beasts below and in the sampling chamber),
+the ring has something under its south channel and hands in its west leg, and the Cabal keeps a picket where the outfall goes down to the
+settling hall. The rest is the Toshers' Den, off that hall: a light, a bag, shells, and a secret under a bed. Rows: `gameplay.SEWERS`, `gameplay.WAKES`.
 
 ## The streets
 

@@ -54,9 +54,10 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("theatre:fire-doors",
      "pushing either of the Aldermack's stage doors from either room toggles both "
      "leaves, which stay where they stop until pushed again"),
-    ("sewer:settling-hall-lift",
-     "the landing buttons recall the deck to their own stop and the rider's "
-     "button sends it to the other stop"),
+    # (the settling hall's service lift was this wire until 2026-11-25)
+    ("sewer:stockyard-armor",
+     "taking the spirit armor across the blood brings two gill beasts up "
+     "out of it, between you and the stair"),
     ("sewer:stockyard-trolley",
      "each dry berth calls the sampling deck to its own stop and the carried "
      "button sends the boarded rider across the blood channel"),

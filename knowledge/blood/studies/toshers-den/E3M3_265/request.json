@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-sewers/knowledge/blood/studies/toshers-den/E3M3_265/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-sewers/knowledge/blood/studies/toshers-den/E3M3_265",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 72258,
+   "y": -39676,
+   "z": 42080,
+   "angle": 558,
+   "horiz": 100,
+   "sector": 265,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 73494,
+   "y": -37204,
+   "z": 42080,
+   "angle": 716,
+   "horiz": 100,
+   "sector": 265,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 71022,
+   "y": -36586,
+   "z": 42080,
+   "angle": 436,
+   "horiz": 100,
+   "sector": 265,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 69786,
+   "y": -35041,
+   "z": 42080,
+   "angle": 103,
+   "horiz": 100,
+   "sector": 265,
+   "screenshot": true
+  }
+ ]
+}

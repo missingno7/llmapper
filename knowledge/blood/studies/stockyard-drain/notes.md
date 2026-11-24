@@ -40,6 +40,9 @@ Surfaces: walls 296, the rack's floor 291, and the race's floor 1120 at palette 
 - No diving suit or flags from E1M8:251. They are that map's items, not the place's.
 - No crushers or machinery. The slaughterhouse is upstream, out of the map; the drain only carries what it sends.
 
+**Since 2026-11-25** the two refusals above are withdrawn: the branch was "the most cramped part of the sewers and not one enemy in it".
+A butcher works the bleeding floor (`stockyard_floor.py`), where the rack went, and gill beasts keep the blood below it.
+
 ## What I still do not know
 
 - How the current feels to ride, and whether the drop from the quay cover reads as safe. The owner will walk it.

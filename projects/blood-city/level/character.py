@@ -87,16 +87,16 @@ PLACES: dict[str, dict[str, Any]] = {
     },
     "the Weaver's Cellars": {
         "at": (11264, 12800), "floor": 61440, "study": "spider-lair",
-        "hero": "brood alcoves walled in silk, a cocoon in each, under a "
-                "ceiling where the spiders and their mother hang upside down",
+        "hero": "a pit of eggs under the mother on her thread, and past it the key "
+                "in the one shaft of light, behind a great web",
         "exemplar": "E2M8 s52 (silk 1057 alcoves, cocoon 1061, victims 1059, "
                     "mothers on the ceiling); CHORROR s414 (web fringe 1067/1068, "
                     "ceiling spiders, the web 410 across the way in)",
     },
     "Stockyard Drain": {
-        "at": (50944, 54272), "floor": 63488, "study": "stockyard-drain",
-        "hero": "a tiled race of blood running north from the slaughterhouse "
-                "pipe and carcass rack into the Foundry Main",
+        "at": (48400, 41400), "floor": 61440, "study": "stockyard-drain",
+        "hero": "a vaulted bleeding floor where the slaughterhouse washes down under "
+                "hung carcasses into the ring's race, which is blood from there to the fall",
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); "
                     "TEDE1M4 s82 (wash-room tiles); E3M2 s258 (hung carcasses)",
     },
@@ -107,11 +107,12 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "#2WAYCAR s1 (rigid floor that carries its rider); "
                     "E1M2 s34 and sprites 384–391 (track and wheels)",
     },
-    "Settling Hall service lift": {
-        "at": (19968, 45184), "floor": 102400, "study": "doors-and-mechanisms",
-        "hero": "a metal filter deck on the west quay that rises past the "
-                "tanks to the gallery, with a work light and call button at each landing",
-        "exemplar": "MACHINERY-LIFT s2/s14 and sprite 9 (fixed-roof floor lift and remote call)",
+    "the Toshers' Den": {
+        "at": (16200, 46600), "floor": 102400, "study": "toshers-den",
+        "hero": "a low room of timber shoring off the settling hall, a lantern and a lit stove, "
+                "and three straw beds on boxes, one of which is not only a bed",
+        "exemplar": "E6M7 s195 and s108 (shoring and firelight), DWE2M5 s292 (hay, boxes, tools, the lantern), "
+                    "E3M3 s264 and s298 (the bed that sinks and what is behind it)",
     },
     "the Rat King's Shrine": {
         "at": (55040, 48000), "floor": 61440, "study": "rat-king-shrine",
