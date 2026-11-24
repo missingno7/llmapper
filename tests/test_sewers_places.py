@@ -104,14 +104,14 @@ class SewersPlacesTests(unittest.TestCase):
 
     def test_the_drain_runs_through_the_bleeding_floor_and_is_blood_after_it(self):
         Y = self.Y
-        head, hall = self.at(49.0, 37.0, Y.FLOOR), self.at(47.0, 40.5, Y.FLOOR)
+        head, hall = self.at(49.0, 37.0, Y.FLOOR), self.at(52.0, 40.5, Y.FLOOR)
         down = self.at(49.0, 47.0, Y.FLOOR)
         self.assertIn(hall, reach(self.disk, head))
         self.assertIn(down, reach(self.disk, head))
         self.assertIn(head, reach(self.disk, down))
-        self.assertIn(self.at(52.4, 43.0, Y.DOCK_Z), reach(self.disk, hall))
+        self.assertIn(self.at(54.6, 43.0, Y.DOCK_Z), reach(self.disk, hall))
         self.assertEqual(self.sector(self.at(49.75, 37.0, Y.WATER))["floor_pal"], 0)
-        for x, y, floor in ((47.0, 42.0, Y.GUTTER_Z), (49.4, 44.2, Y.WATER), (49.75, 47.5, Y.WATER), (49.75, 51.4, Y.WATER)):
+        for x, y, floor in ((52.0, 42.0, Y.GUTTER_Z), (50.1, 44.2, Y.WATER), (49.75, 47.5, Y.WATER), (49.75, 51.4, Y.WATER)):
             self.assertEqual(self.sector(self.at(x, y, floor))["floor_pal"], 7, (x, y))
 
     def test_it_has_air_and_a_fight(self):

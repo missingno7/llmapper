@@ -118,7 +118,7 @@ SUPPLIES = (
     ((70,), 37.2, 21.4, SEWER, "the stash: a secret"),
     ((46, 79), 45.2, 38.2, 63488, "the flooded room's far corner: a secret"),
     ((114,), 55.7, 46.2, 56320, "the Rat King's offering: a secret"),
-    ((68, 67), 52.4, 40.6, 57344, "the bleeding floor's dock"),
+    ((68, 67), 54.7, 40.4, 57344, "the bleeding floor's dock"),
     ((143,), 60.4, 58.6, 69632, "across the blood by the trolley"),
     # the settling hall: what the stone beast cannot shrug off, under the Cabal's skull and in line with the falls
     ((45, 73, 73, 73), 33.0, 49.35, HALL, "between the fires at the foot of the falls"),
@@ -150,8 +150,8 @@ PATROL = (
 #: the rows are the streets' own; a rat needs less room than a man
 SEWERS = (
     # the bleeding floor: the butcher at his carcasses, two of his men, rats at the stains; a beast below in the blood
-    (204, 47.2, 43.2, SEWER, 0, 0), (203, 47.2, 40.5, SEWER, 1536, 0), (203, 52.4, 43.2, 57344, 1024, 3),
-    (220, 48.6, 43.6, SEWER, 300, 0), (220, 50.9, 42.4, SEWER, 900, 0), (217, 49.75, 48.2, 63488, 1536, 0),
+    (204, 53.0, 43.4, SEWER, 1024, 0), (203, 52.4, 40.0, SEWER, 1024, 0), (203, 54.8, 43.2, 57344, 1024, 3),
+    (220, 51.0, 43.6, SEWER, 300, 0), (220, 51.4, 42.6, SEWER, 900, 0), (217, 49.75, 48.2, 63488, 1536, 0),
     # the sampling chamber: one in each pool, so the trolley is a ride and not a walk
     (217, 56.0, 56.5, 71680, 1024, 0), (217, 57.5, 60.2, 71680, 1024, 1),
     # the ring: what waits under the south channel, hands in the west leg, a beast in the east, the toshers' rats

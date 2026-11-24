@@ -94,7 +94,7 @@ PLACES: dict[str, dict[str, Any]] = {
                     "ceiling spiders, the web 410 across the way in)",
     },
     "Stockyard Drain": {
-        "at": (48400, 41400), "floor": 61440, "study": "stockyard-drain",
+        "at": (53200, 41400), "floor": 61440, "study": "stockyard-drain",
         "hero": "a vaulted bleeding floor where the slaughterhouse washes down under "
                 "hung carcasses into the ring's race, which is blood from there to the fall",
         "exemplar": "E1M8 s389 (the River Ride's drag), s251 (blood pipes); "

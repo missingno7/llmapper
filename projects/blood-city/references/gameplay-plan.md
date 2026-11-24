@@ -26,6 +26,9 @@ Each switch takes its key once; the sixth raises all three gates (DWE1M9's lock:
 four keyed switches into one counting switch). Caleb: "Looks like my train's come
 in." The guard behind the gates wakes. Through the concourse, over the platform,
 up to the signal box, its lever opens the tunnel, and the way out is in the bore.
+The lever is the last fight's switch too: a whistle far off, the ground shakes, and
+what was in the tunnel comes up the platform while the way out stands open behind it
+(`gameplay.LAST`).
 
 | key | where | what stands in the way | what taking it does |
 |---|---|---|---|
@@ -88,3 +91,7 @@ settling hall. The rest is the Toshers' Den, off that hall: a light, a bag, shel
 
 Before this pass nobody walked them. Twenty-one foes do now, in ones and twos, thinnest at the quay and thickest at the station's
 front; seven of them only on the harder skills. Three lie in the churchyard's earth.
+
+**Gallows Steps** (`level/gallows.py`), west of the well square, is the one place over them: a stair at the end of a blind alley to a
+terrace two and a half bodies up, with the parish's gallows on it and nothing else. Whoever keeps it shoots down into the crossroads; whoever
+takes it has the crossroads. No key is there, and nothing needs it.

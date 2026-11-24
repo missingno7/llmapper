@@ -2,12 +2,13 @@
 
 The owner's brief, 2026-11-25: the stockyard branch is "the most cramped part of
 the sewers and not one enemy in it ... widen or raise one stretch". The drain was
-one corridor 37 metres long. Now it comes into a hall seven units wide whose roof
-is the corridor's own section at its own scale: a flat crown over the water, two
-slopes down to the walls. Blood comes out of a pipe in the west wall, down a
-gutter across the floor and into the race, which is the ring's green water above
-that and blood below it. Carcasses hang over the gutter and the dry floor; a dock
-a step up along the east wall is the one other level. Nothing else is in it.
+one corridor 37 metres long. Now it comes along the wall of a hall seven units wide:
+half a vault, flat over the water and falling to the east wall. (It lay both sides
+of the race until 2026-11-25, and the arcade's sunk court is over the west side.)
+Blood comes out of a pipe in the east wall, down a gutter across the floor and
+into the race, which is the ring's green water above that and blood below it.
+Carcasses hang over the gutter and the dry floor; a dock a step up along the east
+wall, which the gutter cuts, is the one other level. Nothing else is in it.
 
 Built of `bloodmap.arrangement`; the corridors either side are the sewer's.
 """
@@ -20,14 +21,14 @@ from bloodmap.slope import SlopeSpec
 PU = 1024
 LAYER = "stockyard_floor"
 KEY = "region:gravesend/sewer/stockyard_floor:hall"
-X0, X1, Y0, Y1 = 46.25, 53.25, 39.5, 44.5
+X0, X1, Y0, Y1 = 48.75, 55.75, 39.5, 44.5
 RACE = (49.25, 50.25)
 GUTTER = (41.75, 42.25)
-DOCK = 51.5
+DOCK = 53.75
 FLOOR, WATER, GUTTER_Z, DOCK_Z = 61440, 63488, 62464, 57344
-CROWN, FALL = 20480, 5120                                  # the roof falls this much a plan unit, from the crown to the walls
+CROWN, FALL = 20480, 3072                                  # the roof falls this much a plan unit, from the race to the east wall
 #: where the blood has come right across the race: from the gutter's mouth, slantwise down the current
-PLUME = ((49.25, 41.75), (50.25, 43.75), (50.25, 44.5), (49.25, 44.5))
+PLUME = ((50.25, 41.75), (50.25, 44.5), (49.25, 44.5), (49.25, 43.75))
 TILE, PAVING, ROOF, BLOOD = 296, 291, 1030, 1120            # the drain's own
 
 
@@ -42,16 +43,16 @@ def _rect(x0, y0, x1, y1):
 def plan() -> list:
     place = A.Arrangement()
     place.add("west", _rect(X0, Y0, RACE[0], Y1))
-    place.add("gutter", _rect(X0, GUTTER[0], RACE[0], GUTTER[1]))
     place.add("race", _rect(RACE[0], Y0, RACE[1], Y1))
     place.add("east", _rect(RACE[1], Y0, DOCK, Y1))
     place.add("dock", _rect(DOCK, Y0, X1, Y1))
+    place.add("gutter", _rect(RACE[1], GUTTER[0], X1, GUTTER[1]))
     return place.resolve()
 
 
 def roof(x: float) -> int:
     """How high the roof is over a point across the hall (plan units)."""
-    return round(CROWN + FALL * max(RACE[0] - x, x - RACE[1], 0))
+    return round(CROWN + FALL * max(x - RACE[1], 0))
 
 
 def build(layout, strips: dict) -> dict[str, str]:
@@ -66,15 +67,14 @@ def build(layout, strips: dict) -> dict[str, str]:
         wet = kind in ("race", "gutter")
         floor = {"race": WATER, "gutter": GUTTER_Z, "dock": DOCK_Z}.get(kind, FLOOR)
         more = {}
-        if kind != "race":
-            near = {"east": RACE[1], "dock": DOCK}.get(kind, RACE[0])
-            far = {"east": DOCK, "dock": X1}.get(kind, X0)
+        if kind not in ("race", "west"):
+            near, far = {"east": (RACE[1], DOCK), "dock": (DOCK, X1), "gutter": (RACE[1], X1)}[kind]
             more["ceiling_slope"] = SlopeSpec(hinge=_edge_on(by_name[name], x=_q(near)), rise_z=roof(far) - roof(near))
             ceiling = roof(near)
         else:
             ceiling = CROWN
         if wet:
-            run = FLOW["stockyard_drain"] if kind == "race" else (0, 24, False)
+            run = FLOW["stockyard_drain"] if kind == "race" else (1024, 24, False)
             more["sector_behavior"] = {"amplitude": -4, "shade_frequency": 4, "depth": WATER_DEPTH if kind == "race" else 1,
                                        **flow_behavior(*run)}
         return dict(floor_z=floor, ceiling_z=ceiling, wall_picnum=TILE, floor_picnum=BLOOD if wet else PAVING,
@@ -84,7 +84,7 @@ def build(layout, strips: dict) -> dict[str, str]:
     regions = A.lay(layout, KEY, cells, surface)
     for (y, x0, x1), strip in strips.items():
         middle = (x0 + x1) / 2
-        cell = "race" if RACE[0] < middle < RACE[1] else "east" if middle > RACE[1] else ("west_0" if y == Y0 else "west_1")
+        cell = "race" if RACE[0] < middle < RACE[1] else "west" if middle < RACE[0] else ("east_0" if y == Y0 else "east_1")
         a, b = ((_q(x0), _q(y)), (_q(x1), _q(y))) if y == Y0 else ((_q(x1), _q(y)), (_q(x0), _q(y)))
         layout.add_connection(f"connection:stockyard_floor:{y}:{x0}", strip, regions[cell], a1=b, a2=a,
                               min_width=1, min_opening=0)
@@ -95,12 +95,12 @@ def build(layout, strips: dict) -> dict[str, str]:
 
 
 #: the carcasses on their hooks (E3M2's): (cell, x, y, repeat)
-CARCASSES = (("west_0", 47.7, 40.4, 46), ("west_0", 48.5, 41.2, 42), ("gutter", 47.9, 42.0, 48), ("west_1", 47.5, 43.1, 44),
-             ("west_1", 48.5, 43.8, 42))
-#: an empty hook over the far floor
-HOOKS = (("east", 50.9, 40.6, 42), ("east", 50.9, 43.2, 46))
+CARCASSES = (("east_0", 52.6, 40.4, 46), ("east_0", 51.6, 41.2, 42), ("gutter", 52.3, 42.0, 48), ("east_1", 52.9, 43.1, 44),
+             ("east_1", 51.7, 43.7, 42))
+#: an empty hook, over the way in and over the far floor
+HOOKS = (("east_0", 51.0, 40.2, 42), ("dock_1", 54.6, 43.6, 40))
 #: what has run off them
-STAINS = (("west_0", 47.7, 40.4, 44, 512), ("west_0", 48.5, 41.2, 36, 0), ("west_1", 47.5, 43.1, 48, 1024), ("east", 50.9, 43.2, 30, 300))
+STAINS = (("east_0", 52.6, 40.4, 44, 512), ("east_0", 51.6, 41.2, 36, 0), ("east_1", 52.9, 43.1, 48, 1024), ("east_1", 51.7, 43.7, 30, 300))
 
 
 def _furnish(layout, regions) -> None:
@@ -123,4 +123,4 @@ def _furnish(layout, regions) -> None:
     for k, (cell, x, y, size, angle) in enumerate(STAINS):
         put(f"stain_{k}", cell, ("E2M4", 0, 713), x, y, x_repeat=size, y_repeat=size, cstat=32, shade=8, angle=angle)
     # the slaughterhouse's pipe, dripping into the gutter's head
-    put("pipe", "gutter", ("E1M8", 0, 977), X0 + 8 / PU, 42.0, over=9000, angle=0, x_repeat=66, y_repeat=58, shade=-8)
+    put("pipe", "gutter", ("E1M8", 0, 977), X1 - 8 / PU, 42.0, over=9000, angle=1024, x_repeat=66, y_repeat=58, shade=-8)
