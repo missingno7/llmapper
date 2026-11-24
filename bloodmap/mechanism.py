@@ -104,6 +104,8 @@ SECTOR_SOUND_PROFILES = {
     "rail_shuttle": (115, 153, 115, 153),
     "hydraulic_slide": (111, 159, 111, 159),
     "ceiling_press": (302, 309, 0, 0),
+    "flesh_door": (123, 0, 123, 171),             # E4M7, its doors of 233 and 242
+    "great_stone": (124, 157, 124, 157),          # E4M8, the hall's walls that sink before the bosses
 }
 
 

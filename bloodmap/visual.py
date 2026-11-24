@@ -31,7 +31,8 @@ from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Any, Iterable, Mapping, Sequence
 
-from .model import LevelIR, record_extra
+from .blood_types import HIDDEN_STATUS, HIDDEN_TYPES, hidden_in_single_player
+from .model import LevelIR, record_extra, record_fields
 from .player_space import player_profile
 
 SCHEMA = "llmapper.xmapedit-visual-observation"
@@ -60,20 +61,6 @@ HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN = 100, 160, 40
 # and critic tools put that project on the import path to borrow them -- for
 # rendering campaign maps that have nothing to do with the city.
 
-#: What the GAME never draws. The owner, 2026-11-18, on frames of E1M1's
-#: crypt full of numbered red flags and of ours with orange streaks in the
-#: wall: "When you are viewing the level look you should be hiding these
-#: control things which are normally invisible like player starts, stack
-#: markers, sounds, etc."
-#:
-#: The engine's own list, not a guess: player starts and every marker
-#: (types 1-19: the starts are taken into the start zones and deleted,
-#: links and stacks get the invisible bit in warp.cpp:113-133, statnum 10
-#: is culled at load); generators and sound sprites (700-712:
-#: `InitGenerator`, triggers.cpp:2362); the exploder (459: actor.cpp:2507);
-#: and anything launched only outside single player (blood.cpp:700).
-HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
-HIDDEN_STATUS = {10}
 #: WHO AND WHAT IS IN A ROOM IS NOT THE ROOM. The owner, 2026-11-18: "you
 #: also should be able to check how it looks like without enemies and
 #: pickups for example to get rid of visual noise." A cultist in the
@@ -170,16 +157,15 @@ def as_played(map_path, out_dir, empty: bool = False) -> Path:
     disk = read_map(map_path)
     hidden = emptied = 0
     for sprite in disk.sprites:
-        f = sprite.fields
+        f = record_fields(sprite)
         extra = record_extra(sprite) or {}
         if empty and int(f.get("type", 0)) in EMPTY_TYPES:
             if not int(f["cstat"]) & 32768:
                 f["cstat"] = int(f["cstat"]) | 32768
                 emptied += 1
             continue
-        if (int(f.get("type", 0)) in HIDDEN_TYPES
-                or int(f.get("status", 0)) in HIDDEN_STATUS
-                or int(extra.get("launch_single", 0))):
+        if hidden_in_single_player(int(f.get("type", 0)), int(f.get("status", 0)),
+                                   int(extra.get("launch_single", 0))):
             if not int(f["cstat"]) & 32768:
                 f["cstat"] = int(f["cstat"]) | 32768
                 hidden += 1

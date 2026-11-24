@@ -221,6 +221,10 @@ class Rule:
     along: int
     across: int = 0
     shade_bias: tuple[int, int, int] = (0, 0, 0)  # floor, ceiling, wall
+    #: whether its floors and walls may be cut where the light changes. A place
+    #: already authored in pieces (a ring of steps in arcs) is lit piece by piece
+    #: without: the cuts of the Cabal's three round tiers cost 600 walls.
+    cut: bool = True
 
 
 #: a light sprite as the campaign sets it down (its first use, E1M1/E1M2/E1M4),
@@ -1255,6 +1259,7 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     from .swept_state import hosts
     whole = kept | frozenset(hosts(disk))
     report["mover_hosts"] = sorted(whole - kept)
+    whole |= frozenset(i for i, region in region_of.items() if not rule_for(region).cut)
     shadows = cut_shadows(disk, model, whole)
     _chain(parent, shadows, scale)
     report["shadow_cut"] = {k: v for k, v in shadows.items() if k != "parent"}

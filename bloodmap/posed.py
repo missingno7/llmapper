@@ -27,6 +27,12 @@ transcription, not an approximation:
   when its state is set and its tile's view type is 0 (view.cpp:2724-2737
   and :2822-2826). The observer reads no XSPRITE (obs_main.c:369 skips the
   bytes), so the copy's `picnum` is moved instead of its `state`;
+* a torch or a candle (30, 32) burns while its state is 1 (view.cpp:2922-2938),
+  a kTrapZapSwitchable (456) is drawn while its state is 1
+  (triggers.cpp:393-409), and a kWallGib (511) whose state is 1 is open and
+  undrawn on both its records (`SetupGibWallState`, triggers.cpp:640-668);
+* a plain sector's shade wave follows its state (`busy`), so a light on a wire
+  is shown lit or out (`visual.shade_waves_lit` reads it);
 * a thing destroyed as its own chain's cause is gone (`actPostSprite(...,
   kStatFree)`, triggers.cpp:385-392), so it is hidden with cstat 32768. The
   gib or debris it leaves is not drawn.
@@ -67,6 +73,11 @@ Z_TYPES = {600: "kSectorZMotion", 602: "kSectorZMotionSprite"}
 SWEPT_TYPES = {614: "kSectorSlideMarked", 615: "kSectorRotateMarked",
                616: "kSectorSlide", 617: "kSectorRotate"}
 SWITCH_TYPES = {20: "kSwitchToggle", 21: "kSwitchOneWay"}
+FLAMES = {30: "kDecorationTorch", 32: "kDecorationCandle"}
+SHOWN = 456                                    # kTrapZapSwitchable: shows and hides its sprite
+GIB_WALL = 511
+#: what `SetupGibWallState` clears on both records of a gib wall that is open
+GIB_CLEARS = 1 | 16 | 64
 #: Markers never ride a moving sector (triggers.cpp:933-941, :1047).
 MARKER_STATNUMS = (10, 16)
 INVISIBLE = 32768
@@ -148,7 +159,11 @@ def _next_state(kind: str, type_id: int, extra: Mapping[str, Any], command: int 
         if type_id in Z_TYPES or type_id in SWEPT_TYPES:
             return ({0: 0, 1: 1}.get(command, state ^ 1),
                     "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)")
+        if int(extra.get("amplitude", 0) or 0):
+            return ({0: 0, 1: 1}.get(command, state ^ 1), "a light: its wave is scaled by busy (sectorfx.cpp:162-206)")
         return None, f"sector type {type_id} is not a door the engine moves on a state"
+    if kind == "wall" and type_id == GIB_WALL:
+        return {0: 0, 1: 1}.get(command, state ^ 1), "triggers.cpp:715-740 (kWallGib)"
     return None, f"{kind} state is not read here"
 
 
@@ -424,6 +439,40 @@ def _pose_switch(disk: Any, out: Any, sprite_id: int, target: int,
                                 "assumed 0 and 0")
 
 
+def _pose_shown(out: Any, sprite_id: int, type_id: int, target: int, row: dict[str, Any]) -> None:
+    """A fire burns or is out; a kTrapZapSwitchable is there or is not."""
+    sprite = out.sprites[sprite_id]
+    fields = record_fields(sprite)
+    row["where"] = [[int(fields["x"]), int(fields["y"])]]
+    extra = record_extra(sprite)
+    row["changed"] = extra is not None and int(extra.get("state", 0)) != target
+    if sprite.extra is not None:
+        sprite.extra.fields.update(state=target, busy=65536 * target)
+    if type_id in FLAMES:
+        row["done"].append(f"{'burns' if target else 'is out, and smokes'} (view.cpp:2922-2938)")
+        return
+    shown = int(fields["cstat"]) & ~INVISIBLE if target else (int(fields["cstat"]) | INVISIBLE) & ~1
+    row["changed"] = row["changed"] or shown != int(fields["cstat"])
+    fields["cstat"] = shown
+    row["done"].append(f"{'shown' if target else 'hidden'} (triggers.cpp:393-409)")
+
+
+def _pose_gib(disk: Any, out: Any, wall_id: int, target: int, row: dict[str, Any]) -> None:
+    """A gib wall that is set is open and undrawn on both its records (its shards are not drawn)."""
+    fields = record_fields(disk.walls[wall_id])
+    end = record_fields(disk.walls[int(fields["point2"])])
+    row["where"] = [[(int(fields["x"]) + int(end["x"])) // 2, (int(fields["y"]) + int(end["y"])) // 2]]
+    if not target:
+        row["done"].append("whole")
+        return
+    for index in (wall_id, int(fields["next_wall"])):
+        if index >= 0:
+            seen = record_fields(out.walls[index])
+            seen["cstat"] = int(seen["cstat"]) & ~GIB_CLEARS
+    row["changed"] = bool(int(fields["cstat"]) & GIB_CLEARS)
+    row["done"].append("burst: open and undrawn on both records (triggers.cpp:640-668)")
+
+
 def _pose(disk: Any, chain: Mapping[str, Any], end: str,
           tiles: Mapping[int, Any] | None) -> tuple[Any, dict[str, Any]]:
     out = copy.deepcopy(disk)
@@ -449,9 +498,11 @@ def _pose(disk: Any, chain: Mapping[str, Any], end: str,
             row["not_posed"].append(f"the engine's channel {item['type']}: what it does "
                                     "(a secret counted, a level ended, a message shown) "
                                     "is not a picture of the map")
+        elif kind == "wall" and type_id == GIB_WALL and target is not None:
+            _pose_gib(disk, out, index, target, row)
         elif kind == "wall":
             row["not_posed"].append("a wall's state change is not posed (a switch wall's "
-                                    "picture, a gib wall) -- not transcribed here")
+                                    "picture) -- not transcribed here")
         elif target is None:
             row["not_posed"].append(f"no state to show: {item['why_state']}")
         elif kind == "sector":
@@ -463,12 +514,20 @@ def _pose(disk: Any, chain: Mapping[str, Any], end: str,
                 _pose_z(disk, out, index, target, tiles, row)
                 if not row["done"] and not row["not_posed"]:
                     row["done"].append("its z pair does not travel")
+            elif target is not None and int((record_extra(disk.sectors[index]) or {}).get("amplitude", 0) or 0):
+                row["where"] = [_centroid(disk, index)]
+                extra = out.sectors[index].extra.fields
+                row["changed"] = int(extra.get("state", 0)) != target
+                extra["state"], extra["busy"] = target, 65536 * target
+                row["done"].append(f"its light {'on' if target else 'off'} (wave amplitude {extra['amplitude']})")
             else:
                 row["not_posed"].append(f"{sector_name} does not move on a state")
         elif kind == "sprite":
             category = SPRITE_TYPES.get(type_id, {}).get("category")
             fields = record_fields(disk.sprites[index])
-            if type_id in SWITCH_TYPES:
+            if type_id in FLAMES or type_id == SHOWN:
+                _pose_shown(out, index, type_id, target, row)
+            elif type_id in SWITCH_TYPES:
                 _pose_switch(disk, out, index, target, tiles, row)
             elif (item["role"] == "sender" and category == "thing"
                   and row.get("cause") == "destroyed"):

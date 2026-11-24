@@ -25,7 +25,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
-from .model import record_fields as _f
+from .model import record_extra, record_fields as _f
 
 
 @dataclass(frozen=True)
@@ -60,6 +60,8 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(570, "wooden torch bracket", "wall", False, True, point=0.2, intensity=0.8),
     LightKind(554, "wooden wall sconce", "wall", False, True, point=0.2, intensity=0.7),
     LightKind(580, "standing candelabrum", "standing", False, True, point=0.1, intensity=0.8),
+    LightKind(564, "skull-headed torch stand", "standing", False, True, point=0.0, intensity=1.1),
+    LightKind(1840, "the light in a horned thing's hands", "standing", False, True, point=0.42, intensity=0.9),
     LightKind(560, "tall candle stand", "standing", False, True, point=0.1, intensity=0.5),
     LightKind(938, "lit candle", "standing", False, True, point=0.15, intensity=0.4),
     LightKind(550, "brazier", "standing", False, True, point=0.2, intensity=1.0),
@@ -77,6 +79,8 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(265, "stained glass, a haloed figure", "window", False, True, point=0.5, intensity=0.6),
 )}
 
+#: kDecorationTorch and kDecorationCandle: their flame follows their state
+FIRES = frozenset({30, 32})
 #: textures that look lit but give no light (the owner)
 NOT_LIGHTS = frozenset({261, 511})
 #: a panel ceiling counts as lit at or below this shade
@@ -118,6 +122,10 @@ def sprite_lights(disk, art=None) -> list[tuple]:
             continue
         if int(f["type"]) in HIDDEN_TYPES or int(f["status"]) in HIDDEN_STATUS:
             continue
+        if int(f["type"]) in FIRES:                      # a torch or candle that starts out gives none (view.cpp:2922)
+            extra = record_extra(sprite)
+            if extra is not None and not int(extra.get("state", 0)):
+                continue
         if kind.form == "window":
             light = _window(disk, f, art, kind)
             if light is not None:

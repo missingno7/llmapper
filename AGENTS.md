@@ -19,6 +19,7 @@ calls for it. Commands are run from the repository root.
 | what players wrote about a campaign level: its walkthrough, keys in order, secrets and rewards | `python -m tools.wiki_levels show E3M3` (facts in `knowledge/blood/wiki/levels.json`; `fetch` caches the pages) |
 | how one object in a campaign map is set up | `python -m tools.catalog record E3M5 sector 20` (only the fields that are set, and the room it is in) |
 | which rooms have a mechanic, and what one room has | `python -m tools.catalog find lift crypt`, then `python -m tools.catalog show E1M8:243` |
+| what is arranged around a centre, and where to see it | `python -m tools.mine_compositions find ring candle`, then `show MAP:sector` |
 | what a thing is wired to | `python -m tools.catalog mechanisms E2M4 --place E2M4:613` |
 | whether the library already has a function for this | [docs/module-map.md](docs/module-map.md): every module and tool, one line each |
 | which module owns a kind of fact | [docs/architecture.md](docs/architecture.md) |

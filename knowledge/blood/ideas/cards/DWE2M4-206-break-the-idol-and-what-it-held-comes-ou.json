@@ -1,0 +1,12 @@
+{
+ "map": "DWE2M4",
+ "sector": 206,
+ "kind": "mechanism",
+ "title": "Break the idol and what it held comes out of it",
+ "what": "A stone hand taller than a man stands in a ring of twelve candles on a brick drum in a moat. Shooting it breaks it, and four phantoms come out of where it stood.",
+ "recipe": "Hand: tile 2348, kThingObjectGib (416), destroyed sends tx 155 command 1; four kMarkerDudeSpawn (18) rx 155, data_1 210, 250 units round it in the same sector, 8000 up. Drum 2048 across and 26624 high inside a moat of 2915; candles 938 (type 32) on its rim.",
+ "use": "Any guarded statue that is itself the trigger: the museum, the park's monument, the church.",
+ "frame": "",
+ "date": "2026-11-24",
+ "used_in": []
+}

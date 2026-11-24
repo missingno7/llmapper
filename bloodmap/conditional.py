@@ -982,6 +982,10 @@ def _edge_enabled(edge: "ConditionalEdge", held: Held) -> bool:
     """
     if edge.verdict != "conditional":
         return False
+    if edge.mechanism_kind == "sector" and edge.delta.get("rest_state") == edge.enabling_state:
+        # a way the map is saved with open, which something a body does may shut
+        # behind it: it has to be walked through before anything is done at all
+        return True
     if edge.requires_key and edge.requires_key not in held.keys:
         return False
     for cause in edge.causes:

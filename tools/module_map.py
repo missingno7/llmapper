@@ -48,7 +48,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Sensors",
      "Derived readings of a map. Never authoritative, never written back.",
      ["design", "spatial", "sight", "exposure", "morphology", "contents",
-      "reachability", "relations", "patterns", "anchors", "structures",
+      "reachability", "relations", "patterns", "anchors", "structures", "compositions",
       "materials", "level_profile", "effects", "wiring", "posed", "completion", "assembly", "conditional",
       "progression", "understanding", "sp_understand", "bundle", "style"]),
     ("Probes",
@@ -63,7 +63,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Writing a level as source. `LevelProgram` is the editable form; it "
      "lowers through `PlanarLayout` into `LevelIR`.",
      ["levelprog", "planar_layout", "layout", "layers", "vocabulary",
-      "prefab", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
+      "prefab", "arrangement", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
       "overlay", "construction", "composition", "fragment", "recipe",
       "designs"]),
     ("Authoring: surfaces and light",
@@ -115,7 +115,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
     ("Measuring the campaign",
      "Each runs a library sensor over `corpus.campaign_maps()` and writes a "
      "versioned file under `knowledge/blood/design/`.",
-     ["mine_apertures", "mine_assemblies", "mine_decoration", "mine_keys",
+     ["mine_apertures", "mine_assemblies", "mine_compositions", "mine_decoration", "mine_keys",
       "mine_layers", "mine_mechanisms", "mine_monuments", "mine_overlooks",
       "mine_patterns", "mine_prefabs", "mine_prop_catalogue",
       "mine_run_rhythm", "mine_sector_motion_sounds", "mine_set_pieces", "mine_skylines",
@@ -141,7 +141,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
       "whatif", "judge_experiment"]),
     ("Looking",
      "Render what the game shows, through the XMapEdit observer.",
-     ["observe", "render_precedent", "sweep_views", "look_at", "mechanism_look", "tile_usage",
+     ["observe", "render_precedent", "sweep_views", "look_at", "gallery", "mechanism_look", "tile_usage",
       "showcase", "plan_view"]),
     ("The library of Blood",
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "

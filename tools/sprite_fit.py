@@ -47,6 +47,7 @@ from typing import Any
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from bloodmap.model import record_extra  # noqa: E402
 from bloodmap.player_space import PLAYER_PROFILES  # noqa: E402
 
 BODY = PLAYER_PROFILES["blood"].standing_height
@@ -119,6 +120,12 @@ def audit(disk) -> list[dict[str, Any]]:
                                    int(f["y_repeat"]), cstat, int(f["z"]))
         tall = max(1, bottom - top)
         floor, ceiling = int(s["floor_z"]), int(s["ceiling_z"])
+        if floor == ceiling:
+            # goods in a closet nobody has opened: fitted to it as it opens
+            moves = record_extra(disk.sectors[sid]) or {}
+            if moves.get("on_floor_z") or moves.get("off_floor_z"):
+                floor = max(int(moves["on_floor_z"]), int(moves["off_floor_z"]))
+                ceiling = min(int(moves["on_ceiling_z"]), int(moves["off_ceiling_z"]))
         sky = bool(int(s["ceiling_stat"]) & 1)
         row = {"sprite": index, "tile": int(f["picnum"]), "sector": sid,
                "align": align, "type": int(f.get("type", 0)),

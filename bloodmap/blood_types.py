@@ -391,6 +391,17 @@ NON_VISIBLE_CATEGORIES = frozenset({"sound", "marker", "start", "generator"})
 #: exist.
 INVISIBLE_CSTAT = 0x8000
 
+# The single-player view also excludes control records culled or hidden during
+# Blood's initialization (warp.cpp, triggers.cpp, actor.cpp and blood.cpp).
+HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
+HIDDEN_STATUS = {10}
+
+
+def hidden_in_single_player(type_id: int, status: int, launch_single: int) -> bool:
+    """Whether Blood hides a sprite at single-player load regardless of cstat."""
+    return type_id in HIDDEN_TYPES or status in HIDDEN_STATUS or bool(launch_single)
+
+
 VISIBILITY_KINDS = ("visible", "wiring")
 
 

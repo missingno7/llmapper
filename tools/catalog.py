@@ -831,9 +831,19 @@ def show(what: str) -> str:
                              if row["id"] in labels else "")
                 for _s, row, _w in hits))
     else:
+        from tools import mine_compositions
+
         data = json.loads(PLACES.read_text("utf-8"))
         row = next((r for r in data["places"] if r["id"] == what.upper()), None)
         if row is None:
+            map_name, _, sector = what.rpartition(":")
+            if map_name and sector.isdecimal():
+                hits = mine_compositions.at_place(what, shelf_rooms_only=True)
+                if hits:
+                    names: dict[int, str] = {}
+                    return "\n".join([f"COMPOSITIONS {what.upper()}",
+                                      *(mine_compositions.describe(hit, names) for hit in hits),
+                                      f"  details: python -m tools.mine_compositions show {what}"])
             return (f"no place, type, effect, channel or lesson called {what} "
                     f"in the catalogue; try: python -m tools.catalog find {what}")
         label = place_labels().get(row["id"])
@@ -847,6 +857,12 @@ def show(what: str) -> str:
             f"{t} {(names.get(t) or looks.get(t, {}).get('looks') or '?')[:28]}"
             for t in row["distinctive"]))
         lines.extend(_place_holds(row))
+        compositions = mine_compositions.at_place(row["id"], shelf_rooms_only=True)
+        if compositions:
+            names = {}
+            lines.append("  COMPOSITIONS")
+            lines.extend(mine_compositions.describe(item, names) for item in compositions)
+            lines.append(f"  details: python -m tools.mine_compositions show {row['id']}")
         lines.append(f"  look at it: python -m tools.study <slug> --seed {row['map']}:{row['host']}!")
     return "\n".join(lines)
 
@@ -1094,6 +1110,11 @@ def find_all(words: list[str]) -> str:
                        f"{('[' + label['kind'] + '] ') if label else ''}"
                        f"{row['metres'][0]}x{row['metres'][1]} m  "
                        + "; ".join(why[:3]))
+    from tools import mine_compositions
+
+    out.append("COMPOSITIONS  (python -m tools.mine_compositions find <words>)")
+    names: dict[int, str] = {}
+    out.extend(mine_compositions.describe(row, names) for row in mine_compositions.find(words)[:5])
     studies = ROOT / "knowledge" / "blood" / "studies"
     out.append("STUDIES")
     for notes in sorted(studies.glob("*/notes.md")):

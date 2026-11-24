@@ -509,6 +509,10 @@ class PlacementSpec:
     #: that is not the region it stands in.
     marker_owner: str | None = None
     seat_clearance: int = 0
+    #: It stands half out of its floor (or runs up into its ceiling) on purpose:
+    #: the engine cuts a sprite at its sector's floor, so a figure can be up to
+    #: its waist in a pool. Without this a placement is moved until it is whole.
+    sunk: bool = False
     #: This sprite is meant to span an opening rather than hang on a wall.
     #:
     #: A wall placement whose wall turns out to be a portal has nothing behind it
@@ -1844,7 +1848,7 @@ class PlanarLayout:
                         f"tile {placement.picnum} carries floor alignment (cstat "
                         f"{placement.cstat}); a floor sprite on a wall hangs in the air"
                     )
-            if not placement.seat and not wall_anchor and extent is not None:
+            if not placement.seat and not wall_anchor and extent is not None and not placement.sunk:
                 ceiling, floor = region.ceiling_z, region.floor_z
                 above, below = sprite_extent(
                     extent[0], placement.y_repeat, placement.cstat, y_offset=extent[1])

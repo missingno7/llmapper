@@ -11,6 +11,7 @@ rather than tons of texts, it needs to be a real library you can use."
 | Tiles | what a tile shows (class, layout, a name, themes), the owner's name for it, every way Blood uses it | the tile number | `design/tile-looks/`, `design/owner-anchors-v1.json`, `design/tile-usage-v1.json` |
 | Tile contexts | what a tile is used as, in which slot and kind of place, and whose evidence says so: the owner's word, then counts over the campaign, the owner's own maps, the curated, multiplayer and community maps, then agents' readings; agents add readings as they learn | the tile number, or a slot and a place | `tile-contexts/` (`python -m tools.tile_contexts`) |
 | Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, its member sectors, what works and stands in it (by the Mechanisms keys), and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
+| Compositions | sprite rings and squares, rings of pillars, concentric floors, round rooms, common facings and groups that share a centre | `MAP:sector` | `design/compositions-v1.json`, `design/compositions-community-v1.json` (`python -m tools.mine_compositions`) |
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
 | Parts | what a mechanism is made of: every sector, wall and sprite type the campaign uses, every sector effect, every engine channel and every tutorial lesson, each with maps that show it, what sets it off and what it drives | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` (`entries`) |
@@ -71,6 +72,9 @@ python -m tools.catalog record E3M5 sector 20   # only the fields that are set o
 python -m tools.catalog show 1129          # a tile: name, reading, uses, places
 python -m tools.catalog show E1M2:271      # a place: kind, signs, tiles, what works in it
 python -m tools.catalog find lift crypt    # words from two shelves: rooms that are both
+python -m tools.mine_compositions find ring candle --min-count 5
+python -m tools.mine_compositions find nest object
+python -m tools.mine_compositions show E1M7:29
 python -m tools.tile_usage 1129            # the tile's picture and every context
 python -m tools.tile_contexts show 364     # a tile's contexts: slot, place, whose evidence
 python -m tools.tile_contexts where two_sided_lower --place church   # what Blood puts there
@@ -80,6 +84,35 @@ python -m tools.study station --seed E1M2:271!   # look at a place, start a stud
 python -m tools.ideas list --grep curtain  # idea cards
 python -m tools.catalog status             # how much is catalogued
 ```
+
+## Compositions
+
+The reader uses single-player load visibility, skips off-map control closets
+and groups a room's local portals with its enclosed floor bands. A nest follows complete portal rims.
+Sectors split by radial walls count as one band when their union closes the
+rim at a common floor elevation. Levels run from outside in. A positive z
+step measures a rise, a negative step a fall. Flat nests change floor tile
+or shade. A ring records how many angular slots are empty. Four corners
+with equal sides read as a square.
+The miner gets five- and eight-view sprite directions from the local ART
+metadata. [NBlood's sprite view pass](https://github.com/nukeykt/NBlood/blob/master/source/blood/src/view.cpp#L2598-L2651)
+
+Groups compare each layer with the smallest ring or shape in the group.
+The sorting score is the number of agreeing layers, plus up to 0.8 for
+regularity and 0.19 for member count. Two readings of the same sprites
+contribute one layer. Search words can come from different layers, the centre
+object, or the room label. Use `object` to require a visible centre sprite.
+
+`python -m tools.mine_compositions mine --serial` refreshes the named shelf.
+The `campaign` source is the single-player campaign. The `curated` source
+covers the remaining named maps, with their corpus provenance on each row.
+Add `--community` to mine the bulk archive with the process pool, or add
+`--serial` where pools are unavailable. The community shelf skips known
+Duke conversions and keeps groups with at least two layers and rings with
+at least five sprites. Its 3 MB budget retains the highest scores.
+
+The [campaign audit](design/compositions-audit.md) records the native geometry
+checked for the first shelf.
 
 ## Sounds
 

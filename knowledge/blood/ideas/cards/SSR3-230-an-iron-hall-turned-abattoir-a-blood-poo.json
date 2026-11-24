@@ -1,0 +1,12 @@
+{
+ "map": "SSR3",
+ "sector": 230,
+ "kind": "set-piece",
+ "title": "An iron hall turned abattoir: a blood pool under a hung thing",
+ "what": "An octagonal engine hall of riveted steel 12.5 m across and 5.6 bodies high. In the middle an octagonal pool of blood and bones (tile 243, panned slowly) inside a rim one step up; over it a chained winged carcass holds a key. Candles on the rim, on crates and on the floor, each a different size; thirty-two small splashes climb the walls; a heartbeat plays at the pool and machinery round it.",
+ "recipe": "Pool floor 243 with pan_floor, 5120 below the rim's 438; rim floor 3072 above the hall; candles 938 type 32 with repeats 64 to 96 by 40 to 88; splashes 904 (cstat 0x2d2) at heights 4000 to 25000; ambient 710 sound 60 (data 200/800/50) at the pool, sound 8 (100/500/30) at the wall; every sector shade_wave 7 amplitude 3.",
+ "use": "Dressing an industrial place as a ritual one without changing its walls. Used in the Cabal's chamber.",
+ "frame": "",
+ "date": "2026-11-24",
+ "used_in": []
+}

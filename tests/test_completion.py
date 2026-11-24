@@ -153,6 +153,13 @@ class ScorecardTests(unittest.TestCase):
         total = self.committed["total"]
         self.assertGreaterEqual(total["secret_counts_agree"], 39)
 
+    def test_a_way_that_is_open_at_rest_is_open(self):
+        """Something a body does may shut it behind them; until then it is a way (2026-11-24: 38 exits, 97 keys before)."""
+        total = self.committed["total"]
+        self.assertGreaterEqual(total["exit_reached"], 42)
+        rows = {row["map"]: row for row in self.committed["maps"]}
+        self.assertEqual(rows["E3M8"]["missed"], [])
+
     def test_the_shortfall_is_stated_and_not_hidden(self):
         """The readers do not finish the campaign. The file says so."""
         total = self.committed["total"]

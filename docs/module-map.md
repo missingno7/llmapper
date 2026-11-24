@@ -79,6 +79,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `patterns` | Corpus-grounded design-pattern observation, clustering, and retrieval. |
 | `anchors` | Anchor queries: from a sparse label to the structure around it. |
 | `structures` | Architectural structure recovery: the layer between a space and its details. |
+| `compositions` | Read rings, concentric floors, round rooms and common facings from Blood map geometry. |
 | `materials` | Evidence-first material/texture knowledge. |
 | `level_profile` | What a Blood level measures like, so an authored one can be compared to it. |
 | `effects` | What a mechanism physically does, said neutrally. |
@@ -130,6 +131,7 @@ Writing a level as source. `LevelProgram` is the editable form; it lowers throug
 | `layers` | Space stacked over space, and the conditions that make it safe. |
 | `vocabulary` | Authoring vocabulary: composable structures over :class:`PlanarLayout`. |
 | `prefab` | Detail at volume: the small sectors a Blood level is mostly made of. |
+| `arrangement` | A place drawn as shapes laid over one another, resolved into regions that meet edge to edge. |
 | `aperture` | A way through a wall, as a thing rather than an absence. |
 | `breach` | A hole blown through a wall, shaped the way Blood shapes one: ragged pieces with tilted sills and tops. |
 | `slope` | Sloped floors and ceilings, which this project had never built. |
@@ -284,6 +286,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | --- | --- |
 | `mine_apertures` | How big a hole in a wall is, and what Blood puts around it. |
 | `mine_assemblies` | What a working example of a mechanism looks like, mined whole. |
+| `mine_compositions` | Mine and search geometric compositions across the Blood map corpus. |
 | `mine_decoration` | How Blood dresses a room: which decorations, how big, where, how many. |
 | `mine_keys` | How Blood tells you which key a door wants. |
 | `mine_layers` | What the campaign does when two pieces of space share the same ground. |
@@ -373,6 +376,7 @@ Render what the game shows, through the XMapEdit observer.
 | `render_precedent` | Observe an original map, so claims about the corpus have evidence. |
 | `sweep_views` | Stand everywhere in a map, look every way, and record what was drawn. |
 | `look_at` | Walk round a THING in one of Blood's maps and photograph it. |
+| `gallery` | Many places on one sheet, each from where it can be seen: the pictures a comparison starts from. |
 | `mechanism_look` | Render one mechanism before and after it fires, from the same cameras, and measure the difference. |
 | `tile_usage` | What a tile LOOKS like, and every way Blood uses it. |
 | `showcase` | A competition of views for each named place: measured heats, blind finals, and what each place lacks. |

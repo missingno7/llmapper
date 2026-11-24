@@ -1,0 +1,12 @@
+{
+ "map": "E2M9",
+ "sector": 118,
+ "kind": "set-piece",
+ "title": "A ring of cultists round a bonfire, the campaign's own circle",
+ "what": "Eight cultists stand in a circle in a rubble hall, all facing a bonfire in a shallow round pit with goods lying in it. Nothing is written or drawn: the facing alone says what they are doing. Found by tools.mine_compositions (focus + nest), not by looking for it.",
+ "recipe": "The ground (sector 118) is a sixteen-sided patch of earth 270, radius 1450, shade 8, with the fire's own eight-sided sector (164, radius 572) in its middle, flame 3566 on it. Eight kDudeCultistShotgun at 2000 to 2200 units, 45 degrees apart, every one's angle within 30 of 2048 of the bearing to the fire; a pickup on the ground in each of the four directions (809, 817).",
+ "use": "Any camp: the docks' watch, the cemetery, the Cabal's chamber (used there with a well for the fire).",
+ "frame": "",
+ "date": "2026-11-24",
+ "used_in": []
+}

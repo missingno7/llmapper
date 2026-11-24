@@ -344,3 +344,89 @@ def spawn_sight_report(build: BuildIR, *, include_sp_start: bool = True) -> dict
             "masked walls are treated as see-through",
         ],
     }
+
+
+def near_sectors(level: Any, sector: int, x: float, y: float, reach: float) -> list[int]:
+    """The sectors joined to this one by portals whose edges come within `reach` of a point."""
+    from .sector_geom import sector_walls, wall_segment
+
+    seen, queue, out = {sector}, [sector], []
+    while queue:
+        here = queue.pop(0)
+        out.append(here)
+        for wall in sector_walls(level, here):
+            beyond = int(level.walls[wall]["fields"]["next_sector"])
+            if beyond < 0 or beyond in seen:
+                continue
+            (ax, ay), (bx, by) = wall_segment(level, wall)
+            span = (bx - ax) ** 2 + (by - ay) ** 2
+            t = 0.0 if not span else max(0.0, min(1.0, ((x - ax) * (bx - ax) + (y - ay) * (by - ay)) / span))
+            if hypot(x - ax - t * (bx - ax), y - ay - t * (by - ay)) <= reach:
+                seen.add(beyond)
+                queue.append(beyond)
+    return out
+
+
+def sees(level: Any, sector: int, eye: tuple[float, float, float], at: tuple[float, float, float],
+         *, limit: int = 96) -> bool:
+    """Is the line from an eye to a point clear, walked through the portals with its height?
+
+    Follows the segment from sector to sector. At every portal the line must
+    pass between the higher floor and the lower ceiling of the two sides;
+    masked walls are seen through, solid walls stop it. Slopes are read as
+    flat and sprites hide nothing. Unlike `line_of_sight` this knows height
+    and stacked space: it starts in a sector and never jumps to another that
+    merely lies over the same plan.
+    """
+    from .sector_geom import sector_contains, sector_walls, wall_segment
+
+    ex, ey, ez = eye
+    dx, dy, dz = at[0] - ex, at[1] - ey, at[2] - ez
+    here, reached = sector, 0.0
+    for _step in range(limit):
+        if sector_contains(level, here, int(at[0]), int(at[1])) and _clear_to_end(level, here, eye, at, reached):
+            return True
+        best = None
+        for wall in sector_walls(level, here):
+            (ax, ay), (bx, by) = wall_segment(level, wall)
+            wx, wy = bx - ax, by - ay
+            cross = dx * wy - dy * wx
+            if abs(cross) < 1e-9:
+                continue
+            t = ((ax - ex) * wy - (ay - ey) * wx) / cross
+            u = ((ax - ex) * dy - (ay - ey) * dx) / cross
+            if t > reached + 1e-7 and t <= 1.0 and -1e-6 <= u <= 1 + 1e-6 and (best is None or t < best[0]):
+                best = (t, wall)
+        if best is None:
+            return False
+        t, wall = best
+        fields = level.walls[wall]["fields"]
+        beyond = int(fields["next_sector"])
+        if beyond < 0:
+            return False
+        z = ez + dz * t
+        for side in (here, beyond):
+            f = level.sectors[side]["fields"]
+            if not int(f["ceiling_z"]) <= z <= int(f["floor_z"]):
+                return False
+        here, reached = beyond, t
+    return False
+
+
+def _clear_to_end(level: Any, sector: int, eye, at, reached: float) -> bool:
+    """No solid wall of this sector lies between where the line entered it and its end."""
+    from .sector_geom import sector_walls, wall_segment
+
+    ex, ey, _ = eye
+    dx, dy = at[0] - ex, at[1] - ey
+    for wall in sector_walls(level, sector):
+        (ax, ay), (bx, by) = wall_segment(level, wall)
+        wx, wy = bx - ax, by - ay
+        cross = dx * wy - dy * wx
+        if abs(cross) < 1e-9:
+            continue
+        t = ((ax - ex) * wy - (ay - ey) * wx) / cross
+        u = ((ax - ex) * dy - (ay - ey) * dx) / cross
+        if reached + 1e-7 < t < 1 - 1e-7 and -1e-6 <= u <= 1 + 1e-6:
+            return False
+    return True

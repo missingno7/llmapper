@@ -1,0 +1,12 @@
+{
+ "map": "CASTLE23",
+ "sector": 0,
+ "kind": "lighting",
+ "title": "Fires come alight two at a time down a hall",
+ "what": "Seven pairs of unlit torches down a hall come alight one or two seconds apart after one trigger, a burning sound (462) with the first. Torches are sprites whose flame follows their state, which the campaign almost never wires.",
+ "recipe": "Each torch: kDecorationTorch (30), tile 560, XSPRITE state 0 and an rx per pair. Pair k's channel is sent by a kSwitchOneWay (21) with trigger_off, wait_time 10, command 1, whose own rx is pair k-1's channel; the first is sent by a kSwitchOneWay with trigger_on. State 1 to 0 puts them out again, smoking (view.cpp:2930).",
+ "use": "A procession of light to or from something. Used backwards in the Cabal's chamber: the six fires die in pairs when the priest falls.",
+ "frame": "",
+ "date": "2026-11-24",
+ "used_in": []
+}
