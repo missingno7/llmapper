@@ -34,7 +34,7 @@ what was in the tunnel comes up the platform while the way out stands open behin
 |---|---|---|---|
 | **skull** | on the lid of the sarcophagus in St Gallow's crypt | the church's dead and cultists, the slab lift | five of the buried rise out of the crypt's earth |
 | **eye** | on a plinth on the arcade's landing, in sight from its street door and across a fallen gallery from it (it also opens the service passage behind it) | the sunk court: the escalator down, the dead in it, the fallen span up | Miguel's shutter goes up and two come out of the gun shop on the gallery opposite, one stands at the street door, one gets up in the draper's |
-| **flame** | on the belt in the pump station's machine hall, between the two presses | the presses slam and the belt carries you into them; the console lever stops the belt | the dead come out of the hall's corners |
+| **flame** | on the belt in the pump station's machine hall, lit under the hood between the two presses; seen first from the deck the gallery comes out on | the presses slam and the belt carries you into them; the console lever stops the belt | one rises out of the settling basin, a butcher stands on the deck across the way out, one comes from the south bay |
 | **moon** | on the Aldermack's trap, in the light | the house's gunmen; the show | the curtain drops, the light goes, the wings open on the watchers (as it did for the armour) |
 | **spider** | in the Weaver's Cellars, on a stone in the north nest, in the one light there | the great web across the nest, the brood, and its mother over the pit | five more spiders |
 | **dagger** | the Cabal's chamber, in the throat behind the rose | the stone beast; the rose bursts only when it dies | phantoms between it and the way out |

@@ -210,3 +210,26 @@ materials (brick 417, stone 281, clay tiles 120):
 Not built: the breach (the wire `foundry:staged-moment` is still idle), any
 door on the service stair, a notice board or a lamp in the passage, and the
 second-exit porch's fit to the facade's painted windows, which it cuts.
+
+## Rebuilt long (2026-11-25)
+
+The owner, having played the passage: "I would also rework the underpass, add
+there some posters and things, making it look more liminal." Looked at again,
+by `tools.gallery` (DNE3L6 s165, s169, s171, s371; E1M2 s92, s104; DWE2M2 s634,
+s679; DWE3M4 s118; E3M4 s220; E4M9 s95; DWE2M10 s157):
+
+- **DWE2M2 s634 is the corridor that has it.** 4.5 units wide, 37,888 high and 24 long: plaster over a red tiled
+  dado (2294, its dado's top at row 154 of 256, hung so that it stands 0.87 of a body), a plain ceiling (374), two rows of identical tubes
+  (2290, 512 by 1024, four-wall sectors at ceiling shade 0 over a floor at 13, the rest at 30), the same board
+  (420) at intervals, nothing on the floor but paper and bottles. It reads as it does because every bay is
+  the last one again and the far end is a small bright square.
+- **DNE3L6 s171 is the owner's own**: the passage from his ticket hall to his platform is grimy tiles (296), interlocking
+  paving (287) and bevelled slabs (40), with a stair on one side and black at its end.
+- **A dead tube is a tile**: 2289 and 2291 are the lit 2288 and 2290 with the glass broken (E1M2 s92, DWE2M2 s274).
+- **The pram** (183) stands once in the campaign: alone, in E3M4 s423.
+- **The folding gate** 1060 is what the owner hangs before his ticket windows; floor to ceiling it is a metro's, and one sees through it.
+  The jail bars (463) in an opening lower than one tile show their top rail in the middle of it, and hid everything behind them.
+
+Built: `projects/blood-city/level/underpass.py`, intent in `projects/blood-city/references/underpass-design.md`.
+A sliding sector's sweep is judged in plan only (`swept_state`), so over the sewer it had to lie where no sewer wall runs:
+between the cistern's wall (y 27) and the ring's (x 51).

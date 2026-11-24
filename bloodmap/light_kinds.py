@@ -71,6 +71,7 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(908, "flame", "standing", False, True, point=0.4, intensity=1.0),
     LightKind(2183, "recessed wall lamp, lit", "wall", False, True, point=0.5, intensity=1.0),
     LightKind(693, "lit brass lantern", "standing", False, True, point=0.5, intensity=0.8),
+    LightKind(947, "bare bulb on a cord, lit", "hanging", False, True, point=0.93, intensity=0.8),
     # windows: daylight through glass, into the room the glass hangs in (the
     # owner, 2026-11-21: "the stained glass should be giving some light in")
     # (the owner, on the first strength, 0.7 and 1.2: "it looks little bit

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-foundry/knowledge/blood/studies/machine-hall/E3M6_413/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-foundry/knowledge/blood/studies/machine-hall/E3M6_413",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 31104,
+   "y": 7808,
+   "z": -65440,
+   "angle": 1877,
+   "horiz": 100,
+   "sector": 413,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 30336,
+   "y": 3200,
+   "z": -65440,
+   "angle": 2024,
+   "horiz": 100,
+   "sector": 413,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 45696,
+   "y": 7808,
+   "z": -65440,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 413,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 36480,
+   "y": 7808,
+   "z": -65440,
+   "angle": 1741,
+   "horiz": 100,
+   "sector": 413,
+   "screenshot": true
+  }
+ ]
+}

@@ -420,7 +420,7 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertIn(health["host"], swept_state.hosts(self.disk))
         rigid = [i for i in swept_state.moving_sectors(self.disk)
                  if self.sectors[i]["type"] in (616, 617) and i not in body.members]
-        self.assertEqual(len(rigid), 6)
+        self.assertEqual(len(rigid), 7)                # (the seventh: the underpass's pram)
         for mover in rigid:
             frames = blood_sweep(self.disk, mover)
             self.assertIsNone(swept_state.escape(self.disk, mover, frames))

@@ -62,7 +62,7 @@ from facade_pass import BAY as FACADE_BAY, snap_opening
 
 
 #: How far a lamp post keeps from a door: a body and a half each way.
-LAMP_DOOR_CLEAR = 1536
+LAMP_DOOR_CLEAR = 1600                                # (a lamp on the avenue stands 1536 off its faces)
 
 
 def facade_pass_bay() -> int:
@@ -125,11 +125,6 @@ DISTRICT_BOUNDS = {
 CHAMBER = {"junction": (5120, 6144), "cistern": (6144, 4096)}
 CORRIDOR_W = WIDTH_UNITS["alley"]
 SHAFT = 1024
-#: Works stair: 8 + 3 risers of 4096 = CELLAR_DROP; treads chosen so each
-#: flight's run is a whole number of units bridging its rooms exactly.
-UPPER_STEPS, UPPER_TREAD = 8, 512
-LOWER_STEPS, LOWER_TREAD = 3, 1024
-assert (UPPER_STEPS + LOWER_STEPS) * 4096 == CELLAR_DROP
 
 
 GRID = 256
@@ -655,162 +650,48 @@ def build():
                   connection_id="connection:sewer_stash")
 
     STAGE("works-stair",
-          "the first way down: the works stair, in flights, to the cellar")
-    # ---- entry 1: the works stair, flights down to the cellar -------------
-    yard = areas["works_yard"]["rect"]
-    yard_face_x = yard[0] * PU
+          "the underpass: its two mouths, the passage between them and the freight recess")
+    # ---- the underpass: from the yard, under the works, to the avenue -----
+    # Two porches are rooms of the tree, because the street is joined to
+    # them; everything between is `underpass`, laid into the layout.
+    import underpass
     service = INTERIORS["service"]
     stair = district_of["foundry_ward"].assembly(
         "works_stair",
         style=Style(**service.style_kwargs(floor_shade=38,
                                            clear_height=SEWER_CLEAR)),
-        note="flights from the yard down to the works cellar (SP stair entry)",
+        note="the underpass from the works yard to the avenue",
     )
-    mid = (yard[1] + yard[3]) / 2 * PU
-    top_y0 = int(mid - CORRIDOR_W / 2)
-    top_room = stair.room(
-        "top", [(0, 0), (CORRIDOR_W, 0), (CORRIDOR_W, CORRIDOR_W), (0, CORRIDOR_W)],
-        role="gateway", faces=dict(COMPASS),
-        frame=Frame(int(yard_face_x - CORRIDOR_W), top_y0),
-        region_kwargs=service.region_kwargs(),
-        note="stair head behind the works face; mouth on the yard",
-    )
-    top_room.surfaces(floor_z=GRADE)
-    landing_x0 = yard_face_x - CORRIDOR_W - UPPER_STEPS * UPPER_TREAD - CORRIDOR_W
-    landing = stair.room(
-        "landing", [(0, 0), (CORRIDOR_W, 0), (CORRIDOR_W, CORRIDOR_W), (0, CORRIDOR_W)],
-        role="gateway", faces=dict(COMPASS),
-        frame=Frame(int(landing_x0), top_y0),
-        region_kwargs=service.region_kwargs(),
-        note="switchback landing",
-    )
-    # THE UNDERPASS (owner, 2026-11-19/20: rethink the yard as an underground
-    # passageway for a future metro, with a service hatch to the sewers; "you
-    # can do your own style ... just do a passageway"). The study is
-    # `knowledge/blood/studies/underpass`. The landing is the passage's
-    # level: 16,384 below the street. It is its own LAYER, because it runs
-    # over the sewer's trunk: `bloodmap.layers` lets two plans share ground
-    # only when their height bands are apart, and the sewer's band starts
-    # at 28,672, so the passage's floor and its bore's bed stay above that.
-    # The yard flight keeps its eight treads and takes them at 2,048 each.
-    # The lower flight and the works cellar it reached were the service stair
-    # to the cellar pit, the sewer entrance the owner had removed
-    # (2026-11-21: "We can ditch that underground passage sewer
-    # enterance"); they went with it.
-    PASSAGE_Z = GRADE + 16384
-    PASSAGE_LEN, PASSAGE_CLEAR = 5120, 32768
-    city.declare_layer("underpass", ceiling_z=PASSAGE_Z - PASSAGE_CLEAR,
-                       floor_z=PASSAGE_Z,
+    top_y0 = int(underpass.YARD_MOUTH[0] * PU)
+    # its own layer: it runs over the sewer, whose band starts at 28,672, and
+    # its stairs' roofs rise to the porches'
+    city.declare_layer("underpass", ceiling_z=GRADE - 32768, floor_z=underpass.FLOOR,
                        note="the passage under the works, between street and sewer")
-    landing.surfaces(floor_z=PASSAGE_Z)
-    top_room.staircase("flight_upper", "west", total_rise=PASSAGE_Z - GRADE,
-                       tread=UPPER_TREAD, step_rise=2048,
-                       arrive_at=landing.region_id,
-                       connection={"role": "portal"})
-    # The passage: south from the landing, over the sewer's trunk, in E1M2's
-    # passage materials (brick 417, stone 281, clay tiles 120), two bodies
-    # clear because no street lies over it.
-    passage = stair.room(
-        "passage", [(0, 0), (CORRIDOR_W, 0), (CORRIDOR_W, PASSAGE_LEN), (0, PASSAGE_LEN)],
-        role="interior", faces=dict(COMPASS),
-        frame=Frame(int(landing_x0), top_y0 + CORRIDOR_W),
-        region_kwargs=service.region_kwargs(),
-        note="the underpass: a public way under the works, yard to avenue",
-    )
-    passage.surfaces(layer="underpass", floor_z=PASSAGE_Z, clear_height=PASSAGE_CLEAR,
-                     wall_picnum=417, floor_picnum=281, ceiling_picnum=120,
-                     floor_shade=26, ceiling_shade=26, wall_shade=24)
-    city.connect(landing.face("south"), passage.face("north"),
-                 connection_id="connection:underpass_from_yard_stair")
-    from l3_foundry import build_loading_shutter
-    UNDERPASS["loading"] = build_loading_shutter(
-        city, stair, passage, east=int(landing_x0) + CORRIDOR_W,
-        middle=top_y0 + CORRIDOR_W + PASSAGE_LEN - 832, floor=PASSAGE_Z)
-    # The avenue stair. It is half the corridor's width and stands one
-    # width in from the works' west face, because a flight laid ALONG the
-    # block's edge makes every tread a neighbour of the street: the compiler
-    # refused eight unpaired portal candidates. A porch at the face joins the
-    # street to its head.
-    west_y = top_y0 + CORRIDOR_W + PASSAGE_LEN - CORRIDOR_W
-    # ... and a wall's thickness (512) clear of the yard stair's landing and
-    # of the passage, which stand at other heights: two rooms that share an
-    # edge and no doorway are refused too. A short neck joins its foot to
-    # the passage.
-    half, wall = CORRIDOR_W // 2, 512
-    stair_x = int(landing_x0 - half - wall)
 
-    def box(wide, deep):
-        return [(0, 0), (wide, 0), (wide, deep), (0, deep)]
+    def underpass_porch(name, x0, mouth, note):
+        deep, wide = int(underpass.PORCH * PU), int((mouth[1] - mouth[0]) * PU)
+        made = stair.room(name, [(0, 0), (deep, 0), (deep, wide), (0, wide)], role="gateway", faces=dict(COMPASS),
+                          frame=Frame(int(x0 * PU), int(mouth[0] * PU)), region_kwargs=service.region_kwargs(), note=note)
+        # one storey of the facade: the mouth takes the place of whole painted windows
+        made.surfaces(floor_z=GRADE, clear_height=32768, wall_picnum=underpass.GRIMY,
+                      floor_picnum=underpass.STONE, ceiling_picnum=underpass.SLAB)
+        return made
 
-    west_landing = stair.room(
-        "west_landing", box(half, CORRIDOR_W), role="gateway",
-        faces=dict(COMPASS), frame=Frame(stair_x, west_y),
-        region_kwargs=service.region_kwargs(), note="foot of the avenue stair")
-    west_landing.surfaces(layer="underpass", floor_z=PASSAGE_Z, clear_height=PASSAGE_CLEAR,
-                          wall_picnum=417, floor_picnum=281, ceiling_picnum=120,
-                          floor_shade=26, ceiling_shade=26, wall_shade=24)
-    neck = stair.room(
-        "west_neck", box(wall, CORRIDOR_W), role="gateway",
-        faces=dict(COMPASS), frame=Frame(stair_x + half, west_y),
-        region_kwargs=service.region_kwargs(),
-        note="through the wall between the avenue stair and the passage")
-    neck.surfaces(layer="underpass", floor_z=PASSAGE_Z, clear_height=PASSAGE_CLEAR,
-                  wall_picnum=417, floor_picnum=281, ceiling_picnum=120,
-                  floor_shade=26, ceiling_shade=26, wall_shade=24)
-    city.connect(west_landing.face("east"), neck.face("west"),
-                 connection_id="connection:underpass_stair_neck")
-    city.connect(neck.face("east"), passage.face("west"),
-                 connection_id="connection:underpass_to_avenue_stair")
-    west_top = stair.room(
-        "west_top", box(half, CORRIDOR_W), role="gateway",
-        faces=dict(COMPASS), frame=Frame(stair_x, top_y0),
-        region_kwargs=service.region_kwargs(),
-        note="head of the avenue stair")
-    west_top.surfaces(floor_z=GRADE)
-    west_top.staircase("flight_west", "south", total_rise=PASSAGE_Z - GRADE,
-                       tread=(west_y - top_y0 - CORRIDOR_W) // 8, step_rise=2048,
-                       arrive_at=west_landing.region_id,
-                       connection={"role": "portal"})
-    west_porch = stair.room(
-        "west_porch", box(wall, CORRIDOR_W), role="gateway",
-        faces=dict(COMPASS), frame=Frame(stair_x - wall, top_y0),
-        region_kwargs=service.region_kwargs(),
-        note="the underpass's mouth in the works' avenue face")
-    west_porch.surfaces(floor_z=GRADE)
-    city.connect(west_porch.face("east"), west_top.face("west"),
-                 connection_id="connection:underpass_porch_stair")
+    top_room = underpass_porch("top", underpass.YARD_FACE - underpass.PORCH, underpass.YARD_MOUTH,
+                               "the underpass's mouth on the works yard")
+    west_porch = underpass_porch("west_porch", underpass.AVENUE_FACE, underpass.AVENUE_MOUTH,
+                                 "the underpass's mouth in the works' avenue face")
     city.connect(west_porch.face("west"), foundry_st.face("west"),
                  connection_id="connection:underpass_avenue_mouth")
-    # The unfinished metro: a short dark bore off the passage's south end,
-    # laid with track, behind iron bars (`bloodmap.glass.grille`, in
-    # `main`). Seen, not entered. Its bed is level with the passage: bars
-    # hang on a wall whose two sides stand at one floor and one ceiling,
-    # and a bed half a step down was refused by that law.
-    bore = stair.room(
-        "metro_bore", [(0, 0), (CORRIDOR_W, 0), (CORRIDOR_W, CORRIDOR_W), (0, CORRIDOR_W)],
-        role="detail", faces=dict(COMPASS),
-        frame=Frame(int(landing_x0), top_y0 + CORRIDOR_W + PASSAGE_LEN),
-        region_kwargs={**service.region_kwargs(), "declared_zero_exit": True},
-        note="the metro that was begun and never finished",
-    )
-    # Lit enough to be read through the bars: the owner, walking it, "these
-    # bars are just bars, you can't really tell what it is". What says
-    # "metro" hangs in it and beside it (`dress_underpass`, in `main`).
-    bore.surfaces(layer="underpass", floor_z=PASSAGE_Z, clear_height=PASSAGE_CLEAR,
-                  wall_picnum=417, floor_picnum=1129, ceiling_picnum=120,
-                  floor_shade=30, ceiling_shade=34, wall_shade=28)
-    city.connect(bore.face("north"), passage.face("south"),
-                 connection_id="connection:underpass_metro_mouth")
-    UNDERPASS.update(
-        passage=passage.region_id, bore=bore.region_id,
-        x0=int(landing_x0), x1=int(landing_x0) + CORRIDOR_W,
-        y0=top_y0 + CORRIDOR_W, y1=top_y0 + CORRIDOR_W + PASSAGE_LEN,
-        y2=top_y0 + CORRIDOR_W + PASSAGE_LEN + CORRIDOR_W)
-    UNDERPASS["bars"] = (int(landing_x0) - 16, top_y0 + CORRIDOR_W + PASSAGE_LEN - 16,
-                         int(landing_x0) + CORRIDOR_W + 16,
-                         top_y0 + CORRIDOR_W + PASSAGE_LEN + 16)
     city.connect(top_room.face("east"), foundry_st.face("west"),
                  connection_id="connection:works_stair_mouth")
+    from l3_foundry import build_loading_shutter
+    UNDERPASS["loading"] = build_loading_shutter(
+        city, stair, east=int(underpass.EAST * PU),
+        middle=int(sum(underpass.RECESS) / 2 * PU), floor=underpass.FLOOR)
+    top_room.raw("the passage between the two porches", lambda layout, room: underpass.build(
+        layout, {"yard": room.region_id, "avenue": west_porch.region_id}, UNDERPASS["loading"]["recess"]))
+    UNDERPASS["bars"] = underpass.bars()
 
     STAGE("stack-links",
           "the two room-over-room links between street and sewer")
@@ -865,59 +746,21 @@ def build():
             lower.surfaces(ceiling_picnum=MIRROR_TILE)
         return upper, lower
 
-    # Yard grate: see-through, one-way drop.  A bare square in the paving
-    # reads as nothing, so the mouth gets a KERB -- a ring of raised stone
-    # you step over, which frames the hole and says "something opens here"
-    # from across the yard.  The ring is a sector with the shaft as its
-    # hole; both are carved out of the street together.
-    # THE GRATE IS A GRATE NOW, NOT A HOLE. The owner, playing it on
-    # 2026-11-19: "this weird rectangle hole with posters on the ground
-    # looks weird ... entrances to the sewers basically next to each other".
-    # It was a see-through room-over-room drop, its floor the mirror tile,
-    # inside a raised kerb. The link is gone, the ring lies flush as a stone
-    # apron, and an iron sewer grate lies on the mouth
-    # (`l3_foundry.sprinkle`). The shaft below stays, as the sewer's riser.
-    KERB, KERB_RISE = 2048, 0
-    foundry_local_gx = gx - int(SEAM_AVENUE)
-    kerb_half = KERB // 2
-    foundry_st.carve([(foundry_local_gx - kerb_half + dx, gy - kerb_half + dy)
-                      for dx, dy in ((0, 0), (KERB, 0), (KERB, KERB), (0, KERB))])
-    kerb = district_of["foundry_ward"].room(
-        "grate_kerb", [(0, 0), (KERB, 0), (KERB, KERB), (0, KERB)],
-        role="detail", faces=dict(COMPASS),
-        frame=Frame(gx - kerb_half, gy - kerb_half),
-        region_kwargs=MASONRY.region_kwargs(),
-        note="the raised stone ring around the yard grate: stepped over, "
-             "not climbed -- 1024 against a 4096 max step",
+    # THE GRATE IS A GRATE, NOT A HOLE. The owner, playing it on 2026-11-19:
+    # "this weird rectangle hole with posters on the ground looks weird ...
+    # entrances to the sewers basically next to each other". The link went,
+    # and then (2026-11-25) the flush ring and the mouth that had held it, 24
+    # walls of one paving laid in itself: the grate is a flat sprite on the
+    # yard (`l3_foundry.sprinkle`). The shaft under it stays, as the sewer's riser:
+    # a sewer room like any other, a little taller than the runs.
+    grate_lower = mouths_part.room(
+        "yard_grate_mouth_below", [(0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT)],
+        role="gateway", faces=dict(COMPASS), frame=Frame(int(gx - SHAFT_HALF), int(gy - SHAFT_HALF)),
+        region_kwargs={"sector_behavior": {"amplitude": -4, "shade_frequency": 4}},
+        note="the riser under the yard's grate",
     )
-    # the yard's own paving: the red service floor it wore read, flush, as
-    # "posters on the ground"
-    kerb.surfaces(**MASONRY.style_kwargs(
-        floor_picnum=FACADES["foundry_ward"].floor, floor_shade=28,
-        floor_z=GRADE - KERB_RISE, clear_height=STREET_SKY - KERB_RISE))
-    kerb.carve([(kerb_half - SHAFT_HALF + dx, kerb_half - SHAFT_HALF + dy)
-                for dx, dy in ((0, 0), (SHAFT, 0), (SHAFT, SHAFT), (0, SHAFT))])
-    for face in ("north", "east", "south", "west"):
-        city.connect(kerb.face(face), foundry_st.face("east"),
-                     connection_id=f"connection:kerb_street_{face}")
-    grate_upper, grate_lower = mouth_pair(
-        "yard_grate", district_of["foundry_ward"],
-        (gx - SHAFT_HALF, gy - SHAFT_HALF), GRADE,
-        Style(**MASONRY.style_kwargs(clear_height=STREET_SKY)),
-        SEWER_FLOOR - GRADE, see_through=False)
-    # With no link the shaft is a sewer room like any other and has to keep
-    # to the sewer's band: a riser a little taller than the runs, not a
-    # tube to the street.
     grate_lower.style = Style(**SEWER.style_kwargs(
         floor_shade=40, floor_z=SEWER_FLOOR, clear_height=SEWER_CLEAR + 8192))
-    grate_upper.surfaces(floor_picnum=FACADES["foundry_ward"].floor, floor_shade=34)
-    # The shaft's rim now meets the kerb ring, not the street: the ring is
-    # what surrounds it.  A hole is wound opposite to its outer loop, but
-    # _compass_edges still names each edge by where it lies, so the names
-    # correspond directly.
-    for face in ("north", "east", "south", "west"):
-        city.connect(grate_upper.face(face), kerb.hole_face(0, face),
-                     connection_id=f"connection:yard_grate_rim_{face}")
     # The trunk's east end and the ring's east leg both meet the shaft
     # foot, so the drop lands on a junction rather than in a dead end.
     city.connect(grate_lower.face("west"), main_duct.face("east"),
@@ -1184,7 +1027,7 @@ def build():
     ctx = {
         "foundry_st": foundry_st,
         "yard_rect_pu": areas["works_yard"]["rect"],
-        "grate_upper": grate_upper,
+        "grate_at": (gx, gy),
         "foundry_origin": (int(DISTRICT_BOUNDS["foundry_ward"][0]),
                            int(DISTRICT_BOUNDS["foundry_ward"][1])),
         "sewer_rooms": {"trunk": main_duct.region_id,
@@ -1258,8 +1101,8 @@ def build():
         "districts": len(DISTRICT_BOUNDS),
         "carved_areas": sum(1 for a in data["areas"] if a.get("carved")),
         "gates": sum(len(a.get("gates", [])) for a in data["areas"]),
-        "stack_mouths_at_grade": 1,          # the yard grate (the pits are indoors)
-        "grate_kerb": 1,                     # its raised stone ring
+        "stack_mouths_at_grade": 0,          # (the yard's grate is a sprite now)
+        "grate_kerb": 0,
         "light_pools": len(ctx_pools),
         # The church's eaves, churchyard wall and tower gables: open ground
         # at grade, street in everything but the height of its sky.
@@ -1333,38 +1176,6 @@ def build():
         2 * len(row["districts"]) for row in ctx["manifest"]["street_ends"])
 
     return city, stack_links, gates, ctx, dressing
-
-
-def dress_underpass(layout) -> dict:
-    """What tells a player the barred bore is a metro, and which way is out.
-
-    Blood's own boards, hung where his own metro (DNE3L6 s371) hangs them:
-    the arrivals board on the wall the eye lands on, TICKETS beside the way
-    to the trains, EXIT toward the stairs.
-    """
-    import props
-
-    u = UNDERPASS
-    hung = {}
-    for name, region, a1, a2, t, tile in (
-            # the bore's back wall, straight ahead through the bars
-            ("arrivals", u["bore"], (u["x1"], u["y2"]), (u["x0"], u["y2"]), 0.5, 431),
-            # beside the bars, on the passage's east wall
-            ("tickets", u["passage"], (u["x1"], u["y0"]), (u["x1"], u["y1"]), 0.88, 943),
-            # toward the stairs, on the same wall and on the one facing it
-            ("exit_yard", u["passage"], (u["x1"], u["y0"]), (u["x1"], u["y1"]), 0.12, 761),
-            ("exit_avenue", u["passage"], (u["x0"], u["y1"]), (u["x0"], u["y0"]), 0.62, 761)):
-        if name == "tickets":
-            # Beside the loading recess, on the remaining solid east wall.
-            t = 0.55
-        layout.place_on_wall(
-            f"underpass:{name}", region, a1=a1, a2=a2, t=t,
-            # the campaign hangs EXIT at 1.85 bodies; under a ceiling 1.93
-            # up that put a tenth of the sign through it
-            height_player_heights=min(props.height_of(tile), 1.5),
-            offset_player_widths=0.06, **props.fields(tile))
-        hung[name] = tile
-    return hung
 
 
 def build_stack_link(layout, spec, offset_d, *, see_through):
@@ -1531,6 +1342,8 @@ def main() -> int:
                               min_width=gate[5] if len(gate) > 5 else 1024)
     import gallows
     print("gallows steps:", len(gallows.build(layout)), "regions")
+    import bill_column
+    print("bill column:", len(bill_column.build(layout)), "regions")
     # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
     # Checked on the source, so the fault never reaches a frame.
     from bloodmap import skyline as _skyline
@@ -1772,7 +1585,6 @@ def main() -> int:
     # Levers beside the street doors.  Blood has no door texture, so this
     # is the only thing on the facade that says the wall opens.
     import doorswitch
-    print("underpass boards:", dress_underpass(layout))
     for placement_id, region_id, segment, channel in ctx["door_levers"]:
         doorswitch.place(layout, placement_id, region_id, segment, channel)
         _wires.by_channel(channel).when(_wiring.placement(placement_id), "push")
@@ -2052,10 +1864,11 @@ def main() -> int:
     from bloodmap.glass import panes_without_a_recess
 
     from bloodmap.glass import grille as _grille
+    import underpass
     print("grilles:", _grille(compiled.level,
-                              [l3_theatre.PAWN_GRILLE, UNDERPASS["bars"],
-                               l3_foundry.CAGE["bars"]],
-                              tile=l3_theatre.GRILLE_TILE))
+                              [l3_theatre.PAWN_GRILLE, l3_foundry.CAGE["bars"]],
+                              tile=l3_theatre.GRILLE_TILE),
+          _grille(compiled.level, [UNDERPASS["bars"]], tile=underpass.GATE))
     flush = panes_without_a_recess(compiled.level)
     report["panes_on_the_facade_line"] = len(flush)
     print("shop glass:", report)
@@ -2066,6 +1879,10 @@ def main() -> int:
     print("church face:", facade_pass.face_landmark(
         compiled.level, l3_church.MASS, INTERIORS["church"].wall,
         deepest=_CELLAR_FLOOR))
+    # The free-standing mass in the works yard is the works' chimney, not a
+    # tower of rubble: the owner's "brick wall", with an iron hatch at its foot
+    # (`l3_foundry.sprinkle`).
+    print("works chimney:", l3_foundry.face_chimney(compiled.level))
     # ...and its roofs and yard wall wear theirs on the side that sees them.
     from bloodmap import skyline
     print("church roofs:", skyline.dress_steps(compiled.level, {
@@ -2538,6 +2355,7 @@ def main() -> int:
         from bloodmap import light_stage as _light_stage
         import lights as _lights
         import cabal_rite as _cabal
+        import underpass as _underpass
         _region_of = {_a.sector_id: _rid for _rid, _a in sorted(compiled.allocations.items())}
         for _piece, _parent in sorted(_overlay_report.get("parent", {}).items()):
             _region_of[int(_piece)] = _region_of.get(int(_parent), "")
@@ -2545,7 +2363,8 @@ def main() -> int:
                                       if d.severity in ("error", "warning"))
         _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
                                     lamp_scale=_lights.lamp_scale, room_key=_lights.room_key,
-                                    groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled))
+                                    groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled)
+                                    + _underpass.light_groups(compiled))
         print("lamps that switch:", _lit["switched"])
         print("floors under fangs evened:", _cabal.even(disk, compiled))
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}

@@ -122,6 +122,8 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("market:cold-store", "the lever in the clerk's gallery raises the steel door of the market's cold store, once"),
     ("market:armor", "taking the armor at the back of the cold store wakes two of the hung and a butcher"),
     ("harbour:boarded", "taking the flare pistol in the Demeter's hold brings three gill beasts up onto her deck"),
+    ("underpass:pram",
+     "leaving the shut ticket hall for the first time puts out the tunnel's bulb and brings the pram down to the bars"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

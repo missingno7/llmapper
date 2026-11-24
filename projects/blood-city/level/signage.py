@@ -90,12 +90,17 @@ SIGNS = [
 #: concourse -- so its name goes where a real one goes: outside, beside the
 #: door.  (region key, segment, text, palette, height)
 STREET_SIGNS = [
-    ("street:market_slip", ((39936, 46592), (39936, 48128)),
-     "THE ARCADE", "fascia", SIGN_HEIGHT_PH),
+    # over its own door, between its storeys (it stood beside it, at the size of a nameplate)
+    ("street:market_slip", ((39936, 43520), (39936, 48640)),
+     "THE ARCADE", "fascia", 2.25),
+    ("street:foundry_ward", ((54272, 8704), (54272, 4608)), "PUMP STATION", "fascia", 2.25),
     # The works canteen is a rat-dog stand, named over its grill hatch as
     # E1M4 names its own: two bodies up, just over the hatch's head.
     ("street:foundry_ward", ((50176, 15360), (52224, 15360)),
      "RAT DOGS", "ratdogs", 2.2),
+    # The underpass, named over both its mouths (`underpass`); the mouth's head is 1.93 bodies up.
+    ("street:foundry_ward", ((50176, 21504), (50176, 17408)), "UNDERPASS", "fascia", 2.25),
+    ("street:foundry_ward", ((39936, 30720), (39936, 34816)), "UNDERPASS", "fascia", 2.25),
 ]
 
 

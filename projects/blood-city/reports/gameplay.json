@@ -1,21 +1,21 @@
 {
- "way_m": 205,
+ "way_m": 209,
  "way_is": "the exit",
- "sectors": 1527,
- "reached": 1485,
- "taken_on_trust": 139,
+ "sectors": 1559,
+ "reached": 1515,
+ "taken_on_trust": 131,
  "keys": [
-  {
-   "key": "kItemKeyMoon",
-   "at": "theatre row",
-   "reached": true,
-   "lets_loose": 0
-  },
   {
    "key": "kItemKeyEye",
    "at": "the arcade",
    "reached": true,
    "lets_loose": 4
+  },
+  {
+   "key": "kItemKeyMoon",
+   "at": "theatre row",
+   "reached": true,
+   "lets_loose": 0
   },
   {
    "key": "kItemKeySkull",
@@ -44,13 +44,13 @@
  ],
  "exit": [
   {
-   "root": "sprite 1412",
+   "root": "sprite 1601",
    "reached": true
   }
  ],
  "locks": [
   {
-   "counter": 2210,
+   "counter": 2456,
    "wants": [
     "skull",
     "eye",
@@ -63,69 +63,76 @@
   }
  ],
  "budget": {
-  "foes": 118,
-  "placed": 86,
-  "spawn_markers": 32,
-  "foe_health": 5795,
+  "foes": 163,
+  "placed": 115,
+  "spawn_markers": 48,
+  "foe_health": 8005,
   "by_foe": {
-   "TNT cultist": 2,
-   "axe zombie": 22,
+   "TNT cultist": 3,
+   "axe zombie": 28,
    "bone eel": 1,
    "brown spider": 9,
-   "buried zombie": 8,
-   "butcher": 3,
+   "buried zombie": 10,
+   "butcher": 10,
    "gargoyle": 2,
    "gargoyle statue": 2,
-   "gill beast": 2,
-   "hell hound": 2,
+   "gill beast": 11,
+   "hand": 2,
+   "hell hound": 4,
    "lying zombie": 4,
    "mother spider": 1,
    "phantasm": 4,
-   "rat": 7,
+   "rat": 11,
    "red spider": 2,
-   "shotgun cultist": 33,
+   "shotgun cultist": 38,
    "stone gargoyle": 1,
-   "tommy cultist": 13
+   "tommy cultist": 20
   },
-  "ammo_damage": 43389,
-  "ammo_damage_in_secrets": 4870,
+  "ammo_damage": 49677,
+  "ammo_damage_in_secrets": 7350,
   "ammo_damage_by_kind": {
-   "bullets": 10200,
-   "flares": 2125,
+   "bullets": 10920,
+   "flares": 3485,
    "napalm": 4500,
    "prox": 300,
    "remote": 750,
-   "shells": 15424,
+   "shells": 17152,
    "souls": 350,
    "spray": 1260,
-   "tesla": 4480,
-   "tnt": 3600,
+   "tesla": 5760,
+   "tnt": 4800,
    "voodoo": 400
   },
-  "expected_drops": 6954,
-  "damage_per_health": 7.487,
-  "damage_outside_secrets_per_health": 6.647,
-  "damage_with_drops_per_health": 8.687,
-  "health": 1110,
-  "health_in_secrets": 260,
+  "expected_drops": 8671,
+  "damage_per_health": 6.206,
+  "damage_outside_secrets_per_health": 5.288,
+  "damage_with_drops_per_health": 7.289,
+  "health": 1570,
+  "health_in_secrets": 460,
   "armor": 1050,
-  "health_per_100": 19.2,
-  "armor_per_100": 18.1
+  "health_per_100": 19.6,
+  "armor_per_100": 13.1
  },
- "secrets": 8,
- "foes": 118,
+ "secrets": 10,
+ "foes": 163,
  "guns": [
   {
    "gun": "guns akimbo",
    "at": "the Cabal's chamber",
    "secret": true,
-   "foes_before": 0.591
+   "foes_before": 0.598
   },
   {
    "gun": "life leech",
    "at": "the Phantom Terminus",
    "secret": false,
-   "foes_before": 0.848
+   "foes_before": 0.833
+  },
+  {
+   "gun": "flare pistol",
+   "at": "the harbour",
+   "secret": false,
+   "foes_before": 0.106
   },
   {
    "gun": "sawed-off",
@@ -134,34 +141,30 @@
    "foes_before": 0.0
   },
   {
-   "gun": "flare pistol",
-   "at": "the harbour",
-   "secret": false,
-   "foes_before": 0.014
-  },
-  {
    "gun": "tommy gun",
    "at": "the arcade",
    "secret": false,
-   "foes_before": 0.135
+   "foes_before": 0.106
   },
   {
    "gun": "napalm launcher",
    "at": "the sewers",
    "secret": true,
-   "foes_before": 0.33
+   "foes_before": 0.385
   },
   {
    "gun": "tesla cannon",
    "at": "the settling hall",
    "secret": false,
-   "foes_before": 0.069
+   "foes_before": 0.057
   }
  ],
  "places": {
   "Graves Brook": {
    "foes": {
-    "gill beast": 1
+    "axe zombie": 1,
+    "gill beast": 1,
+    "rat": 1
    },
    "waiting": 0,
    "supplies": {
@@ -174,13 +177,14 @@
   },
   "Gravesend Station": {
    "foes": {
-    "TNT cultist": 1,
+    "TNT cultist": 2,
     "axe zombie": 4,
-    "butcher": 1,
-    "shotgun cultist": 6,
-    "tommy cultist": 2
+    "butcher": 3,
+    "hell hound": 2,
+    "shotgun cultist": 7,
+    "tommy cultist": 4
    },
-   "waiting": 6,
+   "waiting": 14,
    "supplies": {
     "15 bullets": 3,
     "4 shells": 2,
@@ -276,6 +280,18 @@
    },
    "secret": {}
   },
+  "the Toshers' Den": {
+   "foes": {},
+   "waiting": 0,
+   "supplies": {
+    "4 shells": 3,
+    "doctor's bag": 1
+   },
+   "secret": {
+    "life seed": 1,
+    "tesla charge": 2
+   }
+  },
   "the Weaver's Cellars": {
    "foes": {
     "brown spider": 9,
@@ -300,11 +316,13 @@
    },
    "waiting": 4,
    "supplies": {
+    "15 bullets": 1,
     "4 shells": 2,
     "TNT bundle": 1,
+    "box of shells": 1,
     "drum of bullets": 1,
     "eye key": 1,
-    "life essence": 1,
+    "life essence": 2,
     "remote TNT": 1,
     "tommy gun": 1
    },
@@ -326,21 +344,35 @@
    "secret": {}
   },
   "the harbour": {
-   "foes": {},
-   "waiting": 0,
+   "foes": {
+    "gill beast": 3,
+    "shotgun cultist": 1,
+    "tommy cultist": 1
+   },
+   "waiting": 3,
    "supplies": {
-    "box of flares": 2,
+    "box of flares": 4,
     "flare pistol": 1
    },
-   "secret": {}
+   "secret": {
+    "TNT box": 1,
+    "TNT bundle": 3,
+    "doctor's bag": 1
+   }
   },
   "the market hall": {
-   "foes": {},
-   "waiting": 0,
+   "foes": {
+    "axe zombie": 2,
+    "butcher": 4,
+    "shotgun cultist": 1,
+    "tommy cultist": 1
+   },
+   "waiting": 3,
    "supplies": {
     "15 bullets": 3,
     "basic armor": 1,
-    "box of shells": 1
+    "box of shells": 1,
+    "doctor's bag": 1
    },
    "secret": {}
   },
@@ -365,7 +397,6 @@
    },
    "waiting": 0,
    "supplies": {
-    "doctor's bag": 1,
     "tesla cannon": 1,
     "tesla charge": 3
    },
@@ -374,8 +405,12 @@
   "the sewers": {
    "foes": {
     "bone eel": 1,
-    "gill beast": 1,
-    "rat": 7
+    "buried zombie": 2,
+    "gill beast": 2,
+    "hand": 2,
+    "rat": 8,
+    "shotgun cultist": 1,
+    "tommy cultist": 1
    },
    "waiting": 0,
    "supplies": {
@@ -399,8 +434,13 @@
    }
   },
   "the stockyard": {
-   "foes": {},
-   "waiting": 0,
+   "foes": {
+    "axe zombie": 2,
+    "butcher": 1,
+    "gill beast": 5,
+    "rat": 2
+   },
+   "waiting": 2,
    "supplies": {
     "4 shells": 1,
     "box of shells": 1,
@@ -413,11 +453,16 @@
   },
   "the west streets": {
    "foes": {
-    "shotgun cultist": 2,
-    "tommy cultist": 2
+    "axe zombie": 1,
+    "shotgun cultist": 3,
+    "tommy cultist": 4
    },
    "waiting": 0,
-   "supplies": {},
+   "supplies": {
+    "15 bullets": 3,
+    "doctor's bag": 1,
+    "reflective shots": 1
+   },
    "secret": {}
   },
   "theatre row": {

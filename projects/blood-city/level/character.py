@@ -40,22 +40,21 @@ OWNER_REWORK: dict[str, str] = {
 #: name -> a point inside it (world units), its hero and its exemplar
 PLACES: dict[str, dict[str, Any]] = {
     "pump machine hall": {
-        "at": (45056, 11500),
-        "hero": "a sludge belt through two pulsing presses, between a "
-                "settling basin and a filter drum",
-        "exemplar": "E3M5 crusher line s44-52; E3M3 generator consoles; "
-                    "E3M6 tanks s410-417",
+        "at": (45056, 11500), "study": "machine-hall",
+        "hero": "a key lit on a sludge belt between two presses that never stop, seen from a railed deck over the floor "
+                "before it is reached, and the lever that stops the belt",
+        "exemplar": "E3M6 s413 (the key over the tank hall, the consoles); E3M5 crusher line s44-52; "
+                    "DWE2M10 s760 (the rail)",
     },
     "foundry underpass": {
-        "at": (43008, 23000), "floor": 24576, "study": "underpass",
-        "hero": "a brick passage under the works from the yard to the "
-                "avenue, ending at the barred mouth of a metro that was "
-                "never finished",
-        "exemplar": "E1M2 s103-105 (the passage to the waiting hall); the "
-                    "owner's DNE3L6 for the metro beyond the bars",
+        "at": (45056, 30208), "floor": 24576, "study": "underpass",
+        "hero": "a long tiled passage under the works, six bays alike and lit from a few tubes, past a shut "
+                "ticket hall and the barred bed of a metro that was never finished",
+        "exemplar": "DWE2M2 s634 (the tubes, the plaster and its dado); the "
+                    "owner's DNE3L6 s171 (grimy tiles, paving, slabs)",
     },
     "foundry loading alcove": {
-        "at": (47104, 24768), "floor": 24576, "study": "doors-and-mechanisms",
+        "at": (48896, 24320), "floor": 24576, "study": "doors-and-mechanisms",
         "hero": "two iron-banded freight leaves part into recessed tracks "
                 "to reveal a chain-lit loading alcove with shotgun shells",
         "exemplar": "DOOR-SLIDINGD s3 (opposed solid slider)",

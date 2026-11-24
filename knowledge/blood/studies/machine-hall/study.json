@@ -1,0 +1,953 @@
+{
+ "slug": "machine-hall",
+ "want": "a machine hall entered over its floor, with a key seen before it is reached",
+ "date": "2026-11-24",
+ "seeds": [
+  {
+   "seed": "E3M6:414!",
+   "map": "maps\\blood\\campaign\\E3M6.MAP",
+   "host": 414,
+   "sectors": [
+    414
+   ],
+   "metres": [
+    0.9,
+    1.7,
+    13.0
+   ],
+   "area_M": 0.52,
+   "clear_bodies": 7.25,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    2476,
+    "cash register top surface; also machinery"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\E3M6_414\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "E3M6:413!",
+   "map": "maps\\blood\\campaign\\E3M6.MAP",
+   "host": 413,
+   "sectors": [
+    404,
+    405,
+    406,
+    407,
+    413,
+    414,
+    415,
+    421
+   ],
+   "metres": [
+    16.1,
+    31.7,
+    13.9
+   ],
+   "area_M": 114.34,
+   "clear_bodies": 7.73,
+   "free_floor_share": 0.97,
+   "shade_spread": 12,
+   "floor": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     492,
+     0.421,
+     ""
+    ],
+    [
+     2915,
+     0.382,
+     "water surface; sometimes clouds seen from above"
+    ],
+    [
+     486,
+     0.111,
+     ""
+    ],
+    [
+     488,
+     0.067,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 404,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      211,
+      488,
+      2915
+     ]
+    },
+    {
+     "sector": 405,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      211,
+      488,
+      2915
+     ]
+    },
+    {
+     "sector": 406,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      211,
+      488,
+      2915
+     ]
+    },
+    {
+     "sector": 407,
+     "corners": 4,
+     "size": [
+      3072,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      211,
+      488,
+      2915
+     ]
+    },
+    {
+     "sector": 414,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 2476,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      488
+     ]
+    },
+    {
+     "sector": 415,
+     "corners": 4,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 2476,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      488
+     ]
+    },
+    {
+     "sector": 421,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      486,
+      492,
+      510
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 191,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 9,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.87
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.55
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 1270,
+     "type": 211,
+     "type_name": "kDudeHellHound",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 811,
+     "type": 64,
+     "type_name": "kItemAmmoProxBombBundle",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2586,
+     "type": 141,
+     "type_name": "kItemArmorBody",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2578,
+     "type": 142,
+     "type_name": "kItemArmorFire",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.29
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\E3M6_413\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\E3M6_413\\frames.png"
+   ]
+  },
+  {
+   "seed": "E3M5:9!",
+   "map": "maps\\blood\\campaign\\E3M5.MAP",
+   "host": 9,
+   "sectors": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+   ],
+   "metres": [
+    4.3,
+    7.0,
+    3.5
+   ],
+   "area_M": 3.35,
+   "clear_bodies": 1.93,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    491,
+    "metal plating; can also read as stone"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     489,
+     0.25,
+     "technical metal cladding"
+    ],
+    [
+     210,
+     0.237,
+     ""
+    ],
+    [
+     0,
+     0.157,
+     ""
+    ],
+    [
+     322,
+     0.157,
+     ""
+    ],
+    [
+     205,
+     0.081,
+     "vertical black-and-yellow hazard stripes"
+    ],
+    [
+     194,
+     0.079,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 8,
+     "corners": 12,
+     "size": [
+      2048,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      0,
+      195,
+      255,
+      322,
+      345
+     ]
+    },
+    {
+     "sector": 10,
+     "corners": 12,
+     "size": [
+      2048,
+      128
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      0,
+      195,
+      322,
+      345
+     ]
+    },
+    {
+     "sector": 11,
+     "corners": 4,
+     "size": [
+      1024,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 470,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      194,
+      195
+     ]
+    },
+    {
+     "sector": 12,
+     "corners": 6,
+     "size": [
+      2048,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 470,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      194,
+      195,
+      205
+     ]
+    },
+    {
+     "sector": 13,
+     "corners": 42,
+     "size": [
+      2560,
+      2688
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 491,
+     "sloped": false,
+     "type": 615,
+     "wall_tiles": [
+      195,
+      210,
+      489
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1072,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.78
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 618,
+     "type": 60,
+     "type_name": "kItemAmmoSprayCan",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\E3M5_9\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "DWE2M10:760!",
+   "map": "maps\\blood\\curated\\DWE2M10.MAP",
+   "host": 760,
+   "sectors": [
+    760
+   ],
+   "metres": [
+    0.9,
+    3.5,
+    2.9
+   ],
+   "area_M": 1.05,
+   "clear_bodies": 1.63,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    296,
+    "grimy tiles"
+   ],
+   "ceiling": [
+    796,
+    ""
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 1570,
+     "type": 217,
+     "type_name": "kDudeGillBeast",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.54
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\DWE2M10_760\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\DWE2M10_760\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "0": {
+   "tile": 0,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-0.png"
+  },
+  "191": {
+   "tile": 191,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.274,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-191.png"
+  },
+  "194": {
+   "tile": 194,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-194.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-195.png"
+  },
+  "205": {
+   "tile": 205,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-205.png"
+  },
+  "210": {
+   "tile": 210,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-210.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-255.png"
+  },
+  "296": {
+   "tile": 296,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-296.png"
+  },
+  "322": {
+   "tile": 322,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-322.png"
+  },
+  "470": {
+   "tile": 470,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-470.png"
+  },
+  "486": {
+   "tile": 486,
+   "pixels": [
+    32,
+    16
+   ],
+   "world_at_repeat_8": [
+    512,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-486.png"
+  },
+  "488": {
+   "tile": 488,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-488.png"
+  },
+  "489": {
+   "tile": 489,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-489.png"
+  },
+  "491": {
+   "tile": 491,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-491.png"
+  },
+  "492": {
+   "tile": 492,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-492.png"
+  },
+  "618": {
+   "tile": 618,
+   "pixels": [
+    12,
+    36
+   ],
+   "world_at_repeat_8": [
+    192,
+    9216
+   ],
+   "see_through_share": 0.083,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-618.png"
+  },
+  "619": {
+   "tile": 619,
+   "pixels": [
+    18,
+    11
+   ],
+   "world_at_repeat_8": [
+    288,
+    2816
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-619.png"
+  },
+  "796": {
+   "tile": 796,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-796.png"
+  },
+  "811": {
+   "tile": 811,
+   "pixels": [
+    17,
+    29
+   ],
+   "world_at_repeat_8": [
+    272,
+    7424
+   ],
+   "see_through_share": 0.17,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-811.png"
+  },
+  "1072": {
+   "tile": 1072,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-1072.png"
+  },
+  "1270": {
+   "tile": 1270,
+   "pixels": [
+    64,
+    62
+   ],
+   "world_at_repeat_8": [
+    1024,
+    15872
+   ],
+   "see_through_share": 0.353,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-1270.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-1370.png"
+  },
+  "1570": {
+   "tile": 1570,
+   "pixels": [
+    63,
+    96
+   ],
+   "world_at_repeat_8": [
+    1008,
+    24576
+   ],
+   "see_through_share": 0.403,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-1570.png"
+  },
+  "2476": {
+   "tile": 2476,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-2476.png"
+  },
+  "2578": {
+   "tile": 2578,
+   "pixels": [
+    27,
+    38
+   ],
+   "world_at_repeat_8": [
+    432,
+    9728
+   ],
+   "see_through_share": 0.275,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-2578.png"
+  },
+  "2586": {
+   "tile": 2586,
+   "pixels": [
+    29,
+    35
+   ],
+   "world_at_repeat_8": [
+    464,
+    8960
+   ],
+   "see_through_share": 0.217,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-2586.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-2820.png"
+  },
+  "2915": {
+   "tile": 2915,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-foundry\\knowledge\\blood\\studies\\machine-hall\\tiles\\tile-2915.png"
+  }
+ }
+}

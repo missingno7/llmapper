@@ -89,8 +89,8 @@ class StudyTests(unittest.TestCase):
         self.assertNotIn("St Gallow's crypt", sheet["unstudied"])
         self.assertEqual(sheet["places"]["St Gallow's crypt"]["study"],
                          "crypt")
-        #: honest about the rest: the others were built before the rule
-        self.assertIn("pump machine hall", sheet["unstudied"])
+        #: the last one built before the rule was studied on 2026-11-25
+        self.assertEqual(sheet["unstudied"], [])
         #: the four studied the same day name their study
         for name, slug in (("harbour", "harbour"), ("saloon", "saloon"), ("arcade concourse", "arcade"),
                            ("St Gallow's nave", "church"),
