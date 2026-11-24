@@ -117,16 +117,15 @@ class StockedCityTests(unittest.TestCase):
 
         tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
         shelves = tags.get("shelf_niche", [])
-        #: seven, the pawnbroker's behind his counter, and RAT DOGS'
+        #: the saloon's, the pawnbroker's behind his counter, and RAT DOGS'
         #: kitchen shelf beside its pans and its freezer's cold shelf
-        self.assertEqual(len(shelves), 10)
+        #: (the arcade's six went with its six equal shops)
+        self.assertEqual(len(shelves), 4)
         disk = read_map(CITY)
         rows = 0
         for sector in shelves:
             held = [s for s in disk.sprites
                     if int(s.fields["sector"]) == sector]
-            #: (the bookseller's is the exception: its back IS the books,
-            #: the owner's "bookcase front", and it holds two candles)
             self.assertGreaterEqual(len(held), 2, sector)
             rows += len(held) >= 4
             fields = disk.sectors[sector].fields
@@ -134,54 +133,10 @@ class StockedCityTests(unittest.TestCase):
             #: (9,216 in the pawn shop, whose room is 4,096 lower)
             self.assertIn(int(fields["floor_z"]) - int(fields["ceiling_z"]),
                           (12288, 9216))
-        self.assertGreaterEqual(rows, 6)
+        self.assertGreaterEqual(rows, 3)
 
 
-def _level_floor(disk, start):
-    """A sector and every sector joined to it at the same floor, ceiling and floor tile."""
-    def key(s):
-        f = disk.sectors[s].fields
-        return int(f["floor_z"]), int(f["ceiling_z"]), int(f["floor_picnum"])
-
-    seen, todo = {start}, [start]
-    while todo:
-        f = disk.sectors[todo.pop()].fields
-        for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
-            other = int(disk.walls[w].fields["next_sector"])
-            if other >= 0 and other not in seen and key(other) == key(start):
-                seen.add(other)
-                todo.append(other)
-    return sorted(seen)
-
-
-@unittest.skipUnless(CITY.exists(), "the city is not built")
 class NothingIsShutBehindACounterTests(unittest.TestCase):
-    def test_every_find_and_actor_in_the_arcade_units_stands_on_the_floor(self):
-        """A hip-high counter cannot be stepped over. Run wall to wall, the
-        first ones shut the arcade's key, a pickup and a zombie behind them;
-        a blind reviewer saw "a bald scalp" over the bookseller's counter."""
-        from bloodmap.format import read_map
-        from tools.mine_stands import describe
-
-        disk = read_map(CITY)
-        seen = 0
-        for sprite in disk.sprites:
-            f = sprite.fields
-            x, y, kind = int(f["x"]), int(f["y"]), int(f["type"])
-            in_units = 41728 <= x <= 50432 and (41600 <= y <= 44032
-                                                or 48128 <= y <= 50560)
-            if not in_units or kind == 0 or 400 <= kind <= 433                     or kind in (30, 32):
-                continue
-            seen += 1
-            under = describe(disk, int(f["sector"]))
-            self.assertEqual(under["kind"], "floor", (kind, x, y))
-            #: the unit's own floor, joined to its mouth round the counter;
-            #: the light stage cuts a floor into lit pieces level with each
-            #: other, so the floor is the piece and every piece level with it
-            area = sum(describe(disk, s)["area"] for s in _level_floor(disk, int(f["sector"])))
-            self.assertGreater(area, 3.0, (kind, x, y))
-        self.assertGreaterEqual(seen, 5)
-
     def test_a_counter_leaves_a_way_round_it(self):
         templates = _level_module("templates")
         self.assertGreaterEqual(templates.COUNTER_PASS, 1024)

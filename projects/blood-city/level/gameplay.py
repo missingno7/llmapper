@@ -42,11 +42,11 @@ FOES = {201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 
 STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 
 #: --- the six keys --------------------------------------------------------------
-#: name -> (key number, x, y, floor, what its taking lets loose: (type, x, y)); the two with no point lie where
+#: name -> (key number, x, y, floor, what its taking lets loose: (type, x, y, and its floor if not the key's)); the two with no point lie where
 #: their own module puts them (the arcade's, and the Aldermack's on the trap).
 KEYS = {
     "skull": (1, 29.02, 28.25, 51200, ((205, 28.1, 26.9), (205, 30.9, 27.2), (205, 30.9, 29.4), (205, 28.2, 29.6), (205, 31.0, 28.3))),
-    "eye": (2, None, None, None, ((202, 46.3, 45.1), (202, 44.2, 46.2), (201, 42.0, 45.3), (203, 48.6, 45.8))),
+    "eye": (2, None, None, None, ((202, 40.7, 48.7), (201, 42.4, 48.7), (202, 40.6, 44.1), (203, 45.0, 41.7, 32768))),
     "flame": (3, 43.75, 9.5, None, ((204, 46.9, 12.6), (203, 41.0, 12.2), (203, 40.6, 4.4))),
     "dagger": (4, 27.5, 66.35, 102400, ((210, 24.2, 57.2), (210, 30.8, 57.2), (203, 27.5, 53.2))),
     "spider": (5, 12.0, 10.2, 56832, ((213, 11.6, 11.75), (213, 12.6, 11.75), (214, 9.4, 13.6), (214, 14.9, 13.8), (213, 12.0, 16.2))),
@@ -82,9 +82,10 @@ SUPPLIES = (
     ((69, 69, 69), 9.6, 42.2, STREET, "along the market's north aisle"),
     ((68,), 5.0, 47.2, STREET, "behind the stalls"),
     # the arcade: the tommy gun behind its own keyed door
-    ((67, 67), 49.3, 46.2, STREET, "the concourse's east end"),
+    ((67, 67), 49.3, 46.2, STREET, "the arcade's landing"),
     ((42, 72), 51.4, 44.7, STREET, "the arcade's service passage, behind the eye's door"),
     ((141,), 51.5, 42.9, STREET, "the arcade's cache: a secret"),
+    ((68, 69), 42.5, 49.0, STREET, "Miguel's Guns and Ammo, once its shutter is up"),
     # old crossing and the church
     ((67, 67, 67), 27.2, 31.2, None, "the nave"),
     ((64, 64), 30.9, 25.2, None, "the vestry"),
@@ -271,9 +272,9 @@ def _keys(layout) -> int:
         taken = wires.wire(f"key:{name}")
         taken.when(wiring.placement(placement), "pickup", command=motion.CMD_ON, once=True)
         near = floor if floor is not None else _floor_of(layout, placement)
-        for k, (what, sx, sy) in enumerate(wakes):
+        for k, (what, sx, sy, *own) in enumerate(wakes):
             # the dagger is taken behind the rose; what it wakes stands between it and the way out
-            level_ = (118784, 118784, 102400)[k] if name == "dagger" else near
+            level_ = (118784, 118784, 102400)[k] if name == "dagger" else own[0] if own else near
             taken.then(wiring.placement(_spawn(layout, f"gameplay:{name}_{k}", what, sx, sy, level_)))
     return len(KEYS)
 

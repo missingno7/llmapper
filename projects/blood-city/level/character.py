@@ -185,10 +185,11 @@ PLACES: dict[str, dict[str, Any]] = {
                     "(rock), s621-626 (piles)",
     },
     "arcade concourse": {
-        "at": (46080, 46080),
-        "hero": "a tall concourse of glazed shopfronts, and a service "
-                "corridor with something behind its wall",
-        "exemplar": "E4M9 concourse; E6M1 shopfronts; E3M4 sprite 331",
+        "at": (45200, 46000), "floor": 32768, "study": "arcade",
+        "hero": "a sunk court seen from the door over a balustrade: a dead fountain under a glazed lantern, a "
+                "gallery that has fallen into it, and the key in sight beyond the gap",
+        "exemplar": "E4M9 s97 (atrium, banners, clocks), s89/s90 (basin under an open shaft), s79-s82 (escalator), "
+                    "s103 (gallery over it, shut shops); E2M4 sprite 181 (balustrade); E3M4 sprite 331",
     },
 }
 

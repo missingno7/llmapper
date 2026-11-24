@@ -379,6 +379,9 @@ def build():
     import cabal_rite
     city.declare_layer(cabal_rite.LAYER, ceiling_z=cabal_rite.SHAFT, floor_z=cabal_rite.FLOOR + 1024,
                        note="the Cabal's storm chamber behind the settling hall")
+    import arcade
+    city.declare_layer(arcade.LAYER, ceiling_z=arcade.SKY, floor_z=arcade.COURT,
+                       note="the Gravesend Arcade's court, a body and a half below the street")
     import phantom_terminus
     city.declare_layer("ghost_station", ceiling_z=SEWER_FLOOR - 24576,
                        floor_z=phantom_terminus.WATER_FLOOR,
@@ -1817,7 +1820,7 @@ def main() -> int:
     import fixtures as _fx
     _sig = 0
     for _key, _room in list(ctx["mall_rooms"].items())[:6]:
-        if _key.endswith(("_door", "_porch", "_window", "_neck")):
+        if _key.endswith(("_door", "_porch")) or _key.startswith("service"):
             continue
         _fx.signature(layout, f"sig:mall_{_key}", _room.region_id)
         _sig += 1
@@ -2016,18 +2019,14 @@ def main() -> int:
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
-    import aldermack_front, glass, l3_theatre, l3_mall, l3_market
+    import aldermack_front, glass, l3_theatre, l3_market
     #: Only the pane's own plane, at the back of each sash pocket.  The
     #: street-side record of a window is the facade's (owner, 2026-11-17).
     spans = aldermack_front.glass_spans()
     for w in l3_theatre.WINDOWS:
         spans += glass.shopfront((w[3], w[4], w[5], w[6]), w[2])["panes"]
-    for _unit, wx0, wx1, side, _plinth in l3_mall.WINDOWS:
-        wy0, wy1 = (l3_mall.NORTH_BAND if side == "north"
-                    else l3_mall.SOUTH_BAND)
-        spans += glass.shopfront(
-            (wx0, wy0, wx1, wy1),
-            "south" if side == "north" else "north")["panes"]
+    import arcade
+    spans += arcade.panes()
     for span, outward in zip(l3_market.SUPERMARKET_WINDOWS,
                              l3_market.SUPERMARKET_WINDOW_FACES):
         spans += glass.shopfront(span, outward)["panes"]
@@ -2260,6 +2259,7 @@ def main() -> int:
     print("the settling hall's stone put back:", settling_hall.keep(compiled.level, compiled))
     import toshers_den
     print("the den's timber put back:", toshers_den.keep(compiled.level, compiled))
+    print("the arcade's fronts put back:", arcade.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

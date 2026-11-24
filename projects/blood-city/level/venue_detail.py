@@ -33,11 +33,6 @@ WALL_DETAILS = (
     ("theatre", "parlor_gallery", "north", 0.25, 823),
     ("theatre", "parlor_range", "west", 0.62, 761),
     ("theatre", "pawn_shop", "north", 0.75, 269),
-    ("mall", "unit_a", "north", 0.30, 965),
-    ("mall", "unit_b", "west", 0.68, 269),
-    ("mall", "unit_c", "north", 0.68, 610),
-    ("mall", "unit_d", "west", 0.30, 965),
-    ("mall", "unit_e", "east", 0.72, 269),
     ("church", "nave", "west", 0.62, 167, {"preferred_only": True}),
     ("church", "narthex", "north", 0.45, 617),
     ("church", "crypt_stair", "east", 0.35, 789),
@@ -81,13 +76,6 @@ COMPOSITIONS = (
     # wall and the column moved to the far end of the shop, out of every
     # view. It is written beside the bars now, by `l3_theatre.populate`,
     # which knows where the bars are.)
-    # Two lines at two heights and two sizes, no painting: the plain case the
-    # old one-dimensional spacing could not express at all, because it read
-    # any two words on one wall as a conflict.
-    ("mall", "unit_c", "north", 0.30, 1.55, "unit_c_board", (
-        ("caption", "GOODS", {"style": "plain"}),
-        ("caption", "BOUGHT AND SOLD", {"style": "label"}),
-    )),
 )
 
 

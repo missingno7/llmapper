@@ -173,12 +173,12 @@ class ShopSurroundTests(unittest.TestCase):
                                int(f["wall_ptr"]) + int(f["wall_count"]))]
 
     def test_every_window_has_a_surround_a_display_and_a_lamp(self):
-        self.assertEqual(len(self.tags["shopfront"]), 6)
-        self.assertEqual(len(self.tags["shop_display"]), 6)
+        self.assertEqual(len(self.tags["shopfront"]), 4)
+        self.assertEqual(len(self.tags["shop_display"]), 4)
         lamps = [s for s in self.disk.sprites
                  if int(s.fields["picnum"]) == 641
                  and int(s.fields["sector"]) in set(self.tags["shop_display"])]
-        self.assertEqual(len(lamps), 6)
+        self.assertEqual(len(lamps), 4)
 
     def test_a_surround_stands_on_the_pavement_and_rises_a_fascia(self):
         if str(LEVEL) not in sys.path:
@@ -217,9 +217,9 @@ class ShopSurroundTests(unittest.TestCase):
         named = {int(s.fields["sector"]) for s in self.disk.sprites
                  if int(s.fields["picnum"]) in letters
                  and int(s.fields["sector"]) in set(self.tags["shopfront"])}
-        #: PAWNBROKER, PROVISIONS, MARKET HALL, and the arcade's DRAPER and
-        #: CLOCKS; the market hall's short south window has no room for one
-        self.assertEqual(len(named), 5)
+        #: PAWNBROKER, PROVISIONS, MARKET HALL; the market hall's short south
+        #: window has no room for one (the arcade's fronts are `arcade`'s own)
+        self.assertEqual(len(named), 3)
         for sector_id in named:
             floor = int(self.disk.sectors[sector_id].fields["floor_z"])
             heights = [(floor - int(s.fields["z"])) / self.BODY

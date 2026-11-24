@@ -30,7 +30,7 @@ up to the signal box, its lever opens the tunnel, and the way out is in the bore
 | key | where | what stands in the way | what taking it does |
 |---|---|---|---|
 | **skull** | on the lid of the sarcophagus in St Gallow's crypt | the church's dead and cultists, the slab lift | five of the buried rise out of the crypt's earth |
-| **eye** | a shop of the arcade (it also opens the arcade's service passage) | the concourse's cultists | four more come into the concourse, between you and the street |
+| **eye** | on a plinth on the arcade's landing, in sight from its street door and across a fallen gallery from it (it also opens the service passage behind it) | the sunk court: the escalator down, the dead in it, the fallen span up | Miguel's shutter goes up and two come out of the gun shop on the gallery opposite, one stands at the street door, one gets up in the draper's |
 | **flame** | on the belt in the pump station's machine hall, between the two presses | the presses slam and the belt carries you into them; the console lever stops the belt | the dead come out of the hall's corners |
 | **moon** | on the Aldermack's trap, in the light | the house's gunmen; the show | the curtain drops, the light goes, the wings open on the watchers (as it did for the armour) |
 | **spider** | in the Weaver's Cellars, on a stone in the north nest, in the one light there | the great web across the nest, the brood, and its mother over the pit | five more spiders |

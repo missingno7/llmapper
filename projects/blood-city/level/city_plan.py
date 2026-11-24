@@ -206,7 +206,7 @@ VENUES = [
     # stale now fails a row instead of going unnoticed.
     {"id": "arcade", "type": "retail_row", "block": "market_block_c",
      "face": "west@plaza", "doorways": 2,
-     "note": "was 'chandlery/open_front'; E4M9 concourse with six units"},
+     "note": "was 'chandlery/open_front'; E4M9's atrium: a sunk court and three shops"},
     {"id": "ferry_office", "type": "open_front", "block": "market_block_a",
      "face": "south@quay", "doorways": 1},
     {"id": "workshop_bar", "type": "bar", "block": "oc_block_a",

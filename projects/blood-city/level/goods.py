@@ -131,14 +131,6 @@ ON_TOP = [
     ("market_hall/display_s", [(834, 0.5, 0.3), (802, 0.5, 0.7)]),
     ("market_hall/display_side", [(604, 0.08, 0.5), (759, 0.22, 0.5), (605, 0.40, 0.5),
                                   (834, 0.60, 0.5), (616, 0.76, 0.5), (802, 0.92, 0.5)]),
-    # the arcade: each unit's counter says what it sells
-    ("gravesend_arcade/unit_b/fittings/unit_b_counter/unit_b_counter_0", [(606, 0.2, 0.5), (517, 0.35, 0.5), (834, 0.8, 0.5)]),
-    ("gravesend_arcade/unit_c/fittings/unit_c_counter/unit_c_counter_0", [(3540, 0.25, 0.5), (579, 0.75, 0.5)]),
-    ("gravesend_arcade/unit_d/fittings/unit_d_counter/unit_d_counter_0", [(520, 0.3, 0.5), (938, 0.75, 0.5)]),
-    ("gravesend_arcade/unit_e/fittings/unit_e_counter/unit_e_counter_0", [(938, 0.8, 0.5)]),
-    ("gravesend_arcade/unit_f/fittings/unit_f_counter/unit_f_counter_0", [(834, 0.25, 0.5), (802, 0.7, 0.5)]),
-    ("gravesend_arcade/unit_a_window", [(1013, 0.5, 0.5)]),
-    ("gravesend_arcade/unit_d_window", [(739, 0.5, 0.5)]),
     # the market hall's stall: provisions down the aisle side of each edge,
     # so either aisle sees stock (the meat lies in its middle and hangs
     # over it: `l3_market.dress_supermarket`)
@@ -164,20 +156,6 @@ ROWS = [
     ("canteen/main/shelf", [834, 616, 802, 712]),
     #: and its freezer's: kegs and jars kept cold
     ("canteen/back/shelf", [604, 802, 604, 834]),
-    #: the draper: the cloth hangs on the walls (ON_WALL); the shelf holds
-    #: what a draper also sells
-    ("gravesend_arcade/unit_a/shelf", [712, 616, 739, 616]),
-    ("gravesend_arcade/unit_b/shelf", [517, 606, 834, 605]),
-    #: the ironmonger: tins, pails and an anvil. (Pans were here, standing.
-    #: In the town maps a pan HANGS, a body up.)
-    ("gravesend_arcade/unit_c/shelf", [604, 3540, 579, 802]),
-    #: the clockmaker: the clocks are on the walls (ON_WALL, the owner's
-    #: "wall clock"); candles on the shelf
-    ("gravesend_arcade/unit_d/shelf", [938, 739, 938, 520]),
-    #: the bookseller: the shelf's BACK is the owner's "bookcase front"
-    #: (`fixtures.SHELF_BACKS`); a candle to read by and nothing else
-    ("gravesend_arcade/unit_e/shelf", [938]),
-    ("gravesend_arcade/unit_f/shelf", [834, 802, 604, 834]),
     #: the pawnbroker: what people pledged, out of reach behind the counter
     ("pawn_shop/shop/shelf", [739, 616, 520, 574, 938]),
 ]
@@ -203,16 +181,6 @@ ON_WALL = [
     ("saloon/back", "east", 621, 0.5, None),
     ("pawn_shop/shop", "west", 268, 0.5, None),
     ("market_hall/supermarket", "west", 2139, 0.4, 0.9),
-    ("gravesend_arcade/unit_c", "east", 1712, 0.5, 0.5),
-    ("gravesend_arcade/unit_d", "west", 1165, 0.3, 1.2),
-    ("gravesend_arcade/unit_d", "west", 1165, 0.7, 1.0),
-    ("gravesend_arcade/unit_d", "east", 1165, 0.5, 1.1),
-    ("gravesend_arcade/unit_a", "west", 73, 0.3, None),
-    ("gravesend_arcade/unit_a", "west", 73, 0.7, None),
-    ("gravesend_arcade/unit_a", "east", 73, 0.5, None),
-    ("gravesend_arcade/unit_c", "west", 1708, 0.5, None),
-    ("gravesend_arcade/unit_e", "west", 740, 0.5, None),
-    ("gravesend_arcade/unit_e", "east", 644, 0.5, 1.1),
     ("gravesend_arcade/service", "south", 1710, 0.3, None),
     #: (the arcade's service extinguisher is wired now: `l3_mall`)
     ("st_gallows/narthex", "north", 845, 0.5, 1.7),

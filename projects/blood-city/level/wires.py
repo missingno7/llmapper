@@ -95,7 +95,7 @@ PLAN: tuple[tuple[str, str], ...] = (
      "the light that falls from the coach's windows goes as the coach goes and comes back with it"),
     ("phantom:first-platform", "entering the platform puts out the near lamp and sounds the distant whistle"),
     ("key:skull", "taking the skull key in the crypt raises the buried out of its earth"),
-    ("key:eye", "taking the eye key in the arcade brings the Cabal into the concourse"),
+    ("key:eye", "taking the eye key in the arcade raises the gun shop's shutter, and the Cabal come out of it and up behind you"),
     ("key:flame", "taking the flame key off the belt brings the dead into the machine hall"),
     ("key:dagger", "taking the dagger key behind the rose puts phantoms between it and the way out"),
     ("key:spider", "taking the spider key out of the nest wakes the brood"),

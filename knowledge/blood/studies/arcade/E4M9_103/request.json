@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/E4M9_103/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/E4M9_103",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -1696,
+   "y": 17568,
+   "z": 78944,
+   "angle": 1476,
+   "horiz": 100,
+   "sector": 103,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -5920,
+   "y": 14752,
+   "z": 78944,
+   "angle": 1596,
+   "horiz": 100,
+   "sector": 103,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -6624,
+   "y": 10528,
+   "z": 78944,
+   "angle": 1672,
+   "horiz": 100,
+   "sector": 103,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -1696,
+   "y": 2784,
+   "z": 78944,
+   "angle": 799,
+   "horiz": 100,
+   "sector": 103,
+   "screenshot": true
+  }
+ ]
+}

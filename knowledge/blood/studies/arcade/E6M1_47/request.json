@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/E6M1_47/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/E6M1_47",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 35904,
+   "y": 29248,
+   "z": 42080,
+   "angle": 236,
+   "horiz": 100,
+   "sector": 47,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 38208,
+   "y": 30016,
+   "z": 42080,
+   "angle": 283,
+   "horiz": 100,
+   "sector": 47,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 37824,
+   "y": 32320,
+   "z": 42080,
+   "angle": 174,
+   "horiz": 100,
+   "sector": 47,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 40896,
+   "y": 30016,
+   "z": 42080,
+   "angle": 412,
+   "horiz": 100,
+   "sector": 47,
+   "screenshot": true
+  }
+ ]
+}
