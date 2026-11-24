@@ -487,6 +487,8 @@ CMD_OFF, CMD_ON, CMD_STATE, CMD_TOGGLE, CMD_NOT_STATE = 0, 1, 2, 3, 4
 #: kCmdLink: couples state continuously and is sent outside the edge
 #: guards, which is how a combination switch transmits with no edge flag.
 CMD_LINK = 5
+#: locked, a sector, wall or sprite answers and sends nothing until it is unlocked
+CMD_LOCK, CMD_UNLOCK = 6, 7
 
 #: The routes a mechanism can be worked through, all orthogonal to each other
 #: and to everything else in the grammar.

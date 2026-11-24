@@ -39,6 +39,9 @@ WIRE_PROFILES = {
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",
     "phantom:car": "phantom_train",
+    "cabal:broken": "great_stone",
+    "cabal:shut": "great_stone",
+    "cabal:heart": "flesh_door",
     "station:fare-turnstile": "fare_ambient",
 }
 #: A door that rises (600), by the tile its leaf wears: what the campaign's
@@ -54,6 +57,7 @@ FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
 PHANTOM_TRAIN = (115, 277, 115, 277)
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
+SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
 CARRIED_PROFILES = {"rail_shuttle", "phantom_train"}
 FARE_AMBIENT = (250, 700, 21, 20)
 
@@ -74,8 +78,8 @@ def apply(disk, allocations, circuit):
         if profile is None and type_id == 600:
             profile = next((LEAF_PROFILES[tile] for tile in _leaf_faces(disk, index)
                             if tile in LEAF_PROFILES), None)
-        if profile == "phantom_train" and not region.endswith(VOICE):
-            # one body of many sectors has one voice, its aisle's
+        if (profile == "phantom_train" and not region.endswith(VOICE)) or any(part in region for part in SILENT):
+            # one body of many sectors has one voice, its aisle's; a ring of teeth has its well's
             rows[str(index)] = {"region": region, "profile": "silent member"}
             continue
         if profile is None:

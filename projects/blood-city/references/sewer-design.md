@@ -102,9 +102,9 @@ room with its rectangle and kind).
   west; the memorial manhole lands in its channel). Off the gallery's south
   walk the hall drops 2.4 bodies to three settling tanks (water at 106,496,
   barely moving) with walks between and a quay down the west side, and the
-  CIRCLE QUAY along the south where the Cabal keeps its circle: six of the
-  owner's standing candelabra (580) round a pool of blood, two of E3M3's
-  cultists. A stair of ten steps climbs from the circle quay to the gallery
+  CIRCLE QUAY along the south, whose back wall the Cabal has broken through
+  into the old storm chamber (`cabal_rite.py`, `cabal-rite-design.md`; until
+  2026-11-24 its circle was six candelabra on this quay). A stair of ten steps climbs from the circle quay to the gallery
   in a column of its own. The hall is lit as one room: six chain lamps over
   the tanks, their chains in the roof. The drop from the gallery does no
   harm (45,056); there is no way back up but the stair.

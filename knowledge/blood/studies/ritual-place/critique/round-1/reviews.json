@@ -1,0 +1,38 @@
+{
+ "recognition": {
+  "named": "an underground satanic cult's ritual amphitheatre",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "",
+  "sure": 4,
+  "score": 4,
+  "blocking": [
+   "flat light: six fires and no visible pools, it looks floodlit",
+   "the ceiling is a vast plain sheet"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the priest is invisible from the entry and nothing ties him to the thing",
+   "the fires' death costs no light",
+   "the well does not visibly sink",
+   "no reward seen"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "light ignores its sources",
+   "the event barely changes the light",
+   "the heart floats"
+  ]
+ }
+}

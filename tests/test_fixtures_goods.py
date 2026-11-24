@@ -94,8 +94,8 @@ class StockedCityTests(unittest.TestCase):
         tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
         auditorium = {sector for kind, sectors in tags.items()
                       if kind.startswith("aldermack_") for sector in sectors}
-        # Theatre and underground railway scenery stand outside the shop sample.
-        scenery = auditorium | set(tags["phantom_terminus"])
+        # Theatre, underground railway and ritual scenery stand outside the shop sample.
+        scenery = auditorium | set(tags["phantom_terminus"]) | set(tags["cabal_rite"])
         cls.rows = [row for row in stands([str(CITY)]) if row["sector"] not in scenery]
         cls.found = summary(cls.rows)
 

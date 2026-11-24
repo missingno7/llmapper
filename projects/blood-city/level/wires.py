@@ -93,6 +93,19 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("phantom:car-light",
      "the light that falls from the coach's windows goes as the coach goes and comes back with it"),
     ("phantom:first-platform", "entering the platform puts out the near lamp and sounds the distant whistle"),
+    ("cabal:entered", "stepping onto the chamber's gallery is answered once: give me a sacrifice"),
+    ("cabal:broken",
+     "the priest's death breaks the rite: the earth shakes, the well goes down, the stone beasts and some of "
+     "the audience wake, and the relays that put out the fires and burst the window start"),
+    ("cabal:fires-1", "the two fires by the runner go out, and the chant stops"),
+    ("cabal:fires-2", "a moment later the two at the sides go out, and the room goes dark"),
+    ("cabal:fires-3", "and then the two by the altar"),
+    ("cabal:swallowed", "the well reaching its bottom hides the horned thing it took down"),
+    ("cabal:window", "three seconds after the priest, the rose bursts and what was behind it comes through"),
+    ("cabal:heart", "shooting the heart ends it: a cry, the earth shakes, and the flesh opens on what it had swallowed"),
+    ("cabal:silent", "the heart's beat stops with it"),
+    ("cabal:shut", "stepping over the ring of blood shuts the mouth behind you; the bursting window, or forty seconds, opens it"),
+    ("cabal:disarm", "once the priest is dead the ring of blood shuts nothing"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

@@ -196,8 +196,8 @@ class ThirdWalkTests(unittest.TestCase):
                    if int(_extra(s).get("tx_id", 0)) == 2
                    and int(_extra(s).get("command", 0)) == 64]
         # The stash, flooded branch, cache, Molly's nest, plague pit,
-        # Rat King's Shrine and Phantom Terminus.
-        self.assertEqual(len(secrets), 7)
+        # Rat King's Shrine, Phantom Terminus and the Cabal's heart.
+        self.assertEqual(len(secrets), 8)
 
     def test_ghost_station_dials_latch_only_the_first_complete_match(self):
         from itertools import permutations

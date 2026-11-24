@@ -376,6 +376,9 @@ def build():
                        ceiling_z=SEWER_FLOOR - _l3_sewer_layers.WALK_CLEAR,
                        floor_z=_l3_sewer_layers.HALL_WATER,
                        note="the settling hall under the plaza: tanks below the sewer's level")
+    import cabal_rite
+    city.declare_layer(cabal_rite.LAYER, ceiling_z=cabal_rite.SHAFT, floor_z=cabal_rite.FLOOR + 1024,
+                       note="the Cabal's storm chamber behind the settling hall")
     import phantom_terminus
     city.declare_layer("ghost_station", ceiling_z=SEWER_FLOOR - 24576,
                        floor_z=phantom_terminus.WATER_FLOOR,
@@ -1565,7 +1568,7 @@ def main() -> int:
         # cannot forget it.
         # The stash, flooded branch, arcade cache, Old Molly's Nest,
         # Plague Pit and Rat King's Shrine.
-        behavior=motion.secret_total(7))
+        behavior=motion.secret_total(8))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -1937,6 +1940,8 @@ def main() -> int:
     from bloodmap.rules import art_sizes
     house = ctx["aldermack_house"]
     cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
+    import cabal_rite
+    cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
     door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals)
     ctx["manifest"]["door_frames"] = len(door_frames["doors"])
     print("door frames:", len(door_frames["doors"]))
@@ -2239,6 +2244,7 @@ def main() -> int:
     print("apertures before:", _before)
     print("lintels:", apertures.continue_lintels(compiled.level,
                                                  compiled.level.to_disk_map()))
+    print("the rite's rims put back:", cabal_rite.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.
@@ -2514,6 +2520,7 @@ def main() -> int:
         # carry nothing but their shade, and is held to the same gates.
         from bloodmap import light_stage as _light_stage
         import lights as _lights
+        import cabal_rite as _cabal
         _region_of = {_a.sector_id: _rid for _rid, _a in sorted(compiled.allocations.items())}
         for _piece, _parent in sorted(_overlay_report.get("parent", {}).items()):
             _region_of[int(_piece)] = _region_of.get(int(_parent), "")
@@ -2521,8 +2528,9 @@ def main() -> int:
                                       if d.severity in ("error", "warning"))
         _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
                                     lamp_scale=_lights.lamp_scale, room_key=_lights.room_key,
-                                    groups=_phantom_finish.light_groups(compiled))
+                                    groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled))
         print("lamps that switch:", _lit["switched"])
+        print("floors under fangs evened:", _cabal.even(disk, compiled))
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
         _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
         _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
@@ -2569,6 +2577,8 @@ def main() -> int:
             _tags.setdefault(str(_kind), []).append(_allocation.sector_id)
         if _allocation is not None and _region.layer == "ghost_station":
             _tags.setdefault("phantom_terminus", []).append(_allocation.sector_id)
+        if _allocation is not None and _region.layer == "rite":
+            _tags.setdefault("cabal_rite", []).append(_allocation.sector_id)
     # a sector the overlays cut off its region is still that region
     for _piece, _parent in list(_overlay_report.get("parent", {}).items()) + sorted(_lit_parent.items()):
         for _sectors in _tags.values():

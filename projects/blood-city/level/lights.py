@@ -31,6 +31,15 @@ RULES: tuple[tuple[str, Rule], ...] = (
     # Graves Brook is older than the ring: lamps hung on chains far apart,
     # not the ring's tubes (`references/sewer-design.md`: "almost none")
     ("graves_brook", Rule("hanging", 641, 8192)),
+    # the Cabal keeps its own fires
+    ("settling_hall/rite:tier", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),
+    ("settling_hall/rite:gallery", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),
+    ("settling_hall/rite:sign", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),
+    ("settling_hall/rite:floor", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),
+    ("settling_hall/rite:niche", Rule("none", 0, 0, cut=False, shade_bias=(10, 12, 12))),
+    ("settling_hall/rite:gullet", Rule("none", 0, 0)),
+    ("settling_hall/rite:heart", Rule("none", 0, 0)),
+    ("settling_hall/rite", Rule("none", 0, 0, shade_bias=(14, 26, 12))),
     # the settling hall: chain lamps over the tanks, their chains in the roof
     ("settling_hall", Rule("hanging", 641, 4096, 4096)),
     # the sewer's secret rooms: nobody keeps a lamp in a hermit's lair or a
@@ -118,6 +127,11 @@ OWN_LIGHT: tuple[str, ...] = (
 #: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    # six fires in one round room at full strength lit all of it alike, and
+    # their death changed nothing (round 1's readers: "floodlit")
+    ("settling_hall/rite:gullet", 1.0),
+    ("settling_hall/rite:heart", 1.0),
+    ("settling_hall/rite", 0.5),
     # the one thing that glows in a station struck off the line
     ("track_coach:", 1.5),
     ("fallen_roof_wreck:", 1.6),
@@ -149,6 +163,9 @@ def room_key(region: str) -> str:
     # the settling hall's tanks, walks and quays are one hall
     marker = "/" + l3_sewer.HALL_LAYER + "/"
     if marker in region:
+        # the Cabal's chamber behind it is lit by its own fires
+        if "/settling_hall/rite:" in region:
+            return region[: region.index("rite:") + 4]
         return region[: region.index(marker) + len(marker) - 1]
     tail = region.rsplit("/", 1)[-1]
     corridor = _CORRIDOR_OF.get(tail)

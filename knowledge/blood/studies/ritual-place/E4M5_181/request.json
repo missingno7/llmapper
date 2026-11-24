@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/ritual-place/E4M5_181/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/ritual-place/E4M5_181",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 6353,
+   "y": -11160,
+   "z": 176224,
+   "angle": 1244,
+   "horiz": 100,
+   "sector": 181,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -9307,
+   "y": -9594,
+   "z": 176224,
+   "angle": 1762,
+   "horiz": 100,
+   "sector": 181,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -8524,
+   "y": -14292,
+   "z": 176224,
+   "angle": 1871,
+   "horiz": 100,
+   "sector": 181,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 4787,
+   "y": -15858,
+   "z": 176224,
+   "angle": 1123,
+   "horiz": 100,
+   "sector": 181,
+   "screenshot": true
+  }
+ ]
+}

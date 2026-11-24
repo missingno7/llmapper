@@ -233,7 +233,7 @@ class PhantomTerminusTests(unittest.TestCase):
         self.assertFalse(credit["rx_id"])
         self.assertTrue(credit["trigger_once"] and credit["trigger_enter"])
         self.assertEqual(sum((record_extra(s) or {}).get("tx_id") == motion.CHANNEL_SECRET_FOUND
-                             for s in self.disk.sectors), 7)
+                             for s in self.disk.sectors), 8)
         channel = self.wires[self.design.PLATFORM_ENTRY]
         throat = record_extra(self.disk.sectors[self.sector(49984, -10240, self.design.GHOST_FLOOR)])
         self.assertEqual((throat["tx_id"], throat["command"]), (channel, motion.CMD_TOGGLE))

@@ -540,6 +540,22 @@ POSE_SETS = {
         "costumes": (18.16, 12.93, 17.08, 11.94, LEVEL, "the clothes rail, trunk and folding screen"),
         "behind_screen": (18.05, 13.56, 17.35, 13.12, LEVEL, "the star's empty costume behind the screen"),
     },
+    #: the Cabal's chamber behind the settling hall (`cabal_rite`)
+    "rite": {
+        "a_mouth": (27.5, 48.4, 27.5, 51.5, LEVEL, "the mouth in the quay's south wall", 102400),
+        "b_overlook": (27.5, 51.6, 27.5, 57.8, LEVEL - 18, "the chamber from the gallery inside the mouth", 102400),
+        "c_gallery": (33.2, 55.6, 26.0, 59.0, LEVEL - 12, "across the chamber from the east gallery", 102400),
+        "d_floor": (26.3, 54.2, 27.6, 58.6, LEVEL, "the sign and the well from the foot of the runner", 118784),
+        "e_well": (29.6, 56.0, 27.5, 57.8, LEVEL - 14, "the well close to", 118784),
+        "f_dais": (27.5, 60.2, 27.5, 64.0, LEVEL + 12, "the dais, the altar and the window", 118784),
+        "g_back": (28.35, 63.5, 27.2, 57.0, LEVEL - 10, "back from beside the altar", 110592),
+        "h_niche": (30.2, 53.6, 31.5, 52.3, LEVEL, "a niche of the gallery", 102400),
+        "j_candles": (32.6, 59.9, 34.2, 60.4, LEVEL, "the niche of candles", 102400),
+        "k_rose": (27.5, 62.9, 27.5, 68.5, LEVEL + 20, "the rose over the altar", 110592),
+        "l_throat": (27.5, 65.75, 27.5, 69.0, LEVEL, "behind the glass, down the gullet to the heart", 102400),
+        "m_heart": (27.5, 67.2, 27.5, 69.0, LEVEL, "the column and the eye", 102400),
+        "i_box": (28.6, 57.8, 34.0, 57.8, LEVEL + 30, "a box over the gallery, from the floor", 118784),
+    },
     "sewer-water": {
         "brook_inlet": (3.6, 19.65, 1.0, 19.5, LEVEL, "Graves Brook, west toward the feeder", 63488),
         "brook_walk": (6.0, 19.3, 15.0, 18.6, LEVEL, "Graves Brook, east along the north wall", 63488),

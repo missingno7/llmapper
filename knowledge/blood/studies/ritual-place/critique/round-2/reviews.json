@@ -1,0 +1,39 @@
+{
+ "recognition": {
+  "named": "a demonic cult's underground ritual amphitheatre, caught mid-summoning",
+  "sure": 5,
+  "score": 4,
+  "blocking": [
+   "the eye pillar alone reads as one stretched texture on a box"
+  ]
+ },
+ "comparison": {
+  "named": "",
+  "sure": 4,
+  "score": 4,
+  "blocking": [
+   "the eye pillar frame looks like another map",
+   "flat light: six flames and no visible pool (borderline)"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the priest dies by accident from the door before the ring is crossed",
+   "the ring must not shut the mouth once he is dead",
+   "the open pit has no visible bottom or way out"
+  ]
+ },
+ "sense": {
+  "named": "",
+  "sure": 4,
+  "score": 3,
+  "blocking": [
+   "the hole is a ruled rectangle",
+   "light stays in hard-edged pieces when the fires are out",
+   "one tapestry brighter than its twin"
+  ]
+ }
+}

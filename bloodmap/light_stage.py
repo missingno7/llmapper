@@ -960,6 +960,10 @@ class LampGroup:
     moved       the map with the lamps where they will be, made from the one it
                 is given, for light that falls in another place once a lamp
                 has travelled
+    surfaces    which of a sector's surfaces may switch. A sector has one
+                amplitude for its floor, ceiling and walls: where a vault loses
+                less than the floor under it, switching it too paints it in
+                black polygons, piece by piece
     """
 
     name: str
@@ -972,6 +976,7 @@ class LampGroup:
     within: Callable[[str], bool] = lambda region: True
     floor_pal: int | None = None
     moved: Any = None
+    surfaces: frozenset = frozenset({"floor", "ceiling", "walls"})
 
 
 #: a sector that a group changes by fewer shades than this does not show it
@@ -1054,7 +1059,7 @@ def switch_lamps(disk, model: Model, groups: list[LampGroup], region_of: dict[in
                    and abs(int(a["y"]) - int(p["y"])) < 2 * D.LAMP_REACH for p in spots):
                 near.append(i)
         for sector, step in _lamp_steps(scene, model, group.lamps, near).items():
-            size = max(step.values())
+            size = max((step[k] for k in group.surfaces), default=0)
             if size >= SWITCH_STEP:
                 claims[sector].append((size, group, step))
     used = {int(_f(s)["extra"]) for s in disk.sectors if int(_f(s)["extra"]) > 0}
@@ -1080,7 +1085,7 @@ def switch_lamps(disk, model: Model, groups: list[LampGroup], region_of: dict[in
                 report["held_by_another_wire"].append((sector, group.name))
                 continue
             x = _xsector(disk, sector, used)
-            flags = {k: int(step[k] >= SWITCH_STEP) for k in ("floor", "ceiling", "walls")}
+            flags = {k: int(k in group.surfaces and step[k] >= SWITCH_STEP) for k in ("floor", "ceiling", "walls")}
             amount = step["floor"] if flags["floor"] else size
             later = group.moved is not None                # lit when the lamp gets here: by ON it is away
             dark = group.mode != "out" and not later

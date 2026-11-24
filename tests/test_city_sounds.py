@@ -80,7 +80,8 @@ class CitySoundTests(unittest.TestCase):
             outfalls += sound == 56
         expected = {(sound, *ambience.ENVELOPES[context])
                     for context, sound in ambience.SOUNDS.items()}
-        self.assertEqual(envelopes, expected | {(56, 150, 350, 50)})
+        self.assertEqual(envelopes, expected | {
+            (56, 150, 350, 50), (59, 500, 1100, 70), (60, 300, 800, 90)})      # the falls; the Cabal's chant and the heart
         self.assertEqual(outfalls, 2)
 
     def test_metal_drain_covers_have_a_metal_break_sound(self):

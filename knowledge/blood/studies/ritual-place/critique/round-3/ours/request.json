@@ -1,0 +1,143 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/ritual-place/critique/round-3/ours/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/ritual-place/critique/round-3/ours",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "a_mouth",
+   "x": 28160,
+   "y": 49561,
+   "z": 87136,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 505,
+   "screenshot": true
+  },
+  {
+   "id": "b_overlook",
+   "x": 28160,
+   "y": 52838,
+   "z": 87136,
+   "angle": 512,
+   "horiz": 82,
+   "sector": 775,
+   "screenshot": true
+  },
+  {
+   "id": "c_gallery",
+   "x": 33996,
+   "y": 56934,
+   "z": 87136,
+   "angle": 880,
+   "horiz": 88,
+   "sector": 779,
+   "screenshot": true
+  },
+  {
+   "id": "d_floor",
+   "x": 26931,
+   "y": 55500,
+   "z": 103520,
+   "angle": 418,
+   "horiz": 100,
+   "sector": 832,
+   "screenshot": true
+  },
+  {
+   "id": "e_well",
+   "x": 30310,
+   "y": 57344,
+   "z": 103520,
+   "angle": 793,
+   "horiz": 86,
+   "sector": 842,
+   "screenshot": true
+  },
+  {
+   "id": "f_dais",
+   "x": 28160,
+   "y": 61644,
+   "z": 103520,
+   "angle": 512,
+   "horiz": 112,
+   "sector": 838,
+   "screenshot": true
+  },
+  {
+   "id": "g_back",
+   "x": 29388,
+   "y": 64921,
+   "z": 95328,
+   "angle": 1461,
+   "horiz": 90,
+   "sector": 791,
+   "screenshot": true
+  },
+  {
+   "id": "h_niche",
+   "x": 30924,
+   "y": 54886,
+   "z": 91232,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 778,
+   "screenshot": true
+  },
+  {
+   "id": "j_candles",
+   "x": 33382,
+   "y": 61337,
+   "z": 87136,
+   "angle": 99,
+   "horiz": 100,
+   "sector": 781,
+   "screenshot": true
+  },
+  {
+   "id": "k_rose",
+   "x": 28160,
+   "y": 64409,
+   "z": 89184,
+   "angle": 512,
+   "horiz": 120,
+   "sector": 810,
+   "screenshot": true
+  },
+  {
+   "id": "l_throat",
+   "x": 28160,
+   "y": 67328,
+   "z": 87136,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 855,
+   "screenshot": true
+  },
+  {
+   "id": "m_heart",
+   "x": 28160,
+   "y": 68812,
+   "z": 87136,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 849,
+   "screenshot": true
+  },
+  {
+   "id": "i_box",
+   "x": 29286,
+   "y": 59187,
+   "z": 104032,
+   "angle": 0,
+   "horiz": 130,
+   "sector": 846,
+   "screenshot": true
+  }
+ ]
+}

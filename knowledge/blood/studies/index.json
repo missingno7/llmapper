@@ -212,6 +212,22 @@
     "maps/blood/community/REALM4.MAP:181!"
    ],
    "date": "2026-11-23"
+  },
+  "ritual-place": {
+   "want": "the place where the Cabal does its summoning: something the rooms are arranged round, a congregation, a victim, and a thing that answers",
+   "seeds": [
+    "E1M7:30",
+    "E1M5:369",
+    "E1M6:328",
+    "E1M6:294",
+    "E1M6:391",
+    "E4M8:62",
+    "E6M6:192",
+    "E2M4:564",
+    "E4M5:181",
+    "E3M8:266"
+   ],
+   "date": "2026-11-24"
   }
  }
 }

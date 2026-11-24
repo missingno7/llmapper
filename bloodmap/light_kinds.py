@@ -81,6 +81,9 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
 
 #: kDecorationTorch and kDecorationCandle: their flame follows their state
 FIRES = frozenset({30, 32})
+#: a pane drawn lit on a masked two-sided wall, as strong as this: it lights the
+#: room on each side of it, as the light behind it would
+PANES = {264: 0.9}
 #: textures that look lit but give no light (the owner)
 NOT_LIGHTS = frozenset({261, 511})
 #: a panel ceiling counts as lit at or below this shade
@@ -195,5 +198,27 @@ def panel_lights(disk) -> list[tuple[float, float, float, int, float]]:
     return out
 
 
+def pane_lights(disk) -> list[tuple]:
+    """A light just in front of every lit pane hung on a two-sided wall, facing into the room whose record it is."""
+    import math
+
+    from .sector_geom import sector_walls, wall_segment
+
+    out = []
+    for index, sector in enumerate(disk.sectors):
+        for w in sector_walls(disk, index):
+            f = _f(disk.walls[w])
+            strength = PANES.get(int(f["over_picnum"]))
+            if strength is None or not int(f["cstat"]) & 16 or int(f["next_sector"]) < 0 or int(f["shade"]) > -32:
+                continue
+            (ax, ay), (bx, by) = wall_segment(disk, w)
+            length = math.hypot(bx - ax, by - ay) or 1
+            ix, iy = -(by - ay) / length, (bx - ax) / length        # an outline is clockwise on the page: in is to the right
+            here, there = _f(sector), _f(disk.sectors[int(f["next_sector"])])
+            z = (max(int(here["ceiling_z"]), int(there["ceiling_z"])) + min(int(here["floor_z"]), int(there["floor_z"]))) / 2
+            out.append(((ax + bx) / 2 + ix * 96, (ay + by) / 2 + iy * 96, float(z), index, strength))
+    return out
+
+
 def lights(disk, art=None) -> list[tuple[float, float, float, int, float]]:
-    return sprite_lights(disk, art) + panel_lights(disk)
+    return sprite_lights(disk, art) + panel_lights(disk) + pane_lights(disk)

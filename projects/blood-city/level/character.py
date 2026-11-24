@@ -120,6 +120,15 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M5 s71 (candle recess); DWE1M5 s610 (candles and remains "
                     "on stone); E1M4 s167 (rats on the grill)",
     },
+    "the Cabal's chamber": {
+        "at": (28160, 56400), "floor": 118784, "study": "ritual-place",
+        "hero": "a pentagram in running blood cut in the floor of a round storm chamber, and in the toothed well at its "
+                "heart a horned thing with light in its hands, before a lit goat rose; the theatre's dead propped in the "
+                "tiers to watch",
+        "exemplar": "E6M6 s213 (the pool and its people), E1M7 s41 (the altar), E2M9 s118 (the ring of cultists), "
+                    "community SSR3 s230 (blood pool in an iron hall), DWE3M6 s840 and DWE2M6 s170 (stone teeth), "
+                    "DWE1M4 s642 (the congregation and the lit round window)",
+    },
     "Phantom Terminus": {
         "at": (52160, -11184), "floor": 118784, "study": "ghost-station",
         "hero": "a lighted ghost carriage taking its last passenger from "

@@ -437,7 +437,7 @@ THROUGH = [("outfall", "end", "gallery", "north")]
 #: and catwalks; E1M8:243, walks over a sea of sewage), so it is deeper than
 #: the sewer, its own layer: the gallery at the sewer's level along its north
 #: wall, three settling tanks 2.7 bodies below it with walks between, a quay
-#: down the west side, and the south quay where the Cabal keeps its circle.
+#: down the west side, and the south quay, behind which the Cabal's chamber is (`cabal_rite`).
 #: A stair of ten steps climbs from the south quay to the gallery in a
 #: column of its own. (name, x0, y0, x1, y1 in plan units, kind)
 HALL_LAYER = "settling_hall"
@@ -1082,6 +1082,9 @@ def hall(sewer, rooms: dict) -> dict:
         step_rise=HALL_STAIR["step_rise"], arrive_at=rooms["circle_quay"].region_id,
         connection={"role": "portal"})
     _hall_service_lift(part, ledge, rooms["west_quay"])
+    import cabal_rite
+    rooms["circle_quay"].raw("the Cabal's storm chamber, broken open through the quay's south wall",
+                             cabal_rite.build)
     return rooms
 
 
@@ -1651,7 +1654,6 @@ def populate(layout, rooms, attested, flame_fields,
         props.mount_on_wall(layout, f"sewer:brazier_{index}",
                             rooms[name], face, t=t)
     placed += dress_niches(layout, rooms)
-    placed += dress_circle(layout, rooms)
     placed += dress_secrets(layout, rooms, attested)
     placed += dress_lair(layout, rooms, attested)
     placed += dress_stockyard(layout, rooms)
@@ -2287,49 +2289,6 @@ def dress_lair(layout, rooms, attested) -> list[str]:
         layout.place_on_floor(f"sewer:lair_find_{type_id}", rooms[name].region_id, local=local,
                               **found["fields"])
         placed.append(f"sewer:lair_find_{type_id}")
-    return placed
-
-
-#: The Cabal's circle on the settling hall's south quay: the owner's standing
-#: candelabra (580, three candles, lit -- `light_kinds` counts them as light)
-#: in a ring round a pool of blood, and two of its men (E3M3's own cultists).
-#: The design: "the summoning is done where all the city's water meets".
-CIRCLE = {"centre": (27.5, 49.0), "radius": 768, "stands": 6,
-          "stand": 580, "men": [("E3M3", 201, (25.5, 49.3)), ("E3M3", 202, (29.5, 48.7))]}
-
-
-def dress_circle(layout, rooms) -> list[str]:
-    """The circle on the south quay."""
-    import math
-
-    import props
-    from l3_foundry import _attested
-
-    room = rooms.get("circle_quay")
-    if room is None:
-        return []
-    x0, y0, x1, y1 = next((a, b, c, d) for n, a, b, c, d, _k in HALL if n == "circle_quay")
-
-    def local(x, y):
-        return ((x - x0) / (x1 - x0), (y - y0) / (y1 - y0))
-
-    placed = []
-    cx, cy = CIRCLE["centre"]
-    for k in range(CIRCLE["stands"]):
-        a = 2 * math.pi * k / CIRCLE["stands"]
-        x = cx + math.cos(a) * CIRCLE["radius"] / PU
-        y = cy + math.sin(a) * CIRCLE["radius"] / PU
-        pid = f"sewer:circle_stand_{k}"
-        layout.place_on_floor(pid, room.region_id, local=local(x, y), **props.fields(CIRCLE["stand"]))
-        placed.append(pid)
-    layout.place_on_floor("sewer:circle_blood", room.region_id, local=local(cx, cy), **props.fields(956))
-    placed.append("sewer:circle_blood")
-    for index, (source, type_id, (x, y)) in enumerate(CIRCLE["men"]):
-        man = _attested(source, type_id)
-        pid = f"sewer:circle_man_{index}"
-        layout.place_on_floor(pid, room.region_id, local=local(x, y), **man["fields"],
-                              behavior=dict(man["behavior"]))
-        placed.append(pid)
     return placed
 
 
