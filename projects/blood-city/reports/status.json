@@ -2,13 +2,13 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "eb3d995d8460ee00b2273ee2be7f07f2d18b034864b6b31c6d27dca44d27e80b",
-  "map_sha256": "d394bc91ff83042581464c403a10f889f1f7199ce86b749558eb9a519d2fb925",
+  "manifest_sha256": "7c27867300e01591457b3e9f63f8e9d180ae861b16e268917ab85c3e40d2c3a0",
+  "map_sha256": "74e4e5dcef6ed594983daf7a183b335b11b6ab373744a29fdced84fef41bf738",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1527,
-  "walls": 13983,
+  "sectors": 1530,
+  "walls": 13289,
   "sprites": 2426,
   "limits": {
    "sectors": 4096,
@@ -16,8 +16,8 @@
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.627,
-   "walls": 0.147,
+   "sectors": 0.626,
+   "walls": 0.189,
    "sprites": 0.852
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
@@ -389,15 +389,15 @@
    "credited_normal": 8,
    "credited_super": 0
   },
-  "space": 1485,
-  "reached": 1485,
+  "space": 1488,
+  "reached": 1488,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 1188,
+    "sectors": 1191,
     "first_sector": 0
    },
    {
@@ -491,7 +491,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1104"
+     "operate mechanism sector 1097"
     ],
     "sectors": 1,
     "first_sector": 150
@@ -499,7 +499,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1114"
+     "operate mechanism sector 1107"
     ],
     "sectors": 1,
     "first_sector": 152
@@ -555,7 +555,7 @@
    {
     "round": 2,
     "opened_by": [
-     "push wall 7458 (channel 151)"
+     "push wall 7210 (channel 151)"
     ],
     "sectors": 2,
     "first_sector": 865

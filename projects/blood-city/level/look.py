@@ -540,6 +540,21 @@ POSE_SETS = {
         "costumes": (18.16, 12.93, 17.08, 11.94, LEVEL, "the clothes rail, trunk and folding screen"),
         "behind_screen": (18.05, 13.56, 17.35, 13.12, LEVEL, "the star's empty costume behind the screen"),
     },
+    #: what the owner flagged on 2026-11-24 after playing: wooden blocks before the provisions, the lift's upper landing
+    "flagged": {
+        "fa_prov_w": (17.6, 49.0, 14.0, 46.0, LEVEL, "the provisions front from the south east"),
+        "fb_prov_n": (17.5, 40.5, 14.5, 45.0, LEVEL, "the provisions front from the north"),
+        "fc_prov_sq": (21.0, 45.0, 13.0, 45.0, LEVEL, "square on the provisions from the plaza"),
+        "fd_blocks": (19.5, 43.0, 16.5, 45.5, LEVEL - 10, "the blocks close to"),
+        "fe_lift_up": (20.8, 42.75, 19.2, 42.3, LEVEL, "the lift's upper landing", 61440),
+        "ff_lift_in": (19.55, 42.0, 19.3, 43.2, LEVEL, "at the lift's button", 59392),
+        "fg_under_in": (42.0, 19.0, 42.0, 24.5, LEVEL, "the underpass from the yard's stair"),
+        "fh_under_mid": (42.0, 22.4, 42.0, 26.5, LEVEL, "the underpass bars"),
+        "fi_avenue": (37.6, 19.0, 40.4, 19.0, LEVEL, "the underpass's avenue mouth"),
+        "fj_arcade": (40.2, 45.0, 50.0, 45.0, LEVEL, "the arcade from its west door"),
+        "fk_market": (13.0, 45.5, 5.0, 44.0, LEVEL, "the market hall from its door"),
+        "fl_plaza": (30.0, 49.5, 18.0, 40.0, LEVEL, "the plaza and what stands in it"),
+    },
     #: the six keys where they lie (`gameplay.KEYS`)
     "keys": {
         "k_skull": (28.1, 29.4, 29.1, 28.2, LEVEL - 12, "the skull key on the sarcophagus", 61440),

@@ -15,8 +15,8 @@ import pickle
 import tempfile
 from typing import Any, Callable, Iterable, Sequence
 
-#: processes at once
-WORKERS = max(1, min(24, (os.cpu_count() or 1) - 2))
+#: processes at once; `LLMAPPER_WORKERS` says fewer where several builds run side by side
+WORKERS = int(os.environ.get("LLMAPPER_WORKERS", 0)) or max(1, min(24, (os.cpu_count() or 1) - 2))
 
 _POOL: list[Any] = []
 _LOADED: dict[str, Any] = {"token": None, "scene": None}

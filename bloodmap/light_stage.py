@@ -129,7 +129,7 @@ class Model:
 # same whatever the number of workers. A small map is traced in this process.
 
 #: processes tracing at once
-WORKERS = max(1, min(24, (os.cpu_count() or 1) - 2))
+from .workers import WORKERS  # noqa: E402  (tests set it to 1 here)
 #: below this many samples the pool costs more than it saves: to start it, and once it runs
 PARALLEL_FROM = 4000
 PARALLEL_ONCE_STARTED = 384
@@ -595,7 +595,7 @@ FLOOR_SMOOTH = 1.0
 #: a band's edge simplified to straight runs within this (plan units); the
 #: owner of the first, cell-joined version: "unnecessary blocky where it can
 #: be connected with 1 line"
-FLOOR_SIMPLIFY = 256
+FLOOR_SIMPLIFY = 384
 #: a band piece smaller than this is not cut (plan units squared)
 FLOOR_PIECE = 512 * 512
 #: a floor smaller than this is one light, cut neither by bands nor by a
@@ -872,9 +872,9 @@ WALL_LONG = 1024
 WALL_STEP = 256
 #: and split where its light crosses a band this many shades wide (on a
 #: textured wall a step under ~10 does not show: `shade_table`)
-WALL_BAND = 10
+WALL_BAND = 14
 #: no piece shorter than this
-WALL_MIN_PART = 384
+WALL_MIN_PART = 512
 
 
 def band_walls(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, Any]:

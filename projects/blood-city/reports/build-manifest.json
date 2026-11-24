@@ -14049,26 +14049,26 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 58,
-      "pieces": 323,
+      "sectors": 57,
+      "pieces": 322,
       "slivers_merged": 19,
-      "slivers_dropped": 25,
-      "walls_split": 875,
-      "seams": 3464,
+      "slivers_dropped": 22,
+      "walls_split": 835,
+      "seams": 3150,
       "refused": {},
       "left_whole": {
-        "446": "a wall of the cut had no twin",
-        "449": "a seam of sector 449 from (51008, 33519) to (52132, 33347) has no twin"
+        "449": "a seam of sector 449 from (51008, 33519) to (52135, 33346) has no twin",
+        "1065": "a wall of the cut had no twin"
       },
       "looked_at": 61
     },
     "slope_cut": {
       "sectors": 25,
-      "pieces": 115,
+      "pieces": 118,
       "slivers_merged": 4,
       "slivers_dropped": 0,
-      "walls_split": 428,
-      "seams": 186,
+      "walls_split": 437,
+      "seams": 192,
       "refused": {
         "451": "a slope not cut across it",
         "457": "a slope not cut across it",
@@ -14082,35 +14082,35 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1823,
+      "walls_split": 1275,
       "seams": 0,
       "refused": {},
-      "walls_cut": 474,
-      "walls_refused": 13,
+      "walls_cut": 357,
+      "walls_refused": 4,
       "left_whole": {},
-      "looked_at": 1548
+      "looked_at": 1550
     },
     "shades": {
-      "surfaces": 7289,
+      "surfaces": 7053,
       "windows": 18,
-      "spread_12": 117,
+      "spread_12": 126,
       "movers_evened": 75
     },
     "switched": {
       "groups": {
         "the coach's own lamps": 51,
-        "what falls from its windows": 3,
+        "what falls from its windows": 2,
         "what falls from them at the far berth": 3,
         "the platform's lamps": 16,
         "the loose lamp": 9,
         "the near lamp": 4,
         "the clerk's lamp": 3,
-        "the drowned carriage": 53,
+        "the drowned carriage": 52,
         "watcher 0": 2,
         "watcher 1": 2,
         "watcher 2": 2,
         "watcher 3": 3,
-        "the rite's fires, on the walls round": 35,
+        "the rite's fires, on the walls round": 34,
         "the rite's fires, on the floors": 11,
         "the horned thing's light": 1
       },
@@ -14134,10 +14134,6 @@
         [
           544,
           "the near lamp"
-        ],
-        [
-          570,
-          "the platform's lamps"
         ],
         [
           838,
@@ -14226,73 +14222,73 @@
       ]
     },
     "kept": 114,
-    "sectors": 1527,
-    "walls": 13983,
+    "sectors": 1530,
+    "walls": 13289,
     "sprites": 2426,
-    "pieces": 462,
+    "pieces": 465,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 905,
-      "wall_sd": 11.2,
-      "wall_median": 19,
+      "walls": 800,
+      "wall_sd": 11.5,
+      "wall_median": 18.0,
       "by_facing": {
-        "N": 22,
-        "E": 17,
-        "S": 21.0,
-        "W": 19
+        "N": 20,
+        "E": 17.0,
+        "S": 19.0,
+        "W": 17
       },
-      "facing_step": 5,
-      "ground_median": 17.0,
+      "facing_step": 3.0,
+      "ground_median": 18,
       "ground_sd": 11.8,
-      "corners": 222,
-      "corner_equal": 0.4,
-      "corner_step": 5.0,
+      "corners": 226,
+      "corner_equal": 0.39,
+      "corner_step": 5,
       "corner_darker": {
-        "N": 0.16,
-        "E": 0.39,
-        "S": 0.14,
-        "W": 0.31
+        "N": 0.18,
+        "E": 0.36,
+        "S": 0.13,
+        "W": 0.33
       },
       "within_building": {
         "N": 0.0,
-        "E": 0.5,
+        "E": 0.3,
         "S": 0.0,
-        "W": 0.6
+        "W": 0.0
       },
-      "tile_sd": 6.1
+      "tile_sd": 6.3
     },
     "after": {
-      "walls": 905,
-      "wall_sd": 11.2,
-      "wall_median": 19,
+      "walls": 800,
+      "wall_sd": 11.5,
+      "wall_median": 18.0,
       "by_facing": {
-        "N": 22,
-        "E": 17,
-        "S": 21.0,
-        "W": 19
+        "N": 20,
+        "E": 17.0,
+        "S": 19.0,
+        "W": 17
       },
-      "facing_step": 5,
-      "ground_median": 17.0,
+      "facing_step": 3.0,
+      "ground_median": 18,
       "ground_sd": 11.8,
-      "corners": 222,
-      "corner_equal": 0.4,
-      "corner_step": 5.0,
+      "corners": 226,
+      "corner_equal": 0.39,
+      "corner_step": 5,
       "corner_darker": {
-        "N": 0.16,
-        "E": 0.39,
-        "S": 0.14,
-        "W": 0.31
+        "N": 0.18,
+        "E": 0.36,
+        "S": 0.13,
+        "W": 0.33
       },
       "within_building": {
         "N": 0.0,
-        "E": 0.5,
+        "E": 0.3,
         "S": 0.0,
-        "W": 0.6
+        "W": 0.0
       },
-      "tile_sd": 6.1
+      "tile_sd": 6.3
     }
   },
   "stages": [
