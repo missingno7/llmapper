@@ -118,6 +118,8 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("cabal:silent", "the heart's beat stops with it"),
     ("cabal:shut", "stepping down onto the kerb round the sign turns the stone beast and shuts the mouth behind you; the bursting window, or forty seconds, opens it"),
     ("cabal:disarm", "once the beast is dead the kerb shuts nothing"),
+    ("underpass:pram",
+     "leaving the shut ticket hall for the first time puts out the tunnel's bulb and brings the pram down to the bars"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

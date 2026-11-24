@@ -110,15 +110,23 @@ PIT_LANDING = STATION_STACK_LANDING_DEPTH
 #: works block has two bays nothing stood in -- north-west and south-east
 #: of the old rectangle -- and the hall is now ONE room that takes both:
 #: 7,680 by 10,752 overall (13 m by 18 m), 64M of floor, under E3M5's 5.8
-#: bodies. The settling basin stands in the north bay, the filter drum by
+#: bodies. The settling basin stands in the north bay, the deck by
 #: the gallery, the belt between; the south bay is left open floor.
 #: (bbox; the outline is `HALL_OUTLINE`)
 MACHINE_HALL = (40 * PU, int(3.5 * PU), int(47.5 * PU), 14 * PU)
-HALL_OUTLINE = ((40, 3.5), (44, 3.5), (44, 5.25), (47.5, 5.25), (47.5, 14),
+HALL_OUTLINE = ((40, 3.5), (44, 3.5), (44, 7), (47.5, 7), (47.5, 14),
                 (44.5, 14), (44.5, 11.5), (40, 11.5))
-HALL_FACES = {"north": 0, "bay_e": 1, "north_e": 2, "east": 3, "bay_s": 4,
+HALL_FACES = {"north": 0, "bay_e": 1, "deck_s": 2, "east": 3, "bay_s": 4,
               "bay_w": 5, "south": 6, "west": 7}
-GALLERY = (int(47.5 * PU), int(5.5 * PU), int(50.5 * PU), 7 * PU)
+#: THE WAY IN, 2026-11-25 (`references/pump-hall-design.md`): the gallery
+#: climbs a body from the lobby and comes out on a deck over the floor, as E3M6's
+#: key is seen across its tanks from the walk above them (s414) before anyone can
+#: reach it. Treads, then the landing, in the gallery; the deck and its treads down.
+DECK_RISE = 16384
+GALLERY = (int(47.5 * PU), int(5.5 * PU), 49 * PU, 7 * PU)
+GALLERY_TREADS = 3                 # 512 each, from the landing to the lobby
+DECK = (int(45.5 * PU), int(5.25 * PU), int(47.5 * PU), 7 * PU)
+DECK_TREADS = 3                    # 512 each, west from the deck to x 44
 HALL_CLEAR = 98304                 # 5.8 bodies: E3M5's foundry hall
 GALLERY_CLEAR = 32768
 #: the belt runs the hall's long way, west to east
@@ -127,13 +135,20 @@ BELT_Y = (int(8.75 * PU), int(10.25 * PU))     # 1,536 wide: it was 1,024
 BELT_RISE = 4096                   # one step: it can be boarded
 BELT_VELOCITY, BELT_ANGLE = 48, 0      # E3M5's crusher line; toward +x
 PRESS_CLEAR = 18432                # 1.09 bodies: E3M5 s44-52
-#: (length, is a press): open, press, open, press, open
-BELT_SECTIONS = ((1024, False), (768, True), (1024, False), (768, True),
-                 (1024, False))
+#: (length, is a press): open, press, open, press, open. The middle stretch
+#: is where the key lies (`gameplay.KEYS`): the widest, under its own light.
+BELT_SECTIONS = ((768, False), (768, True), (1536, False), (768, True),
+                 (768, False))
+#: the hood over the middle stretch, between the presses: 2.2 bodies up, and
+#: its underside is the light the key lies in
+HOOD_CLEAR = 36864
 #: the machine at each end of the belt: a solid block, wider than the belt
-MACHINE_HALF, MACHINE_DEPTH = 1024, 1024    # across the belt, along it
-TANKS = ((42 * PU, 6 * PU), (int(45.25 * PU), int(7.1 * PU)))
-TANK_RADIUS, TANK_RISE = 1024, 57344
+#: (across the belt, and along it: thin, for the ways past them)
+MACHINE_HALF, MACHINE_DEPTH = 1024, (512, 512)
+#: one open basin. There was a filter drum too, 1.5 units before the way in:
+#: it was all a player saw of the hall
+TANKS = ((int(42.1 * PU), int(5.1 * PU)),)
+TANK_RADIUS = 1024
 #: Owner anchors, every one: 215 pressed metal, 255 rusted metal, 491 metal
 #: plating, 470 riveted plating, 200 riveted threshold, 205 hazard stripes.
 HALL_WALL, HALL_FLOOR, HALL_CEILING = 503, 255, 491
@@ -166,21 +181,14 @@ PANEL, PILASTER_W = 1280, 256
 PANEL_LONG = 1792                  # the long walls: five bays in 10,240
 #: The console alcove in the west wall: three consoles on a sill half a
 #: body up, exactly one tile (16,384) high, 256 deep.
-ALCOVE = (40 * PU - 256, 5888, 40 * PU, 8960)
+ALCOVE = (40 * PU - 256, 5 * PU, 40 * PU, 8 * PU)
 ALCOVE_SILL, ALCOVE_CLEAR = 8192, 16384
-#: (x0, y0, x1, y1): strip lights in the roof with their pool beneath
-POOLS = ((int(46.5 * PU), int(5.75 * PU), int(47.25 * PU), int(6.25 * PU)),
-         (int(45.5 * PU), int(12.5 * PU), int(46.5 * PU), 13 * PU),
-         (int(42.25 * PU), int(10.6 * PU), int(43.75 * PU), int(11.1 * PU)),
-         (int(45.0 * PU), int(10.6 * PU), int(46.5 * PU), int(11.1 * PU)))
 POOL_SHADE, HALL_SHADE = 4, 22
 #: The hall as a PROCESS. The owner, 2026-11-18: "Maybe we can think about
 #: stuff in relations, like this machine connects to this, there is a
 #: control panel here, there is a dirty water tank, the water goes there".
-#: So the two tanks are no longer two of the same thing: the west one is an
-#: open SETTLING basin of sewage, a rim 0.6 body high with the water moving
-#: inside it; the east one is the closed FILTER drum. Each has a riser to
-#: the roof. The sludge goes down the belt through the presses, and the
+#: So the tank is an open SETTLING basin of sewage, a rim 0.6 body high with
+#: the water moving inside it. The sludge goes down the belt through the presses, and the
 #: lever beside the console bank stops and starts that belt: the belt's
 #: sectors pan only while their state is on (sectorfx.cpp: `panAlways ||
 #: busy`) and the lever toggles it on one channel.
@@ -194,16 +202,17 @@ LEVEL_START = 7
 LATE_TYPES: dict = {}
 BASIN_RIM, BASIN_WATER = 10240, 6144
 SEWAGE = 1120
-RISER_RADIUS = 224
 #: (from, to, how): written to the build manifest, and a test holds each
 RELATIONS: list = []
 #: E3M3's generator pulse, on the presses
 PULSE = {"shade_wave": 5, "amplitude": -32, "shade_frequency": 5,
          "shade_always": 1, "shade_floor": 1, "shade_walls": 1}
-PLINTH_RADIUS, PLINTH_RISE, TANK_SIDES = 1280, 8192, 12
+PLINTH_RADIUS, TANK_SIDES = 1280, 10
 #: girders, in bodies over the floor: 0.6 under the hall's roof
 TRUSS_HEIGHT = 3.25
 PLATING, THRESHOLD, HAZARD = 470, 200, 205
+#: what is walked on over the floor: the owner's "embossed metal floor"
+PLATE = 438
 #: The belt's own tile is 376: E2M7's and E4M9's belts wear it and the
 #: owner has not named it (it is on the list for the tile sheet).
 BELT_TILE = 376
@@ -228,15 +237,44 @@ def machine_hall(shed, lobby, room):
     hall.surfaces(wall_picnum=HALL_WALL, floor_picnum=HALL_FLOOR,
                   ceiling_picnum=HALL_CEILING)
     gx0, gy0, gx1, gy1 = GALLERY
-    gallery = room("gallery", gx0, gy0, gx1, gy1, clear=GALLERY_CLEAR,
+    deck_z = GRADE - DECK_RISE
+    gallery = room("gallery", gx0, gy0, gx1, gy1, floor_z=deck_z, clear=GALLERY_CLEAR,
                    rk={"portal_wall_picnum": HALL_WALL},
-                   note="the gallery from the lobby to the machine hall")
-    gallery.surfaces(wall_picnum=HALL_WALL, floor_picnum=HALL_FLOOR,
-                     ceiling_picnum=HALL_CEILING)
-    shed.connect(gallery.face("east"), lobby.face("west"),
+                   note="the landing: the gallery climbs to it from the lobby, and it comes out on the deck")
+    gallery.surfaces(wall_picnum=HALL_WALL, floor_picnum=PLATE, ceiling_picnum=HALL_CEILING)
+    near, rise = gallery, DECK_RISE // (GALLERY_TREADS + 1)
+    for k in range(GALLERY_TREADS):
+        x = gx1 + 512 * k
+        tread = room(f"gallery_tread_{k}", x, gy0, x + 512, gy1, floor_z=deck_z + rise * (k + 1), clear=GALLERY_CLEAR,
+                     rk={"portal_wall_picnum": HALL_WALL}, note="a step of the gallery, up from the lobby")
+        tread.surfaces(wall_picnum=HALL_WALL, floor_picnum=PLATE, ceiling_picnum=HALL_CEILING)
+        MACHINE_FACES[near.region_id] = PLATING if near is gallery else THRESHOLD
+        shed.connect(near.face("east"), tread.face("west"), connection_id=f"connection:pump_gallery_{k}")
+        near = tread
+    MACHINE_FACES[near.region_id] = THRESHOLD
+    shed.connect(near.face("east"), lobby.face("west"),
                  connection_id="connection:pump_gallery_lobby")
-    shed.connect(gallery.face("west"), hall.face("east"),
-                 connection_id="connection:pump_gallery_hall")
+    # The deck over the hall's floor, and its treads down to it, west. Each is a
+    # solid block: what is under it is the hall's own wall.
+    dx0, dy0, dx1, dy1 = DECK
+    deck = room("deck", dx0, dy0, dx1, dy1, floor_z=deck_z, clear=HALL_CLEAR - DECK_RISE,
+                rk={"portal_wall_picnum": HALL_WALL}, note="the deck the gallery comes out on, over the belt")
+    deck.surfaces(wall_picnum=HALL_WALL, floor_picnum=PLATE, ceiling_picnum=HALL_CEILING)
+    MACHINE_FACES[deck.region_id] = PLATING
+    shed.connect(gallery.face("west"), deck.face("east"), connection_id="connection:pump_gallery_hall")
+    shed.connect(deck.face("south"), hall.face("deck_s"), connection_id="connection:pump_deck_edge")
+    near, rise = deck, DECK_RISE // (DECK_TREADS + 1)
+    for k in range(DECK_TREADS):
+        x = dx0 - 512 * (k + 1)
+        down = rise * (k + 1)
+        tread = room(f"deck_tread_{k}", x, dy0, x + 512, dy1, floor_z=deck_z + down, clear=HALL_CLEAR - DECK_RISE + down,
+                     rk={"portal_wall_picnum": HALL_WALL}, note="a step down from the deck to the hall's floor")
+        tread.surfaces(wall_picnum=HALL_WALL, floor_picnum=PLATE, ceiling_picnum=HALL_CEILING)
+        MACHINE_FACES[tread.region_id] = THRESHOLD
+        shed.connect(near.face("west"), tread.face("east"), connection_id=f"connection:pump_deck_{k}")
+        shed.connect(tread.face("south"), hall.face("deck_s"), connection_id=f"connection:pump_deck_{k}_edge")
+        near = tread
+    shed.connect(near.face("west"), hall.face("bay_e"), connection_id="connection:pump_deck_foot")
 
     # The belt line: one hole in the hall's floor plan, an I -- a machine
     # block at each end and the belt between them.
@@ -244,16 +282,18 @@ def machine_hall(shed, lobby, room):
     by0, by1 = BELT_Y
     my0 = (by0 + by1) // 2 - MACHINE_HALF
     my1 = (by0 + by1) // 2 + MACHINE_HALF
-    line = [(bx0 - MACHINE_DEPTH, my0), (bx0, my0), (bx0, by0), (bx1, by0),
-            (bx1, my0), (bx1 + MACHINE_DEPTH, my0),
-            (bx1 + MACHINE_DEPTH, my1), (bx1, my1), (bx1, by1), (bx0, by1),
-            (bx0, my1), (bx0 - MACHINE_DEPTH, my1)]
+    west, east = MACHINE_DEPTH
+    line = [(bx0 - west, my0), (bx0, my0), (bx0, by0), (bx1, by0),
+            (bx1, my0), (bx1 + east, my0),
+            (bx1 + east, my1), (bx1, my1), (bx1, by1), (bx0, by1),
+            (bx0, my1), (bx0 - west, my1)]
     hall.carve([(x - hx0, y - hy0) for x, y in line])
-    MACHINE_BLOCKS.append((bx0 - MACHINE_DEPTH, my0, bx0, my1, CABINET))
-    MACHINE_BLOCKS.append((bx1, my0, bx1 + MACHINE_DEPTH, my1, CABINET))
+    MACHINE_BLOCKS.append((bx0 - west, my0, bx0, my1, CABINET))
+    MACHINE_BLOCKS.append((bx1, my0, bx1 + east, my1, CABINET))
     cursor, previous = bx0, None
     for index, (length, press) in enumerate(BELT_SECTIONS):
-        clear = PRESS_CLEAR if press else HALL_CLEAR - BELT_RISE
+        hood = index == len(BELT_SECTIONS) // 2
+        clear = PRESS_CLEAR if press else HOOD_CLEAR if hood else HALL_CLEAR - BELT_RISE
         piece = room(
             f"belt_{index}", cursor, by0, cursor + length, by1,
             floor_z=GRADE - BELT_RISE, clear=clear,
@@ -279,11 +319,12 @@ def machine_hall(shed, lobby, room):
             note=("a press: the belt runs under it" if press
                   else "the belt, open"))
         piece.surfaces(wall_picnum=PLATING, floor_picnum=BELT_TILE,
-                       ceiling_picnum=PLATING if press else HALL_CEILING)
+                       ceiling_picnum=PLATING if press else STRIP_LIGHT if hood else HALL_CEILING,
+                       **({"ceiling_shade": 0} if hood else {}))
         wires.wire("pump:presses" if press else "pump:belt").then(
             wiring.region(piece.region_id))
         #: the stripes go on the press, as E3M5 puts them on its jambs
-        MACHINE_FACES[piece.region_id] = HAZARD if press else THRESHOLD
+        MACHINE_FACES[piece.region_id] = HAZARD if press else CLADDING if hood else THRESHOLD
         if press:
             LATE_TYPES[piece.region_id] = 600
         for face in ("north", "south"):
@@ -324,33 +365,17 @@ def machine_hall(shed, lobby, room):
         return made, (x0, y0)
 
     for index, (cx, cy) in enumerate(TANKS):
-        basin = index == 0
-        outer = ring(cx, cy, PLINTH_RADIUS)
-        inner = ring(cx, cy, TANK_RADIUS if not basin else PLINTH_RADIUS - 192)
-        riser = [(cx + dx, cy + dy) for dx, dy in (
-            (-RISER_RADIUS, -RISER_RADIUS), (RISER_RADIUS, -RISER_RADIUS),
-            (RISER_RADIUS, RISER_RADIUS), (-RISER_RADIUS, RISER_RADIUS))]
+        outer, inner = ring(cx, cy, PLINTH_RADIUS), ring(cx, cy, PLINTH_RADIUS - 192)
         hall.carve([(x - hx0, y - hy0) for x, y in outer])
-        plinth, origin = solid(
-            f"tank_{index}_plinth", outer,
-            BASIN_RIM if basin else PLINTH_RISE,
-            "the settling basin's rim" if basin else "the filter's plinth")
+        plinth, origin = solid(f"tank_{index}_plinth", outer, BASIN_RIM, "the settling basin's rim")
         plinth.carve([(x - origin[0], y - origin[1]) for x, y in inner])
-        if basin:
-            tank, inner_origin = solid(
-                f"tank_{index}", inner, BASIN_WATER,
-                "the settling basin: sewage, moving", floor_picnum=SEWAGE,
-                floor_shade=HALL_SHADE - 6)
-            tank.region_kwargs["sector_behavior"] = {
-                "pan_floor": 1, "pan_always": 1, "pan_velocity": 8,
-                "pan_angle": 256}
-        else:
-            tank, inner_origin = solid(f"tank_{index}", inner, TANK_RISE,
-                                       "the filter drum")
-        tank.carve([(x - inner_origin[0], y - inner_origin[1])
-                    for x, y in riser])
-        MACHINE_BLOCKS.append((riser[0][0], riser[0][1], riser[2][0],
-                               riser[2][1], PILASTER))
+        tank, _inner_origin = solid(
+            f"tank_{index}", inner, BASIN_WATER,
+            "the settling basin: sewage, moving", floor_picnum=SEWAGE,
+            floor_shade=HALL_SHADE - 6)
+        tank.region_kwargs["sector_behavior"] = {
+            "pan_floor": 1, "pan_always": 1, "pan_velocity": 8,
+            "pan_angle": 256}
         MACHINE_FACES[plinth.region_id] = THRESHOLD
         MACHINE_FACES[tank.region_id] = PILASTER
         FACETED.extend((plinth.region_id, tank.region_id))
@@ -361,10 +386,8 @@ def machine_hall(shed, lobby, room):
             shed.connect(tank.face(name), plinth.face("e0"),
                          connection_id=f"connection:tank_{index}_{name}")
     RELATIONS.extend([
-        ("settling basin", "filter drum", "side by side on one line, each "
-         "with a riser to the roof; lettered INTAKE and FILTER"),
-        ("filter drum", "belt", "the sludge line runs south of both tanks; "
-         "lettered SLUDGE"),
+        ("lobby", "deck", "the gallery climbs a body and comes out over the hall: the key is seen before it is reached"),
+        ("settling basin", "belt", "the sludge line runs south of the basin; lettered INTAKE and SLUDGE"),
         ("console lever", "belt", f"channel {BELT_CHANNEL}: toggles the "
          "belt's three open stretches, which pan and drag only while on"),
         ("level start", "presses", f"channel {CRUSH_CHANNEL}: a starter "
@@ -412,38 +435,19 @@ def machine_hall(shed, lobby, room):
 
     P = [(int(x * PU), int(y * PU)) for x, y in HALL_OUTLINE]
     pil = (PILASTER_W, PILASTER)
-    # the north bay's back wall, its return, and the wall on to the gallery
-    run(P[0], P[1], [(1792, PIPES[0]), pil, (1792, PIPES[1]), pil])
-    run(P[1], P[2], [(1792, CLADDING)])
-    run(P[2], P[3], [pil, (1536, PIPES[2]), pil, (1536, PIPES[0])])
-    # east: the gallery's mouth between hazard strips, then the long wall
-    run(P[3], (hx1, gy0), [(gy0 - P[3][1], HAZARD)])
-    run((hx1, gy1), P[4],
-        [(512, HAZARD), (PANEL, CLADDING), pil, (1024, PIPES[1]), pil,
-         (PANEL, CLADDING), pil, (1024, PIPES[0]), pil, (1024, PIPES[2])])
-    # the south bay
+    # the north bay's back wall, and its return as far as the deck's treads
+    run(P[0], P[1], [(1920, PIPES[0]), pil, (1920, PIPES[1])])
+    run(P[1], (P[1][0], DECK[1]), [(1792, CLADDING)])
+    # the long east wall, and the south bay, plain at its back
+    run(P[3], P[4],
+        [(1536, CLADDING), pil, (1536, PIPES[1]), pil, (1536, CLADDING), pil, (1792, PIPES[0])])
     run(P[4], P[5], [(1408, PIPES[1]), pil, (1408, PIPES[2])])
-    run(P[5], P[6], [(1152, CLADDING), pil, (1152, CLADDING)])
-    run(P[6], P[7], [(PANEL, PIPES[0]), pil, (1536, PIPES[1]), pil,
-                     (PANEL, PIPES[2])])
-    # west: pipes, a hazard strip, the alcove, cladding
-    run(P[7], (hx0, ay1),
-        [(PANEL, PIPES[0]), pil, (1024, PIPES[2]), (PILASTER_W, HAZARD)])
-    run((hx0, ay0), P[0], [(1024, CLADDING), pil, (1024, PIPES[1])])
+    run(P[5], P[6], [(2560, CLADDING)])
+    run(P[6], P[7], [(2176, PIPES[0]), pil, (2176, PIPES[2])])
+    # west: pipes, the lever's panel between hazard strips, the alcove
+    run(P[7], (hx0, ay1), [(2304, PIPES[0]), (256, HAZARD), (768, CLADDING), (256, HAZARD)])
+    run((hx0, ay0), P[0], [(1536, PIPES[1])])
 
-    # Strip lights in the roof, each with its pool on the floor: the
-    # hall's light is its sectors' (E3M3, E1M3), not a lamp sprite's.
-    for index, (px0, py0, px1, py1) in enumerate(POOLS):
-        box = [(px0, py0), (px1, py0), (px1, py1), (px0, py1)]
-        hall.carve([(x - hx0, y - hy0) for x, y in box])
-        pool, _o = solid(f"hall_pool_{index}", box, 0,
-                         "a strip light in the roof and its pool",
-                         kind="light_pool", ceiling_picnum=STRIP_LIGHT,
-                         wall_picnum=HALL_WALL, floor_shade=POOL_SHADE,
-                         ceiling_shade=0)
-        for name in list(pool.faces):
-            shed.connect(pool.face(name), hall.face("north"),
-                         connection_id=f"connection:hall_pool_{index}_{name}")
     hall.surfaces(floor_shade=HALL_SHADE, ceiling_shade=HALL_SHADE + 6,
                   wall_shade=HALL_SHADE)
     gallery.light_source("gallery_lamp", local=(0.5, 0.5),
@@ -458,9 +462,7 @@ def machine_hall(shed, lobby, room):
         import ambience
         import props
         import wallplane
-        for k, (a1, a2) in enumerate((((hx0 + 640, hy0), (hx0 + 1280, hy0)),
-                                      ((int(46.2 * PU), int(5.25 * PU)),
-                                       (int(46.8 * PU), int(5.25 * PU))))):
+        for k, (a1, a2) in enumerate((((hx0 + 640, hy0), (hx0 + 1280, hy0)),)):
             spec = props.fields(1044)
             wallplane.sprite(
                 layout, f"pump:grate_{k}", hall.region_id, a1, a2, tile=1044,
@@ -480,18 +482,41 @@ def machine_hall(shed, lobby, room):
         # The lever that runs the belt, on the hazard strip by the consoles.
         import doorswitch
         doorswitch.place(layout, "pump:belt_lever", hall.region_id,
-                         ((hx0, ay1 + PILASTER_W), (hx0, ay1)), BELT_CHANNEL)
+                         ((hx0, ay1 + 1024), (hx0, ay1 + 256)), BELT_CHANNEL)
         wires.wire("pump:belt").when(wiring.placement("pump:belt_lever"), "push")
         # Each stage says what it is, in stencil, on the wall behind it.
         for word, a1, a2 in (
                 ("INTAKE", (hx0 + 1408, hy0), (hx0 + 2688, hy0)),
-                ("FILTER", (int(44.6 * PU), int(5.25 * PU)),
-                 (int(45.9 * PU), int(5.25 * PU))),
+                ("BELT", (hx0, ay1 + 1024), (hx0, ay1 + 256)),
                 ("SLUDGE", (int(44.2 * PU), int(11.5 * PU)),
                  (int(42.9 * PU), int(11.5 * PU)))):
             wallplane.text(layout, f"sign:pump_{word.lower()}",
                            hall.region_id, a1, a2, words=word,
-                           style="works", height_player_heights=1.7)
+                           style="department" if word == "BELT" else "works",
+                           height_player_heights=1.2 if word == "BELT" else 1.7)
+        # The lever's own lamp, over it (2183, the recessed wall lamp), and one
+        # over the way in, where the treads come down.
+        for k, (region, a1, a2) in enumerate((
+                (hall.region_id, (hx0, ay1 + 1024), (hx0, ay1 + 256)),
+                (deck.region_id, (DECK[0], DECK[1]), (DECK[2], DECK[1])),
+                (hall.region_id, (hx1, 13 * PU), (hx1, 14 * PU)))):
+            wallplane.sprite(layout, f"pump:lamp_{k}", region, a1, a2, tile=2183, x_repeat=48, y_repeat=48,
+                             cstat=16 | 64 | 128, t=0.5, height_player_heights=(1.9, 1.3, 1.5)[k],
+                             offset_player_widths=0.04, shade=-32)
+        # A round light over the landing, and one in the lobby (795, Blood's commonest).
+        for name, region, x, y in (("landing", gallery.region_id, 48.25, 6.25), ("lobby", lobby.region_id, 51.25, 5.75)):
+            layout.add_sprite(f"pump:light_{name}", region, x=int(x * PU), y=int(y * PU),
+                              z=layout.regions[region].ceiling_z + 64, picnum=795,
+                              x_repeat=48, y_repeat=48, cstat=32 | 128 | 8, shade=-16)
+        # Which way is which, from the lobby.
+        x0, y0 = SHED[0] + 512, SHED[1] - STAIR_W
+        wallplane.text(layout, "sign:pump_sewer", lobby.region_id, (x0, y0), (x0 + 1536, y0), words="SEWER",
+                       style="notice", height_player_heights=1.3)
+        # An iron rail along the deck's edge (DWE2M10's 104): solid, and seen from both sides.
+        for k in range(4):
+            layout.add_sprite(f"pump:deck_rail_{k}", deck.region_id, x=DECK[0] + 512 * k + 256, y=DECK[3] - 24,
+                              z=GRADE - DECK_RISE - 4096, picnum=104, x_repeat=32, y_repeat=32, angle=512,
+                              cstat=16 | 128 | 1, shade=8)
         ambience.fill(layout, [(hall.region_id, "works", (0.5, 0.35)),
                                (hall.region_id, "works", (0.15, 0.72))])
 
@@ -591,6 +616,7 @@ def build(district, foundry_st, foundry_origin):
     hall = room("hall", sx0 + 512, sy0 - STAIR_W,
                 sx1 - PORCH_D - DOOR_D, sy1 - 512,
                 note="the station floor: the stair head is in here")
+    hall.surfaces(floor_picnum=PLATE)
 
     city.connect(porch.face("east"), foundry_st.face("west"),
                  connection_id="connection:pump_station_street")

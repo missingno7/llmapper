@@ -228,6 +228,16 @@
     "E3M8:266"
    ],
    "date": "2026-11-24"
+  },
+  "machine-hall": {
+   "want": "a machine hall entered over its floor, with a key seen before it is reached",
+   "seeds": [
+    "E3M6:414!",
+    "E3M6:413!",
+    "E3M5:9!",
+    "DWE2M10:760!"
+   ],
+   "date": "2026-11-24"
   }
  }
 }

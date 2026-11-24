@@ -44,6 +44,7 @@ WIRE_PROFILES = {
     "cabal:shut": "great_stone",
     "cabal:heart": "flesh_door",
     "station:fare-turnstile": "fare_ambient",
+    "underpass:pram": "pram",
 }
 #: A door that rises (600), by the tile its leaf wears: what the campaign's
 #: ceiling doors wearing it sound like. 22, the wooden door: 110/160 leads
@@ -56,10 +57,13 @@ MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
 # E1M2 sprite 556 supplies the train motor. Death Wish s247 uses 277.
 PHANTOM_TRAIN = (115, 277, 115, 277)
+# The pram in the metro's bed: 19 is AMB19, the squeaky wheel; 100 one squeak as it stops.
+PRAM = (19, 100, 19, 100)
+OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM}
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
 SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
-CARRIED_PROFILES = {"rail_shuttle", "phantom_train"}
+CARRIED_PROFILES = {"rail_shuttle", "phantom_train", "pram"}
 FARE_AMBIENT = (250, 700, 21, 20)
 
 
@@ -85,8 +89,8 @@ def apply(disk, allocations, circuit):
             continue
         if profile is None:
             raise ValueError(f"{region} (sector {index}) needs a campaign sound profile")
-        if profile == "phantom_train":
-            add_sector_sound(disk, index, sounds=PHANTOM_TRAIN, carry=True)
+        if profile in OWN:
+            add_sector_sound(disk, index, sounds=OWN[profile], carry=True)
         elif profile in SECTOR_SOUND_PROFILES:
             add_sector_sound(disk, index, profile, carry=profile in CARRIED_PROFILES)
         rows[str(index)] = {"region": region, "profile": profile}
@@ -158,7 +162,7 @@ def check(disk, expected, wires):
             if markers:
                 errors.append(f"sector {index}: a second voice in one body")
             continue
-        sounds = PHANTOM_TRAIN if profile == "phantom_train" else SECTOR_SOUND_PROFILES.get(profile)
+        sounds = OWN.get(profile) or SECTOR_SOUND_PROFILES.get(profile)
         if sounds is None or len(markers) != 1:
             errors.append(f"sector {index}: expected one named sector sound")
             continue

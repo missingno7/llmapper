@@ -49,6 +49,7 @@ SOUNDS = {
     "fare_turnstile": 21,
     "works": 20,
     "mall": 65,
+    "tubes": 25,          # a fluorescent's hum: the underpass
 }
 
 # Near radius, far radius and volume from comparable campaign placements.
@@ -64,6 +65,7 @@ ENVELOPES = {
     # 2026-11-23: "you can hear that shop music from arcades too broad ...
     # it should be enough to have just 150/350"
     "mall": (150, 350, 50),
+    "tubes": (75, 150, 50),
 }
 
 

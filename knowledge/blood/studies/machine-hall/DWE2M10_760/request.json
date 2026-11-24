@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-foundry/knowledge/blood/studies/machine-hall/DWE2M10_760/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-foundry/knowledge/blood/studies/machine-hall/DWE2M10_760",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -12160,
+   "y": -48512,
+   "z": -70144,
+   "angle": 466,
+   "horiz": 100,
+   "sector": 760,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -12160,
+   "y": -46720,
+   "z": -70144,
+   "angle": 1582,
+   "horiz": 100,
+   "sector": 760,
+   "screenshot": true
+  }
+ ]
+}

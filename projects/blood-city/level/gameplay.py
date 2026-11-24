@@ -46,7 +46,7 @@ STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 KEYS = {
     "skull": (1, 29.02, 28.25, 51200, ((205, 28.1, 26.9), (205, 30.9, 27.2), (205, 30.9, 29.4), (205, 28.2, 29.6), (205, 31.0, 28.3))),
     "eye": (2, None, None, None, ((202, 46.3, 45.1), (202, 44.2, 46.2), (201, 42.0, 45.3), (203, 48.6, 45.8))),
-    "flame": (3, 43.75, 9.5, None, ((204, 46.9, 12.6), (203, 41.0, 12.2), (203, 40.6, 4.4))),
+    "flame": (3, 43.75, 9.5, None, ((203, 42.1, 5.1), (204, 46.6, 6.1), (203, 46.0, 13.2))),
     "dagger": (4, 27.5, 66.35, 102400, ((210, 24.2, 57.2), (210, 30.8, 57.2), (203, 27.5, 53.2))),
     "spider": (5, 12.0, 11.3, 61440, ((213, 11.6, 11.8), (213, 12.6, 11.8), (214, 9.4, 13.6), (214, 14.9, 13.8), (213, 12.0, 15.6))),
     "moon": (6, None, None, None, ()),
@@ -92,9 +92,9 @@ SUPPLIES = (
     ((67, 67, 67), 30.8, 12.9, STREET, "the square before the Aldermack"),
     # foundry ward
     ((69, 69, 69), 50.2, 19.4, STREET, "the yard"),
-    ((60, 79), 42.0, 24.4, 24576, "the underpass, at the bars"),
+    ((60, 79), 46.4, 29.8, 24576, "the underpass's shut ticket hall, before the bench"),
     ((69, 69), 46.9, 8.0, STREET, "the machine hall"),
-    ((62, 62), 41.0, 13.2, STREET, "the machine hall's far corner"),
+    ((62, 62), 46.8, 13.4, STREET, "the machine hall's south bay"),
     # the sewer
     ((107,), 46.6, 5.2, SEWER, "the silt trap, at the stair's foot"),
     ((67, 67, 67), 41.0, 7.75, SEWER, "the north channel"),

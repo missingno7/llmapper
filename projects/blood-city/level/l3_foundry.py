@@ -40,6 +40,9 @@ DOOR_FACE_TILE = 22
 #: The yard's cage: how deep it is behind its bars, and where they stand.
 CAGE_DEEP = 1792
 CAGE: dict = {}
+#: The yard's free-standing mass (`city_plan`'s "gatehouse", never built): the works' chimney.
+CHIMNEY = (52 * PU, 19 * PU, int(54.25 * PU), int(21.25 * PU))
+CHIMNEY_BRICK, CHIMNEY_HATCH = 181, 191
 #: The canteen's doors were 16,384 high: lower than a body (16,960) and lower
 #: than 87% of the campaign's 594 ceiling doors, whose median opens 28,672.
 #: The owner, standing in the yard on 2026-11-20: "these low doors ...
@@ -77,6 +80,19 @@ LAMP_FIELDS = {"picnum": 641, "x_repeat": 64, "y_repeat": 64, "cstat": 129,
 #: (`bloodmap.wiring.Circuit`), which numbers it. It used to be channel 30,
 #: typed here: that is the engine's kChannelPlayer0, and the grate reported
 #: no change of state, so stepping on it sent nothing at all.
+
+
+def face_chimney(level) -> int:
+    """Brick on all eight sides of the works' chimney, the chamfers with the rest."""
+    x0, y0, x1, y1 = CHIMNEY
+    walls = [w["fields"] for w in level.walls]
+    faced = 0
+    for f in walls:
+        n = walls[int(f["point2"])]
+        if int(f["next_sector"]) < 0 and all(x0 <= int(p["x"]) <= x1 and y0 <= int(p["y"]) <= y1 for p in (f, n)):
+            f["picnum"] = CHIMNEY_BRICK
+            faced += 1
+    return faced
 
 
 @functools.lru_cache(maxsize=None)
@@ -118,7 +134,6 @@ def dress(city, ctx) -> dict:
     """Attach Foundry Ward's L3 content.  Returns what it placed."""
     foundry_st = ctx["foundry_st"]
     yard = ctx["yard_rect_pu"]
-    grate_upper = ctx["grate_upper"]
     sewer_rooms = ctx["sewer_rooms"]
     placed = {"sprites": [], "channels": set(), "rooms": []}
 
@@ -395,9 +410,8 @@ def _transcribed(map_name: str, type_id: int, picnum: int, **change) -> dict:
     return fields
 
 
-def build_loading_shutter(city, stair, passage, *, east, middle, floor) -> dict:
-    """Add the covered freight recess to the east side of the underpass."""
-    # At the south end, the whole sweep is clear in plan of the trunk below.
+def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
+    """Add the covered freight recess to the east side of the underpass (`underpass.build` joins it to its bay)."""
     low, high = middle - 768, middle + 768
     front, back = east + 1024, east + 1536
     end = back + 2560
@@ -424,7 +438,6 @@ def build_loading_shutter(city, stair, passage, *, east, middle, floor) -> dict:
     ).surfaces(**surfaces, clear_height=24576, wall_shade=17,
                floor_shade=20, ceiling_shade=20)
     for a, b, name in (
-        (passage.face("east"), recess.face("west"), "freight_recess"),
         (recess.face("east"), shutter.face("west"), "loading_shutter_front"),
         (shutter.face("east"), alcove.face("west"), "loading_shutter_back"),
     ):
@@ -455,6 +468,10 @@ def furnish_loading_shutter(layout, loading) -> dict:
         **_transcribed("E1M4", 0, LAMP_TILE, x_repeat=22, y_repeat=22, shade=-16))
     x, y, z = loading["light_at"]
     layout.add_light_source("loading:lamp", alcove, x=x, y=y, z=z)
+    # What was being loaded: kegs for the canteen's freezer (`goods`, 604).
+    import goods
+    for index, local in enumerate(((0.9, 0.18), (0.9, 0.36), (0.78, 0.2))):
+        layout.place_on_floor(f"loading:keg_{index}", alcove, local=local, **goods.fields(604))
     shells = _attested("E1M4", 68)
     layout.place_on_floor("loading:shells", alcove, local=(0.72, 0.5),
                           **shells["fields"], behavior=shells["behavior"])
@@ -637,7 +654,6 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     # the cart's barrels and a sound cue.  tx: the grate sector itself.
     from bloodmap import wiring
 
-    grate_region = ctx["grate_upper"].region_id
     import wires
 
     # The staged moment is not staged here any more. The owner: "that
@@ -649,14 +665,18 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     from bloodmap import flatsprite
     import wallplane as _art
 
-    for index, piece in enumerate(flatsprite.cover((0, 0, 1024, 1024),
+    gx, gy = ctx["grate_at"]
+    for index, piece in enumerate(flatsprite.cover((gx - 512, gy - 512, gx + 512, gy + 512),
                                                    _art.art()[502][:2])):
-        layout.place_on_floor(
-            f"yard:grate_{index}", grate_region,
-            local=(piece["x"] / 1024, piece["y"] / 1024),
-            height_player_heights=0.0, type=0, picnum=502, cstat=32,
+        layout.add_sprite(
+            f"yard:grate_{index}", street_region, x=piece["x"], y=piece["y"],
+            z=int(layout.regions[street_region].floor_z), type=0, picnum=502, cstat=32,
             x_repeat=piece["x_repeat"], y_repeat=piece["y_repeat"],
             angle=piece["angle"], shade=20, status=0)
+    # The chimney's iron hatch, on the face the yard sees.
+    _art.sprite(layout, "yard:chimney_hatch", street_region, (CHIMNEY[0], CHIMNEY[1] + 512),
+                (CHIMNEY[0], CHIMNEY[3] - 512), tile=CHIMNEY_HATCH, x_repeat=30, y_repeat=30,
+                cstat=16 | 64 | 128, height_player_heights=0.62, offset_player_widths=0.04, shade=8)
     cart_x0, cart_y0 = dressing["cart_world"]
     # The grate gained a kerb ring (2048 across, centred 1536 east of the
     # yard's west edge), so the charges sit in the strip between the dock
@@ -761,9 +781,9 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     top_y0 = ctx["stair_top_y0"]
     layout.place_on_wall(
         "lamp:stair_mouth", street_region,
-        a1=(yard_x0, top_y0 + 2048), a2=(yard_x0, top_y0),
-        #: over the mouth's head (the mouth is 1.45 bodies), not in it
-        t=0.5, height_player_heights=1.9, **YARD_LAMP)
+        a1=(yard_x0, top_y0 + 3072), a2=(yard_x0, top_y0 + 2048),
+        #: at the edge of the pier between the mouth and the cage, clear of the painted window
+        t=0.07, height_player_heights=YARD_LAMP_HEIGHT, **YARD_LAMP)
     # Beside the door on the pier between it and the hatch, at the pier's
     # edge: centred on the pier it hung across the painted window there.
     layout.place_on_wall(

@@ -60,8 +60,12 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("ghost_station", Rule("none", 0, 0, shade_bias=(15, 14, 12))),             # its own lamps, and what switches them (`phantom_terminus.light_groups`)
     ("ghost_service_stair", Rule("none", 0, 0)),
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
+    # its own: the hood's strip over the key, the consoles' strip, the lever's lamp
+    ("pump_station/machine_hall", Rule("none", 0, 0)),
+    ("pump_station/deck", Rule("none", 0, 0)),
     ("pump_station", Rule("panel", 501, 3072, 3072)),
-    ("works_stair", Rule("ceiling", 795, 2560, 2560)),
+    ("works_stair/underpass", Rule("none", 0, 0, cut=False)),          # its own tubes (`underpass.TUBES`), a bay to a light
+    ("works_stair", Rule("none", 0, 0)),
     ("yard_dock", Rule("panel", 501, 3072, 3072)),
     ("gravesend_station/tunnel", Rule("panel", 796, 4096, 4096)),
     ("gravesend_station/goods_store", Rule("panel", 501, 3072, 3072)),
@@ -96,6 +100,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
 #: until the owner, 2026-11-21: "We can make it lit by model, the stained
 #: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
+    # The lit case at the underpass's end: a light in itself.
+    "works_stair/underpass:lightbox",
     # The narrow sash and box carry the poster pane and its measured contrast.
     "theatre_row/aldermack/bill_",
     "market_slip/quay",
@@ -127,6 +133,12 @@ OWN_LIGHT: tuple[str, ...] = (
 #: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    # a few tubes in a long passage: at full strength every bay was as light as the next
+    ("works_stair/underpass:end", 1.0),
+    ("works_stair/underpass", 0.5),
+    ("pump_station/belt", 2.4),
+    ("pump_station/consoles", 1.8),
+    ("pump_station/machine_hall", 1.6),
     # six fires in one round room at full strength lit all of it alike, and
     # their death changed nothing (round 1's readers: "floodlit")
     ("settling_hall/rite:gullet", 1.0),

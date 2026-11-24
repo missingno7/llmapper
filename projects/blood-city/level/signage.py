@@ -100,6 +100,9 @@ STREET_SIGNS = [
     # E1M4 names its own: two bodies up, just over the hatch's head.
     ("street:foundry_ward", ((50176, 15360), (52224, 15360)),
      "RAT DOGS", "ratdogs", 2.2),
+    # The underpass, named over both its mouths (`underpass`); the mouth's head is 1.93 bodies up.
+    ("street:foundry_ward", ((50176, 21504), (50176, 17408)), "UNDERPASS", "fascia", 2.25),
+    ("street:foundry_ward", ((39936, 30720), (39936, 34816)), "UNDERPASS", "fascia", 2.25),
 ]
 
 
