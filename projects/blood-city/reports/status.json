@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "394d53af787b56327d64e178e95fbbf34be47b5aa58c080598ab75930c209fb3",
-  "map_sha256": "2813f3de3a34045ee61cef18c0757e6d75a75b7639dd6802ae7272e9706001b4",
+  "manifest_sha256": "817ccd5d584a558442f1867d69d4ecd98ff1967ef456311481568de2c215c7ed",
+  "map_sha256": "fce413ead6f0c517dd248684b5b22fbd21c25a9a0c56836843b7020615c211c1",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1521,
-  "walls": 12919,
-  "sprites": 2458,
+  "sectors": 1552,
+  "walls": 13083,
+  "sprites": 2511,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.629,
-   "walls": 0.211,
-   "sprites": 0.85
+   "sectors": 0.621,
+   "walls": 0.201,
+   "sprites": 0.847
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 2980,
+   "note": 3028,
    "warning": 6
   }
  },
@@ -181,18 +181,18 @@
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2294"
+   "at": "projects/blood-city/level/build_skeleton.py:2296"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2493"
+   "at": "projects/blood-city/level/build_skeleton.py:2495"
   }
  ],
  "finish": {
   "exits": [
    {
-    "root": "sprite 1424",
+    "root": "sprite 1447",
     "cause": "push",
     "sector": 668,
     "to": "kChannelLevelExitNormal",
@@ -202,39 +202,39 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 1031,
+    "sprite": 1051,
     "name": "kItemKeyMoon",
     "sector": 50,
     "reached": true
    },
    {
-    "sprite": 1541,
+    "sprite": 1564,
     "name": "kItemKeyEye",
     "sector": 321,
     "reached": true
    },
    {
-    "sprite": 2186,
+    "sprite": 2210,
     "name": "kItemKeySkull",
     "sector": 224,
     "reached": true
    },
    {
-    "sprite": 2196,
+    "sprite": 2220,
     "name": "kItemKeyFire",
     "sector": 270,
     "reached": true
    },
    {
-    "sprite": 2200,
+    "sprite": 2224,
     "name": "kItemKeyDagger",
-    "sector": 863,
+    "sector": 881,
     "reached": true
    },
    {
-    "sprite": 2204,
+    "sprite": 2228,
     "name": "kItemKeySpider",
-    "sector": 513,
+    "sector": 909,
     "reached": true
    }
   ],
@@ -243,44 +243,44 @@
     "key": 1,
     "key_name": "skull",
     "senders": [
-     "sprite 2211"
+     "sprite 2235"
     ],
     "sector": 173,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    },
    {
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sprite 2213"
+     "sprite 2237"
     ],
     "sector": 173,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    },
    {
@@ -299,105 +299,105 @@
     "key": 3,
     "key_name": "fire",
     "senders": [
-     "sprite 2215"
+     "sprite 2239"
     ],
     "sector": 173,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    },
    {
     "key": 4,
     "key_name": "dagger",
     "senders": [
-     "sprite 2217"
+     "sprite 2241"
     ],
     "sector": 298,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    },
    {
     "key": 5,
     "key_name": "spider",
     "senders": [
-     "sprite 2219"
+     "sprite 2243"
     ],
     "sector": 298,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    },
    {
     "key": 6,
     "key_name": "moon",
     "senders": [
-     "sprite 2221"
+     "sprite 2245"
     ],
     "sector": 298,
     "answers": [
      "sector 174",
      "sector 299",
      "sector 592",
-     "sprite 2222",
-     "sprite 2223",
-     "sprite 2224",
-     "sprite 2225",
-     "sprite 2226",
-     "sprite 2227",
-     "sprite 2228",
-     "sprite 2229",
-     "sprite 2230"
+     "sprite 2246",
+     "sprite 2247",
+     "sprite 2248",
+     "sprite 2249",
+     "sprite 2250",
+     "sprite 2251",
+     "sprite 2252",
+     "sprite 2253",
+     "sprite 2254"
     ]
    }
   ],
   "secrets": {
-   "declared": 8,
-   "credited_normal": 8,
+   "declared": 9,
+   "credited_normal": 9,
    "credited_super": 0
   },
-  "space": 1479,
-  "reached": 1479,
+  "space": 1510,
+  "reached": 1510,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 1190,
+    "sectors": 1218,
     "first_sector": 0
    },
    {
@@ -427,7 +427,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 1463 (channel 103)"
+     "destroy sprite 1486 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 219
@@ -435,15 +435,15 @@
    {
     "round": 1,
     "opened_by": [
-     "walk into sector 838 (channel 153)"
+     "walk into sector 856 (channel 153)"
     ],
     "sectors": 7,
-    "first_sector": 863
+    "first_sector": 881
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1708 (channel 159)"
+     "use switch sprite 1731 (channel 159)"
     ],
     "sectors": 7,
     "first_sector": 158
@@ -451,10 +451,10 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 1172 (channel 109)"
+     "destroy sprite 1192 (channel 109)"
     ],
     "sectors": 5,
-    "first_sector": 508
+    "first_sector": 509
    },
    {
     "round": 1,
@@ -471,6 +471,14 @@
     ],
     "sectors": 4,
     "first_sector": 286
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 762"
+    ],
+    "sectors": 3,
+    "first_sector": 762
    },
    {
     "round": 1,
@@ -507,7 +515,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1051 (channel 101)"
+     "use switch sprite 1071 (channel 101)"
     ],
     "sectors": 1,
     "first_sector": 64
@@ -515,7 +523,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1706 (channel 155)"
+     "use switch sprite 1729 (channel 155)"
     ],
     "sectors": 1,
     "first_sector": 9
@@ -523,7 +531,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1707 (channel 156)"
+     "use switch sprite 1730 (channel 156)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -531,7 +539,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1710 (channel 158)"
+     "use switch sprite 1733 (channel 158)"
     ],
     "sectors": 1,
     "first_sector": 149
@@ -547,7 +555,7 @@
    {
     "round": 2,
     "opened_by": [
-     "pick up sprite 1031 (channel 123)"
+     "pick up sprite 1051 (channel 123)"
     ],
     "sectors": 8,
     "first_sector": 56
@@ -555,10 +563,10 @@
    {
     "round": 2,
     "opened_by": [
-     "push wall 7225 (channel 151)"
+     "push wall 7351 (channel 151)"
     ],
     "sectors": 2,
-    "first_sector": 865
+    "first_sector": 883
    },
    {
     "round": 2,
@@ -571,7 +579,7 @@
    {
     "round": 3,
     "opened_by": [
-     "use switch sprite 2211 (channel 137)"
+     "use switch sprite 2235 (channel 137)"
     ],
     "sectors": 106,
     "first_sector": 174
@@ -579,7 +587,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 1533 (channel 104)"
+     "destroy sprite 1556 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 342
@@ -587,7 +595,7 @@
    {
     "round": 4,
     "opened_by": [
-     "use switch sprite 1423 (channel 108)"
+     "use switch sprite 1446 (channel 108)"
     ],
     "sectors": 15,
     "first_sector": 666
@@ -780,17 +788,16 @@
    ]
   },
   {
-   "name": "sewer:settling-hall-lift",
-   "says": "the landing buttons recall the deck to their own stop and the rider's button sends it to the other stop",
+   "name": "sewer:stockyard-armor",
+   "says": "taking the spirit armor across the blood brings two gill beasts up out of it, between you and the stair",
    "channel": 112,
    "engine": null,
    "when": [
-    "push on placement sewer:hall_lift_upper_call",
-    "push on placement sewer:hall_lift_lower_call",
-    "push on placement sewer:hall_lift_rider"
+    "pickup on placement gameplay:supply_38_0"
    ],
    "then": [
-    "region region:gravesend/sewer/settling_hall/service_lift"
+    "placement gameplay:sewer:stockyard-armor_0",
+    "placement gameplay:sewer:stockyard-armor_1"
    ]
   },
   {
@@ -1782,20 +1789,21 @@
     11264,
     12800
    ],
-   "hero": "brood alcoves walled in silk, a cocoon in each, under a ceiling where the spiders and their mother hang upside down",
+   "hero": "a pit of eggs under the mother on her thread, and past it the key in the one shaft of light, behind a great web",
    "study": "spider-lair",
    "layers": {
     "has": [
+     "trim",
      "wall_art",
-     "standing"
+     "flat_art",
+     "standing",
+     "levels",
+     "light",
+     "machines"
     ],
     "missing": [
      "second",
-     "trim",
-     "levels",
-     "light",
-     "motion",
-     "machines"
+     "motion"
     ],
     "campaign_p25": 2,
     "campaign_p50": 5
@@ -1829,35 +1837,36 @@
   {
    "name": "Stockyard Drain",
    "at": [
-    50944,
-    54272
+    48400,
+    41400
    ],
-   "hero": "a tiled race of blood running north from the slaughterhouse pipe and carcass rack into the Foundry Main",
+   "hero": "a vaulted bleeding floor where the slaughterhouse washes down under hung carcasses into the ring's race, which is blood from there to the fall",
    "study": "stockyard-drain",
    "layers": {
     "has": [
-     "trim",
+     "wall_art",
      "flat_art",
-     "motion",
-     "machines"
+     "levels",
+     "motion"
     ],
     "missing": [
      "second",
-     "levels",
-     "light"
+     "trim",
+     "light",
+     "machines"
     ],
     "campaign_p25": 2,
     "campaign_p50": 5
    },
    "metres": [
-    8.3,
-    38.7,
-    3.3
+    8.7,
+    12.2,
+    3.2
    ],
    "cramped": [
-    "short side 4864 (campaign p25 6144)",
-    "height 1.81 bodies (campaign p25 1.93)",
-    "1.81 bodies high (a destination wants 1.93)"
+    "short side 5120 (campaign p25 6144)",
+    "height 1.8 bodies (campaign p25 1.93)",
+    "1.8 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -1899,31 +1908,39 @@
    "critique": null
   },
   {
-   "name": "Settling Hall service lift",
+   "name": "the Toshers' Den",
    "at": [
-    19968,
-    45184
+    16200,
+    46600
    ],
-   "hero": "a metal filter deck on the west quay that rises past the tanks to the gallery, with a work light and call button at each landing",
-   "study": "doors-and-mechanisms",
+   "hero": "a low room of timber shoring off the settling hall, a lantern and a lit stove, and three straw beds on boxes, one of which is not only a bed",
+   "study": "toshers-den",
    "layers": {
     "has": [
-     "flat_art"
+     "trim",
+     "wall_art",
+     "flat_art",
+     "standing",
+     "levels",
+     "motion",
+     "machines"
     ],
-    "missing": [],
-    "campaign_p25": 0,
-    "campaign_p50": 1
+    "missing": [
+     "second",
+     "light"
+    ],
+    "campaign_p25": 2,
+    "campaign_p50": 5
    },
    "metres": [
-    1.7,
-    2.2,
-    2.6
+    9.8,
+    11.7,
+    2.8
    ],
    "cramped": [
-    "short side 1024 (campaign p25 1536)",
-    "height 1.45 bodies (campaign p25 1.57)",
-    "1.31M of floor (a destination wants 14.0M)",
-    "1.45 bodies high (a destination wants 1.93)"
+    "short side 5760 (campaign p25 6144)",
+    "height 1.57 bodies (campaign p25 1.93)",
+    "1.57 bodies high (a destination wants 1.93)"
    ],
    "critique": null
   },
@@ -2648,35 +2665,7 @@
   {
    "kind": "missing-layer",
    "place": "the Weaver's Cellars",
-   "says": "carries no trim layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "the Weaver's Cellars",
-   "says": "carries no levels layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "the Weaver's Cellars",
-   "says": "carries no light layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "the Weaver's Cellars",
    "says": "carries no motion layer",
-   "owner": "projects/blood-city/level/detailing.py",
-   "see": "python -m tools.place_character --help"
-  },
-  {
-   "kind": "missing-layer",
-   "place": "the Weaver's Cellars",
-   "says": "carries no machines layer",
    "owner": "projects/blood-city/level/detailing.py",
    "see": "python -m tools.place_character --help"
   },
@@ -2718,7 +2707,7 @@
   {
    "kind": "missing-layer",
    "place": "Stockyard Drain",
-   "says": "carries no levels layer",
+   "says": "carries no trim layer",
    "owner": "projects/blood-city/level/detailing.py",
    "see": "python -m tools.place_character --help"
   },
@@ -2730,23 +2719,30 @@
    "see": "python -m tools.place_character --help"
   },
   {
+   "kind": "missing-layer",
+   "place": "Stockyard Drain",
+   "says": "carries no machines layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
    "kind": "cramped",
    "place": "Stockyard Drain",
-   "says": "short side 4864 (campaign p25 6144)",
+   "says": "short side 5120 (campaign p25 6144)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
    "place": "Stockyard Drain",
-   "says": "height 1.81 bodies (campaign p25 1.93)",
+   "says": "height 1.8 bodies (campaign p25 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
    "place": "Stockyard Drain",
-   "says": "1.81 bodies high (a destination wants 1.93)",
+   "says": "1.8 bodies high (a destination wants 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
@@ -2793,39 +2789,46 @@
    "see": "python -m tools.critique prepare stockyard-trolley --poses <set> --kind <kind>"
   },
   {
+   "kind": "missing-layer",
+   "place": "the Toshers' Den",
+   "says": "carries no second layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
+   "kind": "missing-layer",
+   "place": "the Toshers' Den",
+   "says": "carries no light layer",
+   "owner": "projects/blood-city/level/detailing.py",
+   "see": "python -m tools.place_character --help"
+  },
+  {
    "kind": "cramped",
-   "place": "Settling Hall service lift",
-   "says": "short side 1024 (campaign p25 1536)",
+   "place": "the Toshers' Den",
+   "says": "short side 5760 (campaign p25 6144)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
-   "place": "Settling Hall service lift",
-   "says": "height 1.45 bodies (campaign p25 1.57)",
+   "place": "the Toshers' Den",
+   "says": "height 1.57 bodies (campaign p25 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
-   "place": "Settling Hall service lift",
-   "says": "1.31M of floor (a destination wants 14.0M)",
-   "owner": "projects/blood-city/level/scale.py",
-   "see": "the scale lines the build prints"
-  },
-  {
-   "kind": "cramped",
-   "place": "Settling Hall service lift",
-   "says": "1.45 bodies high (a destination wants 1.93)",
+   "place": "the Toshers' Den",
+   "says": "1.57 bodies high (a destination wants 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "never-critiqued",
-   "place": "Settling Hall service lift",
+   "place": "the Toshers' Den",
    "says": "no blind reader has looked at this place",
    "owner": "tools/critique.py",
-   "see": "python -m tools.critique prepare doors-and-mechanisms --poses <set> --kind <kind>"
+   "see": "python -m tools.critique prepare toshers-den --poses <set> --kind <kind>"
   },
   {
    "kind": "missing-layer",
@@ -3071,7 +3074,7 @@
    "says": "tile 2229 as sprite_wall in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2229",
-   "at": "sprite[777]"
+   "at": "sprite[797]"
   },
   {
    "kind": "uncatalogued-use",
@@ -3079,7 +3082,7 @@
    "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
-   "at": "sprite[1603]"
+   "at": "sprite[1626]"
   },
   {
    "kind": "outside-campaign",
@@ -3483,6 +3486,13 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 514 as floor in indoors (3x) rests on community-curated evidence (5 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 514"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 290 as two_sided_lower in indoors (3x) rests on community-curated evidence (4 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 290"
@@ -3549,13 +3559,6 @@
    "says": "tile 240 as two_sided_lower in indoors (2x) rests on community-curated evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 240"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 499 as two_sided_upper in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 499"
   },
   {
    "kind": "outside-campaign",
@@ -3647,6 +3650,13 @@
    "says": "tile 534 as sprite_face in indoors (2x) rests on community-curated evidence (4 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 534"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 977 as sprite_wall in indoors (2x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 977"
   },
   {
    "kind": "outside-campaign",
@@ -4008,9 +4018,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 977 as sprite_wall in indoors (1x) rests on community-curated evidence (2 maps), not the campaign's",
+   "says": "tile 1068 as sprite_face in indoors (1x) rests on community-curated evidence (3 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 977"
+   "see": "python -m tools.tile_contexts show 1068"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 625 as sprite_face in indoors (1x) rests on community-curated evidence (7 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 625"
   },
   {
    "kind": "outside-campaign",
@@ -4329,7 +4346,7 @@
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 161, \"sprites\": [1672, 1673], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 161, \"sprites\": [1695, 1696], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[161]"
@@ -4350,13 +4367,13 @@
   }
  ],
  "open_by_kind": {
-  "cramped": 20,
+  "cramped": 19,
   "critique": 16,
   "dropped": 5,
   "lost-tile": 2,
-  "missing-layer": 20,
+  "missing-layer": 19,
   "never-critiqued": 11,
-  "outside-campaign": 153,
+  "outside-campaign": 155,
   "owner-rework": 1,
   "refused": 7,
   "rule-warning": 6,

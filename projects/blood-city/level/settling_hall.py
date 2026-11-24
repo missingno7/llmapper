@@ -137,7 +137,7 @@ def build(layout, gallery: dict, quays: dict) -> dict[str, str]:
             paint = {"picnum": BLOCK}
         elif there in ("stair", "walk"):
             paint = {"picnum": TRIM}
-        elif here == "tank":
+        elif here in ("tank", "curb"):                     # and the gables over the tanks, seen from the falls
             paint = {"picnum": STONE}
         else:
             return {}
