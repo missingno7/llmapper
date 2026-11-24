@@ -452,6 +452,79 @@ class SolidDoubleSlideReadBack(unittest.TestCase):
                                              swept.position(step, vertex))
 
 
+class RigidBodyReadBack(unittest.TestCase):
+    """Two rooms, a solid block and an outside fitting, made one solid that moves."""
+
+    MEMBERS = {"cab": ((1024, 768), (2048, 768), (2048, 1792), (1024, 1792)),
+               "hold": ((2048, 768), (3072, 768), (3072, 1792), (2048, 1792)),
+               "stern": ((3072, 768), (3328, 768), (3328, 1792), (3072, 1792))}
+
+    def _layout(self, travel=(-4096, 0)):
+        from bloodmap.mechanism import carry_fittings, rigid_body
+        from bloodmap.planar_layout import PlanarLayout
+
+        layout = PlanarLayout(name="rail bay")
+        layout.add_region("bay", [(0, 0), (8192, 0), (8192, 2560), (0, 2560)],
+                          floor_z=2048, ceiling_z=-28672)
+        for name, outline in self.MEMBERS.items():
+            solid = name == "stern"
+            layout.add_region(name, outline, floor_z=-28672 if solid else 0,
+                              ceiling_z=-28672 if solid else -24576, declared_zero_exit=solid,
+                              role="detail" if solid else "gameplay")
+        layout.carve_hole("bay", [(1024, 768), (3328, 768), (3328, 1792), (1024, 1792)])
+        for left, right in (("cab", "hold"), ("hold", "stern"), ("cab", "bay"), ("hold", "bay"), ("stern", "bay")):
+            layout.add_connection(f"{left}:{right}", left, right, min_width=1, min_opening=0)
+        layout.add_sprite("lamp", "hold", x=2560, y=1280, z=-24512, picnum=795, cstat=160)
+        layout.add_sprite("wheel", "bay", x=2048, y=1800, z=1024, picnum=2320, cstat=144, angle=512)
+        layout.set_player_start("bay", x=4096, y=256, z=2048, angle=512)
+        body = rigid_body(layout, "car", members=list(self.MEMBERS), host_region="bay",
+                          travel=travel, lead="hold", busy_time=40, wave=1)
+        for region in body["receivers"]:
+            layout.regions[region].sector_behavior["rx_id"] = 100
+        carry_fittings(layout, body["members"], also=("wheel",))
+        return layout, body
+
+    def test_readback_moves_every_member_and_its_fittings_as_one(self):
+        from bloodmap.mechanism import CARRY_WITH
+        from bloodmap.model import record_extra, record_fields
+        from bloodmap.motion import CARRY, marker_pair
+        from bloodmap.motion_sim import body_health, rigid_bodies
+        from bloodmap.sector_geom import sector_walls
+        from bloodmap.swept_state import run
+
+        layout, body = self._layout()
+        self.assertEqual(body["receivers"], [*self.MEMBERS, "bay"])
+        compiled = layout.compile()
+        disk = compiled.level.to_disk_map()
+        sectors = {name: compiled.allocations[name].sector_id for name in (*self.MEMBERS, "bay")}
+        found, = rigid_bodies(disk)
+        self.assertEqual(sorted(found.members), sorted(sectors[m] for m in self.MEMBERS))
+        health = body_health(disk, found)
+        self.assertEqual((health["problems"], health["notes"], health["host"]), ([], [], sectors["bay"]))
+        for name in self.MEMBERS:
+            fields, extra = record_fields(disk.sectors[sectors[name]]), record_extra(disk.sectors[sectors[name]])
+            self.assertEqual([extra[k] for k in ("state", "busy", "drag", "busy_time_a", "busy_wave_b")],
+                             [1, 65536, 1, 40, 1])
+            self.assertEqual(marker_pair(disk, sectors[name])["travel"], (-4096, 0))
+            if name != "stern":                        # a solid has no flats to ride
+                self.assertTrue(fields["floor_stat"] & fields["ceiling_stat"] & 64)
+        # the host moves nothing of its own: it is there for what hangs outside
+        self.assertEqual(record_fields(disk.sectors[sectors["bay"]])["type"], 614)
+        self.assertFalse(any(record_fields(disk.walls[w])["cstat"] & CARRY
+                             for w in sector_walls(disk, sectors["bay"])))
+        for name in ("lamp", "wheel"):
+            sprite = record_fields(disk.sprites[compiled.placement_sprites[name]])
+            self.assertTrue(sprite["cstat"] & CARRY_WITH, name)
+        report = run(disk)
+        self.assertEqual((report["problems"], len(report["bodies"])), ([], 1))
+
+    def test_refuses_a_body_that_would_leave_its_host(self):
+        from bloodmap.mechanism import MechanismError
+
+        with self.assertRaisesRegex(MechanismError, "never leaves the one it stands in"):
+            self._layout(travel=(-5120, 0))
+
+
 class SlideShuttleReadBack(unittest.TestCase):
     def _layout(self):
         from bloodmap.planar_layout import PlanarLayout
@@ -874,6 +947,10 @@ COVERED: dict[str, str] = {
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.slide_shuttle":
         "SlideShuttleReadBack.test_readback_moves_deck_and_matching_hole_as_one",
+    "bloodmap.mechanism.rigid_body":
+        "RigidBodyReadBack.test_readback_moves_every_member_and_its_fittings_as_one",
+    "bloodmap.mechanism.carry_fittings":
+        "RigidBodyReadBack.test_readback_moves_every_member_and_its_fittings_as_one",
     "bloodmap.mechanism.lift":
         "LiftReadBack.test_a_lift_reads_back_as_a_z_motion_that_changes_state",
     "bloodmap.doors.z_motion_door":

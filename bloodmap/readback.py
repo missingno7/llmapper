@@ -430,14 +430,14 @@ def _read_wiring(disk: Any, claim: Mapping[str, Any], name: str,
 
 
 def _read_closure(disk: Any, claim: Mapping[str, Any], name: str,
-                  sector: int, row: dict[str, Any]) -> list[Difference]:
+                  sector: int, row: dict[str, Any], driven: Any = None) -> list[Difference]:
     """Everything the motion drags, swept through the whole travel."""
     want = claim.get("drag")
     if not want or not want.get("closure"):
         return []
     from .motion_sim import closure_health
 
-    health = closure_health(disk, sector, steps=int(want.get("steps", 16)))
+    health = closure_health(disk, sector, steps=int(want.get("steps", 16)), driven=driven)
     row["closure"] = {
         "loops": len(health["loops"]),
         "problems": list(health["problems"]),
@@ -594,6 +594,8 @@ def read_back(disk: Any, sentences: Iterable[Mapping[str, Any]], *,
     draws = None
     wants_visibility = False
     wants_route = False
+    from .motion_sim import driven_walls
+    driven = driven_walls(disk)
     for claim in sentences:
         if claim.get("visibility", {}).get("tiles"):
             wants_visibility = True
@@ -654,7 +656,7 @@ def read_back(disk: Any, sentences: Iterable[Mapping[str, Any]], *,
         out.differences.extend(_read_members(disk, claim, name, sector, row))
         out.differences.extend(
             _read_wiring(disk, claim, name, sector, sectors, graph, row))
-        out.differences.extend(_read_closure(disk, claim, name, sector, row))
+        out.differences.extend(_read_closure(disk, claim, name, sector, row, driven))
         out.differences.extend(
             _read_visibility(disk, claim, name, sectors, draws, row))
         out.differences.extend(_read_conformance(disk, claim, name, sector, row))

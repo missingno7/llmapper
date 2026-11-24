@@ -30,7 +30,9 @@ version of this gate swept only the mover and called every neighbour static;
 it passed a strip whose thin neighbour was inside out from the moment the
 level loaded (`tests/test_swept_state.py::DragClosureGateTest`). Now every
 loop with a moved vertex is checked for inversion and self-crossing, and the
-static set is exactly the walls whose endpoints do not move.
+static set is exactly the walls whose endpoints do not move. A rigid body's
+members share one sweep for the loops they drag and for clearance, as the
+nine slides of MACHINERY-1WAYVEHICLE s2–10 need.
 
 A check this file used to make and no longer does: whether the sector sits
 away from its drawn outline at rest. That is not measurable. `trInit` derives
@@ -46,16 +48,19 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any, Iterable
 
+from .model import record_extra, record_fields
 from .motion_sim import (
-    blood_sweep, closure_health, polygon_area, rest_displacement,
-    self_intersections,
+    _body_timing_notes, blood_sweep, body_health, closure_health, rigid_bodies,
+    sector_loops, self_intersections,
+    driven_walls,
 )
+from .player_space import PLAYER_PROFILES
 
 #: The four horizontally-moving Blood sector types.
 MOVING_TYPES = (614, 615, 616, 617)
 
 #: A sector this small has no usable inside. One player width squared.
-MIN_AREA = 384.0 * 384.0
+MIN_AREA = float(PLAYER_PROFILES["blood"].body_width ** 2)
 
 #: How far a sector may sit from its drawn outline at load before it is worth
 #: telling the author about. Half a player width.
@@ -116,7 +121,8 @@ def escape(disk: Any, sector_id: int, frames: Any) -> str | None:
 
     from .sector_geom import outline_and_holes, sector_walls
 
-    around = {int(disk.walls[w].fields["next_sector"]) for w in sector_walls(disk, sector_id)}
+    around = {int(record_fields(disk.walls[w])["next_sector"])
+              for w in sector_walls(disk, sector_id)}
     if len(around) != 1 or -1 in around:
         return None
     host = around.pop()
@@ -130,13 +136,14 @@ def escape(disk: Any, sector_id: int, frames: Any) -> str | None:
 
 def moving_sectors(disk: Any) -> list[int]:
     return [index for index, sector in enumerate(disk.sectors)
-            if int(sector.fields["type"]) in MOVING_TYPES
-            and sector.extra is not None]
+            if int(record_fields(sector)["type"]) in MOVING_TYPES
+            and record_extra(sector) is not None]
 
 
-def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
+def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16,
+                 in_body: bool = False, driven: Any = None) -> SweptFinding:
     """Step one mechanism through its travel and check the geometry."""
-    type_id = int(disk.sectors[sector_id].fields["type"])
+    type_id = int(record_fields(disk.sectors[sector_id])["type"])
     found = SweptFinding(sector=sector_id, type_id=type_id, steps=steps)
     try:
         frames = blood_sweep(disk, sector_id, steps=steps)
@@ -144,8 +151,28 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
         found.problems.append(f"cannot be swept at all: {exc}")
         return found
 
+    own = [frames]
+    if in_body:
+        # The standalone reader's historic wall-order polygon includes jumps
+        # between loops. A rigid member can have holes (e.g. E2M1 s87).
+        first = int(record_fields(disk.sectors[sector_id])["wall_ptr"])
+        own = [[[frame[w - first] for w in loop] for frame in frames]
+               for loop in sector_loops(disk, sector_id)]
+        own.sort(key=lambda loop: abs(polygon_area_signed(loop[-1])), reverse=True)
+    for loop in own:
+        _check_own_frames(found, loop, steps)
+    if not in_body:
+        left = escape(disk, sector_id, frames)
+        if left:
+            found.problems.append(left)
+    found.problems.extend(_closure(disk, sector_id, found, steps=steps, in_body=in_body, driven=driven))
+    return found
+
+
+def _check_own_frames(found: SweptFinding, frames: Any, steps: int) -> None:
     signed = [polygon_area_signed(frame) for frame in frames]
-    found.areas = [round(abs(value), 1) for value in signed]
+    if not found.areas:
+        found.areas = [round(abs(value), 1) for value in signed]
     first = signed[0]
     for index, value in enumerate(signed):
         where = f"step {index}/{steps}"
@@ -182,15 +209,9 @@ def sweep_sector(disk: Any, sector_id: int, *, steps: int = 16) -> SweptFinding:
                 f"a degenerate loop the renderer cannot draw")
             break
 
-    left = escape(disk, sector_id, frames)
-    if left:
-        found.problems.append(left)
-    found.problems.extend(_closure(disk, sector_id, found, steps=steps))
-    return found
-
 
 def _closure(disk: Any, sector_id: int, found: SweptFinding,
-             *, steps: int) -> list[str]:
+             *, steps: int, in_body: bool, driven: Any = None) -> list[str]:
     """Everything the motion drags, swept: neighbours, and the static set.
 
     `closure_health` walks `nextwall` as `DragPoint` does, so the loops it
@@ -207,7 +228,7 @@ def _closure(disk: Any, sector_id: int, found: SweptFinding,
     is a map defect, and it is recorded as a note.
     """
     try:
-        health = closure_health(disk, sector_id, steps=steps)
+        health = closure_health(disk, sector_id, steps=steps, in_body=in_body, driven=driven)
     except Exception as exc:                        # pragma: no cover
         return [f"cannot sweep the drag closure: {exc}"]
     found.closure = {
@@ -246,18 +267,29 @@ def polygon_area_signed(polygon: Iterable[Any]) -> float:
 
 
 def run(disk: Any, *, steps: int = 16) -> dict[str, Any]:
-    """Every mechanism in the map, swept."""
-    findings = [sweep_sector(disk, sector_id, steps=steps)
+    """Sweep each mechanism's own geometry and each rigid body's shared geometry."""
+    bodies = rigid_bodies(disk)
+    members = {sector for body in bodies for sector in body.members}
+    driven = driven_walls(disk)
+    findings = [sweep_sector(disk, sector_id, steps=steps,
+                             in_body=sector_id in members, driven=driven)
                 for sector_id in moving_sectors(disk)]
+    body_reports = [body_health(disk, body, steps=steps) for body in bodies]
     problems = [f"sector {item.sector} (type {item.type_id}): {line}"
                 for item in findings for line in item.problems]
     notes = [f"sector {item.sector} (type {item.type_id}): {line}"
              for item in findings for line in item.notes]
+    for body in body_reports:
+        problems.extend(f"body {body['members']}: {line}" for line in body["problems"])
+        notes.extend(f"body {body['members']}: {line}" for line in body["notes"])
+    notes.extend(note for pair, note in _body_timing_notes(disk).items()
+                 if members.isdisjoint(pair))
     return {
         "$schema": "llmapper.swept-state", "schema_version": 1,
         "mechanisms": len(findings),
         "sound": sum(1 for item in findings if item.sound),
         "steps": steps,
+        "bodies": body_reports,
         "problems": problems,
         "notes": notes,
         "deforming_neighbours": sum(

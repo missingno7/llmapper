@@ -1190,6 +1190,124 @@ def slide_shuttle(
         off_region=deck_region if point_in_loop(off, deck) else host_region)
 
 
+def rigid_body(
+    layout: PlanarLayout,
+    name: str,
+    *,
+    members: list[str],
+    host_region: str,
+    travel: tuple[int, int],
+    lead: str,
+    busy_time: int = 32,
+    wave: int = 0,
+    carry_host: bool = True,
+) -> dict[str, Any]:
+    """Make several regions one solid that moves: a car, a lift cage, a platform with rails.
+
+    The owner, 2026-11-24, of a train that was one sector dressed in sprites:
+    "we should be able to make it out of sectors if they will share same
+    motion it will work ... more solid and not feeling like cut out of paper".
+
+    The regions are already in the layout and joined to each other, and
+    together they fill one hole in `host_region`; this gives them one motion.
+    Why that holds (triggers.cpp:856 `TranslateSector`, :2150 `trInit`): a
+    type 616 sector puts each of its vertices at its own base plus
+    interp(OFF, ON, busy), absolutely, and the base is taken sector by sector
+    at load. Sectors with the same marker separation, time, wave and state
+    therefore put a vertex they share at the same place on every tick, and
+    where their markers stand does not matter. The tutorial vehicle
+    (MACHINERY-1WAYVEHICLE s2-s10) and DWE1M2's car (s225-s228, s418-s423) are
+    built so, every member with Drag: a rider stands on any of them.
+
+    * Each member is type 616, saved ON, `travel` pointing from OFF to ON.
+    * Floors and ceilings are aligned to the member's first wall (stat bit 64,
+      DWE1M9 s475-480), so the roof's pattern rides with the body. A member
+      of no height has none to align.
+    * The host becomes type 614 with the same motion and no wall of its own
+      flagged: nothing of it moves but a sprite that carries `CARRY_WITH`.
+      E1M2 s34 carries the Phantom Express's wheels so (sprites 66-71): a
+      thing hung on the OUTSIDE of a body stands in the host's space.
+
+    Every member and the host listen on one wire: the caller declares it for
+    each of `receivers`. After the last fitting is placed, `carry_fittings`
+    flags what stands in the members.
+    """
+    if not members or lead not in members or len(set(members)) != len(members):
+        raise MechanismError(f"{name}: members are distinct and the lead is one of them")
+    dx, dy = int(travel[0]), int(travel[1])
+    if not dx and not dy:
+        raise MechanismError(f"{name}: a body that goes nowhere")
+    if not 1 <= busy_time <= 4095:
+        raise MechanismError(f"{name}: stroke time must fit a nonzero XSECTOR busy time")
+    host = layout.regions[host_region]
+    motion_fields = {"state": 1, "busy": 65536, "busy_time_a": busy_time, "busy_time_b": busy_time,
+                     "busy_wave_a": wave, "busy_wave_b": wave}
+    x0, y0, x1, y1 = (f(p[a] for m in members for p in layout.regions[m].outer)
+                      for f, a in ((min, 0), (min, 1), (max, 0), (max, 1)))
+    for dxy in ((0, 0), (-dx, -dy)):
+        for x, y in ((x0, y0), (x1, y0), (x1, y1), (x0, y1)):
+            if point_in_loop((x + dxy[0], y + dxy[1]), host.outer) != 1:
+                raise MechanismError(
+                    f"{name}: the body leaves {host_region} at ({x + dxy[0]}, {y + dxy[1]}); "
+                    "a moving sector never leaves the one it stands in")
+    on = sample_strict_interior([layout.regions[lead].outer])
+    on = (int(on[0]), int(on[1]))
+    off = (on[0] - dx, on[1] - dy)
+    off_at = lead if point_in_loop(off, layout.regions[lead].outer) == 1 else host_region
+    # a vertex drags every sector it belongs to (`motion_sim.drag_closure`):
+    # each member declares the ones it meets, at a corner or along an edge
+    loops = {r: [list(loop) for loop in (layout.regions[r].outer, *layout.regions[r].holes)]
+             for r in [*members, host_region]}
+    points = {p for member in members for loop in loops[member] for p in loop}
+    on_edge = {r: {p for p in points if any(point_in_loop(p, loop) == -1 for loop in found)}
+               for r, found in loops.items()}
+    markers: list[str] = []
+    for member in members:
+        region = layout.regions[member]
+        if region.type not in (0, 616) or region.sector_behavior.get("rx_id"):
+            raise MechanismError(f"{name}: {member} already is a mechanism")
+        region.type = 616
+        region.sector_behavior = {**region.sector_behavior, **motion_fields, "drag": 1}
+        if region.floor_z != region.ceiling_z and not region.parallax_ceiling:
+            region.relative_alignment = "both"
+        layout.declare_motion(member, [r for r in loops if on_edge[r] & on_edge[member]])
+        markers += motion.place_markers(
+            layout, f"{name}:{member}", driven_region=member, off_at=off, on_at=on,
+            on_region=lead, off_region=off_at, z=layout.regions[lead].floor_z)
+    receivers = list(members)
+    if carry_host:
+        if host.type or host.sector_behavior.get("rx_id"):
+            raise MechanismError(f"{name}: {host_region} already is a mechanism")
+        host.type = 614
+        host.sector_behavior = {**host.sector_behavior, **motion_fields}
+        layout.declare_motion(host_region, [host_region])
+        markers += motion.place_markers(
+            layout, f"{name}:{host_region}", driven_region=host_region, off_at=off, on_at=on,
+            on_region=lead, off_region=off_at, z=layout.regions[lead].floor_z)
+        receivers.append(host_region)
+    return {"members": list(members), "host": host_region, "lead": lead,
+            "receivers": receivers, "markers": markers, "travel": (dx, dy)}
+
+
+def carry_fittings(layout: PlanarLayout, members: list[str], *,
+                   also: tuple[str, ...] = ()) -> int:
+    """Flag every sprite standing in a body's members to travel with them.
+
+    `TranslateSector` moves a sprite only if its cstat carries `CARRY_WITH`
+    (or it is a grounded face sprite under Drag, which a lamp is not).
+    Markers never move: the engine skips statnum 10. `also` names placements
+    outside the members that ride in the host (`rigid_body`).
+    """
+    inside, flagged = set(members), 0
+    for placement in layout.placements:
+        if placement.status == MARKER_STATNUM:
+            continue
+        if placement.region_id in inside or placement.placement_id in also:
+            placement.cstat |= CARRY_WITH
+            flagged += 1
+    return flagged
+
+
 def planar_door(
     layout: PlanarLayout,
     name: str,

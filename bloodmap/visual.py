@@ -120,6 +120,44 @@ def sprite_shades_as_drawn(disk) -> int:
     return changed
 
 
+def shade_waves_lit(disk) -> int:
+    """Draw every sector with a running shade wave as it is at the wave's lit instant.
+
+    `DoSectorLighting` (sectorfx.cpp:162-206) adds a wave of `amplitude` to
+    the shades a sector names while `shade_always` is set or its `busy` is up.
+    The saved map holds neither: a lamp authored dark that flickers on was
+    drawn as a lamp that is out. Returns how many sectors changed.
+    """
+    changed = 0
+    for sector in disk.sectors:
+        extra = record_extra(sector)
+        if not extra or not extra.get("amplitude"):
+            continue
+        amplitude = int(extra["amplitude"])
+        if not extra.get("shade_always"):
+            amplitude = amplitude * int(extra.get("busy") or 0) >> 16
+        by = amplitude if int(extra.get("shade_wave", 0)) == 0 else min(0, amplitude)
+        if not by:
+            continue
+        f = sector.fields
+        walls = range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"]))
+        colour = bool(extra.get("colored_lights"))
+        for flag, shade, pal, second in (("shade_floor", "floor_shade", "floor_pal", "floor_pal_2"),
+                                         ("shade_ceiling", "ceiling_shade", "ceiling_pal", "ceiling_pal_2")):
+            if extra.get(flag):
+                f[shade] = max(-128, min(127, int(f[shade]) + by))
+                if colour:
+                    f[pal] = int(extra[second])
+        if extra.get("shade_walls"):
+            for w in walls:
+                wall = disk.walls[w].fields
+                wall["shade"] = max(-128, min(127, int(wall["shade"]) + by))
+                if colour:
+                    wall["pal"] = f["floor_pal"]
+        changed += 1
+    return changed
+
+
 def as_played(map_path, out_dir, empty: bool = False) -> Path:
     """A copy of the map with the game's invisible things made invisible, and sprites lit as the game lights them.
 
@@ -145,6 +183,7 @@ def as_played(map_path, out_dir, empty: bool = False) -> Path:
             if not int(f["cstat"]) & 32768:
                 f["cstat"] = int(f["cstat"]) | 32768
                 hidden += 1
+    waves = shade_waves_lit(disk)
     lit = sprite_shades_as_drawn(disk)
     flames = light_torches(disk)
     out = Path(out_dir) / ("as-empty.MAP" if empty
@@ -154,6 +193,7 @@ def as_played(map_path, out_dir, empty: bool = False) -> Path:
     print(f"as played: {hidden} control sprites hidden"
           + (f"; emptied of {emptied} enemies and pickups" if empty else "")
           + f"; {lit} sprites lit by their sector as Blood draws them"
+          + (f"; {waves} sectors with a shade wave drawn at its lit instant" if waves else "")
           + (f"; {flames} torches lit" if flames else ""))
     return out
 

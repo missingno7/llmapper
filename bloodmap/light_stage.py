@@ -35,6 +35,8 @@ The steps, each its own function:
    `WALL_BAND`-shade band.
 4. `shade` -- the whole map traced once more and every floor, ceiling and
    wall given its light; the sky takes one shade and its sprites the floor's.
+5. `switch_lamps` -- a lamp that blinks or is put out takes its light with it:
+   the map is traced without it, and every sector that changes moves with it.
 
 The model's terms and their calibration are `daylight`'s.
 """
@@ -933,6 +935,170 @@ def shade(disk, model: Model, keep: frozenset = frozenset(), *,
             "spread_12": sum(1 for r in rows if r["kind"] == "floor" and r["spread"] >= 12)}
 
 
+@dataclass(frozen=True)
+class LampGroup:
+    """Lamps that go on, off or flicker as one, and how.
+
+    The owner, 2026-11-24: "when you made light blinking it should also
+    affect neighbouring sectors that are lit by that light". So a group names
+    its lamps and the trace says what they light.
+
+    mode        what the engine does with it (sectorfx.cpp:162-206: a wave is
+                added while the sector's `busy` is up, scaled by it, or always)
+      always    it flickers for ever; needs no wire
+      on        lit while the sector is ON (saved ON), by `rx`
+      out       lit until `rx` turns the sector ON (saved OFF)
+    wave, frequency, phase   the shade wave; the same in every sector it
+                lights, so they move together
+    within      which sectors (by region) may be given it
+    floor_pal   the palette a floor and its walls take while the light is on
+                (XSECTOR `colored_lights`), where the light has a colour
+    moved       the map with the lamps where they will be, made from the one it
+                is given, for light that falls in another place once a lamp
+                has travelled
+    """
+
+    name: str
+    lamps: frozenset
+    mode: str = "always"
+    wave: int = 0
+    frequency: int = 0
+    phase: int = 0
+    rx: int = 0
+    within: Callable[[str], bool] = lambda region: True
+    floor_pal: int | None = None
+    moved: Any = None
+
+
+#: a sector that a group changes by fewer shades than this does not show it
+SWITCH_STEP = 4
+
+
+def _lamp_steps(disk, model: Model, lamps: frozenset, sectors: list[int]) -> dict[int, dict[str, int]]:
+    """By how many shades these lamps light each sector's floor, ceiling and walls."""
+    sun = model.sun.vector()
+    model.prepare(disk)
+
+    def traced(hide: frozenset):
+        saved = {i: int(_f(disk.sprites[i])["cstat"]) for i in hide}
+        for i in hide:
+            _f(disk.sprites[i])["cstat"] = saved[i] | 0x8000
+        try:
+            lit = model.lamps(disk)
+        finally:
+            for i, cstat in saved.items():
+                _f(disk.sprites[i])["cstat"] = cstat
+        found = D.surfaces(disk, sectors=sectors)
+        samples = [p for surface in found for p in surface.samples]
+        for p, got in zip(samples, _parallel(disk, sun, lit, None, _direct_job, samples)):
+            p.sky, p.sun, p.lamp = got
+        cache = D.BounceCache(found, D.Weights(sun=model.weights.sun, lamp=model.weights.lamp))
+        for p, bounce in zip(samples, _parallel(disk, sun, lit, cache.points, _bounce_job, samples)):
+            p.bounce = bounce
+        return {(r["kind"], r["index"]): r for r in D.collapse(found, model.weights)}
+
+    on, off = traced(frozenset()), traced(lamps)
+    steps: dict[int, dict[str, Any]] = defaultdict(lambda: {"floor": 0, "ceiling": 0, "walls": []})
+    for key, row in on.items():
+        step = int(round(off[key]["shade"] - row["shade"])) if key in off else 0
+        if row["kind"] == "wall":
+            steps[row["sector"]]["walls"].append(step)
+        else:
+            steps[row["sector"]][row["kind"]] = step
+    return {sector: {"floor": v["floor"], "ceiling": v["ceiling"],
+                     "walls": max(v["walls"], default=0)} for sector, v in steps.items()}
+
+
+def _xsector(disk, sector: int, used: set[int]) -> dict[str, int]:
+    from .construction import _empty_fields
+    from .format import XSECTOR_SCHEMA
+    from .model import PackedExtra
+
+    item = disk.sectors[sector]
+    if item.extra is None:
+        number = next(n for n in range(1, len(disk.sectors) + 2) if n not in used)
+        used.add(number)
+        fields = _empty_fields(XSECTOR_SCHEMA)
+        fields.update(reference=sector, marker_0=-1, marker_1=-1)
+        item.extra = PackedExtra("XSECTOR", fields)
+        item.fields["extra"] = number
+    return item.extra.fields
+
+
+def switch_lamps(disk, model: Model, groups: list[LampGroup], region_of: dict[int, str],
+                 keep: frozenset = frozenset()) -> dict[str, Any]:
+    """Give every sector a switched lamp lights the same switch, by as much as that lamp lights it.
+
+    The sector's shades are those with every lamp lit. The engine adds
+    `amplitude` (times the wave, times `busy`), so a light that is lit while
+    the wave is up is authored dark with a negative amplitude, and one that
+    is put out is authored lit with a positive one. A sector has one wave and
+    one receiver: it goes to the group that lights it most, and one already
+    wired to something else keeps that and is named in the report.
+    """
+    claims: dict[int, list] = defaultdict(list)
+    for group in groups:
+        scene = disk if group.moved is None else group.moved(disk)
+        spots = [_f(scene.sprites[i]) for i in group.lamps]
+        near = []
+        for i, sector in enumerate(scene.sectors):
+            f = _f(sector)
+            if i in keep or int(f["floor_z"]) == int(f["ceiling_z"]) or not group.within(region_of.get(i, "")):
+                continue
+            a = _f(scene.walls[int(f["wall_ptr"])])
+            if any(abs(int(a["x"]) - int(p["x"])) < 2 * D.LAMP_REACH
+                   and abs(int(a["y"]) - int(p["y"])) < 2 * D.LAMP_REACH for p in spots):
+                near.append(i)
+        for sector, step in _lamp_steps(scene, model, group.lamps, near).items():
+            size = max(step.values())
+            if size >= SWITCH_STEP:
+                claims[sector].append((size, group, step))
+    used = {int(_f(s)["extra"]) for s in disk.sectors if int(_f(s)["extra"]) > 0}
+    report: dict[str, Any] = {"groups": {g.name: 0 for g in groups}, "held_by_another_wire": []}
+
+    def brighten(sector: int, flags: dict[str, int], by: int) -> None:
+        f = _f(disk.sectors[sector])
+        for flag, key in (("floor", "floor_shade"), ("ceiling", "ceiling_shade")):
+            if flags[flag]:
+                f[key] = max(-32, min(63, int(f[key]) - by))
+        if flags["walls"]:
+            for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+                wall = _f(disk.walls[w])
+                wall["shade"] = max(-32, min(63, int(wall["shade"]) - by))
+
+    for sector, found in sorted(claims.items()):
+        for size, group, step in sorted(found, key=lambda row: (-row[0], row[1].name)):
+            held = getattr(disk.sectors[sector].extra, "fields", None) or {}
+            # a receiver that also sends would send when the lamp goes: the light
+            # of a room that credits a secret once gave the secret away
+            if held.get("amplitude") or (group.rx and (held.get("rx_id", 0) not in (0, group.rx)
+                                                       or held.get("tx_id"))):
+                report["held_by_another_wire"].append((sector, group.name))
+                continue
+            x = _xsector(disk, sector, used)
+            flags = {k: int(step[k] >= SWITCH_STEP) for k in ("floor", "ceiling", "walls")}
+            amount = step["floor"] if flags["floor"] else size
+            later = group.moved is not None                # lit when the lamp gets here: by ON it is away
+            dark = group.mode != "out" and not later
+            x.update(shade_wave=group.wave, shade_frequency=group.frequency, shade_phase=group.phase,
+                     shade_floor=flags["floor"], shade_ceiling=flags["ceiling"], shade_walls=flags["walls"],
+                     shade_always=int(group.mode == "always"), amplitude=-amount if dark else amount)
+            if dark:
+                brighten(sector, flags, -amount)
+            elif later:
+                brighten(sector, flags, amount)
+            if group.rx:
+                x["rx_id"] = group.rx
+            if group.mode == "on":
+                x.update(state=1, busy=65536)
+            if group.floor_pal is not None and flags["floor"] and dark:
+                x.update(colored_lights=1, floor_pal_2=group.floor_pal,
+                         ceiling_pal_2=int(_f(disk.sectors[sector])["ceiling_pal"]))
+            report["groups"][group.name] += 1
+            break
+    return report
+
+
 def even_movers(disk, keep: frozenset = frozenset()) -> int:
     """Give the faces of each sector that moves whole (616, 617) one shade: the mean of theirs, by length.
 
@@ -1066,7 +1232,8 @@ def _chain(parent: dict, cut: dict, scale: dict | None = None) -> None:
 def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model: Model | None = None,
         *, keep: Callable[[str], bool] = lambda region: False,
         lamp_scale: Callable[[str], float] = lambda region: 1.0,
-        room_key: Callable[[str], str] | None = None, art=None) -> dict[str, Any]:
+        room_key: Callable[[str], str] | None = None, art=None,
+        groups: list[LampGroup] = ()) -> dict[str, Any]:
     """Light a finished map: the sun's shadows, its lights, its floor bands, its wall bands, then every shade.
 
     A sector whose region `keep` names keeps the light its own module gave
@@ -1118,6 +1285,10 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
             bias[piece] = bias[source]
     report["shades"] = shade(disk, model, kept, bias=bias)
     report["shades"]["movers_evened"] = even_movers(disk, kept)
+    if groups:
+        for piece, source in parent.items():
+            region_of.setdefault(piece, region_of.get(source, ""))
+        report["switched"] = switch_lamps(disk, model, list(groups), region_of, kept)
     report["kept"] = len(kept)
     report["parent"] = dict(sorted(parent.items()))
     report.update(sectors=len(disk.sectors), walls=len(disk.walls), sprites=len(disk.sprites))
