@@ -209,6 +209,7 @@ def analyze_progression(
     from .understanding import _compact_scale
 
     extra_open: dict[int, set[int]] = defaultdict(set)
+    spatial: list[Any] = []                              # one analysis of the map for every snapshot of it
 
     def open_sector(sector_id: int) -> None:
         for neighbor in gated[sector_id]:
@@ -216,7 +217,10 @@ def analyze_progression(
             extra_open[neighbor].add(sector_id)
 
     def snapshot(label: str, event: dict[str, Any] | None = None) -> dict[str, Any]:
-        space = inspect_space(build, reached) if reached else None
+        if reached and not spatial:
+            from .spatial import analyze_spatial
+            spatial.append(analyze_spatial(build))
+        space = inspect_space(build, reached, analysis=spatial[0]) if reached else None
         return {
             "label": label,
             "event": None if event is None else {

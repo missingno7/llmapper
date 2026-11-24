@@ -183,6 +183,33 @@ def _special_xy_overlap_reason(
     return None
 
 
+def _box(loops):
+    points = [p for loop in loops for p in loop]
+    return (min(p[0] for p in points), min(p[1] for p in points), max(p[0] for p in points), max(p[1] for p in points)) if points else None
+
+
+def _boxes_apart(a, b) -> bool:
+    return a is None or b is None or a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1]
+
+
+def _meeting(segments):
+    """Each segment with the later ones it may have a relation with: boxes that meet, or no length (`classify_segment_pair`)."""
+    import numpy as np
+    if not segments:
+        return
+    flat = np.array([(*a, *b) for a, b in segments], dtype=np.int64)
+    x0, x1 = np.minimum(flat[:, 0], flat[:, 2]), np.maximum(flat[:, 0], flat[:, 2])
+    y0, y1 = np.minimum(flat[:, 1], flat[:, 3]), np.maximum(flat[:, 1], flat[:, 3])
+    none = (flat[:, 0] == flat[:, 2]) & (flat[:, 1] == flat[:, 3])
+    for left in range(len(segments)):
+        rest = slice(left + 1, None)
+        if none[left]:
+            yield left, range(left + 1, len(segments))
+            continue
+        meet = (x0[rest] <= x1[left]) & (x1[rest] >= x0[left]) & (y0[rest] <= y1[left]) & (y1[rest] >= y0[left]) | none[rest]
+        yield left, (np.flatnonzero(meet) + left + 1).tolist()
+
+
 def audit_geometry(
     source: DiskMap | LevelIR,
     *,
@@ -230,8 +257,8 @@ def audit_geometry(
             conflicts.append(conflict)
             summaries["zero_length_walls"].append(conflict.to_dict())
 
-    for left in range(len(level.walls)):
-        for right in range(left + 1, len(level.walls)):
+    for left, partners in _meeting(segments):
+        for right in partners:
             if owners[left] < 0 or owners[right] < 0:
                 continue
             if owners[left] == owners[right]:
@@ -377,9 +404,12 @@ def audit_geometry(
                 summaries["sub_body_wall_fragments"].append(conflict.to_dict())
                 break
 
+    boxes = [_box(sector_loops) for sector_loops in loops]
     footprint: list[dict[str, Any]] = []
     for left in range(len(level.sectors)):
         for right in range(left + 1, len(level.sectors)):
+            if _boxes_apart(boxes[left], boxes[right]):
+                continue                                   # disjoint, whatever else is asked of them
             if frozenset((left, right)) in apart:
                 continue
             relation = polygon_relation(loops[left], loops[right])

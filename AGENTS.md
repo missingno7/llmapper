@@ -58,12 +58,17 @@ module map and the limits fail a test when broken.
 
 ## Verifying
 
-```bash
-python -m unittest discover -s tests > work/suite.log 2>&1; grep -E "^(Ran|OK|FAILED)" work/suite.log
-```
+Run what can tell you something about the change you made, and no more:
 
-About five minutes; read the `Ran` and `OK` lines from the log, because a pipe
-hides the exit code. A single module is `python -m unittest tests.test_<name>`.
+| after | run | about |
+| --- | --- | --- |
+| an edit | `python -m tools.suite <words>` (test modules by name), or `--changed` | seconds |
+| a change to the city | several edits to ONE build, then frames and the place's tests | two minutes |
+| before a commit | `python -m tools.suite`: every module, a process each | 40 seconds |
+| a change to a reader | `python -m tools.reading_check` | minutes |
+
+`work/suite.log` holds what failed. A step that takes over a minute and is run often:
+`python -m tools.sample_run`, then make the same bytes cheaper.
 
 When a change moves a sensor or a helper, run the miner that uses it before
 and after and compare the files byte for byte. When it touches the city, the
@@ -88,7 +93,7 @@ critique, and what is open. The build writes it; it is never edited.
 python projects/blood-city/level/status.py --place station   # one place and what is open on it
 python projects/blood-city/level/status.py --kind refused    # one kind of open item
 python projects/blood-city/level/status.py --wires           # the level's wiring (named in level/wires.py)
-python projects/blood-city/level/build_skeleton.py     # about a minute; prints every pass
+python projects/blood-city/level/build_skeleton.py     # two minutes; prints every pass
 python projects/blood-city/level/look.py --set <poses> -o <dir>   # frames, as the game shows it
 python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP
 python -m tools.critique prepare <slug> --poses <set> --kind <kind>

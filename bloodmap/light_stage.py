@@ -130,8 +130,9 @@ class Model:
 
 #: processes tracing at once
 WORKERS = max(1, min(24, (os.cpu_count() or 1) - 2))
-#: below this many samples the pool costs more than it saves
+#: below this many samples the pool costs more than it saves: to start it, and once it runs
 PARALLEL_FROM = 4000
+PARALLEL_ONCE_STARTED = 384
 #: samples per job
 CHUNK = 64
 
@@ -141,7 +142,7 @@ _STATE: dict[str, Any] = {}
 TUNABLES = ("LAMP_CORE", "LAMP_POWER", "LAMP_PIVOT", "LAMP_SURFACE", "LAMP_REACH", "SKY_RAYS", "GATHER_RAYS", "REFLECTANCE")
 
 
-def _start(disk_or_path, sun, lamps, cache_points, tunables=None) -> None:
+def _start(disk_or_path, sun, lamps, cache_points, tunables=None, scan=None) -> None:
     from .lightbomb import ScanIndex
 
     for name, value in (tunables or {}).items():
@@ -157,7 +158,7 @@ def _start(disk_or_path, sun, lamps, cache_points, tunables=None) -> None:
         cache = D.BounceCache([], D.Weights())
         cache.points = cache_points
     _STATE.clear()
-    _STATE.update(disk=disk, scan=ScanIndex(disk), dome=D._hemisphere(D.SKY_RAYS),
+    _STATE.update(disk=disk, scan=scan or ScanIndex(disk), dome=D._hemisphere(D.SKY_RAYS),
                   sphere=D._sphere(D.GATHER_RAYS), sun=sun, lamps=lamps, cache=cache)
 
 
@@ -186,26 +187,51 @@ def _full_job(samples: list) -> list:
     return out
 
 
+#: the map a worker read last
+_KEPT: dict[str, Any] = {}
+
+
+def _scene(map_bytes, sun, lamps, cache_points, tunables) -> None:
+    """Set a worker up from what `_parallel` sends; the map it read last, with its index, is kept while it stays the same."""
+    import tempfile
+    if _KEPT.get("bytes") != map_bytes:
+        from .format import read_map
+        from .lightbomb import ScanIndex
+        with tempfile.TemporaryDirectory() as folder:
+            path = os.path.join(folder, "trace.MAP")
+            with open(path, "wb") as handle:
+                handle.write(map_bytes)
+            disk = read_map(path)
+        _KEPT.update(bytes=map_bytes, disk=disk, scan=ScanIndex(disk))
+    _start(_KEPT["disk"], sun, lamps, cache_points, tunables, _KEPT["scan"])
+
+
+def _run(_made, task: tuple) -> list:
+    job, chunk = task
+    return job(chunk)
+
+
 def _parallel(disk, sun, lamps, cache_points, job, samples: list) -> list:
     chunks = [samples[i:i + CHUNK] for i in range(0, len(samples), CHUNK)]
-    if WORKERS <= 1 or len(samples) < PARALLEL_FROM:
+    from . import workers as _workers
+    if WORKERS <= 1 or len(samples) < (PARALLEL_ONCE_STARTED if _workers.started() else PARALLEL_FROM):
         _start(disk, sun, lamps, cache_points)
         try:
             return [r for chunk in chunks for r in job(chunk)]
         finally:
             _STATE.clear()
     import tempfile
-    from concurrent.futures import ProcessPoolExecutor
 
     from .format import write_map
 
-    with tempfile.TemporaryDirectory() as tmp:
-        path = os.path.join(tmp, "trace.MAP")
+    with tempfile.TemporaryDirectory() as folder:
+        path = os.path.join(folder, "trace.MAP")
         write_map(disk, path)
-        tunables = {name: getattr(D, name) for name in TUNABLES}
-        with ProcessPoolExecutor(WORKERS, initializer=_start,
-                                 initargs=(path, sun, lamps, cache_points, tunables)) as pool:
-            return [r for part in pool.map(job, chunks) for r in part]
+        with open(path, "rb") as handle:
+            map_bytes = handle.read()
+    tunables = {name: getattr(D, name) for name in TUNABLES}
+    return [r for part in _workers.spread(_scene, (map_bytes, sun, lamps, cache_points, tunables), _run,
+                                          ((job, chunk) for chunk in chunks)) for r in part]
 
 
 # --- 1. the lights --------------------------------------------------------------

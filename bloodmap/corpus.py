@@ -479,6 +479,10 @@ def _named_map_index(
     return index
 
 
+#: what `corpus_map_path` found in each root
+_NAMED: dict[tuple[Path, tuple[str, ...]], dict[str, Path]] = {}
+
+
 def corpus_map_path(
     name: str,
     *,
@@ -506,8 +510,12 @@ def corpus_map_path(
     wanted = Path(str(name)).name.upper()
     if not wanted.endswith(".MAP"):
         wanted += ".MAP"
-    index = _named_map_index(root_path, tuple(populations))
-    found = index.get(wanted)
+    # the listing is kept, and made again for a name it lacks or a file that has gone
+    key = (root_path, tuple(populations))
+    found = _NAMED.get(key, {}).get(wanted)
+    if found is None or not found.is_file():
+        _NAMED[key] = _named_map_index(root_path, tuple(populations))
+        found = _NAMED[key].get(wanted)
     if found is not None:
         return found
     if missing_ok:

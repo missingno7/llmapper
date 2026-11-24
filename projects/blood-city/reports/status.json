@@ -2,8 +2,8 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "3b1fe4230e86aac3926e11a8be85d1deff252e862e2a069c84abaf94fa0540cb",
-  "map_sha256": "7408dbd01c1bb2ccd5c721ccc51c6f1e1e35427900fbb86f21a1f2520135b721",
+  "manifest_sha256": "eb3d995d8460ee00b2273ee2be7f07f2d18b034864b6b31c6d27dca44d27e80b",
+  "map_sha256": "d394bc91ff83042581464c403a10f889f1f7199ce86b749558eb9a519d2fb925",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
@@ -160,33 +160,33 @@
   },
   {
    "name": "compile",
-   "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
+   "says": "the layout becomes sectors, walls and sprites",
    "at": "projects/blood-city/level/build_skeleton.py:1983"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:2002"
+   "at": "projects/blood-city/level/build_skeleton.py:2006"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2151"
+   "at": "projects/blood-city/level/build_skeleton.py:2155"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2228"
+   "at": "projects/blood-city/level/build_skeleton.py:2232"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2288"
+   "at": "projects/blood-city/level/build_skeleton.py:2292"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2487"
+   "at": "projects/blood-city/level/build_skeleton.py:2491"
   }
  ],
  "finish": {

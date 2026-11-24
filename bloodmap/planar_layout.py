@@ -820,6 +820,8 @@ class PlanarLayout:
         #: Declarative illumination, resolved after geometry and sprite seating.
         #: LightBomb only runs when this list is non-empty.
         self.light_sources: list[LightSourceSpec] = []
+        #: the map is to be lit as a scene when it is finished (`light_stage`): the light bomb is not cast
+        self.lit_when_finished = False
         self.player_start: PlayerStartSpec | None = None
         self.special_pairs: list[tuple[str, str, str]] = []
         #: Cross-layer overlaps `bloodmap.layers` approved during `compile`,
@@ -2085,8 +2087,8 @@ class PlanarLayout:
         illuminated here.  An explicitly stated surface remains untouched,
         which makes the escape hatch local and inspectable.
         """
-        if not self.light_sources:
-            return {"enabled": False, "sources": 0}
+        if not self.light_sources or self.lit_when_finished:
+            return {"enabled": False, "sources": len(self.light_sources)}
 
         lights: list[tuple[int, int, int, int] | tuple[int, int, int, int, float]] = []
         source_ids: list[str] = []

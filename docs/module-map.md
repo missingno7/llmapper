@@ -162,6 +162,7 @@ What a surface is made of, where its texture sits, and how it is lit.
 | `lettering` | Writing on the walls, the way Blood writes on them. |
 | `lighting` | Light a room the way Blood lights one: wall by wall, from its lamps. |
 | `lightbomb` | XMapEdit's light bomb: shade from rays that actually travel through the map. |
+| `workers` | One pool of processes kept for a whole run, and a scene each of them reads once from a file: for tracing that has nothing to share but its scene. |
 | `light_field` | Light as a field, and the shadow as one of its iso-lines. |
 | `sunlight` | One light over a map's open sky: outdoor faces shaded as the campaign shades them, the sun's reach traced with the engine's hitscan, and the measure of it. |
 | `overlays` | Surface overlays: patches on a region's floor, cut into the finished map after everything else has run. |
@@ -353,6 +354,8 @@ Lints and comparisons of one map against the engine or the campaign.
 
 | Module | What it is |
 | --- | --- |
+| `suite` | The whole test suite, a process a module, as many at once as the machine has room for: the same tests, in a tenth of the time. |
+| `sample_run` | Run a script and sample where its main thread is, fifty times a second: where a slow build spends its time. |
 | `sprite_fit` | Does every sprite fit where it was put? |
 | `light_profile` | The outdoor light of maps, against the campaign's town maps: corners, facing within a building, tone, ground. |
 | `light_sources` | How Blood's maps show things that give light: tiles drawn brighter than the room around them, as sprites or surfaces, and how the room is shaded around them. |

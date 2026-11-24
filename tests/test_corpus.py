@@ -13,6 +13,25 @@ from tests.helpers import campaign_directory, corpus_map, named_corpus_maps
 MAPS = Path(os.environ.get("BLOODMAP_CORPUS", Path(__file__).resolve().parents[1] / "maps" / "blood"))
 
 
+def what_is_wrong(path: Path) -> list[str]:
+    """What a map fails of: its version, its bytes through either model, its validity, what is observed of it."""
+    original = path.read_bytes()
+    disk = read_map(path)
+    level = disk.to_level_ir()
+    observation, focused = level.observe(), level.observe([level.player_start["sector"]])
+    return [name for name, holds in (
+        (f"version 0x{disk.version:04x}", disk.version >> 8 in {6, 7}),
+        ("bytes", encode_map(disk) == original),
+        ("bytes through the level", encode_map(level.to_disk_map()) == original),
+        ("bytes through the build", encode_map(disk.to_build_ir().to_native_disk_map()) == original),
+        ("parsed again", parse_map(encode_map(disk)) == disk),
+        ("no error", not [d for d in validate_map(disk) if d.severity == "error"]),
+        ("sectors observed", len(observation["sector_index"]) == len(disk.sectors)),
+        ("walls observed", observation["level"]["counts"]["walls"] == len(disk.walls)),
+        ("the start observed", focused["selection"]["sector_ids"] == [level.player_start["sector"]]),
+    ) if not holds]
+
+
 class CorpusTests(unittest.TestCase):
     def test_every_available_map_is_supported_and_byte_exact_through_both_models(self):
         """Every named-population Blood MAP must parse as a supported major (6 or 7).
@@ -28,23 +47,12 @@ class CorpusTests(unittest.TestCase):
         paths = named_corpus_maps()
         if not paths:
             self.skipTest("no local Blood MAP corpus; set BLOODMAP_CORPUS to enable")
-        for path in paths:
-            with self.subTest(path=path.name):
-                original = path.read_bytes()
-                disk = read_map(path)
-                level = disk.to_level_ir()
-                self.assertIn(disk.version >> 8, {6, 7}, f"{path.name} version 0x{disk.version:04x}")
-                self.assertEqual(encode_map(disk), original)
-                self.assertEqual(encode_map(level.to_disk_map()), original)
-                self.assertEqual(encode_map(disk.to_build_ir().to_native_disk_map()), original)
-                reparsed = parse_map(encode_map(disk))
-                self.assertEqual(reparsed, disk)
-                self.assertFalse([d for d in validate_map(disk) if d.severity == "error"])
-                observation = level.observe()
-                self.assertEqual(len(observation["sector_index"]), len(disk.sectors))
-                self.assertEqual(observation["level"]["counts"]["walls"], len(disk.walls))
-                focused = level.observe([level.player_start["sector"]])
-                self.assertEqual(focused["selection"]["sector_ids"], [level.player_start["sector"]])
+        # each map is a check of its own, so they are shared between processes
+        from concurrent.futures import ProcessPoolExecutor
+        with ProcessPoolExecutor(max(2, min(12, (os.cpu_count() or 4) // 2))) as pool:
+            for path, wrong in zip(paths, pool.map(what_is_wrong, paths)):
+                with self.subTest(path=path.name):
+                    self.assertEqual(wrong, [])
 
     def test_campaign_episode_maps_are_v7(self):
         paths = [item.path for item in list_corpus_maps(MAPS, population="blood-campaign")]

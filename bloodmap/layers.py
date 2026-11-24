@@ -548,6 +548,58 @@ def can_see(layout: Any, region_a: str, region_b: str,
     return True
 
 
+class _Sight:
+    """`can_see` for many pairs of one layout: the samples and the answers kept, the walls tested all at once."""
+
+    def __init__(self, layout: Any, walls: list[tuple[Point, Point]]):
+        import numpy as np
+        self.np, self.layout = np, layout
+        self.samples: dict[str, Point | None] = {}
+        self.clear: dict[frozenset[str], bool] = {}
+        self.walls = self._array(walls)
+
+    def _array(self, segments):
+        flat = self.np.array([(*a, *b) for a, b in segments]).reshape(-1, 4)
+        if flat.dtype.kind != "f":
+            flat = flat.astype(self.np.int64)
+        # a wall of no length crosses nothing (`classify_segment_pair`)
+        return flat[(flat[:, 0] != flat[:, 2]) | (flat[:, 1] != flat[:, 3])]
+
+    def sample(self, region_id: str) -> Point | None:
+        if region_id not in self.samples:
+            self.samples[region_id] = interior_sample(self.layout, region_id)
+        return self.samples[region_id]
+
+    def _crossed(self, p: Point, q: Point, walls) -> bool:
+        """Whether a wall properly crosses the line: `planar_geom.proper_crossing`, in its own integers."""
+        if p == q or not len(walls):
+            return False
+        np = self.np
+        cx, cy, dx, dy = walls[:, 0], walls[:, 1], walls[:, 2], walls[:, 3]
+        lx, ly = q[0] - p[0], q[1] - p[1]
+        oa = np.sign(lx * (cy - p[1]) - ly * (cx - p[0]))
+        ob = np.sign(lx * (dy - p[1]) - ly * (dx - p[0]))
+        apart = oa * ob < 0
+        if not apart.any():
+            return False
+        cx, cy, dx, dy = cx[apart], cy[apart], dx[apart], dy[apart]
+        ex, ey = dx - cx, dy - cy
+        oc = np.sign(ex * (p[1] - cy) - ey * (p[0] - cx))
+        od = np.sign(ex * (q[1] - cy) - ey * (q[0] - cx))
+        return bool((oc * od < 0).any())
+
+    def __call__(self, region_a: str, region_b: str, cut=()) -> bool:
+        if region_a == region_b:
+            return True
+        left, right = self.sample(region_a), self.sample(region_b)
+        if left is None or right is None:
+            return False
+        pair = frozenset((region_a, region_b))
+        if pair not in self.clear:
+            self.clear[pair] = not self._crossed(left, right, self.walls)
+        return self.clear[pair] and not (cut and self._crossed(left, right, self._array(cut)))
+
+
 def drop_between(layout: Any, from_region: str, to_region: str) -> Drop:
     """How far is this drop, and what does Blood charge for it?
 
@@ -1117,7 +1169,17 @@ def view_cuts(layout: Any) -> set[tuple[str, str]]:
     return out
 
 
-def openings_into(layout: Any, region_id: str) -> list[tuple[str, tuple[Point, Point]]]:
+def _joins_by_region(layout: Any) -> dict[str, list[frozenset[str]]]:
+    """`declared_joins`, by the region asked about, in the order the whole set gives them."""
+    out: dict[str, list[frozenset[str]]] = {}
+    for pair in layout.declared_joins():
+        for region_id in pair:
+            out.setdefault(region_id, []).append(pair)
+    return out
+
+
+def openings_into(layout: Any, region_id: str, *, joins: dict | None = None,
+                  cuts: set | None = None) -> list[tuple[str, tuple[Point, Point]]]:
     """The apertures a sightline has to come through to reach this region.
 
     One per declared join, as the segment the two regions share. A region with
@@ -1125,10 +1187,8 @@ def openings_into(layout: Any, region_id: str) -> list[tuple[str, tuple[Point, P
     """
     out: list[tuple[str, tuple[Point, Point]]] = []
     region = layout.regions[region_id]
-    cuts = view_cuts(layout)
-    for pair in layout.declared_joins():
-        if region_id not in pair:
-            continue
+    cuts = view_cuts(layout) if cuts is None else cuts
+    for pair in (_joins_by_region(layout) if joins is None else joins).get(region_id, ()):
         other_id = next(iter(pair - {region_id}), None)
         other = layout.regions.get(other_id) if other_id else None
         if other is None:
@@ -1154,8 +1214,8 @@ def openings_into(layout: Any, region_id: str) -> list[tuple[str, tuple[Point, P
     return out
 
 
-def sight_reach(layout: Any, region_id: str,
-                depth: int = SIGHT_DEPTH) -> dict[str, tuple[Point, Point]]:
+def sight_reach(layout: Any, region_id: str, depth: int = SIGHT_DEPTH, *,
+                openings: Any = None, sample: Any = None) -> dict[str, tuple[Point, Point]]:
     """Every region a sightline could reach from inside this one, and through what.
 
     A conservative portal walk. It prunes only where it can *prove* an aperture
@@ -1165,10 +1225,12 @@ def sight_reach(layout: Any, region_id: str,
     superset of what is really visible, so where two of these sets are disjoint,
     the two regions are genuinely never seen together.
     """
+    openings = openings or (lambda r: openings_into(layout, r))
+    sample = sample or (lambda r: interior_sample(layout, r))
     reached: dict[str, tuple[Point, Point]] = {}
     frontier: deque = deque()
     home = _band_of(layout, region_id)
-    for other_id, aperture in openings_into(layout, region_id):
+    for other_id, aperture in openings(region_id):
         band = _band_through(home, _band_of(layout, other_id))
         if band is None:
             continue
@@ -1179,8 +1241,8 @@ def sight_reach(layout: Any, region_id: str,
         current, aperture, band, came_from, hops = frontier.popleft()
         if hops >= depth:
             continue
-        behind = interior_sample(layout, came_from)
-        for other_id, next_aperture in openings_into(layout, current):
+        behind = sample(came_from)
+        for other_id, next_aperture in openings(current):
             if other_id in (region_id, came_from) or other_id in reached:
                 continue
             if behind is not None and _wholly_behind(aperture, next_aperture, behind):
@@ -1267,8 +1329,12 @@ def covisible(layout: Any, left_id: str, right_id: str,
     key = (len(layout.regions), len(layout.connections), int(depth))
     cached = getattr(layout, "_layer_sight_reach", None)
     if not cached or cached.get("key") != key:
+        from functools import lru_cache
+        joins, cuts = _joins_by_region(layout), view_cuts(layout)
+        openings = lru_cache(None)(lambda r: openings_into(layout, r, joins=joins, cuts=cuts))
+        sample = lru_cache(None)(lambda r: interior_sample(layout, r))
         reach = {
-            region_id: set(sight_reach(layout, region_id, depth))
+            region_id: set(sight_reach(layout, region_id, depth, openings=openings, sample=sample))
             for region_id in layout.regions
         }
         layout._layer_sight_reach = {"key": key, "reach": reach}
@@ -1646,6 +1712,7 @@ def _shared_sight_findings(layout: Any, found: list[Overlap],
     if not close:
         return out
     walls = solid_edges(layout)
+    sees = _Sight(layout, walls)
     # A one-way wall is a solid wall to anyone standing on the flagged side --
     # engine.c:3157 draws it from `over_picnum` and engine.c:3134 never collects
     # what is behind it -- so for that one vantage it occludes like masonry. It
@@ -1656,10 +1723,8 @@ def _shared_sight_findings(layout: Any, found: list[Overlap],
         for region_id in layout.regions:
             if region_id in (overlap.left, overlap.right):
                 continue
-            occluders = walls + cut_edges.get(region_id, [])
-            if not (can_see(layout, region_id, overlap.left, occluders=occluders)
-                    and can_see(layout, region_id, overlap.right,
-                                occluders=occluders)):
+            cut = cut_edges.get(region_id, ())
+            if not (sees(region_id, overlap.left, cut) and sees(region_id, overlap.right, cut)):
                 continue
             vantage = region_id
             if tally is not None:

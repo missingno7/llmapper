@@ -428,9 +428,12 @@ def inspect_space(
     sector_ids: Iterable[int] | None = None,
     *,
     corpus: dict[str, Any] | None = None,
+    analysis: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
+    """What a set of sectors is as a space. `analysis` is `analyze_spatial(build)`, for a caller that asks of one map often."""
     profile = player_profile(build.source_game)
-    analysis = analyze_spatial(build)
+    if analysis is None:
+        analysis = analyze_spatial(build)
     selected = sorted(set(range(len(build.sectors))) if sector_ids is None else {int(value) for value in sector_ids})
     invalid = [value for value in selected if not 0 <= value < len(build.sectors)]
     if invalid:
@@ -459,6 +462,20 @@ def inspect_space(
     boundary: list[dict[str, Any]] = []
     seen_internal: set[str] = set()
     seen_boundary: set[str] = set()
+    chosen = set(selected)
+    portals = _portal_records(analysis)
+    # the first record of each pair of sectors, as a search down the list finds it
+    of_pair: dict[frozenset[str], dict[str, Any]] = {}
+    for item in portals:
+        if len(item["sectors"]) == 2:
+            of_pair.setdefault(frozenset(item["sectors"]), item)
+
+    def portal_between(left: int, right: int) -> dict[str, Any] | None:
+        a, b = _ref("sector", left), _ref("sector", right)
+        if a != b:
+            return of_pair.get(frozenset((a, b)))
+        return next((item for item in portals if a in item["sectors"]), None)
+
     perimeter = 0.0
     for sector_id in selected:
         fields = build.sectors[sector_id]["fields"]
@@ -470,14 +487,8 @@ def inspect_space(
             end = build.walls[point2]["fields"]
             length = hypot(int(end["x"]) - int(wall_fields["x"]), int(end["y"]) - int(wall_fields["y"]))
             next_sector = int(wall_fields["next_sector"])
-            if next_sector in selected:
-                record = next(
-                    (
-                        item for item in _portal_records(analysis)
-                        if _ref("sector", sector_id) in item["sectors"] and _ref("sector", next_sector) in item["sectors"]
-                    ),
-                    None,
-                )
+            if next_sector in chosen:
+                record = portal_between(sector_id, next_sector)
                 if record is not None and record["id"] not in seen_internal:
                     seen_internal.add(record["id"])
                     internal.append(record)
@@ -485,13 +496,7 @@ def inspect_space(
             perimeter += length
             if next_sector < 0:
                 continue
-            record = next(
-                (
-                    item for item in _portal_records(analysis)
-                    if _ref("sector", sector_id) in item["sectors"] and _ref("sector", next_sector) in item["sectors"]
-                ),
-                None,
-            )
+            record = portal_between(sector_id, next_sector)
             if record is None or record["id"] in seen_boundary:
                 continue
             seen_boundary.add(record["id"])

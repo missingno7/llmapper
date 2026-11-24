@@ -353,12 +353,30 @@ def _index_sectors(disk: Any, playable: frozenset[int]) -> tuple[dict, dict]:
     return loops, grid
 
 
+#: the boxes of loops already asked about, by the loop's own identity (a loop lives as long as its index)
+_BOXES: dict[int, tuple[Any, tuple[int, int, int, int]]] = {}
+
+
+def _box(loop: list) -> tuple[int, int, int, int]:
+    kept = _BOXES.get(id(loop))
+    if kept is None or kept[0] is not loop:
+        if len(_BOXES) > 100_000:
+            _BOXES.clear()
+        kept = (loop, (min(p[0] for p in loop), min(p[1] for p in loop), max(p[0] for p in loop), max(p[1] for p in loop)))
+        _BOXES[id(loop)] = kept
+    return kept[1]
+
+
 def _sector_at(point: tuple[int, int], loops: dict, grid: dict) -> int | None:
     """The smallest playable sector holding this point, or None."""
     found = []
-    for sector in grid.get((point[0] // _CELL, point[1] // _CELL), ()):
+    px, py = point
+    for sector in grid.get((px // _CELL, py // _CELL), ()):
         sector_loop = loops[sector]
         if not sector_loop:
+            continue
+        x0, y0, x1, y1 = _box(sector_loop[0])
+        if not (x0 < px < x1 and y0 < py < y1):          # strictly: on the edge is not inside
             continue
         if point_in_loop(point, sector_loop[0]) <= 0:
             continue
@@ -375,11 +393,56 @@ def _sector_at(point: tuple[int, int], loops: dict, grid: dict) -> int | None:
     return min(found)[1]
 
 
+def _sectors_at(points: list[tuple[int, int]], loops: dict) -> list[int | None]:
+    """`_sector_at` for many points: each sector asked about all the points in its box at once, in the same integers."""
+    import numpy as np
+    if not points:
+        return []
+    at = np.array(points, dtype=np.int64)
+    order = np.argsort(at[:, 0], kind="stable")
+    xs, ys = at[order, 0], at[order, 1]
+    best = [None] * len(points)
+    best_area: list[int | None] = [None] * len(points)
+
+    def state(px, py, loop):
+        """1 inside, 0 outside, -1 on the edge (`point_in_loop`)."""
+        inside, edge = np.zeros(len(px), bool), np.zeros(len(px), bool)
+        for (x1, y1), (x2, y2) in zip(loop, loop[1:] + loop[:1]):
+            dx, dy, rx, ry = x2 - x1, y2 - y1, px - x1, py - y1
+            cross = ry * dx - rx * dy
+            edge |= ((cross == 0) & (px >= min(x1, x2)) & (px <= max(x1, x2)) & (py >= min(y1, y2)) & (py <= max(y1, y2)))
+            if dy:
+                over = (y1 > py) != (y2 > py)
+                inside ^= over & ((cross > 0) if dy > 0 else (cross < 0))
+        return np.where(edge, -1, inside.astype(np.int8))
+
+    for sector, sector_loops in loops.items():
+        if not sector_loops:
+            continue
+        outline = [tuple(p) for p in sector_loops[0]]
+        x0, y0, x1, y1 = _box(sector_loops[0])
+        lo, hi = np.searchsorted(xs, x0, "right"), np.searchsorted(xs, x1, "left")
+        near = np.flatnonzero((ys[lo:hi] > y0) & (ys[lo:hi] < y1)) + lo
+        if not len(near):
+            continue
+        near = near[state(xs[near], ys[near], outline) == 1]
+        for hole in sector_loops[1:]:
+            if len(near):
+                near = near[state(xs[near], ys[near], [tuple(p) for p in hole]) != 1]
+        if not len(near):
+            continue
+        area = abs(sum(a[0] * b[1] - b[0] * a[1] for a, b in zip(outline, outline[1:] + outline[:1])))
+        for k in order[near].tolist():
+            if best_area[k] is None or (area, sector) < (best_area[k], best[k]):
+                best_area[k], best[k] = area, sector
+    return best
+
+
 def observe_wall_thickness(name: str, disk: Any) -> list[dict[str, Any]]:
     playable = design_sectors(disk)
     if not playable:
         return []
-    loops, grid = _index_sectors(disk, playable)
+    loops, _grid = _index_sectors(disk, playable)
 
     owner: dict[int, int] = {}
     for sector in playable:
@@ -399,6 +462,8 @@ def observe_wall_thickness(name: str, disk: Any) -> list[dict[str, Any]]:
         return bottom - top >= COEXIST_HEIGHT
 
     out = []
+    # every point that may be asked about, in two goes: which side of each wall is its own, then the rays the other way
+    solid, probes = [], []
     for wall_id, wall in enumerate(disk.walls):
         fields = wall.fields
         if int(fields["next_sector"]) >= 0:
@@ -417,27 +482,32 @@ def observe_wall_thickness(name: str, disk: Any) -> list[dict[str, Any]]:
         nx, ny = (by - ay) / length, -(bx - ax) / length
         midx, midy = (ax + bx) / 2.0, (ay + by) / 2.0
         probe = (int(round(midx + nx * PROBE_STEP)), int(round(midy + ny * PROBE_STEP)))
-        if _sector_at(probe, loops, grid) == mine:
+        solid.append((wall_id, mine, ax, ay, bx, by, nx, ny))
+        probes.append(probe)
+    rays = []
+    for (wall_id, mine, ax, ay, bx, by, nx, ny), found in zip(solid, _sectors_at(probes, loops)):
+        if found == mine:
             nx, ny = -nx, -ny
-
         for fraction in PROBE_SAMPLES:
             px = ax + (bx - ax) * fraction
             py = ay + (by - ay) * fraction
-            hit = None
-            for distance in range(PROBE_STEP, PROBE_REACH + 1, PROBE_STEP):
-                point = (int(round(px + nx * distance)), int(round(py + ny * distance)))
-                found = _sector_at(point, loops, grid)
-                if found is not None and found != mine and coexist(mine, found):
-                    hit = (distance, found)
-                    break
-            if hit is None:
-                continue
-            out.append({
-                "map": name,
-                "wall": wall_id,
-                "sector": mine,
-                "other": hit[1],
-                "thickness": hit[0],
-                "thickness_player_widths": round(hit[0] / PLAYER_WIDTH, 3),
-            })
+            rays.append((wall_id, mine, [(int(round(px + nx * distance)), int(round(py + ny * distance)))
+                                         for distance in range(PROBE_STEP, PROBE_REACH + 1, PROBE_STEP)]))
+    answers = iter(_sectors_at([point for _w, _m, points in rays for point in points], loops))
+    for wall_id, mine, points in rays:
+        hit = None
+        for distance, found in zip(range(PROBE_STEP, PROBE_REACH + 1, PROBE_STEP), [next(answers) for _ in points]):
+            if found is not None and found != mine and coexist(mine, found):
+                hit = (distance, found)
+                break
+        if hit is None:
+            continue
+        out.append({
+            "map": name,
+            "wall": wall_id,
+            "sector": mine,
+            "other": hit[1],
+            "thickness": hit[0],
+            "thickness_player_widths": round(hit[0] / PLAYER_WIDTH, 3),
+        })
     return out

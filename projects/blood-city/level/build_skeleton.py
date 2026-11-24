@@ -1981,7 +1981,11 @@ def main() -> int:
           len(ctx["manifest"]["flat_dropped"]))
 
     STAGE("compile",
-          "the layout becomes sectors, walls and sprites; the light bomb runs")
+          "the layout becomes sectors, walls and sprites")
+    # The light bomb is retired here (the owner, 2026-11-24): the light stage
+    # writes the shades at the end, and of the 734 walls the bomb still
+    # decided all but 21 were openings with nothing drawn on them.
+    layout.lit_when_finished = LIGHTING == "model"
     _idle = _wires.close()
     if _idle:
         print("wires in the plan that nothing declared an end of:", _idle)
