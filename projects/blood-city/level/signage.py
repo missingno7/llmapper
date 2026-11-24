@@ -78,10 +78,6 @@ SIGNS = [
     # --- the Arcade.  DukCity names roughly ten uses per map on its walls;
     # Gravesend had five venues in the whole city, which is the gap that
     # reading Duke's signage exposed.  Each unit says what it is.
-    ("apothecary", "mall:unit_b", "north", "APOTHECARY", "fascia", SIGN_HEIGHT_PH),
-    ("ironmonger", "mall:unit_c", "north", "IRONMONGER", "banner", SIGN_HEIGHT_PH),
-    ("bookseller", "mall:unit_e", "south", "BOOKS", "fascia", SIGN_HEIGHT_PH),
-    ("tobacco", "mall:unit_f", "south", "TOBACCO", "fascia", SIGN_HEIGHT_PH),
     ("mallservice", "mall:service", "east", "STAFF ONLY", "department", NOTICE_HEIGHT_PH),
     # --- the sewer: the words that tell you where you are -----------------
     ("outfall", "sewer:pump_room", "north", "OUTFALL", "breach", NOTICE_HEIGHT_PH),

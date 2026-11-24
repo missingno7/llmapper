@@ -228,6 +228,18 @@
     "E3M8:266"
    ],
    "date": "2026-11-24"
+  },
+  "arcade": {
+   "want": "a Victorian shopping arcade, half closed: one thing that makes it an arcade and not a corridor; shops that differ; floors at different heights",
+   "seeds": [
+    "E4M9:97!",
+    "E4M9:103!",
+    "E4M9:66!",
+    "E6M1:47!",
+    "E2M4:613!",
+    "TEDE1M5:384!"
+   ],
+   "date": "2026-11-24"
   }
  }
 }

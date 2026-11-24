@@ -27,6 +27,7 @@ WIRE_PROFILES = {
     "theatre:prize": "curtain",
     "church:breach": "blast",
     "arcade:cache": "blast",
+    "key:eye": "chain_lift",
     "pump:presses": "ceiling_press",
     "station:car-door": "metal_z_door",
     "station:gate": "chain_lift",

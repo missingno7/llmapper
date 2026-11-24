@@ -249,7 +249,6 @@ POSE_SETS = {
         "crates": (18.6, 58.4, 20.6, 58.4, LEVEL, "the crates on the ship's deck", 1024),
         "window_in": (8.0, 44.0, 14.0, 42.5, LEVEL, "the hall's display windows from inside"),
         "window_side": (7.0, 43.0, 7.0, 40.0, LEVEL, "the hall's side gallery from inside"),
-        "mall_niche": (45.0, 45.0, 45.0, 41.0, LEVEL, "a shop unit's back wall"),
         "flank_east": (44.0, 55.0, 52.0, 59.0, LEVEL, "the building over the east headland"),
         "flank_west": (12.0, 55.0, 4.0, 59.0, LEVEL, "the building over the west headland"),
         "back_door": (7.6, 52.6, 7.0, 50.0, LEVEL, "the market hall's back door"),
@@ -285,9 +284,6 @@ POSE_SETS = {
     #: the owner, 2026-11-18: "In the shops shelves aren't sometimes aligned
     #: with textures ... pawn shop could be rethinked a bit"
     "shelves": {
-        "unit_b_close": (45.0, 43.0, 45.0, 41.0, LEVEL, "the apothecary's shelf, square on"),
-        "unit_c_close": (48.0, 43.0, 48.0, 41.0, LEVEL, "the ironmonger's shelf, square on"),
-        "unit_e_close": (45.0, 47.0, 45.0, 49.0, LEVEL, "the bookseller's shelf, square on"),
         "saloon_shelf": (7.6, 10.9, 10.2, 9.4, LEVEL, "along the bar to the east wall"),
         "pawn_west": (31.0, 4.9, 27.2, 4.9, LEVEL, "the pawn shop, to its west wall"),
         "pawn_east": (28.5, 4.9, 32.5, 4.9, LEVEL, "the pawn shop, to its east wall"),
@@ -495,12 +491,25 @@ POSE_SETS = {
         "sewer_sign": (38.5, 15.0, 38.5, 12.2, LEVEL, "OUTFALL in the pump chamber"),
     },
     "mall": {
-        "concourse": (42.0, 46.0, 48.0, 46.0, LEVEL, "down the arcade concourse"),
-        "concourse_up": (42.0, 46.0, 46.5, 46.0, UP, "the concourse height"),
-        "shopfront": (44.4, 45.6, 44.4, 44.2, LEVEL, "unit A behind its glass"),
-        "unit_in": (46.5, 43.5, 46.5, 42.3, LEVEL, "inside a unit, over its counter"),
-        "service_door": (50.0, 46.1, 51.6, 46.1, LEVEL, "the keyed service door and its placard"),
-        "entry": (38.3, 46.1, 40.4, 46.1, LEVEL, "the arcade entrance from the street"),
+        "entry": (38.3, 45.0, 40.4, 45.0, LEVEL, "the arcade entrance from the street"),
+        "in_at_the_door": (39.8, 45.0, 46.0, 45.0, LEVEL, "in at the street door, down the hall to the clock"),
+        "over_the_rail": (41.55, 44.6, 47.5, 44.4, DOWN, "over the gallery's rail into the court"),
+        "gallery": (40.2, 46.4, 45.0, 47.2, LEVEL, "along the gallery to where it breaks off"),
+        "gunshop": (41.0, 45.6, 41.6, 48.0, LEVEL, "the gun shop's shutter from the gallery"),
+        "escalator": (41.4, 45.6, 46.0, 45.2, LEVEL, "at the head of the escalator"),
+        "gallery_end": (43.0, 47.2, 47.0, 47.0, LEVEL, "where the gallery breaks off, and the key beyond"),
+        "guns_in": (41.5, 48.2, 42.6, 49.2, LEVEL, "in the gun shop"),
+        "bookshop": (40.9, 44.9, 40.5, 42.0, LEVEL, "the bookseller's front, lit"),
+        "books_in": (40.1, 42.5, 41.3, 41.2, LEVEL, "in the bookseller's"),
+        "court_west": (47.9, 44.0, 43.0, 45.4, LEVEL, "the court, back to the escalator and the gallery", 32768),
+        "court_east": (44.3, 43.6, 48.5, 45.0, LEVEL, "the court, the basin and the landing over it", 32768),
+        "draper_front": (46.6, 45.9, 45.0, 43.0, LEVEL, "the draper's front across the court", 32768),
+        "draper_in": (44.75, 42.5, 43.8, 41.0, LEVEL, "in the draper's", 32768),
+        "span": (44.4, 44.6, 46.6, 47.2, LEVEL, "the fallen span, from the escalator's foot", 32768),
+        "from_landing": (49.4, 44.2, 42.0, 45.4, LEVEL, "back from the landing: the fight's view"),
+        "lantern": (46.25, 46.0, 46.25, 44.4, UP, "up into the lantern", 32768),
+        "landing": (47.2, 46.9, 50.4, 45.0, LEVEL, "up the span to the key and the clock", 16000),
+        "service_door": (49.0, 45.0, 51.6, 45.0, LEVEL, "the keyed service door and its placard"),
     },
     "station": {
         "station_door": (54.5, 6.5, 52.8, 6.5, LEVEL, "the pumping station door on the spur"),
@@ -713,10 +722,6 @@ POSE_SETS = {
                       "over its east windows"),
         "hall_stock_band": (8.0, 44.0, 8.0, 49.2, UP,
                             "the same, toward the stockroom opening"),
-        "mall_north": (42.4, 46.4, 42.4, 44.5, LEVEL,
-                       "in the arcade, square on a unit's window"),
-        "mall_rake": (40.4, 46.0, 42.6, 44.5, LEVEL,
-                      "the same at a rake along the concourse"),
     },
     #: Where the long views end (survey finding 2: "every vista ends in
     #: black").  Each main street looked along toward the city's edge, from
@@ -743,27 +748,17 @@ POSE_SETS = {
     },
     #: Inside the pawnbroker's, toward the back of the shop where the pledge
     #: room is (2026-11-18: "more complex interiors").
-    #: What the goods stand on (experiments/fixtures). An arcade unit is seen
-    #: from the concourse, over its counter, so that is where these stand.
+    #: What the goods stand on (experiments/fixtures).
     "fixtures": {
         "saloon_in": (9.4, 12.4, 6.6, 9.8, LEVEL, "the saloon, over the tables to the bar"),
         "saloon_counter": (7.0, 11.0, 6.5, 9.6, LEVEL, "at the bar"),
         "saloon_shelf": (7.6, 10.9, 10.2, 9.4, LEVEL, "along the bar to the east wall"),
-        "unit_b": (45.0, 44.3, 45.0, 41.0, LEVEL, "the apothecary from the concourse"),
-        "unit_c": (48.0, 44.3, 48.0, 41.0, LEVEL, "the ironmonger from the concourse"),
-        "unit_e": (45.0, 45.7, 45.0, 49.0, LEVEL, "the bookseller from the concourse"),
-        "unit_f": (48.0, 45.7, 48.0, 49.0, LEVEL, "the grocer from the concourse"),
-        "unit_b_rake": (45.6, 43.3, 44.6, 41.0, LEVEL, "the apothecary, close and at a rake"),
         "pawn_front": (33.4, 5.1, 32.3, 5.1, LEVEL, "control: the pawn shop off the avenue"),
         "saloon_door": (6.6, 16.2, 6.6, 14.6, LEVEL, "control: the saloon door"),
     },
     #: Does everything fit where it was put (experiments/sprite-fit)?
     "fit": {
         "saloon_in": (9.4, 12.4, 6.6, 9.8, LEVEL, "the saloon, over the tables"),
-        "unit_a": (42.7, 44.3, 41.8, 41.0, LEVEL, "the draper"),
-        "unit_c": (48.0, 44.3, 48.0, 41.0, LEVEL, "the ironmonger"),
-        "unit_d": (42.7, 45.7, 41.8, 49.0, LEVEL, "the clockmaker"),
-        "unit_e": (45.0, 45.7, 45.0, 49.0, LEVEL, "the bookseller"),
         "pawn_west": (31.0, 4.9, 27.2, 4.9, LEVEL, "the pawn shop, to its west wall"),
         "pawn_window": (30.0, 5.4, 29.2, 3.5, LEVEL, "the pawn shop's display from inside"),
         "row": (22.5, 17.0, 30.0, 16.4, LEVEL, "Theatre Row, east"),

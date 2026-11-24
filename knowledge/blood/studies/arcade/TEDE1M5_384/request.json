@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/TEDE1M5_384/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-arcade/knowledge/blood/studies/arcade/TEDE1M5_384",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 18560,
+   "y": 46720,
+   "z": 48224,
+   "angle": 1907,
+   "horiz": 100,
+   "sector": 384,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 22656,
+   "y": 48256,
+   "z": 48224,
+   "angle": 1336,
+   "horiz": 100,
+   "sector": 384,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 20352,
+   "y": 48000,
+   "z": 48224,
+   "angle": 1602,
+   "horiz": 100,
+   "sector": 384,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 19328,
+   "y": 44928,
+   "z": 48224,
+   "angle": 149,
+   "horiz": 100,
+   "sector": 384,
+   "screenshot": true
+  }
+ ]
+}

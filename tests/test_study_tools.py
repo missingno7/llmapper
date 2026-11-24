@@ -90,9 +90,9 @@ class StudyTests(unittest.TestCase):
         self.assertEqual(sheet["places"]["St Gallow's crypt"]["study"],
                          "crypt")
         #: honest about the rest: the others were built before the rule
-        self.assertIn("arcade concourse", sheet["unstudied"])
+        self.assertIn("pump machine hall", sheet["unstudied"])
         #: the four studied the same day name their study
-        for name, slug in (("harbour", "harbour"), ("saloon", "saloon"),
+        for name, slug in (("harbour", "harbour"), ("saloon", "saloon"), ("arcade concourse", "arcade"),
                            ("St Gallow's nave", "church"),
                            ("Aldermack auditorium", "aldermack-rebuild")):
             self.assertEqual(sheet["places"][name]["study"], slug)

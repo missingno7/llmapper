@@ -75,7 +75,7 @@ class GameplayTests(unittest.TestCase):
             (x,) = [x for _i, f, x in self.sprites if 100 <= f["type"] <= 105 and x.get("tx_id") == self.wires.channel(f"key:{name}")]
             self.assertTrue(x["trigger_pickup"] and x["trigger_once"])
             woken = [x["data_1"] for _i, f, x in self.on(f"key:{name}") if f["type"] == 18]
-            self.assertEqual(sorted(woken), sorted(w for w, _x, _y in row[4]))
+            self.assertEqual(sorted(woken), sorted(w for w, *_at in row[4]))
 
     def test_the_dagger_lies_behind_the_rose(self):
         import cabal_rite as R
