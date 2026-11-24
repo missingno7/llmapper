@@ -65,6 +65,7 @@ FLOW = {
     # "the rest of the water is going the other direction than the waterfall
     # would suggest"); it ran north into the ring before the chamber sank
     "stockyard_drain": (512, 60, True),
+    "stockyard_head": (512, 60, True),
     # the sampling chamber, from the fall and the pipe to its east culverts
     "sampling": (0, 24, False),
     # out of the ring under the plaza: the outfall south, the basin west
@@ -96,8 +97,11 @@ BRANCHES = [
      "the south-east drain, north into the ring's corner"),
     ("se_spur", 53.0, 34.5, 56.0, 36.5, "se_drain", "east", "west", "ring",
      "the south-east spur under the market road's north pavement, to its manhole"),
-    ("stockyard_drain", 48.75, 34.0, 50.75, 55.75, "s_channel", "south", "north", "ring",
-     "the slaughterhouse race: the ring's overflow running south past the carcass rack to the fall"),
+    ("stockyard_head", 48.75, 34.0, 50.75, 39.5, "s_channel", "south", "north", "ring",
+     "the stockyard drain's head: the ring's overflow running south to the bleeding floor"),
+    # the bleeding floor lies between them (`stockyard_floor`)
+    ("stockyard_drain", 48.75, 44.5, 50.75, 55.75, None, None, None, "ring",
+     "the slaughterhouse race: the blood of the bleeding floor running south to the fall"),
 ]
 SOUTH = BRANCHES
 #: Graves Brook is older than the ring and looks it: the crypt's rubble
@@ -108,6 +112,7 @@ BRANCH_MATERIAL = {
     "graves_brook": Material(wall=110, floor=1120, ceiling=253, opening=110,
                              note="Graves Brook: rubble culvert, older than the ring"),
     "stockyard_drain": STOCKYARD_WET,
+    "stockyard_head": STOCKYARD_WET,
 }
 #: A manhole's landing and its passage run fast toward the ring and carry
 #: whoever fell in onto it.
@@ -394,16 +399,26 @@ LAIR_ALCOVES = [
     ("brood_west", 7.0, 13.0, 8.5, 15.0, "west", 512, 22528,
      [(0.35, 0.55, 46), (0.6, 0.35, 30), (0.72, 0.72, 38)]),
     ("brood_nest", 10.75, 9.0, 13.25, 11.0, "north", 512, 22528,
-     [(0.3, 0.45, 40), (0.55, 0.3, 46), (0.75, 0.55, 30), (0.45, 0.75, 24)]),
+     [(0.14, 0.4, 42), (0.87, 0.35, 46), (0.17, 0.75, 30), (0.86, 0.75, 36)]),
     ("brood_east", 16.0, 13.0, 17.5, 15.0, "east", 512, 22528,
      [(0.55, 0.3, 44), (0.78, 0.62, 28)]),
 ]
-#: a rough stone pillar in the hall's middle, hung with silk: round 1's
-#: comparison reader, "solid stone masses that block the view ... so the
-#: room cannot be seen at once"; its use reader could not tell one view of
-#: the hall from another. (plan units, wound as a hole is)
-LAIR_PILLAR = [(11.95, 13.6), (12.55, 13.6), (12.75, 13.8), (12.75, 14.4), (12.55, 14.6),
-               (11.95, 14.6), (11.75, 14.4), (11.75, 13.8)]
+#: The owner's brief, 2026-11-25: "flat, dark, no levels, eggs unclear ... a
+#: sunk pit under the mother, one shaft of light on the key". The pillar that
+#: stood in the middle is gone; the floor goes down there in two steps to a pit
+#: and the roof goes up over it to where the mother hangs, so the whole room is
+#: seen at once and across one thing. (plan units, wound as an outline is)
+LAIR_LIP = [(11.2, 12.4), (12.7, 12.25), (13.8, 13.0), (13.95, 14.6), (13.1, 15.5), (11.6, 15.55), (10.45, 14.8), (10.3, 13.3)]
+LAIR_PIT = [(11.5, 13.1), (12.6, 12.95), (13.2, 13.8), (13.1, 14.6), (12.3, 15.0), (11.4, 14.8), (11.1, 14.0)]
+LAIR_PIT_STEP = 4096
+#: the roof over the lip and over the pit (the street's floors reach down to 10,240 there)
+LAIR_LIP_TOP, LAIR_PIT_TOP = 24576, 18432
+#: the stone the key lies on in the north nest, under the shaft of an old
+#: street drain: the only light in the cellars that nobody carried in
+LAIR_STONE = (11.55, 9.7, 12.45, 10.5)
+LAIR_STONE_RISE, LAIR_SHAFT_TOP = 4608, 18432
+LAIR_LAYER = "weavers_cellars"
+LAIR_PIT_KEY = "region:gravesend/sewer/lair/pit"
 #: the passage up from the brook: (x0, y0, x1, y1), its clear height, under
 #: the walk's vault at the wall so a lintel shows
 LAIR_PASSAGE = (11.25, 17.0, 12.25, 18.5)
@@ -454,20 +469,6 @@ HALL_JOINS = [("west_quay", "south", "circle_quay", "north")]
 #: The outfall's own channel, carried on across the gallery's south walk.
 HALL_OUTFALL = (32.5, 33.5)
 
-# The shaft is west of the dry quay and gallery walk. Its two east openings
-# are offset along the shaft, with solid wall between them. The upper lobby
-# turns at a raised sill before opening onto the shaft.
-HALL_LIFT_SHAFT = (17.5, 41.25, 19.0, 45.0)
-HALL_LIFT_UPPER_JAMB = 19.1875
-HALL_LIFT_UPPER_MOUTH = (41.75, 42.5)
-HALL_LIFT_UPPER = [
-    (HALL_LIFT_UPPER_JAMB, 41.5), (19.75, 41.5), (19.75, 42.5), (20, 42.5),
-    (20, 43), (19.75, 43), (19.75, 43.25), (HALL_LIFT_UPPER_JAMB, 43.25),
-    (HALL_LIFT_UPPER_JAMB, HALL_LIFT_UPPER_MOUTH[1]), (19, HALL_LIFT_UPPER_MOUTH[1]),
-    (19, HALL_LIFT_UPPER_MOUTH[0]), (HALL_LIFT_UPPER_JAMB, HALL_LIFT_UPPER_MOUTH[0]),
-]
-HALL_LIFT_LOWER = (19.0, 43.5, 20.0, 44.75)
-HALL_LIFT_WIRE = "sewer:settling-hall-lift"
 TROLLEY_WIRE = "sewer:stockyard-trolley"
 TROLLEY_LAYER = "stockyard_sampling"
 #: The owner, after playing it: "that whole room has too low ceiling. Rails
@@ -492,17 +493,15 @@ BRANCH_DRY = {
     "stockyard_drain": Material(wall=296, floor=291, ceiling=1030, opening=296,
                                 note="the stockyard's blood-stained tiled walks"),
 }
+BRANCH_DRY["stockyard_head"] = BRANCH_DRY["stockyard_drain"]
 
 # E1M8's pipe and River Ride, and the candle shelves in E1M5's chapel.
-STOCKYARD_RACK = Material(wall=296, floor=291, ceiling=255, opening=296,
-                          note="the tiled carcass rack beside the intake")
 SHRINE_PIPE = Material(wall=194, floor=438, ceiling=194, opening=194,
                        note="the old pipe mouth off the tiled walk")
 SHRINE_STONE = Material(wall=406, floor=253, ceiling=286, opening=405,
                         note="the shrine's worked stone and temple trim")
 # Rectangles in plan units. Floors rise in two steps to the offering.
 STOCKYARD_ROOMS = [
-    ("stockyard_rack", (47.25, 51.75, 48.75, 54.25), STOCKYARD_RACK, 0, WALK_CLEAR, "interior"),
     ("rat_king_pipe", (50.75, 46.375, 52.0, 47.125), SHRINE_PIPE, 0, 18432, "gateway"),
     ("rat_king_shrine", (52.0, 45.0, 55.25, 48.75), SHRINE_STONE, 0, SEWER_CHAMBER_CLEAR, "secret"),
     ("rat_king_step", (55.25, 45.625, 55.625, 48.125), SHRINE_STONE, 3072, SEWER_CHAMBER_CLEAR, "interior"),
@@ -530,9 +529,8 @@ CULVERT_CLEAR, CULVERT_MOUTH = 8192, 128
 #: the owner's "sewer grate" (502) as E4M6 hangs it on a two-sided wall (3275:
 #: masked, blocking, bottom-aligned, hitscan)
 CULVERT_GRATE = {"over_picnum": 502, "cstat": 1 | 4 | 16 | 64}
-#: Blood enters the race at the carcass rack (its mouth is y 51.75 to 54.25);
-#: upstream of it the water is the ring's own.
-RACE_BLOOD_FROM = 52.0
+#: the two lengths of the stockyard drain, above and below the bleeding floor
+STOCKYARD = frozenset({"stockyard_head", "stockyard_drain"})
 
 #: A channel's water falling down a drop into a lower room. The owner,
 #: 2026-11-22: "you will have stairs down and waterfall between them ...
@@ -953,7 +951,7 @@ def edge(rooms: dict, leg: str, face: str, at: float | None = None):
 
 
 def hall(sewer, rooms: dict) -> dict:
-    """Build the quays, the gallery's weir and the service lift, and have `settling_hall` fill between them."""
+    """Build the quays and the gallery's weir, have `settling_hall` fill between them and `toshers_den` open off the west."""
     from dataclasses import replace
     from bloodmap.slope import SlopeSpec
 
@@ -1023,104 +1021,13 @@ def hall(sewer, rooms: dict) -> dict:
             {"west": rooms["west_quay"].region_id, "south": room.region_id})
 
     rooms["circle_quay"].raw("the settling hall: three vaulted tanks, the falls and the stair beside them", fill)
-    _hall_service_lift(part, ledge, rooms["west_quay"])
+    import toshers_den
+    rooms["west_quay"].raw("the Toshers' Den, off the west quay",
+                           lambda layout, quay: toshers_den.build(layout, quay.region_id))
     import cabal_rite
     rooms["circle_quay"].raw("the Cabal's storm chamber, broken open through the quay's south wall",
                              cabal_rite.build)
     return rooms
-
-
-def _hall_service_lift(part, gallery, quay) -> None:
-    """Join the dry walk and quay through a fixed shaft with a moving deck."""
-    from bloodmap import mechanism, motion, wiring
-    from bloodmap.player_space import PLAYER_PROFILES
-    from l3_foundry import _attested
-    import citytree
-    import wires
-
-    body = PLAYER_PROFILES["blood"]
-    high_z, low_z = (room.effective_style()["floor_z"] for room in (gallery, quay))
-    ceiling_z = SEWER_FLOOR - WALK_CLEAR
-    shaft_id = f"region:{part.path()}/service_lift"
-    sx0, sy0, sx1, sy1 = (round(v * PU) for v in HALL_LIFT_SHAFT)
-    uy0, uy1 = (round(v * PU) for v in HALL_LIFT_UPPER_MOUTH)
-    upper_jamb = round(HALL_LIFT_UPPER_JAMB * PU)
-    lx0, ly0, lx1, ly1 = (round(v * PU) for v in HALL_LIFT_LOWER)
-
-    upper = part.room(
-        "lift_gallery", [(round(x * PU), round(y * PU)) for x, y in HALL_LIFT_UPPER],
-        role="gateway", faces={"gallery": 3}, intent={"kind": "furnished"},
-        note="the lift's upper landing: a return wall and a raised sill at the shaft")
-    upper.surfaces(layer=gallery.effective_style()["layer"],
-                   **SEWER.style_kwargs(floor_z=high_z - 2048,
-                                        clear_height=22528, floor_shade=24))
-    lower = part.rect_room(
-        "lift_quay", origin=(lx0, ly0), size=(lx1 - lx0, ly1 - ly0),
-        role="gateway", intent={"kind": "furnished"},
-        note="the lift's lower landing: a dry loading bay off the west quay")
-    lower.surfaces(layer=HALL_LAYER, **SEWER.style_kwargs(
-        floor_z=low_z, clear_height=SEWER_CLEAR, floor_shade=24))
-    lamp_at = (0.47, 0.45)
-    for landing in (upper, lower):
-        landing.light_source("work_light", local=lamp_at, height_player_heights=1.15)
-    citytree.join(upper, gallery, at_a="gallery", at_b="west",
-                  connection_id="connection:hall_lift_gallery_walk",
-                  min_opening=body.standing_height)
-    citytree.join(lower, quay, at_a="east", at_b="west",
-                  connection_id="connection:hall_lift_west_quay",
-                  min_opening=body.standing_height)
-
-    wire = wires.wire(HALL_LIFT_WIRE)
-    upper_call = "sewer:hall_lift_upper_call"
-    lower_call = "sewer:hall_lift_lower_call"
-    rider = "sewer:hall_lift_rider"
-    # A momentary OneWay reports its press, then silently resets. Both
-    # buttons address the same receiver with explicit destination commands.
-    wire.when(wiring.placement(upper_call), "push", command=motion.CMD_ON, wait_time=1)
-    wire.when(wiring.placement(lower_call), "push", command=motion.CMD_OFF, wait_time=1)
-    wire.when(wiring.placement(rider), "push", command=motion.CMD_TOGGLE, off=True)
-    wire.then(wiring.region(shaft_id))
-
-    def furnish(layout, _room):
-        mechanism.lift(
-            layout, "settling hall service lift", footprint=(sx0, sy0, sx1, sy1),
-            region=shaft_id, low_z=low_z, high_z=high_z, ceiling_z=ceiling_z,
-            channel=wire.channel, route="remote", busy_up=24, busy_down=24,
-            layer=HALL_LAYER, wall_picnum=499, floor_picnum=209, ceiling_picnum=438,
-            wall_shade=26, floor_shade=24, ceiling_shade=28)
-        # The city's type-600 door pass would otherwise turn the deck into a door.
-        LATE_TYPES[shaft_id] = layout.regions[shaft_id].type
-        layout.regions[shaft_id].type = 0
-
-        for landing, end, y0, y1 in ((upper, "upper", uy0, uy1),
-                                     (lower, "lower", ly0, ly1)):
-            layout.add_connection(
-                f"connection:hall_lift_{end}_shaft", landing.region_id, shaft_id,
-                a1=(sx1, y1), a2=(sx1, y0), min_width=body.body_width,
-                min_opening=body.standing_height)
-
-        call = _attested("E1M4", 21, 1046)
-        drive = _attested("E1M2", 20, 1046)
-        lamp = _attested("E3M4", 0, 501)
-        for placement, landing, wall in (
-            (upper_call, upper, ((upper_jamb, round(43.25 * PU)), (upper_jamb, uy1))),
-            (lower_call, lower, ((lx0, ly0), (lx1, ly0))),
-        ):
-            layout.place_on_wall(
-                placement, landing.region_id, a1=wall[0], a2=wall[1],
-                height_player_heights=body.eye_height / body.standing_height,
-                shade=-12, behavior={**call["behavior"], "data_2": 0}, **call["fields"])
-            layout.place_on_ceiling(
-                f"sewer:hall_lift_{landing.node_id}_light", landing.region_id,
-                local=lamp_at,
-                **{**lamp["fields"], "x_repeat": 30, "y_repeat": 30, "shade": -16})
-        layout.place_on_wall(
-            rider, shaft_id, a1=(sx0, sy1), a2=(sx0, sy0),
-            height_player_heights=body.eye_height / body.standing_height,
-            shade=-12, behavior=drive["behavior"],
-            **{**drive["fields"], "cstat": drive["fields"]["cstat"] | mechanism.CARRY_WITH})
-
-    upper.raw("MACHINERY-LIFT: two dry landings, two calls and a deck switch", furnish)
 
 
 #: region id -> sector type, set by the build once the doors are framed
@@ -1166,11 +1073,47 @@ def secret_rooms(sewer, rooms: dict) -> dict:
     return rooms
 
 
-def spider_lair(sewer, rooms: dict) -> dict:
-    """The Weaver's Cellars: the hall, its brood alcoves and the passage up from the brook."""
+def lair_at(layout, rooms: dict, x: float, y: float):
+    """The lair's region under a point (world units), and its floor and ceiling."""
+    from shapely import Point, Polygon
+    for name in ("pit", "lip", "stone"):
+        region = layout.regions[f"{LAIR_PIT_KEY}:{name}"]
+        if Polygon(region.outer, region.holes).contains(Point(x, y)):
+            return region
+    return layout.regions[rooms["lair_hall"].region_id]
+
+
+def _lair_pit(layout, hall_room, nest) -> None:
+    """The pit under the raised roof, and the key's stone under its shaft."""
+    from bloodmap import arrangement as A
+
+    scale = lambda ring: [(round(x * PU), round(y * PU)) for x, y in ring]
+    x0, y0, x1, y1 = LAIR_STONE
+    place = A.Arrangement().add("lip", scale(LAIR_LIP)).add("pit", scale(LAIR_PIT))
+    place.add("stone", scale([(x0, y0), (x1, y0), (x1, y1), (x0, y1)]))
+    cells = place.resolve()
+    shades = {"stone": (2, 8, 10)}
+    levels = {"lip": (SEWER_FLOOR + LAIR_PIT_STEP, LAIR_LIP_TOP), "pit": (SEWER_FLOOR + 2 * LAIR_PIT_STEP, LAIR_PIT_TOP),
+              "stone": (SEWER_FLOOR - LAIR_STONE_RISE, LAIR_SHAFT_TOP)}
+    material = LAIR_MATERIAL["hall"]
+    regions = A.lay(layout, LAIR_PIT_KEY, cells, lambda name: dict(
+        floor_z=levels[name][0], ceiling_z=levels[name][1], wall_picnum=material.wall,
+        floor_picnum=material.ceiling if name == "stone" else material.floor, ceiling_picnum=material.ceiling, 
+        **dict(zip(("floor_shade", "wall_shade", "ceiling_shade"), shades.get(name, (40, 24, 28)))), layer=LAIR_LAYER, role="interior", declared_zero_exit=True, intent={"kind": "furnished"}))
+    for name, a, b in A.rim(cells):
+        host = nest if name == "stone" else hall_room
+        layout.add_connection(f"connection:sewer_lair_{name}_{a[0]}_{a[1]}", host.region_id, regions[name],
+                              a1=b, a2=a, min_width=1, min_opening=0)
+
+
+def spider_lair(city, sewer, rooms: dict) -> dict:
+    """The Weaver's Cellars: the hall and its pit, its brood alcoves and the passage up from the brook."""
     import citytree
 
-    part = sewer.assembly(LAIR_LAYER_PART, note="the Weaver's Cellars: a spider lair under the old quarter")
+    city.declare_layer(LAIR_LAYER, ceiling_z=LAIR_SHAFT_TOP, floor_z=SEWER_FLOOR + 2 * LAIR_PIT_STEP,
+                       note="the Weaver's Cellars: deeper in the middle than the sewer, and a roof that goes up")
+
+    part = sewer.assembly(LAIR_LAYER_PART, style=Style(layer=LAIR_LAYER), note="the Weaver's Cellars: a spider lair under the old quarter")
     ox = int(min(p[0] for p in LAIR_HALL) * PU)
     oy = int(min(p[1] for p in LAIR_HALL) * PU)
     material = LAIR_MATERIAL["hall"]
@@ -1183,7 +1126,7 @@ def spider_lair(sewer, rooms: dict) -> dict:
         #: which stood a shovel in a nest (round 3 and 4's "dark rod")
         intent={"kind": "furnished"})
     hall_room.surfaces(**material.style_kwargs(floor_z=SEWER_FLOOR, clear_height=LAIR_CLEAR, floor_shade=40))
-    hall_room.carve([(int(x * PU) - ox, int(y * PU) - oy) for x, y in LAIR_PILLAR])
+    hall_room.carve([(round(x * PU) - ox, round(y * PU) - oy) for x, y in LAIR_LIP])
     rooms["lair_hall"] = hall_room
     material = LAIR_MATERIAL["alcove"]
     for name, x0, y0, x1, y1, face, rise, clear, _eggs in LAIR_ALCOVES:
@@ -1199,6 +1142,12 @@ def spider_lair(sewer, rooms: dict) -> dict:
         own = {"west": "east", "east": "west", "north": "south", "south": "north"}[face]
         citytree.join(made, hall_room, at_a=own, at_b=face,
                       connection_id=f"connection:sewer_lair_{name}")
+    nest = rooms["brood_nest"]
+    sx0, sy0, sx1, sy1 = (round(v * PU) for v in LAIR_STONE)
+    nx, ny = nest.frame.dx, nest.frame.dy
+    nest.carve([(sx0 - nx, sy0 - ny), (sx1 - nx, sy0 - ny), (sx1 - nx, sy1 - ny), (sx0 - nx, sy1 - ny)])
+    hall_room.raw("the pit under the mother, and the key's stone under its shaft",
+                  lambda layout, room: _lair_pit(layout, room, nest))
     material = LAIR_MATERIAL["passage"]
     wx0, wy0, wx1, wy1 = (int(v * PU) for v in LAIR_PASSAGE)
     passage = part.room(
@@ -1217,11 +1166,32 @@ def spider_lair(sewer, rooms: dict) -> dict:
     return rooms
 
 
+def bleeding_floor(city, rooms: dict) -> None:
+    """The hall between the two lengths of the stockyard drain (`stockyard_floor`)."""
+    import stockyard_floor as hall_of
+
+    city.declare_layer(hall_of.LAYER, ceiling_z=hall_of.CROWN, floor_z=hall_of.WATER,
+                       note="the bleeding floor: the stockyard drain opened into one vaulted room")
+    rects = {e["name"]: e["rect"] for e in plan_rooms()}
+
+    def lay(layout, _room):
+        strips = {}
+        for corridor, y, side in (("stockyard_head", hall_of.Y0, 3), ("stockyard_drain", hall_of.Y1, 1)):
+            for name in (corridor, f"{corridor}_walk_a", f"{corridor}_walk_b"):
+                rect = rects[name]
+                if rect[side] != y:
+                    raise ValueError(f"{name} does not end at the bleeding floor")
+                strips[y, rect[0], rect[2]] = rooms[name].region_id
+        hall_of.build(layout, strips)
+
+    rooms["stockyard_drain"].raw("the bleeding floor, between the drain's two lengths", lay)
+
+
 def stockyard_side_rooms(sewer, rooms: dict) -> None:
-    """Build the carcass rack and the counted shrine off the drain's walks."""
+    """Build the counted shrine off the drain's walk."""
     import citytree
 
-    part = sewer.assembly("stockyard", note="the slaughterhouse intake and the Rat King's Shrine")
+    part = sewer.assembly("stockyard", note="the Rat King's Shrine")
     for name, rect, material, rise, clear, role in STOCKYARD_ROOMS:
         x0, y0, x1, y1 = (int(v * PU) for v in rect)
         room = part.rect_room(
@@ -1235,7 +1205,6 @@ def stockyard_side_rooms(sewer, rooms: dict) -> None:
     walk = edge(rooms, "stockyard_drain", "east", 46.75)
     shrine = rooms["rat_king_shrine"]
     joins = [
-        ("stockyard_rack", "east", edge(rooms, "stockyard_drain", "west", 53.0), "west"),
         ("rat_king_pipe", "west", walk, "east"),
         ("rat_king_pipe", "east", shrine, "west"),
         ("rat_king_step", "west", shrine, "east"),
@@ -1369,7 +1338,7 @@ def expand(city, sewer, existing: dict) -> dict:
             behavior = {"amplitude": -4, "shade_frequency": 4}
             if entry.get("flow") in FLOW:
                 behavior.update(flow_behavior(*FLOW[entry["flow"]]))
-            if kind == "chamber" or entry.get("flow") == "stockyard_drain":
+            if kind == "chamber" or entry.get("flow") in STOCKYARD:
                 behavior["depth"] = WATER_DEPTH
         elif kind == "chamber":
             behavior = {"amplitude": -16, "shade_frequency": 9}
@@ -1385,7 +1354,7 @@ def expand(city, sewer, existing: dict) -> dict:
         made = parts[entry["part"]].room(
             name, [(0, 0), (wx1 - wx0, 0), (wx1 - wx0, wy1 - wy0), (0, wy1 - wy0)],
             role="secret" if name == "flooded" else ("gateway" if kind == "neck" else "interior"),
-            intent={"kind": "furnished"} if corridor == "stockyard_drain" else None,
+            intent={"kind": "furnished"} if corridor in STOCKYARD else None,
             faces=dict(COMPASS), frame=Frame(wx0, wy0), region_kwargs=region_kwargs, note=note)
         if name == "flooded":
             # SP's secret branch: `secret=True` emits the campaign's own
@@ -1509,7 +1478,7 @@ def expand(city, sewer, existing: dict) -> dict:
     rooms["brook_feeder"] = _brook_feeder(parts["ring"], rooms["graves_brook"])
     hall(sewer, rooms)
     secret_rooms(sewer, rooms)
-    spider_lair(sewer, rooms)
+    spider_lair(city, sewer, rooms)
     # the niches, into the outer wall of the walk piece they stand beside
     for entry in entries:
         if entry["kind"] != "niche":
@@ -1525,6 +1494,7 @@ def expand(city, sewer, existing: dict) -> dict:
         citytree.join(rooms[entry["name"]], target, at_a=inner, at_b=outer,
                       connection_id=f"connection:sewer_{entry['name']}")
     stockyard_side_rooms(sewer, rooms)
+    bleeding_floor(city, rooms)
     stockyard_trolley(city, sewer, rooms)
     return rooms
 
@@ -1884,44 +1854,48 @@ LAIR_THINGS = {
 }
 #: where in the hall (a share of its bounding box): the spiders on the
 #: ceiling, the victims hanging, the mother at the back
-LAIR_SPIDERS = [(0.25, 0.35), (0.45, 0.2), (0.7, 0.3), (0.8, 0.6), (0.35, 0.65), (0.6, 0.75)]
-LAIR_MOTHER = (0.35, 0.3)
+LAIR_SPIDERS = [(0.12, 0.42), (0.28, 0.1), (0.74, 0.09), (0.88, 0.42), (0.84, 0.74), (0.2, 0.8)]
+#: the mother hangs over the pit's middle on a thread, this far under its roof (a
+#: flipped spider is weightless until it wakes, `ai.cpp` 1649)
+LAIR_MOTHER = (0.49, 0.48)
+LAIR_MOTHER_DROP = 7168
+#: silk let down all round the raised roof's edge: (the pit's edge, its length's repeat)
+LAIR_CURTAIN = [(0, 40), (1, 64), (2, 48), (3, 30), (4, 56), (5, 36), (6, 60)]
+#: the great web across the north nest, with the light behind it: shot through, as the passage's is
+LAIR_GREAT_WEB = (78, 42)
+#: what the shaft's light looks like in the dusty air: a round glow (625) drawn tall and thin
+LAIR_BEAM = {"picnum": 625, "cstat": 2 | 128 | 512, "x_repeat": 30, "shade": 4}
 #: (where, what): three rounds of readers read E2M8's wrapped victim (1059)
 #: as a post, a column, a palm tree or a light fitting at every length; so
 #: one stays, short, and two are E1M2's chained skeletons (416 on 689), their
 #: chains run up into the ceiling (the owner: "it doesn't matter")
 #: (round 5: the silk sack "floats in mid-air" with no cord; and the
 #: skeleton by the way in crowded the first view, so it stands aside)
-LAIR_VICTIMS = [((0.3, 0.45), "chained"), ((0.68, 0.5), "chained"), ((0.2, 0.8), "chained")]
+LAIR_VICTIMS = [((0.1, 0.62), "chained"), ((0.9, 0.62), "chained")]
 #: a victim hangs about half the room: round 1's three readers saw E2M8's
 #: repeat (56, made for a room 2.4 bodies high) as columns to the floor
 LAIR_VICTIM_REPEAT = (44, 34)
-#: the torches (E2M1's 570, type 30): pools of light with dark between, on
-#: two opposite corners (round 1: "the whole place is one even murk")
-LAIR_TORCHES = [("northwest", 0.5), ("southeast", 0.5)]
+#: one torch (E2M1's 570, type 30), by the way in, where somebody came in with
+#: it; past it the dark, and the shaft's light behind the great web
+LAIR_TORCHES = [("south", 0.22)]
 #: the cobwebs over the nest's mouth, as the crypt's are (E1M1's: 417 on 1067)
 LAIR_MOUTH_WEB = {"type": 417, "picnum": 1067, "cstat": 146, "x_repeat": 48, "y_repeat": 48,
                   "status": 4, "shade": -28, "behavior": {"data_1": 6}}
 #: the cocoons' shade: pale against the silk, or they read as carvings in it
 LAIR_COCOON_SHADE = -12
-#: eggs laid against the pillar's faces, at its foot: round 2-4's comparison
-#: readers, "eggs set into the faces of a central pillar" (CHORROR's pillar
-#: of egg niches). (the pillar's edge, its repeat)
-LAIR_PILLAR_EGGS = [(0, 34), (2, 28), (4, 38), (6, 26)]
-#: torn silk at the mouths and on the pillar: E2M8's sheet runs its room's
-#: whole height (32,768 at repeat 64); here it is a ragged sheet two thirds
-#: of the wall, so it reads as silk and not as a grey slab
-LAIR_TORN_REPEAT = (48, 40)
+#: eggs in the pit and on its step, against the way down: (plan x, y, repeat)
+LAIR_PIT_EGGS = [(11.6, 13.4, 34), (12.5, 13.55, 42), (12.85, 14.1, 30), (11.5, 14.3, 40), (12.2, 14.6, 26),
+                 (13.45, 14.1, 34), (10.8, 13.6, 28)]
 #: web hanging along the hall's walls at the ceiling: (face, share along it)
 #: (the walls either side of an alcove's mouth wear its torn silk instead)
 LAIR_FRINGES = [("northwest", 0.3), ("northeast", 0.5), ("southwest", 0.5), ("southeast", 0.25),
-                ("south", 0.15), ("south", 0.85)]
+                ("south", 0.05), ("south", 0.85)]
 #: on the floor: E1M2's bones, and the find (a bundle of TNT, for the
 #: plague pit's crack)
-LAIR_BONES = [(0.2, 0.7), (0.75, 0.4), (0.4, 0.62), (0.62, 0.2), (0.85, 0.75), (0.3, 0.15)]
+LAIR_BONES = [(0.18, 0.74), (0.4, 0.52), (0.55, 0.62), (0.78, 0.82)]
 #: E1M2's bones (515) lie flat (cstat 32) and vanish into dark earth: round
 #: 2's readers found none. The skulls stand: E2M1 sprite 164, a pile of them
-LAIR_SKULLS = [(0.18, 0.62), (0.78, 0.3), (0.62, 0.82)]
+LAIR_SKULLS = [(0.16, 0.66), (0.5, 0.44), (0.64, 0.86)]
 #: in front of the eggs, by the nest's mouth, where a player steps in
 #: a box of TNT (63, the bigger pickup) on the hall's floor at the east
 #: nest's mouth: round 3's readers could not find the bundle inside it
@@ -1930,13 +1904,18 @@ LAIR_FIND = ("lair_hall", 63, (0.93, 0.5))
 #: "something worth taking in the nests ... so they are worth entering"):
 #: a life essence in the north nest, shells and a gasoline can at the sides
 #: (E2M8's lair gives gasoline). (nest, type, (share across, share deep))
-LAIR_NEST_FINDS = [("brood_nest", 109, (0.5, 0.85)), ("brood_west", 67, (0.5, 0.85)),
+LAIR_NEST_FINDS = [("brood_nest", 109, (0.12, 0.58)), ("brood_west", 67, (0.5, 0.85)),
                    ("brood_east", 79, (0.35, 0.85))]
 #: webs flat on the two corner walls that hold no torch, high, as the corpus
 #: hangs 91 of its webs on solid walls (`work/spider/webs.py`; cstat 465)
 LAIR_CORNER_WEBS = ["northeast", "southwest"]
 #: strands cascading inside each nest from its ceiling, at the back
 LAIR_NEST_STRANDS = (0.2, 0.8)
+
+
+def _lair_ceiling(room, x, y) -> int:
+    """The ceiling a thing of the lair hangs under: the pit's own, or the hall's."""
+    return getattr(room, "ceiling_z", None) or SEWER_FLOOR - LAIR_CLEAR
 
 
 def _lair_sprite(layout, pid, room, x, y, fields, spec, *, top=None, bottom=None, z=None, **more):
@@ -1951,26 +1930,23 @@ def _lair_sprite(layout, pid, room, x, y, fields, spec, *, top=None, bottom=None
                                 int(fields["cstat"]), 0)
         z = top - up if top is not None else bottom - down
     # the layout keeps an origin inside its room: the art may hang above it
-    z = max(z, SEWER_FLOOR - LAIR_CLEAR + 16)
+    z = max(z, _lair_ceiling(room, x, y) + 16)
     layout.add_sprite(pid, room.region_id, x=int(x), y=int(y), z=int(z), **fields,
                       behavior=dict(spec["behavior"]))
     return pid
 
 
 def dress_stockyard(layout, rooms) -> list[str]:
-    """Dress the intake and altar, and tint the running water all the way to the Main."""
+    """Dress the altar, and tint the race from the bleeding floor down."""
     from bloodmap.placement import drawn_extent
     from bloodmap.shade_table import _art
     from l3_foundry import _attested
 
-    # SPIDER1.PLU (7) draws tile 1120's greens in red-brown. The race is the
-    # ring's own water as far as the carcass rack, and blood from there down.
-    race = rooms["stockyard_drain"].region_id
-    xs, ys = zip(*layout.regions[race].outer)
-    top = round(RACE_BLOOD_FROM * PU)
-    layout.add_overlay("blood:stockyard_drain", race,
-                       [(min(xs), top), (max(xs), top), (max(xs), max(ys)), (min(xs), max(ys))],
-                       floor_pal=7)
+    # SPIDER1.PLU (7) draws tile 1120's greens in red-brown: blood below the
+    # bleeding floor, the manhole's landing in it among it
+    for name in ("stockyard_drain", "stockyard_landing"):
+        region = layout.regions[rooms[name].region_id]
+        layout.add_overlay(f"blood:{name}", region.region_id, region.outer, floor_pal=7)
 
     placed = []
 
@@ -1992,19 +1968,9 @@ def dress_stockyard(layout, rooms) -> list[str]:
         placed.append(layout.add_sprite(f"sewer:{name}", region.region_id, x=x, y=y, z=z,
                                         behavior=dict(spec["behavior"]), **fields))
 
-    # A stained outlet sits high on the south wall. The rack is off the
-    # walk so the hooks and bodies stay clear of the manhole's landing.
+    # A stained outlet sits high on the south wall.
     seat("stockyard_drain", "stockyard_outlet", ("E1M8", 0, 977), (49.75, 55.75 - 8 / PU),
          from_ceiling=5120, angle=1536, x_repeat=84, y_repeat=70, shade=-8)
-    seat("stockyard_rack", "stockyard_hook", ("E1M8", 417, 692), (47.875, 52.25),
-         from_ceiling=128, x_repeat=42, y_repeat=42)
-    # the rack bleeds across the walk into the race
-    seat("stockyard_drain_walk_a", "stockyard_bleed", ("E2M4", 0, 713), (49.0, 52.75),
-         x_repeat=40, y_repeat=40, cstat=32, shade=8)
-    for i, point in enumerate(((48.125, 53.0), (47.875, 53.75))):
-        seat("stockyard_rack", f"stockyard_carcass_{i}", ("E3M2", 416, 1351), point,
-             from_ceiling=256, x_repeat=48, y_repeat=42)
-
     candle = ("E1M5", 32, 938)
     seat("rat_king_pipe", "rat_king_clue", candle, (51.375, 46.4375),
          x_repeat=32, y_repeat=36, cstat=384, shade=-16)
@@ -2092,6 +2058,13 @@ def dress_lair(layout, rooms, attested) -> list[str]:
         mouth_top = floor - clear
         mouth = ([(wx0 + share * (wx1 - wx0), wy1) for share in (0.2, 0.5, 0.8)] if face == "north"
                  else [(wx1 if face == "west" else wx0, wy0 + share * (wy1 - wy0)) for share in (0.25, 0.75)])
+        if face == "north":
+            # the great web, across the whole mouth, the key's light behind it
+            x, y, angle = on_face(face, ((wx0 + wx1) / 2, wy1), 8)
+            placed.append(_lair_sprite(layout, "sewer:lair_great_web", hall_room, x, y,
+                                       dict(fields["web"], angle=angle, cstat=401, x_repeat=LAIR_GREAT_WEB[0], shade=-24,
+                                            y_repeat=LAIR_GREAT_WEB[1]), spec["web"], bottom=SEWER_FLOOR - 256))
+            mouth = []
         for k, point in enumerate(mouth):
             x, y, angle = on_face(face, point, 40)
             placed.append(_lair_sprite(layout, f"sewer:lair_{name}_mouthweb_{k}", hall_room, x, y,
@@ -2116,35 +2089,13 @@ def dress_lair(layout, rooms, attested) -> list[str]:
             placed.append(_lair_sprite(layout, f"sewer:lair_{name}_panel", hall_room, x, y,
                                        dict(panel["fields"], angle=angle, x_repeat=34, y_repeat=34),
                                        panel, bottom=mouth_top - band // 2 + 34 * 64 * 2))
-    # eggs at the pillar's foot, against its faces, pale in the dark
-    pillar = [(x * PU, y * PU) for x, y in LAIR_PILLAR]
-    pcx = sum(p[0] for p in pillar) / len(pillar)
-    pcy = sum(p[1] for p in pillar) / len(pillar)
-    for k, (edge_index, repeat) in enumerate(LAIR_PILLAR_EGGS):
-        (ax, ay), (bx, by) = pillar[edge_index], pillar[(edge_index + 1) % len(pillar)]
-        mx, my = (ax + bx) / 2, (ay + by) / 2
-        norm = math.hypot(mx - pcx, my - pcy)
-        half = 72 * repeat / 8                     # the egg's half width (72 wide)
-        ex, ey = mx + (mx - pcx) / norm * (half * 0.6), my + (my - pcy) / norm * (half * 0.6)
-        placed.append(_lair_sprite(layout, f"sewer:lair_pillar_egg_{k}", hall_room, ex, ey,
-                                   dict(fields["cocoon"], x_repeat=repeat, y_repeat=repeat,
-                                        shade=LAIR_COCOON_SHADE),
-                                   spec["cocoon"], bottom=SEWER_FLOOR - 128))
-    # (no silk on the pillar: round 2's comparison reader saw it "smeared")
-    for k, side in enumerate(()):
-        (ax, ay), (bx, by) = pillar[side], pillar[(side + 1) % len(pillar)]
-        length = math.hypot(bx - ax, by - ay)
-        cx, cy = sum(p[0] for p in pillar) / len(pillar), sum(p[1] for p in pillar) / len(pillar)
-        mx, my = (ax + bx) / 2, (ay + by) / 2
-        nx, ny = (mx - cx), (my - cy)
-        norm = math.hypot(nx, ny)
-        nx, ny = nx / norm, ny / norm
-        angle = int(round(math.atan2(ny, nx) / (2 * math.pi) * 2048)) % 2048
-        placed.append(_lair_sprite(layout, f"sewer:lair_pillar_silk_{k}", hall_room, mx + nx * 24,
-                                   my + ny * 24, dict(fields["torn"], angle=angle, x_repeat=36,
-                                                      y_repeat=LAIR_TORN_REPEAT[1]), spec["torn"],
-                                   bottom=SEWER_FLOOR - 512))
-    # the torches: E2M1's, on two opposite corners
+    # eggs in the pit, pale in its dark, and one or two up on its step
+    for k, (ex, ey, repeat) in enumerate(LAIR_PIT_EGGS):
+        where = lair_at(layout, rooms, ex * PU, ey * PU)
+        placed.append(_lair_sprite(layout, f"sewer:lair_pit_egg_{k}", where, ex * PU, ey * PU,
+                                   dict(fields["cocoon"], x_repeat=repeat, y_repeat=repeat, shade=LAIR_COCOON_SHADE),
+                                   spec["cocoon"], bottom=where.floor_z - 128))
+    # the torch: E2M1's
     torch = _attested("E2M1", 30, picnum=570)
     for k, (face, share) in enumerate(LAIR_TORCHES):
         index = LAIR_HALL_FACES[face]
@@ -2160,10 +2111,32 @@ def dress_lair(layout, rooms, attested) -> list[str]:
         placed.append(_lair_sprite(layout, f"sewer:lair_spider_{k}", hall_room, x, y, fields["spider"],
                                    spec["spider"], top=ceiling + 32))
     x, y = at(LAIR_MOTHER)
-    placed.append(_lair_sprite(layout, "sewer:lair_mother", hall_room, x, y, fields["mother"],
-                               spec["mother"], top=ceiling + 32))
+    pit = lair_at(layout, rooms, x, y)
+    under = LAIR_PIT_TOP + LAIR_MOTHER_DROP
+    thread = int(LAIR_MOTHER_DROP * 1.4) // 512
+    placed.append(_lair_sprite(layout, "sewer:lair_thread", pit, x, y, dict(fields["fringe"], y_repeat=thread, cstat=128),
+                               spec["fringe"], top=LAIR_PIT_TOP + 32))
+    placed.append(_lair_sprite(layout, "sewer:lair_mother", pit, x, y, dict(fields["mother"], shade=-24),
+                               spec["mother"], top=under))
     from caleb import spider_mother
-    spider_mother(layout, hall_room.region_id, placed[-1], int(x), int(y))
+    spider_mother(layout, pit.region_id, placed[-1], int(x), int(y))
+    # silk down from the raised roof's edge, all the way round, no two lengths alike
+    ring = [(px * PU, py * PU) for px, py in LAIR_PIT]
+    for k, repeat in LAIR_CURTAIN:
+        (ax, ay), (bx, by) = ring[k], ring[(k + 1) % len(ring)]
+        length = math.hypot(bx - ax, by - ay)
+        nx, ny = -(by - ay) / length, (bx - ax) / length
+        placed.append(_lair_sprite(
+            layout, f"sewer:lair_curtain_{k}", pit, (ax + bx) / 2 + nx * 40, (ay + by) / 2 + ny * 40,
+            dict(fields["fringe"], angle=int(round(math.atan2(ny, nx) / (2 * math.pi) * 2048)) % 2048, y_repeat=repeat),
+            spec["fringe"], top=LAIR_LIP_TOP + 32))
+    # the shaft over the key: a drain's round light at its top, and the beam it sends down
+    stone = layout.regions[f"{LAIR_PIT_KEY}:stone"]
+    x, y = (LAIR_STONE[0] + LAIR_STONE[2]) / 2 * PU, (LAIR_STONE[1] + LAIR_STONE[3]) / 2 * PU
+    placed.append(_lair_sprite(layout, "sewer:lair_shaft_light", stone, x, y, {
+        "picnum": 795, "cstat": 160, "x_repeat": 56, "y_repeat": 56, "shade": -128}, {"behavior": {}}, z=LAIR_SHAFT_TOP + 64))
+    placed.append(_lair_sprite(layout, "sewer:lair_beam", stone, x, y - 288, dict(
+        LAIR_BEAM, y_repeat=int((stone.floor_z - LAIR_SHAFT_TOP) / 4 / 64)), {"behavior": {}}, bottom=stone.floor_z - 64))
     # the dead: one wrapped, two on chains
     chained = _attested("E1M2", 416, picnum=689)
     for k, (local, kind) in enumerate(LAIR_VICTIMS):
@@ -2192,14 +2165,14 @@ def dress_lair(layout, rooms, attested) -> list[str]:
     # bones on the floor, and the find
     skulls = _attested("E2M1", 417, picnum=684)
     for k, local in enumerate(LAIR_SKULLS):
-        layout.place_on_floor(f"sewer:lair_skulls_{k}", hall_room.region_id,
-                              local=local, **skulls["fields"], behavior=dict(skulls["behavior"]))
-        placed.append(f"sewer:lair_skulls_{k}")
+        x, y = at(local)
+        where = lair_at(layout, rooms, x, y)
+        placed.append(_lair_sprite(layout, f"sewer:lair_skulls_{k}", where, x, y, skulls["fields"], skulls, bottom=where.floor_z - 16))
     bones = _attested("E1M2", 417, picnum=515)
     for k, local in enumerate(LAIR_BONES):
-        layout.place_on_floor(f"sewer:lair_bones_{k}", hall_room.region_id,
-                              local=local, **bones["fields"], behavior=dict(bones["behavior"]))
-        placed.append(f"sewer:lair_bones_{k}")
+        x, y = at(local)
+        where = lair_at(layout, rooms, x, y)
+        placed.append(_lair_sprite(layout, f"sewer:lair_bones_{k}", where, x, y, bones["fields"], bones, bottom=where.floor_z - 16))
     for name, type_id, (u, v) in LAIR_NEST_FINDS:
         found = attested(type_id)
         nest = next((r for r in LAIR_ALCOVES if r[0] == name), None)

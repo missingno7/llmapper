@@ -49,7 +49,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
     # through the passage, and the dark
     ("sewer/lair/", Rule("none", 0, 0)),
     ("stockyard_drain", Rule("panel", 501, 5632)),
-    ("stockyard_rack", Rule("panel", 501, 4096)),
+    ("stockyard_head", Rule("panel", 501, 5632)),
+    ("stockyard_floor", Rule("panel", 501, 2560)),
+    # the Toshers' Den: its own lantern and stove
+    ("toshers_den", Rule("none", 0, 0)),
     ("rat_king_", Rule("none", 0, 0)),
     ("track_coach:", Rule("none", 0, 0)),
     ("fallen_roof_wreck:", Rule("none", 0, 0)),
@@ -119,6 +122,8 @@ OWN_LIGHT: tuple[str, ...] = (
     # The deck's hole moves through the rail bed. Keep its lighting in
     # the authored sectors so the band cutter leaves the sweep clear.
     "sewer/sampling/trolley_track",
+    # the key's stone, full in the shaft's light
+    "lair/pit:stone",
     # E1M1's crypt, field for field (`l3_church`): dark (floor 34, ceiling
     # 28) and flickering; lit by the model its two torches made it shade 0
     "st_gallows/crypt",
@@ -127,6 +132,8 @@ OWN_LIGHT: tuple[str, ...] = (
 #: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    ("toshers_den", 2.2),
+    ("lair/pit:stone", 3.0),
     # six fires in one round room at full strength lit all of it alike, and
     # their death changed nothing (round 1's readers: "floodlit")
     ("settling_hall/rite:gullet", 1.0),
@@ -169,6 +176,9 @@ def room_key(region: str) -> str:
             return region[: region.index("rite:") + 4]
         return region[: region.index(marker) + len(marker) - 1]
     tail = region.rsplit("/", 1)[-1]
+    for hall in ("stockyard_floor:", "toshers_den/den:"):          # one room, of many cells
+        if hall in region:
+            return region[: region.index(hall) + len(hall) - 1]
     corridor = _CORRIDOR_OF.get(tail)
     if corridor is None:
         _CORRIDOR_OF.update({e["name"]: e["corridor"] for e in l3_sewer.plan() if e.get("corridor")})

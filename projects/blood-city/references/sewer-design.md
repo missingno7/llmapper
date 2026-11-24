@@ -102,12 +102,12 @@ room with its rectangle and kind).
   gallery's south walk in one line (the weir), drops over five falls of 8,192 and its east walk goes down beside them as
   a stair of ten steps under the corridor's own sloped roof. Beside it, three settling tanks (water at 106,496, barely
   moving) each lie in a vault whose ridge (32,768) and springing (40,960) are the corridor's, with piers in the water
-  along the walks between and a lamp on a chain over each bay; a quay down the west side (the service lift), and the
+  along the walks between and a lamp on a chain over each bay; a quay down the west side (the Toshers' Den opens off it), and the
   CIRCLE QUAY along the south, its roof rising to its back wall, which the Cabal has broken through
   into the old storm chamber (`cabal_rite.py`, `cabal-rite-design.md`). What the outfall's line ends on is the
   Cabal's skull between two fires, and the Tesla Cannon under it. The tanks, falls, stair and piers are one
-  `bloodmap.arrangement`; the quays are rooms of the tree, for the lift and the chamber. The drop from the gallery does no
-  harm (45,056); there is no way back up but the stair and the lift.
+  `bloodmap.arrangement`; the quays are rooms of the tree, for the den and the chamber. The drop from the gallery does no
+  harm (45,056); the stair beside the falls is the way back up.
 * **Two secret rooms off Graves Brook** (`l3_sewer.SECRET_ROOMS`, its own
   assembly `secrets`), both counted:
   OLD MOLLY'S NEST, through a crawl-height arch (14,336; crouching clears
@@ -309,9 +309,36 @@ room with its rectangle and kind).
   `work/water/settling-comparison.jpg`.
 * **Open:** look at the culvert arrival from the west manhole and how
   the outfall reads in motion during a Blood walk. E3M3's X-brace
-  pilasters (487) are a separate wall-texture split. The Toshers' Cache
-  is still to build. The blown seal has been observed with its sector
+  pilasters (487) are a separate wall-texture split. The blown seal has been observed with its sector
   opened by hand and still needs to be blown in-game.
+
+## The third pass: what was flat, what was cramped, and what was empty (2026-11-25)
+
+The owner, after playing: the service lift "has some flaws like little room on the upper floor around the button", and "We might need
+to consider reducing number of walls where it makes sense". Ten lines of intent, and what came of each:
+
+1. **The lift goes** (31 walls). The stair beside the falls is the way up; nothing replaces the lift as a way.
+2. **The Toshers' Den** (`toshers_den.py`, study `toshers-den`) stands in its rock, off the west quay, on the line of the walk between
+   tanks 2 and 3, so that its lantern is what you see at the walk's end. Timber after all the steel: E6M7:195's shoring, DWE2M5:292's
+   boxes and tools, a stove with a fire behind an oven door. Nobody in it: a doctor's bag, shells, a rest before the Cabal.
+3. **The Toshers' Cache** is E3M3:264's own secret: of three straw beds one stands two boxes high and its back is boarded up; pushed, it sinks and stays, and the
+   crawl its boxes hid is as high as a crouching body. A life seed and two Tesla charges, next door to the beast that needs them. The ninth secret.
+4. **The Weaver's Cellars** were one flat floor under one flat roof with a pillar in the way. The pillar is gone (its readers had asked
+   for something in the middle to look round; a pit does that and hides nothing). The floor goes down two steps to a pit of eggs, the roof goes up over
+   it to the mother on her thread (three bodies from her roof to the pit), silk let down all round the roof's edge.
+5. **One light**: an old drain's shaft (2.4 bodies of it) over the stone the key lies on, in the north nest, and the great web (1069, shot
+   through) across the nest's mouth in front of it. The two torches are one, by the way in. From the passage you see the key's light first.
+6. The lair is its own layer (`weavers_cellars`, 18,432 to 69,632), over nothing and under the street's 10,240.
+7. **The bleeding floor** (`stockyard_floor.py`): the drain's 37 metres of corridor open in the middle into a hall 12 m wide under a roof
+   that is the corridor's own section at the hall's scale (2.5 bodies at the crown). Blood comes down a gutter from the pipe, under five carcasses, and
+   takes the race over: green above, blood below. A dock a step up. The carcass rack (a cupboard off the walk) is gone: this is where it belonged.
+8. **A fight in it**: the butcher and two of his men, rats at the stains, a gill beast below; one in each pool of the sampling chamber,
+   and two more when the spirit armor is taken across the blood, so the trolley is the way back and not a toy.
+9. **The long corridors**: ten rows of `gameplay.SEWERS` -- two that wait under the south channel's water, hands in the west leg, a beast in the
+   east, rats, an axe zombie in the brook, two of the Cabal's men at the head of the outfall. `launch_skill` keeps a third of them for the hard game.
+10. **Walls**: see `reports/build-manifest.json` `light_stage`; 7,123 authored before this pass.
+
+Open: the great web and the bed are read from the MAP and from frames, not played; whether the bed is found unprompted is the owner's to say.
 
 ## The history, oldest first
 

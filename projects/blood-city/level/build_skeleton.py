@@ -1568,7 +1568,7 @@ def main() -> int:
         # cannot forget it.
         # The stash, flooded branch, arcade cache, Old Molly's Nest,
         # Plague Pit and Rat King's Shrine.
-        behavior=motion.secret_total(8))
+        behavior=motion.secret_total(sum(1 for r in layout.regions.values() if r.secret)))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
     #   908  -- E3M1 puts it in streets 154 times, but a type census shows
@@ -2256,6 +2256,8 @@ def main() -> int:
     print("the rite's rims put back:", cabal_rite.keep(compiled.level, compiled))
     import settling_hall
     print("the settling hall's stone put back:", settling_hall.keep(compiled.level, compiled))
+    import toshers_den
+    print("the den's timber put back:", toshers_den.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

@@ -13,7 +13,7 @@ whose ridge and springing are the corridor's (its walks' roofs slope 8,192 down
 from the crown). So the hall is seen from the outfall, over the falls, before
 it is entered, and the Cabal's mouth from the gallery.
 Built of `bloodmap.arrangement`, but for the two quays, which are rooms of the
-tree because the lift and the Cabal's chamber are joined to them.
+tree because the Toshers' Den and the Cabal's chamber are joined to them.
 """
 
 from __future__ import annotations
@@ -173,15 +173,20 @@ _PAINTED: list[tuple] = []
 
 def keep(disk, compiled) -> int:
     """Put back the piers, gables and risers the city's later passes took for openings and lintels."""
+    return put_back(disk, compiled, _PAINTED)
+
+
+def put_back(disk, compiled, painted: list) -> int:
+    """Set each (region, a, b, tile) again on the built walls; a fall's running water is left as it is."""
     from bloodmap.model import record_fields
     where = {}
-    for region in {r for r, *_rest in _PAINTED}:
+    for region in {r for r, *_rest in painted}:
         for wall in compiled.allocations[region].wall_ids:
             f = record_fields(disk.walls[wall])
             end = record_fields(disk.walls[int(f["point2"])])
             where[region, (f["x"], f["y"]), (end["x"], end["y"])] = f
     put = 0
-    for region, a, b, tile in _PAINTED:
+    for region, a, b, tile in painted:
         f = where.get((region, tuple(a), tuple(b))) or where.get((region, tuple(b), tuple(a)))
         if f is not None and f["picnum"] != tile and f["picnum"] != SEWAGE:
             f["picnum"] = tile

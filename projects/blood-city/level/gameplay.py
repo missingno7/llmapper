@@ -37,7 +37,8 @@ ITEMS = {41: (559, 48), 42: (558, 48), 43: (524, 48), 45: (539, 48), 46: (526, 4
          141: (2586, 64), 143: (2602, 64), 144: (2594, 64)}
 #: foes: (tile, repeat, palette)
 FOES = {201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 48, 0), 205: (3054, 40, 0), 206: (1470, 40, 0),
-        210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13)}
+        210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13),
+        212: (1980, 32, 0), 220: (1745, 24, 0)}
 STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 
 #: --- the six keys --------------------------------------------------------------
@@ -48,7 +49,7 @@ KEYS = {
     "eye": (2, None, None, None, ((202, 46.3, 45.1), (202, 44.2, 46.2), (201, 42.0, 45.3), (203, 48.6, 45.8))),
     "flame": (3, 43.75, 9.5, None, ((204, 46.9, 12.6), (203, 41.0, 12.2), (203, 40.6, 4.4))),
     "dagger": (4, 27.5, 66.35, 102400, ((210, 24.2, 57.2), (210, 30.8, 57.2), (203, 27.5, 53.2))),
-    "spider": (5, 12.0, 11.3, 61440, ((213, 11.6, 11.8), (213, 12.6, 11.8), (214, 9.4, 13.6), (214, 14.9, 13.8), (213, 12.0, 15.6))),
+    "spider": (5, 12.0, 10.2, 56832, ((213, 11.6, 11.75), (213, 12.6, 11.75), (214, 9.4, 13.6), (214, 14.9, 13.8), (213, 12.0, 16.2))),
     "moon": (6, None, None, None, ()),
 }
 KEY_SHADE = -40
@@ -107,11 +108,13 @@ SUPPLIES = (
     ((70,), 37.2, 21.4, SEWER, "the stash: a secret"),
     ((46, 79), 45.2, 38.2, 63488, "the flooded room's far corner: a secret"),
     ((114,), 55.7, 46.2, 56320, "the Rat King's offering: a secret"),
-    ((68, 67), 48.0, 53.6, SEWER, "the stockyard's rack"),
+    ((68, 67), 52.4, 40.6, 57344, "the bleeding floor's dock"),
     ((143,), 60.4, 58.6, 69632, "across the blood by the trolley"),
     # the settling hall: what the stone beast cannot shrug off, under the Cabal's skull and in line with the falls
     ((45, 73, 73, 73), 33.0, 49.35, HALL, "between the fires at the foot of the falls"),
-    ((107,), 20.4, 47.0, HALL, "the west quay, by the lift"),
+    ((107,), 17.9, 44.0, HALL, "the Toshers' Den, by the stove"),
+    ((67, 67, 67), 13.6, 45.6, HALL, "the Toshers' Den, along the beds"),
+    ((110, 73, 73), 9.7, 45.6, 106496, "the Toshers' Cache: a secret"),
     # the station, behind its gates
     ((72,), 33.0, -15.6, STATION, "the concourse"),
     ((68,), 9.2, -13.2, STATION, "the booking hall"),
@@ -131,6 +134,23 @@ PATROL = (
     (205, 22.6, 28.0, STREET, 0, 0), (205, 24.8, 33.0, STREET, 512, 0), (205, 21.4, 24.6, STREET, 512, 1),
     (203, 20.0, 51.2, STREET, 0, 0), (202, 47.0, 51.0, STREET, 1024, 0), (201, 55.8, 45.0, STREET, 1536, 3),
 )
+#: --- who is in the sewers (2026-11-25) -----------------------------------------
+#: the rows are the streets' own; a rat needs less room than a man
+SEWERS = (
+    # the bleeding floor: the butcher at his carcasses, two of his men, rats at the stains; a beast below in the blood
+    (204, 47.2, 43.2, SEWER, 0, 0), (203, 47.2, 40.5, SEWER, 1536, 0), (203, 52.4, 43.2, 57344, 1024, 3),
+    (220, 48.6, 43.6, SEWER, 300, 0), (220, 50.9, 42.4, SEWER, 900, 0), (217, 49.75, 48.2, 63488, 1536, 0),
+    # the sampling chamber: one in each pool, so the trolley is a ride and not a walk
+    (217, 56.0, 56.5, 71680, 1024, 0), (217, 57.5, 60.2, 71680, 1024, 1),
+    # the ring: what waits under the south channel, hands in the west leg, a beast in the east, the toshers' rats
+    (205, 40.2, 33.0, 63488, 0, 0), (205, 45.8, 33.0, 63488, 1024, 1), (212, 33.0, 22.0, 63488, 1536, 0), (212, 33.0, 24.4, 63488, 512, 3),
+    (217, 52.0, 26.0, 63488, 1536, 0), (220, 45.0, 33.75, SEWER, 1024, 0),
+    # the brook, and the Cabal's picket where the outfall goes down to the hall
+    (220, 9.0, 18.75, SEWER, 0, 0), (203, 21.5, 19.5, 63488, 1024, 0),
+    (202, 33.0, 38.4, 63488, 1536, 0), (201, 33.0, 40.2, 63488, 1536, 3),
+)
+#: (wire, the supply whose taking sends on it: its type and where it lies, what comes: (type, x, y, floor))
+WAKES = (("sewer:stockyard-armor", 143, 60.4, ((217, 58.6, 56.5, 71680), (217, 58.6, 60.2, 71680))),)
 #: a foe in six carries a life essence (the study: 75% of Blood's health is carried)
 CARRIES_EVERY, CARRIES = 6, 109
 
@@ -206,7 +226,8 @@ def place(layout) -> dict:
     """Everything above, set down. The keys and what they wake first, then the lock, the supplies and the patrols."""
     _REFUSED.clear()
     report = {"keys": _keys(layout), "lock": _lock(layout), "supplies": _supplies(layout)}
-    report["patrol"] = _patrol(layout)
+    report["patrol"] = _patrol(layout) + _patrol(layout, SEWERS, "sewer")
+    report["wakes"] = _wakes(layout)
     report["carried"] = _carried(layout)
     if _REFUSED:
         raise GameplayError("; ".join(_REFUSED))
@@ -309,13 +330,24 @@ def _supplies(layout) -> int:
     return count
 
 
-def _patrol(layout) -> int:
-    for k, (what, x, y, floor, angle, not_on) in enumerate(PATROL):
+def _wakes(layout) -> int:
+    """What comes when a supply is taken, beyond the keys."""
+    for name, what, x, comes in WAKES:
+        row = next(k for k, r in enumerate(SUPPLIES) if r[0] == (what,) and r[1] == x)
+        taken = wires.wire(name)
+        taken.when(wiring.placement(f"gameplay:supply_{row}_0"), "pickup", command=motion.CMD_ON, once=True)
+        for k, (foe, fx, fy, floor) in enumerate(comes):
+            taken.then(wiring.placement(_spawn(layout, f"gameplay:{name}_{k}", foe, fx, fy, floor)))
+    return len(WAKES)
+
+
+def _patrol(layout, rows=PATROL, named="patrol") -> int:
+    for k, (what, x, y, floor, angle, not_on) in enumerate(rows):
         tile, size, pal = FOES[what]
-        region, px, py = spot(layout, x, y, floor, room_for=420)
-        _seat(layout, f"gameplay:patrol_{k}", region, px, py, tile, size, cstat=384, type=what, status=6, pal=pal,
+        region, px, py = spot(layout, x, y, floor, room_for=180 if what in (212, 220) else 420)
+        _seat(layout, f"gameplay:{named}_{k}", region, px, py, tile, size, cstat=384, type=what, status=6, pal=pal,
               angle=angle, behavior={"launch_skill": not_on} if not_on else {})
-    return len(PATROL)
+    return len(rows)
 
 
 def _carried(layout) -> int:

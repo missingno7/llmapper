@@ -53,6 +53,10 @@ For surfaces:
 - **No carved spider panel (643) yet.** There is no wall to hang it on that says "the cult did this".
 - **No lava or torches.** The sewer is dark; the lair takes the sewer's dark and the brook's lamps through its mouth.
 
+**Since 2026-11-25** the pillar is a pit and the roof goes up over it; two torches are one and a shaft of light on the key
+(`references/sewer-design.md`, "The third pass"). What the corpus gave: E2M8:52's mothers hang free of any wall, and a flipped spider
+is weightless until it wakes (NBlood `ai.cpp` 1649, `cstat & 8` sets flags 9), so she may hang on a thread and not on the stone.
+
 ## What I still do not know
 
 - Whether ceiling spiders placed by the layout pass `sprite_fit` without reading as "through". The lint is the arbiter.

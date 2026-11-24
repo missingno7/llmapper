@@ -228,6 +228,15 @@
     "E3M8:266"
    ],
    "date": "2026-11-24"
+  },
+  "toshers-den": {
+   "want": "a low warm timbered room off a sewer hall where its scavengers slept: straw beds, a stove, lanterns, tools, and something hidden under a bed",
+   "seeds": [
+    "E6M7:195!",
+    "DWE2M5:292!",
+    "E3M3:265!"
+   ],
+   "date": "2026-11-24"
   }
  }
 }
