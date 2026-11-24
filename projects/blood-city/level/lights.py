@@ -104,6 +104,8 @@ OWN_LIGHT: tuple[str, ...] = (
     # The deck's hole moves through the rail bed. Keep its lighting in
     # the authored sectors so the band cutter leaves the sweep clear.
     "sewer/sampling/trolley_track",
+    # The Terminus paints its static pools and moving rail bay in sectors.
+    "sewer/ghost_station/",
     # E1M1's crypt, field for field (`l3_church`): dark (floor 34, ceiling
     # 28) and flickering; lit by the model its two torches made it shade 0
     "st_gallows/crypt",

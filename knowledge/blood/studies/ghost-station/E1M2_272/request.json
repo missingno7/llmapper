@@ -1,9 +1,9 @@
 {
  "$schema": "llmapper.xmapedit-observation-request",
  "schema_version": 1,
- "map": "D:/Games/DOS/llmapper-wt-ghost/knowledge/blood/studies/ghost-station/E1M2_272/as-played.MAP",
+ "map": "knowledge/blood/studies/ghost-station/E1M2_272/as-played.MAP",
  "resource_dir": "reference/blood",
- "output": "D:/Games/DOS/llmapper-wt-ghost/knowledge/blood/studies/ghost-station/E1M2_272",
+ "output": "knowledge/blood/studies/ghost-station/E1M2_272",
  "width": 640,
  "height": 480,
  "screenshots": true,

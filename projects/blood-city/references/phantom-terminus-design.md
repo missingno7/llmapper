@@ -68,3 +68,28 @@ Everything in `aldermack-design.md` ("Rules that outlast this build") holds.
 The car is a moving sector: its whole travel stays inside one host (the track),
 which nothing else cuts; what rides in it carries `CARRY_WITH`; its floor has
 relative alignment; it has the sound of a train (115, 277; motion_sounds).
+
+## As built (2026-11-24)
+
+`level/phantom_terminus.py`; tests/test_phantom_terminus.py; pose set
+`phantom`. Built by one Sol worker in two rounds and finished by the
+integrator.
+
+- **The ride works on paper, unridden.** A type 616 car, its whole sweep inside
+  the track, a lane on both flanks and both ends; the prize (Tommy gun) and the
+  driver's handle (carried, works with full bullets, unlabelled: the word RUN drew readers off the gun) start one show; RECALL
+  at the signal cabin and at the brick stop brings the car home. The walk from
+  either berth to the stair is read back in the tests at both poses.
+- **Green is palette 4 on tiles that hold colour.** It leaves greys grey: 374
+  under palette 4 stays white, 1717 goes green.
+- **The drowned end is the train's second car**, in the running car's own
+  window, livery and seated dead, standing in the water to its sills. A
+  boiler built of raised blocks never read as a locomotive in two tries.
+- **The sewer's mouth pass (tile 194) skips the station**: it had repainted 65
+  of its walls, the brick barrier among them.
+- A failing lamp is authored LIT with a positive amplitude, so it is drawn lit
+  at rest and drops out; authored dark it reads as a ring of light round a hole.
+- A raised block's outer faces belong to the room round it: paint them there
+  (`paint_wall(host, ...)`), or they wear the dark room's shade.
+- **Owed to the owner's walk:** jumping during the ride, the Phantasms' timing,
+  the mix of the whistle and Caleb's line at the stop.

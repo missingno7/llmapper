@@ -1,0 +1,16 @@
+{
+ "slug": "ghost-station",
+ "kind": "station",
+ "round": 2,
+ "poses": [
+  "phantom"
+ ],
+ "views": 17,
+ "references": 13,
+ "readers": [
+  "recognition",
+  "comparison",
+  "use",
+  "sense"
+ ]
+}

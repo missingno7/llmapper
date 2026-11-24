@@ -94,9 +94,9 @@ class StockedCityTests(unittest.TestCase):
         tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
         auditorium = {sector for kind, sectors in tags.items()
                       if kind.startswith("aldermack_") for sector in sectors}
-        # The auditorium's seats, step lights and stage furniture are scenery.
-        # The thresholds below compare stocked fixtures with campaign shops.
-        cls.rows = [row for row in stands([str(CITY)]) if row["sector"] not in auditorium]
+        # Theatre and underground railway scenery stand outside the shop sample.
+        scenery = auditorium | set(tags["phantom_terminus"])
+        cls.rows = [row for row in stands([str(CITY)]) if row["sector"] not in scenery]
         cls.found = summary(cls.rows)
 
     def test_the_citys_fixtures_stand_as_high_as_the_towns(self):

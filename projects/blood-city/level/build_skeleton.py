@@ -376,9 +376,10 @@ def build():
                        ceiling_z=SEWER_FLOOR - _l3_sewer_layers.WALK_CLEAR,
                        floor_z=_l3_sewer_layers.HALL_WATER,
                        note="the settling hall under the plaza: tanks below the sewer's level")
+    import phantom_terminus
     city.declare_layer("ghost_station", ceiling_z=SEWER_FLOOR - 24576,
-                       floor_z=_l3_sewer_layers.GHOST_FLOOR + 2048,
-                       note="the Ghost Station and its descending service stair")
+                       floor_z=phantom_terminus.WATER_FLOOR,
+                       note="the Phantom Terminus and its descending service stair")
 
     areas = {a["id"]: a for a in data["areas"]}
     alleys = {a["id"]: a for a in data["dead_end_alleys"]}
@@ -983,7 +984,8 @@ def build():
     shed["cellar"].raw(
         "spiral: the pump station cellar down into the under-city",
         wind_into_sewer)
-    l3_sewer.ghost_station(sewer, sewer_net["silt_trap"])
+    import phantom_terminus
+    phantom_terminus.build(sewer, sewer_net["silt_trap"])
 
     stack_links = []
 
@@ -2100,6 +2102,8 @@ def main() -> int:
     _ghost_track = (region_id for region_id, region in layout.regions.items()
                     if region.layer == "ghost_station" and region.floor_picnum == _station_dress.TRACK)
     print("station:", _station_dress.dress(compiled.level, compiled, keep_tracks=_ghost_track))
+    import phantom_terminus as _phantom_finish
+    _phantom_finish.apply_surface_palette(layout, compiled)
     print("sarcophagus faces:", skyline.dress_steps(compiled.level, {
         compiled.allocations[region_id].sector_id: tile
         for region_id, tile in l3_church.CRYPT_FACES.items()
@@ -2219,7 +2223,9 @@ def main() -> int:
     import sewerkit
     _sewer_sectors = {
         int(alloc.sector_id) for region_id, alloc in compiled.allocations.items()
-        if region_id.startswith("region:gravesend/sewer/")}
+        if region_id.startswith("region:gravesend/sewer/")
+        # the railway is under the sewer and no part of its tunnels
+        and not region_id.startswith("region:gravesend/sewer/ghost_station/")}
     _mouths = sewerkit.line_mouths(compiled.level, _sewer_sectors)
     print("sewer mouths:", _mouths)
     ctx["manifest"]["sewer_mouths"] = _mouths
@@ -2559,6 +2565,8 @@ def main() -> int:
         _allocation = compiled.allocations.get(_region_id)
         if _kind and _allocation is not None:
             _tags.setdefault(str(_kind), []).append(_allocation.sector_id)
+        if _allocation is not None and _region.layer == "ghost_station":
+            _tags.setdefault("phantom_terminus", []).append(_allocation.sector_id)
     # a sector the overlays cut off its region is still that region
     for _piece, _parent in list(_overlay_report.get("parent", {}).items()) + sorted(_lit_parent.items()):
         for _sectors in _tags.values():

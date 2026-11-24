@@ -38,6 +38,7 @@ WIRE_PROFILES = {
     "sewer:settling-hall-lift": "winch_lift",
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",
+    "phantom:car": "phantom_train",
     "station:fare-turnstile": "fare_ambient",
 }
 #: A door that rises (600), by the tile its leaf wears: what the campaign's
@@ -49,6 +50,9 @@ WIRE_PROFILES = {
 LEAF_PROFILES = {22: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door"}
 MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
+# E1M2 sprite 556 supplies the train motor. Death Wish s247 uses 277.
+PHANTOM_TRAIN = (115, 277, 115, 277)
+CARRIED_PROFILES = {"rail_shuttle", "phantom_train"}
 FARE_AMBIENT = (250, 700, 21, 20)
 
 
@@ -70,8 +74,10 @@ def apply(disk, allocations, circuit):
                             if tile in LEAF_PROFILES), None)
         if profile is None:
             raise ValueError(f"{region} (sector {index}) needs a campaign sound profile")
-        if profile in SECTOR_SOUND_PROFILES:
-            add_sector_sound(disk, index, profile, carry=profile == "rail_shuttle")
+        if profile == "phantom_train":
+            add_sector_sound(disk, index, sounds=PHANTOM_TRAIN, carry=True)
+        elif profile in SECTOR_SOUND_PROFILES:
+            add_sector_sound(disk, index, profile, carry=profile in CARRIED_PROFILES)
         rows[str(index)] = {"region": region, "profile": profile}
     return rows
 
@@ -137,7 +143,8 @@ def check(disk, expected, wires):
             if len(audible) != 1 or markers:
                 errors.append(f"sector {index}: expected one fare ambience and zero 709 markers")
             continue
-        if profile not in SECTOR_SOUND_PROFILES or len(markers) != 1:
+        sounds = PHANTOM_TRAIN if profile == "phantom_train" else SECTOR_SOUND_PROFILES.get(profile)
+        if sounds is None or len(markers) != 1:
             errors.append(f"sector {index}: expected one named sector sound")
             continue
         _, fields, data = markers[0]
@@ -145,8 +152,8 @@ def check(disk, expected, wires):
         if (fields["status"] != SECTOR_SOUND_STAT or fields["picnum"] != SECTOR_SOUND_TILE
                 or not fields["cstat"] & 32768 or data.get("tx_id") != 0 or data.get("rx_id") != 0
                 or not sector_contains(disk, index, fields["x"], fields["y"])
-                or tuple(data.get(field) for field in FIELD_NAMES) != SECTOR_SOUND_PROFILES[profile]
-                or bool(fields["cstat"] & 8192) != (profile == "rail_shuttle")):
+                or tuple(data.get(field) for field in FIELD_NAMES) != sounds
+                or bool(fields["cstat"] & 8192) != (profile in CARRIED_PROFILES)):
             errors.append(f"sector {index}: malformed {profile} marker")
     for key in sorted(expected.keys() - seen, key=int):
         errors.append(f"sector {key}: scored sector absent from the moving set")

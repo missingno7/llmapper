@@ -360,7 +360,8 @@ class StationTests(unittest.TestCase):
         livery = [w for w in self.walls if int(w["picnum"]) == s.LIVERY]
         self.assertGreaterEqual(len(livery), 8)
         wheels = [sp for sp in self.disk.sprites
-                  if int(sp.fields["picnum"]) == s.WHEELS["picnum"]]
+                  if int(sp.fields["picnum"]) == s.WHEELS["picnum"]
+                  and s.FRAME[0] <= int(sp.fields["x"]) <= s.FRAME[2]]
         #: tile 2320 is three coupled wheels in one picture: one sprite
         #: TO A SIDE (the owner, from the track: "locomotive is missing
         #: wheels on the other side"), each facing out

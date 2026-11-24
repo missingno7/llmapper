@@ -161,12 +161,24 @@
    "date": "2026-11-22"
   },
   "ghost-station": {
-   "want": "A tiled underground platform with the lights still on, behind the pump station's maintenance hatch",
+   "want": "A sealed railway terminus with a shuttered booking hall, a rust-edged platform, a lit ghost car and a drowned siding",
    "seeds": [
-    "E1M2:272!",
-    "E1M2:264!"
+    "maps/blood/curated/DWE3M2.MAP:481!",
+    "DWE3M2:246!",
+    "DWE3M2:194!",
+    "DWE3M2:247!",
+    "DWE3M2:351!",
+    "DWE3M2:362!",
+    "maps/blood/community/SSR3.MAP:5!",
+    "maps/blood/community/SSR3.MAP:46!",
+    "maps/blood/community/SSR3.MAP:45!",
+    "maps/blood/community/GHOSTTWN.MAP:767!",
+    "maps/blood/community/GHOSTTWN.MAP:709!",
+    "maps/blood/community/EU13.MAP:281!",
+    "maps/blood/community/666UNDER.map:252!",
+    "E1M2:272!"
    ],
-   "date": "2026-11-22"
+   "date": "2026-11-23"
   },
   "door-sounds": {
    "want": "Campaign sound profiles for moving doors, lifts and machinery",

@@ -72,7 +72,7 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("caleb:spider-mother",
      "killing the Weaver's Cellars' spider mother prompts Caleb's spider rhyme once"),
     ("caleb:ghost-tunnel",
-     "entering the bricked-up track stub at Ghost Station prompts Caleb once"),
+     "the Phantom car reaching the bricked-up stop prompts Caleb"),
     ("theatre:show-latch",
      "the Aldermack stage light reaching its ON stop sets the show latch"),
     ("theatre:show",
@@ -83,6 +83,18 @@ PLAN: tuple[tuple[str, str], ...] = (
      "taking the fire armour drops the house cloth, blacks out the beam and opens the wings"),
     ("theatre:box-curtain",
      "pushing the second west box's cloth draws it aside or shuts it again"),
+    ("phantom:departure",
+     "the first departure blacks out the platform, sounds the whistle and wakes the Phantasms"),
+    ("phantom:car",
+     "send the car to the brick stop or call it back to the platform"),
+    ("phantom:prize", "picking up the Tommy gun starts the outbound run"),
+    ("phantom:arm", "the first outbound command sets the departure effects latch"),
+    ("phantom:coach-state", "boarding reports ON and the coach announces the state at each berth"),
+    ("phantom:boarding-arm", "an ON coach report sets the boarding effects latch"),
+    ("phantom:boarding", "the first boarding starts a short pulse"),
+    ("phantom:lamp-pulse", "the boarding pulse cuts and restores the carriage lamps"),
+    ("phantom:first-platform", "entering the platform cuts the near lamp and sounds the distant whistle"),
+    ("phantom:spill-off", "departure removes the green reflections from the uncut track bed"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

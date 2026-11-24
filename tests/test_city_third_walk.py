@@ -196,7 +196,7 @@ class ThirdWalkTests(unittest.TestCase):
                    if int(_extra(s).get("tx_id", 0)) == 2
                    and int(_extra(s).get("command", 0)) == 64]
         # The stash, flooded branch, cache, Molly's nest, plague pit,
-        # Rat King's Shrine and Ghost Station.
+        # Rat King's Shrine and Phantom Terminus.
         self.assertEqual(len(secrets), 7)
 
     def test_ghost_station_dials_latch_only_the_first_complete_match(self):
@@ -293,7 +293,7 @@ class ThirdWalkTests(unittest.TestCase):
         from bloodmap.model import record_extra, record_fields
         from bloodmap.motion_sim import blood_poses, closure_health
         from bloodmap.player_space import PLAYER_PROFILES
-        from bloodmap.sector_geom import outline_and_holes
+        from bloodmap.sector_geom import outline_and_holes, sector_at
 
         _level()
         import wires
@@ -352,8 +352,9 @@ class ThirdWalkTests(unittest.TestCase):
         secret = record_extra(self.disk.sectors[current])
         self.assertEqual(secret["tx_id"], secret_bus)
         self.assertTrue(secret["trigger_enter"] and secret["trigger_once"])
-        rails = [fields for fields in self.sectors if fields["floor_z"] == 120832]
-        self.assertGreaterEqual(len(rails), 2)
+        # The raised brick stop also stands at the old rail elevation now.
+        rails = [self.sectors[sector_at(self.disk, x, -14848, floor_near=120832)]
+                 for x in (45760, 58048, 71424)]
         self.assertTrue(all(fields["floor_picnum"] == 1129 and not fields["floor_stat"] & 4
                             for fields in rails))
 
@@ -411,7 +412,7 @@ class ThirdWalkTests(unittest.TestCase):
         from bloodmap.sector_geom import sector_walls
         rigid = [i for i in swept_state.moving_sectors(self.disk)
                  if self.sectors[i]["type"] in (616, 617)]
-        self.assertEqual(len(rigid), 6)
+        self.assertEqual(len(rigid), 7)
         for mover in rigid:
             frames = blood_sweep(self.disk, mover)
             self.assertIsNone(swept_state.escape(self.disk, mover, frames))
@@ -437,8 +438,13 @@ class ThirdWalkTests(unittest.TestCase):
             self.assertEqual(min(max(w[k] for w in walls) - min(w[k] for w in walls) for k in "xy"), 64)
 
     def test_shop_glass_can_be_shot_out(self):
-        glazed = [w for w in self.walls if int(w["over_picnum"]) == 266
-                  and int(w["cstat"]) & 16]
+        from bloodmap.sector_geom import wall_owners
+
+        # The underground Terminus also wears 266, on purpose as safety glass.
+        terminus = set(json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))["phantom_terminus"])
+        owners = wall_owners(self.disk)
+        glazed = [w for i, w in enumerate(self.walls) if int(w["over_picnum"]) == 266
+                  and int(w["cstat"]) & 16 and owners[i] not in terminus]
         self.assertTrue(glazed)
         for wall in glazed:
             self.assertEqual(int(wall["type"]), 511)     # kWallGib

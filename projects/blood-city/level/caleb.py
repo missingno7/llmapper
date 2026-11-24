@@ -37,12 +37,12 @@ def spider_mother(layout, region_id, mother, x, y):
     _line(layout, quote, layout.regions[region_id], 4537, x, y)
 
 
-def ghost_tunnel(layout, tunnel):
-    """Play E1M3's end-of-line remark on entry to the blocked tunnel."""
+def ghost_tunnel(layout, tunnel, *, arrival_switch):
+    """Play E1M3's end-of-line remark when the train comes to rest."""
     region = layout.regions[tunnel.region_id]
     quote = wires.wire("caleb:ghost-tunnel")
-    quote.when(wiring.region(tunnel.region_id), "enter", command=CMD_ON,
-               once=True, dude_lockout=1)
+    quote.when(wiring.placement(arrival_switch), "relay", command=CMD_ON,
+               on=False, off=True)
     x = sum(point[0] for point in region.outer) // len(region.outer)
     y = sum(point[1] for point in region.outer) // len(region.outer)
     _line(layout, quote, region, 3034, x, y)

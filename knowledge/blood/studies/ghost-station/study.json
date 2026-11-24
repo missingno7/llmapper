@@ -1,8 +1,3226 @@
 {
  "slug": "ghost-station",
- "want": "A tiled underground platform with the lights still on, behind the pump station's maintenance hatch",
- "date": "2026-11-22",
+ "want": "A sealed railway terminus with a shuttered booking hall, a rust-edged platform, a lit ghost car and a drowned siding",
+ "date": "2026-11-23",
  "seeds": [
+  {
+   "seed": "maps/blood/curated/DWE3M2.MAP:481!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 481,
+   "sectors": [
+    353,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    363,
+    364,
+    365,
+    480,
+    481
+   ],
+   "metres": [
+    5.4,
+    25.4,
+    3.7
+   ],
+   "area_M": 33.25,
+   "clear_bodies": 2.05,
+   "free_floor_share": 0.9,
+   "shade_spread": 27,
+   "floor": [
+    374,
+    ""
+   ],
+   "ceiling": [
+    379,
+    "stone wall"
+   ],
+   "walls": [
+    [
+     369,
+     0.518,
+     "concrete/plaster with light cornice band"
+    ],
+    [
+     357,
+     0.149,
+     ""
+    ],
+    [
+     500,
+     0.089,
+     "technical door"
+    ],
+    [
+     386,
+     0.078,
+     ""
+    ],
+    [
+     498,
+     0.044,
+     "technical wall with pipes"
+    ],
+    [
+     57,
+     0.033,
+     ""
+    ],
+    [
+     56,
+     0.033,
+     ""
+    ],
+    [
+     195,
+     0.022,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ],
+    [
+     448,
+     0.022,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 353,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      357,
+      414,
+      448
+     ]
+    },
+    {
+     "sector": 354,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      498
+     ]
+    },
+    {
+     "sector": 355,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      448
+     ]
+    },
+    {
+     "sector": 356,
+     "corners": 8,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 215,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      205,
+      369,
+      386,
+      498
+     ]
+    },
+    {
+     "sector": 357,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 298,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      498,
+      500
+     ]
+    },
+    {
+     "sector": 358,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 359,
+     "corners": 4,
+     "size": [
+      256,
+      1920
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 360,
+     "corners": 4,
+     "size": [
+      256,
+      1792
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 361,
+     "corners": 6,
+     "size": [
+      384,
+      1664
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 363,
+     "corners": 4,
+     "size": [
+      256,
+      2176
+     ],
+     "rise_bodies": -3.68,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 364,
+     "corners": 8,
+     "size": [
+      1408,
+      256
+     ],
+     "rise_bodies": -2.63,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      357
+     ]
+    },
+    {
+     "sector": 365,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 1.39,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 617,
+     "wall_tiles": [
+      369
+     ]
+    },
+    {
+     "sector": 480,
+     "corners": 27,
+     "size": [
+      1017,
+      1607
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1130,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      369
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      40,
+      56
+     ],
+     "pal": 8,
+     "over_floor_bodies": 1.03
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      72,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      56,
+      72
+     ],
+     "pal": 13,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 795,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.39
+    },
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 915,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      80
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    },
+    {
+     "tile": 3793,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 3792,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.15
+    },
+    {
+     "tile": 812,
+     "type": 68,
+     "type_name": "kItemAmmoSawedoffBox",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 356,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.97
+    },
+    {
+     "tile": 440,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      72
+     ],
+     "pal": 13,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 647,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      120,
+      120
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.01
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 505,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 604,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1980,
+     "type": 212,
+     "type_name": "kDudeHand",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.11
+    },
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 823,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_curated_DWE3M2.MAP_481\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_curated_DWE3M2.MAP_481\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M2:246!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 246,
+   "sectors": [
+    246
+   ],
+   "metres": [
+    1.7,
+    19.3,
+    3.7
+   ],
+   "area_M": 10.35,
+   "clear_bodies": 2.05,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    379,
+    "stone wall"
+   ],
+   "ceiling": [
+    379,
+    "stone wall"
+   ],
+   "walls": [
+    [
+     386,
+     0.833,
+     ""
+    ],
+    [
+     369,
+     0.083,
+     "concrete/plaster with light cornice band"
+    ],
+    [
+     448,
+     0.083,
+     ""
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 1060,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 11,
+     "repeats": [
+      64,
+      69
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.04
+    },
+    {
+     "tile": 795,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 8,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.05
+    },
+    {
+     "tile": 606,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 518,
+     "type": 136,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\DWE3M2_246\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\DWE3M2_246\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M2:194!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 194,
+   "sectors": [
+    193,
+    194,
+    244,
+    245,
+    278,
+    279,
+    280,
+    285,
+    286,
+    287,
+    288,
+    289,
+    290,
+    291,
+    294,
+    568,
+    570,
+    572
+   ],
+   "metres": [
+    13.2,
+    24.3,
+    3.7
+   ],
+   "area_M": 35.11,
+   "clear_bodies": 2.05,
+   "free_floor_share": 0.82,
+   "shade_spread": 49,
+   "floor": [
+    374,
+    ""
+   ],
+   "ceiling": [
+    379,
+    "stone wall"
+   ],
+   "walls": [
+    [
+     379,
+     0.353,
+     "stone wall"
+    ],
+    [
+     369,
+     0.292,
+     "concrete/plaster with light cornice band"
+    ],
+    [
+     414,
+     0.075,
+     ""
+    ],
+    [
+     473,
+     0.058,
+     ""
+    ],
+    [
+     20,
+     0.052,
+     "wood"
+    ],
+    [
+     7,
+     0.047,
+     ""
+    ],
+    [
+     68,
+     0.04,
+     ""
+    ],
+    [
+     28,
+     0.034,
+     "wooden wall"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 193,
+     "corners": 6,
+     "size": [
+      2304,
+      1792
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      369
+     ]
+    },
+    {
+     "sector": 244,
+     "corners": 4,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      68
+     ]
+    },
+    {
+     "sector": 245,
+     "corners": 4,
+     "size": [
+      256,
+      1536
+     ],
+     "rise_bodies": 0.36,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      68
+     ]
+    },
+    {
+     "sector": 278,
+     "corners": 4,
+     "size": [
+      64,
+      768
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 296,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      7,
+      20,
+      195
+     ]
+    },
+    {
+     "sector": 279,
+     "corners": 4,
+     "size": [
+      128,
+      768
+     ],
+     "rise_bodies": 1.39,
+     "floor_tile": 374,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 280,
+     "corners": 4,
+     "size": [
+      64,
+      768
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 296,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      7,
+      20
+     ]
+    },
+    {
+     "sector": 285,
+     "corners": 5,
+     "size": [
+      128,
+      320
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      418
+     ]
+    },
+    {
+     "sector": 286,
+     "corners": 4,
+     "size": [
+      128,
+      320
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      418
+     ]
+    },
+    {
+     "sector": 287,
+     "corners": 4,
+     "size": [
+      128,
+      320
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      418
+     ]
+    },
+    {
+     "sector": 288,
+     "corners": 4,
+     "size": [
+      128,
+      320
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      418
+     ]
+    },
+    {
+     "sector": 289,
+     "corners": 4,
+     "size": [
+      256,
+      512
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      34,
+      418
+     ]
+    },
+    {
+     "sector": 290,
+     "corners": 6,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 296,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      34,
+      414
+     ]
+    },
+    {
+     "sector": 291,
+     "corners": 4,
+     "size": [
+      256,
+      64
+     ],
+     "rise_bodies": 0.66,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      181,
+      195,
+      414
+     ]
+    },
+    {
+     "sector": 294,
+     "corners": 10,
+     "size": [
+      256,
+      2304
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 296,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      369,
+      418,
+      473
+     ]
+    },
+    {
+     "sector": 568,
+     "corners": 6,
+     "size": [
+      1408,
+      5632
+     ],
+     "rise_bodies": 0.88,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      379
+     ]
+    },
+    {
+     "sector": 570,
+     "corners": 6,
+     "size": [
+      1408,
+      5632
+     ],
+     "rise_bodies": 0.85,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      379
+     ]
+    },
+    {
+     "sector": 572,
+     "corners": 6,
+     "size": [
+      1280,
+      5632
+     ],
+     "rise_bodies": 0.88,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      379
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 12,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      8,
+      8
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 647,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      120,
+      120
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 1105,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      120,
+      144
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.6
+    },
+    {
+     "tile": 505,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.35
+    },
+    {
+     "tile": 453,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      80
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.27
+    },
+    {
+     "tile": 743,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      40,
+      56
+     ],
+     "pal": 10,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 165,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 5,
+     "over_floor_bodies": 1.15
+    },
+    {
+     "tile": 604,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 795,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.66
+    },
+    {
+     "tile": 266,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.36
+    },
+    {
+     "tile": 957,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      16,
+      16
+     ],
+     "pal": 4,
+     "over_floor_bodies": 0.91
+    },
+    {
+     "tile": 1070,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      33,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 905,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      37,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.24
+    },
+    {
+     "tile": 943,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.62
+    },
+    {
+     "tile": 605,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 8,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 518,
+     "type": 136,
+     "type_name": "unhandled",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 759,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 9,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\DWE3M2_194\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\DWE3M2_194\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M2:247!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 247,
+   "sectors": [
+    229,
+    230,
+    231,
+    247,
+    275,
+    296
+   ],
+   "metres": [
+    5.8,
+    162.1,
+    6.1
+   ],
+   "area_M": 223.5,
+   "clear_bodies": 3.38,
+   "free_floor_share": 0.99,
+   "shade_spread": 18,
+   "floor": [
+    211,
+    ""
+   ],
+   "ceiling": [
+    358,
+    "stone"
+   ],
+   "walls": [
+    [
+     386,
+     0.888,
+     ""
+    ],
+    [
+     369,
+     0.07,
+     "concrete/plaster with light cornice band"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 229,
+     "corners": 4,
+     "size": [
+      256,
+      1280
+     ],
+     "rise_bodies": 1.03,
+     "floor_tile": 205,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      34
+     ]
+    },
+    {
+     "sector": 230,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 0.12,
+     "floor_tile": 68,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      68
+     ]
+    },
+    {
+     "sector": 231,
+     "corners": 10,
+     "size": [
+      512,
+      3072
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      68,
+      205,
+      315,
+      369,
+      386,
+      414,
+      444
+     ]
+    },
+    {
+     "sector": 275,
+     "corners": 4,
+     "size": [
+      11776,
+      64
+     ],
+     "rise_bodies": 1.09,
+     "floor_tile": 379,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      195,
+      414
+     ]
+    },
+    {
+     "sector": 296,
+     "corners": 4,
+     "size": [
+      2816,
+      256
+     ],
+     "rise_bodies": -0.78,
+     "floor_tile": 448,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      248,
+      273
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2579,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      48,
+      28
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 1060,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.72
+    },
+    {
+     "tile": 1076,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 676,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.54
+    },
+    {
+     "tile": 2552,
+     "type": 100,
+     "type_name": "kItemKeySkull",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      32,
+      32
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\DWE3M2_247\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\DWE3M2_247\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M2:351!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 351,
+   "sectors": [
+    338,
+    339,
+    340,
+    341,
+    342,
+    343,
+    344,
+    345,
+    346,
+    347,
+    348,
+    349,
+    350,
+    351
+   ],
+   "metres": [
+    5.2,
+    11.7,
+    2.4
+   ],
+   "area_M": 21.23,
+   "clear_bodies": 1.33,
+   "free_floor_share": 1.0,
+   "shade_spread": 20,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    211,
+    ""
+   ],
+   "walls": [
+    [
+     414,
+     0.5,
+     ""
+    ],
+    [
+     357,
+     0.5,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 338,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 339,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 340,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 341,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 342,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 343,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 344,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 345,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 346,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 347,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 348,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 349,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    },
+    {
+     "sector": 350,
+     "corners": 4,
+     "size": [
+      256,
+      2560
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      248
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3054,
+     "type": 205,
+     "type_name": "kDudeZombieAxeBuried",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.58
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\DWE3M2_351\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "DWE3M2:362!",
+   "map": "maps\\blood\\curated\\DWE3M2.MAP",
+   "host": 362,
+   "sectors": [
+    353,
+    354,
+    355,
+    356,
+    357,
+    358,
+    359,
+    360,
+    361,
+    362,
+    363,
+    364
+   ],
+   "metres": [
+    4.8,
+    12.2,
+    3.3
+   ],
+   "area_M": 14.65,
+   "clear_bodies": 1.81,
+   "free_floor_share": 0.83,
+   "shade_spread": 27,
+   "floor": [
+    270,
+    "dirt/earth ground"
+   ],
+   "ceiling": [
+    379,
+    "stone wall"
+   ],
+   "walls": [
+    [
+     357,
+     0.407,
+     ""
+    ],
+    [
+     20,
+     0.197,
+     "wood"
+    ],
+    [
+     414,
+     0.114,
+     ""
+    ],
+    [
+     500,
+     0.098,
+     "technical door"
+    ],
+    [
+     386,
+     0.086,
+     ""
+    ],
+    [
+     498,
+     0.049,
+     "technical wall with pipes"
+    ],
+    [
+     448,
+     0.025,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 353,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      357,
+      414,
+      448
+     ]
+    },
+    {
+     "sector": 354,
+     "corners": 4,
+     "size": [
+      256,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      498
+     ]
+    },
+    {
+     "sector": 355,
+     "corners": 4,
+     "size": [
+      256,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      414,
+      448
+     ]
+    },
+    {
+     "sector": 356,
+     "corners": 8,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 3.68,
+     "floor_tile": 215,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      205,
+      369,
+      386,
+      498
+     ]
+    },
+    {
+     "sector": 357,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 3.68,
+     "floor_tile": 298,
+     "sloped": false,
+     "type": 600,
+     "wall_tiles": [
+      498,
+      500
+     ]
+    },
+    {
+     "sector": 358,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 359,
+     "corners": 4,
+     "size": [
+      256,
+      1920
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 360,
+     "corners": 4,
+     "size": [
+      256,
+      1792
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 361,
+     "corners": 6,
+     "size": [
+      384,
+      1664
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 363,
+     "corners": 4,
+     "size": [
+      256,
+      2176
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      357,
+      414
+     ]
+    },
+    {
+     "sector": 364,
+     "corners": 8,
+     "size": [
+      1408,
+      256
+     ],
+     "rise_bodies": 1.06,
+     "floor_tile": 270,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      357
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1170,
+     "type": 203,
+     "type_name": "kDudeZombieAxeNormal",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.64
+    },
+    {
+     "tile": 795,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.39
+    },
+    {
+     "tile": 624,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      56,
+      56
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\DWE3M2_362\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\DWE3M2_362\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/SSR3.MAP:5!",
+   "map": "maps\\blood\\community\\SSR3.MAP",
+   "host": 5,
+   "sectors": [
+    2,
+    3,
+    4,
+    5,
+    6
+   ],
+   "metres": [
+    6.5,
+    7.8,
+    3.5
+   ],
+   "area_M": 12.06,
+   "clear_bodies": 1.93,
+   "free_floor_share": 0.91,
+   "shade_spread": 10,
+   "floor": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     194,
+     0.335,
+     ""
+    ],
+    [
+     2453,
+     0.247,
+     "technical riveted metal cladding"
+    ],
+    [
+     195,
+     0.157,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ],
+    [
+     205,
+     0.157,
+     "vertical black-and-yellow hazard stripes"
+    ],
+    [
+     470,
+     0.105,
+     "riveted metal plating"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 2,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.3,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      194,
+      195,
+      266
+     ]
+    },
+    {
+     "sector": 3,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.3,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      194,
+      195,
+      266
+     ]
+    },
+    {
+     "sector": 4,
+     "corners": 4,
+     "size": [
+      1280,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      390,
+      470
+     ]
+    },
+    {
+     "sector": 6,
+     "corners": 4,
+     "size": [
+      1280,
+      768
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 438,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      205,
+      470
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2290,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.93
+    },
+    {
+     "tile": 2522,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2523,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2524,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2525,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2526,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2527,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2528,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2529,
+     "type": 1,
+     "type_name": "kMarkerSPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2522,
+     "type": 2,
+     "type_name": "kMarkerMPStart",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_5\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_5\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/SSR3.MAP:46!",
+   "map": "maps\\blood\\community\\SSR3.MAP",
+   "host": 46,
+   "sectors": [
+    46
+   ],
+   "metres": [
+    2.2,
+    6.5,
+    6.0
+   ],
+   "area_M": 4.92,
+   "clear_bodies": 3.32,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    275,
+    "rough coarse stone"
+   ],
+   "walls": [
+    [
+     275,
+     1.0,
+     "rough coarse stone"
+    ]
+   ],
+   "things": [],
+   "sprites": [
+    {
+     "tile": 791,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 3.32
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_46\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_46\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/SSR3.MAP:45!",
+   "map": "maps\\blood\\community\\SSR3.MAP",
+   "host": 45,
+   "sectors": [
+    1,
+    45
+   ],
+   "metres": [
+    6.5,
+    11.3,
+    8.2
+   ],
+   "area_M": 22.32,
+   "clear_bodies": 4.53,
+   "free_floor_share": 0.98,
+   "shade_spread": 5,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    275,
+    "rough coarse stone"
+   ],
+   "walls": [
+    [
+     255,
+     0.859,
+     "metal wall, lightly rusted"
+    ],
+    [
+     195,
+     0.141,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 1,
+     "corners": 4,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 1.0,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      195,
+      266,
+      500
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 668,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_45\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_SSR3.MAP_45\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/GHOSTTWN.MAP:767!",
+   "map": "maps\\blood\\community\\GHOSTTWN.MAP",
+   "host": 767,
+   "sectors": [
+    757,
+    758,
+    759,
+    760,
+    761,
+    762,
+    763,
+    764,
+    765,
+    766,
+    767,
+    771,
+    773,
+    893
+   ],
+   "metres": [
+    5.2,
+    12.1,
+    4.8
+   ],
+   "area_M": 12.01,
+   "clear_bodies": 2.66,
+   "free_floor_share": 0.26,
+   "shade_spread": 24,
+   "floor": [
+    491,
+    "metal plating; can also read as stone"
+   ],
+   "ceiling": [
+    442,
+    ""
+   ],
+   "walls": [
+    [
+     568,
+     0.656,
+     ""
+    ],
+    [
+     0,
+     0.196,
+     ""
+    ],
+    [
+     1666,
+     0.127,
+     ""
+    ],
+    [
+     2573,
+     0.021,
+     ""
+    ]
+   ],
+   "things": [
+    {
+     "sector": 757,
+     "corners": 4,
+     "size": [
+      518,
+      2536
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 2453,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 758,
+     "corners": 8,
+     "size": [
+      916,
+      2534
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 2453,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      445,
+      2573
+     ]
+    },
+    {
+     "sector": 759,
+     "corners": 4,
+     "size": [
+      517,
+      2536
+     ],
+     "rise_bodies": 1.63,
+     "floor_tile": 2453,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 760,
+     "corners": 4,
+     "size": [
+      512,
+      2534
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 2453,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 761,
+     "corners": 4,
+     "size": [
+      512,
+      2534
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 2453,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    },
+    {
+     "sector": 762,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      568,
+      1666
+     ]
+    },
+    {
+     "sector": 763,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      568,
+      1666
+     ]
+    },
+    {
+     "sector": 764,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      568,
+      1666
+     ]
+    },
+    {
+     "sector": 765,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      568,
+      1666
+     ]
+    },
+    {
+     "sector": 766,
+     "corners": 4,
+     "size": [
+      512,
+      512
+     ],
+     "rise_bodies": -0.54,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      0,
+      568,
+      1666
+     ]
+    },
+    {
+     "sector": 771,
+     "corners": 4,
+     "size": [
+      256,
+      2304
+     ],
+     "rise_bodies": -0.85,
+     "floor_tile": 276,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      445,
+      568
+     ]
+    },
+    {
+     "sector": 773,
+     "corners": 4,
+     "size": [
+      256,
+      2304
+     ],
+     "rise_bodies": -0.85,
+     "floor_tile": 568,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      358,
+      568
+     ]
+    },
+    {
+     "sector": 893,
+     "corners": 4,
+     "size": [
+      161,
+      155
+     ],
+     "rise_bodies": 1.81,
+     "floor_tile": 2573,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      0
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2453,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 6,
+     "repeats": [
+      16,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.33
+    },
+    {
+     "tile": 266,
+     "type": 406,
+     "type_name": "kThingGlassWindow",
+     "align": "wall",
+     "count": 4,
+     "repeats": [
+      64,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.33
+    },
+    {
+     "tile": 412,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      64,
+      32
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 376,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      128,
+      136
+     ],
+     "pal": 5,
+     "over_floor_bodies": 0.48
+    },
+    {
+     "tile": 625,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      16,
+      8
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 625,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": -0.72
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_GHOSTTWN.MAP_767\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_GHOSTTWN.MAP_767\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/GHOSTTWN.MAP:709!",
+   "map": "maps\\blood\\community\\GHOSTTWN.MAP",
+   "host": 709,
+   "sectors": [
+    709
+   ],
+   "metres": [
+    5.2,
+    5.2,
+    7.8
+   ],
+   "area_M": 7.42,
+   "clear_bodies": 4.35,
+   "free_floor_share": 1.0,
+   "shade_spread": 0,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    442,
+    ""
+   ],
+   "walls": [],
+   "things": [],
+   "sprites": [],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_GHOSTTWN.MAP_709\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_GHOSTTWN.MAP_709\\frames.png"
+   ]
+  },
+  {
+   "seed": "maps/blood/community/EU13.MAP:281!",
+   "map": "maps\\blood\\community\\EU13.MAP",
+   "host": 281,
+   "sectors": [
+    281,
+    283,
+    284,
+    285,
+    286,
+    287,
+    288,
+    290,
+    291
+   ],
+   "metres": [
+    3.5,
+    7.8,
+    3.8
+   ],
+   "area_M": 9.44,
+   "clear_bodies": 2.11,
+   "free_floor_share": 0.94,
+   "shade_spread": 5,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    449,
+    "rough rock face / rubble stone"
+   ],
+   "walls": [
+    [
+     449,
+     0.75,
+     "rough rock face / rubble stone"
+    ],
+    [
+     20,
+     0.25,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 283,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 284,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      449
+     ]
+    },
+    {
+     "sector": 285,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 286,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 287,
+     "corners": 4,
+     "size": [
+      512,
+      1536
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      449
+     ]
+    },
+    {
+     "sector": 288,
+     "corners": 4,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 2.11,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    },
+    {
+     "sector": 290,
+     "corners": 8,
+     "size": [
+      1792,
+      1024
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20
+     ]
+    },
+    {
+     "sector": 291,
+     "corners": 4,
+     "size": [
+      1536,
+      768
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 1129,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      491
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 641,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.96
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_EU13.MAP_281\\plan.png",
+   "frames": []
+  },
+  {
+   "seed": "maps/blood/community/666UNDER.map:252!",
+   "map": "maps\\blood\\community\\666UNDER.map",
+   "host": 252,
+   "sectors": [
+    218,
+    219,
+    244,
+    252
+   ],
+   "metres": [
+    6.5,
+    82.6,
+    3.8
+   ],
+   "area_M": 171.57,
+   "clear_bodies": 2.11,
+   "free_floor_share": 0.99,
+   "shade_spread": 9,
+   "floor": [
+    1129,
+    "railway track with sleepers, floor texture"
+   ],
+   "ceiling": [
+    270,
+    "dirt/earth ground"
+   ],
+   "walls": [
+    [
+     87,
+     0.901,
+     ""
+    ],
+    [
+     449,
+     0.042,
+     "rough rock face / rubble stone"
+    ],
+    [
+     211,
+     0.032,
+     ""
+    ],
+    [
+     195,
+     0.026,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 218,
+     "corners": 8,
+     "size": [
+      1024,
+      1536
+     ],
+     "rise_bodies": 0.66,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 616,
+     "wall_tiles": [
+      87
+     ]
+    },
+    {
+     "sector": 219,
+     "corners": 4,
+     "size": [
+      896,
+      1408
+     ],
+     "rise_bodies": 0.06,
+     "floor_tile": 195,
+     "sloped": false,
+     "type": 616,
+     "wall_tiles": [
+      195
+     ]
+    },
+    {
+     "sector": 244,
+     "corners": 5,
+     "size": [
+      1280,
+      1024
+     ],
+     "rise_bodies": -0.3,
+     "floor_tile": 449,
+     "sloped": true,
+     "type": 0,
+     "wall_tiles": [
+      449
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 10,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 2820,
+     "type": 201,
+     "type_name": "kDudeCultistTommy",
+     "align": "face",
+     "count": 4,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 3,
+     "over_floor_bodies": 0.5
+    },
+    {
+     "tile": 548,
+     "type": 73,
+     "type_name": "kItemAmmoTeslaCharge",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      24,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.18
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.01
+    },
+    {
+     "tile": 2428,
+     "type": 124,
+     "type_name": "kItemReflectShots",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1074,
+     "type": 20,
+     "type_name": "kSwitchToggle",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.38
+    },
+    {
+     "tile": 1142,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      72,
+      72
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.09
+    },
+    {
+     "tile": 539,
+     "type": 45,
+     "type_name": "kItemWeaponTeslaCannon",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.12
+    },
+    {
+     "tile": 525,
+     "type": 70,
+     "type_name": "kItemAmmoVoodooDoll",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    }
+   ],
+   "plan": "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_666UNDER.map_252\\plan.png",
+   "frames": [
+    "knowledge\\blood\\studies\\ghost-station\\maps_blood_community_666UNDER.map_252\\frames.png"
+   ]
+  },
   {
    "seed": "E1M2:272!",
    "map": "maps\\blood\\campaign\\E1M2.MAP",
@@ -77,93 +3295,84 @@
      "over_floor_bodies": 1.45
     }
    ],
-   "plan": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\E1M2_272\\plan.png",
+   "plan": "knowledge\\blood\\studies\\ghost-station\\E1M2_272\\plan.png",
    "frames": [
-    "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\E1M2_272\\frames.png"
-   ]
-  },
-  {
-   "seed": "E1M2:264!",
-   "map": "maps\\blood\\campaign\\E1M2.MAP",
-   "host": 264,
-   "sectors": [
-    264,
-    265,
-    266
-   ],
-   "metres": [
-    6.1,
-    20.0,
-    7.1
-   ],
-   "area_M": 21.56,
-   "clear_bodies": 3.92,
-   "free_floor_share": 1.0,
-   "shade_spread": 30,
-   "floor": [
-    1129,
-    "railway track with sleepers, floor texture"
-   ],
-   "ceiling": [
-    67,
-    "dark horizontal planks"
-   ],
-   "walls": [
-    [
-     414,
-     0.979,
-     ""
-    ],
-    [
-     421,
-     0.021,
-     "wall of grey bricks"
-    ]
-   ],
-   "things": [
-    {
-     "sector": 265,
-     "corners": 4,
-     "size": [
-      1792,
-      256
-     ],
-     "rise_bodies": 0.0,
-     "floor_tile": 1129,
-     "sloped": false,
-     "type": 0,
-     "wall_tiles": [
-      379,
-      414
-     ]
-    },
-    {
-     "sector": 266,
-     "corners": 4,
-     "size": [
-      1792,
-      256
-     ],
-     "rise_bodies": 0.0,
-     "floor_tile": 1129,
-     "sloped": false,
-     "type": 0,
-     "wall_tiles": [
-      379,
-      414,
-      421
-     ]
-    }
-   ],
-   "sprites": [],
-   "plan": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\E1M2_264\\plan.png",
-   "frames": [
-    "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\E1M2_264\\frames.png"
+    "knowledge\\blood\\studies\\ghost-station\\E1M2_272\\frames.png"
    ]
   }
  ],
  "like": [],
  "tiles": {
+  "0": {
+   "tile": 0,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-0.png"
+  },
+  "7": {
+   "tile": 7,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-7.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-20.png"
+  },
+  "28": {
+   "tile": 28,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-28.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-34.png"
+  },
   "49": {
    "tile": 49,
    "pixels": [
@@ -176,7 +3385,35 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-49.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-49.png"
+  },
+  "56": {
+   "tile": 56,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-56.png"
+  },
+  "57": {
+   "tile": 57,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-57.png"
   },
   "67": {
    "tile": 67,
@@ -190,7 +3427,35 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-67.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-67.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-68.png"
+  },
+  "87": {
+   "tile": 87,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-87.png"
   },
   "115": {
    "tile": 115,
@@ -204,7 +3469,161 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-115.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-115.png"
+  },
+  "165": {
+   "tile": 165,
+   "pixels": [
+    62,
+    66
+   ],
+   "world_at_repeat_8": [
+    992,
+    16896
+   ],
+   "see_through_share": 0.237,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-165.png"
+  },
+  "194": {
+   "tile": 194,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-194.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-195.png"
+  },
+  "205": {
+   "tile": 205,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-205.png"
+  },
+  "211": {
+   "tile": 211,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-211.png"
+  },
+  "215": {
+   "tile": 215,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-215.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-255.png"
+  },
+  "266": {
+   "tile": 266,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-266.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-270.png"
+  },
+  "275": {
+   "tile": 275,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-275.png"
+  },
+  "276": {
+   "tile": 276,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-276.png"
   },
   "281": {
    "tile": 281,
@@ -218,7 +3637,147 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-281.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-281.png"
+  },
+  "296": {
+   "tile": 296,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-296.png"
+  },
+  "298": {
+   "tile": 298,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-298.png"
+  },
+  "357": {
+   "tile": 357,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-357.png"
+  },
+  "358": {
+   "tile": 358,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-358.png"
+  },
+  "369": {
+   "tile": 369,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-369.png"
+  },
+  "374": {
+   "tile": 374,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-374.png"
+  },
+  "376": {
+   "tile": 376,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-376.png"
+  },
+  "379": {
+   "tile": 379,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-379.png"
+  },
+  "386": {
+   "tile": 386,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-386.png"
+  },
+  "412": {
+   "tile": 412,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-412.png"
   },
   "414": {
    "tile": 414,
@@ -232,10 +3791,52 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-414.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-414.png"
   },
-  "421": {
-   "tile": 421,
+  "438": {
+   "tile": 438,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-438.png"
+  },
+  "442": {
+   "tile": 442,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-442.png"
+  },
+  "448": {
+   "tile": 448,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-448.png"
+  },
+  "449": {
+   "tile": 449,
    "pixels": [
     128,
     128
@@ -246,7 +3847,343 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-421.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-449.png"
+  },
+  "453": {
+   "tile": 453,
+   "pixels": [
+    44,
+    56
+   ],
+   "world_at_repeat_8": [
+    704,
+    14336
+   ],
+   "see_through_share": 0.035,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-453.png"
+  },
+  "470": {
+   "tile": 470,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-470.png"
+  },
+  "473": {
+   "tile": 473,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-473.png"
+  },
+  "491": {
+   "tile": 491,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-491.png"
+  },
+  "498": {
+   "tile": 498,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-498.png"
+  },
+  "500": {
+   "tile": 500,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-500.png"
+  },
+  "505": {
+   "tile": 505,
+   "pixels": [
+    33,
+    62
+   ],
+   "world_at_repeat_8": [
+    528,
+    15872
+   ],
+   "see_through_share": 0.102,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-505.png"
+  },
+  "518": {
+   "tile": 518,
+   "pixels": [
+    43,
+    12
+   ],
+   "world_at_repeat_8": [
+    688,
+    3072
+   ],
+   "see_through_share": 0.203,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-518.png"
+  },
+  "539": {
+   "tile": 539,
+   "pixels": [
+    59,
+    21
+   ],
+   "world_at_repeat_8": [
+    944,
+    5376
+   ],
+   "see_through_share": 0.581,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-539.png"
+  },
+  "548": {
+   "tile": 548,
+   "pixels": [
+    23,
+    62
+   ],
+   "world_at_repeat_8": [
+    368,
+    15872
+   ],
+   "see_through_share": 0.16,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-548.png"
+  },
+  "568": {
+   "tile": 568,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-568.png"
+  },
+  "606": {
+   "tile": 606,
+   "pixels": [
+    11,
+    35
+   ],
+   "world_at_repeat_8": [
+    176,
+    8960
+   ],
+   "see_through_share": 0.182,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-606.png"
+  },
+  "619": {
+   "tile": 619,
+   "pixels": [
+    18,
+    11
+   ],
+   "world_at_repeat_8": [
+    288,
+    2816
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-619.png"
+  },
+  "624": {
+   "tile": 624,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.197,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-624.png"
+  },
+  "625": {
+   "tile": 625,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.197,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-625.png"
+  },
+  "641": {
+   "tile": 641,
+   "pixels": [
+    15,
+    128
+   ],
+   "world_at_repeat_8": [
+    240,
+    32768
+   ],
+   "see_through_share": 0.702,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-641.png"
+  },
+  "647": {
+   "tile": 647,
+   "pixels": [
+    153,
+    16
+   ],
+   "world_at_repeat_8": [
+    2448,
+    4096
+   ],
+   "see_through_share": 0.53,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-647.png"
+  },
+  "668": {
+   "tile": 668,
+   "pixels": [
+    20,
+    128
+   ],
+   "world_at_repeat_8": [
+    320,
+    32768
+   ],
+   "see_through_share": 0.947,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-668.png"
+  },
+  "676": {
+   "tile": 676,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.223,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-676.png"
+  },
+  "713": {
+   "tile": 713,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-713.png"
+  },
+  "743": {
+   "tile": 743,
+   "pixels": [
+    64,
+    32
+   ],
+   "world_at_repeat_8": [
+    1024,
+    8192
+   ],
+   "see_through_share": 0.594,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-743.png"
+  },
+  "791": {
+   "tile": 791,
+   "pixels": [
+    40,
+    64
+   ],
+   "world_at_repeat_8": [
+    640,
+    16384
+   ],
+   "see_through_share": 0.397,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-791.png"
+  },
+  "795": {
+   "tile": 795,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.522,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-795.png"
+  },
+  "915": {
+   "tile": 915,
+   "pixels": [
+    50,
+    88
+   ],
+   "world_at_repeat_8": [
+    800,
+    22528
+   ],
+   "see_through_share": 0.703,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-915.png"
   },
   "1044": {
    "tile": 1044,
@@ -260,7 +4197,63 @@
    ],
    "see_through_share": 0.565,
    "is_mask": true,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1044.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1044.png"
+  },
+  "1060": {
+   "tile": 1060,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.549,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1060.png"
+  },
+  "1074": {
+   "tile": 1074,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1074.png"
+  },
+  "1076": {
+   "tile": 1076,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1076.png"
+  },
+  "1105": {
+   "tile": 1105,
+   "pixels": [
+    55,
+    33
+   ],
+   "world_at_repeat_8": [
+    880,
+    8448
+   ],
+   "see_through_share": 0.66,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1105.png"
   },
   "1129": {
    "tile": 1129,
@@ -274,7 +4267,329 @@
    ],
    "see_through_share": 0.0,
    "is_mask": false,
-   "picture": "D:\\Games\\DOS\\llmapper-wt-ghost\\knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1129.png"
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1129.png"
+  },
+  "1130": {
+   "tile": 1130,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1130.png"
+  },
+  "1142": {
+   "tile": 1142,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.686,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1142.png"
+  },
+  "1170": {
+   "tile": 1170,
+   "pixels": [
+    58,
+    125
+   ],
+   "world_at_repeat_8": [
+    928,
+    32000
+   ],
+   "see_through_share": 0.502,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1170.png"
+  },
+  "1666": {
+   "tile": 1666,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-1666.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2169.png"
+  },
+  "2290": {
+   "tile": 2290,
+   "pixels": [
+    32,
+    64
+   ],
+   "world_at_repeat_8": [
+    512,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2290.png"
+  },
+  "2428": {
+   "tile": 2428,
+   "pixels": [
+    25,
+    25
+   ],
+   "world_at_repeat_8": [
+    400,
+    6400
+   ],
+   "see_through_share": 0.218,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2428.png"
+  },
+  "2453": {
+   "tile": 2453,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2453.png"
+  },
+  "2522": {
+   "tile": 2522,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2522.png"
+  },
+  "2523": {
+   "tile": 2523,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2523.png"
+  },
+  "2524": {
+   "tile": 2524,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2524.png"
+  },
+  "2525": {
+   "tile": 2525,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2525.png"
+  },
+  "2526": {
+   "tile": 2526,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2526.png"
+  },
+  "2527": {
+   "tile": 2527,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2527.png"
+  },
+  "2528": {
+   "tile": 2528,
+   "pixels": [
+    11,
+    96
+   ],
+   "world_at_repeat_8": [
+    176,
+    24576
+   ],
+   "see_through_share": 0.256,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2528.png"
+  },
+  "2552": {
+   "tile": 2552,
+   "pixels": [
+    25,
+    68
+   ],
+   "world_at_repeat_8": [
+    400,
+    17408
+   ],
+   "see_through_share": 0.545,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2552.png"
+  },
+  "2573": {
+   "tile": 2573,
+   "pixels": [
+    133,
+    154
+   ],
+   "world_at_repeat_8": [
+    2128,
+    39424
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2573.png"
+  },
+  "2579": {
+   "tile": 2579,
+   "pixels": [
+    6,
+    128
+   ],
+   "world_at_repeat_8": [
+    96,
+    32768
+   ],
+   "see_through_share": 0.333,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2579.png"
+  },
+  "2820": {
+   "tile": 2820,
+   "pixels": [
+    49,
+    106
+   ],
+   "world_at_repeat_8": [
+    784,
+    27136
+   ],
+   "see_through_share": 0.3,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2820.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-2825.png"
+  },
+  "3054": {
+   "tile": 3054,
+   "pixels": [
+    61,
+    120
+   ],
+   "world_at_repeat_8": [
+    976,
+    30720
+   ],
+   "see_through_share": 0.444,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-3054.png"
+  },
+  "3792": {
+   "tile": 3792,
+   "pixels": [
+    50,
+    19
+   ],
+   "world_at_repeat_8": [
+    800,
+    4864
+   ],
+   "see_through_share": 0.262,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-3792.png"
+  },
+  "3793": {
+   "tile": 3793,
+   "pixels": [
+    76,
+    107
+   ],
+   "world_at_repeat_8": [
+    1216,
+    27392
+   ],
+   "see_through_share": 0.659,
+   "is_mask": true,
+   "picture": "knowledge\\blood\\studies\\ghost-station\\tiles\\tile-3793.png"
   }
  }
 }

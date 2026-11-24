@@ -7,6 +7,7 @@ import unittest
 from bloodmap import wiring
 from bloodmap.format import read_map
 from bloodmap.mechanism import CMD_ON
+from bloodmap.motion import CMD_STATE
 from bloodmap.model import record_extra, record_fields
 from bloodmap.visual import HIDDEN_TYPES
 
@@ -88,7 +89,8 @@ class CitySoundTests(unittest.TestCase):
         self.assertEqual(covers, [314] * 4)
 
     def test_caleb_remarks_have_one_invisible_speaker_and_the_intended_cause(self):
-        speakers = [(fields, extra) for fields, extra in self.sprites if fields["type"] == 711]
+        speakers = [(fields, extra) for fields, extra in self.sprites
+                    if fields["type"] == 711 and extra["data_1"] >= 3000]
         self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034, 3101])
         self.assertIn(711, HIDDEN_TYPES)
         for fields, extra in speakers:
@@ -104,7 +106,7 @@ class CitySoundTests(unittest.TestCase):
                 self.assertEqual(len(senders), 1)
                 type_id, cause = senders[0]
                 self.assertEqual(cause["command"], CMD_ON)
-                if sound != 3101:
+                if sound in (4509, 4537):
                     self.assertEqual(cause["trigger_once"], 1)
                 if sound == 4509:
                     self.assertEqual(type_id, 21)
@@ -115,9 +117,12 @@ class CitySoundTests(unittest.TestCase):
                     self.assertEqual(type_id, 216)
                     self.assertEqual((cause["decoupled"], cause["trigger_off"]), (1, 1))
                 elif sound == 3034:
-                    self.assertIsNone(type_id)
-                    self.assertEqual((cause["trigger_enter"], cause["dude_lockout"]), (1, 1))
-                    self.assertEqual(cause, self.sectors[fields["sector"]])
+                    self.assertEqual(type_id, 20)
+                    self.assertEqual((cause["state"], cause["trigger_on"], cause["trigger_off"]),
+                                     (1, 0, 1))
+                    car, = [data for data in self.sectors if data.get("tx_id") == cause["rx_id"]]
+                    self.assertEqual(car["command"], CMD_STATE)
+                    self.assertTrue(car["drag"] and car["busy_time_b"])
                 else:
                     # The show uses a latch which stays ON across curtain cycles.
                     self.assertEqual(type_id, 0)

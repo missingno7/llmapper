@@ -1,0 +1,28 @@
+{
+ "recognition": {
+  "named": "underground railway station with a stopped passenger train",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "horror railway terminus",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "use": {
+  "named": "phantom terminus",
+  "sure": 5,
+  "score": 3,
+  "blocking": [
+   "the empty seat does not read from the aisle"
+  ]
+ },
+ "sense": {
+  "named": "railway station and train",
+  "sure": 5,
+  "score": 3,
+  "blocking": []
+ }
+}

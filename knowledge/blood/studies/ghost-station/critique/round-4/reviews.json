@@ -1,0 +1,28 @@
+{
+ "recognition": {
+  "named": "underground railway station with a passenger train",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "haunted railway terminus",
+  "sure": 5,
+  "score": 4,
+  "blocking": []
+ },
+ "use": {
+  "named": "phantom terminus",
+  "sure": 5,
+  "score": 3,
+  "blocking": [
+   "the empty seat and gun are too easy to miss from the platform"
+  ]
+ },
+ "sense": {
+  "named": "railway station and train",
+  "sure": 5,
+  "score": 3,
+  "blocking": []
+ }
+}

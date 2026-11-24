@@ -85,6 +85,8 @@ class AldermackFrontTests(unittest.TestCase):
             for ((x0, y0), (x1, y1)) in zip(outline, outline[1:]+outline[:1])))
 
     def test_glazed_bills_have_their_own_wall_records(self):
+        from bloodmap.glass import recess_faults
+
         cases = set()
         for i, w in enumerate(self.walls):
             if w["over_picnum"] != 266 or not w["cstat"] & 16:
@@ -101,10 +103,10 @@ class AldermackFrontTests(unittest.TestCase):
                                    (opposite["next_sector"], w["next_sector"]))
             for surface in ("floor_z", "ceiling_z"):
                 self.assertEqual(source[surface], destination[surface])
+            self.assertTrue(any(not recess_faults(self.disk, index) for index in
+                                (opposite["next_sector"], w["next_sector"])))
             cases.add(min(i, w["next_wall"]))
         self.assertEqual(len(cases), 2)
-        from bloodmap.glass import panes_without_a_recess
-        self.assertEqual(panes_without_a_recess(self.disk), [])
 
     def test_the_theatre_blade_reads_aldermack_from_both_sides(self):
         for angle in (0, 1024):

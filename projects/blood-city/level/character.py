@@ -120,12 +120,13 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E1M5 s71 (candle recess); DWE1M5 s610 (candles and remains "
                     "on stone); E1M4 s167 (rats on the grill)",
     },
-    "Ghost Station": {
-        "at": (52736, -10112), "floor": 118784, "study": "ghost-station",
-        "hero": "a lit, tiled platform with empty benches and rails leading "
-                "to a bricked-up tunnel under the pump landing",
-        "exemplar": "E1M2 platform s272 and covered track s264–266; "
-                    "E3M2 sprites 669–671 and #SPR22 for its service controls",
+    "Phantom Terminus": {
+        "at": (52160, -11184), "floor": 118784, "study": "ghost-station",
+        "hero": "a lighted ghost carriage taking its last passenger from "
+                "the shuttered platform to the brick stop",
+        "exemplar": "DWE3M2 s481 and s246 for the station, sprite 208 for the "
+                    "departure; E1M2 s3 for the seated passengers, and SSR3 "
+                    "s5 and s46 looking at s45 for the cars",
     },
     "Gravesend Station": {
         "at": (13312, -11500), "floor": -12288, "study": "station",

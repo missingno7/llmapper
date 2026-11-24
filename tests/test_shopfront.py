@@ -152,10 +152,18 @@ class CityGlassTests(unittest.TestCase):
                 self.assertFalse(int(side["ceiling_stat"]) & 1,
                                  f"wall {wall} is glazed on a street's record")
 
-    def test_every_pane_is_held_by_a_frame_with_a_sill(self):
-        from bloodmap.glass import panes_without_a_recess
+    def test_every_architectural_pane_is_held_by_a_frame_with_a_sill(self):
+        import json
+        from bloodmap.glass import recess_faults
 
-        self.assertEqual(panes_without_a_recess(self.disk), [])
+        tags = json.loads(CITY.with_suffix(".tags.json").read_text("utf-8"))
+        rolling_stock = set(tags["phantom_terminus"])
+        for index in self.panes:
+            sides = (self.owner[index], int(self.disk.walls[index].fields["next_sector"]))
+            if rolling_stock.intersection(sides):
+                continue  # the carriage's frames ride on its shell
+            self.assertTrue(any(not recess_faults(self.disk, side) for side in sides),
+                            f"wall {index} has no display recess")
 
 
 @unittest.skipUnless(CITY.exists(), "the city is not built")

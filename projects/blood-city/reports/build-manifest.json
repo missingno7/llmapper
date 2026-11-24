@@ -1158,11 +1158,11 @@
       },
       {
         "name": "caleb:ghost-tunnel",
-        "says": "entering the bricked-up track stub at Ghost Station prompts Caleb once",
+        "says": "the Phantom car reaching the bricked-up stop prompts Caleb",
         "channel": 119,
         "engine": null,
         "when": [
-          "enter on region region:gravesend/sewer/ghost_station/blind_tunnel"
+          "relay on placement phantom:arrival_quote"
         ],
         "then": [
           "placement caleb:ghost-tunnel"
@@ -1242,6 +1242,166 @@
         ]
       },
       {
+        "name": "phantom:departure",
+        "says": "the first departure blacks out the platform, sounds the whistle and wakes the Phantasms",
+        "channel": 125,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:departure_latch"
+        ],
+        "then": [
+          "region region:gravesend/sewer/ghost_station/spill_gate_0",
+          "region region:gravesend/sewer/ghost_station/spill_gate_1",
+          "region region:gravesend/sewer/ghost_station/spill_gate_2",
+          "region region:gravesend/sewer/ghost_station/gang_lantern_penumbra",
+          "region region:gravesend/sewer/ghost_station/gang_lantern_pool",
+          "region region:gravesend/sewer/ghost_station/spill_window_0",
+          "region region:gravesend/sewer/ghost_station/spill_window_1",
+          "region region:gravesend/sewer/ghost_station/spill_window_2",
+          "region region:gravesend/sewer/ghost_station/spill_window_3",
+          "placement phantom:whistle",
+          "placement phantom:quake",
+          "placement phantom:spawn_0",
+          "placement phantom:spawn_1",
+          "placement phantom:track_spill_dimmer",
+          "region region:gravesend/sewer/ghost_station/booking_ticket_penumbra",
+          "region region:gravesend/sewer/ghost_station/booking_ticket_pool",
+          "region region:gravesend/sewer/ghost_station/edge",
+          "region region:gravesend/sewer/ghost_station/waiting",
+          "region region:gravesend/sewer/ghost_station/platform_gate_penumbra",
+          "region region:gravesend/sewer/ghost_station/platform_gate_pool",
+          "region region:gravesend/sewer/ghost_station/platform_last_penumbra",
+          "region region:gravesend/sewer/ghost_station/platform_last_pool",
+          "region region:gravesend/sewer/ghost_station/platform_failing_penumbra"
+        ]
+      },
+      {
+        "name": "phantom:car",
+        "says": "send the car to the brick stop or call it back to the platform",
+        "channel": 126,
+        "engine": null,
+        "when": [
+          "push on placement phantom:driver_handle",
+          "relay on placement phantom:prize_relay",
+          "push on placement phantom:call_signal",
+          "push on placement phantom:call_brick"
+        ],
+        "then": [
+          "region region:gravesend/sewer/ghost_station/track_car",
+          "placement phantom:run_sense"
+        ]
+      },
+      {
+        "name": "phantom:prize",
+        "says": "picking up the Tommy gun starts the outbound run",
+        "channel": 127,
+        "engine": null,
+        "when": [
+          "pickup on placement phantom:prize:region:gravesend/sewer/ghost_station/track_car"
+        ],
+        "then": [
+          "placement phantom:prize_relay"
+        ]
+      },
+      {
+        "name": "phantom:arm",
+        "says": "the first outbound command sets the departure effects latch",
+        "channel": 128,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:run_sense"
+        ],
+        "then": [
+          "placement phantom:departure_latch"
+        ]
+      },
+      {
+        "name": "phantom:coach-state",
+        "says": "boarding reports ON and the coach announces the state at each berth",
+        "channel": 129,
+        "engine": null,
+        "when": [
+          "enter on region region:gravesend/sewer/ghost_station/track_car"
+        ],
+        "then": [
+          "region region:gravesend/sewer/ghost_station/spill_berth_0",
+          "region region:gravesend/sewer/ghost_station/spill_berth_1",
+          "region region:gravesend/sewer/ghost_station/spill_berth_2",
+          "region region:gravesend/sewer/ghost_station/spill_berth_3",
+          "placement phantom:boarding_sense",
+          "placement phantom:arrival_quote"
+        ]
+      },
+      {
+        "name": "phantom:boarding-arm",
+        "says": "an ON coach report sets the boarding effects latch",
+        "channel": 130,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:boarding_sense"
+        ],
+        "then": [
+          "placement phantom:boarding_latch"
+        ]
+      },
+      {
+        "name": "phantom:boarding",
+        "says": "the first boarding starts a short pulse",
+        "channel": 131,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:boarding_latch"
+        ],
+        "then": [
+          "placement phantom:boarding_pulse"
+        ]
+      },
+      {
+        "name": "phantom:lamp-pulse",
+        "says": "the boarding pulse cuts and restores the carriage lamps",
+        "channel": 132,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:boarding_pulse"
+        ],
+        "then": [
+          "placement phantom:car_lamp_0",
+          "placement phantom:car_lamp_1",
+          "placement phantom:car_lamp_2",
+          "placement phantom:car_lamp_3"
+        ]
+      },
+      {
+        "name": "phantom:first-platform",
+        "says": "entering the platform cuts the near lamp and sounds the distant whistle",
+        "channel": 133,
+        "engine": null,
+        "when": [
+          "enter on region region:gravesend/sewer/ghost_station/gate_open"
+        ],
+        "then": [
+          "region region:gravesend/sewer/ghost_station/first_edge_pool",
+          "placement phantom:distant_whistle",
+          "placement phantom:first_edge_lamp"
+        ]
+      },
+      {
+        "name": "phantom:spill-off",
+        "says": "departure removes the green reflections from the uncut track bed",
+        "channel": 134,
+        "engine": null,
+        "when": [
+          "relay on placement phantom:track_spill_dimmer"
+        ],
+        "then": [
+          "region region:gravesend/sewer/ghost_station/platform_failing_pool",
+          "placement phantom:track_spill_0",
+          "placement phantom:track_spill_1",
+          "placement phantom:track_spill_2",
+          "placement phantom:track_spill_3"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1264,7 +1424,7 @@
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 125,
+        "channel": 135,
         "engine": null,
         "when": [
           "push on placement lever:saloon"
@@ -1276,7 +1436,7 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 126,
+        "channel": 136,
         "engine": null,
         "when": [
           "push on placement lever:parlor"
@@ -1288,7 +1448,7 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 129,
+        "channel": 139,
         "engine": null,
         "when": [
           "push on placement lever:pawn"
@@ -1300,7 +1460,7 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 127,
+        "channel": 137,
         "engine": null,
         "when": [
           "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
@@ -1321,7 +1481,7 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 128,
+        "channel": 138,
         "engine": null,
         "when": [
           "push on placement lever:lobby"
@@ -1341,9 +1501,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "sprite 422",
-          "sprite 441",
-          "sprite 442"
+          "sprite 708",
+          "sprite 727",
+          "sprite 728"
         ],
         "answers": [
           "sector 64"
@@ -1374,17 +1534,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 862",
-          "sprite 863"
+          "sprite 1148",
+          "sprite 1149"
         ],
         "answers": [
           "sector 219",
           "sector 220",
           "sector 221",
           "sector 222",
-          "sprite 864",
-          "sprite 865",
-          "sprite 866"
+          "sprite 1150",
+          "sprite 1151",
+          "sprite 1152"
         ],
         "faults": []
       },
@@ -1394,16 +1554,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 932"
+          "sprite 1218"
         ],
         "answers": [
           "sector 341",
           "sector 342",
           "sector 343",
           "sector 344",
-          "sprite 933",
-          "sprite 934",
-          "sprite 935"
+          "sprite 1219",
+          "sprite 1220",
+          "sprite 1221"
         ],
         "faults": []
       },
@@ -1442,10 +1602,10 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 829"
+          "sprite 1115"
         ],
         "answers": [
-          "sector 596"
+          "sector 665"
         ],
         "faults": []
       },
@@ -1455,10 +1615,10 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 822"
+          "sprite 1108"
         ],
         "answers": [
-          "sector 622"
+          "sector 691"
         ],
         "faults": []
       },
@@ -1468,16 +1628,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 571"
+          "sprite 857"
         ],
         "answers": [
           "sector 512",
           "sector 513",
           "sector 514",
           "sector 515",
-          "sprite 572",
-          "sprite 573",
-          "sprite 574"
+          "sprite 858",
+          "sprite 859",
+          "sprite 860"
         ],
         "faults": []
       },
@@ -1531,7 +1691,7 @@
           "sprite 162"
         ],
         "answers": [
-          "sector 718"
+          "sector 787"
         ],
         "faults": []
       },
@@ -1546,7 +1706,7 @@
           "sprite 170"
         ],
         "answers": [
-          "sector 719"
+          "sector 788"
         ],
         "faults": []
       },
@@ -1587,7 +1747,7 @@
           "sprite 154"
         ],
         "answers": [
-          "sector 720",
+          "sector 789",
           "sprite 155"
         ],
         "faults": []
@@ -1598,10 +1758,10 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 221"
+          "sprite 507"
         ],
         "answers": [
-          "sprite 222"
+          "sprite 508"
         ],
         "faults": []
       },
@@ -1611,23 +1771,23 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 611"
+          "sprite 897"
         ],
         "answers": [
-          "sprite 612"
+          "sprite 898"
         ],
         "faults": []
       },
       {
         "name": "caleb:ghost-tunnel",
-        "says": "entering the bricked-up track stub at Ghost Station prompts Caleb once",
+        "says": "the Phantom car reaching the bricked-up stop prompts Caleb",
         "channel": 119,
         "engine": null,
         "senders": [
-          "sector 543"
+          "sprite 356"
         ],
         "answers": [
-          "sprite 214"
+          "sprite 357"
         ],
         "faults": []
       },
@@ -1640,7 +1800,7 @@
           "sector 47"
         ],
         "answers": [
-          "sprite 429"
+          "sprite 715"
         ],
         "faults": []
       },
@@ -1650,14 +1810,14 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 429"
+          "sprite 715"
         ],
         "answers": [
-          "sprite 430",
-          "sprite 433",
-          "sprite 434",
-          "sprite 439",
-          "sprite 440"
+          "sprite 716",
+          "sprite 719",
+          "sprite 720",
+          "sprite 725",
+          "sprite 726"
         ],
         "faults": []
       },
@@ -1670,7 +1830,7 @@
           "wall 559"
         ],
         "answers": [
-          "sprite 420"
+          "sprite 706"
         ],
         "faults": []
       },
@@ -1680,17 +1840,17 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 421"
+          "sprite 707"
         ],
         "answers": [
           "sector 56",
           "sector 58",
           "sector 60",
           "sector 62",
-          "sprite 422",
-          "sprite 426",
-          "sprite 427",
-          "sprite 428"
+          "sprite 708",
+          "sprite 712",
+          "sprite 713",
+          "sprite 714"
         ],
         "faults": []
       },
@@ -1710,12 +1870,182 @@
         "faults": []
       },
       {
+        "name": "phantom:departure",
+        "says": "the first departure blacks out the platform, sounds the whistle and wakes the Phantasms",
+        "channel": 125,
+        "engine": null,
+        "senders": [
+          "sprite 352"
+        ],
+        "answers": [
+          "sector 543",
+          "sector 554",
+          "sector 555",
+          "sector 556",
+          "sector 557",
+          "sector 558",
+          "sector 559",
+          "sector 571",
+          "sector 572",
+          "sector 573",
+          "sector 574",
+          "sector 575",
+          "sector 583",
+          "sector 584",
+          "sector 585",
+          "sector 586",
+          "sector 587",
+          "sector 588",
+          "sprite 358",
+          "sprite 359",
+          "sprite 360",
+          "sprite 361",
+          "sprite 362"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:car",
+        "says": "send the car to the brick stop or call it back to the platform",
+        "channel": 126,
+        "engine": null,
+        "senders": [
+          "sprite 349",
+          "sprite 350",
+          "sprite 434",
+          "sprite 455"
+        ],
+        "answers": [
+          "sector 790",
+          "sprite 351"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:prize",
+        "says": "picking up the Tommy gun starts the outbound run",
+        "channel": 127,
+        "engine": null,
+        "senders": [
+          "sprite 348"
+        ],
+        "answers": [
+          "sprite 350"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:arm",
+        "says": "the first outbound command sets the departure effects latch",
+        "channel": 128,
+        "engine": null,
+        "senders": [
+          "sprite 351"
+        ],
+        "answers": [
+          "sprite 352"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:coach-state",
+        "says": "boarding reports ON and the coach announces the state at each berth",
+        "channel": 129,
+        "engine": null,
+        "senders": [
+          "sector 790"
+        ],
+        "answers": [
+          "sector 595",
+          "sector 596",
+          "sector 597",
+          "sector 598",
+          "sprite 353",
+          "sprite 356"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:boarding-arm",
+        "says": "an ON coach report sets the boarding effects latch",
+        "channel": 130,
+        "engine": null,
+        "senders": [
+          "sprite 353"
+        ],
+        "answers": [
+          "sprite 354"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:boarding",
+        "says": "the first boarding starts a short pulse",
+        "channel": 131,
+        "engine": null,
+        "senders": [
+          "sprite 354"
+        ],
+        "answers": [
+          "sprite 355"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:lamp-pulse",
+        "says": "the boarding pulse cuts and restores the carriage lamps",
+        "channel": 132,
+        "engine": null,
+        "senders": [
+          "sprite 355"
+        ],
+        "answers": [
+          "sprite 262",
+          "sprite 269",
+          "sprite 277",
+          "sprite 284"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:first-platform",
+        "says": "entering the platform cuts the near lamp and sounds the distant whistle",
+        "channel": 133,
+        "engine": null,
+        "senders": [
+          "sector 545"
+        ],
+        "answers": [
+          "sector 577",
+          "sprite 233",
+          "sprite 234"
+        ],
+        "faults": []
+      },
+      {
+        "name": "phantom:spill-off",
+        "says": "departure removes the green reflections from the uncut track bed",
+        "channel": 134,
+        "engine": null,
+        "senders": [
+          "sprite 362"
+        ],
+        "answers": [
+          "sector 576",
+          "sprite 363",
+          "sprite 364",
+          "sprite 365",
+          "sprite 366"
+        ],
+        "faults": []
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 823"
+          "sprite 1109"
         ],
         "answers": [],
         "faults": []
@@ -1727,17 +2057,17 @@
         "engine": "kChannelLevelStart",
         "senders": [],
         "answers": [
-          "sector 556"
+          "sector 625"
         ],
         "faults": []
       },
       {
         "name": "lever:saloon",
         "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 125,
+        "channel": 135,
         "engine": null,
         "senders": [
-          "sprite 1105"
+          "sprite 1391"
         ],
         "answers": [
           "sector 9"
@@ -1747,10 +2077,10 @@
       {
         "name": "lever:parlor",
         "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 126,
+        "channel": 136,
         "engine": null,
         "senders": [
-          "sprite 1106"
+          "sprite 1392"
         ],
         "answers": [
           "sector 18"
@@ -1760,10 +2090,10 @@
       {
         "name": "lever:pawn",
         "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 129,
+        "channel": 139,
         "engine": null,
         "senders": [
-          "sprite 1107"
+          "sprite 1393"
         ],
         "answers": [
           "sector 162"
@@ -1773,10 +2103,10 @@
       {
         "name": "lever:aldermack",
         "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 127,
+        "channel": 137,
         "engine": null,
         "senders": [
-          "sprite 1108",
+          "sprite 1394",
           "wall 965",
           "wall 966",
           "wall 967",
@@ -1795,10 +2125,10 @@
       {
         "name": "lever:lobby",
         "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-        "channel": 128,
+        "channel": 138,
         "engine": null,
         "senders": [
-          "sprite 1109"
+          "sprite 1395"
         ],
         "answers": [
           "sector 149"
@@ -1811,11 +2141,11 @@
     "agrees": true
   },
   "lighting": {
-    "lights": 72,
-    "rays_cast": 1264439,
-    "surfaces_lit": 1399,
-    "surfaces_protected": 739,
-    "walls_lit": 1552,
+    "lights": 69,
+    "rays_cast": 1206839,
+    "surfaces_lit": 1364,
+    "surfaces_protected": 676,
+    "walls_lit": 1488,
     "basis": "XMapEdit's own LightBomb, from edit3d.cpp: energy is intensity/(dist+ramp) divided by the area of the surface it lands on, reflected 2 times with 6.2% lost per bounce, and sky absorbs",
     "enabled": true,
     "source_ids": [
@@ -1831,9 +2161,6 @@
       "light:gravesend/sewer/settling_hall/lift_quay:work_light",
       "light:gravesend/sewer/sampling/trolley_ledge:work_light",
       "light:gravesend/sewer/sampling/trolley_alcove:work_light",
-      "ghost:pool_0",
-      "ghost:pool_1",
-      "ghost:pool_2",
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp",
       "light:gravesend/gravesend_station/concourse:concourse_lamp",
       "loading:lamp",
@@ -1905,9 +2232,6 @@
       "light:gravesend/sewer/settling_hall/lift_quay:work_light": 1.0,
       "light:gravesend/sewer/sampling/trolley_ledge:work_light": 1.0,
       "light:gravesend/sewer/sampling/trolley_alcove:work_light": 1.0,
-      "ghost:pool_0": 2.0,
-      "ghost:pool_1": 2.0,
-      "ghost:pool_2": 2.0,
       "light:gravesend/gravesend_station/east_hall:east_hall_lamp": 1.0,
       "light:gravesend/gravesend_station/concourse:concourse_lamp": 1.0,
       "loading:lamp": 1.0,
@@ -1992,16 +2316,16 @@
     }
   },
   "split_bands": {
-    "pegged": 69,
+    "pegged": 76,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
-    "lined": 90,
-    "too_long": 160,
-    "no_band": 136,
+    "lined": 82,
+    "too_long": 136,
+    "no_band": 128,
     "outside": 9,
     "tile": 194,
-    "moving": 42
+    "moving": 34
   },
   "motion_sounds": {
     "9": {
@@ -2160,39 +2484,43 @@
       "region": "region:gravesend/sewer/secrets/plague_seal_3",
       "profile": "blast"
     },
-    "556": {
+    "625": {
       "region": "region:gravesend/gravesend_station/fare_turnstile",
       "profile": "fare_ambient"
     },
-    "596": {
+    "665": {
       "region": "region:gravesend/gravesend_station/carriage_door",
       "profile": "metal_z_door"
     },
-    "622": {
+    "691": {
       "region": "region:gravesend/gravesend_station/tunnel_gate",
       "profile": "chain_lift"
     },
-    "718": {
+    "787": {
       "region": "region:gravesend/sewer/settling_hall/service_lift",
       "profile": "winch_lift"
     },
-    "719": {
+    "788": {
       "region": "region:gravesend/sewer/sampling/trolley_track_deck",
       "profile": "rail_shuttle"
     },
-    "720": {
+    "789": {
       "region": "region:gravesend/sewer/ghost_station/hatch:panel",
       "profile": "hydraulic_slide"
+    },
+    "790": {
+      "region": "region:gravesend/sewer/ghost_station/track_car",
+      "profile": "phantom_train"
     }
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 1620,
-    "wall_sprites": 778,
-    "planes": 192,
+    "sprites": 1907,
+    "wall_sprites": 961,
+    "planes": 231,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.51,
+    "clash_rate_per_100_wall_sprites": 0.42,
     "fully_hidden": 0
   },
   "apertures": {
@@ -2229,9 +2557,9 @@
     }
   ],
   "swept_closure": {
-    "mechanisms": 9,
-    "sound": 9,
-    "deforming_neighbours": 6,
+    "mechanisms": 10,
+    "sound": 10,
+    "deforming_neighbours": 7,
     "problems": [],
     "notes": []
   },
@@ -2239,7 +2567,7 @@
     "$schema": "llmapper.readback",
     "schema_version": 1,
     "map": "blood-city-current.MAP",
-    "sentences": 113,
+    "sentences": 142,
     "agrees": true,
     "differences": [],
     "unmeasured": [],
@@ -2271,7 +2599,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 125,
+          "rx_id": 135,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2299,7 +2627,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 126,
+          "rx_id": 136,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2639,7 +2967,7 @@
           146
         ],
         "wiring": {
-          "rx_id": 127,
+          "rx_id": 137,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2685,7 +3013,7 @@
           147
         ],
         "wiring": {
-          "rx_id": 127,
+          "rx_id": 137,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2722,7 +3050,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 128,
+          "rx_id": 138,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -2842,7 +3170,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 129,
+          "rx_id": 139,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -4068,7 +4396,7 @@
         "sector_type": 0
       },
       {
-        "name": "region:gravesend/sewer/ghost_station/blind_tunnel",
+        "name": "region:gravesend/sewer/ghost_station/edge",
         "construct": "sector",
         "sector": 543,
         "sectors": [
@@ -4076,18 +4404,414 @@
         ],
         "sector_type": 0,
         "wiring": {
-          "rx_id": 0,
-          "tx_id": 119,
-          "command": 1,
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
           "state": 0
         }
       },
       {
-        "name": "region:gravesend/gravesend_station/fare_turnstile",
-        "construct": "turnstile",
+        "name": "region:gravesend/sewer/ghost_station/gate_open",
+        "construct": "sector",
+        "sector": 545,
+        "sectors": [
+          545
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 0,
+          "tx_id": 133,
+          "command": 3,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/clerk",
+        "construct": "sector",
+        "sector": 552,
+        "sectors": [
+          552
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/booking_ticket_penumbra",
+        "construct": "sector",
+        "sector": 554,
+        "sectors": [
+          554
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/booking_ticket_pool",
+        "construct": "sector",
+        "sector": 555,
+        "sectors": [
+          555
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_gate_0",
+        "construct": "sector",
         "sector": 556,
         "sectors": [
           556
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_gate_1",
+        "construct": "sector",
+        "sector": 557,
+        "sectors": [
+          557
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_gate_2",
+        "construct": "sector",
+        "sector": 558,
+        "sectors": [
+          558
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/waiting",
+        "construct": "sector",
+        "sector": 559,
+        "sectors": [
+          559
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_gate_penumbra",
+        "construct": "sector",
+        "sector": 571,
+        "sectors": [
+          571
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_gate_pool",
+        "construct": "sector",
+        "sector": 572,
+        "sectors": [
+          572
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_last_penumbra",
+        "construct": "sector",
+        "sector": 573,
+        "sectors": [
+          573
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_last_pool",
+        "construct": "sector",
+        "sector": 574,
+        "sectors": [
+          574
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_failing_penumbra",
+        "construct": "sector",
+        "sector": 575,
+        "sectors": [
+          575
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/platform_failing_pool",
+        "construct": "sector",
+        "sector": 576,
+        "sectors": [
+          576
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 134,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/first_edge_pool",
+        "construct": "sector",
+        "sector": 577,
+        "sectors": [
+          577
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 133,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/gang_lantern_penumbra",
+        "construct": "sector",
+        "sector": 583,
+        "sectors": [
+          583
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/gang_lantern_pool",
+        "construct": "sector",
+        "sector": 584,
+        "sectors": [
+          584
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_window_0",
+        "construct": "sector",
+        "sector": 585,
+        "sectors": [
+          585
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_window_1",
+        "construct": "sector",
+        "sector": 586,
+        "sectors": [
+          586
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_window_2",
+        "construct": "sector",
+        "sector": 587,
+        "sectors": [
+          587
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_window_3",
+        "construct": "sector",
+        "sector": 588,
+        "sectors": [
+          588
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 125,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_berth_0",
+        "construct": "sector",
+        "sector": 595,
+        "sectors": [
+          595
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 129,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_berth_1",
+        "construct": "sector",
+        "sector": 596,
+        "sectors": [
+          596
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 129,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_berth_2",
+        "construct": "sector",
+        "sector": 597,
+        "sectors": [
+          597
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 129,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/spill_berth_3",
+        "construct": "sector",
+        "sector": 598,
+        "sectors": [
+          598
+        ],
+        "sector_type": 0,
+        "wiring": {
+          "rx_id": 129,
+          "tx_id": 0,
+          "command": 0,
+          "state": 1
+        }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/drowned",
+        "construct": "sector",
+        "sector": 611,
+        "sectors": [
+          611
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/sunk_glow_0",
+        "construct": "sector",
+        "sector": 614,
+        "sectors": [
+          614
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/sunk_glow_1",
+        "construct": "sector",
+        "sector": 616,
+        "sectors": [
+          616
+        ],
+        "sector_type": 0
+      },
+      {
+        "name": "region:gravesend/gravesend_station/fare_turnstile",
+        "construct": "turnstile",
+        "sector": 625,
+        "sectors": [
+          625
         ],
         "sector_type": 615,
         "wiring": {
@@ -4104,7 +4828,7 @@
           "grazing_loops": []
         },
         "conformance": {
-          "construct": "turnstile sector 556",
+          "construct": "turnstile sector 625",
           "measured": {
             "blades": 4,
             "axis": [
@@ -4132,7 +4856,7 @@
           "deviations": []
         },
         "state_pair": {
-          "sector": 556,
+          "sector": 625,
           "type": 615,
           "measured": [
             "turn"
@@ -4150,9 +4874,9 @@
       {
         "name": "region:gravesend/gravesend_station/carriage_door",
         "construct": "z_motion_door",
-        "sector": 596,
+        "sector": 665,
         "sectors": [
-          596
+          665
         ],
         "sector_type": 600,
         "wiring": {
@@ -4162,7 +4886,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 596,
+          "sector": 665,
           "type": 600,
           "measured": [
             "headroom"
@@ -4178,9 +4902,9 @@
       {
         "name": "region:gravesend/gravesend_station/tunnel_gate",
         "construct": "z_motion_door",
-        "sector": 622,
+        "sector": 691,
         "sectors": [
-          622
+          691
         ],
         "sector_type": 600,
         "wiring": {
@@ -4190,7 +4914,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 622,
+          "sector": 691,
           "type": 600,
           "measured": [
             "headroom"
@@ -4206,9 +4930,9 @@
       {
         "name": "region:gravesend/sewer/settling_hall/service_lift",
         "construct": "z_motion_door",
-        "sector": 718,
+        "sector": 787,
         "sectors": [
-          718
+          787
         ],
         "sector_type": 600,
         "wiring": {
@@ -4218,7 +4942,7 @@
           "state": 0
         },
         "state_pair": {
-          "sector": 718,
+          "sector": 787,
           "type": 600,
           "measured": [
             "headroom"
@@ -4234,19 +4958,19 @@
       {
         "name": "region:gravesend/sewer/sampling/trolley_track_deck",
         "construct": "unmarked_mover",
-        "sector": 719,
+        "sector": 788,
         "sectors": [
-          719
+          788
         ],
         "sector_type": 616,
         "motion_set": [
           529,
-          719
+          788
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
           529,
-          719
+          788
         ],
         "wiring": {
           "rx_id": 113,
@@ -4262,7 +4986,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 719,
+          "sector": 788,
           "type": 616,
           "measured": [
             "travel"
@@ -4280,19 +5004,19 @@
       {
         "name": "region:gravesend/sewer/ghost_station/hatch:panel",
         "construct": "unmarked_mover",
-        "sector": 720,
+        "sector": 789,
         "sectors": [
-          720
+          789
         ],
         "sector_type": 616,
         "motion_set": [
           539,
-          720
+          789
         ],
         "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
         "declared_members": [
           539,
-          720
+          789
         ],
         "wiring": {
           "rx_id": 116,
@@ -4308,7 +5032,7 @@
           "grazing_loops": []
         },
         "state_pair": {
-          "sector": 720,
+          "sector": 789,
           "type": 616,
           "measured": [
             "travel"
@@ -4322,24 +5046,70 @@
           "whole_circles": false,
           "changes": true
         }
+      },
+      {
+        "name": "region:gravesend/sewer/ghost_station/track_car",
+        "construct": "unmarked_mover",
+        "sector": 790,
+        "sectors": [
+          790
+        ],
+        "sector_type": 616,
+        "motion_set": [
+          544,
+          790
+        ],
+        "closure_basis": "triggers.cpp:817-854 DragPoint walks nextwall both ways; :897-910 a 16384 wall drags its point2 when that wall is unflagged; :912-926 a 32768 wall does the same in reverse",
+        "declared_members": [
+          544,
+          790
+        ],
+        "wiring": {
+          "rx_id": 126,
+          "tx_id": 129,
+          "command": 2,
+          "state": 1
+        },
+        "closure": {
+          "loops": 2,
+          "problems": [],
+          "notes": [],
+          "graze_tolerance": 16.0,
+          "grazing_loops": []
+        },
+        "state_pair": {
+          "sector": 790,
+          "type": 616,
+          "measured": [
+            "travel"
+          ],
+          "headroom_change": 0,
+          "area_off": 25165824.0,
+          "area_on": 25165824.0,
+          "area_change": 0.0,
+          "declared_travel": 11264.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
       }
     ]
   },
   "rules": {
-    "total": 1660,
+    "total": 2198,
     "by_severity": {
-      "note": 1654,
+      "note": 2192,
       "warning": 6
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 2,
-      "note:sprite-drawn-square": 330,
-      "note:floor-aligned-sprite-rests-on-a-surface": 21,
+      "note:sprite-drawn-square": 485,
+      "note:floor-aligned-sprite-rests-on-a-surface": 31,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 212,
+      "note:opening-clears-a-standing-body": 220,
       "note:lintel-continues-the-facade": 5,
       "warning:wall-between-rooms-is-not-paper": 4,
-      "note:wall-draws-its-own-tile": 1080,
+      "note:wall-draws-its-own-tile": 1445,
       "warning:wall-tile-is-drawn-somewhere": 2
     },
     "open": [
@@ -4382,7 +5152,7 @@
     ]
   },
   "lost_wall_tiles": {
-    "population": 94,
+    "population": 99,
     "tiles": [
       "tile[93]",
       "tile[448]"
@@ -4394,7 +5164,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1321,
+      "sprites": 1582,
       "sunk": 0.0,
       "through": 0.0,
       "squeezed": 0.0
@@ -4402,12 +5172,18 @@
     "sunk": [],
     "through": [],
     "squeezed": [],
-    "lifted": [],
+    "lifted": [
+      {
+        "sprite": 348,
+        "tile": 558,
+        "sector": 790
+      }
+    ],
     "overlaps": [
       {
         "sprites": [
-          1071,
-          1072
+          1357,
+          1358
         ],
         "tiles": [
           73,
@@ -4423,13 +5199,73 @@
   "tile_contexts": {
     "new": [
       {
+        "tile": 1665,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 11,
+        "first": [
+          "sprite",
+          256
+        ]
+      },
+      {
+        "tile": 386,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 10,
+        "first": [
+          "sprite",
+          257
+        ]
+      },
+      {
+        "tile": 51,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 6,
+        "first": [
+          "sprite",
+          230
+        ]
+      },
+      {
+        "tile": 1129,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 4,
+        "first": [
+          "sprite",
+          483
+        ]
+      },
+      {
+        "tile": 52,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 3,
+        "first": [
+          "sprite",
+          231
+        ]
+      },
+      {
+        "tile": 2229,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "first": [
+          "sprite",
+          473
+        ]
+      },
+      {
         "tile": 2633,
         "slot": "sprite_floor",
         "place": "indoors",
         "count": 1,
         "first": [
           "sprite",
-          1002
+          1288
         ]
       }
     ],
@@ -4459,11 +5295,27 @@
         "maps": 4
       },
       {
+        "tile": 255,
+        "slot": "masked_middle",
+        "place": "indoors",
+        "count": 30,
+        "source": "community",
+        "maps": 5
+      },
+      {
         "tile": 458,
         "slot": "two_sided_lower",
         "place": "outdoors",
         "count": 27,
         "source": "community-curated",
+        "maps": 6
+      },
+      {
+        "tile": 1099,
+        "slot": "masked_middle",
+        "place": "indoors",
+        "count": 20,
+        "source": "community",
         "maps": 6
       },
       {
@@ -4483,12 +5335,36 @@
         "maps": 1
       },
       {
+        "tile": 3810,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 18,
+        "source": "community-curated",
+        "maps": 9
+      },
+      {
         "tile": 569,
         "slot": "sprite_wall",
         "place": "indoors",
         "count": 17,
         "source": "community",
         "maps": 3
+      },
+      {
+        "tile": 386,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 16,
+        "source": "community-curated",
+        "maps": 5
+      },
+      {
+        "tile": 174,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 16,
+        "source": "community-curated",
+        "maps": 1
       },
       {
         "tile": 147,
@@ -4515,12 +5391,36 @@
         "maps": 7
       },
       {
-        "tile": 3810,
+        "tile": 2330,
         "slot": "sprite_wall",
         "place": "indoors",
         "count": 14,
-        "source": "community-curated",
-        "maps": 9
+        "source": "community",
+        "maps": 7
+      },
+      {
+        "tile": 1717,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 13,
+        "source": "community",
+        "maps": 4
+      },
+      {
+        "tile": 67,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 10,
+        "source": "community",
+        "maps": 8
+      },
+      {
+        "tile": 67,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 10,
+        "source": "community",
+        "maps": 5
       },
       {
         "tile": 1004,
@@ -4531,12 +5431,52 @@
         "maps": 2
       },
       {
+        "tile": 956,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 9,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 298,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 9,
+        "source": "community",
+        "maps": 5
+      },
+      {
+        "tile": 368,
+        "slot": "two_sided_upper",
+        "place": "indoors",
+        "count": 8,
+        "source": "community",
+        "maps": 14
+      },
+      {
         "tile": 470,
         "slot": "two_sided_lower",
         "place": "outdoors",
         "count": 8,
         "source": "community-curated",
         "maps": 1
+      },
+      {
+        "tile": 470,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 8,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 255,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 7,
+        "source": "community",
+        "maps": 10
       },
       {
         "tile": 1743,
@@ -4561,14 +5501,6 @@
         "count": 6,
         "source": "community-curated",
         "maps": 3
-      },
-      {
-        "tile": 2330,
-        "slot": "sprite_wall",
-        "place": "indoors",
-        "count": 6,
-        "source": "community",
-        "maps": 7
       },
       {
         "tile": 676,
@@ -4611,6 +5543,14 @@
         "maps": 9
       },
       {
+        "tile": 383,
+        "slot": "floor",
+        "place": "indoors",
+        "count": 4,
+        "source": "community",
+        "maps": 12
+      },
+      {
         "tile": 159,
         "slot": "masked_middle",
         "place": "indoors",
@@ -4620,6 +5560,22 @@
       },
       {
         "tile": 70,
+        "slot": "one_sided_middle",
+        "place": "indoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 1060,
+        "slot": "masked_middle",
+        "place": "indoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 7
+      },
+      {
+        "tile": 383,
         "slot": "one_sided_middle",
         "place": "indoors",
         "count": 4,
@@ -4657,6 +5613,14 @@
         "count": 4,
         "source": "community",
         "maps": 1
+      },
+      {
+        "tile": 522,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 4,
+        "source": "community-curated",
+        "maps": 3
       },
       {
         "tile": 1744,
@@ -4721,6 +5685,30 @@
         "count": 3,
         "source": "community-curated",
         "maps": 4
+      },
+      {
+        "tile": 2334,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 3,
+        "source": "community",
+        "maps": 2
+      },
+      {
+        "tile": 2333,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 3,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 523,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 3,
+        "source": "community-curated",
+        "maps": 2
       },
       {
         "tile": 20,
@@ -4891,6 +5879,54 @@
         "maps": 3
       },
       {
+        "tile": 1667,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
+        "tile": 1166,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 1407,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 3
+      },
+      {
+        "tile": 2320,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community",
+        "maps": 2
+      },
+      {
+        "tile": 199,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 624,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 2,
+        "source": "community-curated",
+        "maps": 10
+      },
+      {
         "tile": 2453,
         "slot": "sprite_wall",
         "place": "indoors",
@@ -4913,14 +5949,6 @@
         "count": 2,
         "source": "community-curated",
         "maps": 1
-      },
-      {
-        "tile": 956,
-        "slot": "sprite_floor",
-        "place": "indoors",
-        "count": 2,
-        "source": "community-curated",
-        "maps": 3
       },
       {
         "tile": 2139,
@@ -4985,22 +6013,6 @@
         "count": 2,
         "source": "community",
         "maps": 34
-      },
-      {
-        "tile": 523,
-        "slot": "sprite_face",
-        "place": "indoors",
-        "count": 2,
-        "source": "community-curated",
-        "maps": 2
-      },
-      {
-        "tile": 522,
-        "slot": "sprite_face",
-        "place": "indoors",
-        "count": 2,
-        "source": "community-curated",
-        "maps": 3
       },
       {
         "tile": 77,
@@ -5099,14 +6111,6 @@
         "maps": 53
       },
       {
-        "tile": 383,
-        "slot": "one_sided_middle",
-        "place": "indoors",
-        "count": 1,
-        "source": "community-curated",
-        "maps": 1
-      },
-      {
         "tile": 77,
         "slot": "sprite_wall",
         "place": "outdoors",
@@ -5147,20 +6151,68 @@
         "maps": 1
       },
       {
+        "tile": 438,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 6
+      },
+      {
+        "tile": 1717,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 95,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 1
+      },
+      {
+        "tile": 743,
+        "slot": "sprite_floor",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 17
+      },
+      {
+        "tile": 2621,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 6
+      },
+      {
+        "tile": 2622,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 2623,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
         "tile": 698,
         "slot": "sprite_wall",
         "place": "indoors",
         "count": 1,
         "source": "community",
         "maps": 5
-      },
-      {
-        "tile": 624,
-        "slot": "sprite_wall",
-        "place": "indoors",
-        "count": 1,
-        "source": "community-curated",
-        "maps": 10
       },
       {
         "tile": 625,
@@ -5871,52 +6923,70 @@
         "relations": [],
         "study": "rat-king-shrine"
       },
-      "Ghost Station": {
-        "hero": "a lit, tiled platform with empty benches and rails leading to a bricked-up tunnel under the pump landing",
-        "exemplar": "E1M2 platform s272 and covered track s264\u2013266; E3M2 sprites 669\u2013671 and #SPR22 for its service controls",
+      "Phantom Terminus": {
+        "hero": "a lighted ghost carriage taking its last passenger from the shuttered platform to the brick stop",
+        "exemplar": "DWE3M2 s481 and s246 for the station, sprite 208 for the departure; E1M2 s3 for the seated passengers, and SSR3 s5 and s46 looking at s45 for the cars",
         "layers": [
           "second",
           "trim",
           "wall_art",
+          "flat_art",
           "standing",
           "levels",
+          "masked",
+          "light",
+          "motion",
           "machines"
         ],
-        "layer_count": 6,
+        "layer_count": 10,
         "campaign_p25": 4,
         "campaign_p50": 6,
-        "missing": [
-          "light",
-          "motion"
-        ],
+        "missing": [],
         "wall_tiles": [
           [
-            296,
-            0.41
-          ],
-          [
             421,
-            0.405
+            0.36
           ],
           [
-            67,
-            0.105
+            369,
+            0.165
           ],
           [
             383,
-            0.061
+            0.127
+          ],
+          [
+            275,
+            0.105
+          ],
+          [
+            386,
+            0.079
+          ],
+          [
+            255,
+            0.06
+          ],
+          [
+            67,
+            0.055
+          ],
+          [
+            88,
+            0.03
           ]
         ],
-        "shade_spread": 0,
+        "shade_spread": 50,
         "metres": [
-          14.1,
-          24.0,
-          3.5
+          17.1,
+          55.1,
+          2.8
         ],
         "free_floor_share": 0.98,
         "cramped": [
-          "short side 8288 (campaign p25 11776)",
-          "height 1.93 bodies (campaign p25 2.84)"
+          "short side 10048 (campaign p25 11776)",
+          "height 1.57 bodies (campaign p25 2.84)",
+          "1.57 bodies high (a destination wants 1.93)"
         ],
         "relations": [],
         "study": "ghost-station"
@@ -6376,9 +7446,10 @@
         "1.31M of floor (a destination wants 14.0M)",
         "1.45 bodies high (a destination wants 1.93)"
       ],
-      "Ghost Station": [
-        "short side 8288 (campaign p25 11776)",
-        "height 1.93 bodies (campaign p25 2.84)"
+      "Phantom Terminus": [
+        "short side 10048 (campaign p25 11776)",
+        "height 1.57 bodies (campaign p25 2.84)",
+        "1.57 bodies high (a destination wants 1.93)"
       ],
       "Gravesend Station": [
         "short side 10752 (campaign p25 11776)"
@@ -6407,12 +7478,11 @@
     "whole": 8
   },
   "light_stage": {
-    "sectors_before": 760,
-    "walls_before": 4867,
-    "sprites_before": 1620,
+    "sectors_before": 830,
+    "walls_before": 5498,
+    "sprites_before": 1907,
     "mover_hosts": [
-      144,
-      539
+      144
     ],
     "shadow_cut": {
       "sectors": 21,
@@ -6550,24 +7620,6 @@
       },
       "region:gravesend/sewer/chambers/silt_trap": {
         "panel 796": 1
-      },
-      "region:gravesend/sewer/ghost_station/bench_0_seat": {
-        "its own lights": 0
-      },
-      "region:gravesend/sewer/ghost_station/bench_1_seat": {
-        "its own lights": 0
-      },
-      "region:gravesend/sewer/ghost_station/blind_tunnel": {
-        "its own lights": 0
-      },
-      "region:gravesend/sewer/ghost_station/hatch": {
-        "its own lights": 0
-      },
-      "region:gravesend/sewer/ghost_station/platform": {
-        "its own lights": 3
-      },
-      "region:gravesend/sewer/ghost_station/track": {
-        "its own lights": 0
       },
       "region:gravesend/sewer/lair/brood_east": {
         "its own lights": 0
@@ -6779,24 +7831,24 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1804,
+      "walls_split": 1764,
       "seams": 0,
       "refused": {},
-      "walls_cut": 466,
-      "walls_refused": 10,
+      "walls_cut": 456,
+      "walls_refused": 9,
       "left_whole": {},
-      "looked_at": 1461
+      "looked_at": 1439
     },
     "shades": {
-      "surfaces": 5628,
+      "surfaces": 5540,
       "windows": 18,
-      "spread_12": 84,
-      "movers_evened": 3
+      "spread_12": 83,
+      "movers_evened": 2
     },
-    "kept": 114,
-    "sectors": 1192,
-    "walls": 11339,
-    "sprites": 1689,
+    "kept": 194,
+    "sectors": 1262,
+    "walls": 11945,
+    "sprites": 1976,
     "pieces": 432,
     "default_rooms": []
   },

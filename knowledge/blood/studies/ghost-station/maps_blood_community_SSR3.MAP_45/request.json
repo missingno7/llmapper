@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "knowledge/blood/studies/ghost-station/maps_blood_community_SSR3.MAP_45/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "knowledge/blood/studies/ghost-station/maps_blood_community_SSR3.MAP_45",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -19813,
+   "y": -9078,
+   "z": 1120,
+   "angle": 699,
+   "horiz": 100,
+   "sector": 45,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -23414,
+   "y": -9078,
+   "z": 1120,
+   "angle": 394,
+   "horiz": 100,
+   "sector": 45,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -21475,
+   "y": -8801,
+   "z": 1120,
+   "angle": 572,
+   "horiz": 100,
+   "sector": 45,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -19813,
+   "y": -7139,
+   "z": 1120,
+   "angle": 826,
+   "horiz": 100,
+   "sector": 45,
+   "screenshot": true
+  }
+ ]
+}
