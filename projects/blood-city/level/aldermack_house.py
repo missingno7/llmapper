@@ -715,8 +715,10 @@ def _wire_trap(layout, built):
     trap, stage = built["trap"], built["stage"]
     prize = _sprite(layout, "fire_armour", trap, 2578, CENTER + 100, 5536,
                     xr=44, yr=44, shade=-44, type=142, status=3)
+    # the moon key is what the show is for (`gameplay.KEYS`): taking it is what strikes the set
+    moon = _sprite(layout, "moon_key", trap, 2557, CENTER - 220, 5536, xr=32, yr=32, shade=-40, type=105, status=3)
     strike = wires.wire(PRIZE_WIRE)
-    strike.when(wiring.placement(prize), "pickup", command=CMD_ON, once=True)
+    strike.when(wiring.placement(moon), "pickup", command=CMD_ON, once=True)
     relay = layout.add_sprite(
         "aldermack:curtain_drop", trap.region_id, x=CENTER, y=5596,
         z=layout.regions[trap.region_id].floor_z - 768, picnum=0, cstat=32896)

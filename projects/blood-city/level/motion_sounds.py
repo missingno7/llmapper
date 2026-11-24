@@ -30,6 +30,7 @@ WIRE_PROFILES = {
     "pump:presses": "ceiling_press",
     "station:car-door": "metal_z_door",
     "station:gate": "chain_lift",
+    "station:unlock": "chain_lift",
     "sewer:plague-pit": "blast",
     "foundry:loading-shutter": "heavy_slide",
     "theatre:fire-doors": "wood_swing",

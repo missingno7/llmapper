@@ -67,7 +67,7 @@ class PhantomTerminusTests(unittest.TestCase):
         cls.aisle = cls.sector(cls, *terminus.COACH(35, 25), terminus.DECK)
         cls.body, = [b for b in rigid_bodies(cls.disk) if cls.aisle in b.members]
         cls.prize, = [node["index"] for node in cls.nodes
-                      if node["type"] == 42 and node["tx"] == cls.wires[terminus.PRIZE]]
+                      if node["type"] == 50 and node["tx"] == cls.wires[terminus.PRIZE]]
         cls.departure = posed.chain_of(wiring.chains(cls.disk), f"sprite {cls.prize}")
 
     def sector(self, x, y, floor):

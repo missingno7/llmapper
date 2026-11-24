@@ -82,7 +82,7 @@ class CitySoundTests(unittest.TestCase):
                     for context, sound in ambience.SOUNDS.items()}
         self.assertEqual(envelopes, expected | {
             (56, 150, 350, 50), (59, 500, 1100, 70), (60, 300, 800, 90)})      # the falls; the Cabal's chant and the heart
-        self.assertEqual(outfalls, 2)
+        self.assertEqual(outfalls, 3)                  # the stockyard's, and the settling hall's at its head and its foot
 
     def test_metal_drain_covers_have_a_metal_break_sound(self):
         covers = [extra["data_4"] for fields, extra in self.sprites
@@ -92,7 +92,7 @@ class CitySoundTests(unittest.TestCase):
     def test_caleb_remarks_have_one_invisible_speaker_and_the_intended_cause(self):
         speakers = [(fields, extra) for fields, extra in self.sprites
                     if fields["type"] == 711 and extra["data_1"] >= 3000]
-        self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034, 3101])
+        self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034, 3101, 3056, 3031])
         self.assertIn(711, HIDDEN_TYPES)
         for fields, extra in speakers:
             sound = extra["data_1"]
@@ -124,6 +124,10 @@ class CitySoundTests(unittest.TestCase):
                     car, = [data for data in self.sectors if data.get("tx_id") == cause["rx_id"]]
                     self.assertEqual(car["command"], CMD_STATE)
                     self.assertTrue(car["drag"] and car["busy_time_b"])
+                elif sound == 3056:                   # the rite's end, when the last blast has gone off
+                    self.assertEqual((type_id, cause["trigger_on"], cause["trigger_off"]), (21, 0, 1))
+                elif sound == 3031:                   # the sixth key turns in the station's lock
+                    self.assertEqual((type_id, cause["trigger_on"], cause["trigger_once"]), (22, 1, 1))
                 else:
                     # The show uses a latch which stays ON across curtain cycles.
                     self.assertEqual(type_id, 0)

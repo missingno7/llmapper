@@ -84,8 +84,10 @@ Derived readings of a map. Never authoritative, never written back.
 | `level_profile` | What a Blood level measures like, so an authored one can be compared to it. |
 | `effects` | What a mechanism physically does, said neutrally. |
 | `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
+| `blasts` | Chains of blasts: the exploders of one wire in the order their waits set them off, and what each of them can hurt. |
 | `posed` | Posed: a copy of a map with everything one wiring chain answers put in its other state. |
 | `completion` | Completion: whether our readers can finish a map that is known to be finishable, and where they stop. |
+| `supplies` | Supplies: what a map gives the player, how far along the way it gives it, and what keys, gates and secrets stand between. |
 | `assembly` | A mechanism is several objects and the relations between them. |
 | `conditional` | Conditional traversability: which ways open, and what opens them. |
 | `progression` | State-dependent single-player progression over Blood native mechanisms. |
@@ -286,6 +288,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | --- | --- |
 | `mine_apertures` | How big a hole in a wall is, and what Blood puts around it. |
 | `mine_assemblies` | What a working example of a mechanism looks like, mined whole. |
+| `mine_blasts` | How Blood times its blasts: every chain of exploders in the named maps, read by `bloodmap.blasts` and written to a shelf. |
 | `mine_compositions` | Mine and search geometric compositions across the Blood map corpus. |
 | `mine_decoration` | How Blood dresses a room: which decorations, how big, where, how many. |
 | `mine_keys` | How Blood tells you which key a door wants. |
@@ -305,6 +308,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_storeys` | How Blood stacks storeys, measured on the maps that do most of it. |
 | `mine_structures` | Mine architectural structures from the Blood campaign and test abstractions. |
 | `mine_style_combinations` | What goes with what: the JOINT distribution of surfaces and props. |
+| `mine_supplies` | What shipped maps give the player, how far along, against what, and behind which keys and secrets. |
 | `mine_surface_items` | What stands on a counter, and how it is arranged. |
 | `mine_surface_palettes` | Which tiles Blood uses on which kind of space. |
 | `mine_switches` | How high a switch hangs, and which tile says what it is. |

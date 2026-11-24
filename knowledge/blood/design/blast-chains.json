@@ -1,0 +1,1871 @@
+{
+ "$schema": "llmapper.blast-chains",
+ "maps": 54,
+ "chains": 128,
+ "gap_tenths_median": 2.0,
+ "lasts_median": 1.4,
+ "blasts_median": 13.5,
+ "climb_two_bodies": 9,
+ "with_quake": 25,
+ "with_voice": 23,
+ "rows": [
+  {
+   "map": "DWE2M3",
+   "channel": 157,
+   "blasts": 833,
+   "moments": 118,
+   "first": 0.1,
+   "lasts": 48.9,
+   "gap": 4,
+   "rise_bodies": -2.94,
+   "run": 252391,
+   "with": [],
+   "sector": 767
+  },
+  {
+   "map": "E3M1",
+   "channel": 116,
+   "blasts": 150,
+   "moments": 77,
+   "first": 0.1,
+   "lasts": 8.8,
+   "gap": 1.0,
+   "rise_bodies": 7.91,
+   "run": 238119,
+   "with": [
+    "Ambient SFX",
+    "kSwitchToggle"
+   ],
+   "sector": 175
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 135,
+   "blasts": 107,
+   "moments": 65,
+   "first": 0.1,
+   "lasts": 14.5,
+   "gap": 2.0,
+   "rise_bodies": -0.24,
+   "run": 100082,
+   "with": [
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 662
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 130,
+   "blasts": 139,
+   "moments": 51,
+   "first": 1.5,
+   "lasts": 9.9,
+   "gap": 2.0,
+   "rise_bodies": -0.48,
+   "run": 77312,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 662
+  },
+  {
+   "map": "DWE1M6",
+   "channel": 110,
+   "blasts": 205,
+   "moments": 45,
+   "first": 4.5,
+   "lasts": 9.5,
+   "gap": 2.0,
+   "rise_bodies": 0.0,
+   "run": 55980,
+   "with": [
+    "Ambient SFX",
+    "kGenSound",
+    "kMarkerDudeSpawn",
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 422
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 148,
+   "blasts": 123,
+   "moments": 41,
+   "first": 3.0,
+   "lasts": 9.5,
+   "gap": 2.0,
+   "rise_bodies": -0.47,
+   "run": 39606,
+   "with": [],
+   "sector": 835
+  },
+  {
+   "map": "DWE2M1",
+   "channel": 160,
+   "blasts": 127,
+   "moments": 39,
+   "first": 0.1,
+   "lasts": 5.3,
+   "gap": 1.0,
+   "rise_bodies": -0.6,
+   "run": 73996,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 569
+  },
+  {
+   "map": "DWE1M7",
+   "channel": 122,
+   "blasts": 179,
+   "moments": 32,
+   "first": 0.1,
+   "lasts": 9.9,
+   "gap": 3,
+   "rise_bodies": -2.1,
+   "run": 39915,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kThingObjectGib"
+   ],
+   "sector": 790
+  },
+  {
+   "map": "DWE1M6",
+   "channel": 124,
+   "blasts": 42,
+   "moments": 27,
+   "first": 0.1,
+   "lasts": 6.2,
+   "gap": 2.0,
+   "rise_bodies": -2.9,
+   "run": 13905,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSwitchToggle",
+    "kThingObjectExplode"
+   ],
+   "sector": 463
+  },
+  {
+   "map": "E3M6",
+   "channel": 171,
+   "blasts": 50,
+   "moments": 27,
+   "first": 0.1,
+   "lasts": 4.9,
+   "gap": 2.0,
+   "rise_bodies": 5.07,
+   "run": 31746,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 335
+  },
+  {
+   "map": "E1M3",
+   "channel": 114,
+   "blasts": 36,
+   "moments": 26,
+   "first": 0.1,
+   "lasts": 3.6,
+   "gap": 1,
+   "rise_bodies": -0.3,
+   "run": 55634,
+   "with": [
+    "Decoration",
+    "kSwitchToggle"
+   ],
+   "sector": 113
+  },
+  {
+   "map": "E3M7",
+   "channel": 100,
+   "blasts": 32,
+   "moments": 26,
+   "first": 0.1,
+   "lasts": 5.9,
+   "gap": 2,
+   "rise_bodies": -1.69,
+   "run": 106262,
+   "with": [],
+   "sector": 125
+  },
+  {
+   "map": "DWE1M2",
+   "channel": 114,
+   "blasts": 62,
+   "moments": 24,
+   "first": 2.0,
+   "lasts": 4.0,
+   "gap": 2,
+   "rise_bodies": -0.6,
+   "run": 28337,
+   "with": [
+    "kMarkerDudeSpawn",
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 612
+  },
+  {
+   "map": "DWE2M2",
+   "channel": 131,
+   "blasts": 311,
+   "moments": 24,
+   "first": 2.0,
+   "lasts": 17.8,
+   "gap": 8,
+   "rise_bodies": 1.68,
+   "run": 30862,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 749
+  },
+  {
+   "map": "E1M3",
+   "channel": 152,
+   "blasts": 28,
+   "moments": 24,
+   "first": 0.1,
+   "lasts": 3.3,
+   "gap": 1,
+   "rise_bodies": 0.0,
+   "run": 23846,
+   "with": [
+    "Ambient SFX",
+    "Decoration",
+    "kSwitchToggle"
+   ],
+   "sector": 207
+  },
+  {
+   "map": "TEDE1M6",
+   "channel": 600,
+   "blasts": 40,
+   "moments": 24,
+   "first": 0.8,
+   "lasts": 3.2,
+   "gap": 1,
+   "rise_bodies": 0.66,
+   "run": 115534,
+   "with": [],
+   "sector": 199
+  },
+  {
+   "map": "DWE2M2",
+   "channel": 107,
+   "blasts": 112,
+   "moments": 23,
+   "first": 0.1,
+   "lasts": 6.0,
+   "gap": 3.0,
+   "rise_bodies": 0.0,
+   "run": 43873,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 193
+  },
+  {
+   "map": "E6M4",
+   "channel": 106,
+   "blasts": 115,
+   "moments": 23,
+   "first": 0.1,
+   "lasts": 5.1,
+   "gap": 3.0,
+   "rise_bodies": 1.28,
+   "run": 59187,
+   "with": [
+    "Ambient SFX",
+    "kSwitchToggle"
+   ],
+   "sector": 281
+  },
+  {
+   "map": "DWE2M4",
+   "channel": 111,
+   "blasts": 43,
+   "moments": 22,
+   "first": 1.5,
+   "lasts": 4.0,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 49883,
+   "with": [],
+   "sector": 924
+  },
+  {
+   "map": "E4M6",
+   "channel": 116,
+   "blasts": 22,
+   "moments": 21,
+   "first": 0.1,
+   "lasts": 3.9,
+   "gap": 2.0,
+   "rise_bodies": -0.35,
+   "run": 22005,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 266
+  },
+  {
+   "map": "E4M6",
+   "channel": 126,
+   "blasts": 25,
+   "moments": 21,
+   "first": 0.1,
+   "lasts": 3.2,
+   "gap": 1.0,
+   "rise_bodies": -0.35,
+   "run": 31842,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 273
+  },
+  {
+   "map": "DWE1M10",
+   "channel": 112,
+   "blasts": 22,
+   "moments": 20,
+   "first": 0.5,
+   "lasts": 11.0,
+   "gap": 6,
+   "rise_bodies": 0.0,
+   "run": 128510,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 73
+  },
+  {
+   "map": "DWE1M3",
+   "channel": 112,
+   "blasts": 22,
+   "moments": 20,
+   "first": 0.5,
+   "lasts": 11.0,
+   "gap": 6,
+   "rise_bodies": 0.0,
+   "run": 128510,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 419
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 174,
+   "blasts": 28,
+   "moments": 20,
+   "first": 0.1,
+   "lasts": 1.9,
+   "gap": 1,
+   "rise_bodies": 2.42,
+   "run": 28935,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 744
+  },
+  {
+   "map": "DWE2M3",
+   "channel": 136,
+   "blasts": 55,
+   "moments": 17,
+   "first": 0.1,
+   "lasts": 4.8,
+   "gap": 3.0,
+   "rise_bodies": 0.06,
+   "run": 52206,
+   "with": [],
+   "sector": 803
+  },
+  {
+   "map": "E3M2",
+   "channel": 132,
+   "blasts": 27,
+   "moments": 17,
+   "first": 0.1,
+   "lasts": 1.9,
+   "gap": 1.0,
+   "rise_bodies": 0.42,
+   "run": 65118,
+   "with": [],
+   "sector": 345
+  },
+  {
+   "map": "DWE2M4",
+   "channel": 112,
+   "blasts": 16,
+   "moments": 16,
+   "first": 1.5,
+   "lasts": 3.4,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 40772,
+   "with": [],
+   "sector": 924
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 153,
+   "blasts": 25,
+   "moments": 16,
+   "first": 0.1,
+   "lasts": 2.9,
+   "gap": 2,
+   "rise_bodies": 0.12,
+   "run": 19983,
+   "with": [
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 692
+  },
+  {
+   "map": "DWE1M2",
+   "channel": 107,
+   "blasts": 18,
+   "moments": 15,
+   "first": 1.5,
+   "lasts": 10.3,
+   "gap": 5.0,
+   "rise_bodies": 0.41,
+   "run": 89248,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 334
+  },
+  {
+   "map": "DWE2M10",
+   "channel": 129,
+   "blasts": 49,
+   "moments": 15,
+   "first": 0.1,
+   "lasts": 2.7,
+   "gap": 2.0,
+   "rise_bodies": -0.48,
+   "run": 14523,
+   "with": [
+    "Ambient SFX",
+    "kSwitchToggle"
+   ],
+   "sector": 332
+  },
+  {
+   "map": "DWE2M4",
+   "channel": 113,
+   "blasts": 15,
+   "moments": 15,
+   "first": 1.5,
+   "lasts": 3.3,
+   "gap": 2.5,
+   "rise_bodies": 0.24,
+   "run": 26873,
+   "with": [],
+   "sector": 924
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 155,
+   "blasts": 15,
+   "moments": 15,
+   "first": 0.1,
+   "lasts": 2.7,
+   "gap": 2.0,
+   "rise_bodies": -11.59,
+   "run": 15542,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 94
+  },
+  {
+   "map": "E2M7",
+   "channel": 110,
+   "blasts": 16,
+   "moments": 15,
+   "first": 0.1,
+   "lasts": 4.1,
+   "gap": 2.5,
+   "rise_bodies": -0.3,
+   "run": 15540,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 53
+  },
+  {
+   "map": "DWE1M5",
+   "channel": 125,
+   "blasts": 120,
+   "moments": 14,
+   "first": 0.1,
+   "lasts": 3.1,
+   "gap": 2,
+   "rise_bodies": -0.18,
+   "run": 24308,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 223
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 127,
+   "blasts": 14,
+   "moments": 14,
+   "first": 2.0,
+   "lasts": 1.3,
+   "gap": 1,
+   "rise_bodies": 6.75,
+   "run": 16582,
+   "with": [
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 669
+  },
+  {
+   "map": "E3M2",
+   "channel": 101,
+   "blasts": 16,
+   "moments": 14,
+   "first": 1.2,
+   "lasts": 2.5,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 35459,
+   "with": [],
+   "sector": 16
+  },
+  {
+   "map": "E3M3",
+   "channel": 103,
+   "blasts": 14,
+   "moments": 14,
+   "first": 0.1,
+   "lasts": 2.5,
+   "gap": 2,
+   "rise_bodies": 2.05,
+   "run": 13424,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 126
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 140,
+   "blasts": 28,
+   "moments": 13,
+   "first": 0.1,
+   "lasts": 2.3,
+   "gap": 2.0,
+   "rise_bodies": -0.95,
+   "run": 15628,
+   "with": [],
+   "sector": 180
+  },
+  {
+   "map": "E1M3",
+   "channel": 118,
+   "blasts": 16,
+   "moments": 13,
+   "first": 0.1,
+   "lasts": 1.3,
+   "gap": 1.0,
+   "rise_bodies": -0.26,
+   "run": 47845,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 107
+  },
+  {
+   "map": "E6M1",
+   "channel": 100,
+   "blasts": 49,
+   "moments": 13,
+   "first": 0.1,
+   "lasts": 17.4,
+   "gap": 7.5,
+   "rise_bodies": -0.06,
+   "run": 28525,
+   "with": [
+    "kMarkerEarthQuake"
+   ],
+   "sector": 25
+  },
+  {
+   "map": "DNE3L6",
+   "channel": 105,
+   "blasts": 12,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 3.1,
+   "gap": 2,
+   "rise_bodies": 0.04,
+   "run": 16416,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 124
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 103,
+   "blasts": 47,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 1,
+   "rise_bodies": 1.75,
+   "run": 10251,
+   "with": [],
+   "sector": 40
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 170,
+   "blasts": 19,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 1.1,
+   "gap": 1,
+   "rise_bodies": -0.91,
+   "run": 13223,
+   "with": [
+    "kSoundPlayer"
+   ],
+   "sector": 748
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 172,
+   "blasts": 19,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 1.1,
+   "gap": 1,
+   "rise_bodies": -0.91,
+   "run": 13682,
+   "with": [
+    "kSoundPlayer"
+   ],
+   "sector": 744
+  },
+  {
+   "map": "E3M1",
+   "channel": 120,
+   "blasts": 12,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 1,
+   "rise_bodies": -0.36,
+   "run": 10315,
+   "with": [],
+   "sector": 141
+  },
+  {
+   "map": "E6M4",
+   "channel": 160,
+   "blasts": 16,
+   "moments": 12,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 1,
+   "rise_bodies": 1.21,
+   "run": 176111,
+   "with": [],
+   "sector": 288
+  },
+  {
+   "map": "DWE2M9",
+   "channel": 133,
+   "blasts": 11,
+   "moments": 11,
+   "first": 2.0,
+   "lasts": 3.2,
+   "gap": 3.0,
+   "rise_bodies": -0.91,
+   "run": 44613,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 201
+  },
+  {
+   "map": "DWE3M8",
+   "channel": 148,
+   "blasts": 265,
+   "moments": 11,
+   "first": 0.1,
+   "lasts": 1.0,
+   "gap": 1.0,
+   "rise_bodies": -2.42,
+   "run": 11595,
+   "with": [
+    "kSoundPlayer"
+   ],
+   "sector": 362
+  },
+  {
+   "map": "E1M7",
+   "channel": 100,
+   "blasts": 11,
+   "moments": 11,
+   "first": 6.0,
+   "lasts": 2.8,
+   "gap": 2.0,
+   "rise_bodies": 2.48,
+   "run": 60570,
+   "with": [
+    "kSwitchOneWay",
+    "kSwitchToggle"
+   ],
+   "sector": 18
+  },
+  {
+   "map": "E2M1",
+   "channel": 126,
+   "blasts": 12,
+   "moments": 11,
+   "first": 0.1,
+   "lasts": 1.6,
+   "gap": 2.0,
+   "rise_bodies": -1.21,
+   "run": 12797,
+   "with": [
+    "kGenSound",
+    "kMarkerEarthQuake"
+   ],
+   "sector": 147
+  },
+  {
+   "map": "E3M2",
+   "channel": 107,
+   "blasts": 14,
+   "moments": 11,
+   "first": 0.1,
+   "lasts": 1.8,
+   "gap": 1.5,
+   "rise_bodies": 0.0,
+   "run": 21902,
+   "with": [],
+   "sector": 187
+  },
+  {
+   "map": "E3M2",
+   "channel": 121,
+   "blasts": 17,
+   "moments": 11,
+   "first": 0.1,
+   "lasts": 1.7,
+   "gap": 2.0,
+   "rise_bodies": -1.15,
+   "run": 14701,
+   "with": [],
+   "sector": 300
+  },
+  {
+   "map": "E6M3",
+   "channel": 129,
+   "blasts": 13,
+   "moments": 11,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 1.0,
+   "rise_bodies": 0.0,
+   "run": 27820,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 109
+  },
+  {
+   "map": "DNE3L6",
+   "channel": 106,
+   "blasts": 13,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.9,
+   "gap": 2,
+   "rise_bodies": -0.53,
+   "run": 14500,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 57
+  },
+  {
+   "map": "DWE1M1",
+   "channel": 124,
+   "blasts": 27,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.0,
+   "gap": 1,
+   "rise_bodies": -0.47,
+   "run": 15987,
+   "with": [],
+   "sector": 180
+  },
+  {
+   "map": "DWE1M8",
+   "channel": 123,
+   "blasts": 101,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 3.9,
+   "gap": 4,
+   "rise_bodies": -0.02,
+   "run": 3881,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 287
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 100,
+   "blasts": 10,
+   "moments": 10,
+   "first": 1.5,
+   "lasts": 2.3,
+   "gap": 3,
+   "rise_bodies": -0.06,
+   "run": 12873,
+   "with": [
+    "kSoundPlayer"
+   ],
+   "sector": 168
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 135,
+   "blasts": 46,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.3,
+   "gap": 1,
+   "rise_bodies": 0.66,
+   "run": 8377,
+   "with": [
+    "kMarkerEarthQuake"
+   ],
+   "sector": 735
+  },
+  {
+   "map": "E1M1",
+   "channel": 108,
+   "blasts": 11,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 2.0,
+   "gap": 2,
+   "rise_bodies": -0.24,
+   "run": 9155,
+   "with": [
+    "Decoration"
+   ],
+   "sector": 59
+  },
+  {
+   "map": "E1M4",
+   "channel": 155,
+   "blasts": 13,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.6,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 11580,
+   "with": [],
+   "sector": 254
+  },
+  {
+   "map": "E2M4",
+   "channel": 127,
+   "blasts": 11,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.0,
+   "gap": 1,
+   "rise_bodies": -0.3,
+   "run": 7788,
+   "with": [],
+   "sector": 424
+  },
+  {
+   "map": "E3M2",
+   "channel": 125,
+   "blasts": 11,
+   "moments": 10,
+   "first": 0.1,
+   "lasts": 1.5,
+   "gap": 2,
+   "rise_bodies": 0.59,
+   "run": 7970,
+   "with": [],
+   "sector": 179
+  },
+  {
+   "map": "DNE3L3",
+   "channel": 104,
+   "blasts": 13,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 1.0,
+   "rise_bodies": 0.0,
+   "run": 11987,
+   "with": [],
+   "sector": 135
+  },
+  {
+   "map": "DWE2M1",
+   "channel": 104,
+   "blasts": 19,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 3.9,
+   "gap": 5.0,
+   "rise_bodies": 0.0,
+   "run": 1536,
+   "with": [],
+   "sector": 365
+  },
+  {
+   "map": "DWE2M9",
+   "channel": 136,
+   "blasts": 116,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 1.9,
+   "gap": 2.0,
+   "rise_bodies": -2.72,
+   "run": 3929,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSoundPlayer",
+    "kSwitchToggle"
+   ],
+   "sector": 215
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 128,
+   "blasts": 38,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 1.1,
+   "gap": 1.0,
+   "rise_bodies": -0.91,
+   "run": 20379,
+   "with": [
+    "kMarkerEarthQuake"
+   ],
+   "sector": 575
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 157,
+   "blasts": 37,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 1.5,
+   "gap": 2.0,
+   "rise_bodies": 0.29,
+   "run": 7375,
+   "with": [
+    "kMarkerEarthQuake"
+   ],
+   "sector": 850
+  },
+  {
+   "map": "E2M9",
+   "channel": 111,
+   "blasts": 13,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 1.0,
+   "gap": 1.0,
+   "rise_bodies": 0.0,
+   "run": 11939,
+   "with": [],
+   "sector": 28
+  },
+  {
+   "map": "E3M1",
+   "channel": 109,
+   "blasts": 10,
+   "moments": 9,
+   "first": 1.5,
+   "lasts": 2.3,
+   "gap": 1.0,
+   "rise_bodies": 0.0,
+   "run": 7047,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 109
+  },
+  {
+   "map": "E3M1",
+   "channel": 135,
+   "blasts": 16,
+   "moments": 9,
+   "first": 0.1,
+   "lasts": 1.1,
+   "gap": 1.0,
+   "rise_bodies": 0.31,
+   "run": 15112,
+   "with": [
+    "Ambient SFX",
+    "Decoration"
+   ],
+   "sector": 224
+  },
+  {
+   "map": "BB1",
+   "channel": 119,
+   "blasts": 11,
+   "moments": 8,
+   "first": 0.2,
+   "lasts": 2.1,
+   "gap": 3,
+   "rise_bodies": 1.43,
+   "run": 6203,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 139
+  },
+  {
+   "map": "DWE1M1",
+   "channel": 119,
+   "blasts": 8,
+   "moments": 8,
+   "first": 0.2,
+   "lasts": 2.1,
+   "gap": 3,
+   "rise_bodies": 0.12,
+   "run": 6690,
+   "with": [
+    "kMarkerDudeSpawn",
+    "kMarkerEarthQuake",
+    "kSwitchToggle"
+   ],
+   "sector": 547
+  },
+  {
+   "map": "DWE2M1",
+   "channel": 111,
+   "blasts": 16,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 3.5,
+   "gap": 5,
+   "rise_bodies": 0.0,
+   "run": 14164,
+   "with": [],
+   "sector": 162
+  },
+  {
+   "map": "E2M1",
+   "channel": 101,
+   "blasts": 32,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 1.5,
+   "gap": 2,
+   "rise_bodies": 1.37,
+   "run": 5240,
+   "with": [],
+   "sector": 78
+  },
+  {
+   "map": "E4M1",
+   "channel": 107,
+   "blasts": 12,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 1,
+   "rise_bodies": -0.72,
+   "run": 13164,
+   "with": [],
+   "sector": 102
+  },
+  {
+   "map": "TEDE1M2",
+   "channel": 15,
+   "blasts": 8,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 1.7,
+   "gap": 2,
+   "rise_bodies": 2.7,
+   "run": 5063,
+   "with": [],
+   "sector": 199
+  },
+  {
+   "map": "TEDE1M5",
+   "channel": 100,
+   "blasts": 10,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 2,
+   "rise_bodies": -0.48,
+   "run": 9656,
+   "with": [],
+   "sector": 63
+  },
+  {
+   "map": "TEDE1M5",
+   "channel": 105,
+   "blasts": 8,
+   "moments": 8,
+   "first": 0.1,
+   "lasts": 0.9,
+   "gap": 1,
+   "rise_bodies": 0.06,
+   "run": 8902,
+   "with": [],
+   "sector": 83
+  },
+  {
+   "map": "TEDE1M5",
+   "channel": 117,
+   "blasts": 9,
+   "moments": 8,
+   "first": 1.0,
+   "lasts": 1.5,
+   "gap": 1,
+   "rise_bodies": -0.17,
+   "run": 11025,
+   "with": [
+    "kGenSound",
+    "kSwitchToggle"
+   ],
+   "sector": 361
+  },
+  {
+   "map": "TEDE1M6",
+   "channel": 901,
+   "blasts": 8,
+   "moments": 8,
+   "first": 15.0,
+   "lasts": 1.4,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 9591,
+   "with": [],
+   "sector": 259
+  },
+  {
+   "map": "DNE3L1",
+   "channel": 105,
+   "blasts": 7,
+   "moments": 7,
+   "first": 0.1,
+   "lasts": 0.6,
+   "gap": 1.0,
+   "rise_bodies": 0.0,
+   "run": 6998,
+   "with": [],
+   "sector": 67
+  },
+  {
+   "map": "DWE1M1",
+   "channel": 109,
+   "blasts": 18,
+   "moments": 7,
+   "first": 0.1,
+   "lasts": 1.0,
+   "gap": 1.5,
+   "rise_bodies": 0.78,
+   "run": 5075,
+   "with": [
+    "kMarkerEarthQuake"
+   ],
+   "sector": 391
+  },
+  {
+   "map": "DWE2M6",
+   "channel": 117,
+   "blasts": 8,
+   "moments": 7,
+   "first": 0.1,
+   "lasts": 0.6,
+   "gap": 1.0,
+   "rise_bodies": 1.62,
+   "run": 2661,
+   "with": [
+    "kMarkerDudeSpawn"
+   ],
+   "sector": 499
+  },
+  {
+   "map": "E2M5",
+   "channel": 171,
+   "blasts": 7,
+   "moments": 7,
+   "first": 0.1,
+   "lasts": 0.9,
+   "gap": 1.0,
+   "rise_bodies": 0.06,
+   "run": 20261,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 341
+  },
+  {
+   "map": "E6M3",
+   "channel": 127,
+   "blasts": 7,
+   "moments": 7,
+   "first": 0.2,
+   "lasts": 1.0,
+   "gap": 1.0,
+   "rise_bodies": 0.06,
+   "run": 4864,
+   "with": [],
+   "sector": 234
+  },
+  {
+   "map": "BB1",
+   "channel": 120,
+   "blasts": 10,
+   "moments": 6,
+   "first": 0.1,
+   "lasts": 1.2,
+   "gap": 3,
+   "rise_bodies": -0.21,
+   "run": 4382,
+   "with": [],
+   "sector": 42
+  },
+  {
+   "map": "DWE1M9",
+   "channel": 105,
+   "blasts": 6,
+   "moments": 6,
+   "first": 2.5,
+   "lasts": 1.1,
+   "gap": 2,
+   "rise_bodies": 0.0,
+   "run": 12303,
+   "with": [],
+   "sector": 210
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 110,
+   "blasts": 6,
+   "moments": 6,
+   "first": 1.0,
+   "lasts": 0.7,
+   "gap": 1,
+   "rise_bodies": -4.41,
+   "run": 0,
+   "with": [
+    "kGenSound"
+   ],
+   "sector": 123
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 137,
+   "blasts": 20,
+   "moments": 6,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 2,
+   "rise_bodies": -0.97,
+   "run": 3221,
+   "with": [
+    "kMarkerDudeSpawn",
+    "kSoundPlayer"
+   ],
+   "sector": 579
+  },
+  {
+   "map": "E1M6",
+   "channel": 191,
+   "blasts": 8,
+   "moments": 6,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 2,
+   "rise_bodies": -0.41,
+   "run": 7401,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 119
+  },
+  {
+   "map": "E1M8",
+   "channel": 126,
+   "blasts": 7,
+   "moments": 6,
+   "first": 0.1,
+   "lasts": 1.3,
+   "gap": 2,
+   "rise_bodies": -1.63,
+   "run": 6784,
+   "with": [],
+   "sector": 404
+  },
+  {
+   "map": "E3M1",
+   "channel": 100,
+   "blasts": 12,
+   "moments": 6,
+   "first": 0.1,
+   "lasts": 0.6,
+   "gap": 1,
+   "rise_bodies": -0.12,
+   "run": 2305,
+   "with": [
+    "Decoration"
+   ],
+   "sector": 159
+  },
+  {
+   "map": "E3M1",
+   "channel": 142,
+   "blasts": 6,
+   "moments": 6,
+   "first": 0.2,
+   "lasts": 1.2,
+   "gap": 2,
+   "rise_bodies": 2.6,
+   "run": 5224,
+   "with": [],
+   "sector": 235
+  },
+  {
+   "map": "DNE3L1",
+   "channel": 138,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 1.9,
+   "gap": 5.0,
+   "rise_bodies": 0.0,
+   "run": 2308,
+   "with": [],
+   "sector": 279
+  },
+  {
+   "map": "DWE1M1",
+   "channel": 118,
+   "blasts": 11,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 2.0,
+   "rise_bodies": -1.34,
+   "run": 4811,
+   "with": [],
+   "sector": 716
+  },
+  {
+   "map": "DWE1M4",
+   "channel": 125,
+   "blasts": 6,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.7,
+   "gap": 2.0,
+   "rise_bodies": -0.28,
+   "run": 1679,
+   "with": [],
+   "sector": 748
+  },
+  {
+   "map": "DWE1M5",
+   "channel": 135,
+   "blasts": 24,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 1.1,
+   "gap": 3.0,
+   "rise_bodies": 4.33,
+   "run": 6916,
+   "with": [
+    "kMarkerDudeSpawn",
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 347
+  },
+  {
+   "map": "DWE2M1",
+   "channel": 117,
+   "blasts": 8,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 1.4,
+   "gap": 3.5,
+   "rise_bodies": 0.18,
+   "run": 2189,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 208
+  },
+  {
+   "map": "DWE2M2",
+   "channel": 103,
+   "blasts": 29,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.9,
+   "gap": 2.0,
+   "rise_bodies": -1.74,
+   "run": 2090,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 193
+  },
+  {
+   "map": "DWE3M7",
+   "channel": 107,
+   "blasts": 45,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1.0,
+   "rise_bodies": -3.22,
+   "run": 3221,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSwitchToggle"
+   ],
+   "sector": 118
+  },
+  {
+   "map": "E1M2",
+   "channel": 102,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1.0,
+   "rise_bodies": 0.3,
+   "run": 3672,
+   "with": [],
+   "sector": 187
+  },
+  {
+   "map": "E1M4",
+   "channel": 101,
+   "blasts": 6,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 2.0,
+   "rise_bodies": 0.04,
+   "run": 6286,
+   "with": [],
+   "sector": 132
+  },
+  {
+   "map": "E1M6",
+   "channel": 202,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.8,
+   "gap": 2.0,
+   "rise_bodies": 0.39,
+   "run": 5628,
+   "with": [],
+   "sector": 301
+  },
+  {
+   "map": "E1M8",
+   "channel": 118,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.2,
+   "lasts": 0.8,
+   "gap": 2.0,
+   "rise_bodies": -0.24,
+   "run": 6626,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 389
+  },
+  {
+   "map": "E1M8",
+   "channel": 119,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.7,
+   "gap": 2.0,
+   "rise_bodies": 0.05,
+   "run": 3010,
+   "with": [],
+   "sector": 415
+  },
+  {
+   "map": "E2M7",
+   "channel": 160,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.3,
+   "lasts": 1.1,
+   "gap": 3.0,
+   "rise_bodies": 0.06,
+   "run": 5014,
+   "with": [
+    "kSwitchToggle"
+   ],
+   "sector": 151
+  },
+  {
+   "map": "E3M1",
+   "channel": 118,
+   "blasts": 7,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 1.5,
+   "gap": 4.0,
+   "rise_bodies": 1.74,
+   "run": 2294,
+   "with": [],
+   "sector": 380
+  },
+  {
+   "map": "E3M7",
+   "channel": 111,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.4,
+   "lasts": 6.6,
+   "gap": 16.5,
+   "rise_bodies": 1.09,
+   "run": 16824,
+   "with": [
+    "kMarkerEarthQuake",
+    "kSwitchOneWay"
+   ],
+   "sector": 125
+  },
+  {
+   "map": "TEDE1M1",
+   "channel": 203,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.2,
+   "lasts": 0.8,
+   "gap": 2.0,
+   "rise_bodies": -0.54,
+   "run": 5968,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 126
+  },
+  {
+   "map": "TEDE1M2",
+   "channel": 13,
+   "blasts": 6,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1.0,
+   "rise_bodies": -0.35,
+   "run": 3852,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 195
+  },
+  {
+   "map": "TEDE1M2",
+   "channel": 40,
+   "blasts": 6,
+   "moments": 5,
+   "first": 0.1,
+   "lasts": 0.7,
+   "gap": 1.5,
+   "rise_bodies": 0.41,
+   "run": 3797,
+   "with": [
+    "Ambient SFX",
+    "kMarkerDudeSpawn"
+   ],
+   "sector": 981
+  },
+  {
+   "map": "TEDE1M3",
+   "channel": 116,
+   "blasts": 5,
+   "moments": 5,
+   "first": 0.3,
+   "lasts": 1.2,
+   "gap": 3.0,
+   "rise_bodies": -0.18,
+   "run": 3293,
+   "with": [],
+   "sector": 107
+  },
+  {
+   "map": "DNE3L1",
+   "channel": 130,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.3,
+   "gap": 1,
+   "rise_bodies": 0.0,
+   "run": 2846,
+   "with": [],
+   "sector": 199
+  },
+  {
+   "map": "DWE1M9",
+   "channel": 135,
+   "blasts": 12,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.5,
+   "gap": 2,
+   "rise_bodies": -0.48,
+   "run": 710,
+   "with": [],
+   "sector": 760
+  },
+  {
+   "map": "DWE2M2",
+   "channel": 135,
+   "blasts": 76,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.9,
+   "gap": 3,
+   "rise_bodies": 0.0,
+   "run": 2838,
+   "with": [],
+   "sector": 720
+  },
+  {
+   "map": "DWE2M6",
+   "channel": 138,
+   "blasts": 12,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.3,
+   "gap": 1,
+   "rise_bodies": -0.42,
+   "run": 3309,
+   "with": [],
+   "sector": 912
+  },
+  {
+   "map": "DWE3M5",
+   "channel": 107,
+   "blasts": 10,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.5,
+   "gap": 2,
+   "rise_bodies": 0.42,
+   "run": 5567,
+   "with": [
+    "Ambient SFX",
+    "kMarkerEarthQuake",
+    "kSoundPlayer"
+   ],
+   "sector": 64
+  },
+  {
+   "map": "DWE3M6",
+   "channel": 151,
+   "blasts": 25,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.6,
+   "gap": 2,
+   "rise_bodies": -0.66,
+   "run": 585,
+   "with": [],
+   "sector": 359
+  },
+  {
+   "map": "E1M2",
+   "channel": 146,
+   "blasts": 7,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1,
+   "rise_bodies": -0.6,
+   "run": 1420,
+   "with": [],
+   "sector": 14
+  },
+  {
+   "map": "E2M3",
+   "channel": 110,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1,
+   "rise_bodies": 0.0,
+   "run": 3965,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 258
+  },
+  {
+   "map": "E2M3",
+   "channel": 111,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1,
+   "rise_bodies": 0.0,
+   "run": 3195,
+   "with": [
+    "Ambient SFX"
+   ],
+   "sector": 324
+  },
+  {
+   "map": "E2M7",
+   "channel": 148,
+   "blasts": 5,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.4,
+   "gap": 1,
+   "rise_bodies": 0.18,
+   "run": 3928,
+   "with": [
+    "Decoration"
+   ],
+   "sector": 381
+  },
+  {
+   "map": "E3M1",
+   "channel": 140,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.5,
+   "gap": 1,
+   "rise_bodies": 0.36,
+   "run": 2655,
+   "with": [],
+   "sector": 235
+  },
+  {
+   "map": "E3M1",
+   "channel": 148,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.2,
+   "lasts": 0.4,
+   "gap": 1,
+   "rise_bodies": -0.97,
+   "run": 3463,
+   "with": [],
+   "sector": 175
+  },
+  {
+   "map": "E3M2",
+   "channel": 102,
+   "blasts": 6,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.5,
+   "gap": 2,
+   "rise_bodies": 0.19,
+   "run": 1612,
+   "with": [
+    "kSwitchOneWay"
+   ],
+   "sector": 238
+  },
+  {
+   "map": "E4M3",
+   "channel": 100,
+   "blasts": 8,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.5,
+   "gap": 2,
+   "rise_bodies": -0.6,
+   "run": 1009,
+   "with": [],
+   "sector": 258
+  },
+  {
+   "map": "TEDE1M2",
+   "channel": 84,
+   "blasts": 5,
+   "moments": 4,
+   "first": 0.1,
+   "lasts": 0.9,
+   "gap": 3,
+   "rise_bodies": -0.23,
+   "run": 4115,
+   "with": [],
+   "sector": 876
+  },
+  {
+   "map": "TEDE1M3",
+   "channel": 113,
+   "blasts": 4,
+   "moments": 4,
+   "first": 0.2,
+   "lasts": 0.8,
+   "gap": 3,
+   "rise_bodies": 0.97,
+   "run": 2880,
+   "with": [],
+   "sector": 265
+  }
+ ]
+}

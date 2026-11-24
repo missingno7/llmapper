@@ -271,7 +271,7 @@ NICHE_WALL = {"valve": 499, "bones": 492, "barrels": 492, "pipes": 211}
 def _niches():
     """The niches that fit: (name, rect in plan units, the corridor, its side, kind)."""
     corridors = {c[0]: c for c in _corridors()}
-    taken = ([e["rect"] for e in plan_rooms()] + [(x0, y0, x1, y1) for _n, x0, y0, x1, y1, _k in HALL]
+    taken = ([e["rect"] for e in plan_rooms()] + [(x0, y0, x1, y1) for _n, x0, y0, x1, y1, _k in HALL] + [HALL_FILLS]
              + [tuple(r[1:5]) for r in SECRET_ROOMS] + list(lair_rects().values()))
     out = []
     for k, (channel, side, at, kind) in enumerate(NICHES):
@@ -438,34 +438,21 @@ THROUGH = [("outfall", "end", "gallery", "north")]
 #: the sewer, its own layer: the gallery at the sewer's level along its north
 #: wall, three settling tanks 2.7 bodies below it with walks between, a quay
 #: down the west side, and the south quay, behind which the Cabal's chamber is (`cabal_rite`).
-#: A stair of ten steps climbs from the south quay to the gallery in a
-#: column of its own. (name, x0, y0, x1, y1 in plan units, kind)
+#: The tanks, the walks, the falls and the stair beside them are
+#: `settling_hall`'s. (name, x0, y0, x1, y1 in plan units, kind)
 HALL_LAYER = "settling_hall"
 HALL_WATER = SEWER_FLOOR + 45056          # the tanks' surface: 106,496
 HALL_WALK = HALL_WATER - 4096             # the walks and quays: one step up
 HALL = [
     ("west_quay", 20.0, 43.0, 21.0, 48.0, "walk"),
-    ("tank_1", 21.0, 43.0, 32.5, 44.25, "tank"),
-    ("divider_1", 21.0, 44.25, 32.5, 45.0, "walk"),
-    ("tank_2", 21.0, 45.0, 32.5, 46.25, "tank"),
-    ("divider_2", 21.0, 46.25, 32.5, 47.0, "walk"),
-    ("tank_3", 21.0, 47.0, 32.5, 48.0, "tank"),
     ("circle_quay", 20.0, 48.0, 35.0, 50.0, "walk"),
 ]
+#: what the hall's own module (`settling_hall`) fills between them
+HALL_FILLS = (21.0, 43.0, 34.5, 48.0)
 #: (a, its face, b, its face): each anchored from the smaller face
-HALL_JOINS = [
-    ("tank_1", "south", "divider_1", "north"), ("divider_1", "south", "tank_2", "north"),
-    ("tank_2", "south", "divider_2", "north"), ("divider_2", "south", "tank_3", "north"),
-    ("tank_1", "west", "west_quay", "east"), ("divider_1", "west", "west_quay", "east"),
-    ("tank_2", "west", "west_quay", "east"), ("divider_2", "west", "west_quay", "east"),
-    ("tank_3", "west", "west_quay", "east"),
-    ("tank_3", "south", "circle_quay", "north"), ("west_quay", "south", "circle_quay", "north"),
-]
-#: The stair: down from the gallery's south walk at x 33.5, a column 1024
-#: wide clear of the tanks (which end at 32.5), onto the circle quay.
-HALL_STAIR = {"at_x": 33.5, "width": 1024, "tread": 512, "step_rise": 4096}
-#: The last metre of the tank's north edge, just west of the ring's outfall.
-HALL_OUTFALL = (31.5, 32.5)
+HALL_JOINS = [("west_quay", "south", "circle_quay", "north")]
+#: The outfall's own channel, carried on across the gallery's south walk.
+HALL_OUTFALL = (32.5, 33.5)
 
 # The shaft is west of the dry quay and gallery walk. Its two east openings
 # are offset along the shaft, with solid wall between them. The upper lobby
@@ -966,8 +953,9 @@ def edge(rooms: dict, leg: str, face: str, at: float | None = None):
 
 
 def hall(sewer, rooms: dict) -> dict:
-    """Build the tanks, gallery outfall, stair and service lift."""
+    """Build the quays, the gallery's weir and the service lift, and have `settling_hall` fill between them."""
     from dataclasses import replace
+    from bloodmap.slope import SlopeSpec
 
     from bloodmap.corpus import corpus_map_path
     from bloodmap.format import read_map
@@ -975,27 +963,24 @@ def hall(sewer, rooms: dict) -> dict:
     import citytree
 
     part = sewer.assembly(HALL_LAYER, note="the settling hall: tanks under the gallery")
-    for name, x0, y0, x1, y1, kind in HALL:
-        wet = kind == "tank"
-        material = SEWER_WET if wet else SEWER
-        behavior = {"amplitude": -4, "shade_frequency": 4} if wet else {}
-        if wet and name in FLOW:
-            behavior.update(flow_behavior(*FLOW[name]))
+    crown = SEWER_FLOOR - WALK_CLEAR
+    for name, x0, y0, x1, y1, _kind in HALL:
         wx0, wy0, wx1, wy1 = (int(v * PU) for v in (x0, y0, x1, y1))
+        # both quays lie where a vault springs; the south one's roof goes up from there to its back wall
+        slope = ({"ceiling_slope": SlopeSpec(hinge=((wx0, wy0), (wx1, wy0)), rise_z=-VAULT)}
+                 if name == "circle_quay" else {})
         made = part.room(
             name, [(0, 0), (wx1 - wx0, 0), (wx1 - wx0, wy1 - wy0), (0, wy1 - wy0)],
             role="interior", faces=dict(COMPASS), frame=Frame(wx0, wy0),
-            region_kwargs={**material.region_kwargs(), "sector_behavior": behavior},
+            region_kwargs={**SEWER.region_kwargs(), **slope},
             note=f"the settling hall: {name.replace('_', ' ')}")
-        floor = HALL_WATER if wet else HALL_WALK
-        made.surfaces(layer=HALL_LAYER, **material.style_kwargs(
-            floor_z=floor, clear_height=floor - (SEWER_FLOOR - WALK_CLEAR),
-            floor_shade=38 if wet else 40))
+        made.surfaces(layer=HALL_LAYER, **SEWER.style_kwargs(
+            floor_z=HALL_WALK, clear_height=HALL_WALK - (crown + VAULT), floor_shade=40))
         rooms[name] = made
     for a, fa, b, fb in HALL_JOINS:
         citytree.join(rooms[a], rooms[b], at_a=fa, at_b=fb,
                       connection_id=f"connection:hall_{a}_{fa}_{b}")
-    # Route the channel across the south walk through E3M3's low spillway.
+    # The outfall's channel goes on across the gallery's south walk to the falls.
     ledge = edge(rooms, "gallery", "south", 26.0)
     x0, y0, x1, y1 = next(e["rect"] for e in plan() if e["name"] == ledge_name(rooms, ledge))
     wx0, wy0, wx1, wy1 = (round(v * PU) for v in (x0, y0, x1, y1))
@@ -1012,75 +997,32 @@ def hall(sewer, rooms: dict) -> dict:
         note="the gallery walk at the head of the settling hall stair")
 
     example = read_map(corpus_map_path("E3M3"))
-    feed = record_fields(example.sectors[173])
     floor = SEWER_FLOOR + CHANNEL_DROP
     mouth = part.rect_room(
         "outfall_mouth", origin=(left, wy0), size=(right - left, depth),
-        role="interior", note="the gallery's low outfall into the first settling tank",
+        role="interior", note="the weir: the outfall's water over the gallery's edge to the falls",
         region_kwargs={**SEWER_WET.region_kwargs(), "sector_behavior":
                        flow_behavior(512, record_extra(example.sectors[173])["pan_velocity"], False)})
     mouth.surfaces(layer=ledge.effective_style()["layer"], **SEWER_WET.style_kwargs(
-        floor_z=floor, clear_height=feed["floor_z"] - feed["ceiling_z"],
-        floor_shade=38))
+        floor_z=floor, clear_height=floor - crown, floor_shade=38))
 
-    tank = rooms["tank_1"]
     for a, fa, b, fb in (
         (rooms["west_quay"], "north", ledge, "south"),
         (east, "north", rooms["gallery"], "south"),
         (mouth, "north", rooms["gallery"], "south"),
         (mouth, "west", ledge, "east"),
         (mouth, "east", east, "west"),
-        (mouth, "south", tank, "north"),
     ):
         citytree.join(a, b, at_a=fa, at_b=fb,
                       connection_id=f"connection:hall_{a.node_id}_{fa}_{b.node_id}")
-    north_a, north_b = tank.local_edge("north")
-    tank_width = north_b[0] - north_a[0]
-    dry_width = left - tank.frame.dx
-    citytree.join(tank, ledge,
-                  at_a=tank.face("north", at=dry_width / (2 * tank_width), width=dry_width),
-                  at_b="south", connection_id="connection:hall_tank_1_gallery")
 
-    # Bottom swap gives the water its own texture frame below the metal lintel.
-    source = example.walls[1307]
-    mouth_finish = {key: record_fields(source)[key] for key in
-                    ("picnum", "type", "x_repeat", "y_repeat", "x_panning", "y_panning")}
-    pan = {key: record_extra(source)[key] for key in
-           ("pan_always", "pan_x_velocity", "pan_y_velocity", "x_pan_fraction", "y_pan_fraction")}
-    pool_cstat = record_fields(example.walls[1319])["cstat"]
+    def fill(layout, room):
+        import settling_hall
+        settling_hall.build(
+            layout, {(x0, left / PU): ledge.region_id, HALL_OUTFALL: mouth.region_id, (right / PU, x1): east.region_id},
+            {"west": rooms["west_quay"].region_id, "south": room.region_id})
 
-    def spill(layout, room):
-        a, b = (room.world_frame().apply(p) for p in room.local_edge("south"))
-        layout.paint_wall(room.region_id, a, b, fixed_frame=True, **mouth_finish)
-        layout.wire_wall(room.region_id, a, b, **pan)
-        layout.paint_wall(tank.region_id, a, b, cstat=pool_cstat)
-
-    mouth.raw("E3M3 walls 1307/1319: panned sewage beneath a metal lintel", spill)
-    _foam_at_foot(mouth, "south", tank, "settling_spillway")
-
-    sample = example.sprites[393]
-    sound = record_fields(sample)
-    sound_fields = {key: sound[key] for key in
-                    ("picnum", "type", "cstat", "status", "shade", "x_repeat", "y_repeat")}
-    sound_behavior = {key: record_extra(sample)[key] for key in
-                      ("state", "busy", "data_1", "data_2", "data_3", "data_4")}
-    sound_height = record_fields(example.sectors[174])["floor_z"] - sound["z"]
-
-    def water_sound(layout, room):
-        x, y = mouth.world_frame().apply(((right - left) // 2, depth + 512))
-        z = room.world_frame().apply_z(HALL_WATER - sound_height)
-        layout.add_sprite("placement:settling_hall:outfall_sound", room.region_id,
-                          x=x, y=y, z=z, behavior=sound_behavior, **sound_fields)
-
-    tank.raw("E3M3 sprite 393: falling water sound at the foot", water_sound)
-
-    east.staircase(
-        # a south face runs east to west: `at` is measured from its east end
-        "hall_stair", "south", at=(x1 - HALL_STAIR["at_x"]) / (x1 - HALL_OUTFALL[1]),
-        width=HALL_STAIR["width"],
-        total_rise=HALL_WALK - SEWER_FLOOR, tread=HALL_STAIR["tread"],
-        step_rise=HALL_STAIR["step_rise"], arrive_at=rooms["circle_quay"].region_id,
-        connection={"role": "portal"})
+    rooms["circle_quay"].raw("the settling hall: three vaulted tanks, the falls and the stair beside them", fill)
     _hall_service_lift(part, ledge, rooms["west_quay"])
     import cabal_rite
     rooms["circle_quay"].raw("the Cabal's storm chamber, broken open through the quay's south wall",

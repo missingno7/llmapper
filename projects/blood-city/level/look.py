@@ -540,6 +540,40 @@ POSE_SETS = {
         "costumes": (18.16, 12.93, 17.08, 11.94, LEVEL, "the clothes rail, trunk and folding screen"),
         "behind_screen": (18.05, 13.56, 17.35, 13.12, LEVEL, "the star's empty costume behind the screen"),
     },
+    #: the six keys where they lie (`gameplay.KEYS`)
+    "keys": {
+        "k_skull": (28.1, 29.4, 29.1, 28.2, LEVEL - 12, "the skull key on the sarcophagus", 61440),
+        "k_flame": (43.75, 7.6, 43.75, 9.5, LEVEL - 14, "the flame key on the belt between the presses", 8192),
+        "k_moon": (22.4, 7.4, 22.4, 5.4, LEVEL, "the moon key on the Aldermack's trap", -6160),
+        "k_spider": (12.0, 13.2, 12.0, 11.2, LEVEL - 8, "the spider key before the nest", 61440),
+        "k_dagger": (27.5, 65.2, 27.5, 66.6, LEVEL - 22, "the dagger key in the throat", 102400),
+        "k_eye": (46.2, 46.9, 47.2, 47.6, LEVEL - 10, "the eye key in its shop", 8192),
+    },
+    #: the station as a lock: what its two fronts show whoever comes without the keys
+    "gates": {
+        "ga_start": (33.5, 53.0, 35.5, 45.0, LEVEL, "the player's first frame"),
+        "gb_avenue": (35.5, 8.0, 35.5, -5.0, LEVEL, "up the avenue to the terminus"),
+        "gc_front": (35.5, 1.5, 35.5, -5.0, LEVEL, "the terminus front from the street"),
+        "gd_west": (13.2, 4.0, 13.2, -4.0, LEVEL, "the station's west front"),
+        "ge_westdoor": (13.2, 0.8, 13.2, -8.0, LEVEL, "the west door, near"),
+        "gf_close": (35.5, -1.2, 35.5, -5.0, LEVEL, "the pier between the terminus doors"),
+    },
+    #: the settling hall: what joins the sewer to the Cabal's mouth
+    "hall": {
+        "h_outfall": (33.0, 36.0, 33.0, 41.0, LEVEL, "down the outfall toward the hall", 63488),
+        "h_gallery_e": (34.3, 42.75, 27.0, 46.0, LEVEL, "the gallery walk's east end, over the hall", 61440),
+        "h_gallery_m": (26.0, 42.75, 27.5, 50.0, LEVEL, "the gallery's middle, over the tanks to the mouth", 61440),
+        "h_gallery_w": (20.3, 42.75, 30.0, 47.0, LEVEL, "the gallery walk's west end", 61440),
+        "h_stair": (34.0, 44.5, 33.9, 50.0, DOWN, "down the stair", 73728),
+        "h_quay_e": (34.5, 49.5, 22.0, 48.0, LEVEL, "along the south quay from its east end", 102400),
+        "h_quay_w": (20.5, 49.5, 34.0, 47.5, LEVEL, "along the south quay from its west end", 102400),
+        "h_west": (20.5, 43.5, 30.0, 49.0, LEVEL, "down the west quay", 102400),
+        "h_brink": (33.0, 40.7, 33.0, 49.0, LEVEL - 8, "the outfall's last metres: over the gallery and down the falls", 63488),
+        "h_up": (31.5, 49.3, 33.3, 43.0, UP, "the falls and the stair from the quay", 102400),
+        "h_walk": (31.5, 44.62, 21.0, 44.62, LEVEL, "the walk between two tanks", 102400),
+        "h_vault": (26.4, 47.6, 24.0, 43.2, UP, "the vaults over the tanks", 106496),
+        "h_back": (27.5, 49.5, 27.5, 42.0, LEVEL, "from the mouth back over the tanks", 102400),
+    },
     #: the Cabal's chamber behind the settling hall (`cabal_rite`)
     "rite": {
         "a_mouth": (27.5, 48.4, 27.5, 51.5, LEVEL, "the mouth in the quay's south wall", 102400),

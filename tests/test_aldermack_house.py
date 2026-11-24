@@ -132,13 +132,13 @@ class AldermackHouseTests(unittest.TestCase):
         return any(record_fields(self.disk.walls[w])["next_sector"] == b
                    for w in sector_walls(self.disk, a))
 
-    def test_armour_drops_cloth_and_opens_four_wings_with_a_bypass(self):
+    def test_the_moon_key_drops_cloth_and_opens_four_wings_with_a_bypass(self):
         prize_channel = self.channel("theatre:prize")
         main_channel = self.channel("theatre:curtain")
         sprites = [(record_fields(s), record_extra(s) or {}) for s in self.disk.sprites]
-        (armour,) = [(f, x) for f, x in sprites if x.get("tx_id") == prize_channel]
-        self.assertEqual((armour[0]["type"], armour[0]["picnum"]), (142, 2578))
-        self.assertTrue(armour[1]["trigger_pickup"] and armour[1]["trigger_once"])
+        (key,) = [(f, x) for f, x in sprites if x.get("tx_id") == prize_channel]
+        self.assertEqual((key[0]["type"], key[0]["picnum"]), (105, 2557))
+        self.assertTrue(key[1]["trigger_pickup"] and key[1]["trigger_once"])
         (drop,) = [x for _f, x in sprites if x.get("tx_id") == main_channel
                    and x.get("rx_id") == prize_channel]
         self.assertEqual(drop["command"], 0)

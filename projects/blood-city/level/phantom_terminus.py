@@ -969,8 +969,8 @@ def _coach_controls(layout, coach, station, stop):
     run = wires.wire(RUN)
     departure = wires.wire(DEPART)
     aisle = coach.at("aisle")
-    guns = _prop(layout, coach.at("north_seat_1"), "prize", *PRIZE_AT, 558, 48, 48,
-                 type=42, status=3, cstat=128, shade=-48)
+    guns = _prop(layout, coach.at("north_seat_1"), "prize", *PRIZE_AT, 800, 48, 48,
+                 type=50, status=3, cstat=128, shade=-48)
     prize = wires.wire(PRIZE)
     prize.when(wiring.placement(guns), "pickup", command=motion.CMD_ON,
                once=True, dude_lockout=1)

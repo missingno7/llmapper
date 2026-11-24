@@ -402,7 +402,8 @@ class ThirdWalkTests(unittest.TestCase):
                 along = (math.cos(angle) * out[0] + math.sin(angle) * out[1]) / math.hypot(*out)
                 self.assertGreaterEqual(along, least, (index, sector))
             falls += 1
-        self.assertEqual(falls, 3)
+        # the sampling chamber's, the brook's; and the settling hall's five falls and their foot, in two halves
+        self.assertEqual(falls, 9)
 
     def test_no_moving_sector_leaves_the_one_it_stands_in(self):
         #: the owner: "moving or rotating sector can never leave it's parent

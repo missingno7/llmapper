@@ -261,10 +261,15 @@ class StationTests(unittest.TestCase):
 
     def test_it_stands_outside_the_city_and_is_entered_through_its_wall(self):
         s = self.station
-        (door,) = self._sectors_at(s.DOOR)
-        d = self.sectors[door]
-        around = {int(self.walls[w]["next_sector"]) for w in range(
-            int(d["wall_ptr"]), int(d["wall_ptr"]) + int(d["wall_count"]))}
+        # a roll-up gate since 2026-11-24 (`gameplay`): the door pass cuts it into a leaf and two reveals
+        x0, y0, x1, y1 = s.DOOR
+        door = [i for i, sec in enumerate(self.sectors) if all(
+            x0 <= int(self.walls[w]["x"]) <= x1 and y0 <= int(self.walls[w]["y"]) <= y1
+            for w in range(int(sec["wall_ptr"]), int(sec["wall_ptr"]) + int(sec["wall_count"])))]
+        self.assertTrue(door)
+        self.assertEqual([int(self.sectors[i]["type"]) for i in door].count(600), 1)
+        around = {int(self.walls[w]["next_sector"]) for i in door for w in range(
+            int(self.sectors[i]["wall_ptr"]), int(self.sectors[i]["wall_ptr"]) + int(self.sectors[i]["wall_count"]))}
         #: one side is a street under the sky, the other the passage
         self.assertTrue(any(n >= 0 and int(self.sectors[n]["ceiling_stat"]) & 1
                             for n in around))

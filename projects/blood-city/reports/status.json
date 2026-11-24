@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "03457235b5739a8d3634455561880e0c23d7c94a92eb0a6f607946aa88cfc02c",
-  "map_sha256": "00c56b7de70e4c11ba66969065aefec82686a79870b84ef42a3a8b42c3e6cb38",
+  "manifest_sha256": "3b1fe4230e86aac3926e11a8be85d1deff252e862e2a069c84abaf94fa0540cb",
+  "map_sha256": "7408dbd01c1bb2ccd5c721ccc51c6f1e1e35427900fbb86f21a1f2520135b721",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1504,
-  "walls": 13870,
-  "sprites": 2227,
+  "sectors": 1527,
+  "walls": 13983,
+  "sprites": 2426,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.633,
-   "walls": 0.153,
-   "sprites": 0.864
+   "sectors": 0.627,
+   "walls": 0.147,
+   "sprites": 0.852
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 2856,
+   "note": 2936,
    "warning": 6
   }
  },
@@ -156,45 +156,45 @@
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1931"
+   "at": "projects/blood-city/level/build_skeleton.py:1935"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites; the light bomb runs",
-   "at": "projects/blood-city/level/build_skeleton.py:1978"
+   "at": "projects/blood-city/level/build_skeleton.py:1983"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1997"
+   "at": "projects/blood-city/level/build_skeleton.py:2002"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2146"
+   "at": "projects/blood-city/level/build_skeleton.py:2151"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2223"
+   "at": "projects/blood-city/level/build_skeleton.py:2228"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2281"
+   "at": "projects/blood-city/level/build_skeleton.py:2288"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2480"
+   "at": "projects/blood-city/level/build_skeleton.py:2487"
   }
  ],
  "finish": {
   "exits": [
    {
-    "root": "sprite 1362",
+    "root": "sprite 1412",
     "cause": "push",
-    "sector": 671,
+    "sector": 668,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,24 +202,186 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 1479,
+    "sprite": 1019,
+    "name": "kItemKeyMoon",
+    "sector": 50,
+    "reached": true
+   },
+   {
+    "sprite": 1529,
     "name": "kItemKeyEye",
-    "sector": 319,
+    "sector": 321,
+    "reached": true
+   },
+   {
+    "sprite": 2174,
+    "name": "kItemKeySkull",
+    "sector": 224,
+    "reached": true
+   },
+   {
+    "sprite": 2184,
+    "name": "kItemKeyFire",
+    "sector": 270,
+    "reached": true
+   },
+   {
+    "sprite": 2188,
+    "name": "kItemKeyDagger",
+    "sector": 863,
+    "reached": true
+   },
+   {
+    "sprite": 2192,
+    "name": "kItemKeySpider",
+    "sector": 513,
     "reached": true
    }
   ],
   "locked": [
    {
+    "key": 1,
+    "key_name": "skull",
+    "senders": [
+     "sprite 2199"
+    ],
+    "sector": 173,
+    "answers": [
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
+   },
+   {
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sector 339"
+     "sprite 2201"
     ],
-    "sector": 339,
+    "sector": 173,
     "answers": [
-     "sector 339"
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
+   },
+   {
+    "key": 2,
+    "key_name": "eye",
+    "senders": [
+     "sector 341"
+    ],
+    "sector": 341,
+    "answers": [
+     "sector 341"
     ],
     "by_hand": true
+   },
+   {
+    "key": 3,
+    "key_name": "fire",
+    "senders": [
+     "sprite 2203"
+    ],
+    "sector": 173,
+    "answers": [
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
+   },
+   {
+    "key": 4,
+    "key_name": "dagger",
+    "senders": [
+     "sprite 2205"
+    ],
+    "sector": 298,
+    "answers": [
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
+   },
+   {
+    "key": 5,
+    "key_name": "spider",
+    "senders": [
+     "sprite 2207"
+    ],
+    "sector": 298,
+    "answers": [
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
+   },
+   {
+    "key": 6,
+    "key_name": "moon",
+    "senders": [
+     "sprite 2209"
+    ],
+    "sector": 298,
+    "answers": [
+     "sector 174",
+     "sector 299",
+     "sector 592",
+     "sprite 2210",
+     "sprite 2211",
+     "sprite 2212",
+     "sprite 2213",
+     "sprite 2214",
+     "sprite 2215",
+     "sprite 2216",
+     "sprite 2217",
+     "sprite 2218"
+    ]
    }
   ],
   "secrets": {
@@ -227,77 +389,61 @@
    "credited_normal": 8,
    "credited_super": 0
   },
-  "space": 1462,
-  "reached": 1462,
+  "space": 1485,
+  "reached": 1485,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 1274,
+    "sectors": 1188,
     "first_sector": 0
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 413"
+     "operate mechanism sector 415"
     ],
     "sectors": 47,
-    "first_sector": 384
+    "first_sector": 386
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 414"
+     "operate mechanism sector 416"
     ],
     "sectors": 1,
-    "first_sector": 414
+    "first_sector": 416
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 337"
+     "operate mechanism sector 339"
     ],
     "sectors": 39,
-    "first_sector": 308
+    "first_sector": 310
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1361 (channel 108)"
-    ],
-    "sectors": 15,
-    "first_sector": 669
-   },
-   {
-    "round": 1,
-    "opened_by": [
-     "destroy sprite 1401 (channel 103)"
+     "destroy sprite 1451 (channel 103)"
     ],
     "sectors": 10,
-    "first_sector": 218
+    "first_sector": 219
    },
    {
     "round": 1,
     "opened_by": [
-     "pick up sprite 969 (channel 123)"
-    ],
-    "sectors": 9,
-    "first_sector": 56
-   },
-   {
-    "round": 1,
-    "opened_by": [
-     "kill sprite 201 (channel 133)"
+     "walk into sector 838 (channel 153)"
     ],
     "sectors": 7,
-    "first_sector": 849
+    "first_sector": 863
    },
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1646 (channel 147)"
+     "use switch sprite 1696 (channel 159)"
     ],
     "sectors": 7,
     "first_sector": 158
@@ -305,42 +451,42 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 1110 (channel 109)"
+     "destroy sprite 1160 (channel 109)"
     ],
     "sectors": 5,
-    "first_sector": 511
+    "first_sector": 508
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 228"
+     "operate mechanism sector 229"
     ],
     "sectors": 4,
-    "first_sector": 204
-   },
-   {
-    "round": 1,
-    "opened_by": [
-     "operate mechanism sector 286"
-    ],
-    "sectors": 4,
-    "first_sector": 285
-   },
-   {
-    "round": 1,
-    "opened_by": [
-     "operate mechanism sector 262"
-    ],
-    "sectors": 1,
-    "first_sector": 262
+    "first_sector": 205
    },
    {
     "round": 1,
     "opened_by": [
      "operate mechanism sector 287"
     ],
+    "sectors": 4,
+    "first_sector": 286
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 263"
+    ],
     "sectors": 1,
-    "first_sector": 287
+    "first_sector": 263
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "operate mechanism sector 288"
+    ],
+    "sectors": 1,
+    "first_sector": 288
    },
    {
     "round": 1,
@@ -361,7 +507,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1644 (channel 143)"
+     "use switch sprite 1039 (channel 101)"
+    ],
+    "sectors": 1,
+    "first_sector": 64
+   },
+   {
+    "round": 1,
+    "opened_by": [
+     "use switch sprite 1694 (channel 155)"
     ],
     "sectors": 1,
     "first_sector": 9
@@ -369,7 +523,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1645 (channel 144)"
+     "use switch sprite 1695 (channel 156)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -377,7 +531,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1648 (channel 146)"
+     "use switch sprite 1698 (channel 158)"
     ],
     "sectors": 1,
     "first_sector": 149
@@ -385,18 +539,26 @@
    {
     "round": 2,
     "opened_by": [
-     "operate mechanism sector 230"
+     "operate mechanism sector 231"
     ],
     "sectors": 23,
-    "first_sector": 201
+    "first_sector": 202
    },
    {
     "round": 2,
     "opened_by": [
-     "push wall 7384 (channel 139)"
+     "pick up sprite 1019 (channel 123)"
+    ],
+    "sectors": 8,
+    "first_sector": 56
+   },
+   {
+    "round": 2,
+    "opened_by": [
+     "push wall 7458 (channel 151)"
     ],
     "sectors": 2,
-    "first_sector": 851
+    "first_sector": 865
    },
    {
     "round": 2,
@@ -404,15 +566,31 @@
      "several of this round's acts together"
     ],
     "sectors": 3,
-    "first_sector": 321
+    "first_sector": 323
    },
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 1471 (channel 104)"
+     "use switch sprite 2199 (channel 137)"
+    ],
+    "sectors": 109,
+    "first_sector": 174
+   },
+   {
+    "round": 3,
+    "opened_by": [
+     "destroy sprite 1521 (channel 104)"
     ],
     "sectors": 5,
-    "first_sector": 340
+    "first_sector": 342
+   },
+   {
+    "round": 4,
+    "opened_by": [
+     "use switch sprite 1411 (channel 108)"
+    ],
+    "sectors": 15,
+    "first_sector": 666
    }
   ]
  },
@@ -740,7 +918,7 @@
    "channel": 123,
    "engine": null,
    "when": [
-    "pickup on placement aldermack:fire_armour"
+    "pickup on placement aldermack:moon_key"
    ],
    "then": [
     "placement aldermack:curtain_drop",
@@ -931,9 +1109,123 @@
    ]
   },
   {
+   "name": "key:skull",
+   "says": "taking the skull key in the crypt raises the buried out of its earth",
+   "channel": 132,
+   "engine": null,
+   "when": [
+    "pickup on placement key:skull"
+   ],
+   "then": [
+    "placement gameplay:skull_0",
+    "placement gameplay:skull_1",
+    "placement gameplay:skull_2",
+    "placement gameplay:skull_3",
+    "placement gameplay:skull_4"
+   ]
+  },
+  {
+   "name": "key:eye",
+   "says": "taking the eye key in the arcade brings the Cabal into the concourse",
+   "channel": 133,
+   "engine": null,
+   "when": [
+    "pickup on placement key:arcade_eye"
+   ],
+   "then": [
+    "placement gameplay:eye_0",
+    "placement gameplay:eye_1",
+    "placement gameplay:eye_2",
+    "placement gameplay:eye_3"
+   ]
+  },
+  {
+   "name": "key:flame",
+   "says": "taking the flame key off the belt brings the dead into the machine hall",
+   "channel": 134,
+   "engine": null,
+   "when": [
+    "pickup on placement key:flame"
+   ],
+   "then": [
+    "placement gameplay:flame_0",
+    "placement gameplay:flame_1",
+    "placement gameplay:flame_2"
+   ]
+  },
+  {
+   "name": "key:dagger",
+   "says": "taking the dagger key behind the rose puts phantoms between it and the way out",
+   "channel": 135,
+   "engine": null,
+   "when": [
+    "pickup on placement key:dagger"
+   ],
+   "then": [
+    "placement gameplay:dagger_0",
+    "placement gameplay:dagger_1",
+    "placement gameplay:dagger_2"
+   ]
+  },
+  {
+   "name": "key:spider",
+   "says": "taking the spider key out of the nest wakes the brood",
+   "channel": 136,
+   "engine": null,
+   "when": [
+    "pickup on placement key:spider"
+   ],
+   "then": [
+    "placement gameplay:spider_0",
+    "placement gameplay:spider_1",
+    "placement gameplay:spider_2",
+    "placement gameplay:spider_3",
+    "placement gameplay:spider_4"
+   ]
+  },
+  {
+   "name": "station:keys",
+   "says": "each key turned in its lock by the station's arches is counted",
+   "channel": 137,
+   "engine": null,
+   "when": [
+    "push on placement station:key_skull",
+    "push on placement station:key_eye",
+    "push on placement station:key_flame",
+    "push on placement station:key_dagger",
+    "push on placement station:key_spider",
+    "push on placement station:key_moon"
+   ],
+   "then": [
+    "placement station:key_count"
+   ]
+  },
+  {
+   "name": "station:unlock",
+   "says": "the sixth key raises the station's gates, and the guard behind them",
+   "channel": 138,
+   "engine": null,
+   "when": [
+    "relay on placement station:key_count"
+   ],
+   "then": [
+    "region region:gravesend/gravesend_station/door",
+    "region region:gravesend/theatre_row/station_arch_0_gate",
+    "region region:gravesend/foundry_ward/station_arch_1_gate",
+    "placement station:opened_says",
+    "placement station:opened_quake",
+    "placement gameplay:guard_0",
+    "placement gameplay:guard_1",
+    "placement gameplay:guard_2",
+    "placement gameplay:guard_3",
+    "placement gameplay:guard_4",
+    "placement gameplay:guard_5"
+   ]
+  },
+  {
    "name": "cabal:entered",
    "says": "stepping onto the chamber's gallery is answered once: give me a sacrifice",
-   "channel": 132,
+   "channel": 139,
    "engine": null,
    "when": [
     "enter on region region:gravesend/sewer/settling_hall/rite:throat_runner_1"
@@ -944,11 +1236,11 @@
   },
   {
    "name": "cabal:broken",
-   "says": "the priest's death breaks the rite: the earth shakes, the well goes down, the stone beasts and some of the audience wake, and the relays that put out the fires and burst the window start",
-   "channel": 133,
+   "says": "the stone beast's death breaks the rite: the earth shakes, the well goes down, some of the audience get up, the blasts climb, and the relays that put out the fires and burst the window start",
+   "channel": 140,
    "engine": null,
    "when": [
-    "killed on placement cabal:priest"
+    "killed on placement cabal:stone_beast"
    ],
    "then": [
     "placement cabal:fires_relay_0",
@@ -958,8 +1250,6 @@
     "placement cabal:riser_1",
     "placement cabal:riser_2",
     "placement cabal:riser_3",
-    "placement cabal:beast_8",
-    "placement cabal:beast_12",
     "placement cabal:disarm_relay",
     "placement cabal:pain",
     "placement cabal:quake",
@@ -974,13 +1264,32 @@
     "region region:gravesend/sewer/settling_hall/rite:tooth_2",
     "region region:gravesend/sewer/settling_hall/rite:tooth_1",
     "region region:gravesend/sewer/settling_hall/rite:tooth_0",
+    "placement cabal:blast_0",
+    "placement cabal:blast_1",
+    "placement cabal:blast_2",
+    "placement cabal:blast_3",
+    "placement cabal:blast_4",
+    "placement cabal:blast_5",
+    "placement cabal:blast_6",
+    "placement cabal:blast_7",
+    "placement cabal:blast_8",
+    "placement cabal:blast_9",
+    "placement cabal:blast_10",
+    "placement cabal:blast_11",
+    "placement cabal:blast_12",
+    "placement cabal:burst_relay",
+    "placement cabal:flare-1_relay",
+    "placement cabal:flare-2_relay",
+    "placement cabal:flare-3_relay",
+    "placement cabal:says_relay",
+    "placement cabal:deep_relay",
     "placement cabal:window_relay"
    ]
   },
   {
    "name": "cabal:fires-1",
    "says": "the two fires by the runner go out, and the chant stops",
-   "channel": 134,
+   "channel": 141,
    "engine": null,
    "when": [
     "relay on placement cabal:fires_relay_0"
@@ -994,7 +1303,7 @@
   {
    "name": "cabal:fires-2",
    "says": "a moment later the two at the sides go out, and the room goes dark",
-   "channel": 135,
+   "channel": 142,
    "engine": null,
    "when": [
     "relay on placement cabal:fires_relay_1"
@@ -1007,7 +1316,7 @@
   {
    "name": "cabal:fires-3",
    "says": "and then the two by the altar",
-   "channel": 136,
+   "channel": 143,
    "engine": null,
    "when": [
     "relay on placement cabal:fires_relay_2"
@@ -1018,39 +1327,100 @@
    ]
   },
   {
-   "name": "cabal:swallowed",
-   "says": "the well reaching its bottom hides the horned thing it took down",
-   "channel": 137,
+   "name": "cabal:burst",
+   "says": "a second after the beast falls the horned thing bursts, and the light in its hands with it",
+   "channel": 144,
    "engine": null,
    "when": [
-    "relay on region region:gravesend/sewer/settling_hall/rite:well"
+    "relay on placement cabal:burst_relay"
    ],
    "then": [
     "placement cabal:horned"
    ]
   },
   {
+   "name": "cabal:flare-1",
+   "says": "fire flies up from where it stood, hurting nobody",
+   "channel": 145,
+   "engine": null,
+   "when": [
+    "relay on placement cabal:flare-1_relay"
+   ],
+   "then": [
+    "placement cabal:flare_0"
+   ]
+  },
+  {
+   "name": "cabal:flare-2",
+   "says": "fire flies higher, a fifth of a second after",
+   "channel": 146,
+   "engine": null,
+   "when": [
+    "relay on placement cabal:flare-2_relay"
+   ],
+   "then": [
+    "placement cabal:flare_1"
+   ]
+  },
+  {
+   "name": "cabal:flare-3",
+   "says": "fire flies higher still, to where the blasts take over",
+   "channel": 147,
+   "engine": null,
+   "when": [
+    "relay on placement cabal:flare-3_relay"
+   ],
+   "then": [
+    "placement cabal:flare_2"
+   ]
+  },
+  {
+   "name": "cabal:says",
+   "says": "when the last of them has gone off Caleb says what he thinks of it",
+   "channel": 148,
+   "engine": null,
+   "when": [
+    "relay on placement cabal:says_relay"
+   ],
+   "then": [
+    "placement cabal:says"
+   ]
+  },
+  {
+   "name": "cabal:deep",
+   "says": "the emptied well's bottom goes up, and the earth shakes again",
+   "channel": 149,
+   "engine": null,
+   "when": [
+    "relay on placement cabal:deep_relay"
+   ],
+   "then": [
+    "placement cabal:quake_deep"
+   ]
+  },
+  {
    "name": "cabal:window",
-   "says": "three seconds after the priest, the rose bursts and what was behind it comes through",
-   "channel": 138,
+   "says": "seven seconds after the beast falls the rose bursts, what was behind it comes through, and the beasts in the niches wake",
+   "channel": 150,
    "engine": null,
    "when": [
     "relay on placement cabal:window_relay"
    ],
    "then": [
+    "placement cabal:beast_8",
+    "placement cabal:beast_12",
     "placement cabal:freed_relay",
     "the face of region:gravesend/sewer/settling_hall/rite:sill from (29184, 66924) to (27136, 66924)",
     "placement cabal:awaited",
     "placement cabal:quake_2",
     "placement cabal:comes_0",
-    "placement cabal:comes_1",
-    "placement cabal:comes_2"
+    "placement cabal:comes_1"
    ]
   },
   {
    "name": "cabal:heart",
    "says": "shooting the heart ends it: a cry, the earth shakes, and the flesh opens on what it had swallowed",
-   "channel": 139,
+   "channel": 151,
    "engine": null,
    "when": [
     "vector on the face of region:gravesend/sewer/settling_hall/rite:heart from (28672, 69996) to (27648, 69996)"
@@ -1066,7 +1436,7 @@
   {
    "name": "cabal:silent",
    "says": "the heart's beat stops with it",
-   "channel": 140,
+   "channel": 152,
    "engine": null,
    "when": [
     "relay on placement cabal:still"
@@ -1077,8 +1447,8 @@
   },
   {
    "name": "cabal:shut",
-   "says": "stepping over the ring of blood shuts the mouth behind you; the bursting window, or forty seconds, opens it",
-   "channel": 141,
+   "says": "stepping down onto the kerb round the sign turns the stone beast and shuts the mouth behind you; the bursting window, or forty seconds, opens it",
+   "channel": 153,
    "engine": null,
    "when": [
     "enter on region region:gravesend/sewer/settling_hall/rite:floor_0",
@@ -1094,6 +1464,7 @@
     "relay on placement cabal:freed_relay"
    ],
    "then": [
+    "placement cabal:stone_beast",
     "region region:gravesend/sewer/settling_hall/rite:gate_side_0",
     "region region:gravesend/sewer/settling_hall/rite:gate_side_1",
     "region region:gravesend/sewer/settling_hall/rite:gate_runner"
@@ -1101,8 +1472,8 @@
   },
   {
    "name": "cabal:disarm",
-   "says": "once the priest is dead the ring of blood shuts nothing",
-   "channel": 142,
+   "says": "once the beast is dead the kerb shuts nothing",
+   "channel": 154,
    "engine": null,
    "when": [
     "relay on placement cabal:disarm_relay"
@@ -1143,7 +1514,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 143,
+   "channel": 155,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -1155,7 +1526,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 144,
+   "channel": 156,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -1167,7 +1538,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 147,
+   "channel": 159,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -1179,7 +1550,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 145,
+   "channel": 157,
    "engine": null,
    "when": [
     "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
@@ -1200,7 +1571,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 146,
+   "channel": 158,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -1702,7 +2073,7 @@
    },
    "metres": [
     18.3,
-    24.8,
+    24.5,
     5.3
    ],
    "cramped": [
@@ -1931,7 +2302,7 @@
    },
    "metres": [
     104.3,
-    137.4,
+    139.8,
     20.9
    ],
    "cramped": [],
@@ -2690,7 +3061,7 @@
    "says": "tile 2229 as sprite_wall in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2229",
-   "at": "sprite[728]"
+   "at": "sprite[777]"
   },
   {
    "kind": "uncatalogued-use",
@@ -2698,7 +3069,7 @@
    "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
-   "at": "sprite[1541]"
+   "at": "sprite[1591]"
   },
   {
    "kind": "outside-campaign",
@@ -2927,6 +3298,13 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 1048 as sprite_wall in outdoors (6x) rests on community evidence (46 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 1048"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 159 as ceiling in indoors (5x) rests on community-curated evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 159"
@@ -2948,6 +3326,13 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 822 as sprite_face in indoors (5x) rests on community-curated evidence (4 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 822"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 409 as floor in indoors (4x) rests on community evidence (6 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 409"
@@ -2965,6 +3350,13 @@
    "says": "tile 796 as ceiling in indoors (4x) rests on community-curated evidence (9 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 796"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 9 as ceiling in indoors (4x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 9"
   },
   {
    "kind": "outside-campaign",
@@ -3074,13 +3466,6 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 822 as sprite_face in indoors (4x) rests on community-curated evidence (4 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 822"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
    "says": "tile 194 as ceiling in indoors (3x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 194"
@@ -3105,13 +3490,6 @@
    "says": "tile 251 as sprite_wall in indoors (3x) rests on community evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 251"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 9 as ceiling in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 9"
   },
   {
    "kind": "outside-campaign",
@@ -3709,6 +4087,13 @@
    "see": "python -m tools.tile_contexts show 744"
   },
   {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2544 as sprite_wall in outdoors (1x) rests on community evidence (17 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2544"
+  },
+  {
    "kind": "unrecognised",
    "place": "The arcade",
    "says": "named \"Ornate hallway with library alcove\" from its best view with signs hidden; the reader's fix: Install a tall, warmly lit freestanding clock in the concourse where shoppers can see it from several storefronts.",
@@ -3734,23 +4119,23 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 401 and 303",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 403 and 305",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2908"
+   "at": "wall 2918"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 408 and 303",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 410 and 305",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2953"
+   "at": "wall 2963"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1432, 1438, 1439, 1450, 1519, 1520) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1437, 1443, 1444, 1455, 1524, 1525) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[93]"
@@ -3851,41 +4236,41 @@
    "kind": "dropped",
    "place": null,
    "says": "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1973",
+   "owner": "projects/blood-city/level/build_skeleton.py:1978",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1973",
+   "owner": "projects/blood-city/level/build_skeleton.py:1978",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_outfall_walk_a:2 (tile 515) would lie through run:sewer_outfall_walk_a:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1973",
+   "owner": "projects/blood-city/level/build_skeleton.py:1978",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1973",
+   "owner": "projects/blood-city/level/build_skeleton.py:1978",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1973",
+   "owner": "projects/blood-city/level/build_skeleton.py:1978",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 161, \"sprites\": [1610, 1611], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 161, \"sprites\": [1660, 1661], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[161]"
@@ -3912,7 +4297,7 @@
   "lost-tile": 2,
   "missing-layer": 20,
   "never-critiqued": 11,
-  "outside-campaign": 144,
+  "outside-campaign": 146,
   "owner-rework": 1,
   "refused": 7,
   "rule-warning": 6,

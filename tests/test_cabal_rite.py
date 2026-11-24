@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 import unittest
 
-from bloodmap import compositions, posed, wiring
+from bloodmap import blasts, compositions, posed, wiring
 from bloodmap.format import read_map
 from bloodmap.model import record_extra, record_fields
 from bloodmap.player_space import PLAYER_PROFILES
@@ -131,9 +131,9 @@ class CabalRiteTests(unittest.TestCase):
         kinds = Counter(r["kind"] for r in rows)
         self.assertTrue(kinds["nest"] or kinds["round"], kinds)
 
-    def test_the_priests_death_is_one_chain_that_does_the_whole_rite(self):
-        priest = next(i for i, f, _x in self.chamber() if f["type"] == 249)
-        chain = posed.chain_of(wiring.chains(self.disk), f"sprite {priest}")
+    def test_the_stone_beasts_death_is_one_chain_that_does_the_whole_rite(self):
+        beast = next(i for i, f, _x in self.chamber() if f["type"] == 207)
+        chain = posed.chain_of(wiring.chains(self.disk), f"sprite {beast}")
         after, report = posed.posed(self.disk, chain)
         well = self.at(*self.R.CENTRE, self.R.BRIM)
         self.assertEqual(record_fields(after.sectors[well])["floor_z"], self.R.SUNK)
@@ -142,17 +142,61 @@ class CabalRiteTests(unittest.TestCase):
         for i in fires:
             self.assertEqual(record_extra(self.disk.sprites[i])["state"], 1)
             self.assertEqual(record_extra(after.sprites[i])["state"], 0)
-        horned = next(i for i, f, _x in self.chamber() if f["type"] == 456)
-        self.assertTrue(record_fields(after.sprites[horned])["cstat"] & 32768)
-        self.assertFalse(record_fields(self.disk.sprites[horned])["cstat"] & 32768)
+        # the horned thing bursts: a gib object of stone, locked so that no blast but its own wire breaks it
+        horned, _f, x = next(row for row in self.chamber() if row[1]["picnum"] == 1840)
+        self.assertEqual((record_fields(self.disk.sprites[horned])["type"], x["rx_id"], x["state"], x["locked"], x["data_1"]),
+                         (417, self.wires.channel("cabal:burst"), 1, 1, 20))
         panes = [w for w, wall in enumerate(self.disk.walls) if record_fields(wall)["over_picnum"] == self.R.ROSE]
         self.assertEqual(len(panes), 2)
         for w in panes:
             self.assertTrue(record_fields(self.disk.walls[w])["cstat"] & 1)
             self.assertFalse(record_fields(after.walls[w])["cstat"] & 1)
         self.assertEqual(len(self.on("cabal:broken", {244})), len(self.R.RISERS))
-        self.assertEqual(len(self.on("cabal:broken", {208})), 2)
-        self.assertEqual({x["data_1"] for _i, _f, x in self.on("cabal:window", {18})}, {206, 207})
+        self.assertEqual(len(self.on("cabal:window", {208})), 2)
+        self.assertEqual({x["data_1"] for _i, _f, x in self.on("cabal:window", {18})}, {206})
+        said = [x["data_1"] for _i, _f, x in self.on("cabal:says", {711})]
+        self.assertEqual(said, [3056])                                        # "Rest in pieces."
+
+    def test_the_stone_beast_is_the_enemy_and_turns_when_the_mouth_shuts(self):
+        _i, f, x = next(row for row in self.chamber() if row[1]["type"] == 207)
+        self.assertEqual((f["picnum"], f["pal"], x["rx_id"], x["tx_id"]),
+                         (1470, 5, self.wires.channel("cabal:shut"), self.wires.channel("cabal:broken")))
+        self.assertTrue(x["trigger_off"] and x["decoupled"] and not x["trigger_on"])  # its death says it, its waking does not
+
+    def test_the_fire_climbs_and_hurts_nobody_below(self):
+        """Death Wish's chain: one wire, each blast its own wait; none of them reaches a body on the floor, the steps or the gallery."""
+        chain = next(c for c in blasts.chains(self.disk) if c.channel == self.wires.channel("cabal:broken"))
+        self.assertGreaterEqual(len(chain.steps), 12)
+        up = [b for b in chain.blasts if b.z < self.R.FLOOR and b.wait < 30]
+        self.assertGreater(up[0].z - up[-1].z, BODY.standing_height)
+        self.assertEqual([b.wait for b in up], sorted(b.wait for b in up))
+        cx, cy = self.R.CENTRE
+        bodies = []
+        for s in self.disk.sectors:
+            f = record_fields(s)
+            first = record_fields(self.disk.walls[f["wall_ptr"]])
+            if f["floor_z"] in (self.R.FLOOR, self.R.FLOOR + 512, self.R.DAIS, self.R.QUAY) and hypot(first["x"] - cx, first["y"] - cy) < 7200:
+                for w in range(f["wall_ptr"], f["wall_ptr"] + f["wall_count"]):
+                    q = record_fields(self.disk.walls[w])
+                    bodies.append((q["x"], q["y"], f["floor_z"] - 9000))
+        self.assertGreater(len(bodies), 60)
+        # the well's own lie on the blood and have gone down with it when they go off
+        well = self.R.SUNK - 900
+        at = [(b.x, b.y, well if b.z > self.R.FLOOR else b.z) for b in chain.blasts]
+        self.assertTrue(blasts.harmless(at, bodies))
+
+    def test_the_congregation_looks_at_the_well(self):
+        """The owner, 2026-11-24: "they should be all looking into the center"; it is only their angle."""
+        cx, cy = self.R.CENTRE
+        rows = [f for _i, f, _x in self.chamber() if f["picnum"] == 2870]
+        self.assertEqual(len(rows), len(self.R.CONGREGATION))
+        for f in rows:
+            want = round(atan2(cy - f["y"], cx - f["x"]) * 1024 / pi)
+            self.assertLess(abs((f["angle"] - want + 1024) % 2048 - 1024), 24)
+
+    def test_nothing_here_is_shown_by_the_editor_as_something_else(self):
+        """XMapEdit draws a switched zap (456) as lightning (1156), whatever its tile: the owner saw lightning where the statue is."""
+        self.assertFalse([i for i, f, _x in self.chamber() if f["type"] in (455, 456)])
 
     def test_the_fires_take_their_light_with_them(self):
         """Every sector the fires light is authored dark, lit while its state is on, and an OFF is what comes."""
@@ -180,19 +224,19 @@ class CabalRiteTests(unittest.TestCase):
         relays = [x for s in self.disk.sprites if (x := record_extra(s)) and x["tx_id"] == channel]
         self.assertEqual([x["command"] for x in relays], [0])                 # and the bursting window opens it
 
-    def test_the_priest_stands_in_the_rose_over_the_horned_thing(self):
-        """Seen from the mouth: the line from a standing eye to his head passes over the thing's horns."""
-        priest = next(f for _i, f, _x in self.chamber() if f["type"] == 249)
-        horned = next(f for _i, f, _x in self.chamber() if f["type"] == 456)
+    def test_the_stone_beast_stands_in_the_rose_over_the_horned_thing(self):
+        """Seen from the mouth: the line from a standing eye to its head passes over the thing's horns."""
+        priest = next(f for _i, f, _x in self.chamber() if f["type"] == 207)
+        horned = next(f for _i, f, _x in self.chamber() if f["picnum"] == 1840)
         self.assertLess(abs(priest["x"] - self.R.CENTRE[0]), 64)
-        self.assertEqual((priest["angle"], priest["pal"]), (512, 0))            # his back to whoever comes, in black
+        self.assertEqual((priest["angle"], horned["angle"]), (512, 1536))       # it faces the rose, the thing in the well the door
         eye_y, eye_z = self.R.NORTH, self.R.QUAY - BODY.standing_height
-        head_z = priest["z"] - priest["y_repeat"] * 4 * 107 // 2
+        head_z = priest["z"] - priest["y_repeat"] * 4 * 115 // 2
         along = (self.R.CENTRE[1] - eye_y) / (priest["y"] - eye_y)
         horns = horned["z"] - horned["y_repeat"] * 4 * 163 // 2
         self.assertLess(eye_z + (head_z - eye_z) * along, horns)
 
-    def test_once_he_is_dead_the_ring_shuts_nothing(self):
+    def test_once_it_is_dead_the_kerb_shuts_nothing(self):
         disarm, shut = self.wires.channel("cabal:disarm"), self.wires.channel("cabal:shut")
         rings = [x for s in self.disk.sectors if (x := record_extra(s)) and x["tx_id"] == shut]
         self.assertTrue(rings)

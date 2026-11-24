@@ -1927,6 +1927,10 @@ def main() -> int:
 
     import dressing
     print("dressing:", dressing.dress(layout))
+    # LAST of what is placed: it looks for free floor among all the rest
+    import gameplay
+    ctx["manifest"]["gameplay"] = gameplay.place(layout)
+    print("gameplay:", ctx["manifest"]["gameplay"])
 
     STAGE("doors-and-windows",
           "door frames, detail panels, windows, building backs, actors seated")
@@ -1942,6 +1946,7 @@ def main() -> int:
     cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
     import cabal_rite
     cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
+    cloth_reveals |= frozenset(_station.AVENUE_FRONT.get("gates", ()))   # one gate across two half arches: its own frame
     door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals)
     ctx["manifest"]["door_frames"] = len(door_frames["doors"])
     print("door frames:", len(door_frames["doors"]))
@@ -2245,6 +2250,8 @@ def main() -> int:
     print("lintels:", apertures.continue_lintels(compiled.level,
                                                  compiled.level.to_disk_map()))
     print("the rite's rims put back:", cabal_rite.keep(compiled.level, compiled))
+    import settling_hall
+    print("the settling hall's stone put back:", settling_hall.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

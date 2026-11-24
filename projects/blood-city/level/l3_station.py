@@ -154,6 +154,7 @@ TUNNEL = ((30976, 34816, 24), (34816, 38912, 30))
 #: store the line serves.
 GATE_X = (30720, 30976)
 GATE_CHANNEL = wires.channel("station:gate")
+UNLOCK_CHANNEL = wires.channel("station:unlock")
 #: where the exit switch hangs: set when the tunnel's last bore is built
 WAY_OUT: dict = {}
 STORE = (38912, -25856, 44032, -15616)
@@ -367,12 +368,17 @@ def build(city, street):
         return made
 
     # ---- in from the street, and up -------------------------------------
-    door = room("door", DOOR, floor_z=GRADE, clear=32768, role="gateway",
-                note="the way through the city's north wall",
+    # shut by a roll-up gate until the six keys are turned (`gameplay`), as the avenue's arches are
+    door = room("door", DOOR, floor_z=GRADE, clear=0, role="doorway",
+                note="the way through the city's north wall: a roll-up gate",
+                rk={"type": 600, "inherit_finish": "both",
+                    "sector_behavior": z_motion_door(GRADE, GRADE - 32768, interaction="remote",
+                                                     rx_id=UNLOCK_CHANNEL, open_time=30)},
                 #: its jambs wear the hall's iron column, lit: a doorway
                 #: with a frame (round 5: "an unmarked, unframed slot")
-                wall_picnum=COLUMN, ceiling_picnum=WOOD,
+                wall_picnum=ROLLUP, ceiling_picnum=WOOD,
                 floor_shade=10, wall_shade=4, ceiling_shade=12)
+    wires.wire("station:unlock").then(wiring.region(door.region_id))
     passage = room("passage", PASSAGE, floor_z=GRADE, clear=65536,
                    note="the entrance passage",
                    wall_picnum=PASSAGE_WALL, ceiling_picnum=PASSAGE_CEILING,
@@ -1327,6 +1333,8 @@ FRONT_H = 114688
 #: door's head), apex 4.2; as deep as a jamb is thick
 ARCHES = ((33280, 35328), (37376, 39424))
 ARCH_SPRING, ARCH_APEX, ARCH_D = 40960, 71680, 1536
+#: the gate that shuts each arch on the hall's side: how deep, how high it opens
+ARCH_GATE_D, ARCH_GATE_OPEN = 128, 36864
 #: the stone the front is: the owner's "grey ashlar stone blocks" (427), the
 #: pier between the arches his "grey stone wall with meander ornament"
 #: (409), the arches' soffits his "dressed/worked stone" (253)
@@ -1385,19 +1393,33 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
     for index, (a, b) in enumerate(ARCHES):
         court, owner = next((c, o) for c, o, _d, _s, ca, cb in courts if ca <= a and b <= cb)
         mid = (a + b) // 2
+        # the roll-up gate that shuts the arch until the six keys are turned (`gameplay`)
+        gate = owner.room(
+            f"station_arch_{index}_gate", [(0, 0), (b - a, 0), (b - a, ARCH_GATE_D), (0, ARCH_GATE_D)],
+            role="doorway", faces=dict(COMPASS), frame=Frame(a, fy0 - ARCH_D),
+            note="the roll-up gate in the station's arch: six keys raise it",
+            region_kwargs={"type": 600, "inherit_finish": "both",
+                           "sector_behavior": z_motion_door(grade, grade - ARCH_GATE_OPEN, interaction="remote",
+                                                            rx_id=UNLOCK_CHANNEL, open_time=30)},
+            intent={"kind": "station_front", "street": "the_avenue"})
+        gate.surfaces(floor_z=grade, clear_height=0, parallax_ceiling=False, floor_picnum=FLOOR, wall_picnum=ROLLUP,
+                      ceiling_picnum=SOFFIT, floor_shade=4, ceiling_shade=4, wall_shade=6)
+        wires.wire("station:unlock").then(wiring.region(gate.region_id))
+        AVENUE_FRONT.setdefault("gates", []).append(gate.region_id)
+        city.connect(gate.face("north"), hall.face("south"), connection_id=f"connection:station_arch_{index}_gate_in")
         halves = []
         for side, (x0, x1) in enumerate(((a, mid), (mid, b))):
             half = owner.room(
                 f"station_arch_{index}_{side}",
-                [(0, 0), (x1 - x0, 0), (x1 - x0, ARCH_D), (0, ARCH_D)],
+                [(0, 0), (x1 - x0, 0), (x1 - x0, ARCH_D - ARCH_GATE_D), (0, ARCH_D - ARCH_GATE_D)],
                 role="gateway", faces=dict(COMPASS),
-                frame=Frame(x0, fy0 - ARCH_D),
+                frame=Frame(x0, fy0 - ARCH_D + ARCH_GATE_D),
                 note="half of a pointed arch: its ceiling rises to the apex",
                 region_kwargs={"ceiling_slope": SlopeSpec(
                     # each half pivots on its OUTER jamb (the sector's first
                     # wall) and rises to the apex over the arch's middle
-                    hinge=(((x0, fy0), (x0, fy0 - ARCH_D)) if side == 0
-                           else ((x1, fy0 - ARCH_D), (x1, fy0))),
+                    hinge=(((x0, fy0), (x0, fy0 - ARCH_D + ARCH_GATE_D)) if side == 0
+                           else ((x1, fy0 - ARCH_D + ARCH_GATE_D), (x1, fy0))),
                     rise_z=-(ARCH_APEX - ARCH_SPRING))},
                 intent={"kind": "station_front", "street": "the_avenue"})
             half.surfaces(floor_z=grade, clear_height=ARCH_SPRING,
@@ -1408,7 +1430,7 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
                               height_player_heights=1.8)
             city.connect(half.face("south"), court.face("north"),
                          connection_id=f"connection:station_arch_{index}_{side}_out")
-            city.connect(half.face("north"), hall.face("south"),
+            city.connect(half.face("north"), gate.face("south"),
                          connection_id=f"connection:station_arch_{index}_{side}_in")
             halves.append(half)
         city.connect(halves[1].face("west"), halves[0].face("east"),
@@ -1499,6 +1521,8 @@ def dress(level, compiled, *, keep_tracks=()) -> dict:
         first = f(level.walls[int(s["wall_ptr"])])
         if GATE_X[0] <= int(first["x"]) <= GATE_X[1]:
             gate_leaf.add(index)
+    # and the gates of the avenue's two arches and of the west front
+    gate_leaf |= sectors([*AVENUE_FRONT.get("gates", ()), ROOMS["door"].region_id])
     bores = sectors([made.region_id for name, made in ROOMS.items()
                      if name.startswith("tunnel_")])
     #: the pools are lit; nothing else in the hall is

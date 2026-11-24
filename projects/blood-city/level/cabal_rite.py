@@ -343,13 +343,23 @@ AUDIENCE = ((0.085, 2, 2330, 36), (0.1, 2, 2334, 34), (0.18, 3, 2333, 32), (0.2,
 #: worshippers who do not move, in robes of three colours (DWE1M4 s642): turn, tier, palette
 CONGREGATION = ((0.12, 1, 13), (0.165, 2, 3), (0.24, 1, 11), (0.352, 1, 3), (0.905, 1, 11), (0.845, 1, 13), (0.755, 1, 3),
                 (0.675, 2, 11))
+#: The blasts of the rite's end, in the order they go off: (tenths of a second after the beast falls, x, y from the
+#: middle, z). The statue bursts where it stands (a gib object: no blast, nobody hurt), the fire goes up the hanged one's
+#: chain, over the heads of whoever stands below (`bloodmap.blasts.harmless`: every blast is 2.4 bodies over the floor, or
+#: is out of sight down the emptied well), and round the crown, a step a tenth (DWE3M7's 172). Then the well's bottom.
+CLIMB = ((20, 180, -90, 70400), (22, -160, 120, 64000), (24, 90, 160, 57600), (26, -60, -60, 51200), (28, 0, 0, 45600))
+CROWN_RING = tuple((31 + k, *(round(2200 * f(2 * math.pi * k / 5 - math.pi / 2)) for f in (math.cos, math.sin)), CROWN + 3200)
+                   for k in range(5))
+DEEP = ((58, 240, 160, SUNK - 900), (61, -220, -140, SUNK - 900), (64, 0, 0, SUNK - 900))
+#: where fire and stone fly and nothing hurts: (tenths, height over the floor)
+FLARES = ((13, 14000), (15, 26000), (17, 38000))
 #: the ones among the dead that get up when the rite is broken
 RISERS = ((0.125, 3), (0.31, 3), (0.86, 3), (0.685, 3))
 #: the fires, in the order they die: the two by the runner, the two at the sides, the two by the altar
 FIRES = ((0.1, 0.9), (0.29, 0.71), "dais")
 TAPESTRIES = {9: 267, 11: 267, 3: 614, 17: 614, 7: 614, 13: 614}
 #: what the dead in the niches had on them: face, kind, tile, size, cstat
-POCKETS = ((6, 109, 2169, 40, 128), (14, 109, 2169, 40, 128), (2, 68, 812, 48, 128), (4, 107, 519, 48, 128), (16, 63, 809, 48, 384), (18, 62, 589, 48, 384))
+POCKETS = ((6, 109, 2169, 40, 128), (14, 109, 2169, 40, 128), (2, 68, 812, 48, 128), (4, 107, 519, 48, 128), (16, 73, 548, 24, 128), (18, 73, 548, 24, 128))
 
 
 def _here(turn: float, radius: float) -> tuple[int, int]:
@@ -479,10 +489,14 @@ def _people(layout, regions, cell, broken) -> None:
         x, y = _here(turn, radius)
         _stand(layout, regions, cell(x, y), f"celebrant_{k}", x, y, tile, 40, cstat=384, type=dude, status=6,
                angle=_toward(x, y), pal=3 if dude == 201 else 0, behavior={"dude_deaf": 1})
-    # E6M8's beast, in a cultist's robe, on the pulpit behind the altar, facing the rose: over the horned thing's
-    # head, black in the light, as the mouth shows the room
-    priest = _stand(layout, regions, "pulpit", "priest", (PULPIT[0] + PULPIT[2]) / 2, (PULPIT[1] + PULPIT[3]) / 2, 2825, 52,
-                    cstat=384, type=249, status=6, shade=30, angle=512, behavior={"dude_deaf": 1})
+    # the stone beast, on the pulpit behind the altar (the owner, 2026-11-24: "istead of defeating that beast cultist I would
+    # put there stone gargoyle", and "Stone gargoyle I mean the enemy": the live one, 207, and no statue). Its back is to
+    # whoever comes, dark in the rose over the horned thing's head; it turns when the mouth shuts, or at a shot, and its
+    # death breaks the rite (E1M7's are wired so). It shrugs off bullets and blasts (dudeInfo: 10 of 256): the room must
+    # hold what hurts it, as 21 of the 26 maps that have one give a Tesla Cannon
+    priest = _stand(layout, regions, "pulpit", "stone_beast", (PULPIT[0] + PULPIT[2]) / 2, (PULPIT[1] + PULPIT[3]) / 2, 1470,
+                    40, cstat=384, type=207, status=6, shade=-8, pal=5, angle=512, behavior={"dude_deaf": 1})
+    wires.wire("cabal:shut").then(wiring.placement(priest))
     broken.when(wiring.placement(priest), "killed", command=motion.CMD_ON, on=False, off=True, once=True, decoupled=1)
     # the audience, carried down from the Aldermack; four of it get up
     for k, (turn, tier, tile, size) in enumerate(AUDIENCE):
@@ -491,7 +505,9 @@ def _people(layout, regions, cell, broken) -> None:
                type=416, status=4, angle=_toward(x, y), behavior={"data_1": 8, "data_2": 16, "data_4": 318})
     for k, (turn, tier, pal) in enumerate(CONGREGATION):
         x, y = _here(turn, INNER - (tier - 0.25) * STEP_IN)
-        _stand(layout, regions, cell(x, y), f"congregation_{k}", x, y, 2870, 40, cstat=384 | (4 if k % 2 else 0), pal=pal)
+        # the art has five sides, so a still figure looks where its angle does (view.cpp:2740; the owner, 2026-11-24)
+        _stand(layout, regions, cell(x, y), f"congregation_{k}", x, y, 2870, 40, cstat=384, pal=pal, angle=_toward(x, y),
+               type=416, status=4, behavior={"data_1": 8, "data_2": 16, "data_4": 318})
     for k, (turn, tier) in enumerate(RISERS):
         x, y = _here(turn, INNER - (tier - 0.25) * STEP_IN)
         broken.then(wiring.placement(_stand(
@@ -513,10 +529,11 @@ def _goods(layout, regions, cell) -> None:
     # (its middle at the blood's level, so the floor cuts it at the waist)
     room = layout.regions[regions["well"]]
     horned = layout.add_sprite("cabal:horned", regions["well"], x=CENTRE[0], y=CENTRE[1], z=room.floor_z - 512, picnum=1840,
-                               x_repeat=66, y_repeat=80, cstat=128 | 8192, shade=-24, type=456, status=11, sunk=True,
-                               behavior={"state": 1})
-    wires.wire("cabal:swallowed").then(wiring.placement(horned))
-    _stand(layout, regions, "well", "offering", *CENTRE, 690, 64, foot=42000, tall=80, shade=0)
+                               x_repeat=66, y_repeat=80, cstat=128, shade=-24, type=417, status=4, sunk=True, angle=1536,
+                               behavior={"state": 1, "locked": 1, "data_1": 20, "data_2": 26, "data_4": 313})
+    wires.wire("cabal:burst").then(wiring.placement(horned))
+    _stand(layout, regions, "well", "offering", *CENTRE, 690, 64, foot=42000, tall=80, shade=0, type=416, status=4,
+           behavior={"data_1": 8, "data_2": 16, "data_4": 319})
     # what hangs on the gallery's wall
     for index, tile in TAPESTRIES.items():
         a, b = face_span(index)
@@ -536,10 +553,10 @@ def _goods(layout, regions, cell) -> None:
 
 
 def _niches(layout, regions, broken) -> None:
-    """Stone beasts that wake, and the hung with what they had on them."""
+    """Flesh beasts that wake when the rose bursts, and the hung with what they had on them."""
     for index in (8, 12):
         x, y = _along_face(index, 0, 340)
-        broken.then(wiring.placement(_stand(
+        wires.wire("cabal:window").then(wiring.placement(_stand(
             layout, regions, f"niche_{index}", f"beast_{index}", x, y, 1530, 40, cstat=384, type=208, status=6,
             angle=_toward(x, y))))
     for index in (8, 12):
@@ -595,6 +612,10 @@ def _quay(layout, quay) -> None:
         stand(f"mouth_fire_{k}", mid + dx, QUAY_FACE - 300, 564, 72, cstat=129, shade=-128, type=30)
     for k, dx in enumerate((-2780, -2290, -1800, 1800, 2290, 2780)):
         on_wall(f"robe_{k}", mid + dx, floor - 11264, 768, 64, 72, shade=10)
+    # at the foot of the falls, where whoever comes down the outfall's line looks: the Cabal's skull, and fires under it
+    on_wall("banner", mid + 5632, floor - 19000, 267, 64, shade=2)
+    for k, dx in enumerate((4900, 6360)):
+        stand(f"banner_fire_{k}", mid + dx, QUAY_FACE - 260, 564, 64, cstat=129, shade=-128, type=30)
     # what the hole was knocked out of
     for k, (dx, dy, tile, size) in enumerate(((-900, -150, 2621, 72), (-760, -240, 2622, 80), (-980, -330, 2623, 64),
                                               (830, -130, 2623, 80), (960, -250, 2621, 64), (760, -320, 2622, 60))):
@@ -629,7 +650,7 @@ def _gullet(layout, regions, cells):
     for k, (turn, radius, tile, size) in enumerate(((0.06, 1250, 2333, 44), (0.3, 1300, 2334, 44), (0.56, 1200, 684, 48),
                                                     (0.72, 1320, 2333, 40))):
         _stand(layout, regions, "heart", f"swallowed_{k}", *A.spoke(HEART, radius, turn), tile, size, shade=4)
-    hoard = {"west": ((144, 2594, 64), (110, 2433, 40)), "east": ((46, 526, 48), (117, 829, 40))}
+    hoard = {"west": ((144, 2594, 64),), "east": ((117, 829, 40), (72, 817, 48))}
     for side, way in (("west", -1), ("east", 1)):
         sector = layout.regions[regions[f"cyst_{side}"]]
         shut = sector.floor_z
@@ -644,7 +665,7 @@ def _gullet(layout, regions, cells):
 
 
 def _rite(layout, regions, cells, broken, stopped) -> None:
-    """The voices, the quakes, the mouth that shuts, the well that sinks, the window that bursts."""
+    """The voices, the quakes, the mouth that shuts, the well that sinks, the blasts, the window that bursts."""
     at = lambda cell, name, x, y, kind_, tile, **more: wiring.placement(
         _unseen(layout, regions, cell, name, x, y, kind_, tile, **more))
     entered = wires.wire("cabal:entered")
@@ -690,13 +711,13 @@ def _rite(layout, regions, cells, broken, stopped) -> None:
         layout.regions[regions[c.name]].sector_behavior.update(
             off_floor_z=top, on_floor_z=bottom, off_ceiling_z=SHAFT, on_ceiling_z=SHAFT, busy_time_a=60, busy_time_b=60)
         broken.then(wiring.region(regions[c.name]))
-    wires.wire("cabal:swallowed").when(wiring.region(regions["well"]), wiring.RELAY, command=motion.CMD_OFF, on=True)
+    _blasts(layout, regions, cells, broken, at)
 
-    # three seconds after, the rose bursts and what was behind it comes through
+    # when the well's bottom has gone up, the rose bursts and what was behind it comes through
     window = wires.wire("cabal:window")
     relay = _unseen(layout, regions, "dais", "window_relay", 28400, 65720, 21, 0)
     broken.then(wiring.placement(relay))
-    window.when(wiring.placement(relay), wiring.RELAY, command=motion.CMD_ON, on=False, off=True, wait_time=35)
+    window.when(wiring.placement(relay), wiring.RELAY, command=motion.CMD_ON, on=False, off=True, wait_time=WINDOW_AT)
     window.then(wiring.placement(freed))
     west, east = (APSE[0], GULLET), (APSE[2], GULLET)
     for region, a, b in ((regions["sill"], east, west), (regions["gullet"], west, east)):
@@ -706,7 +727,7 @@ def _rite(layout, regions, cells, broken, stopped) -> None:
     window.then(wiring.face(regions["sill"], east, west))
     window.then(at("apse", "awaited", 28160, APSE[1] + 300, 711, 2519, data_1=2356))
     window.then(at("gullet", "quake_2", 28160, GULLET + 700, 19, 2072, data_1=900))
-    for k, (what, not_on, dx) in enumerate(((207, 3, 0), (206, 0, -320), (206, 12, 320))):
+    for k, (what, not_on, dx) in enumerate(((206, 0, -320), (206, 3, 320))):
         window.then(at("gullet", f"comes_{k}", 28160 + dx, GULLET + 1500, 18, 2077, z=HEART_FLOOR - 8192, data_1=what,
                        launch_skill=not_on, trigger_once=1))
 
@@ -719,6 +740,57 @@ def _rite(layout, regions, cells, broken, stopped) -> None:
                    data_1=300, data_2=800, data_3=60, data_4=90))
     stopped.then(at("heart", "dies", HEART[0] + 64, HEART[1] - 900, 711, 2519, data_1=2380))
     stopped.then(at("heart", "quake_3", HEART[0] - 64, HEART[1] - 900, 19, 2072, data_1=1300))
+
+
+#: tenths after the beast falls: the rose, and Caleb
+WINDOW_AT, SAYS_AT = 70, 46
+LINE_SAID = 3056                                          # "Rest in pieces."
+
+
+def _blasts(layout, regions, cells, broken, at) -> None:
+    """The horned thing bursts, fire climbs the chain and runs round the crown, and the emptied well answers (Death Wish's grammar, `bloodmap.blasts`)."""
+    from bloodmap import blasts
+    floor_bodies = [(*_here(t, r), FLOOR - 9000) for t in (0, 0.25, 0.5, 0.75) for r in (900, 1800, 2700, 3600)]
+    steps = [(*_here(t, r), QUAY + 4096 * tier - 9000) for t in (0, 0.25, 0.75) for tier, r in ((0, 5700), (1, 5400), (2, 5050), (3, 4650))]
+    rows = [(wait, CENTRE[0] + dx, CENTRE[1] + dy, z) for wait, dx, dy, z in (*CLIMB, *CROWN_RING, *DEEP)]
+    if not blasts.harmless([r[1:] for r in rows], floor_bodies + steps):
+        raise ValueError("a blast of the rite reaches the floor")
+    where = _Place(cells)
+    for k, (wait, x, y, z) in enumerate(rows):
+        cell = where(x, y)
+        if kind(cell) == "tooth":
+            raise ValueError("a blast stands in a tooth")
+        # those of the well's bottom lie on the blood and go down with it (cstat 8192: carried by the floor)
+        deep = z > BRIM
+        broken.then(wiring.placement(layout.add_sprite(
+            f"cabal:blast_{k}", regions[cell], x=x, y=y, z=BRIM - 64 if deep else z, type=blasts.EXPLODER, picnum=908,
+            shade=-128, x_repeat=64, y_repeat=64, cstat=32768 | (8192 if deep else 0), status=11, sunk=True,
+            behavior={"wait_time": wait})))
+    # a relay that waits, for each thing a wait of its own cannot be given (a gib object goes at once)
+    def after(name, tenths, command, x, y, cell="dais"):
+        relay = _unseen(layout, regions, cell, f"{name}_relay", x, y, 21, 0)
+        broken.then(wiring.placement(relay))
+        wire = wires.wire(f"cabal:{name}")
+        wire.when(wiring.placement(relay), wiring.RELAY, command=command, on=False, off=True, wait_time=tenths)
+        return wire
+
+    after("burst", 12, motion.CMD_OFF, 28340, 65720)
+    for k, (tenths, over) in enumerate(FLARES):
+        wire = after(f"flare-{k + 1}", tenths, motion.CMD_ON, 27860 + 60 * k, 65720)
+        wire.then(wiring.placement(layout.add_sprite(
+            f"cabal:flare_{k}", regions["well"], x=CENTRE[0], y=CENTRE[1], z=FLOOR - over, type=417, picnum=1142, status=4,
+            cstat=32768, x_repeat=32, y_repeat=32, shade=-8, sunk=True,
+            behavior={"locked": 1, "data_1": 26, "data_2": 6, "data_4": 305 if k == 0 else 303})))
+    # the hanged one goes with the fire, and what falls from the crown is stone
+    for k, (_wait, dx, dy, _z) in enumerate(CROWN_RING):
+        x, y = CENTRE[0] + dx, CENTRE[1] + dy
+        layout.add_sprite(f"cabal:falls_{k}", regions[where(x, y)], x=x, y=y, z=CROWN + 5000, type=417, picnum=1142, status=4,
+                          cstat=32768 | 256, x_repeat=48, y_repeat=48, shade=-8, sunk=True,
+                          behavior={"data_1": 20, "data_2": 4, "data_4": 313 if k == 0 else 0})
+    says = after("says", SAYS_AT, motion.CMD_ON, 27740, 65720)
+    says.then(at("dais", "says", 27740, 65780, 711, 2519, data_1=LINE_SAID))
+    again = after("deep", DEEP[0][0], motion.CMD_ON, 27680, 65720)
+    again.then(at("dais", "quake_deep", 27680, 65780, 19, 2072, data_1=900))
 
 
 def keep(level_, compiled) -> int:
@@ -820,5 +892,5 @@ def light_groups(compiled):
                       surfaces=frozenset({"floor", "walls"}), **going),
             LampGroup("the rite's fires, on the floors", fires, "on",
                       within=lambda region: chamber(region) and not walls_too(region), surfaces=frozenset({"floor"}), **going),
-            LampGroup("the horned thing's light", lamps("horned"), "on", rx=wires.channel("cabal:swallowed"),
+            LampGroup("the horned thing's light", lamps("horned"), "on", rx=wires.channel("cabal:burst"),
                       within=chamber, surfaces=frozenset({"floor"}))]

@@ -65,18 +65,27 @@ Plan units; z in Build units, quay 102,400. Centre (27.5, 57.8).
    mouth behind you (`cabal:shut`), for forty seconds or until the rose bursts;
    once the priest is dead the kerb shuts nothing (`cabal:disarm`). The chant (59, E1M5's own). A voice, once, at the
    gallery: "Give me a sacrifice" (2367).
-2. The priest (kDudeCultistBeast, E6M8) falls: `cabal:broken`. A cry of pain
-   (2372), the earth shakes, the blood goes down the well and takes the horned
-   thing with it, and the teeth draw back into the rim; the fires go out and smoke, a
+2. The stone beast (the enemy, kDudeGargoyleStone 207: the owner, 2026-11-24, "istead of
+   defeating that beast cultist I would put there stone gargoyle ... I mean the enemy") stands on the pulpit with its
+   back to whoever comes and turns when the mouth shuts. Bullets and blasts do it 10 parts in 256; the Tesla Cannon lies
+   outside, at the foot of the settling hall's falls. It falls: `cabal:broken`. A cry of pain (2372), the earth shakes,
+   the blood goes down the well and the teeth draw back into the rim; the fires go out and smoke, a
    pair at a time (CASTLE23's relays, run backwards), the room's light with the
-   second pair, and the chant with the first.
-   Four of the audience get up; two stone beasts in their niches wake.
-3. Three and a half seconds after, the rose bursts (a kWallGib on the wire: no
-   shot breaks it). "I have awaited you" (2356). What was behind it comes
-   through: a stone gargoyle, flesh ones for the easy skills.
-4. Behind the glass, the Gullet, and a chained column of flesh with an eye in it
-   (235): something beats (ambient 60) until the eye is shot or pushed, which is
+   second pair, and the chant with the first. Four of the audience get up.
+3. The blasts (the owner: "some explosions and trigger some caleb quote. The explosion can be a chain going upwards ...
+   don't make everything to explode because it would be killing player"; study `blast-chains`): the horned thing bursts
+   into stone and fire at 1.2 s (a gib object, no blast), fire climbs the hanged one's chain to the crown (five exploders,
+   two tenths apart, every one over 2.4 bodies up), five go round the crown a tenth apart, stone falls, Caleb says "Rest in pieces"
+   (3056) at 4.6 s, and the emptied well's bottom goes up at 5.8 s. `blasts.harmless`: none reaches the floor, the steps or the gallery.
+4. Seven seconds after, the rose bursts (a kWallGib on the wire: no
+   shot breaks it). "I have awaited you" (2356). Flesh gargoyles come through, the two flesh beasts in the niches wake, the mouth opens.
+5. Behind the glass, the Gullet: the DAGGER KEY in the light of the braziers (`gameplay.KEYS`), and past it a chained column
+   of flesh with an eye in it (235): something beats (ambient 60) until the eye is shot or pushed, which is
    Blood's own idiom (E1M5, E6M6). A death cry (2380), the earth shakes, the flesh opens on the hoard. A secret.
+
+The worshippers on the steps and the celebrants look at the well by their sprites' angle (the art has five sides).
+What the owner saw as lightning (1156) in the editor was the horned thing: XMapEdit draws a sprite of type 456, a
+switched zap, with that tile whatever its own is. It is a gib object now.
 
 The first design put the Gullet under the well and made its floor a lift. A
 sector's wall has one neighbour, so a shaft cannot open on a passage below and

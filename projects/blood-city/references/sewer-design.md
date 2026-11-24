@@ -96,18 +96,18 @@ room with its rectangle and kind).
   (`lights.room_key`), or its strips are each too narrow to hold a light.
   The bones niches are tall inside (30,720) and their skeletons (E1M2's 689
   at 60) hang whole; a sprite may not stand above its sector's ceiling.
-* **The Settling Hall** (`l3_sewer.HALL`, its own layer `settling_hall`
-  under the plaza by the memorial): the outfall runs into the GALLERY, an
-  E3M3 corridor along the hall's north wall at the sewer's level (its water
-  west; the memorial manhole lands in its channel). Off the gallery's south
-  walk the hall drops 2.4 bodies to three settling tanks (water at 106,496,
-  barely moving) with walks between and a quay down the west side, and the
-  CIRCLE QUAY along the south, whose back wall the Cabal has broken through
-  into the old storm chamber (`cabal_rite.py`, `cabal-rite-design.md`; until
-  2026-11-24 its circle was six candelabra on this quay). A stair of ten steps climbs from the circle quay to the gallery
-  in a column of its own. The hall is lit as one room: six chain lamps over
-  the tanks, their chains in the roof. The drop from the gallery does no
-  harm (45,056); there is no way back up but the stair.
+* **The Settling Hall** (`settling_hall.py`; rebuilt 2026-11-24: the owner, "should be redone a bit to have
+  more seamless connection from sewers"; its own layer `settling_hall`
+  under the plaza by the memorial). The outfall's section does not stop at the gallery: its channel crosses the
+  gallery's south walk in one line (the weir), drops over five falls of 8,192 and its east walk goes down beside them as
+  a stair of ten steps under the corridor's own sloped roof. Beside it, three settling tanks (water at 106,496, barely
+  moving) each lie in a vault whose ridge (32,768) and springing (40,960) are the corridor's, with piers in the water
+  along the walks between and a lamp on a chain over each bay; a quay down the west side (the service lift), and the
+  CIRCLE QUAY along the south, its roof rising to its back wall, which the Cabal has broken through
+  into the old storm chamber (`cabal_rite.py`, `cabal-rite-design.md`). What the outfall's line ends on is the
+  Cabal's skull between two fires, and the Tesla Cannon under it. The tanks, falls, stair and piers are one
+  `bloodmap.arrangement`; the quays are rooms of the tree, for the lift and the chamber. The drop from the gallery does no
+  harm (45,056); there is no way back up but the stair and the lift.
 * **Two secret rooms off Graves Brook** (`l3_sewer.SECRET_ROOMS`, its own
   assembly `secrets`), both counted:
   OLD MOLLY'S NEST, through a crawl-height arch (14,336; crouching clears

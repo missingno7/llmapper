@@ -53,6 +53,7 @@ from bloodmap.player_space import PLAYER_PROFILES  # noqa: E402
 BODY = PLAYER_PROFILES["blood"].standing_height
 #: share of the sprite's own height under the floor (or over the ceiling)
 SUNK = 0.10
+WADES = 0.6
 #: nearest cutting wall closer than this share of the half width
 SQUEEZED = 0.5
 #: a standing thing this far over the floor, in bodies, stands on nothing
@@ -134,6 +135,9 @@ def audit(disk) -> list[dict[str, Any]]:
                "over_floor": round((floor - bottom) / BODY, 3)}
         if align != "floor":
             row["sunk"] = round(max(0, bottom - floor) / tall, 3)
+            # in a liquid that runs (its floor pans) a thing stands to the waist, as far as 0.6 of it, on purpose
+            if row["sunk"] <= WADES and (record_extra(disk.sectors[sid]) or {}).get("pan_floor"):
+                row["wades"], row["sunk"] = row["sunk"], 0.0
             if not sky:
                 row["through"] = round(max(0, ceiling - top) / tall, 3)
         else:

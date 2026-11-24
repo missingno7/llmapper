@@ -1098,6 +1098,8 @@ class ConditionalGraph:
     fired_at_start: frozenset[int] = frozenset()
     _wiring_nodes: Any = None
     _onward: Any = None
+    #: channel -> (how many ONs its counter asks, who sends on it)
+    _counters: Any = None
     #: sector pair -> the slide or rotate sector whose own walls block it.
     #: The engine never changes a wall's blocking bit, but it does carry the
     #: wall away: a leaf that travels takes its blocking walls with it.
@@ -1133,6 +1135,38 @@ class ConditionalGraph:
 
             self._wiring_nodes = nodes(self.disk)
         return self._wiring_nodes
+
+    def counted(self, channel: int, reached: set[int], held: "Held") -> bool:
+        """Whether a body here can send on this channel as often as its counter asks (true where nothing counts).
+
+        A combination switch (22) adds one for each ON it hears and sends when
+        the sum is its `data_2` (triggers.cpp:475). Where all that sends on its
+        channel sends once (`trigger_once`), it opens nothing until that many
+        senders can be worked, each with its own key: DWE1M9's four keyed
+        switches (1399-1405). A sender that may be worked again counts as often
+        as a hand works it, so nothing is asked of it.
+        """
+        if self._counters is None:
+            from .wiring import can_send
+
+            needs: dict[int, int] = {}
+            senders: dict[int, list[dict[str, Any]]] = defaultdict(list)
+            for node in self.wiring_nodes():
+                if node["kind"] == "sprite" and node["rx"] and can_send(node) and int(
+                        self.disk.sprites[node["index"]].fields["type"]) == 22:
+                    extra = _extra(self.disk.sprites[node["index"]])
+                    needs[node["rx"]] = int(extra.get("data_2") or 0) - int(extra.get("data_1") or 0)
+                if node["tx"] and can_send(node):
+                    senders[node["tx"]].append(node)
+            records = {"sprite": self.disk.sprites, "sector": self.disk.sectors, "wall": self.disk.walls}
+            self._counters = {
+                ch: (need, senders[ch]) for ch, need in needs.items() if need > 1 and len(senders[ch]) >= need
+                and all(_extra(records[n["kind"]][n["index"]]).get("trigger_once") for n in senders[ch])}
+        if channel not in self._counters:
+            return True
+        need, rows = self._counters[channel]
+        near = self.within_shot(reached, 1)
+        return sum(1 for n in rows if n["sector"] in near and (not n["key"] or n["key"] in held.keys)) >= need
 
     def fired(self, channels: Iterable[int]) -> frozenset[int]:
         """These channels and every one a relay passes them on to.
@@ -1232,7 +1266,9 @@ class ConditionalGraph:
             elif type_id in DESTRUCTIBLE_TYPES and channel and channel not in done:
                 found[("destroy", index)] = Action(
                     kind="destroy", index=index, channel=channel, where=sector)
-            elif type_id in SWITCH_TYPES and channel and channel not in done:
+            elif type_id in SWITCH_TYPES and channel and channel not in done and (
+                    not int(extra.get("key") or 0) or int(extra["key"]) in held.keys) and self.counted(
+                    channel, reached, held):
                 found[("use_switch", index)] = Action(
                     kind="use_switch", index=index, channel=channel, where=sector)
         # Native XWALL push transmitters are controls too. E1M4 wall 3111
@@ -1282,6 +1318,8 @@ class ConditionalGraph:
                     and node["sector"] in in_reach):
                 continue
             if node["key"] and node["key"] not in held.keys:
+                continue
+            if not self.counted(node["tx"], reached, held):
                 continue
             if node["kind"] == "sprite" and (
                     ("destroy", node["index"]) in taken

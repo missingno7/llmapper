@@ -41,7 +41,7 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("settling_hall/rite:heart", Rule("none", 0, 0)),
     ("settling_hall/rite", Rule("none", 0, 0, shade_bias=(14, 26, 12))),
     # the settling hall: chain lamps over the tanks, their chains in the roof
-    ("settling_hall", Rule("hanging", 641, 4096, 4096)),
+    ("settling_hall", Rule("none", 0, 0)),                # its own (`settling_hall.LAMPS`, `FALL_LIGHTS`)
     # the sewer's secret rooms: nobody keeps a lamp in a hermit's lair or a
     # bricked-up plague pit; the sewer's own dark, and the shade's flicker
     ("sewer/secrets/", Rule("none", 0, 0)),
@@ -132,6 +132,7 @@ LAMP_SCALE: tuple[tuple[str, float], ...] = (
     ("settling_hall/rite:gullet", 1.0),
     ("settling_hall/rite:heart", 1.0),
     ("settling_hall/rite", 0.5),
+    ("settling_hall", 1.4),
     # the one thing that glows in a station struck off the line
     ("track_coach:", 1.5),
     ("fallen_roof_wreck:", 1.6),
