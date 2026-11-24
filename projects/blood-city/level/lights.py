@@ -42,7 +42,13 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("stockyard_drain", Rule("panel", 501, 5632)),
     ("stockyard_rack", Rule("panel", 501, 4096)),
     ("rat_king_", Rule("none", 0, 0)),
-    ("ghost_station", Rule("none", 0, 0)),             # the station's own chain lamps
+    ("track_coach:", Rule("none", 0, 0)),
+    ("fallen_roof_wreck:", Rule("none", 0, 0)),
+    ("ghost_station/watch_", Rule("none", 0, 0)),
+    ("ghost_station/drowned", Rule("none", 0, 0, shade_bias=(3, 2, 2))),
+    ("ghost_station/fallen_roof", Rule("none", 0, 0, shade_bias=(3, 2, 2))),
+    ("ghost_station/siding", Rule("none", 0, 0, shade_bias=(6, 5, 5))),
+    ("ghost_station", Rule("none", 0, 0, shade_bias=(15, 14, 12))),             # its own lamps, and what switches them (`phantom_terminus.light_groups`)
     ("ghost_service_stair", Rule("none", 0, 0)),
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
     ("pump_station", Rule("panel", 501, 3072, 3072)),
@@ -104,8 +110,6 @@ OWN_LIGHT: tuple[str, ...] = (
     # The deck's hole moves through the rail bed. Keep its lighting in
     # the authored sectors so the band cutter leaves the sweep clear.
     "sewer/sampling/trolley_track",
-    # The Terminus paints its static pools and moving rail bay in sectors.
-    "sewer/ghost_station/",
     # E1M1's crypt, field for field (`l3_church`): dark (floor 34, ceiling
     # 28) and flickering; lit by the model its two torches made it shade 0
     "st_gallows/crypt",
@@ -114,6 +118,11 @@ OWN_LIGHT: tuple[str, ...] = (
 #: wins). The owner, 2026-11-21, of St Gallow's lit by the model: "it looks
 #: little bit too much light for the church".
 LAMP_SCALE: tuple[tuple[str, float], ...] = (
+    # the one thing that glows in a station struck off the line
+    ("track_coach:", 1.5),
+    ("fallen_roof_wreck:", 1.6),
+    ("ghost_station/watch_", 1.6),
+    ("ghost_station/", 0.7),
     ("theatre_row/aldermack/foyer", 0.55),
     ("theatre_row/aldermack/front_", 0.55),
     ("theatre_row/aldermack/lobby", 0.55),

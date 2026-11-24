@@ -1,0 +1,243 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/ghost-station/critique/round-5/ours_mute/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/ghost-station/critique/round-5/ours_mute",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "k_windows_west",
+   "x": 49612,
+   "y": -11264,
+   "z": 103520,
+   "angle": 1664,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "l_windows_east",
+   "x": 56320,
+   "y": -10997,
+   "z": 103520,
+   "angle": 1334,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "m_empty_seat",
+   "x": 52101,
+   "y": -12032,
+   "z": 104288,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 1177,
+   "screenshot": true
+  },
+  {
+   "id": "n_stationmaster",
+   "x": 55552,
+   "y": -10956,
+   "z": 103520,
+   "angle": 372,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "o_bricked_wall",
+   "x": 59043,
+   "y": -11223,
+   "z": 106496,
+   "angle": 1010,
+   "horiz": 118,
+   "sector": 575,
+   "screenshot": true
+  },
+  {
+   "id": "q_handle",
+   "x": 55552,
+   "y": -13619,
+   "z": 108800,
+   "angle": 173,
+   "horiz": 100,
+   "sector": 838,
+   "screenshot": true
+  },
+  {
+   "id": "p_before_departure",
+   "x": 50483,
+   "y": -10977,
+   "z": 103520,
+   "angle": 1968,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "a_booking",
+   "x": 48496,
+   "y": -8345,
+   "z": 104448,
+   "angle": 1625,
+   "horiz": 100,
+   "sector": 541,
+   "screenshot": true
+  },
+  {
+   "id": "b_ticket_window",
+   "x": 48455,
+   "y": -9318,
+   "z": 104448,
+   "angle": 974,
+   "horiz": 100,
+   "sector": 541,
+   "screenshot": true
+  },
+  {
+   "id": "c_platform",
+   "x": 48517,
+   "y": -10905,
+   "z": 103520,
+   "angle": 1827,
+   "horiz": 100,
+   "sector": 542,
+   "screenshot": true
+  },
+  {
+   "id": "d_waiting",
+   "x": 54937,
+   "y": -11366,
+   "z": 103520,
+   "angle": 517,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "e_car",
+   "x": 50124,
+   "y": -14202,
+   "z": 107008,
+   "angle": 2043,
+   "horiz": 100,
+   "sector": 834,
+   "screenshot": true
+  },
+  {
+   "id": "r_bench",
+   "x": 52121,
+   "y": -13516,
+   "z": 107008,
+   "angle": 1341,
+   "horiz": 100,
+   "sector": 834,
+   "screenshot": true
+  },
+  {
+   "id": "s_cab",
+   "x": 53964,
+   "y": -14202,
+   "z": 107008,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 834,
+   "screenshot": true
+  },
+  {
+   "id": "t_pit",
+   "x": 48025,
+   "y": -13312,
+   "z": 110432,
+   "angle": 1961,
+   "horiz": 100,
+   "sector": 544,
+   "screenshot": true
+  },
+  {
+   "id": "u_flank",
+   "x": 47718,
+   "y": -16896,
+   "z": 110432,
+   "angle": 81,
+   "horiz": 100,
+   "sector": 544,
+   "screenshot": true
+  },
+  {
+   "id": "f_tunnel",
+   "x": 64716,
+   "y": -11827,
+   "z": 108544,
+   "angle": 1672,
+   "horiz": 100,
+   "sector": 1179,
+   "screenshot": true
+  },
+  {
+   "id": "i_car_broadside",
+   "x": 52398,
+   "y": -10977,
+   "z": 103520,
+   "angle": 1589,
+   "horiz": 100,
+   "sector": 1169,
+   "screenshot": true
+  },
+  {
+   "id": "j_office",
+   "x": 50995,
+   "y": -9533,
+   "z": 104448,
+   "angle": 646,
+   "horiz": 100,
+   "sector": 541,
+   "screenshot": true
+  },
+  {
+   "id": "g_drowned",
+   "x": 47104,
+   "y": -13516,
+   "z": 110432,
+   "angle": 1144,
+   "horiz": 100,
+   "sector": 544,
+   "screenshot": true
+  },
+  {
+   "id": "v_drowned_side",
+   "x": 44544,
+   "y": -11980,
+   "z": 114016,
+   "angle": 1297,
+   "horiz": 100,
+   "sector": 593,
+   "screenshot": true
+  },
+  {
+   "id": "w_drowned_far",
+   "x": 38451,
+   "y": -12902,
+   "z": 118912,
+   "angle": 1856,
+   "horiz": 100,
+   "sector": 594,
+   "screenshot": true
+  },
+  {
+   "id": "h_recall",
+   "x": 67788,
+   "y": -9830,
+   "z": 108544,
+   "angle": 271,
+   "horiz": 100,
+   "sector": 579,
+   "screenshot": true
+  }
+ ]
+}

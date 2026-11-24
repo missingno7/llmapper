@@ -89,12 +89,10 @@ PLAN: tuple[tuple[str, str], ...] = (
      "send the car to the brick stop or call it back to the platform"),
     ("phantom:prize", "picking up the Tommy gun starts the outbound run"),
     ("phantom:arm", "the first outbound command sets the departure effects latch"),
-    ("phantom:coach-state", "boarding reports ON and the coach announces the state at each berth"),
-    ("phantom:boarding-arm", "an ON coach report sets the boarding effects latch"),
-    ("phantom:boarding", "the first boarding starts a short pulse"),
-    ("phantom:lamp-pulse", "the boarding pulse cuts and restores the carriage lamps"),
-    ("phantom:first-platform", "entering the platform cuts the near lamp and sounds the distant whistle"),
-    ("phantom:spill-off", "departure removes the green reflections from the uncut track bed"),
+    ("phantom:coach-state", "the coach announces the state of each berth it stops at"),
+    ("phantom:car-light",
+     "the light that falls from the coach's windows goes as the coach goes and comes back with it"),
+    ("phantom:first-platform", "entering the platform puts out the near lamp and sounds the distant whistle"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

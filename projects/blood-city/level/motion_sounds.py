@@ -52,6 +52,8 @@ MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
 # E1M2 sprite 556 supplies the train motor. Death Wish s247 uses 277.
 PHANTOM_TRAIN = (115, 277, 115, 277)
+#: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
+VOICE = "_coach:aisle"
 CARRIED_PROFILES = {"rail_shuttle", "phantom_train"}
 FARE_AMBIENT = (250, 700, 21, 20)
 
@@ -72,6 +74,10 @@ def apply(disk, allocations, circuit):
         if profile is None and type_id == 600:
             profile = next((LEAF_PROFILES[tile] for tile in _leaf_faces(disk, index)
                             if tile in LEAF_PROFILES), None)
+        if profile == "phantom_train" and not region.endswith(VOICE):
+            # one body of many sectors has one voice, its aisle's
+            rows[str(index)] = {"region": region, "profile": "silent member"}
+            continue
         if profile is None:
             raise ValueError(f"{region} (sector {index}) needs a campaign sound profile")
         if profile == "phantom_train":
@@ -142,6 +148,10 @@ def check(disk, expected, wires):
                        and tuple(data.get(field) for field in FIELD_NAMES) == FARE_AMBIENT]
             if len(audible) != 1 or markers:
                 errors.append(f"sector {index}: expected one fare ambience and zero 709 markers")
+            continue
+        if profile == "silent member":
+            if markers:
+                errors.append(f"sector {index}: a second voice in one body")
             continue
         sounds = PHANTOM_TRAIN if profile == "phantom_train" else SECTOR_SOUND_PROFILES.get(profile)
         if sounds is None or len(markers) != 1:

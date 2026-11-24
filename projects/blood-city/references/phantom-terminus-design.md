@@ -69,7 +69,52 @@ The car is a moving sector: its whole travel stays inside one host (the track),
 which nothing else cuts; what rides in it carries `CARRY_WITH`; its floor has
 relative alignment; it has the sound of a train (115, 277; motion_sounds).
 
-## As built (2026-11-24)
+## As rebuilt (2026-11-24, after the owner's ride)
+
+The owner rode it: "train rides correctly", and then: 1717 is morgue drawers
+and no floor; the train is one sector dressed in sprites, make it of sectors
+that share a motion, and its ceiling must move with it; 51 and 52 are wall
+decals and no objects; there are lit sectors with no light, and a light that
+blinks must take its neighbours with it; the drowned end is a piece of wall,
+give it space; the reapers' niches want flickering light.
+
+- **The train is a body of sectors** (`level/carriage.py`,
+  `bloodmap.mechanism.rigid_body`, study `moving-bodies`): zero-height hull
+  solids, windows in two half bays with the pane between, benches, arms, a
+  raised roof, a cab with a desk and a window, a running board all round.
+  Every member is type 616 with one travel and one wire; floors and ceilings
+  are aligned to the sector (bit 64). The track is a type 614 with the same
+  motion and no wall of its own flagged, only so that the wheels hung in its
+  space ride too (E1M2 s34).
+- **The rails lie 6,144 under the platform.** Two steps at the platform's west
+  end bring back whoever falls in; the bore widens past the platform's end so
+  nothing scrapes a rider off the running board; the gap at the door is 64.
+- **The same carriage, drowned**, stands askew in a flooded cavern with water
+  all round and a fallen slab along its roof. One builder makes both: `Axes`
+  puts the plan on any integer lattice ((63, 16), (-16, 63) is 14 degrees).
+- **Light is traced, not painted.** The station left `lights.OWN_LIGHT`; it is
+  lit by the lamps that hang in it, with a shade bias for how dark it is.
+  `phantom_terminus.light_groups` names the lamps that blink, go out or
+  travel; `light_stage.switch_lamps` traces the map without them and gives
+  every sector that changes the same wave and wire. The light that falls from
+  the coach's windows follows the coach by a Link.
+- **A receiver that also sends is never given a light's wire**: the booking
+  hall credits the secret, and would have credited it when the lamps went out.
+- **Frames show a wave at its lit instant** (`visual.shade_waves_lit`); a lamp
+  authored dark that flickers on used to be drawn as a lamp that is out.
+- **Green is palette 4** on 109, 304, 454, 146 and 1665. On 300 and 301 it is
+  camouflage; as the colour of a floor's light it reads as moss. Both were
+  tried and taken out.
+- Round 5 of the blind readers: recognition 4, comparison 4, use 4 with
+  nothing blocking (3 in every round before), sense 3, its faults all marked
+  uncertain. It does not pass by the rule on sense and on the flooded view's
+  short car ("reads as a kiosk").
+- **Ridden headless** (`experiments/moving_bodies/ride.py`): the engine carries a
+  rider at the car's own speed across the body's sectors, with nothing fatal.
+- **Owed to the owner's walk:** standing on the running board during the run,
+  being under the train, the flicker's pace, the reapers' lights.
+
+## As first built (2026-11-24; the car, the light and the drowned end are superseded above)
 
 `level/phantom_terminus.py`; tests/test_phantom_terminus.py; pose set
 `phantom`. Built by one Sol worker in two rounds and finished by the

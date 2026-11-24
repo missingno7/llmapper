@@ -1,5 +1,10 @@
 # Study of the Phantom Terminus
 
+The carriage, the light and the drowned end were rebuilt after the owner's
+ride; what they are made of now is in the study `moving-bodies`, in
+`level/carriage.py` and in the design's "As rebuilt". What is said below of a
+single 616 slab, painted pools, green floor cuts and 1717 is history.
+
 ## What I want to build
 
 The boarded-up end of Gravesend's old line. The booking hall frames a lighted

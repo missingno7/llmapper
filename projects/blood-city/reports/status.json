@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "5f1953338149351e33ddc5a69bfa2c6552b7f89552361f343dbb3cc6164c74d1",
-  "map_sha256": "1f0855ab806f6cc84fe3b71380ca05aad10a38ca94fbc9de66a7a79266650fc2",
+  "manifest_sha256": "9659a050cd107d7f4501e65801fd805bbb37a7422deb7a9c9b10e204c81407c7",
+  "map_sha256": "ca9f4066f3a646415c5a20103afb9eef03d5b73700bf14b39ded7767ccf5f861",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1262,
-  "walls": 11945,
-  "sprites": 1976,
+  "sectors": 1394,
+  "walls": 12889,
+  "sprites": 2059,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.692,
-   "walls": 0.271,
-   "sprites": 0.879
+   "sectors": 0.66,
+   "walls": 0.213,
+   "sprites": 0.874
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 2192,
+   "note": 2413,
    "warning": 6
   }
  },
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 1109",
+    "root": "sprite 1192",
     "cause": "push",
-    "sector": 693,
+    "sector": 671,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -202,7 +202,7 @@
   "exit_reached": true,
   "keys": [
    {
-    "sprite": 1226,
+    "sprite": 1309,
     "name": "kItemKeyEye",
     "sector": 319,
     "reached": true
@@ -227,15 +227,15 @@
    "credited_normal": 7,
    "credited_super": 0
   },
-  "space": 1228,
-  "reached": 1228,
+  "space": 1363,
+  "reached": 1363,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 1049,
+    "sectors": 1184,
     "first_sector": 0
    },
    {
@@ -265,15 +265,15 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1108 (channel 108)"
+     "use switch sprite 1191 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 691
+    "first_sector": 669
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 1148 (channel 103)"
+     "destroy sprite 1231 (channel 103)"
     ],
     "sectors": 10,
     "first_sector": 218
@@ -281,7 +281,7 @@
    {
     "round": 1,
     "opened_by": [
-     "pick up sprite 707 (channel 123)"
+     "pick up sprite 790 (channel 123)"
     ],
     "sectors": 9,
     "first_sector": 56
@@ -289,7 +289,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1393 (channel 139)"
+     "use switch sprite 1476 (channel 136)"
     ],
     "sectors": 7,
     "first_sector": 158
@@ -297,7 +297,7 @@
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 857 (channel 109)"
+     "destroy sprite 940 (channel 109)"
     ],
     "sectors": 5,
     "first_sector": 511
@@ -353,7 +353,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1391 (channel 135)"
+     "use switch sprite 1474 (channel 132)"
     ],
     "sectors": 1,
     "first_sector": 9
@@ -361,7 +361,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1392 (channel 136)"
+     "use switch sprite 1475 (channel 133)"
     ],
     "sectors": 1,
     "first_sector": 18
@@ -369,7 +369,7 @@
    {
     "round": 1,
     "opened_by": [
-     "use switch sprite 1395 (channel 138)"
+     "use switch sprite 1478 (channel 135)"
     ],
     "sectors": 1,
     "first_sector": 149
@@ -393,7 +393,7 @@
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 1218 (channel 104)"
+     "destroy sprite 1301 (channel 104)"
     ],
     "sectors": 5,
     "first_sector": 340
@@ -760,29 +760,10 @@
     "relay on placement phantom:departure_latch"
    ],
    "then": [
-    "region region:gravesend/sewer/ghost_station/spill_gate_0",
-    "region region:gravesend/sewer/ghost_station/spill_gate_1",
-    "region region:gravesend/sewer/ghost_station/spill_gate_2",
-    "region region:gravesend/sewer/ghost_station/gang_lantern_penumbra",
-    "region region:gravesend/sewer/ghost_station/gang_lantern_pool",
-    "region region:gravesend/sewer/ghost_station/spill_window_0",
-    "region region:gravesend/sewer/ghost_station/spill_window_1",
-    "region region:gravesend/sewer/ghost_station/spill_window_2",
-    "region region:gravesend/sewer/ghost_station/spill_window_3",
     "placement phantom:whistle",
     "placement phantom:quake",
     "placement phantom:spawn_0",
-    "placement phantom:spawn_1",
-    "placement phantom:track_spill_dimmer",
-    "region region:gravesend/sewer/ghost_station/booking_ticket_penumbra",
-    "region region:gravesend/sewer/ghost_station/booking_ticket_pool",
-    "region region:gravesend/sewer/ghost_station/edge",
-    "region region:gravesend/sewer/ghost_station/waiting",
-    "region region:gravesend/sewer/ghost_station/platform_gate_penumbra",
-    "region region:gravesend/sewer/ghost_station/platform_gate_pool",
-    "region region:gravesend/sewer/ghost_station/platform_last_penumbra",
-    "region region:gravesend/sewer/ghost_station/platform_last_pool",
-    "region region:gravesend/sewer/ghost_station/platform_failing_penumbra"
+    "placement phantom:spawn_1"
    ]
   },
   {
@@ -797,8 +778,80 @@
     "push on placement phantom:call_brick"
    ],
    "then": [
-    "region region:gravesend/sewer/ghost_station/track_car",
-    "placement phantom:run_sense"
+    "placement phantom:run_sense",
+    "region region:gravesend/sewer/ghost_station/track_coach:board",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_0_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_0_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_pillar_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_1_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_1_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_pillar_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_2_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_2_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_pillar_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_3_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_3_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_pillar_4",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_4_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_4_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_pillar_5",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_5_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_window_5_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_west_corner",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_east_corner",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_0_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_0_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_pillar_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:door",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_pillar_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_2_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_2_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_pillar_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_3_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_3_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_pillar_4",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_4_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_4_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_pillar_5",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_5_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_window_5_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_west_corner",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_east_corner",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_gangway_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_gangway_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_gangway_leaf",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_gangway_post_0",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_window_0_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_window_0_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_gangway_post_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_window_1_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:west_window_1_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:front_window_out",
+    "region region:gravesend/sewer/ghost_station/track_coach:front_window_in",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_seat_0",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_seat_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_seat_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_seat_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_seat_4",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_arm_0",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_arm_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_arm_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:north_arm_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_seat_0",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_seat_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_seat_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_seat_4",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_arm_0",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_arm_1",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_arm_2",
+    "region region:gravesend/sewer/ghost_station/track_coach:south_arm_3",
+    "region region:gravesend/sewer/ghost_station/track_coach:aisle",
+    "region region:gravesend/sewer/ghost_station/track_coach:partition_north",
+    "region region:gravesend/sewer/ghost_station/track_coach:partition_south",
+    "region region:gravesend/sewer/ghost_station/track_coach:cab_door",
+    "region region:gravesend/sewer/ghost_station/track_coach:cab",
+    "region region:gravesend/sewer/ghost_station/track_coach:desk",
+    "region region:gravesend/sewer/ghost_station/track"
    ]
   },
   {
@@ -807,7 +860,7 @@
    "channel": 127,
    "engine": null,
    "when": [
-    "pickup on placement phantom:prize:region:gravesend/sewer/ghost_station/track_car"
+    "pickup on placement phantom:prize:region:gravesend/sewer/ghost_station/track_coach:north_seat_1"
    ],
    "then": [
     "placement phantom:prize_relay"
@@ -827,88 +880,38 @@
   },
   {
    "name": "phantom:coach-state",
-   "says": "boarding reports ON and the coach announces the state at each berth",
+   "says": "the coach announces the state of each berth it stops at",
    "channel": 129,
    "engine": null,
    "when": [
-    "enter on region region:gravesend/sewer/ghost_station/track_car"
+    "relay on region region:gravesend/sewer/ghost_station/track_coach:aisle"
    ],
    "then": [
-    "region region:gravesend/sewer/ghost_station/spill_berth_0",
-    "region region:gravesend/sewer/ghost_station/spill_berth_1",
-    "region region:gravesend/sewer/ghost_station/spill_berth_2",
-    "region region:gravesend/sewer/ghost_station/spill_berth_3",
-    "placement phantom:boarding_sense",
     "placement phantom:arrival_quote"
    ]
   },
   {
-   "name": "phantom:boarding-arm",
-   "says": "an ON coach report sets the boarding effects latch",
+   "name": "phantom:car-light",
+   "says": "the light that falls from the coach's windows goes as the coach goes and comes back with it",
    "channel": 130,
    "engine": null,
    "when": [
-    "relay on placement phantom:boarding_sense"
+    "relay on region region:gravesend/sewer/ghost_station/track_coach:cab"
    ],
    "then": [
-    "placement phantom:boarding_latch"
-   ]
-  },
-  {
-   "name": "phantom:boarding",
-   "says": "the first boarding starts a short pulse",
-   "channel": 131,
-   "engine": null,
-   "when": [
-    "relay on placement phantom:boarding_latch"
-   ],
-   "then": [
-    "placement phantom:boarding_pulse"
-   ]
-  },
-  {
-   "name": "phantom:lamp-pulse",
-   "says": "the boarding pulse cuts and restores the carriage lamps",
-   "channel": 132,
-   "engine": null,
-   "when": [
-    "relay on placement phantom:boarding_pulse"
-   ],
-   "then": [
-    "placement phantom:car_lamp_0",
-    "placement phantom:car_lamp_1",
-    "placement phantom:car_lamp_2",
-    "placement phantom:car_lamp_3"
+    "region region:gravesend/sewer/ghost_station/signal_step"
    ]
   },
   {
    "name": "phantom:first-platform",
-   "says": "entering the platform cuts the near lamp and sounds the distant whistle",
-   "channel": 133,
+   "says": "entering the platform puts out the near lamp and sounds the distant whistle",
+   "channel": 131,
    "engine": null,
    "when": [
     "enter on region region:gravesend/sewer/ghost_station/gate_open"
    ],
    "then": [
-    "region region:gravesend/sewer/ghost_station/first_edge_pool",
-    "placement phantom:distant_whistle",
-    "placement phantom:first_edge_lamp"
-   ]
-  },
-  {
-   "name": "phantom:spill-off",
-   "says": "departure removes the green reflections from the uncut track bed",
-   "channel": 134,
-   "engine": null,
-   "when": [
-    "relay on placement phantom:track_spill_dimmer"
-   ],
-   "then": [
-    "region region:gravesend/sewer/ghost_station/platform_failing_pool",
-    "placement phantom:track_spill_0",
-    "placement phantom:track_spill_1",
-    "placement phantom:track_spill_2",
-    "placement phantom:track_spill_3"
+    "placement phantom:distant_whistle"
    ]
   },
   {
@@ -934,7 +937,7 @@
   {
    "name": "lever:saloon",
    "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-   "channel": 135,
+   "channel": 132,
    "engine": null,
    "when": [
     "push on placement lever:saloon"
@@ -946,7 +949,7 @@
   {
    "name": "lever:parlor",
    "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-   "channel": 136,
+   "channel": 133,
    "engine": null,
    "when": [
     "push on placement lever:parlor"
@@ -958,7 +961,7 @@
   {
    "name": "lever:pawn",
    "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-   "channel": 139,
+   "channel": 136,
    "engine": null,
    "when": [
     "push on placement lever:pawn"
@@ -970,7 +973,7 @@
   {
    "name": "lever:aldermack",
    "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-   "channel": 137,
+   "channel": 134,
    "engine": null,
    "when": [
     "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
@@ -991,7 +994,7 @@
   {
    "name": "lever:lobby",
    "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
-   "channel": 138,
+   "channel": 135,
    "engine": null,
    "when": [
     "push on placement lever:lobby"
@@ -1394,30 +1397,31 @@
     "campaign_p50": 6
    },
    "metres": [
-    17.1,
-    55.1,
-    2.8
+    16.5,
+    41.4,
+    3.4
    ],
    "cramped": [
-    "short side 10048 (campaign p25 11776)",
-    "height 1.57 bodies (campaign p25 2.84)",
-    "1.57 bodies high (a destination wants 1.93)"
+    "short side 9728 (campaign p25 11776)",
+    "height 1.89 bodies (campaign p25 2.84)",
+    "1.89 bodies high (a destination wants 1.93)"
    ],
    "critique": {
-    "round": 4,
+    "round": 5,
     "passes": false,
     "scores": {
      "recognition": 4,
      "comparison": 4,
-     "use": 3,
+     "use": 4,
      "sense": 3
     },
-    "named_as": "underground railway station with a passenger train",
+    "named_as": "a funeral railcar in an underground station",
     "readers_missing": [],
     "blocking": [
-     "use: the empty seat and gun are too easy to miss from the platform"
+     "comparison: in the flooded view the visible car ends so abruptly that it reads as a kiosk",
+     "sense: conditional: if the drowned carriage were an entrance, its flooded aisle has no dry surface (it is not one)"
     ],
-    "packet": "knowledge/blood/studies/ghost-station/critique/round-4"
+    "packet": "knowledge/blood/studies/ghost-station/critique/round-5"
    }
   },
   {
@@ -2207,30 +2211,37 @@
   {
    "kind": "cramped",
    "place": "Phantom Terminus",
-   "says": "short side 10048 (campaign p25 11776)",
+   "says": "short side 9728 (campaign p25 11776)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
    "place": "Phantom Terminus",
-   "says": "height 1.57 bodies (campaign p25 2.84)",
+   "says": "height 1.89 bodies (campaign p25 2.84)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "cramped",
    "place": "Phantom Terminus",
-   "says": "1.57 bodies high (a destination wants 1.93)",
+   "says": "1.89 bodies high (a destination wants 1.93)",
    "owner": "projects/blood-city/level/scale.py",
    "see": "the scale lines the build prints"
   },
   {
    "kind": "critique",
    "place": "Phantom Terminus",
-   "says": "the empty seat and gun are too easy to miss from the platform",
-   "owner": "blind reader: use",
-   "see": "knowledge/blood/studies/ghost-station/critique/round-4/review-use.md"
+   "says": "in the flooded view the visible car ends so abruptly that it reads as a kiosk",
+   "owner": "blind reader: comparison",
+   "see": "knowledge/blood/studies/ghost-station/critique/round-5/review-comparison.md"
+  },
+  {
+   "kind": "critique",
+   "place": "Phantom Terminus",
+   "says": "conditional: if the drowned carriage were an entrance, its flooded aisle has no dry surface (it is not one)",
+   "owner": "blind reader: sense",
+   "see": "knowledge/blood/studies/ghost-station/critique/round-5/review-sense.md"
   },
   {
    "kind": "missing-layer",
@@ -2382,50 +2393,10 @@
   {
    "kind": "uncatalogued-use",
    "place": null,
-   "says": "tile 1665 as sprite_wall in indoors (11x): no map and no reading shows it there -- record what it is, or fix it",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1665",
-   "at": "sprite[256]"
-  },
-  {
-   "kind": "uncatalogued-use",
-   "place": null,
-   "says": "tile 386 as sprite_wall in indoors (10x): no map and no reading shows it there -- record what it is, or fix it",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 386",
-   "at": "sprite[257]"
-  },
-  {
-   "kind": "uncatalogued-use",
-   "place": null,
-   "says": "tile 51 as sprite_face in indoors (6x): no map and no reading shows it there -- record what it is, or fix it",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 51",
-   "at": "sprite[230]"
-  },
-  {
-   "kind": "uncatalogued-use",
-   "place": null,
-   "says": "tile 1129 as sprite_floor in indoors (4x): no map and no reading shows it there -- record what it is, or fix it",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1129",
-   "at": "sprite[483]"
-  },
-  {
-   "kind": "uncatalogued-use",
-   "place": null,
-   "says": "tile 52 as sprite_face in indoors (3x): no map and no reading shows it there -- record what it is, or fix it",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 52",
-   "at": "sprite[231]"
-  },
-  {
-   "kind": "uncatalogued-use",
-   "place": null,
    "says": "tile 2229 as sprite_wall in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2229",
-   "at": "sprite[473]"
+   "at": "sprite[549]"
   },
   {
    "kind": "uncatalogued-use",
@@ -2433,7 +2404,7 @@
    "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
-   "at": "sprite[1288]"
+   "at": "sprite[1371]"
   },
   {
    "kind": "outside-campaign",
@@ -2459,13 +2430,6 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 255 as masked_middle in indoors (30x) rests on community evidence (5 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 255"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
    "says": "tile 458 as two_sided_lower in outdoors (27x) rests on community-curated evidence (6 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 458"
@@ -2473,9 +2437,9 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 1099 as masked_middle in indoors (20x) rests on community evidence (6 maps), not the campaign's",
+   "says": "tile 1665 as two_sided_upper in indoors (27x) rests on community evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1099"
+   "see": "python -m tools.tile_contexts show 1665"
   },
   {
    "kind": "outside-campaign",
@@ -2501,16 +2465,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 569 as sprite_wall in indoors (17x) rests on community evidence (3 maps), not the campaign's",
+   "says": "tile 386 as floor in indoors (17x) rests on community-curated evidence (5 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 569"
+   "see": "python -m tools.tile_contexts show 386"
   },
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 386 as floor in indoors (16x) rests on community-curated evidence (5 maps), not the campaign's",
+   "says": "tile 569 as sprite_wall in indoors (17x) rests on community evidence (3 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 386"
+   "see": "python -m tools.tile_contexts show 569"
   },
   {
    "kind": "outside-campaign",
@@ -2543,30 +2507,9 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 2330 as sprite_wall in indoors (14x) rests on community evidence (7 maps), not the campaign's",
+   "says": "tile 956 as sprite_floor in indoors (10x) rests on community-curated evidence (3 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2330"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 1717 as floor in indoors (13x) rests on community evidence (4 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1717"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 67 as sprite_floor in indoors (10x) rests on community evidence (8 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 67"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 67 as sprite_wall in indoors (10x) rests on community evidence (5 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 67"
+   "see": "python -m tools.tile_contexts show 956"
   },
   {
    "kind": "outside-campaign",
@@ -2578,16 +2521,9 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 956 as sprite_floor in indoors (9x) rests on community-curated evidence (3 maps), not the campaign's",
+   "says": "tile 275 as two_sided_upper in indoors (9x) rests on community-curated evidence (15 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 956"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 298 as sprite_wall in indoors (9x) rests on community evidence (5 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 298"
+   "see": "python -m tools.tile_contexts show 275"
   },
   {
    "kind": "outside-campaign",
@@ -2606,16 +2542,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 470 as sprite_wall in indoors (8x) rests on community evidence (3 maps), not the campaign's",
+   "says": "tile 1099 as masked_middle in indoors (8x) rests on community evidence (6 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 470"
+   "see": "python -m tools.tile_contexts show 1099"
   },
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 255 as sprite_wall in indoors (7x) rests on community evidence (10 maps), not the campaign's",
+   "says": "tile 2320 as sprite_wall in indoors (8x) rests on community evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 255"
+   "see": "python -m tools.tile_contexts show 2320"
   },
   {
    "kind": "outside-campaign",
@@ -2634,9 +2570,23 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 383 as floor in indoors (6x) rests on community evidence (12 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 383"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 3825 as sprite_wall in outdoors (6x) rests on community-curated evidence (3 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 3825"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2330 as sprite_wall in indoors (6x) rests on community evidence (7 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2330"
   },
   {
    "kind": "outside-campaign",
@@ -2651,6 +2601,13 @@
    "says": "tile 159 as ceiling in indoors (5x) rests on community-curated evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 159"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2621 as sprite_face in indoors (5x) rests on community-curated evidence (6 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2621"
   },
   {
    "kind": "outside-campaign",
@@ -2672,13 +2629,6 @@
    "says": "tile 796 as ceiling in indoors (4x) rests on community-curated evidence (9 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 796"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 383 as floor in indoors (4x) rests on community evidence (12 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 383"
   },
   {
    "kind": "outside-campaign",
@@ -2735,6 +2685,20 @@
    "says": "tile 70 as sprite_wall in indoors (4x) rests on community evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 70"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 2622 as sprite_face in indoors (4x) rests on community-curated evidence (1 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 2622"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 523 as sprite_face in indoors (4x) rests on community-curated evidence (2 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 523"
   },
   {
    "kind": "outside-campaign",
@@ -2802,23 +2766,9 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 2334 as sprite_wall in indoors (3x) rests on community evidence (2 maps), not the campaign's",
+   "says": "tile 2623 as sprite_face in indoors (3x) rests on community-curated evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2334"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 2333 as sprite_wall in indoors (3x) rests on community evidence (3 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2333"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 523 as sprite_face in indoors (3x) rests on community-curated evidence (2 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 523"
+   "see": "python -m tools.tile_contexts show 2623"
   },
   {
    "kind": "outside-campaign",
@@ -2991,27 +2941,6 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 2320 as sprite_wall in indoors (2x) rests on community evidence (2 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2320"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 199 as sprite_wall in indoors (2x) rests on community-curated evidence (1 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 199"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 624 as sprite_wall in indoors (2x) rests on community-curated evidence (10 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 624"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
    "says": "tile 2453 as sprite_wall in indoors (2x) rests on community evidence (5 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2453"
@@ -3173,6 +3102,13 @@
   {
    "kind": "outside-campaign",
    "place": null,
+   "says": "tile 275 as two_sided_lower in indoors (1x) rests on community-curated evidence (16 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 275"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
    "says": "tile 77 as sprite_wall in outdoors (1x) rests on community evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 77"
@@ -3208,20 +3144,6 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 438 as sprite_floor in indoors (1x) rests on community evidence (6 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 438"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 1717 as sprite_wall in indoors (1x) rests on community evidence (3 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1717"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
    "says": "tile 95 as sprite_face in indoors (1x) rests on community evidence (1 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 95"
@@ -3236,30 +3158,16 @@
   {
    "kind": "outside-campaign",
    "place": null,
-   "says": "tile 2621 as sprite_face in indoors (1x) rests on community-curated evidence (6 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2621"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 2622 as sprite_face in indoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2622"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 2623 as sprite_face in indoors (1x) rests on community-curated evidence (1 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2623"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
    "says": "tile 698 as sprite_wall in indoors (1x) rests on community evidence (5 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 698"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 624 as sprite_wall in indoors (1x) rests on community-curated evidence (10 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 624"
   },
   {
    "kind": "outside-campaign",
@@ -3611,17 +3519,9 @@
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
-   "kind": "sprite-lifted",
-   "place": null,
-   "says": "{\"sector\": 790, \"sprite\": 348, \"tile\": 558}",
-   "owner": "the pass that placed the sprite; find it by tile",
-   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[790]"
-  },
-  {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 161, \"sprites\": [1357, 1358], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 161, \"sprites\": [1440, 1441], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[161]"
@@ -3643,19 +3543,18 @@
  ],
  "open_by_kind": {
   "cramped": 20,
-  "critique": 13,
+  "critique": 14,
   "dropped": 5,
   "lost-tile": 2,
   "missing-layer": 16,
   "never-critiqued": 11,
-  "outside-campaign": 143,
+  "outside-campaign": 134,
   "owner-rework": 1,
   "refused": 7,
   "rule-warning": 6,
   "skipped": 5,
-  "sprite-lifted": 1,
   "sprite-overlaps": 1,
-  "uncatalogued-use": 7,
+  "uncatalogued-use": 2,
   "unrecognised": 1,
   "unstudied": 2
  },

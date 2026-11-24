@@ -7,6 +7,7 @@ from bloodmap.levelprog import RECT_FACES, Style
 from bloodmap.model import record_fields
 from bloodmap.player_space import PLAYER_PROFILES
 
+import carriage
 import setpieces
 import wallplane
 import wires
@@ -21,83 +22,36 @@ GHOST_TREAD = 320
 GHOST_CLEAR = 32768
 GHOST_DIALS = (("A", 49664, 1), ("B", 50176, 3), ("C", 50688, 2))
 
+#: the platform's edge and the carriage's deck are one level; the rails lie 0.36 of a body under it
+DECK = GHOST_FLOOR + 768
 TRACK = (46592, -17152, 70656, -12544)
-CAR = (48640, -16384, 56832, -13312)
-TRACK_FLOOR = GHOST_FLOOR + 1536
-TRACK_ROOF = TRACK_FLOOR - 26624
+#: past the platform's end the bore widens, so nothing scrapes a rider off the running board
+PASSING = (58624, 60032, -12160)
+TRACK_FLOOR = DECK + 6144
+TRACK_ROOF = DECK - carriage.TOP
+#: five windows along the saloon, the second of them the open door, then the driver's cab
+COACH_PLAN = carriage.Plan(128, ((8, 24), (27, 43), (46, 62), (65, 81), (84, 100)), door=1, cab=17,
+                           broken=frozenset({"north_window_3", "south_window_3"}))
+COACH = carriage.Axes((48640, -12608 - 64 * carriage.WIDTH))
+CAR = (*COACH(0, 0), *COACH(COACH_PLAN.length, carriage.WIDTH))
 TRAVEL = 11264
 DEPART = "phantom:departure"
 RUN = "phantom:car"
-DOOR = (50240, 51264)
-WINDOWS = ((49024, 49920), (51648, 52672), (53056, 54080), (54656, 55680))
+DOOR = tuple(COACH(u, 0)[0] for u in COACH_PLAN.slots[COACH_PLAN.door])
 GREEN = 4
-WINDOW_MASK = 1099
 PRIZE = "phantom:prize"
+STATION = "region:gravesend/sewer/ghost_station"
+PRIZE_REGION = f"{STATION}/track_coach:north_seat_1"
 ARM = "phantom:arm"
-COACH = "phantom:coach-state"
-BOARDING = "phantom:boarding"
-LAMP_PULSE = "phantom:lamp-pulse"
+COACH_STATE = "phantom:coach-state"
+CAR_LIGHT = "phantom:car-light"
 PLATFORM_ENTRY = "phantom:first-platform"
-SPILL_OFF = "phantom:spill-off"
-SEAT_Z = TRACK_FLOOR - 6656
+SEAT_Z = DECK - carriage.SEAT
 #: the one empty seat, facing the open door: it is seen from the platform
-PRIZE_AT = (50752, -15456)
+PRIZE_AT = COACH((COACH_PLAN.slots[1][0] + COACH_PLAN.slots[1][1]) / 2, 9)
 SEATED = (2330, 2333, 2334)
 PANEL_MASK = 255
 BLOCK = 1 | 16 | 64
-
-
-def _car_edges():
-    """The full car loop, with its windows and doorway as atomic redwalls."""
-    west, north, east, south = CAR
-    windows = {span: WINDOW_MASK for span in WINDOWS}
-    sections = (*WINDOWS, DOOR)
-    cuts = sorted({west, east, *(x for span in sections for x in span)})
-    for a, b in pairwise(cuts):
-        yield (a, north), (b, north), windows.get((a, b), PANEL_MASK)
-    yield (east, north), (east, south), PANEL_MASK
-    for b, a in pairwise(reversed(cuts)):
-        mask = None if (a, b) == DOOR else windows.get((a, b), PANEL_MASK)
-        yield (b, south), (a, south), mask
-    yield (west, south), (west, north), PANEL_MASK
-
-
-def _make_car(layout, track):
-    """Translate one flush slab with a supported rider and an open side door.
-
-    Like Stockyard's full-wall shuttle, the car is saved at ON and only its
-    host shares drag points. A flush deck makes all the hull masks equilevel.
-    The slab goes east on OFF. Both ends and both flanks leave a standing lane.
-    """
-    host = layout.regions[track]
-    car = track + "_car"
-    edges = list(_car_edges())
-    outline = [a for a, _, _ in edges]
-    layout.add_region(
-        car, outline, type=616, floor_z=host.floor_z, ceiling_z=host.ceiling_z,
-        wall_picnum=109, portal_wall_picnum=109, floor_picnum=1717, ceiling_picnum=454,
-        floor_shade=0, wall_shade=0, ceiling_shade=0, relative_alignment="floor",
-        layer=host.layer, intent={"kind": "furnished"},
-        sector_behavior={"state": 1, "busy": 65536, "drag": 1, "busy_wave_a": 1,
-                         "busy_wave_b": 1, "busy_time_a": 55, "busy_time_b": 55})
-    layout.carve_hole(track, outline)
-    for index, (a, b, mask) in enumerate(edges):
-        layout.add_connection(f"{car}:edge:{index}", car, track, a1=a, a2=b,
-                              min_width=1, min_opening=BODY.standing_height)
-        if mask is not None:
-            length = abs(b[0] - a[0]) + abs(b[1] - a[1])
-            _mask(layout, car, track, a, b, mask,
-                  x_repeat=8 if mask == WINDOW_MASK else max(1, length // 128),
-                  y_repeat=3 if mask == WINDOW_MASK else 8,
-                  shade=0 if mask == WINDOW_MASK else 3, pal=GREEN)
-    layout.declare_motion(car, [track, car])
-    x0, y0, x1, y1 = CAR
-    on = ((x0 + x1) // 2, (y0 + y1) // 2)
-    motion.place_markers(layout, "phantom_car", driven_region=car, on_at=on,
-                         off_at=(on[0] + TRAVEL, on[1]), off_region=track, z=host.floor_z)
-    wires.wire(RUN).then(wiring.region(car))
-    return car
-
 
 
 def build(sewer, silt_trap):
@@ -244,15 +198,18 @@ SERVICE = Material(421, 379, 358, 248)
 TIMBER = Material(67, 67, 379, 67)
 BRICK = Material(383, 383, 358, 383)
 WATER = Material(275, 2915, 275, 386)
-WATER_FLOOR = GHOST_FLOOR + 5632
+#: the flood lies a step under the rails
+WATER_FLOOR = TRACK_FLOOR + 3584
 SOUTH_EDGE = -12544
 EDGE_BACK = -11904
 PLATFORM_BACK = -10496
 PLATFORM_LEFT, PLATFORM_RIGHT = 46848, 58624
+EDGE_LEFT = 47360
 BOOKING = (46592, -9984, 52224, -7936)
 PLATFORM = (PLATFORM_LEFT, EDGE_BACK, PLATFORM_RIGHT, PLATFORM_BACK)
 BAY_CLEAR = 24576
 WATCHERS = (57984, 60928, 63872, 66816)
+WATCH_FLOOR = DECK + 1024
 
 
 def _room(part, name, rect, material, floor=GHOST_FLOOR, clear=GHOST_CLEAR,
@@ -279,20 +236,35 @@ def _station_rooms(part, foot):
     booking = _room(part, "booking", (*BOOKING[:3], foot), HALL,
                     clear=28672, role="secret", secret=True, shades=(42, 34, 44))
     platform = _room(part, "platform", PLATFORM, HALL, shades=(50, 47, 51))
-    edge = _room(part, "edge", (PLATFORM_LEFT, SOUTH_EDGE, PLATFORM_RIGHT, EDGE_BACK),
-                 EDGE, GHOST_FLOOR + 768, clear=GHOST_CLEAR + 768, shades=(45, 35, 49))
-    track = _room(part, "track", TRACK, BORE, TRACK_FLOOR, TRACK_FLOOR - TRACK_ROOF,
-                  shades=(41, 40, 42))
+    edge = _room(part, "edge", (EDGE_LEFT, SOUTH_EDGE, PLATFORM_RIGHT, EDGE_BACK),
+                 EDGE, DECK, clear=GHOST_CLEAR + 768, shades=(45, 35, 49))
+    x0, y0, x1, y1 = TRACK
+    p0, p1, deep = PASSING
+    track = part.room(
+        "track", [(x0, y0), (x1, y0), (x1, y1), (p1, y1), (p1, deep), (p0, deep), (p0, y1), (x0, y1)],
+        faces={"north": 0, "east": 1, "south": 2, "passing_east": 3, "passing_west": 5, "south_west": 6, "west": 7}, role="interior",
+        style=Style(**BORE.style_kwargs(floor_z=TRACK_FLOOR, clear_height=TRACK_FLOOR - TRACK_ROOF,
+                                        floor_shade=41, wall_shade=40, ceiling_shade=42)),
+        region_kwargs=BORE.region_kwargs(), intent={"kind": "furnished"})
+    _connect(part, edge, "east", track, "passing_west", skin=205)
+    # two steps at the platform's west end: whoever falls on the rails walks out
+    last = edge
+    for index, (a, b) in enumerate(((46976, EDGE_LEFT), (46592, 46976))):
+        step = _room(part, f"pit_step_{index}", (a, SOUTH_EDGE, b, EDGE_BACK), EDGE,
+                     DECK + 2048 * (index + 1), GHOST_CLEAR + 768 + 2048 * (index + 1), shades=(40, 35, 45))
+        _connect(part, step, "east", last, "west", skin=205)
+        _connect(part, step, "north", track, "south_west", skin=205)
+        _connect(part, step, "south", platform, "north", skin=386)
+        last = step
     _connect(part, edge, "south", platform, "north", skin=386)
-    _connect(part, edge, "north", track, "south", skin=205)
-    booking_pool = _booking_hall(part, booking, platform)
-    pools = _platform_rooms(part, platform, edge)
+    _connect(part, edge, "north", track, "south_west", skin=205)
+    _booking_hall(part, booking, platform)
+    _platform_rooms(part, platform, edge)
     stop = _service_line(part, platform, track)
     _drowned_siding(part, track)
-    lamps = [*booking_pool, edge, *pools]
     track.raw("the last car and its pickup circuit",
-              lambda layout, room: _run_car(layout, room, platform, stop, lamps))
-    platform.raw("the first distant whistle and the lamps along the edge", _platform_entry)
+              lambda layout, room: _run_car(layout, room, platform, stop))
+    platform.raw("the first distant whistle", _platform_entry)
     return booking
 
 
@@ -336,15 +308,6 @@ def _booking_hall(part, booking, platform):
     cabinet.raw("a framed route map with the line struck off", _line_map)
     clerk.raw("the clerk has stopped stamping tickets", _clerk_dress)
     booking.raw("the clock, the crossed-off line and the booking sign", _booking_dress)
-    # Leave a full body of the original secret sector at the stair mouth.
-    pool = _light_pool(part, booking, "booking_ticket",
-                       (47040, -9680, 48992, -8448), (47360, -9440, 48640, -8656),
-                       48000, -8912, clear=28672)
-    # Three narrow beams with dark gaps left by the folded gate.
-    for index, x in enumerate((49520, 49856, 50192)):
-        _spill(part, booking, f"gate_{index}", (x, -9952, x + 160, -8768),
-               GHOST_FLOOR, 28672)
-    return pool
 
 
 def _rect_outline(rect, chamfer=0):
@@ -374,33 +337,6 @@ def _inset(part, host, name, outline, material, floor, clear, shades, *, kind="f
     return piece
 
 
-def _light_pool(part, host, name, outer, inner, x, y, *, clear=GHOST_CLEAR):
-    ring = _inset(part, host, f"{name}_penumbra", _rect_outline(outer, 160), HALL,
-                  GHOST_FLOOR, clear, (12, 14, 18))
-    # The inner cut uses the ring's true edge names rather than a compass face.
-    lit = _inset(part, ring, f"{name}_pool", _rect_outline(inner, 112), HALL,
-                 GHOST_FLOOR, clear, (2, 5, 8))
-    lit.raw("a round lamp casting a defined pool",
-            lambda layout, room: _round_lamp(
-                layout, room.region_id, f"{name}_lamp", x, y, shade=-24, size=52))
-    return [ring, lit]
-
-
-def _spill(part, host, name, rect, floor, clear, *, far=False):
-    patch = _inset(part, host, f"spill_{name}", _rect_outline(rect),
-                   Material(386, 1717, 379, 386), floor, clear, (2, 12, 30),
-                   kind="phantom_green_spill")
-    # The far pool is saved dark in the car's ON state. The OFF stop leaves
-    # just its authored base shade, and the returning car closes the pool.
-    if far:
-        wires.wire(COACH).then(wiring.region(patch.region_id), state=1, busy=65536,
-                              amplitude=54, shade_floor=1)
-    else:
-        wires.wire(DEPART).then(wiring.region(patch.region_id),
-                               amplitude=57, shade_floor=1)
-    return patch
-
-
 def _platform_rooms(part, platform, edge):
     waiting = _room(part, "waiting", (52736, PLATFORM_BACK, 56832, -7936), HALL,
                     shades=(49, 45, 48))
@@ -419,13 +355,13 @@ def _platform_rooms(part, platform, edge):
                      2330 if at < 54000 else 2334, 46, 50, shade=-14))
     waiting.raw("lost baggage, the bills and the stationmaster's stopped clock", _waiting_dress)
     board = _room(part, "platform_nameboard", (52864, -7936, 55552, -7552),
-                  Material(255, 1717, 174, 386), GHOST_FLOOR - 5120,
+                  Material(255, 255, 174, 386), GHOST_FLOOR - 5120,
                   clear=22528, role="detail", shades=(1, 4, 8),
                   declared_zero_exit=True)
     _connect(part, board, "north", waiting, "south", skin=386, clear=0)
     board.raw("green enamel station name and its own lamp", _platform_name)
     beam = _inset(part, waiting, "stationmaster_beam",
-                  _rect_outline((55744, -9856, 56640, -9200)), TIMBER,
+                  _rect_outline((55744, -9856, 56640, -9200)), Material(67, 374, 67, 67),
                   GHOST_FLOOR, GHOST_CLEAR - 4608, (7, 9, 14), face_picnum=88)
     beam.raw("the stationmaster hanging beside the stopped clock", _stationmaster)
     broken = _inset(part, waiting, "cracked_vault",
@@ -445,31 +381,7 @@ def _platform_rooms(part, platform, edge):
                          min_opening=0, face_picnum=386,
                          connection_id=f"connection:phantom_pier:{i}:{face}")
     edge.raw("flush platform lamps", _edge_dress)
-    pools = []
-    for name, x in (("platform_gate", 50240), ("platform_last", 55296)):
-        pools.extend(_light_pool(
-            part, platform, name, (x - 1056, -11856, x + 1056, -10544),
-            (x - 704, -11648, x + 704, -10752), x, -11168))
-    ring, flicker = _light_pool(
-        part, platform, "platform_failing", (52672, -11856, 54176, -10544),
-        (53024, -11648, 53824, -10752), 53424, -11168)
-    wires.wire(SPILL_OFF).then(
-        wiring.region(flicker.region_id), state=1, busy=65536,
-        amplitude=43, shade_wave=6, shade_frequency=13, shade_phase=4,
-        shade_floor=1, shade_ceiling=1, shade_walls=1)
-    pools.append(ring)
-    near = _room(part, "first_edge_pool", (47968, -12392, 48736, -11976),
-                 EDGE, GHOST_FLOOR + 768, GHOST_CLEAR + 768, shades=(3, 8, 11))
-    edge.carve(near.outline)
-    for side in COMPASS:
-        part.connect(near.face(side), edge.face("north"), min_width=1,
-                     connection_id=f"connection:phantom_first_light:{side}")
-    wires.wire(PLATFORM_ENTRY).then(wiring.region(near.region_id),
-                                   amplitude=48, shade_floor=1, shade_ceiling=1)
     _platform_barrier(part, platform)
-    for i, (left, right) in enumerate(WINDOWS):
-        _spill(part, edge, f"window_{i}", (left, -12512, right, -12344),
-               GHOST_FLOOR + 768, GHOST_CLEAR + 768)
 
     porch = _room(part, "signal_step", (57152, PLATFORM_BACK, 58368, -10048),
                   EDGE, GHOST_FLOOR - 2048, BAY_CLEAR, shades=(31, 30, 39))
@@ -478,7 +390,8 @@ def _platform_rooms(part, platform, edge):
     _connect(part, porch, "north", platform, "south", skin=386)
     _connect(part, porch, "south", cabin, "north", skin=386)
     cabin.raw("the station side of the rail recall circuit", _signal_dress)
-    return [waiting, *pools]
+    # the one listener laid before the light stage, which adds the rest (`lights.groups`)
+    wires.wire(CAR_LIGHT).then(wiring.region(porch.region_id))
 
 
 def _service_line(part, platform, track):
@@ -492,29 +405,30 @@ def _service_line(part, platform, track):
                     SERVICE, GHOST_FLOOR + 3072, BAY_CLEAR + 2048, shades=(40, 35, 43))
     _connect(part, last, "east", catwalk, "west")
     _connect(part, catwalk, "north", track, "south", skin=386)
-    for i, (left, right) in enumerate(WINDOWS):
-        _spill(part, catwalk, f"berth_{i}", (left + TRAVEL, SOUTH_EDGE + 48,
-               right + TRAVEL, SOUTH_EDGE + 336), GHOST_FLOOR + 3072,
-               BAY_CLEAR + 2048, far=True)
+    _connect(part, catwalk, "west", track, "passing_east", skin=386)
     stop = _room(part, "brick_stop", (66560, -10368, 69632, -8704),
                  BRICK, GHOST_FLOOR + 2048, BAY_CLEAR, shades=(24, 26, 33))
     _connect(part, stop, "north", catwalk, "south", skin=386)
     bench = setpieces.raised_solid(
         part, "phantom_mortar_bench", stop, (66752, -9584, 67696, -8984),
         TIMBER, grade=GHOST_FLOOR + 2048, rise=6144, host_clear=BAY_CLEAR, shade=20)
-    bench.raw("stacked bricks left by the men who closed the line", _mortar_table)
+    bench.raw("the lantern left by the men who closed the line", _mortar_table)
+    for index, (rect, rise) in enumerate((((67904, -9472, 68416, -9216), 5120),
+                                          ((67904, -9088, 68416, -8832), 2560))):
+        setpieces.raised_solid(part, f"phantom_brick_stack_{index}", stop, rect, BRICK,
+                               grade=GHOST_FLOOR + 2048, rise=rise, host_clear=BAY_CLEAR, shade=20)
     stop.raw("the bricking gang left their tools by the return switch", _stop_dress)
     catwalk.raw("bulkhead lamps and directions for the return walk", _walk_dress)
 
     end = _room(part, "blind_tunnel", (TRACK[2], TRACK[1], 72192, SOUTH_EDGE),
-                BORE, GHOST_FLOOR + 2048, BAY_CLEAR, shades=(39, 32, 43))
+                BORE, TRACK_FLOOR, TRACK_FLOOR - TRACK_ROOF, shades=(39, 32, 43))
     _connect(part, end, "west", track, "east", skin=358)
     end.raw("a brick plug across the old running tunnel", _buffers)
     for index, x in enumerate(WATCHERS):
         mouth = _room(part, f"watch_mouth_{index}", (x, -17472, x + 1152, TRACK[1]),
-                      EDGE, TRACK_FLOOR, BAY_CLEAR, shades=(37, 33, 41))
+                      EDGE, WATCH_FLOOR, BAY_CLEAR, shades=(37, 33, 41))
         niche = _room(part, f"watch_niche_{index}", (x, -18496, x + 1152, -17472),
-                      SERVICE, TRACK_FLOOR, BAY_CLEAR, shades=(3, 2, 6),
+                      SERVICE, WATCH_FLOOR, BAY_CLEAR, shades=(3, 2, 6),
                       declared_zero_exit=True)
         _connect(part, mouth, "south", track, "north", skin=358)
         _connect(part, mouth, "north", niche, "south")
@@ -524,43 +438,65 @@ def _service_line(part, platform, track):
     return stop
 
 
-#: The drowned car's end wall, along y: two windows and the gangway door between.
-SUNK_FACE = 39936
-SUNK_WINDOWS = ((-16320, -15424), (-14272, -13376))
-SUNK_DOOR = (-15232, -14464)
-SUNK_CLEAR = 26624
+#: The drowned carriage: four windows long, off the rails and askew (14 degrees, on an integer lattice).
+WRECK_PLAN = carriage.Plan(89, ((8, 24), (27, 43), (46, 62), (65, 81)),
+                           broken=frozenset({"south_window_0", "north_window_2"}))
+WRECK = carriage.Axes((38272, -17088), (63, 16), (-16, 63))
+#: its deck is this far under the water: the benches just clear it
+WRECK_DECK = WATER_FLOOR + 5120
+CAVERN = ((36608, -17152), (37632, -18944), (41472, -19456), (44032, -18432), (45056, -17152),
+          (45056, -12544), (44288, -11264), (41600, -10752), (37888, -11392), (36608, -12928))
+#: the slab of the old roof that came down on the carriage and rests along its top
+SLAB = ((37696, -17664), (43456, -17408), (44416, -16256), (44416, -12928), (43456, -12096),
+        (38400, -12096), (37056, -13376), (37056, -16768))
+WATER_MOTION = {"depth": 1, "pan_always": 1, "pan_floor": 1, "pan_angle": 1024, "pan_velocity": 2}
 
 
 def _drowned_siding(part, track):
-    """The line falls under black water; the next car stands in it, still lit and still full."""
+    """The line falls into a flooded cavern; the next carriage stands in it with water all round."""
     sill = _room(part, "siding", (45056, TRACK[1], TRACK[0], SOUTH_EDGE),
-                 BORE, GHOST_FLOOR + 2048, BAY_CLEAR + 2048, shades=(38, 33, 40))
-    water_motion = {"depth": 1, "pan_always": 1, "pan_floor": 1,
-                    "pan_angle": 1024, "pan_velocity": 2}
-    flood = _room(part, "drowned", (SUNK_FACE, TRACK[1], 45056, SOUTH_EDGE), WATER,
-                  WATER_FLOOR, SUNK_CLEAR, shades=(40, 36, 44), sector_behavior=water_motion)
+                 BORE, TRACK_FLOOR + 1792, BAY_CLEAR + 1792, shades=(38, 33, 40))
     _connect(part, sill, "east", track, "west", skin=358)
-    _connect(part, flood, "east", sill, "west", skin=386)
-    saloon = _room(part, "sunk_car", (36864, -16448, SUNK_FACE - 192, -13248),
-                   Material(109, 2915, 454, 109), WATER_FLOOR, SUNK_CLEAR,
-                   shades=(6, 0, 0), declared_zero_exit=True)
-    saloon.intent = {"kind": "phantom_cab_green"}
-    for index, (low, high) in enumerate(SUNK_WINDOWS):
-        bay = _room(part, f"sunk_window_{index}", (SUNK_FACE - 192, low, SUNK_FACE, high),
-                    Material(109, 2915, 454, 109), WATER_FLOOR, SUNK_CLEAR,
-                    shades=(6, 0, 0), declared_zero_exit=True)
-        bay.intent = {"kind": "phantom_cab_green"}
-        _connect(part, bay, "west", saloon, "east")
-        _connect(part, bay, "east", flood, "west")
-        bay.raw("a carriage window the tide has reached", lambda layout, room, y0=low, y1=high:
-                _sunk_window(layout, room, flood.region_id, y0, y1))
-        _inset(part, flood, f"sunk_glow_{index}",
-               ((SUNK_FACE + 64, low + 96), (SUNK_FACE + 1792, low - 160 + 320 * index),
-                (SUNK_FACE + 1792, high - 160 + 320 * index), (SUNK_FACE + 64, high - 96)),
-               WATER, WATER_FLOOR, SUNK_CLEAR, (2, 36, 44), kind="phantom_green_spill",
-               declared_zero_exit=True, sector_behavior=water_motion)
-    saloon.raw("the second car's passengers, sitting in the water", _sunk_passengers)
-    flood.raw("the second car's end wall and its one headlamp", _sunk_end)
+    flood = part.room(
+        "drowned", CAVERN, faces={f"edge_{i}": i for i in range(len(CAVERN))}, role="interior",
+        style=Style(**WATER.style_kwargs(floor_z=WATER_FLOOR, clear_height=30720,
+                                         floor_shade=40, wall_shade=36, ceiling_shade=44)),
+        region_kwargs={**WATER.region_kwargs(), "sector_behavior": dict(WATER_MOTION)},
+        intent={"kind": "furnished"})
+    part.connect(sill.face("west"), flood.face("edge_4"), min_width=BODY.body_width,
+                 min_opening=BODY.standing_height, face_picnum=386,
+                 connection_id="connection:phantom_drowned_throat")
+    slab = _inset(part, flood, "fallen_roof", SLAB, WATER, WATER_FLOOR,
+                  WATER_FLOOR - (WRECK_DECK - carriage.TOP), (40, 36, 44), face_picnum=383,
+                  sector_behavior=dict(WATER_MOTION))
+    slab.raw("the next carriage, standing in the water", _drowned_carriage)
+    flood.raw("what came down with the roof", _cavern_dress)
+
+
+def _drowned_carriage(layout, slab):
+    wreck = carriage.build(
+        layout, f"{slab.region_id}_wreck", slab.region_id, WRECK, WRECK_DECK, WRECK_PLAN,
+        pal=GREEN, shade=24, water=WATER_FLOOR, water_tile=2915, water_behavior=WATER_MOTION,
+        kind="phantom_cab_green")
+    for index, (name, u, tile) in enumerate((
+            ("north_seat_0", 14, 2330), ("north_seat_1", 33, 2333), ("north_seat_2", 56, 2330),
+            ("south_seat_0", 17, 2334), ("south_seat_1", 36, 2330), ("south_seat_2", 52, 2333),
+            ("north_seat_3", 74, 2334), ("south_seat_3", 70, 2330))):
+        x, y = WRECK(u, 8 if name.startswith("north") else 42)
+        _prop(layout, wreck.at(name), f"drowned_passenger_{index}", x, y, tile, 42, 48, shade=-5)
+    for index, u in enumerate((16, 35, 54, 73)):
+        x, y = WRECK(u, 25)
+        _round_lamp(layout, wreck.at("aisle"), f"drowned_lamp_{index}", x, y, size=46, shade=-35, pal=GREEN)
+    # the line's name on the side that faces the way in
+    _outside_lettering(layout, wreck, wreck.at("board"), WRECK_PLAN.slots[1], carry=0)
+
+
+def _cavern_dress(layout, flood):
+    region = flood.region_id
+    for index, (x, y, tile, size) in enumerate(((44416, -16384, 2621, 60), (44288, -12032, 2622, 64),
+                                               (36832, -14592, 2623, 70), (38784, -11648, 2621, 52),
+                                               (37888, -18048, 2622, 60))):
+        _prop(layout, region, f"drowned_rubble_{index}", x, y, tile, size, size, shade=-4)
 
 
 def _mask(layout, first, second, a, b, tile, *, shade, x_repeat, y_repeat,
@@ -623,6 +559,7 @@ def _booking_dress(layout, room):
     _split_lit_wall(layout, region, *east, shade=22, tile=255)
     _nameboard(layout, region, "booking", *east, repeat=48, height=1.37)
     _round_lamp(layout, region, "booking_sign_light", 51776, -9096, shade=-54, size=36)
+    _round_lamp(layout, region, "booking_ticket_lamp", 48000, -8912, shade=-45, size=52)
     _bill(layout, region, "clock", (52224, -7936), (51232, -7936),
           1166, 34, 1.21)
     _sign(layout, region, "withdrawn", (52224, -7936), (51232, -7936),
@@ -669,13 +606,8 @@ def _split_lit_wall(layout, region, a, b, *, shade, tile, pal=0):
 
 def _edge_dress(layout, room):
     region = room.region_id
-    base = region.rsplit("/", 1)[0]
-    lamp = _round_lamp(layout, base + "/first_edge_pool", "first_edge_lamp",
-                       48128, -12176, shade=-24, type=456, cstat=161, behavior={"state": 1})
-    wires.wire(PLATFORM_ENTRY).then(wiring.placement(lamp))
-    for index, x in enumerate((51456, 55360, 57728)):
-        _round_lamp(layout, region, f"edge_lamp_{index}", x, -12176,
-                    shade=55 if index == 1 else 9)
+    for index, x in enumerate((48448, 57728)):
+        _round_lamp(layout, region, f"edge_lamp_{index}", x, -12176, shade=-40)
     floor, roof = GHOST_FLOOR + 768, GHOST_FLOOR - GHOST_CLEAR
     for i, x in enumerate((47776, 51744, 55904, 58016)):
         for side, y in (("track", -12340), ("hall", -11980)):
@@ -738,16 +670,10 @@ def _platform_barrier(part, platform):
         piece = _inset(part, platform, f"unfinished_brick_{i}", outline, BRICK,
                        GHOST_FLOOR - rise, GHOST_CLEAR - rise, (2, 5, 41),
                        face_picnum=383, declared_zero_exit=True)
-        x = 57088
-        y = round(sum(point[1] for point in outline) / 4)
-        piece.raw("the courses' faces, in the gang's lantern light",
+        piece.raw("the courses' faces",
                   lambda layout, room, loop=outline: [layout.paint_wall(
-                      platform.region_id, a, b, picnum=383, shade=3)
+                      platform.region_id, a, b, picnum=383)
                       for a, b in pairwise((*loop, loop[0]))])
-        piece.raw("a broken brick on its unfinished course",
-                  lambda layout, room, index=i, cx=x, cy=y: _prop(
-                      layout, room.region_id, f"brick_top_{index}", cx, cy,
-                      51 + index % 2, 13, 16, shade=3))
     shrine = _inset(part, platform, "column_shrine",
                     _rect_outline((51584, -11824, 52288, -11472), 72), IRON,
                     GHOST_FLOOR - 1152, GHOST_CLEAR - 1152, (8, 13, 28),
@@ -758,13 +684,6 @@ def _platform_barrier(part, platform):
                  Material(279, 280, 379, 279), GHOST_FLOOR + 512, GHOST_CLEAR + 512,
                  (22, 30, 52), face_picnum=279)
     pit.raw("stone chips in a patch of lost tile", _lost_tiles)
-    ring, pool = _light_pool(
-        part, platform, "gang_lantern", (57360, -11632, 58544, -10568),
-        (57552, -11488, 58448, -10728), 58112, -10976)
-    for piece in (ring, pool):
-        wires.wire(DEPART).then(wiring.region(piece.region_id),
-                               amplitude=36, shade_floor=1, shade_ceiling=1)
-
 
 def _lost_tiles(layout, room):
     for i, (x, y, size) in enumerate(((48640, -11624, 37), (48784, -11680, 26),
@@ -803,15 +722,14 @@ def _platform_stories(layout, room):
               width, depth, shade=-18, cstat=164 if i % 2 else 160)
     for i, (x, y, tile, width, height) in enumerate((
         (57812, -11292, 2333, 39, 41), (58064, -10816, 2334, 41, 43),
-        (58240, -11372, 51, 22, 21), (57472, -10832, 52, 20, 22),
-        (57696, -11680, 51, 25, 18),
+        (58240, -11372, 2621, 30, 30), (57472, -10832, 2622, 34, 34),
+        (57696, -11680, 2623, 36, 36), (57984, -11168, 693, 34, 36),
     )):
         space = _phantom_floor(layout, x, y, GHOST_FLOOR)
         _prop(layout, space, f"bricking_gang_{i}", x, y, tile, width, height, shade=-13)
-    # The lit undercoat and pale frieze get separate wall records at the
-    # ends of the pool. The opposite corner remains black.
-    _split_lit_wall(layout, station, (51968, PLATFORM_BACK), (52608, PLATFORM_BACK),
-                    shade=12, tile=369)
+    # the hall's own lamps down its middle: the light stage traces what each one lights
+    for name, x in (("gate", 50240), ("last", 56640)):
+        _round_lamp(layout, station, f"platform_lamp_{name}", x, -11168, shade=-45, size=52)
 
 
 def _call(layout, room, suffix, a, b):
@@ -826,7 +744,7 @@ def _call(layout, room, suffix, a, b):
 
 def _signal_dress(layout, room):
     region = room.region_id
-    _round_lamp(layout, region, "signal_lamp", 57856, -9296, size=36, shade=1)
+    _round_lamp(layout, region, "signal_lamp", 57856, -9296, size=36, shade=-40)
     _call(layout, region, "signal", (58560, -9840), (58560, -8512))
     _bill(layout, region, "signal_clock", (58432, -8192), (57216, -8192),
           1165, 32, 1.01)
@@ -834,27 +752,28 @@ def _signal_dress(layout, room):
 
 def _stop_dress(layout, room):
     region = room.region_id
-    _round_lamp(layout, region, "stop_lamp", 68224, -9728, shade=-5)
+    _round_lamp(layout, region, "stop_lamp", 68224, -9728, shade=-40)
     _call(layout, region, "brick", (69568, -8704), (66624, -8704))
     _sign(layout, region, "way_back", (66560, -8832), (66560, -10240),
           "STAIRS", size=45, height=0.98)
-    _prop(layout, region, "scattered_brick", 67136, -9824, 51, 29, 25, shade=11)
+    _prop(layout, region, "mortar_chip", 67136, -9824, 2621, 34, 34, shade=0)
     _prop(layout, region, "sweeper", 69248, -9280, 2333, 44, 46, shade=0)
-    _prop(layout, region, "cloak", 68000, -9250, 896, 40, 40, type=113, status=3, shade=-8)
+    _prop(layout, region, "cloak", 68736, -9250, 896, 40, 40, type=113, status=3, shade=-8)
 
 
 def _mortar_table(layout, room):
-    region = room.region_id
-    _prop(layout, region, "brick_offcut", 67008, -9272, 52, 23, 20, shade=4)
-    _prop(layout, region, "brick_stack", 67456, -9248, 51, 25, 25, shade=5)
+    _prop(layout, room.region_id, "mortar_lantern", 67360, -9272, 693, 34, 36, shade=-20)
 
 
 def _walk_dress(layout, room):
     region = room.region_id
     for i, x in enumerate((61056, 63616, 66944, 68736)):
-        _round_lamp(layout, region, f"return_lamp_{i}", x, -11616, size=31, shade=17)
+        _round_lamp(layout, region, f"return_lamp_{i}", x, -11616, size=31, shade=-40)
     _sign(layout, region, "return", (62528, -10368), (60416, -10368),
           "TO STAIRS", size=49, height=0.97)
+    # 51 and 52 are broken plaster with the brick showing: a wall's decal and nothing else
+    # (the owner, 2026-11-24; 51 of 51 uses in the corpus hang flat on a wall)
+    _bill(layout, region, "fallen_plaster_0", (64832, -10368), (63616, -10368), 51, 48, 0.86, shade=-6)
 
 
 def _buffers(layout, room):
@@ -870,51 +789,9 @@ def _watcher(layout, room, mouth, x, index):
     region = room.region_id
     _mask(layout, region, mouth.region_id, (x, -17472), (x + 1152, -17472),
           58, shade=21, x_repeat=9, y_repeat=10)
-    _prop(layout, region, "watcher", x + 576, -18016, 799, 52, 51, shade=40)
+    _prop(layout, region, "watcher", x + 576, -18016, 799, 52, 51, shade=30)
     _round_lamp(layout, region, f"watcher_lamp_{index}", x + 576, -18016,
-                size=24, shade=-19)
-
-
-def _sunk_window(layout, room, water, low, high):
-    """The running car's own window frame, sill and head, hung on the drowned face."""
-    region = room.region_id
-    _mask(layout, region, water, (SUNK_FACE, low), (SUNK_FACE, high), WINDOW_MASK,
-          shade=0, x_repeat=8, y_repeat=3, pal=GREEN)
-    middle, width = (low + high) // 2, high - low - 8
-    _panel(layout, region, f"sunk_sill_{low}", SUNK_FACE - 24, middle,
-           WATER_FLOOR - 3400, 1665, width, 6784, shade=4, angle=0, pal=GREEN)
-    _panel(layout, region, f"sunk_head_{low}", SUNK_FACE - 24, middle,
-           WATER_FLOOR - SUNK_CLEAR + 2600, 386, width, 4800, shade=3, angle=0, pal=GREEN)
-
-
-def _sunk_passengers(layout, room):
-    region = room.region_id
-    for i, (x, y, tile) in enumerate((
-        (39168, -15996, 2330), (38720, -15568, 2333), (39232, -14020, 2330),
-        (38656, -13600, 2334), (38336, -14848, 2330),
-    )):
-        _prop(layout, region, f"sunk_passenger_{i}", x, y, tile, 46, 50,
-              cstat=144, angle=0, shade=-5, support=WATER_FLOOR - 3072)
-    for i, x in enumerate((39232, 37888)):
-        _round_lamp(layout, region, f"sunk_lamp_{i}", x, -14848, size=46, shade=-35, pal=GREEN)
-
-
-def _sunk_end(layout, room):
-    region = room.region_id
-    # the rails go on under the water, seen through it
-    for i, x in enumerate(range(44544, 40960, -1024)):
-        _flat(layout, region, f"sunk_rails_{i}", x, -14848, WATER_FLOOR - 24, 1129,
-              1024, 2048, shade=8 + 6 * i, cstat=162)
-    for low, high in ((-16448, -16320), (-15424, -14272), (-13376, -13248)):
-        _split_lit_wall(layout, region, (SUNK_FACE, high), (SUNK_FACE, low), shade=3,
-                        tile=PANEL_MASK, pal=GREEN)
-    middle = sum(SUNK_DOOR) // 2
-    _panel(layout, region, "sunk_gangway", SUNK_FACE + 20, middle, WATER_FLOOR - 8704,
-           199, SUNK_DOOR[1] - SUNK_DOOR[0], 17408, shade=8, angle=0, pal=GREEN)
-    _panel(layout, region, "sunk_number", SUNK_FACE + 36, middle, WATER_FLOOR - 18900,
-           1407, 400, 2880, shade=-10, angle=0, pal=GREEN)
-    _panel(layout, region, "sunk_headlamp", SUNK_FACE + 40, middle, WATER_FLOOR - 23000,
-           624, 310, 5224, shade=-45, angle=0, pal=9)
+                size=24, shade=-50)
 
 
 def _panel(layout, region, name, x, y, z, tile, width, height, *, shade, angle,
@@ -935,92 +812,119 @@ def _flat(layout, room, name, x, y, z, tile, width, depth, *, shade=0,
         angle=1536, shade=shade, pal=pal, cstat=cstat | carry, **fields)
 
 
-def _coach_seats(layout, car):
-    body_flags = 144 | mechanism.CARRY_WITH
-    width = 800
-    # E1M2 sprites 95/98/101 show the seated and slumped poses together.
-    seats = (49056, 49888, PRIZE_AT[0], 51616, 52480, 53344, 54208, 55072)
-    for j, (x, front) in enumerate([(x, -15392) for x in seats] +
-                                    [(49600, -14112), (55040, -14112)]):
-        north = j < len(seats)
-        back = front - 544 if north else front + 544
-        _flat(layout, car, f"seat_top_{j}", x, (front + back) // 2,
-              SEAT_Z, 67, width, 544, carry=mechanism.CARRY_WITH,
-              shade=-40 if x == PRIZE_AT[0] else 10)
-        _panel(layout, car, f"seat_front_{j}", x, front, TRACK_FLOOR - 3328,
-               67, width, 6400, shade=-40 if x == PRIZE_AT[0] else 14, angle=512,
-               carry=mechanism.CARRY_WITH)
-        # a pale lit back behind the prize: a black gun on brown boards is not seen
-        lit = x == PRIZE_AT[0]
-        _panel(layout, car, f"seat_back_{j}", x, back, SEAT_Z - (4600 if lit else 2208),
-               1717 if lit else 298, width, 9000 if lit else 4352,
-               shade=-40 if lit else 6, pal=GREEN if lit else 0, angle=512,
-               carry=mechanism.CARRY_WITH)
-        if x == PRIZE_AT[0]:
-            continue
-        tile = SEATED[(2, 0, 0, 0, 1, 0, 0, 2, 0, 1)[j]]
-        _prop(layout, car, f"passenger_{j}", x, front - 146 if north else front + 104,
-              tile, 42, 48, cstat=body_flags, angle=512, shade=-5, support=SEAT_Z)
-    x, y = PRIZE_AT
-    _round_lamp(layout, car, "empty_seat_spot", x, y - 250, size=64,
-                shade=-35, pal=GREEN, carry=mechanism.CARRY_WITH)
-    _prop(layout, car, "conductor", CAR[2] - 544, -15744, 1727, 43, 41,
-          cstat=128 | mechanism.CARRY_WITH, seat="ceiling", shade=1)
-    _panel(layout, car, "conductor_door", CAR[2] - 38, -15720,
-           TRACK_FLOOR - 11200, 199, 848, 21120, shade=13, angle=1024,
-           pal=GREEN, carry=mechanism.CARRY_WITH)
+def _facing(axes, along, across):
+    """The angle a wall sprite faces when it looks this way in a carriage's own axes."""
+    from math import atan2, pi
+
+    x = along * axes.along[0] + across * axes.across[0]
+    y = along * axes.along[1] + across * axes.across[1]
+    return round(atan2(y, x) * 1024 / pi) & 2047
 
 
-def _furnish_car(layout, car):
-    carry = mechanism.CARRY_WITH
-    for index, (left, right) in enumerate(WINDOWS):
-        x, width = (left + right) // 2, right - left - 8
-        for side, y, angle in (("north", CAR[1] + 64, 512),
-                               ("south", CAR[3] - 64, 1536)):
-            _panel(layout, car, f"window_sill_{side}_{index}", x, y,
-                   TRACK_FLOOR - 7616, 1665, width, 6784,
-                   shade=-2, angle=angle, carry=carry, pal=GREEN)
-            _panel(layout, car, f"window_head_{side}_{index}", x, y,
-                   TRACK_ROOF + 2600, 386, width, 4800,
-                   shade=3, angle=angle, carry=carry, pal=GREEN)
-            _panel(layout, car, f"underframe_{side}_{index}", x, y,
-                   TRACK_FLOOR - 2048, 470, width, 3840,
-                   shade=17, angle=angle, carry=carry)
-        lamp = _round_lamp(layout, car, f"car_lamp_{index}", x, -14976,
-                           shade=-35, pal=GREEN, carry=carry, type=456,
-                           behavior={"state": 1})
-        wires.wire(LAMP_PULSE).then(wiring.placement(lamp))
-        if index in (1, 3):
-            _panel(layout, car, f"bloodied_pane_{index}", x + 176, CAR[3] - 112,
-                   TRACK_FLOOR - 15040, 713, 296, 4160,
-                   shade=10, angle=1536, carry=carry)
-    door = sum(DOOR) // 2
-    # Seven folded steel plates form the carried destination fascia. Small
-    # plates sort with their own lettering from either end of the platform.
+def _outside_lettering(layout, coach, region, slot, *, carry):
+    """PHANTOM over one opening and the fleet's number beside it, on the skin of the platform side."""
+    axes, deck = coach.axes, coach.deck
+    facing = _facing(axes, 0, 1)
+    middle, skin = (slot[0] + slot[1]) / 2, carriage.WIDTH - carriage.BOARD + 0.15
     for index, letter in enumerate("PHANTOM"):
-        x = door - 336 + 112 * index
-        _panel(layout, car, f"door_cornice_{index}", x, CAR[3] - 96,
-               TRACK_ROOF + 2992, 255, 112, 5632,
-               shade=6, angle=1536, carry=carry)
-        _panel(layout, car, f"destination_letter_{index}", x, CAR[3] - 32,
-               TRACK_ROOF + 2992, wallplane.tile_for(letter), 84, 2432,
-               shade=-27, angle=512, carry=carry, pal=5)
-    # E1M2's green fleet numeral beside the destination board.
-    _panel(layout, car, "fleet_number", door + 310, CAR[3] - 48,
-           TRACK_ROOF + 6976, 1407, 248, 1380, shade=-17, angle=512, carry=carry)
-    _flat(layout, car, "threshold_step", door, CAR[3] - 178,
-          TRACK_FLOOR - 16, 438, 960, 240, carry=carry, shade=3)
-    _panel(layout, car, "boarding_lamp", door + 387, CAR[3] - 88,
-           TRACK_ROOF + 9744, 795, 167, 2368, shade=-22,
-           angle=1536, carry=carry, pal=GREEN)
-    _panel(layout, car, "rear_livery", CAR[0] + 36, -14848,
-           TRACK_FLOOR - 7616, 1665, 2824, 6784, shade=9, angle=0,
-           carry=carry, pal=GREEN)
-    for i, x in enumerate((49472, 55168)):
-        _panel(layout, car, f"car_wheelset_{i}", x, CAR[3] - 12,
-               TRACK_FLOOR - 2050, 2320, 792, 3840,
-               shade=15, angle=1536, carry=carry)
-    _coach_seats(layout, car)
+        x, y = axes(middle + 2 * (index - 3), skin)
+        _panel(layout, region, f"destination_{index}:{region}", x, y, deck - 23168,
+               wallplane.tile_for(letter), 104, 3000, shade=-34, angle=facing, carry=carry, pal=5)
+    x, y = axes(slot[1] + 1.5, skin)
+    _panel(layout, region, f"fleet_number:{region}", x, y, deck - 15360, 1407, 150, 1500, shade=-24,
+           angle=facing, carry=carry)
+
+
+def _furnish_coach(layout, coach):
+    """Passengers on their benches, lamps in the raised roof, the conductor in his cab.
+
+    Returns the placements that hang in the host: the engine moves them with
+    the body because the host is a mover of the same travel (E1M2 s34).
+    """
+    carry = mechanism.CARRY_WITH
+    plan, axes, deck = coach.plan, coach.axes, coach.deck
+    for index, (name, u, tile) in enumerate((
+            ("north_seat_0", 12, 2330), ("north_seat_0", 20, 2334), ("north_seat_2", 50, 2330),
+            ("north_seat_2", 58, 2333), ("north_seat_3", 72, 2330), ("north_seat_4", 88, 2334),
+            ("north_seat_4", 97, 2330), ("south_seat_0", 13, 2333), ("south_seat_3", 68, 2330),
+            ("south_seat_4", 92, 2334))):
+        x, y = axes(u, 8 if name.startswith("north") else 42)
+        _prop(layout, coach.at(name), f"passenger_{index}", x, y, tile, 42, 48, shade=-5)
+    for index, (u0, u1) in enumerate(plan.slots):
+        x, y = axes((u0 + u1) / 2, 25)
+        _round_lamp(layout, coach.at("aisle"), f"car_lamp_{index}", x, y, shade=-35, pal=GREEN, size=48)
+    x, y = PRIZE_AT
+    _round_lamp(layout, coach.at("north_seat_1"), "car_lamp_seat", x, y, size=30, shade=-45, pal=GREEN)
+    x, y = axes((plan.saloon[1] + 1 + plan.inside[1]) / 2, 25)
+    _round_lamp(layout, coach.at("cab"), "car_lamp_cab", x, y + 320, size=36, shade=-30, pal=GREEN)
+    _prop(layout, coach.at("cab"), "conductor", x + 192, y - 256, 1727, 43, 41, cstat=128, seat="ceiling", shade=1)
+    for index in (2, 4):
+        u0, u1 = plan.slots[index]
+        x, y = axes((u0 + u1) / 2 + 3, 47.8)
+        _panel(layout, coach.at(f"south_window_{index}_in"), f"bloodied_pane_{index}", x, y,
+               deck - 13312, 713, 296, 4160, shade=6, angle=_facing(axes, 0, -1))
+    x, y = axes(35, 36)
+    _flat(layout, coach.at("aisle"), "aisle_blood", x, y, deck - 20, 956, 260, 300, shade=-10)
+    x, y = axes(77, 34)
+    _prop(layout, coach.at("aisle"), "aisle_case", x, y, 523, 40, 38, shade=-18)
+    _outside_lettering(layout, coach, coach.at("board"), plan.slots[plan.door], carry=carry)
+    # wheels under the running board, both flanks: they stand in the track's own space
+    outside = []
+    for side, v, way in (("south", carriage.WIDTH + 0.15, 1), ("north", -0.15, -1)):
+        for index, u in enumerate((16, 40, 88, 112)):
+            x, y = axes(u, v)
+            name = f"wheels_{side}_{index}"
+            _panel(layout, coach.host, name, x, y, TRACK_FLOOR - 2700, 2320, 900, 5000,
+                   shade=6, angle=_facing(axes, 0, way), carry=carry)
+            outside.append(f"phantom:{name}")
+    return tuple(outside)
+
+
+def light_groups(compiled):
+    """The station's lamps that blink, go out or travel, and the wire each is on.
+
+    What each one lights is traced (`bloodmap.light_stage.switch_lamps`): the
+    owner, 2026-11-24, "when you made light blinking it should also affect
+    neighbouring sectors that are lit by that light".
+    """
+    from bloodmap import posed
+    from bloodmap.light_stage import LampGroup
+
+    def lamps(*names):
+        return frozenset(compiled.placement_sprites[f"phantom:{name}"] for name in names)
+
+    def station(region):
+        return "/ghost_station/" in region and "_coach:" not in region
+
+    def coach(region):
+        return "_coach:" in region
+
+    def gone(disk):
+        prize = compiled.placement_sprites[f"phantom:prize:{PRIZE_REGION}"]
+        return posed.posed(disk, posed.chain_of(wiring.chains(disk), f"sprite {prize}"))[0]
+
+    car = lamps(*(f"car_lamp_{i}" for i in range(len(COACH_PLAN.slots))), "car_lamp_seat", "car_lamp_cab")
+    link, depart = wires.channel(CAR_LIGHT), wires.channel(DEPART)
+    sick = {"wave": 8, "frequency": 4}                     # flicker3: lit, with dips
+    groups = [
+        LampGroup("the coach's own lamps", car, within=coach, **sick),
+        LampGroup("what falls from its windows", car, "on", rx=link, within=station, **sick),
+        LampGroup("what falls from them at the far berth", car, "on", rx=link, within=station, moved=gone),
+        LampGroup("the platform's lamps", lamps("platform_lamp_gate", "platform_lamp_last", "edge_lamp_1",
+                                                "booking_ticket_lamp",
+                                                "booking_sign_light"), "out", rx=depart, within=station),
+        LampGroup("the loose lamp", lamps(f"loose_vault_lamp:{STATION}/cracked_vault"), wave=7, frequency=3,
+                  phase=40, within=station),
+        LampGroup("the near lamp", lamps("edge_lamp_0"), "out", rx=wires.channel(PLATFORM_ENTRY), within=station),
+        LampGroup("the clerk's lamp", lamps("clerk_lamp"), wave=6, frequency=4, phase=90, within=station),
+        LampGroup("the drowned carriage", lamps(*(f"drowned_lamp_{i}" for i in range(len(WRECK_PLAN.slots)))),
+                  wave=8, frequency=3, phase=60, within=station),
+    ]
+    # flicker4 (9) is dark with bursts, strobe (10) a flash that dies away
+    for index, (wave, frequency) in enumerate(((7, 5), (9, 4), (10, 5), (9, 3))):
+        groups.append(LampGroup(f"watcher {index}", lamps(f"watcher_lamp_{index}"), wave=wave,
+                                frequency=frequency, phase=70 * index, within=station))
+    return groups
 
 
 def apply_surface_palette(layout, compiled):
@@ -1029,21 +933,14 @@ def apply_surface_palette(layout, compiled):
         allocation = compiled.allocations.get(name)
         if allocation is None:
             continue
-        leaf = name.rsplit("/", 1)[-1]
-        kind = (region.intent or {}).get("kind")
-        if kind in {"phantom_green_spill", "phantom_cab_green"} or leaf == "track_car":
-            palette = GREEN
-        elif leaf.startswith("watch_niche_"):
-            palette = 10
-        else:
-            continue
         fields = record_fields(compiled.level.sectors[allocation.sector_id])
-        fields["floor_pal"] = palette
-        if kind != "phantom_green_spill":
-            fields["ceiling_pal"] = palette
-        if kind == "phantom_cab_green" or leaf.startswith("watch_niche_"):
+        intent = region.intent or {}
+        if "floor_pal" in intent:                          # a carriage's piece (`carriage.build`)
+            fields["floor_pal"], fields["ceiling_pal"] = intent["floor_pal"], intent["ceiling_pal"]
+        elif name.rsplit("/", 1)[-1].startswith("watch_niche_"):
+            fields["floor_pal"] = fields["ceiling_pal"] = 10
             for index in allocation.wall_ids:
-                record_fields(compiled.level.walls[index])["pal"] = palette
+                record_fields(compiled.level.walls[index])["pal"] = 10
 
 
 def _marker(layout, name, region, x, y, kind, tile=0, *, angle=0, **behavior):
@@ -1067,18 +964,20 @@ def _platform_entry(layout, room):
     entry.then(wiring.placement(whistle))
 
 
-def _coach_controls(layout, car, station, stop):
+def _coach_controls(layout, coach, station, stop):
     """The handle and the loot start one show, with repeatable travel afterwards."""
     run = wires.wire(RUN)
     departure = wires.wire(DEPART)
-    guns = _prop(layout, car, "prize", *PRIZE_AT, 558, 48, 48, support=SEAT_Z,
-                 type=42, status=3, cstat=128 | mechanism.CARRY_WITH, shade=-48)
+    aisle = coach.at("aisle")
+    guns = _prop(layout, coach.at("north_seat_1"), "prize", *PRIZE_AT, 558, 48, 48,
+                 type=42, status=3, cstat=128, shade=-48)
     prize = wires.wire(PRIZE)
     prize.when(wiring.placement(guns), "pickup", command=motion.CMD_ON,
                once=True, dude_lockout=1)
+    x, y = coach.axes(coach.plan.inside[1] - 0.15, 42)
     handle = layout.add_sprite(
-        "phantom:driver_handle", car, x=CAR[2] - 88, y=-14688, z=TRACK_FLOOR - 12672,
-        type=20, picnum=1070, angle=1024, cstat=208 | mechanism.CARRY_WITH,
+        "phantom:driver_handle", coach.at("cab"), x=x, y=y, z=DECK - 9600,
+        type=20, picnum=1070, angle=1024, cstat=208,
         x_repeat=50, y_repeat=54, shade=-15, behavior={"data_1": 203, "data_2": 203})
     run.when(wiring.placement(handle), "push", command=motion.CMD_TOGGLE, off=True)
     relay = _marker(layout, "prize_relay", station, 52336, -11600, 20)
@@ -1092,35 +991,30 @@ def _coach_controls(layout, car, station, stop):
     arm.then(wiring.placement(latch))
     departure.when(wiring.placement(latch), "relay", command=motion.CMD_ON)
 
-    # A decoupled Enter reports ON without changing the mover. Its OFF stop also
-    # reports its own state, so the two commands reach different receivers.
-    coach = wires.wire(COACH)
-    coach.when(wiring.region(car), "enter", command=motion.CMD_STATE, once=True,
-               on=True, off=True, decoupled=1, dude_lockout=1)
-    board_gate = _marker(layout, "boarding_sense", station, 52432, -11600, 20)
-    coach.then(wiring.placement(board_gate))
-    gate = wires.wire("phantom:boarding-arm")
-    gate.when(wiring.placement(board_gate), "relay", command=motion.CMD_ON)
-    once = _marker(layout, "boarding_latch", station, 52464, -11600, 20)
-    gate.then(wiring.placement(once))
-    boarding = wires.wire(BOARDING)
-    boarding.when(wiring.placement(once), "relay", command=motion.CMD_ON)
-    pulse = _marker(layout, "boarding_pulse", station, 52496, -11600, 20)
-    boarding.then(wiring.placement(pulse), wait_time=2)
-    wires.wire(LAMP_PULSE).when(wiring.placement(pulse), "relay",
-                               command=motion.CMD_NOT_STATE, off=True)
+    # The body announces each berth it stops at; another of its members drives
+    # the light that falls from its windows, as it goes (`lights.groups`).
+    coach_state = wires.wire(COACH_STATE)
+    coach_state.when(wiring.region(aisle), wiring.RELAY, command=motion.CMD_STATE, on=True, off=True)
+    wires.wire(CAR_LIGHT).when(wiring.region(coach.at("cab")), wiring.RELAY,
+                               command=motion.CMD_LINK, on=False)
     arrival = _marker(layout, "arrival_quote", stop.region_id, 68160, -9700, 20, state=1)
-    coach.then(wiring.placement(arrival))
+    coach_state.then(wiring.placement(arrival))
 
     from caleb import ghost_tunnel
     ghost_tunnel(layout, stop, arrival_switch=arrival)
 
 
-def _run_car(layout, track, platform, stop, lamps):
-    car = _make_car(layout, track.region_id)
-    _furnish_car(layout, car)
+def _run_car(layout, track, platform, stop):
+    coach = carriage.build(layout, f"{track.region_id}_coach", track.region_id, COACH, DECK, COACH_PLAN,
+                           pal=GREEN, shade=6, kind="phantom_cab_green")
+    outside = _furnish_coach(layout, coach)
     station = platform.region_id
-    _coach_controls(layout, car, station, stop)
+    _coach_controls(layout, coach, station, stop)
+    body = mechanism.rigid_body(layout, "phantom_car", members=coach.members, host_region=coach.host,
+                                travel=(-TRAVEL, 0), lead=coach.at("aisle"), busy_time=55, wave=1)
+    for region in body["receivers"]:
+        wires.wire(RUN).then(wiring.region(region))
+    mechanism.carry_fittings(layout, coach.members, also=outside)
     departure = wires.wire(DEPART)
     horn = _marker(layout, "whistle", station, 52304, -11584, 711, 2519, data_1=276)
     quake = _marker(layout, "quake", station, 52544, -11300, 19, 2072, data_1=1200)
@@ -1130,31 +1024,11 @@ def _run_car(layout, track, platform, stop, lamps):
         spawn = _marker(layout, f"spawn_{i}", track.region_id, x, -16768, 18, 2077,
                         angle=1024, data_1=210)
         departure.then(wiring.placement(spawn))
-    relay = _marker(layout, "track_spill_dimmer", station, 52528, -11600, 20)
-    departure.then(wiring.placement(relay))
-    off = wires.wire(SPILL_OFF)
-    off.when(wiring.placement(relay), "relay", command=motion.CMD_OFF)
-    # The fixed track host cannot be cut. Its spill is nonblocking native
-    # floor art. The Crate Face receiver removes it permanently on OFF.
-    for index, (left, right) in enumerate(WINDOWS):
-        spill = _flat(layout, track.region_id, f"track_spill_{index}",
-                      (left + right) // 2, -12912, TRACK_FLOOR - 12, 455,
-                      right - left - 32, 576, pal=GREEN, shade=-58, cstat=162,
-                      type=405, behavior={"state": 1})
-        off.then(wiring.placement(spill))
-
     import ambience
     for suffix, space, x, y, context in (
         ("station", station, 47200, -11000, "interior"),
-        ("siding", station.rsplit("/", 1)[0] + "/drowned", 44000, -14000, "sewer"),
+        ("siding", station.rsplit("/", 1)[0] + "/drowned", 44544, -14000, "sewer"),
     ):
         z = layout.regions[space].floor_z - 6144
         layout.add_sprite(f"phantom:ambience_{suffix}", space, x=x, y=y, z=z,
                           **ambience.fields(context))
-    shade = {"shade_floor": 1, "shade_ceiling": 1, "shade_walls": 1}
-    for lamp in lamps:
-        departure.then(wiring.region(lamp.region_id), amplitude=48, **shade)
-    reveal = station.rsplit("/", 1)[0] + "/clerk"
-    layout.regions[reveal].sector_behavior.update(
-        shade_always=1, shade_wave=6, amplitude=-13, shade_frequency=10, **shade)
-

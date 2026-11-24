@@ -1,0 +1,30 @@
+{
+ "recognition": {
+  "named": "a funeral railcar in an underground station",
+  "sure": 4,
+  "score": 4,
+  "blocking": []
+ },
+ "comparison": {
+  "named": "",
+  "sure": 0,
+  "score": 4,
+  "blocking": [
+   "in the flooded view the visible car ends so abruptly that it reads as a kiosk"
+  ]
+ },
+ "use": {
+  "named": "",
+  "sure": 0,
+  "score": 4,
+  "blocking": []
+ },
+ "sense": {
+  "named": "",
+  "sure": 0,
+  "score": 3,
+  "blocking": [
+   "conditional: if the drowned carriage were an entrance, its flooded aisle has no dry surface (it is not one)"
+  ]
+ }
+}

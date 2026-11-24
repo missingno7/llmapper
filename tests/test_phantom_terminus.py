@@ -1,17 +1,17 @@
-"""Read Gravesend's Phantom carriage, departure sequence and exits from MAP bytes."""
+"""Read Gravesend's Phantom carriage, departure sequence, lights and exits from MAP bytes."""
 
-from collections import deque
+from collections import Counter, deque
 from math import hypot
 import sys
 import unittest
 from pathlib import Path
 
-from shapely.geometry import LineString, Point, Polygon
+from shapely.geometry import Point, Polygon
 
-from bloodmap import flatsprite, mechanism, motion, posed, swept_state, wiring
+from bloodmap import mechanism, motion, posed, swept_state, wiring
 from bloodmap.format import read_map
 from bloodmap.model import record_extra, record_fields
-from bloodmap.motion_sim import blood_sweep
+from bloodmap.motion_sim import body_health, rigid_bodies
 from bloodmap.placement import drawn_extent
 from bloodmap.player_space import PLAYER_PROFILES
 from bloodmap.sector_geom import outline_and_holes, sector_at, sector_walls, wall_segment
@@ -51,214 +51,214 @@ class PhantomTerminusTests(unittest.TestCase):
     def setUpClass(cls):
         if str(LEVEL) not in sys.path:
             sys.path.insert(0, str(LEVEL))
+        import carriage
         import phantom_terminus as terminus
         import wallplane
         import wires
 
-        cls.design = terminus
+        cls.carriage, cls.design = carriage, terminus
         cls.art = wallplane.art()
         cls.destination_tiles = [wallplane.tile_for(letter) for letter in "PHANTOM"]
         cls.disk = read_map(LEVEL / "blood-city-current.MAP")
         cls.wires = {name: wires.channel(name)
-                     for name in (terminus.DEPART, terminus.RUN, terminus.PRIZE,
-                                  terminus.ARM, terminus.COACH, terminus.BOARDING,
-                                  terminus.LAMP_PULSE, terminus.PLATFORM_ENTRY,
-                                  terminus.SPILL_OFF, "caleb:ghost-tunnel")}
+                     for name in (terminus.DEPART, terminus.RUN, terminus.PRIZE, terminus.ARM,
+                                  terminus.COACH_STATE, terminus.CAR_LIGHT, terminus.PLATFORM_ENTRY)}
         cls.nodes = wiring.nodes(cls.disk)
-        cls.car, = [node["index"] for node in cls.nodes
-                    if node["kind"] == "sector" and node["rx"] == cls.wires[terminus.RUN]]
+        cls.aisle = cls.sector(cls, *terminus.COACH(35, 25), terminus.DECK)
+        cls.body, = [b for b in rigid_bodies(cls.disk) if cls.aisle in b.members]
         cls.prize, = [node["index"] for node in cls.nodes
                       if node["type"] == 42 and node["tx"] == cls.wires[terminus.PRIZE]]
         cls.departure = posed.chain_of(wiring.chains(cls.disk), f"sprite {cls.prize}")
 
-    def test_carried_interior_and_equilevel_window_masks(self):
-        fields = record_fields(self.disk.sectors[self.car])
-        behavior = record_extra(self.disk.sectors[self.car])
-        self.assertEqual(fields["type"], 616)
-        self.assertTrue(fields["floor_stat"] & 64)
-        self.assertEqual((fields["floor_pal"], fields["ceiling_pal"]), (self.design.GREEN,) * 2)
-        self.assertLessEqual(max(fields["floor_shade"], fields["ceiling_shade"]), 4)
-        self.assertGreaterEqual(fields["floor_z"] - fields["ceiling_z"], 24576)
-        self.assertTrue(behavior["state"] and behavior["drag"])
-        self.assertFalse(behavior["crush"])
-        hosts = swept_state.hosts(self.disk)
-        track, = [host for host, movers in hosts.items() if self.car in movers]
-        self.assertEqual(hosts[track], {self.car})
-        track_fields = record_fields(self.disk.sectors[track])
-        self.assertEqual((fields["floor_z"], fields["ceiling_z"]),
-                         (track_fields["floor_z"], track_fields["ceiling_z"]))
-        windows, doors = 0, []
-        for index in sector_walls(self.disk, self.car):
-            wall = record_fields(self.disk.walls[index])
-            other = record_fields(self.disk.walls[wall["next_wall"]])
-            self.assertEqual((wall["next_sector"], other["next_sector"]), (track, self.car))
-            if not wall["cstat"] & 1:
-                doors.append(wall_segment(self.disk, index))
-            if wall["over_picnum"] == self.design.WINDOW_MASK:
-                self.assertEqual(wall["cstat"] & 0xD1, 0x51)
-                self.assertEqual(other["over_picnum"], self.design.WINDOW_MASK)
-                self.assertEqual(wall["pal"], self.design.GREEN)
-                windows += 1
-        self.assertEqual(windows, 8)
-        door, = doors
-        self.assertGreaterEqual(abs(door[1][0] - door[0][0]), BODY.body_width * 2)
-        fittings = [s for s in self.disk.sprites
-                    if (f := record_fields(s))["sector"] == self.car and f["status"] not in {10, 16}]
-        self.assertTrue(fittings)
-        self.assertTrue(all(record_fields(s)["cstat"] & mechanism.CARRY_WITH for s in fittings))
-        seated = [record_fields(s) for s in fittings if record_fields(s)["picnum"] in self.design.SEATED]
-        self.assertGreaterEqual(len(seated), 8)
-        self.assertLessEqual(len(seated), 12)
-        self.assertTrue(all((body["angle"], body["pal"]) == (512, 0) for body in seated))
-        tops = [f for s in fittings if (f := record_fields(s))["picnum"] == 67
-                and f["cstat"] & 48 == 32 and f["z"] == self.design.SEAT_Z]
-        seats = [Polygon(flatsprite.footprint(top, self.art[67][:2], self.art[67][2:]))
-                 for top in tops]
-        for passenger in (*seated, record_fields(self.disk.sprites[self.prize])):
-            with self.subTest(tile=passenger["picnum"], x=passenger["x"]):
-                _, height, _, offset = self.art[passenger["picnum"]]
-                _, bottom = drawn_extent(height, offset, passenger["y_repeat"], passenger["cstat"])
-                self.assertEqual(passenger["z"] + bottom, self.design.SEAT_Z - 16)
-                self.assertTrue(any(seat.contains(Point(passenger["x"], passenger["y"])) for seat in seats))
-        sound, = [record_extra(s) for s in fittings if record_fields(s)["type"] == 709]
-        self.assertEqual(tuple(sound[f"data_{i}"] for i in range(1, 5)), (115, 277, 115, 277))
+    def sector(self, x, y, floor):
+        return sector_at(self.disk, x, y, floor_near=floor)
 
-    def test_entire_sweep_leaves_a_walk_on_both_sides_and_an_exit_at_both_berths(self):
-        self.assertTrue(swept_state.sweep_sector(self.disk, self.car, steps=64).sound)
-        track, = [host for host, movers in swept_state.hosts(self.disk).items() if self.car in movers]
-        outer, holes = outline_and_holes(self.disk, track)
-        self.assertEqual(len(holes), 1)
-        bay = Polygon(outer)
-        stroke = blood_sweep(self.disk, self.car, steps=64)
-        west, north, east, south = bay.bounds
-        radius = BODY.body_radius
-        lanes = [LineString([(west + 512, y), (east - 512, y)])
-                 for y in (north + 384, south - 384)]
-        for loop in stroke:
-            outline = Polygon(loop)
-            self.assertTrue(bay.contains(outline.buffer(radius)))
-            self.assertTrue(all(outline.distance(lane) >= radius for lane in lanes))
-        self.assertEqual(motion.marker_pair(self.disk, self.car)["travel"],
-                         (-self.design.TRAVEL, 0))
+    def test_the_carriage_is_one_body_of_sectors_inside_one_host(self):
+        self.assertGreater(len(self.body.members), 50)
+        health = body_health(self.disk, self.body, steps=64)
+        self.assertEqual((health["problems"], health["notes"]), ([], []))
+        host = health["host"]
+        self.assertEqual(swept_state.hosts(self.disk)[host] & set(self.body.members),
+                         swept_state.hosts(self.disk)[host])
+        self.assertEqual(list(self.body.displacement), [-self.design.TRAVEL, 0])
+        self.assertEqual(self.body.rx, self.wires[self.design.RUN])
+        roles = Counter()
+        for index in self.body.members:
+            f, x = record_fields(self.disk.sectors[index]), record_extra(self.disk.sectors[index])
+            self.assertTrue(x["drag"] and x["state"])
+            if f["floor_z"] == f["ceiling_z"]:
+                roles["solid"] += 1
+                continue
+            # the owner: "The ceiling of the train if it is part of the train it should move"
+            self.assertTrue(f["floor_stat"] & f["ceiling_stat"] & 64, index)
+            roles["seat" if f["floor_z"] == self.design.SEAT_Z else "open"] += 1
+        self.assertGreaterEqual(roles["solid"], 14)
+        self.assertEqual(roles["seat"], 9)
+        panes = [w for s in self.body.members for w in sector_walls(self.disk, s)
+                 if record_fields(self.disk.walls[w])["over_picnum"] in
+                 (self.carriage.GLASS, self.carriage.BROKEN)
+                 and record_fields(self.disk.walls[w])["cstat"] & 16]
+        self.assertEqual(len(panes) % 2, 0)
+        self.assertGreaterEqual(len(panes) // 2, 12)
+        for pane in panes:
+            wall = record_fields(self.disk.walls[pane])
+            here = next(s for s in self.body.members if pane in sector_walls(self.disk, s))
+            a, b = (record_fields(self.disk.sectors[s]) for s in (here, wall["next_sector"]))
+            self.assertIn(wall["next_sector"], self.body.members)
+            self.assertEqual((a["floor_z"], a["ceiling_z"]), (b["floor_z"], b["ceiling_z"]))
+            self.assertTrue(wall["cstat"] & 1)
+
+    def test_everything_aboard_rides_and_the_dead_sit_on_the_benches(self):
+        fittings = [f for s in self.disk.sprites if (f := record_fields(s))["sector"] in self.body.members
+                    and f["status"] not in {10, 16}]
+        self.assertTrue(fittings)
+        self.assertTrue(all(f["cstat"] & mechanism.CARRY_WITH for f in fittings))
+        seated = [f for f in fittings if f["picnum"] in self.design.SEATED]
+        self.assertGreaterEqual(len(seated), 8)
+        for f in (*seated, record_fields(self.disk.sprites[self.prize])):
+            self.assertEqual(record_fields(self.disk.sectors[f["sector"]])["floor_z"], self.design.SEAT_Z)
+            # whoever sits there is drawn standing up from it, and from no flat cut-out
+            self.assertEqual(f["cstat"] & 48, 0)
+            _, height, _, offset = self.art[f["picnum"]]
+            _, bottom = drawn_extent(height, offset, f["y_repeat"], f["cstat"])
+            self.assertEqual(f["z"] + bottom, self.design.SEAT_Z - 16)
+        # the wheels hang in the host's space and ride because it moves as the car does (E1M2 s34)
+        host = body_health(self.disk, self.body)["host"]
+        fields, extra = record_fields(self.disk.sectors[host]), record_extra(self.disk.sectors[host])
+        self.assertEqual((fields["type"], extra["rx_id"]), (614, self.wires[self.design.RUN]))
+        self.assertFalse(any(record_fields(self.disk.walls[w])["cstat"] & motion.CARRY
+                             for w in sector_walls(self.disk, host)))
+        wheels = [f for s in self.disk.sprites if (f := record_fields(s))["sector"] == host
+                  and f["picnum"] == 2320]
+        self.assertEqual(len(wheels), 8)
+        self.assertTrue(all(f["cstat"] & mechanism.CARRY_WITH for f in wheels))
+        voice = [s for s in self.disk.sprites if record_fields(s)["type"] == 709
+                 and record_fields(s)["sector"] in self.body.members]
+        self.assertEqual(len(voice), 1)
+        self.assertEqual(tuple(record_extra(voice[0])[f"data_{i}"] for i in range(1, 5)), (115, 277, 115, 277))
+        fascia = sorted((f for f in fittings if f["picnum"] in self.destination_tiles
+                         and f["cstat"] & 48 == 16), key=lambda f: f["x"])
+        self.assertEqual([f["picnum"] for f in fascia], self.destination_tiles)
+
+    def test_the_whole_travel_leaves_a_lane_and_a_way_out_at_both_berths(self):
+        host = body_health(self.disk, self.body)["host"]
+        bay = Polygon(outline_and_holes(self.disk, host)[0])
+        west, north, east, south = self.design.CAR
+        for shift in (0, self.design.TRAVEL // 2, self.design.TRAVEL):
+            car = Polygon([(west + shift, north), (east + shift, north), (east + shift, south), (west + shift, south)])
+            self.assertTrue(bay.contains(car))
+        self.assertGreaterEqual(north - bay.bounds[1], 2 * BODY.body_width)
+        # at the door the gap is one a body cannot fall through
+        edge = self.sector(sum(self.design.DOOR) // 2, self.design.SOUTH_EDGE + 64, self.design.DECK)
+        self.assertLess(self.design.SOUTH_EDGE - south, BODY.body_radius)
+        self.assertEqual(record_fields(self.disk.sectors[edge])["floor_z"], self.design.DECK)
 
         fired, _ = posed.posed(self.disk, self.departure)
         for pose in (self.disk, fired):
             home = sector_at(pose, 48448, -8192, floor_near=self.design.GHOST_FLOOR)
             stop = sector_at(pose, 68160, -9824, floor_near=self.design.GHOST_FLOOR + 2048)
-            self.assertIn(home, walking_sectors(pose, self.car))
-            self.assertIn(home, walking_sectors(pose, stop))
+            pit = sector_at(pose, 47616, -16640, floor_near=self.design.TRACK_FLOOR)
+            for start in (self.aisle, stop, pit):
+                self.assertIn(home, walking_sectors(pose, start))
             self.assertIn(stop, walking_sectors(pose, home))
 
     def test_prize_runs_the_show_and_buttons_recall_the_car(self):
-        prize = self.disk.sprites[self.prize]
-        self.assertEqual(record_fields(prize)["sector"], self.car)
+        self.assertIn(record_fields(self.disk.sprites[self.prize])["sector"], self.body.members)
         self.assertEqual(self.departure["cause"], ["pickup"])
         self.assertTrue(self.departure["once"])
-        self.assertIn((f"sector {self.car}", motion.CMD_OFF),
-                      [(step["to"], step["command"]) for step in self.departure["steps"]])
-        affected = [step["to"] for step in self.departure["steps"]]
-        effects = [self.disk.sprites[int(ref.split()[1])] for ref in affected
-                   if ref.startswith("sprite ")]
+        sent = [(step["to"], step["command"]) for step in self.departure["steps"]]
+        for member in self.body.members:
+            self.assertIn((f"sector {member}", motion.CMD_OFF), sent)
+        effects = [self.disk.sprites[int(step["to"].split()[1])] for step in self.departure["steps"]
+                   if step["to"].startswith("sprite ")]
         for kind, value in ((711, 276), (711, 3034), (18, 210), (19, 1200)):
             self.assertIn((kind, value), [(record_fields(s)["type"], record_extra(s)["data_1"])
                                          for s in effects])
-        ghosts = [record_fields(s) for s in effects if record_fields(s)["type"] == 18]
-        self.assertEqual([ghost["angle"] for ghost in ghosts], [1024, 1024])
-        car = record_extra(self.disk.sectors[self.car])
-        self.assertEqual(car["command"], motion.CMD_STATE)
-        self.assertEqual(car["tx_id"], self.wires[self.design.COACH])
-        self.assertTrue(car["trigger_on"] and car["trigger_off"])
+        coach = record_extra(self.disk.sectors[self.aisle])
+        self.assertEqual((coach["command"], coach["tx_id"]),
+                         (motion.CMD_STATE, self.wires[self.design.COACH_STATE]))
         calls = [n for n in self.nodes if n["kind"] == "sprite"
                  and n["tx"] == self.wires[self.design.RUN] and "push" in n["causes"]]
         self.assertEqual(len(calls), 3)
-        for call in calls:
-            fields = record_fields(self.disk.sprites[call["index"]])
-            trigger = record_extra(self.disk.sprites[call["index"]])
-            self.assertEqual(fields["type"], 20)
-            if fields["sector"] == self.car:
-                self.assertEqual(trigger["command"], motion.CMD_TOGGLE)
-                self.assertTrue(trigger["trigger_on"] and trigger["trigger_off"])
-                self.assertTrue(fields["cstat"] & mechanism.CARRY_WITH)
-                chain = posed.chain_of(wiring.chains(self.disk), f'sprite {call["index"]}')
-                self.assertIn((f"sector {self.car}", motion.CMD_TOGGLE),
-                              [(step["to"], step["command"]) for step in chain["steps"]])
-            else:
-                self.assertEqual(trigger["command"], motion.CMD_ON)
-        handle, = [n for n in calls
-                   if record_fields(self.disk.sprites[n["index"]])["sector"] == self.car]
-        handle_chain = posed.chain_of(wiring.chains(self.disk), f'sprite {handle["index"]}')
+        aboard = [n for n in calls if record_fields(self.disk.sprites[n["index"]])["sector"] in self.body.members]
+        handle, = aboard
+        self.assertEqual(record_extra(self.disk.sprites[handle["index"]])["command"], motion.CMD_TOGGLE)
         via_pickup, _ = posed.posed(self.disk, self.departure)
-        via_handle, _ = posed.posed(self.disk, handle_chain)
-        self.assertEqual(outline_and_holes(via_pickup, self.car), outline_and_holes(via_handle, self.car))
-        self.assertNotEqual(outline_and_holes(self.disk, self.car), outline_and_holes(via_handle, self.car))
+        via_handle, _ = posed.posed(
+            self.disk, posed.chain_of(wiring.chains(self.disk), f'sprite {handle["index"]}'))
+        for member in self.body.members:
+            self.assertEqual(outline_and_holes(via_pickup, member), outline_and_holes(via_handle, member))
+            a, b = (record_fields(d.walls[sector_walls(d, member)[0]]) for d in (self.disk, via_pickup))
+            self.assertEqual((b["x"] - a["x"], b["y"] - a["y"]), (self.design.TRAVEL, 0))
 
-    def test_station_lighting_does_not_share_the_secret_trigger(self):
-        secret = sector_at(self.disk, 48448, -8192, floor_near=self.design.GHOST_FLOOR)
-        self.assertEqual(sector_at(self.disk, 48448, -8400, floor_near=self.design.GHOST_FLOOR),
-                         secret)
+    def lit_by(self, **wanted):
+        return [(i, record_fields(s), x) for i, s in enumerate(self.disk.sectors)
+                if (x := record_extra(s)) and all(x.get(k) == v for k, v in wanted.items()) and x["amplitude"]]
+
+    def test_a_lamp_that_switches_takes_its_light_with_it(self):
+        entry, depart, link = (self.wires[n] for n in (self.design.PLATFORM_ENTRY, self.design.DEPART,
+                                                       self.design.CAR_LIGHT))
+        for channel in (entry, depart):
+            rows = self.lit_by(rx_id=channel)
+            self.assertTrue(rows)
+            # lit until the wire turns it on: saved bright, OFF, with a wave that darkens
+            self.assertTrue(all(x["amplitude"] > 0 and not x["state"] and not x["shade_always"] for *_, x in rows))
+        driver, = [x for s in self.disk.sectors if (x := record_extra(s))
+                   and x["tx_id"] == link and x["command"] == motion.CMD_LINK]
+        self.assertEqual(driver["rx_id"], self.wires[self.design.RUN])
+        fallen = self.lit_by(rx_id=link, state=1)
+        self.assertTrue(fallen)
+        self.assertTrue(all(x["busy"] == 65536 for *_, x in fallen))
+        inside = [x for i, _, x in self.lit_by(shade_always=1) if i in self.body.members]
+        self.assertGreater(len(inside), 20)
+        self.assertEqual(len({(x["shade_wave"], x["shade_frequency"], x["shade_phase"]) for x in inside}), 1)
+        # the reapers' niches: each flickers on a beat of its own, its mouth with it
+        beats = set()
+        for x0 in self.design.WATCHERS:
+            niche = self.sector(x0 + 576, -18016, self.design.WATCH_FLOOR)
+            light = record_extra(self.disk.sectors[niche])
+            self.assertTrue(light and light["shade_always"] and light["amplitude"] < 0)
+            beats.add((light["shade_wave"], light["shade_frequency"], light["shade_phase"]))
+            self.assertTrue(any(record_extra(self.disk.sectors[n])
+                                and record_extra(self.disk.sectors[n])["shade_phase"] == light["shade_phase"]
+                                and record_extra(self.disk.sectors[n])["shade_always"]
+                                for w in sector_walls(self.disk, niche)
+                                if (n := record_fields(self.disk.walls[w])["next_sector"]) >= 0))
+        self.assertEqual(len(beats), len(self.design.WATCHERS))
+
+    def test_the_station_keeps_its_secret_and_its_first_step(self):
+        secret = self.sector(48448, -8192, self.design.GHOST_FLOOR)
         credit = record_extra(self.disk.sectors[secret])
         self.assertEqual(credit["tx_id"], motion.CHANNEL_SECRET_FOUND)
-        self.assertFalse(credit["rx_id"] or credit["amplitude"])
+        self.assertFalse(credit["rx_id"])
         self.assertTrue(credit["trigger_once"] and credit["trigger_enter"])
         self.assertEqual(sum((record_extra(s) or {}).get("tx_id") == motion.CHANNEL_SECRET_FOUND
                              for s in self.disk.sectors), 7)
-        station_entry = self.wires[self.design.PLATFORM_ENTRY]
-        entry, = [record_extra(s) for s in self.disk.sectors
-                  if (record_extra(s) or {}).get("tx_id") == station_entry]
-        self.assertTrue(entry["trigger_enter"] and entry["trigger_once"])
-        self.assertEqual(entry["command"], motion.CMD_TOGGLE)
-        threshold = sector_at(self.disk, 49984, -10240, floor_near=self.design.GHOST_FLOOR)
-        self.assertEqual(record_extra(self.disk.sectors[threshold])["tx_id"], station_entry)
-        entry_props = [s for s in self.disk.sprites if (record_extra(s) or {}).get("rx_id") == station_entry]
-        self.assertCountEqual([record_fields(s)["type"] for s in entry_props], (456, 708))
-        whistle, = [record_extra(s) for s in entry_props if record_fields(s)["type"] == 708]
+        channel = self.wires[self.design.PLATFORM_ENTRY]
+        throat = record_extra(self.disk.sectors[self.sector(49984, -10240, self.design.GHOST_FLOOR)])
+        self.assertEqual((throat["tx_id"], throat["command"]), (channel, motion.CMD_TOGGLE))
+        self.assertTrue(throat["trigger_enter"] and throat["trigger_once"])
+        whistle, = [record_extra(s) for s in self.disk.sprites if (record_extra(s) or {}).get("rx_id") == channel]
         self.assertEqual((whistle["data_2"], whistle["busy_time"]), (276, 0))
 
-        car = record_extra(self.disk.sectors[self.car])
-        self.assertTrue(car["trigger_enter"] and car["trigger_once"] and car["decoupled"])
-        board, = [record_extra(s) for s in self.disk.sprites
-                  if (record_extra(s) or {}).get("tx_id") == self.wires[self.design.BOARDING]]
-        self.assertEqual((board["wait_time"], board["trigger_on"], board["trigger_off"]), (0, 1, 0))
-        pulse, = [record_extra(s) for s in self.disk.sprites
-                  if (record_extra(s) or {}).get("tx_id") == self.wires[self.design.LAMP_PULSE]]
-        self.assertEqual((pulse["rx_id"], pulse["command"], pulse["wait_time"]),
-                         (self.wires[self.design.BOARDING], motion.CMD_NOT_STATE, 2))
-        self.assertTrue(pulse["trigger_on"] and pulse["trigger_off"])
-        lamps = [record_fields(s) for s in self.disk.sprites
-                 if (record_extra(s) or {}).get("rx_id") == self.wires[self.design.LAMP_PULSE]]
-        self.assertEqual(len(lamps), 4)
-        self.assertTrue(all(lamp["type"] == 456 and lamp["sector"] == self.car and
-                            lamp["cstat"] & mechanism.CARRY_WITH for lamp in lamps))
+    def test_tiles_the_owner_ruled_on(self):
+        # 1717 is a wall of morgue drawers and 51, 52 are a wall's broken plaster
+        self.assertFalse([i for i, s in enumerate(self.disk.sectors)
+                          if 1717 in (record_fields(s)["floor_picnum"], record_fields(s)["ceiling_picnum"])])
+        self.assertFalse([i for i, s in enumerate(self.disk.sprites)
+                          if record_fields(s)["picnum"] in (51, 52) and record_fields(s)["cstat"] & 48 != 16])
 
-        home_spill = self.wires[self.design.DEPART]
-        far_spill = self.wires[self.design.COACH]
-        for channel, count, state in ((home_spill, 7, 0), (far_spill, 4, 1)):
-            strips = [(record_fields(s), record_extra(s)) for s in self.disk.sectors
-                      if (record_extra(s) or {}).get("rx_id") == channel
-                      and record_fields(s)["floor_pal"] == self.design.GREEN]
-            self.assertEqual(len(strips), count)
-            for fields, light in strips:
-                self.assertLessEqual(fields["floor_shade"], 6)
-                self.assertTrue(light["amplitude"] >= 48 and light["shade_floor"])
-                self.assertEqual((light["state"], light["shade_always"]), (state, 0))
-        track_spill = [s for s in self.disk.sprites if (record_extra(s) or {}).get("rx_id")
-                       == self.wires[self.design.SPILL_OFF]]
-        self.assertEqual(len(track_spill), 4)
-        self.assertTrue(all(record_fields(s)["type"] == 405 and record_extra(s)["state"]
-                            and record_fields(s)["pal"] == self.design.GREEN
-                            and not (record_fields(s)["cstat"] & 1) for s in track_spill))
-        clerk = sector_at(self.disk, 45312, -9000, floor_near=self.design.GHOST_FLOOR)
-        flicker = record_extra(self.disk.sectors[clerk])
-        self.assertEqual((flicker["shade_always"], flicker["shade_wave"]), (1, 6))
-        signs = [s for s in self.disk.sprites if record_fields(s)["picnum"] == 1667
-                 and record_fields(s)["z"] > self.design.GHOST_FLOOR - 32768]
-        self.assertEqual(len(signs), 2)
-        x0, x1 = self.design.DOOR
-        fascia = [f for s in self.disk.sprites if (f := record_fields(s))["sector"] == self.car
-                  and x0 < f["x"] < x1 and f["y"] == self.design.CAR[3] - 32
-                  and f["z"] == self.design.TRACK_ROOF + 2992]
-        self.assertEqual([f["picnum"] for f in sorted(fascia, key=lambda f: f["x"])],
-                         self.destination_tiles)
+    def test_the_drowned_carriage_stands_free(self):
+        plan, axes = self.design.WRECK_PLAN, self.design.WRECK
+        outline = Polygon([axes(u, v) for u, v in ((0, 0), (plan.length, 0), (plan.length, self.carriage.WIDTH),
+                                                   (0, self.carriage.WIDTH))])
+        cavern = Polygon(self.design.CAVERN)
+        self.assertTrue(cavern.contains(outline.buffer(2 * BODY.body_width)))
+        for x, y in outline.buffer(BODY.body_radius + 64).exterior.coords[::4]:
+            around = self.sector(int(x), int(y), self.design.WATER_FLOOR)
+            f = record_fields(self.disk.sectors[around])
+            self.assertGreaterEqual(f["floor_z"] - f["ceiling_z"], BODY.standing_height)
+        self.assertTrue(outline.contains(Point(*axes(35, 25))))
 
 
 if __name__ == "__main__":

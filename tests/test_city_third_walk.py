@@ -410,9 +410,15 @@ class ThirdWalkTests(unittest.TestCase):
         from bloodmap import swept_state
         from bloodmap.motion_sim import blood_sweep
         from bloodmap.sector_geom import sector_walls
+        from bloodmap.motion_sim import body_health, rigid_bodies
+        # a body of many sectors is asked as one: the train in its bore
+        body, = rigid_bodies(self.disk)
+        health = body_health(self.disk, body)
+        self.assertEqual((health["problems"], health["notes"]), ([], []))
+        self.assertIn(health["host"], swept_state.hosts(self.disk))
         rigid = [i for i in swept_state.moving_sectors(self.disk)
-                 if self.sectors[i]["type"] in (616, 617)]
-        self.assertEqual(len(rigid), 7)
+                 if self.sectors[i]["type"] in (616, 617) and i not in body.members]
+        self.assertEqual(len(rigid), 6)
         for mover in rigid:
             frames = blood_sweep(self.disk, mover)
             self.assertIsNone(swept_state.escape(self.disk, mover, frames))
