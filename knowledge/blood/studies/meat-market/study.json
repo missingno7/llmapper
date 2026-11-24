@@ -1,0 +1,1696 @@
+{
+ "slug": "meat-market",
+ "want": "a meat market hall: an aisle of hung carcasses from the street door to a cold store, the clerk's gallery over it; and a street stall outside",
+ "date": "2026-11-24",
+ "seeds": [
+  {
+   "seed": "E3M2:258!",
+   "map": "maps\\blood\\campaign\\E3M2.MAP",
+   "host": 258,
+   "sectors": [
+    117,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128,
+    180,
+    201,
+    258,
+    259,
+    260,
+    261
+   ],
+   "metres": [
+    9.1,
+    17.0,
+    7.0
+   ],
+   "area_M": 32.06,
+   "clear_bodies": 3.86,
+   "free_floor_share": 0.87,
+   "shade_spread": 32,
+   "floor": [
+    253,
+    "dressed/worked stone \u2014 altars, also concrete-like surfaces"
+   ],
+   "ceiling": [
+    174,
+    ""
+   ],
+   "walls": [
+    [
+     494,
+     0.186,
+     ""
+    ],
+    [
+     492,
+     0.173,
+     ""
+    ],
+    [
+     491,
+     0.152,
+     "metal plating; can also read as stone"
+    ],
+    [
+     495,
+     0.111,
+     "metal door"
+    ],
+    [
+     90,
+     0.107,
+     "worn large bricks with moss"
+    ],
+    [
+     497,
+     0.097,
+     "technical wall with pipes"
+    ],
+    [
+     21,
+     0.076,
+     "dark vertical planks"
+    ],
+    [
+     436,
+     0.054,
+     "metal threshold"
+    ],
+    [
+     195,
+     0.028,
+     "metal rail/track \u2014 PRIMARILY the inside faces of jambs only"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 117,
+     "corners": 10,
+     "size": [
+      256,
+      4032
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      90,
+      195,
+      495
+     ]
+    },
+    {
+     "sector": 121,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 122,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 123,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.72,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 124,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 0.97,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 125,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.21,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 126,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.45,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 127,
+     "corners": 4,
+     "size": [
+      512,
+      1024
+     ],
+     "rise_bodies": 1.69,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 128,
+     "corners": 4,
+     "size": [
+      1024,
+      1024
+     ],
+     "rise_bodies": 1.95,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      436,
+      491,
+      497
+     ]
+    },
+    {
+     "sector": 180,
+     "corners": 4,
+     "size": [
+      256,
+      2048
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 281,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80,
+      90,
+      195
+     ]
+    },
+    {
+     "sector": 201,
+     "corners": 4,
+     "size": [
+      256,
+      1280
+     ],
+     "rise_bodies": 0.02,
+     "floor_tile": 255,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      153
+     ]
+    },
+    {
+     "sector": 259,
+     "corners": 4,
+     "size": [
+      256,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      494
+     ]
+    },
+    {
+     "sector": 260,
+     "corners": 6,
+     "size": [
+      3328,
+      448
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      21,
+      492,
+      494
+     ]
+    },
+    {
+     "sector": 261,
+     "corners": 4,
+     "size": [
+      256,
+      64
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 253,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      21,
+      492,
+      494
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 6,
+     "repeats": [
+      104,
+      88
+     ],
+     "pal": 0,
+     "over_floor_bodies": 2.49
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 2,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 2,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.55
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 559,
+     "type": 41,
+     "type_name": "kItemWeaponSawedoff",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1715,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.0
+    },
+    {
+     "tile": 1708,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.92
+    },
+    {
+     "tile": 1709,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.95
+    },
+    {
+     "tile": 1714,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      112
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.81
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\E3M2_258\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\E3M2_258\\frames.png"
+   ]
+  },
+  {
+   "seed": "TEDE1M2:532!",
+   "map": "maps\\blood\\curated\\TEDE1M2.MAP",
+   "host": 532,
+   "sectors": [
+    505,
+    532,
+    995,
+    1002
+   ],
+   "metres": [
+    8.7,
+    10.9,
+    3.6
+   ],
+   "area_M": 23.85,
+   "clear_bodies": 1.99,
+   "free_floor_share": 0.94,
+   "shade_spread": 23,
+   "floor": [
+    292,
+    ""
+   ],
+   "ceiling": [
+    28,
+    "wooden wall"
+   ],
+   "walls": [
+    [
+     80,
+     0.613,
+     "weathered vertical stone wall with hints of moss"
+    ],
+    [
+     89,
+     0.138,
+     "stone wall"
+    ],
+    [
+     20,
+     0.128,
+     "wood"
+    ],
+    [
+     156,
+     0.114,
+     "door leaf texture"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 505,
+     "corners": 4,
+     "size": [
+      768,
+      1792
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 43,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      80
+     ]
+    },
+    {
+     "sector": 995,
+     "corners": 10,
+     "size": [
+      1984,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      20,
+      156,
+      178,
+      248
+     ]
+    },
+    {
+     "sector": 1002,
+     "corners": 3,
+     "size": [
+      1024,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 352,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      178
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 262,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.3
+    },
+    {
+     "tile": 655,
+     "type": 454,
+     "type_name": "kTrapSawCircular",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      80,
+      96
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.02
+    },
+    {
+     "tile": 713,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      184,
+      24
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.51
+    },
+    {
+     "tile": 925,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.33
+    },
+    {
+     "tile": 1370,
+     "type": 204,
+     "type_name": "kDudeZombieButcher",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.59
+    },
+    {
+     "tile": 2825,
+     "type": 202,
+     "type_name": "kDudeCultistShotgun",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.8
+    },
+    {
+     "tile": 817,
+     "type": 72,
+     "type_name": "kItemAmmoTommygunDrum",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\TEDE1M2_532\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\TEDE1M2_532\\frames.png"
+   ]
+  },
+  {
+   "seed": "E1M3:305!",
+   "map": "maps\\blood\\campaign\\E1M3.MAP",
+   "host": 305,
+   "sectors": [
+    305,
+    306,
+    307
+   ],
+   "metres": [
+    4.8,
+    6.1,
+    2.7
+   ],
+   "area_M": 8.64,
+   "clear_bodies": 1.51,
+   "free_floor_share": 1.0,
+   "shade_spread": 4,
+   "floor": [
+    315,
+    "metal door texture"
+   ],
+   "ceiling": [
+    255,
+    "metal wall, lightly rusted"
+   ],
+   "walls": [
+    [
+     345,
+     0.856,
+     ""
+    ],
+    [
+     156,
+     0.135,
+     "door leaf texture"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 306,
+     "corners": 14,
+     "size": [
+      2816,
+      3072
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 315,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      200,
+      345
+     ]
+    },
+    {
+     "sector": 307,
+     "corners": 10,
+     "size": [
+      1984,
+      512
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 315,
+     "sloped": false,
+     "type": 614,
+     "wall_tiles": [
+      156,
+      195,
+      200,
+      345
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 1351,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 3,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.89
+    },
+    {
+     "tile": 732,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1350,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.2
+    },
+    {
+     "tile": 1413,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 619,
+     "type": 67,
+     "type_name": "kItemAmmoSawedoffFew",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 2169,
+     "type": 109,
+     "type_name": "kItemHealthLifeEssense",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 1417,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\E1M3_305\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\E1M3_305\\frames.png"
+   ]
+  },
+  {
+   "seed": "DWE3M10:286!",
+   "map": "maps\\blood\\curated\\DWE3M10.MAP",
+   "host": 286,
+   "sectors": [
+    285,
+    286,
+    290,
+    291
+   ],
+   "metres": [
+    2.2,
+    3.9,
+    6.5
+   ],
+   "area_M": 2.95,
+   "clear_bodies": 3.62,
+   "free_floor_share": 0.53,
+   "shade_spread": 13,
+   "floor": [
+    374,
+    ""
+   ],
+   "ceiling": [
+    3678,
+    "dark rock / scorched ground"
+   ],
+   "walls": [
+    [
+     414,
+     0.397,
+     ""
+    ],
+    [
+     170,
+     0.353,
+     "wooden boarding"
+    ],
+    [
+     84,
+     0.205,
+     "wooden paneling / wainscot"
+    ],
+    [
+     20,
+     0.044,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 285,
+     "corners": 4,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 2.05,
+     "floor_tile": 20,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84,
+      414
+     ]
+    },
+    {
+     "sector": 290,
+     "corners": 6,
+     "size": [
+      256,
+      1280
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      84,
+      414
+     ]
+    },
+    {
+     "sector": 291,
+     "corners": 4,
+     "size": [
+      2048,
+      256
+     ],
+     "rise_bodies": 0.42,
+     "floor_tile": 34,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      84
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 178,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "flat",
+     "count": 4,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.81
+    },
+    {
+     "tile": 68,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 3,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.51
+    },
+    {
+     "tile": 1086,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.69
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\DWE3M10_286\\plan.png",
+   "frames": []
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-20.png"
+  },
+  "21": {
+   "tile": 21,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-21.png"
+  },
+  "28": {
+   "tile": 28,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-28.png"
+  },
+  "34": {
+   "tile": 34,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-34.png"
+  },
+  "43": {
+   "tile": 43,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-43.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-68.png"
+  },
+  "80": {
+   "tile": 80,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-80.png"
+  },
+  "84": {
+   "tile": 84,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-84.png"
+  },
+  "89": {
+   "tile": 89,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-89.png"
+  },
+  "90": {
+   "tile": 90,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-90.png"
+  },
+  "156": {
+   "tile": 156,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-156.png"
+  },
+  "170": {
+   "tile": 170,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-170.png"
+  },
+  "174": {
+   "tile": 174,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-174.png"
+  },
+  "178": {
+   "tile": 178,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-178.png"
+  },
+  "195": {
+   "tile": 195,
+   "pixels": [
+    16,
+    128
+   ],
+   "world_at_repeat_8": [
+    256,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-195.png"
+  },
+  "253": {
+   "tile": 253,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-253.png"
+  },
+  "255": {
+   "tile": 255,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-255.png"
+  },
+  "262": {
+   "tile": 262,
+   "pixels": [
+    64,
+    48
+   ],
+   "world_at_repeat_8": [
+    1024,
+    12288
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-262.png"
+  },
+  "281": {
+   "tile": 281,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-281.png"
+  },
+  "292": {
+   "tile": 292,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-292.png"
+  },
+  "315": {
+   "tile": 315,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-315.png"
+  },
+  "345": {
+   "tile": 345,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-345.png"
+  },
+  "352": {
+   "tile": 352,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-352.png"
+  },
+  "374": {
+   "tile": 374,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-374.png"
+  },
+  "414": {
+   "tile": 414,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-414.png"
+  },
+  "436": {
+   "tile": 436,
+   "pixels": [
+    128,
+    16
+   ],
+   "world_at_repeat_8": [
+    2048,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-436.png"
+  },
+  "491": {
+   "tile": 491,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-491.png"
+  },
+  "492": {
+   "tile": 492,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-492.png"
+  },
+  "494": {
+   "tile": 494,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-494.png"
+  },
+  "495": {
+   "tile": 495,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-495.png"
+  },
+  "497": {
+   "tile": 497,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-497.png"
+  },
+  "559": {
+   "tile": 559,
+   "pixels": [
+    61,
+    14
+   ],
+   "world_at_repeat_8": [
+    976,
+    3584
+   ],
+   "see_through_share": 0.492,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-559.png"
+  },
+  "589": {
+   "tile": 589,
+   "pixels": [
+    11,
+    25
+   ],
+   "world_at_repeat_8": [
+    176,
+    6400
+   ],
+   "see_through_share": 0.218,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-589.png"
+  },
+  "619": {
+   "tile": 619,
+   "pixels": [
+    18,
+    11
+   ],
+   "world_at_repeat_8": [
+    288,
+    2816
+   ],
+   "see_through_share": 0.404,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-619.png"
+  },
+  "655": {
+   "tile": 655,
+   "pixels": [
+    96,
+    32
+   ],
+   "world_at_repeat_8": [
+    1536,
+    8192
+   ],
+   "see_through_share": 0.456,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-655.png"
+  },
+  "713": {
+   "tile": 713,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.623,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-713.png"
+  },
+  "732": {
+   "tile": 732,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.49,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-732.png"
+  },
+  "817": {
+   "tile": 817,
+   "pixels": [
+    23,
+    23
+   ],
+   "world_at_repeat_8": [
+    368,
+    5888
+   ],
+   "see_through_share": 0.204,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-817.png"
+  },
+  "925": {
+   "tile": 925,
+   "pixels": [
+    33,
+    45
+   ],
+   "world_at_repeat_8": [
+    528,
+    11520
+   ],
+   "see_through_share": 0.154,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-925.png"
+  },
+  "1086": {
+   "tile": 1086,
+   "pixels": [
+    127,
+    127
+   ],
+   "world_at_repeat_8": [
+    2032,
+    32512
+   ],
+   "see_through_share": 0.874,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1086.png"
+  },
+  "1350": {
+   "tile": 1350,
+   "pixels": [
+    27,
+    54
+   ],
+   "world_at_repeat_8": [
+    432,
+    13824
+   ],
+   "see_through_share": 0.503,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1350.png"
+  },
+  "1351": {
+   "tile": 1351,
+   "pixels": [
+    57,
+    133
+   ],
+   "world_at_repeat_8": [
+    912,
+    34048
+   ],
+   "see_through_share": 0.551,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1351.png"
+  },
+  "1370": {
+   "tile": 1370,
+   "pixels": [
+    57,
+    100
+   ],
+   "world_at_repeat_8": [
+    912,
+    25600
+   ],
+   "see_through_share": 0.418,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1370.png"
+  },
+  "1413": {
+   "tile": 1413,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.877,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1413.png"
+  },
+  "1417": {
+   "tile": 1417,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.285,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1417.png"
+  },
+  "1708": {
+   "tile": 1708,
+   "pixels": [
+    24,
+    64
+   ],
+   "world_at_repeat_8": [
+    384,
+    16384
+   ],
+   "see_through_share": 0.527,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1708.png"
+  },
+  "1715": {
+   "tile": 1715,
+   "pixels": [
+    17,
+    27
+   ],
+   "world_at_repeat_8": [
+    272,
+    6912
+   ],
+   "see_through_share": 0.656,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-1715.png"
+  },
+  "2169": {
+   "tile": 2169,
+   "pixels": [
+    31,
+    47
+   ],
+   "world_at_repeat_8": [
+    496,
+    12032
+   ],
+   "see_through_share": 0.546,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-2169.png"
+  },
+  "2825": {
+   "tile": 2825,
+   "pixels": [
+    50,
+    106
+   ],
+   "world_at_repeat_8": [
+    800,
+    27136
+   ],
+   "see_through_share": 0.299,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-2825.png"
+  },
+  "3678": {
+   "tile": 3678,
+   "pixels": [
+    64,
+    400
+   ],
+   "world_at_repeat_8": [
+    1024,
+    102400
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper-wt-market\\knowledge\\blood\\studies\\meat-market\\tiles\\tile-3678.png"
+  }
+ }
+}

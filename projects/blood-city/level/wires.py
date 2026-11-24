@@ -118,6 +118,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("cabal:silent", "the heart's beat stops with it"),
     ("cabal:shut", "stepping down onto the kerb round the sign turns the stone beast and shuts the mouth behind you; the bursting window, or forty seconds, opens it"),
     ("cabal:disarm", "once the beast is dead the kerb shuts nothing"),
+    ("market:cold-store", "the lever in the clerk's gallery raises the steel door of the market's cold store, once"),
+    ("market:armor", "taking the armor at the back of the cold store wakes two of the hung and a butcher"),
+    ("harbour:boarded", "taking the flare pistol in the Demeter's hold brings three gill beasts up onto her deck"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and

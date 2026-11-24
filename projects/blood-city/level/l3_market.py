@@ -12,7 +12,8 @@ particular to the district:
   (-4096, water floor), which is also exactly one max-step, so the basin
   stays inside the street's walkable component and adds no walk-around
   loop -- the loop census is at its contract ceiling of 9;
-* a **stall run** of three platforms at +3072, TEDE1M2's market module.
+* two **street stalls** and the **meat market** behind them (`meat_market`),
+  and the **Demeter** at her moorings (`harbour_ship`).
 
 Everything is placed from the L1 plan's own `furnish` slots for the area.
 """
@@ -27,15 +28,8 @@ from bloodmap.doors import z_motion_door
 from materials import Material, BOARDWALK, FACADES, INTERIORS, MASONRY
 from resolution import GRADE, PU, STREET_SKY
 
-#: E4M9's concourse rhythm: unit mouths 1536 wide, one every ~1840 of
-#: frontage.  A retail row is that module repeated, not one big shop.
-UNIT_MOUTH = 1536
 #: The campaign's median room is one wall-texture repeat tall.
 ROOM_HEIGHT = 32768
-# The shop itself has the E6M1 retail clearance: a full normal-scale crate
-# tile is 32,768 z units tall, so the selling floor needs an upper bay above
-# it rather than clipping the crate into its ceiling.
-MARKET_HALL_HEIGHT = 49152
 #: A doorway's clear height: half a texture repeat, ~1.9 player heights.
 # Campaign z-motion doors open to a median of 31,744 -- 1.87 player
 # heights, measured over 1,269 of them; even their 10th percentile is
@@ -46,8 +40,8 @@ MARKET_HALL_HEIGHT = 49152
 # and its reveal -- which makes this number the whole fix.
 DOOR_HEIGHT = 31744
 
-# The hall occupies most of block A: a broad sales floor, shallow rear stock
-# and display galleries on the east and north sides.
+# The hall occupies most of block A (`meat_market`), with display galleries on
+# its east and north sides.
 SUPERMARKET_WINDOWS = (
     (13824, 41472, 15360, 45056),
     (13824, 48128, 15360, 49152),
@@ -61,8 +55,6 @@ COMPASS = dict(zip(RECT_FACES, range(4)))
 #: DWE3M1's basins sit 4096 below their court; that is also the player's
 #: max step, so the basin is walkable and costs no loop.
 BASIN_DROP = 4096
-#: TEDE1M2's market platforms: +3072, one to two plan units across.
-STALL_RISE = 3072
 #: A river slip shallow enough to climb out of (one max step).
 SLIP_DROP = 2048
 #: Water, third attempt and this one measured against the right thing.
@@ -98,12 +90,13 @@ HORIZON: list = []
 #: pier; deck under the rim: 4,096 (s671 under s625).
 SHIP_RIM = 11264
 SHIP_DECK_DROP = 4096
-SHIP_CABIN = 16384
 SHIP_MAST = 73728
-#: Owner anchors: 67 "dark horizontal planks" is the hull DWE2M4's rowboat
-#: shows the water; 15 planks cap the rim; 28 is the wooden wall; 20 is the
-#: tile DWE2M6's three masts wear.
-SHIP_HULL, SHIP_PLANK, SHIP_CABIN_WALL, SHIP_MAST_TILE = 67, 15, 28, 20
+#: The hull wore 67, "dark horizontal planks", DWE2M4's rowboat's: three
+#: courses of it. Ten courses of its staggered butt joints were a brick wall.
+#: 68, the single plank the campaign puts on 1,927 steps, runs in strakes.
+#: 15 planks cap the rim; 28 is the wooden wall; 20 is the tile DWE2M6's
+#: three masts wear.
+SHIP_HULL, SHIP_PLANK, SHIP_CABIN_WALL, SHIP_MAST_TILE = 68, 15, 28, 20
 #: region id -> the tile its raised sides wear (`skyline.dress_steps`)
 SHIP_FACES: dict = {}
 #: the owner's "smaller crate"; and E2M1 sprites 156/157, the black flag
@@ -391,21 +384,12 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     # owner asked for one memorial with water, so the two are one.
     built["rooms"].append(monument_parts["pool"].region_id)
 
-    # ---- the stall run: three platforms along the plaza's west edge -------
-    stall_w, stall_d = int(1.5 * PU), 2 * PU
-    for index in range(3):
-        sy = py0 + int((index * 3 + 1.5) * PU)
-        stall = _island(
-            plaza, district, market_st, f"stall_{index}",
-            x0=px0 + PU, y0=sy, x1=px0 + PU + stall_w, y1=sy + stall_d,
-            floor_z=GRADE - STALL_RISE,
-            style=Style(floor_picnum=BOARDWALK, wall_picnum=MASONRY.wall,
-                        ceiling_picnum=facade.ceiling, parallax_ceiling=True,
-                        floor_z=GRADE - STALL_RISE,
-                        clear_height=STREET_SKY - STALL_RISE, floor_shade=30),
-            note="market stall platform (TEDE1M2 module)")
+    # ---- two street stalls, where three bare platforms stood --------------
+    import meat_market
+    for stall in meat_market.build_stalls(plaza, district, market_st, _island,
+                                          facade.ceiling, STREET_SKY):
+        # half a body high: a counter is not walked onto
         built["rooms"].append(stall.region_id)
-        built["street_joined"].append(stall.region_id)
 
     # ---- the quay: boards along the water edge ----------------------------
     quay_y = int(quay_y_pu * PU)
@@ -439,20 +423,25 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     sea_z = GRADE + SEA_DROP
     sky = facade.ceiling
 
-    # The near band's ends are the headlands' shores: north, the east
-    # head's four edges, east, south, west, the west head's four.
+    # The near band's ends are the headlands' shores: north (broken by the
+    # gangplank, the ship it leads to, and the jetty), the east head's four
+    # edges, east, south, west, the west head's four.
+    import harbour_ship
     jx0, jx1, jlen = JETTY
-    near_outline = ([HEAD_WEST[1], (jx0, 0), (jx0, jlen), (jx1, jlen),
-                     (jx1, 0), HEAD_EAST[0]]
-                    + list(reversed(HEAD_EAST[2:]))
-                    + [(48, SEA_BANDS[0][0]), (0, SEA_BANDS[0][0])]
-                    + list(reversed(HEAD_WEST[2:])))
-    near_outline = [(int(x * PU), int(y * PU)) for x, y in near_outline]
-    #: north, the jetty's three sides, north again, then as before
-    near_faces = {"north": 0, "jw": 1, "js": 2, "je": 3, "north_b": 4,
-                  "east": 9, "south": 10, "west": 11}
-    near_faces.update({f"he{k}": 5 + k for k in range(4)})
-    near_faces.update({f"hw{k}": 12 + k for k in range(4)})
+    round_ship = harbour_ship.river_edges()
+    walk = ([("north", HEAD_WEST[1])]
+            # the last of them is on the quay again: the quay's edge goes on
+            + [("north_c" if k == len(round_ship) - 1 else f"hull{k}",
+                (x - 4, y - city_d_pu)) for k, (x, y) in enumerate(round_ship)]
+            + [("jw", (jx0, 0)), ("js", (jx0, jlen)), ("je", (jx1, jlen)),
+               ("north_b", (jx1, 0)), ("he0", HEAD_EAST[0])]
+            + [(f"he{k + 1}" if k < 3 else "east", point)
+               for k, point in enumerate(reversed(HEAD_EAST[2:]))]
+            + [("south", (48, SEA_BANDS[0][0])), ("west", (0, SEA_BANDS[0][0]))]
+            + [(f"hw{k}", point)
+               for k, point in enumerate(reversed(HEAD_WEST[2:]))])
+    near_outline = [(int(x * PU), int(y * PU)) for _name, (x, y) in walk]
+    near_faces = {name: index for index, (name, _point) in enumerate(walk)}
 
     #: The bands beyond the near one are WIDER than it by `FLANK_END` at
     #: each side. A blind reviewer on the build that first had flanks:
@@ -650,8 +639,9 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     piles = 0
     post, inset = 256, 64
     for side, px in enumerate((inset, jw - inset - post)):
-        for k in range(4):
-            py = 512 + k * 1408
+        #: three to a side (2,112 apart): DWE2M6's stand 2,560 apart
+        for k in range(3):
+            py = 512 + k * 2112
             box_ = [(px, py), (px + post, py), (px + post, py + post),
                     (px, py + post)]
             jetty.carve(box_)
@@ -688,101 +678,35 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     city.connect(river.face("north"), market_st.face("south"),
                  connection_id="connection:quay_river")
 
-    # ---- the ship: a hull, not a deck ------------------------------------
-    # It was a 4 x 2 rectangle of boards a step over the water. Every hull
-    # in the corpus that reads as a boat (DWE3M4's "Phantom", DWE2M6's ghost
-    # ship, DWE2M4's rowboat) has the same three things: a pointed or
-    # tapered end, a thin RIM that is the highest thing with the deck lower
-    # inside it, and a hull tile that is not the deck's. This is the
-    # Phantom's plan at three quarters: 9,984 by 3,072, bow to the east, the
-    # rim 0.66 body over the quay as the Phantom's is over its pier, the
-    # deck 4,096 under the rim.
-    ship_x0 = river_x0 + 10 * PU
-    ship_y0 = river_y0 + 1 * PU
-    hull = [(0, 0), (7680, 0), (9216, 768), (9984, 1536), (9216, 2304),
-            (7680, 3072), (0, 3072)]
-    inside = [(256, 256), (7616, 256), (8960, 928), (9472, 1536),
-              (8960, 2144), (7616, 2816), (256, 2816)]
-    cabin_box = (1024, 768, 3072, 2304)
-    mast_box = (5120, 1408, 5376, 1664)
-    rim_z = GRADE - SHIP_RIM
-    deck_z = rim_z + SHIP_DECK_DROP
+    # every stretch of the quay's edge is the same water's
+    city.connect(river.face("north_c"), market_st.face("south"),
+                 connection_id="connection:quay_river_c")
 
-    def edges(points):
-        return {f"e{i}": i for i in range(len(points))}
+    # ---- the ship: a hull that can be boarded (`harbour_ship`) -------------
+    # It was a 4 x 2 rectangle of boards a step over the water, and then a
+    # hull a unit off the quay with its deckhouse shut. Every hull in the
+    # corpus that reads as a boat (DWE3M4's "Phantom", DWE2M6's ghost ship,
+    # DWE2M4's rowboat) has a pointed or tapered end, a thin RIM that is the
+    # highest thing with the deck lower inside it, and a hull tile that is
+    # not the deck's. This is the Phantom's plan: 13,312 by 4,096, bow to the
+    # east, the rim 0.66 body over the quay as the Phantom's is over its
+    # pier, the deck 4,096 under the rim.
+    import sys as _sys
+    parts = harbour_ship.build(quay, city, river, market_st, sky=sky,
+                               sky_clear=STREET_SKY,
+                               market=_sys.modules[__name__])
+    deck = parts["deck"]
+    deck.light_source("ship_lamp", local=(0.04, 0.3), height_player_heights=1.0)
+    mx0, my0, _mx1, my1 = (int(v * PU) for v in harbour_ship.MAST)
+    SHIP_FLAG.append({"region_id": deck.region_id,
+                      "a1": (mx0, my0), "a2": (mx0, my1)})
+    # what a body reaches from the quay in steps
+    built["street_joined"] += [parts[n].region_id for n in (
+        "gang", "deck", "rim", "sill", "stair", "hold")]
+    built["rooms"] += [room.region_id for room in parts.values()]
+    built["ship"] = [room.region_id for room in parts.values()]
 
-    def box(b):
-        return [(0, 0), (b[2] - b[0], 0), (b[2] - b[0], b[3] - b[1]),
-                (0, b[3] - b[1])]
-
-    def part(name, outline, origin, floor_z, floor_tile, wall_tile, shade,
-             note):
-        room = quay.room(name, outline, role="detail", faces=edges(outline),
-                         frame=Frame(ship_x0 + origin[0], ship_y0 + origin[1]),
-                         region_kwargs={"declared_zero_exit": True},
-                         intent={"kind": "ship"}, note=note)
-        room.style = Style(floor_picnum=floor_tile, wall_picnum=wall_tile,
-                           ceiling_picnum=sky, parallax_ceiling=True,
-                           floor_z=floor_z,
-                           clear_height=STREET_SKY - (GRADE - floor_z),
-                           floor_shade=shade)
-        SHIP_FACES[room.region_id] = wall_tile
-        return room
-
-    def join(room, other, tag):
-        for name in list(room.faces):
-            if name.startswith("e"):
-                city.connect(room.face(name), other.face(next(iter(other.faces))),
-                             connection_id=f"connection:ship_{tag}_{name}")
-
-    river.carve([(ship_x0 - river_x0 + x, ship_y0 - river_y0 + y)
-                 for x, y in hull])
-    rim = part("ship_rim", hull, (0, 0), rim_z, SHIP_PLANK, SHIP_HULL, 24,
-               "the gunwale: the highest thing on the hull")
-    rim.carve(inside)
-    deck = part("ship_deck", inside, (0, 0), deck_z, BOARDWALK, SHIP_HULL, 28,
-                "the deck, a step under the gunwale")
-    deck.carve([(x, y) for x, y in box(cabin_box)]
-               if False else [(cabin_box[0], cabin_box[1]),
-                              (cabin_box[2], cabin_box[1]),
-                              (cabin_box[2], cabin_box[3]),
-                              (cabin_box[0], cabin_box[3])])
-    deck.carve([(mast_box[0], mast_box[1]), (mast_box[2], mast_box[1]),
-                (mast_box[2], mast_box[3]), (mast_box[0], mast_box[3])])
-    cabin = part("ship_cabin", box(cabin_box), cabin_box[:2],
-                 deck_z - SHIP_CABIN, SHIP_PLANK, SHIP_CABIN_WALL, 26,
-                 "the deckhouse: a body high, shut")
-    mast = part("ship_mast", box(mast_box), mast_box[:2], deck_z - SHIP_MAST,
-                SHIP_PLANK, SHIP_MAST_TILE, 30, "the mast")
-    join(rim, river, "hull")
-    join(deck, rim, "deck")
-    join(cabin, deck, "cabin")
-    join(mast, deck, "mast")
-    deck.light_source("ship_lamp", local=(0.7, 0.5), height_player_heights=1.0)
-    # What is ON the deck is what makes a hull a ship (the study, after
-    # DWE3M4's "Phantom" and E2M1): crates, and the black flag at the mast.
-    #: A WHOLE tile to a face. They were 768 square and 12,288 high, and
-    #: tile 452 is 64 texels: a face showed three quarters of the picture
-    #: each way (the owner: "crates at ship has misaligned textures"). The
-    #: small crate's module is 1,024 by 16,384 (`templates.SMALL_CRATE`).
-    for index, (bx, by) in enumerate(((6144, 512), (6400, 1664))):
-        crate_box = (bx, by, bx + 1024, by + 1024)
-        deck.carve([(crate_box[0], crate_box[1]), (crate_box[2], crate_box[1]),
-                    (crate_box[2], crate_box[3]), (crate_box[0], crate_box[3])])
-        crate = part(f"ship_crate_{index}", box(crate_box), crate_box[:2],
-                     deck_z - 16384, CRATE, CRATE, 24, "a crate on the deck")
-        join(crate, deck, f"crate_{index}")
-    SHIP_FLAG.append({
-        "region_id": deck.region_id,
-        "a1": (ship_x0 + mast_box[0], ship_y0 + mast_box[1]),
-        "a2": (ship_x0 + mast_box[0], ship_y0 + mast_box[3])})
-    built["ship"] = [rim.region_id, deck.region_id, cabin.region_id,
-                     mast.region_id]
-
-    # ---- the market hall: a full supermarket inside block A --------------
-    # Use most of the block for one readable sales floor, reserve the south
-    # strip for staff-only stock, and put shallow display galleries along the
-    # north/east sides.
+    # ---- the market hall: a meat market inside block A (`meat_market`) ----
     shop, common = INTERIORS["shop"], INTERIORS["common"]
     import citytree
     hall = district.assembly(
@@ -790,7 +714,7 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
         style=Style(**common.style_kwargs(floor_z=GRADE,
                                           clear_height=ROOM_HEIGHT,
                                           floor_shade=32)),
-        note="market hall: a large supermarket with windows, aisles and stock")
+        note="market hall: a meat market, its cold store and its clerk's gallery")
     citytree.declare_venue(hall, "market_hall", "retail_row",
                            built_by="l3_market")
 
@@ -808,16 +732,8 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                                            clear_height=clear_height))
         return r
 
-    sales = room("supermarket", 3.5, 40.5, 13.5, 48.0, shop,
-                 "the market hall sales floor: tall E6M1 shelf banks and crate bays",
-                 clear_height=MARKET_HALL_HEIGHT)
-    # Showcase round 7: the stall's pool (shade 8) against aisles at 28 still
-    # read as "even gloom". Light reads by contrast: the aisles step down so
-    # the counter and the meat over it are what is lit.
-    sales.surfaces(floor_shade=38, ceiling_shade=40)
-    stock = room("stockroom", 3.5, 48.0, 13.5, 49.5, shop,
-                 "staff-only rear stock: separate 452/95 crate bays")
-    stock.surfaces(wall_picnum=63)
+    parts = meat_market.build(hall, shop=shop, room=room)
+    sales, stock = parts["sales"], parts["lobby"]
     # Display galleries are separate shallow sectors, so mannequins and window
     # lighting never occupy a sales aisle.  The east strip is split by the
     # entrance; the north strip makes the building read from the side.
@@ -893,34 +809,29 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     door.surfaces(wall_picnum=facade.opening, clear_height=0)
     # Anchor partial joins from the smaller room: a connection takes its
     # geometry from the left anchor, preventing a long sales-floor wall from
-    # leaving the warehouse opening or windows as coincident fake walls.
-    hall.connect(stock.face("north"), sales.face("south"),
-                 connection_id="connection:supermarket_stock")
+    # leaving the windows as coincident fake walls.
     for tag, box, reveal in (("north", display_n, reveal_n),
                              ("south", display_s, reveal_s)):
         hall.connect(box.face("west"), sales.face("east"),
                      connection_id=f"connection:supermarket_window_{tag}_in")
         city.connect(reveal.face("east"), market_st.face("north"),
                      connection_id=f"connection:supermarket_window_{tag}_street")
-    hall.connect(display_side.face("south"), sales.face("north"),
+    # the north gallery lies along the nook and the hall's west end
+    hall.connect(parts["nook"].face("north"), display_side.face("south"),
+                 connection_id="connection:supermarket_window_side_nook")
+    shown = 10.5 - meat_market.HALL[0]
+    wide = meat_market.HALL[2] - meat_market.HALL[0]
+    hall.connect(sales.face("north", at=shown / 2 / wide, width=int(shown * PU)),
+                 display_side.face("south"),
                  connection_id="connection:supermarket_window_side_in")
     city.connect(reveal_side.face("north"), market_st.face("north"),
                  connection_id="connection:supermarket_window_side_street")
-    hall.connect(door.face("west"), sales.face("east", at=0.5,
-                                                   width=UNIT_MOUTH),
+    hall.connect(door.face("west"), sales.face("east"),
                  connection_id="connection:hall_door_in")
     hall.connect(porch.face("west"), door.face("east"),
                  connection_id="connection:hall_porch_door")
     city.connect(porch.face("east"), market_st.face("north"),
                  connection_id="connection:hall_porch_plaza")
-    # Geometry is intentionally separate from dressing: the template gives
-    # the supermarket a usable aisle topology, then the late pass adds its
-    # wall clock and electrical detail without creating floor-sprite clashes.
-    import templates
-    templates.supermarket(sales, material=shop, grade=GRADE,
-                          host_clear=MARKET_HALL_HEIGHT)
-    templates.stockroom(stock, material=shop, grade=GRADE,
-                         host_clear=ROOM_HEIGHT)
     # Rear staff entrance: it reaches the stock strip directly and never turns
     # the public checkout aisle into a through-route.
     #: A DOOR, in a frame. It was a sector of no height and no type: it
@@ -944,24 +855,22 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     built["hall"] = {"supermarket": sales.region_id, "stockroom": stock.region_id,
                       "staff_door": staff_door.region_id}
     built["supermarket_rooms"] = {"sales": sales, "stock": stock,
+                                  "street": market_st, "river": river,
                                   "display_n": display_n, "display_s": display_s,
                                   "display_side": display_side,
                                   "staff_door": staff_door}
     built["rooms"] += [sales.region_id, stock.region_id]
     built["interiors"] += [sales.region_id, stock.region_id,
+                           parts["nook"].region_id,
                            staff_door.region_id]
     built["interiors"] += [made.region_id for made in window_parts]
     return built
 
 
 def dress_supermarket(layout, rooms) -> dict:
-    """Late, non-blocking retail detail for the supermarket sales room.
-
-    The shelves and counters are sectors, so they must exist before this
-    pass.  These are deliberately wall details: an outlet and clock read as
-    utility and retail timekeeping without occupying an aisle or intersecting
-    a shelf bank.
-    """
+    """The hall's clock and outlet, then what the hall, the stalls and the ship hold (`meat_market`, `harbour_ship`)."""
+    import harbour_ship
+    import meat_market
     import props
 
     sales, stock = rooms["sales"], rooms["stock"]
@@ -978,44 +887,9 @@ def dress_supermarket(layout, rooms) -> dict:
         t=0.25, height_player_heights=0.45, offset_player_widths=0.06,
         type=0, picnum=1050, cstat=144, shade=-4,
         x_repeat=32, y_repeat=32, status=0)
-    # THE STALL'S MEAT. Blood's markets sell meat, not produce: the town maps
-    # have no fruit or vegetable tile, and E3M2 hangs its carcasses (1351,
-    # type 416, cstat 385) from the ceiling of its meat rooms. Ours hang
-    # from the hall's ceiling over the stall, at repeat 56 where E3M2's are
-    # 104 by 88 in a room a body taller (ours would reach the counter); the
-    # size is ours. On the stall's middle lies DWE2M10's raw meat (2073,
-    # type 416, palette 2, repeat 40), as its kitchen lays it on a table.
-    stall = next((rid for rid in layout.regions
-                  if rid.endswith("supermarket_fittings/supermarket_stall")), None)
-    placed = 0
-    if stall is not None:
-        ceiling = layout.regions[stall].ceiling_z
-        top = layout.regions[stall].floor_z
-        for index, v in enumerate((0.3, 0.5, 0.7)):
-            drawn = 133 * 56 * 4                 # rows x repeat x 4
-            layout.place_on_floor(
-                f"market:carcass_{index}", stall, local=(0.5, v),
-                height_player_heights=(top - ceiling - drawn / 2) / 16960,
-                picnum=1351 if index != 1 else 1350, cstat=385,
-                x_repeat=66, y_repeat=56, shade=8, pal=0, type=416, status=0)
-            layout.place_on_floor(
-                f"market:meat_{index}", stall, local=(0.5, v - 0.05),
-                picnum=2073 + index, cstat=1, x_repeat=40, y_repeat=40,
-                shade=-8, pal=2, type=416, status=0)
-            placed += 2
-        # ...and the light over it: the owner's "lamp hanging on a chain"
-        # (641), which 42 of Blood's maps hang, between the carcasses.
-        for index, v in enumerate((0.4, 0.6)):
-            layout.place_on_ceiling(
-                f"market:stall_lamp_{index}", stall, local=(0.5, v),
-                # 641 has no hang point in its art: the ceiling seat puts its
-                # centre on the ceiling, so it drops half its drawn height
-                # (128 rows at repeat 48, 24,576 tall)
-                height_player_heights=12288 / 16960,
-                picnum=641, cstat=0, x_repeat=48, y_repeat=48, shade=-16,
-                pal=0, type=0, status=0)
-            placed += 1
-    return {"wall_details": 2, "tiles": [1165, 1050], "meat": placed}
+    return {"wall_details": 2, "tiles": [1165, 1050],
+            **meat_market.dress(layout, rooms["street"].region_id),
+            "ship": harbour_ship.dress(layout, rooms["river"].region_id)}
 
 
 #: The monument's own words, and the register they are written in.

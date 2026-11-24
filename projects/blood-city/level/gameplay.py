@@ -68,13 +68,13 @@ OPENED_SAYS = 3031
 SUPPLIES = (
     # the quay: armed before the first fight (DWE1M1: the sawed-off with no foe within 23 m)
     ((41, 67, 67, 67), 36.0, 50.6, STREET, "by the dead man at the avenue's foot"),
-    ((43, 76, 76), 26.0, 60.3, STREET, "the jetty's end: a look out over the water"),
+    ((76, 76), 26.0, 60.3, STREET, "the jetty's end: a look out over the water"),
     ((68,), 13.0, 52.4, STREET, "the quay's west end"),
     ((67, 67), 44.5, 52.4, STREET, "the quay's east end"),
     # the market hall
-    ((140,), 12.2, 47.0, STREET, "armor, across the hall from its door"),
-    ((69, 69, 69), 9.6, 42.2, STREET, "along the market's north aisle"),
-    ((68,), 5.0, 47.2, STREET, "behind the stalls"),
+    ((69, 69, 69), 5.0, 41.4, STREET, "the nook behind the market's north window"),
+    ((68,), 11.2, 48.8, STREET - 24576, "the clerk's gallery"),
+    ((107,), 4.7, 43.0, STREET, "the cold store's north end (the armor lies at its south: `meat_market`)"),
     # the arcade: the tommy gun behind its own keyed door
     ((67, 67), 49.3, 46.2, STREET, "the concourse's east end"),
     ((42, 72), 51.4, 44.7, STREET, "the arcade's service passage, behind the eye's door"),
@@ -130,6 +130,11 @@ PATROL = (
     (248, 34.6, 1.8, STREET, 512, 3), (202, 36.8, 2.4, STREET, 512, 0),
     (205, 22.6, 28.0, STREET, 0, 0), (205, 24.8, 33.0, STREET, 512, 0), (205, 21.4, 24.6, STREET, 512, 1),
     (203, 20.0, 51.2, STREET, 0, 0), (202, 47.0, 51.0, STREET, 1024, 0), (201, 55.8, 45.0, STREET, 1536, 3),
+    # the meat market: the butcher behind his counter, the clerk and his help in the gallery, two shut in with the meat
+    (204, 10.0, 41.3, STREET, 512, 0), (202, 12.4, 48.7, STREET - 24576, 1536, 0), (201, 10.4, 48.8, STREET - 24576, 1536, 3),
+    (204, 4.9, 45.2, STREET, 0, 0), (204, 4.6, 46.4, STREET, 0, 3),
+    # the Demeter's hold
+    (202, 13.2, 59.0, STREET + 5120, 0, 0), (201, 13.3, 60.2, STREET + 5120, 1536, 3),
 )
 #: a foe in six carries a life essence (the study: 75% of Blood's health is carried)
 CARRIES_EVERY, CARRIES = 6, 109

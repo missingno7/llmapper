@@ -139,12 +139,9 @@ ON_TOP = [
     ("gravesend_arcade/unit_f/fittings/unit_f_counter/unit_f_counter_0", [(834, 0.25, 0.5), (802, 0.7, 0.5)]),
     ("gravesend_arcade/unit_a_window", [(1013, 0.5, 0.5)]),
     ("gravesend_arcade/unit_d_window", [(739, 0.5, 0.5)]),
-    # the market hall's stall: provisions down the aisle side of each edge,
-    # so either aisle sees stock (the meat lies in its middle and hangs
-    # over it: `l3_market.dress_supermarket`)
-    ("supermarket_fittings/supermarket_stall", [
-        (604, 0.22, 0.08), (834, 0.78, 0.14), (802, 0.22, 0.24), (616, 0.78, 0.32),
-        (759, 0.22, 0.62), (712, 0.78, 0.70), (605, 0.22, 0.78), (604, 0.78, 0.9)]),
+    # the market hall's counter: what is sold with the meat (the meat itself
+    # is `meat_market.dress`'s)
+    ("meat_fittings/meat_counter", [(802, 0.2, 0.75), (604, 0.5, 0.3), (834, 0.78, 0.75)]),
     # the canteen, and the altar
     # (RAT DOGS' counter is a bar run now; the rats and the cleaver hold its
     # middle, so the stock stands at its ends)
@@ -202,7 +199,6 @@ ON_WALL = [
     ("saloon/back", "north", 163, 0.5, None),
     ("saloon/back", "east", 621, 0.5, None),
     ("pawn_shop/shop", "west", 268, 0.5, None),
-    ("market_hall/supermarket", "west", 2139, 0.4, 0.9),
     ("gravesend_arcade/unit_c", "east", 1712, 0.5, 0.5),
     ("gravesend_arcade/unit_d", "west", 1165, 0.3, 1.2),
     ("gravesend_arcade/unit_d", "west", 1165, 0.7, 1.0),

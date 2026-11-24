@@ -228,6 +228,16 @@
     "E3M8:266"
    ],
    "date": "2026-11-24"
+  },
+  "meat-market": {
+   "want": "a meat market hall: an aisle of hung carcasses from the street door to a cold store, the clerk's gallery over it; and a street stall outside",
+   "seeds": [
+    "E3M2:258!",
+    "TEDE1M2:532!",
+    "E1M3:305!",
+    "DWE3M10:286!"
+   ],
+   "date": "2026-11-24"
   }
  }
 }

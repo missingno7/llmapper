@@ -183,8 +183,8 @@ POSE_SETS = {
         "theatre_in": (22.5, 5.6, 22.5, 3.0, LEVEL, "the same window from inside the auditorium"),
         "saloon_out": (1.6, 7.0, 4.0, 7.0, LEVEL, "the saloon back room's barred window from the street"),
         "saloon_in": (5.4, 7.0, 3.0, 7.0, LEVEL, "the same bars from inside"),
-        "market_out": (1.8, 42.75, 3.5, 42.75, LEVEL, "the supermarket's window from the street"),
-        "market_in": (5.2, 42.75, 3.0, 42.75, LEVEL, "the same window from inside"),
+        "market_out": (1.8, 41.5, 3.5, 41.5, LEVEL, "the supermarket's window from the street"),
+        "market_in": (5.2, 41.5, 3.0, 41.5, LEVEL, "the same window from inside"),
     },
     #: Gravesend Station, behind the north wall (floors: street 8192, hall
     #: and platform -12288)
@@ -270,6 +270,30 @@ POSE_SETS = {
                        "standing in the slip, the hull over you"),
         "quay_from_sea": (30.0, 63.0, 30.0, 54.0, LEVEL,
                           "from the water, back at the town"),
+    },
+    #: the meat market and its stalls, the Demeter (`meat_market`, `harbour_ship`, 2026-11-25)
+    "meat_market": {
+        "a_front": (20.0, 45.5, 13.5, 45.5, LEVEL, "the hall's front, a stall either side"),
+        "b_butcher": (19.5, 51.5, 18.0, 48.5, LEVEL, "the butcher's stall"),
+        "c_grocer": (20.2, 44.2, 18.0, 41.5, LEVEL, "the grocer's stall"),
+        "d_aisle": (13.2, 45.5, 6.0, 45.5, LEVEL, "from the street door down the aisle of meat"),
+        "e_hall": (7.0, 42.0, 13.0, 47.5, LEVEL, "from the nook across the hall to the gallery"),
+        "f_stair": (5.0, 48.75, 12.0, 48.75, LEVEL, "the stair from the porters' lobby"),
+        "g_gallery": (10.8, 48.6, 7.5, 45.0, LEVEL, "from the gallery to the steel door", -16384),
+        "h_lever": (10.2, 48.75, 13.5, 48.75, LEVEL, "the gallery's lever", -16384),
+        "i_cold": (4.75, 47.2, 4.75, 42.6, LEVEL, "the cold store from its far end", 4096),
+        "j_armor": (5.7, 45.5, 4.2, 46.9, LEVEL, "the cold store's armor from its door", 4096),
+    },
+    "demeter": {
+        "a_quay": (13.0, 55.0, 18.0, 59.0, LEVEL, "the ship from the quay's west"),
+        "b_gangplank": (14.9, 54.8, 14.9, 58.0, LEVEL, "up the gangplank"),
+        "c_forward": (15.3, 59.0, 24.0, 59.0, LEVEL, "the deck, forward", 1024),
+        "d_house": (20.0, 60.2, 14.5, 59.0, LEVEL, "the deckhouse from the deck", 1024),
+        "e_hold": (12.6, 60.3, 14.2, 57.5, LEVEL, "the hold from its stern", 13312),
+        "f_panel": (13.8, 60.25, 12.2, 60.25, LEVEL, "the panel", 13312),
+        "g_locker": (11.6, 60.2, 11.6, 57.6, LEVEL, "the locker", 13312),
+        "h_name": (18.2, 55.2, 18.2, 58.0, LEVEL, "her name"),
+        "i_jetty": (26.0, 60.5, 20.0, 58.0, LEVEL, "the bow from the jetty's end"),
     },
     #: the owner, 2026-11-18: "some of the lower walls around city have
     #: building textures and the things that should probably be buildings

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-market/knowledge/blood/studies/meat-market/TEDE1M2_532/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-market/knowledge/blood/studies/meat-market/TEDE1M2_532",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 25216,
+   "y": 63104,
+   "z": 25696,
+   "angle": 1636,
+   "horiz": 100,
+   "sector": 532,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 27776,
+   "y": 62336,
+   "z": 25696,
+   "angle": 1418,
+   "horiz": 100,
+   "sector": 532,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 25216,
+   "y": 61312,
+   "z": 25696,
+   "angle": 1702,
+   "horiz": 100,
+   "sector": 532,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 24704,
+   "y": 59776,
+   "z": 25696,
+   "angle": 1915,
+   "horiz": 100,
+   "sector": 532,
+   "screenshot": true
+  }
+ ]
+}

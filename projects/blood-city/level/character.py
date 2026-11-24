@@ -189,6 +189,13 @@ PLACES: dict[str, dict[str, Any]] = {
                 "corridor with something behind its wall",
         "exemplar": "E4M9 concourse; E6M1 shopfronts; E3M4 sprite 331",
     },
+    "market hall": {
+        "at": (10240, 46592), "study": "meat-market",
+        "hero": "an aisle of hung carcasses from the street door to a shut "
+                "steel door, under a gallery on a wall of jars",
+        "exemplar": "E3M2 s258 (carcasses, pools, the butcher); E1M3 s305 "
+                    "(the freezer); TEDE1M2 s532 (chequer and bare floor)",
+    },
 }
 
 
