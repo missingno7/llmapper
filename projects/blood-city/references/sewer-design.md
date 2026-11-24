@@ -317,7 +317,7 @@ room with its rectangle and kind).
 The owner, after playing: the service lift "has some flaws like little room on the upper floor around the button", and "We might need
 to consider reducing number of walls where it makes sense". Ten lines of intent, and what came of each:
 
-1. **The lift goes** (31 walls). The stair beside the falls is the way up; nothing replaces the lift as a way.
+1. **The lift goes**, and its two landings. The stair beside the falls is the way up; nothing replaces the lift as a way.
 2. **The Toshers' Den** (`toshers_den.py`, study `toshers-den`) stands in its rock, off the west quay, on the line of the walk between
    tanks 2 and 3, so that its lantern is what you see at the walk's end. Timber after all the steel: E6M7:195's shoring, DWE2M5:292's
    boxes and tools, a stove with a fire behind an oven door. Nobody in it: a doctor's bag, shells, a rest before the Cabal.
@@ -336,7 +336,7 @@ to consider reducing number of walls where it makes sense". Ten lines of intent,
    and two more when the spirit armor is taken across the blood, so the trolley is the way back and not a toy.
 9. **The long corridors**: ten rows of `gameplay.SEWERS` -- two that wait under the south channel's water, hands in the west leg, a beast in the
    east, rats, an axe zombie in the brook, two of the Cabal's men at the head of the outfall. `launch_skill` keeps a third of them for the hard game.
-10. **Walls**: see `reports/build-manifest.json` `light_stage`; 7,123 authored before this pass.
+10. **Walls**: 7,123 authored before this pass, 7,224 after it (13,289 and 13,491 once lit).
 
 Open: the great web and the bed are read from the MAP and from frames, not played; whether the bed is found unprompted is the owner's to say.
 
