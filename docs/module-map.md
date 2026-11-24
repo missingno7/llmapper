@@ -85,6 +85,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `effects` | What a mechanism physically does, said neutrally. |
 | `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
 | `blasts` | Chains of blasts: the exploders of one wire in the order their waits set them off, and what each of them can hurt. |
+| `tidy` | Walls that carry nothing, taken out of a finished map: points on a straight run where nothing changes, and seams between pieces of one floor that came out alike. |
 | `posed` | Posed: a copy of a map with everything one wiring chain answers put in its other state. |
 | `completion` | Completion: whether our readers can finish a map that is known to be finishable, and where they stop. |
 | `supplies` | Supplies: what a map gives the player, how far along the way it gives it, and what keys, gates and secrets stand between. |

@@ -865,9 +865,10 @@
   "gameplay": {
     "keys": 6,
     "lock": 6,
-    "supplies": 82,
-    "patrol": 21,
-    "carried": 10
+    "last": 8,
+    "supplies": 87,
+    "patrol": 26,
+    "carried": 11
   },
   "door_frames": 15,
   "windows": {
@@ -1014,7 +1015,17 @@
           "push on placement station:gate_lever"
         ],
         "then": [
-          "region region:gravesend/gravesend_station/tunnel_gate"
+          "region region:gravesend/gravesend_station/tunnel_gate",
+          "placement gameplay:last_0",
+          "placement gameplay:last_1",
+          "placement gameplay:last_2",
+          "placement gameplay:last_3",
+          "placement gameplay:last_4",
+          "placement gameplay:last_5",
+          "placement gameplay:last_6",
+          "placement gameplay:last_7",
+          "placement gameplay:last_whistle",
+          "placement gameplay:last_quake"
         ]
       },
       {
@@ -1894,9 +1905,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "sprite 1020",
-          "sprite 1039",
-          "sprite 1040"
+          "sprite 1032",
+          "sprite 1051",
+          "sprite 1052"
         ],
         "answers": [
           "sector 64"
@@ -1927,17 +1938,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 1451",
-          "sprite 1452"
+          "sprite 1463",
+          "sprite 1464"
         ],
         "answers": [
           "sector 220",
           "sector 221",
           "sector 222",
           "sector 223",
-          "sprite 1453",
-          "sprite 1454",
-          "sprite 1455"
+          "sprite 1465",
+          "sprite 1466",
+          "sprite 1467"
         ],
         "faults": []
       },
@@ -1947,16 +1958,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 1521"
+          "sprite 1533"
         ],
         "answers": [
           "sector 343",
           "sector 344",
           "sector 345",
           "sector 346",
-          "sprite 1522",
-          "sprite 1523",
-          "sprite 1524"
+          "sprite 1534",
+          "sprite 1535",
+          "sprite 1536"
         ],
         "faults": []
       },
@@ -1995,7 +2006,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 1418"
+          "sprite 1430"
         ],
         "answers": [
           "sector 640"
@@ -2008,10 +2019,20 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 1411"
+          "sprite 1423"
         ],
         "answers": [
-          "sector 666"
+          "sector 666",
+          "sprite 2231",
+          "sprite 2232",
+          "sprite 2233",
+          "sprite 2234",
+          "sprite 2235",
+          "sprite 2236",
+          "sprite 2237",
+          "sprite 2238",
+          "sprite 2239",
+          "sprite 2240"
         ],
         "faults": []
       },
@@ -2021,16 +2042,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 1160"
+          "sprite 1172"
         ],
         "answers": [
           "sector 509",
           "sector 510",
           "sector 511",
           "sector 512",
-          "sprite 1161",
-          "sprite 1162",
-          "sprite 1163"
+          "sprite 1173",
+          "sprite 1174",
+          "sprite 1175"
         ],
         "faults": []
       },
@@ -2040,12 +2061,12 @@
         "channel": 110,
         "engine": null,
         "senders": [
-          "wall 1704",
-          "wall 1705",
-          "wall 1706",
+          "wall 1710",
+          "wall 1711",
           "wall 1712",
-          "wall 1713",
-          "wall 1714"
+          "wall 1718",
+          "wall 1719",
+          "wall 1720"
         ],
         "answers": [
           "sector 254"
@@ -2164,10 +2185,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 1200"
+          "sprite 1212"
         ],
         "answers": [
-          "sprite 1201"
+          "sprite 1213"
         ],
         "faults": []
       },
@@ -2193,7 +2214,7 @@
           "sector 47"
         ],
         "answers": [
-          "sprite 1027"
+          "sprite 1039"
         ],
         "faults": []
       },
@@ -2203,14 +2224,14 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 1027"
+          "sprite 1039"
         ],
         "answers": [
-          "sprite 1028",
-          "sprite 1031",
-          "sprite 1032",
-          "sprite 1037",
-          "sprite 1038"
+          "sprite 1040",
+          "sprite 1043",
+          "sprite 1044",
+          "sprite 1049",
+          "sprite 1050"
         ],
         "faults": []
       },
@@ -2223,7 +2244,7 @@
           "wall 559"
         ],
         "answers": [
-          "sprite 1017"
+          "sprite 1029"
         ],
         "faults": []
       },
@@ -2233,17 +2254,17 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 1019"
+          "sprite 1031"
         ],
         "answers": [
           "sector 56",
           "sector 58",
           "sector 60",
           "sector 62",
-          "sprite 1020",
-          "sprite 1024",
-          "sprite 1025",
-          "sprite 1026"
+          "sprite 1032",
+          "sprite 1036",
+          "sprite 1037",
+          "sprite 1038"
         ],
         "faults": []
       },
@@ -2438,14 +2459,14 @@
         "channel": 132,
         "engine": null,
         "senders": [
-          "sprite 2174"
+          "sprite 2186"
         ],
         "answers": [
-          "sprite 2175",
-          "sprite 2176",
-          "sprite 2177",
-          "sprite 2178",
-          "sprite 2179"
+          "sprite 2187",
+          "sprite 2188",
+          "sprite 2189",
+          "sprite 2190",
+          "sprite 2191"
         ],
         "faults": []
       },
@@ -2455,13 +2476,13 @@
         "channel": 133,
         "engine": null,
         "senders": [
-          "sprite 1529"
+          "sprite 1541"
         ],
         "answers": [
-          "sprite 2180",
-          "sprite 2181",
-          "sprite 2182",
-          "sprite 2183"
+          "sprite 2192",
+          "sprite 2193",
+          "sprite 2194",
+          "sprite 2195"
         ],
         "faults": []
       },
@@ -2471,12 +2492,12 @@
         "channel": 134,
         "engine": null,
         "senders": [
-          "sprite 2184"
+          "sprite 2196"
         ],
         "answers": [
-          "sprite 2185",
-          "sprite 2186",
-          "sprite 2187"
+          "sprite 2197",
+          "sprite 2198",
+          "sprite 2199"
         ],
         "faults": []
       },
@@ -2486,12 +2507,12 @@
         "channel": 135,
         "engine": null,
         "senders": [
-          "sprite 2188"
+          "sprite 2200"
         ],
         "answers": [
-          "sprite 2189",
-          "sprite 2190",
-          "sprite 2191"
+          "sprite 2201",
+          "sprite 2202",
+          "sprite 2203"
         ],
         "faults": []
       },
@@ -2501,14 +2522,14 @@
         "channel": 136,
         "engine": null,
         "senders": [
-          "sprite 2192"
+          "sprite 2204"
         ],
         "answers": [
-          "sprite 2193",
-          "sprite 2194",
-          "sprite 2195",
-          "sprite 2196",
-          "sprite 2197"
+          "sprite 2205",
+          "sprite 2206",
+          "sprite 2207",
+          "sprite 2208",
+          "sprite 2209"
         ],
         "faults": []
       },
@@ -2518,15 +2539,15 @@
         "channel": 137,
         "engine": null,
         "senders": [
-          "sprite 2199",
-          "sprite 2201",
-          "sprite 2203",
-          "sprite 2205",
-          "sprite 2207",
-          "sprite 2209"
+          "sprite 2211",
+          "sprite 2213",
+          "sprite 2215",
+          "sprite 2217",
+          "sprite 2219",
+          "sprite 2221"
         ],
         "answers": [
-          "sprite 2210"
+          "sprite 2222"
         ],
         "faults": []
       },
@@ -2536,20 +2557,20 @@
         "channel": 138,
         "engine": null,
         "senders": [
-          "sprite 2210"
+          "sprite 2222"
         ],
         "answers": [
           "sector 174",
           "sector 299",
           "sector 592",
-          "sprite 2211",
-          "sprite 2212",
-          "sprite 2213",
-          "sprite 2214",
-          "sprite 2215",
-          "sprite 2216",
-          "sprite 2217",
-          "sprite 2218"
+          "sprite 2223",
+          "sprite 2224",
+          "sprite 2225",
+          "sprite 2226",
+          "sprite 2227",
+          "sprite 2228",
+          "sprite 2229",
+          "sprite 2230"
         ],
         "faults": []
       },
@@ -2756,7 +2777,7 @@
           "sprite 379",
           "sprite 380",
           "sprite 381",
-          "wall 5907"
+          "wall 5913"
         ],
         "faults": []
       },
@@ -2766,7 +2787,7 @@
         "channel": 151,
         "engine": null,
         "senders": [
-          "wall 5958"
+          "wall 5964"
         ],
         "answers": [
           "sector 865",
@@ -2844,7 +2865,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 1412"
+          "sprite 1424"
         ],
         "answers": [],
         "faults": []
@@ -2866,7 +2887,7 @@
         "channel": 155,
         "engine": null,
         "senders": [
-          "sprite 1694"
+          "sprite 1706"
         ],
         "answers": [
           "sector 9"
@@ -2879,7 +2900,7 @@
         "channel": 156,
         "engine": null,
         "senders": [
-          "sprite 1695"
+          "sprite 1707"
         ],
         "answers": [
           "sector 18"
@@ -2892,7 +2913,7 @@
         "channel": 159,
         "engine": null,
         "senders": [
-          "sprite 1696"
+          "sprite 1708"
         ],
         "answers": [
           "sector 162"
@@ -2905,7 +2926,7 @@
         "channel": 157,
         "engine": null,
         "senders": [
-          "sprite 1697",
+          "sprite 1709",
           "wall 965",
           "wall 966",
           "wall 967",
@@ -2927,7 +2948,7 @@
         "channel": 158,
         "engine": null,
         "senders": [
-          "sprite 1698"
+          "sprite 1710"
         ],
         "answers": [
           "sector 149"
@@ -2944,7 +2965,7 @@
     "sources": 69
   },
   "split_bands": {
-    "pegged": 196,
+    "pegged": 198,
     "left_to_their_owner": 0
   },
   "sewer_mouths": {
@@ -3507,20 +3528,20 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 2363,
-    "wall_sprites": 941,
-    "planes": 232,
+    "sprites": 2395,
+    "wall_sprites": 943,
+    "planes": 234,
     "clashing_pairs": 4,
     "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.43,
+    "clash_rate_per_100_wall_sprites": 0.42,
     "fully_hidden": 0
   },
   "apertures": {
-    "findings": 676,
-    "seams": 397,
-    "real": 279,
+    "findings": 696,
+    "seams": 407,
+    "real": 289,
     "by_kind": {
-      "pinch": 84,
+      "pinch": 94,
       "lintel": 156,
       "door_sector": 39
     }
@@ -6598,14 +6619,14 @@
           "loops": 35,
           "problems": [],
           "notes": [
-            "loop 0 of sector 910, which this mechanism drags through wall(s) [6115, 6116, 6117] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 916, which this mechanism drags through wall(s) [6091, 6092] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 928, which this mechanism drags through wall(s) [6087, 6088, 6122] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 930, which this mechanism drags through wall(s) [6119, 6120] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 933, which this mechanism drags through wall(s) [6118, 6119] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 934, which this mechanism drags through wall(s) [6117, 6118] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 936, which this mechanism drags through wall(s) [6120, 6121] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 937, which this mechanism drags through wall(s) [6121, 6122] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 910, which this mechanism drags through wall(s) [6121, 6122, 6123] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 916, which this mechanism drags through wall(s) [6097, 6098] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 928, which this mechanism drags through wall(s) [6093, 6094, 6128] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 930, which this mechanism drags through wall(s) [6125, 6126] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 933, which this mechanism drags through wall(s) [6124, 6125] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 934, which this mechanism drags through wall(s) [6123, 6124] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 936, which this mechanism drags through wall(s) [6126, 6127] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 937, which this mechanism drags through wall(s) [6127, 6128] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "254 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6673,7 +6694,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 895, which this mechanism drags through wall(s) [6124, 6125] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 895, which this mechanism drags through wall(s) [6130, 6131] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "92 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6733,7 +6754,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 895, which this mechanism drags through wall(s) [6128, 6129] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 895, which this mechanism drags through wall(s) [6134, 6135] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "92 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6801,9 +6822,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 896, which this mechanism drags through wall(s) [6132, 6133] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 897, which this mechanism drags through wall(s) [6133, 6134] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 942, which this mechanism drags through wall(s) [6134, 6135] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 896, which this mechanism drags through wall(s) [6138, 6139] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 897, which this mechanism drags through wall(s) [6139, 6140] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 942, which this mechanism drags through wall(s) [6140, 6141] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "148 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6858,7 +6879,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 898, which this mechanism drags through wall(s) [6140, 6141] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 898, which this mechanism drags through wall(s) [6146, 6147] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "102 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6918,7 +6939,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 898, which this mechanism drags through wall(s) [6144, 6145] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 898, which this mechanism drags through wall(s) [6150, 6151] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "104 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -6986,9 +7007,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 899, which this mechanism drags through wall(s) [6148, 6149] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 900, which this mechanism drags through wall(s) [6149, 6150] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 943, which this mechanism drags through wall(s) [6150, 6151] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 899, which this mechanism drags through wall(s) [6154, 6155] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 900, which this mechanism drags through wall(s) [6155, 6156] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 943, which this mechanism drags through wall(s) [6156, 6157] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "168 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7043,7 +7064,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 901, which this mechanism drags through wall(s) [6156, 6157] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 901, which this mechanism drags through wall(s) [6162, 6163] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "106 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7103,7 +7124,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 901, which this mechanism drags through wall(s) [6160, 6161] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 901, which this mechanism drags through wall(s) [6166, 6167] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "110 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7171,9 +7192,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 902, which this mechanism drags through wall(s) [6164, 6165] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 903, which this mechanism drags through wall(s) [6165, 6166] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 944, which this mechanism drags through wall(s) [6166, 6167] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 902, which this mechanism drags through wall(s) [6170, 6171] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 903, which this mechanism drags through wall(s) [6171, 6172] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 944, which this mechanism drags through wall(s) [6172, 6173] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "190 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7228,7 +7249,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 904, which this mechanism drags through wall(s) [6172, 6173] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 904, which this mechanism drags through wall(s) [6178, 6179] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "112 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7288,7 +7309,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 904, which this mechanism drags through wall(s) [6176, 6177] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 904, which this mechanism drags through wall(s) [6182, 6183] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "112 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7356,9 +7377,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 905, which this mechanism drags through wall(s) [6180, 6181] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 906, which this mechanism drags through wall(s) [6181, 6182] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 945, which this mechanism drags through wall(s) [6182, 6183] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 905, which this mechanism drags through wall(s) [6186, 6187] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 906, which this mechanism drags through wall(s) [6187, 6188] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 945, which this mechanism drags through wall(s) [6188, 6189] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "206 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7413,7 +7434,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 907, which this mechanism drags through wall(s) [6188, 6189] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 907, which this mechanism drags through wall(s) [6194, 6195] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "116 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7473,7 +7494,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 907, which this mechanism drags through wall(s) [6192, 6193] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 907, which this mechanism drags through wall(s) [6198, 6199] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
             "118 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7541,9 +7562,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 908, which this mechanism drags through wall(s) [6196, 6197] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 909, which this mechanism drags through wall(s) [6197, 6198] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 962, which this mechanism drags through wall(s) [6198, 6199] is itself a mover (type 616); swept alone it would invert at [8, 9, 10] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 908, which this mechanism drags through wall(s) [6202, 6203] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 909, which this mechanism drags through wall(s) [6203, 6204] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 962, which this mechanism drags through wall(s) [6204, 6205] is itself a mover (type 616); swept alone it would invert at [8, 9, 10] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "240 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7603,7 +7624,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 911, which this mechanism drags through wall(s) [6204, 6205] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 911, which this mechanism drags through wall(s) [6210, 6211] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7658,7 +7679,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 911, which this mechanism drags through wall(s) [6208, 6209] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 911, which this mechanism drags through wall(s) [6214, 6215] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7722,11 +7743,11 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6211, 6212, 6218] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 893, which this mechanism drags through wall(s) [6212, 6213] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 894, which this mechanism drags through wall(s) [6213, 6214] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 935, which this mechanism drags through wall(s) [6216, 6217] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 941, which this mechanism drags through wall(s) [6214, 6215, 6216] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6217, 6218, 6224] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 893, which this mechanism drags through wall(s) [6218, 6219] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 894, which this mechanism drags through wall(s) [6219, 6220] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 935, which this mechanism drags through wall(s) [6222, 6223] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 941, which this mechanism drags through wall(s) [6220, 6221, 6222] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "154 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7846,7 +7867,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 914, which this mechanism drags through wall(s) [6229, 6230] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 914, which this mechanism drags through wall(s) [6235, 6236] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "98 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7906,7 +7927,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 914, which this mechanism drags through wall(s) [6233, 6234] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 914, which this mechanism drags through wall(s) [6239, 6240] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "98 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -7972,8 +7993,8 @@
           "loops": 8,
           "problems": [],
           "notes": [
-            "loop 0 of sector 915, which this mechanism drags through wall(s) [6239, 6240] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6238, 6239] is itself a mover (type 616); swept alone it would invert at [] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 915, which this mechanism drags through wall(s) [6245, 6246] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6244, 6245] is itself a mover (type 616); swept alone it would invert at [] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "158 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8028,7 +8049,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 916, which this mechanism drags through wall(s) [6244, 6245] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 916, which this mechanism drags through wall(s) [6250, 6251] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "92 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8089,9 +8110,9 @@
           "loops": 8,
           "problems": [],
           "notes": [
-            "loop 0 of sector 917, which this mechanism drags through wall(s) [6251, 6252] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 918, which this mechanism drags through wall(s) [6250, 6251] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 951, which this mechanism drags through wall(s) [6249, 6250] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 917, which this mechanism drags through wall(s) [6257, 6258] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 918, which this mechanism drags through wall(s) [6256, 6257] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 951, which this mechanism drags through wall(s) [6255, 6256] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "156 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8146,7 +8167,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 919, which this mechanism drags through wall(s) [6255, 6256] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 919, which this mechanism drags through wall(s) [6261, 6262] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "106 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8206,7 +8227,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 919, which this mechanism drags through wall(s) [6259, 6260] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 919, which this mechanism drags through wall(s) [6265, 6266] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "110 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8274,9 +8295,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 920, which this mechanism drags through wall(s) [6266, 6267] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 921, which this mechanism drags through wall(s) [6265, 6266] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 952, which this mechanism drags through wall(s) [6264, 6265] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 920, which this mechanism drags through wall(s) [6272, 6273] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 921, which this mechanism drags through wall(s) [6271, 6272] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 952, which this mechanism drags through wall(s) [6270, 6271] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "190 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8331,7 +8352,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 922, which this mechanism drags through wall(s) [6271, 6272] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 922, which this mechanism drags through wall(s) [6277, 6278] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "112 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8391,7 +8412,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 922, which this mechanism drags through wall(s) [6275, 6276] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 922, which this mechanism drags through wall(s) [6281, 6282] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "112 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8459,9 +8480,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 923, which this mechanism drags through wall(s) [6282, 6283] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 924, which this mechanism drags through wall(s) [6281, 6282] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 953, which this mechanism drags through wall(s) [6280, 6281] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 923, which this mechanism drags through wall(s) [6288, 6289] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 924, which this mechanism drags through wall(s) [6287, 6288] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 953, which this mechanism drags through wall(s) [6286, 6287] is itself a mover (type 616); swept alone it would invert at [4, 5, 6] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "206 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8516,7 +8537,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 925, which this mechanism drags through wall(s) [6287, 6288] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 925, which this mechanism drags through wall(s) [6293, 6294] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "116 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8576,7 +8597,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 925, which this mechanism drags through wall(s) [6291, 6292] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 925, which this mechanism drags through wall(s) [6297, 6298] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
             "118 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8644,9 +8665,9 @@
           "loops": 9,
           "problems": [],
           "notes": [
-            "loop 0 of sector 926, which this mechanism drags through wall(s) [6298, 6299] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 927, which this mechanism drags through wall(s) [6297, 6298] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 962, which this mechanism drags through wall(s) [6296, 6297] is itself a mover (type 616); swept alone it would invert at [8, 9, 10] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 926, which this mechanism drags through wall(s) [6304, 6305] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 927, which this mechanism drags through wall(s) [6303, 6304] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 962, which this mechanism drags through wall(s) [6302, 6303] is itself a mover (type 616); swept alone it would invert at [8, 9, 10] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "240 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8706,7 +8727,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 929, which this mechanism drags through wall(s) [6303, 6304] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 929, which this mechanism drags through wall(s) [6309, 6310] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8761,7 +8782,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 929, which this mechanism drags through wall(s) [6307, 6308] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 929, which this mechanism drags through wall(s) [6313, 6314] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8825,11 +8846,11 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6310, 6316, 6317] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 912, which this mechanism drags through wall(s) [6315, 6316] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 913, which this mechanism drags through wall(s) [6314, 6315] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 938, which this mechanism drags through wall(s) [6311, 6312] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 950, which this mechanism drags through wall(s) [6312, 6313, 6314] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6316, 6322, 6323] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 912, which this mechanism drags through wall(s) [6321, 6322] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 913, which this mechanism drags through wall(s) [6320, 6321] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 938, which this mechanism drags through wall(s) [6317, 6318] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 950, which this mechanism drags through wall(s) [6318, 6319, 6320] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "172 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -8949,10 +8970,10 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6327, 6330] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 932, which this mechanism drags through wall(s) [6328, 6329] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 933, which this mechanism drags through wall(s) [6327, 6328] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 936, which this mechanism drags through wall(s) [6329, 6330] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6333, 6336] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 932, which this mechanism drags through wall(s) [6334, 6335] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 933, which this mechanism drags through wall(s) [6333, 6334] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 936, which this mechanism drags through wall(s) [6335, 6336] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
             "88 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9016,7 +9037,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6332, 6333] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6338, 6339] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
             "56 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9076,7 +9097,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 931, which this mechanism drags through wall(s) [6336, 6337] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 931, which this mechanism drags through wall(s) [6342, 6343] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "48 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9137,9 +9158,9 @@
           "loops": 8,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6339, 6345] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 935, which this mechanism drags through wall(s) [6340, 6341] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6341, 6342] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6345, 6351] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 935, which this mechanism drags through wall(s) [6346, 6347] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6347, 6348] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
             "140 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9203,10 +9224,10 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6346, 6349] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 910, which this mechanism drags through wall(s) [6346, 6347] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 5], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 933, which this mechanism drags through wall(s) [6348, 6349] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 935, which this mechanism drags through wall(s) [6347, 6348] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6352, 6355] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 910, which this mechanism drags through wall(s) [6352, 6353] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 5], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 933, which this mechanism drags through wall(s) [6354, 6355] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 935, which this mechanism drags through wall(s) [6353, 6354] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "140 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9272,8 +9293,8 @@
           "loops": 6,
           "problems": [],
           "notes": [
-            "loop 0 of sector 941, which this mechanism drags through wall(s) [6351, 6352] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6352, 6353] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 941, which this mechanism drags through wall(s) [6357, 6358] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6358, 6359] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
             "124 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9334,9 +9355,9 @@
           "loops": 8,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6355, 6361] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 938, which this mechanism drags through wall(s) [6359, 6360] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6358, 6359] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6361, 6367] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 938, which this mechanism drags through wall(s) [6365, 6366] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6364, 6365] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
             "140 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9400,10 +9421,10 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 1 of sector 892, which this mechanism drags through wall(s) [6362, 6365] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 928, which this mechanism drags through wall(s) [6364, 6365] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 5], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 936, which this mechanism drags through wall(s) [6362, 6363] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 938, which this mechanism drags through wall(s) [6363, 6364] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 1 of sector 892, which this mechanism drags through wall(s) [6368, 6371] is itself a mover (type 616); swept alone it would invert at [] / fold at [12, 13, 14], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 928, which this mechanism drags through wall(s) [6370, 6371] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 5], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 936, which this mechanism drags through wall(s) [6368, 6369] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 938, which this mechanism drags through wall(s) [6369, 6370] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "136 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9469,8 +9490,8 @@
           "loops": 6,
           "problems": [],
           "notes": [
-            "loop 0 of sector 950, which this mechanism drags through wall(s) [6368, 6369] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6367, 6368] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 950, which this mechanism drags through wall(s) [6374, 6375] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6373, 6374] is itself a mover (type 616); swept alone it would invert at [] / fold at [9, 10, 11], but its own travel re-places those vertices -- not judged",
             "122 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9579,9 +9600,9 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 911, which this mechanism drags through wall(s) [6375, 6376] is itself a mover (type 616); swept alone it would invert at [9, 10, 11] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 929, which this mechanism drags through wall(s) [6377, 6378] is itself a mover (type 616); swept alone it would invert at [9, 10, 11] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 939, which this mechanism drags through wall(s) [6376, 6377] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 911, which this mechanism drags through wall(s) [6381, 6382] is itself a mover (type 616); swept alone it would invert at [9, 10, 11] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 929, which this mechanism drags through wall(s) [6383, 6384] is itself a mover (type 616); swept alone it would invert at [9, 10, 11] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 939, which this mechanism drags through wall(s) [6382, 6383] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9640,9 +9661,9 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 895, which this mechanism drags through wall(s) [6381, 6382] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 946, which this mechanism drags through wall(s) [6382, 6383] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6383, 6384] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 895, which this mechanism drags through wall(s) [6387, 6388] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 946, which this mechanism drags through wall(s) [6388, 6389] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6389, 6390] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
             "152 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9710,8 +9731,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 898, which this mechanism drags through wall(s) [6388, 6389] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 947, which this mechanism drags through wall(s) [6389, 6390] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 898, which this mechanism drags through wall(s) [6394, 6395] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 947, which this mechanism drags through wall(s) [6395, 6396] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "148 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9775,8 +9796,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 901, which this mechanism drags through wall(s) [6394, 6395] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 948, which this mechanism drags through wall(s) [6395, 6396] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 901, which this mechanism drags through wall(s) [6400, 6401] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 948, which this mechanism drags through wall(s) [6401, 6402] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "162 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9840,8 +9861,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 904, which this mechanism drags through wall(s) [6400, 6401] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 949, which this mechanism drags through wall(s) [6401, 6402] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 904, which this mechanism drags through wall(s) [6406, 6407] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 949, which this mechanism drags through wall(s) [6407, 6408] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "172 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9905,8 +9926,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 907, which this mechanism drags through wall(s) [6406, 6407] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 959, which this mechanism drags through wall(s) [6407, 6408] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 907, which this mechanism drags through wall(s) [6412, 6413] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 959, which this mechanism drags through wall(s) [6413, 6414] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "188 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -9970,7 +9991,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 942, which this mechanism drags through wall(s) [6411, 6412] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 942, which this mechanism drags through wall(s) [6417, 6418] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "64 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10025,7 +10046,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 943, which this mechanism drags through wall(s) [6415, 6416] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 943, which this mechanism drags through wall(s) [6421, 6422] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "82 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10080,7 +10101,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 944, which this mechanism drags through wall(s) [6419, 6420] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 944, which this mechanism drags through wall(s) [6425, 6426] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "96 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10135,7 +10156,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 945, which this mechanism drags through wall(s) [6423, 6424] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 945, which this mechanism drags through wall(s) [6429, 6430] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "108 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10194,9 +10215,9 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 914, which this mechanism drags through wall(s) [6428, 6429] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 954, which this mechanism drags through wall(s) [6427, 6428] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 958, which this mechanism drags through wall(s) [6426, 6427] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 914, which this mechanism drags through wall(s) [6434, 6435] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 954, which this mechanism drags through wall(s) [6433, 6434] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 958, which this mechanism drags through wall(s) [6432, 6433] is itself a mover (type 616); swept alone it would invert at [] / fold at [10, 11, 12], but its own travel re-places those vertices -- not judged",
             "152 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10260,8 +10281,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 919, which this mechanism drags through wall(s) [6435, 6436] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 956, which this mechanism drags through wall(s) [6434, 6435] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 919, which this mechanism drags through wall(s) [6441, 6442] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 956, which this mechanism drags through wall(s) [6440, 6441] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "162 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10325,8 +10346,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 922, which this mechanism drags through wall(s) [6441, 6442] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 957, which this mechanism drags through wall(s) [6440, 6441] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 922, which this mechanism drags through wall(s) [6447, 6448] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 957, which this mechanism drags through wall(s) [6446, 6447] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "172 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10390,8 +10411,8 @@
           "loops": 7,
           "problems": [],
           "notes": [
-            "loop 0 of sector 925, which this mechanism drags through wall(s) [6447, 6448] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 960, which this mechanism drags through wall(s) [6446, 6447] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 925, which this mechanism drags through wall(s) [6453, 6454] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 960, which this mechanism drags through wall(s) [6452, 6453] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2], but its own travel re-places those vertices -- not judged",
             "188 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10505,7 +10526,7 @@
           "loops": 4,
           "problems": [],
           "notes": [
-            "loop 0 of sector 951, which this mechanism drags through wall(s) [6456, 6457] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 951, which this mechanism drags through wall(s) [6462, 6463] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "60 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10560,7 +10581,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 952, which this mechanism drags through wall(s) [6460, 6461] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 952, which this mechanism drags through wall(s) [6466, 6467] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "96 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10615,7 +10636,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 953, which this mechanism drags through wall(s) [6464, 6465] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 953, which this mechanism drags through wall(s) [6470, 6471] is itself a mover (type 616); swept alone it would invert at [2, 3, 4] / fold at [], but its own travel re-places those vertices -- not judged",
             "108 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10718,11 +10739,11 @@
           "loops": 29,
           "problems": [],
           "notes": [
-            "loop 0 of sector 916, which this mechanism drags through wall(s) [6486, 6487] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 955, which this mechanism drags through wall(s) [6484, 6485, 6486] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 959, which this mechanism drags through wall(s) [6476, 6477] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 960, which this mechanism drags through wall(s) [6478, 6479] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 961, which this mechanism drags through wall(s) [6477, 6478] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 916, which this mechanism drags through wall(s) [6492, 6493] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 955, which this mechanism drags through wall(s) [6490, 6491, 6492] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 959, which this mechanism drags through wall(s) [6482, 6483] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 960, which this mechanism drags through wall(s) [6484, 6485] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 961, which this mechanism drags through wall(s) [6483, 6484] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "708 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10796,7 +10817,7 @@
           "loops": 6,
           "problems": [],
           "notes": [
-            "loop 0 of sector 962, which this mechanism drags through wall(s) [6498, 6499] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 962, which this mechanism drags through wall(s) [6504, 6505] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "150 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10853,7 +10874,7 @@
           "loops": 6,
           "problems": [],
           "notes": [
-            "loop 0 of sector 962, which this mechanism drags through wall(s) [6503, 6504] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 962, which this mechanism drags through wall(s) [6509, 6510] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "150 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10908,7 +10929,7 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 962, which this mechanism drags through wall(s) [6508, 6509] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 962, which this mechanism drags through wall(s) [6514, 6515] is itself a mover (type 616); swept alone it would invert at [3, 4, 5] / fold at [2, 3, 4], but its own travel re-places those vertices -- not judged",
             "120 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -10975,9 +10996,9 @@
           "loops": 11,
           "problems": [],
           "notes": [
-            "loop 0 of sector 911, which this mechanism drags through wall(s) [6513, 6514, 6515] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 929, which this mechanism drags through wall(s) [6518, 6519, 6520] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 963, which this mechanism drags through wall(s) [6515, 6516, 6517, 6518] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 911, which this mechanism drags through wall(s) [6519, 6520, 6521] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 929, which this mechanism drags through wall(s) [6524, 6525, 6526] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 963, which this mechanism drags through wall(s) [6521, 6522, 6523, 6524] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1], but its own travel re-places those vertices -- not judged",
             "316 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -11045,9 +11066,9 @@
           "loops": 5,
           "problems": [],
           "notes": [
-            "loop 0 of sector 911, which this mechanism drags through wall(s) [6526, 6527] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 929, which this mechanism drags through wall(s) [6528, 6529] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
-            "loop 0 of sector 940, which this mechanism drags through wall(s) [6527, 6528] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 911, which this mechanism drags through wall(s) [6532, 6533] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 929, which this mechanism drags through wall(s) [6534, 6535] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [1, 2, 3], but its own travel re-places those vertices -- not judged",
+            "loop 0 of sector 940, which this mechanism drags through wall(s) [6533, 6534] is itself a mover (type 616); swept alone it would invert at [1, 2, 3] / fold at [], but its own travel re-places those vertices -- not judged",
             "128 wall crossing(s) involve geometry another mechanism drags too -- not judged one mechanism at a time"
           ],
           "graze_tolerance": 16.0,
@@ -11126,21 +11147,21 @@
     ]
   },
   "rules": {
-    "total": 2942,
+    "total": 2986,
     "by_severity": {
-      "note": 2936,
+      "note": 2980,
       "warning": 6
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 52,
-      "note:sprite-drawn-square": 475,
-      "note:floor-aligned-sprite-rests-on-a-surface": 21,
+      "note:sprite-drawn-square": 483,
+      "note:floor-aligned-sprite-rests-on-a-surface": 22,
       "note:glass-is-breakable": 44,
       "note:threshold-follows-the-roofed-side": 4,
-      "note:opening-clears-a-standing-body": 512,
+      "note:opening-clears-a-standing-body": 520,
       "note:lintel-continues-the-facade": 61,
       "warning:wall-between-rooms-is-not-paper": 4,
-      "note:wall-draws-its-own-tile": 1767,
+      "note:wall-draws-its-own-tile": 1794,
       "warning:wall-tile-is-drawn-somewhere": 2
     },
     "open": [
@@ -11159,20 +11180,20 @@
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2918",
+        "at": "wall 2924",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 403 and 305"
       },
       {
         "severity": "warning",
         "code": "wall-between-rooms-is-not-paper",
-        "at": "wall 2963",
+        "at": "wall 2969",
         "says": "the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 410 and 305"
       },
       {
         "severity": "warning",
         "code": "wall-tile-is-drawn-somewhere",
         "at": "tile[93]",
-        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1437, 1443, 1444, 1455, 1524, 1525) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
+        "says": "a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1443, 1449, 1450, 1461, 1530, 1531) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
       },
       {
         "severity": "warning",
@@ -11189,13 +11210,13 @@
       "tile[448]"
     ],
     "as_readback_differences": [
-      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (1437, 1443, 1444, 1455, 1524, 1525) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+      "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[93]: authored on 6 wall(s) (1443, 1449, 1450, 1461, 1530, 1531) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
       "(whole map): visibility.drawn: wanted 'drawn on some band', found 'drawn nowhere' [rules_blood.wall-tile-is-drawn-somewhere] -- tile[448]: authored on 8 wall(s) (457, 458, 459, 460, 473, 474 and 2 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end"
     ]
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1726,
+      "sprites": 1743,
       "sunk": 0.0,
       "through": 0.0,
       "squeezed": 0.0
@@ -11207,8 +11228,8 @@
     "overlaps": [
       {
         "sprites": [
-          1660,
-          1661
+          1672,
+          1673
         ],
         "tiles": [
           73,
@@ -11240,7 +11261,7 @@
         "count": 1,
         "first": [
           "sprite",
-          1591
+          1603
         ]
       }
     ],
@@ -11934,6 +11955,14 @@
         "maps": 3
       },
       {
+        "tile": 67,
+        "slot": "sprite_wall",
+        "place": "outdoors",
+        "count": 2,
+        "source": "community",
+        "maps": 1
+      },
+      {
         "tile": 2453,
         "slot": "sprite_wall",
         "place": "indoors",
@@ -12188,6 +12217,54 @@
         "count": 1,
         "source": "community-curated",
         "maps": 17
+      },
+      {
+        "tile": 67,
+        "slot": "sprite_floor",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community",
+        "maps": 5
+      },
+      {
+        "tile": 690,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community",
+        "maps": 3
+      },
+      {
+        "tile": 906,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 1
+      },
+      {
+        "tile": 924,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community",
+        "maps": 2
+      },
+      {
+        "tile": 956,
+        "slot": "sprite_floor",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community",
+        "maps": 14
+      },
+      {
+        "tile": 515,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community",
+        "maps": 5
       },
       {
         "tile": 698,
@@ -13322,59 +13399,63 @@
         "wall_tiles": [
           [
             417,
-            0.138
+            0.133
           ],
           [
             380,
-            0.128
-          ],
-          [
-            384,
-            0.121
+            0.123
           ],
           [
             393,
-            0.107
+            0.103
+          ],
+          [
+            384,
+            0.094
           ],
           [
             400,
-            0.089
+            0.086
           ],
           [
             20,
-            0.068
+            0.065
           ],
           [
             458,
-            0.057
+            0.055
           ],
           [
             406,
-            0.057
+            0.055
           ],
           [
             6,
-            0.042
+            0.04
           ],
           [
-            401,
+            110,
             0.034
           ],
           [
+            401,
+            0.033
+          ],
+          [
             67,
-            0.031
+            0.03
           ],
           [
             421,
-            0.024
+            0.023
           ],
           [
             381,
-            0.022
+            0.021
           ],
           [
             397,
-            0.021
+            0.02
           ]
         ],
         "shade_spread": 50,
@@ -13383,7 +13464,7 @@
           139.8,
           20.9
         ],
-        "free_floor_share": 0.65,
+        "free_floor_share": 0.64,
         "cramped": [],
         "relations": [],
         "study": "harbour"
@@ -13504,10 +13585,15 @@
     "refused": {},
     "whole": 8
   },
+  "merged": {
+    "sectors_merged": 44,
+    "walls_before": 13651,
+    "walls": 13135
+  },
   "light_stage": {
-    "sectors_before": 1065,
-    "walls_before": 7123,
-    "sprites_before": 2363,
+    "sectors_before": 1086,
+    "walls_before": 7289,
+    "sprites_before": 2395,
     "mover_hosts": [
       144,
       536,
@@ -13586,15 +13672,15 @@
       963
     ],
     "shadow_cut": {
-      "sectors": 21,
-      "pieces": 98,
+      "sectors": 23,
+      "pieces": 111,
       "slivers_merged": 4,
       "slivers_dropped": 0,
-      "walls_split": 342,
-      "seams": 804,
+      "walls_split": 409,
+      "seams": 908,
       "refused": {},
       "left_whole": {},
-      "looked_at": 22
+      "looked_at": 23
     },
     "rooms": {
       "region:gravesend/foundry_ward/canteen/back": {},
@@ -13673,6 +13759,15 @@
       },
       "region:gravesend/market_slip/market_hall/supermarket": {
         "ceiling 2290": 12
+      },
+      "region:gravesend/old_crossing/gallows:house": {
+        "its own lights": 1
+      },
+      "region:gravesend/old_crossing/gallows:window_s": {
+        "its own lights": 0
+      },
+      "region:gravesend/old_crossing/gallows:window_w": {
+        "its own lights": 0
       },
       "region:gravesend/old_crossing/st_gallows/altar_step": {
         "its own lights": 0
@@ -14049,18 +14144,18 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 57,
-      "pieces": 322,
+      "sectors": 59,
+      "pieces": 327,
       "slivers_merged": 19,
-      "slivers_dropped": 22,
-      "walls_split": 835,
-      "seams": 3150,
+      "slivers_dropped": 19,
+      "walls_split": 880,
+      "seams": 3152,
       "refused": {},
       "left_whole": {
         "449": "a seam of sector 449 from (51008, 33519) to (52135, 33346) has no twin",
-        "1065": "a wall of the cut had no twin"
+        "1086": "a wall of the cut had no twin"
       },
-      "looked_at": 61
+      "looked_at": 63
     },
     "slope_cut": {
       "sectors": 25,
@@ -14082,18 +14177,18 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1275,
+      "walls_split": 1309,
       "seams": 0,
       "refused": {},
-      "walls_cut": 357,
+      "walls_cut": 363,
       "walls_refused": 4,
       "left_whole": {},
-      "looked_at": 1550
+      "looked_at": 1591
     },
     "shades": {
-      "surfaces": 7053,
+      "surfaces": 7214,
       "windows": 18,
-      "spread_12": 126,
+      "spread_12": 124,
       "movers_evened": 75
     },
     "switched": {
@@ -14222,35 +14317,35 @@
       ]
     },
     "kept": 114,
-    "sectors": 1530,
-    "walls": 13289,
-    "sprites": 2426,
-    "pieces": 465,
+    "sectors": 1521,
+    "walls": 13135,
+    "sprites": 2458,
+    "pieces": 435,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 800,
-      "wall_sd": 11.5,
-      "wall_median": 18.0,
+      "walls": 885,
+      "wall_sd": 11.7,
+      "wall_median": 17,
       "by_facing": {
-        "N": 20,
+        "N": 16.0,
         "E": 17.0,
-        "S": 19.0,
-        "W": 17
+        "S": 18,
+        "W": 18.0
       },
-      "facing_step": 3.0,
-      "ground_median": 18,
-      "ground_sd": 11.8,
-      "corners": 226,
-      "corner_equal": 0.39,
-      "corner_step": 5,
+      "facing_step": 2.0,
+      "ground_median": 16.0,
+      "ground_sd": 11.9,
+      "corners": 253,
+      "corner_equal": 0.35,
+      "corner_step": 6.0,
       "corner_darker": {
-        "N": 0.18,
-        "E": 0.36,
-        "S": 0.13,
-        "W": 0.33
+        "N": 0.16,
+        "E": 0.38,
+        "S": 0.11,
+        "W": 0.34
       },
       "within_building": {
         "N": 0.0,
@@ -14261,26 +14356,26 @@
       "tile_sd": 6.3
     },
     "after": {
-      "walls": 800,
-      "wall_sd": 11.5,
-      "wall_median": 18.0,
+      "walls": 885,
+      "wall_sd": 11.7,
+      "wall_median": 17,
       "by_facing": {
-        "N": 20,
+        "N": 16.0,
         "E": 17.0,
-        "S": 19.0,
-        "W": 17
+        "S": 18,
+        "W": 18.0
       },
-      "facing_step": 3.0,
-      "ground_median": 18,
-      "ground_sd": 11.8,
-      "corners": 226,
-      "corner_equal": 0.39,
-      "corner_step": 5,
+      "facing_step": 2.0,
+      "ground_median": 16.0,
+      "ground_sd": 11.9,
+      "corners": 253,
+      "corner_equal": 0.35,
+      "corner_step": 6.0,
       "corner_darker": {
-        "N": 0.18,
-        "E": 0.36,
-        "S": 0.13,
-        "W": 0.33
+        "N": 0.16,
+        "E": 0.38,
+        "S": 0.11,
+        "W": 0.34
       },
       "within_building": {
         "N": 0.0,
@@ -14290,6 +14385,11 @@
       },
       "tile_sd": 6.3
     }
+  },
+  "tidy": {
+    "walls_before": 13135,
+    "walls": 12919,
+    "joined": 216
   },
   "stages": [
     {

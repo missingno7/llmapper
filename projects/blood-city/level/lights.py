@@ -31,6 +31,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
     # Graves Brook is older than the ring: lamps hung on chains far apart,
     # not the ring's tubes (`references/sewer-design.md`: "almost none")
     ("graves_brook", Rule("hanging", 641, 8192)),
+    ("old_crossing/gallows:dais", Rule("none", 0, 0, cut=False)),    # two shallow steps: a shadow's edge on them reads as a crack
+    ("old_crossing/gallows", Rule("none", 0, 0)),         # two lamps, and a candelabrum in the house
     # the Cabal keeps its own fires
     ("settling_hall/rite:tier", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),
     ("settling_hall/rite:gallery", Rule("none", 0, 0, cut=False, shade_bias=(14, 26, 12))),

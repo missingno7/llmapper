@@ -49,7 +49,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Derived readings of a map. Never authoritative, never written back.",
      ["design", "spatial", "sight", "exposure", "morphology", "contents",
       "reachability", "relations", "patterns", "anchors", "structures", "compositions",
-      "materials", "level_profile", "effects", "wiring", "blasts", "posed", "completion", "supplies", "assembly", "conditional",
+      "materials", "level_profile", "effects", "wiring", "blasts", "tidy", "posed", "completion", "supplies", "assembly", "conditional",
       "progression", "understanding", "sp_understand", "bundle", "style"]),
     ("Probes",
      "Replayable questions about a level, with explicit world state.",

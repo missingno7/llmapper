@@ -540,6 +540,20 @@ POSE_SETS = {
         "costumes": (18.16, 12.93, 17.08, 11.94, LEVEL, "the clothes rail, trunk and folding screen"),
         "behind_screen": (18.05, 13.56, 17.35, 13.12, LEVEL, "the star's empty costume behind the screen"),
     },
+    #: the Gallows Steps: the old block west of the well square, opened and raised
+    "gallows": {
+        "ga_alley": (9.0, 21.6, 9.0, 29.5, LEVEL, "down the dead end alley"),
+        "gb_square": (14.6, 23.0, 12.0, 28.0, LEVEL, "the well square, toward the block"),
+        "gc_street": (17.5, 40.0, 14.0, 31.0, LEVEL, "up the west street to the corner"),
+        "gd_row": (17.5, 22.5, 14.0, 31.0, LEVEL, "down the west street to the corner"),
+        "ge_road": (10.0, 38.5, 11.5, 34.0, LEVEL, "from the market road"),
+        "gf_avenue": (26.0, 37.5, 13.0, 32.0, LEVEL, "from the crossroads, far"),
+        "gg_head": (9.4, 33.6, 12.6, 32.4, LEVEL, "the stair's head: the gallows", -32768),
+        "gh_over": (13.4, 34.0, 24.0, 40.0, LEVEL - 10, "over the parapet, the crossroads and the plaza", -32768),
+        "gi_walk": (11.8, 25.5, 16.0, 28.0, LEVEL - 12, "the walk over the well square", -32768),
+        "gj_house": (7.0, 33.6, 4.0, 31.0, LEVEL, "the hangman's house", -32768),
+        "gk_stair": (9.0, 28.6, 9.0, 34.0, UP, "up the stair", 8192),
+    },
     #: what the owner flagged on 2026-11-24 after playing: wooden blocks before the provisions, the lift's upper landing
     "flagged": {
         "fa_prov_w": (17.6, 49.0, 14.0, 46.0, LEVEL, "the provisions front from the south east"),

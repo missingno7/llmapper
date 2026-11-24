@@ -1137,7 +1137,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     doorswitch.place(layout, "station:gate_lever", box.region_id,
                      ((mid + 512, SIGNAL_BOX[3]), (mid - 512, SIGNAL_BOX[3])),
                      GATE_CHANNEL)
-    wires.wire("station:gate").when(wiring.placement("station:gate_lever"), "push")
+    wires.wire("station:gate").when(wiring.placement("station:gate_lever"), "push", once=True)   # it brings the last fight, once
     # The exit, as the campaign ends a level: a pushed switch wearing the
     # tile that says so, 42 of its 43 maps. It was first made a sector that
     # ends the level when walked into; shown beside the campaign's wiring

@@ -60,6 +60,11 @@ PIER_Y = -3072
 SWITCH_TILE = 1048
 #: who waits behind the gates
 GUARD = ((201, 33.2, -7.6), (202, 37.8, -7.6), (202, 35.5, -8.2), (248, 36.3, -11.5), (204, 35.5, -14.6), (201, 32.0, -15.4))
+#: who comes when the signal box's lever raises the tunnel's gate: the level's last fight, out of the dark and up the platform
+LAST = ((211, 31.5, -20.6, 2048), (211, 33.5, -19.2, 2048), (204, 35.5, -20.4, 2048), (248, 36.8, -18.8, 2048),
+        (201, 10.5, -15.4, STATION), (202, 6.5, -15.2, STATION), (201, 24.0, -15.0, STATION), (204, 14.5, -13.4, STATION))
+#: a train's whistle a long way off (the Phantom's own, sound 276), and the ground
+LAST_WHISTLE = 276
 #: Caleb, when the last key turns: "Looks like my train's come in."
 OPENED_SAYS = 3031
 
@@ -83,6 +88,10 @@ SUPPLIES = (
     ((67, 67, 67), 27.2, 31.2, None, "the nave"),
     ((64, 64), 30.9, 25.2, None, "the vestry"),
     ((69, 69, 69), 20.8, 30.2, STREET, "the churchyard wall"),
+    # the gallows steps: three bodies over the crossroads
+    ((69, 69, 69), 13.9, 31.0, -32768, "the terrace, behind the parapet"),
+    ((124,), 4.4, 31.0, -32768, "the hangman's house"),
+    ((107,), 6.6, 30.8, -32768, "the hangman's house"),
     # theatre row
     ((68,), 9.0, 12.2, STREET, "the saloon"),
     ((108,), 5.2, 10.4, STREET, "the saloon's corner"),
@@ -129,6 +138,8 @@ PATROL = (
     (211, 44.0, 2.0, STREET, 512, 0), (202, 55.4, 24.0, STREET, 1536, 0), (203, 56.4, 34.0, STREET, 1536, 0),
     (248, 34.6, 1.8, STREET, 512, 3), (202, 36.8, 2.4, STREET, 512, 0),
     (205, 22.6, 28.0, STREET, 0, 0), (205, 24.8, 33.0, STREET, 512, 0), (205, 21.4, 24.6, STREET, 512, 1),
+    (201, 14.1, 33.6, -32768, 0, 0), (202, 12.2, 34.1, -32768, 512, 0), (201, 12.0, 26.6, -32768, 0, 3), (203, 5.6, 33.4, -32768, 0, 0),
+    (248, 11.0, 31.2, -32768, 0, 7),
     (203, 20.0, 51.2, STREET, 0, 0), (202, 47.0, 51.0, STREET, 1024, 0), (201, 55.8, 45.0, STREET, 1536, 3),
 )
 #: a foe in six carries a life essence (the study: 75% of Blood's health is carried)
@@ -205,7 +216,7 @@ def _spawn(layout, name, what, x, y, floor, **behavior):
 def place(layout) -> dict:
     """Everything above, set down. The keys and what they wake first, then the lock, the supplies and the patrols."""
     _REFUSED.clear()
-    report = {"keys": _keys(layout), "lock": _lock(layout), "supplies": _supplies(layout)}
+    report = {"keys": _keys(layout), "lock": _lock(layout), "last": _last_fight(layout), "supplies": _supplies(layout)}
     report["patrol"] = _patrol(layout)
     report["carried"] = _carried(layout)
     if _REFUSED:
@@ -291,6 +302,21 @@ def _lock(layout) -> int:
     for k, (what, x, y) in enumerate(GUARD):
         opened.then(wiring.placement(_spawn(layout, f"gameplay:guard_{k}", what, x, y, STREET if y > -9 else STATION)))
     return len(KEYS)
+
+
+def _last_fight(layout) -> int:
+    """The lever in the signal box: the gate rises, something whistles down the line, and they come."""
+    raised = wires.wire("station:gate")
+    for k, (what, x, y, floor) in enumerate(LAST):
+        raised.then(wiring.placement(_spawn(layout, f"gameplay:last_{k}", what, x, y, floor)))
+    region, px, py = spot(layout, 29.0, -20.0, 2048, room_for=420)
+    raised.then(wiring.placement(layout.add_sprite(
+        "gameplay:last_whistle", region.region_id, x=px, y=py, z=region.floor_z - 8192, type=708, picnum=2521, shade=-128,
+        cstat=32896, status=0, behavior={"data_2": LAST_WHISTLE})))
+    raised.then(wiring.placement(layout.add_sprite(
+        "gameplay:last_quake", region.region_id, x=px + 128, y=py, z=region.floor_z - 8192, type=19, picnum=2072, shade=-128,
+        cstat=32896, status=0, behavior={"data_1": 800, "trigger_once": 1})))
+    return len(LAST)
 
 
 def _supplies(layout) -> int:

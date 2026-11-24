@@ -1526,6 +1526,8 @@ def main() -> int:
         # boundary wall's end is not a doorway and need not admit a body.
         layout.add_connection(gate_id, region_a, region_b, a1=a1, a2=a2,
                               min_width=gate[5] if len(gate) > 5 else 1024)
+    import gallows
+    print("gallows steps:", len(gallows.build(layout)), "regions")
     # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
     # Checked on the source, so the fault never reaches a frame.
     from bloodmap import skyline as _skyline
@@ -2544,6 +2546,14 @@ def main() -> int:
         print("floors under fangs evened:", _cabal.even(disk, compiled))
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
         _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
+        # pieces that came out alike are one again, before the gates look
+        from bloodmap import tidy as _tidy
+        _merged = _tidy.merge_alike(disk, int(_lit["sectors_before"]))
+        _into = _merged.pop("into")
+        _lit_parent = {_into[k]: v for k, v in _lit_parent.items() if _into[k] >= int(_lit["sectors_before"])}
+        _lit.update(sectors=len(disk.sectors), walls=len(disk.walls))
+        ctx["manifest"]["merged"] = _merged
+        print("pieces made one again:", _merged)
         _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
                                       if d.severity in ("error", "warning"))
         _lit_added = _lit_by - _was_by
@@ -2572,6 +2582,10 @@ def main() -> int:
         "before": _light["before"], "after": _light["after"]}
     print("sunlight:", LIGHTING, {k: _light["after"][k] for k in (
         "wall_sd", "corner_equal", "corner_step", "within_building", "tile_sd")})
+    # what the passes split and nothing needs any more (the owner, 2026-11-25: "reducing number of walls where it makes sense")
+    from bloodmap import tidy as _tidy
+    ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("wallplane").art())
+    print("walls joined:", ctx["manifest"]["tidy"])
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")
