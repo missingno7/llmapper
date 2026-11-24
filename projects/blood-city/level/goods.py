@@ -131,12 +131,9 @@ ON_TOP = [
     ("market_hall/display_s", [(834, 0.5, 0.3), (802, 0.5, 0.7)]),
     ("market_hall/display_side", [(604, 0.08, 0.5), (759, 0.22, 0.5), (605, 0.40, 0.5),
                                   (834, 0.60, 0.5), (616, 0.76, 0.5), (802, 0.92, 0.5)]),
-    # the market hall's stall: provisions down the aisle side of each edge,
-    # so either aisle sees stock (the meat lies in its middle and hangs
-    # over it: `l3_market.dress_supermarket`)
-    ("supermarket_fittings/supermarket_stall", [
-        (604, 0.22, 0.08), (834, 0.78, 0.14), (802, 0.22, 0.24), (616, 0.78, 0.32),
-        (759, 0.22, 0.62), (712, 0.78, 0.70), (605, 0.22, 0.78), (604, 0.78, 0.9)]),
+    # the market hall's counter: what is sold with the meat (the meat itself
+    # is `meat_market.dress`'s)
+    ("meat_fittings/meat_counter", [(802, 0.2, 0.75), (604, 0.5, 0.3), (834, 0.78, 0.75)]),
     # the canteen, and the altar
     # (RAT DOGS' counter is a bar run now; the rats and the cleaver hold its
     # middle, so the stock stands at its ends)
@@ -180,7 +177,6 @@ ON_WALL = [
     ("saloon/back", "north", 163, 0.5, None),
     ("saloon/back", "east", 621, 0.5, None),
     ("pawn_shop/shop", "west", 268, 0.5, None),
-    ("market_hall/supermarket", "west", 2139, 0.4, 0.9),
     ("gravesend_arcade/service", "south", 1710, 0.3, None),
     #: (the arcade's service extinguisher is wired now: `l3_mall`)
     ("st_gallows/narthex", "north", 845, 0.5, 1.7),

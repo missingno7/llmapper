@@ -66,7 +66,8 @@ is a required order, and a player with dynamite has shorter ways.
 | gun | where | open or secret |
 |---|---|---|
 | sawed-off | by the dead man at the foot of the avenue, in the first frame | open |
-| flare pistol | the end of the jetty | open |
+| flare pistol | the Demeter's hold; taking it brings three gill beasts up onto her deck | open |
+| dynamite | the smugglers' locker behind the hold's panel | secret |
 | tommy gun | the arcade's service passage, behind the eye's door | open, keyed |
 | Tesla Cannon | between the fires at the foot of the falls, before the Cabal's mouth | open |
 | voodoo doll | the sewer's stash | secret |
@@ -86,6 +87,14 @@ A place to be hunted in, not a place to clear: eight rats and four beasts in thr
 stockyard branch has a fight of its own (the bleeding floor: a butcher, two axe zombies, rats, gill beasts below and in the sampling chamber),
 the ring has something under its south channel and hands in its west leg, and the Cabal keeps a picket where the outfall goes down to the
 settling hall. The rest is the Toshers' Den, off that hall: a light, a bag, shells, and a secret under a bed. Rows: `gameplay.SEWERS`, `gameplay.WAKES`.
+
+## The meat market
+
+A butcher behind the counter and the clerk (two on the harder skills) in the
+gallery over the jar shelves. The lever up there raises the cold store's steel
+door; two more butchers were shut in behind it, and the armor lies at its south
+end. Taking that brings two dead off their hooks and a butcher in behind
+(`market-design.md`).
 
 ## The streets
 

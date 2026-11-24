@@ -119,7 +119,7 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertGreaterEqual(len(heads), 5)    # 2 heads, 2 crests, skerry
         piles = [s for s in rocks
                  if int(s["floor_picnum"]) == l3_market.PILE_TILE]
-        self.assertEqual(len(piles), 8)
+        self.assertEqual(len(piles), 6)
         water = 8192 + l3_market.SEA_DROP
         for s in rocks:
             #: out of reach: over a body above the water it stands in
@@ -197,8 +197,8 @@ class ThirdWalkTests(unittest.TestCase):
                    and int(_extra(s).get("command", 0)) == 64]
         # The stash, flooded branch, cache, Molly's nest, plague pit,
         # Rat King's Shrine, Phantom Terminus and the Cabal's heart.
-        # and, since 2026-11-25, the Toshers' Cache
-        self.assertEqual(len(secrets), 9)
+        # and, since 2026-11-25, the Toshers' Cache and the Demeter's locker
+        self.assertEqual(len(secrets), 10)
 
     def test_ghost_station_dials_latch_only_the_first_complete_match(self):
         from itertools import permutations

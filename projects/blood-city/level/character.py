@@ -191,6 +191,13 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E4M9 s97 (atrium, banners, clocks), s89/s90 (basin under an open shaft), s79-s82 (escalator), "
                     "s103 (gallery over it, shut shops); E2M4 sprite 181 (balustrade); E3M4 sprite 331",
     },
+    "market hall": {
+        "at": (10240, 46592), "study": "meat-market",
+        "hero": "an aisle of hung carcasses from the street door to a shut "
+                "steel door, under a gallery on a wall of jars",
+        "exemplar": "E3M2 s258 (carcasses, pools, the butcher); E1M3 s305 "
+                    "(the freezer); TEDE1M2 s532 (chequer and bare floor)",
+    },
 }
 
 

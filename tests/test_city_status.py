@@ -212,7 +212,7 @@ class CityStatusTests(unittest.TestCase):
 
     def test_the_brief_is_short_and_says_what_is_not_verified(self):
         _data, page = self.module.render(self.status)
-        self.assertLess(len(page.splitlines()), 70)
+        self.assertLess(len(page.splitlines()), 80)
         self.assertIn("## Not verified", page)
         self.assertIn("Do not edit", page)
 

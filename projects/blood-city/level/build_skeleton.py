@@ -1572,7 +1572,7 @@ def main() -> int:
         # have been told a secret was found. The rule caught it; the helper
         # cannot forget it.
         # The stash, flooded branch, arcade cache, Old Molly's Nest,
-        # Plague Pit and Rat King's Shrine.
+        # Plague Pit, Rat King's Shrine, the Cabal's heart, the Toshers' Cache and the Demeter's locker.
         behavior=motion.secret_total(sum(1 for r in layout.regions.values() if r.secret)))
     # A flame in every light pool.  Three tiles were measured before this
     # one was chosen, and the measurements decided it:
@@ -1958,11 +1958,13 @@ def main() -> int:
     import l3_shed as _late_shed
     import l3_station as _late_station
     import l3_mall as _late_mall
+    import harbour_ship as _late_ship
     for _region_id, _type in {**l3_church.LATE_TYPES,
                               **l3_sewer.LATE_TYPES,
                               **_late_mall.LATE_TYPES,
                               **_late_shed.LATE_TYPES,
-                              **_late_station.LATE_TYPES}.items():
+                              **_late_station.LATE_TYPES,
+                              **_late_ship.LATE_TYPES}.items():
         layout.regions[_region_id].type = _type
 
     import facade_pass
