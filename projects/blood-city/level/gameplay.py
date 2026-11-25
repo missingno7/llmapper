@@ -62,8 +62,8 @@ SWITCH_TILE = 1048
 #: who waits behind the gates
 GUARD = ((201, 32.0, -7.0), (202, 39.2, -11.8), (202, 35.5, -10.9), (248, 32.0, -11.6), (204, 35.5, -14.6), (201, 31.8, -14.8))
 #: who comes when the signal box's lever raises the tunnel's gate: the level's last fight, out of the dark and up the platform
-LAST = ((211, 31.5, -20.6, 2048), (211, 33.5, -19.2, 2048), (204, 35.5, -20.4, 2048), (248, 36.8, -18.8, 2048),
-        (201, 10.5, -15.4, STATION), (202, 6.5, -15.2, STATION), (201, 24.0, -15.0, STATION), (204, 14.5, -13.4, STATION))
+LAST = ((211, 54.0, -25.35, 2048), (211, 56.0, -23.95, 2048), (204, 58.0, -25.15, 2048), (248, 59.3, -23.55, 2048),
+        (201, 33.0, -20.15, STATION), (202, 29.0, -19.95, STATION), (201, 46.5, -19.75, STATION), (204, 36.0, -18.0, STATION))
 #: a train's whistle a long way off (the Phantom's own, sound 276), and the ground
 LAST_WHISTLE = 276
 #: Caleb, when the last key turns: "Looks like my train's come in."
@@ -130,11 +130,11 @@ SUPPLIES = (
     ((67, 67, 67), 13.6, 45.6, HALL, "the Toshers' Den, along the beds"),
     ((110, 73, 73), 9.7, 45.6, 106496, "the Toshers' Cache: a secret"),
     # the station, behind its gates
-    ((72,), 39.6, -15.0, STATION, "the gallery's east end, over the booking hall"),
+    ((72,), 39.6, -14.0, STATION, "the waiting hall's edge, over the booking hall"),
     ((68,), 28.6, -6.2, STREET, "the booking office"),
     ((107,), 41.8, -9.8, STREET, "behind the refreshment counter"),
-    ((68,), 9.2, -13.2, STATION, "the booking hall"),
-    ((107,), 20.8, -12.6, STATION, "the waiting room"),
+    ((68,), 31.5, -14.6, STATION, "the waiting hall, by the luggage office"),
+    ((107,), 43.3, -16.9, STATION, "the waiting room"),
     ((69, 69, 69), 39.2, -17.4, None, "the goods store"),
 )
 
@@ -339,7 +339,7 @@ def _last_fight(layout) -> int:
     raised = wires.wire("station:gate")
     for k, (what, x, y, floor) in enumerate(LAST):
         raised.then(wiring.placement(_spawn(layout, f"gameplay:last_{k}", what, x, y, floor)))
-    region, px, py = spot(layout, 29.0, -20.0, 2048, room_for=420)
+    region, px, py = spot(layout, 51.5, -24.75, 2048, room_for=420)
     raised.then(wiring.placement(layout.add_sprite(
         "gameplay:last_whistle", region.region_id, x=px, y=py, z=region.floor_z - 8192, type=708, picnum=2521, shade=-128,
         cstat=32896, status=0, behavior={"data_2": LAST_WHISTLE})))

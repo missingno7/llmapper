@@ -24,8 +24,8 @@ in order, and each step has a thing (as of 2026-11-25; `references/station-desig
                the platform's level.
 ``wait``       a waiting hall on the platform: benches, a hearth, bills, and
                the waiting room off it.
-``pass``       iron gates between the columns (E1M2 sprites 473-477),
-               a revolving fare gate, and two open bays.
+``pass``       a row of riveted columns, iron gates in the two narrow bays
+               (E1M2 sprites 473-477) and three bays open to the platform.
 ``board``      a carriage with a DOOR and glazed WINDOWS, standing under
                a train-shed roof. (A free-standing car under the sky can
                have neither in this engine: the wall over an opening runs
@@ -77,7 +77,6 @@ from bloodmap import wiring
 
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, Style
-from bloodmap.mechanism import DISTINCT_ANGLES, turnstile_spec
 from bloodmap.slope import SlopeSpec
 
 from materials import FACADES
@@ -102,17 +101,32 @@ CAR_TOP = 40960
 SHED_CLEAR = CAR_TOP
 OPEN_CLEAR = STREET_SKY - HALL_UP
 
-#: plan, in world units; north of the city is negative y
-#: (the station's first way in was a door in the north lane, a passage and a ramp up to this hall's south
-#: wall; the avenue's front made them a back way that meant nothing, and the owner, 2026-11-25, had them out.
-#: A hearth stands where the ramp came up.)
-HEARTH = (12544, -8448, 14080, -7680)
-HEARTH_TILE, HEARTH_H = 142, 26112                  # the owner's "skull-shaped fireplace maskwall", 2,048 wide, drawn to 1,536
-HALL = (8 * PU, -14592, 18 * PU, -8448)
-OFFICE = (6144, -13568, 7936, -10496)
-OFFICE_DOOR = (7936, -11264, 8192, -10496)
-OFFICE_WINDOW = (7936, -13056, 8192, -12032)      # two halves, bars between
-PY0, PY1 = -16640, -14592
+#: plan, in world units; north of the city is negative y.
+#: WHERE IT STANDS. It was laid out from a door in the north lane, at x 8 to 30 with its
+#: hall south of the platform's middle; the avenue's front was joined to its east end later,
+#: and one walked out of the booking hall onto the platform's end and back along it to a
+#: hall nobody needed to be in. The owner, 2026-11-25: "the general rooms placement is still
+#: leftover from that original main enterance on the side ... that room on the side looks
+#: like something that should be part of main enterance". The hall is as wide as the booking
+#: hall, to the unit, so all of it stands north of that now: portico, booking hall, up the
+#: flight into this hall, through its bays to the platform, the carriage before one. The
+#: numbers below are the old ones, and `_r`, `_xs` and `MOVE` are the move.
+MOVE = (23040, -4864)
+
+
+def _r(x0, y0, x1, y1):
+    return (x0 + MOVE[0], y0 + MOVE[1], x1 + MOVE[0], y1 + MOVE[1])
+
+
+def _xs(*xs):
+    return tuple(x + MOVE[0] for x in xs)
+
+
+HALL = _r(8 * PU, -14592, 18 * PU, -8448)
+OFFICE = _r(6144, -13568, 7936, -10496)
+OFFICE_DOOR = _r(7936, -11264, 8192, -10496)
+OFFICE_WINDOW = _r(7936, -13056, 8192, -12032)      # two halves, bars between
+PY0, PY1 = -16640 + MOVE[1], -14592 + MOVE[1]
 #: (x0, x1, roofed, the bay the carriage door is in)
 #: THE TRAIN STANDS UNDER THE SKY. Three readers, blind, on the fifth
 #: version: the carriage's side is "a building facade with two windows",
@@ -134,23 +148,23 @@ PY0, PY1 = -16640, -14592
 #: the car's own roof height (1.57 bodies over the platform, 2.7 m): the
 #: car's side runs from the platform to the awning and nothing is above it.
 #: (the awning is gone again: see THE CARRIAGE IS BUILT OF SECTORS)
-PLATFORM = ((6144, 8192, False, False), (8192, 9984, False, False),
+PLATFORM = tuple((*_xs(a, b), *more) for a, b, *more in ((6144, 8192, False, False), (8192, 9984, False, False),
             (9984, 14848, False, False), (14848, 15872, False, True),
             (15872, 18432, False, False), (18432, 21248, False, False),
             (21248, 22528, False, False),
             #: ... and on beside the locomotive, so it is SEEN (round 3:
             #: "no locomotive" -- it stood past the platform's end wall)
-            (22528, 29696, False, False))
-DOWN_RAMP = (4096, PY0, 6144, PY1)                # platform's west end
+            (22528, 29696, False, False)))
+DOWN_RAMP = (4096 + MOVE[0], PY0, 6144 + MOVE[0], PY1)                # platform's west end
 BED_Y = (PY0 - 8192, PY0)                         # two tracks
-BED_X = (2048, 6144, 22528, 30720)                # sky | shed | sky
+BED_X = _xs(2048, 6144, 22528, 30720)                # sky | shed | sky
 #: The far bore was shade 60, near black, from when the tunnel was a dead
 #: end that faded out. It now holds the switch that ends the level, and the
 #: owner, playing it on 2026-11-19: "that exit switch is in the very dark
 #: corridor, not sure why we made that one strip that dark when other rooms
 #: around it are lit." It keeps a step of fade and no more.
 #: (The switch is in the carriage now: what leaves is the train. The second bore is the dark the line goes into.)
-TUNNEL = ((30976, 34816, 24), (34816, 38912, 62))
+TUNNEL = tuple((*_xs(a, b), shade) for a, b, shade in ((30976, 34816, 24), (34816, 38912, 62)))
 #: THE LINE GOES SOMEWHERE. Every round: "the tunnel is barred, the
 #: station is a dead end". A roll-up gate stands in the tunnel's mouth
 #: (tile 9, the owner's "metal roll-up gate": on 40 of the campaign's
@@ -158,12 +172,11 @@ TUNNEL = ((30976, 34816, 24), (34816, 38912, 62))
 #: box, whose balcony looks straight at it. (A goods store stood at the far end, and
 #: the level ended at a switch in it, among crates: the owner, 2026-11-25,
 #: "at the end location badly aligned box textures".)
-GATE_X = (30720, 30976)
+GATE_X = _xs(30720, 30976)
 GATE_CHANNEL = wires.channel("station:gate")
 UNLOCK_CHANNEL = wires.channel("station:unlock")
 #: The avenue front (`avenue_front`) and the hall behind it (`booking_hall`): the
 #: avenue's mouth is x 32,768 to 39,936 on the city's north edge (y 0).
-EAST_LINK = (29696, -16128, 31232, -14592)
 #: the owner's "grey ashlar stone blocks", 13 maps; jambs his "stone column"
 FRONT_STONE, FRONT_JAMB = 427, 479
 #: THE SIGNAL BOX: height. The owner, 2026-11-19: "you might add some
@@ -171,18 +184,12 @@ FRONT_STONE, FRONT_JAMB = 427, 479
 #: platform's east end up 1.2 bodies to a cabin with the gate's lever,
 #: and an open balcony over the platform, level with the engine's dome.
 SIGNAL_UP = 20480
-LANDING = (22528, -14592, 23552, -12800)
-SIGNAL_RAMP = (23552, -13824, 26624, -12800)
-SIGNAL_BOX = (26624, -13824, 29696, -11776)
-BALCONY = (26624, -14592, 29696, -13824)
-#: THE WAITING ROOM, off the hall's east wall: carpet, plaster, benches
-#: round the walls, a longcase clock (720, the owner's "grandfather
-#: clock, front face"), a table with chairs.
-WAITING_DOOR = (18432, -12544, 18688, -11520)
-WAITING = (18688, -13568, 22272, -10496)
-WAIT_BENCHES = ((19200, -13440, 21760, -13056), (19200, -11008, 21760, -10624))
-WAIT_TABLE = (20224, -12288, 20992, -11776)
-CAR = (10240, PY0 - 128 - 2048, 20992, PY0 - 128)      # 3.4 m over all
+LANDING = _r(22528, -14592, 23552, -12800)
+SIGNAL_RAMP = _r(23552, -13824, 26624, -12800)
+SIGNAL_BOX = _r(26624, -13824, 29696, -11776)
+BALCONY = _r(26624, -14592, 29696, -13824)
+#: (the waiting room, off the hall's east wall, is `booking_hall`'s)
+CAR = (10240 + MOVE[0], PY0 - 128 - 2048, 20992 + MOVE[0], PY0 - 128)      # 3.4 m over all
 #: the strip the car stands in: 128 along its sides, 16 at its ends
 RING = (CAR[0] - 256, CAR[1] - 128, CAR[2] + 256, PY0)
 #: THE CARRIAGE IS BUILT OF SECTORS. The owner, 2026-11-19: "Carriage can
@@ -201,50 +208,48 @@ RING = (CAR[0] - 256, CAR[1] - 128, CAR[2] + 256, PY0)
 CAR_H = 26624                       # the roof over the platform: 1.57 bodies
 ROOF = 438                          # the owner's "embossed metal floor", as a top
 #: where the side walls change kind, west to east: wall, window, wall ...
-SIDE_X = (CAR[0] + 256, 11008, 12032, 12800, 13824, 14848, 15872, 16896,
-          17920, 18688, 19712, CAR[2] - 256)
+SIDE_X = (CAR[0] + 256, *_xs(11008, 12032, 12800, 13824, 14848, 15872, 16896,
+                              17920, 18688, 19712), CAR[2] - 256)
 SOUTH_KINDS = "SWSWSDSWSWS"
 NORTH_KINDS = "SWSWSSSWSWS"
 HULL_SOLID: list = []
 HULL_OPEN: list = []
 LATE_TYPES: dict = {}
 HULL = 256
-CAR_DOOR_X = (14848, 15872)
+CAR_DOOR_X = _xs(14848, 15872)
 #: round 5: "one 17.8 m slab, two windows a side, one door" -- four
 #: windows a side now, a body wide each, and a door that looks like one
-CAR_WINDOWS_X = ((11008, 12032), (12800, 13824), (16896, 17920),
-                 (18688, 19712))
+CAR_WINDOWS_X = (_xs(11008, 12032), _xs(12800, 13824), _xs(16896, 17920),
+                 _xs(18688, 19712))
 CAR_CLEAR, WINDOW_SILL, WINDOW_HEAD = 24576, 8192, 20480
 #: tables against the far side, seats either side of each, an aisle left
-TABLES = ((12288, CAR[1] + 384, 12800, CAR[1] + 896),
-          (17408, CAR[1] + 384, 17920, CAR[1] + 896))
+TABLES = tuple((x, CAR[1] + 384, x + 512, CAR[1] + 896) for x in _xs(12288, 17408))
 SEATS = tuple((x, CAR[1] + 384, x + 384, CAR[1] + 896)
-              for x in (11776, 12928, 16896, 18048))
+              for x in _xs(11776, 12928, 16896, 18048))
 AXIS = (CAR[1] + CAR[3]) // 2
 #: the locomotive: a cab the car's width, a boiler narrower and lower, a
 #: dome and a chimney standing on it, a buffer beam at its nose
-CAB = (22784, CAR[1], 24320, CAR[3])
+CAB = (22784 + MOVE[0], CAR[1], 24320 + MOVE[0], CAR[3])
 #: round 4: "a diamond-plate box with a stepped top ... nothing shows
 #: which end leads". A low FRAME the wheels hang on; on it a boiler
 #: narrower than the frame (the nearest a sector gets to round); on that
 #: a dome and, at the nose, a thin tall chimney, darker than the rest.
-FRAME = (24448, AXIS - 896, 28160, AXIS + 896)
-BOILER = (24576, AXIS - 512, 28032, AXIS + 512)
-DOME = (25728, AXIS - 192, 26112, AXIS + 192)
-CHIMNEY = (27392, AXIS - 192, 27776, AXIS + 192)
-BEAM = (28288, CAR[1], 28544, CAR[3])
-BUFFER = (2560, CAR[1] + 256, 3584, CAR[3] - 256)
+FRAME = (24448 + MOVE[0], AXIS - 896, 28160 + MOVE[0], AXIS + 896)
+BOILER = (24576 + MOVE[0], AXIS - 512, 28032 + MOVE[0], AXIS + 512)
+DOME = (25728 + MOVE[0], AXIS - 192, 26112 + MOVE[0], AXIS + 192)
+CHIMNEY = (27392 + MOVE[0], AXIS - 192, 27776 + MOVE[0], AXIS + 192)
+BEAM = (28288 + MOVE[0], CAR[1], 28544 + MOVE[0], CAR[3])
+BUFFER = (2560 + MOVE[0], CAR[1] + 256, 3584 + MOVE[0], CAR[3] - 256)
 #: pools of light under the hall's lamps: (x0, y0, x1, y1)
-POOLS = ((9216, -10752, 10752, -9216), (12544, -10240, 14080, -8704),
-         (15872, -10752, 17408, -9216))
+POOLS = (_r(9216, -10752, 10752, -9216), _r(12544, -10240, 14080, -8704),
+         _r(15872, -10752, 17408, -9216))
 LAMP, WALL_LAMP, CURTAIN = 945, 2183, 147
 STREET_TORCH = 506
 COLUMNS = tuple(HALL[0] + 1024 + k * 2560 for k in range(4))
-#: Replace the fenced bay between the first two columns with a roofed rotor.
-FARE_JAMBS = (COLUMNS[0], COLUMNS[1] + 512)
-FARE_ROTOR = (COLUMNS[0] + 512, HALL[1], COLUMNS[1], HALL[1] + 2048)
-FARE_CLEAR = 32768
-BENCHES = ((10240, -11392), (14848, -12032))      # clear landing in front of the fare gate
+#: (a revolving fare gate stood in the first bay until 2026-11-25, between two cheeks of the column's tile
+#: drawn out along them. The owner: "that rotating turnstile is little weird if you can just go around it
+#: and also it has these walls on the side that have stretched texture")
+BENCHES = tuple(_r(x, y, x, y)[:2] for x, y in ((9728, -11392), (14848, -11392)))
 CAR_DOOR_CHANNEL = wires.channel("station:car-door")
 
 #: tiles (the owner's names in quotes)
@@ -252,6 +257,7 @@ FLOOR = 281                        # "irregular grey stone masonry"
 HALL_WALL, PLANKS = 90, 67         # "worn large bricks with moss"
 PASSAGE_WALL, PASSAGE_CEILING = 414, 120
 TRACK = 1129                       # "railway track with sleepers"
+TRACK_PAN = MOVE[1] * 256 // 4096 % 256
 FAR_WALL, TUNNEL_WALL, TUNNEL_VAULT = 421, 80, 253
 PLATFORM_FACE, LIVERY = 174, 1665
 COLUMN, WOOD, PLATING = 115, 34, 470
@@ -291,7 +297,7 @@ GATE = {"type": 0, "picnum": 1044, "cstat": 8413 & ~64, "x_repeat": 64,
 WHEELS = {"type": 0, "picnum": 2320, "cstat": 464, "x_repeat": 88,
           "y_repeat": 104, "shade": 22, "status": 0}     # E1M3 sprite 419
 CLOCK = {"tile": 1165, "x_repeat": 55, "y_repeat": 55}  # MISKSTAT sprite 143
-BOARDS = {"tickets": 943, "arrivals": 431, "telephone": 645}
+BOARDS = {"tickets": 943, "arrivals": 431}
 POSTERS = (440, 453, 981, 225)     # the last is the Pandemonium Show's bill
 
 FACES: dict = {}       # region id -> tile its raised faces wear
@@ -361,26 +367,12 @@ def build(city, street):
 
     # ---- the waiting hall: the old booking hall, behind the platform -------
     hx0, hy0, hx1, hy1 = HALL
-    rx0, _, rx1, ry1 = FARE_ROTOR
-    jx0, jx1 = FARE_JAMBS
-    hall_outline = [(x - hx0, y - hy0) for x, y in (
-        (hx0, hy0), (jx0, hy0), (jx0, ry1), (jx1, ry1), (jx1, hy0),
-        (hx1, hy0), (hx1, hy1), (hx0, hy1))]
     hall = room("hall", HALL, floor_z=HALL_Z, clear=HALL_CLEAR,
-                outline=hall_outline, faces={"north_west": 0, "fare_gate": 2,
-                "north": 4, "east": 5, "south": 6, "west": 7},
                 note="the waiting hall: mossy brick under dark planks",
                 floor_shade=26, ceiling_shade=44, wall_shade=34)
-    hearth = room("hearth", (HEARTH[0], HEARTH[1] + 128, HEARTH[2], HEARTH[3]), floor_z=HALL_Z, clear=HEARTH_H, role="detail", note="the hearth, where the old ramp came up",
-                  rk={"declared_zero_exit": True}, wall_picnum=PASSAGE_WALL, floor_picnum=PASSAGE_WALL, ceiling_picnum=PASSAGE_WALL,
-                  floor_shade=8, ceiling_shade=24, wall_shade=10)
-    # the front hangs a step inside, where both sides stand at one level: on the hall's own line it would share its record
-    # with the wall over the opening (`tools.city_profile`)
-    mouth = room("hearth_mouth", (HEARTH[0], HEARTH[1], HEARTH[2], HEARTH[1] + 128), floor_z=HALL_Z, clear=HEARTH_H, role="detail",
-                 note="the hearth's reveal", rk={"declared_zero_exit": True}, wall_picnum=PASSAGE_WALL, floor_picnum=PASSAGE_WALL,
-                 ceiling_picnum=PASSAGE_WALL, floor_shade=8, ceiling_shade=24, wall_shade=10)
-    station.connect(mouth.face("north"), hall.face("south"), connection_id="connection:station_hearth_mouth")
-    station.connect(hearth.face("north"), mouth.face("south"), connection_id="connection:station_hearth")
+    import booking_hall
+    hall.raw("the booking hall between the arches and this hall, and the waiting room off it",
+             lambda layout, room: booking_hall.build(layout, AVENUE_FRONT["gates"], room.region_id))
 
     # ---- the booking office: a clerk behind bars, a door round the side --
     office = room("office", OFFICE, floor_z=HALL_Z, clear=32768,
@@ -415,57 +407,20 @@ def build(city, street):
     GRILLES.append((mid - 16, wy0, mid + 16, wy1))
 
     # ---- the hall: columns on the platform line, benches to wait on -----
-    for cx in COLUMNS[2:]:
+    for cx in COLUMNS:
         box = (cx, HALL[1] + 128, cx + 512, HALL[1] + 640)
         hall.carve([(box[0] - HALL[0], box[1] - HALL[1]),
                     (box[2] - HALL[0], box[1] - HALL[1]),
                     (box[2] - HALL[0], box[3] - HALL[1]),
                     (box[0] - HALL[0], box[3] - HALL[1])])
         COLUMN_BOXES.append(box)
-    COLUMN_BOXES.extend(((jx0, hy0, rx0, ry1), (rx1, hy0, jx1, ry1)))
-
-    # DOOR-ROTATING s4: four carried vanes, a fixed outline and a central axis.
-    # The campaign rotor's iron lattice matches the hall's fixed grilles.
-    # At its stock size each vane reaches 768, leaving 256 to either jamb.
-    fare = turnstile_spec(period=255, floor_z=HALL_Z, ceiling_z=HALL_Z - FARE_CLEAR,
-                          arrangement=DISTINCT_ANGLES)
-    fare["behavior"].pop("rx_id")  # the city's named engine wire supplies RX
-    rotor = room("fare_turnstile", FARE_ROTOR, floor_z=HALL_Z, clear=FARE_CLEAR,
-                 role="gateway", note="the four-vane fare gate beside the open bays",
-                 rk={"type": fare["sector_type"], "sector_behavior": fare["behavior"]},
-                 wall_picnum=COLUMN, ceiling_picnum=PLANKS,
-                 floor_shade=8, ceiling_shade=18, wall_shade=8)
-    station.connect(rotor.face("south"), hall.face("fare_gate"),
-                    connection_id="connection:station_fare_hall")
-    wires.wire("station:fare-turnstile").then(wiring.region(rotor.region_id))
-    pivot = ((rx0 + rx1) // 2, (hy0 + ry1) // 2)
-
-    def place_fare_rotor(layout, room):
-        px, py = pivot
-        layout.add_sprite("placement:station:fare_turnstile:axis", room.region_id,
-                          x=px, y=py, **fare["axis"])
-        # E1M4:151 and :314 loop ambient 21 in both fare rotors.
-        from ambience import fields as ambient_fields
-
-        layout.place_on_floor(
-            "placement:station:fare_turnstile:sound", room.region_id,
-            local=(0.5, 0.5), height_player_heights=0,
-            **ambient_fields("fare_turnstile", near=250, far=700, volume=20))
-        for index, blade in enumerate(fare["blades"]):
-            fields = dict(blade)
-            dx, dy = fields.pop("dx"), fields.pop("dy")
-            layout.add_sprite(f"placement:station:fare_turnstile:vane:{index}",
-                              room.region_id, x=px + dx, y=py + dy, shade=8, **fields)
-
-    rotor.raw("Fit the campaign axis marker and four floor-to-roof grates.",
-              place_fare_rotor)
     for index, (bx, by) in enumerate(BENCHES):
         #: round 3: "bench seats are 1.06 m deep (real: about 0.45 m) and
         #: read as crates". A seat 0.6 m deep and knee high, a thin back.
         inside(hall, HALL, f"bench_{index}", (bx, by, bx + 2048, by + 384),
-               4608, WOOD, WOOD, "a bench: the seat")
+               4608, WOOD, 28, "a bench: the seat")
         inside(hall, HALL, f"bench_{index}_back",
-               (bx, by + 448, bx + 2048, by + 576), 10240, WOOD, WOOD,
+               (bx, by + 448, bx + 2048, by + 576), 10240, WOOD, 28,
                "a bench: its back")
     #: LIGHT. Three rounds running: "uniform lighting everywhere; no
     #: darkness or pools of light". The hall is dark now, and what light
@@ -493,14 +448,8 @@ def build(city, street):
             station.connect(parts[-1].face("east"), part.face("west"),
                             connection_id=f"connection:station_platform_{index}")
         if hx0 <= x0 and x1 <= hx1:
-            face = "north_west" if x0 < jx0 else "north"
-            span = min(x1, jx0) - x0 if face == "north_west" else x1 - max(x0, jx1)
-            station.connect(part.face("south"), hall.face(face), min_width=span,
+            station.connect(part.face("south"), hall.face("north"), min_width=x1 - x0,
                             connection_id=f"connection:station_hall_platform_{index}")
-        fare_span = min(x1, rx1) - max(x0, rx0)
-        if fare_span > 0:
-            station.connect(part.face("south"), rotor.face("north"), min_width=fare_span,
-                            connection_id=f"connection:station_fare_platform_{index}")
         parts.append(part)
     dx0, dy0, dx1, dy1 = DOWN_RAMP
     down = room("platform_ramp", DOWN_RAMP, floor_z=HALL_Z, clear=OPEN_CLEAR,
@@ -599,25 +548,6 @@ def build(city, street):
                     connection_id="connection:station_signal_balcony")
     station.connect(balcony.face("north"), parts[-1].face("south"),
                     connection_id="connection:station_balcony_edge")
-
-    # ---- the waiting room ------------------------------------------------
-    wdoor = room("waiting_door", WAITING_DOOR, floor_z=HALL_Z, clear=28672,
-                 role="gateway", note="the waiting room's door",
-                 wall_picnum=WOOD, ceiling_picnum=WOOD, floor_shade=12)
-    waiting = room("waiting_room", WAITING, floor_z=HALL_Z, clear=36864,
-                   note="the waiting room: carpet, benches, a clock",
-                   floor_picnum=CARPET, wall_picnum=CAR_LINING,
-                   ceiling_picnum=PLANKS, floor_shade=2, ceiling_shade=22,
-                   wall_shade=4)
-    station.connect(wdoor.face("west"), hall.face("east"),
-                    connection_id="connection:station_waiting_door_hall")
-    station.connect(wdoor.face("east"), waiting.face("west"),
-                    connection_id="connection:station_waiting_door_in")
-    for index, rect in enumerate(WAIT_BENCHES):
-        inside(waiting, WAITING, f"wait_bench_{index}", rect, 4608, WOOD,
-               WOOD, "a bench in the waiting room", shade=8)
-    inside(waiting, WAITING, "wait_table", WAIT_TABLE, 7168, WOOD, WOOD,
-           "the waiting room's table", shade=6)
 
     # ---- the carriage: walls that are sectors, a roof that is sprites ---
     from bloodmap.doors import xsector_remote_rx
@@ -751,23 +681,9 @@ def build(city, street):
         station.connect(bore.face("west"), previous.face("east"),
                         connection_id=f"connection:station_tunnel_{index}")
         previous = bore
-    # ---- THE AVENUE FRONT: the station seen from the city's main street --
-    # The showcase's blind reader, round 2, of the north-lane door: "a brick
-    # building entrance ... the recessed passage looks like another gap in
-    # the wall". It is a slot in a long wall on a lane where no view shows a
-    # front. The avenue, the city's long axis, ended in a blank end wall a
-    # few units south of the platform's east end. The station is fronted
-    # there now (`avenue_front`, built with the streets), and these are the
-    # hall behind that front: the booking hall, up whose flight of stairs the platform's
-    # east end is, beside the locomotive (`booking_hall`, laid into the layout).
-    link = room("concourse_link", EAST_LINK, floor_z=HALL_Z, clear=32768,
-                role="gateway", note="from the concourse onto the platform",
-                wall_picnum=COLUMN, ceiling_picnum=WOOD, floor_shade=12)
-    station.connect(link.face("west"), parts[-1].face("east"),
-                    connection_id="connection:station_link_platform")
-    import booking_hall
-    link.raw("the booking hall between the arches and the platform",
-             lambda layout, room: booking_hall.build(layout, AVENUE_FRONT["gates"], room.region_id))
+    # ---- THE AVENUE FRONT -------------------------------------------------
+    # `avenue_front`, built with the streets; the booking hall behind it is laid into
+    # the layout between its gates and this hall (`booking_hall`).
     return ROOMS
 
 
@@ -837,10 +753,6 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
             length = abs(a[1] - b[1])
             layout.paint_wall(court, a, b, fixed_frame=True, picnum=SIDES[side], x_repeat=round(length / 128), y_repeat=8,
                               x_panning=0 if side == "west" else (-round(length / 16)) % 128, y_panning=0, cstat=0)
-    #: the town's name where a passenger on the platform reads it: the
-    #: hall's own north wall is open, so it hangs over the hearth's end of the south wall
-    words("GRAVESEND", hall.region_id, (hx1 - 512, hy1), (HEARTH[2] + 256, hy1),
-          "fascia", 2.2)
     words("TO THE QUAY", ROOMS["track_east"].region_id,
           (BED_X[2] + 1024, BED_Y[0]), (BED_X[3] - 1024, BED_Y[0]),
           "notice", 2.0)
@@ -856,25 +768,6 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     #: booking hall's now); arrivals and the clock either side of the hearth;
     #: the telephone and the bills along the east wall
     words("LUGGAGE", hall.region_id, (hx0, OFFICE_WINDOW[3] + 256), (hx0, OFFICE_WINDOW[1] - 256), "notice", 1.9)
-    board("arrivals", BOARDS["arrivals"], hall, (HEARTH[0] - 256, hy1),
-          (hx0 + 512, hy1), 0.5, 1.5, 80)
-    board("clock", CLOCK["tile"], hall, (hx1, hy1), (HEARTH[2] + 256, hy1),
-          0.15, 2.9, CLOCK["x_repeat"])
-    #: the hearth's front, seen and solid from both sides, and what burns in it
-    line = HEARTH[1] + 128
-    for region, a, b in ((ROOMS["hearth_mouth"].region_id, (HEARTH[2], line), (HEARTH[0], line)),
-                         (ROOMS["hearth"].region_id, (HEARTH[0], line), (HEARTH[2], line))):
-        layout.paint_wall(region, a, b, fixed_frame=True, over_picnum=HEARTH_TILE, x_repeat=16, y_repeat=10, x_panning=0, y_panning=0,
-                          cstat=16 | 1 | 64)
-    hearth_region = layout.regions[ROOMS["hearth"].region_id]
-    _w, tall, _x, offset = wallplane.art()[3566]
-    from bloodmap.placement import seated_z
-    layout.add_sprite("station:hearth_fire", ROOMS["hearth"].region_id, x=(HEARTH[0] + HEARTH[2]) // 2, y=(HEARTH[1] + HEARTH[3]) // 2,
-                      z=seated_z(seat="floor", floor_z=hearth_region.floor_z, ceiling_z=hearth_region.ceiling_z, tile_height=tall,
-                                 y_repeat=36, y_offset=offset, cstat=128, clearance=16),
-                      picnum=3566, x_repeat=48, y_repeat=36, cstat=128, shade=-128, type=0, status=0)
-    board("telephone", BOARDS["telephone"], hall, (hx1, hy0 + 1024),
-          (hx1, hy1 - 512), 0.92, 1.0)
     for index, tile in enumerate(POSTERS):
         board(f"poster_{index}", tile, hall, (hx1, hy0 + 1024),
               (hx1, hy1 - 512), 0.1 + 0.2 * index, 1.55, 88)
@@ -882,18 +775,18 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     #: THE PLATFORM'S LAMPS. It had none, and the engine was a black thing in a black
     #: cutting: gas lamps along its back (640, the avenue's own), the town's name
     #: between them, and the boards that say where a line goes (E1M2 hangs 420 and 359)
-    for k, (part, x) in enumerate((("platform_0", 7000), ("platform_5", 18900), ("platform_5", 20900), ("platform_7", 23900),
+    for k, (part, x) in enumerate((("platform_0", 7000), ("platform_2", 12032), ("platform_2", 14592), ("platform_5", 18900), ("platform_5", 20900), ("platform_7", 23900),
                                    ("platform_7", 26300), ("platform_7", 29000))):
-        layout.add_sprite(f"station:platform_lamp_{k}", ROOMS[part].region_id, x=x, y=PY1 - 320, z=HALL_Z, picnum=640,
+        layout.add_sprite(f"station:platform_lamp_{k}", ROOMS[part].region_id, x=x + MOVE[0], y=PY1 - 320, z=HALL_Z, picnum=640,
                           x_repeat=props.STREET_LAMP_REPEAT, y_repeat=props.STREET_LAMP_REPEAT, cstat=129, shade=-16,
                           type=0, status=0)
-    words("GRAVESEND ", ROOMS["platform_5"].region_id, (21248, PY1), (18432, PY1), "fascia", 1.75)
-    board("northbound", 420, ROOMS["platform_7"], (25600, PY1), (23552, PY1), 0.5, 1.7, 64)
+    words("GRAVESEND ", ROOMS["platform_5"].region_id, (21248 + MOVE[0], PY1), (18432 + MOVE[0], PY1), "fascia", 1.75)
+    board("northbound", 420, ROOMS["platform_7"], (25600 + MOVE[0], PY1), (23552 + MOVE[0], PY1), 0.5, 1.7, 64)
     #: lamps: a chain lamp over each pool of light; curtains drawn back in the carriage's windows
     report["lamps"] = report["curtains"] = 0
     for index, (x0, _y0, x1, _y1) in enumerate(POOLS):
         layout.add_sprite(f"station:waiting_lamp_{index}", ROOMS[f"pool_{index}"].region_id, x=(x0 + x1) // 2, y=(_y0 + _y1) // 2,
-                          z=HALL_Z - 26000, picnum=641, x_repeat=56, y_repeat=56, cstat=0, shade=-128, type=0, status=0, sunk=True)
+                          z=HALL_Z - 35000, picnum=641, x_repeat=56, y_repeat=56, cstat=0, shade=-128, type=0, status=0, sunk=True)
         report["lamps"] += 1
     car = ROOMS["carriage"]
     cy_n, cy_s = CAR[1] + HULL, CAR[3] - HULL
@@ -914,11 +807,11 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                 except Exception:                           # noqa: BLE001
                     pass
 
-    #: iron gates between the columns, with the rotor and two open bays
+    #: iron gates in the two narrow bays at the columns' ends; the three between are open
     edges = [hx0] + [x for c in COLUMNS for x in (c, c + 512)] + [hx1]
     bays = [(edges[i], edges[i + 1]) for i in range(0, len(edges), 2)]
     for index, (x0, x1) in enumerate(bays):
-        if (x0, x1) == (FARE_ROTOR[0], FARE_ROTOR[2]) or index in (2, 3) or x1 - x0 < 768:
+        if index not in (0, len(bays) - 1):
             continue
         layout.place_on_wall(
             f"station:gate_{index}", hall.region_id, a1=(x0, hy0),
@@ -1083,22 +976,6 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
             spans_opening=True, type=0, picnum=BALUSTRADE,
             cstat=16 | 128 | 1, x_repeat=48, y_repeat=40, shade=6, status=0)
         report["rail"] += 1
-    #: the waiting room: a clock on the far wall, a lit lamp
-    wx0, wy0, wx1, wy1 = WAITING
-    waiting = ROOMS["waiting_room"]
-    for name, a1, a2, tile, height, repeat in (
-            ("wait_clock", (wx1, wy0 + 768), (wx1, wy1 - 768), LONGCASE,
-             0.75, 56),
-            ):
-        region = waiting
-        layout.add_sprite("station:wait_lamp", waiting.region_id, x=wx0 + 700, y=(wy0 + wy1) // 2, z=HALL_Z - 25000, picnum=641,
-                          x_repeat=48, y_repeat=48, cstat=0, shade=-128, type=0, status=0, sunk=True)
-        got = wallplane.sprite(
-            layout, f"station:{name}", region.region_id, a1, a2, tile=tile,
-            x_repeat=repeat, y_repeat=repeat, cstat=16 | 64 | 128, t=0.5,
-            height_player_heights=height, offset_player_widths=0.04, shade=-4)
-        report["boards"] += bool(got)
-
     import props
 
     def free(room_name, local):
@@ -1113,7 +990,6 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                 ("porter", "carriage", 203, (0.3, 0.75)),
                 ("prize", "carriage", 109, (0.1, 0.75)),
                 ("loiterer", "hall", 202, (0.7, 0.4)),
-                ("waiter", "waiting_room", 203, (0.7, 0.5)),
                 ("signalman", "signal_box", 202, (0.75, 0.6)),
                 ):
             spec = attested(type_id)
@@ -1123,6 +999,10 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
                                       ROOMS[room_name].region_id,
                                       local=where, **spec["fields"])
                 report["folk"] += 1
+        spec = attested(203)
+        if spec is not None:
+            import booking_hall
+            layout.place_on_floor("station:waiter", f"{booking_hall.KEY}:waiting", local=(0.62, 0.62), **spec["fields"])
     # SIGNS OF USE. Round 2: "no signs of use: no bodies, debris or
     # litter", "the halls have almost no props". What a harbour town's
     # station has lying about: sacks and barrels for the quay, somebody's
@@ -1164,9 +1044,6 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
             ("bottle_0", "carriage_table_0", 759, (0.4, 0.5)),
             ("bottle_1", "carriage_table_0", 606, (0.65, 0.4)),
             ("bottle_2", "carriage_table_1", 605, (0.5, 0.5)),
-            ("wait_chair_0", "waiting_room", CHAIR, (0.36, 0.5)),
-            ("wait_chair_1", "waiting_room", CHAIR, (0.7, 0.5)),
-            ("wait_bottle", "wait_table", 759, (0.5, 0.5)),
             ("box_lantern", "signal_box", 693, (0.2, 0.7))):
         where = free(room_name, local)
         if where is None:
@@ -1477,7 +1354,9 @@ def dress(level, compiled, *, keep_tracks=()) -> dict:
             #: that runs east-west, as this one does, must NOT. Neither I
             #: nor three readers over two rounds named it.
             s["floor_stat"] = int(s["floor_stat"]) & ~4
-            s["floor_x_panning"] = s["floor_y_panning"] = 0
+            # (tile 1129 is 512 by 4,096 laid on the map's own grid: what moved with MOVE is the track, so its
+            # pattern is panned as far, or the rails lie beside the train)
+            s["floor_x_panning"], s["floor_y_panning"] = 0, TRACK_PAN
             report["track"] += 1
         for w_id in range(int(s["wall_ptr"]),
                           int(s["wall_ptr"]) + int(s["wall_count"])):

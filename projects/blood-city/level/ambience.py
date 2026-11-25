@@ -46,7 +46,6 @@ SOUNDS = {
     "sewer": 30,
     "church": 1,
     "crypt": 17,
-    "fare_turnstile": 21,
     "works": 20,
     "mall": 65,
     "drowned": 37,        # E1M8's swimming: the diver's breath
@@ -62,7 +61,6 @@ ENVELOPES = {
     "sewer": (100, 300, 50),
     "church": (400, 800, 40),
     "crypt": (200, 500, 50),
-    "fare_turnstile": (250, 700, 20),
     "works": (200, 400, 50),
     # the campaign's is (900, 1500), over E4M9's whole mall; the owner,
     # 2026-11-23: "you can hear that shop music from arcades too broad ...

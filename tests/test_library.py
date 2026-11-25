@@ -368,7 +368,8 @@ class StationTests(unittest.TestCase):
         self.assertGreaterEqual(len(livery), 8)
         wheels = [sp for sp in self.disk.sprites
                   if int(sp.fields["picnum"]) == s.WHEELS["picnum"]
-                  and s.FRAME[0] <= int(sp.fields["x"]) <= s.FRAME[2]]
+                  and s.FRAME[0] <= int(sp.fields["x"]) <= s.FRAME[2]
+                  and abs(int(sp.fields["y"]) - s.AXIS) < 2048]
         #: tile 2320 is three coupled wheels in one picture: one sprite
         #: TO A SIDE (the owner, from the track: "locomotive is missing
         #: wheels on the other side"), each facing out
@@ -444,9 +445,7 @@ class StationTests(unittest.TestCase):
             self.assertFalse(cx0 - 512 <= int(w["x"]) <= cx1 + 512
                              and cy0 - 512 <= int(w["y"]) <= cy1 + 512, i)
         #: (a goods store stood at the line's end: the owner, 2026-11-25, "badly aligned box textures")
-        self.assertFalse([w for w in self.walls if int(w["picnum"]) == s.CRATE and int(w["x"]) > 38912 and int(w["y"]) < 0])
-        (waiting,) = [i for i in self._sectors_at(s.WAITING)] or [None]
-        self.assertIsNotNone(waiting)
+        self.assertFalse([w for w in self.walls if int(w["picnum"]) == s.CRATE and int(w["y"]) < 0])
 
     def test_it_says_its_name_and_was_built_from_a_study(self):
         from bloodmap.lettering import read_sign

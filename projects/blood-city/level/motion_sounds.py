@@ -42,7 +42,6 @@ WIRE_PROFILES = {
     "cabal:broken": "great_stone",
     "cabal:shut": "great_stone",
     "cabal:heart": "flesh_door",
-    "station:fare-turnstile": "fare_ambient",
     "underpass:pram": "pram",
     "sewer:stash-bars": "bars",
     "sewer:shrine-hands": "stone_door",
@@ -70,7 +69,6 @@ OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "bars": (105, 150, 105, 150
 VOICE = "_coach:aisle"
 SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
 CARRIED_PROFILES = {"rail_shuttle", "phantom_train", "pram"}
-FARE_AMBIENT = (250, 700, 21, 20)
 
 
 def apply(disk, allocations, circuit):
@@ -154,14 +152,6 @@ def check(disk, expected, wires):
             print(f"  blast charges on the same wire: {charges.get(rx_id, [])}")
             if markers or not charges.get(rx_id):
                 errors.append(f"sector {index}: expected wired blast charges and zero 709 markers")
-            continue
-        if profile == "fare_ambient":
-            audible = [data for _, fields, data in emitters[index]
-                       if fields["type"] == 710 and fields["status"] == 12
-                       and fields["cstat"] & 32768 and data.get("state")
-                       and tuple(data.get(field) for field in FIELD_NAMES) == FARE_AMBIENT]
-            if len(audible) != 1 or markers:
-                errors.append(f"sector {index}: expected one fare ambience and zero 709 markers")
             continue
         if profile == "silent member":
             if markers:

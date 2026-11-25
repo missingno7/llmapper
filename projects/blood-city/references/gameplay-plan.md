@@ -27,7 +27,7 @@ four keyed switches into one counting switch). Caleb: "Looks like my train's com
 in." The guard behind the gates wakes. Up the booking hall's stairs, over the platform,
 up to the signal box: its lever sets the line clear. A whistle far off, the ground shakes,
 the tunnel's gate rises and what was in the tunnel comes up the platform
-(`gameplay.LAST`); six seconds after, the carriage opens half way down it, and the way
+(`gameplay.LAST`); six seconds after, the carriage opens before the waiting hall, and the way
 out is the emblem at its forward end (`station-design.md`).
 
 | key | where | what stands in the way | what taking it does |

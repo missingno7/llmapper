@@ -142,9 +142,6 @@ ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
      "pushing the emblem at the forward end of the carriage, whose door the "
      "signal box's lever opens, ends the level",
      "kChannelLevelExitNormal"),
-    ("station:fare-turnstile",
-     "when the level starts the station's fare turnstile begins cycling",
-     "kChannelLevelStart"),
 )
 
 _NAMES = [name for name, _says in PLAN]

@@ -35,7 +35,7 @@ AREAS = (
     ("the Phantom Terminus", True, 35, -22, 72, 2), ("the Weaver's Cellars", True, 6, 8.5, 18, 17.6),
     ("St Gallow's crypt", True, 27, 26, 32, 30.5), ("the stockyard", True, 46.1, 34.2, 63, 62),
     ("Graves Brook", True, 0, 17.6, 32, 26), ("the sewers", True, 26, 1, 58, 41),
-    ("Gravesend Station", False, 0, -27, 60, 0), ("theatre row", False, 0, 0, 32, 15),
+    ("Gravesend Station", False, 0, -32, 64, 0), ("theatre row", False, 0, 0, 32, 15),
     ("foundry ward", False, 39, 2, 60, 37), ("the market hall", False, 3, 39.5, 15, 50), ("the arcade", False, 39, 39, 54, 50),
     ("St Gallow's", False, 20, 20, 34, 37), ("the harbour", False, 0, 55, 60, 64), ("the quay and the market square", False, 0, 37, 60, 55),
     ("the avenue", False, 32, 0, 40, 40), ("the west streets", False, 0, 14, 34, 40),
