@@ -906,7 +906,8 @@ def _match_edge(outline: list, edge: tuple) -> tuple[int, int]:
 def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
                 far_edge: tuple, leaf_height_z: int, face_picnum: int,
                 face_tile_height: int, jamb_picnum: int,
-                face_y_repeat: int = 8, reveal: float = 0.34) -> dict[str, Any]:
+                face_y_repeat: int = 8, reveal: float = 0.34,
+                leaf_depth: int | None = None) -> dict[str, Any]:
     """Split a door sector into frame / leaf / frame, and size the leaf's tile.
 
     Why this exists
@@ -933,7 +934,8 @@ def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
 
     `near_edge` and `far_edge` are the two connection edges of the door's
     rectangle, each a pair of its corners. `reveal` is the share of the door's
-    depth given to each frame; the middle keeps the moving sector.
+    depth given to each frame; the middle keeps the moving sector, or
+    `leaf_depth` of it where that is stated and the wall is thick enough.
     """
     if door_region not in layout.regions:
         raise ApertureError(f"unknown door region {door_region!r}")
@@ -957,6 +959,11 @@ def framed_door(layout: Any, door_region: str, *, near_edge: tuple,
     if len({p[1] for p in pairs}) != 2:
         raise ApertureError("%s: could not pair its two connection edges"
                             % door_region)
+    if leaf_depth is not None:
+        (n, f), _other = pairs
+        through = max(abs(outline[n][0] - outline[f][0]), abs(outline[n][1] - outline[f][1]))
+        if through >= leaf_depth + 64:
+            reveal = (through - leaf_depth) / 2 / through
 
     def between(t: float) -> list:
         return [(int(round(outline[n][0] + (outline[f][0] - outline[n][0]) * t)),
@@ -1112,7 +1119,9 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
                   door_types: tuple[int, ...] = (600, 602),
                   face_y_repeat: int = 8, reveal: float = 0.34,
                   strict: bool = True,
-                  already_framed: frozenset[str] = frozenset()) -> dict[str, Any]:
+                  already_framed: frozenset[str] = frozenset(),
+                  headroom: int | None = None, leaf_depth: int | None = None,
+                  fitted: frozenset[int] = frozenset()) -> dict[str, Any]:
     """Apply :func:`framed_door` to every declared Z-door in a layout.
 
     This is the project-boundary adapter for a level whose room program has
@@ -1127,7 +1136,10 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
     or anything other than two named edges is a missing declaration, not a
     reason to silently fall back to the old broken style.
     `already_framed` names cloth or other apertures whose own geometry supplies
-    their reveals and head heights.
+    their reveals and head heights. A door whose leaf wears one of the `fitted`
+    tiles is made no taller than the lower roofed room either side of it less
+    `headroom` -- the whole tile, at the repeat that is that tall -- and its
+    leaf `leaf_depth` thick.
     """
     built: list[dict[str, Any]] = []
     skipped: list[dict[str, str]] = []
@@ -1165,12 +1177,23 @@ def frame_z_doors(layout: Any, *, art_sizes: Mapping[int, tuple[int, int]],
                 raise ApertureError(message)
             skipped.append({"door": region_id, "reason": message})
             continue
+        repeat = face_y_repeat
+        if headroom is not None and face in fitted:
+            rooms = [layout.regions[other] for connection in layout.connections.values()
+                     if region_id in (connection.region_a, connection.region_b)
+                     for other in (connection.region_a, connection.region_b) if other != region_id]
+            clear = min((int(door.floor_z) - int(room.ceiling_z) for room in rooms if not room.parallax_ceiling), default=None)
+            one = tile_span_z(int(tile[1]), repeat)
+            if clear is not None and max(one, snap_leaf(int(tile[1]), repeat, target)[0]) > clear - headroom:
+                while tile_span_z(int(tile[1]), repeat) > clear - headroom and repeat < 16:
+                    repeat += 1
+                target = tile_span_z(int(tile[1]), repeat)
         item = framed_door(
             layout, region_id, near_edge=(tuple(edges[0][0]), tuple(edges[0][1])),
             far_edge=(tuple(edges[1][0]), tuple(edges[1][1])),
             leaf_height_z=target, face_picnum=face,
             face_tile_height=int(tile[1]), jamb_picnum=int(door.wall_picnum),
-            face_y_repeat=face_y_repeat, reveal=reveal,
+            face_y_repeat=repeat, reveal=reveal, leaf_depth=leaf_depth if face in fitted else None,
         )
         # Art-grid snapping is structural, not merely visual: motion must open
         # to the same head height the two frames expose.

@@ -155,6 +155,9 @@ def neutral(level) -> dict:
                     length = abs(int(n["x"]) - int(f["x"])) + abs(int(n["y"]) - int(f["y"]))
                     f["picnum"], f["x_panning"], f["y_panning"] = tile, 0, 0
                     f["x_repeat"], f["y_repeat"] = max(1, round(length / 128)), 8
+                elif int(f["next_sector"]) in parts and int(sectors[int(f["next_sector"])]["type"]) != 600:
+                    # the head over the leaf, where the way to it is taller than it is
+                    f["picnum"], f["x_panning"], f["y_panning"] = tile, 0, 0
             done.add(p)
     report["sectors"] = len(done)
     # the strip of sill and soffit before a shop's glass

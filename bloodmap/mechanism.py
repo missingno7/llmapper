@@ -828,6 +828,7 @@ def furnish_solid_slide(
     leaf_picnum: int = 30,
     edge_picnum: int = 20,
     busy_time: int = 10,
+    leaf_y_repeat: int = 10,
 ) -> None:
     """Set up a region drawn by `solid_slide_spec`: E1M3 s193's times and repeats, pushed on either face, its knob away from its pocket."""
     region = layout.regions[region_id]
@@ -842,7 +843,7 @@ def furnish_solid_slide(
         layout.carry_wall(region_id, a, b, moves="with")
         broad = (a, b) in mirrored
         layout.paint_wall(region_id, a, b, fixed_frame=True, picnum=leaf_picnum if broad else edge_picnum, x_repeat=8 if broad else 1,
-                          y_repeat=10 if broad else 8, x_panning=0, y_panning=0, cstat=8 if mirrored.get((a, b)) else 0)
+                          y_repeat=leaf_y_repeat if broad else 8, x_panning=0, y_panning=0, cstat=8 if mirrored.get((a, b)) else 0)
         wire.when(wiring.face(region_id, a, b), "push", on=True, off=True)
     for a, b in (*spec["returns"], spec["jamb"]):
         layout.paint_wall(region_id, a, b, picnum=edge_picnum)

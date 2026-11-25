@@ -596,7 +596,7 @@
       "kind": "sprite",
       "label_en": "straw (loose tangle)",
       "label_cs": "sláma",
-      "notes": "owner correction: straw rather than branches"
+      "notes": "owner correction: straw rather than branches; Straw usually on the ground, not a standing sprite. Owner, 2026-11-25."
     },
     {
       "picnum": 838,
@@ -1791,6 +1791,12 @@
       "kind": "wall",
       "label_en": "wooden door",
       "notes": "Door leaf: any motion, swing, slide or Z. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 2345,
+      "kind": "sprite",
+      "label_en": "bloody writing 'one eyed monks rule'",
+      "notes": "Owner, 2026-11-25: a decorative blood writing, with 826 and 1105."
     }
   ],
   "reading_guide": {

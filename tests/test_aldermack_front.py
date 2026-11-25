@@ -41,7 +41,7 @@ class AldermackFrontTests(unittest.TestCase):
         for w in leaf:
             self.assertTrue(self.walls[w]["cstat"] & 16384)
             self.assertTrue(record_extra(self.disk.walls[w])["trigger_push"])
-        self.assertEqual(avenue["floor_z"] - avenue["ceiling_z"], 24576)
+        self.assertEqual(avenue["floor_z"] - avenue["ceiling_z"], 28672)
 
     def test_the_front_doors_are_mirrored_wings(self):
         #: the owner: "Shouldn't the front door be like mirror wings to each

@@ -121,6 +121,11 @@ DISTRICT_BOUNDS = {
     "market_slip": (0, SEAM_MARKET, CITY_W, CITY_D),
 }
 
+#: A door is no taller than the lower of the two rooms it stands between, less a lintel, and its leaf is a leaf: 128 thick.
+#: (The owner, 2026-11-25: "Some building door like pawn shop door are taller than the ceiling inside it, have a look at door
+#: sizes, thicknesses across the map". The campaign's wooden Z doors: 29 of 72 are 128 thick and 26 are 256; of 161 of their
+#: sides the door is lower than the room at 88, as tall at 60, taller at 13.) The whole of the leaf's tile is drawn on it.
+DOOR_HEADROOM, DOOR_LEAF, DOOR_FITTED = 2048, 128, frozenset((*range(22, 28), 30, 495))
 #: Sewer chamber footprints (units); corridors take the alley width.
 CHAMBER = {"junction": (5120, 6144), "cistern": (6144, 4096)}
 CORRIDOR_W = WIDTH_UNITS["alley"]
@@ -1346,6 +1351,8 @@ def main() -> int:
     print("streets that go on:", ctx["manifest"]["street_ends"])
     import bill_column
     print("bill column:", len(bill_column.build(layout)), "regions")
+    import writings
+    print("written on the walls:", writings.build(layout))
     import underwater
     print("drowned places:", underwater.build(layout))
     # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
@@ -1762,7 +1769,8 @@ def main() -> int:
     import cabal_rite
     cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
     cloth_reveals |= frozenset(_station.AVENUE_FRONT.get("gates", ()))   # one gate across two half arches: its own frame
-    door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals)
+    door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals,
+                                headroom=DOOR_HEADROOM, leaf_depth=DOOR_LEAF, fitted=DOOR_FITTED)
     ctx["manifest"]["door_frames"] = len(door_frames["doors"])
     print("door frames:", len(door_frames["doors"]))
     import l3_shed as _late_shed

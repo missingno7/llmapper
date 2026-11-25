@@ -30,6 +30,7 @@ FRONT_WALL = 192
 SIDE_SPAN = (8192, 9216)
 #: the avenue door as it was built: its spec and its region (the build seats its leaf)
 SIDE_DOOR: dict = {}
+SIDE_HEIGHT = 28672                                    # to the cornice of the front it is in (`l3_theatre.PORCH_H`)
 SILL = 20                                              # planks, as Blood's own sills under wooden doors
 STONE = 70
 PANEL = 179
@@ -99,7 +100,7 @@ def _entrances(foyer, lobby, street):
         "lobby_door", spec["outline"], frame=Frame(0, 0), role="doorway",
         faces={"east": spec["outline"].index(street_edge[0]), "west": spec["outline"].index(lobby_edge[0])},
         region_kwargs=VENUE_MATERIAL.region_kwargs(), note="The avenue door: one leaf with a knob, that slides into the wall.")
-    side.surfaces(floor_z=GRADE, clear_height=wing_doors.LEAF_HEIGHT, wall_picnum=20, floor_picnum=SILL, ceiling_picnum=20,
+    side.surfaces(floor_z=GRADE, clear_height=SIDE_HEIGHT, wall_picnum=20, floor_picnum=SILL, ceiling_picnum=20,
                   floor_shade=28, ceiling_shade=32, wall_shade=30)
     _join("lobby_street", side, "east", street, "north")
     _join("lobby_door_in", side, "west", lobby, "east")
@@ -107,6 +108,7 @@ def _entrances(foyer, lobby, street):
     side_wire = wires.wire("theatre:side-door")
     foyer.raw("Hang the avenue door on its wire", lambda layout, room: furnish_solid_slide(
         layout, side.region_id, spec, side_wire,
+        leaf_y_repeat=round(128 * 2048 / SIDE_HEIGHT),
         marker_fields={kind: _attested("E1M3", kind, 3997)["fields"] for kind in (MARKER_OFF, MARKER_ON)}))
     return porch, side
 

@@ -45,6 +45,9 @@ ROOM_H = 32768            # the campaign's median room height
 # plain wall stone), so an opening reads as a door through its proportion
 # and its reveal -- which makes this number the whole fix.
 DOOR_H = 31744
+#: the superblock wears 400: its ground storey ends at a cornice 112 rows up, and an opening that ends there cuts neither the
+#: painted arch under it nor the window over it
+PORCH_H = 28672
 DOOR_D = PORCH_D = 256    # the reveal chain, inside the mass
 # Replaced by the mined set-piece class.  `tools/mine_set_pieces.py` finds
 # 363 raised blocks across 38 campaign maps and they agree on their height:
@@ -376,7 +379,7 @@ def build(district, theatre_st):
                             "sector_behavior": z_motion_door(
                                 GRADE, GRADE - DOOR_H)})
             porch = make(f"{name}_porch", x0, y1 - PORCH_D, x1, y1, "service",
-                         f"the {name} reveal", role="gateway", clear=DOOR_H)
+                         f"the {name} reveal", role="gateway", clear=PORCH_H)
         else:
             door = make(f"{name}_door", x0, y0, x1 - PORCH_D, y1, "common",
                         f"the {name} door", role="doorway", clear=0,
@@ -385,10 +388,10 @@ def build(district, theatre_st):
                             "sector_behavior": z_motion_door(
                                 GRADE, GRADE - DOOR_H)})
             porch = make(f"{name}_porch", x1 - PORCH_D, y0, x1, y1, "service",
-                         f"the {name} reveal", role="gateway", clear=DOOR_H)
+                         f"the {name} reveal", role="gateway", clear=PORCH_H)
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)
         porch.surfaces(wall_picnum=facade.opening, ceiling_picnum=facade.opening,
-                       floor_z=GRADE, clear_height=DOOR_H)
+                       floor_z=GRADE, clear_height=PORCH_H)
         citytree.join(door, rooms[room_name], at_a=inner, at_b=face,
                       connection_id=f"connection:{name}_door_in")
         citytree.join(porch, door, at_a=inner, at_b=face,

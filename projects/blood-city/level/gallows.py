@@ -305,7 +305,9 @@ def _furnish(layout, regions) -> None:
                           x_repeat=long_ * 3 // 4, y_repeat=26, angle=0, cstat=16 | 128, shade=14, spans_opening=True)
     _stand(layout, regions, "house", "candles", 4.3, 33.6, 580, 64, cstat=384, shade=-128)
     _stand(layout, regions, "house", "hung", 5.6, 32.2, 906, 56, tall=44, seat="ceiling", sunk=True)
-    _stand(layout, regions, "house", "straw", 4.4, 30.6, 515, 64, shade=16)
+    # straw lies (all 41 of the campaign's are floor sprites, 14 of them with these bits, at the floor itself)
+    layout.add_sprite("gallows:straw", regions["house"], x=_q(4.5), y=_q(30.7), z=TOP, picnum=515, x_repeat=64, y_repeat=64, angle=320,
+                      cstat=32 | 64 | 128, shade=16)
 
 
 def even(disk, compiled) -> dict:

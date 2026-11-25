@@ -2154,9 +2154,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "sprite 1340",
-          "sprite 1359",
-          "sprite 1360"
+          "sprite 1346",
+          "sprite 1365",
+          "sprite 1366"
         ],
         "answers": [
           "sector 64"
@@ -2187,17 +2187,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 1791",
-          "sprite 1792"
+          "sprite 1797",
+          "sprite 1798"
         ],
         "answers": [
           "sector 225",
           "sector 226",
           "sector 227",
           "sector 228",
-          "sprite 1793",
-          "sprite 1794",
-          "sprite 1795"
+          "sprite 1799",
+          "sprite 1800",
+          "sprite 1801"
         ],
         "faults": []
       },
@@ -2207,16 +2207,16 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 1861"
+          "sprite 1867"
         ],
         "answers": [
           "sector 302",
           "sector 303",
           "sector 304",
           "sector 305",
-          "sprite 1862",
-          "sprite 1863",
-          "sprite 1864"
+          "sprite 1868",
+          "sprite 1869",
+          "sprite 1870"
         ],
         "faults": []
       },
@@ -2226,14 +2226,14 @@
         "channel": 105,
         "engine": null,
         "senders": [
-          "sprite 188"
+          "sprite 189"
         ],
         "answers": [
           "sector 268",
           "sector 270",
           "sector 272",
-          "sprite 189",
-          "sprite 190"
+          "sprite 190",
+          "sprite 191"
         ],
         "faults": []
       },
@@ -2243,9 +2243,9 @@
         "channel": 106,
         "engine": null,
         "senders": [
-          "sprite 187",
-          "sprite 189",
-          "sprite 190"
+          "sprite 188",
+          "sprite 190",
+          "sprite 191"
         ],
         "answers": [
           "sector 269",
@@ -2259,7 +2259,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 1720"
+          "sprite 1726"
         ],
         "answers": [
           "sector 647"
@@ -2272,21 +2272,21 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 1718"
+          "sprite 1724"
         ],
         "answers": [
           "sector 673",
-          "sprite 1720",
-          "sprite 2611",
-          "sprite 2612",
-          "sprite 2613",
-          "sprite 2614",
-          "sprite 2615",
-          "sprite 2616",
+          "sprite 1726",
           "sprite 2617",
           "sprite 2618",
           "sprite 2619",
-          "sprite 2620"
+          "sprite 2620",
+          "sprite 2621",
+          "sprite 2622",
+          "sprite 2623",
+          "sprite 2624",
+          "sprite 2625",
+          "sprite 2626"
         ],
         "faults": []
       },
@@ -2296,16 +2296,16 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 1479"
+          "sprite 1485"
         ],
         "answers": [
           "sector 525",
           "sector 526",
           "sector 527",
           "sector 528",
-          "sprite 1480",
-          "sprite 1481",
-          "sprite 1482"
+          "sprite 1486",
+          "sprite 1487",
+          "sprite 1488"
         ],
         "faults": []
       },
@@ -2354,11 +2354,11 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 2699"
+          "sprite 2705"
         ],
         "answers": [
-          "sprite 2778",
-          "sprite 2779"
+          "sprite 2784",
+          "sprite 2785"
         ],
         "faults": []
       },
@@ -2368,9 +2368,9 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 557",
-          "sprite 559",
-          "sprite 561"
+          "sprite 558",
+          "sprite 560",
+          "sprite 562"
         ],
         "answers": [
           "sector 947"
@@ -2383,12 +2383,12 @@
         "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 302",
-          "sprite 304",
-          "sprite 306"
+          "sprite 303",
+          "sprite 305",
+          "sprite 307"
         ],
         "answers": [
-          "sprite 308"
+          "sprite 309"
         ],
         "faults": []
       },
@@ -2398,10 +2398,10 @@
         "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 308"
+          "sprite 309"
         ],
         "answers": [
-          "sprite 309"
+          "sprite 310"
         ],
         "faults": []
       },
@@ -2411,11 +2411,11 @@
         "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 309"
+          "sprite 310"
         ],
         "answers": [
           "sector 948",
-          "sprite 310"
+          "sprite 311"
         ],
         "faults": []
       },
@@ -2425,10 +2425,10 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 1044"
+          "sprite 1045"
         ],
         "answers": [
-          "sprite 1045"
+          "sprite 1046"
         ],
         "faults": []
       },
@@ -2438,10 +2438,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 1520"
+          "sprite 1526"
         ],
         "answers": [
-          "sprite 1521"
+          "sprite 1527"
         ],
         "faults": []
       },
@@ -2451,10 +2451,10 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sprite 690"
+          "sprite 691"
         ],
         "answers": [
-          "sprite 691"
+          "sprite 692"
         ],
         "faults": []
       },
@@ -2467,7 +2467,7 @@
           "sector 47"
         ],
         "answers": [
-          "sprite 1347"
+          "sprite 1353"
         ],
         "faults": []
       },
@@ -2477,14 +2477,14 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 1347"
+          "sprite 1353"
         ],
         "answers": [
-          "sprite 1348",
-          "sprite 1351",
-          "sprite 1352",
+          "sprite 1354",
           "sprite 1357",
-          "sprite 1358"
+          "sprite 1358",
+          "sprite 1363",
+          "sprite 1364"
         ],
         "faults": []
       },
@@ -2497,7 +2497,7 @@
           "wall 560"
         ],
         "answers": [
-          "sprite 1337"
+          "sprite 1343"
         ],
         "faults": []
       },
@@ -2507,17 +2507,17 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 1339"
+          "sprite 1345"
         ],
         "answers": [
           "sector 56",
           "sector 58",
           "sector 60",
           "sector 62",
-          "sprite 1340",
-          "sprite 1344",
-          "sprite 1345",
-          "sprite 1346"
+          "sprite 1346",
+          "sprite 1350",
+          "sprite 1351",
+          "sprite 1352"
         ],
         "faults": []
       },
@@ -2542,13 +2542,13 @@
         "channel": 125,
         "engine": null,
         "senders": [
-          "sprite 689"
+          "sprite 690"
         ],
         "answers": [
-          "sprite 838",
           "sprite 839",
           "sprite 840",
-          "sprite 841"
+          "sprite 841",
+          "sprite 842"
         ],
         "faults": []
       },
@@ -2558,10 +2558,10 @@
         "channel": 126,
         "engine": null,
         "senders": [
-          "sprite 686",
           "sprite 687",
-          "sprite 901",
-          "sprite 923"
+          "sprite 688",
+          "sprite 902",
+          "sprite 924"
         ],
         "answers": [
           "sector 1000",
@@ -2637,7 +2637,7 @@
           "sector 997",
           "sector 998",
           "sector 999",
-          "sprite 688"
+          "sprite 689"
         ],
         "faults": []
       },
@@ -2647,10 +2647,10 @@
         "channel": 127,
         "engine": null,
         "senders": [
-          "sprite 685"
+          "sprite 686"
         ],
         "answers": [
-          "sprite 687"
+          "sprite 688"
         ],
         "faults": []
       },
@@ -2660,10 +2660,10 @@
         "channel": 128,
         "engine": null,
         "senders": [
-          "sprite 688"
+          "sprite 689"
         ],
         "answers": [
-          "sprite 689"
+          "sprite 690"
         ],
         "faults": []
       },
@@ -2676,7 +2676,7 @@
           "sector 1015"
         ],
         "answers": [
-          "sprite 690"
+          "sprite 691"
         ],
         "faults": []
       },
@@ -2702,7 +2702,7 @@
           "sector 560"
         ],
         "answers": [
-          "sprite 628"
+          "sprite 629"
         ],
         "faults": []
       },
@@ -2712,14 +2712,14 @@
         "channel": 132,
         "engine": null,
         "senders": [
-          "sprite 2565"
+          "sprite 2571"
         ],
         "answers": [
-          "sprite 2566",
-          "sprite 2567",
-          "sprite 2568",
-          "sprite 2569",
-          "sprite 2570"
+          "sprite 2572",
+          "sprite 2573",
+          "sprite 2574",
+          "sprite 2575",
+          "sprite 2576"
         ],
         "faults": []
       },
@@ -2729,14 +2729,14 @@
         "channel": 133,
         "engine": null,
         "senders": [
-          "sprite 246"
+          "sprite 247"
         ],
         "answers": [
           "sector 770",
-          "sprite 2571",
-          "sprite 2572",
-          "sprite 2573",
-          "sprite 2574"
+          "sprite 2577",
+          "sprite 2578",
+          "sprite 2579",
+          "sprite 2580"
         ],
         "faults": []
       },
@@ -2746,13 +2746,13 @@
         "channel": 134,
         "engine": null,
         "senders": [
-          "sprite 2575"
+          "sprite 2581"
         ],
         "answers": [
-          "sprite 2576",
-          "sprite 2577",
-          "sprite 2578",
-          "sprite 2579"
+          "sprite 2582",
+          "sprite 2583",
+          "sprite 2584",
+          "sprite 2585"
         ],
         "faults": []
       },
@@ -2762,12 +2762,12 @@
         "channel": 135,
         "engine": null,
         "senders": [
-          "sprite 2580"
+          "sprite 2586"
         ],
         "answers": [
-          "sprite 2581",
-          "sprite 2582",
-          "sprite 2583"
+          "sprite 2587",
+          "sprite 2588",
+          "sprite 2589"
         ],
         "faults": []
       },
@@ -2777,14 +2777,14 @@
         "channel": 136,
         "engine": null,
         "senders": [
-          "sprite 2584"
+          "sprite 2590"
         ],
         "answers": [
-          "sprite 2585",
-          "sprite 2586",
-          "sprite 2587",
-          "sprite 2588",
-          "sprite 2589"
+          "sprite 2591",
+          "sprite 2592",
+          "sprite 2593",
+          "sprite 2594",
+          "sprite 2595"
         ],
         "faults": []
       },
@@ -2794,15 +2794,15 @@
         "channel": 137,
         "engine": null,
         "senders": [
-          "sprite 2591",
-          "sprite 2593",
-          "sprite 2595",
           "sprite 2597",
           "sprite 2599",
-          "sprite 2601"
+          "sprite 2601",
+          "sprite 2603",
+          "sprite 2605",
+          "sprite 2607"
         ],
         "answers": [
-          "sprite 2602"
+          "sprite 2608"
         ],
         "faults": []
       },
@@ -2812,19 +2812,19 @@
         "channel": 138,
         "engine": null,
         "senders": [
-          "sprite 2602"
+          "sprite 2608"
         ],
         "answers": [
           "sector 179",
           "sector 182",
-          "sprite 2603",
-          "sprite 2604",
-          "sprite 2605",
-          "sprite 2606",
-          "sprite 2607",
-          "sprite 2608",
           "sprite 2609",
-          "sprite 2610"
+          "sprite 2610",
+          "sprite 2611",
+          "sprite 2612",
+          "sprite 2613",
+          "sprite 2614",
+          "sprite 2615",
+          "sprite 2616"
         ],
         "faults": []
       },
@@ -2837,7 +2837,7 @@
           "sector 843"
         ],
         "answers": [
-          "sprite 510"
+          "sprite 511"
         ],
         "faults": []
       },
@@ -2847,7 +2847,7 @@
         "channel": 140,
         "engine": null,
         "senders": [
-          "sprite 388"
+          "sprite 389"
         ],
         "answers": [
           "sector 929",
@@ -2861,15 +2861,14 @@
           "sector 937",
           "sector 938",
           "sector 939",
-          "sprite 347",
-          "sprite 350",
-          "sprite 353",
-          "sprite 409",
+          "sprite 348",
+          "sprite 351",
+          "sprite 354",
           "sprite 410",
           "sprite 411",
           "sprite 412",
-          "sprite 511",
-          "sprite 514",
+          "sprite 413",
+          "sprite 512",
           "sprite 515",
           "sprite 516",
           "sprite 517",
@@ -2886,11 +2885,12 @@
           "sprite 528",
           "sprite 529",
           "sprite 530",
-          "sprite 532",
-          "sprite 534",
-          "sprite 541",
-          "sprite 543",
-          "sprite 545"
+          "sprite 531",
+          "sprite 533",
+          "sprite 535",
+          "sprite 542",
+          "sprite 544",
+          "sprite 546"
         ],
         "faults": []
       },
@@ -2900,12 +2900,12 @@
         "channel": 141,
         "engine": null,
         "senders": [
-          "sprite 347"
+          "sprite 348"
         ],
         "answers": [
-          "sprite 345",
           "sprite 346",
-          "sprite 513"
+          "sprite 347",
+          "sprite 514"
         ],
         "faults": []
       },
@@ -2915,11 +2915,11 @@
         "channel": 142,
         "engine": null,
         "senders": [
-          "sprite 350"
+          "sprite 351"
         ],
         "answers": [
-          "sprite 348",
-          "sprite 349"
+          "sprite 349",
+          "sprite 350"
         ],
         "faults": []
       },
@@ -2929,11 +2929,11 @@
         "channel": 143,
         "engine": null,
         "senders": [
-          "sprite 353"
+          "sprite 354"
         ],
         "answers": [
-          "sprite 351",
-          "sprite 352"
+          "sprite 352",
+          "sprite 353"
         ],
         "faults": []
       },
@@ -2943,10 +2943,10 @@
         "channel": 144,
         "engine": null,
         "senders": [
-          "sprite 529"
+          "sprite 530"
         ],
         "answers": [
-          "sprite 419"
+          "sprite 420"
         ],
         "faults": []
       },
@@ -2956,10 +2956,10 @@
         "channel": 145,
         "engine": null,
         "senders": [
-          "sprite 530"
+          "sprite 531"
         ],
         "answers": [
-          "sprite 531"
+          "sprite 532"
         ],
         "faults": []
       },
@@ -2969,10 +2969,10 @@
         "channel": 146,
         "engine": null,
         "senders": [
-          "sprite 532"
+          "sprite 533"
         ],
         "answers": [
-          "sprite 533"
+          "sprite 534"
         ],
         "faults": []
       },
@@ -2982,10 +2982,10 @@
         "channel": 147,
         "engine": null,
         "senders": [
-          "sprite 534"
+          "sprite 535"
         ],
         "answers": [
-          "sprite 535"
+          "sprite 536"
         ],
         "faults": []
       },
@@ -2995,10 +2995,10 @@
         "channel": 148,
         "engine": null,
         "senders": [
-          "sprite 541"
+          "sprite 542"
         ],
         "answers": [
-          "sprite 542"
+          "sprite 543"
         ],
         "faults": []
       },
@@ -3008,10 +3008,10 @@
         "channel": 149,
         "engine": null,
         "senders": [
-          "sprite 543"
+          "sprite 544"
         ],
         "answers": [
-          "sprite 544"
+          "sprite 545"
         ],
         "faults": []
       },
@@ -3021,16 +3021,16 @@
         "channel": 150,
         "engine": null,
         "senders": [
-          "sprite 545"
+          "sprite 546"
         ],
         "answers": [
-          "sprite 435",
           "sprite 436",
-          "sprite 512",
-          "sprite 546",
+          "sprite 437",
+          "sprite 513",
           "sprite 547",
           "sprite 548",
           "sprite 549",
+          "sprite 550",
           "wall 6420"
         ],
         "faults": []
@@ -3046,9 +3046,9 @@
         "answers": [
           "sector 920",
           "sector 921",
-          "sprite 550",
-          "sprite 552",
-          "sprite 553"
+          "sprite 551",
+          "sprite 553",
+          "sprite 554"
         ],
         "faults": []
       },
@@ -3058,10 +3058,10 @@
         "channel": 152,
         "engine": null,
         "senders": [
-          "sprite 550"
+          "sprite 551"
         ],
         "answers": [
-          "sprite 551"
+          "sprite 552"
         ],
         "faults": []
       },
@@ -3081,13 +3081,13 @@
           "sector 900",
           "sector 901",
           "sector 902",
-          "sprite 512"
+          "sprite 513"
         ],
         "answers": [
           "sector 838",
           "sector 839",
           "sector 845",
-          "sprite 388"
+          "sprite 389"
         ],
         "faults": []
       },
@@ -3097,7 +3097,7 @@
         "channel": 154,
         "engine": null,
         "senders": [
-          "sprite 511"
+          "sprite 512"
         ],
         "answers": [
           "sector 893",
@@ -3119,7 +3119,7 @@
         "channel": 155,
         "engine": null,
         "senders": [
-          "sprite 2159"
+          "sprite 2165"
         ],
         "answers": [
           "sector 412"
@@ -3132,12 +3132,12 @@
         "channel": 156,
         "engine": null,
         "senders": [
-          "sprite 2173"
+          "sprite 2179"
         ],
         "answers": [
-          "sprite 2174",
-          "sprite 2175",
-          "sprite 2176"
+          "sprite 2180",
+          "sprite 2181",
+          "sprite 2182"
         ],
         "faults": []
       },
@@ -3147,12 +3147,12 @@
         "channel": 157,
         "engine": null,
         "senders": [
-          "sprite 2289"
+          "sprite 2295"
         ],
         "answers": [
-          "sprite 2298",
-          "sprite 2299",
-          "sprite 2300"
+          "sprite 2304",
+          "sprite 2305",
+          "sprite 2306"
         ],
         "faults": []
       },
@@ -3211,9 +3211,9 @@
         "channel": 161,
         "engine": null,
         "senders": [
-          "sprite 1788",
-          "sprite 1789",
-          "sprite 1790"
+          "sprite 1794",
+          "sprite 1795",
+          "sprite 1796"
         ],
         "answers": [
           "sector 223"
@@ -3229,7 +3229,7 @@
           "sprite 125"
         ],
         "answers": [
-          "sprite 2780"
+          "sprite 2786"
         ],
         "faults": []
       },
@@ -3242,7 +3242,7 @@
           "sprite 126"
         ],
         "answers": [
-          "sprite 2781"
+          "sprite 2787"
         ],
         "faults": []
       },
@@ -3255,7 +3255,7 @@
           "sprite 127"
         ],
         "answers": [
-          "sprite 2782"
+          "sprite 2788"
         ],
         "faults": []
       },
@@ -3268,7 +3268,7 @@
           "sprite 129"
         ],
         "answers": [
-          "sprite 2783"
+          "sprite 2789"
         ],
         "faults": []
       },
@@ -3278,10 +3278,10 @@
         "channel": 166,
         "engine": null,
         "senders": [
-          "sprite 1436"
+          "sprite 1442"
         ],
         "answers": [
-          "sprite 2784"
+          "sprite 2790"
         ],
         "faults": []
       },
@@ -3291,7 +3291,7 @@
         "channel": 167,
         "engine": null,
         "senders": [
-          "sprite 284"
+          "sprite 285"
         ],
         "answers": [
           "sector 448"
@@ -3304,8 +3304,8 @@
         "channel": 168,
         "engine": null,
         "senders": [
-          "sprite 300",
-          "sprite 301"
+          "sprite 301",
+          "sprite 302"
         ],
         "answers": [
           "sector 534",
@@ -3319,7 +3319,7 @@
         "channel": 4,
         "engine": "kChannelLevelExitNormal",
         "senders": [
-          "sprite 1719"
+          "sprite 1725"
         ],
         "answers": [],
         "faults": []
@@ -3333,7 +3333,7 @@
           "sprite 97"
         ],
         "answers": [
-          "sprite 2785"
+          "sprite 2791"
         ],
         "faults": []
       },
@@ -3343,10 +3343,10 @@
         "channel": 170,
         "engine": null,
         "senders": [
-          "sprite 162"
+          "sprite 163"
         ],
         "answers": [
-          "sprite 2786"
+          "sprite 2792"
         ],
         "faults": []
       },
@@ -3356,10 +3356,10 @@
         "channel": 171,
         "engine": null,
         "senders": [
-          "sprite 244"
+          "sprite 245"
         ],
         "answers": [
-          "sprite 2787"
+          "sprite 2793"
         ],
         "faults": []
       },
@@ -3369,10 +3369,10 @@
         "channel": 172,
         "engine": null,
         "senders": [
-          "sprite 908"
+          "sprite 909"
         ],
         "answers": [
-          "sprite 2788"
+          "sprite 2794"
         ],
         "faults": []
       },
@@ -3382,10 +3382,10 @@
         "channel": 173,
         "engine": null,
         "senders": [
-          "sprite 975"
+          "sprite 976"
         ],
         "answers": [
-          "sprite 2789"
+          "sprite 2795"
         ],
         "faults": []
       },
@@ -3395,10 +3395,10 @@
         "channel": 174,
         "engine": null,
         "senders": [
-          "sprite 1625"
+          "sprite 1631"
         ],
         "answers": [
-          "sprite 2790"
+          "sprite 2796"
         ],
         "faults": []
       },
@@ -3408,10 +3408,10 @@
         "channel": 175,
         "engine": null,
         "senders": [
-          "sprite 1937"
+          "sprite 1943"
         ],
         "answers": [
-          "sprite 2791"
+          "sprite 2797"
         ],
         "faults": []
       },
@@ -3421,10 +3421,10 @@
         "channel": 176,
         "engine": null,
         "senders": [
-          "sprite 2125"
+          "sprite 2131"
         ],
         "answers": [
-          "sprite 2792"
+          "sprite 2798"
         ],
         "faults": []
       }
@@ -4033,20 +4033,20 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 2839,
-    "wall_sprites": 1101,
-    "planes": 288,
+    "sprites": 2845,
+    "wall_sprites": 1107,
+    "planes": 291,
     "clashing_pairs": 13,
     "sprites_involved": 24,
-    "clash_rate_per_100_wall_sprites": 1.18,
+    "clash_rate_per_100_wall_sprites": 1.17,
     "fully_hidden": 8
   },
   "apertures": {
-    "findings": 892,
+    "findings": 882,
     "seams": 496,
-    "real": 396,
+    "real": 386,
     "by_kind": {
-      "lintel": 208,
+      "lintel": 198,
       "pinch": 146,
       "door_sector": 42
     }
@@ -4183,7 +4183,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 26214,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -4205,7 +4205,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 26214,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -4759,7 +4759,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 21845,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5111,7 +5111,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5243,7 +5243,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5265,7 +5265,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5314,7 +5314,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5336,7 +5336,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 21845,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5552,7 +5552,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -5574,7 +5574,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": 32768,
+          "headroom_change": 29127,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -12129,9 +12129,9 @@
     ]
   },
   "rules": {
-    "total": 3582,
+    "total": 3575,
     "by_severity": {
-      "note": 3575,
+      "note": 3568,
       "warning": 7
     },
     "by_code": {
@@ -12141,9 +12141,9 @@
       "note:glass-is-breakable": 44,
       "note:threshold-follows-the-roofed-side": 5,
       "note:opening-clears-a-standing-body": 522,
-      "note:lintel-continues-the-facade": 102,
+      "note:lintel-continues-the-facade": 92,
       "warning:wall-between-rooms-is-not-paper": 4,
-      "note:wall-draws-its-own-tile": 2090,
+      "note:wall-draws-its-own-tile": 2093,
       "warning:wall-tile-is-drawn-somewhere": 3
     },
     "open": [
@@ -12206,18 +12206,13 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 2044,
+      "sprites": 2049,
       "sunk": 0.0,
       "through": 0.005,
       "squeezed": 0.0
     },
     "sunk": [],
     "through": [
-      {
-        "sprite": 333,
-        "tile": 641,
-        "sector": 810
-      },
       {
         "sprite": 334,
         "tile": 641,
@@ -12231,7 +12226,7 @@
       {
         "sprite": 336,
         "tile": 641,
-        "sector": 815
+        "sector": 810
       },
       {
         "sprite": 337,
@@ -12244,22 +12239,27 @@
         "sector": 815
       },
       {
-        "sprite": 1038,
+        "sprite": 339,
+        "tile": 641,
+        "sector": 815
+      },
+      {
+        "sprite": 1039,
         "tile": 641,
         "sector": 1111
       },
       {
-        "sprite": 1628,
+        "sprite": 1634,
         "tile": 641,
         "sector": 174
       },
       {
-        "sprite": 1629,
+        "sprite": 1635,
         "tile": 641,
         "sector": 174
       },
       {
-        "sprite": 1630,
+        "sprite": 1636,
         "tile": 641,
         "sector": 174
       }
@@ -12269,8 +12269,8 @@
     "overlaps": [
       {
         "sprites": [
-          1993,
-          1994
+          1999,
+          2000
         ],
         "tiles": [
           73,
@@ -12292,7 +12292,7 @@
         "count": 1,
         "first": [
           "sprite",
-          940
+          941
         ]
       },
       {
@@ -12302,7 +12302,7 @@
         "count": 1,
         "first": [
           "sprite",
-          1924
+          1930
         ]
       }
     ],
@@ -13412,6 +13412,14 @@
         "maps": 25
       },
       {
+        "tile": 1042,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated",
+        "maps": 2
+      },
+      {
         "tile": 444,
         "slot": "sprite_wall",
         "place": "indoors",
@@ -13500,12 +13508,12 @@
         "maps": 14
       },
       {
-        "tile": 515,
-        "slot": "sprite_face",
-        "place": "indoors",
+        "tile": 2345,
+        "slot": "sprite_wall",
+        "place": "outdoors",
         "count": 1,
         "source": "community",
-        "maps": 5
+        "maps": 16
       },
       {
         "tile": 483,
@@ -13850,11 +13858,11 @@
           ],
           [
             489,
-            0.021
+            0.02
           ],
           [
             2462,
-            0.021
+            0.02
           ]
         ],
         "shade_spread": 28,
@@ -14022,15 +14030,15 @@
         "wall_tiles": [
           [
             150,
-            0.589
+            0.591
           ],
           [
             20,
-            0.172
+            0.17
           ],
           [
             28,
-            0.137
+            0.138
           ],
           [
             2453,
@@ -14091,7 +14099,7 @@
         ],
         "free_floor_share": 0.89,
         "cramped": [
-          "short side 5591 (campaign p25 6144)"
+          "short side 5568 (campaign p25 6144)"
         ],
         "relations": [],
         "study": "church"
@@ -14976,7 +14984,7 @@
           ],
           [
             2294,
-            0.094
+            0.095
           ],
           [
             43,
@@ -14984,7 +14992,7 @@
           ],
           [
             417,
-            0.058
+            0.057
           ],
           [
             255,
@@ -15006,7 +15014,7 @@
         "shade_spread": 0,
         "metres": [
           12.2,
-          15.4,
+          15.3,
           9.6
         ],
         "free_floor_share": 0.56,
@@ -15043,11 +15051,11 @@
         "wall_tiles": [
           [
             2294,
-            0.54
+            0.538
           ],
           [
             63,
-            0.131
+            0.13
           ],
           [
             28,
@@ -15055,15 +15063,15 @@
           ],
           [
             2027,
-            0.074
+            0.073
           ],
           [
             215,
-            0.053
+            0.052
           ],
           [
             195,
-            0.04
+            0.039
           ]
         ],
         "shade_spread": 34,
@@ -15074,7 +15082,7 @@
         ],
         "free_floor_share": 0.88,
         "cramped": [
-          "short side 9902 (campaign p25 11776)"
+          "short side 9920 (campaign p25 11776)"
         ],
         "relations": [],
         "study": "meat-market"
@@ -15088,7 +15096,7 @@
         "1.69 bodies high (a destination wants 1.93)"
       ],
       "St Gallow's nave": [
-        "short side 5591 (campaign p25 6144)"
+        "short side 5568 (campaign p25 6144)"
       ],
       "Stockyard Drain": [
         "short side 5120 (campaign p25 6144)"
@@ -15117,7 +15125,7 @@
         "1.45 bodies high (a destination wants 1.93)"
       ],
       "market hall": [
-        "short side 9902 (campaign p25 11776)"
+        "short side 9920 (campaign p25 11776)"
       ]
     },
     "unstudied": [],
@@ -15136,13 +15144,13 @@
   },
   "merged": {
     "sectors_merged": 35,
-    "walls_before": 14873,
-    "walls": 14475
+    "walls_before": 14907,
+    "walls": 14505
   },
   "light_stage": {
     "sectors_before": 1269,
     "walls_before": 8793,
-    "sprites_before": 2839,
+    "sprites_before": 2845,
     "mover_hosts": [
       144,
       552,
@@ -15900,18 +15908,17 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 57,
-      "pieces": 315,
-      "slivers_merged": 17,
-      "slivers_dropped": 13,
-      "walls_split": 645,
-      "seams": 3206,
+      "sectors": 58,
+      "pieces": 318,
+      "slivers_merged": 19,
+      "slivers_dropped": 15,
+      "walls_split": 647,
+      "seams": 3232,
       "refused": {},
       "left_whole": {
         "464": "a wall of the cut had no twin",
         "519": "a seam of sector 519 from (21437, 46370) to (21437, 46343) has no twin",
-        "1283": "a wall of the cut had no twin",
-        "1306": "a wall of the cut had no twin"
+        "1283": "a wall of the cut had no twin"
       },
       "looked_at": 62
     },
@@ -15936,18 +15943,18 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1251,
+      "walls_split": 1257,
       "seams": 0,
       "refused": {},
       "walls_cut": 339,
-      "walls_refused": 4,
+      "walls_refused": 5,
       "left_whole": {},
-      "looked_at": 1410
+      "looked_at": 1416
     },
     "shades": {
-      "surfaces": 7733,
+      "surfaces": 7745,
       "windows": 18,
-      "spread_12": 140,
+      "spread_12": 142,
       "movers_evened": 76
     },
     "switched": {
@@ -16095,30 +16102,30 @@
       ]
     },
     "kept": 202,
-    "sectors": 1685,
-    "walls": 14475,
-    "sprites": 2888,
-    "pieces": 416,
+    "sectors": 1687,
+    "walls": 14505,
+    "sprites": 2894,
+    "pieces": 418,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 1340,
+      "walls": 1343,
       "wall_sd": 10.4,
-      "wall_median": 16.0,
+      "wall_median": 16,
       "by_facing": {
         "N": 16.0,
         "E": 16.0,
         "S": 16,
-        "W": 16
+        "W": 16.0
       },
       "facing_step": 0.0,
       "ground_median": 20.0,
       "ground_sd": 12.0,
       "corners": 482,
       "corner_equal": 0.38,
-      "corner_step": 6,
+      "corner_step": 6.0,
       "corner_darker": {
         "N": 0.19,
         "E": 0.34,
@@ -16131,24 +16138,24 @@
         "S": 0.0,
         "W": 0.0
       },
-      "tile_sd": 8.1
+      "tile_sd": 8.0
     },
     "after": {
-      "walls": 1340,
+      "walls": 1343,
       "wall_sd": 10.4,
-      "wall_median": 16.0,
+      "wall_median": 16,
       "by_facing": {
         "N": 16.0,
         "E": 16.0,
         "S": 16,
-        "W": 16
+        "W": 16.0
       },
       "facing_step": 0.0,
       "ground_median": 20.0,
       "ground_sd": 12.0,
       "corners": 482,
       "corner_equal": 0.38,
-      "corner_step": 6,
+      "corner_step": 6.0,
       "corner_darker": {
         "N": 0.19,
         "E": 0.34,
@@ -16161,13 +16168,13 @@
         "S": 0.0,
         "W": 0.0
       },
-      "tile_sd": 8.1
+      "tile_sd": 8.0
     }
   },
   "tidy": {
-    "walls_before": 14475,
-    "walls": 14287,
-    "joined": 188
+    "walls_before": 14505,
+    "walls": 14316,
+    "joined": 189
   },
   "stages": [
     {

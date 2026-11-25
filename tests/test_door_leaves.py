@@ -57,6 +57,42 @@ class DoorLeaves(unittest.TestCase):
                     self.assertIn(tiles.pop(), (apertures.WOOD, 110))
         self.assertGreaterEqual(doorways, 8)
 
+    def test_no_door_is_taller_than_the_room_it_opens_into(self):
+        """The owner, of the pawn shop's: "taller than the ceiling inside it". And a leaf is 128 thick."""
+        from bloodmap.model import record_extra
+        looked = 0
+        for i, s in enumerate(self.sectors):
+            if s["type"] != 600:
+                continue
+            extra = record_extra(self.disk.sectors[i]) or {}
+            faces = {self.walls[self.walls[w]["next_wall"]]["picnum"] for w in self.ring(i) if self.walls[w]["next_wall"] >= 0}
+            if not faces & (set(range(22, 28)) | {30, 495}) or extra["on_ceiling_z"] >= s["floor_z"]:
+                continue
+            looked += 1
+            head = extra["on_ceiling_z"]
+            xs = [self.walls[w]["x"] for w in self.ring(i)]
+            ys = [self.walls[w]["y"] for w in self.ring(i)]
+            self.assertLessEqual(abs(min(max(xs) - min(xs), max(ys) - min(ys)) - 128), 2, i)
+            for reveal in {self.walls[w]["next_sector"] for w in self.ring(i)} - {-1}:
+                for room in {self.walls[w]["next_sector"] for w in self.ring(reveal)} - {-1, i}:
+                    if not self.sectors[room]["ceiling_stat"] & 1:
+                        self.assertLess(self.sectors[room]["ceiling_z"], head, (i, room))
+        self.assertGreaterEqual(looked, 12)
+
+    def test_straw_lies_on_the_floor(self):
+        for s in self.disk.sprites:
+            f = record_fields(s)
+            if f["picnum"] == 515:
+                self.assertEqual(f["cstat"] & 48, 32)
+
+    def test_what_is_written_on_the_walls_and_where_the_stand_is(self):
+        import writings
+        found = [record_fields(s)["picnum"] for s in self.disk.sprites]
+        self.assertEqual([found.count(t) for t in (writings.STAY_OUT, writings.SLOTH, writings.MONKS)], [2, 1, 2])
+        arrow = [record_fields(s) for s in self.disk.sprites if record_fields(s)["picnum"] == 1042]
+        self.assertEqual(len(arrow), 1)
+        self.assertEqual((arrow[0]["angle"], arrow[0]["cstat"] & 4), (512, 0))        # read from the south, it points east: to the yard's stair
+
     def test_nothing_hangs_a_string_in_mid_air(self):
         self.assertFalse([s for s in self.disk.sprites if record_fields(s)["picnum"] == 1907])
 

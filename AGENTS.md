@@ -13,7 +13,6 @@ calls for it. Commands are run from the repository root.
 | one tile: the owner's name, what it shows, every way Blood uses it | `python -m tools.catalog show 1129` |
 | what a tile is used as in a slot and kind of place, on whose evidence; what to put in a slot; what a map does that nobody has shown; recording what you learn | `python -m tools.tile_contexts show 364`, `where <slot> --place <kind>`, `discover <MAP>`, `record` |
 | one part: engine name, how many, what sets it off, examples, lessons | `python -m tools.catalog show conveyor` (also `sector:614`, `kSwitchToggle`, `channel:4`, `lesson:DOOR-SLIDING`) |
-| which way a door tile's leaf moves (30 never goes up), and a map against the owner's rules | `python -m tools.mine_door_leaves 30`, `--check MAP` |
 | a mechanism: an act, the object it is done to, what answers | `python -m tools.catalog wiring switch door` (a sector type is a part; "door" and "lift" are readings of where it sits) |
 | whether a mechanism visibly works: the same view at rest and fired | `python -m tools.mechanism_look MAP --root "sprite 51" -o work/mech/<name>`, then `python -m tools.critique change work/mech/<name>/pair.json` for blind readers |
 | the phrases Blood's wiring is written in, each counted | `python -m tools.catalog idioms` (shot switch, secret, cascade, closet relay, breach ...) |
