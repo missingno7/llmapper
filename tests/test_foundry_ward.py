@@ -130,6 +130,18 @@ class FoundryWardTests(unittest.TestCase):
         eye = (46.0 * PU, 26.5 * PU, U.FLOOR - EYE)
         self.assertTrue(sight.sees(self.level, hall, eye, (50.5 * PU, 26.5 * PU, U.FLOOR - 4096)))
 
+    def test_two_iron_leaves_part_on_a_mirror(self):
+        #: the owner, 2026-11-26: "there is room with box of shells and 3 jars that doesn't
+        #: make much sense"
+        beyond = self.at(48.0, 23.75, self.U.FLOOR)
+        mirrors = [w for w in sector_walls(self.disk, beyond) if record_fields(self.disk.walls[w])["picnum"] == self.F.MIRROR]
+        self.assertEqual(len(mirrors), 1)
+        self.assertEqual(record_fields(self.disk.walls[mirrors[0]])["next_sector"], -1)
+        here = [record_fields(s) for s in self.disk.sprites if record_fields(s)["sector"] == beyond]
+        self.assertEqual(sorted(f["picnum"] for f in here if f["type"] != 709), [981, self.U.TUBE])
+        bill, = (f for f in here if f["picnum"] == 981)
+        self.assertTrue(bill["cstat"] & 4)                # printed backwards: it reads in the mirror
+
     def test_nobody_is_in_it(self):
         U = self.U
         for s in self.disk.sprites:

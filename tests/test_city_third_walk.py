@@ -492,16 +492,19 @@ class ThirdWalkTests(unittest.TestCase):
         for press in presses:
             x = _extra(press)
             self.assertEqual(int(press.fields["type"]), 600)
+            #: up is ON, and the belt under it runs while it is ON or moving
             self.assertEqual((int(x["crush"]), int(x["retrigger_a"]),
-                              int(x["retrigger_b"]), int(x["pan_always"])),
-                             (1, 1, 1, 1))
-            self.assertEqual(int(x["on_ceiling_z"]), int(x["on_floor_z"]))
-            self.assertLess(int(x["off_ceiling_z"]), int(x["on_ceiling_z"]))
+                              int(x["retrigger_b"]), int(x["pan_always"]), int(x["state"])),
+                             (1, 1, 1, 0, 1))
+            self.assertEqual(int(x["off_ceiling_z"]), int(x["off_floor_z"]))
+            self.assertLess(int(x["on_ceiling_z"]), int(x["off_ceiling_z"]))
+            self.assertEqual(int(press.fields["ceiling_z"]), int(x["on_ceiling_z"]))
         starters = [s for s in self.disk.sprites
                     if int(_extra(s).get("tx_id", 0)) == l3_shed.CRUSH_CHANNEL]
-        self.assertEqual(len(starters), 1)
-        self.assertEqual(int(_extra(starters[0])["rx_id"]),
-                         l3_shed.LEVEL_START)
+        #: the level's start, and the lever's two relays: it stops them shut (kCmdStopOff)
+        #: and starts them again
+        self.assertEqual(sorted((int(_extra(s)["rx_id"]), int(_extra(s)["command"])) for s in starters),
+                         [(l3_shed.LEVEL_START, 3), (channel, 1), (channel, 9)])
         for belt in belts:
             x = _extra(belt)
             self.assertEqual((int(x["pan_floor"]), int(x["pan_always"]),
@@ -509,6 +512,7 @@ class ThirdWalkTests(unittest.TestCase):
         levers = [s for s in self.disk.sprites
                   if int(_extra(s).get("tx_id", 0)) == channel]
         self.assertEqual(len(levers), 1)
+        self.assertTrue(int(_extra(levers[0])["trigger_on"]) and int(_extra(levers[0])["trigger_off"]))
         #: the settling basin is open and its sewage moves
         basins = [s for s in self.disk.sectors
                   if int(s.fields["floor_picnum"]) == l3_shed.SEWAGE
@@ -687,8 +691,17 @@ class ThirdWalkTests(unittest.TestCase):
                  and int(_extra(s).get("off_floor_z", 0)) == 8192]
         self.assertEqual(len(lifts), 1)
         lift = self.disk.sectors[lifts[0]]
-        self.assertTrue(int(_extra(lift)["trigger_enter"]))
         self.assertGreater(int(_extra(lift)["busy_time_a"]), 0)
+        #: the owner, 2026-11-26: "you need to press skull switch or something instead
+        #: of going up and down when you just get into it"
+        self.assertFalse(int(_extra(lift)["trigger_enter"]) or int(_extra(lift)["trigger_wall_push"]))
+        skulls = [sp for sp in self.disk.sprites if int(sp.fields["picnum"]) == l3_church.SKULL_SWITCH["picnum"]
+                  and int(_extra(sp).get("tx_id", 0)) == int(_extra(lift)["rx_id"])]
+        self.assertEqual(sorted(int(_extra(sp)["command"]) for sp in skulls), [0, 1, 3])
+        self.assertTrue(all(int(_extra(sp)["trigger_push"]) for sp in skulls))
+        carried, = (sp for sp in skulls if int(sp.fields["sector"]) == lifts[0])
+        self.assertTrue(int(carried.fields["cstat"]) & 8192)
+        self.assertTrue(int(_extra(carried)["trigger_on"]) and int(_extra(carried)["trigger_off"]))
         s = lift.fields
         around = {int(self.walls[w]["next_sector"]) for w in range(
             int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"]))}

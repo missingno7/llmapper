@@ -143,7 +143,10 @@ TOWER = (MASS[2], 22272, MASS[2] + 1536, 24320)
 #: layer of its own. The way down is the thing that moves: a stone slab in
 #: the antechamber's east wall, a Z-motion sector whose FLOOR travels the
 #: 3.1 bodies between the church and the crypt (E3M2 has 28 such lifts).
-#: Step on it and it sinks; step on it below and it rises.
+#: (It sank when it was stepped on until 2026-11-26. The owner: "should be done the
+#: way that you need to press skull switch or something instead of going up and down
+#: when you just get into it.") The skull it carries sends it; the skull at either
+#: stop calls it: `slab_switches`.
 CRYPT_SHAFT_X = 31744
 #: SIZES, redone. The owner walked the first crypt: "crypt feels tiny,
 #: crypt elevator is just for a player to stand, but there is really no
@@ -852,9 +855,7 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
                     "off_floor_z": GRADE, "on_floor_z": CRYPT_FLOOR,
                     "off_ceiling_z": GRADE - LIFT_CLEAR,
                     "on_ceiling_z": GRADE - LIFT_CLEAR,
-                    "busy_time_a": LIFT_TIME, "busy_time_b": LIFT_TIME,
-                    "trigger_enter": 1, "trigger_wall_push": 1,
-                    "trigger_on": 1, "trigger_off": 1}})
+                    "busy_time_a": LIFT_TIME, "busy_time_b": LIFT_TIME}})
     #: Typed after the door pass: `frame_z_doors` takes every type-600
     #: region for a door leaf between two opposite edges, and a lift is
     #: entered from one side above and left by another below.
@@ -1033,6 +1034,27 @@ PICKUPS = [("vestry", 109, (0.35, 0.5)), ("apse", 67, (0.5, 0.35)),
            ("tower", 62, (0.7, 0.3)), ("crypt", 109, (0.4, 0.09)),
            #: the TNT the cracked wall wants, by the tomb facing it
            ("crypt", 62, (0.12, 0.12))]
+
+
+#: the campaign's skull in its frame (1048, 73 of them pushed; E1M5 sprite 629 is this record)
+SKULL_SWITCH = {"picnum": 1048, "cstat": 464, "shade": -8, "status": 0}
+
+
+def slab_switches(layout, rooms) -> None:
+    """The skull the slab carries on its back wall, and the one that calls it at either stop."""
+    from bloodmap import mechanism, motion
+    wire = wires.wire("church:slab")
+    wire.then(wiring.region(rooms["crypt_lift"].region_id))
+    x0, y0, x1, y1 = CRYPT_LIFT
+    for name, room, a, b, size, kind, flags, sends in (
+            ("carried", "crypt_lift", (x1, y0), (x1, y1), 40, 20, mechanism.CARRY_WITH, dict(command=motion.CMD_TOGGLE, off=True)),
+            ("top", "crypt_stair", (x0, 25600), (x0, y0), 28, 21, 0, dict(command=motion.CMD_OFF, wait_time=10)),
+            ("foot", "crypt", (x0 - 768, y1), (x0, y1), 40, 21, 0, dict(command=motion.CMD_ON, wait_time=10))):
+        switch = f"church:slab_{name}"
+        layout.place_on_wall(switch, rooms[room].region_id, a1=a, a2=b, t=0.5, height_player_heights=0.79,
+                             offset_player_widths=0.04, type=kind, x_repeat=size, y_repeat=size, behavior={"data_1": 200, "data_2": 200},
+                             **{**SKULL_SWITCH, "cstat": SKULL_SWITCH["cstat"] | flags})
+        wire.when(wiring.placement(switch), "push", **sends)
 
 
 def crack(layout, rooms, trunk_region_id) -> dict:

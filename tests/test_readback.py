@@ -379,7 +379,7 @@ class SlidingGateReadBack(unittest.TestCase):
 class SolidDoubleSlideReadBack(unittest.TestCase):
     def test_both_leaves_push_and_park_past_fixed_jambs(self):
         from bloodmap import motion, posed, wiring
-        from bloodmap.mechanism import furnish_solid_double_slide, solid_double_slide_spec
+        from bloodmap.mechanism import furnish_solid_double_slide, seat_leaves, solid_double_slide_spec
         from bloodmap.model import record_extra, record_fields
         from bloodmap.motion_sim import closure_health, closure_sweep
         from bloodmap.planar_layout import PlanarLayout
@@ -412,10 +412,16 @@ class SolidDoubleSlideReadBack(unittest.TestCase):
                                            leaf_picnum=22, marker_fields=markers)
                 circuit.apply()
                 compiled = layout.compile()
-                disk = compiled.level.to_disk_map()
                 sector = compiled.allocations["shutter"].sector_id
+                self.assertEqual(seat_leaves(compiled.level, sector, spec), 8)
+                disk = compiled.level.to_disk_map()
 
-                self.assertEqual(record_fields(disk.sectors[sector])["type"], 614)
+                # the leaf and its slot lie on one line, as E1M1 s4's do: two walls that touch
+                fields = record_fields(disk.sectors[sector])
+                ring = [record_fields(disk.walls[w]) for w in range(fields["wall_ptr"], fields["wall_ptr"] + fields["wall_count"])]
+                across = [f["y" if axis == "x" else "x"] for f in ring]
+                self.assertEqual(sorted(set(across)), [0, 96, 416, 512])
+                self.assertEqual(fields["type"], 614)
                 self.assertEqual(motion.marker_pair(disk, sector)["travel"],
                                  (1216, 0) if axis == "x" else (0, 1216))
                 swept = closure_sweep(disk, sector)
@@ -944,6 +950,8 @@ COVERED: dict[str, str] = {
     "bloodmap.mechanism.solid_double_slide_spec":
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.furnish_solid_double_slide":
+        "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
+    "bloodmap.mechanism.seat_leaves":
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.slide_shuttle":
         "SlideShuttleReadBack.test_readback_moves_deck_and_matching_hole_as_one",

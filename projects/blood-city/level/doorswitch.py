@@ -1,12 +1,10 @@
-"""Levers beside doors, so a door reads as a door.
+"""A lever, as the campaign carries it, for what is worked from somewhere else.
 
-Owner: "building doors look like a solid wall, they should have a lever
-next to it to open them."  Correct, and it follows from something this
-project established earlier: Blood has no door texture -- E3M1's own door
-leaves wear 379 and 449, plain wall stone -- so a closed door in a masonry
-facade is, visually, masonry.  Height and a reveal got it part of the way.
-A lever finishes the job, because it is the only thing on a Blood facade
-that says "this opens".
+Levers stood beside five street doors until 2026-11-26, from when a closed leaf
+wore plain wall and only a lever said that it opened. The leaves wear planks and
+panels now, and the owner found the levers pointless: "it just opens door the same
+way you would interact with them". A door that opens by hand gets no lever; a
+lever opens something that cannot be opened by hand.
 
 Measured, not chosen:
 
@@ -14,14 +12,11 @@ Measured, not chosen:
   more than twice the next switch tile.
 * it is **wall-aligned** (cstat 464 = 16 | 64 | 128 | 256) at repeats
   40x40, shade -8.
-* it mounts at **0.48 player heights**, which is hand height.
 * **351 of its 356 instances carry a tx_id**, and the modal command is
   **1 = kCmdOn** (183 of them), with initial state 0 (350 of them).
 
-The door keeps `xsector_direct_use` as well, so pushing the door itself
-still works; the lever adds `rx_id` on the same channel.  Two ways in is
-not redundancy here -- it is the difference between a player who finds the
-door and a player who walks past a wall.
+A switch that reports only its ON sends nothing every second push. `place` writes
+the push; whoever wires it says `on=True, off=True` when it is to work both ways.
 """
 
 from __future__ import annotations
@@ -43,38 +38,6 @@ LEVER_SHADE = -8
 #: all-instances one.
 LEVER_HEIGHT = 0.79
 LEVER_COMMAND = 1          # kCmdOn, the campaign's modal
-LEVER_OFFSET = 512         # how far to the side of the opening it sits
-
-#: Channels reserved for door levers.  L1's channel budget owns the rest;
-#: these are taken from the top of the range so they cannot collide with
-#: the destruction and secret channels already allocated.
-#: (Lever channels used to start at 200, typed here. A lever's wire is now
-#: `wires.lever(index, door)`, numbered with every other wire of the city.)
-
-
-def lever_segment(face: str, x0: int, y0: int, x1: int, y1: int,
-                  offset: int = LEVER_OFFSET):
-    """The wall segment beside an opening, on the mass face.
-
-    Wound the way `props.face_segment` winds a room's north face, which is
-    the relationship a street has to a building it fronts: the open side
-    lies beyond the segment as you walk along it.
-    """
-    # Wound so the STREET lies on the segment's inward side, which is the
-    # relationship `place_on_wall` resolves against.  A room's north face
-    # winds +x with the room at +y, so a wall whose street is at +y winds
-    # +x; a wall whose street is at +x takes the mirror of the east-face
-    # winding, -y.  Getting this backwards puts the lever inside the
-    # building, which is where the lobby's first one went.
-    if face == "south":                      # street at +y
-        return ((x1, y1), (x1 + offset, y1))
-    if face == "north":                      # street at -y
-        return ((x0, y0), (x0 - offset, y0))
-    if face == "east":                       # street at +x
-        return ((x1, y1 + offset), (x1, y1))
-    if face == "west":                       # street at -x
-        return ((x0, y0 - offset), (x0, y0))
-    raise ValueError(f"no lever segment for face {face!r}")
 
 
 def place(layout, placement_id: str, street_region_id: str, segment,

@@ -1666,7 +1666,7 @@ NICHE_DRESS = {
     # niche's floor and its chain running up into the ceiling (the owner,
     # 2026-11-21: "That skeleton on chain can be lifted up so part of the
     # chain goes inside ceiling")
-    "bones": [("E1M2", 416, 689, (0.5, 0.55), "hang", {"rise": 0.04, "x_repeat": 60, "y_repeat": 60}),
+    "bones": [("E1M2", 416, 689, (0.5, 0.55), "hang", {"rise": 0.5, "x_repeat": 60, "y_repeat": 60}),
               ("E1M2", 417, 515, (0.3, 0.5), "floor")],
     # both barrels' art stands on its middle: lifted by half its drawn
     # height, or half of each is under the floor
@@ -1809,7 +1809,7 @@ def dress_secrets(layout, rooms, attested) -> list[str]:
         if how == "hang":
             floor = SEWER_FLOOR + sunk[name]
             _hang(layout, pid, rooms[name], rects[name], local, fields, spec,
-                  floor, floor - clear[name], 0.15)
+                  floor, floor - clear[name], 0.5)
         else:
             layout.place_on_floor(pid, rooms[name].region_id, local=local, **fields,
                                   behavior=dict(spec["behavior"]))
@@ -2143,7 +2143,7 @@ def dress_lair(layout, rooms, attested) -> list[str]:
         x, y = at(local)
         if kind == "chained":
             _hang(layout, f"sewer:lair_victim_{k}", hall_room, lair_rects()["lair_hall"], local,
-                  dict(chained["fields"], x_repeat=60, y_repeat=60), chained, SEWER_FLOOR, ceiling, 0.2)
+                  dict(chained["fields"], x_repeat=60, y_repeat=60), chained, SEWER_FLOOR, ceiling, 0.55)
             placed.append(f"sewer:lair_victim_{k}")
             continue
         # four rounds of readers never read E2M8's wrapped victim (1059) as

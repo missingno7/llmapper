@@ -629,6 +629,26 @@ POSE_SETS = {
         "fk_market": (13.0, 45.5, 5.0, 44.0, LEVEL, "the market hall from its door"),
         "fl_plaza": (30.0, 49.5, 18.0, 40.0, LEVEL, "the plaza and what stands in it"),
     },
+    #: what the owner named after the walk of 2026-11-26: levers by doors, the freight room, lamps, the crypt's slab, the belt
+    "walk_1126": {
+        "w_saloon": (6.6, 16.6, 6.6, 14.6, LEVEL, "the saloon's street door"),
+        "w_parlor": (13.5, 16.8, 13.5, 14.6, LEVEL, "the parlor's street door"),
+        "w_aldermack": (27.5, 14.0, 27.5, 11.0, LEVEL, "the Aldermack's forecourt doors"),
+        "w_lobby": (34.2, 8.5, 32.0, 8.5, LEVEL, "the Aldermack's avenue door"),
+        "w_pawn": (34.2, 5.1, 32.0, 5.1, LEVEL, "the pawnbroker's door"),
+        "w_freight": (44.0, 23.75, 49.0, 23.75, LEVEL, "the freight doors off the underpass", 24576),
+        "w_freight_in": (47.0, 23.75, 49.5, 23.75, LEVEL, "through the freight doors", 24576),
+        "w_freight_back": (49.6, 24.3, 46.0, 23.4, LEVEL, "the freight room, back to its doors", 24576),
+        "w_brook_lamp": (12.6, 19.5, 10.3, 19.5, LEVEL, "a chain lamp over Graves Brook", 61440),
+        "w_hall_lamps": (21.0, 45.6, 29.0, 45.4, LEVEL, "the settling hall's chain lamps", 106496),
+        "w_saloon_in": (5.2, 12.9, 6.5, 8.5, LEVEL, "the saloon's lamps"),
+        "w_slab_top": (29.4, 26.2, 31.8, 26.3, LEVEL, "the crypt's slab from the antechamber"),
+        "w_slab_foot": (30.6, 28.6, 31.8, 26.2, LEVEL, "the crypt's slab from below", 61440),
+        "w_belt": (43.4, 7.7, 43.4, 9.5, LEVEL, "the belt and its presses", 8192),
+        "w_lever": (40.8, 9.3, 40.0, 8.5, LEVEL, "the belt's lever", 8192),
+        "w_stash": (41.0, 21.5, 37.0, 21.5, LEVEL, "the stash off the trunk", 61440),
+        "w_niche": (31.7, 24.6, 31.7, 22.8, LEVEL, "a chained skeleton in its niche", 61440),
+    },
     #: the six keys where they lie (`gameplay.KEYS`)
     "keys": {
         "k_skull": (28.1, 29.4, 29.1, 28.2, LEVEL - 12, "the skull key on the sarcophagus", 61440),

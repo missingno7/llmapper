@@ -103,7 +103,7 @@ SUPPLIES = (
     ((67, 67, 67), 30.8, 12.9, STREET, "the square before the Aldermack"),
     # foundry ward
     ((69, 69, 69), 50.2, 19.4, STREET, "the yard"),
-    ((60, 79), 46.4, 29.8, 24576, "the underpass's shut ticket hall, before the bench"),
+    ((60, 79, 68), 46.4, 29.8, 24576, "the underpass's shut ticket hall, before the bench"),
     ((69, 69), 46.9, 8.0, STREET, "the machine hall"),
     ((62, 62), 46.8, 13.4, STREET, "the machine hall's south bay"),
     # the sewer

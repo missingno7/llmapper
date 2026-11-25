@@ -1,0 +1,6405 @@
+{
+ "maps": 102,
+ "tiles": {
+  "0": {
+   "seen": 662,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E4M6 sprite 112",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20
+   }
+  },
+  "1": {
+   "seen": 63,
+   "breaks": 33,
+   "shot": 0,
+   "example": "E3M4 sprite 183",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20
+   }
+  },
+  "10": {
+   "seen": 51,
+   "breaks": 41,
+   "shot": 0,
+   "example": "E4M1 sprite 121",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "14": {
+   "seen": 5,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M1 sprite 402",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "17": {
+   "seen": 228,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M2 sprite 351",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "18": {
+   "seen": 53,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E6M2 sprite 352",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "19": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M1 sprite 437",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "39": {
+   "seen": 9,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M3 sprite 255",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "52": {
+   "seen": 28,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 1241",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "53": {
+   "seen": 9,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M2 sprite 85",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 19,
+    "data_4": 2204
+   }
+  },
+  "66": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M2 sprite 106",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "68": {
+   "seen": 354,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E2M4 sprite 309",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "73": {
+   "seen": 39,
+   "breaks": 33,
+   "shot": 0,
+   "example": "E2M4 sprite 947",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "74": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E4M9 sprite 35",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "75": {
+   "seen": 55,
+   "breaks": 51,
+   "shot": 0,
+   "example": "E3M4 sprite 308",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 17,
+    "data_4": 300,
+    "trigger_vector": 1
+   }
+  },
+  "76": {
+   "seen": 45,
+   "breaks": 38,
+   "shot": 0,
+   "example": "E3M4 sprite 310",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_2": 8,
+    "data_4": 301
+   }
+  },
+  "95": {
+   "seen": 10,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE1M2 sprite 618",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_2": 15
+   }
+  },
+  "98": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M6 sprite 241",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 5,
+    "data_4": 314
+   }
+  },
+  "99": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M1 sprite 297",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "104": {
+   "seen": 899,
+   "breaks": 69,
+   "shot": 0,
+   "example": "DWE2M1 sprite 646",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "112": {
+   "seen": 95,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E2M1 sprite 59",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "116": {
+   "seen": 61,
+   "breaks": 30,
+   "shot": 0,
+   "example": "DWE2M10 sprite 2366",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "117": {
+   "seen": 21,
+   "breaks": 21,
+   "shot": 0,
+   "example": "DWE1M2 sprite 573",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 6,
+    "data_4": 308,
+    "trigger_vector": 1
+   }
+  },
+  "128": {
+   "seen": 11,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M1 sprite 185",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 5,
+    "data_3": 5,
+    "data_4": 502
+   }
+  },
+  "129": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E6M4 sprite 549",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "130": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M10 sprite 2429",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "133": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E3M4 sprite 220",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "143": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E3M4 sprite 230",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "144": {
+   "seen": 16,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E2M2 sprite 103",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4,
+    "trigger_vector": 1
+   }
+  },
+  "145": {
+   "seen": 58,
+   "breaks": 15,
+   "shot": 0,
+   "example": "E2M4 sprite 30",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "146": {
+   "seen": 18,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E2M4 sprite 55",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "147": {
+   "seen": 27,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E2M4 sprite 56",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "151": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E3M4 sprite 146",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "163": {
+   "seen": 21,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E2M4 sprite 33",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "164": {
+   "seen": 79,
+   "breaks": 35,
+   "shot": 0,
+   "example": "E1M5 sprite 165",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "165": {
+   "seen": 32,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E1M2 sprite 179",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "167": {
+   "seen": 46,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M2 sprite 251",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "175": {
+   "seen": 8,
+   "breaks": 8,
+   "shot": 0,
+   "example": "DWE1M2 sprite 575",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 6,
+    "data_4": 308,
+    "trigger_vector": 1
+   }
+  },
+  "178": {
+   "seen": 48,
+   "breaks": 24,
+   "shot": 0,
+   "example": "DWE1M9 sprite 437",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6
+   }
+  },
+  "183": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 667",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4,
+    "data_2": 19,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "186": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E2M1 sprite 71",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "191": {
+   "seen": 83,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M3 sprite 130",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "200": {
+   "seen": 16,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E4M6 sprite 101",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20
+   }
+  },
+  "201": {
+   "seen": 386,
+   "breaks": 386,
+   "shot": 0,
+   "example": "E3M4 sprite 304",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 6,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "218": {
+   "seen": 75,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E2M1 sprite 151",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 370,
+    "trigger_vector": 1
+   }
+  },
+  "226": {
+   "seen": 57,
+   "breaks": 17,
+   "shot": 0,
+   "example": "E1M5 sprite 232",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "227": {
+   "seen": 16,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M2 sprite 127",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "228": {
+   "seen": 25,
+   "breaks": 1,
+   "shot": 1,
+   "example": "E6M4 sprite 131",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "249": {
+   "seen": 45,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M5 sprite 0",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 6,
+    "data_4": 314
+   }
+  },
+  "250": {
+   "seen": 19,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E1M4 sprite 965",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 3,
+    "data_4": 315
+   }
+  },
+  "253": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 219",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "256": {
+   "seen": 312,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E2M7 sprite 27",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 6
+   }
+  },
+  "257": {
+   "seen": 250,
+   "breaks": 34,
+   "shot": 0,
+   "example": "E1M4 sprite 4",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "258": {
+   "seen": 295,
+   "breaks": 27,
+   "shot": 0,
+   "example": "E1M4 sprite 5",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "259": {
+   "seen": 17,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E2M2 sprite 68",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "261": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 1161",
+   "record": {
+    "type": 416,
+    "hitscan": false
+   }
+  },
+  "266": {
+   "seen": 89,
+   "breaks": 49,
+   "shot": 0,
+   "example": "DWE1M5 sprite 208",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 12,
+    "data_4": 300
+   }
+  },
+  "267": {
+   "seen": 16,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E2M4 sprite 229",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "268": {
+   "seen": 23,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M5 sprite 50",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "269": {
+   "seen": 70,
+   "breaks": 14,
+   "shot": 0,
+   "example": "E1M2 sprite 178",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "273": {
+   "seen": 10,
+   "breaks": 8,
+   "shot": 0,
+   "example": "E4M6 sprite 108",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20
+   }
+  },
+  "281": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M1 sprite 80",
+   "record": {
+    "type": 416,
+    "hitscan": true
+   }
+  },
+  "284": {
+   "seen": 49,
+   "breaks": 39,
+   "shot": 0,
+   "example": "E1M2 sprite 664",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "296": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 786",
+   "record": {
+    "type": 416,
+    "hitscan": true
+   }
+  },
+  "304": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 199",
+   "record": {
+    "type": 416,
+    "hitscan": true
+   }
+  },
+  "313": {
+   "seen": 30,
+   "breaks": 25,
+   "shot": 0,
+   "example": "E1M5 sprite 420",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_2": 21,
+    "data_4": 312
+   }
+  },
+  "314": {
+   "seen": 30,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M5 sprite 421",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_2": 21,
+    "data_4": 312
+   }
+  },
+  "316": {
+   "seen": 24,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E1M1 sprite 194",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "317": {
+   "seen": 10,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M5 sprite 562",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "325": {
+   "seen": 16,
+   "breaks": 8,
+   "shot": 0,
+   "example": "E3M4 sprite 348",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "328": {
+   "seen": 11,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E6M3 sprite 494",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21
+   }
+  },
+  "332": {
+   "seen": 28,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 212",
+   "record": {
+    "type": 417,
+    "hitscan": true
+   }
+  },
+  "334": {
+   "seen": 30,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M3 sprite 257",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312,
+    "trigger_vector": 1
+   }
+  },
+  "335": {
+   "seen": 6,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M8 sprite 278",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 3,
+    "data_4": 312
+   }
+  },
+  "348": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M5 sprite 79",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "349": {
+   "seen": 37,
+   "breaks": 20,
+   "shot": 0,
+   "example": "E2M5 sprite 699",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "350": {
+   "seen": 18,
+   "breaks": 18,
+   "shot": 0,
+   "example": "E2M2 sprite 78",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "351": {
+   "seen": 10,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E2M5 sprite 10",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "353": {
+   "seen": 6,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E3M4 sprite 136",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "356": {
+   "seen": 50,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E1M2 sprite 135",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "359": {
+   "seen": 10,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M2 sprite 540",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21,
+    "data_4": 315
+   }
+  },
+  "360": {
+   "seen": 4,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M2 sprite 63",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "370": {
+   "seen": 44,
+   "breaks": 39,
+   "shot": 0,
+   "example": "DWE3M1 sprite 1005",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18
+   }
+  },
+  "376": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M4 sprite 130",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "382": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M4 sprite 1000",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 500
+   }
+  },
+  "402": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 1007",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21,
+    "data_2": 6
+   }
+  },
+  "420": {
+   "seen": 16,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M2 sprite 593",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21,
+    "data_4": 315
+   }
+  },
+  "423": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 139",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "425": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 141",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "426": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 143",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "431": {
+   "seen": 49,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M2 sprite 587",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 306
+   }
+  },
+  "436": {
+   "seen": 19,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M6 sprite 34",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 5,
+    "data_4": 314
+   }
+  },
+  "440": {
+   "seen": 55,
+   "breaks": 25,
+   "shot": 0,
+   "example": "E1M2 sprite 484",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "444": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M2 sprite 271",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21,
+    "data_4": 315
+   }
+  },
+  "446": {
+   "seen": 9,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M3 sprite 413",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "453": {
+   "seen": 70,
+   "breaks": 33,
+   "shot": 0,
+   "example": "E1M2 sprite 147",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "462": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 1105",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 3,
+    "data_4": 315
+   }
+  },
+  "463": {
+   "seen": 11,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1270",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 6,
+    "data_4": 314
+   }
+  },
+  "464": {
+   "seen": 7,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1269",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 6,
+    "data_4": 314
+   }
+  },
+  "465": {
+   "seen": 29,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M4 sprite 1043",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "466": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M2 sprite 349",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "470": {
+   "seen": 41,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E3M6 sprite 31",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 5,
+    "data_4": 314
+   }
+  },
+  "471": {
+   "seen": 4,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E3M7 sprite 144",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 261,
+    "trigger_vector": 1
+   }
+  },
+  "482": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M6 sprite 300",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "483": {
+   "seen": 10,
+   "breaks": 1,
+   "shot": 1,
+   "example": "E2M2 sprite 38",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "485": {
+   "seen": 40,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M1 sprite 529",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "486": {
+   "seen": 10,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M6 sprite 209",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 5,
+    "data_4": 314
+   }
+  },
+  "505": {
+   "seen": 283,
+   "breaks": 283,
+   "shot": 0,
+   "example": "E1M1 sprite 384",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 17,
+    "data_4": 314
+   }
+  },
+  "515": {
+   "seen": 47,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M2 sprite 118",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_2": 21
+   }
+  },
+  "516": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M6 sprite 299",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21
+   }
+  },
+  "517": {
+   "seen": 13,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE1M9 sprite 259",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "518": {
+   "seen": 155,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M3 sprite 16",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "520": {
+   "seen": 29,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E2M5 sprite 53",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "521": {
+   "seen": 65,
+   "breaks": 64,
+   "shot": 0,
+   "example": "E1M2 sprite 206",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301
+   }
+  },
+  "522": {
+   "seen": 60,
+   "breaks": 50,
+   "shot": 0,
+   "example": "DWE3M5 sprite 1915",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 6,
+    "data_2": 6,
+    "data_4": 307
+   }
+  },
+  "523": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M5 sprite 449",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 6
+   }
+  },
+  "534": {
+   "seen": 32,
+   "breaks": 32,
+   "shot": 0,
+   "example": "DWE2M11 sprite 18",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 6,
+    "data_4": 313
+   }
+  },
+  "535": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M5 sprite 556",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "536": {
+   "seen": 81,
+   "breaks": 72,
+   "shot": 0,
+   "example": "E1M2 sprite 171",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "537": {
+   "seen": 122,
+   "breaks": 121,
+   "shot": 0,
+   "example": "E1M1 sprite 304",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 7,
+    "data_4": 301
+   }
+  },
+  "540": {
+   "seen": 89,
+   "breaks": 61,
+   "shot": 0,
+   "example": "E1M1 sprite 71",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "541": {
+   "seen": 114,
+   "breaks": 68,
+   "shot": 0,
+   "example": "E4M2 sprite 77",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "542": {
+   "seen": 229,
+   "breaks": 86,
+   "shot": 0,
+   "example": "E3M4 sprite 2",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "543": {
+   "seen": 57,
+   "breaks": 41,
+   "shot": 0,
+   "example": "E1M1 sprite 101",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "544": {
+   "seen": 259,
+   "breaks": 54,
+   "shot": 0,
+   "example": "E6M2 sprite 28",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "545": {
+   "seen": 55,
+   "breaks": 36,
+   "shot": 0,
+   "example": "E1M2 sprite 283",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "546": {
+   "seen": 122,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M5 sprite 586",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "547": {
+   "seen": 151,
+   "breaks": 106,
+   "shot": 0,
+   "example": "E2M3 sprite 102",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "549": {
+   "seen": 17,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M5 sprite 446",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 316
+   }
+  },
+  "563": {
+   "seen": 146,
+   "breaks": 136,
+   "shot": 0,
+   "example": "E1M1 sprite 487",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 17,
+    "data_4": 314
+   }
+  },
+  "574": {
+   "seen": 248,
+   "breaks": 247,
+   "shot": 0,
+   "example": "E1M2 sprite 198",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "575": {
+   "seen": 14,
+   "breaks": 14,
+   "shot": 0,
+   "example": "E1M1 sprite 516",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "576": {
+   "seen": 27,
+   "breaks": 15,
+   "shot": 0,
+   "example": "E1M5 sprite 216",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "577": {
+   "seen": 39,
+   "breaks": 16,
+   "shot": 0,
+   "example": "E1M5 sprite 263",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "578": {
+   "seen": 18,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M2 sprite 172",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "579": {
+   "seen": 25,
+   "breaks": 22,
+   "shot": 0,
+   "example": "DWE2M6 sprite 277",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "588": {
+   "seen": 57,
+   "breaks": 43,
+   "shot": 0,
+   "example": "E1M2 sprite 139",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "598": {
+   "seen": 63,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E2M5 sprite 34",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "599": {
+   "seen": 737,
+   "breaks": 460,
+   "shot": 0,
+   "example": "E1M2 sprite 284",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "601": {
+   "seen": 24,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M1 sprite 78",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "604": {
+   "seen": 113,
+   "breaks": 111,
+   "shot": 0,
+   "example": "E1M1 sprite 117",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "605": {
+   "seen": 131,
+   "breaks": 124,
+   "shot": 0,
+   "example": "E1M1 sprite 121",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "606": {
+   "seen": 126,
+   "breaks": 126,
+   "shot": 0,
+   "example": "E1M1 sprite 118",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "607": {
+   "seen": 8,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M1 sprite 68",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "608": {
+   "seen": 175,
+   "breaks": 132,
+   "shot": 0,
+   "example": "E1M1 sprite 67",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "609": {
+   "seen": 5,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E2M5 sprite 216",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "610": {
+   "seen": 42,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M3 sprite 959",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "611": {
+   "seen": 19,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M3 sprite 142",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "612": {
+   "seen": 31,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E2M1 sprite 195",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "613": {
+   "seen": 39,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M2 sprite 177",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "614": {
+   "seen": 33,
+   "breaks": 15,
+   "shot": 0,
+   "example": "E1M3 sprite 161",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "616": {
+   "seen": 39,
+   "breaks": 39,
+   "shot": 0,
+   "example": "E1M8 sprite 93",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "617": {
+   "seen": 35,
+   "breaks": 16,
+   "shot": 0,
+   "example": "E1M1 sprite 422",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "621": {
+   "seen": 24,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M2 sprite 175",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "624": {
+   "seen": 10047,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M3 sprite 881",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18
+   }
+  },
+  "627": {
+   "seen": 22,
+   "breaks": 6,
+   "shot": 0,
+   "example": "DWE1M8 sprite 117",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 6
+   }
+  },
+  "631": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 1074",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "632": {
+   "seen": 24,
+   "breaks": 8,
+   "shot": 0,
+   "example": "E4M5 sprite 24",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "633": {
+   "seen": 8,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M1 sprite 486",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 21,
+    "data_2": 22,
+    "data_4": 312
+   }
+  },
+  "634": {
+   "seen": 60,
+   "breaks": 2,
+   "shot": 2,
+   "example": "E4M2 sprite 76",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "637": {
+   "seen": 12,
+   "breaks": 1,
+   "shot": 1,
+   "example": "E3M4 sprite 273",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 301
+   }
+  },
+  "639": {
+   "seen": 11,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E4M1 sprite 118",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "641": {
+   "seen": 452,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M7 sprite 10",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 2,
+    "data_4": 300
+   }
+  },
+  "642": {
+   "seen": 25,
+   "breaks": 25,
+   "shot": 0,
+   "example": "E1M5 sprite 340",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 301
+   }
+  },
+  "643": {
+   "seen": 6,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 99",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 3,
+    "data_4": 315
+   }
+  },
+  "644": {
+   "seen": 26,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E2M1 sprite 65",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 3,
+    "data_4": 315
+   }
+  },
+  "646": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M2 sprite 152",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 3,
+    "data_4": 315
+   }
+  },
+  "648": {
+   "seen": 43,
+   "breaks": 37,
+   "shot": 0,
+   "example": "E1M1 sprite 477",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "649": {
+   "seen": 80,
+   "breaks": 71,
+   "shot": 0,
+   "example": "E1M2 sprite 159",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "654": {
+   "seen": 35,
+   "breaks": 26,
+   "shot": 0,
+   "example": "E4M5 sprite 32",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313,
+    "trigger_vector": 1
+   }
+  },
+  "658": {
+   "seen": 9,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M1 sprite 500",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 306,
+    "trigger_vector": 1
+   }
+  },
+  "660": {
+   "seen": 740,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E4M2 sprite 207",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22
+   }
+  },
+  "664": {
+   "seen": 369,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M2 sprite 210",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22
+   }
+  },
+  "672": {
+   "seen": 54,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 294",
+   "record": {
+    "type": 416,
+    "hitscan": false
+   }
+  },
+  "676": {
+   "seen": 68,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M3 sprite 18",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 13,
+    "data_2": 6,
+    "data_4": 300
+   }
+  },
+  "678": {
+   "seen": 7,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M1 sprite 2",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "679": {
+   "seen": 26,
+   "breaks": 25,
+   "shot": 0,
+   "example": "DWE2M7 sprite 169",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "680": {
+   "seen": 34,
+   "breaks": 29,
+   "shot": 0,
+   "example": "E1M8 sprite 636",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "681": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E6M7 sprite 31",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "682": {
+   "seen": 27,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M1 sprite 454",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "684": {
+   "seen": 34,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E2M1 sprite 164",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "685": {
+   "seen": 5,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M1 sprite 70",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 315
+   }
+  },
+  "686": {
+   "seen": 4,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M5 sprite 463",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 7,
+    "data_4": 315
+   }
+  },
+  "687": {
+   "seen": 11,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E4M5 sprite 77",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "688": {
+   "seen": 21,
+   "breaks": 20,
+   "shot": 0,
+   "example": "E2M1 sprite 136",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 8,
+    "data_4": 316,
+    "trigger_vector": 1
+   }
+  },
+  "689": {
+   "seen": 21,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M2 sprite 211",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "690": {
+   "seen": 29,
+   "breaks": 26,
+   "shot": 0,
+   "example": "E1M2 sprite 210",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "691": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M8 sprite 28",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "692": {
+   "seen": 30,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M8 sprite 17",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "693": {
+   "seen": 148,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E2M1 sprite 10",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 300,
+    "trigger_vector": 1
+   }
+  },
+  "694": {
+   "seen": 95,
+   "breaks": 18,
+   "shot": 0,
+   "example": "E1M8 sprite 19",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "695": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E3M4 sprite 147",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "696": {
+   "seen": 14,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E1M6 sprite 412",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 2203
+   }
+  },
+  "697": {
+   "seen": 38,
+   "breaks": 34,
+   "shot": 0,
+   "example": "E1M6 sprite 1117",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "698": {
+   "seen": 33,
+   "breaks": 28,
+   "shot": 0,
+   "example": "E1M3 sprite 168",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "700": {
+   "seen": 6,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E4M5 sprite 74",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "701": {
+   "seen": 36,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E1M8 sprite 72",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "703": {
+   "seen": 27,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E1M1 sprite 34",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 6,
+    "data_4": 313
+   }
+  },
+  "704": {
+   "seen": 34,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E1M8 sprite 70",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 6,
+    "data_4": 313
+   }
+  },
+  "705": {
+   "seen": 12,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M8 sprite 71",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 6,
+    "data_4": 313
+   }
+  },
+  "706": {
+   "seen": 23,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M8 sprite 321",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "707": {
+   "seen": 10,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE2M6 sprite 35",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 301
+   }
+  },
+  "710": {
+   "seen": 18,
+   "breaks": 0,
+   "shot": 18,
+   "example": "E2M1 sprite 128"
+  },
+  "712": {
+   "seen": 36,
+   "breaks": 33,
+   "shot": 0,
+   "example": "E1M4 sprite 14",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 7,
+    "data_2": 2,
+    "data_4": 300,
+    "trigger_vector": 1
+   }
+  },
+  "713": {
+   "seen": 208,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE3M1 sprite 992",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "714": {
+   "seen": 25,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E2M4 sprite 641",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "715": {
+   "seen": 13,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E2M4 sprite 640",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 6,
+    "data_4": 314
+   }
+  },
+  "716": {
+   "seen": 6,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M2 sprite 311",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "717": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M2 sprite 32",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_2": 6,
+    "data_4": 312
+   }
+  },
+  "719": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M2 sprite 87",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_2": 6,
+    "data_4": 312
+   }
+  },
+  "732": {
+   "seen": 188,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M1 sprite 994",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "738": {
+   "seen": 14,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M3 sprite 376",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "739": {
+   "seen": 135,
+   "breaks": 135,
+   "shot": 0,
+   "example": "E1M5 sprite 341",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 301
+   }
+  },
+  "740": {
+   "seen": 8,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M2 sprite 143",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_2": 6
+   }
+  },
+  "741": {
+   "seen": 11,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M2 sprite 153",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "742": {
+   "seen": 179,
+   "breaks": 74,
+   "shot": 0,
+   "example": "E1M2 sprite 136",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "743": {
+   "seen": 274,
+   "breaks": 51,
+   "shot": 0,
+   "example": "E1M2 sprite 137",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "744": {
+   "seen": 63,
+   "breaks": 25,
+   "shot": 0,
+   "example": "E1M2 sprite 125",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "745": {
+   "seen": 84,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M8 sprite 5",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "746": {
+   "seen": 105,
+   "breaks": 43,
+   "shot": 0,
+   "example": "E1M8 sprite 16",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "751": {
+   "seen": 17,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M1 sprite 161",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "752": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M4 sprite 3",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "753": {
+   "seen": 186,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 888",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "754": {
+   "seen": 205,
+   "breaks": 3,
+   "shot": 0,
+   "example": "TEDE1M3 sprite 679",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "758": {
+   "seen": 242,
+   "breaks": 225,
+   "shot": 0,
+   "example": "E1M3 sprite 159",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "759": {
+   "seen": 659,
+   "breaks": 659,
+   "shot": 0,
+   "example": "E1M1 sprite 120",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "760": {
+   "seen": 23,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M7 sprite 135",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 7,
+    "data_2": 7,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "761": {
+   "seen": 45,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M4 sprite 798",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "783": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M1 sprite 150",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "784": {
+   "seen": 24,
+   "breaks": 0,
+   "shot": 2,
+   "example": "E1M4 sprite 42"
+  },
+  "785": {
+   "seen": 8,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M8 sprite 651",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 300
+   }
+  },
+  "791": {
+   "seen": 323,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M2 sprite 385",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "792": {
+   "seen": 44,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E6M2 sprite 384",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "793": {
+   "seen": 102,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E6M2 sprite 386",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_4": 312
+   }
+  },
+  "797": {
+   "seen": 129,
+   "breaks": 106,
+   "shot": 0,
+   "example": "DWE1M1 sprite 337",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 22
+   }
+  },
+  "798": {
+   "seen": 10,
+   "breaks": 5,
+   "shot": 0,
+   "example": "DWE3M1 sprite 61",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "799": {
+   "seen": 68,
+   "breaks": 32,
+   "shot": 0,
+   "example": "DNE3L1 sprite 50",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 25
+   }
+  },
+  "802": {
+   "seen": 153,
+   "breaks": 153,
+   "shot": 0,
+   "example": "E1M1 sprite 119",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "803": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M3 sprite 158",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301
+   }
+  },
+  "804": {
+   "seen": 34,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M1 sprite 66",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "805": {
+   "seen": 1267,
+   "breaks": 14,
+   "shot": 0,
+   "example": "E1M1 sprite 261",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "806": {
+   "seen": 8,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E2M9 sprite 145",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "807": {
+   "seen": 16,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M3 sprite 375",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "808": {
+   "seen": 94,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M1 sprite 260",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "809": {
+   "seen": 440,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 209",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4
+   }
+  },
+  "823": {
+   "seen": 41,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M2 sprite 224",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 21
+   }
+  },
+  "824": {
+   "seen": 17,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M4 sprite 20",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "826": {
+   "seen": 26,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M5 sprite 129",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "828": {
+   "seen": 6,
+   "breaks": 5,
+   "shot": 0,
+   "example": "DWE1M8 sprite 749",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 2003,
+    "trigger_vector": 1
+   }
+  },
+  "834": {
+   "seen": 26,
+   "breaks": 26,
+   "shot": 0,
+   "example": "DWE1M6 sprite 146",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "844": {
+   "seen": 13,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M8 sprite 650",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 3,
+    "data_4": 312
+   }
+  },
+  "845": {
+   "seen": 25,
+   "breaks": 17,
+   "shot": 0,
+   "example": "E1M2 sprite 151",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "846": {
+   "seen": 24,
+   "breaks": 14,
+   "shot": 0,
+   "example": "E2M4 sprite 413",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "847": {
+   "seen": 43,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M2 sprite 66",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "848": {
+   "seen": 20,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M2 sprite 150",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "849": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M4 sprite 278",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "850": {
+   "seen": 19,
+   "breaks": 4,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 892",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "852": {
+   "seen": 7,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E1M4 sprite 44",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "853": {
+   "seen": 6,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M4 sprite 40",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301
+   }
+  },
+  "895": {
+   "seen": 12,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E1M1 sprite 456",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "905": {
+   "seen": 16,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M4 sprite 851",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "906": {
+   "seen": 19,
+   "breaks": 18,
+   "shot": 0,
+   "example": "E1M2 sprite 465",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "907": {
+   "seen": 240,
+   "breaks": 5,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 211",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_2": 4
+   }
+  },
+  "915": {
+   "seen": 177,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M1 sprite 995",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "924": {
+   "seen": 14,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E1M6 sprite 1118",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "925": {
+   "seen": 271,
+   "breaks": 254,
+   "shot": 0,
+   "example": "E1M2 sprite 309",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "929": {
+   "seen": 85,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE3M1 sprite 993",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "932": {
+   "seen": 15,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M4 sprite 279",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "933": {
+   "seen": 34,
+   "breaks": 20,
+   "shot": 0,
+   "example": "E1M2 sprite 606",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "942": {
+   "seen": 16,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E1M2 sprite 541",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "943": {
+   "seen": 17,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M8 sprite 4",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_4": 312
+   }
+  },
+  "944": {
+   "seen": 16,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M2 sprite 180",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301
+   }
+  },
+  "945": {
+   "seen": 14,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E2M2 sprite 66",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 6,
+    "data_4": 301
+   }
+  },
+  "946": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M1 sprite 746",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 7,
+    "data_4": 300
+   }
+  },
+  "948": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 168",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "trigger_vector": 1
+   }
+  },
+  "957": {
+   "seen": 29,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M3 sprite 426",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "958": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M3 sprite 425",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "959": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M3 sprite 427",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "961": {
+   "seen": 5,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M2 sprite 165",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "962": {
+   "seen": 17,
+   "breaks": 17,
+   "shot": 0,
+   "example": "E1M1 sprite 299",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 2,
+    "data_4": 301
+   }
+  },
+  "963": {
+   "seen": 21,
+   "breaks": 21,
+   "shot": 0,
+   "example": "E1M1 sprite 300",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 2,
+    "data_4": 301
+   }
+  },
+  "964": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M1 sprite 308",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 20,
+    "data_4": 313
+   }
+  },
+  "965": {
+   "seen": 41,
+   "breaks": 15,
+   "shot": 0,
+   "example": "E1M2 sprite 487",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "967": {
+   "seen": 9,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M4 sprite 999",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "973": {
+   "seen": 157,
+   "breaks": 17,
+   "shot": 0,
+   "example": "E1M8 sprite 584",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "974": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M1 sprite 491",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 21
+   }
+  },
+  "975": {
+   "seen": 12,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E2M1 sprite 435",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 16,
+    "data_4": 1020
+   }
+  },
+  "976": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M1 sprite 1651",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "981": {
+   "seen": 30,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E1M2 sprite 486",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_2": 6
+   }
+  },
+  "1009": {
+   "seen": 246,
+   "breaks": 227,
+   "shot": 0,
+   "example": "E1M1 sprite 302",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 22,
+    "data_4": 301
+   }
+  },
+  "1010": {
+   "seen": 68,
+   "breaks": 68,
+   "shot": 0,
+   "example": "E2M4 sprite 783",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 22,
+    "data_2": 12,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "1013": {
+   "seen": 233,
+   "breaks": 233,
+   "shot": 0,
+   "example": "E2M4 sprite 782",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 22,
+    "data_4": 301
+   }
+  },
+  "1024": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M10 sprite 17",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 20,
+    "data_4": 313,
+    "trigger_vector": 1
+   }
+  },
+  "1040": {
+   "seen": 23,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M8 sprite 107",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 5,
+    "data_4": 313
+   }
+  },
+  "1042": {
+   "seen": 21,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 799",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_2": 6
+   }
+  },
+  "1046": {
+   "seen": 163,
+   "breaks": 0,
+   "shot": 5,
+   "example": "E1M6 sprite 183"
+  },
+  "1048": {
+   "seen": 76,
+   "breaks": 0,
+   "shot": 3,
+   "example": "E3M4 sprite 632"
+  },
+  "1051": {
+   "seen": 11,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M4 sprite 792",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 2204
+   }
+  },
+  "1055": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M4 sprite 538",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "1059": {
+   "seen": 19,
+   "breaks": 15,
+   "shot": 0,
+   "example": "E2M8 sprite 39",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 8,
+    "data_4": 2204,
+    "trigger_vector": 1
+   }
+  },
+  "1061": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M1 sprite 541",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 12,
+    "data_4": 2205,
+    "trigger_vector": 1
+   }
+  },
+  "1062": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M4 sprite 237",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "1063": {
+   "seen": 13,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M1 sprite 382",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 7,
+    "data_4": 301
+   }
+  },
+  "1066": {
+   "seen": 54,
+   "breaks": 23,
+   "shot": 0,
+   "example": "E1M1 sprite 515",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6
+   }
+  },
+  "1067": {
+   "seen": 181,
+   "breaks": 78,
+   "shot": 0,
+   "example": "E1M1 sprite 69",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6
+   }
+  },
+  "1068": {
+   "seen": 57,
+   "breaks": 16,
+   "shot": 0,
+   "example": "E1M1 sprite 154",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6
+   }
+  },
+  "1092": {
+   "seen": 49,
+   "breaks": 33,
+   "shot": 0,
+   "example": "E3M1 sprite 375",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 22
+   }
+  },
+  "1098": {
+   "seen": 52,
+   "breaks": 46,
+   "shot": 0,
+   "example": "E1M3 sprite 5",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "1115": {
+   "seen": 94,
+   "breaks": 59,
+   "shot": 0,
+   "example": "E1M4 sprite 659",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 14,
+    "data_4": 317
+   }
+  },
+  "1127": {
+   "seen": 104,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 382",
+   "record": {
+    "type": 416,
+    "hitscan": true
+   }
+  },
+  "1142": {
+   "seen": 24,
+   "breaks": 22,
+   "shot": 0,
+   "example": "E1M8 sprite 90",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "1144": {
+   "seen": 20,
+   "breaks": 14,
+   "shot": 0,
+   "example": "E3M4 sprite 231",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "1145": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 368",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "1146": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 371",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "1165": {
+   "seen": 19,
+   "breaks": 1,
+   "shot": 10,
+   "example": "E1M1 sprite 505",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 300
+   }
+  },
+  "1167": {
+   "seen": 151,
+   "breaks": 135,
+   "shot": 0,
+   "example": "E1M4 sprite 175",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "1169": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M1 sprite 266",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 501
+   }
+  },
+  "1195": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE3M6 sprite 1108",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1209": {
+   "seen": 110,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E3M4 sprite 438",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1218": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M10 sprite 2192",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 12,
+    "data_4": 300
+   }
+  },
+  "1223": {
+   "seen": 6,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M1 sprite 453",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 2205,
+    "trigger_vector": 1
+   }
+  },
+  "1224": {
+   "seen": 54,
+   "breaks": 33,
+   "shot": 0,
+   "example": "DWE1M8 sprite 4",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1229": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 397",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "1239": {
+   "seen": 5,
+   "breaks": 5,
+   "shot": 0,
+   "example": "DWE1M9 sprite 564",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "1240": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 4",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2102
+   }
+  },
+  "1259": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M4 sprite 0",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21,
+    "data_2": 6
+   }
+  },
+  "1260": {
+   "seen": 7,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M3 sprite 464",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15,
+    "data_4": 315
+   }
+  },
+  "1267": {
+   "seen": 8,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E2M2 sprite 269",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1268": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M2 sprite 214",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1269": {
+   "seen": 7,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E2M1 sprite 145",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1296": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1244",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1300": {
+   "seen": 5,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE3M6 sprite 475",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1305": {
+   "seen": 10,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE1M9 sprite 536",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "1311": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1243",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1316": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1323",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1327": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 848",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1335": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M6 sprite 313",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 2205
+   }
+  },
+  "1349": {
+   "seen": 14,
+   "breaks": 3,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 901",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "1350": {
+   "seen": 24,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M3 sprite 144",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1351": {
+   "seen": 34,
+   "breaks": 34,
+   "shot": 0,
+   "example": "E1M3 sprite 872",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1360": {
+   "seen": 5,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E1M6 sprite 8",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1363": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 8",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1365": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M4 sprite 322",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1369": {
+   "seen": 7,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE2M10 sprite 206",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2204
+   }
+  },
+  "1385": {
+   "seen": 4,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE3M7 sprite 320",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1403": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M10 sprite 2184",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 12,
+    "data_4": 300
+   }
+  },
+  "1406": {
+   "seen": 5,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M6 sprite 637",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 8
+   }
+  },
+  "1407": {
+   "seen": 29,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M1 sprite 328",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 20
+   }
+  },
+  "1453": {
+   "seen": 7,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE2M6 sprite 627",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 8
+   }
+  },
+  "1454": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 12",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1455": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M1 sprite 147",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1471": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1317",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1490": {
+   "seen": 5,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1943",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "1496": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1316",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1500": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M7 sprite 324",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1505": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 50",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1506": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 47",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "1516": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1254",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1530": {
+   "seen": 89,
+   "breaks": 22,
+   "shot": 0,
+   "example": "E6M2 sprite 245",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "1565": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE2M11 sprite 288",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 2205,
+    "trigger_vector": 1
+   }
+  },
+  "1569": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M3 sprite 1964",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1705
+   }
+  },
+  "1575": {
+   "seen": 5,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE1M9 sprite 461",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1576": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1259",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1580": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M6 sprite 1109",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 7,
+    "data_2": 7
+   }
+  },
+  "1585": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 53",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1591": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1249",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1605": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M10 sprite 2191",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 12,
+    "data_4": 300
+   }
+  },
+  "1630": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M7 sprite 321",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1682": {
+   "seen": 14,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E6M2 sprite 137",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 30,
+    "data_4": 2205,
+    "trigger_vector": 1
+   }
+  },
+  "1683": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M8 sprite 1302",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18,
+    "data_2": 18,
+    "data_4": 2381
+   }
+  },
+  "1708": {
+   "seen": 16,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M2 sprite 114",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1709": {
+   "seen": 22,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E2M4 sprite 386",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1710": {
+   "seen": 16,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M2 sprite 116",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 4,
+    "data_4": 312
+   }
+  },
+  "1711": {
+   "seen": 12,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M2 sprite 115",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 4,
+    "data_4": 312
+   }
+  },
+  "1712": {
+   "seen": 48,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E1M1 sprite 161",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1713": {
+   "seen": 21,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M1 sprite 160",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1714": {
+   "seen": 26,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E2M3 sprite 60",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1715": {
+   "seen": 49,
+   "breaks": 11,
+   "shot": 0,
+   "example": "E1M1 sprite 133",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "1716": {
+   "seen": 33,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E1M1 sprite 134",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 3,
+    "data_4": 312
+   }
+  },
+  "1719": {
+   "seen": 14,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M1 sprite 263",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 21
+   }
+  },
+  "1726": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M1 sprite 289",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 13,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "1727": {
+   "seen": 4,
+   "breaks": 3,
+   "shot": 1,
+   "example": "E1M4 sprite 311",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1728": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E4M9 sprite 141",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1741": {
+   "seen": 8,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 295",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1744": {
+   "seen": 8,
+   "breaks": 3,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 177",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "1792": {
+   "seen": 70,
+   "breaks": 15,
+   "shot": 0,
+   "example": "DWE3M9 sprite 422",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1835": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M5 sprite 567",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 20,
+    "data_4": 313
+   }
+  },
+  "1840": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M9 sprite 395",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "1850": {
+   "seen": 11,
+   "breaks": 10,
+   "shot": 0,
+   "example": "DWE1M4 sprite 248",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 25
+   }
+  },
+  "1859": {
+   "seen": 44,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M9 sprite 219",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 7,
+    "data_2": 7
+   }
+  },
+  "1875": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 62",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1893": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M6 sprite 674",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16
+   }
+  },
+  "1908": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 576",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "1930": {
+   "seen": 24,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M7 sprite 323",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "1935": {
+   "seen": 30,
+   "breaks": 7,
+   "shot": 0,
+   "example": "DWE1M9 sprite 566",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "1936": {
+   "seen": 4,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DM1 sprite 51",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "1943": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M6 sprite 676",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16
+   }
+  },
+  "1981": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 30",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2049": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 173",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 2,
+    "data_4": 300
+   }
+  },
+  "2050": {
+   "seen": 16,
+   "breaks": 3,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 174",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 2,
+    "data_4": 300
+   }
+  },
+  "2054": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M2 sprite 270",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2055": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 11",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 8,
+    "data_4": 2204
+   }
+  },
+  "2071": {
+   "seen": 4,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E3M2 sprite 553",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "2073": {
+   "seen": 5,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE2M10 sprite 208",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2204
+   }
+  },
+  "2074": {
+   "seen": 10,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 10",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "2076": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M1 sprite 315",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "2082": {
+   "seen": 20,
+   "breaks": 6,
+   "shot": 0,
+   "example": "E1M8 sprite 102",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 3,
+    "data_4": 312
+   }
+  },
+  "2101": {
+   "seen": 324,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M6 sprite 429",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18
+   }
+  },
+  "2129": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 401",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "2137": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M1 sprite 486",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 294
+   }
+  },
+  "2139": {
+   "seen": 28,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M2 sprite 226",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "2140": {
+   "seen": 15,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M4 sprite 635",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "2144": {
+   "seen": 12,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 428",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "2145": {
+   "seen": 7,
+   "breaks": 5,
+   "shot": 0,
+   "example": "TEDE1M1 sprite 180",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "2159": {
+   "seen": 5,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E2M1 sprite 487",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "2174": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E3M4 sprite 316",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 312
+   }
+  },
+  "2273": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M1 sprite 477",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 4,
+    "data_2": 6,
+    "data_4": 313
+   }
+  },
+  "2288": {
+   "seen": 9,
+   "breaks": 8,
+   "shot": 0,
+   "example": "E1M2 sprite 630",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 300,
+    "trigger_vector": 1
+   }
+  },
+  "2290": {
+   "seen": 288,
+   "breaks": 23,
+   "shot": 39,
+   "example": "E1M1 sprite 132",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_2": 7
+   }
+  },
+  "2295": {
+   "seen": 8,
+   "breaks": 7,
+   "shot": 0,
+   "example": "E1M2 sprite 166",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "2304": {
+   "seen": 16,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E1M2 sprite 253",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "2305": {
+   "seen": 19,
+   "breaks": 13,
+   "shot": 0,
+   "example": "E1M2 sprite 252",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "2317": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E6M2 sprite 66",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 3,
+    "data_4": 315
+   }
+  },
+  "2318": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E6M2 sprite 190",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 4,
+    "data_4": 312
+   }
+  },
+  "2324": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 184",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 16,
+    "data_4": 718
+   }
+  },
+  "2325": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DNE3L1 sprite 270",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_3": 8,
+    "data_4": 318,
+    "trigger_vector": 1
+   }
+  },
+  "2330": {
+   "seen": 49,
+   "breaks": 43,
+   "shot": 0,
+   "example": "E1M1 sprite 457",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2333": {
+   "seen": 73,
+   "breaks": 71,
+   "shot": 0,
+   "example": "E1M1 sprite 355",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2334": {
+   "seen": 70,
+   "breaks": 65,
+   "shot": 0,
+   "example": "E1M1 sprite 452",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2340": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 369",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "2341": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 373",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 4,
+    "data_4": 315
+   }
+  },
+  "2348": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M4 sprite 221",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 308
+   }
+  },
+  "2377": {
+   "seen": 3,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E6M1 sprite 474",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "2400": {
+   "seen": 26,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M4 sprite 783",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 29,
+    "data_3": 6,
+    "data_4": 1014
+   }
+  },
+  "2404": {
+   "seen": 5,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E4M9 sprite 96",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2427": {
+   "seen": 90,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE1M3 sprite 880",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18
+   }
+  },
+  "2446": {
+   "seen": 119,
+   "breaks": 15,
+   "shot": 0,
+   "example": "DWE2M5 sprite 1281",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 6
+   }
+  },
+  "2447": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E2M4 sprite 945",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 718,
+    "trigger_vector": 1
+   }
+  },
+  "2472": {
+   "seen": 128,
+   "breaks": 53,
+   "shot": 0,
+   "example": "E4M1 sprite 108",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 7,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "2479": {
+   "seen": 4,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M1 sprite 105",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 7,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "2482": {
+   "seen": 6,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E4M1 sprite 103",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 7,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "2490": {
+   "seen": 127,
+   "breaks": 96,
+   "shot": 0,
+   "example": "DWE3M8 sprite 2387",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 300
+   }
+  },
+  "2494": {
+   "seen": 26,
+   "breaks": 10,
+   "shot": 0,
+   "example": "E2M5 sprite 221",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "2495": {
+   "seen": 10,
+   "breaks": 9,
+   "shot": 0,
+   "example": "E2M5 sprite 218",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 12,
+    "data_4": 315
+   }
+  },
+  "2497": {
+   "seen": 77,
+   "breaks": 53,
+   "shot": 0,
+   "example": "E2M2 sprite 46",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 312
+   }
+  },
+  "2498": {
+   "seen": 42,
+   "breaks": 25,
+   "shot": 0,
+   "example": "E2M2 sprite 45",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 12,
+    "data_4": 312
+   }
+  },
+  "2545": {
+   "seen": 54,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M7 sprite 1146",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18,
+    "data_2": 18,
+    "data_4": 492
+   }
+  },
+  "2546": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M2 sprite 543",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 14,
+    "data_4": 370,
+    "trigger_vector": 1
+   }
+  },
+  "2548": {
+   "seen": 105,
+   "breaks": 19,
+   "shot": 0,
+   "example": "E3M2 sprite 330",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_4": 314
+   }
+  },
+  "2549": {
+   "seen": 12,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE2M11 sprite 54",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 7,
+    "data_4": 314,
+    "trigger_vector": 1
+   }
+  },
+  "2555": {
+   "seen": 31,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M1 sprite 1080",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "2583": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M3 sprite 175",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2584": {
+   "seen": 5,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E1M2 sprite 447",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2585": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M3 sprite 91",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 1017,
+    "trigger_vector": 1
+   }
+  },
+  "2595": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M5 sprite 608",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 7,
+    "data_2": 7,
+    "data_4": 1601
+   }
+  },
+  "2596": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 5",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 20,
+    "data_4": 313
+   }
+  },
+  "2604": {
+   "seen": 6,
+   "breaks": 6,
+   "shot": 0,
+   "example": "DWE1M5 sprite 383",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "2633": {
+   "seen": 22,
+   "breaks": 22,
+   "shot": 0,
+   "example": "DWE1M5 sprite 385",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "2696": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 2244",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 15,
+    "data_4": 312
+   }
+  },
+  "2705": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 561",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "2716": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 1242",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 15,
+    "data_2": 5,
+    "data_4": 312
+   }
+  },
+  "2720": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 61",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "2803": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M6 sprite 669",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16
+   }
+  },
+  "2819": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M3 sprite 915",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 1805
+   }
+  },
+  "2821": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 2008",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 17,
+    "data_4": 312
+   }
+  },
+  "2830": {
+   "seen": 19,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M3 sprite 177",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 8,
+    "data_4": 2205
+   }
+  },
+  "2834": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 76",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8
+   }
+  },
+  "2835": {
+   "seen": 24,
+   "breaks": 24,
+   "shot": 0,
+   "example": "E1M3 sprite 920",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1020,
+    "trigger_vector": 1
+   }
+  },
+  "2841": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M4 sprite 453",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 7,
+    "data_2": 7,
+    "data_4": 1600
+   }
+  },
+  "2845": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M7 sprite 786",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "2850": {
+   "seen": 19,
+   "breaks": 17,
+   "shot": 0,
+   "example": "DWE1M10 sprite 88",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1020,
+    "trigger_vector": 1
+   }
+  },
+  "2853": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M6 sprite 77",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8
+   }
+  },
+  "2860": {
+   "seen": 15,
+   "breaks": 13,
+   "shot": 0,
+   "example": "DWE1M10 sprite 86",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1020,
+    "trigger_vector": 1
+   }
+  },
+  "2861": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 1",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2102
+   }
+  },
+  "2870": {
+   "seen": 20,
+   "breaks": 6,
+   "shot": 0,
+   "example": "DWE1M4 sprite 766",
+   "record": {
+    "type": 417,
+    "hitscan": false
+   }
+  },
+  "2880": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M10 sprite 94",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1019,
+    "trigger_vector": 1
+   }
+  },
+  "2890": {
+   "seen": 4,
+   "breaks": 4,
+   "shot": 0,
+   "example": "DWE1M10 sprite 91",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1018,
+    "trigger_vector": 1
+   }
+  },
+  "2905": {
+   "seen": 5,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E4M9 sprite 2",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "2914": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 610",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2925": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E2M6 sprite 0",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 12,
+    "data_4": 300
+   }
+  },
+  "2937": {
+   "seen": 65,
+   "breaks": 57,
+   "shot": 0,
+   "example": "E1M6 sprite 7",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "2954": {
+   "seen": 7,
+   "breaks": 3,
+   "shot": 0,
+   "example": "E2M2 sprite 84",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3091": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 6",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 23,
+    "data_4": 259
+   }
+  },
+  "3100": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M1 sprite 852",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 16,
+    "data_2": 16
+   }
+  },
+  "3110": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE3M9 sprite 1321",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 7,
+    "data_2": 7,
+    "data_4": 1600
+   }
+  },
+  "3115": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E4M9 sprite 3",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2102
+   }
+  },
+  "3122": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M2 sprite 384",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 6
+   }
+  },
+  "3129": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE1M9 sprite 963",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 6,
+    "data_2": 6
+   }
+  },
+  "3251": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 597",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "3321": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 396",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "3327": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 2009",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 17,
+    "data_4": 312
+   }
+  },
+  "3407": {
+   "seen": 3,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 273",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "3413": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 28",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "3414": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 274",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3415": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 269",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3420": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 271",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2204
+   }
+  },
+  "3421": {
+   "seen": 4,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M4 sprite 426",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3463": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M7 sprite 787",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 6,
+    "data_2": 6,
+    "trigger_vector": 1
+   }
+  },
+  "3490": {
+   "seen": 47,
+   "breaks": 43,
+   "shot": 0,
+   "example": "E1M2 sprite 308",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 15,
+    "data_4": 312
+   }
+  },
+  "3524": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M6 sprite 624",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16,
+    "data_4": 2205
+   }
+  },
+  "3525": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M7 sprite 272",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3531": {
+   "seen": 5,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE1M6 sprite 673",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 16
+   }
+  },
+  "3563": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "TEDE1M5 sprite 890",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 15
+   }
+  },
+  "3566": {
+   "seen": 238,
+   "breaks": 3,
+   "shot": 0,
+   "example": "DWE2M6 sprite 430",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 18
+   }
+  },
+  "3604": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 560",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 13,
+    "data_4": 312
+   }
+  },
+  "3739": {
+   "seen": 5,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE2M8 sprite 741",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 25,
+    "data_2": 25,
+    "data_4": 1601
+   }
+  },
+  "3754": {
+   "seen": 2,
+   "breaks": 2,
+   "shot": 0,
+   "example": "E1M3 sprite 918",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 12,
+    "data_4": 312
+   }
+  },
+  "3764": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 380",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 20,
+    "data_2": 7,
+    "data_4": 313
+   }
+  },
+  "3774": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 2289",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 5,
+    "data_2": 12,
+    "data_4": 312
+   }
+  },
+  "3784": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M2 sprite 503",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 7,
+    "data_4": 1603,
+    "trigger_vector": 1
+   }
+  },
+  "3786": {
+   "seen": 3,
+   "breaks": 1,
+   "shot": 0,
+   "example": "TEDE1M2 sprite 178",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_4": 712
+   }
+  },
+  "3788": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M3 sprite 908",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 8,
+    "data_4": 2205
+   }
+  },
+  "3791": {
+   "seen": 4,
+   "breaks": 4,
+   "shot": 0,
+   "example": "E1M2 sprite 449",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3792": {
+   "seen": 15,
+   "breaks": 12,
+   "shot": 0,
+   "example": "E2M1 sprite 434",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2205
+   }
+  },
+  "3793": {
+   "seen": 5,
+   "breaks": 5,
+   "shot": 0,
+   "example": "E2M3 sprite 382",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 16,
+    "data_4": 2205
+   }
+  },
+  "3798": {
+   "seen": 254,
+   "breaks": 2,
+   "shot": 0,
+   "example": "DWE2M11 sprite 325",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 8,
+    "data_2": 16,
+    "data_4": 2205
+   }
+  },
+  "3801": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 508",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1020
+   }
+  },
+  "3802": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M2 sprite 505",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 7,
+    "data_4": 1603,
+    "trigger_vector": 1
+   }
+  },
+  "3803": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 60",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "3804": {
+   "seen": 2,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE1M9 sprite 525",
+   "record": {
+    "type": 417,
+    "hitscan": false,
+    "data_1": 16,
+    "data_2": 16,
+    "data_4": 1020
+   }
+  },
+  "3808": {
+   "seen": 110,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 195",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3811": {
+   "seen": 41,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 197",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3814": {
+   "seen": 43,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 199",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3822": {
+   "seen": 107,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 198",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3825": {
+   "seen": 97,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 194",
+   "record": {
+    "type": 416,
+    "hitscan": false,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3826": {
+   "seen": 67,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 200",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3827": {
+   "seen": 90,
+   "breaks": 1,
+   "shot": 0,
+   "example": "E1M4 sprite 196",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 1,
+    "data_4": 301,
+    "trigger_vector": 1
+   }
+  },
+  "3870": {
+   "seen": 61,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DM1 sprite 59",
+   "record": {
+    "type": 416,
+    "hitscan": true,
+    "data_1": 8,
+    "data_4": 2203
+   }
+  },
+  "3892": {
+   "seen": 1,
+   "breaks": 1,
+   "shot": 0,
+   "example": "DWE3M9 sprite 1334",
+   "record": {
+    "type": 417,
+    "hitscan": true,
+    "data_1": 18,
+    "data_4": 1407
+   }
+  }
+ }
+}

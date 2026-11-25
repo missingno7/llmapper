@@ -863,7 +863,7 @@
     "keys": 6,
     "lock": 6,
     "last": 8,
-    "supplies": 94,
+    "supplies": 95,
     "patrol": 51,
     "wakes": 1,
     "carried": 12
@@ -895,6 +895,81 @@
     "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
     "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0"
   ],
+  "breakables": {
+    "905": 2,
+    "356": 12,
+    "981": 10,
+    "165": 2,
+    "2330": 11,
+    "73": 7,
+    "1009": 1,
+    "1013": 4,
+    "2334": 10,
+    "534": 2,
+    "588": 23,
+    "932": 5,
+    "440": 8,
+    "444": 1,
+    "742": 6,
+    "1167": 4,
+    "183": 1,
+    "536": 3,
+    "847": 2,
+    "845": 1,
+    "740": 1,
+    "2377": 6,
+    "739": 1,
+    "714": 1,
+    "348": 2,
+    "2333": 11,
+    "1713": 1,
+    "1710": 1,
+    "267": 3,
+    "614": 5,
+    "521": 1,
+    "690": 5,
+    "684": 6,
+    "1727": 3,
+    "95": 1,
+    "453": 7,
+    "522": 4,
+    "799": 4,
+    "906": 2,
+    "924": 1,
+    "698": 1,
+    "1744": 4,
+    "1061": 16,
+    "758": 6,
+    "925": 16,
+    "146": 1,
+    "116": 1,
+    "517": 1,
+    "1115": 2,
+    "349": 1,
+    "802": 3,
+    "658": 1,
+    "2633": 1,
+    "834": 2,
+    "284": 2,
+    "163": 2,
+    "1714": 1,
+    "1709": 1,
+    "895": 2,
+    "117": 8,
+    "2073": 1,
+    "541": 1,
+    "542": 1,
+    "547": 1,
+    "599": 5,
+    "965": 1,
+    "823": 1,
+    "617": 1,
+    "613": 1,
+    "848": 1,
+    "741": 1,
+    "744": 1,
+    "692": 1
+  },
   "wires": {
     "declared": [
       {
@@ -967,7 +1042,7 @@
       },
       {
         "name": "pump:belt",
-        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on",
+        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on, and tells the presses",
         "channel": 105,
         "engine": null,
         "when": [
@@ -976,16 +1051,20 @@
         "then": [
           "region region:gravesend/foundry_ward/pump_station/belt_0",
           "region region:gravesend/foundry_ward/pump_station/belt_2",
-          "region region:gravesend/foundry_ward/pump_station/belt_4"
+          "region region:gravesend/foundry_ward/pump_station/belt_4",
+          "placement pump:press_stop",
+          "placement pump:press_restart"
         ]
       },
       {
         "name": "pump:presses",
-        "says": "when the level starts both presses begin slamming, and never stop",
+        "says": "when the level starts both presses begin slamming; the console lever stops them shut, and the belt under them, and starts them again",
         "channel": 106,
         "engine": null,
         "when": [
-          "level start on placement pump:press_starter"
+          "level start on placement pump:press_starter",
+          "relay on placement pump:press_stop",
+          "relay on placement pump:press_restart"
         ],
         "then": [
           "region region:gravesend/foundry_ward/pump_station/belt_1",
@@ -1046,7 +1125,7 @@
       },
       {
         "name": "foundry:loading-shutter",
-        "says": "pushing either freight leaf from either approach parts both leaves to open the loading alcove",
+        "says": "pushing either freight leaf from either approach parts both leaves to open onto the mirror",
         "channel": 110,
         "engine": null,
         "when": [
@@ -1856,6 +1935,40 @@
         ]
       },
       {
+        "name": "theatre:front-doors",
+        "says": "pushing either leaf of the Aldermack's forecourt doors swings both",
+        "channel": 159,
+        "engine": null,
+        "when": [
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29312, 9944) to (29312, 10744)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29312, 10744) to (29248, 10744)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 10744) to (29248, 9944)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27584, 9944) to (27648, 9944)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27648, 9944) to (27648, 10744)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27648, 10744) to (27584, 10744)",
+          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27584, 10744) to (27584, 9944)"
+        ],
+        "then": [
+          "region region:gravesend/theatre_row/aldermack/front_leaf_a",
+          "region region:gravesend/theatre_row/aldermack/front_leaf_b"
+        ]
+      },
+      {
+        "name": "church:slab",
+        "says": "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it",
+        "channel": 160,
+        "engine": null,
+        "when": [
+          "push on placement church:slab_carried",
+          "push on placement church:slab_top",
+          "push on placement church:slab_foot"
+        ],
+        "then": [
+          "region region:gravesend/old_crossing/st_gallows/crypt_lift"
+        ]
+      },
+      {
         "name": "station:way-out",
         "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
         "channel": 4,
@@ -1876,72 +1989,123 @@
         ]
       },
       {
-        "name": "lever:saloon",
-        "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
-        "channel": 159,
-        "engine": null,
-        "when": [
-          "push on placement lever:saloon"
-        ],
-        "then": [
-          "region region:gravesend/theatre_row/saloon/door"
-        ]
-      },
-      {
-        "name": "lever:parlor",
-        "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 160,
-        "engine": null,
-        "when": [
-          "push on placement lever:parlor"
-        ],
-        "then": [
-          "region region:gravesend/theatre_row/parlor/door"
-        ]
-      },
-      {
-        "name": "lever:pawn",
-        "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 163,
-        "engine": null,
-        "when": [
-          "push on placement lever:pawn"
-        ],
-        "then": [
-          "region region:gravesend/theatre_row/pawn_shop/pawn_door"
-        ]
-      },
-      {
-        "name": "lever:aldermack",
-        "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
+        "name": "shot:aldermack:foyer_mirror",
+        "says": "shooting aldermack:foyer_mirror throws its glass, once",
         "channel": 161,
         "engine": null,
         "when": [
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 9944) to (29312, 9944)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29312, 9944) to (29312, 10744)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29312, 10744) to (29248, 10744)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (29248, 10744) to (29248, 9944)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27584, 9944) to (27648, 9944)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27648, 9944) to (27648, 10744)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27648, 10744) to (27584, 10744)",
-          "push on the face of region:gravesend/theatre_row/aldermack/front_bay from (27584, 10744) to (27584, 9944)",
-          "push on placement lever:aldermack"
+          "vector on placement aldermack:foyer_mirror"
         ],
         "then": [
-          "region region:gravesend/theatre_row/aldermack/front_leaf_a",
-          "region region:gravesend/theatre_row/aldermack/front_leaf_b"
+          "placement aldermack:foyer_mirror:glass"
         ]
       },
       {
-        "name": "lever:lobby",
-        "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
+        "name": "shot:underpass:clock",
+        "says": "shooting underpass:clock throws its glass, once",
         "channel": 162,
         "engine": null,
         "when": [
-          "push on placement lever:lobby"
+          "vector on placement underpass:clock"
         ],
         "then": [
-          "region region:gravesend/theatre_row/aldermack/lobby_door"
+          "placement underpass:clock:glass"
+        ]
+      },
+      {
+        "name": "shot:arcade:clock",
+        "says": "shooting arcade:clock throws its glass, once",
+        "channel": 163,
+        "engine": null,
+        "when": [
+          "vector on placement arcade:clock"
+        ],
+        "then": [
+          "placement arcade:clock:glass"
+        ]
+      },
+      {
+        "name": "shot:phantom:signal_clock",
+        "says": "shooting phantom:signal_clock throws its glass, once",
+        "channel": 164,
+        "engine": null,
+        "when": [
+          "vector on placement phantom:signal_clock"
+        ],
+        "then": [
+          "placement phantom:signal_clock:glass"
+        ]
+      },
+      {
+        "name": "shot:station:street_clock",
+        "says": "shooting station:street_clock throws its glass, once",
+        "channel": 165,
+        "engine": null,
+        "when": [
+          "vector on placement station:street_clock"
+        ],
+        "then": [
+          "placement station:street_clock:glass"
+        ]
+      },
+      {
+        "name": "shot:station:front_clock",
+        "says": "shooting station:front_clock throws its glass, once",
+        "channel": 166,
+        "engine": null,
+        "when": [
+          "vector on placement station:front_clock"
+        ],
+        "then": [
+          "placement station:front_clock:glass"
+        ]
+      },
+      {
+        "name": "shot:station:concourse_clock",
+        "says": "shooting station:concourse_clock throws its glass, once",
+        "channel": 167,
+        "engine": null,
+        "when": [
+          "vector on placement station:concourse_clock"
+        ],
+        "then": [
+          "placement station:concourse_clock:glass"
+        ]
+      },
+      {
+        "name": "shot:station:clock",
+        "says": "shooting station:clock throws its glass, once",
+        "channel": 168,
+        "engine": null,
+        "when": [
+          "vector on placement station:clock"
+        ],
+        "then": [
+          "placement station:clock:glass"
+        ]
+      },
+      {
+        "name": "shot:backstage:makeup_mirror",
+        "says": "shooting backstage:makeup_mirror throws its glass, once",
+        "channel": 169,
+        "engine": null,
+        "when": [
+          "vector on placement backstage:makeup_mirror"
+        ],
+        "then": [
+          "placement backstage:makeup_mirror:glass"
+        ]
+      },
+      {
+        "name": "shot:market:super_clock",
+        "says": "shooting market:super_clock throws its glass, once",
+        "channel": 170,
+        "engine": null,
+        "when": [
+          "vector on placement market:super_clock"
+        ],
+        "then": [
+          "placement market:super_clock:glass"
         ]
       }
     ],
@@ -1955,9 +2119,9 @@
         "channel": 101,
         "engine": null,
         "senders": [
-          "sprite 1202",
-          "sprite 1221",
-          "sprite 1222"
+          "sprite 1204",
+          "sprite 1223",
+          "sprite 1224"
         ],
         "answers": [
           "sector 64"
@@ -1988,17 +2152,17 @@
         "channel": 103,
         "engine": null,
         "senders": [
-          "sprite 1640",
-          "sprite 1641"
+          "sprite 1642",
+          "sprite 1643"
         ],
         "answers": [
           "sector 220",
           "sector 221",
           "sector 222",
           "sector 223",
-          "sprite 1642",
-          "sprite 1643",
-          "sprite 1644"
+          "sprite 1644",
+          "sprite 1645",
+          "sprite 1646"
         ],
         "faults": []
       },
@@ -2008,22 +2172,22 @@
         "channel": 104,
         "engine": null,
         "senders": [
-          "sprite 1710"
+          "sprite 1712"
         ],
         "answers": [
           "sector 308",
           "sector 309",
           "sector 310",
           "sector 311",
-          "sprite 1711",
-          "sprite 1712",
-          "sprite 1713"
+          "sprite 1713",
+          "sprite 1714",
+          "sprite 1715"
         ],
         "faults": []
       },
       {
         "name": "pump:belt",
-        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on",
+        "says": "the console lever stops and starts the belt's open stretches, which carry whatever stands on them only while on, and tells the presses",
         "channel": 105,
         "engine": null,
         "senders": [
@@ -2032,17 +2196,21 @@
         "answers": [
           "sector 267",
           "sector 269",
-          "sector 271"
+          "sector 271",
+          "sprite 188",
+          "sprite 189"
         ],
         "faults": []
       },
       {
         "name": "pump:presses",
-        "says": "when the level starts both presses begin slamming, and never stop",
+        "says": "when the level starts both presses begin slamming; the console lever stops them shut, and the belt under them, and starts them again",
         "channel": 106,
         "engine": null,
         "senders": [
-          "sprite 186"
+          "sprite 186",
+          "sprite 188",
+          "sprite 189"
         ],
         "answers": [
           "sector 268",
@@ -2056,7 +2224,7 @@
         "channel": 107,
         "engine": null,
         "senders": [
-          "sprite 1607"
+          "sprite 1606"
         ],
         "answers": [
           "sector 606"
@@ -2069,20 +2237,20 @@
         "channel": 108,
         "engine": null,
         "senders": [
-          "sprite 1600"
+          "sprite 1599"
         ],
         "answers": [
           "sector 632",
+          "sprite 2462",
+          "sprite 2463",
+          "sprite 2464",
           "sprite 2465",
           "sprite 2466",
           "sprite 2467",
           "sprite 2468",
           "sprite 2469",
           "sprite 2470",
-          "sprite 2471",
-          "sprite 2472",
-          "sprite 2473",
-          "sprite 2474"
+          "sprite 2471"
         ],
         "faults": []
       },
@@ -2092,22 +2260,22 @@
         "channel": 109,
         "engine": null,
         "senders": [
-          "sprite 1346"
+          "sprite 1345"
         ],
         "answers": [
           "sector 476",
           "sector 477",
           "sector 478",
           "sector 479",
+          "sprite 1346",
           "sprite 1347",
-          "sprite 1348",
-          "sprite 1349"
+          "sprite 1348"
         ],
         "faults": []
       },
       {
         "name": "foundry:loading-shutter",
-        "says": "pushing either freight leaf from either approach parts both leaves to open the loading alcove",
+        "says": "pushing either freight leaf from either approach parts both leaves to open onto the mirror",
         "channel": 110,
         "engine": null,
         "senders": [
@@ -2150,11 +2318,11 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 2552"
+          "sprite 2550"
         ],
         "answers": [
-          "sprite 2621",
-          "sprite 2622"
+          "sprite 2619",
+          "sprite 2620"
         ],
         "faults": []
       },
@@ -2164,9 +2332,9 @@
         "channel": 113,
         "engine": null,
         "senders": [
-          "sprite 548",
           "sprite 550",
-          "sprite 552"
+          "sprite 552",
+          "sprite 554"
         ],
         "answers": [
           "sector 914"
@@ -2179,12 +2347,12 @@
         "channel": 114,
         "engine": null,
         "senders": [
-          "sprite 293",
           "sprite 295",
-          "sprite 297"
+          "sprite 297",
+          "sprite 299"
         ],
         "answers": [
-          "sprite 299"
+          "sprite 301"
         ],
         "faults": []
       },
@@ -2194,10 +2362,10 @@
         "channel": 115,
         "engine": null,
         "senders": [
-          "sprite 299"
+          "sprite 301"
         ],
         "answers": [
-          "sprite 300"
+          "sprite 302"
         ],
         "faults": []
       },
@@ -2207,11 +2375,11 @@
         "channel": 116,
         "engine": null,
         "senders": [
-          "sprite 300"
+          "sprite 302"
         ],
         "answers": [
           "sector 915",
-          "sprite 301"
+          "sprite 303"
         ],
         "faults": []
       },
@@ -2221,10 +2389,10 @@
         "channel": 117,
         "engine": null,
         "senders": [
-          "sprite 972"
+          "sprite 974"
         ],
         "answers": [
-          "sprite 973"
+          "sprite 975"
         ],
         "faults": []
       },
@@ -2234,10 +2402,10 @@
         "channel": 118,
         "engine": null,
         "senders": [
-          "sprite 1387"
+          "sprite 1386"
         ],
         "answers": [
-          "sprite 1388"
+          "sprite 1387"
         ],
         "faults": []
       },
@@ -2247,10 +2415,10 @@
         "channel": 119,
         "engine": null,
         "senders": [
-          "sprite 681"
+          "sprite 683"
         ],
         "answers": [
-          "sprite 682"
+          "sprite 684"
         ],
         "faults": []
       },
@@ -2263,7 +2431,7 @@
           "sector 47"
         ],
         "answers": [
-          "sprite 1209"
+          "sprite 1211"
         ],
         "faults": []
       },
@@ -2273,14 +2441,14 @@
         "channel": 121,
         "engine": null,
         "senders": [
-          "sprite 1209"
+          "sprite 1211"
         ],
         "answers": [
-          "sprite 1210",
-          "sprite 1213",
-          "sprite 1214",
-          "sprite 1219",
-          "sprite 1220"
+          "sprite 1212",
+          "sprite 1215",
+          "sprite 1216",
+          "sprite 1221",
+          "sprite 1222"
         ],
         "faults": []
       },
@@ -2293,7 +2461,7 @@
           "wall 559"
         ],
         "answers": [
-          "sprite 1199"
+          "sprite 1201"
         ],
         "faults": []
       },
@@ -2303,17 +2471,17 @@
         "channel": 123,
         "engine": null,
         "senders": [
-          "sprite 1201"
+          "sprite 1203"
         ],
         "answers": [
           "sector 56",
           "sector 58",
           "sector 60",
           "sector 62",
-          "sprite 1202",
-          "sprite 1206",
-          "sprite 1207",
-          "sprite 1208"
+          "sprite 1204",
+          "sprite 1208",
+          "sprite 1209",
+          "sprite 1210"
         ],
         "faults": []
       },
@@ -2338,13 +2506,13 @@
         "channel": 125,
         "engine": null,
         "senders": [
-          "sprite 680"
+          "sprite 682"
         ],
         "answers": [
-          "sprite 829",
-          "sprite 830",
           "sprite 831",
-          "sprite 832"
+          "sprite 832",
+          "sprite 833",
+          "sprite 834"
         ],
         "faults": []
       },
@@ -2354,10 +2522,10 @@
         "channel": 126,
         "engine": null,
         "senders": [
-          "sprite 677",
-          "sprite 678",
-          "sprite 892",
-          "sprite 914"
+          "sprite 679",
+          "sprite 680",
+          "sprite 894",
+          "sprite 916"
         ],
         "answers": [
           "sector 507",
@@ -2433,7 +2601,7 @@
           "sector 985",
           "sector 986",
           "sector 987",
-          "sprite 679"
+          "sprite 681"
         ],
         "faults": []
       },
@@ -2443,10 +2611,10 @@
         "channel": 127,
         "engine": null,
         "senders": [
-          "sprite 676"
+          "sprite 678"
         ],
         "answers": [
-          "sprite 678"
+          "sprite 680"
         ],
         "faults": []
       },
@@ -2456,10 +2624,10 @@
         "channel": 128,
         "engine": null,
         "senders": [
-          "sprite 679"
+          "sprite 681"
         ],
         "answers": [
-          "sprite 680"
+          "sprite 682"
         ],
         "faults": []
       },
@@ -2472,7 +2640,7 @@
           "sector 982"
         ],
         "answers": [
-          "sprite 681"
+          "sprite 683"
         ],
         "faults": []
       },
@@ -2498,7 +2666,7 @@
           "sector 510"
         ],
         "answers": [
-          "sprite 619"
+          "sprite 621"
         ],
         "faults": []
       },
@@ -2508,14 +2676,14 @@
         "channel": 132,
         "engine": null,
         "senders": [
-          "sprite 2420"
+          "sprite 2417"
         ],
         "answers": [
+          "sprite 2418",
+          "sprite 2419",
+          "sprite 2420",
           "sprite 2421",
-          "sprite 2422",
-          "sprite 2423",
-          "sprite 2424",
-          "sprite 2425"
+          "sprite 2422"
         ],
         "faults": []
       },
@@ -2525,14 +2693,14 @@
         "channel": 133,
         "engine": null,
         "senders": [
-          "sprite 243"
+          "sprite 245"
         ],
         "answers": [
           "sector 738",
-          "sprite 2426",
-          "sprite 2427",
-          "sprite 2428",
-          "sprite 2429"
+          "sprite 2423",
+          "sprite 2424",
+          "sprite 2425",
+          "sprite 2426"
         ],
         "faults": []
       },
@@ -2542,12 +2710,12 @@
         "channel": 134,
         "engine": null,
         "senders": [
-          "sprite 2430"
+          "sprite 2427"
         ],
         "answers": [
-          "sprite 2431",
-          "sprite 2432",
-          "sprite 2433"
+          "sprite 2428",
+          "sprite 2429",
+          "sprite 2430"
         ],
         "faults": []
       },
@@ -2557,12 +2725,12 @@
         "channel": 135,
         "engine": null,
         "senders": [
-          "sprite 2434"
+          "sprite 2431"
         ],
         "answers": [
-          "sprite 2435",
-          "sprite 2436",
-          "sprite 2437"
+          "sprite 2432",
+          "sprite 2433",
+          "sprite 2434"
         ],
         "faults": []
       },
@@ -2572,14 +2740,14 @@
         "channel": 136,
         "engine": null,
         "senders": [
-          "sprite 2438"
+          "sprite 2435"
         ],
         "answers": [
+          "sprite 2436",
+          "sprite 2437",
+          "sprite 2438",
           "sprite 2439",
-          "sprite 2440",
-          "sprite 2441",
-          "sprite 2442",
-          "sprite 2443"
+          "sprite 2440"
         ],
         "faults": []
       },
@@ -2589,15 +2757,15 @@
         "channel": 137,
         "engine": null,
         "senders": [
-          "sprite 2445",
-          "sprite 2447",
-          "sprite 2449",
-          "sprite 2451",
-          "sprite 2453",
-          "sprite 2455"
+          "sprite 2442",
+          "sprite 2444",
+          "sprite 2446",
+          "sprite 2448",
+          "sprite 2450",
+          "sprite 2452"
         ],
         "answers": [
-          "sprite 2456"
+          "sprite 2453"
         ],
         "faults": []
       },
@@ -2607,20 +2775,20 @@
         "channel": 138,
         "engine": null,
         "senders": [
-          "sprite 2456"
+          "sprite 2453"
         ],
         "answers": [
           "sector 174",
           "sector 292",
           "sector 558",
+          "sprite 2454",
+          "sprite 2455",
+          "sprite 2456",
           "sprite 2457",
           "sprite 2458",
           "sprite 2459",
           "sprite 2460",
-          "sprite 2461",
-          "sprite 2462",
-          "sprite 2463",
-          "sprite 2464"
+          "sprite 2461"
         ],
         "faults": []
       },
@@ -2633,7 +2801,7 @@
           "sector 810"
         ],
         "answers": [
-          "sprite 501"
+          "sprite 503"
         ],
         "faults": []
       },
@@ -2643,7 +2811,7 @@
         "channel": 140,
         "engine": null,
         "senders": [
-          "sprite 379"
+          "sprite 381"
         ],
         "answers": [
           "sector 896",
@@ -2657,16 +2825,14 @@
           "sector 904",
           "sector 905",
           "sector 906",
-          "sprite 338",
-          "sprite 341",
-          "sprite 344",
-          "sprite 400",
-          "sprite 401",
+          "sprite 340",
+          "sprite 343",
+          "sprite 346",
           "sprite 402",
           "sprite 403",
-          "sprite 502",
-          "sprite 505",
-          "sprite 506",
+          "sprite 404",
+          "sprite 405",
+          "sprite 504",
           "sprite 507",
           "sprite 508",
           "sprite 509",
@@ -2682,11 +2848,13 @@
           "sprite 519",
           "sprite 520",
           "sprite 521",
+          "sprite 522",
           "sprite 523",
           "sprite 525",
-          "sprite 532",
+          "sprite 527",
           "sprite 534",
-          "sprite 536"
+          "sprite 536",
+          "sprite 538"
         ],
         "faults": []
       },
@@ -2696,12 +2864,12 @@
         "channel": 141,
         "engine": null,
         "senders": [
-          "sprite 338"
+          "sprite 340"
         ],
         "answers": [
-          "sprite 336",
-          "sprite 337",
-          "sprite 504"
+          "sprite 338",
+          "sprite 339",
+          "sprite 506"
         ],
         "faults": []
       },
@@ -2711,11 +2879,11 @@
         "channel": 142,
         "engine": null,
         "senders": [
-          "sprite 341"
+          "sprite 343"
         ],
         "answers": [
-          "sprite 339",
-          "sprite 340"
+          "sprite 341",
+          "sprite 342"
         ],
         "faults": []
       },
@@ -2725,11 +2893,11 @@
         "channel": 143,
         "engine": null,
         "senders": [
-          "sprite 344"
+          "sprite 346"
         ],
         "answers": [
-          "sprite 342",
-          "sprite 343"
+          "sprite 344",
+          "sprite 345"
         ],
         "faults": []
       },
@@ -2739,10 +2907,10 @@
         "channel": 144,
         "engine": null,
         "senders": [
-          "sprite 520"
+          "sprite 522"
         ],
         "answers": [
-          "sprite 410"
+          "sprite 412"
         ],
         "faults": []
       },
@@ -2750,19 +2918,6 @@
         "name": "cabal:flare-1",
         "says": "fire flies up from where it stood, hurting nobody",
         "channel": 145,
-        "engine": null,
-        "senders": [
-          "sprite 521"
-        ],
-        "answers": [
-          "sprite 522"
-        ],
-        "faults": []
-      },
-      {
-        "name": "cabal:flare-2",
-        "says": "fire flies higher, a fifth of a second after",
-        "channel": 146,
         "engine": null,
         "senders": [
           "sprite 523"
@@ -2773,9 +2928,9 @@
         "faults": []
       },
       {
-        "name": "cabal:flare-3",
-        "says": "fire flies higher still, to where the blasts take over",
-        "channel": 147,
+        "name": "cabal:flare-2",
+        "says": "fire flies higher, a fifth of a second after",
+        "channel": 146,
         "engine": null,
         "senders": [
           "sprite 525"
@@ -2786,22 +2941,22 @@
         "faults": []
       },
       {
-        "name": "cabal:says",
-        "says": "when the last of them has gone off Caleb says what he thinks of it",
-        "channel": 148,
+        "name": "cabal:flare-3",
+        "says": "fire flies higher still, to where the blasts take over",
+        "channel": 147,
         "engine": null,
         "senders": [
-          "sprite 532"
+          "sprite 527"
         ],
         "answers": [
-          "sprite 533"
+          "sprite 528"
         ],
         "faults": []
       },
       {
-        "name": "cabal:deep",
-        "says": "the emptied well's bottom goes up, and the earth shakes again",
-        "channel": 149,
+        "name": "cabal:says",
+        "says": "when the last of them has gone off Caleb says what he thinks of it",
+        "channel": 148,
         "engine": null,
         "senders": [
           "sprite 534"
@@ -2812,21 +2967,34 @@
         "faults": []
       },
       {
-        "name": "cabal:window",
-        "says": "seven seconds after the beast falls the rose bursts, what was behind it comes through, and the beasts in the niches wake",
-        "channel": 150,
+        "name": "cabal:deep",
+        "says": "the emptied well's bottom goes up, and the earth shakes again",
+        "channel": 149,
         "engine": null,
         "senders": [
           "sprite 536"
         ],
         "answers": [
-          "sprite 426",
-          "sprite 427",
-          "sprite 503",
-          "sprite 537",
-          "sprite 538",
+          "sprite 537"
+        ],
+        "faults": []
+      },
+      {
+        "name": "cabal:window",
+        "says": "seven seconds after the beast falls the rose bursts, what was behind it comes through, and the beasts in the niches wake",
+        "channel": 150,
+        "engine": null,
+        "senders": [
+          "sprite 538"
+        ],
+        "answers": [
+          "sprite 428",
+          "sprite 429",
+          "sprite 505",
           "sprite 539",
           "sprite 540",
+          "sprite 541",
+          "sprite 542",
           "wall 5967"
         ],
         "faults": []
@@ -2842,9 +3010,9 @@
         "answers": [
           "sector 887",
           "sector 888",
-          "sprite 541",
           "sprite 543",
-          "sprite 544"
+          "sprite 545",
+          "sprite 546"
         ],
         "faults": []
       },
@@ -2854,10 +3022,10 @@
         "channel": 152,
         "engine": null,
         "senders": [
-          "sprite 541"
+          "sprite 543"
         ],
         "answers": [
-          "sprite 542"
+          "sprite 544"
         ],
         "faults": []
       },
@@ -2877,13 +3045,13 @@
           "sector 867",
           "sector 868",
           "sector 869",
-          "sprite 503"
+          "sprite 505"
         ],
         "answers": [
           "sector 805",
           "sector 806",
           "sector 812",
-          "sprite 379"
+          "sprite 381"
         ],
         "faults": []
       },
@@ -2893,7 +3061,7 @@
         "channel": 154,
         "engine": null,
         "senders": [
-          "sprite 502"
+          "sprite 504"
         ],
         "answers": [
           "sector 860",
@@ -2915,7 +3083,7 @@
         "channel": 155,
         "engine": null,
         "senders": [
-          "sprite 2013"
+          "sprite 2010"
         ],
         "answers": [
           "sector 360"
@@ -2928,12 +3096,12 @@
         "channel": 156,
         "engine": null,
         "senders": [
-          "sprite 2027"
+          "sprite 2024"
         ],
         "answers": [
-          "sprite 2028",
-          "sprite 2029",
-          "sprite 2030"
+          "sprite 2025",
+          "sprite 2026",
+          "sprite 2027"
         ],
         "faults": []
       },
@@ -2943,12 +3111,12 @@
         "channel": 157,
         "engine": null,
         "senders": [
-          "sprite 2143"
+          "sprite 2140"
         ],
         "answers": [
-          "sprite 2152",
-          "sprite 2153",
-          "sprite 2154"
+          "sprite 2149",
+          "sprite 2150",
+          "sprite 2151"
         ],
         "faults": []
       },
@@ -2966,73 +3134,11 @@
         "faults": []
       },
       {
-        "name": "station:way-out",
-        "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
-        "channel": 4,
-        "engine": "kChannelLevelExitNormal",
-        "senders": [
-          "sprite 1601"
-        ],
-        "answers": [],
-        "faults": []
-      },
-      {
-        "name": "station:fare-turnstile",
-        "says": "when the level starts the station's fare turnstile begins cycling",
-        "channel": 7,
-        "engine": "kChannelLevelStart",
-        "senders": [],
-        "answers": [
-          "sector 566"
-        ],
-        "faults": []
-      },
-      {
-        "name": "lever:saloon",
-        "says": "the lever beside the saloon door opens it from the street; pushing the door itself still works",
+        "name": "theatre:front-doors",
+        "says": "pushing either leaf of the Aldermack's forecourt doors swings both",
         "channel": 159,
         "engine": null,
         "senders": [
-          "sprite 1871"
-        ],
-        "answers": [
-          "sector 9"
-        ],
-        "faults": []
-      },
-      {
-        "name": "lever:parlor",
-        "says": "the lever beside the parlor door opens it from the street; pushing the door itself still works",
-        "channel": 160,
-        "engine": null,
-        "senders": [
-          "sprite 1872"
-        ],
-        "answers": [
-          "sector 18"
-        ],
-        "faults": []
-      },
-      {
-        "name": "lever:pawn",
-        "says": "the lever beside the pawn door opens it from the street; pushing the door itself still works",
-        "channel": 163,
-        "engine": null,
-        "senders": [
-          "sprite 1873"
-        ],
-        "answers": [
-          "sector 162"
-        ],
-        "faults": []
-      },
-      {
-        "name": "lever:aldermack",
-        "says": "the lever beside the aldermack door opens it from the street; pushing the door itself still works",
-        "channel": 161,
-        "engine": null,
-        "senders": [
-          "sprite 1874",
           "wall 965",
           "wall 966",
           "wall 967",
@@ -3049,15 +3155,169 @@
         "faults": []
       },
       {
-        "name": "lever:lobby",
-        "says": "the lever beside the lobby door opens it from the street; pushing the door itself still works",
+        "name": "church:slab",
+        "says": "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it",
+        "channel": 160,
+        "engine": null,
+        "senders": [
+          "sprite 1639",
+          "sprite 1640",
+          "sprite 1641"
+        ],
+        "answers": [
+          "sector 218"
+        ],
+        "faults": []
+      },
+      {
+        "name": "station:way-out",
+        "says": "pushing the switch at the end of the tunnel the line leaves by, past the roll-up gate the signal box's lever raises, ends the level",
+        "channel": 4,
+        "engine": "kChannelLevelExitNormal",
+        "senders": [
+          "sprite 1600"
+        ],
+        "answers": [],
+        "faults": []
+      },
+      {
+        "name": "station:fare-turnstile",
+        "says": "when the level starts the station's fare turnstile begins cycling",
+        "channel": 7,
+        "engine": "kChannelLevelStart",
+        "senders": [],
+        "answers": [
+          "sector 566"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:aldermack:foyer_mirror",
+        "says": "shooting aldermack:foyer_mirror throws its glass, once",
+        "channel": 161,
+        "engine": null,
+        "senders": [
+          "sprite 96"
+        ],
+        "answers": [
+          "sprite 2621"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:underpass:clock",
+        "says": "shooting underpass:clock throws its glass, once",
         "channel": 162,
         "engine": null,
         "senders": [
-          "sprite 1875"
+          "sprite 161"
         ],
         "answers": [
-          "sector 149"
+          "sprite 2622"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:arcade:clock",
+        "says": "shooting arcade:clock throws its glass, once",
+        "channel": 163,
+        "engine": null,
+        "senders": [
+          "sprite 243"
+        ],
+        "answers": [
+          "sprite 2623"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:phantom:signal_clock",
+        "says": "shooting phantom:signal_clock throws its glass, once",
+        "channel": 164,
+        "engine": null,
+        "senders": [
+          "sprite 901"
+        ],
+        "answers": [
+          "sprite 2624"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:street_clock",
+        "says": "shooting station:street_clock throws its glass, once",
+        "channel": 165,
+        "engine": null,
+        "senders": [
+          "sprite 1484"
+        ],
+        "answers": [
+          "sprite 2625"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:front_clock",
+        "says": "shooting station:front_clock throws its glass, once",
+        "channel": 166,
+        "engine": null,
+        "senders": [
+          "sprite 1496"
+        ],
+        "answers": [
+          "sprite 2626"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:concourse_clock",
+        "says": "shooting station:concourse_clock throws its glass, once",
+        "channel": 167,
+        "engine": null,
+        "senders": [
+          "sprite 1527"
+        ],
+        "answers": [
+          "sprite 2627"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:clock",
+        "says": "shooting station:clock throws its glass, once",
+        "channel": 168,
+        "engine": null,
+        "senders": [
+          "sprite 1547"
+        ],
+        "answers": [
+          "sprite 2628"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:backstage:makeup_mirror",
+        "says": "shooting backstage:makeup_mirror throws its glass, once",
+        "channel": 169,
+        "engine": null,
+        "senders": [
+          "sprite 1788"
+        ],
+        "answers": [
+          "sprite 2629"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:market:super_clock",
+        "says": "shooting market:super_clock throws its glass, once",
+        "channel": 170,
+        "engine": null,
+        "senders": [
+          "sprite 1976"
+        ],
+        "answers": [
+          "sprite 2630"
         ],
         "faults": []
       }
@@ -3068,7 +3328,7 @@
   },
   "lighting": {
     "enabled": false,
-    "sources": 56
+    "sources": 55
   },
   "split_bands": {
     "pegged": 223,
@@ -3181,11 +3441,11 @@
     },
     "268": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_1",
-      "profile": "ceiling_press"
+      "profile": "press_up_is_on"
     },
     "270": {
       "region": "region:gravesend/foundry_ward/pump_station/belt_3",
-      "profile": "ceiling_press"
+      "profile": "press_up_is_on"
     },
     "280": {
       "region": "region:gravesend/foundry_ward/canteen/freezer_door",
@@ -3650,13 +3910,13 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 2667,
-    "wall_sprites": 1053,
-    "planes": 282,
-    "clashing_pairs": 4,
-    "sprites_involved": 6,
-    "clash_rate_per_100_wall_sprites": 0.38,
-    "fully_hidden": 0
+    "sprites": 2675,
+    "wall_sprites": 1062,
+    "planes": 284,
+    "clashing_pairs": 14,
+    "sprites_involved": 26,
+    "clash_rate_per_100_wall_sprites": 1.32,
+    "fully_hidden": 10
   },
   "apertures": {
     "findings": 754,
@@ -3733,12 +3993,6 @@
           9
         ],
         "sector_type": 600,
-        "wiring": {
-          "rx_id": 159,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
         "state_pair": {
           "sector": 9,
           "type": 600,
@@ -3761,12 +4015,6 @@
           18
         ],
         "sector_type": 600,
-        "wiring": {
-          "rx_id": 160,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
         "state_pair": {
           "sector": 18,
           "type": 600,
@@ -4102,7 +4350,7 @@
           146
         ],
         "wiring": {
-          "rx_id": 161,
+          "rx_id": 159,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -4148,7 +4396,7 @@
           147
         ],
         "wiring": {
-          "rx_id": 161,
+          "rx_id": 159,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -4184,12 +4432,6 @@
           149
         ],
         "sector_type": 600,
-        "wiring": {
-          "rx_id": 162,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
         "state_pair": {
           "sector": 149,
           "type": 600,
@@ -4304,12 +4546,6 @@
           162
         ],
         "sector_type": 600,
-        "wiring": {
-          "rx_id": 163,
-          "tx_id": 0,
-          "command": 0,
-          "state": 0
-        },
         "state_pair": {
           "sector": 162,
           "type": 600,
@@ -4378,6 +4614,12 @@
           218
         ],
         "sector_type": 600,
+        "wiring": {
+          "rx_id": 160,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
         "state_pair": {
           "sector": 218,
           "type": 600,
@@ -4611,9 +4853,9 @@
             "travel"
           ],
           "headroom_change": 0,
-          "area_off": 602368.0,
-          "area_on": 975104.0,
-          "area_change": 372736.0,
+          "area_off": 295552.0,
+          "area_on": 828032.0,
+          "area_change": 532480.0,
           "declared_travel": 832.0,
           "turn": null,
           "whole_circles": false,
@@ -4669,7 +4911,7 @@
           "rx_id": 106,
           "tx_id": 0,
           "command": 0,
-          "state": 0
+          "state": 1
         },
         "state_pair": {
           "sector": 268,
@@ -4677,7 +4919,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": -18432,
+          "headroom_change": 18432,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -4712,7 +4954,7 @@
           "rx_id": 106,
           "tx_id": 0,
           "command": 0,
-          "state": 0
+          "state": 1
         },
         "state_pair": {
           "sector": 270,
@@ -4720,7 +4962,7 @@
           "measured": [
             "headroom"
           ],
-          "headroom_change": -18432,
+          "headroom_change": 18432,
           "area_change": 0.0,
           "declared_travel": 0.0,
           "turn": null,
@@ -11447,9 +11689,9 @@
     ]
   },
   "rules": {
-    "total": 3137,
+    "total": 3139,
     "by_severity": {
-      "note": 3131,
+      "note": 3133,
       "warning": 6
     },
     "by_code": {
@@ -11461,7 +11703,7 @@
       "note:opening-clears-a-standing-body": 484,
       "note:lintel-continues-the-facade": 73,
       "warning:wall-between-rooms-is-not-paper": 4,
-      "note:wall-draws-its-own-tile": 1804,
+      "note:wall-draws-its-own-tile": 1806,
       "warning:wall-tile-is-drawn-somewhere": 2
     },
     "open": [
@@ -11516,20 +11758,51 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1956,
+      "sprites": 1944,
       "sunk": 0.0,
-      "through": 0.0,
+      "through": 0.003,
       "squeezed": 0.0
     },
     "sunk": [],
-    "through": [],
+    "through": [
+      {
+        "sprite": 326,
+        "tile": 641,
+        "sector": 777
+      },
+      {
+        "sprite": 327,
+        "tile": 641,
+        "sector": 777
+      },
+      {
+        "sprite": 328,
+        "tile": 641,
+        "sector": 777
+      },
+      {
+        "sprite": 329,
+        "tile": 641,
+        "sector": 782
+      },
+      {
+        "sprite": 330,
+        "tile": 641,
+        "sector": 782
+      },
+      {
+        "sprite": 331,
+        "tile": 641,
+        "sector": 782
+      }
+    ],
     "squeezed": [],
     "lifted": [],
     "overlaps": [
       {
         "sprites": [
-          1842,
-          1843
+          1844,
+          1845
         ],
         "tiles": [
           73,
@@ -11551,7 +11824,7 @@
         "count": 1,
         "first": [
           "sprite",
-          931
+          933
         ]
       },
       {
@@ -11561,7 +11834,7 @@
         "count": 1,
         "first": [
           "sprite",
-          1773
+          1775
         ]
       }
     ],
@@ -13154,7 +13427,12 @@
           [
             "console lever",
             "belt",
-            "channel 105: toggles the belt's three open stretches, which pan and drag only while on"
+            "channel 105: stops and starts the belt's three open stretches, which pan and drag only while on"
+          ],
+          [
+            "console lever",
+            "presses",
+            "two relays: off, each press stops when next shut, and the belt under it; on, they rise again"
           ],
           [
             "level start",
@@ -13225,13 +13503,13 @@
         "relations": [],
         "study": "underpass"
       },
-      "foundry loading alcove": {
-        "hero": "two iron-banded freight leaves part into recessed tracks to reveal a chain-lit loading alcove with shotgun shells",
-        "exemplar": "DOOR-SLIDINGD s3 (opposed solid slider)",
+      "underpass mirror": {
+        "hero": "two iron leaves part on the same tiles, the same tube and the same bill printed backwards, and a mirror where the passage should go on",
+        "exemplar": "DOOR-SLIDINGD s3 and E1M1 s4 (opposed solid sliders, the leaf as thick as its slot)",
         "layers": [
           "second",
           "trim",
-          "standing",
+          "flat_art",
           "motion"
         ],
         "layer_count": 4,
@@ -13240,19 +13518,27 @@
         "missing": [],
         "wall_tiles": [
           [
-            417,
-            0.721
+            2294,
+            0.351
           ],
           [
-            22,
-            0.252
+            500,
+            0.272
+          ],
+          [
+            272,
+            0.246
+          ],
+          [
+            504,
+            0.105
           ],
           [
             170,
-            0.027
+            0.026
           ]
         ],
-        "shade_spread": 7,
+        "shade_spread": 6,
         "metres": [
           5.2,
           5.7,
@@ -13260,7 +13546,7 @@
         ],
         "free_floor_share": 1.0,
         "cramped": [
-          "4.91M of floor (a destination wants 14.0M)",
+          "4.76M of floor (a destination wants 14.0M)",
           "1.69 bodies high (a destination wants 1.93)"
         ],
         "relations": [],
@@ -13945,13 +14231,12 @@
         "layers": [
           "second",
           "wall_art",
-          "flat_art",
           "standing",
           "levels",
           "light",
           "machines"
         ],
-        "layer_count": 7,
+        "layer_count": 6,
         "campaign_p25": 0,
         "campaign_p50": 1,
         "missing": [],
@@ -14214,8 +14499,8 @@
     "thin": [],
     "unfound": [],
     "cramped": {
-      "foundry loading alcove": [
-        "4.91M of floor (a destination wants 14.0M)",
+      "underpass mirror": [
+        "4.76M of floor (a destination wants 14.0M)",
         "1.69 bodies high (a destination wants 1.93)"
       ],
       "St Gallow's nave": [
@@ -14267,13 +14552,13 @@
   },
   "merged": {
     "sectors_merged": 39,
-    "walls_before": 13737,
-    "walls": 13301
+    "walls_before": 13719,
+    "walls": 13283
   },
   "light_stage": {
     "sectors_before": 1117,
     "walls_before": 7411,
-    "sprites_before": 2667,
+    "sprites_before": 2675,
     "mover_hosts": [
       144,
       502,
@@ -14979,29 +15264,31 @@
       "left_whole": {}
     },
     "floor_cut": {
-      "sectors": 63,
-      "pieces": 339,
+      "sectors": 62,
+      "pieces": 334,
       "slivers_merged": 19,
-      "slivers_dropped": 19,
-      "walls_split": 791,
-      "seams": 3236,
+      "slivers_dropped": 17,
+      "walls_split": 773,
+      "seams": 3200,
       "refused": {},
       "left_whole": {
+        "470": "a seam of sector 470 from (21437, 46370) to (21437, 46343) has no twin",
         "1117": "a wall of the cut had no twin"
       },
       "looked_at": 66
     },
     "slope_cut": {
       "sectors": 23,
-      "pieces": 111,
+      "pieces": 114,
       "slivers_merged": 4,
       "slivers_dropped": 0,
-      "walls_split": 385,
-      "seams": 176,
+      "walls_split": 401,
+      "seams": 182,
       "refused": {
         "417": "a slope not cut across it",
         "423": "a slope not cut across it",
-        "435": "a slope not cut across it"
+        "435": "a slope not cut across it",
+        "774": "a slope not cut across it"
       },
       "left_whole": {},
       "looked_at": 33
@@ -15011,18 +15298,18 @@
       "pieces": 0,
       "slivers_merged": 0,
       "slivers_dropped": 0,
-      "walls_split": 1363,
+      "walls_split": 1371,
       "seams": 0,
       "refused": {},
-      "walls_cut": 375,
+      "walls_cut": 374,
       "walls_refused": 5,
       "left_whole": {},
-      "looked_at": 1541
+      "looked_at": 1542
     },
     "shades": {
-      "surfaces": 7321,
+      "surfaces": 7324,
       "windows": 18,
-      "spread_12": 127,
+      "spread_12": 123,
       "movers_evened": 76
     },
     "switched": {
@@ -15153,21 +15440,21 @@
       ]
     },
     "kept": 122,
-    "sectors": 1559,
-    "walls": 13301,
-    "sprites": 2727,
-    "pieces": 442,
+    "sectors": 1558,
+    "walls": 13283,
+    "sprites": 2735,
+    "pieces": 441,
     "default_rooms": []
   },
   "sunlight": {
     "mode": "model",
     "before": {
-      "walls": 937,
+      "walls": 938,
       "wall_sd": 11.6,
-      "wall_median": 17,
+      "wall_median": 17.0,
       "by_facing": {
         "N": 16.0,
-        "E": 16,
+        "E": 16.0,
         "S": 18.0,
         "W": 17.5
       },
@@ -15192,12 +15479,12 @@
       "tile_sd": 6.9
     },
     "after": {
-      "walls": 937,
+      "walls": 938,
       "wall_sd": 11.6,
-      "wall_median": 17,
+      "wall_median": 17.0,
       "by_facing": {
         "N": 16.0,
-        "E": 16,
+        "E": 16.0,
         "S": 18.0,
         "W": 17.5
       },
@@ -15223,9 +15510,9 @@
     }
   },
   "tidy": {
-    "walls_before": 13301,
-    "walls": 13076,
-    "joined": 225
+    "walls_before": 13283,
+    "walls": 13062,
+    "joined": 221
   },
   "stages": [
     {
@@ -15318,7 +15605,7 @@
     },
     {
       "name": "street-dressing",
-      "says": "levers by doors, ambient sound, the signature porthole, the monument"
+      "says": "ambient sound, the signature porthole, the monument"
     },
     {
       "name": "green",

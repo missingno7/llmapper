@@ -260,7 +260,7 @@ class Rule:
 SPRITES: dict[int, tuple[int, int, int, int]] = {
     795: (160, -8, 48, 48),
     676: (160, -128, 40, 40),
-    641: (129, 0, 64, 64),
+    641: (0, 0, 64, 64),                 # its z is its foot, so the origin stays in the room when the chain does not
     560: (385, -128, 64, 64),
     580: (384, -128, 64, 64),
     2290: (160, -8, 64, 64),
@@ -275,6 +275,16 @@ ROOM_HEIGHT = 12000
 ROOM_AREA = 0.5e6
 #: the lowest a roofed sector may be to count toward a room at all
 LOW = 4096
+#: a chain lamp's foot over the floor, over a standing man's head, where the room allows
+#: (the owner, 2026-11-26: "lanterns in sewers can be higher, part of the chain can be
+#: sunked into the ceiling"); and, in a lower room, the least of it left under the ceiling
+HANG, HANG_SEEN = 22900, 8192
+
+
+def hang_height(tall: int) -> int:
+    """A chain lamp's foot over the floor of a room this tall."""
+    return max(LOW, min(HANG, tall - HANG_SEEN))
+
 
 
 def rooms_by_region(disk, region_of: dict[int, str], skip: frozenset = frozenset(),
@@ -345,7 +355,8 @@ def _add_sprite(disk, art, tile: int, x: float, y: float, sector: int, form: str
             # up into the ceiling (the owner, 2026-11-21: "lanterns on chain,
             # you can simply let it sink into ceiling and it looks good") --
             # as long as the lamp itself is below the ceiling
-            f["z"] = min(int(sec["ceiling_z"]) - top, int(sec["floor_z"]) - LOW - bottom)
+            f["z"] = min(int(sec["ceiling_z"]) - top,
+                         int(sec["floor_z"]) - hang_height(int(sec["floor_z"]) - int(sec["ceiling_z"])) - bottom)
             head = f["z"] + top + (bottom - top) * K.KINDS[tile].point
             if head < int(sec["ceiling_z"]) + 512:
                 return False
@@ -464,7 +475,8 @@ def lay_lights(disk, rooms: dict[str, list[int]], rule_for: Callable[[str], Rule
             point = K.KINDS[rule.tile].point
 
             def head(sec):
-                z = min(int(S[sec]["ceiling_z"]) - top, int(S[sec]["floor_z"]) - LOW - bottom)
+                floor, roof = int(S[sec]["floor_z"]), int(S[sec]["ceiling_z"])
+                z = min(roof - top, floor - hang_height(floor - roof) - bottom)
                 return z + top + (bottom - top) * point
 
             fits = all(head(sec) >= int(S[sec]["ceiling_z"]) + 512 for _, _, sec in spots)

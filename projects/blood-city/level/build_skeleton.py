@@ -1000,7 +1000,7 @@ def build():
           "Theatre Row: the Aldermack, the saloon, the pawnshop")
     # ---- L3: Theatre Row's venues (the entertainment district) ----------
     import l3_theatre
-    theatre_rooms, door_levers, aldermack_house = l3_theatre.build(
+    theatre_rooms, aldermack_house = l3_theatre.build(
         district_of['theatre_row'], theatre_st)
     fire_doors = l3_theatre.add_fire_doors(theatre_rooms)
 
@@ -1038,7 +1038,6 @@ def build():
         "manholes": manhole_mouths,
         "station_rooms": shed,
         "theatre_rooms": theatre_rooms,
-        "door_levers": door_levers,
         "church_rooms": church_rooms,
         "mall_rooms": mall_rooms,
         "stair_top_y0": top_y0,
@@ -1378,7 +1377,8 @@ def main() -> int:
     layout.place_on_floor(
         "progression:secret_count", ctx["sewer_rooms"]["stash"],
         local=(0.5, 0.5), height_player_heights=0.5,
-        type=0, picnum=0, cstat=129, status=0, x_repeat=64, y_repeat=64,
+        # unseen: at cstat 129 the engine drew it, tile 0 a body tall in the stash (the owner, 2026-11-26)
+        type=0, picnum=0, cstat=32768, status=0, x_repeat=64, y_repeat=64,
         # `motion.secret_total` rather than the fields by hand: this one was
         # missing `trigger_on`, so `SetSpriteState` never called evSend for it
         # and the count was never actually declared -- the player would never
@@ -1443,6 +1443,7 @@ def main() -> int:
     print("saloon stools:", _saloon.stools(layout, ctx["theatre_rooms"]))
     import l3_market as _harbour
     print("ship flag:", _harbour.fly_flag(layout))
+    l3_church.slab_switches(layout, ctx["church_rooms"])
     print("crypt breach:", l3_church.crack(
         layout, ctx["church_rooms"],
         l3_sewer.edge(ctx["sewer_rooms_new"], "w_leg", "west",
@@ -1574,7 +1575,7 @@ def main() -> int:
     print("street lamps:", ctx["manifest"]["street_lamps"])
 
     STAGE("street-dressing",
-          "levers by doors, ambient sound, the signature porthole, the monument")
+          "ambient sound, the signature porthole, the monument")
     # Grime, last of the sprite passes so it fills whatever the district
     # modules left bare.  Sprites per sector was 0.60 against a campaign
     # 1.60-4.06; a room with one cultist and one flame in it reads as built
@@ -1582,14 +1583,6 @@ def main() -> int:
     # Signage before grime, so a sign owns its wall and the dressing pass
     # sees it as taken.  Blood's alphabet is a text primitive, not
     # decoration -- see signage.py.
-    # Levers beside the street doors.  Blood has no door texture, so this
-    # is the only thing on the facade that says the wall opens.
-    import doorswitch
-    for placement_id, region_id, segment, channel in ctx["door_levers"]:
-        doorswitch.place(layout, placement_id, region_id, segment, channel)
-        _wires.by_channel(channel).when(_wiring.placement(placement_id), "push")
-    print(f"door levers: {len(ctx['door_levers'])}")
-
     # Ambience.  The Blood campaign runs 23.6 ambient emitters per hundred
     # sectors; Gravesend had one.  Contexts are declared, not guessed.
     import ambience
@@ -1799,6 +1792,17 @@ def main() -> int:
           "flat sprites dropped for lying through another:",
           len(ctx["manifest"]["flat_dropped"]))
 
+    # What breaks in Blood breaks here: the owner, 2026-11-26, "More things can be
+    # destructible like barels, cocons, clocks - check what other levels makes
+    # destructible". Not a lamp: its light would stay (`light_stage.LampGroup`).
+    from bloodmap import breakables, light_kinds
+    ctx["manifest"]["breakables"] = breakables.apply(layout.placements, leave=frozenset(light_kinds.KINDS))
+    _faces = [p for p in layout.placements if p.picnum in breakables.FACES and not p.type and not p.behavior]
+    for _k, _face in enumerate(_faces):
+        breakables.smash(layout, _face, _wires.shot(_k, _face.placement_id))
+    print("breakables:", sum(ctx["manifest"]["breakables"].values()), "things of", len(ctx["manifest"]["breakables"]), "tiles;",
+          len(_faces), "clocks and mirrors")
+
     STAGE("compile",
           "the layout becomes sectors, walls and sprites")
     # The light bomb is retired here (the owner, 2026-11-24): the light stage
@@ -1830,6 +1834,8 @@ def main() -> int:
     print("facades:", facade_pass.apply(compiled.level, compiled,
                                         ctx["street_regions"],
                                         edge=_backs["edge"]))
+    from bloodmap.mechanism import seat_leaves
+    seat_leaves(compiled.level, compiled.allocations[UNDERPASS["loading"]["shutter"]].sector_id, UNDERPASS["loading"]["spec"])
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.

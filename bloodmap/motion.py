@@ -489,6 +489,8 @@ CMD_OFF, CMD_ON, CMD_STATE, CMD_TOGGLE, CMD_NOT_STATE = 0, 1, 2, 3, 4
 CMD_LINK = 5
 #: locked, a sector, wall or sprite answers and sends nothing until it is unlocked
 CMD_LOCK, CMD_UNLOCK = 6, 7
+#: a moving sector that re-triggers itself stops the next time it reaches its OFF (ON) end
+CMD_STOP_OFF, CMD_STOP_ON = 9, 10
 
 #: The routes a mechanism can be worked through, all orthogonal to each other
 #: and to everything else in the grammar.

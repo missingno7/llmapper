@@ -38,9 +38,10 @@ PLAN: tuple[tuple[str, str], ...] = (
      "wall behind it onto a hidden cache"),
     ("pump:belt",
      "the console lever stops and starts the belt's open stretches, which "
-     "carry whatever stands on them only while on"),
+     "carry whatever stands on them only while on, and tells the presses"),
     ("pump:presses",
-     "when the level starts both presses begin slamming, and never stop"),
+     "when the level starts both presses begin slamming; the console lever stops them shut, and the belt "
+     "under them, and starts them again"),
     ("station:car-door",
      "the lever in the station hall sinks the carriage's door into its floor"),
     ("station:gate",
@@ -50,7 +51,7 @@ PLAN: tuple[tuple[str, str], ...] = (
      "opens the bricked-up plague pit and fires three charges"),
     ("foundry:loading-shutter",
      "pushing either freight leaf from either approach parts both leaves "
-     "to open the loading alcove"),
+     "to open onto the mirror"),
     ("theatre:fire-doors",
      "pushing either of the Aldermack's stage doors from either room toggles both "
      "leaves, which stay where they stop until pushed again"),
@@ -124,6 +125,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("harbour:boarded", "taking the flare pistol in the Demeter's hold brings three gill beasts up onto her deck"),
     ("underpass:pram",
      "leaving the shut ticket hall for the first time puts out the tunnel's bulb and brings the pram down to the bars"),
+    ("theatre:front-doors", "pushing either leaf of the Aldermack's forecourt doors swings both"),
+    ("church:slab",
+     "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and
@@ -137,10 +141,6 @@ ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
      "when the level starts the station's fare turnstile begins cycling",
      "kChannelLevelStart"),
 )
-
-#: Levers beside street doors come after the plan, one wire a door.
-LEVER_SAYS = ("the lever beside the {door} door opens it from the street; "
-              "pushing the door itself still works")
 
 _NAMES = [name for name, _says in PLAN]
 _CIRCUIT: wiring.Circuit | None = None
@@ -181,13 +181,9 @@ def wire(name: str) -> wiring.Wire:
     raise wiring.WireError(f"no wire called {name!r} in projects/blood-city/level/wires.py")
 
 
-def lever(index: int, door: str) -> wiring.Wire:
-    """The wire of one street door's lever, made the first time it is asked for."""
-    name = f"lever:{door}"
-    for made in circuit().wires:
-        if made.name == name:
-            return made
-    return circuit().wire(name, LEVER_SAYS.format(door=door),
+def shot(index: int, what: str) -> wiring.Wire:
+    """The wire of one clock or mirror that smashes when it is shot; these come after the plan, one a face."""
+    return circuit().wire(f"shot:{what}", f"shooting {what} throws its glass, once",
                           channel=wiring.USER_CHANNELS_FROM + len(PLAN) + int(index))
 
 

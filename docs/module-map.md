@@ -85,6 +85,7 @@ Derived readings of a map. Never authoritative, never written back.
 | `effects` | What a mechanism physically does, said neutrally. |
 | `wiring` | Wiring: what a player's act sets off, followed from sender to listener across sectors, walls and sprites. |
 | `blasts` | Chains of blasts: the exploders of one wire in the order their waits set them off, and what each of them can hurt. |
+| `breakables` | Which things break, as Blood's own maps have them, and the two ways a thing is made to. |
 | `tidy` | Walls that carry nothing, taken out of a finished map: points on a straight run where nothing changes, and seams between pieces of one floor that came out alike. |
 | `posed` | Posed: a copy of a map with everything one wiring chain answers put in its other state. |
 | `completion` | Completion: whether our readers can finish a map that is known to be finishable, and where they stop. |
@@ -291,6 +292,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_apertures` | How big a hole in a wall is, and what Blood puts around it. |
 | `mine_assemblies` | What a working example of a mechanism looks like, mined whole. |
 | `mine_blasts` | How Blood times its blasts: every chain of exploders in the named maps, read by `bloodmap.blasts` and written to a shelf. |
+| `mine_breakables` | What Blood makes destructible: for every tile a thing can wear, how many of its sprites break, and the record they break by. |
 | `mine_compositions` | Mine and search geometric compositions across the Blood map corpus. |
 | `mine_decoration` | How Blood dresses a room: which decorations, how big, where, how many. |
 | `mine_keys` | How Blood tells you which key a door wants. |
@@ -302,6 +304,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_prefabs` | What a Blood level is made of, below the size of a room. |
 | `mine_prop_catalogue` | A measured catalogue of every prop the campaign uses more than rarely. |
 | `mine_run_rhythm` | How often the campaign places detail along a run. |
+| `mine_secrets` | How shipped maps hide a secret: what stands before it, what opens that, what gives it away, and what is inside. |
 | `mine_sector_motion_sounds` | Count sector motion sound profiles in the Blood campaign and tutorials. |
 | `mine_set_pieces` | Set-pieces: the furniture Blood builds out of sectors, mined by shape. |
 | `mine_skylines` | How the campaign makes a building look tall: the two techniques, counted. |

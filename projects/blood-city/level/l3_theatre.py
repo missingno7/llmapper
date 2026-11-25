@@ -359,17 +359,13 @@ def build(district, theatre_st):
                   connection_id="connection:pawn_vault_neck_vault")
 
     # Street doors: room -> door -> porch -> street, the reveal chain.
-    # Each takes a channel so a lever beside it can open it; it keeps
-    # direct use as well, so pushing the door itself still works.
-    import doorswitch
-    levers = []
-    for door_index, (name, room_name, x0, y0, x1, y1, face) in enumerate(DOORS):
+    # Pushed, and nothing else. A lever used to stand beside each ("levers by
+    # doors"), from when a leaf wore plain wall; they wear planks (22) and panels
+    # (30) now, and the owner, 2026-11-26: "some of the shops have lever next to it,
+    # but it just opens door the same way you would interact with them".
+    for name, room_name, x0, y0, x1, y1, face in DOORS:
         if name in ('aldermack', 'lobby'):
             continue  # aldermack_front owns these two entrances
-        import wires
-        from bloodmap import wiring
-        lever_wire = wires.lever(door_index, name)
-        channel = lever_wire.channel
         inner = {"south": "north", "east": "west",
                  "north": "south", "west": "east"}[face]
         if face == "south":
@@ -378,8 +374,7 @@ def build(district, theatre_st):
                         rk={"type": 600, "door_face": 22,
                             "inherit_finish": "both",
                             "sector_behavior": z_motion_door(
-                                GRADE, GRADE - DOOR_H, interaction="both",
-                                rx_id=channel)})
+                                GRADE, GRADE - DOOR_H)})
             porch = make(f"{name}_porch", x0, y1 - PORCH_D, x1, y1, "service",
                          f"the {name} reveal", role="gateway", clear=DOOR_H)
         else:
@@ -388,12 +383,10 @@ def build(district, theatre_st):
                         rk={"type": 600, "door_face": 22,
                             "inherit_finish": "both",
                             "sector_behavior": z_motion_door(
-                                GRADE, GRADE - DOOR_H, interaction="both",
-                                rx_id=channel)})
+                                GRADE, GRADE - DOOR_H)})
             porch = make(f"{name}_porch", x1 - PORCH_D, y0, x1, y1, "service",
                          f"the {name} reveal", role="gateway", clear=DOOR_H)
         door.surfaces(wall_picnum=facade.opening, floor_z=GRADE, clear_height=0)
-        lever_wire.then(wiring.region(door.region_id))
         porch.surfaces(wall_picnum=facade.opening, ceiling_picnum=facade.opening,
                        floor_z=GRADE, clear_height=DOOR_H)
         citytree.join(door, rooms[room_name], at_a=inner, at_b=face,
@@ -402,8 +395,6 @@ def build(district, theatre_st):
                       connection_id=f"connection:{name}_porch_door")
         city.connect(porch.face(face), theatre_st.face("north"),
                      connection_id=f"connection:{name}_street")
-        levers.append((f"lever:{name}", theatre_st.region_id,
-                       doorswitch.lever_segment(face, x0, y0, x1, y1), channel))
 
     # Shop windows: a display box, glazed to the street by the glass pass.
     # The pane sits in a frame: reveal, sash pockets, then the box.  See
@@ -445,7 +436,7 @@ def build(district, theatre_st):
     # Each venue's fittings come from a template that knows what it places.
     house = aldermack_house.build(venue_nodes["aldermack"], rooms)
     aldermack_front.build(rooms["aldermack_foyer"], rooms["aldermack_lobby"],
-                          theatre_st, levers)
+                          theatre_st)
     templates.shooting_range(
         rooms["parlor_range"], material=INTERIORS["parlor"],
         grade=GRADE, host_clear=ROOM_HEIGHT["parlor_range"], targets=3)
@@ -464,7 +455,7 @@ def build(district, theatre_st):
                                   ceiling_shade=SALOON_SHADES["ceiling"],
                                   wall_shade=SALOON_SHADES["wall"])
 
-    return rooms, levers, house
+    return rooms, house
 
 
 def add_fire_doors(rooms):

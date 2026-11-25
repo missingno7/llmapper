@@ -22,31 +22,21 @@ class AldermackFrontTests(unittest.TestCase):
         cls.walls = [record_fields(w) for w in cls.disk.walls]
         cls.sprites = [record_fields(s) for s in cls.disk.sprites]
 
-    def test_forecourt_lever_swings_two_wings_and_avenue_lever_raises_one(self):
-        for (x0, y0, x1, y1), leaves in [
-            ((29376, 11264, 29800, 11328), 2),
-            ((32768, 9216, 32832, 9728), 1),
-        ]:
-            with self.subTest(leaves=leaves):
-                lever, = (record_extra(self.disk.sprites[i]) or {}
-                          for i, s in enumerate(self.sprites)
-                          if s["picnum"] == 1070 and x0 <= s["x"] <= x1
-                          and y0 <= s["y"] <= y1)
-                self.assertTrue(lever["trigger_push"])
-                self.assertTrue(lever["trigger_on"])
-                receivers = [(s, record_extra(self.disk.sectors[i]) or {})
-                             for i, s in enumerate(self.sectors)]
-                receivers = [(s, extra) for s, extra in receivers
-                             if extra.get("rx_id") == lever["tx_id"]]
-                self.assertEqual(len(receivers), leaves)
-                for s, extra in receivers:
-                    self.assertEqual(s["type"], 617 if leaves == 2 else 600)
-                    if leaves == 2:
-                        continue          # the wings' own test is below
-                    self.assertTrue(extra["trigger_wall_push"])
-                    self.assertEqual(s["floor_z"], s["ceiling_z"])
-                    self.assertGreaterEqual(
-                        extra["on_floor_z"] - extra["on_ceiling_z"], 24576)
+    def test_the_street_doors_are_pushed_and_no_lever_stands_by_them(self):
+        #: the owner, 2026-11-26: "some of the shops have lever next to it, but it just
+        #: opens door the same way you would interact with them"
+        levers = [s for s in self.sprites if s["picnum"] == 1070 and abs(s["z"]) < 16384
+                  and (10900 <= s["y"] <= 17000 or 32256 <= s["x"] <= 34000 and 3000 <= s["y"])]
+        self.assertEqual([s for s in levers if s["y"] < 17000 and s["x"] < 34000], [])
+
+        def corners(s):
+            return [(w.fields["x"], w.fields["y"]) for w in self.disk.walls[s["wall_ptr"]:s["wall_ptr"] + s["wall_count"]]]
+
+        avenue, = (record_extra(self.disk.sectors[i]) for i, s in enumerate(self.sectors)
+                   if s["type"] == 600 and s["floor_z"] == s["ceiling_z"]
+                   and all(32256 <= x <= 32512 and 8192 <= y <= 10240 for x, y in corners(s)))
+        self.assertTrue(avenue["trigger_wall_push"])
+        self.assertGreaterEqual(avenue["on_floor_z"] - avenue["on_ceiling_z"], 24576)
 
     def test_the_front_doors_are_mirrored_wings(self):
         #: the owner: "Shouldn't the front door be like mirror wings to each

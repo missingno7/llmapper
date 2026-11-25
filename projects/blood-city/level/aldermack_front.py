@@ -7,7 +7,6 @@ from bloodmap.placement import seated_z
 
 import citytree
 import detailing
-import doorswitch
 import setpieces
 import wallplane
 import wing_doors
@@ -63,21 +62,20 @@ def _join(name, a, side_a, b, side_b, **fields):
                          connection_id=f"connection:{name}", **fields)
 
 
-def _door(parent, name, rect, room, porch, inward, outward, wire, floor):
+def _door(parent, name, rect, room, porch, inward, outward, floor):
     door = _room(
         parent, name, rect, floor=floor, clear=0, role="doorway",
-        note="A raised wooden gate leaf, with direct use and a street lever.",
+        note="A raised wooden gate leaf.",
         type=600, door_face=30, inherit_finish="both",
         sector_behavior=z_motion_door(
-            floor, floor - DOOR_CLEAR, interaction="both", rx_id=wire.channel))
+            floor, floor - DOOR_CLEAR))
     door.surfaces(wall_picnum=WOOD)
     _join(f"{name}_in", door, inward, room, outward)
     _join(f"{name}_porch", door, outward, porch, inward)
-    wire.then(wiring.region(door.region_id))
     return door
 
 
-def _entrances(foyer, lobby, street, levers):
+def _entrances(foyer, lobby, street):
     venue = foyer.parent
     floor = GRADE - PORCH_RISE
     porch = _room(venue, "porch", (MARQUEE[0], 10944, MARQUEE[1], FORECOURT),
@@ -85,7 +83,7 @@ def _entrances(foyer, lobby, street, levers):
                   note="A raised terrazzo landing under the forecourt marquee.")
     porch.surfaces(wall_picnum=STONE, floor_picnum=307, ceiling_picnum=422)
     _join("aldermack_street", porch, "south", street, "north")
-    front_wire = wires.lever(2, "aldermack")
+    front_wire = wires.wire("theatre:front-doors")
     doors = wing_doors.build(
         venue, FRONT_DOORS, room=foyer,
         room_faces={side: f"bay_{side}" for side in ("north", "east", "west")},
@@ -96,12 +94,8 @@ def _entrances(foyer, lobby, street, levers):
         frame_style=dict(floor_z=GRADE, clear_height=wing_doors.LEAF_HEIGHT, floor_picnum=307,
                          ceiling_picnum=WOOD, wall_picnum=WOOD,
                          floor_shade=28, ceiling_shade=32, wall_shade=30))
-    foyer.raw("Hang the forecourt doors on the lever's wire",
+    foyer.raw("Hang the forecourt doors on their wire",
               lambda layout, room: wing_doors.furnish(layout, doors, front_wire))
-    levers.append(("lever:aldermack", street.region_id,
-                   doorswitch.lever_segment("south", MARQUEE[0], 10752,
-                                            MARQUEE[1], FORECOURT, offset=352),
-                   front_wire.channel))
 
     y0, y1 = SIDE_SPAN
     side = _room(venue, "lobby_porch", (32512, y0, AVENUE, y1),
@@ -109,12 +103,8 @@ def _entrances(foyer, lobby, street, levers):
                  note="The avenue entrance's dark wood and terrazzo reveal.")
     side.surfaces(wall_picnum=WOOD, ceiling_picnum=422, floor_picnum=307)
     _join("lobby_street", side, "east", street, "north")
-    side_wire = wires.lever(3, "lobby")
     _door(venue, "lobby_door", (32256, y0, 32512, y1), lobby, side,
-          "west", "east", side_wire, GRADE)
-    levers.append(("lever:lobby", street.region_id,
-                   doorswitch.lever_segment("east", 32256, y0, AVENUE, y1),
-                   side_wire.channel))
+          "west", "east", GRADE)
     return porch, side
 
 
@@ -163,7 +153,7 @@ def glass_spans():
             for _, (left, right), *_ in POSTER_CASES]
 
 
-def build(foyer, lobby, street, levers):
+def build(foyer, lobby, street):
     """Keep the foyer's exterior outline and existing join to the house."""
     foyer.surfaces(floor_picnum=390, ceiling_picnum=422, wall_picnum=119,
                    floor_shade=31, ceiling_shade=39, wall_shade=34)
@@ -184,7 +174,7 @@ def build(foyer, lobby, street, levers):
     lobby.faces.update(west=5)
     _join("venue_aldermack_lobby_aldermack_foyer", lobby,
           "west", foyer, "east")
-    porch, side = _entrances(foyer, lobby, street, levers)
+    porch, side = _entrances(foyer, lobby, street)
     booth = _box_office(foyer)
     cases = [(spec, _case(foyer.parent, street, spec[0], spec[1]))
              for spec in POSTER_CASES]

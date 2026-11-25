@@ -63,6 +63,8 @@ KITCHEN_W, COUNTER_PASS = 2048, 1792
 #: The freezer: two bays north of the dine-in, less a door's thickness.
 FREEZER_DEEP = 1792
 JAMB_TILE = 170
+#: the leaves in the underpass: an iron panel; and what is at the end behind them
+LEAF_TILE, MIRROR = 500, 504
 
 #: Lamp sconce, campaign modal form (decoration registry tile 641).
 LAMP_TILE = 641
@@ -411,13 +413,22 @@ def _transcribed(map_name: str, type_id: int, picnum: int, **change) -> dict:
 
 
 def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
-    """Add the covered freight recess to the east side of the underpass (`underpass.build` joins it to its bay)."""
+    """Two iron leaves in the underpass's east wall, and what is behind them (`underpass.build` joins it to its bay).
+
+    It was a brick store with kegs and a box of shells in it, and the owner,
+    2026-11-26: "there is room with box of shells and 3 jars that doesn't make much
+    sense, I would rethink it a bit". The doors part on more of the same: the
+    passage's own tiles, its tube, its bill -- and its end is a mirror, so it goes on
+    for ever with you coming the other way. The bill is printed backwards. Nothing
+    else is in it.
+    """
     low, high = middle - 768, middle + 768
     front, back = east + 1024, east + 1536
     end = back + 2560
     spec = solid_double_slide_spec((front, low, back, high), axis="y", travel=832)
-    surfaces = dict(layer="underpass", floor_z=floor, wall_picnum=417,
-                    floor_picnum=281, ceiling_picnum=120)
+    import underpass
+    surfaces = dict(layer="underpass", floor_z=floor, wall_picnum=underpass.CONCRETE,
+                    floor_picnum=underpass.PAVING, ceiling_picnum=underpass.SLAB)
 
     def room(name, x0, x1, shade, note):
         outline = [(x0, low), (x1, low), (x1, high), (x0, high)]
@@ -427,8 +438,8 @@ def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
             **surfaces, clear_height=28672, wall_shade=shade,
             floor_shade=shade, ceiling_shade=shade)
 
-    recess = room("freight_recess", east, front, 22, "covered freight approach")
-    alcove = room("loading_alcove", back, end, 13, "lit loading alcove with shells")
+    recess = room("freight_recess", east, front, 16, "the approach to the two iron leaves")
+    alcove = room("loading_alcove", back, end, 14, "the passage again, and the mirror it ends in")
     east_edge, west_edge = spec["portals"]
     shutter = stair.room(
         "loading_shutter", spec["outline"], frame=Frame(0, 0), role="doorway",
@@ -445,36 +456,39 @@ def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
 
     return {"spec": spec, "shutter": shutter.region_id,
             "recess": recess.region_id, "alcove": alcove.region_id,
-            "light_at": (back + 1536, middle, floor - 18432)}
+            "span": (low, high), "approach": (east, front), "beyond": (back, end)}
 
 
 def furnish_loading_shutter(layout, loading) -> dict:
-    """Set the leaf motion and supply the alcove from campaign records."""
+    """Set the leaves' motion, and finish the two sides of them alike."""
+    import underpass
+    import wallplane
     import wires
 
     region, alcove = loading["shutter"], loading["alcove"]
     wire = wires.wire("foundry:loading-shutter")
     furnish_solid_double_slide(
-        layout, region, loading["spec"], wire, leaf_picnum=DOOR_FACE_TILE,
+        layout, region, loading["spec"], wire, leaf_picnum=LEAF_TILE,
         marker_fields={kind: _attested("E1M1", kind, 3997)["fields"]
                        for kind in (MARKER_OFF, MARKER_ON)})
     for a, b in loading["spec"]["returns"]:
         layout.paint_wall(region, a, b, picnum=JAMB_TILE)
+    for edges in loading["spec"]["leaves"].values():
+        for a, b in (edges[0], edges[2]):                # one panel a leaf, as tall as the opening
+            layout.paint_wall(region, a, b, fixed_frame=True, x_repeat=8, y_repeat=10, x_panning=0, y_panning=0)
 
-    # E1M4's full-size chain hangs through this floor. At repeat 22 the
-    # 128-pixel fixture hangs 11264 down, clearing a standing player.
-    layout.place_on_ceiling(
-        "loading:lamp", alcove, local=(0.6, 0.5),
-        **_transcribed("E1M4", 0, LAMP_TILE, x_repeat=22, y_repeat=22, shade=-16))
-    x, y, z = loading["light_at"]
-    layout.add_light_source("loading:lamp", alcove, x=x, y=y, z=z)
-    # What was being loaded: kegs for the canteen's freezer (`goods`, 604).
-    import goods
-    for index, local in enumerate(((0.9, 0.18), (0.9, 0.36), (0.78, 0.2))):
-        layout.place_on_floor(f"loading:keg_{index}", alcove, local=local, **goods.fields(604))
-    shells = _attested("E1M4", 68)
-    layout.place_on_floor("loading:shells", alcove, local=(0.72, 0.5),
-                          **shells["fields"], behavior=shells["behavior"])
+    low, high = loading["span"]
+    for room, (x0, x1) in ((loading["recess"], loading["approach"]), (alcove, loading["beyond"])):
+        for a, b in (((x0, low), (x1, low)), ((x1, high), (x0, high))):
+            layout.paint_wall(room, a, b, fixed_frame=True, **underpass._dado("bay_1", a, b, underpass.FLOOR))
+    x0, x1 = loading["beyond"]
+    layout.paint_wall(alcove, (x1, low), (x1, high), fixed_frame=True, picnum=MIRROR, x_repeat=8, y_repeat=8)
+    room = layout.regions[alcove]
+    layout.add_sprite("loading:tube", alcove, x=(x0 + x1) // 2, y=(low + high) // 2, z=room.ceiling_z + 64, picnum=underpass.TUBE,
+                      x_repeat=64, y_repeat=64, angle=1536, cstat=32 | 128 | 8, shade=-16)
+    # the bill of every bay, backwards: it reads in the mirror
+    wallplane.sprite(layout, "loading:bill", alcove, (x1, high), (x0, high), tile=981, x_repeat=40, y_repeat=40,
+                     cstat=16 | 64 | 128 | 4, t=0.5, height_player_heights=1.18, offset_player_widths=0.04, shade=6, required=True)
     return {key: loading[key] for key in ("shutter", "recess", "alcove")}
 
 

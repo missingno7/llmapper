@@ -1198,7 +1198,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     doorswitch.place(layout, "station:car_lever", hall.region_id,
                      ((lx + 512, HALL[1] + 128), (lx, HALL[1] + 128)),
                      CAR_DOOR_CHANNEL)
-    wires.wire("station:car-door").when(wiring.placement("station:car_lever"), "push")
+    wires.wire("station:car-door").when(wiring.placement("station:car_lever"), "push", off=True)
     import props
 
     def free(room_name, local):

@@ -249,10 +249,10 @@ def _furnish(layout, regions) -> None:
     for k, (cell, x, y) in enumerate(LAMPS):
         room = layout.regions[regions[cell]]
         _w, height, _x, offset = wallplane.art()[641]
-        _top, bottom = drawn_extent(height, offset, 80, 128)
-        layout.add_sprite(f"hall:lamp_{k}", regions[cell], x=_q(x), y=_q(y),
-                          z=max(room.floor_z - 26000 - bottom, room.ceiling_z + 16), picnum=641, x_repeat=80, y_repeat=80,
-                          cstat=128, shade=-128, sunk=True)
+        _top, bottom = drawn_extent(height, offset, 80, 0)
+        # two bodies up, and the rest of the chain in the roof
+        layout.add_sprite(f"hall:lamp_{k}", regions[cell], x=_q(x), y=_q(y), z=room.floor_z - 34000 - bottom, picnum=641,
+                          x_repeat=80, y_repeat=80, cstat=0, shade=-128, sunk=True)
     for k in FALL_LIGHTS:
         room = layout.regions[regions[f"fall_{k}"]]
         layout.add_sprite(f"hall:fall_light_{k}", regions[f"fall_{k}"], x=_q(33.0), y=_q(NORTH + k - 0.5),

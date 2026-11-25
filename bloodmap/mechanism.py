@@ -749,9 +749,33 @@ def solid_double_slide_spec(
         "portals": (edges[0], edges[8]),
         "returns": tuple(edges[i] for i in (1, 7, 9, 15)),
         "leaves": {"with": edges[3:6], "against": edges[11:14]},
+        "seats": {point(a, d): point(a, seat) for a in (high + travel + tail, low - travel - tail, mid + travel + 1, mid - travel - 1)
+                  for d, seat in ((near + 2 * reveal, near + reveal), (far - 2 * reveal, far - reveal))},
         "markers": {motion.MARKER_OFF: point(mid - travel // 2, track),
                     motion.MARKER_ON: point(mid + (travel + 1) // 2, track)},
     }
+
+
+def seat_leaves(level, sector_id: int, spec: dict[str, Any]) -> int:
+    """Make each leaf of a compiled double slide as thick as its pocket; returns how many corners moved.
+
+    A leaf in Blood fills the slot it goes into: E1M1 s4's pocket walls
+    (w22, w26) and its leaf's faces (w23, w25) lie on one line, two walls
+    that touch. The layout refuses an outline that touches itself, so
+    `solid_double_slide_spec` draws the pocket as a wedge behind a thinner
+    leaf, and the slot beside the leaf could be seen (the owner, 2026-11-26:
+    "I also noticed that geometry of the sliding door there isn't fully
+    correct"). Every corner that moves is one-sided and the sector's own.
+    """
+    fields = _fields(level.sectors[sector_id])
+    moved = 0
+    for w in range(int(fields["wall_ptr"]), int(fields["wall_ptr"]) + int(fields["wall_count"])):
+        wall = _fields(level.walls[w])
+        seat = spec["seats"].get((int(wall["x"]), int(wall["y"])))
+        if seat is not None:
+            wall["x"], wall["y"] = seat
+            moved += 1
+    return moved
 
 
 def furnish_solid_double_slide(

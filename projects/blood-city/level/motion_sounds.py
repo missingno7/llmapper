@@ -28,15 +28,14 @@ WIRE_PROFILES = {
     "church:breach": "blast",
     "arcade:cache": "blast",
     "key:eye": "chain_lift",
-    "pump:presses": "ceiling_press",
+    "pump:presses": "press_up_is_on",
     "station:car-door": "metal_z_door",
     "station:gate": "chain_lift",
     "station:unlock": "chain_lift",
     "sewer:plague-pit": "blast",
     "foundry:loading-shutter": "heavy_slide",
     "theatre:fire-doors": "wood_swing",
-    "lever:aldermack": "wood_swing",
-    "lever:lobby": "wood_z_door",
+    "theatre:front-doors": "wood_swing",
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",
     "phantom:car": "phantom_train",
@@ -52,7 +51,7 @@ WIRE_PROFILES = {
 #: most, 165 its commonest stop. 110 and 1011, stone: 106.
 #: (The owner, 2026-11-23: "These wooden zdoor sound 106 sounds like a moving
 #: stone ... example 110 would be better".)
-LEAF_PROFILES = {22: "wood_z_door", 28: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door",
+LEAF_PROFILES = {22: "wood_z_door", 28: "wood_z_door", 30: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door",
                  562: "wood_z_door"}                  # the Toshers' bed, its boxes' face
 MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
@@ -60,7 +59,8 @@ FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))
 PHANTOM_TRAIN = (115, 277, 115, 277)
 # The pram in the metro's bed: 19 is AMB19, the squeaky wheel; 100 one squeak as it stops.
 PRAM = (19, 100, 19, 100)
-OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM}
+# E3M5's press with its ends exchanged (`l3_shed`: ON is up): 302 as it starts down, 309 as it lands
+OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "press_up_is_on": (0, 0, 302, 309)}
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
 SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
@@ -91,7 +91,7 @@ def apply(disk, allocations, circuit):
         if profile is None:
             raise ValueError(f"{region} (sector {index}) needs a campaign sound profile")
         if profile in OWN:
-            add_sector_sound(disk, index, sounds=OWN[profile], carry=True)
+            add_sector_sound(disk, index, sounds=OWN[profile], carry=profile in CARRIED_PROFILES)
         elif profile in SECTOR_SOUND_PROFILES:
             add_sector_sound(disk, index, profile, carry=profile in CARRIED_PROFILES)
         rows[str(index)] = {"region": region, "profile": profile}
@@ -114,8 +114,7 @@ def check(disk, expected, wires):
     emitters = defaultdict(list)
     charges = defaultdict(list)
     lever_wires = {wire["channel"]: wire["name"] for wire in wires
-                   if wire["name"].startswith("lever:")
-                   or wire["name"] in {"station:car-door", "station:gate", "pump:belt"}}
+                   if wire["name"] in {"station:car-door", "station:gate", "pump:belt"}}
     levers = defaultdict(list)
     for index, sprite in enumerate(disk.sprites):
         fields = record_fields(sprite)

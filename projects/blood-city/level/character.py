@@ -53,11 +53,11 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "DWE2M2 s634 (the tubes, the plaster and its dado); the "
                     "owner's DNE3L6 s171 (grimy tiles, paving, slabs)",
     },
-    "foundry loading alcove": {
+    "underpass mirror": {
         "at": (48896, 24320), "floor": 24576, "study": "doors-and-mechanisms",
-        "hero": "two iron-banded freight leaves part into recessed tracks "
-                "to reveal a chain-lit loading alcove with shotgun shells",
-        "exemplar": "DOOR-SLIDINGD s3 (opposed solid slider)",
+        "hero": "two iron leaves part on the same tiles, the same tube and the same bill printed backwards, "
+                "and a mirror where the passage should go on",
+        "exemplar": "DOOR-SLIDINGD s3 and E1M1 s4 (opposed solid sliders, the leaf as thick as its slot)",
     },
     "RAT DOGS": {
         "at": (52800, 12800), "study": "ratdogs-stand",

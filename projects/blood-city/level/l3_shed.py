@@ -22,7 +22,7 @@ round a hole in the stair.
 from __future__ import annotations
 
 import wires
-from bloodmap import wiring
+from bloodmap import motion, wiring
 
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
@@ -206,7 +206,7 @@ SEWAGE = 1120
 RELATIONS: list = []
 #: E3M3's generator pulse, on the presses
 PULSE = {"shade_wave": 5, "amplitude": -32, "shade_frequency": 5,
-         "shade_always": 1, "shade_floor": 1, "shade_walls": 1}
+         "shade_floor": 1, "shade_walls": 1}
 PLINTH_RADIUS, TANK_SIDES = 1280, 10
 #: girders, in bodies over the floor: 0.6 under the hall's roof
 TRUSS_HEIGHT = 3.25
@@ -298,18 +298,22 @@ def machine_hall(shed, lobby, room):
             f"belt_{index}", cursor, by0, cursor + length, by1,
             floor_z=GRADE - BELT_RISE, clear=clear,
             rk={"portal_wall_picnum": PLATING, "sector_behavior": (
-                #: a press: E3M5 s45/47/50, field for field. It slams shut
-                #: in two tenths, waits, rises in a second and a half, and
-                #: both re-triggers keep it going for ever; `crush` kills
-                #: what is under it. Its belt never stops (`pan_always`).
-                {"pan_floor": 1, "pan_always": 1, "drag": 1,
+                #: a press: E3M5 s45/47/50, turned over. It slams shut in two
+                #: tenths, rises in a second and a half, waits, and both
+                #: re-triggers keep it going; `crush` kills what is under it.
+                #: ON is UP: the belt under it runs while its state is on or it
+                #: is moving, so a press stopped shut (OFF) is a belt stopped
+                #: (the owner, 2026-11-26: "the lever ... won't stop belt under
+                #: the crushers, it is fine if by that it would stop the
+                #: crushers as well").
+                {"pan_floor": 1, "pan_always": 0, "drag": 1, "state": 1, "busy": 65536,
                  "pan_velocity": BELT_VELOCITY, "pan_angle": BELT_ANGLE,
-                 "rx_id": CRUSH_CHANNEL, "busy_wave_a": 1, "busy_wave_b": 3,
-                 "busy_time_a": 2, "busy_time_b": 15 - 3 * (index // 2),
-                 "wait_time_b": 10 - 3 * (index // 2),
+                 "rx_id": CRUSH_CHANNEL, "busy_wave_a": 3, "busy_wave_b": 1,
+                 "busy_time_a": 15 - 3 * (index // 2), "busy_time_b": 2,
+                 "wait_time_a": 10 - 3 * (index // 2),
                  "retrigger_a": 1, "retrigger_b": 1, "crush": 1,
-                 "off_ceiling_z": GRADE - BELT_RISE - PRESS_CLEAR,
-                 "on_ceiling_z": GRADE - BELT_RISE,
+                 "off_ceiling_z": GRADE - BELT_RISE,
+                 "on_ceiling_z": GRADE - BELT_RISE - PRESS_CLEAR,
                  "off_floor_z": GRADE - BELT_RISE,
                  "on_floor_z": GRADE - BELT_RISE, **PULSE}
                 if press else
@@ -388,8 +392,10 @@ def machine_hall(shed, lobby, room):
     RELATIONS.extend([
         ("lobby", "deck", "the gallery climbs a body and comes out over the hall: the key is seen before it is reached"),
         ("settling basin", "belt", "the sludge line runs south of the basin; lettered INTAKE and SLUDGE"),
-        ("console lever", "belt", f"channel {BELT_CHANNEL}: toggles the "
+        ("console lever", "belt", f"channel {BELT_CHANNEL}: stops and starts the "
          "belt's three open stretches, which pan and drag only while on"),
+        ("console lever", "presses", f"two relays: off, each press stops when next shut, and the belt under it; "
+         "on, they rise again"),
         ("level start", "presses", f"channel {CRUSH_CHANNEL}: a starter "
          "sets both presses slamming for good, as E3M5's are"),
         ("console bank", "console lever", "the lever hangs on the hazard "
@@ -481,9 +487,22 @@ def machine_hall(shed, lobby, room):
             command=3, once=True)
         # The lever that runs the belt, on the hazard strip by the consoles.
         import doorswitch
+        # It stands in its ON picture, says its state, and two relays tell the
+        # presses: OFF is kCmdStopOff, so a press goes round to shut and stays
+        # (triggers.cpp:154); ON waits two seconds, or a lever thrown off and on
+        # again would find the stop still pending and leave the press shut.
         doorswitch.place(layout, "pump:belt_lever", hall.region_id,
-                         ((hx0, ay1 + 1024), (hx0, ay1 + 256)), BELT_CHANNEL)
-        wires.wire("pump:belt").when(wiring.placement("pump:belt_lever"), "push")
+                         ((hx0, ay1 + 1024), (hx0, ay1 + 256)), BELT_CHANNEL, command=motion.CMD_STATE)
+        belt, presses = wires.wire("pump:belt"), wires.wire("pump:presses")
+        belt.when(wiring.placement("pump:belt_lever"), "push", command=motion.CMD_STATE, on=True, off=True, state=1)
+        for name, kind, fields in (
+                ("stop", 20, dict(command=motion.CMD_STOP_OFF, on=False, off=True, state=1)),
+                ("restart", 21, dict(command=motion.CMD_ON, on=False, off=True, wait_time=20))):
+            relay = f"pump:press_{name}"
+            layout.place_on_floor(relay, hall.region_id, local=(0.82, 0.95), type=kind, picnum=0, cstat=32768,
+                                  x_repeat=64, y_repeat=64, status=0)
+            belt.then(wiring.placement(relay))
+            presses.when(wiring.placement(relay), wiring.RELAY, **fields)
         # Each stage says what it is, in stencil, on the wall behind it.
         for word, a1, a2 in (
                 ("INTAKE", (hx0 + 1408, hy0), (hx0 + 2688, hy0)),
