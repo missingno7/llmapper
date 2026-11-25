@@ -33,6 +33,12 @@ FACES: dict[int, dict[str, int]] = {1165: {"data_1": 2, "data_2": 6, "data_4": 3
 TUBE_GLASS = {"data_1": 13, "data_2": 7, "data_4": 300}
 
 
+#: a sound that is too loud for a thing that breaks, and what is heard in its place: 308 is thunder, and what DWE1M2's posts
+#: break with (the owner, 2026-11-25: "the sound used is too loud, I would probably doo something like sound 300 maybe in
+#: simmilar cases. That one is thunder sound and they made it very loud")
+TOO_LOUD = {308: 300}
+
+
 @lru_cache(maxsize=1)
 def table() -> dict[int, dict[str, Any]]:
     """Every mined tile's row."""
@@ -58,6 +64,8 @@ def apply(placements, *, leave=frozenset(), share: float = 0.3) -> dict[int, int
         if p.type or p.behavior or p.cstat & 32768 or p.picnum in leave or (p.cstat & 48) == 32 and p.cstat & 1:
             continue
         record = breaks(p.picnum, share=share)
+        if record and record.get("data_4") in TOO_LOUD:
+            record["data_4"] = TOO_LOUD[record["data_4"]]
         if record is None:
             continue
         p.type, p.status = record.pop("type"), THING_STATUS

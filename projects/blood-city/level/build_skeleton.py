@@ -1359,6 +1359,8 @@ def main() -> int:
     print("bill column:", len(bill_column.build(layout)), "regions")
     import fair
     print("the fair:", fair.build(layout))
+    import gallery
+    print("the gallery:", gallery.build(layout))
     import writings
     print("written on the walls:", writings.build(layout))
     import underwater
@@ -1760,6 +1762,7 @@ def main() -> int:
     import dressing
     print("dressing:", dressing.dress(layout))
     print("the fair's dressing:", fair.dress(layout))
+    print("the gallery's dressing:", gallery.dress(layout))
     # LAST of what is placed: it looks for free floor among all the rest
     import gameplay
     ctx["manifest"]["gameplay"] = gameplay.place(layout)
@@ -1825,7 +1828,7 @@ def main() -> int:
     _underpass_tubes.shoot_out(layout)
     import shot_lamps
     shot_lamps.hang(layout)
-    ctx["manifest"]["breakables"] = breakables.apply(layout.placements, leave=frozenset(light_kinds.KINDS))
+    ctx["manifest"]["breakables"] = breakables.apply(layout.placements, leave=frozenset({*light_kinds.KINDS, 117}))     # (117: a stall's posts hold its roof up)
     _faces = [p for p in layout.placements if p.picnum in breakables.FACES and not p.type and not p.behavior]
     for _k, _face in enumerate(_faces):
         breakables.smash(layout, _face, _wires.shot(_k, _face.placement_id))
@@ -2125,6 +2128,7 @@ def main() -> int:
     import booking_hall as _booking_hall
     print("the booking hall's put back:", _booking_hall.keep(compiled.level, compiled))
     print("the fair's boards put back:", fair.keep(compiled.level, compiled))
+    print("the gallery's walls put up:", gallery.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

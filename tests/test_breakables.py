@@ -36,7 +36,8 @@ class CityBreakablesTests(unittest.TestCase):
         cls.sprites = [(record_fields(s), record_extra(s) or {}) for s in cls.disk.sprites]
 
     def test_every_barrel_and_cocoon_breaks(self):
-        for tile in (925, 1061, 117):
+        # (117 is a stall's post and holds its roof up: the owner, 2026-11-25, "I wouldn't make them breakable")
+        for tile in (925, 1061):
             self.assertEqual({f["type"] in breakables.KINDS for f, _x in self.sprites if f["picnum"] == tile}, {True}, tile)
 
     def test_every_clock_smashes_and_throws_its_glass(self):

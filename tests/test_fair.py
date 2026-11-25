@@ -70,6 +70,12 @@ class Fair(unittest.TestCase):
         for f in roofs + mounts:
             self.assertEqual(f["cstat"] & 257, 257, f)
 
+    def test_a_post_does_not_break_and_nothing_breaks_with_thunder(self):
+        posts = [f for f, _x in self.sprites if f["picnum"] == 117 and f["cstat"] & 48 == 0]
+        self.assertEqual(len(posts), 16)
+        self.assertEqual({(f["type"], f["cstat"] & 257) for f in posts}, {(0, 257)})
+        self.assertNotIn(308, {x.get("data_4") for f, x in self.sprites if f["type"] in (416, 417)})
+
     def test_a_stalls_name_is_on_a_board_and_is_read_from_in_front_alone(self):
         import fair
         boards = [f for f, _x in self.sprites if f["picnum"] == fair.PLANK and f["cstat"] & 48 == 16 and f["y_repeat"] == fair.BOARD_TALL]

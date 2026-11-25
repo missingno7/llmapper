@@ -307,6 +307,29 @@ POSE_SETS = {
     },
     # the owner's list of 2026-11-25, after the fence: doors' sizes, writings, the arrow
     # the two links of `references/sewers-outside.md`
+    "parlor": {
+        "a_in": (13.6, 14.2, 13.6, 6.0, LEVEL, "the gallery from its street door"),
+        "b_left": (13.6, 12.7, 10.6, 10.2, LEVEL, "its left side"),
+        "c_right": (13.4, 12.7, 16.0, 10.2, LEVEL, "its right"),
+        "g_street": (13.6, 18.0, 13.6, 15.0, LEVEL, "its door on Theatre Row"),
+        "d_mid": (13.2, 9.5, 13.2, 4.0, LEVEL, "up to the counter"),
+        "e_back": (13.2, 7.4, 13.2, 14.0, LEVEL, "back to the door"),
+        "f_corner": (15.2, 12.8, 10.8, 6.0, LEVEL, "across it"),
+    },
+    "weak": {
+        "a_memorial_s": (26.5, 52.6, 26.5, 44.0, LEVEL, "the memorial from the south"),
+        "a_memorial_se": (32.0, 49.5, 26.5, 43.5, LEVEL, "from the south-east"),
+        "a_memorial_n": (26.5, 39.6, 26.5, 44.0, LEVEL, "from behind"),
+        "a_memorial_w": (20.0, 46.0, 26.5, 44.0, LEVEL, "from the market hall"),
+        "b_church_avenue": (36.4, 29.0, 33.4, 24.0, LEVEL, "the church from the avenue"),
+        "b_church_far": (36.2, 36.0, 33.2, 24.0, LEVEL, "down the avenue"),
+        "c_saloon_door": (6.6, 14.0, 6.6, 9.0, LEVEL, "the saloon from its door"),
+        "c_saloon_bar": (9.6, 9.2, 4.5, 9.0, LEVEL, "the bar"),
+        "c_saloon_back": (4.6, 12.5, 9.0, 7.0, LEVEL, "the other way"),
+        "d_pump_in": (40.6, 10.5, 46.5, 8.0, LEVEL, "the machine hall from its door"),
+        "d_pump_mid": (46.0, 12.8, 44.0, 5.5, LEVEL, "from its south bay"),
+        "d_pump_vats": (49.5, 8.5, 42.5, 8.0, LEVEL, "from the east"),
+    },
     "fair": {
         "a_first": (35.0, 53.0, 35.0, 40.0, LEVEL, "the first frame of the game"),
         "b_left": (35.0, 53.0, 25.0, 49.5, LEVEL, "left of it: the gallery"),

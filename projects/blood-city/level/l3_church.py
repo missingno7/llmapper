@@ -638,7 +638,26 @@ def glaze(layout) -> dict:
     _tx0, _ty0, tx1, ty1 = TOWER
     layout.place_on_wall("church:door_torch", _FACES["tower"]["south_e"][0], a1=(TOWER_PORCH[3], ty1), a2=(tx1, ty1), t=0.5,
                          height_player_heights=1.55, offset_player_widths=0.06, emits_light=True, **props.fields(props.FLAME))
+    # and what says from the avenue that this is the church, and its door: the haloed window over it, lit from within, and the name on
+    # the wall beside it (a blind reader: "The small wooden door gets lost at the foot of the tower").
+    from shapely import Point, Polygon
+
+    def there(x, y):
+        return next(r.region_id for r in layout.regions.values() if r.parallax_ceiling and r.floor_z == GRADE
+                    and Polygon(r.outer, r.holes).contains(Point(x, y)))
+    over = (TOWER_PORCH[1] + TOWER_PORCH[3]) // 2
+    layout.add_sprite("church:door_window", there(over, ty1 + 10), x=over, y=ty1 + 10, z=GRADE - 72000, picnum=GREAT_WINDOW["tile"], x_repeat=48,
+                      y_repeat=64, angle=512, cstat=16 | 64 | 128, shade=-12)
+    for k, letter in enumerate(NAME):
+        if letter != " ":
+            y = NAME_AT[0] + round((len(NAME) - 1) / 2 * NAME_PITCH) - k * NAME_PITCH
+            layout.add_sprite(f"church:name_{k}", there(MASS[2] + 12, y), x=MASS[2] + 10, y=y, z=GRADE - NAME_AT[1],
+                              picnum=3808 + ord(letter) - ord("A"), x_repeat=64, y_repeat=64, angle=0, cstat=16 | 64 | 128, shade=-4)
     return {"hung": hung, "refused": refused}
+
+
+#: the name on the avenue's wall: its middle along it and how far up, between the plinth and the string course
+NAME, NAME_AT, NAME_PITCH = "ST GALLOWS", (25984, 24500), 150
 
 
 #: The glass, from inside. The owner, 2026-11-18: "Church looks good from

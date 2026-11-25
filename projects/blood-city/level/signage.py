@@ -62,9 +62,6 @@ NOTICE_HEIGHT_PH = 1.3
 SIGNS = [
     # --- Theatre Row: the commercial frontages ---------------------------
     ("saloon", "theatre:saloon_main", "east", "WHISKEY", "banner", SIGN_HEIGHT_PH),
-    # A shooting gallery is a fairground attraction, so it gets the
-    # fairground's lettering: E1M4's ROTTEN CANDY tracking and jitter.
-    ("parlor", "theatre:parlor_gallery", "east", "SHOOTING", "carnival", SIGN_HEIGHT_PH),
     ("pawn", "theatre:pawn_shop", "west", "PAWN", "fascia", SIGN_HEIGHT_PH),
     # --- the church -------------------------------------------------------
     # The nave's name is written by `venue_detail.COMPOSITIONS` instead --
@@ -94,6 +91,8 @@ STREET_SIGNS = [
     ("street:market_slip", ((39936, 43520), (39936, 48640)),
      "THE ARCADE", "fascia", 2.25),
     ("street:foundry_ward", ((54272, 8704), (54272, 4608)), "PUMP STATION", "fascia", 2.25),
+    # (it was a shooting parlor, and nameless from the street)
+    ("street:theatre_row", ((12288, 15360), (15360, 15360)), "GALLERY", "fascia", 1.94),
     # The works canteen is a rat-dog stand, named over its grill hatch as
     # E1M4 names its own: two bodies up, just over the hatch's head.
     ("street:foundry_ward", ((50176, 15360), (52224, 15360)),

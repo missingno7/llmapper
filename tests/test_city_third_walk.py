@@ -664,7 +664,8 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertLess(int(chancel["floor_shade"]), int(nave["floor_shade"]))
         great = [s for s in self.sprites
                  if int(s["picnum"]) == l3_church.GREAT_WINDOW["tile"]]
-        self.assertEqual(len(great), 1)
+        # (behind the altar, and since 2026-11-25 over the door on the avenue)
+        self.assertEqual(len(great), 2)
         self.assertLess(int(great[0]["shade"]), 0)
         #: the church's own two candelabra (the settling hall's circle has
         #: its own, under the plaza)

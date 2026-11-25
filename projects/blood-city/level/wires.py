@@ -135,6 +135,7 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("sewer:shrine-hands",
      "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine"),
     ("fair:hits", "each smiling face and each bullseye hit at the shooting gallery is counted"),
+    ("gallery:beast", "taking what lies at the stone beast's feet in the gallery brings it down off its platform"),
     ("fair:prize", "the last of them rings the bell and brings the prize up through the gallery's counter"),
 )
 

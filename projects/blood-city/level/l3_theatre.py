@@ -210,8 +210,8 @@ ROOM_HEIGHT = {
     "saloon_main": 45056,            # 2.66: E1M2's station bar
     "aldermack_foyer": 40960,
     "aldermack_lobby": 40960,
-    "parlor_gallery": 28672,
-    "parlor_range": 28672,
+    "parlor_gallery": 32768,         # E3M1's gallery, and one repeat of its wall
+    "parlor_range": 32768,
     "parlor_passage": 28672,
     "pawn_shop": 24576,
     "back_passage_west": 20480,
@@ -440,9 +440,7 @@ def build(district, theatre_st):
     house = aldermack_house.build(venue_nodes["aldermack"], rooms)
     aldermack_front.build(rooms["aldermack_foyer"], rooms["aldermack_lobby"],
                           theatre_st)
-    templates.shooting_range(
-        rooms["parlor_range"], material=INTERIORS["parlor"],
-        grade=GRADE, host_clear=ROOM_HEIGHT["parlor_range"], targets=3)
+    # (the parlor's two rooms are the gallery: `gallery.build` fits them out on the layout)
     # E6M1's repetitive display modules become a full retail composition:
     # window-side racks, two free-standing garment rails and a sales counter
     # that leaves the door-side aisle open.
@@ -487,13 +485,13 @@ def furnish_fire_doors(layout, built):
 POPULATION = [
     ("saloon_main", 202, (0.78, 0.22)),      # clear of the counter island
     ("saloon_back", 203, (0.5, 0.5)),
-    ("parlor_range", 202, (0.6, 0.4)),
+    ("parlor_range", 202, (0.86, 0.78)),
     ("aldermack_backstage", 203, (0.5, 0.3)),
     ("pawn_shop", 203, (0.15, 0.08)),   # the strip north of the kit fixtures
 ]
 PICKUPS = [
     ("saloon_back", 65, (0.3, 0.6)),
-    ("parlor_range", 62, (0.25, 0.5)),
+    ("parlor_range", 62, (0.14, 0.8)),
     ("aldermack_dressing", 109, (0.5, 0.5)),
     ("aldermack_lobby", 67, (0.4, 0.5)),
     ("pawn_shop", 63, (0.75, 0.08)),          # clear of the pedestals

@@ -30,8 +30,6 @@ import wallplane
 WALL_DETAILS = (
     ("theatre", "saloon_main", "north", 0.23, 269),
     ("theatre", "saloon_main", "west", 0.72, 965),
-    ("theatre", "parlor_gallery", "north", 0.25, 823),
-    ("theatre", "parlor_range", "west", 0.62, 761),
     ("theatre", "pawn_shop", "north", 0.75, 269),
     ("church", "nave", "west", 0.62, 167, {"preferred_only": True}),
     ("church", "narthex", "north", 0.5, 617, {"x_repeat": 46, "y_repeat": 46}),     # between the two lights, which are 640 apart

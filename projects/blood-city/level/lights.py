@@ -116,6 +116,12 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("aldermack/dressing", Rule("none", 0, 0)),
     ("aldermack/fire_", Rule("none", 0, 0)),
     ("theatre_row/saloon", Rule("hanging", 641, 3072, 3072)),
+    # each picture's own (`gallery.HUNG`): E3M1's is 12 and 24 under its lamps in a room at 38
+    ("parlor/gallery/spot_", Rule("none", 0, 0, cut=False, shade_bias=(6, 6, 0))),
+    ("parlor/range/spot_", Rule("none", 0, 0, cut=False, shade_bias=(6, 6, 0))),
+    ("parlor/range/platform", Rule("none", 0, 0, cut=False, shade_bias=(4, 8, 4))),
+    ("theatre_row/parlor/gallery", Rule("none", 0, 0, cut=False, shade_bias=(24, 24, 12))),
+    ("theatre_row/parlor/range", Rule("none", 0, 0, cut=False, shade_bias=(24, 24, 12))),
     ("theatre_row/aldermack/foyer", Rule("none", 0, 0)),
     ("theatre_row/aldermack/front_", Rule("none", 0, 0)),
     ("theatre_row/aldermack/lobby", Rule("none", 0, 0)),

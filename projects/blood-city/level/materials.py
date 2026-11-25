@@ -151,9 +151,9 @@ INTERIORS = {
     "saloon": Material(wall=28, floor=390, ceiling=40, opening=100,
                        note="plank walls over a wood floor under slate: "
                             "E3M1's drinking room"),
-    "parlor": Material(wall=100, floor=294, ceiling=20, opening=68,
-                       note="rust plaster over chequered tile: the cheap "
-                            "amusement register"),
+    "parlor": Material(wall=100, floor=294, ceiling=454, opening=68,
+                       note="rust plaster over chequered tile under coffers: "
+                            "E3M1's art gallery (s203), for ours (`gallery.py`)"),
     "theatre": Material(wall=119, floor=300, ceiling=422, opening=203,
                         note="red-and-gold tapestry with a carved base "
                              "course, patterned carpet, medallion ceiling"),

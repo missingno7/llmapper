@@ -1095,6 +1095,9 @@ MONUMENT_WORDS = (
 #: water with a carved panel top (360) and a crouching statue (536).
 #: Heights in Build z, up from the plaza.
 PARAPET_RISE = 4096                 # the rim: a step up off the plaza
+#: an obelisk on the backdrop: its step, its shaft and its point, (half across, half deep, how far over the one below). The square's
+#: own landmark: blind readers of it found "no memorial with a recognizable silhouette" (showcase round 14)
+OBELISK = (("step", 1216, 512, 6144), ("shaft", 448, 352, 40960), ("point", 224, 176, 9216))
 BACKDROP_RISE = 59392               # 3.5 bodies over the rim
 BOX_RISE, FALL_RISE = 27136, 25088  # over the water; the fall's lip a little under the box's top
 DRUM_RISE = 16384                   # over the water: a body over the rim
@@ -1157,6 +1160,14 @@ def memorial(parent, street, outline, *, grade: int, clear_height: int,
         host_clear=clear_height - PARAPET_RISE, connector=connector,
         face_picnum=DARK_STONE, shade=12,
         note="the backdrop: the city's name and the emblem over the water")
+    host, top, deep = made["backdrop"], grade - PARAPET_RISE - BACKDROP_RISE, y0 + BAND // 2
+    for label, across, half, over in OBELISK:
+        made[f"obelisk_{label}"] = setpieces.raised_solid(
+            node, f"obelisk_{label}", host, (cx - across, deep - half, cx + across, deep + half), dark, grade=top, rise=over,
+            host_clear=clear_height - (grade - top), connector=connector, face_picnum=RIM_STONE if label != "shaft" else DARK_STONE, shade=10,
+            note=f"the memorial's obelisk: its {label}")
+        host, top = made[f"obelisk_{label}"], top - over
+        host.region_kwargs["declared_zero_exit"] = True                 # nobody is up there
     # the pool, the rest of the rim's middle
     px0, py0, px1, py1 = x0 + POOL_INSET, y0 + BAND, x1 - POOL_INSET, y1 - POOL_INSET
     setpieces._carve_into(rim, (px0, py0, px1, py1))
@@ -1186,7 +1197,7 @@ def memorial(parent, street, outline, *, grade: int, clear_height: int,
                   "drum_1": "a statue's drum in the water"}[label])
     # `dress_monument` letters the backdrop from the rim it stands on and
     # sets the flame on its top
-    made.update(base=rim, plinth=made["backdrop"], pedestal=made["backdrop"])
+    made.update(base=rim, plinth=made["backdrop"], pedestal=made["obelisk_point"])
     return node, made
 
 

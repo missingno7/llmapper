@@ -178,6 +178,8 @@ def dress(layout, regions=None) -> dict:
             # hung over it: the belt is a room by its size and its height,
             # and a floor that travels carries nothing that stays put.
             continue
+        if "/parlor/" in region_id:
+            continue                          # the gallery is hung by hand (`gallery.py`): a chandelier of the theatre's stood in its passage
         if getattr(region, "role", "") == "gateway":
             # A way through is not a room to furnish. The yard's grate is a
             # room-over-room mouth into the sewer, and this pass stood a
