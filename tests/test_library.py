@@ -268,7 +268,9 @@ class StationTests(unittest.TestCase):
                          - int(self.sectors[hall]["ceiling_z"]), s.HALL_CLEAR)
         #: the owner, 2026-11-25: "That station side entry probably doesn't make sense
         #: any more": no way through the city's wall but the two arches' gates
-        ways = {(int(a["x"]), int(b["x"])) for a, b in ((w, self.walls[int(w["point2"])]) for w in self.walls)
+        #: (under the street the sewers and the railway's stair go where they like)
+        under = {w for f in self.sectors if int(f["floor_z"]) > 40000 for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"]))}
+        ways = {(int(a["x"]), int(b["x"])) for a, b in ((w, self.walls[int(w["point2"])]) for k, w in enumerate(self.walls) if k not in under)
                 if int(a["y"]) == int(b["y"]) == 0 and int(a["next_sector"]) >= 0 and abs(int(a["x"]) - int(b["x"])) > 0}
         for x0, x1 in ways:
             self.assertTrue(s.FORECOURT[0][0] <= min(x0, x1) and max(x0, x1) <= s.FORECOURT[-1][1], (x0, x1))

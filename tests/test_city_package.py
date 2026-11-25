@@ -38,13 +38,15 @@ class Package(unittest.TestCase):
         guide = text.split("THE SECRETS")[1]
         self.assertEqual([n for n in range(1, 99) if f"\r\n{n:>2}. " in guide], list(range(1, counted + 1)))
 
-    def test_what_is_given_out_is_what_was_built(self):
-        """Once it is packaged: run `package.py` again after a build."""
-        for name, data in self.files.items():
-            path = self.P.OUT / name
-            if path.exists():
-                self.assertEqual(path.read_bytes().replace(b"\r\n", b"\n") if name.endswith("TXT") else path.read_bytes(),
-                                 data.replace(b"\r\n", b"\n") if name.endswith("TXT") else data, name)
+    def test_what_is_given_out_agrees_with_itself(self):
+        """The readme that was packed is of the map that was packed with it: builds go on after a release."""
+        packed, readme = self.P.OUT / self.P.MAP_NAME, self.P.OUT / self.P.README_NAME
+        if not packed.exists():
+            self.skipTest("nothing is packed here")
+        text = " ".join(readme.read_text(encoding="ascii").split())
+        n = self.P.counts(read_map(packed))
+        self.assertIn(f"{n['sectors']} sectors, {n['walls']} walls, {n['sprites']} sprites", text)
+        self.assertIn(n["foes"], text)
 
 
 if __name__ == "__main__":

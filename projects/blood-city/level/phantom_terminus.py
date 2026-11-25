@@ -8,6 +8,7 @@ from bloodmap.model import record_fields
 from bloodmap.player_space import PLAYER_PROFILES
 
 import carriage
+import ghost_stair
 import setpieces
 import wallplane
 import wires
@@ -17,8 +18,6 @@ from resolution import SEWER_FLOOR
 COMPASS = dict(zip(RECT_FACES, range(4)))
 BODY = PLAYER_PROFILES["blood"]
 GHOST_FLOOR = 118784
-GHOST_STEPS = 28
-GHOST_TREAD = 320
 GHOST_CLEAR = 32768
 GHOST_DIALS = (("A", 49664, 1), ("B", 50176, 3), ("C", 50688, 2))
 
@@ -79,13 +78,9 @@ def build(sewer, silt_trap):
                  connection_id="connection:ghost_inspection_plate",
                  role="window", min_opening=1024)
 
-    foot = 1024 - GHOST_STEPS * GHOST_TREAD
-
-    booking = _station_rooms(part, foot)
-    housing.staircase(
-        "ghost_service_stair", "north", total_rise=GHOST_FLOOR - SEWER_FLOOR,
-        tread=GHOST_TREAD, step_rise=2048, clear_height=24576,
-        arrive_at=booking.region_id, shade_ramp=(22, 31))
+    booking = _station_rooms(part, ghost_stair.FOOT)
+    housing.raw("the stair down, and the way in that was walled up",
+                lambda layout, room: ghost_stair.build(layout, room.region_id, booking.region_id))
 
     plate.raw("the last inspection's settings", _ghost_inspection)
     silt_trap.raw("the lower landing's three maintenance dials", _ghost_controls)
@@ -899,6 +894,9 @@ def light_groups(compiled):
     def coach(region):
         return "_coach:" in region
 
+    def stair(region):
+        return "/ghost_stair:" in region
+
     def gone(disk):
         prize = compiled.placement_sprites[f"phantom:prize:{PRIZE_REGION}"]
         return posed.posed(disk, posed.chain_of(wiring.chains(disk), f"sprite {prize}"))[0]
@@ -916,6 +914,7 @@ def light_groups(compiled):
         LampGroup("the loose lamp", lamps(f"loose_vault_lamp:{STATION}/cracked_vault"), wave=7, frequency=3,
                   phase=40, within=station),
         LampGroup("the near lamp", lamps("edge_lamp_0"), "out", rx=wires.channel(PLATFORM_ENTRY), within=station),
+        LampGroup("the stair's landing", lamps("stair_lamp_landing"), wave=7, frequency=4, phase=20, within=stair),
         LampGroup("the clerk's lamp", lamps("clerk_lamp"), wave=6, frequency=4, phase=90, within=station),
         LampGroup("the drowned carriage", lamps(*(f"drowned_lamp_{i}" for i in range(len(WRECK_PLAN.slots)))),
                   wave=8, frequency=3, phase=60, within=station),

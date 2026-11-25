@@ -2080,6 +2080,9 @@ def main() -> int:
                                        world_phase=district_walls,
                                        records=records, owner="surface:facade",
                                        v_anchor="floor"))
+    from bloodmap.texture_align import align_flights
+    print("flights whose walls run on:", align_flights(compiled.level, art_sizes, [
+        int(a.sector_id) for r, a in compiled.allocations.items() if r.startswith("region:pump_station_spiral:")]))
     print("record owners:", records.report())
     # Crate tops start their tile at the crate's own corner. 71% of the
     # campaign's 110 raised crate tops do; this map's eleven did not, so a

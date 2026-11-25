@@ -145,7 +145,9 @@ def _dado(cell: str, a, b, lower: int) -> dict:
     """The plaster and its dado, hung so that the dado stands on the floor at its own height."""
     _floor, ceiling = levels(cell)
     length = abs(a[0] - b[0]) + abs(a[1] - b[1])
-    return {"picnum": DADO, "x_repeat": max(1, min(255, round(length / 128))), "y_repeat": 8, "x_panning": 0,
+    along = 0 if a[1] == b[1] else 1                           # from bay to beam to bay it is one wall
+    at = a[along] if b[along] > a[along] else -a[along]
+    return {"picnum": DADO, "x_repeat": max(1, min(255, round(length / 128))), "y_repeat": 8, "x_panning": at // 16 % 32,
             "y_panning": (DADO_TOP + DADO_ROWS - (lower - ceiling) // 256) % 256, "cstat": 0}
 
 

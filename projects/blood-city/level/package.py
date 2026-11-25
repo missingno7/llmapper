@@ -5,7 +5,8 @@
 The readme is the community's own form: XMAPEDIT's `TEMPLATE-MAPS.txt` (the headings Blood's
 maps have carried since 1997), 72 columns, plain ASCII, DOS line ends. What it counts is
 counted in the MAP, so it cannot fall behind it; what it says in words agrees with the ModDB
-page (`renders/moddb/moddb-page.md`). Spoilers are last.
+page (`renders/moddb/moddb-page.md`). Spoilers are last. It is run when a version
+is given out, not after every build: `release/` is what was given out last.
 """
 
 from __future__ import annotations

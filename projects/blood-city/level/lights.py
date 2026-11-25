@@ -80,7 +80,7 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("ghost_station/fallen_roof", Rule("none", 0, 0, shade_bias=(3, 2, 2))),
     ("ghost_station/siding", Rule("none", 0, 0, shade_bias=(6, 5, 5))),
     ("ghost_station", Rule("none", 0, 0, shade_bias=(15, 14, 12))),             # its own lamps, and what switches them (`phantom_terminus.light_groups`)
-    ("ghost_service_stair", Rule("none", 0, 0)),
+    ("ghost_stair:", Rule("none", 0, 0, cut=False)),                   # its own two lamps; a step to a light already
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
     # its own: the hood's strip over the key, the consoles' strip, the lever's lamp
     # a linked floor and what is under it are one sector each and stay one

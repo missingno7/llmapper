@@ -339,3 +339,48 @@ def sprite_tile_extents(directory: str = DEFAULT_ART_DIRECTORY) -> dict[int, tup
         return out
     except Exception:
         return {}
+
+
+def align_flights(level: Any, art_sizes: dict[int, tuple[int, int]], sectors: Any) -> int:
+    """Carry the side walls' pattern on from step to step down the flights these sectors are.
+
+    A flight's treads are sectors of their own, so a wall beside them is cut at every tread and
+    hung from a roof that steps down with them: by default its pattern restarts at each. Blood's
+    long flights carry it on both ways (E3M1 s79, E3M7 s88, E6M5 s305): along by what the last
+    wall used up, and down by how far the roof came. Returns how many walls were re-panned.
+    """
+    def fields(item: Any) -> dict[str, Any]:
+        return item["fields"] if isinstance(item, dict) else item.fields
+
+    home: dict[int, dict[str, Any]] = {}
+    for sector in sectors:
+        s = fields(level.sectors[sector])
+        for wall in range(int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"])):
+            if int(fields(level.walls[wall])["next_sector"]) < 0:
+                home[wall] = s
+    begins = {(int(w["x"]), int(w["y"])): k for k in home for w in (fields(level.walls[k]),)}
+    after = {}
+    for wall in home:
+        a = fields(level.walls[wall])
+        end = fields(level.walls[int(a["point2"])])
+        nxt = begins.get((int(end["x"]), int(end["y"])))
+        if nxt is None or nxt == wall or home[nxt] is home[wall]:
+            continue
+        b = fields(level.walls[nxt])
+        if int(a["picnum"]) == int(b["picnum"]) and int(a["picnum"]) in art_sizes:
+            after[wall] = nxt
+    changed = 0
+    for wall in sorted(set(after) - set(after.values())):
+        while wall in after:
+            nxt = after.pop(wall)
+            a, b = fields(level.walls[wall]), fields(level.walls[nxt])
+            wide, tall = art_sizes[int(a["picnum"])]
+            b["cstat"] = int(b["cstat"]) & ~4 | int(a["cstat"]) & 4
+            b["y_repeat"] = a["y_repeat"]
+            hung = "floor_z" if int(a["cstat"]) & 4 else "ceiling_z"
+            texels = (int(home[nxt][hung]) - int(home[wall][hung])) * int(a["y_repeat"]) / TEXTURE_SPAN_SCALE
+            b["x_panning"] = (int(a["x_panning"]) + int(a["x_repeat"]) * 8) % wide
+            b["y_panning"] = round(int(a["y_panning"]) + texels * PANNING_PERIOD / tall) % PANNING_PERIOD
+            changed += 1
+            wall = nxt
+    return changed

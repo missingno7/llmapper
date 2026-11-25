@@ -333,7 +333,9 @@ class ThirdWalkTests(unittest.TestCase):
         # the full-width wall that crosses the service stair's northward line.
         previous, current = None, host
         width, clearance, rises = [], [], []
-        for y in range(1024, -7937, -320):
+        import ghost_stair as G
+        treads = [y - G.TREAD * k for y in (G.FIRST, G.SECOND) for k in range(G.STEPS)]
+        for y in sorted({G.HATCH, *treads, G.LANDING, G.FOOT}, reverse=True):
             a, = [wall for wall in sector_walls(current)
                   if wall["y"] == y and self.walls[wall["point2"]]["y"] == y
                   and wall["next_sector"] >= 0 and wall["next_sector"] != previous
