@@ -269,6 +269,16 @@
     "DWE2M10:760!"
    ],
    "date": "2026-11-24"
+  },
+  "underwater": {
+   "want": "three drowned places for Gravesend: a sump and culvert under a pump-station tank, a flooded sewer branch reached by a dive, a wreck under a quay; with a way back up that strands nobody",
+   "seeds": [
+    "E3M3:63!",
+    "E3M3:176!",
+    "E6M4:287!",
+    "E1M4:248!"
+   ],
+   "date": "2026-11-25"
   }
  }
 }

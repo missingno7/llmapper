@@ -233,16 +233,86 @@ def room_over_room(layout: Any, stack_id: str, upper_region: str,
     }
 
 
+#: A surface that is dived through, and how many of the campaign's 191 pairs
+#: wear it on both sides: 2915 (96), 1120 (52), 997 (16), 2490 (11). The mirror
+#: is the see-through one, on 10.
+WATER_TILES = (2915, 1120, 997, 2490, 2448, MIRROR_TILE)
+
+
+def water_link(layout: Any, link: str, upper_region: str, lower_region: str,
+               *, link_id: int, offset: tuple[int, int],
+               at: tuple[int, int] | None = None, tile: int = 1120,
+               family: str = "water") -> dict[str, Any]:
+    """Make the floor of `upper_region` the surface of the water that fills `lower_region`.
+
+    The drowned half of a pool is not under it. It is a copy of the pool's
+    outline parked elsewhere on the sheet (93% of the campaign's pairs do not
+    overlap in plan, at a median 81 player widths), and `offset` is how far:
+    the lower marker less the upper, which is exactly the translation
+    `CheckLink` applies. Two pools of one water should share one offset, or a
+    swim between them does not go where it looks as if it goes
+    (`level_profile`'s dive reading).
+
+    The two planes need not be at one z (141 of the 191 are not); they must be
+    one outline, because whoever crosses keeps his x and y: where the copies
+    differ he is put inside a wall. Both surfaces wear `tile`; the sector below
+    gets the XSECTOR `underwater` bit all 191 carry.
+    """
+    if family not in ("water", "goo"):
+        raise StackError(f"{link}: {family!r} is not a water; say water or goo")
+    if tile not in WATER_TILES:
+        raise StackError(f"{link}: tile {tile} is on no campaign water surface "
+                         f"(one of {', '.join(map(str, WATER_TILES))})")
+    for region_id in (upper_region, lower_region):
+        if region_id not in layout.regions:
+            raise StackError(f"{link}: unknown region {region_id!r}")
+    if not congruence(layout, upper_region, lower_region, tolerance=0, offset=offset):
+        raise StackError(
+            f"{link}: {lower_region} is not the outline of {upper_region} moved by "
+            f"{tuple(offset)}; whoever dives keeps his place in plan and would come "
+            "out in a wall")
+    upper, lower = layout.regions[upper_region], layout.regions[lower_region]
+    if upper.floor_slope is not None or lower.ceiling_slope is not None:
+        raise StackError(f"{link}: a sloped surface")
+    upper.floor_picnum = lower.ceiling_picnum = int(tile)
+    lower.sector_behavior["underwater"] = 1
+    # not cut by a shadow and not laid on by anything else: the marker links one sector
+    layout.declare_special(upper_region, lower_region, family)
+    if at is None:
+        from shapely.geometry import Polygon
+        point = Polygon(upper.outer, upper.holes).representative_point()
+        at = (round(point.x), round(point.y))
+    upper_type, lower_type = FAMILIES[family]
+    markers = {}
+    for tag, region_id, kind, picnum, x, y, z in (
+            ("upper", upper_region, upper_type, MARKER_TILE_UPPER, at[0], at[1], int(upper.floor_z)),
+            ("lower", lower_region, lower_type, MARKER_TILE_LOWER, at[0] + offset[0], at[1] + offset[1],
+             int(lower.ceiling_z))):
+        markers[tag] = f"{link}_{tag}"
+        layout.add_sprite(markers[tag], region_id, x=int(x), y=int(y), z=z, type=int(kind),
+                          status=MARKER_STATNUM, picnum=picnum, cstat=MARKER_CSTAT, x_repeat=64,
+                          y_repeat=64, angle=0, behavior={"data_1": int(link_id)})
+    return {"link": link, "family": family, "upper": upper_region, "lower": lower_region,
+            "link_id": int(link_id), "markers": markers, "translation": [int(offset[0]), int(offset[1])]}
+
+
 def congruence(layout: Any, upper_region: str, lower_region: str,
-               tolerance: int = 16) -> bool:
-    """Are the two outlines the same shape in the same place?
+               tolerance: int = 16, offset: tuple[int, int] = (0, 0)) -> bool:
+    """Are the two outlines the same shape in the same place (or, with `offset`, that far apart)?
 
     Not required -- 15 of the campaign's 38 stack pairs are not congruent -- but
     worth knowing, because where they differ the player can walk over a hole
     that has no room under it.
     """
     top = list(layout.regions[upper_region].outer)
-    bottom = list(layout.regions[lower_region].outer)
+    bottom = [(x - offset[0], y - offset[1]) for x, y in layout.regions[lower_region].outer]
+    if tolerance == 0:
+        from shapely.geometry import Polygon
+
+        def moved(rings):
+            return [[(x - offset[0], y - offset[1]) for x, y in ring] for ring in rings]
+        return Polygon(top, layout.regions[upper_region].holes).symmetric_difference(
+            Polygon(bottom, moved(layout.regions[lower_region].holes))).is_empty
     if len(top) != len(bottom):
         return False
     for rotation in range(len(bottom)):

@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper-wt-water/knowledge/blood/studies/underwater/E3M3_176/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper-wt-water/knowledge/blood/studies/underwater/E3M3_176",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 73856,
+   "y": -86912,
+   "z": 134240,
+   "angle": 890,
+   "horiz": 100,
+   "sector": 176,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 71552,
+   "y": -86912,
+   "z": 134240,
+   "angle": 158,
+   "horiz": 100,
+   "sector": 176,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 74112,
+   "y": -85376,
+   "z": 134240,
+   "angle": 1212,
+   "horiz": 100,
+   "sector": 176,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 72320,
+   "y": -85376,
+   "z": 134240,
+   "angle": 1624,
+   "horiz": 100,
+   "sector": 176,
+   "screenshot": true
+  }
+ ]
+}
