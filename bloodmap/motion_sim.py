@@ -842,6 +842,39 @@ def _boxes_touch(a: tuple[float, float, float, float],
     return not (a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1])
 
 
+def _apart(level: Any, owners: dict[int, int]):
+    """Whether two walls' sectors share no height: one's ceiling is under the other's floor.
+
+    A leaning floor or ceiling is taken at the most its slope could reach over the whole sector."""
+    spans: dict[int, tuple[int, int] | None] = {}
+
+    def span(wall: int) -> tuple[int, int] | None:
+        sector = owners.get(wall, -1)
+        if sector < 0:
+            return None
+        if sector not in spans:
+            f = record_fields(level.sectors[sector])
+            extra = record_extra(level.sectors[sector]) or {}
+            #: (a floor or a ceiling that moves is taken at the farthest it goes)
+            moves = int(f.get("type") or 0) >= 600
+            reach = {side: [int(f.get(f"{side}_z") or 0)] + [int(extra.get(f"{when}_{side}_z") or 0) for when in ("off", "on") if moves]
+                     for side in ("floor", "ceiling")}
+            own = range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"]))
+            points = [(_wall_field(level, w, "x"), _wall_field(level, w, "y")) for w in own]
+            hinge = _wall_field(level, own[0], "point2")
+            (ax, ay), bx, by = points[0], _wall_field(level, hinge, "x"), _wall_field(level, hinge, "y")
+            #: (a slope turns on the sector's first wall)
+            across = max(abs((bx - ax) * (y - ay) - (by - ay) * (x - ax)) for x, y in points) / (math.hypot(bx - ax, by - ay) or 1)
+            lean = {side: abs(int(f[f"{side}_heinum"])) * across / 256 if int(f.get(f"{side}_stat") or 0) & 2 else 0 for side in ("floor", "ceiling")}
+            spans[sector] = (min(reach["ceiling"]) - lean["ceiling"], max(reach["floor"]) + lean["floor"]) if "floor_z" in f else None
+        return spans[sector]
+
+    def apart(a: int, b: int) -> bool:
+        one, two = span(a), span(b)
+        return bool(one and two and (one[1] < two[0] or two[1] < one[0]))
+    return apart
+
+
 def closure_crossings(level: Any, swept: ClosureSweep,
                       *, owners: dict[int, int] | None = None,
                       boundary: set[int] | None = None,
@@ -854,8 +887,11 @@ def closure_crossings(level: Any, swept: ClosureSweep,
     by whole sectors. Touching at an endpoint is a hinge and does not count.
     A body provides its boundary as the crossing source and the vertices
     driven by separate mechanisms, which cannot be treated as static targets.
+    Nor does what is wholly over or under it: a carousel on a street does not
+    cut through the sewer beneath.
     """
     owners = owners if owners is not None else wall_owners(level)
+    apart = _apart(level, owners)
     moved = set(swept.closure["walls"])
     moving_set = moved | {
         w for w in range(len(level.walls))
@@ -893,7 +929,7 @@ def closure_crossings(level: Any, swept: ClosureSweep,
             a = swept.position(step, wall_id)
             b = swept.position(step, _wall_field(level, wall_id, "point2"))
             for other, c, d in static:
-                if (wall_id, other) in already:
+                if (wall_id, other) in already or apart(wall_id, other):
                     continue
                 #: Same graze tolerance as the fold check: a leaf hinged ON a
                 #: static wall crosses it by a unit at small angles, and that

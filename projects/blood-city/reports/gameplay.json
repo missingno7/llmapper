@@ -1,9 +1,9 @@
 {
- "way_m": 174,
+ "way_m": 173,
  "way_is": "the exit",
- "sectors": 1682,
- "reached": 1558,
- "taken_on_trust": 134,
+ "sectors": 1724,
+ "reached": 1600,
+ "taken_on_trust": 145,
  "keys": [
   {
    "key": "kItemKeyEye",
@@ -44,13 +44,13 @@
  ],
  "exit": [
   {
-   "root": "sprite 1729",
+   "root": "sprite 1732",
    "reached": true
   }
  ],
  "locks": [
   {
-   "counter": 2613,
+   "counter": 2968,
    "wants": [
     "skull",
     "eye",
@@ -88,7 +88,7 @@
    "stone gargoyle": 1,
    "tommy cultist": 20
   },
-  "ammo_damage": 51021,
+  "ammo_damage": 51981,
   "ammo_damage_in_secrets": 7350,
   "ammo_damage_by_kind": {
    "bullets": 10920,
@@ -96,7 +96,7 @@
    "napalm": 4500,
    "prox": 300,
    "remote": 750,
-   "shells": 17856,
+   "shells": 18816,
    "souls": 350,
    "spray": 1260,
    "tesla": 6400,
@@ -104,9 +104,9 @@
    "voodoo": 400
   },
   "expected_drops": 8513,
-  "damage_per_health": 6.334,
-  "damage_outside_secrets_per_health": 5.422,
-  "damage_with_drops_per_health": 7.391,
+  "damage_per_health": 6.453,
+  "damage_outside_secrets_per_health": 5.541,
+  "damage_with_drops_per_health": 7.51,
   "health": 1750,
   "health_in_secrets": 460,
   "armor": 1150,
@@ -120,7 +120,7 @@
    "gun": "guns akimbo",
    "at": "the Cabal's chamber",
    "secret": true,
-   "foes_before": 0.593
+   "foes_before": 0.6
   },
   {
    "gun": "life leech",
@@ -132,7 +132,7 @@
    "gun": "flare pistol",
    "at": "the harbour",
    "secret": false,
-   "foes_before": 0.045
+   "foes_before": 0.037
   },
   {
    "gun": "sawed-off",
@@ -144,13 +144,13 @@
    "gun": "tommy gun",
    "at": "the arcade",
    "secret": false,
-   "foes_before": 0.143
+   "foes_before": 0.128
   },
   {
    "gun": "napalm launcher",
    "at": "the sewers",
    "secret": true,
-   "foes_before": 0.631
+   "foes_before": 0.636
   },
   {
    "gun": "tesla cannon",
@@ -231,7 +231,7 @@
     "butcher": 2,
     "gill beast": 1,
     "hell hound": 1,
-    "shotgun cultist": 3
+    "shotgun cultist": 4
    },
    "waiting": 4,
    "supplies": {
@@ -337,8 +337,7 @@
   },
   "the avenue": {
    "foes": {
-    "TNT cultist": 1,
-    "shotgun cultist": 3,
+    "shotgun cultist": 2,
     "tommy cultist": 1
    },
    "waiting": 0,
@@ -389,13 +388,13 @@
   "the quay and the market square": {
    "foes": {
     "axe zombie": 3,
-    "shotgun cultist": 1,
+    "shotgun cultist": 2,
     "tommy cultist": 1
    },
    "waiting": 0,
    "supplies": {
     "4 shells": 5,
-    "box of shells": 1,
+    "box of shells": 2,
     "sawed-off": 1
    },
    "secret": {}
@@ -484,7 +483,7 @@
   "the west streets": {
    "foes": {
     "axe zombie": 1,
-    "shotgun cultist": 3,
+    "shotgun cultist": 2,
     "tommy cultist": 4
    },
    "waiting": 0,
@@ -497,6 +496,7 @@
   },
   "theatre row": {
    "foes": {
+    "TNT cultist": 1,
     "axe zombie": 5,
     "hell hound": 1,
     "shotgun cultist": 5

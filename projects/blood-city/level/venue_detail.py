@@ -34,7 +34,7 @@ WALL_DETAILS = (
     ("theatre", "parlor_range", "west", 0.62, 761),
     ("theatre", "pawn_shop", "north", 0.75, 269),
     ("church", "nave", "west", 0.62, 167, {"preferred_only": True}),
-    ("church", "narthex", "north", 0.45, 617),
+    ("church", "narthex", "north", 0.5, 617, {"x_repeat": 46, "y_repeat": 46}),     # between the two lights, which are 640 apart
     ("church", "crypt_stair", "east", 0.35, 789),
     ("station", "cellar", "east", 0.62, 52),
     ("station", "hall", "north", 0.36, 929),
@@ -121,13 +121,13 @@ def _solid_face(layout: Any, room: Any, preferred: str, *, preferred_only=False)
 
 def _mount(layout: Any, placement_id: str, room: Any, preferred: str,
            t: float, tile: int, *, emits_light: bool = False,
-           light_intensity: float | None = None, preferred_only=False) -> bool:
+           light_intensity: float | None = None, preferred_only=False, **fields) -> bool:
     face = _solid_face(layout, room, preferred, preferred_only=preferred_only)
     if face is None:
         return False
     return props.mount_on_wall(layout, placement_id, room, face, tile, t=t,
                                emits_light=emits_light,
-                               light_intensity=light_intensity) is not None
+                               light_intensity=light_intensity, **fields) is not None
 
 
 def apply(layout: Any, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:

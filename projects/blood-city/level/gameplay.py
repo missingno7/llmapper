@@ -141,16 +141,16 @@ SUPPLIES = (
 #: --- who walks the streets --------------------------------------------------------
 #: (type, x, y, floor, angle, the skills it is not on: a bit a skill, from the easiest)
 PATROL = (
-    (202, 35.4, 36.0, STREET, 512, 0), (201, 37.6, 27.0, STREET, 512, 3), (202, 33.6, 14.0, STREET, 512, 0),
+    (202, 35.4, 36.0, STREET, 512, 0), (201, 36.4, 27.0, STREET, 512, 3), (202, 34.4, 14.0, STREET, 512, 0),
     (203, 24.0, 38.6, STREET, 0, 0), (203, 30.6, 38.4, STREET, 1024, 1),
-    (202, 10.0, 37.4, STREET, 0, 0), (201, 16.6, 33.0, STREET, 512, 3),
+    (202, 6.0, 38.4, STREET, 0, 0), (201, 16.6, 33.0, STREET, 512, 3),
     (202, 10.0, 17.0, STREET, 0, 0), (201, 24.0, 16.6, STREET, 0, 0), (211, 14.0, 2.2, STREET, 512, 3),
     (211, 44.0, 2.0, STREET, 512, 0), (202, 55.4, 24.0, STREET, 1536, 0), (203, 56.4, 34.0, STREET, 1536, 0),
-    (248, 34.6, 1.8, STREET, 512, 3), (202, 36.8, 2.4, STREET, 512, 0),
+    (248, 31.0, 2.0, STREET, 512, 3), (202, 41.0, 2.2, STREET, 512, 0),
     (205, 22.6, 28.0, STREET, 0, 0), (205, 24.8, 33.0, STREET, 512, 0), (205, 21.4, 24.6, STREET, 512, 1),
-    (201, 14.1, 33.6, -32768, 0, 0), (202, 12.2, 34.1, -32768, 512, 0), (201, 12.0, 26.6, -32768, 0, 3), (203, 5.6, 33.4, -32768, 0, 0),
+    (201, 14.1, 33.6, -32768, 0, 0), (202, 12.4, 30.6, -32768, 512, 0), (201, 12.0, 26.6, -32768, 0, 3), (203, 5.6, 33.4, -32768, 0, 0),
     (248, 11.0, 31.2, -32768, 0, 7),
-    (203, 20.0, 51.2, STREET, 0, 0), (202, 47.0, 51.0, STREET, 1024, 0), (201, 55.8, 45.0, STREET, 1536, 3),
+    (203, 16.4, 40.2, STREET, 512, 0), (202, 47.0, 51.0, STREET, 1024, 0), (201, 55.8, 45.0, STREET, 1536, 3),
     # the meat market: the butcher behind his counter, the clerk and his help in the gallery, two shut in with the meat
     (204, 10.0, 41.3, STREET, 512, 0), (202, 12.4, 48.7, STREET - 24576, 1536, 0), (201, 10.4, 48.8, STREET - 24576, 1536, 3),
     (204, 4.9, 45.2, STREET, 0, 0), (204, 4.6, 46.4, STREET, 0, 3),
@@ -254,7 +254,12 @@ def place(layout) -> dict:
     report = {"keys": _keys(layout), "lock": _lock(layout), "last": _last_fight(layout), "supplies": _supplies(layout)}
     report["patrol"] = _patrol(layout) + _patrol(layout, SEWERS, "sewer")
     report["wakes"] = _wakes(layout)
+    import difficulty
+    import players
+    began = layout.player_start
+    report["difficulty"] = difficulty.apply(layout, (began.x, began.y))
     report["carried"] = _carried(layout)
+    report["players"] = players.place(layout, (began.x, began.y), began.region_id, began.angle)
     if _REFUSED:
         raise GameplayError("; ".join(_REFUSED))
     return report

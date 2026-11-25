@@ -325,7 +325,11 @@ def lay(city, data, widths, district_bounds, streets, district_of, *,
     #: Parts that are holes inside one street: joined on all four edges.
     interior: set[tuple[int, int, int, int]] = set()
 
+    import fair
     for run in runs:
+        if (run.name, run.district) == fair.NO_ROAD:
+            pavement.append({"run": run.name, "width": run.width, "why": "the fair stands on it"})
+            continue
         road = carriageway(run)
         if road is None:
             pavement.append({"run": run.name, "width": run.width,

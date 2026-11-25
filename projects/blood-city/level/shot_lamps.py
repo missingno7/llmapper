@@ -37,7 +37,7 @@ CIRCUITS = {"market_row_0": ("market_00", "market_10", "market_20"), "market_row
             "market_row_2": ("market_02", "market_12", "market_22"), "pawn": ("pawn_0", "pawn_1")}
 #: everything of these two tiles is shot out, but what is somebody's doing or is under water
 LEAVE = ("phantom", "ghost", "prop", "underwater", "boat_lantern", "newel_light", "clerk_lamp", "mortar", "buffer", "drowned",
-         "front_lamp", "ship:")                              # the portico's light nothing that is walked on; the Demeter's is drawn by hand
+         "front_lamp", "ship:", "fair:carousel")                              # the portico's light nothing that is walked on; the Demeter's is drawn by hand
 
 #: too high to be a lamp one shoots at, or no more than a spark
 LEAST_SIZE, MOST_UP = 30, 60000

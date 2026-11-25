@@ -421,8 +421,9 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertEqual((health["problems"], health["notes"]), ([], []))
         self.assertIn(health["host"], swept_state.hosts(self.disk))
         rigid = [i for i in swept_state.moving_sectors(self.disk)
-                 if self.sectors[i]["type"] in (616, 617) and i not in body.members]
-        self.assertEqual(len(rigid), 7)                # (the seventh: the underpass's pram)
+                 if self.sectors[i]["type"] in (616, 617) and i not in body.members
+                 and not (self.sectors[i]["type"] == 617 and self.sectors[i]["ceiling_stat"] & 1)]     # (the carousel: tests/test_fair.py)
+        self.assertEqual(len(rigid), 13)               # (the seventh: the underpass's pram; six slabs in the fair's gallery)
         for mover in rigid:
             frames = blood_sweep(self.disk, mover)
             self.assertIsNone(swept_state.escape(self.disk, mover, frames))
@@ -437,7 +438,7 @@ class ThirdWalkTests(unittest.TestCase):
     def test_the_stage_doors_are_thin_wood_lit_alike(self):
         #: the owner: "they are metal and quite thick"; and a leaf is drawn
         #: open but starts shut, so no face may keep the light of one pose
-        leaves = [i for i, s in enumerate(self.sectors) if s["type"] == 617]
+        leaves = [i for i, s in enumerate(self.sectors) if s["type"] == 617 and not s["ceiling_stat"] & 1]     # (the carousel is under the sky)
         self.assertEqual(len(leaves), 4)      # the stage doors and the front
         for leaf in leaves:
             s = self.sectors[leaf]

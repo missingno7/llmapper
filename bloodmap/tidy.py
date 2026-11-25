@@ -319,5 +319,8 @@ def merge_alike(disk: Any, first_piece: int, *, step: int = PIECE_STEP) -> dict[
         f = record_fields(sprite)
         if 0 <= int(f["sector"]) < len(final):
             f["sector"] = final[int(f["sector"])]
+        # a marker's owner is the sector it moves: `dbLoadMap` finds it by that number
+        if int(f["status"]) == 10 and int(f["type"]) in (3, 4, 5, 8) and 0 <= int(f["owner"]) < len(final):
+            f["owner"] = final[int(f["owner"])]
     disk.header["start_sector"] = final[int(disk.header["start_sector"])]
     return {"sectors_merged": len(dead), "walls_before": count, "walls": len(order), "into": final}

@@ -633,6 +633,11 @@ def glaze(layout) -> dict:
         # span table, masonry at this height)
         lancet(f"tower_{face}", region_id, a1, a2, height=BELFRY_HEIGHT,
                on_step=face.startswith("south"))
+    # A torch by the tower's door, on the pier the avenue's side of it: blind readers of the street could not find the way in.
+    import props
+    _tx0, _ty0, tx1, ty1 = TOWER
+    layout.place_on_wall("church:door_torch", _FACES["tower"]["south_e"][0], a1=(TOWER_PORCH[3], ty1), a2=(tx1, ty1), t=0.5,
+                         height_player_heights=1.55, offset_player_widths=0.06, emits_light=True, **props.fields(props.FLAME))
     return {"hung": hung, "refused": refused}
 
 

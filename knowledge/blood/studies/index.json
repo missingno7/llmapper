@@ -279,6 +279,18 @@
     "E1M4:248!"
    ],
    "date": "2026-11-25"
+  },
+  "fairground": {
+   "want": "a travelling fair on a town square: stalls with counters and canvas, a carousel, a ticket booth",
+   "seeds": [
+    "E1M4:321!",
+    "E1M4:69!",
+    "E1M4:210",
+    "E1M8:4",
+    "DWE1M9:29",
+    "DWE3M2:675"
+   ],
+   "date": "2026-11-25"
   }
  }
 }

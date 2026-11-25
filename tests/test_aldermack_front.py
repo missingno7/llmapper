@@ -48,7 +48,7 @@ class AldermackFrontTests(unittest.TestCase):
         #: other? You already had door like this before ... and also they are
         #: slightly cropped, these previous two wing doors you had were what
         #: I would expect" -- so both pairs are one drawing
-        leaves = [s for s in self.sectors if s["type"] == 617]
+        leaves = [s for s in self.sectors if s["type"] == 617 and abs(s["floor_z"]) < 40000 and s["ceiling_stat"] & 1 == 0]   # (no carousel)
         self.assertEqual(len(leaves), 4)
         for s in leaves:
             walls = [self.walls[w] for w in range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"])]

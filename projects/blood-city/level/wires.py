@@ -134,6 +134,8 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("sewer:stash-bars", "the valve wheel in the riser by the junction lifts the bars off the stash"),
     ("sewer:shrine-hands",
      "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine"),
+    ("fair:hits", "each smiling face and each bullseye hit at the shooting gallery is counted"),
+    ("fair:prize", "the last of them rings the bell and brings the prize up through the gallery's counter"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and
@@ -143,6 +145,8 @@ ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
      "pushing the emblem at the forward end of the carriage, whose door the "
      "signal box's lever opens, ends the level",
      "kChannelLevelExitNormal"),
+    ("fair:carousel", "when the level starts the fair's carousel turns, and goes on turning", "kChannelLevelStart"),
+    ("fair:targets", "when the level starts the shooting gallery's ducks and faces run to and fro, and go on", "kChannelLevelStart"),
 )
 
 _NAMES = [name for name, _says in PLAN]

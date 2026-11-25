@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/fairground/E1M4_321/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/fairground/E1M4_321",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 17917,
+   "y": 31229,
+   "z": 17504,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 10677,
+   "y": 27971,
+   "z": 17504,
+   "angle": 15,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 14659,
+   "y": 23989,
+   "z": 17504,
+   "angle": 497,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 14659,
+   "y": 32315,
+   "z": 17504,
+   "angle": 1551,
+   "horiz": 100,
+   "sector": 321,
+   "screenshot": true
+  }
+ ]
+}

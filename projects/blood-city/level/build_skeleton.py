@@ -980,7 +980,8 @@ def build():
         ("well_square", oldcross_st, "old_crossing",
          int((city_plan.X_STREET_W - 0.5) * PU), int((city_plan.Y_R2 + 6) * PU)),
         ("plaza_east", market_st, "market_slip",
-         int((city_plan.X_C - 2) * PU), int((city_plan.Y_R3 + 5) * PU)),
+         # (two and a half units north of the arcade's door: at its height the post stood in the middle of it)
+         int((city_plan.X_C - 2) * PU), int((city_plan.Y_R3 + 2.5) * PU)),
         ("quay_gate", market_st, "market_slip",
          int((city_plan.X_AVENUE + 1) * PU), int((city_plan.Y_QUAY + 2) * PU)),
     ]
@@ -1106,8 +1107,9 @@ def build():
     # ---- start: the first circuit leg, on the quay ------------------------
     start = data["circuit"][0]["at"]
     mb = DISTRICT_BOUNDS["market_slip"]
+    # (a unit and a half east of the circuit's first point: the quay gate's lamp stood square in the first frame)
     city.set_start(market_st,
-                   local=((start[0] * PU - mb[0]) / (mb[2] - mb[0]),
+                   local=(((start[0] + 1.5) * PU - mb[0]) / (mb[2] - mb[0]),
                           (start[1] * PU - mb[1]) / (mb[3] - mb[1])),
                    angle=1536)
     ctx["street_regions"] = {room.region_id: name
@@ -1355,6 +1357,8 @@ def main() -> int:
     print("streets that go on:", ctx["manifest"]["street_ends"])
     import bill_column
     print("bill column:", len(bill_column.build(layout)), "regions")
+    import fair
+    print("the fair:", fair.build(layout))
     import writings
     print("written on the walls:", writings.build(layout))
     import underwater
@@ -1755,6 +1759,7 @@ def main() -> int:
 
     import dressing
     print("dressing:", dressing.dress(layout))
+    print("the fair's dressing:", fair.dress(layout))
     # LAST of what is placed: it looks for free floor among all the rest
     import gameplay
     ctx["manifest"]["gameplay"] = gameplay.place(layout)
@@ -1773,6 +1778,7 @@ def main() -> int:
     house = ctx["aldermack_house"]
     cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
     import cabal_rite
+    cloth_reveals |= fair.movers()
     cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
     cloth_reveals |= frozenset(_station.AVENUE_FRONT.get("gates", ()))   # one gate across two half arches: its own frame
     door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals,
@@ -2118,6 +2124,7 @@ def main() -> int:
     print("the arcade's fronts put back:", arcade.keep(compiled.level, compiled))
     import booking_hall as _booking_hall
     print("the booking hall's put back:", _booking_hall.keep(compiled.level, compiled))
+    print("the fair's boards put back:", fair.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

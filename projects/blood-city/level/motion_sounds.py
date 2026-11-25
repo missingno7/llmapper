@@ -46,6 +46,7 @@ WIRE_PROFILES = {
     "underpass:pram": "pram",
     "sewer:stash-bars": "bars",
     "sewer:shrine-hands": "stone_door",
+    "fair:prize": "wood_z_door",
 }
 #: where one wire moves two things, the one that does not sound like the wire
 REGION_PROFILES = {":hand_button": "hand_button"}
@@ -68,7 +69,8 @@ OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "bars": (105, 150, 105, 150
        "press_up_is_on": (0, 0, 302, 309)}
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
-SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
+#: (the carousel's voice is its calliope, an ambience on its neck: E1M4's nine sectors have no 709 either)
+SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side", "/fair/carousel:", "/fair/gallery:target_")
 CARRIED_PROFILES = {"rail_shuttle", "phantom_train", "pram"}
 
 
