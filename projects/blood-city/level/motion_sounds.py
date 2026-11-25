@@ -70,7 +70,7 @@ OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "bars": (105, 150, 105, 150
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
 #: (the carousel's voice is its calliope, an ambience on its neck: E1M4's nine sectors have no 709 either)
-SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side", "/fair/carousel:", "/fair/gallery:target_", "/pumps:rod_")
+SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side", "/fair/carousel:", "/fair/gallery:target_", "/pumps:rod_", "/pump_room:rod_")
 CARRIED_PROFILES = {"rail_shuttle", "phantom_train", "pram"}
 
 

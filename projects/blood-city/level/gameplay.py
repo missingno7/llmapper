@@ -111,7 +111,7 @@ SUPPLIES = (
     ((107,), 46.6, 5.2, SEWER, "the silt trap, at the stair's foot"),
     ((67, 67, 67), 41.0, 7.75, SEWER, "the north channel"),
     ((69, 69, 69), 33.75, 26.2, SEWER, "the west leg"),
-    ((67, 67), 44.0, 13.6, SEWER, "the junction"),
+    ((67, 67), 40.6, 13.9, SEWER, "the junction"),
     ((79,), 55.8, 19.0, SEWER, "the east annex"),
     ((67, 67, 67), 18.0, 18.75, SEWER, "Graves Brook"),
     ((67, 67), 38.0, 33.8, SEWER, "the south channel"),

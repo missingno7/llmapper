@@ -123,8 +123,10 @@ POSE_SETS = {
                      "the bricking gang's recall station", 120832),
     },
     "trunk": {
-        "a_junction_s": (40.0, 9.6, 43.0, 15.0, LEVEL, "the junction from its north", 61440),
-        "b_junction_n": (43.6, 14.6, 40.0, 9.0, LEVEL, "the junction from its south-east", 61440),
+        "a_junction_s": (39.8, 12.0, 44.0, 12.0, LEVEL, "the junction's crossing from the adit", 61440),
+        "b_junction_n": (40.0, 14.6, 42.25, 12.0, LEVEL, "the crossing from the riser", 61440),
+        "b2_drum_up": (40.6, 12.0, 42.25, 12.0, UP + 60, "up into the drum", 61440),
+        "b3_round": (40.0, 9.5, 43.6, 9.5, LEVEL, "round the crossing", 61440),
         "c_riser": (40.0, 15.4, 40.0, 22.0, LEVEL, "down the riser to the trunk", 61440),
         "d_trunk_e": (39.8, 21.5, 50.0, 21.5, LEVEL, "along the trunk", 61440),
         "e_trunk_w": (49.4, 21.5, 38.0, 21.5, LEVEL, "back along it to the stash", 61440),

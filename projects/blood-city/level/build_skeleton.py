@@ -1365,6 +1365,8 @@ def main() -> int:
     print("the pumps:", pump_engine.build(layout))
     import writings
     print("written on the walls:", writings.build(layout))
+    import sewer_rooms
+    print("the sewer's oldest rooms:", sewer_rooms.build(layout))
     import underwater
     print("drowned places:", underwater.build(layout))
     # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
@@ -1766,6 +1768,7 @@ def main() -> int:
     print("the fair's dressing:", fair.dress(layout))
     print("the gallery's dressing:", gallery.dress(layout))
     print("the pumps' dressing:", pump_engine.dress(layout))
+    print("the sewer rooms' dressing:", sewer_rooms.dress(layout))
     # LAST of what is placed: it looks for free floor among all the rest
     import gameplay
     ctx["manifest"]["gameplay"] = gameplay.place(layout)
@@ -1784,7 +1787,7 @@ def main() -> int:
     house = ctx["aldermack_house"]
     cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
     import cabal_rite
-    cloth_reveals |= fair.movers() | pump_engine.movers()
+    cloth_reveals |= fair.movers() | pump_engine.movers() | sewer_rooms.movers()
     cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
     cloth_reveals |= frozenset(_station.AVENUE_FRONT.get("gates", ()))   # one gate across two half arches: its own frame
     door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals,
@@ -1859,6 +1862,8 @@ def main() -> int:
             layout, shade=GROUND_SUN[0], sunlit=GROUND_SUN[1])
         print("ground shadows:", {k: v for k, v in ctx["manifest"]["ground_shadows"].items()
                                    if k not in ("skipped", "shadowed")})
+    import refit
+    print("moved to the cell it stands in:", refit.settle(layout))
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
     # place, so the reference stays current.

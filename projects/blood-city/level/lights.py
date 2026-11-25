@@ -36,7 +36,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("pump_station/tank_0", Rule("none", 0, 0, cut=False, shade_bias=(-16, -8, -8))),
     ("trunk/well_", Rule("none", 0, 0, cut=False)),
     # the loading shutter sweeps over it, in plan, two levels up: a cut under the sweep reads as one in its way
-    ("trunk/duct_cistern", Rule("ceiling", 796, 7168, 7168, cut=False)),
+    # the sewer's oldest rooms, refitted: their own lamps (`sewer_rooms.LAMPS`), and a cell to a light already
+    *((f"sewer/{place}", Rule("none", 0, 0, cut=False)) for place in (
+        "trunk/main_duct", "trunk/duct_cistern", "trunk/duct_junction", "trunk/junction", "trunk/cistern", "necks/west_adit",
+        "chambers/pump_room", "chambers/east_annex", "chambers/silt_trap")),
     ("chambers/flooded_", Rule("none", 0, 0, cut=False)),
     # Graves Brook is older than the ring: lamps hung on chains far apart,
     # not the ring's tubes (`references/sewer-design.md`: "almost none")
