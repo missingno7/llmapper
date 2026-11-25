@@ -173,7 +173,8 @@ class CityStatusTests(unittest.TestCase):
         for row in wires["wires"]:
             engine_sends = row["engine"] is not None and row["channel"] in ENGINE_SENDS
             self.assertEqual(bool(row["senders"]), not engine_sends, row["name"])
-            self.assertEqual(bool(row["answers"]), engine_sends or row["engine"] is None,
+            #: (a shot lamp's answer is the floor it lights: tests/test_shot_lamps.py)
+            self.assertEqual(bool(row["answers"] or row.get("later")), engine_sends or row["engine"] is None,
                              row["name"])
 
     def test_the_city_ends_at_a_switch_in_the_station_tunnel(self):

@@ -337,8 +337,11 @@ def sheet(disk) -> dict[str, Any]:
         if not spec.get("study")
         or _study.notes_written(_study.STUDIES / spec["study"]))
     channels = wired(disk)
+    import wires
+    # (a lamp that is shot out: what answers is the floor it lights, and the light stage has not run yet)
+    later = {made.channel for made in wires.circuit().wires if made.later}
     report["dangling_channels"] = sorted(
         channel for channel, ends in channels.items()
-        if not ends["tx_id"] or not ends["rx_id"])
+        if (not ends["tx_id"] or not ends["rx_id"]) and channel not in later)
     report["engine_channels_wired"] = engine_channels_wired(disk)
     return report

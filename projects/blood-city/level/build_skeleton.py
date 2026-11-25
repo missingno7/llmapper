@@ -1817,10 +1817,15 @@ def main() -> int:
     from bloodmap import breakables, light_kinds
     import underpass as _underpass_tubes
     _underpass_tubes.shoot_out(layout)
+    import shot_lamps
+    shot_lamps.hang(layout)
     ctx["manifest"]["breakables"] = breakables.apply(layout.placements, leave=frozenset(light_kinds.KINDS))
     _faces = [p for p in layout.placements if p.picnum in breakables.FACES and not p.type and not p.behavior]
     for _k, _face in enumerate(_faces):
         breakables.smash(layout, _face, _wires.shot(_k, _face.placement_id))
+    ctx["manifest"]["shot_lamps"] = shot_lamps.declare(layout, len(_faces))
+    print("lamps that are shot out:", len(ctx["manifest"]["shot_lamps"]), "to channel",
+          max(ctx["manifest"]["shot_lamps"].values()), "of 1,023")
     print("breakables:", sum(ctx["manifest"]["breakables"].values()), "things of", len(ctx["manifest"]["breakables"]), "tiles;",
           len(_faces), "clocks and mirrors")
 
@@ -2404,7 +2409,7 @@ def main() -> int:
         _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
                                     lamp_scale=_lights.lamp_scale, room_key=_lights.room_key,
                                     groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled)
-                                    + _underpass.light_groups(compiled))
+                                    + _underpass.light_groups(compiled) + shot_lamps.light_groups(compiled))
         print("lamps that switch:", _lit["switched"])
         print("floors under fangs evened:", _cabal.even(disk, compiled))
         print("gallows stair evened:", gallows.even(disk, compiled))

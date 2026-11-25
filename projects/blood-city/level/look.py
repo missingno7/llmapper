@@ -307,6 +307,15 @@ POSE_SETS = {
     },
     # the owner's list of 2026-11-25, after the fence: doors' sizes, writings, the arrow
     # the two links of `references/sewers-outside.md`
+    "rails": {
+        "a_below": (35.5, -10.6, 34.0, -13.0, UP, "the newel and the rail from the hall"),
+        "b_above": (35.4, -14.4, 33.6, -13.0, LEVEL, "the same from the waiting hall", -12288),
+        "c_along": (31.0, -13.6, 34.2, -13.0, LEVEL, "along the rail", -12288),
+        "d_east": (35.6, -14.4, 37.4, -13.0, LEVEL, "the east one", -12288),
+        "e_top": (33.2, -13.7, 33.9, -13.0, DOWN, "down on the newel", -20000),
+        "f_market": (13.0, 45.5, 8.0, 44.0, UP, "the market hall's panels"),
+        "g_pawn": (29.6, 5.6, 27.4, 4.2, UP, "the pawn shop's"),
+    },
     "links": {
         "a_ramp_hall": (51.6, 4.5, 47.0, 4.5, LEVEL, "down the ramp from the station's floor"),
         "a_ramp_hall_down": (51.0, 4.5, 47.5, 4.5, DOWN, "the same, at its head"),
@@ -1229,7 +1238,10 @@ def main(argv=None) -> int:
     # build, and a frame whose map is gone is not evidence of anything.
     import shutil
     shutil.copyfile(map_path, out_dir / "observed.MAP")
-    print(f"{len(views)} frames -> {out_dir}")
+    drawn = [v for v in views if (out_dir / "frames" / f"{v.view_id}.png").exists()]
+    print(f"{len(drawn)} frames -> {out_dir}")
+    if len(drawn) < len(views):
+        print("  NOT drawn:", ", ".join(v.view_id for v in views if v not in drawn))
     for view in views:
         print(f"  {view.view_id}: sector {view.sector} z {view.z} -- {view.note}")
     return 0

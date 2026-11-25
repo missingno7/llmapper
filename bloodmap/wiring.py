@@ -332,6 +332,8 @@ class Wire:
         self.channel, self.engine = channel, engine
         self.senders: list[dict[str, Any]] = []
         self.answers: list[dict[str, Any]] = []
+        #: what will answer once the layout is a map, when nothing in the layout does
+        self.later: str | None = None
 
     def when(self, ref: tuple, cause: str, *, command: int = CMD_TOGGLE,
              on: bool = True, off: bool = False, once: bool = False,
@@ -375,6 +377,11 @@ class Wire:
         """This object answers the wire; what it does is its own fields' business."""
         self.answers.append({"ref": ref,
                              "fields": {name: int(value) for name, value in fields.items()}})
+        return self
+
+    def answered_by(self, what: str) -> "Wire":
+        """What answers is made after the layout is compiled (a lamp's light, which the light stage traces); say what."""
+        self.later = str(what)
         return self
 
 
@@ -514,7 +521,7 @@ class Circuit:
         for wire in self.wires:
             if wire.engine is None and not wire.senders:
                 raise WireError(f"wire {wire.name!r} has nothing that sends")
-            if wire.engine is None and not wire.answers:
+            if wire.engine is None and not wire.answers and not wire.later:
                 raise WireError(f"wire {wire.name!r} has nothing that answers")
             for end, slot, rows in (("sends", "tx_id", wire.senders),
                                     ("listens", "rx_id", wire.answers)):
@@ -644,7 +651,8 @@ class Circuit:
                     faults.append(f"the chain from {ident} does not reach {missed}")
             report.append({"name": wire.name, "says": wire.says, "channel": wire.channel,
                            "engine": wire.engine, "senders": sorted(set(senders)),
-                           "answers": sorted(set(answers)), "faults": faults})
+                           "answers": sorted(set(answers)), "faults": faults,
+                           **({"later": wire.later} if wire.later else {})})
         for channel, row in shared.items():
             # and what hears the broadcast only to tell the engine something
             # (the secret total: level start in, channel 1 out) is the

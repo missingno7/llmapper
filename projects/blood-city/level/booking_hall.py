@@ -50,7 +50,7 @@ GLASS = (33.5, -10.75, 37.5, -5.75)
 SPRING, CROWN, SKY_Z, HALL_ROOF = GRADE - 81920, GRADE - 110592, GRADE - 122880, TOP - 50176
 STAIR, TREADS, TREAD = (34.0, 37.0), 4, 0.4
 #: (the owner, 2026-11-25: "On train station I noticed picnum 588 railing ending mid air, we should add some wooden sector there")
-NEWEL, NEWEL_RISE = 0.25, 11264
+NEWEL, NEWEL_RISE = 0.25, 13824         # a fifth over the rail (10,832), which dies into it: level with it, the end was drawn over its top
 RISER = UP // (TREADS + 1)
 #: either side of the middle aisle: seat, back, seat
 BENCHES = {"w": (33.9, 34.3, 34.45, 34.85), "e": (36.15, 36.55, 36.7, 37.1)}
@@ -107,9 +107,9 @@ def plan() -> list:
     for k in range(1, TREADS + 1):
         south = EDGE + TREAD * (TREADS - k + 1)
         place.add(f"stair_{k}", _rect(STAIR[0], south - TREAD, STAIR[1], south))
-    # a newel each side of the flight: the rail along the edge over it ends in something
+    # a newel each side of the flight, astride the edge the rail stands on: the rail meets the middle of its face
     for k, x in enumerate((STAIR[0] - NEWEL, STAIR[1])):
-        place.add(f"newel_{k}", _rect(x, EDGE, x + NEWEL, EDGE + NEWEL))
+        place.add(f"newel_{k}", _rect(x, EDGE - NEWEL / 2, x + NEWEL, EDGE + NEWEL / 2))
     place.add("glass", _rect(*GLASS))
     for side, (a, b, c, d) in BENCHES.items():
         place.add(f"seat_{side}1", _rect(a, BENCH_Y[0], b, BENCH_Y[1]))
@@ -222,8 +222,26 @@ def _face(seen: str, beyond: str | None, a, b) -> dict:
     return {}
 
 
+def _notch(layout, waiting_hall: str) -> None:
+    """The waiting hall's edge goes round the half of each newel that stands in it."""
+    region, edge = layout.regions[waiting_hall], _q(EDGE)
+    back = edge - _q(NEWEL / 2)
+    spans = sorted((_q(x), _q(x + NEWEL)) for x in (STAIR[0] - NEWEL, STAIR[1]))
+    outer = []
+    for (ax, ay), (bx, by) in zip(region.outer, (*region.outer[1:], region.outer[0])):
+        outer.append((ax, ay))
+        if ay != edge or by != edge:
+            continue
+        here = [s for s in spans if min(ax, bx) < s[0] and s[1] < max(ax, bx)]
+        for low, high in here if ax < bx else reversed(here):
+            a, b = (low, high) if ax < bx else (high, low)
+            outer += [(a, edge), (a, back), (b, back), (b, edge)]
+    region.outer = tuple(outer)
+
+
 def build(layout, gates: list[str], waiting_hall: str) -> dict[str, str]:
     """Lay the hall between the arches' gates and the waiting hall, and the waiting room off that."""
+    _notch(layout, waiting_hall)
     cells = plan()
     by_name = {c.name: c for c in cells}
     sky = FACADES["theatre_row"].ceiling
@@ -273,9 +291,10 @@ def build(layout, gates: list[str], waiting_hall: str) -> dict[str, str]:
                     layout.add_connection(f"connection:booking_gate_{k}_{name}", gate, regions[name], a1=(x0, _q(SOUTH)),
                                           a2=(x1, _q(SOUTH)), min_width=1, min_opening=0, gated=True)
     for name, a, b in A.rim(cells):
-        if a[1] == b[1] == _q(EDGE) or (_kind(name) == "wdoor" and a[0] == b[0] == _q(EAST)):
-            layout.add_connection(f"connection:booking_{name}_{a[0]}", waiting_hall, regions[name], a1=b, a2=a, min_width=1, min_opening=0)
-        if _kind(name) == "newel" and a[1] == b[1] == _q(EDGE):
+        post = _kind(name) == "newel" and max(a[1], b[1]) <= _q(EDGE)
+        if a[1] == b[1] == _q(EDGE) or post or (_kind(name) == "wdoor" and a[0] == b[0] == _q(EAST)):
+            layout.add_connection(f"connection:booking_{name}_{a[0]}_{a[1]}", waiting_hall, regions[name], a1=b, a2=a, min_width=1, min_opening=0)
+        if post:
             layout.paint_wall(waiting_hall, b, a, picnum=PLANK)
     _HALL.append(waiting_hall)
     _furnish(layout, regions)
@@ -368,10 +387,13 @@ def _furnish(layout, regions) -> None:
     for k, (tile, y) in enumerate(((440, -11.6), (981, -10.75))):
         bill(f"hall_bill_{k}", "aisle_w", (WEST, y + 0.5), (WEST, y - 0.5), tile, 44, 1.25)
     # the rail along the waiting hall's edge, either side of the flight (588, solid and seen from both sides)
-    for side, x0, x1 in (("w", WEST, STAIR[0]), ("e", STAIR[1], EAST)):
+    # (the owner, of the first newels: "It should be like exactly ending in the middle of it. It is wrong on both sides". They
+    # stood wholly south of the edge, and the rail went by behind them to their far corner. It meets the middle of each one's face
+    # and goes no further: what of a sprite is inside a post the software renderer draws on the post.)
+    for side, x0, x1 in (("w", WEST, STAIR[0] - NEWEL), ("e", STAIR[1] + NEWEL, EAST)):
         for k in range(2):
             x = x0 + (x1 - x0) * (k + 0.5) / 2
-            layout.add_sprite(f"station:hall_rail_{side}{k}", _HALL[-1], x=_q(x), y=_q(EDGE) - 24, z=TOP - 5200, picnum=RAIL,
+            layout.add_sprite(f"station:hall_rail_{side}{k}", _HALL[-1], x=_q(x), y=_q(EDGE) - 1, z=TOP - 5200, picnum=RAIL,
                               x_repeat=round((x1 - x0) / 2 * PU / 32), y_repeat=44, angle=512, cstat=16 | 128 | 1, shade=8)
     for k, (x, y, up) in enumerate(LAMPS):
         _w, tall, _x, offset = art[LAMP]

@@ -101,6 +101,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("gravesend_station/signal_box", Rule("ceiling", 795, 2560, 2560)),
     ("gravesend_station", Rule("panel", 2290, 3072, 3072)),
     ("market_hall/cold_store", Rule("ceiling", 796, 4096, 4096)),
+    ("market_hall/supermarket", Rule("none", 0, 0)),      # its panels are shot out (`shot_lamps`)
+    ("market_hall/nook", Rule("none", 0, 0)),
     ("market_hall", Rule("panel", 2290, 3072, 3072)),
     ("gravesend_arcade/hall:rim", Rule("none", 0, 0, shade_bias=(-10, 0, -8))),
     ("gravesend_arcade/hall:water", Rule("none", 0, 0, shade_bias=(-10, 0, -8))),
@@ -108,7 +110,7 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("gravesend_arcade/hall", Rule("none", 0, 0)),        # the moon through its lantern, its shops' own lamps (`arcade.LAMPS`)
     ("gravesend_arcade", Rule("panel", 2290, 3072, 3072)),
     ("station_arch", Rule("ceiling", 795, 2560, 2560)),
-    ("pawn_shop", Rule("panel", 2290, 3072, 3072)),
+    ("pawn_shop", Rule("none", 0, 0)),                    # `shot_lamps`
     ("canteen", Rule("ceiling", 795, 2560, 2560)),
     ("aldermack/backstage", Rule("none", 0, 0)),
     ("aldermack/dressing", Rule("none", 0, 0)),

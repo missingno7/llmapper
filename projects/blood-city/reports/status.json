@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "9ccf0dd3019b8f8eee7c8c1b1f465b18a4ffc972f0eab446be7c92673335607c",
-  "map_sha256": "2f1ba6b7486d8c16544adab91566664f578e3d0515c40c9734bc9eaa09c59b2d",
+  "manifest_sha256": "483011bbe9d2da845edeabfd4e1a9f88631882fea57ec0a74f26fcf1f56cf908",
+  "map_sha256": "dac3cc81b294dc409e0cef121edb629dfaf7a7c82c27b8ead65fba185b835e1b",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1682,
-  "walls": 14292,
-  "sprites": 2899,
+  "walls": 14298,
+  "sprites": 2910,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -17,8 +17,8 @@
   },
   "headroom": {
    "sectors": 0.589,
-   "walls": 0.128,
-   "sprites": 0.823
+   "walls": 0.127,
+   "sprites": 0.822
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
@@ -161,32 +161,32 @@
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1827"
+   "at": "projects/blood-city/level/build_skeleton.py:1832"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1850"
+   "at": "projects/blood-city/level/build_skeleton.py:1855"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2007"
+   "at": "projects/blood-city/level/build_skeleton.py:2012"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2084"
+   "at": "projects/blood-city/level/build_skeleton.py:2089"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2155"
+   "at": "projects/blood-city/level/build_skeleton.py:2160"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2354"
+   "at": "projects/blood-city/level/build_skeleton.py:2359"
   }
  ],
  "finish": {
@@ -477,7 +477,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 794"
+     "destroy sprite 323 (channel 186)"
     ],
     "sectors": 3,
     "first_sector": 794
@@ -565,7 +565,7 @@
    {
     "round": 2,
     "opened_by": [
-     "push wall 7404 (channel 151)"
+     "push wall 7409 (channel 151)"
     ],
     "sectors": 2,
     "first_sector": 915
@@ -1816,6 +1816,229 @@
    "then": [
     "placement market:super_clock:glass"
    ]
+  },
+  {
+   "name": "shot:lamp:market_row_0",
+   "says": "shooting lamp:market_row_0 throws its glass, once",
+   "channel": 177,
+   "engine": null,
+   "when": [
+    "vector on placement lamp:market_00",
+    "vector on placement lamp:market_10",
+    "vector on placement lamp:market_20"
+   ],
+   "then": [
+    "placement lamp:market_00",
+    "placement lamp:market_00:glass",
+    "placement lamp:market_10",
+    "placement lamp:market_10:glass",
+    "placement lamp:market_20",
+    "placement lamp:market_20:glass"
+   ]
+  },
+  {
+   "name": "shot:lamp:market_row_1",
+   "says": "shooting lamp:market_row_1 throws its glass, once",
+   "channel": 178,
+   "engine": null,
+   "when": [
+    "vector on placement lamp:market_01",
+    "vector on placement lamp:market_11",
+    "vector on placement lamp:market_21"
+   ],
+   "then": [
+    "placement lamp:market_01",
+    "placement lamp:market_01:glass",
+    "placement lamp:market_11",
+    "placement lamp:market_11:glass",
+    "placement lamp:market_21",
+    "placement lamp:market_21:glass"
+   ]
+  },
+  {
+   "name": "shot:lamp:market_row_2",
+   "says": "shooting lamp:market_row_2 throws its glass, once",
+   "channel": 179,
+   "engine": null,
+   "when": [
+    "vector on placement lamp:market_02",
+    "vector on placement lamp:market_12",
+    "vector on placement lamp:market_22"
+   ],
+   "then": [
+    "placement lamp:market_02",
+    "placement lamp:market_02:glass",
+    "placement lamp:market_12",
+    "placement lamp:market_12:glass",
+    "placement lamp:market_22",
+    "placement lamp:market_22:glass"
+   ]
+  },
+  {
+   "name": "shot:lamp:pawn",
+   "says": "shooting lamp:pawn throws its glass, once",
+   "channel": 180,
+   "engine": null,
+   "when": [
+    "vector on placement lamp:pawn_0",
+    "vector on placement lamp:pawn_1"
+   ],
+   "then": [
+    "placement lamp:pawn_0",
+    "placement lamp:pawn_0:glass",
+    "placement lamp:pawn_1",
+    "placement lamp:pawn_1:glass"
+   ]
+  },
+  {
+   "name": "shot:arcade:globe_0",
+   "says": "shooting arcade:globe_0 throws its glass, once",
+   "channel": 181,
+   "engine": null,
+   "when": [
+    "destroyed on placement arcade:globe_0"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:arcade:globe_1",
+   "says": "shooting arcade:globe_1 throws its glass, once",
+   "channel": 182,
+   "engine": null,
+   "when": [
+    "destroyed on placement arcade:globe_1"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:arcade:globe_2",
+   "says": "shooting arcade:globe_2 throws its glass, once",
+   "channel": 183,
+   "engine": null,
+   "when": [
+    "destroyed on placement arcade:globe_2"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:arcade:globe_3",
+   "says": "shooting arcade:globe_3 throws its glass, once",
+   "channel": 184,
+   "engine": null,
+   "when": [
+    "destroyed on placement arcade:globe_3"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:arcade:globe_4",
+   "says": "shooting arcade:globe_4 throws its glass, once",
+   "channel": 185,
+   "engine": null,
+   "when": [
+    "destroyed on placement arcade:globe_4"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:den:lantern_0",
+   "says": "shooting den:lantern_0 throws its glass, once",
+   "channel": 186,
+   "engine": null,
+   "when": [
+    "vector on placement den:lantern_0"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:den:lantern_1",
+   "says": "shooting den:lantern_1 throws its glass, once",
+   "channel": 187,
+   "engine": null,
+   "when": [
+    "vector on placement den:lantern_1"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:den:lantern_2",
+   "says": "shooting den:lantern_2 throws its glass, once",
+   "channel": 188,
+   "engine": null,
+   "when": [
+    "vector on placement den:lantern_2"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:station:office_lantern",
+   "says": "shooting station:office_lantern throws its glass, once",
+   "channel": 189,
+   "engine": null,
+   "when": [
+    "vector on placement station:office_lantern"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:station:hall_globe_0",
+   "says": "shooting station:hall_globe_0 throws its glass, once",
+   "channel": 190,
+   "engine": null,
+   "when": [
+    "destroyed on placement station:hall_globe_0"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:station:hall_globe_1",
+   "says": "shooting station:hall_globe_1 throws its glass, once",
+   "channel": 191,
+   "engine": null,
+   "when": [
+    "destroyed on placement station:hall_globe_1"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:station:lantern_0",
+   "says": "shooting station:lantern_0 throws its glass, once",
+   "channel": 192,
+   "engine": null,
+   "when": [
+    "vector on placement station:lantern_0"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:station:box_lantern",
+   "says": "shooting station:box_lantern throws its glass, once",
+   "channel": 193,
+   "engine": null,
+   "when": [
+    "vector on placement station:box_lantern"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:stall:butcher_lamp",
+   "says": "shooting stall:butcher_lamp throws its glass, once",
+   "channel": 194,
+   "engine": null,
+   "when": [
+    "vector on placement stall:butcher_lamp"
+   ],
+   "then": []
+  },
+  {
+   "name": "shot:stall:grocer_lamp",
+   "says": "shooting stall:grocer_lamp throws its glass, once",
+   "channel": 195,
+   "engine": null,
+   "when": [
+    "vector on placement stall:grocer_lamp"
+   ],
+   "then": []
   }
  ],
  "places": [
@@ -2395,7 +2618,6 @@
      "second",
      "trim",
      "wall_art",
-     "flat_art",
      "standing",
      "levels",
      "masked",
@@ -4800,7 +5022,7 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 18 wall(s) (7922, 7923, 7924, 7925, 7926, 7927 and 12 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: both ceilings parallaxed, the sky is drawn instead",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 18 wall(s) (7930, 7931, 7932, 7933, 7934, 7935 and 12 more) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: both ceilings parallaxed, the sky is drawn instead",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[4]"
