@@ -1671,7 +1671,7 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
 #: copied from that map (`l3_foundry._attested`); the cart wheel was E3M3's
 #: valve switch and stands here as decoration.
 NICHE_DRESS = {
-    # (a wheel hung in the valve niches as decoration until 2026-11-26: one wheel down here works,
+    # (a wheel hung in the valve niches as decoration until 2026-11-25: one wheel down here works,
     # and two that do nothing teach that none does)
     "valve": [("E3M3", 0, 54, (0.5, 0.9), "wall")],
     # the skeleton at the campaign's size, its feet a little over the

@@ -763,7 +763,7 @@ def seat_leaves(level, sector_id: int, spec: dict[str, Any]) -> int:
     (w22, w26) and its leaf's faces (w23, w25) lie on one line, two walls
     that touch. The layout refuses an outline that touches itself, so
     `solid_double_slide_spec` draws the pocket as a wedge behind a thinner
-    leaf, and the slot beside the leaf could be seen (the owner, 2026-11-26:
+    leaf, and the slot beside the leaf could be seen (the owner, 2026-11-25:
     "I also noticed that geometry of the sliding door there isn't fully
     correct"). Every corner that moves is one-sided and the sector's own.
     """

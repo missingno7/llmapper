@@ -276,7 +276,7 @@ ROOM_AREA = 0.5e6
 #: the lowest a roofed sector may be to count toward a room at all
 LOW = 4096
 #: a chain lamp's foot over the floor, over a standing man's head, where the room allows
-#: (the owner, 2026-11-26: "lanterns in sewers can be higher, part of the chain can be
+#: (the owner, 2026-11-25: "lanterns in sewers can be higher, part of the chain can be
 #: sunked into the ceiling"); and, in a lower room, the least of it left under the ceiling
 HANG, HANG_SEEN = 22900, 8192
 

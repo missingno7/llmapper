@@ -692,7 +692,7 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertEqual(len(lifts), 1)
         lift = self.disk.sectors[lifts[0]]
         self.assertGreater(int(_extra(lift)["busy_time_a"]), 0)
-        #: the owner, 2026-11-26: "you need to press skull switch or something instead
+        #: the owner, 2026-11-25: "you need to press skull switch or something instead
         #: of going up and down when you just get into it"
         self.assertFalse(int(_extra(lift)["trigger_enter"]) or int(_extra(lift)["trigger_wall_push"]))
         skulls = [sp for sp in self.disk.sprites if int(sp.fields["picnum"]) == l3_church.SKULL_SWITCH["picnum"]

@@ -23,7 +23,7 @@ class AldermackFrontTests(unittest.TestCase):
         cls.sprites = [record_fields(s) for s in cls.disk.sprites]
 
     def test_the_street_doors_are_pushed_and_no_lever_stands_by_them(self):
-        #: the owner, 2026-11-26: "some of the shops have lever next to it, but it just
+        #: the owner, 2026-11-25: "some of the shops have lever next to it, but it just
         #: opens door the same way you would interact with them"
         levers = [s for s in self.sprites if s["picnum"] == 1070 and abs(s["z"]) < 16384
                   and (10900 <= s["y"] <= 17000 or 32256 <= s["x"] <= 34000 and 3000 <= s["y"])]

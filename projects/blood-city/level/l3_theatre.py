@@ -361,7 +361,7 @@ def build(district, theatre_st):
     # Street doors: room -> door -> porch -> street, the reveal chain.
     # Pushed, and nothing else. A lever used to stand beside each ("levers by
     # doors"), from when a leaf wore plain wall; they wear planks (22) and panels
-    # (30) now, and the owner, 2026-11-26: "some of the shops have lever next to it,
+    # (30) now, and the owner, 2026-11-25: "some of the shops have lever next to it,
     # but it just opens door the same way you would interact with them".
     for name, room_name, x0, y0, x1, y1, face in DOORS:
         if name in ('aldermack', 'lobby'):

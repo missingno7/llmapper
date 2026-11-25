@@ -1,6 +1,6 @@
 """How the sewer's secrets are hidden and what opens them: bars and a wheel, a bloody hand on a slab that gives, ivy over a crawl.
 
-The owner, 2026-11-26: "Some secret locations are too visible and easy to access
+The owner, 2026-11-25: "Some secret locations are too visible and easy to access
 like that voodoo doll on that place, it should be closed behind bars or something
 where you will have wheel as a switch (picnum 982), there are other types of
 buttons as well, in some levels there is like a button with bloody hands made as a

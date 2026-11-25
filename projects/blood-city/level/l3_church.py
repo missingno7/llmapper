@@ -143,7 +143,7 @@ TOWER = (MASS[2], 22272, MASS[2] + 1536, 24320)
 #: layer of its own. The way down is the thing that moves: a stone slab in
 #: the antechamber's east wall, a Z-motion sector whose FLOOR travels the
 #: 3.1 bodies between the church and the crypt (E3M2 has 28 such lifts).
-#: (It sank when it was stepped on until 2026-11-26. The owner: "should be done the
+#: (It sank when it was stepped on until 2026-11-25. The owner: "should be done the
 #: way that you need to press skull switch or something instead of going up and down
 #: when you just get into it.") The skull it carries sends it; the skull at either
 #: stop calls it: `slab_switches`.

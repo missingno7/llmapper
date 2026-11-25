@@ -1,6 +1,6 @@
 """A lever, as the campaign carries it, for what is worked from somewhere else.
 
-Levers stood beside five street doors until 2026-11-26, from when a closed leaf
+Levers stood beside five street doors until 2026-11-25, from when a closed leaf
 wore plain wall and only a lever said that it opened. The leaves wear planks and
 panels now, and the owner found the levers pointless: "it just opens door the same
 way you would interact with them". A door that opens by hand gets no lever; a

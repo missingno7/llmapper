@@ -416,7 +416,7 @@ def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
     """Two iron leaves in the underpass's east wall, and what is behind them (`underpass.build` joins it to its bay).
 
     It was a brick store with kegs and a box of shells in it, and the owner,
-    2026-11-26: "there is room with box of shells and 3 jars that doesn't make much
+    2026-11-25: "there is room with box of shells and 3 jars that doesn't make much
     sense, I would rethink it a bit". The doors part on more of the same: the
     passage's own tiles, its tube, its bill -- and its end is a mirror, so it goes on
     for ever with you coming the other way. The bill is printed backwards. Nothing

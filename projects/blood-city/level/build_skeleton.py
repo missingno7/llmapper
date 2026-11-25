@@ -1391,7 +1391,7 @@ def main() -> int:
     layout.place_on_floor(
         "progression:secret_count", ctx["sewer_rooms"]["stash"],
         local=(0.5, 0.5), height_player_heights=0.5,
-        # unseen: at cstat 129 the engine drew it, tile 0 a body tall in the stash (the owner, 2026-11-26)
+        # unseen: at cstat 129 the engine drew it, tile 0 a body tall in the stash (the owner, 2026-11-25)
         type=0, picnum=0, cstat=32768, status=0, x_repeat=64, y_repeat=64,
         # `motion.secret_total` rather than the fields by hand: this one was
         # missing `trigger_on`, so `SetSpriteState` never called evSend for it
@@ -1806,7 +1806,7 @@ def main() -> int:
           "flat sprites dropped for lying through another:",
           len(ctx["manifest"]["flat_dropped"]))
 
-    # What breaks in Blood breaks here: the owner, 2026-11-26, "More things can be
+    # What breaks in Blood breaks here: the owner, 2026-11-25, "More things can be
     # destructible like barels, cocons, clocks - check what other levels makes
     # destructible". Not a lamp: its light would stay (`light_stage.LampGroup`).
     from bloodmap import breakables, light_kinds

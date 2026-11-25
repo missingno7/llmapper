@@ -303,7 +303,7 @@ def machine_hall(shed, lobby, room):
                 #: re-triggers keep it going; `crush` kills what is under it.
                 #: ON is UP: the belt under it runs while its state is on or it
                 #: is moving, so a press stopped shut (OFF) is a belt stopped
-                #: (the owner, 2026-11-26: "the lever ... won't stop belt under
+                #: (the owner, 2026-11-25: "the lever ... won't stop belt under
                 #: the crushers, it is fine if by that it would stop the
                 #: crushers as well").
                 {"pan_floor": 1, "pan_always": 0, "drag": 1, "state": 1, "busy": 65536,

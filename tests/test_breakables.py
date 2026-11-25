@@ -48,7 +48,7 @@ class CityBreakablesTests(unittest.TestCase):
             self.assertEqual((glass[0]["type"], glass[0]["cstat"] & 32768), (416, 32768))
 
     def test_nothing_of_the_engines_is_drawn(self):
-        #: the owner, 2026-11-26, of sprite 1303, the secret counter: "probably shouldn't
+        #: the owner, 2026-11-25, of sprite 1303, the secret counter: "probably shouldn't
         #: be visible because it is just a solid wall texture as a sprite"
         self.assertEqual([f["index"] for f, _x in self.sprites
                           if f["picnum"] == 0 and not f["cstat"] & 32768 and not 1 <= f["type"] <= 18], [])

@@ -629,8 +629,8 @@ POSE_SETS = {
         "fk_market": (13.0, 45.5, 5.0, 44.0, LEVEL, "the market hall from its door"),
         "fl_plaza": (30.0, 49.5, 18.0, 40.0, LEVEL, "the plaza and what stands in it"),
     },
-    #: what the owner named after the walk of 2026-11-26: levers by doors, the freight room, lamps, the crypt's slab, the belt
-    "walk_1126": {
+    #: what the owner named after the walk of 2026-11-25: levers by doors, the freight room, lamps, the crypt's slab, the belt
+    "walk_1125": {
         "w_saloon": (6.6, 16.6, 6.6, 14.6, LEVEL, "the saloon's street door"),
         "w_parlor": (13.5, 16.8, 13.5, 14.6, LEVEL, "the parlor's street door"),
         "w_aldermack": (27.5, 14.0, 27.5, 11.0, LEVEL, "the Aldermack's forecourt doors"),

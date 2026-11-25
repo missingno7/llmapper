@@ -143,7 +143,7 @@ class FoundryWardTests(unittest.TestCase):
         self.assertTrue(sight.sees(self.level, hall, eye, (50.5 * PU, 26.5 * PU, U.FLOOR - 4096)))
 
     def test_two_iron_leaves_part_on_a_mirror(self):
-        #: the owner, 2026-11-26: "there is room with box of shells and 3 jars that doesn't
+        #: the owner, 2026-11-25: "there is room with box of shells and 3 jars that doesn't
         #: make much sense"
         beyond = self.at(48.0, 23.75, self.U.FLOOR)
         mirrors = [w for w in sector_walls(self.disk, beyond) if record_fields(self.disk.walls[w])["picnum"] == self.F.MIRROR]
