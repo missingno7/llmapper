@@ -1,2 +1,3 @@
 * text=auto eol=lf
 *.MAP binary
+projects/blood-city/release/*.TXT text eol=crlf

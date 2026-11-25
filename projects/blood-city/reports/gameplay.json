@@ -1,9 +1,9 @@
 {
  "way_m": 173,
  "way_is": "the exit",
- "sectors": 1724,
- "reached": 1600,
- "taken_on_trust": 145,
+ "sectors": 1732,
+ "reached": 1608,
+ "taken_on_trust": 141,
  "keys": [
   {
    "key": "kItemKeyEye",
@@ -50,7 +50,7 @@
  ],
  "locks": [
   {
-   "counter": 2968,
+   "counter": 3046,
    "wants": [
     "skull",
     "eye",
@@ -63,10 +63,10 @@
   }
  ],
  "budget": {
-  "foes": 165,
-  "placed": 116,
+  "foes": 166,
+  "placed": 117,
   "spawn_markers": 49,
-  "foe_health": 8055,
+  "foe_health": 8155,
   "by_foe": {
    "TNT cultist": 3,
    "axe zombie": 27,
@@ -75,7 +75,7 @@
    "buried zombie": 10,
    "butcher": 10,
    "gargoyle": 2,
-   "gargoyle statue": 2,
+   "gargoyle statue": 3,
    "gill beast": 13,
    "hand": 2,
    "hell hound": 4,
@@ -104,29 +104,29 @@
    "voodoo": 400
   },
   "expected_drops": 8513,
-  "damage_per_health": 6.453,
-  "damage_outside_secrets_per_health": 5.541,
-  "damage_with_drops_per_health": 7.51,
+  "damage_per_health": 6.374,
+  "damage_outside_secrets_per_health": 5.473,
+  "damage_with_drops_per_health": 7.418,
   "health": 1750,
   "health_in_secrets": 460,
-  "armor": 1150,
-  "health_per_100": 21.7,
-  "armor_per_100": 14.3
+  "armor": 1250,
+  "health_per_100": 21.5,
+  "armor_per_100": 15.3
  },
  "secrets": 10,
- "foes": 165,
+ "foes": 166,
  "guns": [
   {
    "gun": "guns akimbo",
    "at": "the Cabal's chamber",
    "secret": true,
-   "foes_before": 0.6
+   "foes_before": 0.598
   },
   {
    "gun": "life leech",
    "at": "the Phantom Terminus",
    "secret": false,
-   "foes_before": 0.846
+   "foes_before": 0.848
   },
   {
    "gun": "flare pistol",
@@ -144,19 +144,19 @@
    "gun": "tommy gun",
    "at": "the arcade",
    "secret": false,
-   "foes_before": 0.128
+   "foes_before": 0.134
   },
   {
    "gun": "napalm launcher",
    "at": "the sewers",
    "secret": true,
-   "foes_before": 0.636
+   "foes_before": 0.651
   },
   {
    "gun": "tesla cannon",
    "at": "the settling hall",
    "secret": false,
-   "foes_before": 0.092
+   "foes_before": 0.097
   }
  ],
  "places": {
@@ -395,6 +395,7 @@
    "supplies": {
     "4 shells": 5,
     "box of shells": 2,
+    "crystal ball": 1,
     "sawed-off": 1
    },
    "secret": {}
@@ -498,6 +499,7 @@
    "foes": {
     "TNT cultist": 1,
     "axe zombie": 5,
+    "gargoyle statue": 1,
     "hell hound": 1,
     "shotgun cultist": 5
    },
@@ -507,6 +509,7 @@
     "4 shells": 6,
     "TNT box": 1,
     "TNT bundle": 1,
+    "body armor": 1,
     "box of shells": 1,
     "drum of bullets": 1,
     "fire armor": 1,

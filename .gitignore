@@ -95,3 +95,6 @@ knowledge/blood/critic-bench/**/*.[Mm][Aa][Pp]
 reports/tiles/**/*.png
 projects/*/reports/showcase/**/*.png
 projects/*/reports/showcase/**/*.MAP
+
+# The archive of what is given out: package.py makes it from the two files beside it.
+projects/*/release/*.zip
