@@ -28,6 +28,9 @@ RECORD = ("data_1", "data_2", "data_3", "data_4", "trigger_vector")
 THING_STATUS, HITSCAN = 4, 256
 #: a face that smashes: tile -> its gib object's record (E1M1 sprite 506, E2M4 sprite 879)
 FACES: dict[int, dict[str, int]] = {1165: {"data_1": 2, "data_2": 6, "data_4": 301}, 710: {"data_1": 1, "data_4": 301}}
+#: a fluorescent tube (2290, then dark 2291), which is shot out the same way and takes its light with it if its wire is
+#: given to the light (`light_stage.LampGroup`): E1M1 sprites 132 and 328, and sector 80. 39 of the campaign's 288 are.
+TUBE_GLASS = {"data_1": 13, "data_2": 7, "data_4": 300}
 
 
 @lru_cache(maxsize=1)
@@ -65,13 +68,13 @@ def apply(placements, *, leave=frozenset(), share: float = 0.3) -> dict[int, int
     return done
 
 
-def smash(layout, placement, wire) -> str:
-    """Make a clock or a mirror smash when it is shot: it changes its picture, once, and throws glass."""
+def smash(layout, placement, wire, glass_record: dict[str, int] | None = None) -> str:
+    """Make a clock, a mirror or a tube smash when it is shot: it changes its picture, once, and throws glass."""
     from . import wiring
     placement.type, placement.cstat = 21, placement.cstat | HITSCAN
     glass = f"{placement.placement_id}:glass"
     layout.placements.append(replace(placement, placement_id=glass, picnum=0, type=416, status=THING_STATUS,
-                                     cstat=placement.cstat & ~HITSCAN | 32768, behavior=dict(FACES[placement.picnum])))
+                                     cstat=placement.cstat & ~HITSCAN | 32768, behavior=dict(glass_record or FACES[placement.picnum])))
     wire.when(wiring.placement(placement.placement_id), "vector", on=True, off=True, once=True, trigger_impact=1)
     wire.then(wiring.placement(glass))
     return glass

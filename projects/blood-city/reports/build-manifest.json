@@ -1969,9 +1969,69 @@
         ]
       },
       {
+        "name": "underpass:tube-north",
+        "says": "shooting the underpass's tube in north puts it out, and its light with it",
+        "channel": 161,
+        "engine": null,
+        "when": [
+          "vector on placement underpass:tube_north"
+        ],
+        "then": [
+          "placement underpass:tube_north:glass"
+        ]
+      },
+      {
+        "name": "underpass:tube-bay_1",
+        "says": "shooting the underpass's tube in bay_1 puts it out, and its light with it",
+        "channel": 162,
+        "engine": null,
+        "when": [
+          "vector on placement underpass:tube_bay_1"
+        ],
+        "then": [
+          "placement underpass:tube_bay_1:glass"
+        ]
+      },
+      {
+        "name": "underpass:tube-bay_2",
+        "says": "shooting the underpass's tube in bay_2 puts it out, and its light with it",
+        "channel": 163,
+        "engine": null,
+        "when": [
+          "vector on placement underpass:tube_bay_2"
+        ],
+        "then": [
+          "placement underpass:tube_bay_2:glass"
+        ]
+      },
+      {
+        "name": "underpass:tube-bay_4",
+        "says": "shooting the underpass's tube in bay_4 puts it out, and its light with it",
+        "channel": 164,
+        "engine": null,
+        "when": [
+          "vector on placement underpass:tube_bay_4"
+        ],
+        "then": [
+          "placement underpass:tube_bay_4:glass"
+        ]
+      },
+      {
+        "name": "underpass:tube-mirror",
+        "says": "shooting the underpass's tube in mirror puts it out, and its light with it",
+        "channel": 165,
+        "engine": null,
+        "when": [
+          "vector on placement loading:tube"
+        ],
+        "then": [
+          "placement loading:tube:glass"
+        ]
+      },
+      {
         "name": "sewer:stash-bars",
         "says": "the valve wheel in the riser by the junction lifts the bars off the stash",
-        "channel": 161,
+        "channel": 166,
         "engine": null,
         "when": [
           "push on placement secret:stash_wheel"
@@ -1983,7 +2043,7 @@
       {
         "name": "sewer:shrine-hands",
         "says": "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine",
-        "channel": 162,
+        "channel": 167,
         "engine": null,
         "when": [
           "push on placement secret:hand_0",
@@ -2017,7 +2077,7 @@
       {
         "name": "shot:aldermack:foyer_mirror",
         "says": "shooting aldermack:foyer_mirror throws its glass, once",
-        "channel": 163,
+        "channel": 168,
         "engine": null,
         "when": [
           "vector on placement aldermack:foyer_mirror"
@@ -2029,7 +2089,7 @@
       {
         "name": "shot:underpass:clock",
         "says": "shooting underpass:clock throws its glass, once",
-        "channel": 164,
+        "channel": 169,
         "engine": null,
         "when": [
           "vector on placement underpass:clock"
@@ -2041,7 +2101,7 @@
       {
         "name": "shot:arcade:clock",
         "says": "shooting arcade:clock throws its glass, once",
-        "channel": 165,
+        "channel": 170,
         "engine": null,
         "when": [
           "vector on placement arcade:clock"
@@ -2053,7 +2113,7 @@
       {
         "name": "shot:phantom:signal_clock",
         "says": "shooting phantom:signal_clock throws its glass, once",
-        "channel": 166,
+        "channel": 171,
         "engine": null,
         "when": [
           "vector on placement phantom:signal_clock"
@@ -2065,7 +2125,7 @@
       {
         "name": "shot:station:street_clock",
         "says": "shooting station:street_clock throws its glass, once",
-        "channel": 167,
+        "channel": 172,
         "engine": null,
         "when": [
           "vector on placement station:street_clock"
@@ -2077,7 +2137,7 @@
       {
         "name": "shot:station:front_clock",
         "says": "shooting station:front_clock throws its glass, once",
-        "channel": 168,
+        "channel": 173,
         "engine": null,
         "when": [
           "vector on placement station:front_clock"
@@ -2089,7 +2149,7 @@
       {
         "name": "shot:station:concourse_clock",
         "says": "shooting station:concourse_clock throws its glass, once",
-        "channel": 169,
+        "channel": 174,
         "engine": null,
         "when": [
           "vector on placement station:concourse_clock"
@@ -2101,7 +2161,7 @@
       {
         "name": "shot:station:clock",
         "says": "shooting station:clock throws its glass, once",
-        "channel": 170,
+        "channel": 175,
         "engine": null,
         "when": [
           "vector on placement station:clock"
@@ -2113,7 +2173,7 @@
       {
         "name": "shot:backstage:makeup_mirror",
         "says": "shooting backstage:makeup_mirror throws its glass, once",
-        "channel": 171,
+        "channel": 176,
         "engine": null,
         "when": [
           "vector on placement backstage:makeup_mirror"
@@ -2125,7 +2185,7 @@
       {
         "name": "shot:market:super_clock",
         "says": "shooting market:super_clock throws its glass, once",
-        "channel": 172,
+        "channel": 177,
         "engine": null,
         "when": [
           "vector on placement market:super_clock"
@@ -3196,9 +3256,74 @@
         "faults": []
       },
       {
+        "name": "underpass:tube-north",
+        "says": "shooting the underpass's tube in north puts it out, and its light with it",
+        "channel": 161,
+        "engine": null,
+        "senders": [
+          "sprite 124"
+        ],
+        "answers": [
+          "sprite 2625"
+        ],
+        "faults": []
+      },
+      {
+        "name": "underpass:tube-bay_1",
+        "says": "shooting the underpass's tube in bay_1 puts it out, and its light with it",
+        "channel": 162,
+        "engine": null,
+        "senders": [
+          "sprite 125"
+        ],
+        "answers": [
+          "sprite 2626"
+        ],
+        "faults": []
+      },
+      {
+        "name": "underpass:tube-bay_2",
+        "says": "shooting the underpass's tube in bay_2 puts it out, and its light with it",
+        "channel": 163,
+        "engine": null,
+        "senders": [
+          "sprite 126"
+        ],
+        "answers": [
+          "sprite 2627"
+        ],
+        "faults": []
+      },
+      {
+        "name": "underpass:tube-bay_4",
+        "says": "shooting the underpass's tube in bay_4 puts it out, and its light with it",
+        "channel": 164,
+        "engine": null,
+        "senders": [
+          "sprite 128"
+        ],
+        "answers": [
+          "sprite 2628"
+        ],
+        "faults": []
+      },
+      {
+        "name": "underpass:tube-mirror",
+        "says": "shooting the underpass's tube in mirror puts it out, and its light with it",
+        "channel": 165,
+        "engine": null,
+        "senders": [
+          "sprite 1306"
+        ],
+        "answers": [
+          "sprite 2629"
+        ],
+        "faults": []
+      },
+      {
         "name": "sewer:stash-bars",
         "says": "the valve wheel in the riser by the junction lifts the bars off the stash",
-        "channel": 161,
+        "channel": 166,
         "engine": null,
         "senders": [
           "sprite 283"
@@ -3211,7 +3336,7 @@
       {
         "name": "sewer:shrine-hands",
         "says": "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine",
-        "channel": 162,
+        "channel": 167,
         "engine": null,
         "senders": [
           "sprite 299",
@@ -3248,75 +3373,10 @@
       {
         "name": "shot:aldermack:foyer_mirror",
         "says": "shooting aldermack:foyer_mirror throws its glass, once",
-        "channel": 163,
-        "engine": null,
-        "senders": [
-          "sprite 96"
-        ],
-        "answers": [
-          "sprite 2625"
-        ],
-        "faults": []
-      },
-      {
-        "name": "shot:underpass:clock",
-        "says": "shooting underpass:clock throws its glass, once",
-        "channel": 164,
-        "engine": null,
-        "senders": [
-          "sprite 161"
-        ],
-        "answers": [
-          "sprite 2626"
-        ],
-        "faults": []
-      },
-      {
-        "name": "shot:arcade:clock",
-        "says": "shooting arcade:clock throws its glass, once",
-        "channel": 165,
-        "engine": null,
-        "senders": [
-          "sprite 243"
-        ],
-        "answers": [
-          "sprite 2627"
-        ],
-        "faults": []
-      },
-      {
-        "name": "shot:phantom:signal_clock",
-        "says": "shooting phantom:signal_clock throws its glass, once",
-        "channel": 166,
-        "engine": null,
-        "senders": [
-          "sprite 907"
-        ],
-        "answers": [
-          "sprite 2628"
-        ],
-        "faults": []
-      },
-      {
-        "name": "shot:station:street_clock",
-        "says": "shooting station:street_clock throws its glass, once",
-        "channel": 167,
-        "engine": null,
-        "senders": [
-          "sprite 1489"
-        ],
-        "answers": [
-          "sprite 2629"
-        ],
-        "faults": []
-      },
-      {
-        "name": "shot:station:front_clock",
-        "says": "shooting station:front_clock throws its glass, once",
         "channel": 168,
         "engine": null,
         "senders": [
-          "sprite 1501"
+          "sprite 96"
         ],
         "answers": [
           "sprite 2630"
@@ -3324,12 +3384,12 @@
         "faults": []
       },
       {
-        "name": "shot:station:concourse_clock",
-        "says": "shooting station:concourse_clock throws its glass, once",
+        "name": "shot:underpass:clock",
+        "says": "shooting underpass:clock throws its glass, once",
         "channel": 169,
         "engine": null,
         "senders": [
-          "sprite 1532"
+          "sprite 161"
         ],
         "answers": [
           "sprite 2631"
@@ -3337,12 +3397,12 @@
         "faults": []
       },
       {
-        "name": "shot:station:clock",
-        "says": "shooting station:clock throws its glass, once",
+        "name": "shot:arcade:clock",
+        "says": "shooting arcade:clock throws its glass, once",
         "channel": 170,
         "engine": null,
         "senders": [
-          "sprite 1552"
+          "sprite 243"
         ],
         "answers": [
           "sprite 2632"
@@ -3350,12 +3410,12 @@
         "faults": []
       },
       {
-        "name": "shot:backstage:makeup_mirror",
-        "says": "shooting backstage:makeup_mirror throws its glass, once",
+        "name": "shot:phantom:signal_clock",
+        "says": "shooting phantom:signal_clock throws its glass, once",
         "channel": 171,
         "engine": null,
         "senders": [
-          "sprite 1793"
+          "sprite 907"
         ],
         "answers": [
           "sprite 2633"
@@ -3363,15 +3423,80 @@
         "faults": []
       },
       {
+        "name": "shot:station:street_clock",
+        "says": "shooting station:street_clock throws its glass, once",
+        "channel": 172,
+        "engine": null,
+        "senders": [
+          "sprite 1489"
+        ],
+        "answers": [
+          "sprite 2634"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:front_clock",
+        "says": "shooting station:front_clock throws its glass, once",
+        "channel": 173,
+        "engine": null,
+        "senders": [
+          "sprite 1501"
+        ],
+        "answers": [
+          "sprite 2635"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:concourse_clock",
+        "says": "shooting station:concourse_clock throws its glass, once",
+        "channel": 174,
+        "engine": null,
+        "senders": [
+          "sprite 1532"
+        ],
+        "answers": [
+          "sprite 2636"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:station:clock",
+        "says": "shooting station:clock throws its glass, once",
+        "channel": 175,
+        "engine": null,
+        "senders": [
+          "sprite 1552"
+        ],
+        "answers": [
+          "sprite 2637"
+        ],
+        "faults": []
+      },
+      {
+        "name": "shot:backstage:makeup_mirror",
+        "says": "shooting backstage:makeup_mirror throws its glass, once",
+        "channel": 176,
+        "engine": null,
+        "senders": [
+          "sprite 1793"
+        ],
+        "answers": [
+          "sprite 2638"
+        ],
+        "faults": []
+      },
+      {
         "name": "shot:market:super_clock",
         "says": "shooting market:super_clock throws its glass, once",
-        "channel": 172,
+        "channel": 177,
         "engine": null,
         "senders": [
           "sprite 1981"
         ],
         "answers": [
-          "sprite 2634"
+          "sprite 2639"
         ],
         "faults": []
       }
@@ -3976,7 +4101,7 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 2682,
+    "sprites": 2687,
     "wall_sprites": 1064,
     "planes": 284,
     "clashing_pairs": 15,
@@ -5533,7 +5658,7 @@
         ],
         "sector_type": 602,
         "wiring": {
-          "rx_id": 161,
+          "rx_id": 166,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -5970,7 +6095,7 @@
         ],
         "sector_type": 600,
         "wiring": {
-          "rx_id": 162,
+          "rx_id": 167,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -6407,7 +6532,7 @@
           764
         ],
         "wiring": {
-          "rx_id": 162,
+          "rx_id": 167,
           "tx_id": 0,
           "command": 0,
           "state": 0
@@ -11986,7 +12111,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 1944,
+      "sprites": 1939,
       "sunk": 0.0,
       "through": 0.003,
       "squeezed": 0.0
@@ -13737,10 +13862,9 @@
         "layers": [
           "second",
           "trim",
-          "flat_art",
           "motion"
         ],
-        "layer_count": 4,
+        "layer_count": 3,
         "campaign_p25": 0,
         "campaign_p50": 1,
         "missing": [],
@@ -14786,7 +14910,7 @@
   "light_stage": {
     "sectors_before": 1122,
     "walls_before": 7433,
-    "sprites_before": 2682,
+    "sprites_before": 2687,
     "mover_hosts": [
       144,
       504,
@@ -15558,10 +15682,27 @@
         "the rite's fires, on the walls round": 34,
         "the rite's fires, on the floors": 11,
         "the horned thing's light": 1,
-        "the underpass's failing tube": 7,
+        "the underpass's tube in north": 4,
+        "the underpass's tube in bay_1": 3,
+        "the underpass's tube in bay_2": 4,
+        "the underpass's tube in bay_4": 2,
+        "the underpass's tube in mirror": 1,
+        "the underpass's failing tube": 6,
         "the bulb in the metro's tunnel": 3
       },
       "held_by_another_wire": [
+        [
+          253,
+          "the underpass's tube in mirror"
+        ],
+        [
+          253,
+          "the underpass's tube in bay_1"
+        ],
+        [
+          253,
+          "the underpass's tube in bay_2"
+        ],
         [
           506,
           "the platform's lamps"
@@ -15671,7 +15812,7 @@
     "kept": 122,
     "sectors": 1563,
     "walls": 13300,
-    "sprites": 2742,
+    "sprites": 2747,
     "pieces": 441,
     "default_rooms": []
   },

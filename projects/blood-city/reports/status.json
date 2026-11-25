@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "3743580df38b44cfad8f576b6021d9e6ec7c8a07a889a5acf18f64198f075c51",
-  "map_sha256": "097ca4b1564693a7a3397a0ce5dc40eb18a5c89b585489343ef8b834de622dc6",
+  "manifest_sha256": "a1399ae5025ebf60c89ba98c06403b878318e533b51c6ed56be2c5214dbe7297",
+  "map_sha256": "7aaf51e8f8ed808c0ef642a08b9c87ba1e101bda50628cf46927f6635e08d05c",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1563,
   "walls": 13082,
-  "sprites": 2742,
+  "sprites": 2747,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -18,7 +18,7 @@
   "headroom": {
    "sectors": 0.618,
    "walls": 0.202,
-   "sprites": 0.833
+   "sprites": 0.832
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
@@ -161,32 +161,32 @@
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1820"
+   "at": "projects/blood-city/level/build_skeleton.py:1822"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1843"
+   "at": "projects/blood-city/level/build_skeleton.py:1845"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:1995"
+   "at": "projects/blood-city/level/build_skeleton.py:1997"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2072"
+   "at": "projects/blood-city/level/build_skeleton.py:2074"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2135"
+   "at": "projects/blood-city/level/build_skeleton.py:2137"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2334"
+   "at": "projects/blood-city/level/build_skeleton.py:2336"
   }
  ],
  "finish": {
@@ -451,7 +451,7 @@
    {
     "round": 1,
     "opened_by": [
-     "push sprite 299 (channel 162)"
+     "push sprite 299 (channel 167)"
     ],
     "sectors": 7,
     "first_sector": 486
@@ -1624,9 +1624,69 @@
    ]
   },
   {
+   "name": "underpass:tube-north",
+   "says": "shooting the underpass's tube in north puts it out, and its light with it",
+   "channel": 161,
+   "engine": null,
+   "when": [
+    "vector on placement underpass:tube_north"
+   ],
+   "then": [
+    "placement underpass:tube_north:glass"
+   ]
+  },
+  {
+   "name": "underpass:tube-bay_1",
+   "says": "shooting the underpass's tube in bay_1 puts it out, and its light with it",
+   "channel": 162,
+   "engine": null,
+   "when": [
+    "vector on placement underpass:tube_bay_1"
+   ],
+   "then": [
+    "placement underpass:tube_bay_1:glass"
+   ]
+  },
+  {
+   "name": "underpass:tube-bay_2",
+   "says": "shooting the underpass's tube in bay_2 puts it out, and its light with it",
+   "channel": 163,
+   "engine": null,
+   "when": [
+    "vector on placement underpass:tube_bay_2"
+   ],
+   "then": [
+    "placement underpass:tube_bay_2:glass"
+   ]
+  },
+  {
+   "name": "underpass:tube-bay_4",
+   "says": "shooting the underpass's tube in bay_4 puts it out, and its light with it",
+   "channel": 164,
+   "engine": null,
+   "when": [
+    "vector on placement underpass:tube_bay_4"
+   ],
+   "then": [
+    "placement underpass:tube_bay_4:glass"
+   ]
+  },
+  {
+   "name": "underpass:tube-mirror",
+   "says": "shooting the underpass's tube in mirror puts it out, and its light with it",
+   "channel": 165,
+   "engine": null,
+   "when": [
+    "vector on placement loading:tube"
+   ],
+   "then": [
+    "placement loading:tube:glass"
+   ]
+  },
+  {
    "name": "sewer:stash-bars",
    "says": "the valve wheel in the riser by the junction lifts the bars off the stash",
-   "channel": 161,
+   "channel": 166,
    "engine": null,
    "when": [
     "push on placement secret:stash_wheel"
@@ -1638,7 +1698,7 @@
   {
    "name": "sewer:shrine-hands",
    "says": "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine",
-   "channel": 162,
+   "channel": 167,
    "engine": null,
    "when": [
     "push on placement secret:hand_0",
@@ -1672,7 +1732,7 @@
   {
    "name": "shot:aldermack:foyer_mirror",
    "says": "shooting aldermack:foyer_mirror throws its glass, once",
-   "channel": 163,
+   "channel": 168,
    "engine": null,
    "when": [
     "vector on placement aldermack:foyer_mirror"
@@ -1684,7 +1744,7 @@
   {
    "name": "shot:underpass:clock",
    "says": "shooting underpass:clock throws its glass, once",
-   "channel": 164,
+   "channel": 169,
    "engine": null,
    "when": [
     "vector on placement underpass:clock"
@@ -1696,7 +1756,7 @@
   {
    "name": "shot:arcade:clock",
    "says": "shooting arcade:clock throws its glass, once",
-   "channel": 165,
+   "channel": 170,
    "engine": null,
    "when": [
     "vector on placement arcade:clock"
@@ -1708,7 +1768,7 @@
   {
    "name": "shot:phantom:signal_clock",
    "says": "shooting phantom:signal_clock throws its glass, once",
-   "channel": 166,
+   "channel": 171,
    "engine": null,
    "when": [
     "vector on placement phantom:signal_clock"
@@ -1720,7 +1780,7 @@
   {
    "name": "shot:station:street_clock",
    "says": "shooting station:street_clock throws its glass, once",
-   "channel": 167,
+   "channel": 172,
    "engine": null,
    "when": [
     "vector on placement station:street_clock"
@@ -1732,7 +1792,7 @@
   {
    "name": "shot:station:front_clock",
    "says": "shooting station:front_clock throws its glass, once",
-   "channel": 168,
+   "channel": 173,
    "engine": null,
    "when": [
     "vector on placement station:front_clock"
@@ -1744,7 +1804,7 @@
   {
    "name": "shot:station:concourse_clock",
    "says": "shooting station:concourse_clock throws its glass, once",
-   "channel": 169,
+   "channel": 174,
    "engine": null,
    "when": [
     "vector on placement station:concourse_clock"
@@ -1756,7 +1816,7 @@
   {
    "name": "shot:station:clock",
    "says": "shooting station:clock throws its glass, once",
-   "channel": 170,
+   "channel": 175,
    "engine": null,
    "when": [
     "vector on placement station:clock"
@@ -1768,7 +1828,7 @@
   {
    "name": "shot:backstage:makeup_mirror",
    "says": "shooting backstage:makeup_mirror throws its glass, once",
-   "channel": 171,
+   "channel": 176,
    "engine": null,
    "when": [
     "vector on placement backstage:makeup_mirror"
@@ -1780,7 +1840,7 @@
   {
    "name": "shot:market:super_clock",
    "says": "shooting market:super_clock throws its glass, once",
-   "channel": 172,
+   "channel": 177,
    "engine": null,
    "when": [
     "vector on placement market:super_clock"
@@ -1868,7 +1928,6 @@
     "has": [
      "second",
      "trim",
-     "flat_art",
      "motion"
     ],
     "missing": [],

@@ -31,6 +31,8 @@ BARS_DEEP = 256
 #: E3M3 sprites 107 and 108, field for field; its next tile is the wheel half a spoke round
 WHEEL = {"picnum": 982, "cstat": 464, "x_repeat": 24, "y_repeat": 24, "shade": -8}
 HAND, IVY = 904, 17
+#: where the brook's vault meets its wall, over the walk: the ivy hangs from there
+VAULT_FOOT = 20480
 #: the slab: how far it stands back in its frame, how far it gives, its sill over the dock, its height and width
 BACK, GIVES, SILL, TALL, WIDE = 32, 64, 6144, 9216, 512
 BUTTON = "region:gravesend/sewer/stockyard_floor:hand_button"
@@ -95,8 +97,8 @@ def hands(layout, host: str, x: int, y: int, *, tile: int, layer: str) -> str:
     return BUTTON
 
 
-def ivy(layout, region: str, x: int, y: int, wide: int, tall: int) -> None:
+def ivy(layout, region: str, x: int, y: int, wide: int) -> None:
     """What hangs over the crawl: drawn on both its sides and solid on neither."""
     # wider than the mouth and over its head, or its edge is the mouth's
-    layout.add_sprite("secret:molly_ivy", region, x=x + 96, y=y, z=layout.regions[region].floor_z - tall * 5 // 8, picnum=IVY,
-                      x_repeat=wide * 3 // 2 // 32, y_repeat=tall * 5 // 4 // 512, angle=1536, cstat=16 | 128, shade=12, sunk=True)
+    layout.add_sprite("secret:molly_ivy", region, x=x + 96, y=y, z=layout.regions[region].floor_z - VAULT_FOOT // 2, picnum=IVY,
+                      x_repeat=wide * 3 // 2 // 32, y_repeat=VAULT_FOOT // 512, angle=1536, cstat=16 | 128, shade=12, sunk=True)

@@ -1810,6 +1810,8 @@ def main() -> int:
     # destructible like barels, cocons, clocks - check what other levels makes
     # destructible". Not a lamp: its light would stay (`light_stage.LampGroup`).
     from bloodmap import breakables, light_kinds
+    import underpass as _underpass_tubes
+    _underpass_tubes.shoot_out(layout)
     ctx["manifest"]["breakables"] = breakables.apply(layout.placements, leave=frozenset(light_kinds.KINDS))
     _faces = [p for p in layout.placements if p.picnum in breakables.FACES and not p.type and not p.behavior]
     for _k, _face in enumerate(_faces):

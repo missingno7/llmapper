@@ -1042,7 +1042,7 @@ registry is populated by that import's side effect, so a bare
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 32/24 on tile 284 (sprite[1278])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 80/112 on tile 1714 (sprite[1291])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 80/96 on tile 1715 (sprite[1292])
-- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 48/35 on tile 17 (sprite[1349])
+- **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 48/40 on tile 17 (sprite[1349])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[1351])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[1352])
 - **note** `sprite-drawn-square` -- a sprite is normally drawn with equal repeats -- repeat 4/64 on tile 908 (sprite[1353])

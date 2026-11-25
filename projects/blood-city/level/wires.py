@@ -128,6 +128,8 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("theatre:front-doors", "pushing either leaf of the Aldermack's forecourt doors swings both"),
     ("church:slab",
      "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it"),
+    *((f"underpass:tube-{cell}", f"shooting the underpass's tube in {cell} puts it out, and its light with it")
+      for cell in ("north", "bay_1", "bay_2", "bay_4", "mirror")),
     ("sewer:stash-bars", "the valve wheel in the riser by the junction lifts the bars off the stash"),
     ("sewer:shrine-hands",
      "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine"),

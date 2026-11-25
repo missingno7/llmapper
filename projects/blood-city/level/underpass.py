@@ -188,6 +188,15 @@ def build(layout, porches: dict[str, str], recess: str) -> dict:
     return regions
 
 
+def shoot_out(layout) -> None:
+    """Make the lit tubes answer a bullet, the mirror's with the passage's."""
+    import wires
+    from bloodmap import breakables
+    placed = {p.placement_id: p for p in layout.placements}
+    for cell, name in SHOT.items():
+        breakables.smash(layout, placed[name], wires.wire(f"underpass:tube-{cell}"), breakables.TUBE_GLASS)
+
+
 def bars() -> tuple[int, int, int, int]:
     """Where the iron bars stand: across the tunnel's mouth."""
     return _q(BARS) - 16, _q(MOUTH[0]) - 16, _q(BARS) + 16, _q(MOUTH[1]) + 16
@@ -199,6 +208,9 @@ TUBES = (("north", 44.0, 19.0, True), ("bay_1", 44.0, 21.875, True), ("bay_2", 4
          ("south", 44.0, 32.0, False), ("tickets", 46.25, 28.5, False))
 #: the one that is failing
 LOOSE = "bay_5"
+#: those that can be shot out, and what each is called: the light goes with it (`light_groups`)
+SHOT = {"north": "underpass:tube_north", "bay_1": "underpass:tube_bay_1", "bay_2": "underpass:tube_bay_2",
+        "bay_4": "underpass:tube_bay_4", "mirror": "loading:tube"}
 #: the folding gate (1060, the lattice the owner hangs before his own ticket windows)
 GATE = 1060
 
@@ -321,5 +333,8 @@ def light_groups(compiled) -> list:
     def passage(region):
         return region.startswith(KEY) and not tunnel(region)
 
-    return [LampGroup("the underpass's failing tube", lamps(f"tube_{LOOSE}"), wave=8, frequency=4, within=passage),
+    return [LampGroup(f"the underpass's tube in {cell}", frozenset({compiled.placement_sprites[name]}), "on",
+                      rx=wires.channel(f"underpass:tube-{cell}"), within=lambda region: "/works_stair/" in region and not tunnel(region))
+            for cell, name in SHOT.items()] + [
+            LampGroup("the underpass's failing tube", lamps(f"tube_{LOOSE}"), wave=8, frequency=4, within=passage),
             LampGroup("the bulb in the metro's tunnel", lamps("bulb"), "on", rx=wires.channel(WIRE), within=tunnel)]

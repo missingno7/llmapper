@@ -83,6 +83,18 @@ class FoundryWardTests(unittest.TestCase):
                 self.assertEqual((min(xs), max(xs)), (U._q(U.WEST), U._q(U.EAST)), cell)
         self.assertGreaterEqual(sum(1 for *_c, lit in U.TUBES if not lit), 2)
 
+    def test_the_lit_tubes_can_be_shot_out_and_take_their_light_with_them(self):
+        for cell in self.U.SHOT:
+            channel = self.wires.channel(f"underpass:tube-{cell}")
+            tube, = (s for s in self.disk.sprites if (record_extra(s) or {}).get("tx_id") == channel)
+            f, x = record_fields(tube), record_extra(tube)
+            self.assertEqual((f["type"], f["picnum"], x["trigger_vector"], x["trigger_once"]), (21, self.U.TUBE, 1, 1))
+            self.assertTrue(f["cstat"] & 256)
+            lit = [record_extra(s) for s in self.disk.sectors if (record_extra(s) or {}).get("rx_id") == channel]
+            self.assertTrue(lit, cell)
+            for sector in lit:                            # lit while it is on, and saved on
+                self.assertTrue(sector["state"] and sector["amplitude"] < 0)
+
     def test_the_failing_tube_takes_its_light_with_it(self):
         U = self.U
         x, y = next((x, y) for cell, x, y, _lit in U.TUBES if cell == U.LOOSE)
@@ -138,7 +150,7 @@ class FoundryWardTests(unittest.TestCase):
         self.assertEqual(len(mirrors), 1)
         self.assertEqual(record_fields(self.disk.walls[mirrors[0]])["next_sector"], -1)
         here = [record_fields(s) for s in self.disk.sprites if record_fields(s)["sector"] == beyond]
-        self.assertEqual(sorted(f["picnum"] for f in here if f["type"] != 709), [981, self.U.TUBE])
+        self.assertEqual(sorted(f["picnum"] for f in here if not f["cstat"] & 32768), [981, self.U.TUBE])
         bill, = (f for f in here if f["picnum"] == 981)
         self.assertTrue(bill["cstat"] & 4)                # printed backwards: it reads in the mirror
 

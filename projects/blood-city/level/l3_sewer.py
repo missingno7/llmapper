@@ -1837,7 +1837,7 @@ def dress_secrets(layout, rooms, attested) -> list[str]:
         import secret_places
         x0, y0, x1, _y1 = rects["molly_crawl"]
         walk = edge(rooms, "graves_brook", "south", (x0 + x1) / 2)
-        secret_places.ivy(layout, walk.region_id, int((x0 + x1) / 2 * PU), int(y0 * PU) - 24, int((x1 - x0) * PU), clear["molly_crawl"])
+        secret_places.ivy(layout, walk.region_id, int((x0 + x1) / 2 * PU), int(y0 * PU) - 24, int((x1 - x0) * PU))
     if "plague_pit" in rooms:
         channel = wires.channel("sewer:plague-pit")
         x0, y0, x1, y1 = (v * PU for v in rects["plague_seal"])
