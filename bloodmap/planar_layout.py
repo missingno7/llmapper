@@ -1886,8 +1886,13 @@ class PlanarLayout:
                     cstat=placement.cstat, y_offset=y_offset,
                     clearance=placement.seat_clearance,
                 )
+            travel = region.sector_behavior
             try:
                 sprite_id = builder.add_sprite(
+                    sweep=((min(int(travel["off_ceiling_z"]), int(travel["on_ceiling_z"])),
+                            max(int(travel["off_floor_z"]), int(travel["on_floor_z"])))
+                           if placement.sunk and all(k in travel for k in (
+                               "off_ceiling_z", "on_ceiling_z", "off_floor_z", "on_floor_z")) else None),
                     sector=sector_id, x=placement.x, y=placement.y, z=placement.z,
                     type=placement.type, picnum=placement.picnum, status=placement.status,
                     angle=placement.angle, cstat=placement.cstat, x_repeat=placement.x_repeat,

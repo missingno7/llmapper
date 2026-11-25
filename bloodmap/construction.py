@@ -263,7 +263,9 @@ class LevelBuilder:
         shade: int = 0,
         pal: int = 0,
         clipdist: int = 32,
+        sweep: tuple[int, int] | None = None,
     ) -> int:
+        """`sweep` is the ceiling and floor of a moving sector's whole travel: what hangs at one stop may be out of it at the other."""
         sector_id = int(sector)
         if not 0 <= sector_id < len(self.level.sectors):
             raise ConstructionError(f"sprite sector {sector_id} is out of range")
@@ -272,6 +274,8 @@ class LevelBuilder:
             raise ConstructionError("sprite position is outside its sector")
         ceiling = _sector_surface_z(self.level, sector_id, int(x), int(y), "ceiling")
         floor = _sector_surface_z(self.level, sector_id, int(x), int(y), "floor")
+        if sweep is not None:
+            ceiling, floor = min(ceiling, sweep[0]), max(floor, sweep[1])
         if not ceiling <= int(z) <= floor:
             raise ConstructionError(f"sprite z {z} is outside sector range {ceiling}..{floor}")
         sprite_id = len(self.level.sprites)

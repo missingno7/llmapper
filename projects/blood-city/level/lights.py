@@ -83,6 +83,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("ghost_service_stair", Rule("none", 0, 0)),
     ("sewer/", Rule("panel", 796, 7168, 7168)),          # pools with darkness between
     # its own: the hood's strip over the key, the consoles' strip, the lever's lamp
+    # a linked floor and what is under it are one sector each and stay one
+    ("pump_station/ramp", Rule("none", 0, 0, cut=False)),
+    ("st_gallows/crypt_shaft", Rule("none", 0, 0, cut=False)),
+    ("st_gallows/crypt_lift", Rule("none", 0, 0, cut=False)),
     ("pump_station/machine_hall", Rule("none", 0, 0)),
     ("pump_station/deck", Rule("none", 0, 0)),
     ("pump_station", Rule("panel", 501, 3072, 3072)),

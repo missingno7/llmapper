@@ -306,6 +306,16 @@ POSE_SETS = {
         "l_stair_up": (9.0, 27.8, 9.0, 33.0, UP, "up it", 4096),
     },
     # the owner's list of 2026-11-25, after the fence: doors' sizes, writings, the arrow
+    # the two links of `references/sewers-outside.md`
+    "links": {
+        "a_ramp_hall": (51.6, 4.5, 47.0, 4.5, LEVEL, "down the ramp from the station's floor"),
+        "a_ramp_hall_down": (51.0, 4.5, 47.5, 4.5, DOWN, "the same, at its head"),
+        "b_ramp_cellar": (45.4, 4.5, 50.0, 4.5, LEVEL, "up the ramp from the cellar", 40960),
+        "b_ramp_in": (47.4, 4.5, 50.4, 4.5, UP, "in the ramp, up", 38000),
+        "c_slab_stair": (29.6, 25.8, 31.4, 25.8, LEVEL, "the slab's shaft from the antechamber"),
+        "c_slab_down": (30.3, 25.8, 31.0, 25.8, DOWN, "down at it"),
+        "d_slab_foot": (30.9, 27.6, 31.0, 25.8, LEVEL, "the shaft from the crypt", 61440),
+    },
     "sizes": {
         "a_pawn_in": (28.8, 5.0, 31.6, 5.0, LEVEL, "the pawn shop's door from inside"),
         "a_pawn_out": (34.2, 5.0, 32.0, 5.0, LEVEL, "the same from the avenue"),

@@ -691,7 +691,7 @@ class ThirdWalkTests(unittest.TestCase):
                  if int(s.fields["type"]) == 600
                  and int(_extra(s).get("on_floor_z", 0))
                  == l3_church.CRYPT_FLOOR
-                 and int(_extra(s).get("off_floor_z", 0)) == 8192]
+                 and int(_extra(s).get("off_floor_z", 0)) == l3_church.SLAB_TOP]
         self.assertEqual(len(lifts), 1)
         lift = self.disk.sectors[lifts[0]]
         self.assertGreater(int(_extra(lift)["busy_time_a"]), 0)
@@ -700,17 +700,19 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertFalse(int(_extra(lift)["trigger_enter"]) or int(_extra(lift)["trigger_wall_push"]))
         skulls = [sp for sp in self.disk.sprites if int(sp.fields["picnum"]) == l3_church.SKULL_SWITCH["picnum"]
                   and int(_extra(sp).get("tx_id", 0)) == int(_extra(lift)["rx_id"])]
-        self.assertEqual(sorted(int(_extra(sp)["command"]) for sp in skulls), [0, 1, 3])
+        #: down from aboard and from the foot, up from the bottom of the shaft and from the top; none is carried (what is carried
+        #: stays on its own side of the link)
+        self.assertEqual(sorted(int(_extra(sp)["command"]) for sp in skulls), [0, 0, 1, 1])
         self.assertTrue(all(int(_extra(sp)["trigger_push"]) for sp in skulls))
-        carried, = (sp for sp in skulls if int(sp.fields["sector"]) == lifts[0])
-        self.assertTrue(int(carried.fields["cstat"]) & 8192)
-        self.assertTrue(int(_extra(carried)["trigger_on"]) and int(_extra(carried)["trigger_off"]))
+        below, = (sp for sp in skulls if int(sp.fields["sector"]) == lifts[0])
+        self.assertFalse(int(below.fields["cstat"]) & (8192 | 16384))
+        self.assertTrue(l3_church.SLAB_TOP < int(below.fields["z"]) < l3_church.CRYPT_FLOOR)
         s = lift.fields
         around = {int(self.walls[w]["next_sector"]) for w in range(
             int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"]))}
         floors = {int(self.sectors[n]["floor_z"]) for n in around if n >= 0}
-        #: one neighbour on the church's floor, one on the crypt's
-        self.assertEqual(floors, {8192, l3_church.CRYPT_FLOOR})
+        #: the crypt is its only neighbour; the church is over it through a link (tests/test_links.py)
+        self.assertEqual(floors, {l3_church.CRYPT_FLOOR})
         x0, y0, x1, y1 = l3_church.CRYPT
         self.assertLessEqual(27136, y1)          # under the narthex's plan
 

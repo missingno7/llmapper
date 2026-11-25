@@ -165,6 +165,10 @@ CRYPT_LIFT = (31232, 25856, 32256, 26880)
 CRYPT = (28160, 26880, 32256, 30720)
 CRYPT_FLOOR, CRYPT_CLEAR = 61440, 40960
 LIFT_CLEAR = 28672
+#: The top of the shaft is a linked floor, as E4M4's is (s159 under s154), so that the crypt and all under it need not stand
+#: under the church (`references/sewers-outside.md`). The plane is the church's floor; the slab stops a step under it,
+#: where a body standing on it has its middle over the plane and is the church's already.
+SLAB_TOP, SLAB_LINK = GRADE + 4096, 20
 LIFT_TIME = 40                                 # four seconds for 53,248
 TOMBS = ()                       # (the four grey boxes are gone)
 TOMB_RISE = 10240
@@ -277,10 +281,10 @@ CRACK = {"type": 408, "picnum": 1127, "cstat": 16 | 64 | 128, "x_repeat": 64,
 LATE_TYPES: dict = {}
 
 LAYERS = {
-    "crypt": (CRYPT_FLOOR - CRYPT_CLEAR - 4096, CRYPT_FLOOR + 4096,
+    "crypt": (GRADE, CRYPT_FLOOR + 4096,
               "St Gallow's crypt, under the narthex"),
-    "church_low": (GRADE - 57344, 16384, "St Gallow's rooms under the low roof"),
-    "church_tall": (GRADE - 81920, 16384, "the nave and the belfry"),
+    "church_low": (GRADE - 57344, GRADE, "St Gallow's rooms under the low roof"),
+    "church_tall": (GRADE - 81920, GRADE, "the nave and the belfry"),
     "roof_low": (GRADE - TOWER_HEIGHT - 4096, GRADE - BODY_HEIGHT,
                  "the church's low roof, and the tower's foot on it"),
     "roof_nave": (GRADE - 196608 - 4096, GRADE - NAVE_EAVES,
@@ -848,14 +852,17 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
                        connection_id=f"connection:church_{small}_{big}")
 
     # ---- the crypt, and the slab that goes down to it -------------------
-    lift = make("crypt_lift", *CRYPT_LIFT, "crypt", LIFT_CLEAR,
+    shaft = make("crypt_shaft", *CRYPT_LIFT, "crypt", LIFT_CLEAR,
+                 "the head of the slab's shaft, in the antechamber's east wall: its floor is the link",
+                 role="gateway")
+    lift = make("crypt_lift", *CRYPT_LIFT, "crypt", SLAB_TOP - GRADE,
                 "the slab: a lift between the antechamber and the crypt",
-                role="gateway",
+                role="gateway", floor_z=SLAB_TOP,
                 rk={"sector_behavior": {
-                    "off_floor_z": GRADE, "on_floor_z": CRYPT_FLOOR,
-                    "off_ceiling_z": GRADE - LIFT_CLEAR,
-                    "on_ceiling_z": GRADE - LIFT_CLEAR,
+                    "off_floor_z": SLAB_TOP, "on_floor_z": CRYPT_FLOOR,
+                    "off_ceiling_z": GRADE, "on_ceiling_z": GRADE,
                     "busy_time_a": LIFT_TIME, "busy_time_b": LIFT_TIME}})
+    lift.surfaces(layer="crypt")
     #: Typed after the door pass: `frame_z_doors` takes every type-600
     #: region for a door leaf between two opposite edges, and a lift is
     #: entered from one side above and left by another below.
@@ -864,7 +871,7 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
                  "the crypt under the narthex: four tombs",
                  floor_z=CRYPT_FLOOR, rk={"declared_zero_exit": True})
     crypt.surfaces(layer="crypt")
-    parish.connect(lift.face("west"), rooms["crypt_stair"].face("east"),
+    parish.connect(shaft.face("west"), rooms["crypt_stair"].face("east"),
                    connection_id="connection:church_crypt_lift_top")
     parish.connect(lift.face("south"), crypt.face("north"),
                    connection_id="connection:church_crypt_lift_bottom")
@@ -1040,14 +1047,26 @@ PICKUPS = [("vestry", 109, (0.35, 0.5)), ("apse", 67, (0.5, 0.35)),
 SKULL_SWITCH = {"picnum": 1048, "cstat": 464, "shade": -8, "status": 0}
 
 
+def link_slab(layout, rooms) -> dict:
+    """The floor of the shaft's head opens on the slab under it. One sector either side, and neither is ever cut."""
+    from bloodmap.roomoverroom import room_over_room
+    x0, y0, x1, y1 = CRYPT_LIFT
+    return room_over_room(layout, "church:slab_link", rooms["crypt_shaft"].region_id, rooms["crypt_lift"].region_id,
+                          link_id=SLAB_LINK, at=((x0 + x1) // 2, (y0 + y1) // 2))
+
+
 def slab_switches(layout, rooms) -> None:
-    """The skull the slab carries on its back wall, and the one that calls it at either stop."""
-    from bloodmap import mechanism, motion
+    """A skull on the shaft's back wall at either stop, for whoever stands on the slab, and one outside that calls it.
+
+    (It carried one with it until the link: what is carried stays on its own side of the plane, and at the top the skull was
+    in the crypt's half with the church's air where it should have been. E4M4's s159 is worked from a wall too.)
+    """
+    from bloodmap import motion
     wire = wires.wire("church:slab")
     wire.then(wiring.region(rooms["crypt_lift"].region_id))
     x0, y0, x1, y1 = CRYPT_LIFT
     for name, room, a, b, size, kind, flags, sends in (
-            ("carried", "crypt_lift", (x1, y0), (x1, y1), 40, 20, mechanism.CARRY_WITH, dict(command=motion.CMD_TOGGLE, off=True)),
+            ("aboard", "crypt_shaft", (x1, y0), (x1, y1), 40, 21, 0, dict(command=motion.CMD_ON, wait_time=10)),
             ("top", "crypt_stair", (x0, 25600), (x0, y0), 28, 21, 0, dict(command=motion.CMD_OFF, wait_time=10)),
             ("foot", "crypt", (x0 - 768, y1), (x0, y1), 40, 21, 0, dict(command=motion.CMD_ON, wait_time=10))):
         switch = f"church:slab_{name}"
@@ -1055,6 +1074,10 @@ def slab_switches(layout, rooms) -> None:
                              offset_player_widths=0.04, type=kind, x_repeat=size, y_repeat=size, behavior={"data_1": 200, "data_2": 200},
                              **{**SKULL_SWITCH, "cstat": SKULL_SWITCH["cstat"] | flags})
         wire.when(wiring.placement(switch), "push", **sends)
+    # the one at the bottom of the shaft hangs under the slab while it is up
+    layout.add_sprite("church:slab_below", rooms["crypt_lift"].region_id, x=x1 - 16, y=(y0 + y1) // 2, z=CRYPT_FLOOR - 13400,
+                      type=21, x_repeat=40, y_repeat=40, angle=1024, behavior={"data_1": 200, "data_2": 200}, sunk=True, **SKULL_SWITCH)
+    wire.when(wiring.placement("church:slab_below"), "push", command=motion.CMD_OFF, wait_time=10)
 
 
 def crack(layout, rooms, trunk_region_id) -> dict:

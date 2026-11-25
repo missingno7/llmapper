@@ -368,6 +368,10 @@ def build():
                        ceiling_z=GRADE - max(STREET_SKY, l3_church.TOWER_HEIGHT),
                        floor_z=GRADE + 29696 + 4096,
                        note="the harbour's water and its horizon")
+    import l3_shed as _ramp
+    # (its foot is deeper than its band, as the flight it took the place of was: over the silt trap's roof, at 39,936)
+    city.declare_layer(_ramp.RAMP_LAYER, ceiling_z=GRADE, floor_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
+                       note="the ramp under the pump station's floor")
     city.declare_layer("sewer", ceiling_z=SEWER_FLOOR - SEWER_CHAMBER_CLEAR,
                        floor_z=SEWER_FLOOR + 4096,
                        note="the wet undercity beneath Foundry Ward")
@@ -1366,6 +1370,8 @@ def main() -> int:
     for spec in stack_links:
         build_stack_link(layout, spec, SEWER_CITY_D,
                          see_through=spec["see_through"])
+    import l3_church
+    print("the crypt's slab is linked:", l3_church.link_slab(layout, ctx["church_rooms"])["link_id"])
 
     STAGE("set-pieces",
           "what each venue is furnished with: curtain, flames, sewer runs, pews, stock")

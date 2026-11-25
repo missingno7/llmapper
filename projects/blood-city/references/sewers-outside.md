@@ -2,7 +2,11 @@
 
 The owner, 2026-11-25: "sounds from sewers are leaking into overgournd, but I am affraid
 that only way to handle it would be to move the whole sewers layer outside of the city."
-Measured on the build of that day. Nothing of this is built.
+Measured on the build of that day. The owner: "Yes, build the links". Both links are built (2026-11-25, `l3_church.link_slab`,
+`l3_shed.RAMP`, tests/test_links.py), where everything still stands; the shift is not. What differs from what is written below:
+the ramp is 3.5 units long and falls 30,720 (heinum 2,194, 28 degrees), and the slab carries no switch: a skull hangs on the shaft's
+back wall at either stop. The owner tests both. The bot, in the engine, walked onto the slab and stood on it a step under the
+floor, in the church's half, and up the first half unit of the ramp; it was not seen to cross either plane.
 
 ## What is true now
 

@@ -1,8 +1,8 @@
 {
  "way_m": 174,
  "way_is": "the exit",
- "sectors": 1687,
- "reached": 1563,
+ "sectors": 1682,
+ "reached": 1558,
  "taken_on_trust": 134,
  "keys": [
   {
@@ -44,13 +44,13 @@
  ],
  "exit": [
   {
-   "root": "sprite 1725",
+   "root": "sprite 1729",
    "reached": true
   }
  ],
  "locks": [
   {
-   "counter": 2608,
+   "counter": 2613,
    "wants": [
     "skull",
     "eye",
@@ -120,7 +120,7 @@
    "gun": "guns akimbo",
    "at": "the Cabal's chamber",
    "secret": true,
-   "foes_before": 0.6
+   "foes_before": 0.593
   },
   {
    "gun": "life leech",

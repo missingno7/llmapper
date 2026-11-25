@@ -26,6 +26,7 @@ from bloodmap import motion, wiring
 
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
+from bloodmap.slope import SlopeSpec
 from bloodmap.spiral import INNER_RADIUS
 
 from materials import FACADES, INTERIORS, MASONRY
@@ -55,12 +56,8 @@ DOOR_D, PORCH_D = 512, 512
 # and its reveal -- which makes this number the whole fix.
 DOOR_HEIGHT = 31744
 
-#: Eight risers of one max step land exactly on the spiral's cellar plane.
-STEP, TREAD = 4096, 512
-FLIGHT = 8           # one straight run; the works void is long enough
 STAIR_W = 1024
 CELLAR_FLOOR_Z = STATION_STACK_PLANE
-assert CELLAR_FLOOR_Z == GRADE + FLIGHT * STEP
 
 #: The spiral's axis and the radial side of its first tread.  These values are
 #: shared by the top approach and the prefab call in ``build_skeleton``.
@@ -74,7 +71,14 @@ SPIRAL_OUTER_X = SPIRAL_AXIS[0] + SPIRAL_RADIUS
 # east end.  Keeping this a corridor rather than the former 3.5 x 2.5-bay
 # cellar prevents a host sector from enclosing the spiral and making a
 # zero-thickness C-shaped wall.
-CELLAR = (SPIRAL_INNER_X, 4096, 47616, 5120)
+#: The way down to it is E2M1's way below (s2 over s20): the passage off the hall is one flat sector whose floor is a link, and
+#: under it one sector of the same plan slopes from a hand under the plane at the hall's end to a step over the cellar's floor at
+#: the other. A body sinks through a linked floor onto what is under it and is carried over as its middle passes the plane, down
+#: and up alike. (Eight treads until 2026-11-25; `references/sewers-outside.md` for why.) 28 degrees; E2M1's is 34.
+RAMP = (47104 + 1024, 4096, 51712, 5120)
+RAMP_HIGH, RAMP_LOW, RAMP_LINK = GRADE + 1024, CELLAR_FLOOR_Z - 1024, 21
+RAMP_LAYER = "pump_ramp"
+CELLAR = (SPIRAL_INNER_X, 4096, RAMP[0], 5120)
 PIT_LANDING = STATION_STACK_LANDING_DEPTH
 
 
@@ -650,22 +654,25 @@ def build(district, foundry_st, foundry_origin):
     # Approach the cellar from the north so its far end meets the first spiral
     # tread head-on.  The old southern bay fed a room which wrapped around the
     # stair and made the doorway look like a sideways slit.
-    stair_y0 = sy0 - STAIR_W
     cellar = room("cellar", *CELLAR, floor_z=CELLAR_FLOOR_Z, clear=20480,
                   role="gateway",
                   note="the station cellar; its pit drops into the sewer")
 
-    # The stair is one bay wide, taken from a sub-span of the hall's west
-    # face: anchored to the whole face it would be three plan units wide and
-    # would run straight through the rail-yard backdrop box.
-    face_len = (sy1 - 512) - sy0
-    # The west face is wound south-to-north, so its anchor fraction runs in
-    # the opposite direction to the room's local y coordinate.
-    at = 1.0 - ((stair_y0 + STAIR_W / 2) - sy0) / face_len
-    hall.staircase(
-        "pump_flight", "west", at=at, width=STAIR_W,
-        total_rise=FLIGHT * STEP, tread=TREAD, step_rise=STEP,
-        arrive_at=cellar.region_id, connection={"role": "portal"})
+    head = room("ramp_head", *RAMP, clear=28672, role="gateway",
+                note="the passage off the station's floor: its own floor is the link")
+    ramp = room("ramp", *RAMP, floor_z=RAMP_LOW, clear=RAMP_LOW - GRADE, role="gateway",
+                note="the ramp under it, down to the cellar",
+                rk={"floor_slope": SlopeSpec(hinge=((RAMP[0], RAMP[3]), (RAMP[0], RAMP[1])), rise_z=RAMP_HIGH - RAMP_LOW)})
+    ramp.surfaces(layer=RAMP_LAYER, floor_picnum=PLATE, wall_shade=24, floor_shade=26)
+    shed.connect(head.face("east"), hall.face("west"), connection_id="connection:pump_ramp_head")
+    shed.connect(ramp.face("west"), cellar.face("east"), connection_id="connection:pump_ramp_foot")
+
+    def link(layout, _room):
+        from bloodmap.roomoverroom import room_over_room
+        room_over_room(layout, "pump:ramp_link", head.region_id, ramp.region_id, link_id=RAMP_LINK,
+                       at=((RAMP[0] + RAMP[2]) // 2, (RAMP[1] + RAMP[3]) // 2))
+
+    hall.raw("the ramp's link", link)
 
     # `_assembly` lets the caller add the staircase against this corridor's
     # single radial face.  There is deliberately no curved carve: the newel
