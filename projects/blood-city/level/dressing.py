@@ -102,7 +102,7 @@ def _palette_for(region) -> str | None:
 
 #: what a region is when it is a thing in a room and not a room
 NOT_ROOMS = ("machine", "light_pool", "ship", "sea_rock", "horizon",
-             "shelf_niche")
+             "shelf_niche", "vista", "end_wall", "sky_backing")
 
 
 def moves(region) -> bool:

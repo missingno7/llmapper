@@ -101,6 +101,8 @@ SECTOR_SOUND_PROFILES = {
     "metal_swing": (101, 0, 100, 150),
     "wood_swing": (101, 0, 100, 160),
     "curtain": (0, 159, 0, 159),
+    "tech_slide": (111, 156, 111, 156),           # E3M2 s159 and s229: what 500, the technical door, slides with most
+    "wood_slide": (110, 158, 110, 158),           # E1M3 s193 and s202, its doors with knobs
     "rail_shuttle": (115, 153, 115, 153),
     "hydraulic_slide": (111, 159, 111, 159),
     "ceiling_press": (302, 309, 0, 0),
@@ -754,6 +756,96 @@ def solid_double_slide_spec(
         "markers": {motion.MARKER_OFF: point(mid - travel // 2, track),
                     motion.MARKER_ON: point(mid + (travel + 1) // 2, track)},
     }
+
+
+def solid_slide_spec(
+    opening: tuple[int, int, int, int],
+    *,
+    axis: str,
+    pocket: str,
+    reveal: int = 192,
+    lap: int = 64,
+) -> dict[str, Any]:
+    """Draw the ON loop of one solid leaf that slides into the wall on one side: Blood's door with a knob.
+
+    E1M3 s135, s193 and s202 and E2M5 s509 are all its knob doors (tile 30)
+    that move and none of them goes up: an opening 1,024 wide and 512 deep,
+    a leaf 128 thick in the middle of it, 960 of pocket on the side the knob
+    is not, the tip left 64 proud of the jamb when it is open. `pocket` is
+    the end of the axis the leaf goes into, "low" or "high". Used with
+    `seat_leaves` and `furnish_solid_slide`, as the double is with its own.
+    """
+    x0, y0, x1, y1 = opening
+    if axis not in ("x", "y") or pocket not in ("low", "high") or x0 >= x1 or y0 >= y1:
+        raise MechanismError("a slide needs an ordered rectangle, an x or y axis and a pocket at one end of it")
+    low, high, near, far = (x0, x1, y0, y1) if axis == "x" else (y0, y1, x0, x1)
+    drawn = reveal + 16
+    if far - near <= 2 * drawn or high - low <= 2 * lap:
+        raise MechanismError("a slide's opening needs room for its returns and its leaf")
+    travel = high - low - lap
+
+    def point(along, depth):
+        if pocket == "low":
+            along = low + high - along
+        return (along, depth) if axis == "x" else (near + far - depth, along)
+
+    tip, back = high - lap, high + travel
+    outline = [point(a, b) for a, b in (
+        (low, near), (high, near), (high, near + reveal), (back, near + drawn), (tip, near + drawn),
+        (tip, far - drawn), (back, far - drawn), (high, far - reveal), (high, far), (low, far))]
+    if pocket == "low":
+        outline = [outline[0], *reversed(outline[1:])]
+    edges = list(zip(outline, outline[1:] + outline[:1]))
+
+    def edge(a, b):
+        return next(e for e in edges if set(e) == {point(*a), point(*b)})
+
+    leaf = [edge((back, near + drawn), (tip, near + drawn)), edge((tip, near + drawn), (tip, far - drawn)),
+            edge((tip, far - drawn), (back, far - drawn))]
+    track = (near + far) // 2
+    tips = {point(tip, near + drawn), point(tip, far - drawn)}
+    return {
+        "outline": outline,
+        "portals": (edge((low, near), (high, near)), edge((high, far), (low, far))),
+        "returns": (edge((high, near), (high, near + reveal)), edge((high, far - reveal), (high, far))),
+        "jamb": edge((low, far), (low, near)),
+        "leaf": leaf,
+        #: the two broad faces, and whether each is drawn mirrored so that its knob is at the tip
+        "faces": [(e, e[1] in tips) for e in (leaf[0], leaf[2])],
+        "seats": {point(a, d): point(a, seat) for a in (tip, back) for d, seat in ((near + drawn, near + reveal), (far - drawn, far - reveal))},
+        "markers": {motion.MARKER_OFF: point(low, track), motion.MARKER_ON: point(tip, track)},
+        "travel": travel,
+    }
+
+
+def furnish_solid_slide(
+    layout: PlanarLayout,
+    region_id: str,
+    spec: dict[str, Any],
+    wire: wiring.Wire,
+    *,
+    marker_fields: dict[int, dict[str, Any]],
+    leaf_picnum: int = 30,
+    edge_picnum: int = 20,
+    busy_time: int = 10,
+) -> None:
+    """Set up a region drawn by `solid_slide_spec`: E1M3 s193's times and repeats, pushed on either face, its knob away from its pocket."""
+    region = layout.regions[region_id]
+    region.type = 614
+    region.sector_behavior.update(state=0, busy=0, busy_time_a=busy_time, busy_time_b=busy_time, interruptable=1)
+    for kind, (x, y) in spec["markers"].items():
+        layout.add_sprite(f"{region_id}:marker{kind}", region_id, x=x, y=y, z=region.floor_z, **marker_fields[kind])
+    layout.declare_motion(region_id, [])
+    wire.then(wiring.region(region_id))
+    mirrored = {e: flip for e, flip in spec["faces"]}
+    for a, b in spec["leaf"]:
+        layout.carry_wall(region_id, a, b, moves="with")
+        broad = (a, b) in mirrored
+        layout.paint_wall(region_id, a, b, fixed_frame=True, picnum=leaf_picnum if broad else edge_picnum, x_repeat=8 if broad else 1,
+                          y_repeat=10 if broad else 8, x_panning=0, y_panning=0, cstat=8 if mirrored.get((a, b)) else 0)
+        wire.when(wiring.face(region_id, a, b), "push", on=True, off=True)
+    for a, b in (*spec["returns"], spec["jamb"]):
+        layout.paint_wall(region_id, a, b, picnum=edge_picnum)
 
 
 def seat_leaves(level, sector_id: int, spec: dict[str, Any]) -> int:

@@ -33,9 +33,10 @@ WIRE_PROFILES = {
     "station:gate": "chain_lift",
     "station:unlock": "chain_lift",
     "sewer:plague-pit": "blast",
-    "foundry:loading-shutter": "heavy_slide",
+    "foundry:loading-shutter": "tech_slide",
     "theatre:fire-doors": "wood_swing",
     "theatre:front-doors": "wood_swing",
+    "theatre:side-door": "wood_slide",
     "sewer:stockyard-trolley": "rail_shuttle",
     "ghost:hatch-open": "hydraulic_slide",
     "phantom:car": "phantom_train",
@@ -54,7 +55,7 @@ REGION_PROFILES = {":hand_button": "hand_button"}
 #: most, 165 its commonest stop. 110 and 1011, stone: 106.
 #: (The owner, 2026-11-23: "These wooden zdoor sound 106 sounds like a moving
 #: stone ... example 110 would be better".)
-LEAF_PROFILES = {22: "wood_z_door", 28: "wood_z_door", 30: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door",
+LEAF_PROFILES = {22: "wood_z_door", 28: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door",
                  562: "wood_z_door"}                  # the Toshers' bed, its boxes' face
 MOTION_TYPES = TRIGGERED_MOTION_TYPES | {611, 612}
 FIELD_NAMES = tuple(f"data_{i}" for i in range(1, 5))

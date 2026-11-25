@@ -29,14 +29,19 @@ class AldermackFrontTests(unittest.TestCase):
                   and (10900 <= s["y"] <= 17000 or 32256 <= s["x"] <= 34000 and 3000 <= s["y"])]
         self.assertEqual([s for s in levers if s["y"] < 17000 and s["x"] < 34000], [])
 
-        def corners(s):
-            return [(w.fields["x"], w.fields["y"]) for w in self.disk.walls[s["wall_ptr"]:s["wall_ptr"] + s["wall_count"]]]
+        #: "in door with knob (picnum 30) I would avoid doing them as Z motion, these can be slide door to the other
+        #: side than knob is ... for example aldermack side door would be the case of this"
+        def walls(s):
+            return range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"])
 
-        avenue, = (record_extra(self.disk.sectors[i]) for i, s in enumerate(self.sectors)
-                   if s["type"] == 600 and s["floor_z"] == s["ceiling_z"]
-                   and all(32256 <= x <= 32512 and 8192 <= y <= 10240 for x, y in corners(s)))
-        self.assertTrue(avenue["trigger_wall_push"])
-        self.assertGreaterEqual(avenue["on_floor_z"] - avenue["on_ceiling_z"], 24576)
+        avenue, = (s for s in self.sectors if s["type"] == 614
+                   and any(self.walls[w]["x"] == 32768 and 8192 <= self.walls[w]["y"] <= 9216 for w in walls(s)))
+        leaf = [w for w in walls(avenue) if self.walls[w]["picnum"] == 30]
+        self.assertEqual(len(leaf), 2)
+        for w in leaf:
+            self.assertTrue(self.walls[w]["cstat"] & 16384)
+            self.assertTrue(record_extra(self.disk.walls[w])["trigger_push"])
+        self.assertEqual(avenue["floor_z"] - avenue["ceiling_z"], 24576)
 
     def test_the_front_doors_are_mirrored_wings(self):
         #: the owner: "Shouldn't the front door be like mirror wings to each

@@ -1841,8 +1841,12 @@ def main() -> int:
     print("facades:", facade_pass.apply(compiled.level, compiled,
                                         ctx["street_regions"],
                                         edge=_backs["edge"]))
+    import street_vistas
+    print("streets go on as they began:", street_vistas.follow(compiled.level, compiled))
     from bloodmap.mechanism import seat_leaves
     seat_leaves(compiled.level, compiled.allocations[UNDERPASS["loading"]["shutter"]].sector_id, UNDERPASS["loading"]["spec"])
+    import aldermack_front as _front
+    seat_leaves(compiled.level, compiled.allocations[_front.SIDE_DOOR["region"]].sector_id, _front.SIDE_DOOR["spec"])
     print("headers:", facade_pass.align_headers(compiled.level, compiled,
                                                 ctx["street_regions"]))
     # Shop glass, after the facade pass so it survives what that painted.
@@ -2105,6 +2109,8 @@ def main() -> int:
     from bloodmap.rules import art_sizes as _art_sizes
     print("window niche walls:", _windows.paint(compiled.level, compiled))
     print("window glass and bars:", _windows.glaze(compiled.level))
+    ctx["manifest"]["doorways"] = apertures.neutral(compiled.level)
+    print("doorways in one frame:", ctx["manifest"]["doorways"])
     print("gallows treads:", gallows.finish(compiled.level, compiled))
     import facade_bays
     ctx["manifest"]["facade_bays"] = facade_bays.apply(compiled.level)
@@ -2387,6 +2393,7 @@ def main() -> int:
                                     + _underpass.light_groups(compiled))
         print("lamps that switch:", _lit["switched"])
         print("floors under fangs evened:", _cabal.even(disk, compiled))
+        print("gallows stair evened:", gallows.even(disk, compiled))
         _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
         _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
         # pieces that came out alike are one again, before the gates look

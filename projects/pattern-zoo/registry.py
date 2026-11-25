@@ -885,6 +885,12 @@ SKIP: dict[str, str] = {
     "bloodmap.mechanism.furnish_solid_double_slide":
         "Gravesend's loading shutter shows both approaches and the fixed "
         "pockets together, with its own saved-map and sweep checks",
+    "bloodmap.mechanism.solid_slide_spec":
+        "the outline and moving edges of the Aldermack's avenue door, "
+        "exercised with its furnishing in SolidSlideReadBack",
+    "bloodmap.mechanism.furnish_solid_slide":
+        "Gravesend's Aldermack hangs its avenue door with it; "
+        "SolidSlideReadBack sweeps it shut and open both ways",
     "bloodmap.mechanism.seat_leaves":
         "makes a compiled double slide's leaves as thick as their slots; "
         "checked on Gravesend's underpass doors (test_foundry_ward)",

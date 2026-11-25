@@ -1061,7 +1061,7 @@
       "kind": "wall",
       "label_en": "wooden door",
       "label_cs": "Dřevěné dveře",
-      "notes": "owner tile sheet 2026-09-03"
+      "notes": "owner tile sheet 2026-09-03; Door leaf with a knob: never Z motion; slides to the side the knob is not, or swings where there is room. Owner, 2026-11-25."
     },
     {
       "picnum": 301,
@@ -1453,7 +1453,7 @@
       "kind": "wall",
       "label_en": "iron-bound door",
       "label_cs": "Okované dveře",
-      "notes": "owner tile sheet 2026-09-03"
+      "notes": "owner tile sheet 2026-09-03; Door leaf: sliding recommended only. Owner, 2026-11-25."
     },
     {
       "picnum": 230,
@@ -1713,6 +1713,84 @@
       "label_en": "metal door texture",
       "label_cs": "textura kovových dveří",
       "notes": "Owner-confirmed 2026-09-09 during mashup review. Prefer for door faces rather than generic room walls; contextual anchor, not a universal usage rule."
+    },
+    {
+      "picnum": 257,
+      "kind": "sprite",
+      "label_en": "rope fence stake topped with a skull",
+      "notes": "stake of a rope fence Owner, 2026-11-25."
+    },
+    {
+      "picnum": 258,
+      "kind": "sprite",
+      "label_en": "rope used by fencing",
+      "notes": "He wrote \"vertical rope used by fencing\"; the art is one sagging strand, hung between stakes (TEDE1M7 284, E2M7 72). Owner, 2026-11-25."
+    },
+    {
+      "picnum": 259,
+      "kind": "sprite",
+      "label_en": "rope fence stake with two skulls",
+      "notes": "stake of a rope fence Owner, 2026-11-25."
+    },
+    {
+      "picnum": 334,
+      "kind": "sprite",
+      "label_en": "ladder",
+      "notes": "Owner, 2026-11-25."
+    },
+    {
+      "picnum": 338,
+      "kind": "sprite",
+      "label_en": "ladder made of bones and skulls",
+      "notes": "Owner, 2026-11-25."
+    },
+    {
+      "picnum": 351,
+      "kind": "sprite",
+      "label_en": "wooden railing going up or down",
+      "notes": "for stairs Owner, 2026-11-25."
+    },
+    {
+      "picnum": 382,
+      "kind": "sprite",
+      "label_en": "electric doorbell",
+      "notes": "He wrote \"electronic bell/doorbell\". Owner, 2026-11-25."
+    },
+    {
+      "picnum": 1907,
+      "kind": "sprite",
+      "label_en": "string or rope",
+      "notes": "Makes sense as a clothesline, not hanging in mid air. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 22,
+      "kind": "wall",
+      "label_en": "wooden door with iron bands",
+      "notes": "Door leaf: good for a Z door. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 24,
+      "kind": "wall",
+      "label_en": "wooden door",
+      "notes": "Door leaf: any motion, swing, slide or Z. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 25,
+      "kind": "wall",
+      "label_en": "wooden door",
+      "notes": "Door leaf: any motion, swing, slide or Z. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 26,
+      "kind": "wall",
+      "label_en": "wooden door",
+      "notes": "Door leaf: any motion, swing, slide or Z. Owner, 2026-11-25."
+    },
+    {
+      "picnum": 27,
+      "kind": "wall",
+      "label_en": "wooden door",
+      "notes": "Door leaf: any motion, swing, slide or Z. Owner, 2026-11-25."
     }
   ],
   "reading_guide": {

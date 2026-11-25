@@ -115,7 +115,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
     ("Measuring the campaign",
      "Each runs a library sensor over `corpus.campaign_maps()` and writes a "
      "versioned file under `knowledge/blood/design/`.",
-     ["mine_apertures", "mine_assemblies", "mine_blasts", "mine_breakables", "mine_compositions", "mine_decoration", "mine_keys",
+     ["mine_apertures", "mine_assemblies", "mine_blasts", "mine_breakables", "mine_compositions", "mine_decoration", "mine_door_leaves", "mine_keys",
       "mine_layers", "mine_mechanisms", "mine_monuments", "mine_overlooks",
       "mine_patterns", "mine_prefabs", "mine_prop_catalogue",
       "mine_run_rhythm", "mine_secrets", "mine_sector_motion_sounds", "mine_set_pieces", "mine_skylines",

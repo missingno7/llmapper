@@ -1,8 +1,10 @@
 """The Aldermack's marquee, box office and second entrance."""
 
 from bloodmap import wiring
-from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import RECT_FACES, Frame
+from bloodmap.mechanism import furnish_solid_slide, solid_slide_spec
+from bloodmap.motion import MARKER_OFF, MARKER_ON
+from l3_foundry import _attested
 from bloodmap.placement import seated_z
 
 import citytree
@@ -26,6 +28,9 @@ MARQUEE = (27520, 29376)
 FRONT_DOORS = wing_doors.Pair("front", "south", (28448, 10752), 768, depth=864)
 FRONT_WALL = 192
 SIDE_SPAN = (8192, 9216)
+#: the avenue door as it was built: its spec and its region (the build seats its leaf)
+SIDE_DOOR: dict = {}
+SILL = 20                                              # planks, as Blood's own sills under wooden doors
 STONE = 70
 PANEL = 179
 WOOD = 28
@@ -62,19 +67,6 @@ def _join(name, a, side_a, b, side_b, **fields):
                          connection_id=f"connection:{name}", **fields)
 
 
-def _door(parent, name, rect, room, porch, inward, outward, floor):
-    door = _room(
-        parent, name, rect, floor=floor, clear=0, role="doorway",
-        note="A raised wooden gate leaf.",
-        type=600, door_face=30, inherit_finish="both",
-        sector_behavior=z_motion_door(
-            floor, floor - DOOR_CLEAR))
-    door.surfaces(wall_picnum=WOOD)
-    _join(f"{name}_in", door, inward, room, outward)
-    _join(f"{name}_porch", door, outward, porch, inward)
-    return door
-
-
 def _entrances(foyer, lobby, street):
     venue = foyer.parent
     floor = GRADE - PORCH_RISE
@@ -98,13 +90,24 @@ def _entrances(foyer, lobby, street):
               lambda layout, room: wing_doors.furnish(layout, doors, front_wire))
 
     y0, y1 = SIDE_SPAN
-    side = _room(venue, "lobby_porch", (32512, y0, AVENUE, y1),
-                 clear=DOOR_CLEAR, role="gateway",
-                 note="The avenue entrance's dark wood and terrazzo reveal.")
-    side.surfaces(wall_picnum=WOOD, ceiling_picnum=422, floor_picnum=307)
+    # The owner, 2026-11-25: "in door with knob (picnum 30) I would avoid doing
+    # them as Z motion, these can be slide door to the other side than knob is
+    # ... for example aldermack side door would be the case of this".
+    spec = solid_slide_spec((32256, y0, AVENUE, y1), axis="y", pocket="low")
+    street_edge, lobby_edge = spec["portals"]
+    side = venue.room(
+        "lobby_door", spec["outline"], frame=Frame(0, 0), role="doorway",
+        faces={"east": spec["outline"].index(street_edge[0]), "west": spec["outline"].index(lobby_edge[0])},
+        region_kwargs=VENUE_MATERIAL.region_kwargs(), note="The avenue door: one leaf with a knob, that slides into the wall.")
+    side.surfaces(floor_z=GRADE, clear_height=wing_doors.LEAF_HEIGHT, wall_picnum=20, floor_picnum=SILL, ceiling_picnum=20,
+                  floor_shade=28, ceiling_shade=32, wall_shade=30)
     _join("lobby_street", side, "east", street, "north")
-    _door(venue, "lobby_door", (32256, y0, 32512, y1), lobby, side,
-          "west", "east", GRADE)
+    _join("lobby_door_in", side, "west", lobby, "east")
+    SIDE_DOOR.update(spec=spec, region=side.region_id)
+    side_wire = wires.wire("theatre:side-door")
+    foyer.raw("Hang the avenue door on its wire", lambda layout, room: furnish_solid_slide(
+        layout, side.region_id, spec, side_wire,
+        marker_fields={kind: _attested("E1M3", kind, 3997)["fields"] for kind in (MARKER_OFF, MARKER_ON)}))
     return porch, side
 
 
@@ -258,8 +261,6 @@ def _marquee(layout, street, porch, side):
     for x in (27872, 28448, 29024):
         _seated(layout, porch, f"soffit_{x}", (x, 11120), 795, (24, 24),
                 seat="ceiling", cstat=32 | 64, shade=-36, angle=512)
-    _seated(layout, side, "avenue_soffit", (32640, 8704), 795,
-            (24, 24), seat="ceiling", cstat=32 | 64, shade=-32)
     avenue = ((AVENUE, 9344), (AVENUE, 8064))
     _plate(layout, street, "avenue_fascia", point=(AVENUE+6, 8704, GRADE-38400),
            tile=PANEL, size=(80, 11), angle=0, shade=3)

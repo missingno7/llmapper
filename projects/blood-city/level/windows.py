@@ -119,6 +119,7 @@ THROUGH_SILL, THROUGH_HEIGHT = 9216, 19456       # 0.54 up, 1.15 tall
 #: thicker ones is a deep reveal (E6M1's are 768)
 THROUGH_MAX_WALL = 1024
 BARS = 463
+FRAME = 20
 #: filled by `cut_through`: also read by `paint` and by `glaze`
 THROUGH: list[dict] = []
 
@@ -327,9 +328,9 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
                                  (r[0], r[3])],
                                 floor_z=grade - sill,
                                 ceiling_z=grade - head,
-                                wall_picnum=int(region.wall_picnum),
-                                floor_picnum=int(region.wall_picnum),
-                                ceiling_picnum=int(region.wall_picnum),
+                                #: a frame of planks, not the room's wall
+                                wall_picnum=FRAME, floor_picnum=FRAME,
+                                ceiling_picnum=FRAME,
                                 role="detail", layer="street",
                                 declared_zero_exit=True,
                                 intent={"kind": "window"})

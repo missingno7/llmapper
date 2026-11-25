@@ -9,9 +9,16 @@ E3M1 shows what lies past its edge in two places (sectors 333-337 and 366-368): 
 out of reach, its outline broken, every wall of it another building's tile (384, 401,
 181, 418, 414; 397, 393, 417, 381), a sector of no height where the sky comes down. So:
 a wall of 2.9 bodies, that the roofs behind stand over, and a barred gate in it through
-which the paving and the lamps go on to where the street turns. The buildings are raised
-floors of whole storeys (a lower sky would be a lid on everything, `bloodmap.skyline`),
-none of one height, with the sky's own backing behind them.
+which the paving and the lamps go on to where the street turns.
+
+The first of them, the owner the same day: "you need to think about it like continuation
+of the buildings you see next to it ... you have very tall buildings that are very thin
+and other smaller buildings continue behind them". The city's edge is a wall drawn to
+the sky, and what stood beside the mouth was half a unit of it. So the two buildings a
+mouth lies between go on past the wall, the same height and the same front
+(`follow` reads what each wears), six units deep; what stands behind them is lower, and
+lower again (raised floors of whole storeys: a lower sky would be a lid on everything,
+`bloodmap.skyline`), with the sky's own backing at the back.
 
 One `bloodmap.arrangement` to each end, written in the street's own frame: `s` along the
 mouth, `d` out of the town.
@@ -34,12 +41,14 @@ WALL, POST, COPING, PAVING, COBBLE, KERB, ROOF, STACK = 110, 427, 253, 4, 352, 6
 THICK, GATE_W, POST_W = 0.5, 2.0, 0.5
 #: E1M2's iron gates as the station hangs them: spear heads up, 2,048 wide and 32,768 tall, seen through and shot through
 GATE = {"type": 0, "picnum": 1044, "cstat": 8413 & ~64 & ~256, "x_repeat": 64, "y_repeat": 64, "shade": 8, "status": 0}
-#: an end: the edge it is in, and its mouth's two ends along it, in plan units; what each building behind wears and how many
-#: storeys it has. `left` and `right` as they stand along the edge, low end first.
+#: how far the two buildings beside a mouth go on behind its wall
+FLANK = 6.0
+#: an end: the edge it is in, and its mouth's two ends along it, in plan units; what each building farther on wears and how
+#: many storeys it has (the two beside the mouth have six). `left` is on the mouth's low side along the edge.
 ENDS = {
-    "row": ("west", 15.0, 21.0, {"left": (400, 4), "bend": (393, 3), "right": (384, 3), "corner": (380, 5), "far": (397, 4)}),
-    "market_west": ("west", 35.0, 40.0, {"left": (384, 3), "bend": (380, 4), "right": (393, 4), "corner": (400, 4), "far": (384, 3)}),
-    "market_east": ("east", 35.0, 40.0, {"left": (397, 4), "bend": (384, 3), "right": (380, 3), "corner": (393, 5), "far": (400, 4)}),
+    "row": ("west", 15.0, 21.0, {"left": (393, 4), "bend": (384, 3), "corner": (380, 4), "far": (397, 3)}),
+    "market_west": ("west", 35.0, 40.0, {"left": (380, 4), "bend": (393, 3), "corner": (384, 4), "far": (380, 3)}),
+    "market_east": ("east", 35.0, 40.0, {"left": (397, 4), "bend": (380, 3), "corner": (393, 4), "far": (384, 3)}),
 }
 EDGES = {"west": 0.0, "east": 58.0}
 
@@ -63,25 +72,25 @@ def plan(name: str) -> list:
         return [(s0, d0), (s1, d0), (s1, d1), (s0, d1)]
 
     t = THICK
-    street = [(0, t), (m, t), (m, 4.5), (m + .5, 4.5), (m + .5, 7.5), (m + 3, 10.5), (m + 3, 13), (m + .25, 13), (.75, 9.5), (.75, 6.5), (0, 6.5)]
+    street = [(0, t), (m, t), (m, 7.5), (m + 3, 10.5), (m + 3, 13), (m + .25, 13), (.75, 9.5), (.75, 7), (0, 7)]
     middle = m / 2
     road = [(middle - 1, t), (middle + 1, t), (middle + 1, 6.6), (m + 2.3, 11.2), (m + 2.3, 12.4), (m + .9, 12.4), (middle - 1, 8)]
+    f = FLANK
     masses = {
-        "left": rect(-2, t, 0, 6.5),
-        "bend": [(-1.5, 6.5), (.75, 6.5), (.75, 9.5), (m + .25, 13), (m - 1, 14.5), (-1.5, 10.5)],
-        "right": rect(m, t, m + 2, 4.5),
-        "corner": [(m + .5, 4.5), (m + 2.5, 4.5), (m + 2.5, 7), (m + 5, 9.5), (m + 3, 10.5), (m + .5, 7.5)],
+        "left": [(-2.5, f), (0, f), (0, 7), (.75, 7), (.75, 9.5), (-2.5, 9.5)],
+        "bend": [(-2.5, 9.5), (.75, 9.5), (m + .25, 13), (m - 1, 14.5), (2.5, 12.2), (-2.5, 11)],
+        "corner": [(m, f), (m + 3, f), (m + 3, 7.5), (m + 5, 9.5), (m + 3, 10.5), (m, 7.5)],
         "far": [(m - 1, 13), (m + 3, 13), (m + 3, 10.5), (m + 5, 9.5), (m + 5, 14.5), (m - 1, 14.5)],
     }
     place = A.Arrangement()
     # the sky comes down behind it all: never nearer the town than the wall's back
-    town = unary_union([Polygon(p) for p in masses.values()] + [Polygon(street)])
-    sky = town.buffer(0.5, join_style=2).intersection(box(-10, t, m + 10, 20))
+    town = unary_union([Polygon(p) for p in masses.values()])
+    sky = town.buffer(0.5, join_style=2).intersection(box(-10, f, m + 10, 20))
     place.add("sky", ring(list(sky.exterior.coords)[:-1]))
     for part, points in masses.items():
         place.add(part, ring(points))
-    for part, (s0, d0, s1, d1) in {"left": (-1.5, 2, -.75, 2.75), "bend": (0, 8, .5, 8.75), "right": (m + .75, 2.5, m + 1.5, 3.25),
-                                   "corner": (m + 1.5, 6, m + 2, 6.75), "far": (m + 3.75, 12, m + 4.5, 12.5)}.items():
+    for part, (s0, d0, s1, d1) in {"left": (-1, 8, -.25, 8.5), "bend": (.5, 10.2, 1.25, 10.7), "corner": (m + 1.25, 7, m + 1.75, 7.75),
+                                   "far": (m + 3.75, 12, m + 4.5, 12.5)}.items():
         place.add(f"stack_{part}", ring(rect(s0, d0, s1, d1)))
     place.add("pave", ring(street))
     place.add("road", ring(road))
@@ -132,7 +141,7 @@ def build(layout) -> dict[str, int]:
 
         def face(seen, beyond, _a, _b):
             if beyond is None:
-                return {"picnum": wear["left"][0]} if base(seen) in ("pave", "road") else {}
+                return {}                                          # the buildings beside the mouth: `follow`
             if base(seen) == "road" and base(beyond) in ("pave", "gate"):
                 return {"picnum": KERB}
             if levels(beyond)[0] < levels(seen)[0]:
@@ -167,11 +176,61 @@ def _join(layout, name, regions, cells, worn) -> None:
             own = [y for x, y in next(r for r in layout.regions.values() if r.region_id == street).outer if x == line]
             lo = next((y for y in own if abs(y - lo) <= 2), lo)
             hi = next((y for y in own if abs(y - hi) <= 2), hi)
+            # a building begins at the mouth, not somewhere past it (`facade_pass.split_backs` cuts the edge from corner to corner)
+            region = layout.regions[street]
+            region.outer = tuple(_split(region.outer, line, (round(_low * PU), round(_high * PU))))
             p, q = ((line, lo), (line, hi)) if a[1] < b[1] else ((line, hi), (line, lo))
             layout.add_connection(f"connection:vista:{name}:{cell}:{street.split('/')[-2]}", street, regions[cell], a1=q, a2=p,
                                   min_width=1, min_opening=0)
             if not cell.startswith("gate"):
                 layout.paint_wall(street, q, p, picnum=worn(cell))
+
+
+def _split(outer, line, ys):
+    """The outline with a corner at each of those points of the edge it crosses."""
+    out = []
+    for (ax, ay), (bx, by) in zip(outer, (*outer[1:], outer[0])):
+        out.append((ax, ay))
+        if ax == bx == line:
+            out += [(line, y) for y in sorted(ys, reverse=ay > by) if min(ay, by) < y < max(ay, by)]
+    return out
+
+
+def follow(level, compiled) -> dict:
+    """Each building beside a mouth shows its own front down the street behind the wall. After `facade_pass`, before the frames."""
+    def f(item):
+        return item.get("fields", item) if isinstance(item, dict) else item.fields
+
+    mine = {a.sector_id for rid, a in compiled.allocations.items() if rid.startswith(KEY)}
+    owner = {}
+    for i, sector in enumerate(level.sectors):
+        s = f(sector)
+        for w in range(int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"])):
+            owner[w] = i
+    ends = [(f(w), f(level.walls[int(f(w)["point2"])])) for w in level.walls]
+    out = {}
+    for name, (edge, low, high, _wear) in ENDS.items():
+        line, sign = round(EDGES[edge] * PU), -1 if edge == "west" else 1
+        here = {a.sector_id for rid, a in compiled.allocations.items() if rid.startswith(f"{KEY}/{name}:")}
+        for side, y, beyond in (("low", round(low * PU), -1), ("high", round(high * PU), 1)):
+            front = next((a for w, (a, b) in enumerate(ends)
+                          if owner[w] not in mine and int(a["next_sector"]) < 0 and int(a["x"]) == int(b["x"]) == line
+                          and y in (int(a["y"]), int(b["y"])) and (int(a["y"]) + int(b["y"]) - 2 * y) * beyond > 0), None)
+            if front is None:
+                out[f"{name}:{side}"] = None
+                continue
+            painted = 0
+            for w, (a, b) in enumerate(ends):
+                if owner[w] not in here or int(a["next_sector"]) >= 0:
+                    continue
+                along = int(a["y"]) == int(b["y"]) == y                      # down the side of the street
+                back = (int(a["x"]) == int(b["x"]) == line + sign * round(FLANK * PU)
+                        and (int(a["y"]) + int(b["y"]) - 2 * y) * beyond > 0)
+                if along or back:
+                    a["picnum"] = int(front["picnum"])
+                    painted += 1
+            out[f"{name}:{side}"] = (int(front["picnum"]), painted)
+    return out
 
 
 def _furnish(layout, name, regions, cells) -> None:
@@ -190,7 +249,7 @@ def _furnish(layout, name, regions, cells) -> None:
                                  y_offset=offset, cstat=GATE["cstat"], clearance=16),
                       angle=0 if edge == "west" else 1024, spans_opening=True, **GATE)
     _w, height, _x, offset = wallplane.art()[640]
-    for k, (s, d) in enumerate(((0.5, 2.5), (m - 0.5, 6.5), (m + 2.5, 12.0))):
+    for k, (s, d) in enumerate(((0.5, 2.5), (m - 0.5, 6.0), (m + 2.6, 11.6))):
         cell = next(c for c in cells if c.name.startswith("pave") and _inside(c, at(s, d)))
         x, y = at(s, d)
         layout.add_sprite(f"vista:{name}:lamp_{k}", regions[cell.name], x=x, y=y,

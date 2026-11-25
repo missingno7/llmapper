@@ -458,6 +458,71 @@ class SolidDoubleSlideReadBack(unittest.TestCase):
                                              swept.position(step, vertex))
 
 
+class SolidSlideReadBack(unittest.TestCase):
+    """One leaf with a knob: the owner's rule for tile 30, and E1M3 s193 as it is built."""
+
+    def test_a_knob_door_slides_away_from_its_knob_and_shuts_the_way(self):
+        from bloodmap import motion, wiring
+        from bloodmap.mechanism import furnish_solid_slide, seat_leaves, solid_slide_spec
+        from bloodmap.model import record_fields
+        from bloodmap.motion_sim import closure_health, closure_sweep
+        from bloodmap.planar_layout import PlanarLayout
+
+        for axis in ("x", "y"):
+            for pocket in ("low", "high"):
+                with self.subTest(axis=axis, pocket=pocket):
+                    along = 0 if axis == "x" else 1
+                    opening = (0, 0, 1024, 512) if axis == "x" else (0, 0, 512, 1024)
+                    spec = solid_slide_spec(opening, axis=axis, pocket=pocket)
+                    layout = PlanarLayout(name="Solid slide")
+                    layout.add_region("door", spec["outline"], floor_z=24576, ceiling_z=0)
+                    for i, (a, b) in enumerate(spec["portals"]):
+                        x0, x1 = sorted((a[0], b[0]))
+                        y0, y1 = sorted((a[1], b[1]))
+                        if axis == "x":
+                            y0, y1 = (-1024, 0) if y0 == 0 else (512, 1536)
+                        else:
+                            x0, x1 = (-1024, 0) if x0 == 0 else (512, 1536)
+                        room = f"approach{i}"
+                        layout.add_region(room, [(x0, y0), (x1, y0), (x1, y1), (x0, y1)], floor_z=24576, ceiling_z=0)
+                        layout.add_connection(room, "door", room, a1=a, a2=b)
+                        layout.set_player_start(room, x=(x0 + x1) // 2, y=(y0 + y1) // 2, z=8192)
+                    circuit = wiring.Circuit(layout)
+                    wire = circuit.wire("door", "Pushing the leaf slides it into the wall.")
+                    markers = {kind: {"type": kind, "picnum": motion.MARKER_PICNUM, "status": motion.MARKER_STATNUM,
+                                      "cstat": motion.MARKER_CSTAT} for kind in (motion.MARKER_OFF, motion.MARKER_ON)}
+                    furnish_solid_slide(layout, "door", spec, wire, marker_fields=markers)
+                    circuit.apply()
+                    compiled = layout.compile()
+                    sector = compiled.allocations["door"].sector_id
+                    self.assertEqual(seat_leaves(compiled.level, sector, spec), 4)
+                    disk = compiled.level.to_disk_map()
+                    swept = closure_sweep(disk, sector)
+                    self.assertTrue(closure_health(disk, sector)["healthy"])
+                    self.assertEqual(swept.closure["sectors"], [sector])
+                    moved = list(swept.closure["moved"])
+                    self.assertEqual(len(moved), 4)
+                    shut = sorted(swept.position(0, w)[along] for w in moved)
+                    opened = sorted(swept.position(swept.steps, w)[along] for w in moved)
+                    # shut, the leaf is the whole opening; open, 64 of it stands proud of its pocket
+                    self.assertEqual((shut[0], shut[-1]), (0, 1024))
+                    if pocket == "high":
+                        self.assertEqual((opened[0], opened[-1]), (960, 1984))
+                    else:
+                        self.assertEqual((opened[0], opened[-1]), (-960, 64))
+                    # 128 thick in the middle of a wall of 512
+                    across = {swept.position(0, w)[1 - along] for w in moved}
+                    self.assertEqual(across, {192, 320})
+                    faces = [record_fields(disk.walls[w]) for w in moved if record_fields(disk.walls[w])["picnum"] == 30]
+                    self.assertEqual(sorted(f["cstat"] & 8 for f in faces), [0, 8])
+                    for f in faces:
+                        # the knob is drawn 5 texels from the tile's left: at the wall's start, or at its end if it is mirrored
+                        end = record_fields(disk.walls[f["point2"]])
+                        knob = (end if f["cstat"] & 8 else f)["xy"[along]]
+                        tip = opened[0] if pocket == "high" else opened[-1]
+                        self.assertEqual(knob, tip)
+
+
 class RigidBodyReadBack(unittest.TestCase):
     """Two rooms, a solid block and an outside fitting, made one solid that moves."""
 
@@ -951,6 +1016,10 @@ COVERED: dict[str, str] = {
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.furnish_solid_double_slide":
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
+    "bloodmap.mechanism.solid_slide_spec":
+        "SolidSlideReadBack.test_a_knob_door_slides_away_from_its_knob_and_shuts_the_way",
+    "bloodmap.mechanism.furnish_solid_slide":
+        "SolidSlideReadBack.test_a_knob_door_slides_away_from_its_knob_and_shuts_the_way",
     "bloodmap.mechanism.seat_leaves":
         "SolidDoubleSlideReadBack.test_both_leaves_push_and_park_past_fixed_jambs",
     "bloodmap.mechanism.slide_shuttle":

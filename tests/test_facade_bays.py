@@ -65,12 +65,12 @@ class FacadeBays(unittest.TestCase):
         self.assertGreater(G.HOUSE[3] - G.DOOR[3], 0.5)
         self.assertGreater(G.DOOR[1] - G.HOUSE[1], 0.5)
         treads = []
-        for k in range(1, G.STEPS + 1):
+        for k in range(1, G.STEPS):
             i = sector_at(self.level, 9 * 1024, round((G.ALLEY[2] + (k - 0.5) * 0.5) * 1024), floor_near=G.GRADE - G.RISER * k)
             f = record_fields(self.disk.sectors[i])
             self.assertEqual(f["floor_z"], G.GRADE - G.RISER * k)
             treads.append((f["floor_x_panning"], f["floor_y_panning"]))
-        self.assertEqual(len(set(treads)), G.STEPS)
+        self.assertEqual(len(set(treads)), G.STEPS - 1)
 
     def test_no_wall_of_the_sea_is_longer_than_the_renderer_sorts(self):
         import l3_market as M

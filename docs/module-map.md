@@ -295,6 +295,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_breakables` | What Blood makes destructible: for every tile a thing can wear, how many of its sprites break, and the record they break by. |
 | `mine_compositions` | Mine and search geometric compositions across the Blood map corpus. |
 | `mine_decoration` | How Blood dresses a room: which decorations, how big, where, how many. |
+| `mine_door_leaves` | Which way each door tile's leaf moves, over the campaign: goes up, slides or swings (the owner's rules for leaves, counted). |
 | `mine_keys` | How Blood tells you which key a door wants. |
 | `mine_layers` | What the campaign does when two pieces of space share the same ground. |
 | `mine_mechanisms` | What a Blood mechanism looks like as a network. |

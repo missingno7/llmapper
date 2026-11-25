@@ -121,6 +121,29 @@ FLAG = {"type": 0, "picnum": 3558, "cstat": 144, "x_repeat": 64,
 SHIP_FLAG: list = []
 
 
+#: The promenade's fence. The owner, 2026-11-25: "we should add some fencing around the promenade, it might be combination of
+#: rope sprites and wooden sectors", and of 258: the rope "used by fencing". Posts of the jetty's wood on the quay's edge, plan
+#: units along it, open at the gangplank, at the boards the water is left by, and at the jetty; two strands between two posts
+#: that are neighbours, as TEDE1M7 s284 hangs its one (9,216 up) and E2M7 s72 its own.
+FENCE_RUNS = ((7.75, 9.85, 11.95, 14.05), (15.6, 17.5, 19.4, 21.3), (27.35, 29.4, 31.45, 33.5, 35.55, 37.6, 39.65, 41.7, 43.75, 45.8, 47.85))
+FENCE_Y, FENCE_POST, FENCE_RISE, STRANDS, ROPE_TILE = 55.72, 256, 10240, (8704, 4864), 258
+#: ropes: (region id, the two posts' facing sides in units, the floor they hang over)
+ROPES: list = []
+
+
+def rope(layout, name, region_id, a, b, floor_z) -> int:
+    """Two sagging strands from a to b, as wall sprites seen from both sides."""
+    import wallplane
+    wide, tall, _x, offset = wallplane.art()[ROPE_TILE]
+    length = math.dist(a, b)
+    angle = round(math.atan2(b[1] - a[1], b[0] - a[0]) * 1024 / math.pi + 512) % 2048
+    for k, up in enumerate(STRANDS):
+        layout.add_sprite(f"fence:{name}:{k}", region_id, x=round((a[0] + b[0]) / 2), y=round((a[1] + b[1]) / 2), z=floor_z - up,
+                          picnum=ROPE_TILE, x_repeat=min(255, round((length + 40) * 4 / wide)), y_repeat=64, angle=angle,
+                          cstat=16 | 128, shade=10, type=0, status=0, spans_opening=True)
+    return len(STRANDS)
+
+
 def fly_flag(layout) -> int:
     """Hang the flag on the mast's west face, 2.3 bodies over the deck."""
     for spec in SHIP_FLAG:
@@ -138,6 +161,8 @@ def fly_flag(layout) -> int:
                           z=seated_z(seat="floor", floor_z=region.floor_z, ceiling_z=region.ceiling_z, tile_height=tall,
                                      y_repeat=255, y_offset=offset, cstat=128, clearance=16),
                           picnum=FIRE, x_repeat=255, y_repeat=255, cstat=128, shade=-128, type=0, status=0)
+    for k, (region_id, a, b, floor_z) in enumerate(ROPES):
+        rope(layout, k, region_id, a, b, floor_z)
     return len(SHIP_FLAG)
 
 #: What stands between the sea and the town. The owner, 2026-11-18: "Edges
@@ -762,6 +787,27 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
                              connection_id=f"connection:pile_{side}_{k}_{name}")
             piles += 1
     built["piles"] = piles
+    # the jetty's own posts carry the same rope
+    ROPES.clear()
+    for px in (inset, jw - inset - post):
+        for k in range(2):
+            x = river_x0 + int(jx0 * PU) + px + post // 2
+            y0, y1 = (river_y0 + 512 + j * 2112 + (post if j == k else 0) for j in (k, k + 1))
+            ROPES.append((jetty.region_id, (x, y0), (x, y1), GRADE))
+    # and the quay's edge, from headland to headland
+    for run, xs in enumerate(FENCE_RUNS):
+        for k, x in enumerate(xs):
+            x0, y0 = int(x * PU) - FENCE_POST // 2, int(FENCE_Y * PU) - FENCE_POST // 2
+            stake = _island(quay, city, market_st, f"fence_{run}_{k}", x0=x0, y0=y0, x1=x0 + FENCE_POST, y1=y0 + FENCE_POST,
+                            floor_z=GRADE - FENCE_RISE, note="a post of the promenade's fence",
+                            style=Style(floor_picnum=PILE_TILE, wall_picnum=PILE_TILE, ceiling_picnum=sky, parallax_ceiling=True,
+                                        floor_z=GRADE - FENCE_RISE, clear_height=STREET_SKY - FENCE_RISE, floor_shade=26),
+                            region_kwargs={"declared_zero_exit": True})
+            SHIP_FACES[stake.region_id] = PILE_TILE
+            if k:
+                y = int(FENCE_Y * PU)
+                ROPES.append((market_st.region_id, (int(xs[k - 1] * PU) + FENCE_POST // 2, y), (x0, y), GRADE))
+    built["fence"] = sum(len(xs) for xs in FENCE_RUNS)
 
     # Out in the bay: its two points, reefs, and the light.
     tops = [river_y0 + sum(d for d, _s in SEA_BANDS[:k]) * PU for k in range(len(SEA_BANDS))]

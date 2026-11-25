@@ -43,9 +43,10 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("graves_brook", Rule("hanging", 641, 8192)),
     # what is behind the town's shut gates is looked at and never walked: not worth a cut
     ("gravesend/vistas", Rule("none", 0, 0, cut=False)),
-    # the stair: out of the alley's dark and up into the open, each riser in its own tread's shadow
-    *((f"old_crossing/gallows:step_{k}", Rule("none", 0, 0, cut=False, shade_bias=(round(9 - 1.1 * k) + 2 * (k % 2), 0, 12)))
+    # the stair: its treads as light as the ground, each riser 12 darker (225 outdoor steps of the campaign: the median)
+    *((f"old_crossing/gallows:step_{k}", Rule("none", 0, 0, cut=False, shade_bias=(0, 0, 12)))
       for k in range(10, 0, -1)),
+    ("old_crossing/gallows:slab", Rule("none", 0, 0, cut=False, shade_bias=(-8, 0, 4))),
     ("old_crossing/gallows:dais", Rule("none", 0, 0, cut=False)),    # two shallow steps: a shadow's edge on them reads as a crack
     ("theatre_row/bill_column", Rule("none", 0, 0, cut=False)),
     ("old_crossing/gallows", Rule("none", 0, 0)),         # two lamps, and a candelabrum in the house

@@ -26,23 +26,40 @@ from bloodmap import arrangement as A
 PU = 1024
 KEY = "region:gravesend/old_crossing/gallows"
 GRADE, SKY_Z, SKY = 8192, -188416, 3491
-RISER, STEPS = 4096, 10
+RISER, STEPS = 4096, 10                                 # ten risers: nine treads, and the terrace
 TOP = GRADE - RISER * STEPS                              # -32768: 2.4 bodies over the street
 PARAPET = 5632                                          # a third of a body: seen and shot over, jumped onto
 #: plan units
 ALLEY = (8.0, 10.0, 27.0)                               # the alley's walls and its end
-STAIR_TO = 32.0                                         # (34 until the owner, 2026-11-25: "move the whole stairs little bit to make more room for door")
+STAIR_TO = 31.5                                         # (34 until the owner, 2026-11-25: "move the whole stairs little bit to make more room for door")
 BLOCK = (8.0, 24.0, 15.0, 35.0)                         # what is opened of the block: the rest stands
 RAIL = 0.25
 DAIS, DAIS_R = (12.45, 32.4), (1.7, 1.35)               # the gallows' two steps
 POSTS, POST, POST_TALL = (11.45, 13.45), 0.16, 46000    # on the line y = DAIS[1]
 HOUSE = (3.75, 30.0, 7.5, 34.5)
-DOOR = (7.5, 32.9, 8.0, 33.8)                           # clear of the house's corner on both sides
+#: the house's doorway: a frame of wood set in the wall, and the way in through it, clear of the house's corner on both sides
+FRAME, DOOR = (7.875, 32.9, 8.0, 33.8), (7.5, 33.0, 7.875, 33.7)
+#: (as tall as the town's other doors: 24,576 of doorway. The owner: "the enterance felt bit lower than usual".)
+FRAME_TOP, DOOR_TOP = 26624, 24576
+#: what is left of its door. (The owner: "it is just plain hole in the wall ... you can maybe make it like destroyed wooden
+#: door", and "for the broken door I would but the door on the floor made out of sector with jagged line".) It lies where it
+#: was kicked to, broken across: two slabs a hand thick whose broken ends match, the farther one thrown askew; a splinter of
+#: it still stands on the hinges.
+BREAK = ((0.0, 0.02), (0.13, -0.09), (0.24, 0.03), (0.36, -0.07), (0.47, 0.06), (0.57, -0.05), (0.66, 0.01))
+SLAB = (7.36, 6.5, 33.02)                               # its end at the doorway, its break, its side
+THROWN = (-0.2, 0.1, 0.16, 0.42)                        # the farther piece: moved by, turned by (radians), and its length
+SLAB_THICK, LEAF_TILE = 1536, 22
+STUMP, LEAF_THICK, STUMP_TALL = ((7.42, 33.74), (7.24, 33.86)), 0.07, 13312
 HOUSE_TOP = 27648
 FRONT = 384                                             # what the block wears to the streets (`facade_pass`): two windows of it are cut in each wall
 WINDOWS: dict = {}
+#: the shade of the walls beside the stair, from its foot (the alley's own walls are 35) to its head. The owner: "they seem to
+#: be much brighter than walls, how is that?" A tread sees the whole strip of sky over the alley and came out at 2 to 19; a
+#: wall across two units from another sees next to none, and came out at 43.
+SIDE_SHADE = (35, 27)
 #: the stair: a tread is worn stone, a riser one course of blocks with a dark joint under its edge
-TREAD, RISER_STONE = 253, 429
+TREAD, RISER_STONE, SILL_BOARD = 4, 429, 20             # the treads are the alley's paving and the terrace's: 253 is 45% lighter than the brick
+FLAGS = 281                                             # the house's floor: on boards, a door lying down is one more board
 RUBBLE, PAVING, COPING, STONE, TIMBER, BOARDS, PLASTER, BRICK = 110, 4, 253, 253, 28, 67, 379, 90
 
 
@@ -64,6 +81,11 @@ def _block(layout):
             if shape.contains(inside) and shape.area > (8 * PU) ** 2:
                 return shape
     raise ValueError("the block the gallows stand in is not a hole in any street")
+
+
+def _riser(step: int) -> dict:
+    """The face of one step, every one of them alike: a course of blocks at the scale stone is drawn at everywhere, its joints never over the last one's."""
+    return {"picnum": RISER_STONE, "x_repeat": 16, "y_repeat": 8, "x_panning": (step * 27) % 64, "y_panning": 0, "cstat": 0}
 
 
 def _windows(shape) -> dict:
@@ -104,13 +126,13 @@ def plan(shape) -> list:
     # the parapet stands inside the edge over the streets and over the stair, not where the stair comes up
     inner = ground.buffer(-_q(RAIL), join_style=2)
     rim = ground.difference(inner).intersection(box(_q(8.0), _q(24.0), _q(16), _q(36)))
-    rim = rim.difference(box(_q(7.0), _q(STAIR_TO) - 1024, _q(ALLEY[1]) - 1, _q(35) - _q(RAIL)))      # the head of the stair and the door
+    rim = rim.difference(box(_q(7.0), _q(STAIR_TO) - 1024, _q(ALLEY[1]), _q(35) - _q(RAIL)))      # the head of the stair and the door
     rim = rim.difference(box(_q(10.0), _q(23), _q(11.0), _q(30.0)))                        # the walk's back is a wall
     rim = rim.difference(box(_q(10.5), _q(23), _q(13.5), _q(24.0) + _q(RAIL)))             # and its end
     pieces = [g for g in getattr(rim, "geoms", [rim]) if g.geom_type == "Polygon" and g.area > 30_000]
     for k, piece in enumerate(sorted(pieces, key=lambda g: (g.bounds[0], g.bounds[1]))):
         place.add(f"parapet_{k}", ring(piece))
-    for k in range(STEPS):
+    for k in range(STEPS - 1):
         y = ALLEY[2] + k * 0.5
         place.add(f"step_{k + 1}", _rect(ALLEY[0], y, ALLEY[1], y + 0.5))
     for k, radius in enumerate(DAIS_R, 1):
@@ -119,7 +141,16 @@ def plan(shape) -> list:
         place.add(f"post_{k}", _rect(x - POST / 2, DAIS[1] - POST / 2, x + POST / 2, DAIS[1] + POST / 2))
     # the hangman's house, at the terrace's level: one room, a door, two windows over the streets
     place.add("house", _rect(*HOUSE))
+    place.add("frame", _rect(*FRAME))
     place.add("door", _rect(*DOOR))
+    place.add("leaf_0", A.band((_q(STUMP[0][0]), _q(STUMP[0][1])), (_q(STUMP[1][0]), _q(STUMP[1][1])), LEAF_THICK * PU))
+    end, at, side = SLAB
+    wide = BREAK[-1][0]
+    place.add("slab_0", [(_q(end), _q(side)), (_q(end), _q(side + wide))] + [(_q(at + x), _q(side + y)) for y, x in reversed(BREAK)])
+    dx, dy, turn, long_ = THROWN
+    far = [(x, y) for y, x in BREAK] + [(-long_, wide), (-long_, 0.0)]
+    place.add("slab_1", [(_q(at + dx + x * math.cos(turn) - (y - wide / 2) * math.sin(turn)),
+                          _q(side + dy + wide / 2 + x * math.sin(turn) + (y - wide / 2) * math.cos(turn))) for x, y in far])
     WINDOWS.clear()
     WINDOWS.update(_windows(shape))
     for name, (x0, y0, x1, y1) in WINDOWS.items():
@@ -144,8 +175,14 @@ def levels(cell: str) -> tuple[int, int, bool]:
         return TOP - 6144 - POST_TALL, SKY_Z, True
     if what == "house":
         return TOP, TOP - HOUSE_TOP, False
+    if what == "frame":
+        return TOP, TOP - FRAME_TOP, False
     if what == "door":
-        return TOP, TOP - 21504, False
+        return TOP, TOP - DOOR_TOP, False
+    if what == "leaf":
+        return TOP - STUMP_TALL, TOP - HOUSE_TOP, False
+    if what == "slab":
+        return TOP - SLAB_THICK, TOP - HOUSE_TOP, False
     if what == "window":
         from facade_bays import rises
         sill, head = rises(FRONT)                           # of the front's second storey, 32,768 over the street
@@ -162,7 +199,9 @@ def build(layout) -> dict[str, str]:
         floor, ceiling, sky = levels(name)
         what = kind(name)
         tiles = {"step": (TREAD, RUBBLE), "parapet": (COPING, RUBBLE), "dais": (STONE, STONE), "post": (BOARDS, TIMBER),
-                 "house": (BOARDS, PLASTER), "door": (BOARDS, TIMBER), "window": (TIMBER, TIMBER)}.get(what, (PAVING, RUBBLE))
+                 "house": (FLAGS, PLASTER), "door": (SILL_BOARD, SILL_BOARD), "frame": (SILL_BOARD, SILL_BOARD), "leaf": (SILL_BOARD, SILL_BOARD),
+                 "slab": (LEAF_TILE, SILL_BOARD),
+                 "window": (TIMBER, TIMBER)}.get(what, (PAVING, RUBBLE))
         return dict(floor_z=floor, ceiling_z=ceiling, floor_picnum=tiles[0], wall_picnum=tiles[1],
                     ceiling_picnum=SKY if sky else BOARDS, parallax_ceiling=sky, layer="street",
                     floor_shade=12 if sky else 20, wall_shade=14 if sky else 18, ceiling_shade=0 if sky else 24,
@@ -175,13 +214,18 @@ def build(layout) -> dict[str, str]:
             return {"picnum": TIMBER}
         if there == "step" or (kind(seen) == "step" and there == "terrace"):
             # one course to a riser, and no riser's joints over the next one's
-            step = int(beyond.split("_")[1]) if there == "step" else STEPS + 1
-            return {"picnum": RISER_STONE, "x_repeat": 16, "y_repeat": 16, "x_panning": (step * 27) % 64, "y_panning": 0}
+            return _riser(int(beyond.split("_")[1]) if there == "step" else STEPS)
+        if there == "leaf":
+            return {"picnum": LEAF_TILE, "x_repeat": 1, "y_repeat": 10, "x_panning": 0, "y_panning": 96, "cstat": 0}
+        if there == "slab":
+            return {"picnum": SILL_BOARD}
+        if {kind(seen), there} == {"frame", "door"}:
+            return {"picnum": SILL_BOARD}
         if there == "dais":
             return {"picnum": STONE}
         if there == "parapet" or kind(seen) == "parapet":
             return {"picnum": RUBBLE}
-        if there in ("window", "door"):
+        if there in ("window", "door", "frame"):
             return {"picnum": PLASTER if kind(seen) == "house" else RUBBLE}
         if there is None and kind(seen) in ("terrace", "step"):
             return {"picnum": BRICK}                       # the rest of the block stands over it, the street's brick
@@ -214,6 +258,8 @@ def _join(layout, regions, cells, shape) -> None:
             continue
         layout.add_connection(f"connection:gallows:{name}:{a[0]}:{a[1]}", street, regions[name], a1=b, a2=a,
                               min_width=1, min_opening=0)
+        if name == "step_1":
+            layout.paint_wall(street, b, a, fixed_frame=True, **_riser(1))   # the street's own record: the first riser
 
 
 def _stand(layout, regions, cell, name, x, y, tile, size, *, tall=None, seat="floor", z=None, **fields):
@@ -253,15 +299,60 @@ def _furnish(layout, regions) -> None:
                       x_repeat=64, y_repeat=56, angle=512, cstat=32 | 128, shade=24)
     _stand(layout, regions, "terrace", "lamp_head", 10.75, 34.4, 640, 120)
     _stand(layout, regions, "terrace", "lamp_walk", 12.4, 25.0, 640, 120)
+    # boards that were nailed across it, and what came down with the door
+    for k, (dy, up, long_) in enumerate(((0.0, 19400, 60), (0.11, 15600, 34))):
+        layout.add_sprite(f"gallows:board_{k}", regions["frame"], x=_q(7.89), y=_q((DOOR[1] + DOOR[3]) / 2 + (0.24 if k else dy)), z=TOP - up, picnum=68,
+                          x_repeat=long_ * 3 // 4, y_repeat=26, angle=0, cstat=16 | 128, shade=14, spans_opening=True)
     _stand(layout, regions, "house", "candles", 4.3, 33.6, 580, 64, cstat=384, shade=-128)
     _stand(layout, regions, "house", "hung", 5.6, 32.2, 906, 56, tall=44, seat="ceiling", sunk=True)
     _stand(layout, regions, "house", "straw", 4.4, 30.6, 515, 64, shade=16)
 
 
+def even(disk, compiled) -> dict:
+    """After the light stage: the stair goes from the alley's shade to the terrace's by even steps, each riser as much darker than its tread.
+
+    The owner, twice: "Gallows stairs shading looks flat", "Gallows stairs
+    still have weird shading". Ten narrow sectors are lit by a sample apiece:
+    nine came out at 0 between an alley at 21 and paving at 20, and one riser
+    at 36 where a chimney's shadow crossed its middle. (225 outdoor steps of
+    the campaign: a riser is 12 darker than its tread, and no tread differs
+    from the next.)
+    """
+    from bloodmap.model import record_fields
+    from bloodmap.sector_geom import sector_at
+    level = disk.to_level_ir()
+
+    def shade(x, y, floor):
+        return int(record_fields(disk.sectors[sector_at(level, _q(x), _q(y), floor_near=floor)])["floor_shade"])
+
+    foot, head = shade(9.0, ALLEY[2] - 0.2, GRADE), shade(9.0, STAIR_TO + 0.4, TOP)
+    ids = [compiled.allocations[f"{KEY}:step_{k}"].sector_id for k in range(1, STEPS)]
+    # it stays in the alley's shade until it comes up into the open; and the walls beside it are the alley's walls, not 8 darker
+    treads = [round(foot + (head - foot) * (k / STEPS) ** 2.5) for k in range(1, STEPS)]
+    beside = [round(SIDE_SHADE[0] + (SIDE_SHADE[1] - SIDE_SHADE[0]) * k / STEPS) for k in range(1, STEPS)]
+    shades = dict(zip(ids, treads))
+    top = {i for i, s in enumerate(disk.sectors) if int(record_fields(s)["floor_z"]) == TOP}
+    for i, value in shades.items():
+        record_fields(disk.sectors[i])["floor_shade"] = value
+    for i, s in enumerate(disk.sectors):
+        f = record_fields(s)
+        for w in range(int(f["wall_ptr"]), int(f["wall_ptr"]) + int(f["wall_count"])):
+            wall = record_fields(disk.walls[w])
+            there = int(wall["next_sector"])
+            up = there in shades and int(record_fields(disk.sectors[there])["floor_z"]) < int(f["floor_z"])
+            last = i in shades and there in top
+            if i in shades and int(wall["picnum"]) in (BRICK, RUBBLE):
+                wall["shade"] = beside[ids.index(i)]
+            if up or last:
+                wall["shade"] = min(60, (shades[there] if up else treads[-1]) + 12)
+                wall.update(_riser(STEPS if last else ids.index(there) + 1))
+    return {"foot": foot, "head": head, "treads": treads}
+
+
 def finish(level, compiled) -> int:
     """No two treads show the same piece of their tile. The owner: "move the textures on each step a bit to make it look less repetitive"."""
     done = 0
-    for k in range(1, STEPS + 1):
+    for k in range(1, STEPS):
         allocation = compiled.allocations.get(f"{KEY}:step_{k}")
         if allocation is None:
             continue
@@ -269,4 +360,28 @@ def finish(level, compiled) -> int:
         f = sector.get("fields", sector) if isinstance(sector, dict) else sector.fields
         f["floor_x_panning"], f["floor_y_panning"] = (k * 89) % 256, (k * 151) % 256
         done += 1
+    # the door lies along the house: its tile's length along x, its first band a third of the way in from the doorway
+    for k in (0, 1):
+        allocation = compiled.allocations.get(f"{KEY}:slab_{k}")
+        if allocation is not None:
+            sector = level.sectors[allocation.sector_id]
+            f = sector.get("fields", sector) if isinstance(sector, dict) else sector.fields
+            f["floor_stat"] = int(f["floor_stat"]) | 4
+            f["floor_x_panning"], f["floor_y_panning"] = 16 + 96 * k, round(-SLAB[2] * 64) % 256
+    # the brick over and beside the doorway is one wall: hung from the sky, drawn from one corner
+    import wallplane
+    wide = wallplane.art()[BRICK][0]
+    face = []
+    for wall in level.walls:
+        f = wall.get("fields", wall) if isinstance(wall, dict) else wall.fields
+        n = level.walls[int(f["point2"])]
+        n = n.get("fields", n) if isinstance(n, dict) else n.fields
+        if int(f["x"]) == int(n["x"]) == _q(8.0) and int(f["picnum"]) == BRICK and _q(ALLEY[2]) <= min(int(f["y"]), int(n["y"])) \
+                and max(int(f["y"]), int(n["y"])) <= _q(35.5) and int(f["y"]) > int(n["y"]):
+            face.append((f, n))
+    for f, n in face:
+        f["x_repeat"] = max(1, round((int(f["y"]) - int(n["y"])) / 128))
+        f["x_panning"] = ((_q(35.5) - int(f["y"])) // 16) % wide
+        f["y_repeat"], f["y_panning"] = 8, 0
+        f["cstat"] = int(f["cstat"]) | 4 if int(f["next_sector"]) >= 0 else int(f["cstat"]) & ~4
     return done

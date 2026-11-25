@@ -125,6 +125,7 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("harbour:boarded", "taking the flare pistol in the Demeter's hold brings three gill beasts up onto her deck"),
     ("underpass:pram",
      "leaving the shut ticket hall for the first time puts out the tunnel's bulb and brings the pram down to the bars"),
+    ("theatre:side-door", "pushing either face of the Aldermack's avenue door slides it into the wall, and back"),
     ("theatre:front-doors", "pushing either leaf of the Aldermack's forecourt doors swings both"),
     ("church:slab",
      "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it"),

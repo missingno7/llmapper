@@ -49,6 +49,8 @@ GLASS = (33.5, -10.75, 37.5, -5.75)
 #: the iron roof: at the side walls, at the glass, and the sky over it; and the waiting hall's flat one
 SPRING, CROWN, SKY_Z, HALL_ROOF = GRADE - 81920, GRADE - 110592, GRADE - 122880, TOP - 50176
 STAIR, TREADS, TREAD = (34.0, 37.0), 4, 0.4
+#: (the owner, 2026-11-25: "On train station I noticed picnum 588 railing ending mid air, we should add some wooden sector there")
+NEWEL, NEWEL_RISE = 0.25, 11264
 RISER = UP // (TREADS + 1)
 #: either side of the middle aisle: seat, back, seat
 BENCHES = {"w": (33.9, 34.3, 34.45, 34.85), "e": (36.15, 36.55, 36.7, 37.1)}
@@ -105,6 +107,9 @@ def plan() -> list:
     for k in range(1, TREADS + 1):
         south = EDGE + TREAD * (TREADS - k + 1)
         place.add(f"stair_{k}", _rect(STAIR[0], south - TREAD, STAIR[1], south))
+    # a newel each side of the flight: the rail along the edge over it ends in something
+    for k, x in enumerate((STAIR[0] - NEWEL, STAIR[1])):
+        place.add(f"newel_{k}", _rect(x, EDGE, x + NEWEL, EDGE + NEWEL))
     place.add("glass", _rect(*GLASS))
     for side, (a, b, c, d) in BENCHES.items():
         place.add(f"seat_{side}1", _rect(a, BENCH_Y[0], b, BENCH_Y[1]))
@@ -141,6 +146,7 @@ def _kind(cell: str) -> str:
 #: what each kind of cell is: floor, ceiling, floor tile, ceiling tile, wall tile
 LEVELS = {
     "aisle": (GRADE, CROWN, SLAB, ROOF, BRICK), "nave": (GRADE, CROWN, CHECK, RIVETS, STONE),
+    "newel": (TOP - NEWEL_RISE, CROWN, WOOD, RIVETS, WOOD),
     "phone": (GRADE - PHONE_H, CROWN, WOOD, ROOF, BRICK),
     "wdoor": (TOP, TOP - 28672, WOOD, WOOD, WOOD), "waiting": (TOP, TOP - WAIT_H, CARPET, BOARDS, PLASTER),
     "wbench": (TOP - 4608, TOP - WAIT_H, WOOD, BOARDS, PLASTER), "wtable": (TOP - 7168, TOP - WAIT_H, WOOD, BOARDS, PLASTER),
@@ -194,7 +200,7 @@ def _face(seen: str, beyond: str | None, a, b) -> dict:
         if a[0] == b[0]:
             return {"picnum": LONGCASE_TILE, "x_repeat": along, "y_repeat": 8, "x_panning": 0, "y_panning": 0, "cstat": 0}
         return {"picnum": PLANK}
-    if there in ("wbench", "wtable", "desk"):
+    if there in ("wbench", "wtable", "desk", "newel"):
         return {"picnum": PLANK}
     if {here, there} == {"mouth", "hearth"}:
         return {"over_picnum": HEARTH_TILE, "x_repeat": 16, "y_repeat": 10, "x_panning": 0, "y_panning": 0, "cstat": 16 | 1 | 64,
@@ -269,6 +275,8 @@ def build(layout, gates: list[str], waiting_hall: str) -> dict[str, str]:
     for name, a, b in A.rim(cells):
         if a[1] == b[1] == _q(EDGE) or (_kind(name) == "wdoor" and a[0] == b[0] == _q(EAST)):
             layout.add_connection(f"connection:booking_{name}_{a[0]}", waiting_hall, regions[name], a1=b, a2=a, min_width=1, min_opening=0)
+        if _kind(name) == "newel" and a[1] == b[1] == _q(EDGE):
+            layout.paint_wall(waiting_hall, b, a, picnum=PLANK)
     _HALL.append(waiting_hall)
     _furnish(layout, regions)
     return regions
