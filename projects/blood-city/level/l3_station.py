@@ -243,7 +243,7 @@ BUFFER = (2560 + MOVE[0], CAR[1] + 256, 3584 + MOVE[0], CAR[3] - 256)
 #: pools of light under the hall's lamps: (x0, y0, x1, y1)
 POOLS = (_r(9216, -10752, 10752, -9216), _r(12544, -10240, 14080, -8704),
          _r(15872, -10752, 17408, -9216))
-LAMP, WALL_LAMP, CURTAIN = 945, 2183, 147
+LAMP, CURTAIN = 945, 147
 STREET_TORCH = 506
 COLUMNS = tuple(HALL[0] + 1024 + k * 2560 for k in range(4))
 #: (a revolving fare gate stood in the first bay until 2026-11-25, between two cheeks of the column's tile

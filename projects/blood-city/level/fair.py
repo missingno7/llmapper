@@ -76,6 +76,7 @@ TARGETS = {DUCK: (40, {"data_1": 8, "data_4": 2203}), SMILE: (64, {"data_1": 1, 
 SLABS = ((0, SMILE, -80, 26, 30, 0), (0, DUCK, 80, 34, 34, 1), (1, SMILE, 80, 22, 22, 1), (1, DUCK, -80, 30, 26, 0),
          (2, SMILE, -80, 30, 36, 1), (2, DUCK, 80, 24, 28, 0))
 SLAB, ENDS = 64, 150
+CRYSTAL = 760
 PRIZE, PRIZE_PICTURE, BELL, WELL, WELL_WIDE = 68, (812, 48), 270, 7168, 0.62
 #: what is pasted on a stall's outside: (stall, side, how far along it, tile, repeat, bodies up)
 BILLS = (("gallery", "south", 0.5, 981, 40, 1.15), ("gallery", "west", 0.28, 440, 44, 1.1), ("gallery", "west", 0.72, 335, 36, 1.2),
@@ -375,6 +376,8 @@ def _dress_stall(layout, name) -> int:
             if _art(tile)[3]:                                      # (drawn about its middle: set down by the box the renderer draws)
                 spec = next(p for p in layout.placements if p.placement_id == at)
                 spec.cstat, host = 128, layout.regions[regions[cell]]
+                if tile == CRYSTAL:                                # it is the beast vision, all eighteen of Blood's, and is taken
+                    spec.type, spec.status, spec.behavior = 121, 3, {}
                 spec.z = seated_z(seat="floor", floor_z=host.floor_z, ceiling_z=host.ceiling_z, tile_height=_art(tile)[1],
                                   y_repeat=spec.y_repeat, y_offset=_art(tile)[3], cstat=128, clearance=16)
             put += 1

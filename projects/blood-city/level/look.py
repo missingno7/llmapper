@@ -517,6 +517,16 @@ POSE_SETS = {
         "mi_basin": (43.7, 7.6, 41.5, 4.6, LEVEL, "the settling basin"),
         "mj_south_belt": (43.7, 11.2, 43.75, 8.0, LEVEL, "the belt from the south"),
     },
+    "pumps": {
+        "a_deck": (46.8, 6.2, 43.0, 6.0, LEVEL + 4, "out of the gallery onto the deck", -8192),
+        "b_deck_s": (46.4, 6.3, 46.0, 12.0, LEVEL - 6, "over the rail to the south bay", -8192),
+        "c_filter": (44.6, 8.0, 42.1, 5.0, LEVEL + 10, "the filter over the basin"),
+        "d_filter_up": (43.6, 7.6, 42.1, 5.1, UP, "up at it"),
+        "e_floor": (43.0, 7.9, 42.1, 4.5, LEVEL + 8, "the filter and its pumps from the belt"),
+        "f_west": (40.5, 7.4, 41.2, 4.2, LEVEL + 10, "from the consoles"),
+        "g_lever": (41.6, 7.7, 40.0, 8.5, LEVEL, "the lever and the consoles"),
+        "h_basin": (41.0, 7.0, 42.1, 5.0, LEVEL, "the basin under it"),
+    },
     "pilot": {
         "spur_street": (55.5, 26, 55.5, 16, LEVEL, "the rail spur, facing the yard"),
         "yard": (51.5, 19.5, 55.5, 19.5, LEVEL, "in the works yard, facing the spur"),

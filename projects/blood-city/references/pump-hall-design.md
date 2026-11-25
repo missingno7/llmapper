@@ -18,3 +18,6 @@ Built by `level/l3_shed.py`; studied in `knowledge/blood/studies/machine-hall/no
 7. **Simplified.** Gone: the filter drum (52 walls), four strip lights in a roof six bodies up that lit nothing, the basin's
    riser, a dozen pilasters. The south bay is empty on purpose.
 8. One process is still readable: INTAKE over the basin, SLUDGE along the belt's line, the consoles.
+9. **One machine says what the hall does** (2026-11-25, `level/pump_engine.py`): the filter hangs over the basin, a round lamp in its mesh, a pipe from
+   it to the consoles and one to the belt, and a pump stands either side of it whose rod never stops. The drum of 7 is not back: this one is the
+   far side of what is seen from the deck. The lamps are tubes: they were 2183, which is a trap that fires out of a wall.

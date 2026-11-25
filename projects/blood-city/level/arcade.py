@@ -395,8 +395,8 @@ def _furnish(layout, regions) -> None:
     # the gunsmith's: what hangs over his counter, and what is left on it
     wallplane.sprite(layout, "arcade:trophy", regions["guns"], (_q(43.0), _q(GUNS[3])), (_q(40.0), _q(GUNS[3])), tile=714,
                      x_repeat=48, y_repeat=48, cstat=16 | 64 | 128, height_player_heights=0.9, status=0)
-    _stand(layout, regions, "gun_counter", "box_a", 40.75, 48.94, 814, 36, shade=0)
-    _stand(layout, regions, "gun_counter", "box_b", 41.6, 48.94, 812, 36, shade=0)
+    _stand(layout, regions, "gun_counter", "box_a", 40.75, 48.94, 683, 40, shade=0)      # (boxes of shells and bullets lay here: what looks like a pickup is one)
+    _stand(layout, regions, "gun_counter", "box_b", 41.6, 48.94, 605, 40, shade=0)
     # the bookseller's desk
     _stand(layout, regions, "desk", "ledger", 40.8, 41.6, 518, 36, shade=-16)
     _stand(layout, regions, "desk", "candle", 41.2, 41.58, 938, 40, cstat=384, shade=-128, type=32)

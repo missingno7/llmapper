@@ -33,7 +33,7 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("station_column_", Rule("none", 0, 0, cut=False)),
     ("station_lip", Rule("none", 0, 0, cut=False, shade_bias=(0, 0, -6))),
     # the drowned places' surfaces: a linked sector is never cut
-    ("pump_station/tank_0", Rule("none", 0, 0, cut=False)),
+    ("pump_station/tank_0", Rule("none", 0, 0, cut=False, shade_bias=(-16, -8, -8))),
     ("trunk/well_", Rule("none", 0, 0, cut=False)),
     # the loading shutter sweeps over it, in plan, two levels up: a cut under the sweep reads as one in its way
     ("trunk/duct_cistern", Rule("ceiling", 796, 7168, 7168, cut=False)),

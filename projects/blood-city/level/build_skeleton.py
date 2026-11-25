@@ -1361,6 +1361,8 @@ def main() -> int:
     print("the fair:", fair.build(layout))
     import gallery
     print("the gallery:", gallery.build(layout))
+    import pump_engine
+    print("the pumps:", pump_engine.build(layout))
     import writings
     print("written on the walls:", writings.build(layout))
     import underwater
@@ -1763,6 +1765,7 @@ def main() -> int:
     print("dressing:", dressing.dress(layout))
     print("the fair's dressing:", fair.dress(layout))
     print("the gallery's dressing:", gallery.dress(layout))
+    print("the pumps' dressing:", pump_engine.dress(layout))
     # LAST of what is placed: it looks for free floor among all the rest
     import gameplay
     ctx["manifest"]["gameplay"] = gameplay.place(layout)
@@ -1781,7 +1784,7 @@ def main() -> int:
     house = ctx["aldermack_house"]
     cloth_reveals = frozenset(room.region_id for room in (house["curtain"], *house["wing_doors"]))
     import cabal_rite
-    cloth_reveals |= fair.movers()
+    cloth_reveals |= fair.movers() | pump_engine.movers()
     cloth_reveals |= cabal_rite.movers()                   # a well that sinks and flesh that parts are no doors
     cloth_reveals |= frozenset(_station.AVENUE_FRONT.get("gates", ()))   # one gate across two half arches: its own frame
     door_frames = frame_z_doors(layout, art_sizes=art_sizes(), already_framed=cloth_reveals,
@@ -2129,6 +2132,7 @@ def main() -> int:
     print("the booking hall's put back:", _booking_hall.keep(compiled.level, compiled))
     print("the fair's boards put back:", fair.keep(compiled.level, compiled))
     print("the gallery's walls put up:", gallery.keep(compiled.level, compiled))
+    print("the pumps' faces put back:", pump_engine.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

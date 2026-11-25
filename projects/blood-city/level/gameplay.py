@@ -33,12 +33,13 @@ PU = 1024
 ITEMS = {41: (559, 48), 42: (558, 48), 43: (524, 48), 45: (539, 48), 46: (526, 48), 50: (800, 48), 60: (618, 40), 62: (589, 48),
          63: (809, 48), 64: (811, 40), 65: (810, 40), 66: (820, 24), 67: (619, 48), 68: (812, 48), 69: (813, 48), 70: (525, 48),
          72: (817, 48), 73: (548, 24), 76: (816, 48), 79: (801, 48), 107: (519, 48), 108: (822, 40), 109: (2169, 40),
-         110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 118: (830, 40), 121: (760, 40), 124: (2428, 40), 140: (2628, 64),
+         110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 118: (830, 64), 121: (760, 40), 124: (2428, 40), 140: (2628, 64),
          141: (2586, 64), 143: (2602, 64), 144: (2594, 64)}
 #: foes: (tile, repeat, palette)
 FOES = {201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 48, 0), 205: (3054, 40, 0), 206: (1470, 40, 0),
         210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13),
         212: (1980, 32, 0), 218: (1870, 32, 0), 220: (1745, 24, 0)}
+WIDER = {118: {"x_repeat": 80}}
 STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 
 #: --- the six keys --------------------------------------------------------------
@@ -237,8 +238,8 @@ def _seat(layout, name, region, x, y, tile, size, **fields):
     cstat = fields.pop("cstat", 128)
     z = seated_z(seat="floor", floor_z=region.floor_z, ceiling_z=region.ceiling_z, tile_height=height, y_repeat=size,
                  y_offset=offset, cstat=cstat, clearance=16)
-    return layout.add_sprite(name, region.region_id, x=x, y=y, z=z, picnum=tile, x_repeat=size, y_repeat=size, cstat=cstat,
-                             **{"shade": -8, **fields})
+    return layout.add_sprite(name, region.region_id, x=x, y=y, z=z, picnum=tile, cstat=cstat,
+                             **{"x_repeat": size, "y_repeat": size, "shade": -8, **fields})
 
 
 def _spawn(layout, name, what, x, y, floor, **behavior):
@@ -361,7 +362,8 @@ def _supplies(layout) -> int:
             tile, size = ITEMS[what]
             region, px, py = spot(layout, x + 0.3 * (k - (len(types) - 1) / 2), y, floor,
                                   room_for=280 if 40 <= what <= 50 else 200)
-            _seat(layout, f"gameplay:supply_{row}_{k}", region, px, py, tile, size, type=what, status=3)
+            # (a diving suit is 80 by 64, all thirteen of Blood's; what else is picked up is as wide as it is tall)
+            _seat(layout, f"gameplay:supply_{row}_{k}", region, px, py, tile, size, type=what, status=3, **WIDER.get(what, {}))
             count += 1
         if types[0] == 41:
             # the dead man the gun fell from (DW: 23% of weapons lie by a corpse)

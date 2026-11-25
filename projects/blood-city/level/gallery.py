@@ -57,7 +57,7 @@ STANDING = ((BACK, 12.2, 8.75, 536, 40, 417, {"data_1": 20, "data_4": 301}), (BA
 #: lamps that are no wall's: over the platform, between the piers, and one before each of their ends
 LAMPS = ((BACK, 13.5, 7.15, 40), (HALL, 13.5, 11.0, 24), (HALL, 12.4, 9.6, 24), (HALL, 14.6, 9.6, 24), (HALL, 12.4, 12.35, 24),
          (HALL, 14.6, 12.35, 24))
-BEAST, PRIZE = (13.5, 6.95), (141, 2586, 13.5, 7.65)
+BEAST, PRIZE = (13.5, 6.95), (141, 2586, 13.5, 7.65)           # (64, as all 58 of Blood's body armours are)
 FACING = {"south": 1536, "north": 512, "west": 0, "east": 1024}
 OUT = {"south": 512, "north": 1536, "west": 1024, "east": 0}             # a pier's face looks out of it
 _MADE: dict[str, str] = {}
@@ -170,7 +170,7 @@ def dress(layout) -> dict:
     stage = _MADE["platform"]
     _set(layout, "gallery:beast", stage, *BEAST, 1530, 40, type=208, status=6, cstat=384, shade=0, angle=512)
     kind, tile, x, y = PRIZE
-    _set(layout, "gallery:prize", stage, x, y, tile, 56, type=kind, status=3, cstat=128, shade=-8)
+    _set(layout, "gallery:prize", stage, x, y, tile, 64, type=kind, status=3, cstat=128, shade=-8)
     taken = wires.wire("gallery:beast")
     taken.when(wiring.placement("gallery:prize"), "pickup", command=motion.CMD_ON, once=True)
     taken.then(wiring.placement("gallery:beast"))

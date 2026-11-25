@@ -714,7 +714,7 @@ def _wire_trap(layout, built):
     """E1M6 sprite 685's fire armour sets DWE1M9's drop and wing reveal."""
     trap, stage = built["trap"], built["stage"]
     prize = _sprite(layout, "fire_armour", trap, 2578, CENTER + 100, 5536,
-                    xr=44, yr=44, shade=-44, type=142, status=3)
+                    xr=64, yr=64, shade=-44, type=142, status=3)
     # the moon key is what the show is for (`gameplay.KEYS`): taking it is what strikes the set
     moon = _sprite(layout, "moon_key", trap, 2557, CENTER - 220, 5536, xr=32, yr=32, shade=-40, type=105, status=3)
     strike = wires.wire(PRIZE_WIRE)

@@ -517,15 +517,15 @@ def machine_hall(shed, lobby, room):
                            hall.region_id, a1, a2, words=word,
                            style="department" if word == "BELT" else "works",
                            height_player_heights=1.2 if word == "BELT" else 1.7)
-        # The lever's own lamp, over it (2183, the recessed wall lamp), and one
-        # over the way in, where the treads come down.
+        # The lever's own light, over it, and one over the way in, where the treads come down: a fluorescent tube, stood up.
+        # (They were 2183, read as a recessed lamp: it is the trap that fires out of a wall, 40 of the campaign's 40.)
         for k, (region, a1, a2) in enumerate((
                 (hall.region_id, (hx0, ay1 + 1024), (hx0, ay1 + 256)),
                 (deck.region_id, (DECK[0], DECK[1]), (DECK[2], DECK[1])),
                 (hall.region_id, (hx1, 13 * PU), (hx1, 14 * PU)))):
-            wallplane.sprite(layout, f"pump:lamp_{k}", region, a1, a2, tile=2183, x_repeat=48, y_repeat=48,
-                             cstat=16 | 64 | 128, t=0.5, height_player_heights=(1.9, 1.3, 1.5)[k],
-                             offset_player_widths=0.04, shade=-32)
+            wallplane.sprite(layout, f"pump:lamp_{k}", region, a1, a2, tile=796, x_repeat=56, y_repeat=32,
+                             cstat=16 | 64 | 128, t=0.5, height_player_heights=(2.15, 1.5, 1.7)[k],
+                             offset_player_widths=0.04, shade=-64)
         # A round light over the landing, and one in the lobby (795, Blood's commonest).
         for name, region, x, y in (("landing", gallery.region_id, 48.25, 6.25), ("lobby", lobby.region_id, 51.25, 5.75)):
             layout.add_sprite(f"pump:light_{name}", region, x=int(x * PU), y=int(y * PU),

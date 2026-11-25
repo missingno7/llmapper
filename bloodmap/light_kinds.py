@@ -69,7 +69,8 @@ KINDS: dict[int, LightKind] = {k.tile: k for k in (
     LightKind(3566, "bonfire", "standing", False, True, point=0.4, intensity=1.6),
     # in the city and missed by the first list (found by name, 2026-11-20)
     LightKind(908, "flame", "standing", False, True, point=0.4, intensity=1.0),
-    LightKind(2183, "recessed wall lamp, lit", "wall", False, True, point=0.5, intensity=1.0),
+    # (2183 is no lamp: all 40 of the campaign's are type 452, the trap that fires out of a wall. The owner, 2026-11-25: "I see you are
+    # using that wall turret firing sprite on multiple places ... it is usually used in different contexts")
     LightKind(693, "lit brass lantern", "standing", False, True, point=0.5, intensity=0.8),
     LightKind(947, "bare bulb on a cord, lit", "hanging", False, True, point=0.93, intensity=0.8),
     # windows: daylight through glass, into the room the glass hangs in (the

@@ -147,6 +147,7 @@ ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
      "signal box's lever opens, ends the level",
      "kChannelLevelExitNormal"),
     ("fair:carousel", "when the level starts the fair's carousel turns, and goes on turning", "kChannelLevelStart"),
+    ("pump:engine", "when the level starts the pump station's three rods go up and down, and go on", "kChannelLevelStart"),
     ("fair:targets", "when the level starts the shooting gallery's ducks and faces run to and fro, and go on", "kChannelLevelStart"),
 )
 
