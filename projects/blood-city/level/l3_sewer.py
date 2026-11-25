@@ -151,7 +151,7 @@ CHAMBERS = [
     ("east_annex", 53.0, 14.0, 57.0, 20.0, "west", "e_leg", "east",
      "the annex: an eastern dead end worth the walk for what is in it"),
     ("flooded", 40.0, 34.0, 46.0, 39.0, "north", "s_walk", "south",
-     "the flooded branch, waist-deep"),
+     "the flooded branch: `underwater` drowns it and bars its mouth"),
     ("station_foot", SPIRAL_FOOT_X0, SPIRAL_FOOT_Y0,
      SPIRAL_FOOT_X1, SPIRAL_FOOT_Y1,
      "east", "silt_trap", "west",
@@ -1506,7 +1506,6 @@ POPULATION = [
     ("pump_room", 220, (0.7, 0.6)),
     ("n_walk", 220, (0.2, 0.5)),
     ("east_annex", 217, (0.5, 0.5)),     # gill beast, guarding the annex
-    ("flooded", 218, (0.5, 0.4)),        # bone eel, in the water
     ("s_walk", 220, (0.7, 0.5)),
 ]
 

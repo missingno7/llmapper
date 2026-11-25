@@ -49,6 +49,9 @@ SOUNDS = {
     "fare_turnstile": 21,
     "works": 20,
     "mall": 65,
+    "drowned": 37,        # E1M8's swimming: the diver's breath
+    "lapping": 40,        # E6M4's, on 24 surfaces: water at a wall
+    "wheel": 20,          # the works' machine, heard through water
     "tubes": 25,          # a fluorescent's hum: the underpass
 }
 
@@ -66,6 +69,9 @@ ENVELOPES = {
     # it should be enough to have just 150/350"
     "mall": (150, 350, 50),
     "tubes": (75, 150, 50),
+    "drowned": (75, 300, 60),
+    "lapping": (75, 150, 50),
+    "wheel": (150, 350, 40),
 }
 
 

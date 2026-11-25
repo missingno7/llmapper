@@ -1344,6 +1344,8 @@ def main() -> int:
     print("gallows steps:", len(gallows.build(layout)), "regions")
     import bill_column
     print("bill column:", len(bill_column.build(layout)), "regions")
+    import underwater
+    print("drowned places:", underwater.build(layout))
     # A roof that is seen over forbids a door beneath it (`bloodmap.skyline`).
     # Checked on the source, so the fault never reaches a frame.
     from bloodmap import skyline as _skyline
@@ -1947,6 +1949,7 @@ def main() -> int:
         for region_id, tile in l3_market.SHIP_FACES.items()
         if region_id in compiled.allocations}))
     print("outer sea:", l3_market.close_outer_sea(compiled.level, compiled))
+    print("drowned places finished:", underwater.finish(compiled.level, compiled))
     # An end wall's face is LIT and BLOCKING, as E3M1's are: its three street
     # ends (s0, s339, s343) wear their facade at shade -8, cstat 1, on every
     # face a road or a pavement sees, against 24 to 34 on the masonry beside

@@ -33,12 +33,12 @@ PU = 1024
 ITEMS = {41: (559, 48), 42: (558, 48), 43: (524, 48), 45: (539, 48), 46: (526, 48), 50: (800, 48), 60: (618, 40), 62: (589, 48),
          63: (809, 48), 64: (811, 40), 65: (810, 40), 66: (820, 24), 67: (619, 48), 68: (812, 48), 69: (813, 48), 70: (525, 48),
          72: (817, 48), 73: (548, 24), 76: (816, 48), 79: (801, 48), 107: (519, 48), 108: (822, 40), 109: (2169, 40),
-         110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 121: (760, 40), 124: (2428, 40), 140: (2628, 64),
+         110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 118: (830, 40), 121: (760, 40), 124: (2428, 40), 140: (2628, 64),
          141: (2586, 64), 143: (2602, 64), 144: (2594, 64)}
 #: foes: (tile, repeat, palette)
 FOES = {201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 48, 0), 205: (3054, 40, 0), 206: (1470, 40, 0),
         210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13),
-        212: (1980, 32, 0), 220: (1745, 24, 0)}
+        212: (1980, 32, 0), 218: (1870, 32, 0), 220: (1745, 24, 0)}
 STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 
 #: --- the six keys --------------------------------------------------------------
@@ -47,7 +47,7 @@ STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 KEYS = {
     "skull": (1, 29.02, 28.25, 51200, ((205, 28.1, 26.9), (205, 30.9, 27.2), (205, 30.9, 29.4), (205, 28.2, 29.6), (205, 31.0, 28.3))),
     "eye": (2, None, None, None, ((202, 40.7, 48.7), (201, 42.4, 48.7), (202, 40.6, 44.1), (203, 45.0, 41.7, 32768))),
-    "flame": (3, 43.75, 9.5, None, ((203, 42.1, 5.1), (204, 46.6, 6.1), (203, 46.0, 13.2))),
+    "flame": (3, 43.75, 9.5, None, ((217, 42.1, 5.1), (203, 41.1, 7.3, 8192), (204, 46.6, 6.1), (203, 46.0, 13.2))),
     "dagger": (4, 27.5, 66.35, 102400, ((210, 24.2, 57.2), (210, 30.8, 57.2), (203, 27.5, 53.2))),
     "spider": (5, 12.0, 10.2, 56832, ((213, 11.6, 11.75), (213, 12.6, 11.75), (214, 9.4, 13.6), (214, 14.9, 13.8), (213, 12.0, 16.2))),
     "moon": (6, None, None, None, ()),
@@ -116,10 +116,14 @@ SUPPLIES = (
     ((67, 67), 38.0, 33.8, SEWER, "the south channel"),
     ((72,), 33.75, 38.5, SEWER, "the outfall, before the hall"),
     ((70,), 37.2, 21.4, SEWER, "the stash: a secret"),
-    ((46, 79), 45.2, 38.2, 63488, "the flooded room's far corner: a secret"),
+    ((46, 79), 45.2, 38.2, SEWER, "the flooded branch's bank: a secret, dived to from the cistern"),
     ((114,), 55.7, 46.2, 56320, "the Rat King's offering: a secret"),
     ((68, 67), 54.7, 40.4, 57344, "the bleeding floor's dock"),
     ((143,), 60.4, 58.6, 69632, "across the blood by the trolley"),
+    # the drowned places (`underwater`; their plan is 60 units west of the city's)
+    ((118,), 40.7, 6.9, STREET, "a diving suit beside the settling basin: it can be dived into"),
+    ((107, 73), -19.4, 7.9, 104448, "the sump, before the screen"),
+    ((144,), -41.15, 59.0, 93184, "on the box of earth in the Demeter's sunk boat"),
     # the settling hall: what the stone beast cannot shrug off, under the Cabal's skull and in line with the falls
     ((45, 73, 73, 73), 33.0, 49.35, HALL, "between the fires at the foot of the falls"),
     ((107,), 17.9, 44.0, HALL, "the Toshers' Den, by the stove"),
@@ -157,6 +161,9 @@ SEWERS = (
     # the bleeding floor: the butcher at his carcasses, two of his men, rats at the stains; a beast below in the blood
     (204, 53.0, 43.4, SEWER, 1024, 0), (203, 52.4, 40.0, SEWER, 1024, 0), (203, 54.8, 43.2, 57344, 1024, 3),
     (220, 51.0, 43.6, SEWER, 300, 0), (220, 51.4, 42.6, SEWER, 900, 0), (217, 49.75, 48.2, 63488, 1536, 0),
+    # the drowned: eels in the sump and the flooded branch, one beast under the Demeter's keel
+    (218, -16.6, 7.0, 104448, 1024, 0), (218, -18.2, 8.8, 104448, 512, 3), (218, -18.6, 35.4, 105600, 512, 0),
+    (217, -38.6, 59.5, 100352, 1024, 0),
     # the sampling chamber: one in each pool, so the trolley is a ride and not a walk
     (217, 56.0, 56.5, 71680, 1024, 0), (217, 57.5, 60.2, 71680, 1024, 1),
     # the ring: what waits under the south channel, hands in the west leg, a beast in the east, the toshers' rats

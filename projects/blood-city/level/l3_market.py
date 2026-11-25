@@ -889,7 +889,7 @@ def dress_supermarket(layout, rooms) -> dict:
         x_repeat=32, y_repeat=32, status=0)
     return {"wall_details": 2, "tiles": [1165, 1050],
             **meat_market.dress(layout, rooms["street"].region_id),
-            "ship": harbour_ship.dress(layout, rooms["river"].region_id)}
+            "ship": harbour_ship.dress(layout, __import__("underwater").SLIP)}
 
 
 #: The monument's own words, and the register they are written in.
