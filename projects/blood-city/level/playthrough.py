@@ -28,6 +28,8 @@ PU = 1024
 STREET_BELOW = 40000                                     # a floor deeper than this is underground
 #: (name, underground, x0, y0, x1, y1 in plan units): the first that holds a point is where it is
 AREAS = (
+    # the drowned places are kept 60 units west of where they are (`underwater.OFFSET`)
+    ("the sump", True, -22, 3, -15, 14), ("the flooded branch", True, -21, 27, -13, 40), ("the slip", True, -46, 55, -34, 62),
     ("the Toshers' Den", True, 8, 41, 19.9, 50),
     ("the Cabal's chamber", True, 19, 50, 36, 72), ("the settling hall", True, 17, 41, 36, 50),
     ("the Phantom Terminus", True, 35, -22, 72, 2), ("the Weaver's Cellars", True, 6, 8.5, 18, 17.6),

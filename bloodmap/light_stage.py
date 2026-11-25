@@ -1276,6 +1276,13 @@ def _chain(parent: dict, cut: dict, scale: dict | None = None) -> None:
             scale[int(piece)] = scale[source]
 
 
+def linked(disk) -> frozenset:
+    """The sectors a link marker joins to another: a piece cut off one would be joined to nothing, a dry floor in a pool."""
+    from .reachability import LOW_FAMILY, UP_FAMILY
+
+    return frozenset(int(_f(s)["sector"]) for s in disk.sprites if int(_f(s)["type"]) in UP_FAMILY | LOW_FAMILY)
+
+
 def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model: Model | None = None,
         *, keep: Callable[[str], bool] = lambda region: False,
         lamp_scale: Callable[[str], float] = lambda region: 1.0,
@@ -1303,6 +1310,7 @@ def run(disk, region_of: dict[int, str], rule_for: Callable[[str], Rule], model:
     whole = kept | frozenset(hosts(disk))
     report["mover_hosts"] = sorted(whole - kept)
     whole |= frozenset(i for i, region in region_of.items() if not rule_for(region).cut)
+    whole |= linked(disk)
     shadows = cut_shadows(disk, model, whole)
     _chain(parent, shadows, scale)
     report["shadow_cut"] = {k: v for k, v in shadows.items() if k != "parent"}

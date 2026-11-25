@@ -88,6 +88,16 @@ stockyard branch has a fight of its own (the bleeding floor: a butcher, two axe 
 the ring has something under its south channel and hands in its west leg, and the Cabal keeps a picket where the outfall goes down to the
 settling hall. The rest is the Toshers' Den, off that hall: a light, a bag, shells, and a secret under a bed. Rows: `gameplay.SEWERS`, `gameplay.WAKES`.
 
+## Under water
+
+Three places are dived into (`level/underwater.py`, study `underwater`), every swim a breath there and back. **The settling basin** in
+the machine hall is the top of a well: at its foot the pumps' wheel, two eels (one on the harder skills), a doctor's bag and a tesla
+charge at the screen, and a pipe on to a pool in the junction, which is a second way between the works and the sewers. A diving suit
+lies by the basin to say so. **The flooded branch**, the napalm launcher's secret, is barred now: it is looked into from the south
+walk and reached from the tank in the cistern, through a crawl under the channel, past the drowned and an eel; stepping onto its bank
+counts it. **The slip**, between the quay, the Demeter and the jetty, can be jumped into from any side and walked out of by a ramp;
+under her keel a gill beast, and body armor on the box in her sunk boat. The rest of the sea stays shut.
+
 ## The meat market
 
 A butcher behind the counter and the clerk (two on the harder skills) in the

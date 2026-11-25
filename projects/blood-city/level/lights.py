@@ -28,6 +28,12 @@ from bloodmap.light_stage import Rule
 
 #: (part of a region path, its rule). The first match wins.
 RULES: tuple[tuple[str, Rule], ...] = (
+    # the drowned places' surfaces: a linked sector is never cut
+    ("pump_station/tank_0", Rule("none", 0, 0, cut=False)),
+    ("trunk/well_", Rule("none", 0, 0, cut=False)),
+    # the loading shutter sweeps over it, in plan, two levels up: a cut under the sweep reads as one in its way
+    ("trunk/duct_cistern", Rule("ceiling", 796, 7168, 7168, cut=False)),
+    ("chambers/flooded_", Rule("none", 0, 0, cut=False)),
     # Graves Brook is older than the ring: lamps hung on chains far apart,
     # not the ring's tubes (`references/sewer-design.md`: "almost none")
     ("graves_brook", Rule("hanging", 641, 8192)),
@@ -111,6 +117,8 @@ RULES: tuple[tuple[str, Rule], ...] = (
 #: until the owner, 2026-11-21: "We can make it lit by model, the stained
 #: glass should be giving some light in".)
 OWN_LIGHT: tuple[str, ...] = (
+    # full of water: what little light each has is its own (`underwater`)
+    "gravesend/drowned/",
     # The lit case at the underpass's end: a light in itself.
     "works_stair/underpass:lightbox",
     # The narrow sash and box carry the poster pane and its measured contrast.

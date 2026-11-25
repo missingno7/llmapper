@@ -44,6 +44,36 @@ LEVEL, UP, DOWN = HORIZ_LEVEL, HORIZ_UP, HORIZ_DOWN
 #: Fixed sets stay stable across iterations so before/after pairs line up;
 #: fresh sets are added per iteration and never reused.
 POSE_SETS = {
+    # the drowned halves are 60 units west of their places (`underwater.OFFSET`)
+    "underwater": {
+        "a_basin_hall": (40.6, 7.4, 42.1, 5.1, LEVEL, "the basin from the hall's floor"),
+        "b_basin_rim": (42.1, 6.25, 42.1, 4.9, DOWN, "the basin from its rim", -2048),
+        "c_sump_drum": (-17.9, 4.6, -18.3, 7.5, LEVEL, "at the well's foot, toward the gallery", 110592),
+        "c2_sump_up": (-18.0, 5.9, -17.9, 4.4, UP, "up the well", 110592),
+        "d_sump_gallery": (-17.2, 6.4, -19.9, 7.6, LEVEL, "the gallery, toward the screen", 104448),
+        "e_sump_screen": (-18.4, 7.4, -19.9, 7.35, LEVEL, "the screen and what lies on it", 104448),
+        "f_sump_pipe": (-17.3, 9.0, -17.3, 12.0, LEVEL, "down the pipe to the junction's well", 102400),
+        "g_junction_up": (-17.3, 12.4, -17.3, 9.5, LEVEL + 40, "in the well, up at the surface", 104448),
+        "h_junction": (40.4, 10.6, 42.6, 12.1, DOWN, "the junction's well from the room", 61440),
+        "i_cistern": (48.2, 30.2, 44.0, 29.2, LEVEL - 10, "the cistern's tank from the room", 61440),
+        "j_tank": (-16.0, 28.4, -16.0, 30.4, LEVEL, "in the tank: the crawl", 102400),
+        "k_crawl": (-16.0, 31.4, -16.0, 33.4, LEVEL, "the crawl", 102400),
+        "l_hall": (-17.0, 34.9, -16.0, 36.8, LEVEL, "the hall of the drowned", 105600),
+        "l2_hall_long": (-19.6, 36.6, -15.0, 35.6, LEVEL, "along the hall", 105600),
+        "l3_hall_up": (-17.2, 35.2, -17.0, 37.0, LEVEL + 50, "up through them", 105600),
+        "m_bars": (43.0, 33.2, 43.0, 38.0, LEVEL, "the barred mouth from the south channel", 63488),
+        "m2_bars_walk": (44.6, 33.75, 43.0, 34.4, LEVEL, "the barred mouth along the walk", 61440),
+        "n_branch": (41.0, 36.0, 44.6, 38.6, LEVEL, "from the branch's water to the bank", 63488),
+        "n2_branch_out": (45.4, 38.4, 42.6, 34.2, LEVEL, "from the bank to the bars", 61440),
+        "o_slip_quay": (19.5, 55.2, 23.0, 57.4, DOWN, "the slip from the quay"),
+        "o2_slip_jetty": (25.4, 57.4, 21.0, 56.4, DOWN, "the ramp from the jetty"),
+        "o3_slip_water": (24.4, 58.4, 22.0, 56.4, LEVEL, "from the water to the ramp", 37888),
+        "p_bed": (-36.0, 57.6, -40.5, 59.4, LEVEL, "from the bed, the keel", 96256),
+        "p2_bed_long": (-43.5, 56.5, -36.0, 58.0, LEVEL, "along the bed between quay and hull", 96256),
+        "q_keel": (-44.2, 59.6, -40.0, 59.0, LEVEL, "under the keel, the boat", 100352),
+        "r_boat": (-38.4, 58.4, -40.9, 59.0, LEVEL, "the sunk boat and the box", 100352),
+        "s_keel_up": (-38.0, 57.0, -40.5, 59.0, LEVEL + 50, "up at the hull", 96256),
+    },
     "phantom": {
         "k_windows_west": (48.45, -11.00, 50.0, -14.75, LEVEL,
                            "the first windows and the open door from west of the pool", 118784),

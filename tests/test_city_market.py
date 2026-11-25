@@ -105,7 +105,9 @@ class MarketTests(unittest.TestCase):
         quay = self.at(14.9, 55.8, 8192)
         self.assertTrue({deck, quay} <= beyond)
         #: every edge between anything walked on and the water blocks
-        water = [i for i, s in enumerate(self.sectors) if s["floor_picnum"] == l3_market.SEA_TILE and s["ceiling_stat"] & 1]
+        # (but the slip's, which is dived into and has a ramp out: `tests.test_city_underwater`)
+        water = [i for i, s in enumerate(self.sectors) if s["floor_picnum"] == l3_market.SEA_TILE and s["ceiling_stat"] & 1
+                 and not any(t.fields["type"] == 9 and t.fields["sector"] == i for t in self.disk.sprites)]
         for i in water:
             for w in self.ring(i):
                 if w["next_sector"] >= 0 and self.sectors[w["next_sector"]]["floor_z"] in (8192, deck_z - l3_market.SHIP_DECK_DROP):

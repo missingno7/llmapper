@@ -200,7 +200,7 @@ LEVEL_START = 7
 #: region id -> sector type, set once the door pass has run (a press is
 #: type 600 and is not a door)
 LATE_TYPES: dict = {}
-BASIN_RIM, BASIN_WATER = 10240, 6144
+BASIN_RIM, BASIN_WATER = 10240, 8192       # a swimmer climbs 2,048 (`underwater`)
 SEWAGE = 1120
 #: (from, to, how): written to the build manifest, and a test holds each
 RELATIONS: list = []

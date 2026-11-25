@@ -1,8 +1,8 @@
 {
  "way_m": 209,
  "way_is": "the exit",
- "sectors": 1563,
- "reached": 1519,
+ "sectors": 1586,
+ "reached": 1541,
  "taken_on_trust": 131,
  "keys": [
   {
@@ -27,7 +27,7 @@
    "key": "kItemKeyFire",
    "at": "foundry ward",
    "reached": true,
-   "lets_loose": 3
+   "lets_loose": 4
   },
   {
    "key": "kItemKeyDagger",
@@ -44,13 +44,13 @@
  ],
  "exit": [
   {
-   "root": "sprite 1605",
+   "root": "sprite 1656",
    "reached": true
   }
  ],
  "locks": [
   {
-   "counter": 2457,
+   "counter": 2509,
    "wants": [
     "skull",
     "eye",
@@ -63,20 +63,20 @@
   }
  ],
  "budget": {
-  "foes": 163,
-  "placed": 115,
-  "spawn_markers": 48,
-  "foe_health": 8005,
+  "foes": 167,
+  "placed": 118,
+  "spawn_markers": 49,
+  "foe_health": 8155,
   "by_foe": {
    "TNT cultist": 3,
    "axe zombie": 28,
-   "bone eel": 1,
+   "bone eel": 3,
    "brown spider": 9,
    "buried zombie": 10,
    "butcher": 10,
    "gargoyle": 2,
    "gargoyle statue": 2,
-   "gill beast": 11,
+   "gill beast": 13,
    "hand": 2,
    "hell hound": 4,
    "lying zombie": 4,
@@ -88,7 +88,7 @@
    "stone gargoyle": 1,
    "tommy cultist": 20
   },
-  "ammo_damage": 49677,
+  "ammo_damage": 50317,
   "ammo_damage_in_secrets": 7350,
   "ammo_damage_by_kind": {
    "bullets": 10920,
@@ -99,40 +99,40 @@
    "shells": 17152,
    "souls": 350,
    "spray": 1260,
-   "tesla": 5760,
+   "tesla": 6400,
    "tnt": 4800,
    "voodoo": 400
   },
   "expected_drops": 8671,
-  "damage_per_health": 6.206,
-  "damage_outside_secrets_per_health": 5.288,
-  "damage_with_drops_per_health": 7.289,
-  "health": 1570,
+  "damage_per_health": 6.17,
+  "damage_outside_secrets_per_health": 5.269,
+  "damage_with_drops_per_health": 7.233,
+  "health": 1670,
   "health_in_secrets": 460,
-  "armor": 1050,
-  "health_per_100": 19.6,
-  "armor_per_100": 13.1
+  "armor": 1150,
+  "health_per_100": 20.5,
+  "armor_per_100": 14.1
  },
  "secrets": 10,
- "foes": 163,
+ "foes": 167,
  "guns": [
   {
    "gun": "guns akimbo",
    "at": "the Cabal's chamber",
    "secret": true,
-   "foes_before": 0.598
+   "foes_before": 0.593
   },
   {
    "gun": "life leech",
    "at": "the Phantom Terminus",
    "secret": false,
-   "foes_before": 0.833
+   "foes_before": 0.836
   },
   {
    "gun": "flare pistol",
    "at": "the harbour",
    "secret": false,
-   "foes_before": 0.114
+   "foes_before": 0.044
   },
   {
    "gun": "sawed-off",
@@ -144,19 +144,19 @@
    "gun": "tommy gun",
    "at": "the arcade",
    "secret": false,
-   "foes_before": 0.114
+   "foes_before": 0.141
   },
   {
    "gun": "napalm launcher",
    "at": "the sewers",
    "secret": true,
-   "foes_before": 0.385
+   "foes_before": 0.619
   },
   {
    "gun": "tesla cannon",
    "at": "the settling hall",
    "secret": false,
-   "foes_before": 0.057
+   "foes_before": 0.091
   }
  ],
  "places": {
@@ -229,14 +229,16 @@
    "foes": {
     "axe zombie": 3,
     "butcher": 2,
+    "gill beast": 1,
     "hell hound": 1,
     "shotgun cultist": 3
    },
-   "waiting": 3,
+   "waiting": 4,
    "supplies": {
     "15 bullets": 5,
     "TNT bundle": 3,
     "box of shells": 1,
+    "diving suit": 1,
     "fire key": 1,
     "gasoline can": 1,
     "remote TNT": 1,
@@ -343,6 +345,14 @@
    "supplies": {},
    "secret": {}
   },
+  "the flooded branch": {
+   "foes": {
+    "bone eel": 1
+   },
+   "waiting": 0,
+   "supplies": {},
+   "secret": {}
+  },
   "the harbour": {
    "foes": {
     "gill beast": 3,
@@ -404,7 +414,6 @@
   },
   "the sewers": {
    "foes": {
-    "bone eel": 1,
     "buried zombie": 2,
     "gill beast": 2,
     "hand": 2,
@@ -433,6 +442,16 @@
     "voodoo doll": 1
    }
   },
+  "the slip": {
+   "foes": {
+    "gill beast": 1
+   },
+   "waiting": 0,
+   "supplies": {
+    "body armor": 1
+   },
+   "secret": {}
+  },
   "the stockyard": {
    "foes": {
     "axe zombie": 2,
@@ -450,6 +469,17 @@
     "death mask": 1,
     "life essence": 1
    }
+  },
+  "the sump": {
+   "foes": {
+    "bone eel": 2
+   },
+   "waiting": 0,
+   "supplies": {
+    "doctor's bag": 1,
+    "tesla charge": 1
+   },
+   "secret": {}
   },
   "the west streets": {
    "foes": {

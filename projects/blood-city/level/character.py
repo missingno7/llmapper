@@ -113,6 +113,24 @@ PLACES: dict[str, dict[str, Any]] = {
         "exemplar": "E6M7 s195 and s108 (shoring and firelight), DWE2M5 s292 (hay, boxes, tools, the lantern), "
                     "E3M3 s264 and s298 (the bed that sinks and what is behind it)",
     },
+    "the pumps' sump": {
+        "at": (-17800, 7000), "floor": 104448, "study": "underwater",
+        "hero": "the pumps' wheel, the one light at the foot of a well four bodies deep, behind a screen "
+                "with what they drew in lying against it",
+        "exemplar": "E3M3 s176 (the round tank of 510 plate) and s65 to s68's octagonal pipes",
+    },
+    "the flooded branch": {
+        "at": (-17500, 36600), "floor": 105600, "study": "underwater",
+        "hero": "the drowned, standing up out of the silt on their chains under a green ceiling of water, "
+                "below the bank that was seen through the bars",
+        "exemplar": "E3M3 s63 (1120 over 568, bubbles at the pipe's mouth)",
+    },
+    "the slip": {
+        "at": (-38400, 58600), "floor": 96256, "study": "underwater",
+        "hero": "the Demeter's hull hanging in the light overhead, and under her keel her sunk boat, "
+                "with a lantern and one of her boxes of earth",
+        "exemplar": "E6M4 s284 to s291 (the boat from below, its sloped bilges, visibility 16)",
+    },
     "the Rat King's Shrine": {
         "at": (55040, 48000), "floor": 61440, "study": "rat-king-shrine",
         "hero": "a low pipe leading to candles around a knot of rats and "
