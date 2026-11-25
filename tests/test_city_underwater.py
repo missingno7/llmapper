@@ -87,9 +87,12 @@ class DrownedPlaces(unittest.TestCase):
             self.assertLess(one.symmetric_difference(two).area, 1, (link, "whoever dives keeps his place in plan"))
 
     def test_the_drowned_are_beside_the_city_and_over_nothing(self):
-        west = min(x for i in range(len(self.sector)) if i not in self.under
-                   for x, _y in outline_and_holes(self.disk, i)[0])
-        self.assertLess(max(x for i in self.under for x, _y in outline_and_holes(self.disk, i)[0]), west)
+        #: (west of everything until the sea was made wider and the streets went on behind their gates, 2026-11-25)
+        from shapely import Polygon
+        rings = [Polygon(outline_and_holes(self.disk, i)[0]).buffer(0) for i in range(len(self.sector))]
+        for i in self.under:
+            over = [k for k in range(len(rings)) if k not in self.under and rings[k].intersection(rings[i]).area > 64]
+            self.assertEqual(over, [], i)
 
     def test_every_surface_is_climbed_out_of(self):
         for link, (top, *_rest) in self.pairs.items():

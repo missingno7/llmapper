@@ -30,17 +30,19 @@ RISER, STEPS = 4096, 10
 TOP = GRADE - RISER * STEPS                              # -32768: 2.4 bodies over the street
 PARAPET = 5632                                          # a third of a body: seen and shot over, jumped onto
 #: plan units
-ALLEY = (8.0, 10.0, 29.0)                               # the alley's walls and its end
-STAIR_TO = 34.0
+ALLEY = (8.0, 10.0, 27.0)                               # the alley's walls and its end
+STAIR_TO = 32.0                                         # (34 until the owner, 2026-11-25: "move the whole stairs little bit to make more room for door")
 BLOCK = (8.0, 24.0, 15.0, 35.0)                         # what is opened of the block: the rest stands
 RAIL = 0.25
 DAIS, DAIS_R = (12.45, 32.4), (1.7, 1.35)               # the gallows' two steps
 POSTS, POST, POST_TALL = (11.45, 13.45), 0.16, 46000    # on the line y = DAIS[1]
 HOUSE = (3.75, 30.0, 7.5, 34.5)
-DOOR = (7.5, 34.05, 8.0, 34.75)
+DOOR = (7.5, 32.9, 8.0, 33.8)                           # clear of the house's corner on both sides
 HOUSE_TOP = 27648
-SILL, HEAD = 9216, 22528
-WINDOWS = {"w": (3.0, 31.4, 3.75, 32.9), "s": (4.8, 34.5, 6.3, 35.0)}
+FRONT = 384                                             # what the block wears to the streets (`facade_pass`): two windows of it are cut in each wall
+WINDOWS: dict = {}
+#: the stair: a tread is worn stone, a riser one course of blocks with a dark joint under its edge
+TREAD, RISER_STONE = 253, 429
 RUBBLE, PAVING, COPING, STONE, TIMBER, BOARDS, PLASTER, BRICK = 110, 4, 253, 253, 28, 67, 379, 90
 
 
@@ -64,6 +66,25 @@ def _block(layout):
     raise ValueError("the block the gallows stand in is not a hole in any street")
 
 
+def _windows(shape) -> dict:
+    """The two windows of each of the house's outer walls, where the front is painted with one: {name: (x0, y0, x1, y1) in units}."""
+    from facade_bays import windows_on
+    ring = [(round(x), round(y)) for x, y in shape.exterior.coords][:-1]
+    found = {}
+    for (ax, ay), (bx, by) in zip(ring, ring[1:] + ring[:1]):
+        if ax == bx == _q(3.0):
+            lo, hi = sorted((ay, by))                        # from the north: the left hand as the street faces it
+            spans = [(lo + a, lo + b) for a, b in windows_on(hi - lo, FRONT)]
+            spans = [s for s in spans if s[0] > _q(HOUSE[1]) + 256 and s[1] < _q(HOUSE[3]) - 256][-2:]
+            found.update({f"w{k}": (_q(3.0), a, _q(HOUSE[0]), b) for k, (a, b) in enumerate(spans)})
+        if ay == by == _q(35.0) and min(ax, bx) < _q(5.0):
+            lo, hi = min(ax, bx), _q(8.0)                    # the front ends where the stair's head opens on the street
+            spans = [(lo + a, lo + b) for a, b in windows_on(hi - lo, FRONT)]
+            spans = [s for s in spans if s[0] > _q(HOUSE[0]) + 256 and s[1] < _q(HOUSE[2]) - 256][:2]
+            found.update({f"s{k}": (a, _q(HOUSE[3]), b, _q(35.0)) for k, (a, b) in enumerate(spans)})
+    return found
+
+
 def plan(shape) -> list:
     """Every cell. `shape` is the block as the streets leave it (its corners are cut)."""
     from shapely import Polygon, box
@@ -83,7 +104,7 @@ def plan(shape) -> list:
     # the parapet stands inside the edge over the streets and over the stair, not where the stair comes up
     inner = ground.buffer(-_q(RAIL), join_style=2)
     rim = ground.difference(inner).intersection(box(_q(8.0), _q(24.0), _q(16), _q(36)))
-    rim = rim.difference(box(_q(7.0), _q(33.0), _q(ALLEY[1]) - 1, _q(35) - _q(RAIL)))      # the head of the stair and the door
+    rim = rim.difference(box(_q(7.0), _q(STAIR_TO) - 1024, _q(ALLEY[1]) - 1, _q(35) - _q(RAIL)))      # the head of the stair and the door
     rim = rim.difference(box(_q(10.0), _q(23), _q(11.0), _q(30.0)))                        # the walk's back is a wall
     rim = rim.difference(box(_q(10.5), _q(23), _q(13.5), _q(24.0) + _q(RAIL)))             # and its end
     pieces = [g for g in getattr(rim, "geoms", [rim]) if g.geom_type == "Polygon" and g.area > 30_000]
@@ -99,8 +120,10 @@ def plan(shape) -> list:
     # the hangman's house, at the terrace's level: one room, a door, two windows over the streets
     place.add("house", _rect(*HOUSE))
     place.add("door", _rect(*DOOR))
+    WINDOWS.clear()
+    WINDOWS.update(_windows(shape))
     for name, (x0, y0, x1, y1) in WINDOWS.items():
-        place.add(f"window_{name}", ring(Polygon(_rect(x0, y0, x1, y1)).intersection(shape)))
+        place.add(f"window_{name}", [(x0, y0), (x1, y0), (x1, y1), (x0, y1)])
     return place.resolve()
 
 
@@ -124,7 +147,9 @@ def levels(cell: str) -> tuple[int, int, bool]:
     if what == "door":
         return TOP, TOP - 21504, False
     if what == "window":
-        return TOP - SILL, TOP - HEAD, False
+        from facade_bays import rises
+        sill, head = rises(FRONT)                           # of the front's second storey, 32,768 over the street
+        return GRADE - 32768 - sill, GRADE - 32768 - head, False
     return TOP, SKY_Z, True
 
 
@@ -136,7 +161,7 @@ def build(layout) -> dict[str, str]:
     def surface(name):
         floor, ceiling, sky = levels(name)
         what = kind(name)
-        tiles = {"step": (STONE, RUBBLE), "parapet": (COPING, RUBBLE), "dais": (STONE, STONE), "post": (BOARDS, TIMBER),
+        tiles = {"step": (TREAD, RUBBLE), "parapet": (COPING, RUBBLE), "dais": (STONE, STONE), "post": (BOARDS, TIMBER),
                  "house": (BOARDS, PLASTER), "door": (BOARDS, TIMBER), "window": (TIMBER, TIMBER)}.get(what, (PAVING, RUBBLE))
         return dict(floor_z=floor, ceiling_z=ceiling, floor_picnum=tiles[0], wall_picnum=tiles[1],
                     ceiling_picnum=SKY if sky else BOARDS, parallax_ceiling=sky, layer="street",
@@ -148,7 +173,11 @@ def build(layout) -> dict[str, str]:
         there = kind(beyond) if beyond else None
         if there == "post":
             return {"picnum": TIMBER}
-        if there in ("dais", "step"):
+        if there == "step" or (kind(seen) == "step" and there == "terrace"):
+            # one course to a riser, and no riser's joints over the next one's
+            step = int(beyond.split("_")[1]) if there == "step" else STEPS + 1
+            return {"picnum": RISER_STONE, "x_repeat": 16, "y_repeat": 16, "x_panning": (step * 27) % 64, "y_panning": 0}
+        if there == "dais":
             return {"picnum": STONE}
         if there == "parapet" or kind(seen) == "parapet":
             return {"picnum": RUBBLE}
@@ -227,3 +256,17 @@ def _furnish(layout, regions) -> None:
     _stand(layout, regions, "house", "candles", 4.3, 33.6, 580, 64, cstat=384, shade=-128)
     _stand(layout, regions, "house", "hung", 5.6, 32.2, 906, 56, tall=44, seat="ceiling", sunk=True)
     _stand(layout, regions, "house", "straw", 4.4, 30.6, 515, 64, shade=16)
+
+
+def finish(level, compiled) -> int:
+    """No two treads show the same piece of their tile. The owner: "move the textures on each step a bit to make it look less repetitive"."""
+    done = 0
+    for k in range(1, STEPS + 1):
+        allocation = compiled.allocations.get(f"{KEY}:step_{k}")
+        if allocation is None:
+            continue
+        sector = level.sectors[allocation.sector_id]
+        f = sector.get("fields", sector) if isinstance(sector, dict) else sector.fields
+        f["floor_x_panning"], f["floor_y_panning"] = (k * 89) % 256, (k * 151) % 256
+        done += 1
+    return done

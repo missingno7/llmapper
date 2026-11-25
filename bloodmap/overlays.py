@@ -577,7 +577,7 @@ def cut_sectors(disk: Any, jobs: dict[int, list],
                     next_extra[0] += 1
                     obj.fields["extra"] = next_extra[0]
                     if "reference" in obj.extra.fields:
-                        obj.extra.fields["reference"] = target
+                        obj.extra.fields["reference"] = (target + 8192) % 16384 - 8192      # 14 bits, signed; the engine writes its own
                 new_sectors.append(obj)
                 report["parent"][target] = sector
             if spec is not None:

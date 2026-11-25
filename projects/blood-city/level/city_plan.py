@@ -173,7 +173,7 @@ BLOCKS = [
 #: loop (keeps loop count at the CN 2 ceiling, not over it).
 DEAD_END_ALLEYS = [
     {"id": "oc_alley_a", "block": "oc_block_a", "edge": "north",
-     "at": 0.5, "width_class": "alley", "depth_pu": 8},
+     "at": 0.5, "width_class": "alley", "depth_pu": 6},
 ]
 
 # --- venue slots: types from VP, placed on named frontages -----------------

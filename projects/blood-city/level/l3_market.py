@@ -20,6 +20,7 @@ Everything is placed from the L1 plan's own `furnish` slots for the area.
 
 from __future__ import annotations
 
+import math
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
 
@@ -82,7 +83,21 @@ BULKHEAD = 20                  # the quay's face to the water: dark planks
 #: The sea, band by band going out: (depth in plan units, floor shade).
 #: DWE3M4 darkens its sea 3 a band (35, 38, 41, 44); ours starts where the
 #: old river was lit.
-SEA_BANDS = ((8, 38), (6, 41), (6, 44))
+#: The owner, 2026-11-25: "I would make the ocean bigger to the side and also
+#: to distance it would make it to look better". It was 48 units wide and 20
+#: deep: from the quay its edge stood 6 degrees under the eye and its sides
+#: were the quay's own. DWE3M4's and DWE3M10's outer band is 95 by 173 units
+#: (`SEA_WIDE` each side of ours, and 68 out), and nothing on it is cut finer.
+SEA_BANDS = ((8, 38), (10, 40), (14, 42), (16, 43), (20, 44))
+#: how far the light of each carries (a sector's `visibility`: 0 is the usual fall, 240 none). At the usual fall everything
+#: past 25 units was black, and the sea read as a dark field before the sky.
+SEA_CARRY = (0, 252, 248, 245, 243)
+#: how far the bands beyond the near one run, west and east, in plan units
+SEA_WIDE = (-60, 116)
+#: ...and no wall of it is longer than this: the classic renderer sorts walls by products of their coordinates in 32 bits
+#: (`wallfront`, xmapedit/src/engine.c), and with bands one wall wide everything past 38 units was drawn under the water.
+#: The longest in DWE3M4 is 71,943.
+SEA_STEP = 22
 HORIZON_DEPTH = 1024
 #: region ids of the horizon's pieces, for the build to check
 HORIZON: list = []
@@ -113,6 +128,16 @@ def fly_flag(layout) -> int:
             "ship:flag", spec["region_id"], a1=spec["a1"], a2=spec["a2"],
             t=0.5, height_player_heights=2.3, offset_player_widths=0.02,
             **FLAG)
+    # the light out in the bay: a fire in the open on the tower's head
+    import wallplane
+    from bloodmap.placement import seated_z
+    for region_id in LIGHT_ROOM:
+        region = layout.regions[region_id]
+        _w, tall, _x, offset = wallplane.art()[FIRE]
+        layout.add_sprite("harbour:light", region_id, x=round(LIGHT_AT[0] * PU), y=round(LIGHT_AT[1] * PU),
+                          z=seated_z(seat="floor", floor_z=region.floor_z, ceiling_z=region.ceiling_z, tile_height=tall,
+                                     y_repeat=255, y_offset=offset, cstat=128, clearance=16),
+                          picnum=FIRE, x_repeat=255, y_repeat=255, cstat=128, shade=-128, type=0, status=0)
     return len(SHIP_FLAG)
 
 #: What stands between the sea and the town. The owner, 2026-11-18: "Edges
@@ -154,10 +179,44 @@ PILE, PILE_RISE, PILE_PITCH = 512, 34768, 2560
 JETTY = (21, 23, 5.5)
 POST_RISE = 16960              # a body over the deck
 PILE_TILE = 20
-#: a skerry in the second band: out of reach, in view from the whole quay
-SKERRY = ((36, 9.5), (38.5, 9), (39.5, 10.5), (38.5, 12), (36.5, 12.5),
-          (35.5, 11))
-SKERRY_RISE = 25440            # a body and a half
+#: What stands out there, in plan units: (the band it lies in, name, its tiers). A tier is (outline, its top over the
+#: water, floor shade, floor tile, the tile of its sides, how far its top tips). The far points of the bay close it on both
+#: sides; between them one thing: the light. (Houses in whole storeys of their facades: 32,768.)
+FAR_THINGS = (
+    (2, "west_point", (
+        (((-26, 79), (-17, 76.5), (-10, 77), (-5, 78.5), (-1, 81.5), (-6, 83.5), (-13, 86), (-24, 85)), 22000, 34, 273, 458, 6000),
+        (((-23, 79.5), (-16, 78), (-11, 78.5), (-8, 80.5), (-12, 83.5), (-21, 83.5)), 52000, 36, 273, 458, -8000),
+        (((-19, 80), (-16, 80), (-16, 82.5), (-19, 82.5)), 52000 + 65536, 30, 379, 384, 0),
+        (((-14.5, 80.25), (-12.5, 80.25), (-12.5, 82), (-14.5, 82)), 52000 + 32768, 30, 379, 393, 0))),
+    (2, "east_point", (
+        (((58, 81), (62, 78), (70, 76), (80, 77.5), (84, 81), (79, 85.5), (68, 86.5), (61, 84.5)), 26000, 34, 273, 458, 5000),
+        (((63, 80.5), (70, 78), (78, 79), (80, 81.5), (75, 84), (66, 84)), 64000, 36, 273, 458, -9000),
+        (((67, 79.75), (71, 79.75), (71, 82.5), (67, 82.5)), 64000 + 32768, 30, 379, 385, 0),
+        (((68, 80.25), (69, 80.25), (69, 81.25), (68, 81.25)), 64000 + 98304, 30, 379, 385, 0))),
+    (3, "light_rock", (
+        (((26, 95), (27.5, 92.5), (31, 91.5), (34, 92.5), (35, 95), (33.5, 97.5), (29.5, 98.5), (27, 97)), 12000, 33, 273, 458, 5000),
+        (((28, 95), (29, 93.25), (31.5, 93), (33, 94.5), (32.5, 96.5), (30, 97)), 22000, 34, 273, 458, -3000))),
+    # the skerry: out of reach, in view from the whole quay (a flat-topped stump until 2026-11-25)
+    (1, "skerry", (
+        (((39, 67), (40, 65.25), (42.5, 64.75), (44.5, 66), (44.25, 68), (42, 69.25), (40, 69)), 10000, 34, 273, 458, 5000),
+        (((39.75, 67), (40.75, 65.75), (42.5, 65.5), (43.25, 67), (42, 68.5), (40.25, 68.25)), 30000, 32, 273, 458, 9000),
+        (((40.5, 67), (41.25, 66.25), (42.25, 66.5), (42, 67.75), (41, 67.75)), 52000, 30, 273, 458, -9000))),
+    (1, "reef_west", (
+        (((-9, 68), (-7, 66.5), (-4.5, 67), (-4, 69), (-6.5, 70.5), (-8.5, 70)), 15000, 34, 273, 458, 6000),)),
+    (2, "reef_mid", (
+        (((45, 79), (47, 77.5), (50, 78), (50.5, 80), (48, 81.5), (46, 81)), 13000, 35, 273, 458, 5000),
+        (((47, 79), (48.5, 78.5), (49, 79.75), (47.75, 80.25)), 22000, 34, 273, 458, 3000))),
+    (3, "reef_far", (
+        (((6, 100), (9, 98), (13, 98.5), (14, 101), (11, 102.5), (7, 102)), 14000, 35, 273, 458, 5000),)),
+    (3, "reef_east", (
+        (((68, 93), (71, 91.5), (74, 93), (73.5, 95.5), (70, 96)), 17000, 35, 273, 458, 6000),)),
+)
+#: the lighthouse on `light_rock`: its middle, the radius of its foot and its shaft, their tops over the water
+LIGHT_AT, LIGHT_TIERS = (30.6, 95.0), ((1.5, 34000, 253, 253), (1.1, 34000 + 98304, 253, 253), (0.7, 34000 + 98304 + 9000, 253, 253))
+LIGHT_ROOM: list = []
+#: region ids of all of it, and the band each stands in: it is lit as its water is
+FAR_REGIONS: dict = {}
+FIRE = 2101                            # the owner's "flame (small fire)"
 #: region ids: the band the player can wade, and the ones he cannot
 SEA: dict = {}
 #: region ids of everything made of rock, for the scale pass
@@ -209,6 +268,10 @@ def close_outer_sea(level, compiled) -> dict:
     walk = {compiled.allocations[r].sector_id for r in SEA.get("walk", ())
             if r in compiled.allocations}
     edge = 0
+    for index, carry in zip([near, *(compiled.allocations[r].sector_id for r in SEA["far"])], SEA_CARRY):
+        f(level.sectors[index])["visibility"] = carry
+    for region_id, at in FAR_REGIONS.items():
+        f(level.sectors[compiled.allocations[region_id].sector_id])["visibility"] = SEA_CARRY[at]
     for index in [near, *far]:
         s = f(level.sectors[index])
         s["floor_pal"] = SEA_PAL
@@ -245,8 +308,8 @@ def close_outer_sea(level, compiled) -> dict:
         w = f(wall)
         if int(w["next_sector"]) in rocks and int(w["picnum"]) == ROCK_FACE:
             n = f(level.walls[int(w["point2"])])
-            length = (abs(int(n["x"]) - int(w["x"]))
-                      + abs(int(n["y"]) - int(w["y"])))
+            length = math.hypot(int(n["x"]) - int(w["x"]),
+                                int(n["y"]) - int(w["y"]))
             w["x_repeat"] = max(1, min(255, round(length / 128)))
             w["y_repeat"], w["x_panning"], w["y_panning"] = 8, 0, 0
             scaled += 1
@@ -449,15 +512,27 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
     #: visible side or thickness". The step in the sea's outline is that
     #: side: the flank building's END FACE, turning its far corner.
     far_x0, far_x1 = river_x0 - FLANK_END, river_x1 + FLANK_END
+    wide_x0, wide_x1 = (int(v * PU) for v in SEA_WIDE)
+
+    sea_cuts = [x * PU for x in range(SEA_WIDE[0], SEA_WIDE[1] + 1, SEA_STEP)]
+    first_far = river_y0 + SEA_BANDS[0][0] * PU
+    first_cuts = sorted({v for v in sea_cuts if v < far_x0 or v > far_x1} | {far_x0, river_x0, river_x1, far_x1})
 
     def water_band(name, y0, depth, shade, note, outline=None):
         wide = outline is None
-        x0, x1 = (far_x0, far_x1) if wide else (river_x0, river_x1)
+        x0, x1 = (wide_x0, wide_x1) if wide else (river_x0, river_x1)
+        if wide:
+            north = [v - x0 for v in (first_cuts if y0 == first_far else sea_cuts)]
+            south = [v - x0 for v in sea_cuts]
+            points = [(v, 0) for v in north] + [(v, depth) for v in reversed(south)]
+            sides = {f"n{k}": k for k in range(len(north) - 1)}
+            sides["east"] = len(north) - 1
+            sides.update({f"s{k}": len(points) - 2 - k for k in range(len(south) - 1)})
+            sides["west"] = len(points) - 1
         band = quay.room(
-            name, outline or [(0, 0), (x1 - x0, 0), (x1 - x0, depth),
-                              (0, depth)],
+            name, outline or points,
             role="exterior",
-            faces=dict(near_faces) if outline else dict(COMPASS),
+            faces=dict(near_faces) if outline else sides,
             frame=Frame(x0, y0),
             region_kwargs={"sector_behavior": dict(SEA_PAN)},
             note=note)
@@ -492,9 +567,14 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
             "the water at the quay" if index == 0
             else "the sea, a band further out and a step darker",
             outline=near_outline if index == 0 else None)
-        if bands:
-            city.connect(bands[-1].face("south"), band.face("north"),
+        if index == 1:
+            at = first_cuts.index(river_x0)
+            city.connect(bands[-1].face("south"), band.face(f"n{at}"),
                          connection_id=f"connection:sea_{index}")
+        elif bands:
+            for k in range(len(sea_cuts) - 1):
+                city.connect(bands[-1].face(f"s{k}"), band.face(f"n{k}"),
+                             connection_id=f"connection:sea_{index}_{k}")
         if index == 0:
             # The owner, 2026-11-18: "the sea connection to city looks
             # poor, there is a wall that directly ends into sky". The quay
@@ -512,11 +592,24 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
             bands.append(band)
             y += depth * PU
             continue
-        west = horizon(f"horizon_w{index}", far_x0 - HORIZON_DEPTH, y,
-                       far_x0, y + depth * PU)
-        east = horizon(f"horizon_e{index}", far_x1, y,
-                       far_x1 + HORIZON_DEPTH, y + depth * PU)
+        west = horizon(f"horizon_w{index}", wide_x0 - HORIZON_DEPTH, y,
+                       wide_x0, y + depth * PU)
+        east = horizon(f"horizon_e{index}", wide_x1, y,
+                       wide_x1 + HORIZON_DEPTH, y + depth * PU)
         if index == 1:
+            # past the harbour's two buildings the sea has a north side too
+            before = None
+            for k, (x0, x1) in enumerate(zip(first_cuts, first_cuts[1:])):
+                if far_x0 <= x0 < far_x1:
+                    before = None
+                    continue
+                shore = horizon(f"horizon_n{k}", x0, y - HORIZON_DEPTH, x1, y)
+                city.connect(band.face(f"n{k}"), shore.face("south"),
+                             connection_id=f"connection:horizon_n{k}")
+                if before is not None:
+                    city.connect(before.face("east"), shore.face("west"),
+                                 connection_id=f"connection:horizon_n{k}_on")
+                before = shore
             import detailing as _detailing
             for a, b in (((far_x0, y), (river_x0, y)),
                          ((river_x1, y), (far_x1, y))):
@@ -536,9 +629,15 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
         rings.append({"w": west, "e": east})
         bands.append(band)
         y += depth * PU
-    south = horizon("horizon_s", far_x0, y, far_x1, y + HORIZON_DEPTH)
-    city.connect(bands[-1].face("south"), south.face("north"),
-                 connection_id="connection:horizon_s")
+    before = None
+    for k, (x0, x1) in enumerate(zip(sea_cuts, sea_cuts[1:])):
+        south = horizon(f"horizon_s{k}", x0, y, x1, y + HORIZON_DEPTH)
+        city.connect(bands[-1].face(f"s{k}"), south.face("north"),
+                     connection_id=f"connection:horizon_s{k}")
+        if before is not None:
+            city.connect(before.face("east"), south.face("west"),
+                         connection_id=f"connection:horizon_s{k}_on")
+        before = south
     river = bands[0]
     SEA["near"] = river.region_id
     SEA["walk"] = [market_st.region_id]
@@ -664,17 +763,37 @@ def dress(district, market_st, plaza_rect_pu, quay_y_pu, city_d_pu) -> dict:
             piles += 1
     built["piles"] = piles
 
-    # The skerry: a rock in the band nobody can wade to.
-    far = bands[1]
-    far_y0 = river_y0 + SEA_BANDS[0][0] * PU
-    far.carve([(int(x * PU) + FLANK_END, int(y * PU) - SEA_BANDS[0][0] * PU)
-               for x, y in SKERRY])
-    skerry, _p, _o = rock("skerry", SKERRY, SKERRY_RISE + 27648, 33,
-                          "a skerry: in view from the quay, out of reach",
-                          fall=14336)
-    for name in list(skerry.faces):
-        city.connect(skerry.face(name), far.face("north"),
-                     connection_id=f"connection:skerry_{name}")
+    # Out in the bay: its two points, reefs, and the light.
+    tops = [river_y0 + sum(d for d, _s in SEA_BANDS[:k]) * PU for k in range(len(SEA_BANDS))]
+    things = [(b, n, t) for b, n, t in FAR_THINGS]
+    for at, (radius, rise, floor, side) in enumerate(LIGHT_TIERS):
+        ring = tuple((LIGHT_AT[0] + radius * math.sin(math.pi * (k + 0.5) / 4), LIGHT_AT[1] - radius * math.cos(math.pi * (k + 0.5) / 4))
+                     for k in range(8))
+        things = [(b, n, (*t, (ring, rise, 26 - 6 * at, floor, side, 0))) if n == "light_rock" else (b, n, t) for b, n, t in things]
+    for at, name, tiers in things:
+        under, corner = bands[at], (wide_x0, tops[at])
+        placed = []
+        for k, (outline, rise, shade, floor, side, fall) in enumerate(tiers):
+            points = [(round(x * PU) - river_x0, round(y * PU) - river_y0) for x, y in outline]
+            made, _points, origin = rock(f"{name}_{k}", [(x / PU, y / PU) for x, y in points], rise, shade,
+                                         "out in the bay: seen and never reached", tile=floor, face=side, fall=fall)
+            made.intent = {"kind": "sea_rock"}
+            # it stands in the tier it lies inside of, or in the water
+            from shapely import Polygon
+            here = Polygon(outline)
+            host, host_corner = under, corner
+            for other, shape, other_corner in placed:
+                if shape.contains(here):
+                    host, host_corner = other, other_corner
+            mine = (river_x0 + origin[0], river_y0 + origin[1])
+            host.carve([(x + river_x0 - host_corner[0], y + river_y0 - host_corner[1]) for x, y in points])
+            for face in list(made.faces):
+                city.connect(made.face(face), host.face("n0" if host is under else "e0"),
+                             connection_id=f"connection:{name}_{k}_{face}")
+            placed.append((made, here, mine))
+            FAR_REGIONS[made.region_id] = at
+            if name == "light_rock":
+                LIGHT_ROOM[:] = [made.region_id]
     city.connect(river.face("north"), market_st.face("south"),
                  connection_id="connection:quay_river")
 

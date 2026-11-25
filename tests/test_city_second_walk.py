@@ -169,9 +169,9 @@ class SecondWalkTests(unittest.TestCase):
 
     def test_an_end_wall_does_not_wear_a_building_front(self):
         _level()
-        import streets
+        import street_vistas
 
-        self.assertNotIn(streets.END_WALL_TILE, FACADES)
+        self.assertNotIn(street_vistas.WALL, FACADES)
 
     def test_the_pump_station_has_a_machine_hall_with_a_running_belt(self):
         _level()

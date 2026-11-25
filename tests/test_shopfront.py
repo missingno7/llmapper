@@ -285,28 +285,39 @@ class CityStreetEndTests(unittest.TestCase):
                 for w in range(int(f["wall_ptr"]),
                                int(f["wall_ptr"]) + int(f["wall_count"]))]
 
-    def test_three_streets_end_in_six_backed_masses(self):
+    def test_three_streets_go_on_behind_a_shut_gate(self):
+        #: the owner, 2026-11-25: "These walls on the city borders should have hint of continuing behind even it is
+        #: unreachable, ... now it is just cutoff by sky"
         from bloodmap import skyline
+        _level_path()
+        import street_vistas as V
 
-        #: (the sea's horizon pieces are backings too, with the sky on their
-        #: FLOOR as well: `l3_market`, DWE3M4 s648. These are the streets'.)
-        #: The avenue ended in one until 2026-11-20; the station fronts it
-        #: now (`l3_station.avenue_front`): a forecourt whose sky is the
-        #: front's top, which needs no backing.
+        #: (the sea's horizon pieces are backings too, with the sky on their FLOOR as well)
         backings = [b for b in skyline.sky_backings(self.disk)
                     if not int(self.disk.sectors[b].fields["floor_stat"]) & 1]
-        self.assertEqual(len(backings), 6)
-        for backing in backings:
-            masses = {int(w["next_sector"]) for w in self._walls(backing)
-                      if int(w["next_sector"]) >= 0
-                      and not skyline.is_sky_backing(self.disk,
-                                                     int(w["next_sector"]))}
-            self.assertEqual(len(masses), 1, backing)
-            mass = self.disk.sectors[masses.pop()].fields
-            #: the mass is open to the sky and stands E3M1's 5.8 bodies up
-            self.assertTrue(int(mass["ceiling_stat"]) & 1)
-            rise = (8192 - int(mass["floor_z"])) / self.BODY
-            self.assertTrue(3.86 - 0.01 <= rise <= 5.80 + 0.01, rise)
+        self.assertEqual(len(backings), len(V.ENDS))
+        sectors = [s.fields for s in self.disk.sectors]
+        walls = [w.fields for w in self.disk.walls]
+        for name, (edge, low, high, _wear) in V.ENDS.items():
+            line = round(V.EDGES[edge] * V.PU)
+            mouth = []
+            for i, s in enumerate(sectors):
+                xs = [int(w["x"]) for w in self._walls(i)]
+                if (min(xs) < line) if edge == "west" else (max(xs) > line):
+                    continue                                   # behind the wall
+                for w in range(int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"])):
+                    a, b = walls[w], walls[int(walls[w]["point2"])]
+                    if (int(a["x"]) == int(b["x"]) == line and int(a["next_sector"]) >= 0 and int(s["floor_z"]) == V.GRADE
+                            and low * V.PU <= min(int(a["y"]), int(b["y"])) and max(int(a["y"]), int(b["y"])) <= high * V.PU):
+                        mouth.append((w, int(a["next_sector"])))
+            #: nobody walks out of any of it
+            self.assertTrue(mouth, name)
+            for w, _there in mouth:
+                self.assertTrue(int(walls[w]["cstat"]) & 1, (name, w))
+            #: the wall is lower than every roof behind it, and through the gate the ground is the street's own
+            rises = {V.GRADE - int(sectors[there]["floor_z"]) for _w, there in mouth}
+            self.assertEqual(rises, {0, V.WALL_RISE, V.POST_RISE}, name)
+            self.assertGreater(min(storeys for _tile, storeys in V.ENDS[name][3].values()) * V.STOREY, V.POST_RISE)
 
     def test_a_backing_is_not_reported_as_a_lowered_sky(self):
         from bloodmap import skyline

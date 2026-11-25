@@ -123,6 +123,26 @@ BARS = 463
 THROUGH: list[dict] = []
 
 
+def _stretch(layout, district, vertical, line, lo, hi, at):
+    """What of a building's straight wall is between the doorways either side of a point on it."""
+    for joint in layout.connections.values():
+        if district not in (joint.region_a, joint.region_b):
+            continue
+        if joint.a1 is None or joint.a2 is None:
+            continue
+        (ax, ay), (bx, by) = joint.a1, joint.a2
+        if not (ax == bx == line if vertical else ay == by == line):
+            continue
+        p, q = sorted((ay, by) if vertical else (ax, bx))
+        if hi <= p or q <= lo:
+            continue
+        if q <= at:
+            lo = max(lo, q)
+        elif p >= at:
+            hi = min(hi, p)
+    return lo, hi
+
+
 def _rect(region):
     points = [(int(x), int(y)) for x, y in region.outer]
     if len(points) != 4:
@@ -136,6 +156,8 @@ def _rect(region):
 
 def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
     """A window from each street-side room to the street it stands on."""
+    import facade_bays
+    import facade_pass
     THROUGH.clear()
     report = {"cut": 0, "glass": 0, "bars": 0, "rooms": []}
     boxes = {region_id: _bbox(region.outer)
@@ -153,7 +175,7 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
         box = _rect(region)
         clear = int(region.floor_z) - int(region.ceiling_z)
         if (box is None or int(region.floor_z) != grade
-                or clear < THROUGH_SILL + THROUGH_HEIGHT + 2048
+                or clear < BODY
                 or min(box[2] - box[0], box[3] - box[1]) < 2048):
             continue
         rooms.append((region_id, region, box))
@@ -216,8 +238,8 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
                         inside = (faces[0] + faces[1]) / 2
                         if abs(inside - line) < abs(inside - face):
                             continue
-                        a, b = max(lo, rlo) + 512, min(hi, rhi) - 512
-                        if b - a < WIDTH:
+                        a, b = max(lo, rlo) + 256, min(hi, rhi) - 256
+                        if b - a < 512:
                             continue
                         #: clear of whatever already hangs on that wall of
                         #: the room: try the middle, then step aside
@@ -231,20 +253,38 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
                             wx, wy = px + (qx - px) * k, py + (qy - py) * k
                             if abs((wx if vertical else wy) - face) <= 128:
                                 hung.append(wy if vertical else wx)
-                        centre = ((a + b) // 2 // 256) * 256
-                        mid = None
-                        for step in (0, 1536, -1536, 3072, -3072, 4608,
-                                     -4608):
-                            c = centre + step
-                            if c - WIDTH // 2 < a or c + WIDTH // 2 > b:
-                                continue
-                            if all(abs(h - c) > WIDTH // 2 + 640
-                                   for h in hung):
-                                mid = c
-                                break
-                        if mid is None:
+                        #: The owner, 2026-11-25: "align the windows
+                        #: cutouts with texture of the building that has
+                        #: windows on it". The opening is a painted window's
+                        #: own place on the front (`facade_bays`).
+                        tile = facade_pass.tile_of(
+                            districts[district], min(p[0] for p in points),
+                            min(p[1] for p in points))
+                        if tile not in facade_bays.OPENING:
                             continue
-                        s0, s1 = mid - WIDTH // 2, mid + WIDTH // 2
+                        sill, head = facade_bays.rises(tile)
+                        if int(region.floor_z) - int(region.ceiling_z) < head + 1024:
+                            continue
+                        sa, sb = _stretch(layout, district, vertical, line,
+                                          lo, hi, (a + b) // 2)
+                        #: the left end as the street faces it
+                        from_low = (face > line) == vertical
+                        options = [
+                            (sa + p, sa + q) if from_low else (sb - q, sb - p)
+                            for p, q in facade_bays.windows_on(sb - sa, tile)]
+                        centre = (a + b) / 2
+                        spot = None
+                        for p, q in sorted(options, key=lambda o: abs(
+                                (o[0] + o[1]) / 2 - centre)):
+                            if p < a or q > b:
+                                continue
+                            if all(abs(h - (p + q) / 2) > (q - p) / 2 + 640
+                                   for h in hung):
+                                spot = (p, q)
+                                break
+                        if spot is None:
+                            continue
+                        s0, s1 = spot
                         n0, n1 = sorted((line, face))
                         rect = ((n0, s0, n1, s1) if vertical
                                 else (s0, n0, s1, n1))
@@ -285,8 +325,8 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
                                 f"{name}/{part}",
                                 [(r[0], r[1]), (r[2], r[1]), (r[2], r[3]),
                                  (r[0], r[3])],
-                                floor_z=grade - THROUGH_SILL,
-                                ceiling_z=grade - THROUGH_SILL - THROUGH_HEIGHT,
+                                floor_z=grade - sill,
+                                ceiling_z=grade - head,
                                 wall_picnum=int(region.wall_picnum),
                                 floor_picnum=int(region.wall_picnum),
                                 ceiling_picnum=int(region.wall_picnum),
@@ -329,6 +369,30 @@ def cut_through(layout, districts, *, grade: int, limit: int = 16) -> dict:
     return report
 
 
+def fit_whole(level, index) -> None:
+    """Whole tiles of a masked wall in its opening, begun at its top: one tall, and as many across as keep it square.
+
+    The bars' tile is a grate from its top rail to its bottom one; drawn at
+    a wall's own scale the opening showed the middle of two of them, rails
+    across the middle and bars cut off above and below.
+    """
+    import wallplane
+
+    f = _f(level.walls[index])
+    n = _f(level.walls[int(f["point2"])])
+    here = next(_f(s) for s in level.sectors
+                if int(_f(s)["wall_ptr"]) <= index < int(_f(s)["wall_ptr"]) + int(_f(s)["wall_count"]))
+    there = _f(level.sectors[int(f["next_sector"])])
+    tall = (min(int(here["floor_z"]), int(there["floor_z"]))
+            - max(int(here["ceiling_z"]), int(there["ceiling_z"])))
+    wide = abs(int(n["x"]) - int(f["x"])) + abs(int(n["y"]) - int(f["y"]))
+    tile_w, tile_h = wallplane.art()[int(f["over_picnum"])][:2]
+    f["y_repeat"] = max(1, round(tile_h * 2048 / tall))
+    across = max(1, round(wide / (tall / 16) * tile_h / tile_w))
+    f["x_repeat"] = max(1, round(across * tile_w / 8))
+    f["x_panning"] = f["y_panning"] = 0
+
+
 def glaze(level) -> dict:
     """Glass in one window and bars in the next, in the wall's middle."""
     from bloodmap import glass
@@ -342,6 +406,8 @@ def glaze(level) -> dict:
                         fit=True)
     bars = glass.grille(level, [span(w) for w in THROUGH if w["barred"]],
                         tile=BARS)
+    for index in (*panes["walls"], *bars["barred"]):
+        fit_whole(level, index)
     return {"panes": panes["panes"], "barred": len(bars["barred"]),
             "refused": bars["refused"]}
 
@@ -395,7 +461,7 @@ def paint(level, compiled) -> dict:
                       if _f(level.walls[int(g["point2"])]) is f]
             lead = before[0] if before else building
             f["picnum"] = tile
-            f["x_repeat"], f["y_repeat"] = WIDTH // 128, int(lead["y_repeat"])
+            f["x_repeat"], f["y_repeat"] = max(1, (hi - lo) // 128), int(lead["y_repeat"])
             f["x_panning"] = ((int(lead["x_panning"])
                                + int(lead["x_repeat"]) * 8) % 64
                               if before else 0)

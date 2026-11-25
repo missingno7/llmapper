@@ -1155,11 +1155,9 @@ def build():
     STAGE("street-ends",
           "the walls where the main streets stop")
     # ---- where the main streets stop ------------------------------------
-    # The avenue, Theatre Row and the market street ran out at the city's
-    # blank perimeter wall, 11.6 bodies of masonry: every long view ended in
-    # a black slab.  E3M1 ends a street in a low wall with the sky behind it
-    # (`streets.end_walls`).  The mouth of each is its run's width, centred
-    # where the run meets the edge.
+    # The avenue ends in the station. Theatre Row and the market street run
+    # into the town's old wall (`street_vistas`, laid into the layout beside
+    # the gallows): a shut gate, and the street going on behind it.
     from materials import FACADES as _FACADES
 
     def _mouth(centre, kind):
@@ -1175,18 +1173,6 @@ def build():
     ctx["manifest"]["station_front"] = _station.avenue_front(
         city, streets, district_of, DISTRICT_BOUNDS, gates, grade=GRADE,
         street_sky=STREET_SKY, sky_tile=_FACADES["theatre_row"].ceiling)
-    ends = [
-        ("Theatre_Row", "west", *_mouth(SEAM_ROW, "row")),
-        ("market_street_west", "west", *_mouth(SEAM_MARKET, "street")),
-        ("market_street_east", "east", *_mouth(SEAM_MARKET, "street")),
-    ]
-    ctx["manifest"]["street_ends"] = street_anatomy.end_walls(
-        city, ends, streets, district_of, DISTRICT_BOUNDS, gates,
-        grade=GRADE, street_sky=STREET_SKY,
-        facade_of={name: material.wall for name, material in _FACADES.items()},
-        sky_tile=_FACADES["theatre_row"].ceiling)
-    ctx["manifest"]["end_walls"] = sum(
-        2 * len(row["districts"]) for row in ctx["manifest"]["street_ends"])
 
     return city, stack_links, gates, ctx, dressing
 
@@ -1355,6 +1341,9 @@ def main() -> int:
                               min_width=gate[5] if len(gate) > 5 else 1024)
     import gallows
     print("gallows steps:", len(gallows.build(layout)), "regions")
+    import street_vistas
+    ctx["manifest"]["street_ends"] = street_vistas.build(layout)
+    print("streets that go on:", ctx["manifest"]["street_ends"])
     import bill_column
     print("bill column:", len(bill_column.build(layout)), "regions")
     import underwater
@@ -2116,6 +2105,10 @@ def main() -> int:
     from bloodmap.rules import art_sizes as _art_sizes
     print("window niche walls:", _windows.paint(compiled.level, compiled))
     print("window glass and bars:", _windows.glaze(compiled.level))
+    print("gallows treads:", gallows.finish(compiled.level, compiled))
+    import facade_bays
+    ctx["manifest"]["facade_bays"] = facade_bays.apply(compiled.level)
+    print("facades in whole windows:", ctx["manifest"]["facade_bays"])
     print("shelf frames:", _fixtures.frame_shelves(
         compiled.level, compiled, layout, _art_sizes()))
     disk = compiled.level.to_disk_map()
@@ -2432,6 +2425,8 @@ def main() -> int:
         "before": _light["before"], "after": _light["after"]}
     print("sunlight:", LIGHTING, {k: _light["after"][k] for k in (
         "wall_sd", "corner_equal", "corner_step", "within_building", "tile_sd")})
+    # the light's cuts split the fronts again, each piece rounded to a whole repeat of its own
+    print("fronts drawn whole again:", {k: v for k, v in facade_bays.apply(disk).items() if k != "blank"})
     # what the passes split and nothing needs any more (the owner, 2026-11-25: "reducing number of walls where it makes sense")
     from bloodmap import tidy as _tidy
     ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("wallplane").art())

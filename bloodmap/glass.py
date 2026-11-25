@@ -106,7 +106,7 @@ def attach_xwall(level: Any, wall_id: int, **values: int) -> None:
         while extra_id in used:
             extra_id += 1
         fields = _empty_fields(XWALL_SCHEMA)
-        fields["reference"] = int(wall_id)
+        fields["reference"] = (int(wall_id) + 8192) % 16384 - 8192      # 14 bits, signed; the engine writes its own
         #: `kind` and `opaque_tail_hex` are not optional: `model._dict_to_extra`
         #: reads both by name when the IR becomes a DiskMap, and a record
         #: without them fails at write time rather than at build time.

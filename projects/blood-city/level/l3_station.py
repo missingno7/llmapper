@@ -1143,7 +1143,7 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
     """The station's forecourt and arched front across the avenue's mouth.
 
     The forecourt stands on the city's edge across two districts (as
-    `streets.end_walls` builds its masses), joined to each one's street by a
+    `street_vistas` builds the other ends), joined to each one's street by a
     gate along y 0 whose ends are made vertices of the street's outline. Its
     sky is the street's; the lip's is the front's height, so what is drawn
     over the portico's roof ends at the front's top.
@@ -1344,6 +1344,10 @@ def dress(level, compiled, *, keep_tracks=()) -> dict:
             s["floor_shade"], s["ceiling_shade"] = -2, 30
     for index, sector in enumerate(level.sectors):
         s = f(sector)
+        # the gate across the line, and the reveals the door pass cut either side of it, lie on the same rails
+        if int(s["floor_picnum"]) == TRACK and int(s["floor_z"]) == BED_Z and index not in tracks:
+            s["floor_x_panning"], s["floor_y_panning"] = 0, TRACK_PAN
+            report["track"] += 1
         if index in tracks:
             #: THE RAILS RUN ALONG THE TRAIN. The owner, on the second
             #: version: "You didn't spot that rails are going 90 degrees

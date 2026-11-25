@@ -50,6 +50,8 @@ CRATES = ((19.5, 57.5), (19.75, 59.25))
 #: levels, down from the gunwale's top (which is 11,264 over the quay)
 HOUSE, STEP = 16384, 4096
 LETTERED = "DEMETER"
+#: tile 513: its columns and rows, and how far across and down the rope itself goes (a texel short, so two pieces meet)
+ROPE = (38, 52, 32, 49)
 #: region id -> a type the door pass must not see (it takes a 600 for a leaf whose ceiling rises)
 LATE_TYPES: dict = {}
 ROOMS: dict = {}
@@ -185,18 +187,26 @@ def _rig(layout) -> int:
                           **{"shade": 8, "type": 0, "status": 0, "spans_opening": True, **fields})
         done += 1
 
+    def stay(name, x0, z0, x1, z1, y, pieces):
+        """A rope from (x0, z0) to (x1, z1): tile 513 laid end over end, each piece begun inside the last one's end.
+
+        The owner, 2026-11-25: "diagonal ropes would need to have little bit of overlapping because how the texture
+        is done, right now it has visible gaps even the sprites itself are aligned correctly". The art: the rope
+        leaves the tile's first corner and ends at 33 of its 38 columns and 50 of its 52 rows; what is past that is a
+        loose tuft. So a piece reaches 38/32 and 52/49 of its share, and the next covers the tuft.
+        """
+        share_x, share_z = (x1 - x0) / pieces, (z1 - z0) / pieces
+        wide, tall = abs(share_x) * PU * ROPE[0] / ROPE[2], abs(share_z) * ROPE[1] / ROPE[3]
+        for k in range(pieces):
+            left = x0 + k * share_x
+            right = left + (wide / PU if share_x > 0 else -wide / PU)
+            hang(f"{name}_{k}", (left + right) / 2, y, z0 + k * share_z, 513, wide, tall, 1536, flip=share_x > 0)
+
     mx, my = (MAST[0] + MAST[2]) / 2, (MAST[1] + MAST[3]) / 2
     hang("yard", mx, MAST[1] - 0.06, head + 18000, 68, 2560, 4096, 1536)
     # the stays: from the mast's head forward to the bow, and aft to the deckhouse's roof (513, "diagonal rope")
-    for k in range(3):
-        x0, x1 = mx + k * (23.4 - mx) / 3, mx + (k + 1) * (23.4 - mx) / 3
-        fall = (rim.floor_z - head) / 3
-        hang(f"forestay_{k}", (x0 + x1) / 2, my, head + k * fall, 513, (x1 - x0) * PU, fall, 1536, flip=True)
-    for k in range(2):
-        x0, x1 = FRONT[1] + k * (mx - FRONT[1]) / 2, FRONT[1] + (k + 1) * (mx - FRONT[1]) / 2
-        top = layout.regions[ROOMS["shell"].region_id].floor_z
-        fall = (top - head) / 2
-        hang(f"backstay_{k}", (x0 + x1) / 2, my, head + (1 - k) * fall, 513, (x1 - x0) * PU, fall, 1536)
+    stay("forestay", mx, head, 23.2, rim.floor_z, my, 3)
+    stay("backstay", mx, head, FRONT[1], layout.regions[ROOMS["shell"].region_id].floor_z, my, 2)
     # the rope nets (112, E2M1's) stand on the gunwale abreast of the mast
     for side, y in (("port", 57.12), ("starboard", 60.88)):
         for k in range(2):

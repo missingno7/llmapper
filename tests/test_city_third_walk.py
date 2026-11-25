@@ -122,6 +122,8 @@ class ThirdWalkTests(unittest.TestCase):
         self.assertEqual(len(piles), 6)
         water = 8192 + l3_market.SEA_DROP
         for s in rocks:
+            if min(int(self.walls[w]["y"]) for w in range(int(s["wall_ptr"]), int(s["wall_ptr"]) + int(s["wall_count"]))) > 64 * 1024:
+                continue                # out in the bay (`l3_market.FAR_THINGS`): the water it stands in is not reached
             #: out of reach: over a body above the water it stands in
             self.assertGreater(water - int(s["floor_z"]), 16960)
 
@@ -553,6 +555,7 @@ class ThirdWalkTests(unittest.TestCase):
         #: "Windows should really be windows where you can look from inside
         #: outside, you can put bars there or glass"
         _level()
+        import facade_bays
         import windows
 
         ids = set(self.tags["window"])
@@ -567,9 +570,9 @@ class ThirdWalkTests(unittest.TestCase):
         for i in ids:
             opens = set()
             s = self.sectors[i]
-            self.assertEqual(int(s["floor_z"]), 8192 - windows.THROUGH_SILL)
-            self.assertEqual(int(s["floor_z"]) - int(s["ceiling_z"]),
-                             windows.THROUGH_HEIGHT)
+            #: a painted window's own sill and head
+            self.assertIn((8192 - int(s["floor_z"]), 8192 - int(s["ceiling_z"])),
+                          [facade_bays.rises(tile) for tile in facade_bays.OPENING])
             for w in range(int(s["wall_ptr"]),
                            int(s["wall_ptr"]) + int(s["wall_count"])):
                 wall = self.walls[w]

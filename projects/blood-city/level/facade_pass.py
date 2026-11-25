@@ -128,6 +128,12 @@ def split_backs(layout, districts) -> dict:
     return {"edge": list(edge), "vertices": added}
 
 
+def tile_of(district: str, x0: int, y0: int) -> int:
+    """The front of the building whose outline's least corner is there."""
+    tiles = TILE_SETS[district]
+    return tiles[((x0 // 1024) + (y0 // 1024) * 3) % len(tiles)]
+
+
 def apply(level, compiled, districts, edge=None) -> dict:
     """Vary facades per building.  `districts` maps region_id -> district."""
     report = {"buildings": 0, "walls": 0, "by_tile": {}, "boundary_walls": 0}
@@ -183,7 +189,7 @@ def apply(level, compiled, districts, edge=None) -> dict:
             if span <= (3 * 1024) ** 2:
                 tile = MASONRY.wall
             else:
-                tile = tiles[((x0 // 1024) + (y0 // 1024) * 3) % len(tiles)]
+                tile = tile_of(district, x0, y0)
             painted = 0
             for wall in loop:
                 if int(_fields(level.walls[wall])["next_sector"]) < 0:
