@@ -11,7 +11,7 @@ dressing.  A hand edit to its output is a bug by definition
 
     python projects/blood-city/level/build_skeleton.py
 
-writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP.
+writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP, and level/gravesend.MAP, the one that is played (`release.py`).
 """
 
 from __future__ import annotations
@@ -2455,6 +2455,9 @@ def main() -> int:
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")
+    import release as _release
+    ctx["manifest"]["release"] = _release.build()
+    print("released, with what is under the city out from under it:", ctx["manifest"]["release"])
     # What each sector IS, beside the map, so `tools/whatif.py` can make a
     # variant by name ("the shop displays", "the carriageways") instead of
     # by a list of sector numbers that changes with every build.

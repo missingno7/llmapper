@@ -2,7 +2,7 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "b43734a85b8d65f4ee616a038a37c96fada792244cf4eb58382349b9557ca631",
+  "manifest_sha256": "9ccf0dd3019b8f8eee7c8c1b1f465b18a4ffc972f0eab446be7c92673335607c",
   "map_sha256": "2f1ba6b7486d8c16544adab91566664f578e3d0515c40c9734bc9eaa09c59b2d",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },

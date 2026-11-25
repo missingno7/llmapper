@@ -99,7 +99,7 @@ python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP
 python -m tools.critique prepare <slug> --poses <set> --kind <kind>
 ```
 
-The build is deterministic and writes `level/blood-city-current.MAP`; what it
+The build is deterministic and writes `level/blood-city-current.MAP` (and, for playing, `gravesend.MAP`: `release.py`); what it
 measured is in `reports/build-manifest.json`, and it ends by rewriting the
 status. After recording a critique round, run `status.py` again. A new kind of place is studied
 first (`tools.study`), named on the place in `level/character.py`, built, then

@@ -16184,6 +16184,14 @@
     "walls": 14292,
     "joined": 189
   },
+  "release": {
+    "sectors": 735,
+    "of": 1682,
+    "by": [
+      -128,
+      -16
+    ]
+  },
   "stages": [
     {
       "name": "districts",
