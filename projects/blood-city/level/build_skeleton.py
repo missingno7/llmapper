@@ -2104,6 +2104,8 @@ def main() -> int:
     import toshers_den
     print("the den's timber put back:", toshers_den.keep(compiled.level, compiled))
     print("the arcade's fronts put back:", arcade.keep(compiled.level, compiled))
+    import booking_hall as _booking_hall
+    print("the booking hall's put back:", _booking_hall.keep(compiled.level, compiled))
     # AFTER the lintel pass, which takes a sector's solid wall for its
     # facade: stood before it, one pilaster outvoted two short jambs and the
     # pawnbroker's whole surround was repainted in the pilaster tile.

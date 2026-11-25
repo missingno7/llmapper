@@ -60,7 +60,7 @@ PIER = (35328, 37376)
 PIER_Y = -4096
 SWITCH_TILE = 1048
 #: who waits behind the gates
-GUARD = ((201, 33.2, -7.6), (202, 37.8, -7.6), (202, 35.5, -8.2), (248, 36.3, -11.5), (204, 35.5, -14.6), (201, 32.0, -15.4))
+GUARD = ((201, 32.0, -7.0), (202, 39.2, -11.8), (202, 35.5, -10.9), (248, 32.0, -11.6), (204, 35.5, -14.6), (201, 31.8, -14.8))
 #: who comes when the signal box's lever raises the tunnel's gate: the level's last fight, out of the dark and up the platform
 LAST = ((211, 31.5, -20.6, 2048), (211, 33.5, -19.2, 2048), (204, 35.5, -20.4, 2048), (248, 36.8, -18.8, 2048),
         (201, 10.5, -15.4, STATION), (202, 6.5, -15.2, STATION), (201, 24.0, -15.0, STATION), (204, 14.5, -13.4, STATION))
@@ -130,7 +130,9 @@ SUPPLIES = (
     ((67, 67, 67), 13.6, 45.6, HALL, "the Toshers' Den, along the beds"),
     ((110, 73, 73), 9.7, 45.6, 106496, "the Toshers' Cache: a secret"),
     # the station, behind its gates
-    ((72,), 33.0, -15.6, STATION, "the concourse"),
+    ((72,), 39.6, -15.0, STATION, "the gallery's east end, over the booking hall"),
+    ((68,), 28.6, -6.2, STREET, "the booking office"),
+    ((107,), 41.8, -9.8, STREET, "behind the refreshment counter"),
     ((68,), 9.2, -13.2, STATION, "the booking hall"),
     ((107,), 20.8, -12.6, STATION, "the waiting room"),
     ((69, 69, 69), 39.2, -17.4, None, "the goods store"),
@@ -317,7 +319,7 @@ def _lock(layout) -> int:
         switch = layout.place_on_wall(f"station:key_{name}", portico, a1=a, a2=b, t=0.5, height_player_heights=0.74,
                                       offset_player_widths=0.06, status=0, **spec)
         turned.when(wiring.placement(switch), "push", command=motion.CMD_ON, on=True, off=True, once=True, key=number)
-    hall = next(r for r in layout.regions if r.endswith("gravesend_station/east_hall"))
+    hall = next(r for r in layout.regions if r.endswith("gravesend_station/booking_hall:aisle_w"))
     room = layout.regions[hall]
     tally = layout.add_sprite("station:key_count", hall, x=33200, y=-5000, z=room.floor_z - 4096, type=22, picnum=0, shade=-128,
                               cstat=32896, status=0, behavior={"data_2": len(KEYS)})
@@ -328,7 +330,7 @@ def _lock(layout) -> int:
             f"station:opened_{name}", hall, x=x, y=-5000, z=room.floor_z - 4096, type=kind, picnum=2519 if kind == 711 else 2072,
             shade=-128, cstat=32896, status=0, behavior=data)))
     for k, (what, x, y) in enumerate(GUARD):
-        opened.then(wiring.placement(_spawn(layout, f"gameplay:guard_{k}", what, x, y, STREET if y > -9 else STATION)))
+        opened.then(wiring.placement(_spawn(layout, f"gameplay:guard_{k}", what, x, y, STREET if y > -12 else STATION)))
     return len(KEYS)
 
 

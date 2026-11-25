@@ -17,18 +17,18 @@ key, the order the reader finishes it in) is measured from the MAP by
 ## The shape: one lock, six keys, any order
 
 The quay is the start, and the avenue runs straight from it to **Gravesend
-Station** at the far end. Both of the station's fronts are shut by roll-up gates.
-On the pier between the avenue's two arches hang six key signs in a row, a switch
+Station** at the far end, its two arches shut by roll-up gates behind four columns.
+On the pier between them hang six key signs in a row, a switch
 under each. Nothing else in the level says what to do, so it is said once, in the
 open, at the end of the first street.
 
-Each switch takes its key once; the sixth raises all three gates (DWE1M9's lock:
+Each switch takes its key once; the sixth raises both gates (DWE1M9's lock:
 four keyed switches into one counting switch). Caleb: "Looks like my train's come
-in." The guard behind the gates wakes. Through the concourse, over the platform,
-up to the signal box, its lever opens the tunnel, and the way out is in the bore.
-The lever is the last fight's switch too: a whistle far off, the ground shakes, and
-what was in the tunnel comes up the platform while the way out stands open behind it
-(`gameplay.LAST`).
+in." The guard behind the gates wakes. Up the booking hall's stairs, over the platform,
+up to the signal box: its lever sets the line clear. A whistle far off, the ground shakes,
+the tunnel's gate rises and what was in the tunnel comes up the platform
+(`gameplay.LAST`); six seconds after, the carriage opens half way down it, and the way
+out is the emblem at its forward end (`station-design.md`).
 
 | key | where | what stands in the way | what taking it does |
 |---|---|---|---|

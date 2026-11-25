@@ -119,7 +119,7 @@ def check(disk, expected, wires):
     emitters = defaultdict(list)
     charges = defaultdict(list)
     lever_wires = {wire["channel"]: wire["name"] for wire in wires
-                   if wire["name"] in {"station:car-door", "station:gate", "pump:belt"}}
+                   if wire["name"] in {"station:gate", "pump:belt"}}
     levers = defaultdict(list)
     for index, sprite in enumerate(disk.sprites):
         fields = record_fields(sprite)

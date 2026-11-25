@@ -135,7 +135,8 @@ class ArcadeTests(unittest.TestCase):
     def test_the_lantern_is_open_to_the_sky_and_barred(self):
         roof = record_fields(self.disk.sectors[self.at(45.0, 43.7, self.A.COURT)])
         self.assertTrue(roof["ceiling_stat"] & 1)
-        bars = [s for s in self.disk.sprites if record_fields(s)["picnum"] == 1060 and record_fields(s)["cstat"] & 32]
+        bars = [s for s in self.disk.sprites if record_fields(s)["picnum"] == 1060 and record_fields(s)["cstat"] & 32
+                and record_fields(s)["y"] > 0]            # (the station's glass roof has its own)
         self.assertEqual(len(bars), 3)
 
 

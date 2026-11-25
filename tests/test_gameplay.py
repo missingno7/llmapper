@@ -42,7 +42,7 @@ class GameplayTests(unittest.TestCase):
         (_i, tally, x), = self.on("station:keys")
         self.assertEqual((tally["type"], x["data_2"], x["tx_id"]), (22, 6, self.wires.channel("station:unlock")))
         gates = [s for s in self.disk.sectors if (record_extra(s) or {}).get("rx_id") == self.wires.channel("station:unlock")]
-        self.assertGreaterEqual(len(gates), 3)
+        self.assertEqual(len(gates), 2)                       # the avenue's arches: the side entry went on 2026-11-25
         for s in gates:
             f, x = record_fields(s), record_extra(s)
             self.assertEqual(f["ceiling_z"], f["floor_z"])                     # shut

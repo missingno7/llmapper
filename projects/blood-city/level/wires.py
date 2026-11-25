@@ -43,9 +43,9 @@ PLAN: tuple[tuple[str, str], ...] = (
      "when the level starts both presses begin slamming; the console lever stops them shut, and the belt "
      "under them, and starts them again"),
     ("station:car-door",
-     "the lever in the station hall sinks the carriage's door into its floor"),
+     "six seconds after the signal box's lever the carriage's door sinks into its floor"),
     ("station:gate",
-     "the signal box's lever raises the roll-up gate in the tunnel's mouth"),
+     "the signal box's lever raises the roll-up gate in the tunnel's mouth, and the carriage opens after it"),
     ("sewer:plague-pit",
      "blowing the crack in Graves Brook's south wall by the churchyard, once, "
      "opens the bricked-up plague pit and fires three charges"),
@@ -139,8 +139,8 @@ PLAN: tuple[tuple[str, str], ...] = (
 #: no number of the city's, so adding one renumbers nothing.
 ENGINE_PLAN: tuple[tuple[str, str, str], ...] = (
     ("station:way-out",
-     "pushing the switch at the end of the tunnel the line leaves by, past "
-     "the roll-up gate the signal box's lever raises, ends the level",
+     "pushing the emblem at the forward end of the carriage, whose door the "
+     "signal box's lever opens, ends the level",
      "kChannelLevelExitNormal"),
     ("station:fare-turnstile",
      "when the level starts the station's fare turnstile begins cycling",

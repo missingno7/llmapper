@@ -83,8 +83,11 @@ RULES: tuple[tuple[str, Rule], ...] = (
     ("works_stair/underpass", Rule("none", 0, 0, cut=False)),          # its own tubes (`underpass.TUBES`), a bay to a light
     ("works_stair", Rule("none", 0, 0)),
     ("yard_dock", Rule("panel", 501, 3072, 3072)),
+    ("gravesend_station/tunnel_1", Rule("none", 0, 0)),
     ("gravesend_station/tunnel", Rule("panel", 796, 4096, 4096)),
-    ("gravesend_station/goods_store", Rule("panel", 501, 3072, 3072)),
+    # its own lamps and its glass roof (`booking_hall.LAMPS`, `GLOBES`)
+    ("gravesend_station/booking_hall", Rule("none", 0, 0, cut=False)),
+    ("gravesend_station/hearth", Rule("none", 0, 0)),
     ("gravesend_station/signal_box", Rule("ceiling", 795, 2560, 2560)),
     ("gravesend_station", Rule("panel", 2290, 3072, 3072)),
     ("market_hall/cold_store", Rule("ceiling", 796, 4096, 4096)),
@@ -125,6 +128,8 @@ OWN_LIGHT: tuple[str, ...] = (
     "gravesend/drowned/",
     # The lit case at the underpass's end: a light in itself.
     "works_stair/underpass:lightbox",
+    # The dark the line goes into, past the station's tunnel gate.
+    "gravesend_station/tunnel_1",
     # The narrow sash and box carry the poster pane and its measured contrast.
     "theatre_row/aldermack/bill_",
     "market_slip/quay",

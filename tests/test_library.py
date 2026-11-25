@@ -259,30 +259,30 @@ class StationTests(unittest.TestCase):
                 out.append(i)
         return out
 
-    def test_it_stands_outside_the_city_and_is_entered_through_its_wall(self):
+    def test_it_stands_outside_the_city_and_is_entered_by_the_avenues_arches(self):
         s = self.station
-        # a roll-up gate since 2026-11-24 (`gameplay`): the door pass cuts it into a leaf and two reveals
-        x0, y0, x1, y1 = s.DOOR
-        door = [i for i, sec in enumerate(self.sectors) if all(
-            x0 <= int(self.walls[w]["x"]) <= x1 and y0 <= int(self.walls[w]["y"]) <= y1
-            for w in range(int(sec["wall_ptr"]), int(sec["wall_ptr"]) + int(sec["wall_count"])))]
-        self.assertTrue(door)
-        self.assertEqual([int(self.sectors[i]["type"]) for i in door].count(600), 1)
-        around = {int(self.walls[w]["next_sector"]) for i in door for w in range(
-            int(self.sectors[i]["wall_ptr"]), int(self.sectors[i]["wall_ptr"]) + int(self.sectors[i]["wall_count"]))}
-        #: one side is a street under the sky, the other the passage
-        self.assertTrue(any(n >= 0 and int(self.sectors[n]["ceiling_stat"]) & 1
-                            for n in around))
         self.assertLess(s.HALL[1], 0)                 # north of the edge
         (hall,) = self._sectors_at(s.HALL)
         self.assertEqual(int(self.sectors[hall]["floor_z"]), s.HALL_Z)
         self.assertEqual(int(self.sectors[hall]["floor_z"])
                          - int(self.sectors[hall]["ceiling_z"]), s.HALL_CLEAR)
+        #: the owner, 2026-11-25: "That station side entry probably doesn't make sense
+        #: any more": no way through the city's wall but the two arches' gates
+        ways = {(int(a["x"]), int(b["x"])) for a, b in ((w, self.walls[int(w["point2"])]) for w in self.walls)
+                if int(a["y"]) == int(b["y"]) == 0 and int(a["next_sector"]) >= 0 and abs(int(a["x"]) - int(b["x"])) > 0}
+        for x0, x1 in ways:
+            self.assertTrue(s.FORECOURT[0][0] <= min(x0, x1) and max(x0, x1) <= s.FORECOURT[-1][1], (x0, x1))
 
-    def test_the_stair_up_is_one_sloped_floor(self):
-        (ramp,) = self._sectors_at(self.station.RAMP)
-        self.assertTrue(int(self.sectors[ramp]["floor_heinum"]))
-        self.assertTrue(int(self.sectors[ramp]["floor_stat"]) & 2)
+    def test_the_booking_hall_climbs_to_the_platform(self):
+        import booking_hall as hall
+        levels = sorted({int(sec["floor_z"]) for sec in self.sectors
+                         if any(int(self.walls[w]["x"]) == round(hall.STAIR[0] * 1024)
+                                and -13313 <= int(self.walls[w]["y"]) <= -11600
+                                for w in range(int(sec["wall_ptr"]), int(sec["wall_ptr"]) + int(sec["wall_count"])))
+                         and int(sec["floor_z"]) > hall.TOP})
+        steps = [b - a for a, b in zip([hall.TOP, *levels], levels)]
+        self.assertEqual(len(levels), hall.TREADS + 1)          # the flight's treads and the floor
+        self.assertTrue(all(0 < step <= 5120 for step in steps), steps)
 
     def test_the_track_is_seen_and_the_tunnel_darkens(self):
         s = self.station
@@ -311,8 +311,10 @@ class StationTests(unittest.TestCase):
         #: sure why we made that one strip that dark when other rooms
         #: around it are lit." His walk outranks the round that asked for
         #: the dark: the tunnel keeps a step of fade and stays readable.
+        #: (The switch is in the carriage since 2026-11-25, and the second
+        #: bore holds nothing but the dark the line goes into.)
         self.assertGreater(shades[-1], shades[0])
-        self.assertLessEqual(shades[-1], 36)
+        self.assertLessEqual(shades[-2], 36)
 
     def test_the_carriage_can_be_boarded_and_seen_through(self):
         #: round 1 of the critique: "The train has no windows, doors,
@@ -374,22 +376,26 @@ class StationTests(unittest.TestCase):
         self.assertEqual(len({int(sp.fields["y"]) for sp in wheels}), 2)
         self.assertEqual(len({int(sp.fields["angle"]) for sp in wheels}), 2)
 
-    def test_the_office_lever_opens_the_carriage(self):
+    def test_the_signal_opens_the_carriage_and_the_carriage_is_the_way_out(self):
         s = self.station
 
         def extra(item):
             return getattr(getattr(item, "extra", None), "fields", None) or {}
 
-        levers = [sp for sp in self.disk.sprites
+        relays = [sp for sp in self.disk.sprites
                   if int(extra(sp).get("tx_id", 0)) == s.CAR_DOOR_CHANNEL]
         doors = [sec for sec in self.disk.sectors
                  if int(extra(sec).get("rx_id", 0)) == s.CAR_DOOR_CHANNEL]
-        self.assertEqual((len(levers), len(doors)), (1, 1))
-        #: on the hall's column beside the door's bay, where pulling it is
-        #: SEEN to do something (critique rounds 3 and 4)
-        self.assertLess(abs(int(levers[0].fields["x"]) - s.CAR_DOOR_X[0]),
-                        1024)
-        self.assertLess(abs(int(levers[0].fields["y"]) - s.HALL[1]), 512)
+        self.assertEqual((len(relays), len(doors)), (1, 1))
+        #: six seconds after the signal box's lever, and out of sight
+        self.assertEqual(int(extra(relays[0])["rx_id"]), s.GATE_CHANNEL)
+        self.assertEqual(int(extra(relays[0])["wait_time"]), 60)
+        self.assertTrue(int(relays[0].fields["cstat"]) & 32768)
+        #: the emblem that ends the level is inside it, at the engine's end
+        exits = [sp.fields for sp in self.disk.sprites if int(extra(sp).get("tx_id", 0)) == 4]
+        self.assertEqual(len(exits), 1)
+        cx0, cy0, cx1, cy1 = s.CAR
+        self.assertTrue(cx1 - 1024 < int(exits[0]["x"]) < cx1 and cy0 < int(exits[0]["y"]) < cy1)
         door = doors[0].fields
         self.assertEqual(int(door["type"]), 600)
         #: shut: its floor stands at the roof; the lever sinks it
@@ -437,8 +443,8 @@ class StationTests(unittest.TestCase):
             w = self.walls[int(self.sectors[i]["wall_ptr"])]
             self.assertFalse(cx0 - 512 <= int(w["x"]) <= cx1 + 512
                              and cy0 - 512 <= int(w["y"]) <= cy1 + 512, i)
-        (store,) = [i for i in self._sectors_at(s.STORE)] or [None]
-        self.assertIsNotNone(store)
+        #: (a goods store stood at the line's end: the owner, 2026-11-25, "badly aligned box textures")
+        self.assertFalse([w for w in self.walls if int(w["picnum"]) == s.CRATE and int(w["x"]) > 38912 and int(w["y"]) < 0])
         (waiting,) = [i for i in self._sectors_at(s.WAITING)] or [None]
         self.assertIsNotNone(waiting)
 
@@ -448,7 +454,7 @@ class StationTests(unittest.TestCase):
 
         words = {word for word, _ids in read_sign(self.disk)}
         self.assertIn("GRAVESEND", words)
-        self.assertIn("STATION", words)               # on the street
+        self.assertIn("GRAVESENDSTATION", words)      # over the portico
         boards = {int(sp.fields["picnum"]) for sp in self.disk.sprites}
         self.assertIn(self.station.BOARDS["tickets"], boards)
         self.assertEqual(study.notes_written(study.STUDIES / "station"), [])
