@@ -2,28 +2,28 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "b179057372c90bbd7f4bcc1ed1049a80922f89145b2b5ac3117f4c0ec425db07",
-  "map_sha256": "c32a4c37a666d15ddb165be9a42acd1e3d94bfd09e9d3de8c34d616025d68a44",
+  "manifest_sha256": "281fb6cf53881462cabf228a10dad72967c899cf165c021ace677ef79661297c",
+  "map_sha256": "04096ffe03779802a869b2dbd104f5f4446b2311ff6c1097ed3eb808607914bc",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
-  "sectors": 1586,
-  "walls": 13203,
-  "sprites": 2805,
+  "sectors": 1575,
+  "walls": 13059,
+  "sprites": 2808,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
    "sprites": 16384
   },
   "headroom": {
-   "sectors": 0.613,
-   "walls": 0.194,
+   "sectors": 0.615,
+   "walls": 0.203,
    "sprites": 0.829
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 3190,
+   "note": 3193,
    "warning": 6
   }
  },
@@ -192,9 +192,9 @@
  "finish": {
   "exits": [
    {
-    "root": "sprite 1656",
+    "root": "sprite 1659",
     "cause": "push",
-    "sector": 636,
+    "sector": 639,
     "to": "kChannelLevelExitNormal",
     "reached": true
    }
@@ -204,7 +204,7 @@
    {
     "sprite": 245,
     "name": "kItemKeyEye",
-    "sector": 747,
+    "sector": 750,
     "reached": true
    },
    {
@@ -214,27 +214,27 @@
     "reached": true
    },
    {
-    "sprite": 2472,
+    "sprite": 2475,
     "name": "kItemKeySkull",
-    "sector": 224,
+    "sector": 232,
     "reached": true
    },
    {
-    "sprite": 2482,
+    "sprite": 2485,
     "name": "kItemKeyFire",
-    "sector": 269,
+    "sector": 277,
     "reached": true
    },
    {
-    "sprite": 2487,
+    "sprite": 2490,
     "name": "kItemKeyDagger",
-    "sector": 888,
+    "sector": 891,
     "reached": true
    },
    {
-    "sprite": 2491,
+    "sprite": 2494,
     "name": "kItemKeySpider",
-    "sector": 916,
+    "sector": 919,
     "reached": true
    }
   ],
@@ -243,55 +243,55 @@
     "key": 1,
     "key_name": "skull",
     "senders": [
-     "sprite 2498"
+     "sprite 2501"
     ],
-    "sector": 173,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    },
    {
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sprite 2500"
+     "sprite 2503"
     ],
-    "sector": 173,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    },
    {
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sector 306"
+     "sector 309"
     ],
-    "sector": 306,
+    "sector": 309,
     "answers": [
-     "sector 306"
+     "sector 309"
     ],
     "by_hand": true
    },
@@ -299,88 +299,88 @@
     "key": 3,
     "key_name": "fire",
     "senders": [
-     "sprite 2502"
+     "sprite 2505"
     ],
-    "sector": 173,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    },
    {
     "key": 4,
     "key_name": "dagger",
     "senders": [
-     "sprite 2504"
+     "sprite 2507"
     ],
-    "sector": 291,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    },
    {
     "key": 5,
     "key_name": "spider",
     "senders": [
-     "sprite 2506"
+     "sprite 2509"
     ],
-    "sector": 291,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    },
    {
     "key": 6,
     "key_name": "moon",
     "senders": [
-     "sprite 2508"
+     "sprite 2511"
     ],
-    "sector": 291,
+    "sector": 175,
     "answers": [
-     "sector 174",
-     "sector 292",
-     "sector 560",
-     "sprite 2509",
-     "sprite 2510",
-     "sprite 2511",
+     "sector 180",
+     "sector 183",
+     "sector 563",
      "sprite 2512",
      "sprite 2513",
      "sprite 2514",
      "sprite 2515",
      "sprite 2516",
-     "sprite 2517"
+     "sprite 2517",
+     "sprite 2518",
+     "sprite 2519",
+     "sprite 2520"
     ]
    }
   ],
@@ -389,56 +389,56 @@
    "credited_normal": 10,
    "credited_super": 0
   },
-  "space": 1541,
-  "reached": 1541,
+  "space": 1530,
+  "reached": 1530,
   "gated_areas": [
    {
     "round": 0,
     "opened_by": [
      "nothing: open from the start"
     ],
-    "sectors": 1257,
+    "sectors": 1246,
     "first_sector": 0
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 304"
+     "operate mechanism sector 307"
     ],
     "sectors": 31,
-    "first_sector": 304
+    "first_sector": 307
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 381"
+     "operate mechanism sector 384"
     ],
     "sectors": 26,
-    "first_sector": 356
+    "first_sector": 359
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 382"
+     "operate mechanism sector 385"
     ],
     "sectors": 1,
-    "first_sector": 382
+    "first_sector": 385
    },
    {
     "round": 1,
     "opened_by": [
-     "destroy sprite 1698 (channel 103)"
+     "destroy sprite 1701 (channel 103)"
     ],
     "sectors": 10,
-    "first_sector": 219
+    "first_sector": 227
    },
    {
     "round": 1,
     "opened_by": [
-     "walk into sector 863 (channel 153)"
+     "walk into sector 866 (channel 153)"
     ],
     "sectors": 7,
-    "first_sector": 888
+    "first_sector": 891
    },
    {
     "round": 1,
@@ -454,7 +454,7 @@
      "push sprite 299 (channel 167)"
     ],
     "sectors": 7,
-    "first_sector": 486
+    "first_sector": 489
    },
    {
     "round": 1,
@@ -462,31 +462,31 @@
      "destroy sprite 1401 (channel 109)"
     ],
     "sectors": 5,
-    "first_sector": 476
+    "first_sector": 479
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 229"
+     "operate mechanism sector 237"
     ],
     "sectors": 4,
-    "first_sector": 205
+    "first_sector": 213
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 280"
+     "operate mechanism sector 288"
     ],
     "sectors": 4,
-    "first_sector": 279
+    "first_sector": 287
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 769"
+     "operate mechanism sector 772"
     ],
     "sectors": 3,
-    "first_sector": 769
+    "first_sector": 772
    },
    {
     "round": 1,
@@ -515,23 +515,23 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 255"
+     "operate mechanism sector 263"
     ],
     "sectors": 1,
-    "first_sector": 255
+    "first_sector": 263
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 281"
+     "operate mechanism sector 289"
     ],
     "sectors": 1,
-    "first_sector": 281
+    "first_sector": 289
    },
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1073"
+     "operate mechanism sector 1074"
     ],
     "sectors": 1,
     "first_sector": 150
@@ -539,7 +539,7 @@
    {
     "round": 1,
     "opened_by": [
-     "operate mechanism sector 1083"
+     "operate mechanism sector 1082"
     ],
     "sectors": 1,
     "first_sector": 152
@@ -555,10 +555,10 @@
    {
     "round": 2,
     "opened_by": [
-     "operate mechanism sector 231"
+     "operate mechanism sector 239"
     ],
     "sectors": 23,
-    "first_sector": 202
+    "first_sector": 210
    },
    {
     "round": 2,
@@ -571,18 +571,18 @@
    {
     "round": 2,
     "opened_by": [
-     "use switch sprite 2066 (channel 155)"
+     "use switch sprite 2069 (channel 155)"
     ],
     "sectors": 3,
-    "first_sector": 359
+    "first_sector": 362
    },
    {
     "round": 2,
     "opened_by": [
-     "push wall 7201 (channel 151)"
+     "push wall 7251 (channel 151)"
     ],
     "sectors": 2,
-    "first_sector": 890
+    "first_sector": 893
    },
    {
     "round": 2,
@@ -590,15 +590,15 @@
      "several of this round's acts together"
     ],
     "sectors": 3,
-    "first_sector": 303
+    "first_sector": 306
    },
    {
     "round": 3,
     "opened_by": [
-     "use switch sprite 2498 (channel 137)"
+     "use switch sprite 2501 (channel 137)"
     ],
     "sectors": 106,
-    "first_sector": 174
+    "first_sector": 180
    },
    {
     "round": 3,
@@ -606,23 +606,23 @@
      "pick up sprite 245 (channel 133)"
     ],
     "sectors": 6,
-    "first_sector": 740
+    "first_sector": 743
    },
    {
     "round": 3,
     "opened_by": [
-     "destroy sprite 1768 (channel 104)"
+     "destroy sprite 1771 (channel 104)"
     ],
     "sectors": 5,
-    "first_sector": 307
+    "first_sector": 310
    },
    {
     "round": 4,
     "opened_by": [
-     "use switch sprite 1655 (channel 108)"
+     "use switch sprite 1658 (channel 108)"
     ],
     "sectors": 15,
-    "first_sector": 634
+    "first_sector": 637
    }
   ]
  },
@@ -1258,7 +1258,7 @@
    "then": [
     "region region:gravesend/gravesend_station/door",
     "region region:gravesend/theatre_row/station_arch_0_gate",
-    "region region:gravesend/foundry_ward/station_arch_1_gate",
+    "region region:gravesend/theatre_row/station_arch_1_gate",
     "placement station:opened_says",
     "placement station:opened_quake",
     "placement gameplay:guard_0",
@@ -2669,7 +2669,7 @@
    },
    "metres": [
     104.3,
-    139.8,
+    136.5,
     20.9
    ],
    "cramped": [],
@@ -3494,7 +3494,7 @@
    "says": "tile 2633 as sprite_floor in indoors (1x): no map and no reading shows it there -- record what it is, or fix it",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
-   "at": "sprite[1831]"
+   "at": "sprite[1834]"
   },
   {
    "kind": "outside-campaign",
@@ -3782,13 +3782,6 @@
    "says": "tile 676 as sprite_face in indoors (6x) rests on community evidence (2 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 676"
-  },
-  {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 1048 as sprite_wall in outdoors (6x) rests on community evidence (46 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 1048"
   },
   {
    "kind": "outside-campaign",
@@ -4813,13 +4806,6 @@
    "see": "python -m tools.tile_contexts show 744"
   },
   {
-   "kind": "outside-campaign",
-   "place": null,
-   "says": "tile 2544 as sprite_wall in outdoors (1x) rests on community evidence (17 maps), not the campaign's",
-   "owner": "bloodmap/tile_contexts.py",
-   "see": "python -m tools.tile_contexts show 2544"
-  },
-  {
    "kind": "unrecognised",
    "place": "The arcade",
    "says": "named \"Ornate hallway with library alcove\" from its best view with signs hidden; the reader's fix: Install a tall, warmly lit freestanding clock in the concourse where shoppers can see it from several storefronts.",
@@ -4845,23 +4831,23 @@
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 369 and 298",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 372 and 301",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2582"
+   "at": "wall 2635"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 376 and 298",
+   "says": "wall-between-rooms-is-not-paper: the mass between two rooms is at least 128 units thick -- 96 units (0.25 body widths) of stone between sectors 379 and 301",
    "owner": "bloodmap/rules_blood.py: wall-between-rooms-is-not-paper",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
-   "at": "wall 2628"
+   "at": "wall 2681"
   },
   {
    "kind": "rule-warning",
    "place": null,
-   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1443, 1449, 1450, 1461, 1530, 1531) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
+   "says": "wall-tile-is-drawn-somewhere: a tile authored on a map's walls is on screen somewhere in that map -- authored on 6 wall(s) (1524, 1530, 1531, 1542, 1611, 1612) and drawn on no band anywhere in the map; lower step: the neighbour's floor is not higher at either end; middle: neither masked; upper step: the neighbour's ceiling is not lower at either end",
    "owner": "bloodmap/rules_blood.py: wall-tile-is-drawn-somewhere",
    "see": "python -m tools.grade_rules --no-write --against projects/blood-city/level/blood-city-current.MAP",
    "at": "tile[93]"
@@ -4975,55 +4961,79 @@
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 780, \"sprite\": 332, \"tile\": 641}",
+   "says": "{\"sector\": 783, \"sprite\": 332, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[780]"
+   "at": "sector[783]"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 780, \"sprite\": 333, \"tile\": 641}",
+   "says": "{\"sector\": 783, \"sprite\": 333, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[780]"
+   "at": "sector[783]"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 780, \"sprite\": 334, \"tile\": 641}",
+   "says": "{\"sector\": 783, \"sprite\": 334, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[780]"
+   "at": "sector[783]"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 785, \"sprite\": 335, \"tile\": 641}",
+   "says": "{\"sector\": 788, \"sprite\": 335, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[785]"
+   "at": "sector[788]"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 785, \"sprite\": 336, \"tile\": 641}",
+   "says": "{\"sector\": 788, \"sprite\": 336, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[785]"
+   "at": "sector[788]"
   },
   {
    "kind": "sprite-through",
    "place": null,
-   "says": "{\"sector\": 785, \"sprite\": 337, \"tile\": 641}",
+   "says": "{\"sector\": 788, \"sprite\": 337, \"tile\": 641}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
-   "at": "sector[785]"
+   "at": "sector[788]"
+  },
+  {
+   "kind": "sprite-through",
+   "place": null,
+   "says": "{\"sector\": 175, \"sprite\": 1560, \"tile\": 641}",
+   "owner": "the pass that placed the sprite; find it by tile",
+   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[175]"
+  },
+  {
+   "kind": "sprite-through",
+   "place": null,
+   "says": "{\"sector\": 175, \"sprite\": 1561, \"tile\": 641}",
+   "owner": "the pass that placed the sprite; find it by tile",
+   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[175]"
+  },
+  {
+   "kind": "sprite-through",
+   "place": null,
+   "says": "{\"sector\": 175, \"sprite\": 1562, \"tile\": 641}",
+   "owner": "the pass that placed the sprite; find it by tile",
+   "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
+   "at": "sector[175]"
   },
   {
    "kind": "sprite-overlaps",
    "place": null,
-   "says": "{\"sector\": 161, \"sprites\": [1900, 1901], \"tiles\": [73, 73]}",
+   "says": "{\"sector\": 161, \"sprites\": [1903, 1904], \"tiles\": [73, 73]}",
    "owner": "the pass that placed the sprite; find it by tile",
    "see": "python -m tools.sprite_fit projects/blood-city/level/blood-city-current.MAP",
    "at": "sector[161]"
@@ -5050,13 +5060,13 @@
   "lost-tile": 2,
   "missing-layer": 20,
   "never-critiqued": 17,
-  "outside-campaign": 189,
+  "outside-campaign": 187,
   "owner-rework": 1,
   "refused": 5,
   "rule-warning": 6,
   "skipped": 4,
   "sprite-overlaps": 1,
-  "sprite-through": 6,
+  "sprite-through": 9,
   "uncatalogued-use": 2,
   "unrecognised": 1
  },

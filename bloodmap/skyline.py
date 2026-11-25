@@ -254,6 +254,58 @@ def lowered_skies(level: Any) -> list[dict[str, int]]:
             if ceiling > common and floor != ceiling]
 
 
+#: a lower sky no deeper than this before a wall is that wall's own top (an apron, a lip), not open ground
+STRIP_DEPTH = 1024
+
+
+def thin_fronts(level: Any, *, least: int = 16384) -> list[dict[str, int]]:
+    """Where a building is a front with no side: a wall that stops at open ground under a lower sky.
+
+    A wall is drawn to its own sector's sky. Where a street's wall ends at an
+    opening into ground whose sky stands lower, what turns the corner there is
+    drawn to the lower one, and above it the building is a blade against the
+    sky. The owner, 2026-11-25, of a forecourt built so between two buildings of
+    11.6 bodies under a sky of 6.8: "makes buildings next to it to look like
+    paper thin because of the sky". The ground beside a building takes the
+    building's sky; what is meant to be low takes a strip of its own before it
+    (`apron`), which is what `STRIP_DEPTH` leaves out, on either side (a tower's
+    apron has the higher sky). So does the top of a mass, and a sky backing:
+    nobody stands on either.
+    """
+    sectors = [_fields(s) for s in level.sectors]
+    walls = [_fields(w) for w in level.walls]
+    owner, before = {}, {}
+    for index, sector in enumerate(sectors):
+        for w in range(int(sector["wall_ptr"]), int(sector["wall_ptr"]) + int(sector["wall_count"])):
+            owner[w], before[int(walls[w]["point2"])] = index, w
+    found = []
+    for w, wall in enumerate(walls):
+        far = int(wall["next_sector"])
+        if far < 0 or w not in owner:
+            continue
+        here, there = sectors[owner[w]], sectors[far]
+        if not (int(here["ceiling_stat"]) & 1 and int(there["ceiling_stat"]) & 1):
+            continue
+        drop = int(there["ceiling_z"]) - int(here["ceiling_z"])
+        if drop < least or is_sky_backing(level, far) or int(there["floor_z"]) < int(here["floor_z"]) - 3 * STANDING_HEIGHT:
+            continue
+        a, b = wall, walls[int(wall["point2"])]
+        length = max(1.0, ((int(a["x"]) - int(b["x"])) ** 2 + (int(a["y"]) - int(b["y"])) ** 2) ** 0.5)
+
+        def depth(sector: dict) -> float:
+            ring = range(int(sector["wall_ptr"]), int(sector["wall_ptr"]) + int(sector["wall_count"]))
+            return max(abs((int(walls[v]["x"]) - int(a["x"])) * (int(b["y"]) - int(a["y"]))
+                           - (int(walls[v]["y"]) - int(a["y"])) * (int(b["x"]) - int(a["x"]))) / length for v in ring)
+
+        if min(depth(here), depth(there)) <= STRIP_DEPTH:
+            continue
+        for end in (before[w], int(wall["point2"])):
+            if int(walls[end]["next_sector"]) < 0:
+                found.append({"sector": owner[w], "low": far, "wall": end, "x": int((a if end == before[w] else b)["x"]),
+                              "y": int((a if end == before[w] else b)["y"]), "bare": drop})
+    return found
+
+
 def is_sky_backing(level: Any, sector_id: int) -> bool:
     """A parallax sector with no height: the sky behind something.
 

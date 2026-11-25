@@ -679,6 +679,20 @@ POSE_SETS = {
         "w_stash": (41.0, 21.5, 37.0, 21.5, LEVEL, "the stash off the trunk", 61440),
         "w_niche": (31.7, 24.6, 31.7, 22.8, LEVEL, "a chained skeleton in its niche", 61440),
     },
+    #: the station's front and the two buildings beside it, from where their sides would show (the owner, 2026-11-25)
+    "station_masses": {
+        "m_avenue_far": (35.4, 24.0, 35.4, 0.0, LEVEL, "up the avenue to the station"),
+        "m_avenue": (35.4, 11.0, 35.4, 0.0, UP, "the station's front from the avenue's head"),
+        "m_mid": (35.4, 5.0, 35.4, -3.0, UP, "before the forecourt, looking up"),
+        "m_west": (30.0, 3.2, 36.0, -1.5, UP, "from Theatre Row, across the front"),
+        "m_west_far": (22.0, 2.4, 36.0, -0.5, UP, "along Theatre Row"),
+        "m_east": (42.0, 3.2, 35.0, -1.5, UP, "from the foundry side, across the front"),
+        "m_east_far": (50.0, 2.4, 36.0, -0.5, UP, "along the foundry side"),
+        "m_in_west": (38.2, -0.8, 32.0, -1.4, UP, "in the forecourt, up at its west side"),
+        "m_in_east": (32.8, -0.8, 39.0, -1.4, UP, "in the forecourt, up at its east side"),
+        "m_out": (35.5, -2.4, 35.5, 10.0, UP, "out of the forecourt"),
+        "m_front": (35.5, 1.5, 35.5, -3.0, LEVEL, "the front close to"),
+    },
     #: how the sewer's secrets look to whoever has not found them (`secret_places`)
     "secrets": {
         "s_bars": (42.5, 21.5, 37.0, 21.5, LEVEL, "the stash behind its bars, from the trunk", 61440),

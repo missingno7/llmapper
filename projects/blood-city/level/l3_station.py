@@ -892,39 +892,51 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     #: `props.STREET_LAMP`) before each jamb.
     import props
     report["front"] = 0
-    fy0 = -FORECOURT_D
-    courts = AVENUE_FRONT.get("courts", [])
-    for court in courts:
-        region = court["region"]
-        floor_z = layout.regions[region].floor_z
-        for a, b in ARCHES:
-            if court["a"] <= a and b <= court["b"]:
-                word = "GRAVESEND" if a < 36352 else "STATION"
-                if wallplane.text(layout, f"sign:station_front_{word.lower()}", region,
-                                  (a - 256, fy0), (b + 256, fy0), words=word,
-                                  style="fascia",
-                                  height_player_heights=ARCH_APEX / 16960 + 0.55):
-                    report["front"] += 1
-        for x in (33024, 35840, 36864, 39680):
-            if not court["a"] < x < court["b"]:
-                continue
-            layout.add_sprite(f"station:front_post_{x}", region, x=x, y=fy0 + 1024,
-                              z=int(floor_z), **props.fields(
-                                  props.STREET_LAMP, x_repeat=props.STREET_LAMP_REPEAT,
-                                  y_repeat=props.STREET_LAMP_REPEAT))
-            layout.add_light_source(
-                f"light:station_front_{x}", region, x=x, y=fy0 + 1024,
-                z=int(floor_z - props.STREET_LAMP_LIGHT * 16960), intensity=2.0)
+    if AVENUE_FRONT:
+        from bloodmap.placement import drawn_extent
+        lip, court, portico = (AVENUE_FRONT[k] for k in ("lip", "court", "portico"))
+        x0, x1 = FORECOURT[0][0], FORECOURT[-1][1]
+        edge = -FORECOURT_D + PORTICO_D
+        floor = int(layout.regions[portico].floor_z)
+        # each over one tile (32,768) of the entablature, on the plain of it: the moulding is its top 13 rows of 128,
+        # the meander rows 68 to 104
+        if wallplane.text(layout, "sign:station_front", lip, (x0 + 512, edge), (x1 - 512, edge), words="GRAVESEND STATION",
+                          style=wallplane.style("fascia", palette=5, shade=-96),
+                          height_player_heights=(PORTICO_H + 32768 - 41 * 256) / 16960):
             report["front"] += 1
-        if court["a"] < FRONT_PIER[0] < court["b"]:
-            # centred on the pier, which the seam halves: hung on the west
-            # court's wall at its east end (no one wall has room for it)
-            layout.place_on_wall(
-                "station:front_clock", region, a1=(FRONT_PIER[0], fy0),
-                a2=(court["b"], fy0), t=0.97, height_player_heights=5.6,
-                offset_player_widths=0.04, picnum=CLOCK["tile"], x_repeat=72,
-                y_repeat=72, cstat=16 | 64 | 128, shade=-8, type=0, status=0)
+        layout.place_on_wall("station:front_clock", lip, a1=(x0, edge), a2=(x1, edge), t=0.5,
+                             height_player_heights=(PORTICO_H + 65536 - 41 * 256) / 16960, offset_player_widths=0.04,
+                             picnum=CLOCK["tile"], x_repeat=68, y_repeat=68, cstat=16 | 64 | 128, shade=-110, type=0, status=0,
+                             spans_opening=True)
+        # the lamps that light the name: without them the entablature is black from down the avenue
+        # (brass globes, as round as the clock: the recessed wall lamp, 2183, was "small eye symbols" to a blind reader)
+        for k, t in enumerate((0.22, 0.78)):
+            layout.place_on_wall(f"station:front_lamp_{k}", lip, a1=(x0, edge), a2=(x1, edge), t=t,
+                                 height_player_heights=(PORTICO_H + 65536 - 41 * 256) / 16960, offset_player_widths=0.04,
+                                 picnum=676, x_repeat=32, y_repeat=32, cstat=16 | 64 | 128, shade=-128, type=0, status=0,
+                                 spans_opening=True)
+        layout.paint_wall(lip, (x0, edge), (x1, edge), fixed_frame=True, picnum=PIER_STONE, x_repeat=56, y_repeat=8, x_panning=0,
+                          y_panning=0, cstat=0)
+        # a lamp on its chain in each bay
+        _w, tile_h, _x, offset = wallplane.art()[641]
+        _top, bottom = drawn_extent(tile_h, offset, 64, 0)
+        for k, x in enumerate((sum(ARCHES[0]) // 2, sum(FRONT_PIER) // 2, sum(ARCHES[1]) // 2)):
+            layout.add_sprite(f"station:portico_lamp_{k}", portico, x=x, y=-FORECOURT_D + 640, z=floor - 46000 - bottom,
+                              picnum=641, x_repeat=64, y_repeat=64, cstat=0, shade=-128, sunk=True)
             report["front"] += 1
+        # the avenue's own posts, either side of the way in
+        for x in (33216, 39488):
+            layout.add_sprite(f"station:front_post_{x}", court, x=x, y=-900, z=floor,
+                              **props.fields(props.STREET_LAMP, x_repeat=props.STREET_LAMP_REPEAT,
+                                             y_repeat=props.STREET_LAMP_REPEAT))
+            layout.add_light_source(f"light:station_front_{x}", court, x=x, y=-900,
+                                    z=int(floor - props.STREET_LAMP_LIGHT * 16960), intensity=2.0)
+            report["front"] += 1
+        # the sides of the two buildings it stands between, from the street's corner
+        for side, a, b in (("west", (x0, 0), (x0, edge + LIP_D)), ("east", (x1, edge + LIP_D), (x1, 0))):
+            length = abs(a[1] - b[1])
+            layout.paint_wall(court, a, b, fixed_frame=True, picnum=SIDES[side], x_repeat=round(length / 128), y_repeat=8,
+                              x_panning=0 if side == "west" else (-round(length / 16)) % 128, y_panning=0, cstat=0)
     #: the town's name where a passenger on the platform reads it: the
     #: hall's own north wall is open, so it hangs over the ramp's head
     words("GRAVESEND", hall.region_id, (hx1 - 512, hy1), (RAMP[2] + 256, hy1),
@@ -1322,17 +1334,40 @@ def keep(level) -> int:
 #: half-sectors whose ceilings slope from the spring to the apex, so the
 #: stone over each arch is the front's own and draws an arch.
 #:
-#: The forecourt is two rooms, one in each district the mouth crosses,
-#: joined at the seam (x 36,352).
+#:
+#: THE MASSES (the owner, 2026-11-25): "That gravesend station entarance the way
+#: it is done in our map makes buildings next to it to look like paper thin because
+#: of the sky". The forecourt's own sky stood at the front's height, so its two
+#: sides, which are the sides of the buildings it stands between, stopped there
+#: too: above 6.8 bodies each building was a front with nothing behind it, a blade
+#: against the sky from any side street. A low sky is a lid (`bloodmap.skyline`),
+#: and it is a lid on whatever stands beside it. The forecourt has the street's sky
+#: now, its sides are those buildings' own walls carried round the corner
+#: (`SIDES`), and the front's height is the sky of a LIP, a strip a step wide
+#: before it, in which no building's side stands.
+#:
+#: THE PORTICO: "Maybe we can add some columns there or something as well to
+#: decorate place in front of the station". Four columns under a roof across the
+#: whole front (E1M7 s12: eight round columns under a roof the sky stands close
+#: over), each on a plinth and under an abacus, which are one sector round its shaft.
+#: The bays are the arch, the pier with the six locks, the arch. What is drawn over
+#: the roof's edge is the entablature: the meander (409), the town's name, the clock.
 FORECOURT = ((32768, 36352), (36352, 39936))
-FORECOURT_D = 3072
-#: the front's height: the forecourt's sky (6.8 bodies; the end walls stand
-#: 5.8, E3M1 s0/s343), out of a body's reach as a lower sky must be
-FRONT_H = 114688
+FORECOURT_D = 4096                             # from the street to the front wall
+PORTICO_D, LIP_D = 1536, 128
+#: the roof of the portico over its floor; and the front's top: two tiles of entablature more
+PORTICO_H, FRONT_H = 73728, 73728 + 2 * 32768
+#: columns: their middles along the front, how far behind the roof's edge; the plinth's half, the shaft's
+#: radius and sides; how high the plinth stands and how far the abacus comes down
+COLUMNS_X, COLUMN_BACK = (33216, 35328, 37376, 39488), 448
+PLINTH_HALF, SHAFT_R, SHAFT_SIDES, PLINTH_RISE, ABACUS = 352, 280, 8, 3072, 6144
+SHAFT_STONE = 406
+#: the buildings' own walls round the corner: (the forecourt's side, the tile the street sees beside it)
+SIDES = {"west": 380, "east": 393}
 #: the arches: (x0, x1) each, 2,048 wide; spring 2.4 bodies (a public
 #: door's head), apex 4.2; as deep as a jamb is thick
 ARCHES = ((33280, 35328), (37376, 39424))
-ARCH_SPRING, ARCH_APEX, ARCH_D = 40960, 71680, 1536
+ARCH_SPRING, ARCH_APEX, ARCH_D = 40960, 71680, 512
 #: the gate that shuts each arch on the hall's side: how deep, how high it opens
 ARCH_GATE_D, ARCH_GATE_OPEN = 128, 36864
 #: the stone the front is: the owner's "grey ashlar stone blocks" (427), the
@@ -1348,32 +1383,40 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
                  grade: int, street_sky: int, sky_tile: int) -> dict:
     """The station's forecourt and arched front across the avenue's mouth.
 
-    The forecourt rooms stand on the city's edge in the districts the mouth
-    crosses (as `streets.end_walls` builds its masses), each joined to its
-    street by a gate along y 0 whose ends are made vertices of the street's
-    outline. Their sky is the front's height, so every band over an arch
-    ends at the front's top.
+    The forecourt stands on the city's edge across two districts (as
+    `streets.end_walls` builds its masses), joined to each one's street by a
+    gate along y 0 whose ends are made vertices of the street's outline. Its
+    sky is the street's; the lip's is the front's height, so what is drawn
+    over the portico's roof ends at the front's top.
     """
     from bloodmap.levelprog import _compass_edges
     import streets as street_anatomy
 
     hall = ROOMS["east_hall"]
     fy0 = -FORECOURT_D
-    courts = []
-    for index, (a, b) in enumerate(FORECOURT):
-        district = next(d for d, bounds in district_bounds.items()
-                        if streets.get(d) is not None and bounds[1] == 0
-                        and bounds[0] <= a and b <= bounds[2])
-        owner = district_of[district]
-        court = owner.room(
-            f"station_forecourt_{index}",
-            [(0, 0), (b - a, 0), (b - a, FORECOURT_D), (0, FORECOURT_D)],
-            role="exterior", faces=dict(COMPASS), frame=Frame(a, fy0),
-            note="the station forecourt: its sky is the front's top",
-            intent={"kind": "station_front", "street": "the_avenue"})
-        court.surfaces(floor_z=grade, clear_height=FRONT_H, floor_picnum=FLOOR,
-                       wall_picnum=FRONT_STONE, ceiling_picnum=int(sky_tile),
-                       parallax_ceiling=True, floor_shade=10, wall_shade=10)
+    x0, x1 = FORECOURT[0][0], FORECOURT[-1][1]
+    districts = [next(d for d, bounds in district_bounds.items()
+                      if streets.get(d) is not None and bounds[1] == 0 and bounds[0] <= a and b <= bounds[2])
+                 for a, b in FORECOURT]
+    owner = district_of[districts[0]]
+    edge = fy0 + PORTICO_D                                   # the roof's edge
+    front = {"kind": "furnished", "street": "the_avenue"}   # by `furnish`: the grime pass hangs nothing here
+
+    def room(name, y0, y1, note, *, clear, **surfaces):
+        made = owner.room(name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)], role="exterior",
+                          faces=dict(COMPASS), frame=Frame(x0, y0), note=note, intent=front)
+        made.surfaces(**{"floor_z": grade, "clear_height": clear, "floor_picnum": FLOOR, "wall_picnum": FRONT_STONE,
+                         "ceiling_picnum": int(sky_tile), "parallax_ceiling": True, "floor_shade": 10, "wall_shade": 10, **surfaces})
+        return made
+
+    court = room("station_forecourt", edge + LIP_D, 0, "the station forecourt, under the street's own sky",
+                 clear=street_sky)
+    lip = room("station_lip", edge, edge + LIP_D, "its sky is the top of the station's front", clear=FRONT_H)
+    portico = room("station_portico", fy0, edge, "the portico: four columns under the entablature", clear=PORTICO_H,
+                   ceiling_picnum=SOFFIT, parallax_ceiling=False)
+    city.connect(lip.face("south"), court.face("north"), connection_id="connection:station_lip_court")
+    city.connect(portico.face("south"), lip.face("north"), connection_id="connection:station_portico_lip")
+    for index, ((a, b), district) in enumerate(zip(FORECOURT, districts)):
         street = streets[district]
         origin = (int(district_bounds[district][0]), int(district_bounds[district][1]))
         street.outline = street_anatomy._with_vertices(
@@ -1383,15 +1426,25 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
                         **_compass_edges(street.outline)}
         gates.append((f"connection:station_forecourt_{index}_mouth",
                       court.region_id, street.region_id, (a, 0), (b, 0), 0))
-        courts.append((court, owner, district, street, a, b))
-        AVENUE_FRONT.setdefault("courts", []).append(
-            {"region": court.region_id, "street": street.region_id, "a": a, "b": b})
-    city.connect(courts[1][0].face("west"), courts[0][0].face("east"),
-                 connection_id="connection:station_forecourt_seam")
+    AVENUE_FRONT.update(court=court.region_id, lip=lip.region_id, portico=portico.region_id)
+
+    import math
+    for index, cx in enumerate(COLUMNS_X):
+        cy = edge - COLUMN_BACK
+        square = [(-PLINTH_HALF, -PLINTH_HALF), (PLINTH_HALF, -PLINTH_HALF), (PLINTH_HALF, PLINTH_HALF), (-PLINTH_HALF, PLINTH_HALF)]
+        portico.carve([(cx - x0 + dx, cy - fy0 + dy) for dx, dy in square])
+        ring = owner.room(f"station_column_{index}", [(dx + PLINTH_HALF, dy + PLINTH_HALF) for dx, dy in square], role="detail",
+                          faces=dict(COMPASS), frame=Frame(cx - PLINTH_HALF, cy - PLINTH_HALF), intent=front,
+                          region_kwargs={"declared_zero_exit": True}, note="a column's plinth, and its abacus over it")
+        ring.surfaces(floor_z=grade - PLINTH_RISE, clear_height=PORTICO_H - PLINTH_RISE - ABACUS, floor_picnum=SOFFIT,
+                      ceiling_picnum=SOFFIT, wall_picnum=SHAFT_STONE, parallax_ceiling=False, floor_shade=10, wall_shade=10)
+        ring.carve([(PLINTH_HALF + round(SHAFT_R * math.cos(2 * math.pi * (k + 0.5) / SHAFT_SIDES)),
+                     PLINTH_HALF + round(SHAFT_R * math.sin(2 * math.pi * (k + 0.5) / SHAFT_SIDES))) for k in range(SHAFT_SIDES)])
+        for face in COMPASS:
+            city.connect(ring.face(face), portico.face("north"), connection_id=f"connection:station_column_{index}_{face}")
 
     arches = 0
     for index, (a, b) in enumerate(ARCHES):
-        court, owner = next((c, o) for c, o, _d, _s, ca, cb in courts if ca <= a and b <= cb)
         mid = (a + b) // 2
         # the roll-up gate that shuts the arch until the six keys are turned (`gameplay`)
         gate = owner.room(
@@ -1428,33 +1481,19 @@ def avenue_front(city, streets, district_of, district_bounds, gates, *,
                           floor_shade=-6, ceiling_shade=-4, wall_shade=-2)
             half.light_source(f"arch_lamp_{index}_{side}", local=(0.5, 0.5),
                               height_player_heights=1.8)
-            city.connect(half.face("south"), court.face("north"),
+            city.connect(half.face("south"), portico.face("north"),
                          connection_id=f"connection:station_arch_{index}_{side}_out")
             city.connect(half.face("north"), gate.face("south"),
                          connection_id=f"connection:station_arch_{index}_{side}_in")
             halves.append(half)
         city.connect(halves[1].face("west"), halves[0].face("east"),
                      connection_id=f"connection:station_arch_{index}_crown")
-        # Round 15: "the archways look like dark recesses ... light the
-        # arch from within so a warm pool spills onto the cobbles". The
-        # passages are lit (above) and a pool of lit floor lies before each
-        # arch: a flush sector of its own, the forecourt being one sector
-        # and one shade (`lightpools`' reason).
-        import setpieces
-        from materials import INTERIORS
-        pool = setpieces.raised_solid(
-            owner, f"station_arch_{index}_pool", court,
-            (a - 256, fy0 + 256, b + 256, fy0 + 2048), INTERIORS["common"],
-            grade=grade, rise=0, host_clear=FRONT_H, connector=owner,
-            note="the light the arch spills onto the forecourt")
-        pool.surfaces(floor_picnum=FLOOR, floor_shade=0, ceiling_picnum=int(sky_tile),
-                      parallax_ceiling=True, clear_height=FRONT_H)
         arches += 1
-    return {"forecourt": len(courts), "arches": arches}
+    return {"columns": len(COLUMNS_X), "arches": arches}
 
 
 def front_stone(level) -> int:
-    """The pier between the arches wears the owner's meander-ornament stone.
+    """The pier between the arches wears the owner's meander-ornament stone, and each column's shaft one length of its own.
 
     A room has one wall tile; the forecourt's far wall is the front, and
     the stretch of it between the arches is the pier. Kept (`KEPT`) so the
@@ -1470,6 +1509,22 @@ def front_stone(level) -> int:
                 and max(int(w["x"]), int(n["x"])) <= FRONT_PIER[1]):
             w["picnum"] = PIER_STONE
             KEPT[w_id] = {k: w[k] for k in FRAME_FIELDS}
+            count += 1
+    # a shaft wears its tile once from abacus to plinth, so the tile's moulding is its capital, and once round
+    edge = -FORECOURT_D + PORTICO_D - COLUMN_BACK
+    for cx in COLUMNS_X:
+        ring = [w_id for w_id, wall in enumerate(level.walls)
+                if (w := wall.get("fields", wall) if isinstance(wall, dict) else wall.fields) and int(w["next_sector"]) < 0
+                and abs(int(w["x"]) - cx) < PLINTH_HALF and abs(int(w["y"]) - edge) < PLINTH_HALF]
+        at = {w_id: k for k, w_id in enumerate(ring)}
+        w_id, k = ring[0], 0
+        while k < len(ring):
+            wall = level.walls[w_id]
+            w = wall.get("fields", wall) if isinstance(wall, dict) else wall.fields
+            assert w_id in at
+            w.update(picnum=SHAFT_STONE, x_repeat=2, y_repeat=4, x_panning=16 * k % 128, y_panning=0, cstat=0)
+            KEPT[w_id] = {key: w[key] for key in FRAME_FIELDS}
+            w_id, k = int(w["point2"]), k + 1
             count += 1
     return count
 

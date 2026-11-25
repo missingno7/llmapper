@@ -28,6 +28,10 @@ from bloodmap.light_stage import Rule
 
 #: (part of a region path, its rule). The first match wins.
 RULES: tuple[tuple[str, Rule], ...] = (
+    # the station's portico: a lamp on its chain in each bay (`l3_station.furnish`)
+    ("station_portico", Rule("none", 0, 0, cut=False)),
+    ("station_column_", Rule("none", 0, 0, cut=False)),
+    ("station_lip", Rule("none", 0, 0, cut=False, shade_bias=(0, 0, -6))),
     # the drowned places' surfaces: a linked sector is never cut
     ("pump_station/tank_0", Rule("none", 0, 0, cut=False)),
     ("trunk/well_", Rule("none", 0, 0, cut=False)),

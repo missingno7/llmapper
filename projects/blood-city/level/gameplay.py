@@ -57,7 +57,7 @@ KEY_SHADE = -40
 #: --- the station's lock ---------------------------------------------------------
 #: along the pier between the two arches: each key's placard, its switch under it
 PIER = (35328, 37376)
-PIER_Y = -3072
+PIER_Y = -4096
 SWITCH_TILE = 1048
 #: who waits behind the gates
 GUARD = ((201, 33.2, -7.6), (202, 37.8, -7.6), (202, 35.5, -8.2), (248, 36.3, -11.5), (204, 35.5, -14.6), (201, 32.0, -15.4))
@@ -301,28 +301,22 @@ def _lock(layout) -> int:
     from bloodmap.switches import pressed_switch
     turned, opened = wires.wire("station:keys"), wires.wire("station:unlock")
     step = (PIER[1] - PIER[0]) / 6
-    courts = {}
-    for region in layout.regions.values():
-        if "station_forecourt_" in region.region_id and "pool" not in region.region_id:
-            xs = [p[0] for p in region.outer]
-            courts[min(xs), max(xs)] = region.region_id
+    portico = next(r for r in layout.regions if r.endswith("/station_portico"))
     for k, name in enumerate(KEYS):
         number = KEYS[name][0]
         tile, _kind, _item, _n = keysign.KEYS[number]
         x = round(PIER[0] + step * (k + 0.5))
-        court = next(r for (a, b), r in courts.items() if a < x < b)
         a, b = (x - 150, PIER_Y), (x + 150, PIER_Y)
-        layout.place_on_wall(f"keysign:station_{name}", court, a1=a, a2=b, t=0.5, height_player_heights=1.18,
+        layout.place_on_wall(f"keysign:station_{name}", portico, a1=a, a2=b, t=0.5, height_player_heights=1.18,
                              offset_player_widths=0.06, type=0, picnum=tile, cstat=keysign.PLACARD_CSTAT, shade=-8,
                              x_repeat=20, y_repeat=20, status=0)
         spec = dict(pressed_switch(tile=SWITCH_TILE, tx_id=0, command=motion.CMD_ON))
         spec["behavior"] = {"data_1": 206, "dude_lockout": 1}
         spec.pop("height_player_heights", None)
         spec.update(x_repeat=34, y_repeat=34)
-        switch = layout.place_on_wall(f"station:key_{name}", court, a1=a, a2=b, t=0.5, height_player_heights=0.74,
+        switch = layout.place_on_wall(f"station:key_{name}", portico, a1=a, a2=b, t=0.5, height_player_heights=0.74,
                                       offset_player_widths=0.06, status=0, **spec)
         turned.when(wiring.placement(switch), "push", command=motion.CMD_ON, on=True, off=True, once=True, key=number)
-    court = next(iter(courts.values()))
     hall = next(r for r in layout.regions if r.endswith("gravesend_station/east_hall"))
     room = layout.regions[hall]
     tally = layout.add_sprite("station:key_count", hall, x=33200, y=-5000, z=room.floor_z - 4096, type=22, picnum=0, shade=-128,

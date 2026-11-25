@@ -16,6 +16,37 @@ EAVES = 65536
 SKY, STONE, PAVING = 3491, 406, 352
 
 
+def _street_and_court(court_sky, *, lip=False):
+    """A street, and a court off its north side between two buildings."""
+    level = LevelProgram("town", style=Style(wall_picnum=384, floor_picnum=PAVING, ceiling_picnum=SKY, parallax_ceiling=True,
+                                             floor_z=8192, clear_height=STREET_SKY))
+    faces = {"north": 0, "east": 1, "south": 2, "west": 3}
+
+    def room(name, x0, y0, x1, y1, **style):
+        made = level.room(name, [(0, 0), (x1 - x0, 0), (x1 - x0, y1 - y0), (0, y1 - y0)], role="exterior", faces=faces, frame=Frame(x0, y0))
+        made.surfaces(**style)
+        return made
+
+    street = room("street", 0, 0, 16384, 4096)
+    court = room("court", 6144, -3072, 10240, 0, clear_height=court_sky)
+    level.connect(court.face("south"), street.face("north"), connection_id="connection:mouth")
+    if lip:
+        strip = room("lip", 6144, -3200, 10240, -3072, clear_height=EAVES)
+        level.connect(strip.face("south"), court.face("north"), connection_id="connection:lip")
+    level.set_start(street, local=(0.1, 0.5))
+    return level.compile().compile().level
+
+
+class ThinFrontTests(unittest.TestCase):
+    def test_a_court_under_a_lower_sky_leaves_its_neighbours_a_blade(self):
+        found = skyline.thin_fronts(_street_and_court(EAVES))
+        self.assertEqual({(f["x"], f["y"]) for f in found}, {(6144, 0), (10240, 0)})
+        self.assertEqual({f["bare"] for f in found}, {STREET_SKY - EAVES})
+
+    def test_the_streets_sky_and_a_lip_are_a_low_front_between_two_solid_buildings(self):
+        self.assertEqual(skyline.thin_fronts(_street_and_court(STREET_SKY, lip=True)), [])
+
+
 def _street_with_a_mass(*, apron_height=EAVES, slope=None):
     """A square street round a square mass, with an apron on its east face."""
     level = LevelProgram(
