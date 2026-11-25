@@ -187,16 +187,12 @@ Known Bugs/Problems    : - Early access: please report anything that
 
 * Copyright / Permissions *
 
-Authors may NOT use GRAVESEND.MAP as a base to build additional levels
-without asking first.
-
-You may distribute GRAVESEND.MAP, provided you include this file, with
-no modifications, and ask no money for it. You may distribute it in
-any electronic format (BBS, Diskette, CD, etc.) as long as you include
-this file intact.
+Anybody may do anything with GRAVESEND.MAP: play it, change it, take
+parts of it, build other levels on it and distribute it, in any form
+and without asking.
 
 Blood is a trademark of its owners. The map holds none of the game's
-files: it needs your own copy of Blood.
+files: it needs your own copy of Blood, with the Plasma Pak.
 
 ======================================================================
 
