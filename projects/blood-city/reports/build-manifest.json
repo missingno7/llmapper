@@ -2610,16 +2610,16 @@
         "answers": [
           "sector 675",
           "sprite 1733",
-          "sprite 2977",
-          "sprite 2978",
-          "sprite 2979",
-          "sprite 2980",
-          "sprite 2981",
-          "sprite 2982",
-          "sprite 2983",
-          "sprite 2984",
-          "sprite 2985",
-          "sprite 2986"
+          "sprite 3005",
+          "sprite 3006",
+          "sprite 3007",
+          "sprite 3008",
+          "sprite 3009",
+          "sprite 3010",
+          "sprite 3011",
+          "sprite 3012",
+          "sprite 3013",
+          "sprite 3014"
         ],
         "faults": []
       },
@@ -2687,11 +2687,11 @@
         "channel": 112,
         "engine": null,
         "senders": [
-          "sprite 3065"
+          "sprite 3093"
         ],
         "answers": [
-          "sprite 3144",
-          "sprite 3145"
+          "sprite 3172",
+          "sprite 3173"
         ],
         "faults": []
       },
@@ -3045,14 +3045,14 @@
         "channel": 132,
         "engine": null,
         "senders": [
-          "sprite 2931"
+          "sprite 2959"
         ],
         "answers": [
-          "sprite 2932",
-          "sprite 2933",
-          "sprite 2934",
-          "sprite 2935",
-          "sprite 2936"
+          "sprite 2960",
+          "sprite 2961",
+          "sprite 2962",
+          "sprite 2963",
+          "sprite 2964"
         ],
         "faults": []
       },
@@ -3066,10 +3066,10 @@
         ],
         "answers": [
           "sector 764",
-          "sprite 2937",
-          "sprite 2938",
-          "sprite 2939",
-          "sprite 2940"
+          "sprite 2965",
+          "sprite 2966",
+          "sprite 2967",
+          "sprite 2968"
         ],
         "faults": []
       },
@@ -3079,13 +3079,13 @@
         "channel": 134,
         "engine": null,
         "senders": [
-          "sprite 2941"
+          "sprite 2969"
         ],
         "answers": [
-          "sprite 2942",
-          "sprite 2943",
-          "sprite 2944",
-          "sprite 2945"
+          "sprite 2970",
+          "sprite 2971",
+          "sprite 2972",
+          "sprite 2973"
         ],
         "faults": []
       },
@@ -3095,12 +3095,12 @@
         "channel": 135,
         "engine": null,
         "senders": [
-          "sprite 2946"
+          "sprite 2974"
         ],
         "answers": [
-          "sprite 2947",
-          "sprite 2948",
-          "sprite 2949"
+          "sprite 2975",
+          "sprite 2976",
+          "sprite 2977"
         ],
         "faults": []
       },
@@ -3110,14 +3110,14 @@
         "channel": 136,
         "engine": null,
         "senders": [
-          "sprite 2950"
+          "sprite 2978"
         ],
         "answers": [
-          "sprite 2951",
-          "sprite 2952",
-          "sprite 2953",
-          "sprite 2954",
-          "sprite 2955"
+          "sprite 2979",
+          "sprite 2980",
+          "sprite 2981",
+          "sprite 2982",
+          "sprite 2983"
         ],
         "faults": []
       },
@@ -3127,15 +3127,15 @@
         "channel": 137,
         "engine": null,
         "senders": [
-          "sprite 2957",
-          "sprite 2959",
-          "sprite 2961",
-          "sprite 2963",
-          "sprite 2965",
-          "sprite 2967"
+          "sprite 2985",
+          "sprite 2987",
+          "sprite 2989",
+          "sprite 2991",
+          "sprite 2993",
+          "sprite 2995"
         ],
         "answers": [
-          "sprite 2968"
+          "sprite 2996"
         ],
         "faults": []
       },
@@ -3145,19 +3145,19 @@
         "channel": 138,
         "engine": null,
         "senders": [
-          "sprite 2968"
+          "sprite 2996"
         ],
         "answers": [
           "sector 179",
           "sector 182",
-          "sprite 2969",
-          "sprite 2970",
-          "sprite 2971",
-          "sprite 2972",
-          "sprite 2973",
-          "sprite 2974",
-          "sprite 2975",
-          "sprite 2976"
+          "sprite 2997",
+          "sprite 2998",
+          "sprite 2999",
+          "sprite 3000",
+          "sprite 3001",
+          "sprite 3002",
+          "sprite 3003",
+          "sprite 3004"
         ],
         "faults": []
       },
@@ -3563,7 +3563,7 @@
           "sprite 125"
         ],
         "answers": [
-          "sprite 3208"
+          "sprite 3236"
         ],
         "faults": []
       },
@@ -3576,7 +3576,7 @@
           "sprite 126"
         ],
         "answers": [
-          "sprite 3209"
+          "sprite 3237"
         ],
         "faults": []
       },
@@ -3589,7 +3589,7 @@
           "sprite 127"
         ],
         "answers": [
-          "sprite 3210"
+          "sprite 3238"
         ],
         "faults": []
       },
@@ -3602,7 +3602,7 @@
           "sprite 129"
         ],
         "answers": [
-          "sprite 3211"
+          "sprite 3239"
         ],
         "faults": []
       },
@@ -3615,7 +3615,7 @@
           "sprite 1449"
         ],
         "answers": [
-          "sprite 3212"
+          "sprite 3240"
         ],
         "faults": []
       },
@@ -3653,15 +3653,15 @@
         "channel": 169,
         "engine": null,
         "senders": [
-          "sprite 2888",
-          "sprite 2894",
-          "sprite 2900",
-          "sprite 2904",
-          "sprite 2905",
-          "sprite 2906"
+          "sprite 2916",
+          "sprite 2922",
+          "sprite 2928",
+          "sprite 2932",
+          "sprite 2933",
+          "sprite 2934"
         ],
         "answers": [
-          "sprite 2907"
+          "sprite 2935"
         ],
         "faults": []
       },
@@ -3671,11 +3671,11 @@
         "channel": 170,
         "engine": null,
         "senders": [
-          "sprite 2907"
+          "sprite 2935"
         ],
         "answers": [
           "sector 1206",
-          "sprite 2908"
+          "sprite 2936"
         ],
         "faults": []
       },
@@ -3728,7 +3728,7 @@
           "sprite 97"
         ],
         "answers": [
-          "sprite 3224"
+          "sprite 3252"
         ],
         "faults": []
       },
@@ -3741,7 +3741,7 @@
           "sprite 163"
         ],
         "answers": [
-          "sprite 3225"
+          "sprite 3253"
         ],
         "faults": []
       },
@@ -3754,7 +3754,7 @@
           "sprite 247"
         ],
         "answers": [
-          "sprite 3226"
+          "sprite 3254"
         ],
         "faults": []
       },
@@ -3767,7 +3767,7 @@
           "sprite 911"
         ],
         "answers": [
-          "sprite 3227"
+          "sprite 3255"
         ],
         "faults": []
       },
@@ -3780,7 +3780,7 @@
           "sprite 978"
         ],
         "answers": [
-          "sprite 3228"
+          "sprite 3256"
         ],
         "faults": []
       },
@@ -3793,7 +3793,7 @@
           "sprite 1638"
         ],
         "answers": [
-          "sprite 3229"
+          "sprite 3257"
         ],
         "faults": []
       },
@@ -3806,7 +3806,7 @@
           "sprite 1952"
         ],
         "answers": [
-          "sprite 3230"
+          "sprite 3258"
         ],
         "faults": []
       },
@@ -3819,7 +3819,7 @@
           "sprite 2139"
         ],
         "answers": [
-          "sprite 3231"
+          "sprite 3259"
         ],
         "faults": []
       },
@@ -3829,17 +3829,17 @@
         "channel": 179,
         "engine": null,
         "senders": [
-          "sprite 3213",
-          "sprite 3216",
-          "sprite 3219"
+          "sprite 3241",
+          "sprite 3244",
+          "sprite 3247"
         ],
         "answers": [
-          "sprite 3213",
-          "sprite 3216",
-          "sprite 3219",
-          "sprite 3232",
-          "sprite 3233",
-          "sprite 3234"
+          "sprite 3241",
+          "sprite 3244",
+          "sprite 3247",
+          "sprite 3260",
+          "sprite 3261",
+          "sprite 3262"
         ],
         "faults": [],
         "later": "the sectors it lights (`light_stage.switch_lamps`)"
@@ -3850,17 +3850,17 @@
         "channel": 180,
         "engine": null,
         "senders": [
-          "sprite 3214",
-          "sprite 3217",
-          "sprite 3220"
+          "sprite 3242",
+          "sprite 3245",
+          "sprite 3248"
         ],
         "answers": [
-          "sprite 3214",
-          "sprite 3217",
-          "sprite 3220",
-          "sprite 3235",
-          "sprite 3236",
-          "sprite 3237"
+          "sprite 3242",
+          "sprite 3245",
+          "sprite 3248",
+          "sprite 3263",
+          "sprite 3264",
+          "sprite 3265"
         ],
         "faults": [],
         "later": "the sectors it lights (`light_stage.switch_lamps`)"
@@ -3871,17 +3871,17 @@
         "channel": 181,
         "engine": null,
         "senders": [
-          "sprite 3215",
-          "sprite 3218",
-          "sprite 3221"
+          "sprite 3243",
+          "sprite 3246",
+          "sprite 3249"
         ],
         "answers": [
-          "sprite 3215",
-          "sprite 3218",
-          "sprite 3221",
-          "sprite 3238",
-          "sprite 3239",
-          "sprite 3240"
+          "sprite 3243",
+          "sprite 3246",
+          "sprite 3249",
+          "sprite 3266",
+          "sprite 3267",
+          "sprite 3268"
         ],
         "faults": [],
         "later": "the sectors it lights (`light_stage.switch_lamps`)"
@@ -3892,14 +3892,14 @@
         "channel": 182,
         "engine": null,
         "senders": [
-          "sprite 3222",
-          "sprite 3223"
+          "sprite 3250",
+          "sprite 3251"
         ],
         "answers": [
-          "sprite 3222",
-          "sprite 3223",
-          "sprite 3241",
-          "sprite 3242"
+          "sprite 3250",
+          "sprite 3251",
+          "sprite 3269",
+          "sprite 3270"
         ],
         "faults": [],
         "later": "the sectors it lights (`light_stage.switch_lamps`)"
@@ -4090,7 +4090,7 @@
         "channel": 198,
         "engine": null,
         "senders": [
-          "sprite 2638"
+          "sprite 2648"
         ],
         "answers": [],
         "faults": [],
@@ -4102,7 +4102,7 @@
         "channel": 199,
         "engine": null,
         "senders": [
-          "sprite 2707"
+          "sprite 2725"
         ],
         "answers": [],
         "faults": [],
@@ -4114,7 +4114,7 @@
         "channel": 200,
         "engine": null,
         "senders": [
-          "sprite 2732"
+          "sprite 2750"
         ],
         "answers": [],
         "faults": [],
@@ -4765,13 +4765,13 @@
   },
   "wall_sprites": {
     "map": "<in memory>",
-    "sprites": 3290,
-    "wall_sprites": 1254,
-    "planes": 338,
-    "clashing_pairs": 13,
-    "sprites_involved": 24,
-    "clash_rate_per_100_wall_sprites": 1.04,
-    "fully_hidden": 8
+    "sprites": 3318,
+    "wall_sprites": 1282,
+    "planes": 339,
+    "clashing_pairs": 27,
+    "sprites_involved": 52,
+    "clash_rate_per_100_wall_sprites": 2.11,
+    "fully_hidden": 22
   },
   "apertures": {
     "findings": 958,
@@ -13282,14 +13282,14 @@
     ]
   },
   "rules": {
-    "total": 4071,
+    "total": 4099,
     "by_severity": {
-      "note": 4064,
+      "note": 4092,
       "warning": 7
     },
     "by_code": {
       "note:blocked-wall-not-invisible-kerb": 63,
-      "note:sprite-drawn-square": 941,
+      "note:sprite-drawn-square": 969,
       "note:floor-aligned-sprite-rests-on-a-surface": 184,
       "note:glass-is-breakable": 44,
       "note:threshold-follows-the-roofed-side": 5,
@@ -13359,7 +13359,7 @@
   },
   "sprite_fit": {
     "rates": {
-      "sprites": 2385,
+      "sprites": 2413,
       "sunk": 0.0,
       "through": 0.004,
       "squeezed": 0.0
@@ -16392,7 +16392,7 @@
   "light_stage": {
     "sectors_before": 1300,
     "walls_before": 9089,
-    "sprites_before": 3290,
+    "sprites_before": 3318,
     "mover_hosts": [
       144,
       554,
@@ -17394,7 +17394,7 @@
     "kept": 203,
     "sectors": 1724,
     "walls": 14918,
-    "sprites": 3328,
+    "sprites": 3356,
     "pieces": 424,
     "default_rooms": []
   },
@@ -17465,6 +17465,51 @@
     "walls_before": 14918,
     "walls": 14709,
     "joined": 209
+  },
+  "solidity": {
+    "body": {
+      "116": 1,
+      "258": 42,
+      "284": 2,
+      "521": 1,
+      "522": 4,
+      "534": 2,
+      "536": 1,
+      "604": 2,
+      "616": 1,
+      "688": 1,
+      "697": 2,
+      "739": 1,
+      "758": 6,
+      "802": 5,
+      "834": 5,
+      "925": 2,
+      "1009": 1,
+      "1013": 4,
+      "1350": 8,
+      "2400": 1
+    },
+    "bullet": {
+      "104": 18,
+      "258": 42,
+      "284": 2,
+      "550": 2,
+      "554": 5,
+      "560": 2,
+      "564": 10,
+      "604": 2,
+      "616": 1,
+      "688": 1,
+      "690": 1,
+      "802": 2,
+      "834": 3,
+      "925": 2,
+      "938": 4,
+      "1044": 5,
+      "1046": 2,
+      "1070": 1,
+      "2621": 7
+    }
   },
   "release": {
     "sectors": 735,

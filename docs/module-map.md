@@ -309,6 +309,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_sector_motion_sounds` | Count sector motion sound profiles in the Blood campaign and tutorials. |
 | `mine_set_pieces` | Set-pieces: the furniture Blood builds out of sectors, mined by shape. |
 | `mine_skylines` | How the campaign makes a building look tall: the two techniques, counted. |
+| `mine_solidity` | Which sprites stop a body and which a bullet, tile by tile and by how they stand, over the campaign and Death Wish; and what of a map does not. |
 | `mine_sprite_heights` | How tall Blood draws each of its sprite tiles. |
 | `mine_stacks` | Room over room, as Blood actually builds it. |
 | `mine_storeys` | How Blood stacks storeys, measured on the maps that do most of it. |

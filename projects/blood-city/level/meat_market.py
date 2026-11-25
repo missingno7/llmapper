@@ -227,6 +227,8 @@ COUNTER_WIDE, COUNTER_DEEP, COUNTER_RISE = 2048, 640, 8192
 #: the canopy over it: wider and deeper than the counter, two bodies up
 CANOPY_WIDE, CANOPY_DEEP, CANOPY_UP = 2560, 1536, 33792
 STRIPE, POLE, BOARDS = 1004, 117, 170
+#: a flat roof stops a body and a bullet, as 251 of Blood's 312 do (the owner: "roofs of stands aren't solid/blocking even they should be")
+SOLID = 1 | 256
 STALL_ROOMS: dict = {}
 
 
@@ -264,7 +266,7 @@ def _dress_stalls(layout, street: str) -> int:
 
         for k, piece in enumerate(flatsprite.cover((x0, y0, x1, y1), _art(STRIPE)[:2])):
             put += add(f"roof_{k}", piece["x"], piece["y"], roof, picnum=STRIPE, angle=piece["angle"], x_repeat=piece["x_repeat"],
-                       y_repeat=piece["y_repeat"], cstat=32 | 128 | 256, shade=26)
+                       y_repeat=piece["y_repeat"], cstat=32 | 128 | SOLID, shade=26)
         # the valance, hung from the roof's edge on every side
         for side, (ax, ay), (dx, dy), angle, length in (
                 ("south", (x0, y1), (1, 0), 512, CANOPY_WIDE), ("north", (x0, y0), (1, 0), 1536, CANOPY_WIDE),

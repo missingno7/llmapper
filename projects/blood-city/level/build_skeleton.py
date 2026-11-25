@@ -2464,6 +2464,9 @@ def main() -> int:
     from bloodmap import tidy as _tidy
     ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("wallplane").art())
     print("walls joined:", ctx["manifest"]["tidy"])
+    import solidity as _solidity
+    ctx["manifest"]["solidity"] = _solidity.apply(disk)
+    print("made solid as Blood has it:", {k: sum(v.values()) for k, v in ctx["manifest"]["solidity"].items()})
     out_dir = pathlib.Path(__file__).resolve().parent
     write_map(disk, out_dir / "city-skeleton.MAP")
     write_map(disk, out_dir / "blood-city-current.MAP")

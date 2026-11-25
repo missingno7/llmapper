@@ -2,14 +2,14 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "0f484e3637dbfa8fe2620542656f109b337cd59254544e6828415c4a932ea77f",
-  "map_sha256": "81a75411bb441451908efb42e0aaa99a6703e4a8e115b5dfd9a0726246d7724f",
+  "manifest_sha256": "eaf8aa5396170ccd28d32baf331345e94dc968c3c234072f7312a8385e300b6c",
+  "map_sha256": "bd494c145283cbedc6eec3831a8a02eb9d20aa16b9bc48958fa0e58e434fcc97",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
  "build": {
   "sectors": 1724,
   "walls": 14709,
-  "sprites": 3328,
+  "sprites": 3356,
   "limits": {
    "sectors": 4096,
    "walls": 16384,
@@ -18,12 +18,12 @@
   "headroom": {
    "sectors": 0.579,
    "walls": 0.102,
-   "sprites": 0.797
+   "sprites": 0.795
   },
   "command": "python projects/blood-city/level/build_skeleton.py",
   "read_back_agrees": true,
   "rules": {
-   "note": 4064,
+   "note": 4092,
    "warning": 7
   }
  },
@@ -214,25 +214,25 @@
     "reached": true
    },
    {
-    "sprite": 2931,
+    "sprite": 2959,
     "name": "kItemKeySkull",
     "sector": 230,
     "reached": true
    },
    {
-    "sprite": 2941,
+    "sprite": 2969,
     "name": "kItemKeyFire",
     "sector": 273,
     "reached": true
    },
    {
-    "sprite": 2946,
+    "sprite": 2974,
     "name": "kItemKeyDagger",
     "sector": 912,
     "reached": true
    },
    {
-    "sprite": 2950,
+    "sprite": 2978,
     "name": "kItemKeySpider",
     "sector": 940,
     "reached": true
@@ -243,42 +243,42 @@
     "key": 1,
     "key_name": "skull",
     "senders": [
-     "sprite 2957"
+     "sprite 2985"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    },
    {
     "key": 2,
     "key_name": "eye",
     "senders": [
-     "sprite 2959"
+     "sprite 2987"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    },
    {
@@ -297,84 +297,84 @@
     "key": 3,
     "key_name": "fire",
     "senders": [
-     "sprite 2961"
+     "sprite 2989"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    },
    {
     "key": 4,
     "key_name": "dagger",
     "senders": [
-     "sprite 2963"
+     "sprite 2991"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    },
    {
     "key": 5,
     "key_name": "spider",
     "senders": [
-     "sprite 2965"
+     "sprite 2993"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    },
    {
     "key": 6,
     "key_name": "moon",
     "senders": [
-     "sprite 2967"
+     "sprite 2995"
     ],
     "sector": 174,
     "answers": [
      "sector 179",
      "sector 182",
-     "sprite 2968",
-     "sprite 2969",
-     "sprite 2970",
-     "sprite 2971",
-     "sprite 2972",
-     "sprite 2973",
-     "sprite 2974",
-     "sprite 2975",
-     "sprite 2976"
+     "sprite 2996",
+     "sprite 2997",
+     "sprite 2998",
+     "sprite 2999",
+     "sprite 3000",
+     "sprite 3001",
+     "sprite 3002",
+     "sprite 3003",
+     "sprite 3004"
     ]
    }
   ],
@@ -581,7 +581,7 @@
    {
     "round": 3,
     "opened_by": [
-     "use switch sprite 2957 (channel 137)"
+     "use switch sprite 2985 (channel 137)"
     ],
     "sectors": 116,
     "first_sector": 179

@@ -43,7 +43,11 @@ STEP, DRUM, ROOF = 2560, 27648, 42496
 APRON = 0.22
 SIDES, TURN, TENTHS = 16, 2048, 200                              # one turn in twenty seconds
 CARRIED = 8192
+#: a flat roof stops a body and a bullet, as 251 of Blood's 312 do, and so do the poles and the beasts of E1M4's carousel (cstat 8577)
+SOLID = 1 | 256
 #: the clown on the drum: one whole face to a side (128 by 156 texels), its crown at the drum's top
+#: the board a stall's name is on, and its letters
+PLANK, BOARD_TALL, LETTER, PITCH = 68, 52, 40, 96
 FACE = {"x_repeat": 16, "y_repeat": 13, "x_panning": 0, "y_panning": 0}
 CLOWN, STRIPE, BULBS, PLATES, POLE = 1096, 1004, 77, 438, 213
 HOUND, RAT, GREY, COLD = 1270, 1745, 5, 10
@@ -284,9 +288,9 @@ def _art(tile: int):
     return wallplane.art()[tile]
 
 
-def _write(layout, name, text, region, middle, angle, z, size=28, pal=0) -> int:
+def _write(layout, name, text, region, middle, angle, z, size=28, pal=0, step=None) -> int:
     """A word along a wall, read from in front of it: tile 3808 is A."""
-    step = _art(3808)[0] * size // 4 + 10
+    step = step or _art(3808)[0] * size // 4 + 10
     right = ((angle + 1536) & 2047) * math.pi / 1024
     for k, letter in enumerate(text):
         off = (k - (len(text) - 1) / 2) * step
@@ -323,7 +327,7 @@ def _dress_stall(layout, name) -> int:
     roof = GRADE - CANOPY
     for k, p in enumerate(flatsprite.cover((_q(rx0), _q(ry0), _q(rx1), _q(ry1)), _art(STRIPE)[:2])):
         add(f"roof_{k}", p["x"], p["y"], roof, picnum=STRIPE, angle=p["angle"], x_repeat=p["x_repeat"], y_repeat=p["y_repeat"],
-            cstat=32 | 128 | 256, shade=22)
+            cstat=32 | 128 | SOLID, shade=22)
     # the valance: bulbs along the front, cloth round the rest
     for face, (ax, ay), (bx, by) in (("east", (rx1, ry0), (rx1, ry1)), ("west", (rx0, ry0), (rx0, ry1)),
                                      ("south", (rx0, ry1), (rx1, ry1)), ("north", (rx0, ry0), (rx1, ry0))):
@@ -344,8 +348,21 @@ def _dress_stall(layout, name) -> int:
     middle = (_q((x0 + x1) / 2), _q((y0 + y1) / 2))
     edge = {"east": _q(rx1), "west": _q(rx0), "south": _q(ry1), "north": _q(ry0)}[side]
     if sign:
-        at = (edge + dx * 14, middle[1]) if dx else (middle[0], edge + dy * 14)
-        _write(layout, name, sign, region_at(*at), at, angle, roof + 8200, size=40, pal=2)
+        # The name is on a board hung under the bulbs (the owner: "The stands text like toffee or shootings are letter flying mid air, I
+        # would put something behind them, also be careful about two sidedness of it"): the board is drawn from both its sides, plain,
+        # and the letters from their front alone, so that nobody reads them backwards from inside.
+        at = (edge - dx * 30, middle[1]) if dx else (middle[0], edge - dy * 30)
+        under = roof + _art(BULBS)[1] * 40 * 4
+        half = BOARD_TALL * _art(PLANK)[1] * 2
+        # A piece of it behind each letter and one at either end: sprites are drawn in the order of their middles, and behind a single
+        # board's middle the far letters of a name seen aslant were lost.
+        right = ((angle + 1536) & 2047) * math.pi / 1024
+        for k in range(-1, len(sign) + 1):
+            off = (k - (len(sign) - 1) / 2) * PITCH
+            add(f"board_{k + 1}", at[0] + math.cos(right) * off, at[1] + math.sin(right) * off, under + half, picnum=PLANK, angle=angle,
+                x_repeat=PITCH * 4 // _art(PLANK)[0], y_repeat=BOARD_TALL, cstat=16 | 128 | 256, shade=2)
+        face = (at[0] + dx * 8, at[1] + dy * 8)
+        _write(layout, name, sign, region_at(*face), face, angle, under + half, size=LETTER, pal=2, step=PITCH)
     # what stands on the shelf and the counter
     import goods
     for cell, row in (("shelf", shelf), ("counter", counter)):
@@ -391,7 +408,7 @@ def _carousel(layout) -> int:
         x0, y0, x1, y1 = (_q(AT[k % 2] + v) for k, v in enumerate(box))
         for k, p in enumerate(flatsprite.cover((x0, y0, x1, y1), _art(STRIPE)[:2])):
             add(f"roof_{tag}_{k}", p["x"], p["y"], roof, picnum=STRIPE, angle=p["angle"], x_repeat=p["x_repeat"], y_repeat=p["y_repeat"],
-                cstat=32 | 128, shade=20)
+                cstat=32 | 128 | SOLID, shade=20)
     # the rim: bulbs, and cloth under them
     wide = 2 * RADIUS * math.sin(math.pi / SIDES) * PU
     apothem = RADIUS * math.cos(math.pi / SIDES) * PU - 10
@@ -406,10 +423,10 @@ def _carousel(layout) -> int:
     for k in range(8):
         turn = 2 * math.pi * (k + 0.5) / 8
         x, y = cx + 2.1 * PU * math.cos(turn), cy + 2.1 * PU * math.sin(turn)
-        add(f"pole_{k}", x, y, GRADE - STEP - tall // 2, picnum=POLE, x_repeat=20, y_repeat=tall // 512, cstat=128)
+        add(f"pole_{k}", x, y, GRADE - STEP - tall // 2, picnum=POLE, x_repeat=20, y_repeat=tall // 512, cstat=128 | SOLID)
         tile, size, pal = ((HOUND, 40, GREY), (RAT, 60, COLD))[k % 2]
         add(f"mount_{k}", x + 6 * math.cos(turn), y + 6 * math.sin(turn), GRADE - STEP - (11000 if k % 2 else 12400), picnum=tile, x_repeat=size,
-            y_repeat=size, pal=pal, cstat=128, angle=round((turn + math.pi / 2) * 1024 / math.pi) & 2047)
+            y_repeat=size, pal=pal, cstat=128 | SOLID, angle=round((turn + math.pi / 2) * 1024 / math.pi) & 2047)
     for k in range(4):
         turn = 2 * math.pi * k / 4
         x, y = cx + 2.0 * PU * math.cos(turn), cy + 2.0 * PU * math.sin(turn)

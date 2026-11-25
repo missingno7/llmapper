@@ -176,6 +176,10 @@ COVERED = 0.15
 SAME_PLANE = 24.0
 
 
+#: a plank (68) with nothing on it, and the alphabet
+PLAIN_BOARDS, LETTERS = frozenset({68}), range(3808, 3834)
+
+
 def overlaps(disk, *, covered: float = COVERED) -> list[dict[str, Any]]:
     """Pairs of wall sprites that cover each other on one wall.
 
@@ -222,6 +226,9 @@ def overlaps(disk, *, covered: float = COVERED) -> list[dict[str, Any]]:
             smaller = min(2 * a["half"] * (a["bottom"] - a["top"]),
                           2 * b["half"] * (b["bottom"] - b["top"]))
             share = wide * tall / smaller
+            #: written ON a plain board, and drawn in front of it: what a board is for
+            if a["tile"] in PLAIN_BOARDS and b["tile"] in LETTERS and b["depth"] - a["depth"] >= 4:
+                continue
             if share > covered:
                 out.append({"a": a["sprite"], "b": b["sprite"],
                             "tiles": (a["tile"], b["tile"]),

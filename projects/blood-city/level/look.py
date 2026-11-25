@@ -321,6 +321,8 @@ POSE_SETS = {
         "k_square": (16.5, 52.2, 34.0, 47.0, LEVEL, "the square from its west end"),
         "l_backs": (48.0, 51.5, 41.0, 52.0, LEVEL, "the toffee stall's back from the east quay"),
         "m_avenue": (36.0, 35.0, 35.5, 46.0, LEVEL, "down the avenue to the fair"),
+        "o_board_back": (28.3, 51.3, 31.0, 51.3, LEVEL, "the gallery's name from inside it", 0),
+        "p_toffee_back": (42.6, 51.9, 39.0, 51.9, LEVEL, "the toffee stall's from inside it", 0),
         "n_ship": (24.0, 59.5, 30.0, 49.0, LEVEL, "from the water"),
     },
     "start": {

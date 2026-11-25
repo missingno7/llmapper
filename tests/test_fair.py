@@ -61,6 +61,38 @@ class Fair(unittest.TestCase):
             self.assertEqual((w["x_repeat"], w["y_repeat"], w["x_panning"], w["y_panning"]), (16, 13, 0, 0))
         self.assertLess(abs(156 * 2048 / 13 - (fair.DRUM - fair.STEP)), 800)
 
+    def test_every_roof_is_solid_and_so_is_what_one_rides(self):
+        import fair
+        roofs = [f for f, _x in self.sprites if f["picnum"] == fair.STRIPE and f["cstat"] & 48 == 32]
+        self.assertGreater(len(roofs), 130)                        # the fair's four, the carousel's, and the market's two
+        mounts = [f for f, _x in self.sprites if f["cstat"] & fair.CARRIED and f["type"] == 0 and f["picnum"] in (fair.POLE, fair.HOUND, fair.RAT)]
+        self.assertEqual(len(mounts), 16)
+        for f in roofs + mounts:
+            self.assertEqual(f["cstat"] & 257, 257, f)
+
+    def test_a_stalls_name_is_on_a_board_and_is_read_from_in_front_alone(self):
+        import fair
+        boards = [f for f, _x in self.sprites if f["picnum"] == fair.PLANK and f["cstat"] & 48 == 16 and f["y_repeat"] == fair.BOARD_TALL]
+        self.assertEqual(len(boards), sum(len(name) + 2 for name in ("SHOOTING", "TOFFEE", "FORTUNES")))
+        lettered = 0
+        for b in boards:
+            self.assertFalse(b["cstat"] & 64)                                   # bare wood from behind
+            turn = b["angle"] * math.pi / 1024
+            for f, _x in self.sprites:
+                ahead = (f["x"] - b["x"]) * math.cos(turn) + (f["y"] - b["y"]) * math.sin(turn)
+                aside = abs(-(f["x"] - b["x"]) * math.sin(turn) + (f["y"] - b["y"]) * math.cos(turn))
+                if 3808 <= f["picnum"] <= 3833 and abs(ahead) < 200 and aside < 24 and abs(f["z"] - b["z"]) < 9000:
+                    lettered += 1
+                    self.assertEqual((f["angle"], f["z"], f["cstat"] & 64), (b["angle"], b["z"], 64))
+                    self.assertTrue(4 <= round(ahead) <= 12, ahead)             # on its front
+                    self.assertEqual(b["x_repeat"] * 64 // 4, fair.PITCH)        # a piece to a letter, edge to edge
+        self.assertEqual(lettered, len("SHOOTING" + "TOFFEE" + "FORTUNES"))
+
+    def test_nothing_lets_through_what_bloods_does_not(self):
+        import json as _json
+        from tools import mine_solidity
+        self.assertEqual(mine_solidity.faults(self.disk, _json.loads(mine_solidity.DATA.read_text("utf-8"))["tiles"]), [])
+
     def test_a_stall_is_a_u_of_boards_two_bodies_tall_open_at_the_front(self):
         import fair
         for name, (rect, *_rest) in fair.STALLS.items():
