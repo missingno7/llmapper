@@ -649,6 +649,17 @@ POSE_SETS = {
         "w_stash": (41.0, 21.5, 37.0, 21.5, LEVEL, "the stash off the trunk", 61440),
         "w_niche": (31.7, 24.6, 31.7, 22.8, LEVEL, "a chained skeleton in its niche", 61440),
     },
+    #: how the sewer's secrets look to whoever has not found them (`secret_places`)
+    "secrets": {
+        "s_bars": (42.5, 21.5, 37.0, 21.5, LEVEL, "the stash behind its bars, from the trunk", 61440),
+        "s_bars_near": (40.2, 21.3, 37.2, 21.5, LEVEL, "the stash through its bars", 61440),
+        "s_wheel": (40.4, 18.6, 39.25, 16.6, LEVEL, "the wheel in the riser", 61440),
+        "s_hands": (52.6, 42.9, 55.75, 43.4, LEVEL, "the hands over the dock", 61440),
+        "s_hands_near": (54.9, 43.2, 55.75, 43.4, LEVEL, "the hands close to", 57344),
+        "s_plug": (50.45, 48.2, 50.75, 46.75, LEVEL, "the drain's wall where the pipe is", 61440),
+        "s_ivy": (5.0, 18.8, 5.0, 20.6, LEVEL, "the ivy on the brook's south wall", 61440),
+        "s_ivy_along": (9.0, 18.9, 4.8, 20.6, LEVEL, "the ivy from along the brook", 61440),
+    },
     #: the six keys where they lie (`gameplay.KEYS`)
     "keys": {
         "k_skull": (28.1, 29.4, 29.1, 28.2, LEVEL - 12, "the skull key on the sarcophagus", 61440),

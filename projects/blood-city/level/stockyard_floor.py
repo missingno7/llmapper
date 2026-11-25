@@ -91,6 +91,8 @@ def build(layout, strips: dict) -> dict[str, str]:
     layout.add_overlay("blood:stockyard_gutter", regions["gutter"], list(by_name["gutter"].outer), floor_pal=7)
     layout.add_overlay("blood:stockyard_race", regions["race"], [(_q(x), _q(y)) for x, y in PLUME], floor_pal=7)
     _furnish(layout, regions)
+    import secret_places
+    secret_places.hands(layout, regions["dock_1"], _q(X1), _q(43.4), tile=TILE, layer=LAYER)
     return regions
 
 

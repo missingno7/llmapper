@@ -32,9 +32,9 @@ what was in the tunnel comes up the platform while the way out stands open behin
 
 | key | where | what stands in the way | what taking it does |
 |---|---|---|---|
-| **skull** | on the lid of the sarcophagus in St Gallow's crypt | the church's dead and cultists, the slab lift | five of the buried rise out of the crypt's earth |
+| **skull** | on the lid of the sarcophagus in St Gallow's crypt | the church's dead and cultists, the slab (the skull it carries sends it) | five of the buried rise out of the crypt's earth |
 | **eye** | on a plinth on the arcade's landing, in sight from its street door and across a fallen gallery from it (it also opens the service passage behind it) | the sunk court: the escalator down, the dead in it, the fallen span up | Miguel's shutter goes up and two come out of the gun shop on the gallery opposite, one stands at the street door, one gets up in the draper's |
-| **flame** | on the belt in the pump station's machine hall, lit under the hood between the two presses; seen first from the deck the gallery comes out on | the presses slam and the belt carries you into them; the console lever stops the belt | one rises out of the settling basin, a butcher stands on the deck across the way out, one comes from the south bay |
+| **flame** | on the belt in the pump station's machine hall, lit under the hood between the two presses; seen first from the deck the gallery comes out on | the presses slam and the belt carries you into them; the console lever stops both, the presses shut | one rises out of the settling basin, a butcher stands on the deck across the way out, one comes from the south bay |
 | **moon** | on the Aldermack's trap, in the light | the house's gunmen; the show | the curtain drops, the light goes, the wings open on the watchers (as it did for the armour) |
 | **spider** | in the Weaver's Cellars, on a stone in the north nest, in the one light there | the great web across the nest, the brood, and its mother over the pit | five more spiders |
 | **dagger** | the Cabal's chamber, in the throat behind the rose | the stone beast; the rose bursts only when it dies | phantoms between it and the way out |
@@ -70,11 +70,11 @@ is a required order, and a player with dynamite has shorter ways.
 | dynamite | the smugglers' locker behind the hold's panel | secret |
 | tommy gun | the arcade's service passage, behind the eye's door | open, keyed |
 | Tesla Cannon | between the fires at the foot of the falls, before the Cabal's mouth | open |
-| voodoo doll | the sewer's stash | secret |
+| voodoo doll | the sewer's stash, seen through bars; the wheel in the riser by the junction lifts them | secret |
 | napalm launcher | the flooded room | secret |
 | life leech | the Phantom Terminus's ride | behind the dials |
 | guns akimbo, super armor | the Gullet | secret |
-| death mask | the Rat King's shrine | secret |
+| death mask | the Rat King's shrine, its pipe stopped until the bloody hands on the bleeding floor are pushed | secret |
 | body armor | the arcade's cache | secret |
 | spirit armor | across the blood by the trolley | off the way; taking it wakes two gill beasts |
 

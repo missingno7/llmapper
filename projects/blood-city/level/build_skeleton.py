@@ -642,12 +642,26 @@ def build():
     # A secret stash off the trunk.  The campaign declares a median of 5
     # secrets and we declared none; `secret=True` emits the campaign's own
     # wiring (channel 2, command 64, trigger-once) rather than a label.
+    import secret_places
     stash = sroom("stash", jx - jw / 2 - 3072, trunk_y0 - 512,
-                  jx - jw / 2, trunk_y1 + 512,
-                  "the stash: SP's secret branch, one room of it",
+                  jx - jw / 2 - secret_places.BARS_DEEP, trunk_y1 + 512,
+                  "the stash: SP's secret branch, one room of it, behind bars",
                   role="secret", region_kwargs={"secret": True})
-    sewer.connect(stash.face("east"), main_duct.face("west"),
+    _floor, _clear = int(SEWER_FLOOR), int(SEWER_CLEAR)
+    stash_bars = sroom("stash_bars", jx - jw / 2 - secret_places.BARS_DEEP, trunk_y0 - 512, jx - jw / 2, trunk_y1 + 512,
+                       "the strip the stash's bars stand in",
+                       region_kwargs={"type": 602, "sector_behavior": secret_places.bars_behavior(_floor, _floor - _clear)})
+    sewer.connect(stash.face("east"), stash_bars.face("west"),
                   connection_id="connection:sewer_stash")
+    sewer.connect(stash_bars.face("east"), main_duct.face("west"),
+                  connection_id="connection:sewer_stash_bars")
+
+    def _stash_lock(layout, room):
+        secret_places.hang_bars(layout, room.region_id)
+        x0, y0, _x1, y1 = __import__("props").room_rect(duct_j)
+        secret_places.hang_wheel(layout, duct_j.region_id, (int(x0), int(y1)), (int(x0), int(y0)), 0.45)
+
+    stash_bars.raw("the bars, and the wheel that lifts them", _stash_lock)
 
     STAGE("works-stair",
           "the underpass: its two mouths, the passage between them and the freight recess")

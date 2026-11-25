@@ -181,11 +181,16 @@ def _check_own_frames(found: SweptFinding, frames: Any, steps: int) -> None:
                 f"{where}: the sector inverts -- its outline winds the other "
                 f"way, so it is inside out from here on")
             break
-    for index, value in enumerate(signed):
+    largest = max(abs(v) for v in signed)
+    if largest < MIN_AREA:
+        # never a place a body stood: E1M2 s261, the freezer's bloody button, is
+        # 64 by 512 pressed and nothing at all at rest
+        found.notes.append(f"a button: {largest:.0f} of area at most")
+    for index, value in enumerate(signed if largest >= MIN_AREA else ()):
         # Collapse is losing area. A leaf turned or slid whole keeps its own,
         # however thin it is drawn: the campaign hangs its wooden doors 64
         # thick and 1,024 long (E2M5 569), under this threshold at every pose.
-        if abs(value) >= MIN_AREA or abs(value) >= 0.9 * max(abs(v) for v in signed):
+        if abs(value) >= MIN_AREA or abs(value) >= 0.9 * largest:
             continue
         #: A curtain drawn fully across has no interior left, and
         #: DOOR-CURTAINS s24 does exactly that at its OFF pose. That is a

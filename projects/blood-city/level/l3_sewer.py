@@ -502,7 +502,8 @@ SHRINE_STONE = Material(wall=406, floor=253, ceiling=286, opening=405,
                         note="the shrine's worked stone and temple trim")
 # Rectangles in plan units. Floors rise in two steps to the offering.
 STOCKYARD_ROOMS = [
-    ("rat_king_pipe", (50.75, 46.375, 52.0, 47.125), SHRINE_PIPE, 0, 18432, "gateway"),
+    ("rat_king_plug", (50.75, 46.25, 51.0, 47.25), SHRINE_PIPE, 0, 0, "doorway"),
+    ("rat_king_pipe", (51.0, 46.375, 52.0, 47.125), SHRINE_PIPE, 0, 18432, "gateway"),
     ("rat_king_shrine", (52.0, 45.0, 55.25, 48.75), SHRINE_STONE, 0, SEWER_CHAMBER_CLEAR, "secret"),
     ("rat_king_step", (55.25, 45.625, 55.625, 48.125), SHRINE_STONE, 3072, SEWER_CHAMBER_CLEAR, "interior"),
     ("rat_king_altar", (55.625, 45.625, 56.75, 48.125), SHRINE_STONE, 6144, SEWER_CHAMBER_CLEAR, "interior"),
@@ -1199,13 +1200,22 @@ def stockyard_side_rooms(sewer, rooms: dict) -> None:
             role=role, note=material.note, intent={"kind": "furnished"},
             region_kwargs={**material.region_kwargs(), "secret": role == "secret"})
         room.surfaces(**material.style_kwargs(floor_z=SEWER_FLOOR - rise,
-                                              clear_height=clear - rise, floor_shade=38))
+                                              clear_height=max(0, clear - rise), floor_shade=38))
         rooms[name] = room
 
+    # the pipe is stopped with the walk's own tiles until the hands are pushed (`secret_places.hands`)
+    import secret_places
+    import wires
+    from bloodmap import wiring
+    plug = rooms["rat_king_plug"]
+    plug.region_kwargs["sector_behavior"] = secret_places.plug_behavior(SEWER_FLOOR, 18432)
+    wires.wire("sewer:shrine-hands").then(wiring.region(plug.region_id))
+    LATE_TYPES[plug.region_id] = 600
     walk = edge(rooms, "stockyard_drain", "east", 46.75)
     shrine = rooms["rat_king_shrine"]
     joins = [
-        ("rat_king_pipe", "west", walk, "east"),
+        ("rat_king_plug", "west", walk, "east"),
+        ("rat_king_pipe", "west", plug, "east"),
         ("rat_king_pipe", "east", shrine, "west"),
         ("rat_king_step", "west", shrine, "east"),
         ("rat_king_step", "east", rooms["rat_king_altar"], "west"),
@@ -1213,10 +1223,10 @@ def stockyard_side_rooms(sewer, rooms: dict) -> None:
     for name, face, other, other_face in joins:
         citytree.join(rooms[name], other, at_a=face, at_b=other_face,
                       connection_id=f"connection:sewer_{name}_{face}")
-    stockyard_pipe_bevels(part, rooms["rat_king_pipe"], walk, shrine)
+    stockyard_pipe_bevels(part, rooms["rat_king_pipe"], plug, shrine)
 
 
-def stockyard_pipe_bevels(part, pipe, walk, shrine) -> None:
+def stockyard_pipe_bevels(part, pipe, plug, shrine) -> None:
     """Slope both sides of the old pipe so its mouth has bevelled corners."""
     import citytree
     from bloodmap.slope import SlopeSpec
@@ -1237,7 +1247,7 @@ def stockyard_pipe_bevels(part, pipe, walk, shrine) -> None:
                            "floor_slope": SlopeSpec(hinge, rise_z=-3072),
                            "ceiling_slope": SlopeSpec(hinge, rise_z=5120)})
         inner = "south" if end == "north" else "north"
-        for face, other, other_face in (("west", walk, "east"), ("east", shrine, "west"),
+        for face, other, other_face in (("west", plug, "east"), ("east", shrine, "west"),
                                         (inner, pipe, pipe_face)):
             citytree.join(bevel, other, at_a=face, at_b=other_face,
                           connection_id=f"connection:sewer_{name}_{face}")
@@ -1661,7 +1671,9 @@ def cover_manholes(layout, mouths: dict) -> list[str]:
 #: copied from that map (`l3_foundry._attested`); the cart wheel was E3M3's
 #: valve switch and stands here as decoration.
 NICHE_DRESS = {
-    "valve": [("E3M3", 20, 982, (0.5, 0.9), "wall")],
+    # (a wheel hung in the valve niches as decoration until 2026-11-26: one wheel down here works,
+    # and two that do nothing teach that none does)
+    "valve": [("E3M3", 0, 54, (0.5, 0.9), "wall")],
     # the skeleton at the campaign's size, its feet a little over the
     # niche's floor and its chain running up into the ceiling (the owner,
     # 2026-11-21: "That skeleton on chain can be lifted up so part of the
@@ -1821,6 +1833,11 @@ def dress_secrets(layout, rooms, attested) -> list[str]:
         pid = f"sewer:secret_{name}_{type_id}"
         layout.place_on_floor(pid, rooms[name].region_id, local=local, **spec["fields"])
         placed.append(pid)
+    if "molly_crawl" in rooms:
+        import secret_places
+        x0, y0, x1, _y1 = rects["molly_crawl"]
+        walk = edge(rooms, "graves_brook", "south", (x0 + x1) / 2)
+        secret_places.ivy(layout, walk.region_id, int((x0 + x1) / 2 * PU), int(y0 * PU) - 24, int((x1 - x0) * PU), clear["molly_crawl"])
     if "plague_pit" in rooms:
         channel = wires.channel("sewer:plague-pit")
         x0, y0, x1, y1 = (v * PU for v in rects["plague_seal"])

@@ -44,7 +44,11 @@ WIRE_PROFILES = {
     "cabal:heart": "flesh_door",
     "station:fare-turnstile": "fare_ambient",
     "underpass:pram": "pram",
+    "sewer:stash-bars": "bars",
+    "sewer:shrine-hands": "stone_door",
 }
+#: where one wire moves two things, the one that does not sound like the wire
+REGION_PROFILES = {":hand_button": "hand_button"}
 #: A door that rises (600), by the tile its leaf wears: what the campaign's
 #: ceiling doors wearing it sound like. 22, the wooden door: 110/160 leads
 #: (x4) and stone's 106 is never used. 495, panelled metal: 111 starts the
@@ -60,7 +64,8 @@ PHANTOM_TRAIN = (115, 277, 115, 277)
 # The pram in the metro's bed: 19 is AMB19, the squeaky wheel; 100 one squeak as it stops.
 PRAM = (19, 100, 19, 100)
 # E3M5's press with its ends exchanged (`l3_shed`: ON is up): 302 as it starts down, 309 as it lands
-OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "press_up_is_on": (0, 0, 302, 309)}
+OWN = {"phantom_train": PHANTOM_TRAIN, "pram": PRAM, "bars": (105, 150, 105, 150), "hand_button": (108, 200, 108, 203),
+       "press_up_is_on": (0, 0, 302, 309)}
 #: the member of the coach that speaks for the whole body (`mechanism.rigid_body`)
 VOICE = "_coach:aisle"
 SILENT = ("/settling_hall/rite:tooth_", "/settling_hall/rite:gate_side")
@@ -80,7 +85,7 @@ def apply(disk, allocations, circuit):
             continue
         region = regions[index]
         data = record_extra(sector) or {}
-        profile = profiles.get(data.get("rx_id"))
+        profile = next((own for part, own in REGION_PROFILES.items() if region.endswith(part)), profiles.get(data.get("rx_id")))
         if profile is None and type_id == 600:
             profile = next((LEAF_PROFILES[tile] for tile in _leaf_faces(disk, index)
                             if tile in LEAF_PROFILES), None)

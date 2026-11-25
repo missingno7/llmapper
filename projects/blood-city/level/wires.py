@@ -128,6 +128,9 @@ PLAN: tuple[tuple[str, str], ...] = (
     ("theatre:front-doors", "pushing either leaf of the Aldermack's forecourt doors swings both"),
     ("church:slab",
      "the skull switch carried on the crypt's slab sends it down and back; the one at either stop calls it"),
+    ("sewer:stash-bars", "the valve wheel in the riser by the junction lifts the bars off the stash"),
+    ("sewer:shrine-hands",
+     "pushing the bloody hands on the bleeding floor's wall presses their slab and opens the pipe to the Rat King's shrine"),
 )
 
 #: Wires one end of which is the engine. They take the engine's channel and
