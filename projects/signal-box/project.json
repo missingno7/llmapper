@@ -5,7 +5,7 @@
   "kind": "level",
   "status": "frozen",
   "game": "blood",
-  "about": "A signal box by a level crossing at night, built in an hour on 2026-11-26 by an agent that knew only AGENTS.md: the trial of whether a new level can be started without reading another. Kept as it was left; its friction log became library changes (doors.rising_door, Room.face_at, Room.move).",
+  "about": "A signal box by a level crossing at night, built in an hour on 2026-11-26 by an agent that knew only AGENTS.md: the trial of whether a new level can be started without reading another. Kept as it was left; its friction log became library changes (doors.rising_door, Room.face_at, Room.move). Kept as a reference project and an integration test of a level written without help; not meant to become a finished level.",
   "map": "level/signal-box.MAP",
   "build": "level/build.py",
   "ground_z": 0

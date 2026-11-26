@@ -258,11 +258,6 @@ What the consolidation of 2026-11-26 left undone, so that it is not found again 
 surprise. Each is paid when a second level needs the thing, by moving it with a test that
 needs no level and proving that Gravesend's map does not change by a byte.
 
-- **Gravesend's build does not call `bloodmap.finish.finish`.** It runs the same library
-  passes itself with dozens of its own between them (`projects/blood-city/level/build_skeleton.py`,
-  one function of two thousand lines sharing a `ctx`). The order is written once, in
-  `finish.py`; the two can drift. Paying it means giving `finish` hooks at every point where
-  Gravesend interleaves.
 - **Techniques still written against Gravesend's layout**, each a worked example the findings
   point at: the arrangement-place kit (`_q`, `_rect`, `_ring`, `keep` in eight modules; the
   general form is `settling_hall.put_back` over `bloodmap.surface.RecordOwner`), `props`,
@@ -274,15 +269,9 @@ needs no level and proving that Gravesend's map does not change by a byte.
   readers `read_joins`, `read_facts` that score a band by that one tile), `read_plan.WIDTH_CLASSES`,
   the weights of `view_score.score` (fitted on Gravesend's showcase rounds only), and the
   city-shaped modules `city`, `street`, `street_model`.
-- **Three ways to author a level that no level uses** (August 2026): `construction.LevelBuilder`
-  with `designs`; fragment composition with `recipe` and `recipes/*.json`; the authoring loop
-  and probes (`authoring_loop`, `probes`, `probe_schema`, `state_model`, `design_contract`,
-  `counterfactual`). They are tested and reachable from the CLI; whether to remove them is the
-  owner's decision. A level is authored with `levelprog` and finished with `finish`.
 - **Capabilities tested only on Gravesend's map** (their tests are in `projects/blood-city/tests`):
-  `tidy.merge_alike`, `sprite_fit.unbacked`, `texture_frame.split_bands_unpegged`,
-  `catalog.directional_floor_faults`, the clock rules of `breakables`, the overlay
-  rounding-drift regressions (they import `resolution.SUN_BEARING`).
+  `sprite_fit.unbacked`, `texture_frame.split_bands_unpegged`, the clock rules of
+  `breakables`, the overlay rounding-drift regressions (they import `resolution.SUN_BEARING`).
 - **A project status of two kinds.** `tools.project status` is every level's; Gravesend's
   `level/status.py` and the E4L1 remake's `status.py` know their own places. The place table
   (`character.PLACES`, `places.json`) is the part worth making common.
@@ -295,17 +284,18 @@ needs no level and proving that Gravesend's map does not change by a byte.
   misleads nobody, 3 still said something false (all twelve since corrected). So expect about
   one marked finding in sixteen to be wrong somewhere, and correct it when you meet it
   (`tools.findings amend`).
-- **Values the audit showed to rest on a wrong figure, left as they are because changing them
-  changes Gravesend's map** (each says so where it stands): `l3_church.PITCH` 21878 (the
-  campaign's median slope rise in the retired 0x1600 unit; in bodies it is about 7,290),
-  `fixtures.GOODS_SHARE` 0.14 (the five maps pooled give 0.12), `scale.HOLE_MEDIAN` /
-  `HOLE_LARGE` (from a sweep that was not kept; the 96 kept holes give 1,664 / 1.57 and
-  2,208 / 1.95), `lettering.PITCH` 1.45 (the campaign's letter pitch is 1.333; 1.45 is its line
-  pitch). Whether Gravesend should move to the true figures is a design decision.
-- **Small things the audit met and did not settle.** `tools/mine_city_assets.py` and
-  `tools/mine_stands.py` name their maps by path (`TOWN_MAPS`) instead of through
-  `bloodmap.corpus`. `bloodmap/conditional.py` gives E1M2's reachability cut as from 231
-  sectors and `reports/blood-swept-mechanisms.md` as from 226; neither run was kept.
-  `blood_types.sprite_visibility` calls every generator "wiring", though the campaign draws
-  112 of them. `HIDDEN_TYPES` still holds markers 8 and 15-19 on belief: the engine's hiding
-  of those was not read.
+- **Small things the audit met and did not settle.** `bloodmap/conditional.py` gives E1M2's
+  reachability cut as from 231 sectors and `reports/blood-swept-mechanisms.md` as from 226;
+  neither run was kept. `HIDDEN_TYPES` holds markers 8 and 15-19 on belief: the engine keeps a
+  marker on `kStatMarker` and deletes those nothing refers to (`db.cpp:680-713`,
+  `PropagateMarkerReferences`), but whether one that stays is ever drawn was not read. A level's own letter pitch reaches
+  `wallplane.text` and `composition`; the older `lettering.write_on_wall` (used by `aperture`'s
+  facade signs) and `TextStyle.fit` still measure at the campaign's.
+
+Settled on 2026-11-26, so that nobody pays them twice: Gravesend's build drives the shared
+`Finish` for every shared stage (byte-identical map); the August authoring paths no level used
+(`authoring_loop` and its probes, `recipe`, `designs`) are gone from the library
+(`docs/history/authoring-loop.md`); the library's letter pitch is the campaign's, and three of
+Gravesend's values that rest on a disproved figure say where they stand that they are its own
+choices (`l3_church.PITCH`, `fixtures.GOODS_SHARE`, `scale.HOLE_MEDIAN`; the owner: keep the
+city's look).

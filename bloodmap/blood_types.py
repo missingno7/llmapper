@@ -382,8 +382,13 @@ _CATALOGS = {
 #: Measured over the 24,730 campaign sprites: `sound` carries Build's
 #: invisible cstat bit 99.9% of the time and `marker` 71.8%, but `start`
 #: never does and is still invisible -- so category and cstat are two
-#: independent signals and :func:`sprite_visibility` needs both.
-NON_VISIBLE_CATEGORIES = frozenset({"sound", "marker", "start", "generator"})
+#: independent signals and :func:`sprite_visibility` needs both. A generator
+#: or a sound sprite is NOT hidden by its kind: the engine hides only the
+#: trigger generator (700, `HIDDEN_TYPES`), and the campaign draws 112 of the
+#: others on purpose (a weed that bubbles, a face that spits fire), so for
+#: them the invisible bit alone decides. Until 2026-11-26 both categories
+#: were counted as unseen.
+NON_VISIBLE_CATEGORIES = frozenset({"marker", "start"})
 
 #: Build's "invisible" sprite cstat bit. `assembly.py` already relies on it:
 #: an invisible sprite has no facing anyone can see, and ambient sound
@@ -425,7 +430,7 @@ def sprite_visibility(type_id: int, cstat: int = 0) -> dict[str, Any]:
     """
     entry = classify("sprite", int(type_id))
     category = entry["category"]
-    by_category = category in NON_VISIBLE_CATEGORIES
+    by_category = category in NON_VISIBLE_CATEGORIES or int(type_id) in HIDDEN_TYPES
     by_cstat = bool(int(cstat) & INVISIBLE_CSTAT)
     reasons = []
     if by_category:

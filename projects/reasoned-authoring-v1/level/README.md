@@ -10,7 +10,6 @@ rebuild check are in `../archive/architectural-v0-v5/`.
 Current v5 and v7 failed compilation during the 2026-09-09 audit with nine sweep
 findings concerning one type-617 mechanism. No repair is claimed here.
 
-Reevaluate into a fresh directory, for example:
-`python -m experiments.monastery_pilot v0 --run-id my-new-run`
-Outputs and source snapshots go to `work/authoring-runs/my-new-run/`.
-Existing run IDs are refused. The source and stored MAP here are not overwritten.
+The loop that evaluated them (`bloodmap.authoring_loop`, `experiments/monastery_pilot.py`) was
+retired on 2026-11-26. To re-evaluate a candidate, use a worktree of commit 7847923, the last
+whose library has it; the sources and stored MAPs here are evidence and are not rebuilt.

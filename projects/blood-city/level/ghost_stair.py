@@ -5,8 +5,8 @@ instead of being aligned. Check how these stairs looks like and try to improve t
 were twenty-eight boxes of one sewer wall, a roof stepping down with them, and no light.
 
 What Blood does with a flight this long: the wall's courses run on from step to step
-(E3M1 s79, E3M7 s88, E6M5 s305), and the roof comes down over it in one slope (E3M8 s114,
-E4M5 s114, the same 2,048 a step). So the hatch is the last of the waterworks: behind it
+(E6M5 s304, s305, s314), and the roof comes down with it (E4M5 s113-s114 slope with the flight;
+E3M8 s113-s115 keep one flat roof). So the hatch is the last of the waterworks: behind it
 is the railway's own plaster and slabs, a stone string along either side of the flight with
 its top sloped as the stair is, and half way a landing, where a lamp is failing. The way the
 passengers came down joins it there, and three steps up it is brick: whoever walled it up

@@ -72,6 +72,7 @@ quay); no guard's van, luggage or water tower. Tiles with no owner name:
 
 from __future__ import annotations
 
+import house_letters
 import wires
 from bloodmap import wiring
 
@@ -697,7 +698,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     hx0, hy0, hx1, hy1 = HALL
 
     def words(text, region_id, a1, a2, style, height):
-        if wallplane.text(layout, f"sign:station_{text.lower().replace(' ', '_')}",
+        if house_letters.text(layout, f"sign:station_{text.lower().replace(' ', '_')}",
                           region_id, a1, a2, words=text, style=style,
                           height_player_heights=height):
             report["signs"] += 1
@@ -716,7 +717,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
         floor = int(layout.regions[portico].floor_z)
         # each over one tile (32,768) of the entablature, on the plain of it: the moulding is its top 13 rows of 128,
         # the meander rows 68 to 104
-        if wallplane.text(layout, "sign:station_front", lip, (x0 + 512, edge), (x1 - 512, edge), words="GRAVESEND STATION",
+        if house_letters.text(layout, "sign:station_front", lip, (x0 + 512, edge), (x1 - 512, edge), words="GRAVESEND STATION",
                           style=wallplane.style("fascia", palette=5, shade=-96),
                           height_player_heights=(PORTICO_H + 32768 - 41 * 256) / 16960):
             report["front"] += 1

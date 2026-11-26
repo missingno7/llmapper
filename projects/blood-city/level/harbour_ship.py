@@ -22,6 +22,7 @@ Study: `knowledge/blood/studies/harbour`. Design: `references/market-design.md`.
 
 from __future__ import annotations
 
+import house_letters
 import re
 
 from bloodmap import arrangement as A
@@ -258,7 +259,7 @@ def dress(layout, river: str) -> dict:
     for k, (cell, x, y) in enumerate((("deck", 16.5, 60.2), ("deck", 21.5, 58.6), ("deck", 16.6, 58.1))):
         boarded.then(wiring.placement(spawn(layout, f"harbour:aboard_{k}", 217, ROOMS[cell].region_id, x, y)))
     # her name on the side the quay sees, over the water she lies in
-    named = wallplane.text(layout, "ship:name", river, (_q(20.8), _q(57.0)), (_q(15.6), _q(57.0)), words=LETTERED,
+    named = house_letters.text(layout, "ship:name", river, (_q(20.8), _q(57.0)), (_q(15.6), _q(57.0)), words=LETTERED,
                            style=wallplane.style("plain", size=120, palette=5, shade=-40), height_player_heights=(layout.regions[river].floor_z - GRADE + 4600) / 16960,
                            offset_player_widths=0.06, over_steps=True)
     return {"roof": len(roof), "rigging": rigging, "name": len(named or ())}

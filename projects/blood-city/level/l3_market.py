@@ -20,6 +20,7 @@ Everything is placed from the L1 plan's own `furnish` slots for the area.
 
 from __future__ import annotations
 
+import house_letters
 import math
 from bloodmap.levelprog import Frame, RECT_FACES, Style
 from bloodmap.slope import SlopeSpec
@@ -1243,7 +1244,7 @@ def dress_monument(layout, parts, street=None) -> dict:
     rect = props.room_rect(plinth)
     a2, a1 = props.face_segment(rect, "south", inset=64)
     for index, (words, height) in enumerate(MONUMENT_WORDS):
-        ids = wallplane.text(
+        ids = house_letters.text(
             layout, f"monument:{index}", base.region_id, a1, a2,
             words=words, style="fascia", height_player_heights=height,
             offset_player_widths=0.06, over_steps=True)

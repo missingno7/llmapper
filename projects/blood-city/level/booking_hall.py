@@ -33,6 +33,7 @@ of the tree (`l3_station`). Design: `references/station-design.md`.
 
 from __future__ import annotations
 
+import house_letters
 from bloodmap import arrangement as A
 from bloodmap.slope import SlopeSpec
 from materials import FACADES
@@ -375,7 +376,7 @@ def _furnish(layout, regions) -> None:
     put("office_sack_0", "office", 28.2, -5.4, 822, 44, cstat=385)
     put("office_sack_1", "office", 28.6, -5.2, 822, 40, cstat=385)
     # refreshments
-    wallplane.text(layout, "sign:station_refreshments", regions["aisle_e"], (_q(EAST), _q(COUNTER[1])), (_q(EAST), _q(COUNTER[3])),
+    house_letters.text(layout, "sign:station_refreshments", regions["aisle_e"], (_q(EAST), _q(COUNTER[1])), (_q(EAST), _q(COUNTER[3])),
                    words="REFRESHMENTS", style=wallplane.style("fascia", size=84, palette=5, shade=-60),
                    height_player_heights=(BAR_HEAD + 7000) / BODY, over_steps=True, required=True)
     for k, (tile, y) in enumerate(((759, -9.4), (606, -9.0), (605, -8.6), (759, -8.1), (606, -7.6), (605, -7.2))):

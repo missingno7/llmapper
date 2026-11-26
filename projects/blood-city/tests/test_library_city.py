@@ -76,12 +76,12 @@ class StationTests(unittest.TestCase):
         #: rails run along its x, so the floor must NOT swap x and y
         for i in tracks:
             self.assertFalse(int(self.sectors[i]["floor_stat"]) & 4)
-        from tools import catalog
-        self.assertEqual(catalog.directional_floor_faults(self.disk), [])
+        from bloodmap.tile_looks import directional_floor_faults
+        self.assertEqual(directional_floor_faults(self.disk), [])
         wrong = self.disk
         for i in tracks:
             wrong.sectors[i].fields["floor_stat"] |= 4
-        self.assertTrue(catalog.directional_floor_faults(wrong))
+        self.assertTrue(directional_floor_faults(wrong))
         for i in tracks:
             wrong.sectors[i].fields["floor_stat"] &= ~4
         #: two tracks wide, so the far one stands empty in view

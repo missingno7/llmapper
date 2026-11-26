@@ -674,8 +674,13 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
          t: float = 0.5, height_player_heights: float = 1.2,
          offset_player_widths: float = 0.12, vertical: bool = False,
          required: bool = False, over_steps: bool = False, top_z=None,
-         top_z_min=None):
+         top_z_min=None, tracking: float | None = None):
     """Write a word on a wall, in the space the wall actually has free.
+
+    `tracking` is the centre-to-centre letter spacing across, in drawn widths,
+    for a level whose lettering is its own (`lettering.PITCH`, the campaign's,
+    when None). A `style` that tracks its own words wins over it, and a word
+    written downward keeps the column pitch.
 
     `size`, `palette` and `shade` each take a scalar or a sequence: a
     sequence is applied letter by letter and repeats, so
@@ -701,7 +706,7 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
     # hanging there, and neither is visible to `TextStyle.fit`.  Trying the
     # ladder here is what lets LOANS step from 136 down to a size the pawn
     # shop's 1.45 player heights of clear wall will take.
-    tracking, jitter = None, 0.0
+    house, jitter = tracking, 0.0
     if style is not None:
         chosen = STYLE_TABLE(style)
         attempts = [chosen.at(step) for step in chosen.steps()]
@@ -716,7 +721,10 @@ def text(layout, sign_id: str, region_id: str, a1, a2, *, words: str,
         if trial is not None:
             size, palette = trial.sizes(), trial.palettes()
             shade, vertical = trial.shade, trial.vertical
-            tracking, jitter = trial.tracking, trial.jitter
+            jitter = trial.jitter
+        # the style's own tracking, else the level's for a word written across; a column keeps VERTICAL_PITCH
+        tracking = (trial.tracking if trial is not None and trial.tracking is not None
+                    else None if vertical else house)
         letters = _letters(words, size, vertical=vertical, tracking=tracking,
                            jitter=jitter, sign_id=sign_id)
         if not letters:
@@ -794,11 +802,9 @@ class TextStyle:
     initial: tuple | None = None
     source: str = ""
     ladder: tuple = ()
-    #: Centre-to-centre letter spacing in drawn widths.  `None` takes
-    #: `lettering.PITCH` (1.45, near the LINE pitch 1.455 rather than the
-    #: letter spacing; kept because changing it moves every sign in
-    #: Gravesend).  The corpus's uniform signs sit at a median
-    #: 1.333 and its mixed ones at 1.004, and E1M4 tracks ROTTEN CANDY, a
+    #: Centre-to-centre letter spacing in drawn widths.  `None` takes the
+    #: level's (`text(tracking=)`), else `lettering.PITCH`, the corpus's
+    #: uniform signs' median 1.333; its mixed ones sit at 1.004, and E1M4 tracks ROTTEN CANDY, a
     #: mixed-palette sign, at 2.0 -- wide tracking is part of what makes a carnival sign one.
     tracking: float | None = None
     #: How far a letter may wander in z from the line, in drawn heights,
@@ -1013,8 +1019,10 @@ def caption(words: str, *, style=None, size=48, palette="default",
 
 def composition(layout, group_id: str, region_id: str, a1, a2, *,
                 blocks, t: float = 0.5, top_player_heights: float = 1.9,
-                offset_player_widths: float = 0.11) -> dict:
+                offset_player_widths: float = 0.11, tracking: float | None = None) -> dict:
     """A painting with a description under it, and anything of that shape.
+
+    `tracking` is the level's letter pitch for its text blocks, as `text` takes it.
 
     Blocks are laid out downward from `top_player_heights`, each centred on
     the same point along the wall.  Every block is placed through the same
@@ -1054,7 +1062,8 @@ def composition(layout, group_id: str, region_id: str, a1, a2, *,
                        size=block.size, palette=block.palette,
                        shade=block.shade if block.shade is not None else LETTER_SHADE,
                        t=t, top_z=cursor, top_z_min=minimum_top,
-                       offset_player_widths=offset_player_widths, vertical=block.vertical)
+                       offset_player_widths=offset_player_widths, vertical=block.vertical,
+                       tracking=tracking)
             if not got:
                 report["skipped"].append(f"{index}: {block.words!r} did not fit")
                 continue

@@ -43,12 +43,21 @@ sys.path.insert(0, str(ROOT))
 
 #: Blood's town maps: the campaign's city street and its neighbours, E1M4's
 #: fairground town, E6M1's shopfront, and Death Wish's two.
-TOWN_MAPS = (
-    "maps/blood/campaign/E3M1.MAP", "maps/blood/campaign/E3M2.MAP",
-    "maps/blood/campaign/E1M2.MAP", "maps/blood/campaign/E1M4.MAP",
-    "maps/blood/campaign/E6M1.MAP", "maps/blood/curated/DWE3M1.MAP",
-    "maps/blood/curated/DWE3M10.MAP",
-)
+TOWN_MAPS = ("E3M1", "E3M2", "E1M2", "E1M4", "E6M1", "DWE3M1", "DWE3M10")
+
+
+def map_path(text: str) -> pathlib.Path:
+    """A corpus map by its name (`E3M1`), or a map file by its path; one that is not there is an error, not a skip."""
+    from bloodmap.corpus import corpus_map_path
+
+    path = pathlib.Path(text)
+    if path.suffix.upper() != ".MAP":
+        path = corpus_map_path(text)
+    if not path.is_absolute():
+        path = ROOT / path
+    if not path.exists():
+        raise SystemExit(f"no map {text} (a corpus name, or a path to a MAP)")
+    return path
 ALPHABET = frozenset(range(3808, 3834))
 BODY = PLAYER_PROFILES["blood"].standing_height
 
@@ -78,9 +87,7 @@ def census(paths) -> dict[int, dict[str, Any]]:
 
     rows: dict[int, dict[str, list]] = {}
     for text in paths:
-        path = ROOT / text if not pathlib.Path(text).is_absolute() else pathlib.Path(text)
-        if not path.exists():
-            continue
+        path = map_path(str(text))
         disk = read_map(path)
         sectors = [s.fields for s in disk.sectors]
         for sprite in disk.sprites:

@@ -61,20 +61,15 @@ Ordinary switches, pickups, and torches should go through `PlanarLayout.place_on
 
 ## First puzzle room
 
-```text
-python -m bloodmap design-first-room \
-  --report work/first-puzzle-room-report.json \
-  -o work/first-puzzle-room.MAP
-```
-
-The design is authored in `bloodmap/designs.py`. Switch A sends command `On` over
+The first room built with `LevelBuilder` is now a test fixture
+(`tests/puzzle_room.py`, which the progression reader is tested on). Switch A sends command `On` over
 channel 100 to the east vertical door. The revealed alcove contains Switch B,
 which sends `On` over channel 101 to the north reward door. A sawed-off shotgun is
 the current completion reward. See `reports/archive/first_puzzle_room.md` for the exact
 layout and validation evidence.
 
 The generic action oracle can verify an intended interaction positioned at the
-player start:
+player start (write the fixture's map first: `build_first_puzzle_room().level.to_disk_map()`):
 
 ```text
 python -m bloodmap oracle-nblood-action work/first-puzzle-room.MAP \

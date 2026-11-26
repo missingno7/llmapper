@@ -11,6 +11,7 @@ import carriage
 import ghost_stair
 import setpieces
 from bloodmap import wallplane
+import house_letters
 import wires
 from materials import SEWER, Material
 from resolution import SEWER_FLOOR
@@ -142,7 +143,7 @@ def _ghost_controls(layout, landing):
         matches.when(wiring.placement(name), "push", command=motion.CMD_STATE,
                      on=True, off=True)
         half = width * fields["x_repeat"] // 8 + 64
-        wallplane.text(layout, f"ghost:label_{letter}", region,
+        house_letters.text(layout, f"ghost:label_{letter}", region,
                        (x - half, 2048), (x + half, 2048), words=letter,
                        height_player_heights=1.08, size=48, required=True)
 
@@ -171,14 +172,14 @@ def _ghost_inspection(layout, plate):
     from bloodmap import wallplane
 
     a, b = (51328, 2368), (51328, 4672)
-    wallplane.text(layout, "ghost:inspection", plate.region_id, a, b,
+    house_letters.text(layout, "ghost:inspection", plate.region_id, a, b,
                    words="INSPECTION", size=64, palette="rust", shade=-8,
                    height_player_heights=0.50, required=True)
     for index, (letter, _, value) in enumerate(GHOST_DIALS):
         start = (a[0], a[1] + index * 768)
         end = (a[0], start[1] + 768)
         marks = ("I", "II", "III", "IV")[value]
-        wallplane.text(layout, f"ghost:setting_{letter}", plate.region_id,
+        house_letters.text(layout, f"ghost:setting_{letter}", plate.region_id,
                        start, end, words=f"{letter} {marks}", size=45,
                        height_player_heights=0.24, required=True)
 
@@ -536,14 +537,14 @@ def _bill(layout, room, name, a, b, tile, repeat, height, *, shade=7, **options)
 
 
 def _sign(layout, room, name, a, b, words, *, size=62, height=0.95):
-    return wallplane.text(layout, f"phantom:{name}", room, a, b,
+    return house_letters.text(layout, f"phantom:{name}", room, a, b,
                           words=words, size=size, shade=-30, palette=5,
                           required=True, height_player_heights=height)
 
 
 def _nameboard(layout, region, suffix, a, b, *, repeat, height):
     _bill(layout, region, f"name_{suffix}", a, b, 1667, repeat, height, shade=-32)
-    wallplane.text(layout, f"phantom:terminus_{suffix}", region, a, b,
+    house_letters.text(layout, f"phantom:terminus_{suffix}", region, a, b,
                    words="TERMINUS", size=100 if suffix == "platform" else 62,
                    shade=-37, palette=5, required=True, height_player_heights=height - 0.50)
 
@@ -569,7 +570,7 @@ def _line_map(layout, room):
     back = ((51200, -7424), (49216, -7424))
     for row, (words, gone) in enumerate((("GRAVESEND", True), ("GALLOWS", True), ("PHANTOM", False))):
         height = 0.60 - 0.20 * row
-        wallplane.text(layout, f"phantom:line_stop_{row}", region, *back, words=words,
+        house_letters.text(layout, f"phantom:line_stop_{row}", region, *back, words=words,
                        height_player_heights=height, size=44, shade=-30,
                        palette="rust" if gone else 5, required=True)
 

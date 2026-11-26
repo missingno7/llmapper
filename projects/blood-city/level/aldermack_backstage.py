@@ -9,6 +9,7 @@ import citytree
 import detailing
 import setpieces
 from bloodmap import wallplane
+import house_letters
 from materials import Material
 from resolution import GRADE
 
@@ -180,7 +181,7 @@ def _mount(layout, room, name, tile, wall, *, up, repeat, t=0.5,
 
 
 def _sign(layout, room, word, wall, *, up, size=46, **options):
-    wallplane.text(layout, f"backstage:sign:{word.lower().replace(' ', '_')}",
+    house_letters.text(layout, f"backstage:sign:{word.lower().replace(' ', '_')}",
                    room.region_id, *wall, words=word, size=size, shade=-12,
                    height_player_heights=up / PLAYER.standing_height,
                    offset_player_widths=0.045, required=True, **options)

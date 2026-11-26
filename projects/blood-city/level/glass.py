@@ -11,6 +11,7 @@ behaviour is unchanged, and `glaze` is re-exported so no call site moves.
 
 from __future__ import annotations
 
+import house_letters
 from bloodmap.glass import (                                # noqa: F401
     GLASS_CSTAT, GLASS_REPEATS, GLASS_TILE, GLASS_XWALL, GlassError,
     attach_xwall, breaks_to, glaze, holder, pane_faults,
@@ -246,7 +247,7 @@ def write_names(layout) -> dict:
             continue
         a1, a2 = front["back"]
         centre = front["head_bodies"] + front["fascia_bodies"] / 2.0
-        ids = wallplane.text(
+        ids = house_letters.text(
             layout, f"sign:fascia_{front['name']}", front["reveal"], a1, a2,
             words=front["words"], style=front["style"],
             height_player_heights=centre, over_steps=True)

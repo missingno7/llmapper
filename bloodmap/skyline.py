@@ -90,7 +90,7 @@ def apron(parent: Any, node_id: str, outline: Iterable[Sequence[int]], *,
     named ``e0``, ``e1``... by outline edge unless `faces` says otherwise, so a
     caller connects the open ones to the street and to neighbouring aprons.
 
-    A `ceiling_slope` (loodmap.slope.SlopeSpec) tilts the sky, and with it
+    A `ceiling_slope` (`bloodmap.slope.SlopeSpec`) tilts the sky, and with it
     the top edge of every wall drawn against it: two aprons hinged on a face's
     centre line and falling away from it draw that face as a gable.  The
     height is then the height at the hinge.

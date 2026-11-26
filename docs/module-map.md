@@ -105,11 +105,6 @@ Replayable questions about a level, with explicit world state.
 | Module | What it is |
 | --- | --- |
 | `experience` | Bounded, replayable Level-0 experience probes. |
-| `probes` | Design Probe implementations. |
-| `probe_schema` | Design Probe: a replayable question about a level. |
-| `state_model` | Explicit state layers for Design Probes. |
-| `counterfactual` | Counterfactual candidate evaluation. |
-| `design_contract` | Design Contract: connecting user intent to hard assertions and soft evidence. |
 
 ### Semantics
 
@@ -148,8 +143,6 @@ Writing a level as source. `LevelProgram` is the editable form; it lowers throug
 | `construction` | `LevelBuilder`: direct, deterministic construction of a `LevelIR`, sector by sector in absolute coordinates. |
 | `composition` | Fragment composition over `LevelIR`: insertion, allocation, channel remapping, portal attachment and pathways. |
 | `fragment` | Room fragments: a closed set of sectors cut out of a `LevelIR` with everything it depends on. |
-| `recipe` | Composition recipes: a JSON list of fragment operations replayed into one map. |
-| `designs` | One scratch-authored demonstration: the first two-switch puzzle room, built with `LevelBuilder`. |
 
 ### Authoring: surfaces and light
 
@@ -250,13 +243,12 @@ Graded claims about Blood, the owner's tile readings, and the indexes over `know
 | `assets` | Contextual sprite and decorative-tile knowledge. |
 | `knowledge_index` | One entry point for "what do we know about this?". |
 
-### Evidence loop and observation
+### Observation
 
-Compile a candidate, read it back independently, look at it through the observer, and keep the packet.
+Look at a map through the observer, from planned or named poses, and say which view shows a place best.
 
 | Module | What it is |
 | --- | --- |
-| `authoring_loop` | One authored candidate, compiled and then independently explained. |
 | `visual` | Structured visual observation through the XMapEdit fork. |
 | `viewplan` | Hierarchy-aware viewpoint planning. |
 | `viewpoints` | Declared viewpoint poses and the temporary MAP variants that realize them. |

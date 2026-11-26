@@ -151,10 +151,11 @@ in `docs/reference-oracles.md`; it is not evidence for untested gameplay systems
 Do not normalize values in lossless paths, rely on compiler bitfield layout, retain
 the complete input blob, or silently discard references.
 
-Changes to the reasoned authoring loop must keep three properties. Authored
-labels stay out of every observation section of the iteration packet; a skipped
-evaluator is never reported as a pass; and every evidence reference a packet or a
-review emits must resolve inside that packet. New hierarchy, scale, or shape
+Anything that judges a level (a gate, a critic, a reader) keeps three properties,
+first set for the August authoring loop (`docs/history/authoring-loop.md`). What the
+author declared never answers a question the judge is asking of the map; a check
+that did not run is never reported as a pass; and every piece of evidence it cites
+resolves to something another agent can open. New hierarchy, scale, or shape
 rules must state the rule that produced each finding, and must be cross-checked
 against a rendered frame before being trusted -- three rules in the first pilot
 counted sectors where they should have weighed floor area, and each was caught

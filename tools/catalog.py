@@ -71,7 +71,7 @@ SHEETS = ROOT / "reports" / "tiles" / "sheets"
 PER_PAGE, COLUMNS, CELL = 40, 8, 136
 
 
-from bloodmap.tile_looks import owner_names, tile_is, tile_looks, tile_name  # noqa: E402,F401
+from bloodmap.tile_looks import directional_floor_faults, owner_names, tile_is, tile_looks, tile_name  # noqa: E402,F401
 
 
 def used_tiles() -> list[int]:
@@ -317,42 +317,6 @@ def record_label(place_id: str, kind: str, note: str, part: str,
     data[key] = {"kind": kind, "note": note, "by": part, "scale": scale,
                  "confidence": confidence}
     path.write_text(json.dumps(data, indent=1), "utf-8")
-
-
-def directional_floor_faults(disk) -> list[dict]:
-    """Floors whose tile has a direction that runs ACROSS a long sector.
-
-    A floor texture's x lies along the world's x unless `floor_stat` bit 4
-    swaps them. For a tile the library says `runs` along one of its axes,
-    a sector at least twice as long as wide should run the same way.
-    """
-    looks = tile_looks()
-    out = []
-    for index, sector in enumerate(disk.sectors):
-        s = sector.fields
-        runs = looks.get(int(s["floor_picnum"]), {}).get("runs")
-        if not runs or int(s["floor_stat"]) & 64:      # relative: skip
-            continue
-        xs, ys = [], []
-        for w in range(int(s["wall_ptr"]),
-                       int(s["wall_ptr"]) + int(s["wall_count"])):
-            xs.append(int(disk.walls[w].fields["x"]))
-            ys.append(int(disk.walls[w].fields["y"]))
-        span_x, span_y = max(xs) - min(xs), max(ys) - min(ys)
-        #: a clear long axis, and wide enough to be the thing itself: a
-        #: track cut into slivers across its width (E1M2 s265) or a short
-        #: piece of one (4,096 of an 8,192-wide bed) says nothing
-        if (max(span_x, span_y) < 2.5 * min(span_x, span_y)
-                or min(span_x, span_y) < 2048):
-            continue
-        long_axis = "x" if span_x > span_y else "y"
-        world = runs if not int(s["floor_stat"]) & 4 else (
-            "y" if runs == "x" else "x")
-        if world != long_axis:
-            out.append({"sector": index, "tile": int(s["floor_picnum"]),
-                        "runs_along": world, "sector_runs": long_axis,
-                        "size": [span_x, span_y]})
-    return out
 
 
 #: a theme a place's rare tiles carry -> the kind of place it suggests

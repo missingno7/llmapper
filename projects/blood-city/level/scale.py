@@ -33,7 +33,10 @@ UNITS_PER_METRE = BODY_XY / 1.8
 #: lift platforms: (short side, long side) at the median and upper quartile
 LIFT_MEDIAN, LIFT_LARGE = (600, 1408), (1536, 2048)
 #: blast holes (a shut Z-motion sector opened in a tenth by an explosion):
-#: width along the wall, and the opening in bodies
+#: width along the wall, and the opening in bodies. Gravesend's sizes, from a
+#: sweep of 177 holes that was not kept; the 96 kept holes give a median
+#: (1664, 1.57) and an upper quartile (2208, 1.95)
+#: (knowledge/blood/findings/probes/audit2_blast_holes.py). Kept as the city's.
 HOLE_MEDIAN, HOLE_LARGE = (1280, 1.45), (1792, 1.81)
 #: indoor rooms: height in bodies (median, upper quartile)
 ROOM_HEIGHT = (1.93, 3.38)

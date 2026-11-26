@@ -12,7 +12,6 @@ from bloodmap.composition import (
     CompositionError, attach_fragment, connect_portals, connect_with_pathway, insert_fragment,
 )
 from bloodmap.format import encode_map, parse_map, read_map, write_map
-from bloodmap.recipe import build_composition_recipe
 from tests.helpers import synthetic_map, synthetic_two_sector_map
 
 
@@ -126,62 +125,6 @@ class CompositionTests(unittest.TestCase):
         self.assertEqual(len(result.sector_ids), 3)
         self.assertEqual(result.level.walls[result.wall_ids[-2]]["fields"]["next_wall"], 7)
         self.assertFalse(result.layout_conflicts)
-
-    def test_composition_recipe_resolves_fragment_wall_allocations(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            write_map(self.destination.to_disk_map(), root / "base.MAP")
-            write_map(synthetic_map(), root / "room.MAP")
-            recipe = {
-                "$schema": "bloodmap.composition-recipe",
-                "schema_version": 1,
-                "base": "base.MAP",
-                "operations": [
-                    {
-                        "op": "insert", "id": "room", "source": "room.MAP",
-                        "sectors": [0], "dx": 4096,
-                    },
-                    {
-                        "op": "pathway", "id": "hall",
-                        "wall_a": {"absolute": 1},
-                        "wall_b": {"operation": "room", "fragment_wall": 3},
-                    },
-                ],
-            }
-            result = build_composition_recipe(recipe, root)
-            self.assertEqual(len(result.operations), 2)
-            self.assertEqual((len(result.level.sectors), len(result.level.walls)), (3, 12))
-            self.assertEqual(result.operations[1]["result"]["layout_check"]["status"], "pass")
-
-    def test_composition_recipe_sets_player_start_in_transformed_room(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            write_map(self.destination.to_disk_map(), root / "base.MAP")
-            write_map(synthetic_map(), root / "room.MAP")
-            recipe = {
-                "$schema": "bloodmap.composition-recipe",
-                "schema_version": 1,
-                "base": "base.MAP",
-                "operations": [
-                    {
-                        "op": "insert", "id": "room", "source": "room.MAP",
-                        "sectors": [0], "dx": 4096, "dy": 2048,
-                        "dz": 1024, "quarter_turns": 1,
-                    },
-                    {
-                        "op": "set_player_start", "id": "new_start",
-                        "source_operation": "room", "fragment_sector": 0,
-                        "x": 512, "y": 512, "z": 0, "angle": 0,
-                    },
-                ],
-            }
-            result = build_composition_recipe(recipe, root)
-            self.assertEqual(
-                result.level.player_start,
-                {"x": 3584, "y": 2560, "z": 1024, "angle": 512, "sector": 1},
-            )
-            self.assertEqual(result.operations[1]["before"]["sector"], 0)
-            self.assertEqual(result.operations[1]["result"]["sector"], 1)
 
     def test_quarter_turn_placement_transforms_geometry_and_angles(self):
         fragment = synthetic_map().to_level_ir().extract([0])

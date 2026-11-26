@@ -136,6 +136,7 @@
     "sunk_actors": [],
     "on_travelling_floor": []
   },
+  "floors_across": [],
   "tile_contexts": {
     "new": [],
     "outside": [
@@ -144,7 +145,8 @@
         "slot": "sprite_face",
         "place": "indoors",
         "count": 1,
-        "source": "community-curated"
+        "source": "community-curated",
+        "maps": 4
       }
     ],
     "misfit": []

@@ -39,7 +39,7 @@ from typing import Any
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
-from tools.mine_city_assets import TOWN_MAPS, is_decoration  # noqa: E402
+from tools.mine_city_assets import TOWN_MAPS, is_decoration, map_path  # noqa: E402
 from bloodmap.player_space import PLAYER_PROFILES
 
 BODY = PLAYER_PROFILES["blood"].standing_height
@@ -124,11 +124,7 @@ def stands(paths) -> list[dict[str, Any]]:
     tiles = art.read_art_directory(str(ROOT / "reference" / "blood"))
     rows = []
     for text in paths:
-        path = pathlib.Path(text)
-        if not path.is_absolute():
-            path = ROOT / text
-        if not path.exists():
-            continue
+        path = map_path(str(text))
         disk = read_map(path)
         seen: dict[int, dict] = {}
         for sprite in disk.sprites:

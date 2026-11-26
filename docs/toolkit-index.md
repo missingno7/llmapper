@@ -20,7 +20,7 @@ kind of fact is [architecture](architecture.md).
 | I want to… | Reach for | Not |
 | --- | --- | --- |
 | start a level | `python -m tools.project new <name> --title "..."`: a project that builds as it stands, with poses, a test and its own page | copying another level's directory |
-| take a declared layout to a map on disk: compile, align, gates, overlays, light, tidy, write, manifest | `bloodmap.finish.finish(layout, out, circuit=..., light=...)`; a level with passes of its own between them calls the same functions in that order | reading Gravesend's build to learn the order |
+| take a declared layout to a map on disk: compile, align, gates, overlays, light, tidy, write, manifest | `bloodmap.finish.finish(layout, out, circuit=..., light=...)`; a level with passes of its own between the stages drives `bloodmap.finish.Finish` (`wire`, `compile`, `align`, `to_disk`, `hold`, `cut_overlays`, `light`, `tidy`, `tags`, `write`), its passes between them (Gravesend: `level/build_skeleton.py`, `main`) | copying a stage into the level |
 | know where a level stands | `python -m tools.project status <name>` (every open item and what to do) | a status page written by hand |
 | look at a level from named poses | `python -m tools.look <name> --set <poses>`; the poses are the project's `level/poses.py` | a look script of the project's own |
 | point a tool at a level | `bloodmap.project.named(name)`: its map, poses, reports, critique rounds | a path typed into the tool |

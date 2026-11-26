@@ -84,7 +84,7 @@ stairs.decorate(wall_detail("sconce", SCONCE, 0.9, face="flank", at=0.5))
 The sconce is the stair's, not the level's. Adding or removing it touches one
 call and changes one sprite; nothing else in the compiled MAP moves. The
 constructors are `bloodmap.vocabulary`'s, so their corpus support travels with
-them — see [the authoring vocabulary](authoring-loop.md).
+them (`docs/module-map.md`, `bloodmap.vocabulary`).
 
 ## Shared semantics after lowering
 

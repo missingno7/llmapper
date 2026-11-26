@@ -22,6 +22,7 @@ needs and land on the 1024 bay grid.
 
 from __future__ import annotations
 
+import house_letters
 from bloodmap import motion, wiring
 from bloodmap.doors import z_motion_door
 from bloodmap.levelprog import Frame, RECT_FACES, Style
@@ -604,7 +605,7 @@ def populate(layout, rooms, attested, flame_fields, flame_stand) -> int:
         # its maps, at 1.25 drawn heights of pitch.
         from bloodmap import wallplane
         neck_west = PAWN_VAULT_NECK[0]
-        wallplane.text(
+        house_letters.text(
             layout, "sign:pawn_loans", shop.region_id,
             (neck_west - 96, sy1), (neck_west - 736, sy1),
             words="LOANS", style="column_small", vertical=True,

@@ -74,7 +74,7 @@ def _pass_owners() -> dict[str, str]:
              re.findall(r"^\s*import (\w+) as (\w+)\s*$", source, re.M)}
     script = "projects/blood-city/level/build_skeleton.py"
     owners = {}
-    for found in re.finditer(r'ctx\["manifest"\]\["(\w+)"\]\s*=\s*([\w.]+)', source):
+    for found in re.finditer(r'(?:ctx\["manifest"\]|\bmanifest)\["(\w+)"\]\s*=\s*([\w.]+)', source):
         key, value = found.group(1), found.group(2)
         if key in owners:
             continue

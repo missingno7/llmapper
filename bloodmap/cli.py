@@ -18,7 +18,6 @@ from .composition import (
 )
 from .construction import ConstructionError
 from .conversion import ConversionError, convert_build_ir
-from .designs import build_first_puzzle_room
 from .differential import compare_e3l1_pair
 from .duke import DukeMapError, encode_duke_map, read_duke_map, write_duke_map
 from .design import DesignUnderstandingError, design_fingerprint
@@ -69,7 +68,6 @@ from .oracle import (
     run_nblood_behavior_oracle, run_nblood_oracle,
     run_nblood_passage_oracle,
 )
-from .recipe import RecipeError, build_composition_recipe
 from .semantics import ObservationError
 from .materials import (
     MaterialsError, attach_appearance, contact_sheet_html, default_palette_path,
@@ -1674,39 +1672,6 @@ def cmd_pathway(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_recipe(args: argparse.Namespace) -> int:
-    value = json.loads(Path(args.recipe).read_text(encoding="utf-8"))
-    result = build_composition_recipe(value, args.source_dir)
-    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    write_map(result.level.to_disk_map(), args.output)
-    reparsed = read_map(args.output)
-    if any(item.severity == "error" for item in validate_map(reparsed)):
-        raise RecipeError("written recipe result failed reparse validation")
-    if args.report:
-        _write_text(args.report, _json(result.report()))
-    print(
-        f"WROTE {args.output}: {len(result.operations)} recipe operations, "
-        "reparsed and validated"
-    )
-    return 0
-
-
-def cmd_design_first_room(args: argparse.Namespace) -> int:
-    result = build_first_puzzle_room()
-    Path(args.output).parent.mkdir(parents=True, exist_ok=True)
-    write_map(result.level.to_disk_map(), args.output)
-    reparsed = read_map(args.output)
-    if any(item.severity == "error" for item in validate_map(reparsed)):
-        raise ConstructionError("written first puzzle room failed reparse validation")
-    if args.report:
-        _write_text(args.report, _json(result.report))
-    print(
-        f"WROTE {args.output}: scratch puzzle room with {len(result.level.sectors)} sectors, "
-        f"{len(result.level.walls)} walls, and {len(result.level.sprites)} sprites"
-    )
-    return 0
-
-
 def cmd_oracle_nblood_action(args: argparse.Namespace) -> int:
     report = run_nblood_action_oracle(
         args.map,
@@ -2397,19 +2362,6 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--report")
     p.add_argument("-o", "--output", required=True)
     p.set_defaults(func=cmd_pathway)
-    p = sub.add_parser("recipe", help="build an allocation-aware LevelIR composition recipe")
-    p.add_argument("recipe", help="composition recipe JSON")
-    p.add_argument("--source-dir", required=True, help="directory containing referenced MAP files")
-    p.add_argument("--report", help="write full closure/composition report JSON")
-    p.add_argument("-o", "--output", required=True)
-    p.set_defaults(func=cmd_recipe)
-    p = sub.add_parser(
-        "design-first-room",
-        help="build the scratch-authored two-switch introductory puzzle room",
-    )
-    p.add_argument("--report", help="write construction, clearance, and channel report JSON")
-    p.add_argument("-o", "--output", required=True)
-    p.set_defaults(func=cmd_design_first_room)
     p = sub.add_parser("attach", help="align, insert, and portal-connect an extracted room")
     p.add_argument("map", help="destination MAP")
     p.add_argument("fragment", help="LevelFragment JSON")

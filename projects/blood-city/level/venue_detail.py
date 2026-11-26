@@ -16,6 +16,7 @@ from __future__ import annotations
 from typing import Any
 
 from bloodmap.placement import PLAYER_HEIGHT
+import house_letters
 import props
 from bloodmap import wallplane
 
@@ -152,7 +153,7 @@ def apply(layout: Any, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:
         a1, a2 = props.face_segment(props.room_rect(room), chosen, inset=128)
         got = wallplane.composition(
             layout, f"venue:{group}", room.region_id, a1, a2,
-            blocks=_blocks(rows), t=t, top_player_heights=top)
+            blocks=_blocks(rows), t=t, top_player_heights=top, tracking=house_letters.TRACKING)
         if got["placed"]:
             report["compositions"] += 1
             report["composed_sprites"] += len(got["placed"])

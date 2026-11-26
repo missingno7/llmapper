@@ -55,7 +55,9 @@ PORTAL_H = {"tower": 40960}
 
 CHANCEL_RISE = 2048        # the chancel stands over the nave, one low step
 #: How much taller the nave gets across its span: 21,878 units, 1.29 player
-#: heights. The campaign's median slope rise is 0.43 (about 7,290 units).
+#: heights, a steep roof: the church's look, kept (the owner, 2026-11-26).
+#: It was chosen as "the campaign's median slope rise", which was 1.29 in the
+#: retired 0x1600 unit; in bodies the campaign's median is 0.43 (about 7,290).
 PITCH = 21878
 
 #: (name, x0, y0, x1, y1, material, clear height, note)

@@ -11,6 +11,7 @@ import citytree
 import detailing
 import setpieces
 from bloodmap import wallplane
+import house_letters
 import wing_doors
 import wires
 from materials import INTERIORS, Material
@@ -253,7 +254,7 @@ def _marquee(layout, street, porch, side):
            tile=PANEL, size=(116, 12), angle=512, shade=3)
     _panel(layout, "bulb_rail", street, front, 77, (55, 24), 2.17,
            over_steps=True, shade=-32)
-    wallplane.text(layout, "sign:aldermack_marquee", street.region_id, *front,
+    house_letters.text(layout, "sign:aldermack_marquee", street.region_id, *front,
                    words="ALDERMACK", size=69, palette=0, shade=-54,
                    height_player_heights=2.59, over_steps=True, required=True)
     _panel(layout, "prices", street, ((29376, FORECOURT), (29760, FORECOURT)),
@@ -266,7 +267,7 @@ def _marquee(layout, street, porch, side):
     avenue = ((AVENUE, 9344), (AVENUE, 8064))
     _plate(layout, street, "avenue_fascia", point=(AVENUE+6, 8704, GRADE-38400),
            tile=PANEL, size=(80, 11), angle=0, shade=3)
-    wallplane.text(layout, "sign:aldermack_avenue", street.region_id, *avenue,
+    house_letters.text(layout, "sign:aldermack_avenue", street.region_id, *avenue,
                    words="ALDERMACK", size=47, palette=0, shade=-48,
                    height_player_heights=2.27, over_steps=True, required=True)
     _panel(layout, "avenue_bill", street, ((AVENUE, 8176), (AVENUE, 7680)),
@@ -343,12 +344,12 @@ def furnish(layout, foyer, lobby, street, porch, side, booth, cases, runner, cou
 
     _fittings(layout, street, foyer, lobby, porch)
     north = _face(foyer, "north")
-    wallplane.text(layout, "sign:aldermack_tickets", foyer.region_id, *north,
+    house_letters.text(layout, "sign:aldermack_tickets", foyer.region_id, *north,
                    words="BOX OFFICE", size=82, palette="default", shade=-30,
                    height_player_heights=1.65, over_steps=True, required=True)
     # Silhouette in the left opening, light and an abandoned till on the right.
     # over the vomitory's mouth, in sight of the ticket windows
-    wallplane.text(layout, "sign:aldermack_stalls", foyer.region_id, (26624, 10240), (26624, 8704),
+    house_letters.text(layout, "sign:aldermack_stalls", foyer.region_id, (26624, 10240), (26624, 8704),
                    words="STALLS", size=82, palette="default", shade=-30,
                    height_player_heights=1.72, over_steps=True, required=True)
     _seated(layout, booth, "clerk", (28160, 6416), 2330, (37, 37),
@@ -401,7 +402,7 @@ def furnish(layout, foyer, lobby, street, porch, side, booth, cases, runner, cou
         _panel(layout, f"avenue_{name}", lobby, _face(lobby, face), bill,
                size, (GRADE-backing[2])/STANDING, shade=-7,
                offset_player_widths=0.15)
-    wallplane.text(layout, "sign:aldermack_lobby", lobby.region_id,
+    house_letters.text(layout, "sign:aldermack_lobby", lobby.region_id,
                    *_face(lobby, "north"), words="ALDERMACK", size=53,
                    palette="default", shade=-26, height_player_heights=1.85,
                    required=True)

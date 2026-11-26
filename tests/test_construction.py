@@ -5,7 +5,8 @@ import json
 import tempfile
 from pathlib import Path
 
-from bloodmap import ConstructionError, LevelBuilder, build_first_puzzle_room, portal_profiles
+from bloodmap import ConstructionError, LevelBuilder, portal_profiles
+from tests.puzzle_room import build_first_puzzle_room
 from bloodmap.analysis import validate_map
 from bloodmap.cli import main
 from bloodmap.format import encode_map, parse_map
@@ -18,16 +19,6 @@ class ConstructionTests(unittest.TestCase):
             LevelBuilder().add_sector([(0, 0), (0, 1024), (1024, 1024), (1024, 0)])
         with self.assertRaisesRegex(ConstructionError, "zero area|self-intersects"):
             LevelBuilder().add_sector([(0, 0), (1024, 1024), (0, 1024), (1024, 0)])
-
-    def test_first_room_cli_writes_map_and_machine_readable_report(self):
-        with tempfile.TemporaryDirectory() as directory:
-            root = Path(directory)
-            output, report = root / "room.MAP", root / "report.json"
-            self.assertEqual(main(["design-first-room", "-o", str(output), "--report", str(report)]), 0)
-            self.assertTrue(output.is_file())
-            value = json.loads(report.read_text(encoding="utf-8"))
-            self.assertEqual(value["name"], "first-puzzle-room")
-            self.assertEqual(value["counts"], {"sectors": 5, "walls": 28, "sprites": 7})
 
     def test_first_puzzle_room_is_deterministic_and_functionally_wired(self):
         first = build_first_puzzle_room()

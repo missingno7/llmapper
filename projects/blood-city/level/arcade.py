@@ -22,6 +22,7 @@ from bloodmap.slope import SlopeSpec
 
 import keysign
 from bloodmap import wallplane
+import house_letters
 import wires
 from resolution import GRADE, SKY_TILE
 
@@ -375,7 +376,7 @@ def _furnish(layout, regions) -> None:
     _bill(layout, regions, "walk", "pickmans", (39.6, NORTH), (41.6, NORTH), 740, 64, 2.0, shade=-8)
     _bill(layout, regions, "walk", "miguels", (43.0, SOUTH), (40.0, SOUTH), 2341, 52, 2.14, shade=-8)
     _bill(layout, regions, "landing", "ichabods", (48.75, NORTH), (50.25, NORTH), 2340, 48, 1.95, shade=-4)
-    wallplane.text(layout, "arcade:draper", regions["front"], (_q(42.25), _q(FRONT[1])), (_q(47.25), _q(FRONT[1])),
+    house_letters.text(layout, "arcade:draper", regions["front"], (_q(42.25), _q(FRONT[1])), (_q(47.25), _q(FRONT[1])),
                    words="DRAPER", style="fascia", height_player_heights=2.15, over_steps=True)
     _bill(layout, regions, "walk", "signing", (SOUTH - 4.25, SOUTH), (43.1, SOUTH), 356, 40, 0.9)
 

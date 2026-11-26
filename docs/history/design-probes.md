@@ -1,5 +1,10 @@
 # Design Probe System
 
+> Retired on 2026-11-26 with the authoring loop: the probe system (`probes`, `probe_schema`,
+> `state_model`, `design_contract`, `counterfactual`) is in the library as of commit `7847923`.
+> Route, transition, visibility and progression questions are asked through `bloodmap.experience`
+> and `bloodmap.progression`.
+
 The Design Probe system lets a future LLM test specific hypotheses about a level
 in the same way a coding agent runs tests against software.
 

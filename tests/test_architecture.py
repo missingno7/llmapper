@@ -187,14 +187,18 @@ class VisibilityCatalogTests(unittest.TestCase):
         self.assertEqual(found["kind"], "visible")
         self.assertEqual(found["reasons"], [])
 
-    def test_the_sound_marker_that_started_this_is_wiring_on_both_signals(self):
-        """picnum 2520 is type 709 in 1247 of its 1250 campaign occurrences."""
+    def test_the_sound_marker_that_started_this_is_wiring_by_its_own_bit(self):
+        """picnum 2520 is type 709 in 1247 of its 1250 campaign occurrences, and it is unseen because it carries the
+        invisible bit: the engine hides no sound sprite by its kind, and only the trigger generator of the generators
+        (triggers.cpp:2360, InitGenerator)."""
         from bloodmap.blood_types import sprite_visibility
 
         found = sprite_visibility(709, 32896)
         self.assertEqual(found["kind"], "wiring")
         self.assertEqual(found["type_name"], "kSoundSector")
-        self.assertEqual(len(found["reasons"]), 2)
+        self.assertEqual(found["reasons"], ["cstat carries Build's invisible bit"])
+        self.assertEqual(sprite_visibility(703, 128)["kind"], "visible")       # the stone face that spits fire
+        self.assertEqual(sprite_visibility(700, 0)["kind"], "wiring")          # the one the engine hides itself
 
     def test_the_switch_that_wears_the_same_tile_is_not_wiring(self):
         """The other 3 occurrences of picnum 2520 are switches. A picnum

@@ -44,6 +44,28 @@ class TidyTests(unittest.TestCase):
                 end = record_fields(again.walls[f["point2"]])
                 self.assertEqual((over["x"], over["y"]), (end["x"], end["y"]))
 
+class MergeAlike(unittest.TestCase):
+    """Pieces that came out alike are one sector again: the ground they cover is the same, and the map stays valid."""
+
+    def test_e3m1s_alike_neighbours_are_joined_and_the_ground_is_kept(self):
+        path = corpus.corpus_map_path("E3M1")
+        if not path.exists():
+            self.skipTest("the corpus is not here")
+        disk = read_map(path)
+        total, sectors = sum(areas(disk)), len(disk.sectors)
+        report = tidy.merge_alike(disk, 0, step=8)
+        self.assertGreater(report["sectors_merged"], 0)
+        self.assertEqual(len(disk.sectors), sectors - report["sectors_merged"])
+        self.assertEqual(sum(areas(disk)), total)
+        self.assertEqual(sorted(set(report["into"].values())), list(range(len(disk.sectors))))
+        self.assertFalse([d for d in validate_map(parse_map(encode_map(disk))) if d.severity == "error"])
+
+    def test_only_sectors_from_the_first_given_are_candidates(self):
+        path = corpus.corpus_map_path("E3M1")
+        if not path.exists():
+            self.skipTest("the corpus is not here")
+        disk = read_map(path)
+        self.assertEqual(tidy.merge_alike(disk, len(disk.sectors), step=8)["sectors_merged"], 0)
 
 if __name__ == "__main__":
     unittest.main()

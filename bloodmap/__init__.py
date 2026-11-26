@@ -42,7 +42,6 @@ from .workspace import (
     WorkspaceError, append_decision, append_episode, append_evidence, initialize_project,
     make_level_slice, store_level_slice,
 )
-from .designs import DesignedLevel, build_first_puzzle_room
 from .differential import compare_e3l1_pair, compare_hand_converted_pair, infer_xy_scale
 from .duke import (
     DukeDiskMap, DukeMapError, encode_duke_map, parse_duke_map, read_duke_map, write_duke_map,
@@ -54,16 +53,10 @@ from .fragment import (
 from .model import DiskMap, LevelIR
 from .sector_map import render_sector_map
 from .oracle import run_eduke32_oracle
-from .recipe import RecipeError, RecipeResult, build_composition_recipe
 from .decompiler import DecompilerError, LevelSource, decompile_level, emit_python_source
 from .viewpoints import (
     ViewpointError, ViewpointSpec, apply_viewpoint, prepare_viewpoints, resolve_viewpoint,
     viewpoint_manifest, viewpoint_variant_diff,
-)
-from .authoring_loop import (
-    AuthoredAssembly, AuthoredIntent, AuthoredTransition, AuthoringIteration,
-    AuthoringLoopError, Candidate, NextAction, ProbeRequest, ReasoningReview, ReviewClaim,
-    attach_review, compare_iterations, evaluate_candidate, record_review, resolve_evidence,
 )
 from .morphology import MorphologyError, analyze_morphology
 from .understanding import understand_map
@@ -78,25 +71,10 @@ from .levelprog import (
 )
 
 __all__ = [
-    "AuthoredAssembly",
-    "AuthoredIntent",
-    "AuthoredTransition",
-    "AuthoringIteration",
-    "AuthoringLoopError",
-    "Candidate",
-    "NextAction",
-    "ProbeRequest",
-    "ReasoningReview",
-    "ReviewClaim",
     "ViewpointError",
     "ViewpointSpec",
     "apply_viewpoint",
-    "attach_review",
-    "compare_iterations",
-    "evaluate_candidate",
     "prepare_viewpoints",
-    "record_review",
-    "resolve_evidence",
     "resolve_viewpoint",
     "viewpoint_manifest",
     "viewpoint_variant_diff",
@@ -122,7 +100,6 @@ __all__ = [
     "DesignUnderstandingError",
     "ExperienceProbeError",
     "DestinationMap",
-    "DesignedLevel",
     "DecompilerError",
     "DiskMap",
     "DukeDiskMap",
@@ -138,8 +115,6 @@ __all__ = [
     "SemanticLevel",
     "PLAYER_PROFILES",
     "PlayerSpaceError",
-    "RecipeError",
-    "RecipeResult",
     "SightError",
     "SpatialAnalysisError",
     "ExposureError",
@@ -178,8 +153,6 @@ __all__ = [
     "append_decision",
     "append_episode",
     "append_evidence",
-    "build_composition_recipe",
-    "build_first_puzzle_room",
     "compare_e3l1_pair",
     "compare_hand_converted_pair",
     "connect_portals",

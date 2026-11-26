@@ -21,6 +21,7 @@ round a hole in the stair.
 
 from __future__ import annotations
 
+import house_letters
 import wires
 from bloodmap import motion, wiring
 
@@ -515,7 +516,7 @@ def machine_hall(shed, lobby, room):
                 ("BELT", (hx0, ay1 + 1024), (hx0, ay1 + 256)),
                 ("SLUDGE", (int(44.2 * PU), int(11.5 * PU)),
                  (int(42.9 * PU), int(11.5 * PU)))):
-            wallplane.text(layout, f"sign:pump_{word.lower()}",
+            house_letters.text(layout, f"sign:pump_{word.lower()}",
                            hall.region_id, a1, a2, words=word,
                            style="department" if word == "BELT" else "works",
                            height_player_heights=1.2 if word == "BELT" else 1.7)
@@ -535,7 +536,7 @@ def machine_hall(shed, lobby, room):
                               x_repeat=48, y_repeat=48, cstat=32 | 128 | 8, shade=-16)
         # Which way is which, from the lobby.
         x0, y0 = SHED[0] + 512, SHED[1] - STAIR_W
-        wallplane.text(layout, "sign:pump_sewer", lobby.region_id, (x0, y0), (x0 + 1536, y0), words="SEWER",
+        house_letters.text(layout, "sign:pump_sewer", lobby.region_id, (x0, y0), (x0 + 1536, y0), words="SEWER",
                        style="notice", height_player_heights=1.3)
         # An iron rail along the deck's edge (DWE2M10's 104): solid, and seen from both sides.
         for k in range(4):

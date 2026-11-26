@@ -153,5 +153,85 @@ class WireTable(unittest.TestCase):
         self.assertEqual([wire.name for wire in circuit.wires], ["door"])
 
 
+class Session(unittest.TestCase):
+    """A level with passes of its own drives the stages one by one, and its passes go between them."""
+
+    def drive(self, layout, circuit, *, between=None, before_merge=None):
+        rule = lambda region: Rule("ceiling", 795, 3072)  # noqa: E731
+        made = finish.Finish(layout, circuit=circuit, say=quiet)
+        made.wire()
+        made.compile(lit=True)
+        if between is not None:
+            between(made)
+        made.align()
+        made.to_disk()
+        self.assertTrue(made.hold(map_name="pair.MAP"), made.refused)
+        self.assertTrue(made.cut_overlays())
+        self.assertTrue(made.light(rule, before_merge=before_merge))
+        made.tidy()
+        return made
+
+    def test_driven_stage_by_stage_it_makes_the_map_finish_makes(self):
+        layout, circuit = two_rooms()
+        whole = finish.finish(layout, circuit=circuit, light=lambda region: Rule("ceiling", 795, 3072), say=quiet)
+        layout, circuit = two_rooms()
+        driven = self.drive(layout, circuit)
+        self.assertEqual(encode_map(driven.disk), encode_map(whole.disk))
+        self.assertEqual(driven.tags(), {})
+
+    def test_a_record_the_level_claims_before_align_is_not_reframed(self):
+        layout, circuit = two_rooms()
+        claimed = {}
+
+        def glaze(made):
+            # a level's own pass (a pane of glass) claims a wall's texture fields before the frames are laid
+            wall = made.compiled.level.walls[0]
+            wall["fields"]["x_panning"] = 7
+            made.records.claim(0, "insert:glass")
+            claimed["wall"] = wall
+
+        made = self.drive(layout, circuit, between=glaze)
+        self.assertEqual(int(made.disk.walls[0].fields["x_panning"]), 7)
+        self.assertEqual(made.records.owner_of(0), "insert:glass")
+
+    def test_the_level_works_on_the_lit_map_before_its_pieces_join(self):
+        layout, circuit = two_rooms()
+        seen = []
+        made = self.drive(layout, circuit, before_merge=lambda disk, compiled: seen.append(len(disk.sectors)) or "evened")
+        self.assertEqual(len(seen), 1)
+        self.assertEqual(made.manifest["light_stage"]["before_merge"], "evened")
+
+    def test_a_refused_session_writes_nothing(self):
+        layout, circuit = two_rooms()
+        made = finish.Finish(layout, circuit=circuit, say=quiet)
+        made.compile(lit=False)
+        made.align()
+        made.to_disk()
+        self.assertTrue(made.hold())
+        made.refused.append("a test says no")
+        for stage in (made.cut_overlays, made.tidy, lambda: made.write(Path(tempfile.mkdtemp()) / "no.MAP")):
+            with self.assertRaises(finish.FinishError):
+                stage()
+
+    def test_the_stages_keep_their_order(self):
+        layout, circuit = two_rooms()
+        made = finish.Finish(layout, circuit=circuit, say=quiet)
+        with self.assertRaises(finish.FinishError):
+            made.align()                                # before compile
+        made.compile(lit=False)
+        made.to_disk()
+        with self.assertRaises(finish.FinishError):
+            made.align()                                # after to_disk: nothing it did would reach the map
+        out = Path(tempfile.mkdtemp()) / "ungated.MAP"
+        for stage in (made.cut_overlays, made.tidy, lambda: made.write(out)):
+            with self.assertRaises(finish.FinishError):
+                stage()                                 # nothing is cut, tidied or written that was not held
+        self.assertFalse(out.exists())
+        self.assertTrue(made.hold())
+        made.tidy()
+        made.write(out)
+        self.assertTrue(out.exists())
+
+
 if __name__ == "__main__":
     unittest.main()

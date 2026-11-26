@@ -80,7 +80,7 @@ class SpriteCompositionsTests(unittest.TestCase):
         for p in polygon(1500, 6, (100, -200)):
             add_sprite(self.disk, p)
         add_sprite(self.disk, (100, -200), tile=187, tx_id=142, rx_id=27)
-        for kind, status, cstat, extra in ((1, 0, 0, {}), (709, 0, 0, {}), (0, 10, 0, {}),
+        for kind, status, cstat, extra in ((1, 0, 0, {}), (700, 0, 0, {}), (0, 10, 0, {}),
                                            (0, 0, 0x8000, {}), (0, 0, 0, {"launch_single": 1})):
             add_sprite(self.disk, (100, -200), tile=500, kind=kind, status=status, cstat=cstat, **extra)
         row, = rings(self.disk)

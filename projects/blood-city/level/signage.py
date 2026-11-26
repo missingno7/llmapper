@@ -7,7 +7,7 @@ stuff to read."  The capability already exists and is already measured --
 campaign spells out (STORAGE, RATDOGS, FEINMAN MEATS, HMS VICTOR, TRACK A).
 Blood has no text primitive; it has an alphabet in the ART at tiles
 3808-3833 and it lays one sprite per letter, wall-aligned at cstat 208,
-pitched at 1.45 times a letter's drawn width, recoloured by palette.
+pitched (in this city) at 1.45 times a letter's drawn width (`house_letters`; the campaign's is 1.333), recoloured by palette.
 
 This module is the city's copy: which words go where, at what size, in
 which palette.  The palettes are named for what they are for, so a sign's
@@ -25,6 +25,7 @@ from __future__ import annotations
 
 import props
 from bloodmap import wallplane
+import house_letters
 
 #: (sign id, room key, face, text, **style**, height in player heights).
 #:
@@ -145,7 +146,7 @@ def write(layout, rooms: dict) -> dict:
         # until it covers nothing.  St Gallow's sign used to be written at a
         # fixed height straight through a 2,048 x 32,768 hanging, every
         # letter of it 100% covered.
-        ids = wallplane.text(layout, f"sign:{sign_id}", room.region_id,
+        ids = house_letters.text(layout, f"sign:{sign_id}", room.region_id,
                              a1, a2, words=text, style=style,
                              height_player_heights=height)
         if not ids:
@@ -161,7 +162,7 @@ def write(layout, rooms: dict) -> dict:
             report["missing"].append(key)
             continue
         a1, a2 = segment
-        ids = wallplane.text(layout, f"sign:{sign_id}", region_id, a1, a2,
+        ids = house_letters.text(layout, f"sign:{sign_id}", region_id, a1, a2,
                              words=text, style=style,
                              height_player_heights=height)
         if not ids:

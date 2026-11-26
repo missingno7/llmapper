@@ -27,16 +27,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import Any
 
-from bloodmap.authoring_loop import (
-    AuthoredAssembly,
-    AuthoredIntent,
-    AuthoredTransition,
-    Candidate,
-    ProbeRequest,
-    evaluate_candidate,
-)
 from bloodmap.levelprog import (
     Assembly,
     Frame,
@@ -48,7 +39,6 @@ from bloodmap.levelprog import (
     wall_detail,
 )
 from bloodmap.vocabulary import art_sizes_from_directory
-from bloodmap.viewpoints import ViewpointSpec
 
 U = 384          # one player body width
 PH = 0x1600      # one player standing height
@@ -303,107 +293,11 @@ def build_level() -> LevelProgram:
     return level
 
 
-# ---------------------------------------------------------------------------
-# The authoring-loop candidate, so the same gates and evidence apply
-# ---------------------------------------------------------------------------
-
-def _layout():
-    return build_level().compile()
-
-
-def intent() -> AuthoredIntent:
-    return AuthoredIntent(
-        brief="a walled ground containing a manor whose lobby stair rises to an "
-              "upper gallery, with a cellar beneath the west wing",
-        start_region="region:nested/grounds/yard",
-        exit_region="region:nested/manor/upper_gallery",
-        assemblies=(
-            AuthoredAssembly(
-                "assembly:grounds", "grounds", "exterior_parent",
-                "the large walled exterior the manor stands in",
-                ("region:nested/grounds/yard", "region:nested/grounds/porch"),
-            ),
-            AuthoredAssembly(
-                "assembly:manor", "manor", "embedded_building",
-                "the building inside the grounds: lobby, west wing, upper gallery",
-                ("region:nested/manor/lobby", "region:nested/manor/west_wing",
-                 "region:nested/manor/upper_gallery"),
-                parent_assembly="assembly:grounds",
-            ),
-            AuthoredAssembly(
-                "assembly:undercroft", "undercroft", "lower_interior",
-                "the cellar under the west wing",
-                ("region:nested/undercroft/cellar",),
-            ),
-        ),
-        transitions=(
-            AuthoredTransition(
-                "transition:porch", "yard into the manor",
-                "region:nested/grounds/porch", "region:nested/manor/lobby",
-                "constrained_to_open",
-                "a low porch releasing into a nine player-height hall",
-                connection_id="connection:porch_lobby",
-                expectation={"area_ratio_at_least": 6},
-            ),
-        ),
-        progression=(
-            {"step": 1, "action": "cross the yard and enter through the porch"},
-            {"step": 2, "action": "climb the lobby stair to the upper gallery"},
-            {"step": 3, "action": "take the wing stair down into the cellar"},
-        ),
-    )
-
-
-def candidate() -> Candidate:
-    return Candidate(
-        iteration_id="nested-v1",
-        module="experiments/nested_authoring.py",
-        factory=_layout,
-        program=build_level(),
-        intent=intent(),
-        probes=(
-            ProbeRequest("probe:reach_gallery", "access",
-                         "can the upper gallery be reached from the yard?",
-                         "the nesting claim depends on the stair actually connecting",
-                         target_region="region:nested/manor/upper_gallery"),
-            ProbeRequest("probe:reach_cellar", "access",
-                         "can the cellar be reached?",
-                         "the second stair is the second half of the nesting test",
-                         target_region="region:nested/undercroft/cellar"),
-            ProbeRequest("probe:porch_contrast", "transition",
-                         "does the porch to lobby step read as a release?",
-                         "one composed constrained-to-open transition",
-                         source_region="region:nested/grounds/porch",
-                         destination_region="region:nested/manor/lobby"),
-        ),
-        viewpoints=(
-            ViewpointSpec("view:yard", "player_start", "region:nested/grounds/yard",
-                          -16 * U, 8 * U, 8192 - 1024, 0,
-                          note="open ground west of the manor, facing it"),
-            ViewpointSpec("view:lobby", "assembly_center", "region:nested/manor/lobby",
-                          7 * U, 6 * U, 8192 - 1024, 512,
-                          note="the lobby, facing the stair"),
-            ViewpointSpec("view:gallery", "assembly_center", "region:nested/manor/upper_gallery",
-                          28 * U, 6 * U, 8192 - 4 * 4096 - 1024, 1536,
-                          note="the upper gallery, looking back down the stair"),
-        ),
-        declared_changes=(
-            "authored entirely in bloodmap.levelprog: no absolute coordinate outside "
-            "the yard's own outline, no sector or wall index anywhere",
-        ),
-    )
-
-
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--map", help="write the compiled MAP here")
     parser.add_argument("--tree", action="store_true", help="print the program outline")
     parser.add_argument("--room", help="print one room's complete summary")
-    parser.add_argument("--evaluate", action="store_true",
-                        help="run the authoring-loop gates over the compiled candidate")
-    parser.add_argument("--nblood", help="NBlood executable, for the load smoke")
-    parser.add_argument("--game-dir", help="Blood game data directory")
-    parser.add_argument("--report", help="write the evidence packet here")
     args = parser.parse_args(argv)
 
     program = build_level()
@@ -426,32 +320,6 @@ def main(argv: list[str] | None = None) -> int:
         Path(args.map).parent.mkdir(parents=True, exist_ok=True)
         write_map(compiled.level.to_disk_map(), args.map)
         print(f"wrote {args.map}")
-    if args.evaluate:
-        engine: dict[str, Any] | None = None
-        if args.nblood and args.game_dir:
-            engine = {
-                "nblood": args.nblood, "game_dir": args.game_dir,
-                "grace_seconds": 14.0, "startup_timeout": 45.0, "settle_seconds": 3.0,
-            }
-        packet = evaluate_candidate(
-            candidate(), map_path=args.map, engine=engine,
-            view_dir=None if not args.report else str(Path(args.report).parent / "views"),
-        )
-        failed = [item["gate_id"] for item in packet.hard_gates if item["status"] == "fail"]
-        smoke = next(item for item in packet.hard_gates
-                     if item["gate_id"] == "nblood_load_smoke")
-        structures = packet.independent_hierarchy["structure_recovery"]["coverage"]
-        print(json.dumps({
-            "failed_gates": failed or "none",
-            "nblood_load_smoke": smoke["status"],
-            "derived_structures": structures["by_kind"],
-        }, indent=1))
-        if args.report:
-            path = Path(args.report)
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps(packet.to_dict(), indent=1, default=str),
-                            encoding="utf-8")
-            print(f"wrote {path}")
     return 0
 
 

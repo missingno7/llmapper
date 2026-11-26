@@ -1,13 +1,13 @@
-"""One scratch-authored demonstration: the first two-switch puzzle room, built with `LevelBuilder`."""
+"""The first two-switch puzzle room, built sector by sector with `LevelBuilder`: a fixture for the progression reader."""
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
 
-from .analysis import channel_graph
-from .construction import LevelBuilder, portal_profiles
-from .model import LevelIR
+from bloodmap.analysis import channel_graph
+from bloodmap.construction import LevelBuilder, portal_profiles
+from bloodmap.model import LevelIR
 
 
 @dataclass

@@ -130,7 +130,7 @@ class ObjectContextHygieneTests(unittest.TestCase):
         self.assertIn("wiring_signature", closet)
         self.assertIn("objects:0", closet["context_signature"])
         self.assertNotIn("objects:0", closet["wiring_signature"])
-        self.assertEqual(closet["wiring_categories"], {"sound": 2})
+        self.assertEqual(closet["wiring_categories"], {"hidden-sound": 2})
 
     def test_a_default_sample_has_no_wiring_signature(self):
         self.assertNotIn("wiring_signature", self.by_sector[0])
@@ -140,7 +140,7 @@ class ObjectContextHygieneTests(unittest.TestCase):
         clustered = cluster_samples(self.samples)
         excluded = clustered["excluded_candidates"][0]
         self.assertEqual(excluded["keyed_on"], "wiring")
-        self.assertEqual(excluded["wiring_categories"], {"sound": 2})
+        self.assertEqual(excluded["wiring_categories"], {"hidden-sound": 2})
         self.assertNotIn("objects:0", excluded["signature"])
 
     def test_two_wiring_pockets_with_the_same_shape_cluster_together(self):

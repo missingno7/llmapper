@@ -54,7 +54,7 @@ and art are not distributed (`maps/README.md`).
 | look something up about Blood before building it | [the library](knowledge/blood/LIBRARY.md) -- tiles, places, studies, ideas |
 | add a module, a sensor or a tool | [architecture](docs/architecture.md) -- which module owns which kind of fact |
 | find out whether something already exists | [the module map](docs/module-map.md) -- every library module and tool, by layer |
-| change parsing, conversion or the authoring loop | [CONTRIBUTING](CONTRIBUTING.md) -- the gates each kind of change must pass |
+| change parsing, conversion or a gate that judges a level | [CONTRIBUTING](CONTRIBUTING.md) -- the gates each kind of change must pass |
 
 The corpus is never globbed. `bloodmap.corpus` knows where every map lives:
 `campaign_maps()` for the original campaign, `named_maps()` for everything a
@@ -96,15 +96,9 @@ python -m bloodmap probe-route maps/blood/campaign/E1M1.MAP \
 python -m bloodmap project-init projects/crypt --name "Monastery crypt"
 ```
 
-An authored candidate can be compiled, gated, independently decompiled, probed,
-and rendered as one evidence packet, then revised from that evidence:
-
-```text
-python -m experiments.monastery_pilot v0 v1 v2 v3 --run-id review-001 --comparison
-python -m experiments.monastery_pilot v3 --run-id review-002 --nblood reference/blood/nblood.exe --game-dir reference/blood
-```
-
-See [the reasoned authoring loop](docs/authoring-loop.md) and the six-iteration
+The August authoring loop (an authored candidate compiled, gated, decompiled
+and probed as one evidence packet) is retired; its record is
+[docs/history/authoring-loop.md](docs/history/authoring-loop.md) and the six-iteration
 [cliffside monastery pilot](projects/reasoned-authoring-v1/reports/comparison.md).
 
 A level can also be written and read as a tree of named parts, each owning its
@@ -207,8 +201,6 @@ python -m bloodmap observe maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/
 python -m bloodmap extract-closed maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/fragment.json
 python -m bloodmap attach maps/blood/campaign/E1M2.MAP work/fragment.json \
   --destination-wall 120 --fragment-wall 3 -o work/attached.MAP
-python -m bloodmap design-first-room --report work/first-room.json \
-  -o work/first-puzzle-room.MAP
 python -m experiments.bb2_reconstruction_v3 --report reports/BB2-v3-build-report.json \
   -o work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
@@ -249,7 +241,6 @@ python -m tools.suite              # every test module, a process each: about a 
 - [The module map: every module and tool, one line each](docs/module-map.md)
 - [What is in the toolkit, and when to reach for it](docs/toolkit-index.md)
 - [The library of Blood: tiles, places, studies, ideas](knowledge/blood/LIBRARY.md)
-- [Reasoned authoring loop](docs/authoring-loop.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Structured visual observation through XMapEdit](docs/visual-observation.md)
 - [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
@@ -280,7 +271,6 @@ python -m tools.suite              # every test module, a process each: about a 
 - [Blood v7 MAP format](docs/format.md)
 - [Room fragments](docs/fragments.md) and [fragment composition](docs/composition.md)
 - [Level decompiler](docs/level-decompiler.md)
-- [Design probes](docs/design-probes.md)
 - [Duke mechanisms lowered to Blood](docs/duke-blood-mechanisms.md) and [Duke's moving sectors](docs/duke-moving-sectors.md)
 - [The NBlood playtest bot](docs/nblood-autonomous-playtest-bot.md)
 - [Local reference oracles](docs/reference-oracles.md)

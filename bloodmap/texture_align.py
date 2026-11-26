@@ -345,9 +345,10 @@ def align_flights(level: Any, art_sizes: dict[int, tuple[int, int]], sectors: An
     """Carry the side walls' pattern on from step to step down the flights these sectors are.
 
     A flight's treads are sectors of their own, so a wall beside them is cut at every tread and
-    hung from a roof that steps down with them: by default its pattern restarts at each. Blood's
-    long flights carry it on both ways (E3M1 s79, E3M7 s88, E6M5 s305): along by what the last
-    wall used up, and down by how far the roof came. Returns how many walls were re-panned.
+    hung from a roof that steps down with them: by default its pattern restarts at each. E6M5's
+    flight (s304, s305, s314) carries it on along, each wall's x_panning the last one's plus
+    x_repeat * 8 (finding `wall-courses-run-on-down-a-flight`); this also carries it down by how
+    far the roof came. Returns how many walls were re-panned.
     """
     def fields(item: Any) -> dict[str, Any]:
         return item["fields"] if isinstance(item, dict) else item.fields

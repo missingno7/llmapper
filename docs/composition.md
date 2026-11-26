@@ -185,12 +185,6 @@ python -m bloodmap attach destination.MAP fragment.json \
 python -m bloodmap pathway work/separated.MAP \
   --wall-a 120 --wall-b 845 --via 4096,8192 \
   --report work/pathway.json -o work/connected.MAP
-
-python -m bloodmap recipe recipes/e1m2-crossroads.json \
-  --source-dir maps/blood/campaign --report work/mashup.json -o work/e1m2-crossroads.MAP
-
-python -m bloodmap recipe recipes/e1m2-remix.json \
-  --source-dir maps/blood/campaign --report work/remix.json -o work/e1m2-remix.MAP
 ```
 
 A deterministic independent-engine oracle now verifies that a decoupled wall-push

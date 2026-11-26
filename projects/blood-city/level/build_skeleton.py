@@ -1,17 +1,20 @@
-"""Phase 1c: derive the L2 massing skeleton from the L1 schematic plan.
+"""Gravesend's build: the city declared as a level program, then finished through the shared stages.
 
-This file is a *generator*, not a level: it reads level/city_plan.py (L1)
-and level/resolution.py (the class->units table) and emits the massing
-geometry through the levelprog grammar -- district assemblies with inherited
-style, one street region per district with blocks carved as holes (the E2M6
-precedent), the sewer at depth under Foundry Ward as declared true-ROR
-stacks, and the two sewer entries walkable.  No facades, no interiors, no
-dressing.  A hand edit to its output is a bug by definition
-(references/design-layers.md).
+`build()` declares the city: the districts from `city_plan.py` (L1) and
+`resolution.py` (the class-to-units table), each with its streets and blocks,
+the sewer and the railway under them, and every place the level's own
+modules lay. `main()` then takes the layout to a map with
+`bloodmap.finish.Finish`, as any level does: wire, compile, align, the gates,
+the overlays, the light, tidy, write. Between those stages it runs the passes
+that are Gravesend's own (its facades, its glass, its apertures, its sounds,
+its measurements), each marked by a `STAGE` line that
+`python projects/blood-city/level/status.py --stages` lists with its time.
+A hand edit to the map is a bug by definition.
 
     python projects/blood-city/level/build_skeleton.py
 
-writes level/city-skeleton.MAP and refreshes level/blood-city-current.MAP, and level/gravesend.MAP, the one that is played (`release.py`).
+writes level/blood-city-current.MAP (what the tools read) and level/gravesend.MAP,
+the one that is played (`release.py`), and reports/STATUS.md.
 """
 
 from __future__ import annotations
@@ -1840,29 +1843,34 @@ def main() -> int:
 
     STAGE("compile",
           "the layout becomes sectors, walls and sprites")
-    # The light bomb is retired here (the owner, 2026-11-24): the light stage
-    # writes the shades at the end, and of the 734 walls the bomb still
-    # decided all but 21 were openings with nothing drawn on them.
-    layout.lit_when_finished = LIGHTING == "model"
-    _idle = _wires.close()
-    if _idle:
-        print("wires in the plan that nothing declared an end of:", _idle)
-    ctx["manifest"]["wires"] = {"declared": circuit.apply(), "idle": _idle}
+    # Every stage the shared sequence has (wire, compile, align, the gates, the
+    # overlays, the light, tidy, write) is `bloodmap.finish.Finish`'s; this build
+    # calls them in its order and puts its own passes between. What a stage does,
+    # and what refuses the map, is the library's, the same as any other level's.
+    from bloodmap.finish import Finish
+
+    fin = Finish(layout, circuit=circuit, manifest=ctx["manifest"])
+    manifest = fin.manifest
+    fin.wire()
+    if manifest["wires"]["idle"]:
+        print("wires in the plan that nothing declared an end of:", manifest["wires"]["idle"])
     print("wires declared:", [f"{row['name']} on {row['channel']}"
-                              for row in ctx["manifest"]["wires"]["declared"]])
+                              for row in manifest["wires"]["declared"]])
     if GROUND_SHADOWS:
         from bloodmap import sunlight as _sun_ground
-        ctx["manifest"]["ground_shadows"] = _sun_ground.cast_shadows(
+        manifest["ground_shadows"] = _sun_ground.cast_shadows(
             layout, shade=GROUND_SUN[0], sunlit=GROUND_SUN[1])
-        print("ground shadows:", {k: v for k, v in ctx["manifest"]["ground_shadows"].items()
+        print("ground shadows:", {k: v for k, v in manifest["ground_shadows"].items()
                                    if k not in ("skipped", "shadowed")})
     from bloodmap import refit
     print("moved to the cell it stands in:", refit.settle(layout))
-    compiled = layout.compile()
+    # The light bomb is retired here (the owner, 2026-11-24): the light stage
+    # writes the shades at the end, and of the 734 walls the bomb still
+    # decided all but 21 were openings with nothing drawn on them.
+    compiled = fin.compile(lit=LIGHTING == "model")
     # Held for `citytree --cost`: later passes mutate this level in
     # place, so the reference stays current.
     LAST_BUILD = (program, compiled)
-    ctx["manifest"]["lighting"] = dict(compiled.lighting_report)
     STAGE("faces",
           "what every wall wears: facades, shop glass, the landmark's stone, the sea")
     # Per-building facade variation (E3M1 runs 13 tiles over its street
@@ -1896,9 +1904,7 @@ def main() -> int:
     #: will not re-derive. Without it the two passes overwrote each other and
     #: the order decided per record: fifteen of these 24 kept the scale
     #: `glaze` asked for and nine got the facade's.
-    from bloodmap.surface import RecordOwner
-
-    records = RecordOwner()
+    records = fin.records
     report = glass.glaze(compiled.level, spans, owner="insert:shop_glass",
                          records=records, fit=True)
     #: E6M1 holds its glass in a 512-deep display recess with a sill 8192 up
@@ -2030,9 +2036,7 @@ def main() -> int:
     # the ones where a long facade was split to hang an entrance off it.
     # Runs first, then floor-anchoring for the walls that tile unevenly.
     # Must come after facade_pass, which decides the picnums.
-    from bloodmap.texture_align import wall_art_sizes
-    from bloodmap.texture_frame import frame_map, frame_raised_solids
-    art_sizes = wall_art_sizes("reference/blood")
+    art_sizes = fin.art_sizes
     # ONE FRAME PER RUN, resolved in closed form from world coordinates.
     #
     # This replaces `align_wall_runs` and the floor-anchored `align_wall_
@@ -2056,11 +2060,7 @@ def main() -> int:
     # never really in conflict: a run whose U-ORIGIN is a world point gives the
     # district-wide bay grid AND accumulates across its own doorways. So the
     # street fronts are named here and `frame_map` gives them a world u0.
-    district_walls = set()
-    for region_id in ctx["street_regions"]:
-        allocation = compiled.allocations.get(region_id)
-        if allocation is not None:
-            district_walls.update(int(w) for w in allocation.wall_ids)
+    _district = set(ctx["street_regions"])
     #: ...and every material STANDS ON ITS FLOOR (owner, 2026-11-17: "be
     #: careful about meaningful texture alignment"). The run's vertical
     #: origin used to be its first wall's peg, an accident of wall order: the
@@ -2068,25 +2068,17 @@ def main() -> int:
     #: ground storey began wherever the run did.
     #: ...and a wall drawn in two bands hangs both from its own ceiling,
     #: BEFORE the frames read where each wall hangs from.
-    from bloodmap.texture_frame import peg_split_bands
-    _bands = peg_split_bands(compiled.level, records=records,
-                             owner="surface:facade")
-    ctx["manifest"]["split_bands"] = {k: v for k, v in _bands.items()
-                                      if k != "walls"}
-    print("walls in two bands hung from their own ceiling:",
-          ctx["manifest"]["split_bands"])
-    print("texture frames:", frame_map(compiled.level, art_sizes=art_sizes,
-                                       world_phase=district_walls,
-                                       records=records, owner="surface:facade",
-                                       v_anchor="floor"))
+    # Crate tops start their tile at the crate's own corner (`frame_raised_solids`,
+    # in the shared stage): 71% of the campaign's 110 raised crate tops do; this
+    # map's eleven did not, so a 1024 box off the 1024 world grid wore a cut tile.
+    fin.align(world_phase=_district.__contains__)
+    print("walls in two bands hung from their own ceiling:", manifest["split_bands"])
+    print("texture frames:", manifest["texture_frames"])
+    print("crate tops:", manifest["raised_solids"])
     from bloodmap.texture_align import align_flights
     print("flights whose walls run on:", align_flights(compiled.level, art_sizes, [
         int(a.sector_id) for r, a in compiled.allocations.items() if r.startswith("region:pump_station_spiral:")]))
     print("record owners:", records.report())
-    # Crate tops start their tile at the crate's own corner. 71% of the
-    # campaign's 110 raised crate tops do; this map's eleven did not, so a
-    # 1024 box off the 1024 world grid wore a cut tile.
-    print("crate tops:", frame_raised_solids(compiled.level, art_sizes=art_sizes))
     print("carriage records kept:", _station_dress.keep(compiled.level))
     print("harbour flanks aligned:", l3_market.flank_align(
         compiled.level, GRADE, art_sizes))
@@ -2113,7 +2105,7 @@ def main() -> int:
         and not region_id.startswith("region:gravesend/sewer/ghost_station/")}
     _mouths = sewerkit.line_mouths(compiled.level, _sewer_sectors)
     print("sewer mouths:", _mouths)
-    ctx["manifest"]["sewer_mouths"] = _mouths
+    manifest["sewer_mouths"] = _mouths
 
     # Openings, against the grammar's own audit.  `frame_z_doors` above
     # builds the reveals; this is the other half -- reading the finished map
@@ -2145,17 +2137,17 @@ def main() -> int:
     from bloodmap.rules import art_sizes as _art_sizes
     print("window niche walls:", _windows.paint(compiled.level, compiled))
     print("window glass and bars:", _windows.glaze(compiled.level))
-    ctx["manifest"]["doorways"] = apertures.neutral(compiled.level)
-    print("doorways in one frame:", ctx["manifest"]["doorways"])
+    manifest["doorways"] = apertures.neutral(compiled.level)
+    print("doorways in one frame:", manifest["doorways"])
     print("gallows treads:", gallows.finish(compiled.level, compiled))
     import facade_bays
-    ctx["manifest"]["facade_bays"] = facade_bays.apply(compiled.level)
-    print("facades in whole windows:", ctx["manifest"]["facade_bays"])
+    manifest["facade_bays"] = facade_bays.apply(compiled.level)
+    print("facades in whole windows:", manifest["facade_bays"])
     print("shelf frames:", _fixtures.frame_shelves(
         compiled.level, compiled, layout, _art_sizes()))
-    disk = compiled.level.to_disk_map()
+    disk = fin.to_disk()
     import motion_sounds
-    ctx["manifest"]["motion_sounds"] = motion_sounds.apply(disk, compiled.allocations, circuit)
+    manifest["motion_sounds"] = motion_sounds.apply(disk, compiled.allocations, circuit)
     # Wall sprites, as rectangles on the surfaces they hang from.  This was
     # 18.86 clashing pairs per 100 against a campaign 0.0-8.0, with 26
     # sprites entirely hidden behind another where no campaign map has more
@@ -2169,24 +2161,28 @@ def main() -> int:
           f"{_wall_report['clashing_pairs']} clashing pairs "
           f"({_wall_report['clash_rate_per_100_wall_sprites']} per 100), "
           f"{_wall_report['fully_hidden']} fully hidden")
-    ctx["manifest"]["wall_sprites"] = {
+    manifest["wall_sprites"] = {
         k: v for k, v in _wall_report.items() if k != "worst"}
     _after = apertures.report(disk)
     print("apertures after:", _after)
-    ctx["manifest"]["apertures"] = _after
+    manifest["apertures"] = _after
     STAGE("gates",
           "nothing is built: rules, read-back, swept closure, sprite fit, character")
-    # The corpus-graded rule registry, whose severities derive from measured
-    # campaign violation rates rather than from anyone's opinion.  It was
-    # sitting unused: `evaluate` returns nothing at all unless `rules_blood`
-    # has been imported, because the registry is populated by that import's
-    # side effect -- so "0 diagnostics" was silence, not a clean map.
-    import bloodmap.rules_blood            # noqa: F401  (registers the rules)
-    from bloodmap.rules import RULES
-    from bloodmap.rules import evaluate as _evaluate_rules
-    _diags = _evaluate_rules(disk)
+    # The shared gates (`Finish.hold`): the rule registry, every mechanism swept
+    # through its travel with what it drags, the map read back against what every
+    # region declared, every sprite as the engine draws it, tile uses nobody has
+    # shown, the wiring read back. A rule error, a broken sweep, a read-back
+    # difference or wiring that differs writes no map. They run HERE, after the
+    # facade passes have split walls and the lintel and wall-sprite passes have
+    # edited the level, because the gate inside `layout.compile()` looked at the
+    # geometry before all of that.
+    if not fin.hold(map_name="blood-city-current.MAP"):
+        print("FAIL: the map was not written:", "; ".join(fin.refused[:5]))
+        return 1
+    _diags = fin.diags
     _by_sev = collections.Counter(d.severity for d in _diags)
     _by_code = collections.Counter((d.severity, d.code) for d in _diags)
+    from bloodmap.rules import RULES
     # The authoring-loop law: read every mechanism back through the same
     # conformance the zoo uses and compare it against what it was meant to
     # be. A deviation is a finding about the level or about our template, and
@@ -2206,67 +2202,21 @@ def main() -> int:
         _curtains.append({"sector": _index, "measured": _found.measured,
                           "deviations": [str(d) for d in _found.deviations]})
     if _curtains:
-        ctx["manifest"]["curtain_conformance"] = _curtains
+        manifest["curtain_conformance"] = _curtains
         for _read in _curtains:
             print(f"curtain s{_read['sector']}: {_read['measured']}")
             for _line in _read["deviations"]:
                 print(f"    DEVIATES {_line}")
 
-    # The swept-state gate over the FINAL disk, DragPoint closure included.
-    # `layout.compile()` ran it before the facade passes split walls, and it
-    # sweeps everything a motion DRAGS (triggers.cpp:817-854 walks nextwall,
-    # so the auditorium's hole loop moves with the curtain's tips). A
-    # neighbour that turns inside out at any pose fails the build here.
-    from bloodmap.swept_state import run as _swept_run
-    _swept = _swept_run(disk)
-    ctx["manifest"]["swept_closure"] = {
-        "mechanisms": _swept["mechanisms"], "sound": _swept["sound"],
-        "deforming_neighbours": _swept["deforming_neighbours"],
-        "problems": _swept["problems"], "notes": _swept["notes"]}
+    _swept = manifest["swept"]
     print(f"swept closure: {_swept['mechanisms']} mechanisms, "
           f"{_swept['deforming_neighbours']} deform a neighbour, "
           f"{len(_swept['problems'])} problem(s)")
-    for _line in _swept["problems"]:
-        print(f"    BREAKS {_line}")
-    if _swept["problems"]:
-        print("FAIL: a mechanism breaks geometry it drags; the map was not written")
-        return 1
+    from bloodmap.readback import lost_tiles_as_differences
 
-    # THE AUTHORING-LOOP LAW, over every mechanism this level declared.  The
-    # curtain check above asks one construct one question; this reads the
-    # FINISHED disk back against what every region declared -- sector type,
-    # XSECTOR, declared motion set, the DragPoint closure over the whole
-    # travel, the fabric's visible band, and the state pair -- and refuses
-    # the build on a difference.  It runs HERE, after the facade passes have
-    # split walls and after the lintel and wall-sprite passes have edited the
-    # compiled level, because the gate inside `layout.compile()` looked at
-    # the geometry before all of that.
-    from bloodmap.readback import lost_tiles_as_differences, read_back
-    from bloodmap.readback import sentences_from_layout
-
-    _claims = sentences_from_layout(compiled, layout=layout)
-    _checked = read_back(disk, _claims, map_name="blood-city-current.MAP")
-    ctx["manifest"]["readback"] = _checked.to_dict()
-    print(_checked.report())
-    if not _checked.agrees:
-        print(f"FAIL: {len(_checked.differences)} read-back difference(s); "
-              f"the map was not written")
-        return 1
-
-    print(f"rules: {len(_diags)} diagnostics {dict(_by_sev)}")
     for (_sev, _code), _n in _by_code.most_common():
         if _sev in ("error", "warning"):
             print(f"    {_sev:8s} {_code:38s} {_n}")
-    ctx["manifest"]["rules"] = {
-        "total": len(_diags),
-        "by_severity": dict(_by_sev),
-        "by_code": {f"{a}:{b}": c for (a, b), c in _by_code.items()},
-        # Where each error and warning is, so `status.py` can hand an agent
-        # the finding and not only the count of them.
-        "open": [{"severity": d.severity, "code": d.code, "at": d.location,
-                  "says": d.message}
-                 for d in _diags if d.severity in ("error", "warning")],
-    }
     # The rendering law, called out by name rather than left inside the
     # diagnostic count.  `bloodmap.render_slots` says which band the engine
     # draws each wall tile on; a tile the map authors on walls and shows on
@@ -2276,7 +2226,7 @@ def main() -> int:
     # and recorded, not fatal, because five of those thresholds are still
     # outstanding -- see reports/owner-review-queue.md.
     _lost = RULES["wall-tile-is-drawn-somewhere"].check(disk)
-    ctx["manifest"]["lost_wall_tiles"] = {
+    manifest["lost_wall_tiles"] = {
         "population": _lost.population,
         "tiles": [v.location for v in _lost.violations],
     }
@@ -2289,7 +2239,7 @@ def main() -> int:
     # the owner (reports/owner-review-queue.md item 9); the moment that is
     # decided, this list belongs above the `return 1`.
     _lost_diffs = lost_tiles_as_differences(_lost, mechanism="(whole map)")
-    ctx["manifest"]["lost_wall_tiles"]["as_readback_differences"] = [
+    manifest["lost_wall_tiles"]["as_readback_differences"] = [
         str(_d) for _d in _lost_diffs]
     print(f"READ-BACK DIFF (non-blocking, owner-queue item 9): "
           f"{len(_lost.violations)} of {_lost.population} authored wall "
@@ -2303,63 +2253,30 @@ def main() -> int:
         chr(10).join(_lines), encoding="utf-8")
     # Does every sprite fit where it was put, as the engine DRAWS it? The
     # owner found sunk goods, a statue through a shelf's head and letters
-    # written through pictures by walking the map; nothing here could have
-    # said so (`tools/sprite_fit.py`, thresholds from the town maps).
-    from tools import sprite_fit as _fit
-    _lint = _fit.lint(disk)
-    ctx["manifest"]["sprite_fit"] = {
-        "rates": _lint["rates"],
-        **{kind: [{k: row[k] for k in ("sprite", "tile", "sector")
-                   if k in row} for row in _lint[kind]]
-           for kind in ("sunk", "through", "squeezed", "lifted")},
-        "overlaps": [{"sprites": [o["a"], o["b"]], "tiles": list(o["tiles"]),
-                      "sector": o["sector"]} for o in _lint["overlaps"]],
-        "flat_overlaps": [{"sprites": [o["a"], o["b"]],
-                           "tiles": list(o["tiles"]), "sector": o["sector"]}
-                          for o in _lint["flat_overlaps"]],
-        "sunk_actors": _lint["sunk_actors"],
-        "on_travelling_floor": _lint["on_travelling_floor"]}
-    # What this map does that the campaign and the owner's maps never show
-    # (`bloodmap.tile_contexts.novel`): each is a discovery to catalogue
-    # with `tools.tile_contexts record`, or a mistake to fix. The owner,
-    # 2026-11-20: "agents should be able to discover things, catalogise them
-    # and easily browse them".
-    from bloodmap import tile_contexts as _contexts
-    _novel = _contexts.novel(disk)
-    _new = [r for r in _novel if r["evidence"] is None]
-    _outside = [r for r in _novel if r["evidence"] is not None]
-    ctx["manifest"]["tile_contexts"] = {
-        "new": [{k: r[k] for k in ("tile", "slot", "place", "count", "first")}
-                for r in _new],
-        "outside": [{"tile": r["tile"], "slot": r["slot"], "place": r["place"],
-                     "count": r["count"], "source": r["evidence"]["source"],
-                     "maps": r["evidence"].get("maps")} for r in _outside],
-        "misfit": [{"tile": r["tile"], "slot": r["slot"], "place": r["place"],
-                    "count": r["count"], "first": r["first"], "said": r["misfit"]}
-                   for r in _novel if r.get("misfit")]}
-    print("tile uses nobody has shown:", len(_new), "shown only outside the campaign:",
-          len(_outside), "(python -m tools.tile_contexts discover <MAP>)")
-    print("decoration on a travelling floor:",
-          len(_lint["on_travelling_floor"]))
-    print("sprite fit:", _lint["rates"], "overlapping pairs:",
-          len(_lint["overlaps"]), "flat pairs:", len(_lint["flat_overlaps"]),
-          "sunk actors:", len(_lint["sunk_actors"]))
-    from tools import catalog as _catalog
-    ctx["manifest"]["directional_floors"] = _catalog.directional_floor_faults(disk)
-    print("floors laid across their run:", ctx["manifest"]["directional_floors"])
-    print("papers and boards hung on no wall:", _lint.get("unbacked", []))
+    # written through pictures by walking the map; the shared gate says so now
+    # (`bloodmap.sprite_fit`, thresholds from the town maps). What this map does
+    # that the campaign and the owner's maps never show is in the same gates
+    # (`bloodmap.tile_contexts.novel`): each is a discovery to catalogue with
+    # `tools.tile_contexts record`, or a mistake to fix.
+    _fit = manifest["sprite_fit"]
+    print("tile uses nobody has shown:", len(manifest["tile_contexts"]["new"]), "shown only outside the campaign:",
+          len(manifest["tile_contexts"]["outside"]), "(python -m tools.tile_contexts discover <MAP>)")
+    print("decoration on a travelling floor:", len(_fit["on_travelling_floor"]))
+    print("sprite fit:", _fit["rates"], "overlapping pairs:", len(_fit["overlaps"]), "flat pairs:",
+          len(_fit["flat_overlaps"]), "sunk actors:", len(_fit["sunk_actors"]))
+    print("floors laid across their run:", manifest["floors_across"])
+    print("papers and boards hung on no wall:", _fit["unbacked"])
     import character as _character
     _sheet = _character.sheet(disk)
-    # The wiring read back off the finished map with the campaign's reader:
-    # where it and the declarations differ, what is wired and can never
-    # send, and every channel nobody declared the purpose of.
-    _wires = circuit.read_back(compiled, disk)
-    ctx["manifest"]["wires"].update(_wires)
+    # The wiring read back off the finished map with the campaign's reader
+    # (in the shared gates): where it and the declarations differ, what is
+    # wired and can never send, and every channel nobody declared the purpose of.
+    _wires = manifest["wires"]
     print(f"wires: {len(_wires['wires'])} declared, "
           f"{'agree' if _wires['agrees'] else 'DISAGREE'} with the map; "
           f"{len(_wires['undeclared'])} channel(s) nobody declared; "
           f"{len(_wires['silent'])} sender(s) that can never send")
-    ctx["manifest"]["character"] = _sheet
+    manifest["character"] = _sheet
     for _name, _row in _sheet["places"].items():
         print(f"character: {_name}: {_row['layer_count']} layers "
               f"(campaign p25 {_row['campaign_p25']}, p50 "
@@ -2380,26 +2297,12 @@ def main() -> int:
     # gate has seen each region whole (`bloodmap.overlays`). Every other
     # sector keeps its index. The cut is then held to the same gates: it may
     # add no rule warning or error and break no mechanism's sweep.
-    _overlay_report = {}
-    if layout.overlays:
-        from bloodmap import overlays as _overlays
-        _overlay_report = _overlays.lay(disk, compiled)
-        _cut_diags = _evaluate_rules(disk)
-        _cut_by = collections.Counter((d.severity, d.code) for d in _cut_diags
-                                      if d.severity in ("error", "warning"))
-        _was_by = collections.Counter((d.severity, d.code) for d in _diags
-                                      if d.severity in ("error", "warning"))
-        _added = _cut_by - _was_by
-        _cut_swept = _swept_run(disk)
-        print("overlays laid:", {k: v for k, v in _overlay_report.items()
-                                 if k not in ("parent", "refused")},
-              "refused:", len(_overlay_report["refused"]))
-        if _added or _cut_swept["problems"]:
-            print("FAIL: the overlays added", dict(_added), "and broke",
-                  _cut_swept["problems"], "; the map was not written")
-            return 1
-        ctx["manifest"]["overlays"] = {
-            k: v for k, v in _overlay_report.items() if k != "parent"}
+    if not fin.cut_overlays():
+        print("FAIL: the overlays broke the map; it was not written")
+        return 1
+    if "overlays" in manifest:
+        print("overlays laid:", {k: v for k, v in manifest["overlays"].items() if k != "refused"},
+              "refused:", len(manifest["overlays"]["refused"]))
     # THE LIGHT ON THE FACES (owner, 2026-11-20: "there is no real direction
     # of natural light and shadows in the city exterior"). Last, so nothing
     # after it repaints a wall. `bloodmap.sunlight` says what the campaign
@@ -2408,52 +2311,34 @@ def main() -> int:
     # of 23 views; the second, at a step of 8 on facades at shade 9, was
     # invisible. The owner asked for it rebuilt at the measured scale.
     from bloodmap import sunlight as _sun
-    _lit_parent: dict = {}
     if LIGHTING == "model":
-        # THE LIGHT AS A SCENE (`bloodmap.light_stage`), from the finished
-        # map: which room each sector is in comes from the compiled layout,
-        # its kind of light from `lights.py`. It cuts only sectors that
-        # carry nothing but their shade, and is held to the same gates.
-        from bloodmap import light_stage as _light_stage
+        # THE LIGHT AS A SCENE (`bloodmap.light_stage`, the shared stage), from
+        # the finished map: which room each sector is in comes from the compiled
+        # layout, its kind of light from `lights.py`. It cuts only sectors that
+        # carry nothing but their shade, and is held to the same gates. Before
+        # its pieces are joined again, the floors under what hangs over them are
+        # evened (the fangs, the gallows stair).
         import lights as _lights
         import cabal_rite as _cabal
         import underpass as _underpass
-        _region_of = {_a.sector_id: _rid for _rid, _a in sorted(compiled.allocations.items())}
-        for _piece, _parent in sorted(_overlay_report.get("parent", {}).items()):
-            _region_of[int(_piece)] = _region_of.get(int(_parent), "")
-        _was_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
-                                      if d.severity in ("error", "warning"))
-        _lit = _light_stage.run(disk, _region_of, _lights.rule_for, keep=_lights.own_light,
-                                    lamp_scale=_lights.lamp_scale, room_key=_lights.room_key,
-                                    groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled)
-                                    + _underpass.light_groups(compiled) + shot_lamps.light_groups(compiled))
+
+        def _even(lit_disk, lit_compiled):
+            return {"fangs": _cabal.even(lit_disk, lit_compiled), "gallows_stair": gallows.even(lit_disk, lit_compiled)}
+
+        _ok = fin.light(_lights.rule_for, before_merge=_even, keep=_lights.own_light,
+                        lamp_scale=_lights.lamp_scale, room_key=_lights.room_key,
+                        groups=_phantom_finish.light_groups(compiled) + _cabal.light_groups(compiled)
+                        + _underpass.light_groups(compiled) + shot_lamps.light_groups(compiled))
+        _lit = manifest["light_stage"]
+        _lit["default_rooms"] = _lights.unnamed(_lit["rooms"])
         print("lamps that switch:", _lit["switched"])
-        print("floors under fangs evened:", _cabal.even(disk, compiled))
-        print("gallows stair evened:", gallows.even(disk, compiled))
-        _cut_parent = {int(k): int(v) for k, v in _overlay_report.get("parent", {}).items()}
-        _lit_parent = {int(k): _cut_parent.get(int(v), int(v)) for k, v in _lit["parent"].items()}
-        # pieces that came out alike are one again, before the gates look
-        from bloodmap import tidy as _tidy
-        _merged = _tidy.merge_alike(disk, int(_lit["sectors_before"]))
-        _into = _merged.pop("into")
-        _lit_parent = {_into[k]: v for k, v in _lit_parent.items() if _into[k] >= int(_lit["sectors_before"])}
-        _lit.update(sectors=len(disk.sectors), walls=len(disk.walls))
-        ctx["manifest"]["merged"] = _merged
-        print("pieces made one again:", _merged)
-        _lit_by = collections.Counter((d.severity, d.code) for d in _evaluate_rules(disk)
-                                      if d.severity in ("error", "warning"))
-        _lit_added = _lit_by - _was_by
-        _lit_swept = _swept_run(disk)
-        _unnamed = _lights.unnamed(_lit["rooms"])
-        ctx["manifest"]["light_stage"] = {
-            **{k: v for k, v in _lit.items() if k != "parent"},
-            "pieces": len(_lit_parent), "default_rooms": _unnamed}
+        print("floors evened before the pieces join:", _lit["before_merge"])
+        print("pieces made one again:", manifest["merged"])
         print("light stage:", {k: _lit[k] for k in ("sectors_before", "sectors", "walls_before",
                                                      "walls", "sprites_before", "sprites")},
-              "rooms lit:", len(_lit["rooms"]), "by the default:", _unnamed or "none")
-        if _lit_added or _lit_swept["problems"]:
-            print("FAIL: the light stage added", dict(_lit_added), "and broke",
-                  _lit_swept["problems"], "; the map was not written")
+              "rooms lit:", len(_lit["rooms"]), "by the default:", _lit["default_rooms"] or "none")
+        if not _ok:
+            print("FAIL: the light stage broke the map; it was not written")
             return 1
         _measured = _sun.measure(disk)
         _light = {"before": _measured, "after": _measured}
@@ -2462,7 +2347,7 @@ def main() -> int:
     else:
         _measured = _sun.measure(disk)
         _light = {"before": _measured, "after": _measured}
-    ctx["manifest"]["sunlight"] = {
+    manifest["sunlight"] = {
         "mode": LIGHTING,
         **{k: v for k, v in _light.items() if k not in ("before", "after")},
         "before": _light["before"], "after": _light["after"]}
@@ -2471,50 +2356,34 @@ def main() -> int:
     # the light's cuts split the fronts again, each piece rounded to a whole repeat of its own
     print("fronts drawn whole again:", {k: v for k, v in facade_bays.apply(disk).items() if k != "blank"})
     # what the passes split and nothing needs any more (the owner, 2026-11-25: "reducing number of walls where it makes sense")
-    from bloodmap import tidy as _tidy
-    ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("bloodmap.wallplane", fromlist=["art"]).art())
-    print("walls joined:", ctx["manifest"]["tidy"])
+    print("walls joined:", fin.tidy())
     import solidity as _solidity
-    ctx["manifest"]["solidity"] = _solidity.apply(disk)
-    print("made solid as Blood has it:", {k: sum(v.values()) for k, v in ctx["manifest"]["solidity"].items()})
+    manifest["solidity"] = _solidity.apply(disk)
+    print("made solid as Blood has it:", {k: sum(v.values()) for k, v in manifest["solidity"].items()})
     out_dir = pathlib.Path(__file__).resolve().parent
-    write_map(disk, out_dir / "city-skeleton.MAP")
-    write_map(disk, out_dir / "blood-city-current.MAP")
-    import release as _release
-    ctx["manifest"]["release"] = _release.build()
-    print("released, with what is under the city out from under it:", ctx["manifest"]["release"])
     # What each sector IS, beside the map, so `tools/whatif.py` can make a
     # variant by name ("the shop displays", "the carriageways") instead of
-    # by a list of sector numbers that changes with every build.
-    import json as _json
+    # by a list of sector numbers that changes with every build: each region's
+    # kind, the two set pieces by their layer (a piece the light cut keeps its
+    # source's names), and the shops whose windows are lit.
     import glass as _glass_tags
-    _tags: dict = {}
-    for _region_id, _region in layout.regions.items():
-        _kind = (getattr(_region, "intent", None) or {}).get("kind")
-        _allocation = compiled.allocations.get(_region_id)
-        if _kind and _allocation is not None:
-            _tags.setdefault(str(_kind), []).append(_allocation.sector_id)
-        if _allocation is not None and _region.layer == "ghost_station":
-            _tags.setdefault("phantom_terminus", []).append(_allocation.sector_id)
-        if _allocation is not None and _region.layer == "rite":
-            _tags.setdefault("cabal_rite", []).append(_allocation.sector_id)
-    # a sector the overlays cut off its region is still that region
-    for _piece, _parent in list(_overlay_report.get("parent", {}).items()) + sorted(_lit_parent.items()):
-        for _sectors in _tags.values():
-            if int(_parent) in _sectors:
-                _sectors.append(int(_piece))
+    _layers = {"ghost_station": "phantom_terminus", "rite": "cabal_rite"}
+    _tags = fin.tags(extra={
+        name: [compiled.allocations[r].sector_id for r, region in layout.regions.items()
+               if region.layer == layer and r in compiled.allocations]
+        for layer, name in _layers.items()})
     _tags["lit_shop"] = sorted({
         compiled.allocations[_front["shop"]].sector_id
         for _front in _glass_tags.FRONTS
         if _front["lit"] and _front["shop"] in compiled.allocations})
-    for _name in ("city-skeleton", "blood-city-current"):
-        (out_dir / f"{_name}.tags.json").write_text(
-            _json.dumps({k: sorted(v) for k, v in sorted(_tags.items())},
-                        indent=1), "utf-8")
+    fin.write(out_dir / "blood-city-current.MAP", tags=dict(sorted(_tags.items())))
+    import release as _release
+    manifest["release"] = _release.build()
+    print("released, with what is under the city out from under it:", manifest["release"])
     import json
     # The stages that ran, by name. Their seconds are this machine's and this
     # run's, so they go beside the suite's log and not into what is committed.
-    ctx["manifest"]["stages"] = STAGE.close()
+    manifest["stages"] = STAGE.close()
     _timings = ROOT / "work" / "blood-city-stages.json"
     _timings.parent.mkdir(exist_ok=True)
     _timings.write_text(json.dumps(STAGE.rows, indent=1) + "\n", encoding="utf-8")
@@ -2524,10 +2393,7 @@ def main() -> int:
           + ", ".join(f"{row['name']} {row['seconds']:.1f}" for row in _slow)
           + "  (python projects/blood-city/level/status.py --stages)")
     (out_dir.parents[0] / "reports" / "build-manifest.json").write_text(
-        json.dumps(ctx["manifest"], indent=2), encoding="utf-8")
-    print(f"sectors {len(disk.sectors)} walls {len(disk.walls)} "
-          f"sprites {len(disk.sprites)}")
-    print(f"wrote {out_dir / 'city-skeleton.MAP'} (+ blood-city-current.MAP)")
+        json.dumps(manifest, indent=2, default=str), encoding="utf-8")
     # Last, where it all stands, as data: every place and every open item,
     # for the agent that starts the next session knowing none of the above.
     import status as _status

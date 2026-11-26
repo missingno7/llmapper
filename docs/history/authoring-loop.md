@@ -1,5 +1,10 @@
 # Reasoned authoring loop
 
+> Retired on 2026-11-26: no level authored with it after August, and `bloodmap.levelprog`
+> with `bloodmap.finish` replaced it. Its modules (`authoring_loop`, `probes`, `probe_schema`,
+> `state_model`, `design_contract`, `counterfactual`) are in the library as of commit `7847923`;
+> its three rules for any evaluator live on in CONTRIBUTING.
+
 `bloodmap.authoring_loop` is the integration seam that turns a one-shot generator
 into an iterative one. It does not add analysis; it arranges existing analysis
 into one bounded evidence packet an external reasoning agent can act on.

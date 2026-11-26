@@ -53,8 +53,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
       "progression", "understanding", "sp_understand", "bundle", "style"]),
     ("Probes",
      "Replayable questions about a level, with explicit world state.",
-     ["experience", "probes", "probe_schema", "state_model", "counterfactual",
-      "design_contract"]),
+     ["experience"]),
     ("Semantics",
      "Mechanisms named above their native encodings, per game and across "
      "games.",
@@ -64,8 +63,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "lowers through `PlanarLayout` into `LevelIR`.",
      ["levelprog", "planar_layout", "layout", "layers", "vocabulary",
       "prefab", "arrangement", "refit", "leveltree", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
-      "overlay", "construction", "composition", "fragment", "recipe",
-      "designs"]),
+      "overlay", "construction", "composition", "fragment"]),
     ("Authoring: surfaces and light",
      "What a surface is made of, where its texture sits, and how it is lit.",
      ["surface", "surfaces", "joins", "texture_frame", "texture_align",
@@ -93,10 +91,10 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "over `knowledge/blood/`.",
      ["rules", "rules_blood", "owner_anchors", "tile_looks", "usage_kinds", "tile_contexts", "findings", "curriculum",
       "curriculum_laws", "examples", "assets", "knowledge_index"]),
-    ("Evidence loop and observation",
-     "Compile a candidate, read it back independently, look at it through "
-     "the observer, and keep the packet.",
-     ["authoring_loop", "visual", "viewplan", "viewpoints", "view_score",
+    ("Observation",
+     "Look at a map through the observer, from planned or named poses, and "
+     "say which view shows a place best.",
+     ["visual", "viewplan", "viewpoints", "view_score",
       "oracle", "workspace"]),
     ("A level project",
      "What a project is to the tools, and the order every level's map goes "

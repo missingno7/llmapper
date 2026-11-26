@@ -1,0 +1,33 @@
+{
+ "id": "a-generator-may-be-the-thing-you-see",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Blood often makes the source of an effect visible by letting the generator sprite be the thing itself: underwater weed (tile 660 or 664) that is a bubble generator (type 706 or 707), a stone face (tile 249) that is a fireball generator (703). Over the 43 campaign maps 112 generators of types 701-708 carry no invisible bit and are drawn in play; of the 139 bubble generators, 61 are visible weed. The engine hides only the trigger generator (700), so a generator that should not be seen must carry cstat 32768.",
+ "evidence": [
+  "knowledge/blood/findings/probes/audit2_drawn_generators.py over the 43 campaign maps (2026-11-26): 131 sprites of types 700-712 without the invisible bit, 112 of them 701-708: 703 x41 (34 on tile 249), 706 x33 and 707 x28 (on 660/664), 702 x4, 701 x3, 708 x3",
+  "E1M4 sprite 339: type 706 on tile 660, cstat 128, state 1, busy_time 50, data_1 10 (a weed that bubbles); NBlood/source/blood/src/triggers.cpp:2350-2363 (InitGenerator hides kGenTrigger only)"
+ ],
+ "use": "Make a bubbling weed or a spitting face a visible generator on the right tile, cstat 128 like the campaign's; give every other generator and sound sprite cstat 32768.",
+ "code": [
+  "projects/blood-city/level/underwater.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "703",
+  "706",
+  "707",
+  "bubbles",
+  "fireball",
+  "generator",
+  "weed"
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/audit2_drawn_generators.py: 131 drawn of 700-712 in 21 of 43 maps; 703 x41 (249 x34), 706 x33, 707 x28. Counted 706/707 over the campaign: 78 invisible, 61 visible on 660/664 (23+10+26+2). Read E1M4 sprite 339: 706, pic 660, cstat 128, state 1, busy 50, data_1 10. Gravesend's four (underwater.BUBBLES) copy it.",
+  "of": "8c9d820d1657"
+ }
+}

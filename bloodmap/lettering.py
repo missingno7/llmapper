@@ -54,11 +54,13 @@ LETTER_HEIGHT = 11
 #: Wall-aligned, hitscan, 128. 108 of the campaign's 132 letters.
 LETTER_CSTAT = 208
 
-#: Centre-to-centre spacing, as a multiple of a letter's drawn width.  The
-#: campaign's evenly spaced signs measure a median 1.333; 1.45 sits near the
-#: LINE pitch (1.455, `wallplane.LINE_PITCH`), which is a different spacing.
-#: The value is left as it is: changing it moves every sign in Gravesend.
-PITCH = 1.45
+#: Centre-to-centre spacing, as a multiple of a letter's drawn width: the
+#: campaign's evenly spaced signs measure a median 1.333 (150 signs,
+#: knowledge/blood/design/wall-sprites-v1.json `tracking_drawn_widths`). Until
+#: 2026-11-26 this was 1.45, which is near the LINE pitch (1.455,
+#: `wallplane.LINE_PITCH`), a different spacing; a level that wants its letters
+#: wider says so (`wallplane.text(..., tracking=)`), as Gravesend does.
+PITCH = 1.333
 
 #: The campaign's own shade for a letter.
 LETTER_SHADE = -8

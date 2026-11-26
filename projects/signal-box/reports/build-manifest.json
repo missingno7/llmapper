@@ -172,6 +172,7 @@
     "sunk_actors": [],
     "on_travelling_floor": []
   },
+  "floors_across": [],
   "tile_contexts": {
     "new": [],
     "outside": [
@@ -180,28 +181,32 @@
         "slot": "sprite_wall",
         "place": "indoors",
         "count": 6,
-        "source": "community-curated"
+        "source": "community-curated",
+        "maps": 1
       },
       {
         "tile": 49,
         "slot": "floor",
         "place": "outdoors",
         "count": 3,
-        "source": "community-curated"
+        "source": "community-curated",
+        "maps": 1
       },
       {
         "tile": 925,
         "slot": "sprite_face",
         "place": "outdoors",
         "count": 1,
-        "source": "community-curated"
+        "source": "community-curated",
+        "maps": 7
       },
       {
         "tile": 822,
         "slot": "sprite_face",
         "place": "indoors",
         "count": 1,
-        "source": "community-curated"
+        "source": "community-curated",
+        "maps": 4
       }
     ],
     "misfit": []

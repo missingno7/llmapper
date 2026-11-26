@@ -16,6 +16,7 @@ import curtains
 import doorswitch
 import wires
 from bloodmap import wallplane
+import house_letters
 from materials import INTERIORS
 from resolution import GRADE
 
@@ -563,7 +564,7 @@ def _stage_title(layout, apron):
     # DWE1M9 953/958: lamps strike the lettering and their chains disappear
     # into the stage head. The word belongs to this house.
     a, b = (OPENING[0] + 64, APRON_BACK + 96), (OPENING[2] - 64, APRON_BACK + 96)
-    wallplane.text(layout, "aldermack:stage_title", apron.region_id, a, b,
+    house_letters.text(layout, "aldermack:stage_title", apron.region_id, a, b,
                    words="ALDERMACK", size=74, palette=0, shade=-56,
                    top_z=GRADE - HEADER - 13568, over_steps=True, required=True)
     for side, x in enumerate((21136, 24944)):

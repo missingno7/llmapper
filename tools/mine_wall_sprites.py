@@ -29,7 +29,7 @@ So the audit is: group every wall-aligned sprite by the plane it lies on
 Derived: every rectangle, every overlap, every campaign rate below.
 Interpreted: nothing.
 
-    python tools/mine_wall_sprites.py projects/blood-city/level/city-skeleton.MAP
+    python tools/mine_wall_sprites.py projects/blood-city/level/blood-city-current.MAP
     python tools/mine_wall_sprites.py --corpus
 """
 
@@ -262,7 +262,7 @@ def text_geometry(paths) -> dict:
     """How far apart letters go downward, for the two reasons they do.
 
     Both numbers are spacing as a multiple of a letter's own drawn height,
-    and `lettering.PITCH` (1.45) is the sideways one that had no counterpart.
+    and `lettering.PITCH` (1.333, the campaign's; 1.45 until 2026-11-26) is the sideways one that had no counterpart.
     """
     column_maps, line_maps = collections.Counter(), collections.Counter()
     column_pitch, line_pitch = [], []
@@ -358,7 +358,7 @@ def _words(m):
 
 #: How far apart two letters may sit and still be one sign, in drawn widths.
 #: Six, because E1M4 tracks ROTTEN CANDY at 2.0 and the campaign's ordinary
-#: pitch is 1.45 -- a threshold near the pitch splits a wide-tracked sign
+#: pitch is 1.333 -- a threshold near the pitch splits a wide-tracked sign
 #: into its letters, which is what made the first version of this report
 #: eleven one-letter words where there is a carnival attraction.
 SIGN_GAP_WIDTHS = 6.0

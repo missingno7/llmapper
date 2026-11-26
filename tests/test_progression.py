@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import unittest
 
-from bloodmap.designs import build_first_puzzle_room
+from tests.puzzle_room import build_first_puzzle_room
 from bloodmap.progression import analyze_progression, classify_mechanisms, completion_witness
 
 

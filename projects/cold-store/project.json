@@ -5,7 +5,7 @@
   "kind": "level",
   "status": "live",
   "game": "blood",
-  "about": "A small cellar level begun from the starter: the proof that a level is built, looked at and tested by the shared tools alone.",
+  "about": "A small cellar level begun from the starter: the proof that a level is built, looked at and tested by the shared tools alone, and kept as their integration test (its build runs `bloodmap.finish` end to end with a keyed door, a key, foes, light and an exit; its tests run in the suite). Not meant to become a finished level.",
   "map": "level/cold-store.MAP",
   "build": "level/build.py",
   "ground_z": 0

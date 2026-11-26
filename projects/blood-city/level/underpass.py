@@ -20,6 +20,7 @@ because the street is joined to them.
 
 from __future__ import annotations
 
+import house_letters
 from bloodmap import arrangement as A, wiring
 from bloodmap.slope import SlopeSpec
 
@@ -249,12 +250,12 @@ def _hang(layout, regions) -> None:
     bill("wrestling", "bay_1", (EAST, 21.0), (EAST, 22.75), 440, 44, t=0.5)
     bill("sloth", "south", (EAST, 31.0), (EAST, 33.0), 932, 48, t=0.5)
     # the canteen upstairs advertises by the stair that comes down from its yard, and nobody has found these
-    wallplane.text(layout, "sign:underpass_ratdogs", regions["north"], (_q(43.0), _q(18.0)), (_q(45.0), _q(18.0)), words="RAT DOGS",
+    house_letters.text(layout, "sign:underpass_ratdogs", regions["north"], (_q(43.0), _q(18.0)), (_q(45.0), _q(18.0)), words="RAT DOGS",
                    style="ratdogs", height_player_heights=1.25)
     # and which way (the owner: "there should be ... arrow under it pointing to the direction like rat dogs this way"): E1M4
     # points at its own with 1042. The stair up to the yard, and the stand over it, are to the right as one reads it.
     bill("ratdogs_arrow", "north", (43.0, 18.0), (45.0, 18.0), 1042, 120, t=0.5, high=0.82, shade=-8)
-    wallplane.text(layout, "sign:underpass_missing", regions["bench"], (_q(BENCH[2]), _q(BENCH[3])), (_q(BENCH[0]), _q(BENCH[3])),
+    house_letters.text(layout, "sign:underpass_missing", regions["bench"], (_q(BENCH[2]), _q(BENCH[3])), (_q(BENCH[0]), _q(BENCH[3])),
                    words="MISSING", style="label", height_player_heights=1.35)
     # what a traveller reads: the board across from the yard's stair, and the way out at each end
     bill("board", "north", (WEST, 20.75), (WEST, 18.0), 431, 72, t=0.63, high=1.15)

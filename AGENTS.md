@@ -78,8 +78,8 @@ python -m tools.showcase --project <name> run         # which view shows each pl
 ```
 
 A build declares rooms as a program (`bloodmap.levelprog`), then
-`bloodmap.finish.finish` takes the layout to a map: compile, align, gates, light,
-tidy, write, manifest. A rule error, a mechanism that breaks what it drags, a
+`bloodmap.finish` takes the layout to a map: compile, align, gates, light, tidy,
+write (`finish`, or `Finish` with your own passes between its stages). A rule error, a mechanism that breaks what it drags, a
 read-back difference or wiring that differs writes no map; the rest is measured
 and listed in the status for you to answer. Read a project's own page
 first: [projects/blood-city/README.md](projects/blood-city/README.md) for
