@@ -5,7 +5,7 @@ Owner directive, 2026-08-27. Precedents chosen and mined by this project:
 stack) and **E1M5** (Hallowed Grounds — the campaign's church interior at
 full scale), via `tools/mine_room_grammar.py`
 ([room-grammar.json](room-grammar.json)); church *interior* prior art is the
-monastery chapel in `projects/reasoned-authoring-v1` (its aperture and
+monastery chapel of the retired authoring pilot (its aperture and
 chancel lessons transfer directly — the leaf-plus-mediation opening
 grammar, the raised chancel over the nave, the door-face rule).
 

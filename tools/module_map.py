@@ -95,7 +95,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Look at a map through the observer, from planned or named poses, and "
      "say which view shows a place best.",
      ["visual", "viewplan", "viewpoints", "view_score",
-      "oracle", "workspace"]),
+      "oracle"]),
     ("A level project",
      "What a project is to the tools, and the order every level's map goes "
      "through from its layout to the file.",
@@ -151,16 +151,10 @@ TOOLS: list[tuple[str, str, list[str]]] = [
      ["catalog", "findings", "study", "ideas", "place_character", "tile_naming_sheet",
       "critique", "tile_contexts", "wiki_levels",
       "sound_catalog", "sound_readback"]),
-    ("Decompiling an original map",
-     "From one MAP to a project: hierarchy, fact store, review packs, and "
-     "the round trip that rebuilds it.",
-     ["decompile_project", "decompile_stages", "emit_level_program",
-      "propose_areas", "review_pack", "round_trip", "fragment_map"]),
-    ("The frozen authoring pilot",
-     "Records of `projects/reasoned-authoring-v1`; kept so its evidence "
-     "still checks.",
-     ["build_precedent_packet", "mine_precedents", "precedent_detail",
-      "check_authoring_archive"]),
+    ("Reading an original map as source",
+     "One MAP as a level program to read, a piece of it cut out to look at, "
+     "and the Duke levels hidden among the community maps.",
+     ["emit_level_program", "fragment_map", "find_duke_conversions"]),
     ("Bot run analysis",
      "Reading the NBlood playtest bot's telemetry.",
      ["bot_invariants", "bot_map_render", "bot_narrative", "bot_scorecard",

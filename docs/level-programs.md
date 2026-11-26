@@ -113,9 +113,8 @@ yet and inventing one to avoid a single raw call would be the worse trade.
 ```bash
 python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP \
     --art-dir reference/blood \
-    --names projects/e2m3-decompiled/references/names.json \
     --escape-until-compiles \
-    -o projects/e2m3-decompiled/source/E2M3.py
+    -o work/E2M3.py
 ```
 
 The contrast with `bloodmap.decompiler.emit_python_source` is the point:

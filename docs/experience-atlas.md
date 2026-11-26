@@ -40,41 +40,6 @@ potential evidence rather than silently deciding that the player noticed or
 understood them. Runtime behavior, key ownership, switch order, moving geometry,
 slopes, and true visual perception remain outside Level 0.
 
-## Persistent level project
-
-Create a non-destructive design workspace:
-
-```text
-python -m bloodmap project-init projects/crypt --name "Monastery crypt" \
-  --brief-file design-brief.md
-python -m bloodmap project-evidence projects/crypt --concept rotating_bridge \
-  --status verified --claim "Source/runtime evidence supports this form" \
-  --evidence "[\"sprite:12\", \"docs/source-note\"]"
-python -m bloodmap project-decision projects/crypt \
-  --intent "Make the gate memorable" \
-  --decision "Keep it visible from the church entrance" \
-  --expected "The player forms a long-term objective"
-python -m bloodmap project-slice projects/crypt maps/blood/campaign/E1M1.MAP \
-  --sectors 22,59,120 --id precedent:approach
-```
-
-The resulting project separates:
-
-```text
-design/brief.md          user and agent intent
-design/plan.md           revisable plan
-design/decisions.jsonl   intent -> decision -> expected result
-level/                   replayable recipe and generated MAP artifact
-reports/                 validation, probes, visual/runtime reports
-memory/evidence-ledger.json  append-only semantic claims and uncertainty
-memory/design-memory.json    contextual LevelSlice precedents
-memory/episodes.jsonl        observed outcome and correction history
-```
-
-`LevelSlice` records source identity, a selected sector set, fingerprint,
-spatial context, and relevant static progression evidence. It is a contextual
-precedent, not a prefab room.
-
 ## Evidence states
 
 The evidence ledger accepts `verified`, `heuristic`, `disputed`, `superseded`,

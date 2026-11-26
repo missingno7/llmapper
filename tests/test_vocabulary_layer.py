@@ -30,8 +30,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / "reference" / "blood"
-V5 = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
-V6 = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v6.MAP"
+V5 = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
+V6 = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v6.MAP"
 
 
 class MaterialTests(unittest.TestCase):
@@ -153,11 +153,3 @@ class SameLevelTests(unittest.TestCase):
         new_points = {(int(w.fields["x"]), int(w.fields["y"])) for w in six.walls}
         lost = old_points - new_points
         self.assertLess(len(lost) / len(old_points), 0.02, "v6 dropped %s" % lost)
-
-    def test_v6_says_it_in_names(self):
-        source = (ROOT / "projects" / "reasoned-authoring-v1" / "level"
-                  / "candidate_v6.py").read_text(encoding="utf-8")
-        self.assertGreater(source.count('material("'), 30)
-        self.assertNotIn("_TILES = dict(", source)
-        self.assertNotIn("**shades(", source)
-        self.assertNotIn("**sky_shades(", source)

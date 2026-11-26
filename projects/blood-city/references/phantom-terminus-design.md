@@ -109,7 +109,7 @@ give it space; the reapers' niches want flickering light.
   nothing blocking (3 in every round before), sense 3, its faults all marked
   uncertain. It does not pass by the rule on sense and on the flooded view's
   short car ("reads as a kiosk").
-- **Ridden headless** (`experiments/moving_bodies/ride.py`): the engine carries a
+- **Ridden headless** (`projects/blood-city/experiments/moving_bodies/ride.py`): the engine carries a
   rider at the car's own speed across the body's sectors, with nothing fatal.
 - **Owed to the owner's walk:** standing on the running board during the run,
   being under the train, the flicker's pace, the reapers' lights.

@@ -13,7 +13,7 @@ from pathlib import Path
 from tests.helpers import campaign_maps
 
 ROOT = Path(__file__).resolve().parent.parent
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
 MOVING = frozenset({613, 614, 615, 616, 617})
 

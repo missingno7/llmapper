@@ -90,9 +90,8 @@ kind of fact is [architecture](architecture.md).
 
 ## Space over space — three techniques, and which to use
 
-Build's sector has one floor and one ceiling. See
-`projects/vertical-fragment/design/layer-conditions.md`, and BB4, which does all
-three in 71 sectors.
+Build's sector has one floor and one ceiling. See `bloodmap.layers` (its docstring
+is the measured account) and BB4, which does all three in 71 sectors.
 
 | The space below is… | Use | Because |
 | --- | --- | --- |

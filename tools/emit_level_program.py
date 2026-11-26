@@ -19,7 +19,7 @@ provenance points at.  The program is a *re-expression* whose fidelity is
 measured rather than assumed, and the measurement is written into the file.
 
     python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP \\
-        -o projects/e2m3-decompiled/source/E2M3.py
+        -o work/E2M3.py
 """
 
 from __future__ import annotations

@@ -305,7 +305,7 @@ class MonasteryDecorationTests(unittest.TestCase):
     the same tile appeared at four or five different sizes in one level.
     """
 
-    CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+    CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
     @unittest.skipUnless(CANDIDATE.exists(), "candidate not built")
     def test_no_decoration_is_outside_the_campaign_range(self):
@@ -364,12 +364,12 @@ class MonasteryDecorationTests(unittest.TestCase):
 
 
 @unittest.skipUnless(
-    (ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP").exists(),
+    (ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP").exists(),
     "candidate not built")
 class MonasteryMechanismTests(unittest.TestCase):
     """The mechanisms added from campaign precedent, and that they stay safe."""
 
-    CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+    CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
     @classmethod
     def setUpClass(cls):
@@ -495,12 +495,12 @@ class MonasteryMechanismTests(unittest.TestCase):
 
 
 @unittest.skipUnless(
-    (ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP").exists(),
+    (ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP").exists(),
     "candidate not built")
 class MonasteryWaterTests(unittest.TestCase):
     """The dive, built the way the campaign builds one."""
 
-    CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+    CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
     @classmethod
     def setUpClass(cls):

@@ -86,8 +86,8 @@ produce level programs must hold three properties, each of which has a test:
 3. **traceable inheritance** -- every resolved style value names the node that
    set it, and a value with no answer anywhere is refused by field name.
 
-A new constructor in the authoring vocabulary needs cross-map evidence in
-`projects/e2m3-decompiled/references/abstraction-candidates.json`: occurrence
+A new constructor in the authoring vocabulary needs cross-map evidence (mine it
+with `python -m tools.mine_structures`): occurrence
 counts across the corpus, a fit/held-out split by episode, and the residual it
 deliberately does not reproduce. A justified rejection is a valid outcome and
 belongs in `CORPUS_SUPPORT` with its reason. Historical jitter never becomes a

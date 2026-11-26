@@ -43,7 +43,7 @@ from tests.helpers import campaign_maps
 
 ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / "reference" / "blood"
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
 #: Below this a floor difference is a step, and a wall that blocks one is a wall
 #: the player has no reason to expect.

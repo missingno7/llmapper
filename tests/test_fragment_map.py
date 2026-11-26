@@ -4,8 +4,7 @@ A fragment goes to the owner to LOOK at, so the only failure that matters is
 one that makes it unopenable or unwalkable: a wall loop that leaves its
 sector, a `next_sector` pointing at a sector that is no longer there, a
 `next_wall` that is not reciprocal, or a start position outside the map. Each
-is checked here on the three fragments that are committed, and on a cut made
-fresh so the check is of the tool and not of a file.
+is checked here on a cut made fresh, so the check is of the tool and not of a file.
 """
 
 from __future__ import annotations
@@ -16,7 +15,6 @@ import unittest
 
 from tests.helpers import corpus_disk
 
-FRAGMENTS = pathlib.Path("projects/e3m1-decompiled/fragments")
 
 
 def _e3m1():
@@ -113,46 +111,3 @@ class ACutIsStillAMap(unittest.TestCase):
         self.assertIn("3, 7, 8, 45", text)
         self.assertIn("because the classes disagree", text)
 
-
-class TheThreeCommittedFragments(unittest.TestCase):
-    """The ones the owner is actually being handed."""
-
-    def test_each_one_opens_and_is_walkable(self):
-        from bloodmap.format import read_map
-
-        for name in ("shade-step", "street-width", "refused-room"):
-            path = FRAGMENTS / f"{name}.MAP"
-            if not path.exists():
-                self.skipTest(f"{name} is not committed here")
-            _walkable(self, read_map(path), name)
-
-    def test_each_one_has_a_question_and_its_original_ids(self):
-        for name in ("shade-step", "street-width", "refused-room"):
-            path = FRAGMENTS / f"{name}.md"
-            if not path.exists():
-                self.skipTest(f"{name} is not committed here")
-            text = path.read_text(encoding="utf-8")
-            self.assertIn("?", text, f"{name} asks nothing")
-            self.assertIn("their ids in the whole map", text)
-
-    def test_there_are_at_most_three(self):
-        """The protocol's limit, and a limit worth keeping: a fragment is for
-        a question no census can answer, and there are never many of those."""
-        if not FRAGMENTS.exists():
-            self.skipTest("no fragments here")
-        self.assertLessEqual(len(list(FRAGMENTS.glob("*.MAP"))), 3)
-
-
-class TheRoundTripIsNotAFragment(unittest.TestCase):
-    def test_the_rebuilt_map_keeps_the_original_indices(self):
-        """The two owner-facing products differ in exactly this way: a walk
-        keeps every id, a fragment renumbers and says so in its sidecar."""
-        from bloodmap.format import read_map
-
-        path = pathlib.Path("projects/e3m1-decompiled/round-trip/E3M1.MAP")
-        if not path.exists():
-            self.skipTest("the round trip is not committed here")
-        rebuilt, original = read_map(path), _e3m1()
-        self.assertEqual(len(rebuilt.sectors), len(original.sectors))
-        self.assertEqual(int(rebuilt.header["start_sector"]),
-                         int(original.header["start_sector"]))

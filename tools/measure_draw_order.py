@@ -13,8 +13,8 @@ Neither is about z. `wallfront` (engine.cpp:2227) never reads it.
 .. code-block:: bash
 
     python -m tools.measure_draw_order maps/blood/campaign/multiplayer/BB4.MAP
-    python -m tools.measure_draw_order projects/vertical-fragment/level/MALTX.MAP \\
-        --conflicts projects/vertical-fragment/reports/render-conflicts.json
+    python -m tools.measure_draw_order maps/blood/campaign/E3M1.MAP \\
+        --conflicts work/render-conflicts.json
 """
 
 from __future__ import annotations

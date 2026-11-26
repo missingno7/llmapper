@@ -48,7 +48,7 @@ The suite enforces the ones it can.
 
 - **Maps come from `bloodmap.corpus`.** `campaign_maps()`, `named_maps()`,
   `corpus_map_path("E3M1")`. Never glob `maps/` or match filenames.
-- **The library imports nothing from `tools/`, `experiments/` or `projects/`**, and
+- **The library imports nothing from `tools/` or `projects/`**, and
   no shared tool or test in `tests/` names a live level: a tool takes
   `--project <name>` (or `LLMAPPER_PROJECT`) and reads `projects/<name>/project.json`
   (`bloodmap.project`). A sensor lives in `bloodmap/`; a tool is its run.

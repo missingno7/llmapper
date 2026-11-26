@@ -1,8 +1,0 @@
-{
-  "$schema": "bloodmap.level-project",
-  "schema_version": 1,
-  "name": "Facade pilot",
-  "kind": "pilot",
-  "status": "frozen",
-  "about": "One street front built to learn facade grammar (2026-08)."
-}

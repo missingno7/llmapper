@@ -63,12 +63,6 @@ logic into SP design; import the step size and the low/high split.
 5. Independent `Understand(generated)` without the E2M2 target in the prompt.
 
 ```text
-python -m experiments.sp_progression_v1 \
-  -o work/SP-progression-v1.MAP \
-  --report reports/SP-progression-v1-build.json
-python -m experiments.sp_progression_v2 \
-  -o work/SP-progression-v2.MAP \
-  --report reports/SP-v2-build.json
 python -m bloodmap door-mine --maps maps/blood -o reports/blood-door-families.json \
   --signifiers reports/blood-key-signifiers.json
 ```

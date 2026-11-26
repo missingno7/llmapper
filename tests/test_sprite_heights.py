@@ -31,7 +31,7 @@ from tests.helpers import campaign_maps
 ROOT = Path(__file__).resolve().parent.parent
 ART = ROOT / "reference" / "blood"
 KNOWLEDGE = ROOT / "knowledge" / "blood" / "design" / "sprite-heights-v1.json"
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
 
 @unittest.skipUnless(KNOWLEDGE.exists() and ART.exists(), "no mined sprite heights")

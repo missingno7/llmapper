@@ -93,37 +93,23 @@ python -m bloodmap design-search work/duke.spatial-index.json \
   --region-kind mechanism_region --limit 5
 python -m bloodmap probe-route maps/blood/campaign/E1M1.MAP \
   --from-sector 22 --to-sector 0 -o work/E1M1-route.json
-python -m bloodmap project-init projects/crypt --name "Monastery crypt"
 ```
 
 The August authoring loop (an authored candidate compiled, gated, decompiled
 and probed as one evidence packet) is retired; its record is
-[docs/history/authoring-loop.md](docs/history/authoring-loop.md) and the six-iteration
-[cliffside monastery pilot](projects/reasoned-authoring-v1/reports/comparison.md).
+[docs/history/authoring-loop.md](docs/history/authoring-loop.md).
 
 A level can also be written and read as a tree of named parts, each owning its
 own geometry in its own coordinates, its own surfaces, its structures and its
 details:
 
 ```text
-python -m experiments.nested_authoring --tree
-python -m experiments.nested_authoring --room lobby
-python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP --art-dir reference/blood     --names projects/e2m3-decompiled/references/names.json -o work/E2M3.py
+python -m tools.project new my-level --title "My level"     # a level written that way, which builds as it stands
+python -m tools.emit_level_program maps/blood/campaign/E2M3.MAP --art-dir reference/blood -o work/E2M3.py
 ```
 
-See [level programs](docs/level-programs.md) and
-[E2M3 decompiled](projects/e2m3-decompiled/README.md).
-
-Three campaign maps are read further, layer by layer, into a fact store where
-every derived fact names the reader and the facts it came from. One stage
-program serves all of them:
-
-```text
-python -m tools.decompile_stages.run_all projects/e3m1-decompiled
-python -m tools.decompile_stages.query projects/e3m1-decompiled
-```
-
-See [E3M1 decompiled](projects/e3m1-decompiled/README.md).
+See [level programs](docs/level-programs.md), `projects/cold-store/level/build.py`
+and Gravesend's `projects/blood-city/level/`.
 
 A source node can ask what it actually looks like. The XMapEdit fork builds a
 small headless observer that renders a pose and reports what the renderer
@@ -131,9 +117,7 @@ painted, joined back to the node that owns it:
 
 ```text
 mingw32-make -C xmapedit/src_blood/observe
-python -m tools.observe program experiments.nested_authoring -o work/obs --structures
-python -m tools.observe decompiled maps/blood/campaign/E2M3.MAP \
-  --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
+python -m tools.observe program projects/cold-store/level/build.py -o work/obs --structures
 ```
 
 The product is JSON; a frame is written only where one is asked for. NBlood
@@ -201,8 +185,6 @@ python -m bloodmap observe maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/
 python -m bloodmap extract-closed maps/blood/campaign/E1M1.MAP --sectors 12,13 -o work/fragment.json
 python -m bloodmap attach maps/blood/campaign/E1M2.MAP work/fragment.json \
   --destination-wall 120 --fragment-wall 3 -o work/attached.MAP
-python -m experiments.bb2_reconstruction_v3 --report reports/BB2-v3-build-report.json \
-  -o work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
   --markdown work/BB2-v2-geometry-audit.md
 python -m bloodmap pattern-mine --maps maps/blood --population blood-bloodbath \
@@ -243,7 +225,6 @@ python -m tools.suite              # every test module, a process each: about a 
 - [The library of Blood: tiles, places, studies, ideas](knowledge/blood/LIBRARY.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Structured visual observation through XMapEdit](docs/visual-observation.md)
-- [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)
 - [Experience Atlas and persistent level projects](docs/experience-atlas.md)

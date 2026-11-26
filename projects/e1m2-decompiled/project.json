@@ -1,8 +1,0 @@
-{
-  "$schema": "bloodmap.level-project",
-  "schema_version": 1,
-  "name": "E1M2 decompiled",
-  "kind": "analysis",
-  "status": "frozen",
-  "about": "E1M2 taken apart into facts, fragments and a level program by tools/decompile_stages."
-}

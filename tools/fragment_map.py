@@ -1,7 +1,7 @@
 """Cut a sector set out of a map into a small playable map, with one question.
 
     PYTHONPATH=. python -m tools.fragment_map MAP -s 3 7 8 45 \
-        -o projects/e3m1-decompiled/fragments/street.MAP \
+        -o work/fragments/street.MAP \
         --question "Is this one step of shadow or two?"
 
 The owner's review channel is the walk and the FRAGMENT

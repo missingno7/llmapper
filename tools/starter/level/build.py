@@ -87,6 +87,11 @@ def program() -> tuple[LevelProgram, dict]:
     return level, {"entry": entry, "passage": passage, "door": door, "hall": hall, "landing": landing}
 
 
+def build_level():
+    """The level as a program, for the tools that read a level by its parts (`python -m tools.observe program`)."""
+    return program()[0]
+
+
 def build(write: bool = True) -> finish.Finished:
     """Build the level; `write=False` builds and holds it to the gates without touching the files (a test)."""
     level, rooms = program()

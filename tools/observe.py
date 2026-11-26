@@ -4,11 +4,12 @@ Two ways in, one packet out:
 
 .. code-block:: bash
 
-    python -m tools.observe program experiments.nested_authoring -o work/obs-nested
+    python -m tools.observe program projects/cold-store/level/build.py -o work/obs-cold-store
     python -m tools.observe decompiled maps/blood/campaign/E2M3.MAP \
-        --hierarchy projects/e2m3-decompiled/hierarchy.json -o work/obs-e2m3
+        --hierarchy work/E2M3.hierarchy.json -o work/obs-e2m3
 
-``program`` takes a module with ``build_level() -> LevelProgram``, compiles it,
+``program`` takes a module (or a level's build file) with
+``build_level() -> LevelProgram``, compiles it,
 and uses the compiler's own allocations for the join.  ``decompiled`` takes an
 original MAP and a recovered hierarchy and uses that instead.  From there the
 two paths are identical, which is the point: an original and a generated level
@@ -179,7 +180,7 @@ def observe(level: LevelIR, source_map: SourceMap, map_path: Path, out_dir: Path
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("program", "decompiled"))
-    parser.add_argument("target", help="a module with build_level(), or a MAP path")
+    parser.add_argument("target", help="a module or a build file with build_level(), or a MAP path")
     parser.add_argument("-o", "--out", required=True)
     parser.add_argument("--hierarchy", help="decompiled mode: the recovered hierarchy JSON")
     parser.add_argument("--resource-dir", default="reference/blood")
@@ -210,7 +211,17 @@ def main(argv: list[str] | None = None) -> int:
     offmap_report: dict[str, Any] | None = None
 
     if args.mode == "program":
-        module = importlib.import_module(args.target)
+        if args.target.endswith(".py"):
+            # a level's build file (`projects/<name>/level/build.py`), whose directory is not a package
+            import importlib.util
+            import sys
+
+            spec = importlib.util.spec_from_file_location(Path(args.target).stem, args.target)
+            module = importlib.util.module_from_spec(spec)
+            sys.path.insert(0, str(Path(args.target).resolve().parent))
+            spec.loader.exec_module(module)
+        else:
+            module = importlib.import_module(args.target)
         program = module.build_level()
         compiled = program.compile().compile()
         level = compiled.level

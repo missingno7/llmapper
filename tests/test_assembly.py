@@ -15,7 +15,7 @@ from tests.helpers import campaign_maps
 ROOT = Path(__file__).resolve().parent.parent
 #: The campaign population directory (corpus reorganized 2026-08-31).
 MAPS = ROOT / "maps" / "blood" / "campaign"
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
 
 def have_campaign() -> bool:

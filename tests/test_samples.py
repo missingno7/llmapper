@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parent.parent
 #: The XMapEdit sample maps are the `mechanism-tutorial` population now
 #: (corpus reorganized 2026-08-31); they were `maps/blood/samples/`.
 SAMPLES = ROOT / "maps" / "blood" / "mechanism"
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v5.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v5.MAP"
 
 
 def sample_maps() -> list[str]:

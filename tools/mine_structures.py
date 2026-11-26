@@ -5,7 +5,7 @@ belongs in the authoring vocabulary".  It never promotes anything by itself; it
 produces the numbers a promotion decision has to survive.
 
     python -m tools.mine_structures --maps maps/blood \\
-        -o projects/e2m3-decompiled/references/abstraction-candidates.json
+        -o work/abstraction-candidates.json
 
 The split is by episode, not by random sample: fitting on episodes 1-3 and
 testing on 4 and 6 asks whether an abstraction transfers to *different maps by

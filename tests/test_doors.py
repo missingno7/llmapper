@@ -12,7 +12,6 @@ from bloodmap.doors import (
     z_motion_door,
 )
 from bloodmap.planar_layout import PlanarLayout
-from experiments.sp_progression_v1 import make_layout as make_v1
 
 
 def _rect(x0: int, y0: int, x1: int, y1: int) -> list[tuple[int, int]]:
@@ -117,15 +116,6 @@ class DirectUseDoorTests(unittest.TestCase):
         self.assertEqual(fields["rx_id"], 100)
         self.assertEqual(fields["trigger_push"], 0)
         self.assertEqual(fields["trigger_wall_push"], 0)
-
-    def test_sp_v1_keyed_door_fails_wallpush_and_visual(self):
-        compiled = make_v1().compile()
-        audit = authored_gate_audit(compiled)
-        keyed = next(item for item in audit["gates"] if item["region_id"] == "region:keyed_door")
-        text = " ".join(keyed["player_facing_failures"])
-        self.assertIn("trigger_wall_push", text)
-        self.assertFalse(keyed["visual_implementation"]["visually_distinct"])
-        self.assertFalse(door_affordance_report(compiled)["ok"])
 
 
 if __name__ == "__main__":

@@ -24,7 +24,7 @@ from pathlib import Path
 from tests.helpers import campaign_maps
 
 ROOT = Path(__file__).resolve().parent.parent
-CANDIDATE = ROOT / "projects" / "reasoned-authoring-v1" / "level" / "candidate-v7.MAP"
+CANDIDATE = ROOT / "tests" / "fixtures" / "monastery" / "candidate-v7.MAP"
 
 
 class VocabularyTests(unittest.TestCase):

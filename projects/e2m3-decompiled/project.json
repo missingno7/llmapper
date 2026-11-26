@@ -1,8 +1,0 @@
-{
-  "$schema": "bloodmap.level-project",
-  "schema_version": 1,
-  "name": "E2M3 decompiled",
-  "kind": "analysis",
-  "status": "frozen",
-  "about": "E2M3 taken apart: the source of several tools' examples."
-}

@@ -8,7 +8,7 @@ from bloodmap.planar_layout import PlanarLayout, PlanarLayoutError
 STANDING = layers.STANDING_HEIGHT
 
 #: BB4's own bands, which the fragment adopts. See
-#: projects/vertical-fragment/design/layer-conditions.md.
+#: the vertical-fragment pilot's layer-conditions page (retired 2026-11-26; in git history).
 UNDERCROFT = dict(ceiling_z=16384, floor_z=49152)
 STREET = dict(ceiling_z=-24576, floor_z=8192)
 UPPER = dict(ceiling_z=-65536, floor_z=-32768)

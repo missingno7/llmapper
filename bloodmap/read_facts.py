@@ -59,7 +59,7 @@ def _sectors_of(node: dict[str, Any]) -> list[int]:
     """A node's sectors, in either shape the project produces.
 
     `decompiler.decompile_level` nests them under `sources`;
-    `tools/decompile_project`'s reading view flattens them to `sectors`. The
+    a decompilation's reading view flattens them to `sectors`. The
     census runs the readers on maps that have no project directory, so it
     hands over the first shape and the stages hand over the second.
     """

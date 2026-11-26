@@ -15,7 +15,7 @@ carried sprites stands outside its sector; 15 of Death Wish's do.
 
 ## Corpus and measurement
 
-The supplied `experiments/moving_bodies/scan.py` compared connected horizontal mechanisms
+The supplied `projects/blood-city/experiments/moving_bodies/scan.py` compared connected horizontal mechanisms
 on the same nonzero receive channel across 1,773 maps. Its 469 candidates
 contain 2,215 sectors, including marked slides and rotations that share a
 channel for reasons other than common translation. All members have Drag in
@@ -26,7 +26,7 @@ Re-reading the same corpus with `motion_sim.rigid_bodies` found 208 bodies
 and 1,101 member sectors. Four bodies are in the campaign, 30 in curated
 maps, 172 in bulk community maps and two in tutorials. Two bulk maps could
 not be parsed. The narrower sample still includes doors and machinery, so
-the counts describe rigid slides. `experiments/moving_bodies/measure.py` records the
+the counts describe rigid slides. `projects/blood-city/experiments/moving_bodies/measure.py` records the
 sector, wall and sprite measurements and the selection rules.
 
 | Property | Measurement | Precedent |
@@ -48,7 +48,7 @@ The median window half-bay of 128 is a third of a player width.
 
 The XMapEdit observer photographed local copies in the saved pose with
 enemies and pickups hidden. The tool was `tools.look_at` through
-`experiments/moving_bodies/look.py`, which points at the headless binary in the main
+`projects/blood-city/experiments/moving_bodies/look.py`, which points at the headless binary in the main
 worktree. The frame references are relative to `work/movers/`.
 
 | Body | Frames | What gives it depth |

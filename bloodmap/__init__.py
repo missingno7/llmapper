@@ -38,10 +38,6 @@ from .player_space import (
     PlayerSpaceError, PLAYER_PROFILES, compare_transition, inspect_connection,
     inspect_space, player_profile, present_space,
 )
-from .workspace import (
-    WorkspaceError, append_decision, append_episode, append_evidence, initialize_project,
-    make_level_slice, store_level_slice,
-)
 from .differential import compare_e3l1_pair, compare_hand_converted_pair, infer_xy_scale
 from .duke import (
     DukeDiskMap, DukeMapError, encode_duke_map, parse_duke_map, read_duke_map, write_duke_map,
@@ -122,7 +118,6 @@ __all__ = [
     "PatternError",
     "PlacementError",
     "ProgressionError",
-    "WorkspaceError",
     "SectorAllocation",
     "GAME_PROFILES",
     "apply_fragment_in_place",
@@ -150,9 +145,6 @@ __all__ = [
     "completion_witness",
     "blood_to_semantic_level",
     "attach_fragment",
-    "append_decision",
-    "append_episode",
-    "append_evidence",
     "compare_e3l1_pair",
     "compare_hand_converted_pair",
     "connect_portals",
@@ -193,7 +185,6 @@ __all__ = [
     "find_layout_conflicts",
     "insert_fragment",
     "infer_xy_scale",
-    "initialize_project",
     "new_level",
     "observe_level",
     "native_scale",
@@ -217,8 +208,6 @@ __all__ = [
     "run_eduke32_oracle",
     "spatial_selection_context",
     "solve_progression",
-    "make_level_slice",
-    "store_level_slice",
     "transform_fragment",
     "validate_build_ir",
     "write_map",

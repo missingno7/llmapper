@@ -5,7 +5,7 @@
  "claim": "A constructor that returns without raising is not evidence it built something useful: nine flights of stairs ran into rock from a walk, connected at one end only, and reachability and the zero-exit check both passed. A jump in a metric is a hypothesis to falsify.",
  "evidence": [
   "Monastery parapets, 2026-08-27: 72 sectors of stairs to nowhere found by eye.",
-  "projects/reasoned-authoring-v1/level/candidate_v7.py:509-515: nine flights of eight steps, 72 sectors, connected at one end only."
+  "projects/reasoned-authoring-v1/level/candidate_v7.py:509-515: nine flights of eight steps, 72 sectors, connected at one end only. (that project was retired on 2026-11-26; read it at commit e0c75f6)"
  ],
  "use": "After a constructor that connects things, assert the connection in the output (degree of the last piece).",
  "code": [],
@@ -24,7 +24,7 @@
  ],
  "checked": {
   "date": "2026-11-26",
-  "how": "Opened projects/reasoned-authoring-v1/level/candidate_v7.py:509-515: a flight of eight steps into solid rock, connected to the walk at one end, nine of them, 72 sectors of stair to nowhere. The agent's note verify-the-thing-not-the-call (2026-08-27): reachability (230/231) and the zero-exit check passed; found by the owner looking.",
-  "of": "a186fd6c068c"
+  "how": "Citations into a project retired 2026-11-26 now point at commit e0c75f6. Earlier: Opened projects/reasoned-authoring-v1/level/candidate_v7.py:509-515: a flight of eight steps into solid rock, connected to the walk at one end, nine of them, 72 sectors of stair to nowhere. The agent's note verify-the-thing-not-the-call (2026-08-27): reachability (230/231) and the zero-exit check passed; found by the owner looking.",
+  "of": "0c20e0706fa4"
  }
 }

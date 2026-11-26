@@ -4,7 +4,7 @@
  "standing": "refuted",
  "claim": "A room whose only way in is a shut door (a crossing gate, a vault) fails the compile with zero_exit_gameplay_sector at sector[N]; give it region_kwargs {'declared_zero_exit': True} and pass gated=True on both of the door's connections. The error names a sector number, not the region: count rooms in the order they were declared to find it.",
  "evidence": [
-  "bloodmap/planar_layout.py:1966-1993 (PlanarLayout.compile, _opens); bloodmap/geometry_audit.py:784-800 zero_exit_gameplay_sector message; projects/signal-box/level/build.py:97-98 far_road",
+  "bloodmap/planar_layout.py:1966-1993 (PlanarLayout.compile, _opens); bloodmap/geometry_audit.py:784-800 zero_exit_gameplay_sector message; projects/signal-box/level/build.py:97-98 far_road (that project was retired on 2026-11-26; read it at commit e0c75f6)",
   "tests/test_readback.py:1105-1125 RisingDoorReadBack builds a hall shut in by a door with no declaration; test_a_room_behind_a_door_is_shut_in_only_if_the_door_can_open_and_leads_on"
  ],
  "use": "",
@@ -26,7 +26,7 @@
  "instead": "Since 2026-11-26 a room joined to a door (a type 600 or 602 sector, or a region of role doorway or gated_pocket) is accepted as shut in rather than cut off without a declaration, but only when that door can be opened (it has trigger_push, trigger_wall_push or an rx_id) and leads on to some other region besides the room (PlanarLayout.compile, planar_layout.py:1976-1993). A room behind a door nobody can work, or one whose way out the compiler cannot see as a door (a lift it rides, a wall that gives), still needs region_kwargs={'declared_zero_exit': True}; a room joined to nothing is refused, and the message (geometry_audit.py:784-800) names the region and the remedy.",
  "checked": {
   "date": "2026-11-26",
-  "how": "Opened bloodmap/planar_layout.py:1966-1993 (compile): a room beside a type 600/602 or doorway/gated_pocket region is added to the zero-exit set only when _opens(door) (trigger_push, trigger_wall_push or an rx_id) and the door has another neighbour besides the room; geometry_audit.py:784-800 the error now names the region and the remedy (declared_zero_exit, gated=True); tests/test_readback.py:1105-1125 the hall/door/store builds with no declaration; signal-box build.py:97-98 far_road still declares it, :153-154 gated=True.",
-  "of": "3baeda224097"
+  "how": "Citations into a project retired 2026-11-26 now point at commit e0c75f6. Earlier: Opened bloodmap/planar_layout.py:1966-1993 (compile): a room beside a type 600/602 or doorway/gated_pocket region is added to the zero-exit set only when _opens(door) (trigger_push, trigger_wall_push or an rx_id) and the door has another neighbour besides the room; geometry_audit.py:784-800 the error now names the region and the remedy (declared_zero_exit, gated=True); tests/test_readback.py:1105-1125 the hall/door/store builds with no declaration; signal-box build.py:97-98 far_road still declares it, :153-154 ga",
+  "of": "20d66dd71e95"
  }
 }

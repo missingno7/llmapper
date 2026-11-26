@@ -1,8 +1,0 @@
-{
-  "$schema": "bloodmap.level-project",
-  "schema_version": 1,
-  "name": "The Malt Cross",
-  "kind": "pilot",
-  "status": "frozen",
-  "about": "A brewery yard on three levels, built to make the toolkit stack space; a fixture of tests/test_layers.py."
-}

@@ -4,7 +4,7 @@
  "standing": "practice",
  "claim": "A reader must return the same keys whether or not it found anything (None and zeros, not an empty dict), and a program written against one map must be run on a second before it is trusted: E3M1's decompilation crashed five times on E1M2 and E4M8, each where it had quietly assumed E3M1 (no sun, no stack, chains past a truncation, no named mechanism).",
  "evidence": [
-  "projects/e3m1-decompiled run on E1M2 and E4M8, 2026-09-03; bloodmap.read_light.sun_axis follows the rule."
+  "projects/e3m1-decompiled run on E1M2 and E4M8, 2026-09-03; bloodmap.read_light.sun_axis follows the rule. (that project was retired on 2026-11-26; read it at commit e0c75f6)"
  ],
  "use": "Give every reader a full-shaped empty answer; labels and claims must name the map they are about.",
  "code": [
@@ -24,7 +24,7 @@
  ],
  "checked": {
   "date": "2026-11-26",
-  "how": "bloodmap/read_light.py:120-140 sun_axis: when no oblique edge, returns the full key set with None and zeros ('THE SAME KEYS WHETHER OR NOT ANYTHING WAS FOUND ... E1M2 ... raised KeyError'). Agent note a-second-map-finds-the-assumptions.md: E3M1's decompilation on E1M2 and E4M8 (2026-09-03) 'crashed five times': no sun sign, no casters, a chain past the first 40, a room_over_room node with no stack, no named mechanism. Worded as ours.",
-  "of": "77710abafaae"
+  "how": "Citations into a project retired 2026-11-26 now point at commit e0c75f6. Earlier: bloodmap/read_light.py:120-140 sun_axis: when no oblique edge, returns the full key set with None and zeros ('THE SAME KEYS WHETHER OR NOT ANYTHING WAS FOUND ... E1M2 ... raised KeyError'). Agent note a-second-map-finds-the-assumptions.md: E3M1's decompilation on E1M2 and E4M8 (2026-09-03) 'crashed five times': no sun sign, no casters, a chain past the first 40, a room_over_room node with no stack, no named mechanism. Worded as ours.",
+  "of": "d815b2f3edcf"
  }
 }

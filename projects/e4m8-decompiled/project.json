@@ -1,8 +1,0 @@
-{
-  "$schema": "bloodmap.level-project",
-  "schema_version": 1,
-  "name": "E4M8 decompiled",
-  "kind": "analysis",
-  "status": "frozen",
-  "about": "E4M8 taken apart: the second map the decompiler was run on."
-}

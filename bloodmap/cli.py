@@ -48,10 +48,6 @@ from .player_space import (
     player_profile, present_space,
 )
 from .experience import probe_progression, probe_route, probe_transition, probe_visibility
-from .workspace import (
-    append_decision, append_episode, append_evidence, initialize_project,
-    make_level_slice, source_identity, store_level_slice,
-)
 from .e3l11 import E3L11ConversionError, PlayableConversionError, convert_playable_duke_to_blood
 from .duke_semantics import analyze_duke_mechanisms
 from .doom import DoomError, encode_wad, read_wad, wad_map, write_wad, doom_corpus_report
@@ -1348,49 +1344,6 @@ def cmd_probe_progression(args: argparse.Namespace) -> int:
     return 0
 
 
-def cmd_project_init(args: argparse.Namespace) -> int:
-    brief = Path(args.brief_file).read_text(encoding="utf-8") if args.brief_file else args.brief
-    _write_text(args.output, _json(initialize_project(args.directory, name=args.name, brief=brief or "")))
-    return 0
-
-
-def cmd_project_evidence(args: argparse.Namespace) -> int:
-    entry = append_evidence(args.project, {
-        "id": args.id, "concept": args.concept, "status": args.status, "claim": args.claim,
-        "evidence": json.loads(args.evidence), "unknowns": args.unknown,
-    })
-    _write_text(args.output, _json(entry))
-    return 0
-
-
-def cmd_project_decision(args: argparse.Namespace) -> int:
-    entry = append_decision(
-        args.project, intent=args.intent, decision=args.decision, expected=args.expected,
-        evidence=json.loads(args.evidence), status=args.status,
-    )
-    _write_text(args.output, _json(entry))
-    return 0
-
-
-def cmd_project_episode(args: argparse.Namespace) -> int:
-    entry = append_episode(
-        args.project, intent=args.intent, expected=args.expected,
-        observed=json.loads(args.observed), correction=args.correction,
-    )
-    _write_text(args.output, _json(entry))
-    return 0
-
-
-def cmd_project_slice(args: argparse.Namespace) -> int:
-    game, build = _read_design_build(args.map)
-    sample = make_level_slice(
-        build, _parse_id_set(args.sectors), source=source_identity(args.map, game=game),
-    )
-    result = store_level_slice(args.project, sample, sample_id=args.id)
-    _write_text(args.output, _json(result))
-    return 0
-
-
 def _fingerprint_vector(fingerprint: dict[str, Any]) -> dict[str, float]:
     metrics = fingerprint["metrics"]
     paths = (
@@ -2279,25 +2232,6 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("probe-progression", help="summarize static accessibility and state-change candidates")
     p.add_argument("map"); p.add_argument("--world-state", help="inline JSON world state")
     p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_progression)
-    p = sub.add_parser("project-init", help="create a bare level-design workspace (the August way; start a level with python -m tools.project new)")
-    p.add_argument("directory"); p.add_argument("--name", required=True); p.add_argument("--brief", default="")
-    p.add_argument("--brief-file", help="read the initial brief from UTF-8 text")
-    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_init)
-    p = sub.add_parser("project-evidence", help="append an evidence-backed semantic claim to a project ledger")
-    p.add_argument("project"); p.add_argument("--concept", required=True); p.add_argument("--claim", required=True)
-    p.add_argument("--status", choices=("verified", "heuristic", "disputed", "superseded", "rejected"), default="heuristic")
-    p.add_argument("--evidence", default="[]", help="inline JSON evidence list"); p.add_argument("--unknown", action="append", default=[]); p.add_argument("--id")
-    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_evidence)
-    p = sub.add_parser("project-decision", help="append a design intent/decision/expected-result record")
-    p.add_argument("project"); p.add_argument("--intent", required=True); p.add_argument("--decision", required=True); p.add_argument("--expected", required=True)
-    p.add_argument("--evidence", default="[]", help="inline JSON evidence list"); p.add_argument("--status", default="proposed")
-    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_decision)
-    p = sub.add_parser("project-episode", help="append an observed design episode and optional correction")
-    p.add_argument("project"); p.add_argument("--intent", required=True); p.add_argument("--expected", required=True); p.add_argument("--observed", required=True, help="inline JSON probe/observation result")
-    p.add_argument("--correction"); p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_episode)
-    p = sub.add_parser("project-slice", help="store a contextual source-backed LevelSlice precedent")
-    p.add_argument("project"); p.add_argument("map"); p.add_argument("--sectors", required=True); p.add_argument("--id")
-    p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_slice)
     p = sub.add_parser("design-index", help="index Blood and Duke3D maps by design fingerprint")
     p.add_argument("directory")
     p.add_argument("--include-spatial", action="store_true", help="also index overlapping spatial hypotheses and mechanism memberships")

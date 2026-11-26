@@ -65,9 +65,7 @@ and [map-understanding.md](map-understanding.md).
 `bloodmap.experience` adds bounded Level-0 probes over those views. It models a
 declared `WorldState` separately from `PlayerKnowledge`, reports routes,
 transitions, direct-portal visibility candidates, and static progression, and
-never claims renderer-accurate perception. `bloodmap.workspace` persists the
-brief, decisions, evidence claims, LevelSlice precedents, and observed design
-episodes needed to reproduce an agent's work. See
+never claims renderer-accurate perception. See
 [experience-atlas.md](experience-atlas.md).
 
 `bloodmap.materials` measures ART appearance and original-map usage before any
@@ -295,7 +293,13 @@ needs no level and proving that Gravesend's map does not change by a byte.
 Settled on 2026-11-26, so that nobody pays them twice: Gravesend's build drives the shared
 `Finish` for every shared stage (byte-identical map); the August authoring paths no level used
 (`authoring_loop` and its probes, `recipe`, `designs`) are gone from the library
-(`docs/history/authoring-loop.md`); the library's letter pitch is the campaign's, and three of
+(`docs/history/authoring-loop.md`), and so did the old-era projects that were neither a level
+nor a fixture (the pilots, the decompilations, the census, the signal box: their maps that library
+tests read are under `tests/fixtures/`, the rest is in git history at commit `e0c75f6`), the
+experiments and tools that served only them (the decompile pipeline, the precedent packet, the
+August project workspace), and the experiments directory itself (Gravesend's own moved into
+`projects/blood-city/experiments/`; the Duke-conversion finder became `tools.find_duke_conversions`);
+the library's letter pitch is the campaign's, and three of
 Gravesend's values that rest on a disproved figure say where they stand that they are its own
 choices (`l3_church.PITCH`, `fixtures.GOODS_SHARE`, `scale.HOLE_MEDIAN`; the owner: keep the
 city's look).

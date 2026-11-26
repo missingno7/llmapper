@@ -254,7 +254,6 @@ Look at a map through the observer, from planned or named poses, and say which v
 | `viewpoints` | Declared viewpoint poses and the temporary MAP variants that realize them. |
 | `view_score` | How much of a place one rendered view shows, measured from the observer's surface list. |
 | `oracle` | NBlood as a runtime oracle. |
-| `workspace` | Persistent, replayable workspace records for an eventual design agent. |
 
 ### A level project
 
@@ -422,30 +421,15 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | `sound_catalog` | Mine Blood's sound IDs, mapper-authored uses, and speech from the local game archive. |
 | `sound_readback` | List mapper-authored sound references in a compiled Blood map. |
 
-### Decompiling an original map
+### Reading an original map as source
 
-From one MAP to a project: hierarchy, fact store, review packs, and the round trip that rebuilds it.
+One MAP as a level program to read, a piece of it cut out to look at, and the Duke levels hidden among the community maps.
 
 | Module | What it is |
 | --- | --- |
-| `decompile_project` | Build a searchable decompiled-level project from one original MAP. |
-| `decompile_stages` | The decompile stage program: one copy for every `projects/<map>-decompiled`. |
 | `emit_level_program` | Emit a hierarchical, navigable Python program for one original MAP. |
-| `propose_areas` | Propose major areas for a decompiled level, and say why for each merge. |
-| `review_pack` | Owner review pack: a decompiled hierarchy browsed on the map, with marks. |
-| `round_trip` | Rebuild a map from its fact store, and name every field that comes back wrong. |
 | `fragment_map` | Cut a sector set out of a map into a small playable map, with one question. |
-
-### The frozen authoring pilot
-
-Records of `projects/reasoned-authoring-v1`; kept so its evidence still checks.
-
-| Module | What it is |
-| --- | --- |
-| `build_precedent_packet` | Freeze the bounded precedent packet consulted by the monastery pilot. |
-| `mine_precedents` | Bounded precedent mining for one authoring pilot. |
-| `precedent_detail` | Detail one precedent selection: geometry, player scale, ART usage, neighbors. |
-| `check_authoring_archive` | Check the frozen pilot's source, MAP, packet and image bindings. |
+| `find_duke_conversions` | Find the community maps that are conversions of a Duke Nukem 3D level. |
 
 ### Bot run analysis
 

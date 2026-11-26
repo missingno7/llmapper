@@ -19,7 +19,7 @@ Blood MAP -> LevelIR (authoritative)
 | Player-relative scale | `player_space` profile | Summarize footprint, bounds, and clearance per node |
 | Materials/ART identity | native `picnum` usage and `materials` separation rules | Expose role-specific tile use; leave aliases/meaning unreviewed |
 | Local composition | `LevelIR` fragments and `composition` | Preserve source refs so a reviewed node can later become a slice/fragment |
-| Searchable precedent memory | `design-index` and workspace `LevelSlice` | Emit inspectable nodes; cross-map node indexing remains next work |
+| Searchable precedent memory | `design-index` | Emit inspectable nodes; cross-map node indexing remains next work |
 | Authored validation | geometry audit and native validation | Validate the exact rebuild; generic-plus-residual experiments remain next work |
 | Engine testing | NBlood oracle/bot infrastructure | Deliberately not invoked or modified by this geometry-first pilot |
 

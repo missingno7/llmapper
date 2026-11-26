@@ -12,7 +12,7 @@ The plan is `projects/blood-city/references/aldermack-design.md`.
 The older `theatre` study searched the campaign and curated maps by evidence,
 and the 1,500 community maps only by file name; it found three. The owner,
 2026-11-23: "I think we can find better examples in existing levels". This
-scan (`experiments/room_scan/scan_rooms.py`, ranked by `rank.py`, rendered by `pose_sectors.py`) read all 1,693 maps for parallel seat strips,
+scan (`projects/blood-city/experiments/room_scan/scan_rooms.py`, ranked by `rank.py`, rendered by `pose_sectors.py`) read all 1,693 maps for parallel seat strips,
 sprite grids, wide curtains in tall rooms, lettered words and theatre
 posters. About forty rooms were rendered; `posed/` has the sheets, rendered locally and not committed.
 

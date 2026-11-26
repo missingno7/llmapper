@@ -105,7 +105,6 @@ must not be mechanically unusable or visually identical to neighboring fill,
 unless intent sets `hidden` (secrets) or `INTENTIONALLY_UNREACHABLE`.
 
 ```text
-python -m experiments.sp_door_audit --blueprint sp-v2 --json reports/SP-v2-door-affordance.json
 python -m bloodmap door-mine --maps maps/blood -o reports/blood-door-families.json \
   --signifiers reports/blood-key-signifiers.json
 python -m bloodmap door-query reports/blood-door-families.json --direct-use 1 --keyed 1 --limit 8

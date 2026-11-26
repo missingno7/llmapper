@@ -6,7 +6,7 @@
  "evidence": [
   "projects/cold-store, 2026-11-26: tile 495 on the door sector's walls was refused by the rule wall-tile-is-drawn-somewhere (bloodmap/rules_blood.py); in projects/cold-store/level/cold-store.MAP the door (sector 3, height 0) wears 180 on its own walls and the passage's and hall's walls onto it (walls 21 and 36) wear 495",
   "bloodmap.render_slots: which band the renderer draws each wall tile on",
-  "projects/signal-box/level/build.py:191-195 paints the gate's boards (170) on the track's and far road's walls onto the shut gate; signal-box.MAP walls 25 and 155 wear 170"
+  "projects/signal-box/level/build.py:191-195 paints the gate's boards (170) on the track's and far road's walls onto the shut gate; signal-box.MAP walls 25 and 155 wear 170 (that project was retired on 2026-11-26; read it at commit e0c75f6)"
  ],
  "use": "After program.compile(): bloodmap.doors.hang_leaf(layout, door, tile, (\"west\", passage), (\"east\", hall)) paints the leaf on each neighbour's side (doors.rising_door makes the door room). The gate names the mistake as wall-tile-is-drawn-somewhere.",
  "code": [
@@ -34,7 +34,7 @@
  ],
  "checked": {
   "date": "2026-11-26",
-  "how": "Read bloodmap/doors.py:160-203 (rising_door, hang_leaf paints the tile on each neighbour's wall over the door's edge); cold-store build.py:48,116 hangs LEAF_TILE 495. Read both built maps: cold-store.MAP door sector 3 height 0, its own walls 25-28 wear 180, neighbours' walls 21 (sector 2) and 36 (sector 4) wear 495; signal-box.MAP door sector 3 height 0, neighbours' walls 25 and 155 wear 170. The cited signal-box frames/mech-gate/pairs.png does not exist in the repository; replaced.",
-  "of": "54e01d5b9bf7"
+  "how": "Citations into a project retired 2026-11-26 now point at commit e0c75f6. Earlier: Read bloodmap/doors.py:160-203 (rising_door, hang_leaf paints the tile on each neighbour's wall over the door's edge); cold-store build.py:48,116 hangs LEAF_TILE 495. Read both built maps: cold-store.MAP door sector 3 height 0, its own walls 25-28 wear 180, neighbours' walls 21 (sector 2) and 36 (sector 4) wear 495; signal-box.MAP door sector 3 height 0, neighbours' walls 25 and 155 wear 170. The cited signal-box frames/mech-gate/pairs.png does not exist in the repository; replaced.",
+  "of": "775080c8bcfd"
  }
 }
