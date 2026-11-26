@@ -29,13 +29,14 @@ from typing import Any
 
 from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map
+from bloodmap.wiring import USER_CHANNELS_FROM
 
 SCHEMA = "llmapper.mechanism-shapes"
 SCHEMA_VERSION = 1
 
 
-#: Channels below this are reserved by the engine (see the mechanics document).
-FIRST_USER_CHANNEL = 30
+#: Channels below this are the engine's (kChannelUser, eventq.h:69): the library's own number, not one typed here.
+FIRST_USER_CHANNEL = USER_CHANNELS_FROM
 
 
 def observe(path: pathlib.Path) -> dict[str, Any]:

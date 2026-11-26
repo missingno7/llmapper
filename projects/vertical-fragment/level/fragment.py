@@ -183,7 +183,8 @@ def style_of(name: str, **overrides) -> Style:
 def jamb(name: str) -> dict:
     """The tile this material dresses its own openings in.
 
-    Of the 8,320 campaign rooms with more than one wall tile, 74% put a
+    Of the 7,585 campaign sectors with more than one wall tile and both
+    two-sided and solid walls, 74% put a
     different one on their two-sided walls than on their solid ones.
     """
     return {"portal_wall_picnum": MATERIALS[name].opening}
@@ -1049,7 +1050,7 @@ def _hatch_link(yard: dict, cellar: dict) -> None:
     cross blind.
 
     The drop is one storey, 40,960 z. `layers.fall_cost` says Blood forgives
-    anything under 62,564, so it costs nothing to take.
+    anything up to 67,570, so it costs nothing to take.
     """
     yard["hatch"].raw(
         "room-over-room: the yard floor opens onto the malt cellar",

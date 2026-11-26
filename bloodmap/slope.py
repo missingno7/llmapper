@@ -71,9 +71,13 @@ CAMPAIGN_HEINUM = {
     "ceiling": {"q1": 1280, "median": 2304, "q3": 4096, "p95": 5120},
 }
 
-#: How far a campaign slope travels, top to bottom, in player heights: q1 0.73,
-#: median 1.29, q3 2.18, p95 5.45. A slope is a storey, not a lip.
-CAMPAIGN_RISE_PLAYER_HEIGHTS = {"q1": 0.73, "median": 1.29, "q3": 2.18, "p95": 5.45}
+#: How far a campaign slope travels, top to bottom, in standing bodies (16,960):
+#: q1 0.24, median 0.43, q3 0.72, p95 1.81 (recounted over the 43 maps by
+#: knowledge/blood/findings/probes/audit2_slopes.py; the p95 is the old figure
+#: converted). A slope is a ramp of half a body, not a storey. Until 2026-11-26
+#: this table read 0.73 / 1.29 / 2.18 / 5.45: the same rises divided by the eye
+#: offset 0x1600, which is not a height.
+CAMPAIGN_RISE_PLAYER_HEIGHTS = {"q1": 0.24, "median": 0.43, "q3": 0.72, "p95": 1.81}
 
 from .player_space import PLAYER_PROFILES
 

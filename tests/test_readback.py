@@ -121,7 +121,7 @@ class SectorSoundReadBack(unittest.TestCase):
         self.assertEqual((fields["type"], fields["picnum"], fields["status"]), (709, 2520, 0))
         self.assertEqual((fields["sector"], fields["z"]), (0, 0))
         self.assertTrue(sector_contains(disk, 0, fields["x"], fields["y"]))
-        self.assertIn(fields["type"], HIDDEN_TYPES)
+        self.assertNotIn(fields["type"], HIDDEN_TYPES)             # the engine draws a 709 that lacks the bit
         self.assertTrue(fields["cstat"] & 32768)
         self.assertEqual(tuple(data[f"data_{i}"] for i in range(1, 5)), (106, 157, 106, 157))
         self.assertEqual((data["tx_id"], data["rx_id"]), (0, 0))

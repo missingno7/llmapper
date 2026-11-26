@@ -290,11 +290,11 @@ one standing body (16,960 z):
 
 | drop | z units | bodies | cost |
 | --- | --- | --- | --- |
-| last painless | 62,564 | 3.69 | none |
-| first that hurts | 68,025 | 4.01 | 4 hp |
+| last painless | 67,570 | 3.98 | none |
+| first that hurts | 67,571 | 3.98 | 4 hp |
 | | 85,772 | 5.06 | 34 hp |
 | | 98,741 | 5.82 | 55 hp |
-| lethal from full health | 127,411 | 7.51 | 102 hp |
+| lethal from full health | 126,957 | 7.49 | 102 hp |
 
 Damage turns positive the moment impact z-velocity passes `0x140000`
 (1,310,720), which is what `sqrt(kFallDamageFloor << 30)` comes to exactly.

@@ -372,8 +372,8 @@
         }
       ],
       "channels": {
-        "user_channels": 79,
-        "reserved_uses": 16
+        "user_channels": 77,
+        "reserved_uses": 18
       }
     },
     {
@@ -861,8 +861,8 @@
       },
       "stacks": [],
       "channels": {
-        "user_channels": 96,
-        "reserved_uses": 15
+        "user_channels": 94,
+        "reserved_uses": 17
       }
     },
     {
@@ -1630,8 +1630,8 @@
         }
       ],
       "channels": {
-        "user_channels": 23,
-        "reserved_uses": 9
+        "user_channels": 21,
+        "reserved_uses": 11
       }
     },
     {
@@ -2117,8 +2117,8 @@
         }
       ],
       "channels": {
-        "user_channels": 25,
-        "reserved_uses": 9
+        "user_channels": 23,
+        "reserved_uses": 11
       }
     },
     {
@@ -2479,8 +2479,8 @@
         }
       ],
       "channels": {
-        "user_channels": 73,
-        "reserved_uses": 20
+        "user_channels": 71,
+        "reserved_uses": 22
       }
     },
     {
@@ -2987,8 +2987,8 @@
         }
       ],
       "channels": {
-        "user_channels": 68,
-        "reserved_uses": 20
+        "user_channels": 66,
+        "reserved_uses": 22
       }
     }
   ]

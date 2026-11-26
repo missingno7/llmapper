@@ -192,23 +192,24 @@ median of 1 in those that do, p90 of 5.
 ### Mechanisms — a level is dozens of small networks
 
 [`mechanisms-v1.json`](mechanisms-v1.json), from `tools/mine_mechanisms`.
-The median campaign map runs **47 user channels** (p90 96, max 147), a median of
-3 objects each.
+The median campaign map runs **45 user channels** (p90 94, max 145; a user channel
+is 100 or over, `kChannelUser`), a median of 3 objects each.
 
 | shape | share |
 | --- | ---: |
-| fan-out (one trigger, several receivers) | 29% |
-| one-to-one (a switch and its door) | 32% |
+| fan-out (one trigger, several receivers) | 31% |
+| one-to-one (a switch and its door) | 34% |
 | fan-in (several triggers, one receiver) | 16% |
 | mesh | 11% |
-| orphan receiver / transmitter | 7% / 5% |
+| orphan receiver / transmitter | 3% / 5% |
 
-Fan-out and fan-in together (45%) outnumber the plain switch-and-door pairs, so
-"advanced" is the normal case rather than the exception. The commonest receivers
-are the exploder (459), Z-motion (600), switches (20), marked slides (614) and
-generators (708/710).
+Fan-out and fan-in together (47%) outnumber the plain switch-and-door pairs, so
+"advanced" is the normal case rather than the exception. The commonest typed
+receivers are Z-motion sectors (600, on 548 channels), marked slides (614),
+switches (20, 21), the sound generators (711, 710), gib objects (416) and the
+exploder (459).
 
-The orphans are worth noting: the campaign carries 12% of its channels with one
+The orphans are worth noting: the campaign carries 8% of its channels with one
 end missing, so a converted or generated map with a few dangling channels is in
 normal company rather than broken.
 

@@ -27,6 +27,7 @@ from typing import Any
 
 from bloodmap.blood_types import SPRITE_TYPES
 from bloodmap.corpus import corpus_map_path
+from bloodmap.wiring import USER_CHANNELS_FROM
 from bloodmap.doors import MOTION_TYPES, ROTATE_TYPES, SLIDE_TYPES, SWITCH_TYPES, Z_MOTION_TYPES
 from tools.mine_city_norms import MapGeom, indoor_components, doorways, load_source
 
@@ -36,7 +37,8 @@ SCHEMA_VERSION = 1
 #: Corpus maps by name; where each lives is the registry's business.
 SOURCES = ["E1M4", "E3M1", "DWE3M1"]
 
-FIRST_USER_CHANNEL = 30
+#: the engine's first user channel (kChannelUser, eventq.h:69)
+FIRST_USER_CHANNEL = USER_CHANNELS_FROM
 
 #: A venue smaller than this is a closet or a niche.
 MIN_VENUE_AREA = 4_000_000

@@ -38,6 +38,23 @@ class AsPlayedTests(unittest.TestCase):
                 if int(s.fields["picnum"]) == 128
                 and not int(s.fields["cstat"]) & 32768))
 
+    def test_a_generator_the_map_leaves_visible_stays_in_the_frame(self):
+        #: the engine hides only kGenTrigger (triggers.cpp:2360); the stone face that spits fireballs is a 703 on
+        #: tile 249 without the invisible bit, and the player sees it
+        from bloodmap import visual as look
+        from bloodmap.corpus import campaign_maps
+        from bloodmap.format import read_map
+
+        def faces(disk):
+            return sum(1 for s in disk.sprites if int(s.fields["type"]) == 703 and int(s.fields["picnum"]) == 249
+                       and not int(s.fields["cstat"]) & 32768)
+
+        source = next(path for path in campaign_maps() if faces(read_map(path)))
+        with tempfile.TemporaryDirectory() as folder:
+            played = read_map(look.as_played(source, folder))
+        self.assertEqual(faces(played), faces(read_map(source)))
+        self.assertTrue(all(int(s.fields["cstat"]) & 32768 for s in played.sprites if int(s.fields["type"]) == 700))
+
     def test_a_lit_torch_is_drawn_lit_with_its_flame(self):
         #: view.cpp:2930: a kDecorationTorch with no XSPRITE (or state 1)
         #: is drawn as the next tile with a flame (2101) at its top; the

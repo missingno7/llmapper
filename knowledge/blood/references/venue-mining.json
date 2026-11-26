@@ -3277,9 +3277,8 @@
             "sprites": 183
           },
           "channels": {
-            "user_channels_touching": 16,
+            "user_channels_touching": 15,
             "channel_ids": [
-              80,
               101,
               102,
               103,
@@ -3302,8 +3301,7 @@
               "wall_0": 8,
               "sector_0": 5,
               "door_slide": 3,
-              "door_rotate": 2,
-              "flag": 1
+              "door_rotate": 2
             }
           },
           "entrance": {
@@ -3965,9 +3963,8 @@
             "sprites": 47
           },
           "channels": {
-            "user_channels_touching": 8,
+            "user_channels_touching": 7,
             "channel_ids": [
-              81,
               134,
               135,
               136,
@@ -3983,8 +3980,7 @@
               "door_z": 1,
               "sound": 1,
               "door_slide": 1,
-              "switch": 1,
-              "flag": 1
+              "switch": 1
             }
           },
           "entrance": {

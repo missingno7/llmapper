@@ -254,13 +254,15 @@ class FallTests(unittest.TestCase):
         self.assertAlmostEqual(drop.bodies, 2.42, places=2)
         self.assertTrue(drop.painless)
 
-    def test_the_painless_limit_sits_between_these_two_drops(self):
-        self.assertEqual(layers.fall_cost(62564)[0], 0.0)
-        self.assertGreater(layers.fall_cost(68025)[0], 0.0)
+    def test_the_painless_limit_is_the_engines_which_adds_no_gravity_on_the_landing_tick(self):
+        # MoveDude: the 23rd tick's move of 22 ticks' speed reaches 67,570 and lands at that speed (actor.cpp:4625)
+        self.assertEqual(layers.fall_cost(67570), (0.0, 23))
+        self.assertEqual(layers.fall_cost(67571), (4.4375, 23))
+        self.assertEqual(layers.fall_cost(62565)[0], 0.0)
 
-    def test_seven_and_a_half_bodies_kills_from_full_health(self):
-        damage, _ticks = layers.fall_cost(127411)
-        self.assertGreaterEqual(damage, 100.0)
+    def test_seven_and_a_half_bodies_takes_a_hundred_hit_points(self):
+        self.assertLess(layers.fall_cost(126956)[0], 100.0)
+        self.assertGreaterEqual(layers.fall_cost(126957)[0], 100.0)
 
     def test_climbing_is_not_a_drop(self):
         layout = three_layers()

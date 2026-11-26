@@ -93,7 +93,7 @@ class CitySoundTests(unittest.TestCase):
         speakers = [(fields, extra) for fields, extra in self.sprites
                     if fields["type"] == 711 and extra["data_1"] >= 3000]
         self.assertCountEqual([extra["data_1"] for _, extra in speakers], [4509, 4537, 3034, 3101, 3056, 3031])
-        self.assertIn(711, HIDDEN_TYPES)
+        self.assertNotIn(711, HIDDEN_TYPES)      # the engine does not hide a speaker: its own bit must
         for fields, extra in speakers:
             sound = extra["data_1"]
             with self.subTest(sound=sound):

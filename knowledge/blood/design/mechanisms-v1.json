@@ -1,42 +1,42 @@
 {
  "$schema": "llmapper.mechanism-shapes",
  "schema_version": 1,
- "first_user_channel": 30,
+ "first_user_channel": 100,
  "maps": 43,
  "user_channels_per_map": {
-  "median": 47,
-  "p90": 96,
-  "max": 147
+  "median": 45,
+  "p90": 94,
+  "max": 145
  },
  "objects_per_channel": {
   "median": 3,
-  "p90": 7,
+  "p90": 8,
   "max": 161
  },
  "shapes": {
   "one_to_one": {
    "count": 739,
-   "share": 0.324
+   "share": 0.336
   },
   "fan_out": {
    "count": 671,
-   "share": 0.294
+   "share": 0.305
   },
   "fan_in": {
    "count": 355,
-   "share": 0.155
+   "share": 0.162
   },
   "mesh": {
    "count": 252,
-   "share": 0.11
-  },
-  "orphan_receiver": {
-   "count": 151,
-   "share": 0.066
+   "share": 0.115
   },
   "orphan_transmitter": {
    "count": 115,
-   "share": 0.05
+   "share": 0.052
+  },
+  "orphan_receiver": {
+   "count": 65,
+   "share": 0.03
   }
  },
  "fan_out_receivers": {
@@ -107,8 +107,8 @@
    "channels": 44
   },
   {
-   "type": 145,
-   "channels": 43
+   "type": 18,
+   "channels": 35
   }
  ],
  "transmitter_types": [

@@ -393,7 +393,16 @@ INVISIBLE_CSTAT = 0x8000
 
 # The single-player view also excludes control records culled or hidden during
 # Blood's initialization (warp.cpp, triggers.cpp, actor.cpp and blood.cpp).
-HIDDEN_TYPES = set(range(1, 20)) | set(range(700, 713)) | {459}
+#
+# Of the generators and sound sprites (700-712) the engine hides ONE: kGenTrigger
+# (InitGenerator, triggers.cpp:2360-2362). The rest are invisible in play only
+# because the editor saved them with the invisible bit (mapedit.cpp adjustSprites),
+# and one without it is drawn: the campaign has 112 of them on purpose, the stone
+# faces that spit fireballs (703 on tile 249) and the bubbling weed (706/707 on
+# 660/664) among them (knowledge/blood/findings/probes/audit2_drawn_generators.py).
+# Until 2026-11-26 this set held all of 700-712 and frames hid those too. A
+# builder that places a sound or a generator sets the bit itself.
+HIDDEN_TYPES = set(range(1, 20)) | {700, 459}
 HIDDEN_STATUS = {10}
 
 

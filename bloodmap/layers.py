@@ -41,7 +41,7 @@ the mover's own sector and scanned in order, so index 0 wins whenever it still
 contains the point; a mover is only misplaced just after leaving a sector, when
 the right answer is a portal neighbour. A wrong sector has to arrive no later
 than that to win -- two hops, not five -- *and* the walk between them has to stay
-inside a box about 2,264 units across. Two rooms one above the other are zero
+inside a box reaching 2,264 units each way (`CLIP_RADIUS`). Two rooms one above the other are zero
 apart in plan and still perfectly safe if the only way between them goes out to a
 stairwell and back, which is how a building is built.
 
@@ -629,18 +629,28 @@ def fall_cost(distance: int) -> tuple[float, int]:
     """Damage in hit points, and the tick the landing happens on, for a free fall.
 
     Returns 0.0 damage for anything the engine forgives. Blood's own thresholds
-    fall out of this: the last painless drop is 62,564 z (3.69 bodies), the first
-    that hurts is 68,025 (4.01), and 127,411 (7.51) kills from full health.
+    fall out of this: the last painless drop is 67,570 z (3.98 bodies), the first
+    that hurts is 67,571 (4 hit points), and 126,957 (7.49) is the first to take
+    a hundred.
+
+    The order is `MoveDude`'s (actor.cpp:4595-4632, landing :4826-4847): the body
+    moves by its speed first, and on the tick where that move already reaches the
+    floor (`bottom >= floorZ`) no gravity is added, so it lands at the speed it
+    had. Adding gravity on that tick as well priced every drop between 62,565
+    and 67,570 as a hurt the engine does not give.
     """
     if distance <= 0:
         return (0.0, 0)
     z, zvel, tick = 0, 0, 0
-    while z < distance and tick < 4096:
+    while tick < 4096:
         tick += 1
-        if zvel:
-            z += zvel >> 8
+        z += zvel >> 8
+        if z >= distance:
+            break                                       # landed by its own speed: no gravity this tick
         z += (DUDE_GRAVITY * 4 // 2) >> 8
         zvel += DUDE_GRAVITY
+        if z >= distance:
+            break
     raw = ((zvel * zvel) >> 30) - FALL_DAMAGE_FLOOR
     return (max(0.0, raw / 16.0), tick)
 

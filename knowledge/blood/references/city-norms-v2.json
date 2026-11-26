@@ -19,7 +19,7 @@
       "E3M1",
       "TEDE1M2"
     ],
-    "method": "Mine what a Build-engine city is, before designing one.\n\nBlood City (projects/blood-city) is a large urban level.  Nothing in the\nexisting knowledge registries describes *urban* structure -- street widths,\nblock sizes, how much of a facade is enterable -- because the campaign corpus\nis mostly interiors.  This pass measures the three city precedents the project\nnames and writes the numbers the urban plan has to hit:\n\n    python -m tools.mine_city_norms \\\n        -o knowledge/blood/references/city-norms.json\n\nStructure comes from all sources (E3M1, DWE3M1, DukCity1-4); art comes from\nthe Blood two only, because tile identity does not transfer between games --\nthe project already measured that between *episodes*.\n\nMethod notes, so a number here can be argued with instead of trusted:\n\n* \"Street\" is the largest connected component of sky-ceiling sectors linked by\n  red walls the player can walk through at grade (floor step <= max_step).\n  Sky rooftops reached through interiors land in other components and are\n  counted under verticality instead.\n* Widths are measured by ray-casting from street boundary walls across a\n  raster of the street region (cell 128 units), sampled every 256 units of\n  boundary.  Slopes are read at their flat z; the city precedents keep their\n  streets flat.\n* Vertical build z is compared to plan xy through the engine's own 16:1 ratio\n  (256 z per texel of a 64-texel/1024-unit wall), so a canyon ratio is\n  dimensionless.\n* Blocks are the enclosed holes of the street raster: a region you can walk\n  all the way around.  Street loop count is exactly that hole count.\n* Every threshold an \"interpreted\" number depends on is echoed into the\n  output next to the number.\n",
+    "method": "Mine what a Build-engine city is, before designing one.\n\nBlood City (projects/blood-city) is a large urban level.  Nothing in the\nexisting knowledge registries describes *urban* structure -- street widths,\nblock sizes, how much of a facade is enterable -- because the campaign corpus\nis mostly interiors.  This pass measures the three city precedents the project\nnames and writes the numbers the urban plan has to hit:\n\n    python -m tools.mine_city_norms \\\n        -o knowledge/blood/references/city-norms.json\n\nStructure comes from all sources (E3M1, DWE3M1, DukCity1-4); art comes from\nthe Blood two only, because tile identity does not transfer between games --\nthe project already measured that between *episodes*.\n\nMethod notes, so a number here can be argued with instead of trusted:\n\n* \"Street\" is the connected component of sky-ceiling sectors linked by red\n  walls the player can walk through at grade (floor step <= max_step) that\n  has the most doorways into interiors (area breaks ties; see\n  street_component).\n  Sky rooftops reached through interiors land in other components and are\n  counted under verticality instead.\n* Widths are measured by ray-casting from street boundary walls across a\n  raster of the street region (cell 128 units), sampled every 256 units of\n  boundary.  Slopes are read at their flat z; the city precedents keep their\n  streets flat.\n* Vertical build z is compared to plan xy through the engine's own 16:1 ratio\n  (256 z per texel of a 64-texel/1024-unit wall), so a canyon ratio is\n  dimensionless.\n* Blocks are the enclosed holes of the street raster: a region you can walk\n  all the way around.  Street loop count is exactly that hole count.\n* Every threshold an \"interpreted\" number depends on is echoed into the\n  output next to the number.\n",
     "thresholds": {
       "cell": 128,
       "min_block_area": 262144,
@@ -988,27 +988,9 @@
       ],
       "mechanisms": {
         "map": "E3M1",
-        "user_channels": 69,
-        "reserved_uses": 21,
+        "user_channels": 67,
+        "reserved_uses": 23,
         "channels": [
-          {
-            "channel": 80,
-            "transmitters": 0,
-            "receivers": 1,
-            "receiver_types": [
-              145
-            ],
-            "transmitter_types": []
-          },
-          {
-            "channel": 81,
-            "transmitters": 0,
-            "receivers": 1,
-            "receiver_types": [
-              146
-            ],
-            "transmitter_types": []
-          },
           {
             "channel": 100,
             "transmitters": 1,
@@ -12837,184 +12819,9 @@
       ],
       "mechanisms": {
         "map": "TEDE1M2",
-        "user_channels": 39,
-        "reserved_uses": 51,
+        "user_channels": 24,
+        "reserved_uses": 126,
         "channels": [
-          {
-            "channel": 30,
-            "transmitters": 3,
-            "receivers": 2,
-            "receiver_types": [
-              0,
-              614
-            ],
-            "transmitter_types": [
-              0
-            ]
-          },
-          {
-            "channel": 31,
-            "transmitters": 3,
-            "receivers": 1,
-            "receiver_types": [
-              614
-            ],
-            "transmitter_types": [
-              0
-            ]
-          },
-          {
-            "channel": 32,
-            "transmitters": 1,
-            "receivers": 1,
-            "receiver_types": [
-              614
-            ],
-            "transmitter_types": [
-              20
-            ]
-          },
-          {
-            "channel": 33,
-            "transmitters": 2,
-            "receivers": 1,
-            "receiver_types": [
-              614
-            ],
-            "transmitter_types": [
-              20
-            ]
-          },
-          {
-            "channel": 34,
-            "transmitters": 1,
-            "receivers": 3,
-            "receiver_types": [
-              0
-            ],
-            "transmitter_types": [
-              600
-            ]
-          },
-          {
-            "channel": 40,
-            "transmitters": 2,
-            "receivers": 18,
-            "receiver_types": [
-              0,
-              18,
-              459,
-              600,
-              710
-            ],
-            "transmitter_types": [
-              0,
-              408
-            ]
-          },
-          {
-            "channel": 41,
-            "transmitters": 2,
-            "receivers": 1,
-            "receiver_types": [
-              617
-            ],
-            "transmitter_types": [
-              20
-            ]
-          },
-          {
-            "channel": 45,
-            "transmitters": 1,
-            "receivers": 4,
-            "receiver_types": [
-              0
-            ],
-            "transmitter_types": [
-              416
-            ]
-          },
-          {
-            "channel": 50,
-            "transmitters": 3,
-            "receivers": 1,
-            "receiver_types": [
-              614
-            ],
-            "transmitter_types": [
-              0
-            ]
-          },
-          {
-            "channel": 70,
-            "transmitters": 1,
-            "receivers": 1,
-            "receiver_types": [
-              20
-            ],
-            "transmitter_types": [
-              0
-            ]
-          },
-          {
-            "channel": 71,
-            "transmitters": 1,
-            "receivers": 1,
-            "receiver_types": [
-              616
-            ],
-            "transmitter_types": [
-              20
-            ]
-          },
-          {
-            "channel": 82,
-            "transmitters": 1,
-            "receivers": 3,
-            "receiver_types": [
-              459,
-              600
-            ],
-            "transmitter_types": [
-              408
-            ]
-          },
-          {
-            "channel": 83,
-            "transmitters": 1,
-            "receivers": 5,
-            "receiver_types": [
-              459,
-              600,
-              710
-            ],
-            "transmitter_types": [
-              408
-            ]
-          },
-          {
-            "channel": 84,
-            "transmitters": 1,
-            "receivers": 7,
-            "receiver_types": [
-              459,
-              600
-            ],
-            "transmitter_types": [
-              0
-            ]
-          },
-          {
-            "channel": 88,
-            "transmitters": 1,
-            "receivers": 2,
-            "receiver_types": [
-              614
-            ],
-            "transmitter_types": [
-              20
-            ]
-          },
           {
             "channel": 399,
             "transmitters": 1,
@@ -14488,27 +14295,9 @@
       ],
       "mechanisms": {
         "map": "E3M2",
-        "user_channels": 98,
-        "reserved_uses": 15,
+        "user_channels": 96,
+        "reserved_uses": 17,
         "channels": [
-          {
-            "channel": 80,
-            "transmitters": 0,
-            "receivers": 1,
-            "receiver_types": [
-              145
-            ],
-            "transmitter_types": []
-          },
-          {
-            "channel": 81,
-            "transmitters": 0,
-            "receivers": 1,
-            "receiver_types": [
-              146
-            ],
-            "transmitter_types": []
-          },
           {
             "channel": 100,
             "transmitters": 1,
