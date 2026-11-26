@@ -18,5 +18,10 @@
   "office",
   "precedent",
   "seed"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran catalog find office: E6M1:91 [office] 12.2x15.2 m labelled 'office'. Opened knowledge/blood/studies/front-office/looked-E6M1-91/frames v1,v2: wooden plank walls and crates, no counters. notes.md lines 18-26: s79 is the office (counters of wood 34, clock 1165, fitting 2290), s91 a crate closet. catalog record E6M1 sector 91: floor and ceiling 34, shade 44.",
+  "of": "8aa5b738ad77"
+ }
 }

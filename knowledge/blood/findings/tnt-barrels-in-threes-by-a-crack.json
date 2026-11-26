@@ -2,7 +2,7 @@
  "id": "tnt-barrels-in-threes-by-a-crack",
  "topic": "mechanism",
  "standing": "tendency",
- "claim": "Blood mostly stands a TNT barrel (type 400, tile 907, cstat 385, 64 by 64) alone, often by a wall crack: over the campaign the barrels fall into 90 groups (barrels within 1,024 of each other), 67 of them single, 14 pairs and 9 of three or more; 38 of the 90 groups stand within 1,200 of a crack (type 408), and 6 of the 9 larger ones. A barrel sets off its neighbour, so a short line of them can be a fuse to the wall.",
+ "claim": "Blood mostly stands a TNT barrel (type 400, tile 907, cstat 385, 64 by 64: 98 of the campaign's 127) alone, often by a wall crack: over the campaign the barrels fall into 90 groups (barrels within 1,024 of each other), 67 of them single, 14 pairs and 9 of three or more; 39 of the 90 groups stand within 1,200 of a crack (type 408), and 6 of the 9 larger ones. A barrel sets off its neighbour, so a short line of them can be a fuse to the wall.",
  "evidence": [
   "knowledge/blood/findings/probes/consolidation_audit3_census2.py over bloodmap.corpus.campaign_maps(), 2026-11-26: single-link groups at 1,024; nearest type-408 crack",
   "E2M9 s1: barrels 448-450 (cstat 385) by crack sprite 451; E1M8 s390; E1M2 s270 (barrels 8-10 at cstat 8577, carried by their sector)"
@@ -24,5 +24,10 @@
   "explosive",
   "fuse",
   "tnt"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/consolidation_audit3_census2.py: groups by size (1, 67), (2, 14), (3, 6), (4, 2), (6, 1) = 90; within 1,200 of a type-408 crack: singles 25, pairs 8, threes 5, and of the larger E6M4's 4-group (452) yes, E1M8's (6338) and E6M5's 6-group (5354) no: 39 groups, not 38; 6 of the 9 of three or more. Barrels: 127, (907, 385, 64x64) 98, 8577 19, 384 10. E2M9 448-450 type 400 cstat 385 sector 1, 451 type 408; E1M8 s390 barrels 344-346 and crack 347; E1M2 8-10 cstat 8577 in s270; E6M1 sprite 262 type 408 tx 143 to s108, type 600, off ceiling = floor 22,528.",
+  "of": "0fbdf820dd75"
+ }
 }

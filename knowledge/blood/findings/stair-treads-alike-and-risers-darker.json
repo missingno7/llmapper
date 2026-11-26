@@ -2,10 +2,10 @@
  "id": "stair-treads-alike-and-risers-darker",
  "topic": "light",
  "standing": "tendency",
- "claim": "On the campaign's 225 outdoor steps a riser is 12 shades darker than its tread and no tread differs in shade from the next; a stair lit by one light sample per narrow tread comes out blotchy.",
+ "claim": "On the campaign's outdoor steps (383 pairs of sky-ceilinged neighbours a step apart) a riser is a median 12 shades darker than the tread above it; adjacent treads match in shade in less than half (168 of 383; 104 of 202 inside flights). A stair lit by one light sample per narrow tread comes out blotchy.",
  "evidence": [
-  "counted over 225 outdoor steps of the campaign (projects/blood-city/level/gallows.py, even())",
-  "the owner, twice: 'Gallows stairs shading looks flat', 'Gallows stairs still have weird shading' (2026-11-25)"
+  "knowledge/blood/findings/probes/audit2_outdoor_steps.py over the 43 campaign maps: 383 outdoor step pairs (rise 256-4096), riser minus tread median 12; treads equal in 168 of 383",
+  "the owner, twice: 'Gallows stairs shading looks flat', 'Gallows stairs still have weird shading' (2026-11-25; projects/blood-city/level/gallows.py:316-317)"
  ],
  "use": "After lighting, grade a flight evenly from its foot's shade to its head's, each riser 12 darker than its tread, and pan each tread so no two show the same piece of the tile.",
  "code": [
@@ -23,5 +23,10 @@
   "stairs",
   "steps",
   "tread"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Found the figure only in projects/blood-city/level/gallows.py:319-321 (even), no kept count. Recounted with knowledge/blood/findings/probes/audit2_outdoor_steps.py (sky-ceilinged neighbours, unsloped, rise 256-4096) over 43 campaign maps: 383 step pairs, riser minus upper tread median 12 (commonest 8, 12, 32, 0); treads equal to the next in 168 of 383 (median difference 2); inside flights 202 pairs, 104 equal. Owner's words at gallows.py:316-317.",
+  "of": "a221278eeb17"
+ }
 }

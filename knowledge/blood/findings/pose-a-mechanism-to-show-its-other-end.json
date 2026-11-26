@@ -22,5 +22,10 @@
   "lightning",
   "mechanism frame",
   "posed"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "bloodmap/posed.py:568 def posed(disk, chain, ...); tools/look.py:126 posed_copy, :156 --posed SENDER, :7 the example with 'sprite 334'. E4L1-current.MAP: sprite 334 type 700, rx 7, tx 124 (the storm clock); wall 2318 tx 125. README.md:29 and :93 (posed lightning peak, 'an endpoint'); notes/briefing.md:62-70 rest/collapsed posed views of wall 2318; evidence/briefing-mechanism/rest and collapsed exist.",
+  "of": "9356fdcfae06"
+ }
 }

@@ -23,5 +23,10 @@
   "furniture",
   "phone",
   "telephone"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words at booking_hall.py:25-26 (2026-11-25). read_map: E3M2 s193 256x448, floor -78848, 24576 above s238, walls 1011 x3 / 378; the neighbours' faces on it 720 (owner: grandfather clock). E2M4 s476 576x192, 22528 above s99, wall 180, faced by 720. E1M2 s181 3072x512 bounds, 31744 above s183 (32768 above s180), walls 179/180, faced by 645 x3.",
+  "of": "b85f80f0c147"
+ }
 }

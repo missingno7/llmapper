@@ -24,5 +24,10 @@
   "sky",
   "skyline"
  ],
- "instead": "The face is shorter but the low sky is a lid: it is painted from the far wall's top upward over every column the strip covers, so everything behind and above it (a tower set back, the blocks beyond) vanishes. Lower a thing by making it a sector whose floor is its top, under the common sky."
+ "instead": "The face is shorter but the low sky is a lid: it is painted from the far wall's top upward over every column the strip covers, so everything behind and above it (a tower set back, the blocks beyond) vanishes. Lower a thing by making it a sector whose floor is its top, under the common sky.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/experiments/church-roofs/README.md: owner's words 'when you put parallax sky low it is covering view like a normal ceiling' (also hypothesis.json owner_said); before/ yard_to_tower: tower '17.4 bodies tall ... paints 0 pixels'; 'the renderer paints it from the top of the far wall upward over every column the sector covers'; raised-floor sectors replaced aprons. bloodmap/skyline.py:124 roof, :231 lowered_skies exist.",
+  "of": "601b5b84422b"
+ }
 }

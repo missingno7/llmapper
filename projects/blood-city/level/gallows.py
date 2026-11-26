@@ -316,9 +316,9 @@ def even(disk, compiled) -> dict:
     The owner, twice: "Gallows stairs shading looks flat", "Gallows stairs
     still have weird shading". Ten narrow sectors are lit by a sample apiece:
     nine came out at 0 between an alley at 21 and paving at 20, and one riser
-    at 36 where a chimney's shadow crossed its middle. (225 outdoor steps of
-    the campaign: a riser is 12 darker than its tread, and no tread differs
-    from the next.)
+    at 36 where a chimney's shadow crossed its middle. (383 outdoor steps of
+    the campaign: a riser is a median 12 darker than its tread, and a tread
+    matches the next in 168 of them.)
     """
     from bloodmap.model import record_fields
     from bloodmap.sector_geom import sector_at

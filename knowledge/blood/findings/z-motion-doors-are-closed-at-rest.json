@@ -2,10 +2,10 @@
  "id": "z-motion-doors-are-closed-at-rest",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "Most of Blood's ceiling-lifting doors are CLOSED at rest: 509 of the campaign's 594 are shut in their OFF pose (ceiling down on the floor) and open by raising the ceiling to the lintel; 85 are open at rest and shut when turned on. E3M1's simple ones are 256 to 1,024 across and 57 to 256 thick (s52 768 by 256, s114 and s354 1,024 by 128).",
+ "claim": "Most of Blood's ceiling-lifting doors are CLOSED at rest: of the campaign's 622 type 600 sectors that lift the ceiling over a fixed floor, 509 are shut in their OFF pose (ceiling down on the floor) and open by raising the ceiling to the lintel; 85 are shut in their ON pose, and 2 of those start ON, so 511 are shut at rest and 83 open; 28 never close fully. E3M1's simple ones are 256 to 1,024 across and 57 to 256 thick (s52 768 by 256, s114 and s354 1,024 by 128).",
  "evidence": [
-  "E3M1 s52: type 600, ceiling_z = floor_z = -7168 at rest, on_ceiling_z -25600 (python -m tools.catalog record E3M1 sector 52); likewise E3M1 s58, s114 and s354. (s59 and s60 open by dropping the floor, and s54's floor also moves 1,024: they are not ceiling-lifting doors.)",
-  "2026-11-26, knowledge/blood/findings/probes/consolidation_probe_zdoors.py variant: type 600 with ceiling moving and floor fixed, 509 with off_floor_z = off_ceiling_z, 85 with on_floor_z = on_ceiling_z; across the campaign wooden leaves are 128 (29 of 72) as often as 256 (26) (finding z-door-opening-heights)",
+  "E3M1 s52: type 600, off_ceiling_z = off_floor_z = -7168 (the pose trInit gives it at load; a stored ceiling_z may differ, as s354's does), on_ceiling_z -25600 (python -m tools.catalog record E3M1 sector 52); likewise E3M1 s58, s114 and s354. (s59 and s60 open by dropping the floor, and s54's floor also moves 1,024: they are not ceiling-lifting doors.)",
+  "knowledge/blood/findings/probes/audit2_zdoors_rest.py over the 43 campaign maps, 2026-11-26: 622 type 600 with ceiling moving and floor fixed, 509 with off_floor_z = off_ceiling_z, 85 with on_floor_z = on_ceiling_z; trInit (NBlood/source/blood/src/triggers.cpp:2248-2250) sets each to its state's pose at load",
   "E3M1's ceiling-lifting doors shut at rest with four walls (s52, s58, s105, s114, s181, s354) measure 256-1,024 across and 57-256 thick (knowledge/blood/findings/probes/consolidation_audit3_p6.py, 2026-11-26)"
  ],
  "use": "Build a Z door as a thin leaf sector shut at rest; choose its tile by its owner-anchored role (and see knob-doors-never-open-by-z-motion).",
@@ -22,5 +22,10 @@
   "leaf",
   "lift door",
   "z motion"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/audit2_zdoors_rest.py over the 43 campaign maps: 622 type 600 with the ceiling moving over a fixed floor; 509 shut in the OFF pose, 85 in the ON pose; 2 of the 85 start ON, so 511 are shut at rest, 83 open, 28 never close. E3M1 s52 record: off poses -7168/-7168, on_ceiling_z -25600. trInit triggers.cpp:2248-2250 puts each in its state's pose.",
+  "of": "4b7abfae7380"
+ }
 }

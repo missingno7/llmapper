@@ -2,9 +2,10 @@
  "id": "a-release-readme-follows-xmapedit-template",
  "topic": "workflow",
  "standing": "practice",
- "claim": "A released Blood map's readme takes the form of XMapEdit's TEMPLATE-MAPS.txt, the community's standard, with counts read from the MAP. Music for a map started alone is believed to come from a .DEF beside it naming a Song or Track (untried).",
+ "claim": "A released Blood map's readme takes the form of XMapEdit's TEMPLATE-MAPS.txt, the community's standard, with counts read from the MAP. Music for a map started alone comes, by NBlood's source, from a .DEF beside it read as an INI with a Song= or Track= key (untried in play).",
  "evidence": [
-  "Gravesend V0.1, 2026-11-25 (projects/blood-city/level/package.py)."
+  "Gravesend V0.1, 2026-11-25 (projects/blood-city/level/package.py).",
+  "NBlood/source/blood/src/levels.cpp:339-361 levelAddUserMap opens <map>.DEF as an IniFile; levels.cpp:251-252 levelLoadMapInfo reads Song and Track; xmapedit/doc/manual/en/src/docs/TEMPLATE-MAPS.txt."
  ],
  "use": "Generate the readme from the map; try the .DEF before claiming music.",
  "code": [
@@ -21,5 +22,10 @@
   "package",
   "readme",
   "release"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/package.py:1-9 (readme in the form of XMAPEDIT's TEMPLATE-MAPS.txt, counted in the MAP) and xmapedit/doc/manual/en/src/docs/TEMPLATE-MAPS.txt (exists). The music belief is borne out by source: NBlood levels.cpp:339-361 levelAddUserMap reads <map>.DEF beside a user map as an INI, levelLoadMapInfo levels.cpp:251-252 takes Song and Track from it; still untried in play.",
+  "of": "4d23c4186146"
+ }
 }

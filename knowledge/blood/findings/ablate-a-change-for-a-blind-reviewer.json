@@ -2,9 +2,9 @@
  "id": "ablate-a-change-for-a-blind-reviewer",
  "topic": "workflow",
  "standing": "practice",
- "claim": "A build that adds several things at once cannot say which worked. Variants of the built map with one feature removed each, rendered from the same poses under random letters for one blind reviewer, give a ranking per feature: the reviewer reconstructed a 2x2x2 design unprompted and rated the sign decisive, the surround helpful, missing light mildly harmful.",
+ "claim": "A build that adds several things at once cannot say which worked. In Gravesend's shopfronts (2026-11-18) we made variants of the built map with one feature removed each, rendered from the same poses as five unlabelled sets for one blind reviewer: it named the three features that varied and the pairs that differ in one, and rated the sign decisive, the surround helpful, and the unlit displays (which it read as dark glass) mildly harmful.",
  "evidence": [
-  "projects/blood-city/experiments/shop-surrounds, 2026-11-17."
+  "projects/blood-city/experiments/shop-surrounds/README.md (2026-11-18) and critic.md:26-40: 'Three things vary, each switched on or off independently'; 'Sign: decisive', 'Surround: helps', 'Dark glass: hurts, mildly'"
  ],
  "use": "Plan ablations and predict their order before building; take the 'without' values from the before map.",
  "code": [
@@ -22,5 +22,10 @@
   "review",
   "variant",
   "what if"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/experiments/shop-surrounds/README.md (2026-11-18; variants unlit, unnamed, unfronted of the full build; five folders P-T; ranking full, unlit, unfronted, unnamed, before) and critic.md:26-40: 'Three things vary, each switched on or off independently'; pairs 'P and R: the sign. R and S: the surround. R and T: the glass'; 'Sign: decisive'; 'Surround: helps'; 'Dark glass: hurts, mildly' (the unlit rooms read as tinted glass). tools/whatif.py exists.",
+  "of": "42244290ecb2"
+ }
 }

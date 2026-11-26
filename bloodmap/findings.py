@@ -32,11 +32,13 @@ again.
 
 What `check` holds is the FORM: that a kind cites the sort of thing it must,
 that the code it names is there, that nothing cites scratch. It cannot tell a
-true number from a false one. The shelf was audited against its evidence once,
-on the day it was filled, and a second sample still found a wrong figure in
-one finding in four: a finding is a signpost with a citation. Open the
-citation before you build on its number, and correct the finding when it is
-wrong (`--replace`).
+true number from a false one. That is what the MARK is for: ``checked`` says on
+which day somebody opened what the finding cites, and what they read there
+(`mark`, `amend`). The mark is of the finding as it then stood (`digest`): a
+finding rewritten since is unchecked again, and so is one newly filed
+(`unchecked`). A finding without a current mark is a signpost with a citation:
+open the citation before you build on its number, and then mark it, or correct
+it (`amend`). A hypothesis carries no mark: it is what nobody has checked.
 
 One file a finding (`HOME`), so that two levels can file at once. The other
 shelves are for what they hold: a tile in a slot is a tile context
@@ -49,6 +51,7 @@ from __future__ import annotations
 
 import ast
 import datetime
+import hashlib
 import json
 import re
 from pathlib import Path
@@ -71,13 +74,17 @@ STANDINGS = {
 TOPICS = ("engine", "renderer", "construction", "texture", "light", "mechanism", "sprite", "sound",
           "gameplay", "place", "validation", "workflow")
 SCOPES = ("blood", "build", "duke")
-FIELDS = ("id", "topic", "standing", "claim", "evidence", "use", "code", "scope", "learned", "words", "instead")
+FIELDS = ("id", "topic", "standing", "claim", "evidence", "use", "code", "scope", "learned", "words", "instead", "checked")
+#: what a mark is a mark of: change one of these and the finding is unchecked again
+MARKED = ("standing", "claim", "evidence", "scope", "instead")
 
 #: a source file by name (`actor.cpp:2710`, `build.h`), or a run that is named as one ("a headless run", "the observer")
 _SOURCE = re.compile(r"\b[\w/-]+\.(cpp|c|h|hpp|con|pas|asm)\b|\b(headless|observer)\b|\b(a|the|one|each|every) run\b", re.I)
 #: a map by its name as the corpus writes it (capitals and digits: E3M1, DWE1M4, BB4, CASTLE23) and a record of it
 _MAP = re.compile(r"\b[A-Z][A-Z0-9_]{2,11}\b[^.;]*?\b(?i:s|sector|sectors|wall|walls|sprite|sprites|w|channel)\s*#?\d+")
 _DAY = re.compile(r"\b20\d\d-\d\d-\d\d\b")
+#: a kept script that recounts a figure (`knowledge/blood/findings/probes/`)
+_PROBE = re.compile(r"probes/([\w.-]+\.py)\b")
 #: what another agent cannot open: scratch that is not in the repository
 _SCRATCH = re.compile(r"(?<![\w/])work/[\w./-]+")
 
@@ -186,6 +193,9 @@ def problems(row: dict[str, Any], root: Path = ROOT) -> list[str]:
     if scratch:
         said.append(f"evidence cites {scratch[0]}, which is scratch nobody else has: say what was counted and how to count "
                     "it again (a tool, or the few lines of the method), or put the script where it is kept")
+    for name in sorted(set(_PROBE.findall(whole))):
+        if not (root / "knowledge" / "blood" / "findings" / "probes" / name).exists():
+            said.append(f"evidence cites probes/{name}, which is not kept")
     if standing == "refuted" and not str(row.get("instead", "")).strip():
         said.append("a refuted finding says what is true `instead`")
     scope = str(row.get("scope", ""))
@@ -200,7 +210,31 @@ def problems(row: dict[str, Any], root: Path = ROOT) -> list[str]:
     for name in row.get("code", []) if isinstance(row.get("code", []), list) else []:
         if not resolves(str(name), root):
             said.append(f"code names {name!r}, which is not there")
+    if "checked" in row:
+        mark = row["checked"]
+        if (not isinstance(mark, dict) or set(mark) != {"date", "how", "of"} or not _a_day(str(mark.get("date", "")))
+                or not 30 <= len(str(mark.get("how", "")).strip()) <= 600):
+            said.append("checked is {date, how, of}: the day, and in 30 to 600 characters what was opened and what was read there")
+        elif standing == "hypothesis":
+            said.append("a hypothesis carries no mark: if it was checked, it is no longer a hypothesis")
     return said
+
+
+def digest(row: dict[str, Any]) -> str:
+    """A short name for what a finding says and stands on: what a mark is a mark of."""
+    said = json.dumps([row.get(key, "") for key in MARKED], ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(said.encode("utf-8")).hexdigest()[:12]
+
+
+def is_checked(row: dict[str, Any]) -> bool:
+    """Whether somebody opened what this finding cites, as it stands now."""
+    mark = row.get("checked")
+    return isinstance(mark, dict) and mark.get("of") == digest(row)
+
+
+def unchecked(home: Path | None = None) -> list[dict[str, Any]]:
+    """The findings nobody has held against their evidence as they now stand (a hypothesis is not owed a check)."""
+    return [row for row in read(home) if row.get("standing") != "hypothesis" and not is_checked(row)]
 
 
 def check(home: Path | None = None, root: Path = ROOT) -> list[str]:
@@ -226,8 +260,56 @@ def record(*, id: str, topic: str, standing: str, claim: str, evidence: Iterable
     if path.exists() and not replace:
         raise FindingError(f"{id} is on file already: read it, and say --replace to rewrite it")
     home.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(row, indent=1, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
+    _write(path, row)
     return row
+
+
+def _write(path: Path, row: dict[str, Any]) -> None:
+    kept = {key: value for key, value in row.items() if not key.startswith("_")}
+    path.write_text(json.dumps(kept, indent=1, ensure_ascii=False) + chr(10), encoding="utf-8", newline=chr(10))
+
+
+def _one(id: str, home: Path) -> tuple[Path, dict[str, Any]]:
+    path = home / f"{id}.json"
+    if not path.exists():
+        raise FindingError(f"no finding {id}")
+    return path, json.loads(path.read_text(encoding="utf-8"))
+
+
+def amend(id: str, how: str = "", *, date: str | None = None, home: Path | None = None, **changes: Any) -> dict[str, Any]:
+    """Correct a finding in the fields named, keeping the rest; with `how`, mark it as checked in what it now says.
+
+    `how` is what was opened and what was read there ("actor.cpp:2710-2731 read: the branch tests xvel alone";
+    "recounted over the 43 campaign maps with probes/x.py: 594"). Without it the corrected finding is unchecked.
+    """
+    path, row = _one(id, home or HOME)
+    for key, value in changes.items():
+        if key not in FIELDS or key in ("id", "checked"):
+            raise FindingError(f"{key!r} is not a field that is amended")
+        if key in ("claim", "use", "instead"):
+            value = " ".join(str(value).split())
+        elif key == "evidence":
+            value = [" ".join(str(e).split()) for e in value]
+        elif key == "words":
+            value = sorted({str(w).lower() for w in value})
+        row[key] = value
+    if not row.get("instead"):
+        row.pop("instead", None)
+    row.pop("checked", None)
+    if how:
+        row["checked"] = {"date": date or datetime.date.today().isoformat(), "how": " ".join(how.split()), "of": digest(row)}
+    wrong = problems(row)
+    if wrong:
+        raise FindingError("; ".join(wrong))
+    _write(path, row)
+    return row
+
+
+def mark(id: str, how: str, *, date: str | None = None, home: Path | None = None) -> dict[str, Any]:
+    """Say that a finding was held against what it cites and stands as written: the day, and what was read there."""
+    if not how.strip():
+        raise FindingError("say what was opened and what was read there")
+    return amend(id, how, date=date, home=home)
 
 
 def _text(row: dict[str, Any]) -> tuple[str, str]:
@@ -261,7 +343,8 @@ def find(words: Iterable[str], *, topic: str | None = None, standing: str | None
 def line(row: dict[str, Any]) -> str:
     """One finding on one line, as a search shows it."""
     where = "" if row.get("scope") == "blood" else f" ({row.get('scope')})"
-    return f"  [{row.get('standing')}] {row.get('id')}{where}: {row.get('claim')}"
+    held = "" if is_checked(row) or row.get("standing") == "hypothesis" else ", unchecked"
+    return f"  [{row.get('standing')}{held}] {row.get('id')}{where}: {row.get('claim')}"
 
 
 def show(row: dict[str, Any]) -> str:
@@ -276,4 +359,9 @@ def show(row: dict[str, Any]) -> str:
     if row.get("code"):
         out += ["  CODE  " + ", ".join(row["code"])]
     out += ["", "  EVIDENCE"] + [f"    - {e}" for e in row.get("evidence", [])]
-    return "\n".join(out)
+    if is_checked(row):
+        out += ["", f"  CHECKED  {row['checked']['date']}: {row['checked']['how']}"]
+    elif row.get("standing") != "hypothesis":
+        out += ["", "  UNCHECKED  " + ("rewritten since it was checked" if row.get("checked") else "nobody has held it against what it cites")
+                + ": open the citation, then `python -m tools.findings checked " + row["id"] + ' --how "..."`']
+    return chr(10).join(out)

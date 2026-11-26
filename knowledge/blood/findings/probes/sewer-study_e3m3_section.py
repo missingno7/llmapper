@@ -1,6 +1,9 @@
 """E3M3's sewer corridors across their width: each sector's floor, ceiling, slopes and tiles along a line."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, math
-sys.path.insert(0, ".")
 from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map
 from bloodmap.model import record_fields as F, record_extra as X

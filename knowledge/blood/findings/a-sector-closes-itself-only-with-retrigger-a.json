@@ -2,9 +2,10 @@
  "id": "a-sector-closes-itself-only-with-retrigger-a",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "A sector that should shut again after opening needs retrigger_a: on turning ON, SetSectorState posts an OFF after wait_time_a tenths of a second only when reTriggerA is set (and an ON after wait_time_b with reTriggerB). A wait time alone does nothing on a sector.",
+ "claim": "A sector that should shut again after opening needs retrigger_a: on turning ON, SetSectorState posts an OFF after wait_time_a tenths of a second only when reTriggerA is set (and stopOn is not); on turning OFF it posts an ON after wait_time_b only with reTriggerB. A wait time alone does not close a sector (the only other reader of waitTimeA is the counter sector, which takes it as its count).",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:147-148 (else if (pXSector->reTriggerA) evPost(... waitTimeA*120/10, kCmdOff)).",
+  "NBlood/source/blood/src/triggers.cpp:147-148 (SetSectorState: else if (pXSector->reTriggerA) evPost(... waitTimeA*120/10, kCmdOff)); :159-160 the reTriggerB twin",
+  "NBlood/source/blood/src/callback.cpp:377 (CounterCheck): waitTimeA read as the counter's required count",
   "E1M1 s4 (614 sliding door): retrigger_a=1, wait_time_a=40."
  ],
  "use": "For an auto-closing door set retrigger_a and wait_time_a together.",
@@ -23,5 +24,10 @@
   "retrigger",
   "timer",
   "wait"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/blood/src/triggers.cpp:131-162 (SetSectorState): on nState==1, if stopOn it is cleared, else if reTriggerA evPost(waitTimeA*120/10, kCmdOff) at :147-148; on OFF, else if reTriggerB evPost(waitTimeB*120/10, kCmdOn) at :159-160. grep waitTimeA: only other use callback.cpp:377 (CounterCheck, kSectorCounter count). E1M1 s4 read: type 614, retrigger_a 1, wait_time_a 40.",
+  "of": "d6b6073a1829"
+ }
 }

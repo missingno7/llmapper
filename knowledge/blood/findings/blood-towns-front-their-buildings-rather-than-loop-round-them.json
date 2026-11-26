@@ -2,7 +2,7 @@
  "id": "blood-towns-front-their-buildings-rather-than-loop-round-them",
  "topic": "place",
  "standing": "tendency",
- "claim": "E3M1 wraps its street round one 14,848-unit block and fronts its other buildings as masses at the street's edge; TEDE1M2's dense core has 1 loop in 58 street sectors (a web of lanes round a square) and DWE3M10 one. But DWE3M1 loops 8 small blocks, as many as DukCity's 7-11, so a Blood town may loop or not; E3M1's model needs no grid of blocks.",
+ "claim": "E3M1 fronts most of its buildings as masses at the street's edge: the v1 run of tools/mine_city_norms.py finds its street wrapping one 14,848-unit block (the v2 run counts 2 loops); TEDE1M2's dense core has 1 loop in 58 street sectors (a web of lanes round a square), DWE3M10 1 and E3M2 3. But DWE3M1 loops 8 small blocks, as many as DukCity's 7-11, so a Blood town may loop or not; E3M1's model needs no grid of blocks.",
  "evidence": [
   "tools/mine_city_norms.py: E3M1 1 loop, DWE3M1 8, DukCity1-4 7-11 (knowledge/blood/references/city-norms.md:48-67); TEDE1M2 1, DWE3M10 1, E3M2 3, E3M1 2 in the v2 run (city-norms-v2.json summary.street_loops)"
  ],
@@ -23,5 +23,10 @@
   "loop",
   "town",
   "urban"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read city-norms.md:48-67: E3M1 1 loop round one 14848 block, DWE3M1 8, DukCity1-4 11/7/9/7; city-norms.json per_map blocks agree. city-norms-v2.json summary.street_loops: E3M1 2, DWE3M1 8, DWE3M10 1, TEDE1M2 1, E3M2 3. dense-town-patterns.md:13-15, 27: TEDE1M2 58 street sectors, 1 loop.",
+  "of": "cb93ab292ae3"
+ }
 }

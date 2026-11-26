@@ -2,13 +2,14 @@
  "id": "webs-hang-opaque-across-the-opening",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "Of 693 webs in the corpus the commonest is opaque (cstat 401; only 181 are translucent) and hung ON the opening's line at its full width with its foot on the floor. A translucent web set back inside a passage reads as lying flat on the floor.",
+ "claim": "Of 693 webs (tile 1069) in the corpus the commonest is opaque (cstat 401, 212 of them; 181 are translucent); 401 hang parallel to their nearest wall, 223 on a wall's line (130 of those across an opening), and 433 have their foot within 256 of the floor. In Gravesend's sewer a translucent web set back inside a passage read as lying flat on the floor; hung opaque on the opening's line it read as a sheet across the mouth.",
  "evidence": [
-  "knowledge/blood/findings/probes/spider_webs.py over the corpus, 2026-11-22 (projects/blood-city/references/sewer-design.md)"
+  "knowledge/blood/findings/probes/spider_webs.py over the corpus, run again 2026-11-26: 693 webs, cstat 401 x212, translucent 181, parallel to the nearest wall 401, on a wall line 223 (130 two-sided), foot within 256 of the floor 433",
+  "projects/blood-city/references/sewer-design.md:184-191: the owner 'Check web in other levels what are we doing wrong'; ours lay flat until hung the corpus's way"
  ],
  "use": "Hang a web as a wall sprite on the opening's line, full width, foot on the floor, opaque.",
  "code": [
-  "work/spider/webs.py",
+  "knowledge/blood/findings/probes/spider_webs.py",
   "projects/blood-city/references/sewer-design.md"
  ],
  "scope": "blood",
@@ -22,5 +23,10 @@
   "spider",
   "wall sprite",
   "web"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/spider_webs.py (copy writing its JSON to my scratch): 693 webs on 1069 in 207 maps; cstat 401 x212, 400 x59, 465 x58; bit 2 (translucent) 181; plane within 10 deg of nearest wall 401; on a wall line (<= 32 units, < 10 deg) 223, of them on a two-sided wall 130; foot within 256 of the floor 433. projects/blood-city/references/sewer-design.md:184-191 our passage web read flat on the floor.",
+  "of": "c982c3dda3c3"
+ }
 }

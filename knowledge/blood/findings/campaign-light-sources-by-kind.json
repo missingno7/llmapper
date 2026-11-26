@@ -2,10 +2,10 @@
  "id": "campaign-light-sources-by-kind",
  "topic": "light",
  "standing": "tendency",
- "claim": "Blood shows light three ways: a CEILING PANEL (technical light 501, fluorescent 2290/2288) is a small 4-wall sector the size of the light, its ceiling recessed 1,024 above the room's at shade 0 against ~38 around, often with a lighter pool beneath (124 in the campaign); a FLAT SPRITE on the ceiling (795 round light: 147 flat uses in 18 campaign maps, 1,068 over 42 maps of the wider catalogue; also 2290, 796 tube); and FLAME SPRITES at own shade -128 (506 wall torch, 2101 small flame, 3566 bonfire, 641/1701 chain lamps, 580 candelabrum, 560/938 candles, 570/554 sconces, 550 brazier, 2493 street lamp).",
+ "claim": "Blood shows light three ways: a CEILING PANEL (technical light 501, fluorescent 2290/2288) is a small 4-wall sector the size of the light, its ceiling recessed 1,024 above the room's at shade 0 (96 in the campaign: 38, 36 and 22), in rooms whose floors are shaded a median 1 to 10, the floor under it no lighter than around except under 2288 (+14); a FLAT SPRITE on the ceiling (795 round light: 147 flat uses in 17 campaign maps, 1,068 over 42 maps of the wider catalogue; also 2290, 796 tube); and FLAME SPRITES, most of them at own shade -128 (506 wall torch, 2101 small flame, 3566 bonfire, 641/1701 chain lamps, 580 candelabrum, 560/938 candles, 570/554 sconces, 550 brazier, 2493 street lamp).",
  "evidence": [
-  "python -m tools.light_sources, knowledge/blood/light-sources.json (2026-11-20).",
-  "2026-11-26: 795's 1,068 flat uses in 42 maps is the tile catalogue's count over the curated corpus (python -m tools.catalog show 795); in the 43 campaign maps it has 159 uses in 18 maps (knowledge/blood/findings/probes/consolidation_probe_tile.py)"
+  "python -m tools.light_sources (--tiles 501 2290 2288 795), knowledge/blood/light-sources.json: panels 38/36/22, recess 1024, rooms at 6/1/10, pool_under 0/0/14; rerun 2026-11-26",
+  "2026-11-26: 795 over the 43 campaign maps (read_map, cstat & 48): 159 uses in 18 maps, 147 floor-aligned in 17; 1,068 flat uses in 42 maps is the tile catalogue's count over the curated corpus (python -m tools.catalog show 795)"
  ],
  "use": "Pick the light that fits the place from these kinds (see light-fits-the-place).",
  "code": [
@@ -24,5 +24,10 @@
   "light",
   "panel",
   "torch"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran python -m tools.light_sources --tiles 501 2290 2288 795 796: panels 501 38, 2290 36, 2288 22 (96, not 124), recessed 1024 z, 4 walls, shade 0 in rooms at 6, 1, 10 (not ~38), floor under it +0, +0, +14. knowledge/blood/light-sources.json has the same panel figures. Counted 795 over campaign_maps(): 159 uses in 18 maps, 147 floor-aligned in 17. Flame tiles: most at shade -128 (506 132 of 150, 560 131 of 188, 938 99 of 132). catalog show 795: sprite_flat x1068 in 42 maps.",
+  "of": "76f41e1eb9d3"
+ }
 }

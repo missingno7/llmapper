@@ -2,11 +2,12 @@
  "id": "a-hip-high-counter-shuts-in-what-is-behind-it",
  "topic": "gameplay",
  "standing": "practice",
- "claim": "A counter too high to step over, run wall to wall, shuts off what lies behind it: in Gravesend a pickup, a key and a foe were closed behind 8,192 units of wood, and only a blind reader saw it. Stop a counter a body's width short of one wall.",
+ "claim": "In Gravesend a bar-height counter (8,192 high, too high to step over) run wall to wall shut off what lay behind it: a pickup, the arcade's key and a zombie, and only a blind reader saw it. The shop template now stops such a counter COUNTER_PASS (1,024 units, about 2.7 body widths of 384) short of one wall.",
  "evidence": [
-  "projects/blood-city/level/templates.py (shop, COUNTER_PASS)"
+  "projects/blood-city/level/templates.py:113 COUNTER_PASS and :284-288 (shop, back-shelf branch); fixtures.py:120 BAR rise 8192",
+  "projects/blood-city/reports/refinement-log.md, 2026-11-17: fixtures, and a key shut behind a counter"
  ],
- "use": "Leave a player width round the end of every counter; check what is reachable behind fixtures.",
+ "use": "Leave a way round the end of every counter too high to step over (at least a body width of 384; Gravesend leaves 1,024); check what is reachable behind fixtures.",
  "code": [
   "projects/blood-city/level/templates.py:shop"
  ],
@@ -21,5 +22,10 @@
   "fixture",
   "key",
   "reachability"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "templates.py:113 COUNTER_PASS = 1024, applied at :288 (a1 -= COUNTER_PASS - margin) only in shop's back-shelf branch, the bar family (fixtures.py:120 BAR rise 8192, 0.48 body); comment :284-287 names the pickup, the arcade's key and a zombie behind 8,192 units of wood. refinement-log.md:2547-2560 (2026-11-17): only the blind reviewer saw it. PLAYER_PROFILES blood body_width 384: 1024 is 2.7 bodies, not one.",
+  "of": "50ca76d20821"
+ }
 }

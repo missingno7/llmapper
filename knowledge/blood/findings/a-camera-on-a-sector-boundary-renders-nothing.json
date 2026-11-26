@@ -4,7 +4,7 @@
  "standing": "practice",
  "claim": "The XMapEdit observer writes no frame for a camera standing exactly on a sector boundary (it is in neither sector); a pose that suddenly renders nothing may have had a boundary moved under it.",
  "evidence": [
-  "Gravesend's avenue_front pose on 2026-11-17, after the kerb was cut at its x (tools/look.py, now poses.py)"
+  "projects/blood-city/level/poses.py:1037-1043 (pose set 'skyline'): Gravesend's avenue_front stood at x 38.0, on the kerb cut 2026-11-17, and moved 0.3 east to 38.3"
  ],
  "use": "Stand poses off boundaries (0.3 of a plan unit was enough) and name the floor a pose stands on in a stacked map.",
  "code": [
@@ -23,5 +23,10 @@
   "observer",
   "pose",
   "render"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/poses.py:1037-1043 (pose set 'skyline'): 'avenue_front stood at x 38.0 until 2026-11-17, which is now exactly the kerb ... a camera on a sector boundary is in neither sector and the observer writes no frame. It moved 0.3 east'; pose now at 38.3. tools/look.py, viewplan.named_poses (viewplan.py:408), visual.run_observation (visual.py:346) exist.",
+  "of": "9bb5754c653f"
+ }
 }

@@ -2,11 +2,11 @@
  "id": "what-hangs-outside-a-vehicle-stands-in-its-host",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "Things that ride on the outside of a moving body stand in the host sector, so Blood makes the host a 614 with the same motion and leaves its outline's walls unflagged: the sprites that ride (its wheels) carry cstat 8192, its outline stays. Holes inside the host may still move with it.",
+ "claim": "In E1M2 what rides on the outside of the moving car (s10, type 616) stands in its host sector s34, which is a 614 with the same motion (its own markers 303/304, the same displacement, channel 111 and time 120) whose outline's walls are left unflagged: the sprites that ride (its wheels) carry cstat 8192, its outline stays. Holes inside the host may still move with it.",
  "evidence": [
-  "E1M2 s34: type 614, markers 303/304; wheel sprites 66, 67, 70, 71 (tile 847) carry bit 8192; its 23-wall outline has no wall flagged 16384, but its hole 386-389 is flagged throughout and walls 390, 396 and 397 of another hole are flagged (knowledge/blood/findings/probes/consolidation_e1m2_rider_host.py, 2026-11-26); studied in knowledge/blood/studies/moving-bodies"
+  "E1M2 s34: type 614, markers 303/304, rx 111, busy 120, alongside the car s10 (type 616, markers 300/301, rx 111, busy 120; both pairs 24,064 apart along y); wheel sprites 66, 67, 70, 71 (tile 847) carry bit 8192; its 23-wall outline has no wall flagged 16384, but its hole 386-389 is flagged throughout and walls 390, 396 and 397 of another hole are flagged (knowledge/blood/findings/probes/consolidation_e1m2_rider_host.py, 2026-11-26); studied in knowledge/blood/studies/moving-bodies"
  ],
- "use": "Type the host 614 with the body's markers and timing, flag the sprites that ride, and flag no outline wall.",
+ "use": "Type the host 614 with its own pair of markers at the body's displacement and the body's channel and timing, flag the sprites that ride, and flag no outline wall.",
  "code": [
   "bloodmap.mechanism.carry_fittings"
  ],
@@ -22,5 +22,10 @@
   "outside",
   "train",
   "vehicle"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/consolidation_e1m2_rider_host.py: s34 type 614, markers 303 304; sprites 66, 67, 70, 71 tile 847 cstat 8656 (bit 8192); outline loop 363-385 (23) none flagged 16384, loop 398-409 none, loop 390-397 flagged 390, 396, 397, loop 386-389 all flagged. The body it hangs off is s10 (type 616, markers 300/301, rx 111, busy 120): s34 has rx 111, busy 120 and its own markers 303/304 with the same displacement (0, -24,064), not the body's markers.",
+  "of": "aa01d52d2b0e"
+ }
 }

@@ -2,11 +2,11 @@
  "id": "dress-the-reveal-not-the-band-above",
  "topic": "texture",
  "standing": "tendency",
- "claim": "Of the campaign's 10,319 openings with a lintel, 60% continue the facade's own tile above the mouth, yet 74% of its 8,320 rooms with more than one wall tile put a different tile on their two-sided walls (jambs, reveals) than on their solid ones: the opening tile is a property of the material, the dressing goes on the reveals of openings, and the band above a mouth belongs to the facade. 45% of two-sided walkable walls are seams between sectors of one space, not apertures at all.",
+ "claim": "Of the campaign's 10,319 openings with a lintel, 60% continue the facade's own tile above the mouth, yet of the 7,585 campaign sectors that have more than one wall tile and both two-sided and solid walls, 74% wear a different tile most on their two-sided walls (jambs, reveals) than on their solid ones: the opening tile is a property of the material, the dressing goes on the reveals of openings, and the band above a mouth belongs to the facade. 45% of two-sided walkable walls are seams between sectors of one space, not apertures at all.",
  "evidence": [
   "knowledge/blood/design/apertures-v1.json (43 maps): lintel.openings_with_one 10,319, continues_the_facade 0.599; kinds.seam 25,594 of 56,624 (0.452); lintel_owner: the upper section takes the wall's own picnum. The earlier '70% of 10,475 lintels' is not in the file as it stands (re-read 2026-11-26)",
   "Painting a whole portal wall in the opening tile hung a 4.35-body sheet of ashlar over a doorway in a rubble wall, because Build draws the upper section from the wall's own picnum.",
-  "8,320 campaign rooms, 74% of them: a role-separated census over the campaign (projects/blood-city/level/materials.py:23)"
+  "knowledge/blood/findings/probes/audit2_portal_wall_tiles.py (2026-11-26): 5,627 of 7,585 sectors (74%); materials.py:21-25's '8,320 rooms, 74%' had no kept count"
  ],
  "use": "Give every material an opening tile and apply it to the reveals of its portal walls, not to the band above a mouth; when an opening looks wrong, find who owns the band above it before touching tiles; exclude seams when measuring apertures.",
  "code": [
@@ -27,5 +27,10 @@
   "portal wall",
   "reveal",
   "seam"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "apertures-v1.json (43 maps) summary: lintel openings_with_one 10,319, continues_the_facade 0.599; two_sided_walkable_walls 56,624, kinds.seam 25,594 (0.452); engine.lintel_owner: the upper section takes this wall's own picnum. The 8,320 / 74% is only in materials.py:21-25, no tool. Recount with audit2_portal_wall_tiles.py: 8,520 sectors with more than one wall tile, 7,585 with both kinds of wall; the modal two-sided tile differs from the modal solid one in 5,627 (74% of 7,585, 66% of 8,520); a two-sided tile no solid wall wears in 6,481 (76%).",
+  "of": "1d7e2e115201"
+ }
 }

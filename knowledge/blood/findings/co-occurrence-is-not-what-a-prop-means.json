@@ -22,5 +22,10 @@
   "pmi",
   "prop",
   "statistic"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "props.py read: ASSOCIATIONS loaded from knowledge/blood/references/style-combinations.json (:52-58); that file has 580 wall:100 n 23 pmi 3.85 and wall:119 n 8, 1701 floor:110 n 6; prop-catalogue.json 540 sky_share 0.61; props_for (:147) skips a tile with sky share in a roofed room ('a tree in the saloon', :176); TERRAIN judgement at :97-102 names the boulder on the saloon's bar. tools/mine_style_combinations.py exists.",
+  "of": "675403518a81"
+ }
 }

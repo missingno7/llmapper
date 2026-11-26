@@ -183,9 +183,11 @@ room with its rectangle and kind).
     `intent={"kind": "furnished"}`, as the station's are.
   - the passage web "lies flat on the floor". The owner: "Check web in
     other levels what are we doing wrong". All 693 webs in the corpus
-    (`work/spider/webs.py`): the commonest is opaque (cstat 401; only 181
-    are translucent, E2M8's 915 among them), and hung ON the opening's
-    line at its full width with its foot on the floor. Ours was E2M8's
+    (`knowledge/blood/findings/probes/spider_webs.py`): the commonest is
+    opaque (cstat 401; only 181 are translucent, E2M8's 915 among them);
+    401 hang parallel to their nearest wall, 223 on a wall's line (130 of
+    those across an opening), and 433 have their foot within 256 of the
+    floor. Ours was E2M8's
     translucent one, 256 inside the passage: the floor showed through it.
     It is now hung the corpus's way and reads as a sheet across the mouth
     (`work/spider/webside_final/sheet.png`). NBlood seats a wall sprite as
@@ -395,10 +397,10 @@ Heights in bodies (16960 z, about 1.7 m).
 
 * **Settling Hall.** Blood's big wastewater halls get their height from
   TIERS, not one tall ceiling: E3M3:15 (25 x 27 x 14 m) stacks a pool, a
-  main walk 5.3 bodies up, catwalks at 3.4 more and a top gallery, with
+  main walk 4.35 bodies up, catwalks at 3.4 more and a top gallery, with
   trusses (487) and X-braced hatch floors (191) overhead and lifts between;
   E1M8:243 (45 x 63 x 7 m) is plank walks over a sea of sewage (1120).
-  Walks stand half a body over the water. The inflow is E3M3:173/174's
+  Walks stand a third of a body (0.36) over the water. The inflow is E3M3:173/174's
   **sewagefall**: a low pipe slot (0.85 body) with a panned floor spilling
   down a wall of 1120 panned in y (-20) into a pool 2.4 bodies lower, the
   way on under the fall. The ambush is E3M3:210's: walking in wakes axe

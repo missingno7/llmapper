@@ -2,7 +2,7 @@
  "id": "raised-surfaces-rarely-carry-anything",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "Only 56 of 1,198 raised surfaces (4.7%) in ten town and detail maps (eight campaign, two Death Wish) carry a sprite, and the commonest item is the candle 2101 (27 of 78), one to a surface at the median and up to 6 on E1M4's booths, about 400 units apart.",
+ "claim": "Only 56 of 1,198 raised surfaces (4.7%) in ten town and detail maps (eight campaign, two Death Wish) carry a sprite, 78 items in all, and the commonest item is the candle 2101 (27 of 78, 16 of them in E1M5); up to 6 stand on one of E1M4's surfaces, and where several share a surface the per-map median gap runs from 64 to 672 units (384 to 448 in four maps).",
  "evidence": [
   "56 of 1,198 surfaces over ten maps (DWE3M1, DWE3M10, E6M1, E4M9, E1M4, E1M1, E3M2, E2M1, E1M5, E3M1), by tools/mine_surface_items.py: knowledge/blood/design/surface-items-v1.json corpus block; candle 2101 is 27 of its items"
  ],
@@ -21,5 +21,10 @@
   "goods",
   "surface",
   "table"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/surface-items-v1.json: corpus surfaces 1198, carrying 56 (0.047); per-map items 13, 3, 0, 1, 14, 13, 7, 7, 16, 4 = 78; candle 2101 6 (E1M4) + 1 + 3 + 16 (E1M5) + 1 = 27; E1M4 items_per_surface max 6; gap_units medians 384, 448, 672, 448, 256, 64, 384 over the maps that have gaps. Maps DWE3M1, DWE3M10 (Death Wish) and eight campaign.",
+  "of": "ed927a11376e"
+ }
 }

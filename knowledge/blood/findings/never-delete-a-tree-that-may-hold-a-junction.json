@@ -2,9 +2,10 @@
  "id": "never-delete-a-tree-that-may-hold-a-junction",
  "topic": "workflow",
  "standing": "ruling",
- "claim": "A recursive delete (git worktree remove, rm -rf, Remove-Item -Recurse, rmdir /s) follows a directory junction into its target: removing agent worktrees once wiped the whole local map corpus. Deleting a directory tree is the owner's action.",
+ "claim": "A recursive delete (git worktree remove, rm -rf, Remove-Item -Recurse, rmdir /s) follows a directory junction into its target: removing an agent worktree on 2026-09-01 deleted the local map corpus (maps/) through a junction. The records differ on reference/: the recovery report of that day says it survived because its junctions had been unlinked first, the handbook and the backup script say both were lost, and the bot's AGTST test maps were never recovered. Deleting a directory tree is the owner's action.",
  "evidence": [
-  "2026-09-01 loss; the owner, 2026-09-02: 'this must never happen again'. Recovery in reports/archive/corpus-recovery-2026-09-01.md."
+  "the owner, 2026-09-02: 'this must never happen again' (docs/history/llmapper_level_understanding_handbook/10_AGENT_EXECUTION_PROTOCOL.md:37-49, 'Irreplaceable local data', which says the delete took both maps/ and reference/)",
+  "reports/archive/corpus-recovery-2026-09-01.md:3-10 (maps/ deleted; says reference/ survived); tools/backup_corpus.ps1:2-5 (says both were wiped and the AGTST maps lost for good)"
  ],
  "use": "Prefer BLOODMAP_CORPUS and absolute paths to junctions; unlink every reparse point non-recursively before any removal; refresh the corpus backup after a corpus change.",
  "code": [
@@ -22,5 +23,10 @@
   "junction",
   "rm",
   "worktree"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read docs/history/llmapper_level_understanding_handbook/10_AGENT_EXECUTION_PROTOCOL.md:37-49 (the owner's rule 'this must never happen again'; says the delete took both maps/ and reference/, AGTST maps not recovered); tools/backup_corpus.ps1:2-5 ('wiped them'); reports/archive/corpus-recovery-2026-09-01.md:3-10 (says reference/ survived). The sources differ on reference/.",
+  "of": "8a1470b6dd57"
+ }
 }

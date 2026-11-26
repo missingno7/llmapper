@@ -2,10 +2,10 @@
  "id": "study-blood-before-building-a-new-kind-of-place",
  "topic": "workflow",
  "standing": "ruling",
- "claim": "Before building a new kind of place or thing, find and look at Blood's own instances, look tiles up for their every use, and write what will and will not be done; a use never seen is allowed when the picture supports it. One rendered frame of the campaign's instance has settled what months of measurement had not.",
+ "claim": "The owner: before building a new kind of place or thing, check how Blood's levels built it and think it through, and look up how a tile is used in other levels; a use never seen is allowed when it makes sense. Our way of doing it: find and render Blood's own instances, look tiles up for their every use, and write what will and will not be done. One rendered frame of the campaign's instance settled what months of measurement had not (the sky backing, 2026-11-17).",
  "evidence": [
-  "The owner, 2026-11-18: 'I would like to build this, I am checking these levels how they did it ... to get inspiration and really think stuff through'.",
-  "Sky backing found by rendering E3M1 s8 with the same observer, 2026-11-17."
+  "The owner, 2026-11-18, kept in tools/study.py:3-9 and tests/test_study_tools.py:6-7: 'I would like to build this, I am checking these levels how they did it, etc. to get inspiration and really think stuff through'; and in the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/study-before-building.md:12: tile usage 'in other levels in which context ... in different contexts that were never seen before if it makes sense'",
+  "Sky backing found by rendering E3M1 s8 with the same observer, 2026-11-17 (memory/sky-backing-and-street-ends.md:33-35)."
  ],
  "use": "Run the study tool and tile usage first; name the study on the place.",
  "code": [
@@ -24,5 +24,10 @@
   "research",
   "study",
   "tile"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read tools/study.py:3-9 and tests/test_study_tools.py:6-7: owner 2026-11-18 'It should be something like, I would like to build this, I am checking these levels how they did it, etc. to get inspiration and really think stuff through'; memory/study-before-building.md:11-13 his other message: 'obtain it how it is used in other levels in which context ... use as you want in different contexts that were never seen before if it makes sense'; memory/sky-backing-and-street-ends.md:33-35 'One frame of the real thing settled what months of measurements had not'. tools/tile_usage.py exists.",
+  "of": "60edd1639798"
+ }
 }

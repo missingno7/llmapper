@@ -143,8 +143,8 @@ SHELF_INTENT = "shelf_niche"
 SHELF_BACKS = {"books": 32}
 
 #: The share of fixtures that carry any merchandise at all. Measured across
-#: the four sources: 28/171, 11/136, 2/43, 1/62, pooled 42 of 412 -- one in
-#: ten (one in six at most, in DWE3M1 alone).  0.14 is more than that; it is
+#: the five sources: 28/171, 11/136, 2/43, 1/62, 26/156 (E1M4), pooled 68 of
+#: 568 -- about one in eight (one in six at most, in E1M4 and DWE3M1).  0.14 is more than that; it is
 #: kept because changing it moves the goods in Gravesend.
 GOODS_SHARE = 0.14
 

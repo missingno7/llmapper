@@ -2,9 +2,10 @@
  "id": "key-emblems-are-placards-beside-the-lock",
  "topic": "gameplay",
  "standing": "tendency",
- "claim": "The six key emblems (2540 skull, 2541 eye, 2542 flame, 2543 dagger, 2544 spider, 2545 moon) are placards hung beside a door that wants that key: 80% of the campaign's 265 keyed things carry one. Hung anywhere else they promise a lock that is not there.",
+ "claim": "The six key emblems (2540 skull, 2541 eye, 2542 flame, 2543 dagger, 2544 spider, 2545 moon) are placards hung beside a door that wants that key: 80% of the campaign's 265 keyed things have one near (213); 17 of the 265 are foes that only carry a key to drop, so of the locks themselves the share is a little higher. Hung anywhere else they promise a lock that is not there.",
  "evidence": [
-  "knowledge/blood/design/keys-v1.json, mined over 43 maps"
+  "knowledge/blood/design/keys-v1.json, mined over 43 maps by tools/mine_keys.py: keyed_things 265, keyed_with_a_placard 213",
+  "knowledge/blood/findings/probes/audit2_keyed_things.py: 131 walls, 89 sectors, 17 switches, 11 plain sprites, 17 foes carrying a key (NBlood/source/blood/src/actor.cpp:2567-2568: a dude's key is dropped when it dies)"
  ],
  "use": "Hang an emblem only by the lock it names.",
  "code": [
@@ -21,5 +22,10 @@
   "key",
   "lock",
   "placard"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/keys-v1.json: maps 43, keyed_things 265, keyed_with_a_placard 213, share_marked 0.804. Ran probes/audit2_keyed_things.py: the 265 are 131 walls, 89 sectors, 17 switches (types 20, 21), 11 plain sprites and 17 foes, whose key is the one they drop (actor.cpp:2567-2568, :3053-3054). Marked means a placard within reach of the thing.",
+  "of": "0d7fe0297f7d"
+ }
 }

@@ -2,9 +2,9 @@
  "id": "tutorial-shove-is-an-xwall-on-the-surface",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "The XMapEdit tutorials make a push open a sector by an XWALL on the surface the player pushes, not by trigger_wall_push on the sector, which keeps the sector's one tx free.",
+ "claim": "In the XMapEdit tutorial DOOR-CURTAINS a push opens a curtain sector by XWALLs on the surface the player pushes, not by trigger_wall_push on the sector: s3, s6 and s8 each listen on their own channel and are shoved through three wall buttons, and the sector keeps its one tx free.",
  "evidence": [
-  "DOOR-CURTAINS s3: walls 38, 39, 40 carry tx 100 while the sector is only rx 100 (maps/blood/mechanism; xmapedit manual p.239)."
+  "DOOR-CURTAINS s3: walls 38, 39, 40 carry tx 100 (command 3, trigger_push) while the sector is only rx 100; s6 and s8 the same on channels 103 and 104 (maps/blood/mechanism, python -m tools.catalog show lesson:DOOR-CURTAINS)"
  ],
  "use": "Put the push trigger on the walls the player touches.",
  "code": [
@@ -22,5 +22,10 @@
   "trigger",
   "tutorial",
   "xwall"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record maps/blood/mechanism/Vanilla/DOOR-CURTAINS.map: sector 3 type 614, rx_id 100, no tx; walls 38, 39, 40 tx_id 100, command 3, trigger_push 1, picnum 146. catalog show lesson:DOOR-CURTAINS: s6 (channel 103) and s8 (104) likewise 'shoved through 3 wall button(s)'. One tutorial map, worded as what the tutorials do; the xmapedit manual page not opened.",
+  "of": "dd7aaaa2f6dc"
+ }
 }

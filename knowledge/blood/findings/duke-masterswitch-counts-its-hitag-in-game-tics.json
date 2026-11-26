@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "A Duke MASTERSWITCH, once operated, counts its hitag down by one each game tic (30 a second) and at zero operates its sector and arms its effectors: hitag 80 is a delay of about 2.67 seconds, not 8.",
  "evidence": [
-  "reference/eduke32/source/duke3d/src/actors.cpp:2554-2560 (yvel == 1: --hitag <= 0, then G_OperateSectors and the effectors)",
-  "E4L1 sprite 119 (hitag 80) delays the briefing recorder's charges"
+  "reference/eduke32/source/duke3d/src/actors.cpp:2554-2560 (G_MoveStandables; yvel == 1: --hitag <= 0, then G_OperateSectors and the effectors); duke3d.h:90 REALGAMETICSPERSEC 30",
+  "E4L1 sprite 119 (picnum 8, hitag 80) delays the briefing recorder's charges (projects/duke-e4l1-remake/briefing.py:54)"
  ],
  "use": "Convert a MASTERSWITCH delay as hitag/30 seconds, rounded to Blood's tenths.",
  "code": [],
@@ -19,5 +19,10 @@
   "delay",
   "masterswitch",
   "timer"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read reference/eduke32/source/duke3d/src/actors.cpp:2554-2560 in G_MoveStandables (from :1916): MASTERSWITCH with yvel == 1 does --hitag <= 0, then G_OperateSectors and sets t_data[0] on SE 2/21/31/32/36 effectors; duke3d.h:90 REALGAMETICSPERSEC 30, so 80 is 2.67 s. Read maps/duke3d/E4L1.MAP sprite 119: picnum 8 (MASTERSWITCH), hitag 80, lotag 8000, sector 390. projects/duke-e4l1-remake/briefing.py:54 and inspect_briefing.py:60 use it.",
+  "of": "5eb8e9dbf32c"
+ }
 }

@@ -42,10 +42,11 @@ not a claim the pocket is sealed.
   units of street frontage — one underground entrance per ~250–500k of
   frontage. The sewer is not a second street grid with many manholes; it is
   a **destination dungeon with one or two doors**.
-- **Entry forms**: elevator shaft (5 of 7 observed), floor drop (1), water
+- **Entry forms**: elevator shaft (5 of 6 observed entries), floor drop (1), water
   dive via SE7 pairs (present in DukCity2's water linking). Walk-down stairs
   from the street essentially do not occur.
-- **Depth**: medians 2.6–5.2 standing heights below grade (≈44k–88k z);
+- **Depth**: medians 1.05–5.2 standing heights below grade (≈18k–88k z;
+  2.6–5.2 but for DukCity1's pocket);
   shallow transit at ~1–2.8, deep vaults at 3.5–5.5.
 - **Dry, not wet**: wet area share 0.00–0.02. The "sewer" is corridors and
   chambers; water is an accent puddle or a single channel, not the medium.
@@ -100,8 +101,9 @@ structural disagreement is shown with both numbers.
   segment class (sectors 42/46/50...): narrow channels, wider walks.
 - **Light is animated everywhere**: 175 of 309 sectors carry animated
   shade (57%) -- the densest flicker of any map measured in this project.
-  Shade median +34.
-- **Lightly wired**: 23 user channels (vs 47 campaign median) -- sewers
+  Their floor-shade median is +36 (the map's +34).
+- **Lightly wired**: 21 user channels of 100 and up (vs a campaign median
+  of 45) -- sewers
   spend on atmosphere, not mechanism.
 - **What lives there**: bone eels x17, rats x9, gill beasts x7, butchers
   x13, axe zombies -- water dwellers and scavengers, no cultist garrison.

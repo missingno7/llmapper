@@ -2,10 +2,10 @@
  "id": "only-gib-walls-change-a-walls-blocking",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "In Blood the only thing that clears a wall's blocking bits at run time is a kWallGib (type 511) XWALL reaching state 1: SetupGibWallState clears cstat 1|64 on both sides and the masked bit 16. A Z-motion sector moves floors and ceilings, never wall cstat, so a blocking two-sided wall that is not a gib wall is shut for ever. The bit is carried per side: a wall pair blocks if EITHER record has it; two sectors are cut apart only if every wall pair between them blocks.",
+ "claim": "In Blood the only thing that changes a wall's blocking bits at run time is a kWallGib (type 511) XWALL changing state: SetupGibWallState clears cstat 1|64 on both sides and the masked bit 16 when it turns ON, and when it turns OFF sets 1 on its own side and clears it on the other. A Z-motion sector moves floors and ceilings, never wall cstat, so a blocking two-sided wall that is not a gib wall is shut for ever. The bit is carried per side: a wall pair blocks if EITHER record has it; two sectors are cut apart only if every wall pair between them blocks.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:662-690 SetupGibWallState; no other wall-cstat write in vanilla Blood code clears bit 1 (gameutil.cpp:621 clears only 64; mapedit.cpp is the editor).",
-  "Campaign: 2,272 blocking two-sided walls, 205 of them kWallGib, every one built shut and wired (bloodmap/conditional.py blocking_aware base, 2026-09-01)."
+  "NBlood/source/blood/src/triggers.cpp:662-689 SetupGibWallState, called only from OperateWall's kWallGib case (:715, :732); no other wall-cstat write in vanilla Blood code clears bit 1 (gameutil.cpp:621-623 in VectorScan clears only 64 and restores it at :640-641; seq.cpp:556-558 clears 8|16|32; mapedit.cpp is the editor).",
+  "knowledge/blood/findings/probes/audit2_blocking_walls.py over the 43 campaign maps: 2,272 blocking two-sided wall records, 205 of them kWallGib, all 205 built shut (state 0) and set to break when shot (trigger_vector), 30 also on an rx channel; bloodmap/conditional.py blocking_aware base"
  ],
  "use": "A breakable wall is a kWallGib XWALL built blocking; a reachability reader ORs both wall records and reopens only what a mechanism drives.",
  "code": [
@@ -23,5 +23,10 @@
   "cstat",
   "reachability",
   "wall gib"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/blood/src/triggers.cpp:662-689 (SetupGibWallState): state on clears 65 on both sides and 16; state off sets 1 on this side, clears 1 on the other; called only from OperateWall case kWallGib (:715, :732). gameutil.cpp:621-641 (VectorScan) clears 64 and restores it; seq.cpp:556-558 clears 8|16|32 only. Ran probes/audit2_blocking_walls.py: 2,272 blocking two-sided records, 205 of them type 511; all 205 state 0 and trigger_vector, 30 with rx_id.",
+  "of": "e35071a60651"
+ }
 }

@@ -2,12 +2,13 @@
  "id": "fall-damage-forgiven-under-about-3-7-bodies",
  "topic": "gameplay",
  "standing": "engine",
- "claim": "Blood forgives a fall's impact up to a floor (kFallDamageFloor): replaying MoveDude's integration, a drop of 62,564 z (3.69 standing heights) or less does no harm and the first that hurts is 68,025 (4.01); so a 3.1-body shaft is a safe one-way drop that nobody can climb back up.",
+ "claim": "Blood forgives a fall's impact up to a floor (kFallDamageFloor): stepped in MoveDude's own order, a drop from rest of 67,570 z (3.98 standing bodies) or less does no harm, the next unit costs 4 hit points, and 126,957 (7.49 bodies) is the first to take a hundred. Gravity is not added on the tick whose move already reaches the floor, so the body lands at the speed it had. A 3.1-body shaft is therefore a safe one-way drop that nobody can climb back up.",
  "evidence": [
-  "NBlood/source/blood/src/actor.cpp:4845 `nDamage -= kFallDamageFloor`; actor.h:185-187 (kDudeGravity 58254, kFallDamageFloor 100<<4)",
-  "bloodmap/layers.py fall_cost replays the integration (3.69 painless, 4.01 first to hurt, 7.51 kills from full health); projects/blood-city/level/l3_shed.py docstring uses 3.70"
+  "NBlood/source/blood/src/actor.cpp:4595-4632 (MoveDude: z += zvel>>8, then gravity unless bottom >= floorZ, :4625) and :4826-4847 (landing: nDamage = mulscale30(vax, vax); nDamage -= kFallDamageFloor); actor.cpp:2691-2698 (actFloorBounceVector returns zvel on a flat floor); actor.h:185-187 (kDudeGravity 58254, kFallDamageFloor 100<<4)",
+  "knowledge/blood/findings/probes/audit2_jump_fall.py steps that order: last painless 67,570; first that hurts 67,571; raw damage reaches 1,600 at 126,957 (2026-11-26)",
+  "bloodmap.layers.fall_cost gave 62,564 as the last painless drop until 2026-11-26: it added gravity on the landing tick too. tests/test_layers.py now holds it to the engine's order"
  ],
- "use": "Keep drop entries under 3.7 bodies and give every one-way drop a walking way back; bloodmap.layers.fall_cost prices any drop.",
+ "use": "Keep drop entries under 3.9 bodies and give every one-way drop a walking way back; bloodmap.layers.fall_cost prices any drop.",
  "code": [
   "bloodmap.layers.fall_cost",
   "projects/blood-city/level/l3_shed.py"
@@ -23,5 +24,10 @@
   "fall",
   "height",
   "one-way"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp:4595-4632 (MoveDude) read: z += zvel>>8, then gravity only if not bottom >= floorZ (:4625); landing :4826-4847 nDamage = mulscale30(vax, vax) - kFallDamageFloor; actor.h:185-187 g 58254, floor 100<<4. Ran probes/audit2_jump_fall.py and bloodmap.layers.fall_cost (corrected the same day to this order): 67,570 -> 0, 67,571 -> 4.44 hp, 126,956 -> 82.6, 126,957 -> 102.25 hp.",
+  "of": "1543d99b64a0"
+ }
 }

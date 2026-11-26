@@ -2,9 +2,10 @@
  "id": "a-use-sound-is-a-toggle-with-its-sound-in-data",
  "topic": "sound",
  "standing": "precedent",
- "claim": "A thing that makes a sound when used (a flushed toilet) needs no wire: an invisible kSwitchToggle (type 20) with trigger_push and the sound in both data_1 and data_2 plays it on either change, standing in the thing.",
+ "claim": "In E2M4 a thing that makes a sound when used (a flushed toilet) has no wire: an invisible kSwitchToggle (type 20) with trigger_push and the sound in both data_1 and data_2 plays it on either change, standing in the thing.",
  "evidence": [
-  "E2M4 sprite 845: type 20, cstat 33152 (invisible), trigger_push 1, data_1 369, data_2 369, in sector 469 (the toilet's bowl)"
+  "E2M4 sprite 845: type 20, cstat 33152 (invisible), trigger_push 1, data_1 369, data_2 369 (sound 369 TOILET, knowledge/blood/sounds.json), in sector 469 (the toilet's bowl, floor 997 sewage)",
+  "NBlood/source/blood/src/triggers.cpp:441-455 (OperateSprite, kSwitchToggle): sfxPlay3DSound data1 when it turns on, data2 when it turns off"
  ],
  "use": "Stand the toggle in the fitting; declare no channel, since it has no tx or rx.",
  "code": [],
@@ -18,5 +19,10 @@
   "push",
   "sound on use",
   "toilet"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "python -m tools.catalog record E2M4 sprite 845: type 20 kSwitchToggle, cstat 33152 (32768 invisible + 256 + 128), trigger_push 1, data_1 369, data_2 369, sector 469 (floor 997 'sewage surface'), no tx_id/rx_id. knowledge/blood/sounds.json '369' is TOILET 'Toilet Flushing'. triggers.cpp:441-455 (OperateSprite, kSwitchToggle) plays data1 on turning on and data2 on turning off. Claim reworded as E2M4's.",
+  "of": "95802d7b3e8e"
+ }
 }

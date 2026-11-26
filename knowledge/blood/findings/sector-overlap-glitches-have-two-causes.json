@@ -2,9 +2,10 @@
  "id": "sector-overlap-glitches-have-two-causes",
  "topic": "validation",
  "standing": "practice",
- "claim": "Overlapping Build sectors glitch when the overlap's footprint is reachable down both branches, or when the parents' walls mutually straddle (wallfront -2) while both are drawn. Floors carry no depth of their own; they inherit the order of the walls they hang on.",
+ "claim": "Our overlap validator (tools/vector_report, tools/vector_solver) holds that overlapping Build sectors glitch when the overlap's footprint is reachable down both branches, or when the parents' walls mutually straddle (wallfront -2) while both are drawn; floors carry no depth of their own and inherit the order of the walls they hang on. It held on the owner's hand-built calibration maps.",
  "evidence": [
-  "Calibrated on the owner's hand-built maps in tests/data/sector_overlap (bad_1..9, good_1, 2, 5), 2026-08-29."
+  "Calibrated on the owner's hand-built maps in tests/data/sector_overlap (bad_1-4, bad_7-9, good_1, 2, 5; good_3, 4, 6 became bad_7, 9, 8 when the owner saw them glitch), 2026-08-29; tests/test_sector_overlap.py runs in 0.3 s",
+  "tools/vector_solver.py (_straddles) and bloodmap/drawsort.py (wallfront, engine.cpp:2227)"
  ],
  "use": "Check overlaps with the vector report; its test runs in under a second.",
  "code": [
@@ -22,5 +23,10 @@
   "overlap",
   "sector over sector",
   "wallfront"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened tests/test_sector_overlap.py (3 tests, ran in 0.30 s, OK; 7 bad maps asserted) and tests/data/sector_overlap: bad_1-4, bad_7-9, good_1, good_2, good_5 (no bad_5 or bad_6: good_3/4/6 were renamed bad_7/9/8). tools/vector_solver.py docstring and _straddles :289-308; bloodmap/drawsort.py wallfront. The agent's note overlap-validator.md states the two failure modes. Claim reworded as our validator's oracle.",
+  "of": "c279e9867c34"
+ }
 }

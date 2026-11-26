@@ -4,8 +4,8 @@
  "standing": "tendency",
  "claim": "E3M1 keeps its facade bays on a world grid mostly by where its walls begin, not by panning: of its 142 street walls drawn at 16 units a pixel, 112 (79%) have x panning 0, 78 (55%) are in phase with a world 1,024 grid, and 67 of those are both, a wall starting on a multiple of 1,024 with no panning. So a 1,024-unit bay of its facade tiles falls on one grid across much of a district, and an opening one bay wide lines up with the painted windows beside it.",
  "evidence": [
-  "2026-11-26 measurement (knowledge/blood/findings/probes/consolidation_audit_mid_facade_phase.py): E3M1 one-sided or upper walls of open-sky sectors at 16 units a tile pixel, axis-aligned; the earlier '70% phased to world position' (2026-09-01, an agent's note) is not reproduced",
-  "the owner, 2026-09-01: 'the entrance should copy the windows, not cut them in half' (projects/blood-city/level/facade_pass.py snap_opening)"
+  "2026-11-26 measurement (knowledge/blood/findings/probes/audit2_facade_phase.py, a self-contained redo of consolidation_audit_mid_facade_phase.py): E3M1 one-sided or upper walls of open-sky sectors at 16 units a tile pixel, axis-aligned: 142, pan 0 112, world phase 78, both 67; the earlier '70% phased to world position' (2026-09-01, an agent's note) is not reproduced",
+  "the owner, 2026-08-28: 'texture is correctly aligned but the entrance is visually wrong, it should copy the windows on texture, not cut them in half' (projects/blood-city/reports/refinement-log.md:256-257; projects/blood-city/level/facade_pass.py snap_opening)"
  ],
  "use": "Start facade walls and snap every opening to whole bays on the 1,024 world grid; keep a room's origin on the grid or no opening in its face can align.",
  "code": [
@@ -23,5 +23,10 @@
   "grid",
   "panning",
   "window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/consolidation_audit_mid_facade_phase.py and a self-contained redo probes/audit2_facade_phase.py: E3M1 n 142, zero 112 (79%), world 78 (55%), both 67, diagonal 4 (as claimed). The old probe imports a helper from the scratch directory, so the evidence now cites the redo. Owner's words, refinement-log.md:256-257 (Iteration 7, committed 2fcb006 on 2026-08-28): 'it should copy the windows on texture, not cut them in half'; facade_pass.py:256-257 paraphrases them.",
+  "of": "7dfdb1a1b576"
+ }
 }

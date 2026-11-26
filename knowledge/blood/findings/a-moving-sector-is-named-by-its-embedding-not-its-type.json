@@ -25,5 +25,10 @@
   "naming",
   "reading",
   "zmotion"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened reports/blood-effects-motion.json: mechanisms 2027, naming_from_fields scored 1179 misnamed 471; cross z_floor|changes 122, z_ceiling|neither 102, slide|undecidable 387, rotate|undecidable 260, undecidable 662 (15 others); by_sector_type 600|changes 671, 600|carries 186. tools.catalog show kSectorZMotion: 1236 in 43 maps, remote_rx x972. auto-rotators.md: 88 instances in 14 maps, door pairs E1M4, DWE1M9, DNE3L6 (6 sectors).",
+  "of": "8038f52610d2"
+ }
 }

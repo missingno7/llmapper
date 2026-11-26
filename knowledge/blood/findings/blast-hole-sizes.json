@@ -2,9 +2,11 @@
  "id": "blast-hole-sizes",
  "topic": "construction",
  "standing": "tendency",
- "claim": "Campaign blast holes are a median 1,280 wide and 1.45 bodies tall (upper quartile 1,792 and 1.8), and ragged, with sloped floors and ceilings; E3M4's 640-wide hole is too narrow for a ragged hole a body walks through.",
+ "claim": "Campaign blast holes are wider than one body and ragged, with sloped floors and ceilings: of the 185 pieces kept in sewer-study_breach_shapes.json, 137 have a slanted edge, 116 a sloped floor and 123 a sloped ceiling. Gravesend's scale.py records a median 1,280 wide and 1.45 bodies open (upper quartile 1,792 and 1.81), counted 2026-11-18 over 177 holes by a sweep not kept and not reproduced; a recount of the 96 kept holes (2026-11-26) gives a median 1,664 wide (quartiles 1,280 and 2,208) and 1.57 bodies open (upper quartile 1.95). E3M4's 640-wide hole (wall 2361) is too narrow for a ragged hole a body walks through.",
  "evidence": [
-  "measured for projects/blood-city/level/l3_church.py and l3_mall.py (HOLE_MEDIAN); the owner, 2026-11-22: 'Blown out holes are usually using sloped floor and ceiling and usually aren't regular'"
+  "knowledge/blood/findings/probes/audit2_blast_holes.py over knowledge/blood/findings/probes/sewer-study_breach_shapes.json (96 holes, 185 pieces): width median 1,664, q1 1,280, q3 2,208; opening median 1.57, q3 1.95; 137/116/123 slanted, floor-sloped, ceiling-sloped",
+  "projects/blood-city/level/scale.py:15-17, :33-35 HOLE_MEDIAN and HOLE_LARGE (the earlier sweep of 177, not kept), used by l3_church.py and l3_mall.py",
+  "the owner, 2026-11-22: 'Blown out holes are usually using sloped floor and ceiling and usually aren't regular' (bloodmap/breach.py:3-4)"
  ],
  "use": "Lay a blown hole of 1,280 to 1,536 in three or four slanted pieces with bloodmap.breach.ragged, typed after the door pass so it is not framed as a door.",
  "code": [
@@ -23,5 +25,10 @@
   "hole",
   "ragged",
   "wall"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "scale.py:33-35 HOLE_MEDIAN (1280, 1.45), HOLE_LARGE (1792, 1.81) from a sweep of 177 (scale.py:15-17) that is not kept. Recount with knowledge/blood/findings/probes/audit2_blast_holes.py over the 96 holes / 185 pieces kept in sewer-study_breach_shapes.json: hole width median 1,664 (q1 1,280, q3 2,208), largest piece opening median 1.57 bodies (q3 1.95); type-600 shut sectors opening in a tenth: 106 pieces, median 960 wide, 1.39 open. Slants 137, floor slopes 116, ceiling 123 of 185 as breach.py says. E3M4 wall 2361 is 640 long, into s320.",
+  "of": "c58c60f3672c"
+ }
 }

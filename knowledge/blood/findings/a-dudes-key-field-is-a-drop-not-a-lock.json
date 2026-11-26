@@ -4,7 +4,7 @@
  "standing": "engine",
  "claim": "On a Blood enemy the XSprite key field is what it drops when it dies (key k drops item kItemKeyBase + k - 1), not a lock.",
  "evidence": [
-  "NBlood/source/blood/src/actor.cpp:3052-3053 (if pXSprite->key > 0 actDropObject ... kItemKeyBase + key - 1)."
+  "NBlood/source/blood/src/actor.cpp:3053-3054 (actKillDude: if pXSprite->key > 0 actDropObject(pSprite, kItemKeyBase + pXSprite->key - 1)); also actor.cpp:2567-2568 (actInit, a dude removed for the game mode drops its key)"
  ],
  "use": "To have a key carried by a monster, set the monster's key field; a reader must not read it as a locked thing.",
  "code": [],
@@ -19,5 +19,10 @@
   "dude",
   "enemy",
   "key"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp:3053-3054 (actKillDude, from 2961) read: 'if (pXSprite->key > 0) actDropObject(pSprite, kItemKeyBase + pXSprite->key - 1)'; also actor.cpp:2567-2568 (actInit) drops the key of a dude removed at load. Cited lines were 3052-3053, one off.",
+  "of": "547aa9f8a9ec"
+ }
 }

@@ -2,9 +2,10 @@
  "id": "interior-complexity-is-light-and-levels",
  "topic": "place",
  "standing": "tendency",
- "claim": "What makes a Blood interior read as complex is contrast within a room and vertical range within a venue, not more rooms: per interior of 20+ square bodies E3M1 holds a median 15.5 floor heights over 2.96 bodies, 10.5 ceiling heights, 14.5 wall tiles and 37 shade steps between darkest and brightest floor (our city: 7.5, 1.45 bodies, 5.5, 7.5).",
+ "claim": "E3M1's interiors (8 of 20+ square bodies) differ from Gravesend's of 2026-11-17 by contrast within a room and vertical range within a venue, not by more rooms: per interior E3M1 holds a median 15.5 floor heights over 2.96 bodies, 10.5 ceiling heights, 14.5 wall tiles and 37 shade steps between darkest and brightest floor (Gravesend then: 7.5 floor heights over 1.45 bodies, 5.5 ceiling heights, 7.5 wall tiles, 7.5 shade steps).",
  "evidence": [
-  "python -m tools.city_profile --interiors (2026-11-17). Adding a strongroom moved none of the numbers; a blind reviewer still called it 'ONE flat box ... flat even light'."
+  "python -m tools.city_profile --interiors on E3M1 (rerun 2026-11-26, same figures) and on Gravesend 2026-11-17 (projects/blood-city/experiments/pledge-room/README.md table); Gravesend's own figures have since moved (2026-11-26: 7.5, 1.21 bodies, 8.5, 11.0, 33)",
+  "Adding a strongroom moved none of the city's medians; a blind reviewer still called it 'ONE flat box ... flat even light' (projects/blood-city/experiments/pledge-room/README.md)"
  ],
  "use": "For a richer interior: light and dark inside one room (lamps with pools, dark corners), then levels (gallery, cellar, raised back), then materials; and put the trade's goods in.",
  "code": [
@@ -22,5 +23,10 @@
   "levels",
   "lighting",
   "shop"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran python -m tools.city_profile --interiors on E3M1 and blood-city-current.MAP: E3M1 8 interiors, floor heights 15.5, ceiling heights 10.5, range 2.96, wall tiles 14.5, shade spread 37.0 (as claimed). Gravesend today: 7.5, 8.5, 1.21, 11.0, 33.0, so the claim's city figures (7.5, 1.45, 5.5, 7.5, 7.5) are 2026-11-17/18's (pledge-room README table). One map's eight interiors, worded as what makes any Blood interior complex.",
+  "of": "2e855a68dc46"
+ }
 }

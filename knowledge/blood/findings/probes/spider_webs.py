@@ -1,6 +1,9 @@
 """Every breakable web (type 410) and every sprite on tile 1069 in the corpus: its flags, size, height, and where it stands against the walls."""
-import sys, math, json
-sys.path.insert(0, ".")
+import math
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 from collections import Counter
 from bloodmap.corpus import list_corpus_maps
 from bloodmap.format import read_map
@@ -50,7 +53,6 @@ for m in list_corpus_maps():
                      "wall_dist": round(best[0]) if best else None, "wall_open": best[1] if best else None,
                      "plane_vs_wall": round(abs(((spr_plane - best[2]) + 90) % 180 - 90)) if best else None,
                      "wall_len": round(best[3]) if best else None})
-json.dump(rows, open("work/spider/webs.json", "w"), indent=0)
 c = [r for r in rows if r["picnum"] == 1069]
 print(len(rows), "webs;", len(c), "on 1069 in", len({r['map'] for r in c}), "maps")
 for key in ("cstat", "align", "type"):

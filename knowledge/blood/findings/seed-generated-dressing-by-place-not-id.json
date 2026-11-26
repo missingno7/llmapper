@@ -4,7 +4,8 @@
  "standing": "practice",
  "claim": "A generated pass that sorts or rolls on a region's id reshuffles every sprite whenever the level program is reorganised, so a restructure cannot be told from a redesign. Seeded from where the room is (its outline and floor), the pass is stable under reparenting and changes the moment the room moves.",
  "evidence": [
-  "projects/blood-city/level/dressing.py; level/fingerprint.py compared compiled maps order-independently (removed from the working tree in the 2026-11-26 consolidation; at commit ea7be12)"
+  "projects/blood-city/level/dressing.py; level/fingerprint.py compared compiled maps order-independently (removed from the working tree in the 2026-11-26 consolidation; at commit ea7be12)",
+  "projects/blood-city/level/dressing.py:215-223 (seeded from props.place_id, the world outline and floor); bloodmap/same_map.py compares two maps whatever order their records are in."
  ],
  "use": "Key pseudo-random choices on a place id or world position; compare a restructure with python -m bloodmap.same_map before.MAP after.MAP, which says whether two maps are the same level whatever order their records are in.",
  "code": [
@@ -21,5 +22,10 @@
   "restructure",
   "seed",
   "stable"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/dressing.py:53-55 _roll (sha256 of a seed) and :215-223: sorted and rolled on props.place_id (world outline and floor), not the region id, because region ids change on reorganising; bloodmap/same_map.py exists and compares maps order-independently; git ls-tree ea7be12 shows projects/blood-city/level/fingerprint.py at that commit.",
+  "of": "97ef1a687bdd"
+ }
 }

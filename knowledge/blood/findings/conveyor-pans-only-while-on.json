@@ -23,5 +23,10 @@
   "lever",
   "machine",
   "pan"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/blood/src/sectorfx.cpp:265-300 (DoSectorPanning): :277 'if (pXSector->panAlways || pXSector->busy)'; busy is state<<16 once ON (triggers.cpp SetSectorState), scaled by busy while moving. actor.cpp:5411 and :5434 (actProcessSprites) drag only if panAlways || state || busy. Campaign scan: E3M5 s44 pan_always 1, pan_floor 1, drag 1, pan_velocity 48, pan_angle 512; E6M3 s150-151 velocity 10, E4M9 s79 ff. velocity 20; and switched belts without pan_always exist (E2M2 s34 rx 102, E2M7 s15-23 rx 147).",
+  "of": "1d4090eb3e58"
+ }
 }

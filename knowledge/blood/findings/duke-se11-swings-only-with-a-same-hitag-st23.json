@@ -22,5 +22,10 @@
   "inert",
   "rotor",
   "swinging door"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "sector.cpp:961-1000 read (G_OperateSectors, case ST_23_SWINGING_DOOR): finds an SE_11 in its own sector with !T5, then sets T5 = 1 on every SE_11 with sprite[j].hitag. actors.cpp:7292 case SE_11_SWINGING_DOOR, :7299 'if (pData[4])' gates the motion. Duke E4L1 (read_duke_map): sprite 487 SE11 hitag 409 in sector 152 (lotag 0); ST23 sectors 15,16,24,50,61,95,317,318,327,328,369,410 hold no SE11 of hitag 409. E1L2: sprite 250 hitag 284 in sector 262 is the only SE11 with no same-hitag SE11 in an ST23 sector.",
+  "of": "5b01b86de9e0"
+ }
 }

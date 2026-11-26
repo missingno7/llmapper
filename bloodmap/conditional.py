@@ -590,8 +590,8 @@ def conditional_edges(disk: Any, *, owners: Sequence[int] | None = None
             #: Which state actually blocks, measured rather than assumed.
             #: The line between two portals' midpoints is the way across; if
             #: a leaf segment crosses it, that way is shut. Assuming instead
-            #: that the rest state is the shut one cut E1M2 from 231
-            #: reachable sectors to 26.
+            #: that the rest state is the shut one cut E1M2 to 26
+            #: reachable sectors (from 226 or 231: the run was not kept).
             shut_at_rest = None
             if len(neighbours) == 2:
                 a = portal_midpoint(disk, sector_id, neighbours[0])

@@ -425,11 +425,14 @@ register(Rule(
         "a sector carrying a stack marker must wear the mirror tile on the "
         "surface the stack looks through"),
     because=(
-        "IsRorSector is what decides whether the other side is drawn, and it "
-        "decides by picnum: the mirror tile or the mirror range. Without it the "
-        "link still moves the player and they cross it blind, looking at an "
-        "ordinary floor the whole way"),
-    source="NBlood/source/blood/src/mirrors.cpp:243 IsRorSector",
+        "InitMirrors makes a stack only where IsRorSector says the UPPER "
+        "sector's floor is the mirror tile (or in the mirror range, or masked "
+        "by stat 0x180). Without it the link still moves the player and they "
+        "cross it blind, looking at an ordinary floor the whole way. NBlood "
+        "gives the lower ceiling the tile itself (mirrors.cpp:499-500); the "
+        "rule still asks for both halves, as Blood's own maps wear it, so a "
+        "missing lower half is reported though this port would draw it"),
+    source="NBlood/source/blood/src/mirrors.cpp:243 IsRorSector, :491-500 InitMirrors",
     scope="sector",
     check=_stack_portals_wear_the_mirror_tile,
 ))
@@ -687,8 +690,9 @@ register(Rule(
         "roofed, so a parallax ceiling below a roofed neighbour's is drawn with "
         "the sky *underneath* the surrounding roofline -- daylight showing below "
         "the level of the ceiling next to it, which cannot happen in a building. "
-        "The campaign holds 73% of these pairs exactly equal and its median gap "
-        "is zero; the four that go the other way are all in E3M4"),
+        "Of the campaign's 1,348 such pairs the sky stands higher in 1,338 (by "
+        "a median 32,768) and level in 6; the four that go the other way are "
+        "all in E3M4"),
     source="NBlood/source/build/src/engine.cpp:4688",
     scope="sector",
     check=_sky_is_never_below_a_roof,

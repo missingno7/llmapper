@@ -2,16 +2,16 @@
  "id": "a-stand-roof-stops-a-body-and-a-bullet",
  "topic": "sprite",
  "standing": "ruling",
- "claim": "The flat roof over a market stand or stall blocks: it stops a body and a bullet, as most of Blood's flat roof sprites do.",
+ "claim": "In Gravesend the flat roof over a market stand or stall blocks: it stops a body and a bullet, because the owner found the stalls' roofs passable and said they should be solid.",
  "evidence": [
-  "the owner, 2026-11-25: 'roofs of stands aren't solid/blocking even they should be'",
-  "251 of Blood's 312 such roofs set both bits (projects/blood-city/level/meat_market.py, comment on the canopy)"
+  "the owner, 2026-11-25: 'roofs of stands aren't solid/blocking even they should be' (projects/blood-city/level/meat_market.py:230)",
+  "meat_market.py:230 also says 251 of Blood's 312 flat roofs set both bits: counted 2026-11-25, population not stated, not recounted; tools/mine_solidity.py counts each tile's two bits by how it stands (knowledge/blood/design/solidity-v1.json)"
  ],
  "use": "Set cstat bits 1 and 256 on a stand's roof sprites.",
  "code": [
   "projects/blood-city/level/meat_market.py:_dress_stalls"
  ],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-25"
@@ -23,5 +23,10 @@
   "roof",
   "solid",
   "stall"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words found at projects/blood-city/level/meat_market.py:230 ('roofs of stands aren't solid/blocking even they should be'), added in commit f6ceced of 2026-11-25; SOLID = 1 | 256 at :231 used on the canopy sprites in _dress_stalls (:249). The '251 of Blood's 312' figure: the comment does not say what was counted; tried flat sprites over the 43 campaign maps (1,232, 360 with both bits) and knowledge/blood/design/solidity-v1.json flats (3,970) - neither gives 312, so the figure is dated, not a present count. The ruling is about Gravesend's stalls: scope project:blood-city.",
+  "of": "68208c46b4b1"
+ }
 }

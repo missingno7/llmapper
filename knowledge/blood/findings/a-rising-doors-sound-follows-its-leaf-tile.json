@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "A door that rises (type 600) sounds like what its leaf is made of, as the campaign's ceiling doors wearing that tile do: a wooden leaf (22) most often pairs start 110 with stop 160 (4 doors), starts on 105 more often over all (9 across three tuples) and never on 106; panelled metal (495) starts most on 111 and stops on 169 (6) or 165 (4); stone (110, 1011) starts on 106. Stone's 106 on a wooden door sounds like moving stone.",
  "evidence": [
-  "the owner, 2026-11-23: 'These wooden zdoor sound 106 sounds like a moving stone ... example 110 would be better' (projects/blood-city/tests/test_city_sounds.py:37 quotes its first half)",
+  "the owner, 2026-11-23: 'These wooden zdoor sound 106 sounds like a moving stone ... example 110 would be better' (projects/blood-city/level/motion_sounds.py:57-58 keeps it whole; projects/blood-city/tests/test_city_sounds.py:37 quotes its first half)",
   "knowledge/blood/studies/door-sounds/notes.md, 'Doors by what the leaf wears': campaign ceiling-only 600s by the tile their neighbours show, first 709 each (22: 110/160 x4, 105/160 x3, 105/151 x3, 105/153 x3; 495: 119/169 x4, 111/165 x4, 120/169 x2 ...; 110: 106/160 x8, 106/157 x4; 1011: 106/157 x3)"
  ],
  "use": "Choose a mover's start and stop sounds from the tile its neighbours see of it; a body of many sectors gets one voice.",
@@ -25,5 +25,10 @@
   "stone",
   "wooden",
   "zdoor"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words in full at projects/blood-city/level/motion_sounds.py:57-58 (2026-11-23), first half in tests/test_city_sounds.py:37. door-sounds/notes.md:115-126 table read: 22: 110/160 x4, 105 starts 3+3+3=9 in three tuples, no 106; 495: 111 starts 4+2+1=7 (most), 169 stops 4+2=6, 165 x4; 110: 106/160 x8, 106/157 x4; 1011: 106/157 x3. Figures read from the kept study, not recounted. motion_sounds.py:59 LEAF_PROFILES 22 wood, 495 iron, 110/1011 stone.",
+  "of": "c708e97bb692"
+ }
 }

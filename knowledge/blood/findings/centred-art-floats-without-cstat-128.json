@@ -5,7 +5,8 @@
  "claim": "The renderer puts a sprite's bottom at z minus (art yoffset x yrepeat x 4), and adds half its height back only when cstat 128 is set. A tile drawn to be centred (art yofs about half its height: statues, smoke, keys) placed with z on the floor and no cstat 128 hangs in the air by yofs x yrepeat x 4 (statue 536: 0.83 bodies).",
  "evidence": [
   "NBlood/source/build/src/engine.cpp:5399-5404 (z2 = z - yoff*yrepeat<<2; += half height if cstat&128) and :12597.",
-  "The campaign writes every instance of 536, 754, 672 and 2553 with cstat 128; the owner spotted floating memorial statues in Gravesend that the frames had shown and nobody had seen (2026-11-20)."
+  "The campaign writes every instance of 536, 754, 672 and 2553 with cstat 128; the owner spotted floating memorial statues in Gravesend that the frames had shown and nobody had seen (2026-11-20).",
+  "knowledge/blood/findings/probes/audit2_centred_tiles_cstat128.py over the 43 campaign maps: 536 5/5, 754 31/31, 672 20/20, 2553 11/11 carry cstat 128; 536's art yofs is 55, so 0.83 bodies at y_repeat 64. engine.cpp:5399 is in setup_globals_sprite1, :12597 in spriteheightofsptr."
  ],
  "use": "Take a sprite's cstat from a campaign record of the same tile (catalog record), and run tools.sprite_fit, which lists 'lifted' sprites.",
  "code": [
@@ -26,5 +27,10 @@
   "lifted",
   "statue",
   "yoffset"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine.cpp:5399 in setup_globals_sprite1: z2 = z - (yoff*yrepeat<<2); :5401-5404 adds yspan*yrepeat<<1 when cstat&128; :12597 spriteheightofsptr zofs = hei>>1 if cstat&128. Art (wallplane.art): 536 is 36x110, yofs 55; 55*64*4 = 14080 = 0.83 of 16960. Recounted with knowledge/blood/findings/probes/audit2_centred_tiles_cstat128.py: 536 5 of 5, 754 31 of 31, 672 20 of 20, 2553 11 of 11 with cstat 128.",
+  "of": "07a2710e685d"
+ }
 }

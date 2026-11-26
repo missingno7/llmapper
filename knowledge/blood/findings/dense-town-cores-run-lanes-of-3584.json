@@ -2,9 +2,9 @@
  "id": "dense-town-cores-run-lanes-of-3584",
  "topic": "place",
  "standing": "tendency",
- "claim": "A dense town core (TEDE1M2, 1,014 sectors, 7,361 walls) is a web of lanes, street width median 3,584 (p10 1,024), round one square, with the corpus's highest rate of substantial interiors, 0.38 per 10,240 units of frontage. E3M2 builds its whole walled town as 4 sky sectors with the buildings as holes, entered from the walls above.",
+ "claim": "A dense town core (TEDE1M2, 1,014 sectors, 7,361 walls) is a web of lanes, street width median 3,584 (p10 1,024), round one square (one walk-around loop), with the highest rate of substantial interiors of the nine city maps measured, 0.38 per 10,240 units of frontage. E3M2 builds its whole walled town as 4 sky sectors with the buildings as holes, entered over its wall by drops.",
  "evidence": [
-  "tools/mine_city_norms.py v2 on TEDE1M2 and E3M2 (knowledge/blood/references/city-norms-v2.json)"
+  "tools/mine_city_norms.py v2 over nine city maps (knowledge/blood/references/city-norms-v2.json): TEDE1M2 width median 3,584, p10 1,024, 0.38 substantial interiors per 10,240, 1 street loop; E3M2 4 street sectors; summarised in knowledge/blood/references/dense-town-patterns.md"
  ],
  "use": "For a dense quarter use 3,072-3,584 lanes and many shallow interiors; an open town can be one sky region with masses carved out.",
  "code": [
@@ -22,5 +22,10 @@
   "lane",
   "street width",
   "town core"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/city-norms-v2.json per_map: TEDE1M2 budget 1,014 sectors 7,361 walls, street width median 3,584, p10 1,024, street_loop_count 1, substantial_interiors_per_10240_frontage 0.38 - the highest of the nine maps in the file (E3M1 0.29, DukCity3 0.21, DWE3M10 0.20); E3M2 street sectors 4. dense-town-patterns.md:38-42 'whole town is 4 sky sectors ... entered over its wall, by drops'. 'The corpus's highest' was over nine measured maps: narrowed.",
+  "of": "083d775382f5"
+ }
 }

@@ -5,7 +5,8 @@
  "claim": "A Blood foe wakes when it can see the player: aiLookForTarget (run only when a roll on the foe's alertChance passes) asks cansee between the two, then wakes the foe if the player is within its seeDist and periphery angle, or within its hearDist. cansee passes from sector to sector through portals; walls and steps stop it, sprites do not. So a foe with a clear line to the start, near enough and facing it, wakes within moments of the level beginning.",
  "evidence": [
   "NBlood/source/blood/src/ai.cpp:1331-1365 aiLookForTarget: Chance(alertChance), cansee(...) at :1351, seeDist and periphery at :1354, hearDist at :1360",
-  "the owner, 2026-11-25: 'right now you just get attacked by a lot of enemies around you immediatelly'; ten foes saw Gravesend's start"
+  "the owner, 2026-11-25: 'right now you just get attacked by a lot of enemies around you immediatelly'; ten foes saw Gravesend's start",
+  "NBlood/source/build/src/engine.cpp:12763 cansee: walls stop it at :12888 (no next sector, or cstat & wallmask, default CSTAT_WALL_1WAY per build.h:1364-1365); sprites are not tested. The owner's words: projects/blood-city/level/first_sight.py:5-6."
  ],
  "use": "Measure who sees the start and the first steps with first_sight.py; hide the start with SECTORS (boards, a ride's drum, a stall's back), because a sprite blocks no line.",
  "code": [
@@ -26,5 +27,10 @@
   "spawn",
   "start",
   "wake"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "ai.cpp:1331 aiLookForTarget: :1335 Chance(alertChance); :1349 skips beyond both seeDist and hearDist; :1351 cansee from player to the dude's eye; :1354 nDist < seeDist and |delta angle| <= periphery; :1360 else nDist < hearDist. engine.cpp:12763 cansee: :12888 a wall stops it only if nextsector < 0 or cstat & wallmask (default CSTAT_WALL_1WAY, build.h:1364-1365); no sprite test. Owner's words at projects/blood-city/level/first_sight.py:5-6 and fair.py:3.",
+  "of": "eaf2bf3a3801"
+ }
 }

@@ -1,6 +1,9 @@
 """How fine a map is cut for light: sectors that differ from a neighbour they open onto only in shade."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, statistics
-sys.path.insert(0, ".")
 from bloodmap.format import read_map
 from bloodmap.model import record_fields as F
 from bloodmap.sector_geom import outline_and_holes

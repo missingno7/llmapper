@@ -4,9 +4,9 @@
  "standing": "refuted",
  "claim": "Whether a body passed through a mechanism can be read from screenshots, frame-to-frame change, or a level-exit channel fired by trigger_enter.",
  "evidence": [
-  "Hashing frames: a rotor turns, so frames never match, and PNG-byte hashes score black and lit frames alike. Frame change: a rotor changes the picture whether anyone passes. kChannelLevelExitNormal with trigger_enter: no log line or exit in two runs (2026-08-31)."
+  "reports/blood-passage-oracle.md:38-58 (2026-08-31): hashing frames, frame change and the colour-signature twin (0 against 36), the level exit with trigger_enter tested twice"
  ],
- "use": "Read the engine's per-tick sector from the bot trajectory, with a positive control on the same driver.",
+ "use": "Read the engine's per-frame sector from the bot trajectory, with a positive control on the same driver.",
  "code": [
   "bloodmap.oracle.run_nblood_passage_oracle"
  ],
@@ -23,5 +23,10 @@
   "trajectory",
   "turnstile"
  ],
- "instead": "Only the engine's own per-tick player sector (-bot_trajectory) shows a crossing; a non-crossing means nothing without a positive control sharing the driver."
+ "instead": "Screenshot hashes cannot tell (a rotor changes every frame; PNG-byte hashes score black and lit frames alike), plain frame change cannot, and the level-exit channel fired by trigger_enter showed nothing in two runs. A colour signature compared against a twin map with the body spawned beyond did separate an open corridor from a walled one, but needs a keyboard driver and was abandoned. What we use is the engine's own per-game-frame player sector (-bot_trajectory), and a non-crossing means nothing without a positive control sharing the driver.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened reports/blood-passage-oracle.md:38-58: hashing frames always says 'different' (a rotor turns), PNG-byte hashes scored black and lit alike; frame change: a rotor changes the picture, but a colour signature against a twin map DID separate open (0) from walled (36), abandoned because it needs a keyboard driver; the exit channel with trigger_enter gave nothing in two runs. oracle.py:1139 run_nblood_passage_oracle; the trajectory is one line per game frame (bot.cpp:1592-1596).",
+  "of": "fb38bbe87ed8"
+ }
 }

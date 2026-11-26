@@ -99,7 +99,7 @@ def census(paths) -> dict[int, dict[str, Any]]:
             row["cstat"].append(int(f["cstat"]))
             row["shade"].append(int(f["shade"]))
             #: A sprite wearing its SECTOR's palette wears the place, not
-            #: itself: DWE3M1 is fogged, and 963 of its sprites are palette 1
+            #: itself: DWE3M1 is fogged, and 970 of its sprites are palette 1
             #: in a palette-1 sector, none in a clear one. The owner found
             #: fog-blue chairs and bottles in Gravesend's clear rooms. The
             #: thing's own palette is what is left when the place's is taken.

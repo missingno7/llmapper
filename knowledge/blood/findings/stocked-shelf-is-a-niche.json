@@ -2,10 +2,10 @@
  "id": "stocked-shelf-is-a-niche",
  "topic": "construction",
  "standing": "precedent",
- "claim": "Blood's stocked shelf is a recess in a wall raised about half a body over the floor (6,144 to 8,192), 256 to 512 deep, 12,288 to 16,384 high inside, holding a thing every 300 to 350 units, mostly breakable bottles and jars (type 416). Books are a wall surface (bookcase-front tiles), not sprites.",
+ "claim": "Three of Blood's stocked shelves are recesses in a wall raised about half a body over the floor (6,144 to 8,192), 256 to 512 deep, 12,288 to 25,600 high inside, holding bottles and jars (type 416) 128 to 270 units apart: E3M2 s82 and s87, E1M4 s298 and E1M2 s213.",
  "evidence": [
-  "E3M2 s82 and s87: 256 deep, 1,536 long, raised 7,168 over s83, six and eight bottles and jars",
-  "E1M4 s298: 512 deep, 3,072 long, raised 6,144 over s297, nine bottles (759), three of them shooting-gallery targets wired to sprite 202",
+  "E3M2 s82 and s87: 256 deep, 1,536 long, raised 7,168 over s83, 14,336 and 16,384 high inside, six and eight bottles and jars (type 416)",
+  "E1M4 s298: 512 deep, 3,072 long, raised 6,144 over s297, 25,600 high inside, nine bottles (759), three of them (569, 571, 575) shooting-gallery targets sending on channel 124 to sprite 202",
   "E1M2 s213: a 1,280-square recess raised 8,192 over s211, 12,288 high, five bottles (knowledge/blood/findings/probes/consolidation_audit3_p3.py, 2026-11-26)",
   "E1M4 s167, once cited here, is a grill (type 618 damage sector with smoke), not a shelf"
  ],
@@ -25,5 +25,10 @@
   "shelf",
   "shop",
   "stock"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded the records: E3M2 s82 256x1536, floor -33792 vs s83 -26624 (7,168), inside 14,336, six type 416; s87 1536x256, inside 16,384, eight type 416; E1M4 s298 3072x512, floor 25600 vs s297 31744 (6,144), inside 25,600, nine 759 type 416, sprites 569/571/575 tx 124 heard by sprite 202 (type 22); E1M2 s213 1280x1280, floor -30720 vs s211 -22528 (8,192), inside 12,288, five type 416. Positions: E3M2 128-256 apart, E1M4 128 within groups of three, E1M2 about 270. E1M4 s167 type 618 with smoke sprites.",
+  "of": "be6c7d260fc0"
+ }
 }

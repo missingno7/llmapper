@@ -1,5 +1,9 @@
 """E1M2's wall-crack pieces: each sloped floor against each neighbour's floor at the two ends of the wall they share."""
-import json, sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import json, sys
 from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map
 from bloodmap.model import record_fields as F

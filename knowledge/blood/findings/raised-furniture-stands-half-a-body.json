@@ -2,11 +2,11 @@
  "id": "raised-furniture-stands-half-a-body",
  "topic": "construction",
  "standing": "tendency",
- "claim": "Blood's raised furniture (a roofed sector standing above every neighbour, at most 4,096 across, 512 to 16,960 up) rises a median 6,144 over the campaign (952 pieces; q1 3,072, q3 8,192), and its commonest rise is 8,192, 0.48 of a body (246 pieces; 4,096 has 121). E3M1's 36 such pieces rise a median 8,192, 21 of them exactly that. Two-tier altars, biers and tombs rise 0.60-0.97 bodies (median 0.85; 42 pieces, 16 maps); a stall is a counter plus a lowered ceiling of the same footprint (66 pieces, 21 maps). What stands on them is face sprites (73 of E3M1's saloon's 77 sprites).",
+ "claim": "Blood's raised furniture (a roofed sector standing above every neighbour, at most 4,096 across, 512 to 16,960 up) rises a median 6,144 over the campaign (952 pieces; q1 3,072, q3 8,192), and its commonest rise is 8,192, 0.48 of a body (246 pieces; then 2,048 with 128 and 4,096 with 121). E3M1's 36 such pieces rise a median 8,192, 21 of them exactly that. Two-sector pieces rising 0.60-0.97 bodies (median 0.85; 42 pieces, 16 maps), read as altars, biers and tombs, and two-sector pieces in the 0.30-0.48 band (66, 21 maps), read as stalls, are in set-pieces-v1.json. E3M1's saloon wing carries 73 face sprites of its 77.",
  "evidence": [
-  "knowledge/blood/findings/probes/consolidation_probe_raised.py over the 43 campaign maps and over E3M1, 2026-11-26",
-  "knowledge/blood/design/set-pieces-v1.json (7,014 pieces, campaign plus Death Wish, TEDE and Duke-conversion maps): its classes in rise band 2 all report a median of 0.42-0.48 because the band is 0.30-0.48 bodies; the '363 pieces over 38 maps' and the altar and stall counts are that miner's, not re-measured",
-  "tools/mine_venues.py on E3M1's saloon wing: four identical card tables of 1.18M area raised 8,192, and 73 of its 77 sprites face-aligned (knowledge/blood/references/venue-mining.json); the same miner's open-front booth counters in E1M4 rise 4,096-5,120, the '3,072-4,096 counter' of venue-patterns.md",
+  "knowledge/blood/findings/probes/consolidation_probe_raised.py over the 43 campaign maps and over E3M1, rerun 2026-11-26",
+  "knowledge/blood/design/set-pieces-v1.json (7,014 pieces, campaign plus Death Wish, TEDE and Duke-conversion maps): its classes in rise band 2 all report a median of 0.42-0.48 because the band is 0.30-0.48 bodies; the class names (altar, stall) are our reading, the counts that miner's",
+  "tools/mine_venues.py on E3M1's saloon wing (55 sectors): four identical card tables of 1.18M area raised 8,192, and 73 of its 77 sprites face-aligned (knowledge/blood/references/venue-mining.json); the same miner's booth counters in E1M4 rise 4,096-5,120 (venue-patterns.md: counters at 4,096-8,192)",
   "Gravesend's counters at 4,096 read as steps (Gravesend practice)"
  ],
  "use": "Raise a table or bar 8,192 (half a body); a booth counter may stand 4,096-5,120, which reads as a step from close by. A counter too high to step over must leave a way round it.",
@@ -30,5 +30,10 @@
   "height",
   "plinth",
   "table"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/consolidation_probe_raised.py: 952, median 6144, q1 3072, q3 8192; 8192 x246, 2048 x128, 4096 x121; E3M1: 36, median 8192, 21 at 8192. set-pieces-v1.json: 7014 pieces; class 2 sectors rise band 3: 42 in 16 maps, 0.60/0.85/0.97; 2 sectors band 2: 66 in 21 maps (class names none). venue-mining.json E3M1 saloon venue: 55 sectors, 77 sprites, face 73 wall 4, tables s157,158,167,169 rise 8192 area 1179648. venue-patterns.md:115 says counters rise 4096-8192, not 3,072-4,096.",
+  "of": "567d2b2e4c29"
+ }
 }

@@ -22,5 +22,10 @@
   "rigging",
   "rope",
   "stay"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/harbour_ship.py:54 ROPE = (38, 52, 32, 49) and stay() :190-203 with the owner's words of 2026-11-25 on gaps; read tile 513 from reference/blood ART: 38 x 52, the diagonal leaves column 0 at row 0 and reaches column index 32 near row index 49, with a knot and tuft at columns 29-37 rows 43-51. 33rd of 38 columns and 50th of 52 rows are indices 32 and 49, so the reach factors 38/32 and 52/49 agree.",
+  "of": "b693d77f4d02"
+ }
 }

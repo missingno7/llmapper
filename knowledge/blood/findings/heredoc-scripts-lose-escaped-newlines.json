@@ -2,9 +2,9 @@
  "id": "heredoc-scripts-lose-escaped-newlines",
  "topic": "workflow",
  "standing": "practice",
- "claim": "A Python script sent through the Bash tool as a quoted heredoc does not receive a doubled backslash as written: '\\\\n' arrives as a real newline, so the script fails with an unterminated string or silently fails to match.",
+ "claim": "A Python script sent through the Bash tool as a quoted heredoc does not receive a doubled backslash as written: '\\\\n' arrives as '\\n', one backslash, which Python reads as a newline escape, so the script fails with an unterminated string or silently fails to match. A single backslash arrives unchanged.",
  "evidence": [
-  "Seen three times on 2026-11-19. The cause is believed to be the tool reducing escapes before Python sees them; not confirmed against the tool's source."
+  "Seen three times on 2026-11-19; reproduced 2026-11-26: a <<'EOF' heredoc holding s = \"a\\\\nb\" was written to the file as s = \"a\\nb\" (Python: length 3). Which layer halves it is not confirmed against the tool's source."
  ],
  "use": "Write the script to a file with the Write tool and run it, or build such strings with chr(10) / chr(92).",
  "code": [],
@@ -20,5 +20,10 @@
   "heredoc",
   "newline",
   "script"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Reproduced 2026-11-26 in this session: a quoted heredoc (<<'EOF') through the Bash tool holding s = \"a\\\\nb\" wrote s = \"a\\nb\" to the file (cat shows one backslash), and Python printed len 3; a single backslash-n in the heredoc arrived unchanged (od -c: a \\ n b). So the tool halves a doubled backslash; the newline is Python's reading of what is left.",
+  "of": "c206565c9ae9"
+ }
 }

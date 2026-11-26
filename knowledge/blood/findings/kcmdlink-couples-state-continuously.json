@@ -6,7 +6,8 @@
  "evidence": [
   "NBlood/source/blood/src/triggers.cpp:101-105 and :152: the edge sends are guarded by `command != kCmdLink`",
   "E1M1 s125 -> s124, and maps/blood/mechanism DOOR-CURTAINS s21 -> s20",
-  "NBlood/source/blood/src/triggers.cpp:1198-1199 (VCrushBusy: each busy step evSends kCmdLink when command is kCmdLink), repeated at :1247, :1346, :1374, :1401, :1434, :1454, sprite :491; the sector ON guard is :140, the wall guards :123/:125"
+  "NBlood/source/blood/src/triggers.cpp:1198-1199 (VCrushBusy: each busy step evSends kCmdLink when command is kCmdLink), repeated at :1247, :1346, :1374, :1401, :1434, :1454, sprite :491; the sector ON guard is :140, the wall guards :123/:125",
+  "Functions: triggers.cpp:85 SetSpriteState, :123/:125 SetWallState, :140/:152 SetSectorState; the busy senders VCrushBusy :1198, VSpriteBusy :1247, VDoorBusy :1346, HDoorBusy :1374, RDoorBusy :1401, StepRotateBusy :1434, GenSectorBusy :1454. E1M1 s124: rx 126, amplitude -8; DOOR-CURTAINS (maps/blood/mechanism/Vanilla) s20: rx 106, amplitude -20."
  ],
  "use": "Link a light to a mover with command 5 on the mover's tx; it spends the mover's one tx, so decide that slot first.",
  "code": [
@@ -23,5 +24,10 @@
   "follow",
   "light",
   "link"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:102-105 SetSpriteState, :123/:125 SetWallState, :140/:152 SetSectorState: edge sends guarded by command != kCmdLink; :1198-1199 VCrushBusy evSends kCmdLink each busy step; same at :1247 VSpriteBusy, :1346 VDoorBusy, :1374 HDoorBusy, :1401 RDoorBusy, :1434 StepRotateBusy, :1454 GenSectorBusy; :491 in OperateSprite. E1M1 s125 type 614 tx 126 command 5 -> s124 rx 126 amplitude -8; DOOR-CURTAINS s21 type 614 tx 106 command 5 -> s20 rx 106 amplitude -20.",
+  "of": "405bde8bd3bb"
+ }
 }

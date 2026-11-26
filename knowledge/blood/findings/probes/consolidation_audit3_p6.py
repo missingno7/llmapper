@@ -1,9 +1,32 @@
-import sys, math; sys.path.insert(0, "work/consolidation/audit3"); sys.path.insert(0, ".")
-from lib import *
+"""Player-start markers per campaign map (types 1 and 2), a few wall and switch records (E1M2 s34, the DOOR-CURTAINS lesson), and the wall lengths of E3M1's ceiling-lifting doors that are shut at rest."""
+import math
+import sys
 from collections import Counter
-from bloodmap.corpus import campaign_maps
+from functools import lru_cache
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+from bloodmap.corpus import campaign_maps, corpus_map_path
+from bloodmap.format import read_map
+from bloodmap.model import record_extra as X, record_fields as F
+
+
+@lru_cache(None)
+def M(name):
+    return read_map(corpus_map_path(name))
+
+
+def sec(name, i):
+    m = M(name); return F(m.sectors[i]), X(m.sectors[i])
+
+
+def walls(name, i):
+    m = M(name); f = F(m.sectors[i])
+    return [(j, F(m.walls[j]), X(m.walls[j])) for j in range(f["wall_ptr"], f["wall_ptr"] + f["wall_count"])]
+
+
 # start markers per campaign map
-c1 = Counter(); c2 = Counter(); z_on_floor = 0; n = 0
+c1 = Counter(); c2 = Counter()
 for p in campaign_maps():
     m = read_map(p); nm = p.stem.upper()
     for s in m.sprites:

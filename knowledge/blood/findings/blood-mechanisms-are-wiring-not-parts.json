@@ -4,7 +4,8 @@
  "standing": "ruling",
  "claim": "A mechanism is the chain of a cause, the object it happens to, the channel it sends on and everything that answers, laid over sectors, walls and sprites. There is no simple door or simple lift: a sector type is a part, and the same part is a door or a lift by its wiring.",
  "evidence": [
-  "The owner, 2026-11-19: 'these mechanics things are like a programming language of the level, same things are used for different purposes according to what author wants'."
+  "The owner, 2026-11-19, kept in bloodmap/wiring.py:268-270 and bloodmap/examples.py:604-605: 'these mechanics things are like a programming language of the level, same things are used for different purposes according to what author wants'",
+  "the agent's note of the same day, C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/mechanism-is-wiring-not-a-part.md: no simple door or lift; a sector type is a part"
  ],
  "use": "Ask and describe mechanisms by what happens (catalog wiring), read chains with the wiring reader, never name one by its sector type.",
  "code": [
@@ -23,5 +24,10 @@
   "mechanism",
   "sector type",
   "wiring"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read bloodmap/wiring.py:262-276: 'these mechanics things are like a programming language of the level, same things are used for different purposes according to what the author wants'; a z-moving sector is a door or a lift by where it sits and what is wired to it; bloodmap/examples.py:604-605 the same words; memory/mechanism-is-wiring-not-a-part.md: owner ruling 2026-11-19, 'There is no simple door or simple lift'. bloodmap/wiring.py:146 def chains.",
+  "of": "33efd583c088"
+ }
 }

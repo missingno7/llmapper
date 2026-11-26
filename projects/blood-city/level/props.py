@@ -150,7 +150,7 @@ def props_for(wall: int, floor: int, ceiling: int, *, limit: int = 8,
 
     Empty is a legitimate answer, and a common one: most surfaces have no
     prop associated with them above the support floor, which is exactly
-    why 88% of campaign rooms are bare.
+    why 86% of campaign rooms are bare.
 
     `sky` gates on context, which association alone cannot supply: tile 540
     is a dead tree, it associates strongly with plank walls, and it turned

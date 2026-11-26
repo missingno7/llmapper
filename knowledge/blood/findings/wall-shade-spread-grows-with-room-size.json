@@ -2,14 +2,12 @@
  "id": "wall-shade-spread-grows-with-room-size",
  "topic": "light",
  "standing": "tendency",
- "claim": "The spread of wall shades within a campaign room grows with its floor area: median 7 (p75 15) under 2M units squared, 12 (22) to 10M, 19 (32) to 40M, 21 (32) above. Capping every room at the median flattened 102 of 135 rooms and cut the level's contrast from the campaign's 49.5 to 32; cap at p75.",
+ "claim": "The spread of wall shades within a campaign room grows with its floor area: counted on 2026-08-28 over 1,393 rooms of E3M1, E3M2, E6M1, E1M1 and E4M9, median 7 (p75 15) under 2M units squared, 12 (22) to 10M, 19 (32) to 40M, 21 (32) above. In Gravesend then, capping every room at the median flattened 102 of 135 rooms and cut the level's contrast to 32 against the campaign's 49.5; capping at p75 compressed 16.",
  "evidence": [
-  "measured over 1,393 rooms of E3M1, E3M2, E6M1, E1M1 and E4M9 (projects/blood-city/level/lightpools.py)"
+  "counted 2026-08-28 over 1,393 rooms of E3M1, E3M2, E6M1, E1M1 and E4M9, kept in projects/blood-city/reports/refinement-log.md:564-578 (the counting code and lightpools.settle_room_spread are no longer in the tree); not recounted"
  ],
  "use": "Size a room's light modelling by its area, never by wall count, and clamp at p75.",
- "code": [
-  "projects/blood-city/level/lightpools.py"
- ],
+ "code": [],
  "scope": "blood",
  "learned": {
   "in": "blood-city",
@@ -21,5 +19,10 @@
   "room",
   "shade",
   "spread"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/level/lightpools.py no longer carries the census or the cap: the consolidation (d0339c4) removed its 1,393-room comment and settle_room_spread. The figures are kept in projects/blood-city/reports/refinement-log.md:564-578: 1,393 rooms, medians 7/12/19/21, p75s 15/22/32/32; median cap 'compressed 102 of 135 rooms and dropped measured contrast from 49.5 to 32'; p75: 16 rooms, contrast 34; :613 'contrast 34 against 49.5'. Not recounted (room grouping not kept): dated; code reference removed.",
+  "of": "04699f6f0e45"
+ }
 }

@@ -2,9 +2,9 @@
  "id": "recognition-depends-on-viewpoint-and-redundant-cues",
  "topic": "place",
  "standing": "practice",
- "claim": "Whether a built thing is recognised depends more on the viewpoint than on its content, and survives losing a cue only if it has several: the locomotive was named from 5 of 7 angles and survived losing any one of wheels, smoke, face or chimney; the carriage was never a train from the platform (only its livery said so) and was one from the track where rails, skirt and an end were in view. A view must be filled by the thing, or the room gets named.",
+ "claim": "In Gravesend's station whether a built thing was recognised depended more on the viewpoint than on its content, and survived losing a cue only if it had several: the locomotive was named from 4 of 7 angles and survived losing any one of wheels, smoke, face or chimney; the carriage was never a train from the platform and was one from the track where rails and an end were in view. A view must be filled by the thing, or the room gets named.",
  "evidence": [
-  "tools.critic_lab, knowledge/blood/critic-bench/lab-1, one change at a time, ~90 single-picture questions to Sol (2026-11-19). Renderer brightness 0 vs 8 changed nothing."
+  "projects/blood-city/experiments/critics/critic_lab.py (run and report), answers kept in knowledge/blood/critic-bench/lab-1/answers.json: 73 single-picture answers from Sol, one change at a time, 2026-11-19. Brightness 8 against 0 changed one of eight answers (eng_w lost its locomotive) and made none read better."
  ],
  "use": "Give a thing several independent cues and make sure they are in view from where the player meets it; ask a critic for the one change that would make the view read, which gave usable, repeated advice.",
  "code": [
@@ -22,5 +22,10 @@
   "readability",
   "recognition",
   "viewpoint"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran projects/blood-city/experiments/critics/critic_lab.py report over knowledge/blood/critic-bench/lab-1/answers.json (73 answers): engine views named TRAIN eng_w, eng_e, eng_balcony, eng_track_n (4 of 7; eng_track_e 'Industrial railway siding', eng_mid, eng_front not); no_wheels, no_smoke, no_face, no_chimney all still a locomotive; carriage door_1-6 and along_w/e never a train, track_1 and track_far TRAIN; bright vs full: eng_w 'Steam locomotive' -> 'Industrial engine room'.",
+  "of": "c30369858f8c"
+ }
 }

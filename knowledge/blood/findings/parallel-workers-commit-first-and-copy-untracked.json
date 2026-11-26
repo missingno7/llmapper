@@ -20,5 +20,10 @@
   "workers",
   "worktree",
   "z band"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read the agent's note sol-workers-in-worktrees.md (memory): 2026-11-22, 'nine workers in all'; 'Worktrees branch from a commit, and uncommitted work is invisible to them'; 'A removed worktree deletes untracked files ... The drain's two studies were lost that way'; 'git apply --3way STAGES what it applies'; 'Each one appends to wires.PLAN and the study index, so merging them is a both-sides conflict'; 'One build writer per checkout'. z band: owner-walk-2026-11-25.md 'parallel branches need z bands'. Worded as ours.",
+  "of": "2db2b0b03089"
+ }
 }

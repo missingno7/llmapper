@@ -2,10 +2,10 @@
  "id": "a-slide-reads-only-the-difference-of-its-markers",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "A slide (614/616) moves its walls and sprites by the difference between its two markers (DragPoint to x+vc-a4), so where the marker pair stands is free: 52 of 248 tutorial movers park the pair far from the poses. A pose can never be read from the markers' coordinates.",
+ "claim": "A slide (614/616) moves its walls and sprites by the difference between its two markers (DragPoint to x+vc-a4), so while both markers share an angle where the pair stands is free; if their angles differ the slide also turns about marker0, whose position then matters. 123 of the 206 vanilla tutorial movers marker_convention reads park the pair away from the poses (83 at them); 203 of 204 tutorial slides give both markers one angle. A pose can never be read from the markers' coordinates.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:884-887 and :897 (DragPoint(nWall, x+vc-a4, y+v8-a5)).",
-  "Count of parked pairs over the tutorial movers by bloodmap.curriculum, 2026-09-01."
+  "NBlood/source/blood/src/triggers.cpp:856 (TranslateSector), :884-887 and :899-901 (RotatePoint about a4,a5 by vbp, then DragPoint(nWall, x+vc-a4, y+v8-a5)).",
+  "knowledge/blood/findings/probes/audit2_parked_marker_pairs.py over the vanilla course (maps/blood/mechanism and its Vanilla/ folder), 2026-11-26: parked 123, at the poses 83, unreadable 11; slides whose markers share an angle 203 of 204."
  ],
  "use": "Place the two markers wherever is convenient; read the travel as marker1 minus marker0.",
  "code": [
@@ -22,5 +22,10 @@
   "marker",
   "slide",
   "travel"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:856 TranslateSector: vc = interpolate(a6,a9,a3); :887 and :901 DragPoint(nWall, x+vc-a4, y+v8-a5), a4/a5 = marker0, so travel is frac*(m1-m0); but vbp (interpolated angle m0.ang->m1.ang) rotates about a4,a5 at :885-886. Recounted with knowledge/blood/findings/probes/audit2_parked_marker_pairs.py over the 136 vanilla course maps: marker_convention 'parked' 123, 'at the poses' 83, unreadable 11; slides with both markers at one angle 203 of 204. Not 52 of 248.",
+  "of": "659b5178e0ea"
+ }
 }

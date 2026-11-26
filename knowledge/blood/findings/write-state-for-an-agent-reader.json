@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "The owner: llmapper is built for AI agents to work on, so information must be shaped in a way that benefits them, not as a dashboard for a person.",
  "evidence": [
-  "The owner, 2026-11-19, when a status board was proposed: 'you are doing everything for ai agents to work on that, so information needs to be done in a way that benefits them'. Said to the agent in conversation on 2026-11-19; not quoted in the repository."
+  "The owner, 2026-11-19, when a status board was proposed: 'Keep in mind that you are doing everything for ai agents to work on that, so information needs to be done in a way that benefits them. Is it what status board is for?' Kept in the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/the-reader-is-an-agent.md; not quoted in the repository."
  ],
  "use": "Read state-lives-in-the-repository-as-queryable-data for what we took it to mean.",
  "code": [
@@ -21,5 +21,10 @@
   "memory",
   "state",
   "status"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/the-reader-is-an-agent.md (modified 2026-11-19): owner, when a status board was proposed: 'Keep in mind that you are doing everything for ai agents to work on that, so information needs to be done in a way that benefits them. Is it what status board is for?'. grep of the repository for 'benefits them': nothing outside work/ and the shelf.",
+  "of": "c08194604c75"
+ }
 }

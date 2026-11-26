@@ -2,10 +2,10 @@
  "id": "doorways-to-the-open-wear-neutral-surfaces",
  "topic": "texture",
  "standing": "ruling",
- "claim": "A doorway to the street is one frame from the street to the room side of its leaf: its leaf sector and reveal do not wear the room's carpet, chequers or office ceiling. Blood's sills, jambs and heads under wooden doors are planks (tiles 20 and 68 lead both lists over 192 doorways to the open).",
+ "claim": "A doorway to the street is one frame from the street to the room side of its leaf: its leaf sector and reveal do not wear the room's carpet, chequers or office ceiling. Blood's sills, jambs and heads under wooden doors are planks: tiles 20 and 68 led both lists over 192 doorways to the open (counted 2026-11-25 for apertures.py, no kept count, not recounted); E1M3 s135, a sliding door, wears 20 as its head and two of its walls.",
  "evidence": [
-  "the owner, 2026-11-25: 'some door around city has floor and ceiling in door aperature area from the room inside, so from the outside it looks bad'",
-  "E1M1 s59, s90; E1M3 s135 (its whole frame in planks)"
+  "the owner, 2026-11-25: 'some door around city has floor and ceiling in door aperature area from the room inside, so from the outside it looks bad, I would give it some neutral textures or something' (projects/blood-city/level/apertures.py:89-91)",
+  "E1M3 s135 (type 614): ceiling tile 20, walls 200, 20, 30; the 192-doorway count is apertures.py:81's, not kept"
  ],
  "use": "Paint a doorway from the street through the leaf with one neutral frame material; apertures.neutral does it over a finished map.",
  "code": [
@@ -23,5 +23,10 @@
   "reveal",
   "sill",
   "threshold"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words at projects/blood-city/level/apertures.py:89-91 (neutral docstring): 'some door around city has floor and ceiling in door aperature area from the room inside, so from the outside it looks bad, I would give it some neutral textures'. The 192-doorway count (:81) has no kept tool or file. E1M1 s59 is a type 602 sector of 26 walls (floor 294, walls 1718/479) and s90 a type 614 of 44 walls (floor 504, walls 421/1011): no planks. E1M3 s135, a 614 slide door: ceiling 20 (owner 'wood'), walls 200/20/30, floor 301.",
+  "of": "ec29e0f68336"
+ }
 }

@@ -1,5 +1,9 @@
 """What stands in E3M1's sky-ceilinged sectors: every sprite there by type, and the visible type-0 ones by tile."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from collections import Counter
 from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map

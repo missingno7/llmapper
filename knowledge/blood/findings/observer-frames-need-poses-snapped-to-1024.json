@@ -4,7 +4,8 @@
  "standing": "practice",
  "claim": "The XMapEdit observer truncates negative coordinates, so frames of a map translated by a fraction of 1,024 do not match; it also cannot draw a mirror (504 on a one-sided wall), which only the game shows.",
  "evidence": [
-  "Gravesend's release translation and underpass mirror, 2026-11-25."
+  "Gravesend's release translation and underpass mirror, 2026-11-25.",
+  "xmapedit/src_blood/observe/obs_main.c:643-645: pose x, y, z read with an (int) cast, which truncates toward zero."
  ],
  "use": "Snap poses to 1/1024 before comparing frames; judge mirrors in play.",
  "code": [
@@ -21,5 +22,10 @@
   "observer",
   "pose",
   "render"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "xmapedit/src_blood/observe/obs_main.c:643-645 reads a pose's x, y, z as (int)js_num(...): a C cast truncates toward zero, so a negative fraction moves the other way from a positive one. The mirror (504 on a one-sided wall) limit and the release translation are the agent's notes owner-walk-2026-11-25b and sewers-outside-city (2026-11-25). bloodmap.visual.run_observation at visual.py:346.",
+  "of": "fa3c711ec3b0"
+ }
 }

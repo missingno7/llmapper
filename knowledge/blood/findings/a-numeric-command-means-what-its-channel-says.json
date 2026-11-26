@@ -25,5 +25,10 @@
   "command",
   "secret",
   "text message"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "eventq.cpp:375-398 read in evSend (from :352): kChannelTextOver -> trTextOver(cmd-64), kChannelModernEndLevelCustom under NOONE_EXTENSIONS -> levelEndLevelCustom(cmd-64), kChannelSetTotalSecrets -> levelSetupSecret, kChannelSecretFound -> levelTriggerSecret; eventq.h:27-32 channels 1,2,3,6; kCmdNumberic 64 at eventq.h:124. Recounted with knowledge/blood/findings/probes/audit2_numeric_commands.py: 325 objects in 43 of 43 maps; channel 2 227, 3 55, 1 42, 165 1.",
+  "of": "f2293df983ef"
+ }
 }

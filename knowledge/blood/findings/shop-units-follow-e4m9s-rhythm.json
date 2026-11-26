@@ -2,10 +2,10 @@
  "id": "shop-units-follow-e4m9s-rhythm",
  "topic": "place",
  "standing": "tendency",
- "claim": "In E4M9's mall a shop unit's long side is a median 2,560 (q1 1,280, q3 3,072; 51 units) and it opens on 1,536 of frontage (q1 652, q3 2,048; 85 shared walls). Blood's town shops keep stock on a shelf let into the back wall and serve over one hip-high counter. Its mouths cluster about two mouth-widths apart (spacing median 1,840), and the units repeat one plan class dressed differently.",
+ "claim": "In E4M9's mall a shop unit's long side is a median 2,560 (q1 1,280, q3 3,072; 51 units) and it opens on 1,536 of frontage (q1 652, q3 2,048; 85 shared walls), counted 2026-08-28 and not recounted. Its 39 mouths off the concourse cluster about two mouth-widths apart (spacing median 1,840), and 11 of its units repeat one plan class dressed differently. In Blood's town maps goods stand on fixtures about half a body high: niches let into a wall, ledges and islands (tools.mine_stands).",
  "evidence": [
-  "E4M9 concourse units (projects/blood-city/level/templates.py); shop fitting from tools/mine_stands.py",
-  "tools/mine_room_grammar.py on E4M9: 39 openings off the concourse, width median 1,536 (p90 4,096), nearest-neighbour spacing median 1,840 (knowledge/blood/references/room-grammar.json)"
+  "E4M9 concourse units, projects/blood-city/level/templates.py:24-28 (2026-08-28); shop fitting from python -m tools.mine_stands (7 town maps: niche, ledge and island fixtures rise 0.48 bodies)",
+  "tools/mine_room_grammar.py on E4M9: 39 openings off the concourse, width median 1,536 (p90 4,096), nearest-neighbour spacing median 1,840 (knowledge/blood/references/room-grammar.json); one repeated unit class of 11 (knowledge/blood/references/venue-patterns.md:156-165)"
  ],
  "use": "Derive a row of shops from the frontage length; fit each from its own rectangle.",
  "code": [
@@ -27,5 +27,10 @@
   "shop",
   "storefront",
   "unit"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "templates.py:24-28: long side 2,560 over 51 units (q1 1,280, q3 3,072), frontage 1,536 over 85 walls (q1 652, q3 2,048), no script kept. room-grammar.json E4M9 concourse_rhythm: 39 openings, width median 1536 p90 4096, spacing median 1840.0. venue-patterns.md:156-165: 11 units of one class. tools.mine_stands over 7 town maps: niche/ledge/island rise 0.48 bodies; stock in the back wall is how templates.py:250-253 fits ours.",
+  "of": "e69d5aa9a740"
+ }
 }

@@ -1,5 +1,9 @@
 """Campaign sectors whose visibility byte is 240-255 (less distance fog), by map and value."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from collections import Counter
 from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map

@@ -24,5 +24,10 @@
   "machine",
   "pump",
   "technical"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded the records (work machine.py): E3M5 s138 walls 298:1536, 115:256, 298:1536 between 194s; s158 495:1024, 195:256, 495:1024; s6 205 hazard strips (512) between 498; s14 facets of 489 shaded 8,12,16,14,10,4,4,8,12,16,12,8; E6M3 s150, 152, 153, 157 carry 205; E3M6 s414-416 walls 488, 492, 2477; E3M3 s0-12 shade_wave 5, amplitude -32. projects/blood-city/level/l3_shed.py:167-176 holds the 900 sectors / 0.21 comment; claim already says no tool reproduces it.",
+  "of": "85314e5e715b"
+ }
 }

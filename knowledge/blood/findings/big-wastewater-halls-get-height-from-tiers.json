@@ -2,10 +2,10 @@
  "id": "big-wastewater-halls-get-height-from-tiers",
  "topic": "place",
  "standing": "precedent",
- "claim": "Blood's big sewage halls get their height from tiers, not one tall ceiling: E3M3's hall stacks a pool, a main walk 5.3 bodies up, catwalks 3.4 bodies over that and a top gallery with trusses and lifts between; E1M8's is plank walks half a body over a sea of sewage. Inflow is a low pipe slot spilling down a panned wall into a pool 2.4 bodies lower.",
+ "claim": "E3M3's and E1M8's big sewage halls get their height from tiers, not one tall ceiling: E3M3:15 has a main floor (24,576) 4.35 bodies over its sewage (1120 at 98,304, reached through a stack link), catwalks 3.4 bodies over that (-32,768) and a gallery with trusses (487) and a lift; E1M8:243 is walks over a sea of sewage, its sectors 6,144 (a third of a body) over the plane. E3M3's inflow (s173, s174) is a pipe slot 0.85 body high spilling down a panned wall into a pool 2.4 bodies lower.",
  "evidence": [
-  "E3M3 s15 (25 x 27 x 14 m) and E3M3 s173, s174 (the sewagefall)",
-  "E1M8 s243 (45 x 63 x 7 m), study in projects/blood-city/references/sewer-design.md"
+  "E3M3 s15 (place 25 x 27 x 14 m; floors 24,576 and -32,768; stack link 50 to s16) and E3M3 s173, s174 (the sewagefall: floor 83,968, slot 14,336, pool floor 124,928)",
+  "E1M8 s243 (45 x 63 x 7 m, floor 504 at 34,816; walk sectors at 28,672), study in projects/blood-city/references/sewer-design.md:395-404"
  ],
  "use": "Build a large wet hall as walks and catwalks over water at several levels.",
  "code": [
@@ -23,5 +23,10 @@
   "tank",
   "tiers",
   "wastewater"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read with tools.place_character over E3M3 and E1M8: E3M3:15 is 25.2 x 27.0 x 14.3 m, floors at 24,576 (s19,20,24,32) and -32,768 (s29,30,283,285): 3.38 bodies apart; its stack link 50 drops to s16 (floor 90,112) and the sewage (1120) lies at 98,304, 4.35 bodies under the 24,576 floor, not 5.3. E3M3 s173 slot 14,336 high (0.85 body), floor 83,968, s174 floor 124,928: 2.42 bodies lower. E1M8:243 is 45.2 x 62.6 x 7.0 m; its 1120 sectors stand 6,144 (0.36 body) over the 504 plane at 34,816, not half a body.",
+  "of": "bffaa88483de"
+ }
 }

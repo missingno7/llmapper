@@ -22,5 +22,10 @@
   "height",
   "lever",
   "switch"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/switches-v1.json (43 maps, 1,396 switches): by_how.pushed 453, q1 0.60, median 0.79, q3 0.79, tiles 1070 156, 1046 67, 318 46, 1078 44; shot 63, q1 1.00, median 1.93, q3 3.26, tiles 2290 25, 710 11, 1165 5; eye_height_humans 0.832; exit count 50, 318 on 41, tiles_elsewhere 318: 5. NBlood player.cpp:1598 (ActionScan) uses HitScan from pPlayer->zView, so use is a hitscan from the eye.",
+  "of": "93cb93ec49e5"
+ }
 }

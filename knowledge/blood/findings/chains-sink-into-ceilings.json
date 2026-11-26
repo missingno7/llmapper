@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "The owner: a lantern on a chain may be hung so its chain sinks into the ceiling; and a skeleton on a chain may be lifted so part of the chain goes into the ceiling.",
  "evidence": [
-  "The owner, 2026-11-21: 'lanterns on chain, you can simply let it sink into ceiling and it looks good' (quoted in bloodmap/light_stage.py:356 and projects/blood-city/references/sewer-design.md). The skeleton half ('That skeleton on chain can be lifted up so part of the chain goes inside ceiling, but it doesn't matter') was said to the agent in conversation the same day and is not quoted in the repository."
+  "The owner, 2026-11-21: 'lanterns on chain, you can simply let it sink into ceiling and it looks good' (bloodmap/light_stage.py:356, projects/blood-city/references/sewer-design.md:90) and 'That skeleton on chain can be lifted up so part of the chain goes inside ceiling, but it doesn't matter' (projects/blood-city/level/l3_sewer.py:1681)"
  ],
  "use": "Read a-chained-thing-is-hung-by-its-body for how we apply it.",
  "code": [],
@@ -19,5 +19,10 @@
   "hanging",
   "lantern",
   "skeleton"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Words found: bloodmap/light_stage.py:356 and projects/blood-city/references/sewer-design.md:90 ('you can simply let it sink into ceiling and it looks good'); the skeleton half IS in the repository, projects/blood-city/level/l3_sewer.py:1681 ('2026-11-21: That skeleton on chain can be lifted up so part of the chain goes inside ceiling'); memory note chains-sink-into-ceilings.md has both sentences of 2026-11-21. Claim says no more than the words.",
+  "of": "49e24326b767"
+ }
 }

@@ -4,7 +4,7 @@
  "standing": "practice",
  "claim": "A visual change is judged by a prediction written before the edit and a blind reader after it, not by the author's own look: write hypothesis.json (observation, cause, predictions, a control that must not change), render before and after with the same poses, measure the pair, and hand only the frames to a fresh reader who has not seen the repo. Cameras must also look past and over the changed thing and from inside what is next to it.",
  "evidence": [
-  "2026-11-17: two of seven predictions failed and were the findings; the author's 'reads as a steeple' was 'plain square shaft' to the blind reader near to; the owner found in a minute that lowered skies hid everything behind them, which no camera had looked at."
+  "2026-11-17 (projects/blood-city/experiments/church-skyline/README.md): two of seven predictions failed and were the findings; the author's 'reads as a steeple' was 'plain shaft, flat top' to the blind reader near to; the owner found in a minute that lowered skies hid everything behind them, which no camera had looked at (experiments/church-roofs/README.md)"
  ],
  "use": "python -m tools.judge_experiment <dir> --pair before:after; record reviewer readings as interpretation, not measurement.",
  "code": [
@@ -22,5 +22,10 @@
   "experiment",
   "frames",
   "hypothesis"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/experiments/church-skyline/README.md read: predictions P1 failed (+0.000, +0.082 against +0.15/+0.25) and P3 half failed (5 heights, not 3) of P1-P7; reviewers: 'the tower, near ... plain shaft, flat top (guess)' in round 3 against the author's 'reads as a steeple' (:89-97); church-roofs/README.md: the owner's 'covering view like a normal ceiling'. tools/judge_experiment.py --help: hypothesis.json, before/, after/, --pair.",
+  "of": "95aac1c93d8c"
+ }
 }

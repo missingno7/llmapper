@@ -2,7 +2,7 @@
  "id": "stacking-techniques-are-forced-by-what-is-below",
  "topic": "construction",
  "standing": "tendency",
- "claim": "Blood stacks space three ways and the choice is forced: enclosed room over enclosed room is plain plan overlap; a space you must SEE into is room-over-room; anything over an OPEN space must be a deck of blocking floor-aligned sprites, because a sector over an open volume cannot be separated from it in z (37 of 43 campaign maps use blocking floor-aligned sprites, and 37 use plan overlap). BB4's regular grammar: 32,768 z of clear height per layer (1.93 bodies), an 8,192 slab, 40,960 floor to floor.",
+ "claim": "Blood stacks space three ways: plain plan overlap (37 of 43 campaign maps), room-over-room links where one must see from one into the other, and decks of blocking floor-aligned sprites (37 maps; 34 use both). Our reading is that the choice is forced by what lies below: enclosed over enclosed can be plan overlap, but a sector over an open volume cannot be separated from it in z, so a deck over open space is sprites. BB4's regular grammar: 32,768 z of clear height per layer (1.93 bodies), an 8,192 slab, 40,960 floor to floor.",
  "evidence": [
   "tools/mine_layers.py, knowledge/blood/design/layers-v1.json technique_usage (2026-08-28): blocking_floor_aligned_sprite 37 maps (0.8605), plan_overlap 37, both 34; BB4 has 71 sectors, 68 plan overlaps and no z clash."
  ],
@@ -23,5 +23,10 @@
   "room over room",
   "stacking",
   "storey"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/layers-v1.json: corpus 43 maps; technique_usage plan_overlap 37 (0.8605), blocking_floor_aligned_sprite 37, both 34; reference_detail BB4: 71 sectors, 68 overlap pairs, 0 z clashes, 9 blocking floor-aligned sprites; its pairs' bands e.g. [-65536,-32768] over [-24576,8192]: 32,768 clear (1.93 bodies), 8,192 slab, 40,960 floor to floor. That the choice is FORCED by what lies below is a reading neither the file nor bloodmap/layers.py counts: worded as ours.",
+  "of": "7a54ee188d78"
+ }
 }

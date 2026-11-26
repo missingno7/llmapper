@@ -4,9 +4,10 @@
  "standing": "engine",
  "claim": "kThingObjectExplode (type 417) takes damage only from explosions (and half from tesla): its multipliers are 0 fall, 0 burn, 0 bullet, 256 explosion, 0 drown, 0 spirit, 128 tesla. Laid as a floor-aligned blocking sprite it is ground to walk on, because getzrange counts a blocking floor sprite as floor. So a manhole cover blown open by dynamite needs no wiring: a hole always there, under a flat 417.",
  "evidence": [
-  "NBlood/source/blood/src/actor.cpp:1963-1977 (thingInfo, Explode Object)",
-  "NBlood/source/build/src/clip.cpp:2300 (getzrange, floor-sprite case)",
-  "built in Gravesend's manholes 2026-11-21; campaign census 2026-11-26: floor-aligned 417s 177 (59 blocking), floor-aligned 416s 77 (43 blocking); E4M9 sprite 290 is type 416, not 417; campaign census 2026-11-26: floor-aligned 417s 177 (59 blocking), floor-aligned 416s 77 (43 blocking); E4M9 sprite 290 is type 416, not 417"
+  "NBlood/source/blood/src/actor.cpp:1963-1977 (thingInfo[], Explode Object: 0, 0, 0, 256, 0, 0, 128); damage order kDamageFall..kDamageTesla at actor.h:32-38",
+  "NBlood/source/build/src/clip.cpp:2300 (getzrange, floor-sprite case, within the cstat & dasprclipmask test)",
+  "campaign census 2026-11-26 by knowledge/blood/findings/probes/audit2_flat_explode_objects.py: floor-aligned 417s 177 (59 blocking), floor-aligned 416s 77 (43 blocking); E1M4 sprite 277 is a floor-aligned blocking 417; E4M9 sprite 290 is type 416, data_1 5 (actActivateGibObject, actor.cpp:5251-5259: gib type data_1 - 1, a metal shard)",
+  "built in Gravesend's manholes 2026-11-21 (projects/blood-city/level/l3_sewer.py MANHOLE_COVER)"
  ],
  "use": "Lay the cover a little larger than the hole on the thing list. A floor-aligned blocking 417 is the campaign's own (59 of them, e.g. E1M4 sprite 277); a flat kThingObjectGib (416) such as E4M9 sprite 290 (data_1 5 for shards) also breaks to bullets, so use it only where shooting it open is wanted.",
  "code": [
@@ -25,5 +26,10 @@
   "dynamite",
   "explode",
   "manhole"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp:1963-1977 (thingInfo[], '// Explode Object') read: damage row 0,0,0,256,0,0,128 (order kDamageFall..kDamageTesla, actor.h:32-38); Gib Object row 1947: 256,0,256,256,0,0,128. clip.cpp:2300 (getzrange, case CSTAT_SPRITE_ALIGNMENT_FLOOR) inside 'if (cstat&dasprclipmask)'. Recounted with probes/audit2_flat_explode_objects.py over 43 maps: floor-aligned 417 177 (59 blocking), 416 77 (43 blocking); E1M4 sprite 277 type 417 cstat 161 (floor, blocking); E4M9 sprite 290 type 416 data_1 5 (actActivateGibObject actor.cpp:5251-5259: GIBTYPE_4 metal shard).",
+  "of": "fdd26c4280c0"
+ }
 }

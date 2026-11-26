@@ -241,9 +241,9 @@ def align_headers(level, compiled, districts) -> dict:
     return report
 
 
-#: A facade tile is 64 pixels wide and the campaign draws its street walls
-#: at 16 world units per tile pixel (measured: 133 of 152 E3M1 street walls,
-#: 216 of 260 in TEDE1M2).  So a facade bay -- one painted window and its
+#: A facade tile is 64 pixels wide and E3M1 (and the community map TEDE1M2)
+#: draw most street walls at 16 world units per tile pixel (walls of sky
+#: sectors: 146 of 193 in E3M1, 361 of 605 in TEDE1M2).  So a facade bay -- one painted window and its
 #: pier -- is 1024 units, and openings should land BETWEEN bays.
 UNITS_PER_TILE_PIXEL = 16
 BAY = 1024

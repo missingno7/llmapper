@@ -2,9 +2,9 @@
  "id": "goods-on-counters-make-a-shop-read",
  "topic": "place",
  "standing": "practice",
- "claim": "Objects standing on counters and an altar's dressing decide what a room is read as; a bare bar reads as a sauna, a forge or a crypt. A small kit of one to three props a fixture is enough; printed matter barely registers.",
+ "claim": "In Gravesend, before a blind reviewer, objects standing on counters and an altar's dressing decided what a room was read as: the bare saloon counter read as 'a sauna, a forge or a crypt', the dressed one as a bar; altar dressing was decisive for church against crypt. Printed matter barely registered (most of it was out of frame). The reviewer called one to three props a room 'a small kit': too few, not enough.",
  "evidence": [
-  "Blind reviewer on Gravesend's town goods, 2026-11-18 (experiments/town-goods)."
+  "Blind reviewer on Gravesend's town goods, 2026-11-18 (projects/blood-city/experiments/town-goods/README.md and critic.md)"
  ],
  "use": "Give goods fixtures to stand on (back bar, racks, counters) and dress them first.",
  "code": [
@@ -22,5 +22,10 @@
   "goods",
   "props",
   "shop"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/experiments/town-goods/README.md: bare saloon counter 'could be a sauna, a forge or a crypt'; 'Props on counters and tables: decisive'; 'Altar dressing: decisive for church versus crypt'; printed matter 'barely' (and mostly out of frame). 'It is a small kit ... Interiors get 1 to 3 props each' (:108, critic.md:49) is the reviewer's complaint, not a finding that one to three is enough: misread, removed.",
+  "of": "e0f8fb4e9192"
+ }
 }

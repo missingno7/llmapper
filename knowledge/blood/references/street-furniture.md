@@ -22,7 +22,7 @@ show. Tile ids reported as data; identity resolves at L3 against Blood art.
   enclosure). The typed classifier gains a `green` area kind. **Budget ≈
   1–3 sectors / 6–20 walls / planting ~1 sprite per 1M area.**
 - **Well** (DWE3M1 553/554, TEDE1M2 572): small shaft ~0.5M area
-  (700–800 square), floor **−5120..−12288**, rim as the sector's own walls.
+  (2048x256 strips in DWE3M1, 1024x512 in TEDE1M2), floor **−5120..−12288**, rim as the sector's own walls.
   *Placement: square centre (TEDE1M2) or court edge.* **Budget ≈ 1–2
   sectors / 4–8 walls.**
 - **Market stall** (TEDE1M2 453–455 stepped platforms +3072..+9216,

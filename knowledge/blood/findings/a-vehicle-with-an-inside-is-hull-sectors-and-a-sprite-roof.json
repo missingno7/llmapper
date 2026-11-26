@@ -2,16 +2,17 @@
  "id": "a-vehicle-with-an-inside-is-hull-sectors-and-a-sprite-roof",
  "topic": "construction",
  "standing": "ruling",
- "claim": "A vehicle you can enter (a railway carriage) is built of hull sectors about 256 thick with their floors at roof height, a window as a hull stretch whose floor sits at the sill, a door as a stretch whose floor sinks, the inside as a room under the common sky, and a roof of floor-aligned solid sprites (cstat 32|1|256) at the hull's top. Never lower a parallax sky over the vehicle: it looks bad from outside.",
+ "claim": "The owner, of Gravesend's railway carriage: build a vehicle you can enter out of red (two-sided) sectors with a ceiling of floor-aligned solid sprites, and do not lower a parallax sky over it, which looks bad from outside. We built it as hull sectors 256 thick with their floors at roof height, a window as a hull stretch whose floor sits at the sill, the door as a stretch whose floor sinks, the inside as a room under the common sky, and a roof of floor-aligned solid sprites (cstat 32|1|256) at the hull's top.",
  "evidence": [
-  "The owner, 2026-11-19: 'Carriage can be made out of red sectors and ceiling can be made out of floor aligned solid sprites, this will make it working without lowering sky which looks bad from the outside.'"
+  "The owner, 2026-11-19, kept in projects/blood-city/level/l3_station.py:195-199: 'Carriage can be made out of red sectors and ceiling can be made out of floor aligned solid sprites, this will make it working without lowering sky which looks bad from the outside'",
+  "projects/blood-city/level/l3_station.py:218 (HULL = 256) and :843-866 (roof by flatsprite.cover, cstat 32 | 1 | 256)"
  ],
  "use": "projects/blood-city/level/l3_station.py is the worked example; lay the roof with bloodmap.flatsprite.cover.",
  "code": [
   "projects/blood-city/level/l3_station.py",
   "bloodmap.flatsprite.cover"
  ],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-19"
@@ -24,5 +25,10 @@
   "sky",
   "train",
   "vehicle"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/level/l3_station.py:195-208 (owner 2026-11-19: 'Carriage can be made out of red sectors and ceiling can be made out of floor aligned solid sprites, this will make it working without lowering sky which looks bad from the outside ... try to solve it to keep interior'), :218 HULL = 256, :843-866 roof laid by flatsprite.cover with cstat 32 | 1 | 256 at CAR_H; memory/critique-four-readers.md:29 the same words. bloodmap/flatsprite.py:107 cover.",
+  "of": "4447b0fc40fe"
+ }
 }

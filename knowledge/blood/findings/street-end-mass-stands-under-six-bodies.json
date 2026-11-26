@@ -2,13 +2,13 @@
  "id": "street-end-mass-stands-under-six-bodies",
  "topic": "place",
  "standing": "precedent",
- "claim": "E3M1 closes each street with a mass standing 3.86 to 5.80 bodies above the road (floor tile 379), outside the map's edge, faced in the district's facade lit to -8 against 24 to 34 on the masonry beside it, blocking, with a parallax sector of no height behind it so the sky comes down over it. Unlit, such an end is still a dark block at 30,000 units: the sky does the work at distance, the lit face up close. A mouth split between two districts is two masses and reads as two buildings.",
+ "claim": "E3M1 closes each street with a mass standing 3.86 to 5.80 bodies above the road (floor tile 379, sky ceiling), outside the map's edge, blocking (cstat 1), with a parallax sector of no height behind it so the sky comes down over it. Seen from the road the face is the road sector's own wall record: tile 414 (plaster over brick) at shade 24, not lit apart from the masonry; the masses' own records (400, 401, 108 at shade -8) face the road but the engine draws a step from the viewer's side, so they are not seen. In Gravesend an unlit end read as a dark block at 30,000 units, and a mouth split between two districts was built as two masses.",
  "evidence": [
-  "E3M1 s0 (floor -90112, sky -188416) and s339 (floor -57344), backed by s338 and s340 (floor = ceiling = 8192, ceiling_stat 3); heights from bloodmap.street.end_wall",
-  "projects/blood-city/experiments/street-ends/before-after.png; tests/test_shopfront.py CityStreetEndTests",
-  "E3M1 s343 (floor -90,112, floor tile 379, sky): the third street end"
+  "E3M1 s0 (floor -90112, sky -188416) and s339 (floor -57344), backed by s338 and s340 (floor = ceiling = 8192, ceiling_stat 3); E3M1 s343 (floor -90112, tile 379), backed by s342; road-side walls 47, 49, 1535, 22, 26, 28, 222, 816, 947: tile 414, shade 24, cstat 1",
+  "NBlood/source/build/src/engine.cpp:4801-4833 (classicDrawBunches): the lower step is drawn from the viewer sector's own wall, from nextwall only when cstat&2",
+  "projects/blood-city/experiments/street-ends/before-after.png; projects/blood-city/tests/test_shopfront.py CityStreetEndTests; heights from bloodmap.street.end_wall (street.py:292)"
  ],
- "use": "bloodmap.street.end_wall gives the mass; make it blocking and light its face, and declare its zero-exit to the geometry audit; a sky backing of no height is exempt from the lowered-sky rule. Other ways to end a city are a waterfront (DWE3M10) or a chasm (DWE3M1).",
+ "use": "bloodmap.street.end_wall gives the mass; make it blocking and declare its zero-exit to the geometry audit; a sky backing of no height is exempt from the lowered-sky rule. A face you want lit must be lit on the road sector's own wall records, which are what the street sees. Other ways to end a city are a waterfront (DWE3M10) or a chasm (DWE3M1).",
  "code": [
   "bloodmap.street.end_wall",
   "bloodmap.skyline.is_sky_backing"
@@ -27,5 +27,10 @@
   "map edge",
   "street end",
   "vista"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E3M1: s0 floor -90112, s339 -57344, s343 -90112, tile 379, sky -188416; roads (s6, s7, s235; s2-s4; s159, s45, s175) at 8192/10240: rise 5.80/3.86 bodies (5.92/3.98 to 10240). Road-side records facing the masses: tile 414 (crumbling plaster over brick), shade 24, cstat 1. The masses' own records (400/401/108 at -8) face the road but are drawn only from the mass; engine.cpp:4801-4833 (classicDrawBunches) draws a step up from the viewer's own wall unless cstat&2 swaps. Backings s338/s340 floor = ceiling 8192, cstat 3; s342 at 72704.",
+  "of": "a74eb721f000"
+ }
 }

@@ -2,9 +2,10 @@
  "id": "a-blank-wall-wears-its-facades-windowless-twin",
  "topic": "texture",
  "standing": "ruling",
- "claim": "A building wall that should have no windows (a flank, a side wall over rock) wears the same facade tile without the window, not a different brick: Blood's facade tiles come in pairs (380 with windows, 381 without).",
+ "claim": "A building wall that should have no windows (a flank, a side wall over rock) wears the same facade tile without the window, not a different brick. The owner named one such pair, 380 (with windows) and 381 (without); facade_pass.BLANK_OF also pairs 384/385, 393/394 and 397/396, read off the art by us, not by him; 400 and 401 have no companion found.",
  "evidence": [
-  "The owner, 2026-11-19: '380 is building facade with windows and 381 is the same thing just without windows'."
+  "The owner, 2026-11-19, walking Gravesend: '380 is building facade with windows and 381 is the same thing just without windows, so if you want to have just a wall of that building it should have this texture to look good' (projects/blood-city/level/facade_pass.py:43-46, l3_market.py:357-358).",
+  "projects/blood-city/level/facade_pass.py:49 BLANK_OF: the three other pairs are read off the art (comment at :45-48)."
  ],
  "use": "Look for the companion tile of a facade before choosing a flank material.",
  "code": [
@@ -21,5 +22,10 @@
   "flank",
   "side wall",
   "window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/facade_pass.py:40-49 and l3_market.py:350-358: the owner's words, 2026-11-19, name only 380 (windows) and 381 (without); BLANK_OF = {380:381, 384:385, 393:394, 397:396}, the comment says the other three pairs were read off the art; 400 and 401 have no companion. Memory note split-bands-and-blank-companions.md says the same.",
+  "of": "2b525089d099"
+ }
 }

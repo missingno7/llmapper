@@ -22,5 +22,10 @@
   "shade",
   "visibility",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/src/engine.cpp:4413-4414 (setup_globals_wall2): if secvisibility != 0, globvis = mulscale4(globvis, (uint8_t)(secvisibility+16)); the same at :2827 (setup_globals_cf1, floors) and sprites. Ran probes/consolidation_sector_visibility.py: 9 sectors at 240-255 (E1M5 8, E2M7 1), values 249 x4, 251 x4, 252 x1; 963 at 1-239. projects/blood-city/level/l3_market.py:96 SEA_CARRY = (0, 252, 248, 245, 243).",
+  "of": "3dff1bd5d89d"
+ }
 }

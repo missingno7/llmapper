@@ -4,7 +4,8 @@
  "standing": "engine",
  "claim": "Wall cstat 32 (one-way) cuts the renderer's sector flood but not movement: clipmove tests only bit 0, so a body walks through a one-way wall unless bit 0 is set too. The cut is directional: the flag lives on one of the two coincident walls and stops only views that start on its own side.",
  "evidence": [
-  "NBlood/source/build/include/buildtypes.h:154 CSTAT_WALL_1WAY = 1<<5; build.h:225 CLIPMASK0 is bits 0 and 16; clip.cpp:1626 tests wal->cstat & dawalclipmask"
+  "NBlood/source/build/include/buildtypes.h:154 CSTAT_WALL_1WAY = 1<<5; build.h:225 CLIPMASK0 is bits 0 and 16; clip.cpp:1626 tests wal->cstat & dawalclipmask",
+  "Functions: clip.cpp:1626 is in clipmove; the flood test is engine.cpp:4914 in classicDrawBunches (!(wal->cstat&32) on the near sector's own wall); Blood moves bodies with CLIPMASK0 (actor.cpp:4275 MoveThing, :4470 MoveDude)."
  ],
  "use": "Flag both walls of a pair to cut visibility both ways; set bit 0 as well only where a body must be stopped. overlap_visibility reads the flood as a directed graph.",
  "code": [
@@ -22,5 +23,10 @@
   "one-way",
   "overlap",
   "visibility"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "buildtypes.h:154 CSTAT_WALL_1WAY = 1u<<5u; build.h:225 CLIPMASK0 = (1<<16)+1; clip.cpp:1626 in clipmove tests wal->cstat & dawalclipmask; actor.cpp:4275/4470 MoveThing/MoveDude ClipMove with CLIPMASK0. engine.cpp:4914 (classicDrawBunches) floods to nextsectnum only if !(wal->cstat&32), the wall of the sector being drawn: one-sided as claimed.",
+  "of": "57395a18698d"
+ }
 }

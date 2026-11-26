@@ -2,7 +2,7 @@
  "id": "campaign-height-comes-from-floors-more-than-sky-steps",
  "topic": "place",
  "standing": "tendency",
- "claim": "Blood's open-air maps vary their wall heights: of the 38 campaign maps with open sky none draws its street walls to one height and 32 draw three or more, but only 17 step the sky between open sectors (141 steps of a body or more; E1M3 29, E3M1 13, E1M1 12; E3M1's largest 15.4 bodies). Most of the variety comes from raised roof floors (E1M5: seven wall heights, no sky step). Sloped skies are rare: 23 sectors in 10 maps.",
+ "claim": "Blood's open-air maps vary their wall heights: of the 38 campaign maps with open sky none draws its one-sided walls under the sky to one height and 32 draw three or more, but only 17 step the sky between open sectors (141 steps of a body or more; E1M3 29, E3M1 13, E1M1 12; E3M1's largest 15.5 bodies). Variety without a sky step exists: E1M5 has seven wall heights and no sky step. Sloped skies are rare: 23 sectors in 10 maps.",
  "evidence": [
   "tools/mine_skylines.py --population blood-campaign: 38 maps with open sky, 0 single-height, 32 with three or more wall heights, 17 with a stepped sky, 141 sky-step portals of a body or more; 10 maps with a sloped sky, 23 sectors"
  ],
@@ -23,5 +23,10 @@
   "sky step",
   "skyline",
   "stepped sky"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran python -m tools.mine_skylines (work copy): 43 maps, 38 open sky, maps_with_one_wall_height 0, three or more 32, stepped sky 17, sky_steps 141, sloped sky 10 maps 23 sectors - all as claimed. per_map: E1M3 29, E3M1 13 (max 15.5 bodies, not 15.4), E1M1 12, E6M1 and E6M6 also 13; E1M5 7 wall heights, 0 steps. The tool counts no raised floors in its summary, so 'most of the variety comes from raised roof floors' had no count: taken out.",
+  "of": "0170896b71fa"
+ }
 }

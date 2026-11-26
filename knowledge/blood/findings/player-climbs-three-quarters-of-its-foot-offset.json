@@ -4,8 +4,9 @@
  "standing": "engine",
  "claim": "A walking body clears a rise of footOffset - floordist, where MoveDude passes floordist = (bottom - z)/4: about three quarters of the half body, roughly 6,400 z for a 16,960 standing human (6,548 to 6,659 measured as the walk frames change the body's height). It is not a fixed autostep, and a step down is never refused: nothing stops a body walking off a ledge, the line is drawn at the landing.",
  "evidence": [
-  "NBlood/source/blood/src/actor.cpp:4450-4470 (bz = (bottom-z)/4 passed to ClipMove); build/src/clip.cpp:876-882, the default case of cliptestsector, which Blood's engine mode takes, blocks entry when the next floor is over 256 higher and posz >= daz2-(flordist-1).",
-  "Measured by the headless bot on AGTST18 (radius 192, height 17,316, flordist 2,220, foot offset ~8,880: 6,659); bloodmap's player profile uses max_step 4,096 as a deliberately conservative at-rest threshold."
+  "NBlood/source/blood/src/actor.cpp:4450-4470 (MoveDude: bz = (bottom-z)/4 passed to ClipMove as the floor distance)",
+  "NBlood/source/build/src/clip.cpp:876-888 (cliptestsector, default case: blocks entry when the next floor is over 256 higher and posz >= daz2-(flordist-1); nothing tests a drop), taken because NBlood/source/blood/src/blood.cpp:1890 (app_main) sets enginecompatibilitymode to ENGINE_19960925, which has no case of its own",
+  "Measured by the headless bot on AGTST18, 2026-08-27, not rerun (radius 192, height 17,316, flordist 2,220, foot offset ~8,880: 6,659); bloodmap's player profile uses max_step 4,096 as a deliberately conservative at-rest threshold."
  ],
  "use": "Treat rises up to ~4,096 as steps everyone takes and up to ~6,400 as the engine's own limit; anything taller is a jump or a wall.",
  "code": [
@@ -23,5 +24,10 @@
   "ledge",
   "step",
   "step height"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp MoveDude (4435): 4450 bz = (bottom-pSprite->z)/4, 4470 ClipMove(..., wd, tz, bz, CLIPMASK0). blood.cpp:1890 (app_main) sets enginecompatibilitymode = ENGINE_19960925, which no case of cliptestsector names, so the default case (clip.cpp:876-888) runs: 'if (daz2 < daz-(1<<8) && (sec2->floorstat&1) == 0) if (posz >= daz2-(flordist-1)) return 1' at 880-881; no test on a drop. 8,880 - 2,220 = 6,660. The AGTST18 bot figures are a dated run, not repeated.",
+  "of": "33f9d803f1a3"
+ }
 }

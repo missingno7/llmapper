@@ -27,5 +27,10 @@
   "max sprites",
   "max walls",
   "wall cap"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/include/build.h:48-50 MAXSECTORSV8 4096, MAXWALLSV8 16384, MAXSPRITESV8 16384; :52-54 V7 1024, 8192, 4096. bloodmap/build_ir.py:176 BUILD_LIMITS and :182 VANILLA_LIMITS same figures; :193-203 error past V8, warning past V7. Owner's words 'our map is larger than E3M1 and that is fine' kept in memory/target-port-nblood-limits.md:11 (2026-09-02).",
+  "of": "a5bf8e55d6a6"
+ }
 }

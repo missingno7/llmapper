@@ -2,9 +2,9 @@
  "id": "overlapping-sectors-are-told-apart-in-plan",
  "topic": "construction",
  "standing": "engine",
- "claim": "After a move Build (Blood's ENGINE_19960925 path) picks the mover's sector as the first entry of clipsectorlist that contains the point IN PLAN, without consulting z; the list is seeded with the mover's own sector and only walls inside a box of move + MAXCLIPDIST (1024) + walldist + 8, about 2,264 units, are examined. So two sectors overlapping in plan are confusable only when they are portal neighbours within that box; rooms stacked one above the other with the way between them going out to a stairwell are safe at zero plan distance.",
+ "claim": "After a move Build (Blood's ENGINE_19960925 path) picks the mover's sector as the first entry of clipsectorlist that contains the point IN PLAN, without consulting z; the list is seeded with the mover's own sector and only walls inside a box reaching move + MAXCLIPDIST (1024) + walldist + 8 either side of the move's centre are examined (2,264 either side for a 1,024-unit move, our CLIP_RADIUS). So two sectors overlapping in plan are confusable only when they are portal neighbours within that box; rooms stacked one above the other with the way between them going out to a stairwell are safe at zero plan distance.",
  "evidence": [
-  "NBlood/source/build/src/clip.cpp:1112-1121 clipmove_compat, :1508 (clipsectorlist[0] = own sector), :1500 (rad), engine_priv.h:19 MAXCLIPDIST 1024.",
+  "NBlood/source/build/src/clip.cpp:1112-1121 (clipmove_compat, called from clipmove at :1824 outside ENGINE_EDUKE32 mode), :1500 (clipmove: rad), :1508 (clipmove: clipsectorlist[0] = own sector), engine_priv.h:19 MAXCLIPDIST 1024; tools/mine_layers.py:54 CLIP_RADIUS 2,264.",
   "Over 2,614 campaign overlap pairs: 16.4% clash in z, 0.19% are confusable, and one pair (E1M1 45/55, a self-touching loop) is both (tools/mine_layers.py, knowledge/blood/design/layers-v1.json, 2026-08-28). A first rule of '5 portal hops' from the campaign median fired falsely on every small stacked building."
  ],
  "use": "Stack enclosed rooms by plan overlap freely; forbid only a portal-neighbour overlap that also clashes in z. bloodmap.layers enforces exactly that conjunction.",
@@ -23,5 +23,10 @@
   "sector of a point",
   "stacking",
   "storey"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "clip.cpp:1112-1121 (clipmove_compat): first clipsectorlist entry with inside(x,y) wins, no z; called at :1824 when enginecompatibilitymode != ENGINE_EDUKE32. clip.cpp:1500 (clipmove) rad = |move| + MAXCLIPDIST + walldist + 8, :1508 clipsectorlist[0] = *sectnum; engine_priv.h:19 MAXCLIPDIST 1024. 2,264 is tools/mine_layers.py:54 CLIP_RADIUS = 1024+192+16+8+1024, a half-width with an assumed 1,024 move. layers-v1.json: 2,614 pairs, 430 z-clashing (16.45%), confusable 0.00191, unresolved 1: E1M1 45/55.",
+  "of": "e42ca4812a60"
+ }
 }

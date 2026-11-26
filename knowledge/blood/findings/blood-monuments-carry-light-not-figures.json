@@ -2,11 +2,12 @@
  "id": "blood-monuments-carry-light-not-figures",
  "topic": "construction",
  "standing": "tendency",
- "claim": "Blood's monuments are stepped bases of raised sectors under open sky: 421 over 66 maps of the campaign, Bloodbath and curated community maps, two tiers in 389 and three in 30, a tier rising a median 0.42 bodies, the base 2.0 plan units and the top a third of it (0.62). Only 77 carry anything, and that is light (23 an invisible generator, type 709 on tile 2520): Blood has no figure-on-a-plinth idiom.",
+ "claim": "Blood's monuments are stepped bases of raised sectors under open sky: tools/mine_monuments.py over the campaign, Bloodbath and curated community maps found 421 in 66 maps (monuments-v1.json; 431 in 63 maps when rerun on 2026-11-26), two tiers in 389 and three in 30, a tier rising a median 0.42 bodies, the base 2.0 plan units and the top a third of it (0.62). Only 77 carry anything: most often a sector sound marker (type 709 on tile 2520, 23), then candles (938), glows (624), flames (2101), a few stone face ornaments (634) and boulders (805). No figure sprite is among the tiles found on a top tier.",
  "evidence": [
-  "421 monuments over 66 maps, by tools/mine_monuments.py (figures in projects/blood-city/level/templates.py)"
+  "knowledge/blood/design/monuments-v1.json by tools/mine_monuments.py (view reference): 421 monuments over 66 maps, statuary_tiles; rerun 2026-11-26: 431 in 63 maps, 73 carrying, 2520 x24",
+  "NBlood/source/blood/src/common_game.h:451 kSoundSector = 709; catalog show 2520 (owner: sector sound marker, invisible in game)"
  ],
- "use": "Build a monument as concentric tiers each carved from the one below; crown it with a flame.",
+ "use": "Build a monument as concentric tiers each carved from the one below; crown it with a flame, a candle or a sound, not a statue sprite.",
  "code": [
   "projects/blood-city/level/templates.py:monument"
  ],
@@ -21,5 +22,10 @@
   "pedestal",
   "plinth",
   "statue"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "knowledge/blood/design/monuments-v1.json: 421 monuments, maps_with_one 66, tiers 2:389 3:30, rise median 0.42, base 2.0, top 0.62, carrying_statuary 77, statuary tiles 2520x23, 938x9, 624x8, 634x6, 2101x4, 805x4, 2140x4. Rerun tools/mine_monuments.py (reference view) today: 431 in 63 maps, 398/31, 73 carry, 2520x24. 2520 owner 'sector sound marker'; type 709 is kSoundSector (common_game.h:451). 634 a horned stone face ornament, 805 a boulder, 2140 a cleaver.",
+  "of": "af55756b139b"
+ }
 }

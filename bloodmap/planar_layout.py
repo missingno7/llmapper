@@ -371,8 +371,9 @@ class RegionSpec:
     #: against 6.
     #:
     #: The division the campaign draws is not decorative, it is structural: of
-    #: the 8,320 campaign rooms with more than one wall tile, **74% put a
-    #: different tile on their two-sided walls than on their solid ones**, and
+    #: the 7,585 campaign sectors with more than one wall tile and both
+    #: two-sided and solid walls, **74% put a different tile on their
+    #: two-sided walls than on their solid ones**, and
     #: the minority takes a quarter to a half of the walls. Openings are dressed
     #: and the field between them is not -- which is how masonry is actually
     #: built, ashlar at the jambs and rubble in the spans.

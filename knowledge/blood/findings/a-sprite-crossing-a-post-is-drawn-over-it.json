@@ -2,9 +2,9 @@
  "id": "a-sprite-crossing-a-post-is-drawn-over-it",
  "topic": "sprite",
  "standing": "practice",
- "claim": "The software renderer draws the part of a wall-aligned sprite that runs inside a post or wall over that post. A rail must stop at the post's face, not run into it.",
+ "claim": "In Gravesend's station hall a wall-aligned rail sprite that ran on inside a newel post (a raised sector) was drawn over the post in our frames; the rail now stops at the middle of each post's face. No renderer line has been read for it.",
  "evidence": [
-  "projects/blood-city/level/booking_hall.py:389-392: the station hall's rail runs to the middle of each newel's face and no further, after the owner, 2026-11-25: 'It should be like exactly ending in the middle of it. It is wrong on both sides'; seen in the frames of that work. No renderer line is cited, and sprite_fit does not check it."
+  "projects/blood-city/level/booking_hall.py:389-397: the station hall's rail runs to the middle of each newel's face and no further, after the owner, 2026-11-25: 'It should be like exactly ending in the middle of it. It is wrong on both sides'; seen in the frames of that work. No renderer line is cited, and sprite_fit does not check it."
  ],
  "use": "Cut rails, beams and bars at the faces of what they meet.",
  "code": [
@@ -22,5 +22,10 @@
   "railing",
   "renderer",
   "sprite"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/booking_hall.py:389-397: the owner's words 'It should be like exactly ending in the middle of it. It is wrong on both sides', the rail (RAIL, cstat 16|128|1) running from WEST to STAIR[0]-NEWEL and from STAIR[1]+NEWEL to EAST, i.e. to each newel sector's face at its middle (newels :111-112 are sectors NEWEL 0.25 wide about EDGE). No renderer line is cited, so the renderer statement is worded as what our frames showed.",
+  "of": "b1fb6d3dcea9"
+ }
 }

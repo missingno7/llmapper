@@ -23,7 +23,7 @@ directed reachability; see city-norms-v2). Records in
   attested class between alley and street: the *lane*, ~3072–3584, is how
   a dense town core differs from E3M1's frontier pattern (one wide street,
   detached buildings). Enterability rides it: **0.38 substantial interiors
-  per 10240** — the corpus maximum, edging E3M1's 0.37.
+  per 10240** — the highest of the nine city maps measured (E3M1 0.29).
 - **Winding**: 1 walk-around loop in 58 sectors — the dense core is a web
   of lanes and dead-ends around one square, not a loop grid. Loop-count
   urbanism is the Duke model; density urbanism is this.

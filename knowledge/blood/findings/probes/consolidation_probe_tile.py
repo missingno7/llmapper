@@ -1,4 +1,8 @@
 """Where a tile stands in the campaign: alignment, height over floor and under ceiling, sky or roof."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, collections, statistics as st
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps

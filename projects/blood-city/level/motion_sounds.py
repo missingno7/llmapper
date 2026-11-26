@@ -53,7 +53,7 @@ REGION_PROFILES = {":hand_button": "hand_button"}
 #: A door that rises (600), by the tile its leaf wears: what the campaign's
 #: ceiling doors wearing it sound like. 22, the wooden door: 110/160 leads
 #: (x4) and stone's 106 is never used. 495, panelled metal: 111 starts the
-#: most, 165 its commonest stop. 110 and 1011, stone: 106.
+#: most, 169 its commonest stop (165 next). 110 and 1011, stone: 106.
 #: (The owner, 2026-11-23: "These wooden zdoor sound 106 sounds like a moving
 #: stone ... example 110 would be better".)
 LEAF_PROFILES = {22: "wood_z_door", 28: "wood_z_door", 495: "iron_z_door", 110: "stone_door", 1011: "stone_door",

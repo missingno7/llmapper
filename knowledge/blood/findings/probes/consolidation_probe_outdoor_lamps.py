@@ -1,4 +1,8 @@
 """Count visible light-tile sprites standing in parallax-ceiling sectors, per campaign map (+DWE3M1, DWE3M10)."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, collections
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps, corpus_map_path

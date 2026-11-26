@@ -4,7 +4,7 @@
  "standing": "refuted",
  "claim": "Blood's campaign maps carry a median of 78 ambient sound emitters each, 23.6 per hundred sectors.",
  "evidence": [
-  "2026-11-26 recount over bloodmap.corpus.campaign_maps(): sprites of type 710 per map, 1,778 in all (the total the study also gives), median 30, median per hundred sectors 10.6 (knowledge/blood/findings/probes/consolidation_audit_mid_counts.py)",
+  "knowledge/blood/findings/probes/audit2_ambient_710.py over bloodmap.corpus.campaign_maps(): sprites of type 710 per map, 1,778 in all, median 30, mean 41.3, range 0-131, median 10.6 per hundred sectors, none in E2M8 and E3M8",
   "knowledge/blood/studies/ambient-sounds/notes.md counts 1,778 emitters; the 78 and 23.6 are in projects/blood-city/level/ambience.py:5-6 and its fill(target_per_100_sectors=23.6), and are not reproduced",
   "Gravesend had one emitter before the count was taken (projects/blood-city/level/ambience.py docstring)"
  ],
@@ -23,5 +23,10 @@
   "rate",
   "sound"
  ],
- "instead": "The 43 campaign maps carry a median of 30 type-710 ambient emitters each (mean 41, range 0 to 131; 1,778 in all), a median 10.6 per hundred sectors. Two maps have none (E2M8, E3M8); the busiest are E6M4 131, E3M6 128, E1M3 121. A level with a handful of emitters is still far below the campaign, and no rendered frame shows it."
+ "instead": "The 43 campaign maps carry a median of 30 type-710 ambient emitters each (mean 41, range 0 to 131; 1,778 in all), a median 10.6 per hundred sectors. Two maps have none (E2M8, E3M8); the busiest are E6M4 131, E3M6 128, E1M3 121. A level with a handful of emitters is still far below the campaign, and no rendered frame shows it.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_ambient_710.py over campaign_maps(): 43 maps, 1,778 type-710 sprites, median 30, mean 41.3, range 0-131, median per 100 sectors 10.6; none in E2M8 and E3M8; most E6M4 131, E3M6 128, E1M3 121. ambience.py:5-6 states the old 78 / 23.6 and :99 fill(target_per_100_sectors=23.6). The cited probe consolidation_audit_mid_counts.py imports work/consolidation/audit_mid (scratch): citation replaced.",
+  "of": "095666215ec2"
+ }
 }

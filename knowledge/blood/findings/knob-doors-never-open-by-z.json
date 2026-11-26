@@ -2,9 +2,9 @@
  "id": "knob-doors-never-open-by-z",
  "topic": "mechanism",
  "standing": "ruling",
- "claim": "A door whose leaf wears a knob (tile 30) is never a Z-motion door: it slides aside, toward the side away from its knob, or swings.",
+ "claim": "The owner would avoid making a door whose leaf wears a knob (tile 30) a Z-motion door: it can slide to the side away from its knob (his example, the Aldermack's side door).",
  "evidence": [
-  "the owner, 2026-11-25: 'in door with knob (picnum 30) I would avoid doing them as Z motion, these can be slide door to the other side than knob is'"
+  "the owner, 2026-11-25: 'in door with knob (picnum 30) I would avoid doing them as Z motion, these can be slide door to the other side than knob is ... for example aldermack side door would be the case of this' (projects/blood-city/level/aldermack_front.py:94-96)"
  ],
  "use": "Choose the motion from the leaf's tile; for paired stage or double doors use sliding wings.",
  "code": [
@@ -21,5 +21,10 @@
   "leaf",
   "slide",
   "z motion"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words read at projects/blood-city/level/aldermack_front.py:94-96 and tests/test_aldermack_front.py:32-33 (2026-11-25): 'in door with knob (picnum 30) I would avoid doing them as Z motion, these can be slide door to the other side than knob is ... for example aldermack side door would be the case of this'. 'Never' and 'or swings' go beyond the words (swinging is only in the agent's note door-leaves-and-apertures.md:8); claim reworded to them.",
+  "of": "2c64083bdb57"
+ }
 }

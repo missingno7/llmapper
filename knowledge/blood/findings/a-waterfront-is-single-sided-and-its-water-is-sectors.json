@@ -1,10 +1,11 @@
 {
  "id": "a-waterfront-is-single-sided-and-its-water-is-sectors",
  "topic": "place",
- "standing": "tendency",
- "claim": "DWE3M10's pier promenade is one linear band (59 street sectors along ~60k units, 1 loop) whose buildings line the land side; its door rate along the water is 1.76 per 10,240 of frontage, denser than an inland street. The water side is real swimmable water sectors (215k units of red wall into water against 12.5k of white wall) with boats as sector geometry; only the far shore is backdrop.",
+ "standing": "precedent",
+ "claim": "DWE3M10's pier promenade is one linear band (59 street sectors along ~60k units, 1 loop) whose buildings line the land side (doors facing 23 landward against 14 east); its door rate along the water is 1.76 per 10,240 of frontage, above DukCity's streets (0.23 to 0.61) and E3M1's (1.17) but below E3M2's (2.04). The water side is real swimmable water sectors (215k units of red wall into water against 12.5k of white wall) with boats as sector geometry; only the far shore is backdrop.",
  "evidence": [
-  "tools/mine_city_norms.py v2 on DWE3M10 (knowledge/blood/references/city-norms-v2.json)"
+  "DWE3M10 s273 and the 58 other street sectors (wall 2040 a doorway into s315): tools/mine_city_norms.py v2, knowledge/blood/references/city-norms-v2.json per_map DWE3M10 (street.sectors, blocks.street_loop_count, enterability.doorways_per_10240_frontage)",
+  "knowledge/blood/references/promenade-patterns.md:10-27 (2026-08-27): the ~60k run, the facing census and the 215k / 12.5k wall lengths, read there and not recounted"
  ],
  "use": "Face a quay's doors landward, let it widen into a plaza, and make the water walkable space.",
  "code": [
@@ -22,5 +23,10 @@
   "promenade",
   "quay",
   "waterfront"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "knowledge/blood/references/city-norms-v2.json per_map DWE3M10: street.sectors 59, blocks.street_loop_count 1, enterability.doorways_per_10240_frontage 1.76 (others: E3M1 1.17, DWE3M1 0.97, DukCity1-4 0.23-0.61, TEDE1M2 1.83, E3M2 2.04). promenade-patterns.md:10-27: ~60k-unit run, facing census 23 landward-west vs 14 east, 215k red wall into water vs 12.5k white (not in the json; not recounted). One map, so a precedent; 'denser than an inland street' holds against DukCity only.",
+  "of": "d96c914b880c"
+ }
 }

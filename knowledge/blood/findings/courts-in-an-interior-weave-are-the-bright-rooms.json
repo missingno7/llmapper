@@ -1,10 +1,11 @@
 {
  "id": "courts-in-an-interior-weave-are-the-bright-rooms",
  "topic": "light",
- "standing": "tendency",
- "claim": "Where a level is interiors woven with small open courts (E2M1's playable side), the courts are the bright rooms: floor shade +4.2 outdoors against +36.2 inside, a ~32-step change at every threshold, the inverse of a night street's venues.",
+ "standing": "precedent",
+ "claim": "On E2M1's playable side, interiors woven with small open courts, the courts are the bright rooms, the inverse of a night street's venues: measured 2026-08-27 as outdoor pockets at floor shade +4.2 against interiors at +36.2 (not recounted); recounted 2026-11-26 over every reachable sector, 59 sky-ceilinged average 9.3 against 175 roofed 27.5, with a mean step of 20 across the 47 walls where they meet (some none).",
  "evidence": [
-  "tools/mine_city_norms.py v2 on E2M1: 8-sector court chain over 14 indoor links (city-norms-v2.json)"
+  "E2M1 s63 (sky, floor shade 24 below its neighbour s59) and the other reachable sectors: knowledge/blood/findings/probes/audit2_e2m1_court_shade.py, 2026-11-26",
+  "knowledge/blood/references/backdrop-and-weave.md:48-57 (2026-08-27, partial reachability): 14 short indoor links, one 8-sector court chain, +4.2 against +36.2"
  ],
  "use": "In a building braided round courts, light the courts and darken the rooms between.",
  "code": [
@@ -22,5 +23,10 @@
   "day",
   "threshold",
   "weave"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "E2M1 is not in city-norms-v2.json (its per_map holds E3M1, DWE3M1, DukCity1-4, DWE3M10, TEDE1M2, E3M2); the +4.2/+36.2 and 14 links / 8-sector chain are in knowledge/blood/references/backdrop-and-weave.md:48-57 only. Recount with probes/audit2_e2m1_court_shade.py: 59 reachable sky sectors mean floor shade 9.3, 175 roofed 27.5; 47 sky|roofed thresholds, mean step 20.1 (e.g. s63|s59 24, s3|s232 0). One map: a precedent.",
+  "of": "ea4609d1dad4"
+ }
 }

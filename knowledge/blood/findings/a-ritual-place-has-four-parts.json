@@ -2,10 +2,11 @@
  "id": "a-ritual-place-has-four-parts",
  "topic": "place",
  "standing": "precedent",
- "claim": "A ritual place in Blood's maps (E6M6, and the Death Wish add-on's DWE3M6 and DWE1M4) is four things: something the room is arranged round, made of sectors (a stone-rimmed pool half a body high with candles ON its rim, a hexagonal dais, a drum in a moat); people arranged round it facing it; a victim and the thing it is for; and an answer when the player acts (walls fall, the earth shakes, phantoms come). It is seen from above before it is entered.",
+ "claim": "The ritual places looked at in the study ritual-place are four things: something the room is arranged round, made of sectors (E6M6's stone-rimmed pool half a body high with six candles ON its rim, E1M7's hexagonal dais, DWE2M4's drum in a moat); people arranged round it facing it (E6M6's ten cultists, E1M7's ring, DWE1M4's seated congregation); a victim and the thing it is for (E1M7's body on the slab, E6M6's skull tapestry, DWE3M6's mouth of stone teeth); and an answer when the player acts (E1M7's walls fall and the earth shakes, DWE2M4's phantoms come). E1M7, E6M6 and DWE2M6 show it from above before it is entered.",
  "evidence": [
-  "E6M6 s192 and s281 (the pool), DWE3M6 s840 (a mouth of stone teeth), DWE1M4 s642 (seated congregation)",
-  "study knowledge/blood/studies/ritual-place, summarised in projects/blood-city/references/cabal-rite-design.md"
+  "E6M6 s192 (the rim, floor 12,288, 8,192 over its room s213; six candles, tile 938 type 32) and s281 (the pool)",
+  "E1M7:41 (dais, ring of cultists), DWE2M4:205-207 (drum, moat, phantoms), DWE3M6 s840 (a mouth of stone teeth), DWE1M4 s642 (seated congregation), as described in the study",
+  "study knowledge/blood/studies/ritual-place/notes.md, summarised in projects/blood-city/references/cabal-rite-design.md"
  ],
  "use": "Build the centre in sectors (bloodmap.arrangement), face the figures at it, wire an answer, and give a gallery over it.",
  "code": [
@@ -25,5 +26,10 @@
   "ritual",
   "sacrifice",
   "shrine"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E6M6 s192: floor 12288, its room s213 floor 20480 (rim 8192 up, half a body), six sprites of tile 938 type 32 on s192; s281 floor 34816 is the pool. DWE3M6 s840 and DWE1M4 s642 exist (77 and 37 walls). knowledge/blood/studies/ritual-place/notes.md: the hexagonal dais and walls falling are E1M7:41, the drum in a moat and phantoms are DWE2M4:205-207, the gallery from above E6M6/E1M7/DWE2M6; the claim gave all to E6M6, DWE3M6, DWE1M4. Reworded and the maps named.",
+  "of": "bb98bc1d22d0"
+ }
 }

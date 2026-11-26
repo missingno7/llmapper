@@ -1,7 +1,7 @@
 {
  "id": "blown-holes-are-ragged",
  "topic": "construction",
- "standing": "precedent",
+ "standing": "tendency",
  "claim": "A blown-out hole (a wall crack) is a few type-600 sectors across the wall, rarely a clean box: of 96 campaign holes, 46 are one piece, 23 two, 20 three, 5 four and one each five and eight; 137 of their 185 pieces have a slanted edge, and most slope floor or ceiling (116 floors, 123 ceilings) with the slope running across the hole's width so the top zigzags. Shut, the piece is solid: in 87 the floor stays and the ceiling drops onto it, in the other 98 floor and ceiling meet between; 178 of 185 keep the ceiling's heinum at least the floor's. Sills stand above the floor they open from (E1M2 channel 104: 3,072-7,868).",
  "evidence": [
   "E1M1 sector 25: a 1,792-wide hole whose west jamb runs 192 along over 256 through; E1M2 channel 104 (s197-199): three pieces with tops at -112,640, -109,568 and -116,736, and floors that move (s197 off_floor -103,424, on_floor -81,920)",
@@ -30,5 +30,10 @@
   "rubble",
   "slope",
   "wall crack"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "sewer-study_breach_shapes.json: 185 rows, 96 holes by channel: pieces 46x1, 23x2, 20x3, 5x4, 1x5, 1x8; off_axis>0 in 137, fslope 116, cslope 123; off_floor != on_floor in 98; cslope < fslope in 7 (178 keep it). E1M1 s25 walls 191-195: x 11,136 to 12,928 = 1,792, west jamb 192 along over 256 through. E1M2 ch104 s197-199 on_ceil -112,640/-109,568/-116,736, s197 off_floor -103,424 on_floor -81,920. e1m2_sills probe: ch104 sills 3,072-7,868 over s302, 18,432-24,602 over s270. A campaign count: tendency.",
+  "of": "31823b5e7d40"
+ }
 }

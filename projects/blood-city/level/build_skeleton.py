@@ -34,7 +34,7 @@ from bloodmap.roomoverroom import (
 )
 
 #: The link markers' tiles: 2332 on the upper half, 2331 on the lower, as on
-#: all 273 link markers of the campaign.  The same values as
+#: all 502 link markers of the campaign.  The same values as
 #: bloodmap.roomoverroom.MARKER_TILE_UPPER/LOWER, which once said 3997 (a
 #: torch in XMapEdit) and has since been corrected.
 MARKER_TILE_UPPER = 2332
@@ -139,9 +139,9 @@ MANHOLE_TAB = _manhole_tab()
 
 
 #: How far back a building's outside corner is cut.  Gravesend measured at
-#: **7% diagonal walls** against E3M1's 35%, DukCity's 23-34% and TEDE1M2's
-#: 32% -- and 72% of its sectors were plain axis-aligned rectangles against
-#: their 30-59%.  We were three to five times more rectangular than any
+#: **7% diagonal walls** against E3M1's 34%, DukCity's 18-31% and TEDE1M2's
+#: 31% -- and 72% of its sectors were plain axis-aligned rectangles against
+#: their 35-59%.  We were three to five times more rectangular than any
 #: reference.  A chamfered corner is where most of a Build city's diagonals
 #: come from, and it costs one wall per corner.
 CHAMFER = 512

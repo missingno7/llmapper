@@ -21,5 +21,10 @@
   "converter",
   "light",
   "se12"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/duke-e4l1-remake/reports/converter-mechanism-audit.md:13 'Independent SE12 lighting overwrote mover controls in sectors 50, 61, 211 and 369 and the entry command in static room 152. Existing controls win'; :48 table row 'SE12 control conflicts | movers 50, 61, 211, 369; static entry-trigger room 152'; reports/08-converter-motion-repairs-applied.json is the pass that restored them.",
+  "of": "9fad55accee6"
+ }
 }

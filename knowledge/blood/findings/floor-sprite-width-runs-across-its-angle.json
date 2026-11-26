@@ -25,5 +25,10 @@
   "orientation",
   "roof",
   "rotation"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine_priv.h get_floorspr_points (473-495): x2 = x1 - mulscale16(sinang, rspan.x), y2 = y1 + mulscale16(cosang, rspan.x) at 491-492, i.e. width along (-sin, cos); ofs = (-cos*rspan.y, -sin*rspan.y) at 486, height along (-cos, -sin). get_floorspr_dims (429-451): span = tilesiz, repeat = xrepeat/yrepeat (sintable 16384 >> 16 gives /4), adjofs = picanm offsets plus sprite offsets. bloodmap/flatsprite.py cover and faults exist.",
+  "of": "3a139b6c0af9"
+ }
 }

@@ -2,11 +2,12 @@
  "id": "flipped-spiders-hang-until-woken",
  "topic": "sprite",
  "standing": "engine",
- "claim": "A spider placed flipped (cstat 8) is given no gravity at load, so it hangs on the ceiling until it wakes; others fall.",
+ "claim": "A brown, red or black spider placed flipped (cstat 8) is given no gravity at load (its flags are OR-ed with 9, not set to 15), so it hangs on the ceiling until it wakes, when it gains gravity and loses the flip; unflipped ones get flags 15 and fall. The spider mother is not in that case: she keeps the flags she was placed with until she wakes.",
  "evidence": [
-  "NBlood/source/blood/src/ai.cpp:1649: spider types with cstat&8 get flags 9, otherwise 15 (kPhysGravity is 0x2, common_game.h:518)"
+  "NBlood/source/blood/src/ai.cpp:1644-1651 (aiInitSprite): spider types with cstat&8 get flags |= 9, otherwise flags = 15 (kPhysGravity is 0x2, common_game.h:518)",
+  "NBlood/source/blood/src/ai.cpp:745-749 and :758-762 (aiActivateDude): a waking spider or mother gets flags |= 2 and cstat &= ~8"
  ],
- "use": "Hang spiders and their mother upside down with their drawn top against the ceiling (E2M8's lair).",
+ "use": "Hang spiders upside down with their drawn top against the ceiling (E2M8's lair); a mother hung so must be placed without the gravity flag.",
  "code": [
   "projects/blood-city/level/l3_sewer.py"
  ],
@@ -21,5 +22,10 @@
   "lair",
   "spider",
   "upside"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "ai.cpp:1644-1651 (aiInitSprite) read: spider types with cstat&8 get flags |= 9, otherwise flags = 15; ai.cpp:745-749 and :758-762 (aiActivateDude): flags |= 2 and cstat &= ~8; common_game.h:517-518: kPhysMove 0x0001, kPhysGravity 0x0002.",
+  "of": "a7d3bfbb252d"
+ }
 }

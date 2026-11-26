@@ -1,10 +1,12 @@
 {
  "id": "a-sweeping-mover-carries-and-crushes",
  "topic": "mechanism",
- "standing": "engine",
- "claim": "A sector sliding across a room engulfs whatever stands in its path and carries it along on a perfectly good floor until it reaches a wall, where it is crushed: 'can a body stand there' is not 'is a body safe there'. A switch whose standing place lies in the swept area kills the player who uses it.",
+ "standing": "hypothesis",
+ "claim": "A sector sliding across a room carries a sprite standing on its floor when the sector's XSECTOR Drag flag is set (TranslateSector, triggers.cpp:962-976), and sprites flagged cstat 8192/16384 always. Believed and not settled: that a body so carried into a wall is killed, so a switch whose standing place lies in the swept area kills the player who uses it (seen once in a bot run on a test map since lost).",
  "evidence": [
-  "Seen in a headless bot run on AGTST18 (2026-08-27): channel 112 drove a slide door (sector 70) and the room it sweeps (sector 87); the bot pressed it from a stance 57 units short of the wall's sector with a 192-wide body and died."
+  "NBlood/source/blood/src/triggers.cpp:929-976 (TranslateSector: sprites with cstat 8192/16384 move with the sector; others only if pXSector->Drag and standing on the floor); Blood's Crush flag is read only by the z movers (triggers.cpp:1270-1327).",
+  "Seen in a headless bot run on AGTST18 (2026-08-27): channel 112 drove a slide door (sector 70) and the room it sweeps (sector 87); the bot pressed it from a stance 57 units short of the wall's sector with a 192-wide body and died. AGTST18 was deleted 2026-09-01 (docs/nblood-autonomous-playtest-bot.md, loss notice).",
+  "Would settle it: a slide with Drag over a switch's stance, run headless, or the engine code that kills a body pushed into a wall."
  ],
  "use": "Put every control of a sweeping mover outside the area it sweeps, with a body's width to spare.",
  "code": [],

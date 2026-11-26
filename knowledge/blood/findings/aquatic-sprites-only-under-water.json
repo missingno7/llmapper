@@ -4,7 +4,8 @@
  "standing": "tendency",
  "claim": "Weed and bubble sprites appear only in underwater sectors: tile 664 is 82 campaign sprites in 46 sectors and 660 is 145 sprites in 68 sectors, every one submerged (XSECTOR underwater), never in shallow depth water.",
  "evidence": [
-  "recount 2026-11-26 over the 43 campaign maps; the rule aquatic-sprite-is-under-water in bloodmap.rules_blood, whose text says '82 sectors' and '142' where the sprites are 82 and 145. The rule's wet set also holds 546, which stands dry 7 times (E1M5, E3M4, E6M2)"
+  "recount 2026-11-26 over the 43 campaign maps by knowledge/blood/findings/probes/audit2_aquatic_sprites.py: 664 is 82 sprites in 46 sectors, 660 is 145 in 68 (3 of them invisible, in E2M5), none outside an underwater sector and none in depth water",
+  "the rule aquatic-sprite-is-under-water in bloodmap/rules_blood.py:268-277 (it skips invisible sprites, so it sees 142 of 660); its wet set (furniture.wet_only) also holds 546, which stands dry 7 times (E1M5 sprite 586, E3M4 sprites 0 and 1, E6M2 sprites 24-27), and 668, all 41 under water"
  ],
  "use": "Keep aquatic dressing out of wading water.",
  "code": [
@@ -21,5 +22,10 @@
   "kelp",
   "underwater",
   "weed"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with probes/audit2_aquatic_sprites.py over 43 campaign maps: 664 82 sprites in 46 sectors, 0 not under water; 660 142 visible + 3 invisible (E2M5 214, 215, 226, all underwater) = 145 in 68 sectors, 0 dry, 0 in depth water; 546 16 sprites, 7 dry (E1M5 586, E3M4 0-1, E6M2 24-27); 668 41 all under water. rules_blood.py:272-273 now reads '82 campaign sprites in 46 sectors ... 145 in 68': the old text the evidence quoted is gone.",
+  "of": "f8b27f0534b9"
+ }
 }

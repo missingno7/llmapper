@@ -5,7 +5,8 @@
  "claim": "Build does not clip a body against a wall as a disc against a line: clipmove adds an axis-aligned square of half-width walldist at each wall endpoint. Blood's player walldist is clipdist<<2 = 192, so a body stops further from an outside corner (up to ~272 on the diagonal) than a disc model predicts.",
  "evidence": [
   "NBlood/source/build/src/clip.cpp:1666 ('Add 2 boxes at endpoints'); blood/src/actor.cpp:4452 (wd = clipdist<<2).",
-  "A disc-only model held the bot 193 units off a corner it believed clear (2026-08-24)."
+  "A disc-only model held the bot 193 units off a corner it believed clear (2026-08-24).",
+  "Functions: clip.cpp:1666 is in clipmove; actor.cpp:4452 is in MoveDude; player clipdist 48 per bloodmap/player_space.py:87-88."
  ],
  "use": "Size squeezes past pillars and corners with the square, not the radius.",
  "code": [],
@@ -21,5 +22,10 @@
   "corner",
   "passage width",
   "walldist"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "clip.cpp:1666-1672 in clipmove (from :1481): 'Add 2 boxes at endpoints', addclipline at p1/p2 +-walldist on both axes, then the line offset by walldist. actor.cpp:4452 in MoveDude: wd = pSprite->clipdist<<2; player clipdist 0x30 = 48 (bloodmap/player_space.py:87-88 cites dude.cpp gPlayerTemplate) so 192; 192 * sqrt 2 = 271.5. The bot run of 2026-08-24 is the dated one in the evidence (the agent's note bot-spatial-model: held 193 off a corner).",
+  "of": "b7d203dcd75a"
+ }
 }

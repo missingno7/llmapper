@@ -1,4 +1,4 @@
-"""A measured catalogue of every prop the campaign uses more than rarely.
+"""A measured catalogue of every prop the reference corpus view uses more than rarely.
 
 `props.py` began as a hand-copied table, which does not scale and goes
 stale the moment a new tile is adopted.  This emits the same facts
@@ -61,9 +61,8 @@ def main(argv=None) -> int:
     # was really reading is the `reference` view -- campaign, BloodBath
     # and the curated community sets -- and that is what the committed
     # knowledge file was mined from, so it stays the default rather than
-    # silently moving numbers nobody asked to move. Note that the prose
-    # above says "the campaign" and the evidence is wider than that;
-    # `--view original` is the honest campaign-only run.
+    # silently moving numbers nobody asked to move. `--view original`
+    # is the campaign-and-BloodBath run.
     for path in sorted(str(item.path) for item in
                        list_corpus_maps(view=args.view)):
         name = pathlib.Path(path).stem

@@ -78,7 +78,7 @@ def continue_lintels(level, disk) -> dict:
 
 
 #: leaves of wood, and what a doorway they close is made of all through: the campaign's sills, jambs and heads under wooden
-#: doors are planks (20 and 68 lead both lists over its 192 doorways to the open; E1M1 s59, s90; E1M3 s135's whole frame)
+#: doors are planks (20 and 68 led both lists over 192 doorways to the open, a count not kept; E1M3 s135's whole frame)
 WOODEN_LEAVES = frozenset(range(22, 28)) | {30}
 WOOD, STONE, STONE_FRONTS = 20, 253, {110}
 

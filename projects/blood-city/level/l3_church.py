@@ -13,7 +13,7 @@ has two entrances, which is what the landmark-complex type asks for -- the
 portal on the avenue, and a side door onto the cemetery ground.
 
 It is also this project's answer to a measured fault.  Gravesend's roofed
-sectors run q3 8.39 Mu^2 against E3M1's 1.13, with 23% of them over 10M
+sectors run q3 8.39 Mu^2 against E3M1's 1.05, with 23% of them over 10M
 against E3M1's 2%: we build halls where the campaign builds warrens, and
 that single fact drives the level's ceiling share, its dead-end fraction
 and its missing loops.  Eight rooms in six by ten plan units, braided so
@@ -54,8 +54,8 @@ DOOR_H = 31744
 PORTAL_H = {"tower": 40960}
 
 CHANCEL_RISE = 2048        # the chancel stands over the nave, one low step
-#: How much taller the nave gets across its span. 1.29 player heights is
-#: the campaign's median slope rise; 21,878 units.
+#: How much taller the nave gets across its span: 21,878 units, 1.29 player
+#: heights. The campaign's median slope rise is 0.43 (about 7,290 units).
 PITCH = 21878
 
 #: (name, x0, y0, x1, y1, material, clear height, note)
@@ -179,7 +179,7 @@ TOMB_RISE = 10240
 #: neat grey brick with four plain boxes in it.
 #:
 #: E1M1's (sector 150, looked at in six frames with the control sprites
-#: hidden): walls of rough RUBBLE (110), an EARTH floor (270) under dark
+#: hidden): walls of COBBLESTONE (110), an EARTH floor (270) under dark
 #: worked stone (253); ONE sarcophagus as the thing the room is for -- a
 #: stone chest whose sides stand a third of a body, then a bevelled
 #: shoulder 256 wide rising 2,048 (sectors 1-3: floor 273, heinum -2048,
@@ -863,10 +863,11 @@ def build(city, street, ground, gates, area_rect, gate_rects=()):
         # height difference in a church that means something.
         rise = CHANCEL_RISE if name in ("chancel", "apse") else 0
         # A church has a pitched roof.  Gravesend had 0 sloped surfaces in
-        # 182 sectors against a campaign median of 21.7%, and
+        # 182 sectors against a campaign median of 9.5% of surfaces (15% of
+        # sectors), and
         # `bloodmap.slope` was sitting unused the whole time -- a sloped
         # ceiling "costs nothing but headroom", which is exactly what a
-        # nave has spare.  Campaign rise median is 1.29 player heights.
+        # nave has spare.  Campaign rise median is 0.43 player heights.
         rk = None
         if name == "nave":
             rk = {"ceiling_slope": SlopeSpec(

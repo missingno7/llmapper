@@ -12,6 +12,9 @@
         --evidence "NBlood/source/blood/src/asound.cpp:60" --use "Give data_1 < data_2." \\
         --code bloodmap.ambience --in blood-city
     python -m tools.findings check                        # exit 1 if a finding is badly made or names code that is gone
+    python -m tools.findings checked <id> --how "actor.cpp:2710-2731 read: the branch tests xvel alone"
+    python -m tools.findings amend <id> --claim "..." --evidence "..." --how "recounted with probes/x.py: 594"
+    python -m tools.findings unchecked                    # what nobody has held against its evidence as it now stands
 
 `python -m tools.catalog find <words>` shows the findings first, with every other shelf.
 The shelf and its rules are `bloodmap.findings`.
@@ -38,6 +41,19 @@ def main(argv: list[str] | None = None) -> int:
     sub.add_parser("show").add_argument("id")
     sub.add_parser("standings")
     sub.add_parser("check")
+    sub.add_parser("unchecked")
+    p = sub.add_parser("checked", help="mark a finding as held against what it cites")
+    p.add_argument("id")
+    p.add_argument("--how", required=True, help="what was opened and what was read there")
+    p = sub.add_parser("amend", help="correct some fields of a finding; with --how, mark it checked as corrected")
+    p.add_argument("id")
+    p.add_argument("--how", default="")
+    for name in ("claim", "use", "instead", "scope"):
+        p.add_argument(f"--{name}")
+    p.add_argument("--standing", choices=tuple(F.STANDINGS))
+    p.add_argument("--topic", choices=F.TOPICS)
+    p.add_argument("--evidence", action="append", help="once for each; all of them replace what was there")
+    p.add_argument("--code", action="append", help="once for each; all of them replace what was there")
     add = sub.add_parser("add")
     add.add_argument("--id", required=True)
     add.add_argument("--topic", required=True, choices=F.TOPICS)
@@ -72,8 +88,25 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "check":
         wrong = F.check()
-        print("\n".join(wrong) or f"{len(F.read())} findings, all well made")
+        owed = len(F.unchecked())
+        print("\n".join(wrong) or f"{len(F.read())} findings, all well made; {owed} not held against their evidence "
+              "as they now stand" + (" (`unchecked` lists them)" if owed else ""))
         return 1 if wrong else 0
+    if args.cmd == "unchecked":
+        rows = F.unchecked()
+        print("\n".join(F.line(row) for row in rows) or "  every finding is checked as it stands")
+        return 0
+    if args.cmd in ("checked", "amend"):
+        changes = {} if args.cmd == "checked" else {
+            key: value for key in ("claim", "use", "instead", "scope", "standing", "topic", "evidence", "code")
+            if (value := getattr(args, key)) is not None}
+        try:
+            row = F.amend(args.id, args.how, **changes)
+        except F.FindingError as exc:
+            print(f"not written: {exc}", file=sys.stderr)
+            return 1
+        print(F.show(row))
+        return 0
     try:
         row = F.record(id=args.id, topic=args.topic, standing=args.standing, claim=args.claim, evidence=args.evidence,
                        use=args.use, code=args.code, scope=args.scope, learned_in=args.learned_in, date=args.date,

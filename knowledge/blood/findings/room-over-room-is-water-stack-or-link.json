@@ -22,5 +22,10 @@
   "ror",
   "stack",
   "underwater"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/stacks-v1.json families: water 191 pairs, 24 maps, median 81.3 player widths, 13 overlapping in plan (7%); stack 38 pairs, 20 maps, median 0.8, 25 overlapping (66%), 23 congruent so 15 not; link 22 pairs, 12 maps; 191+38+22 = 251 over maps 43. bloodmap/roomoverroom.py and tools/mine_stacks.py exist.",
+  "of": "f491888d56f5"
+ }
 }

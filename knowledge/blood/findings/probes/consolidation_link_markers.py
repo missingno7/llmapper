@@ -1,5 +1,9 @@
 """Campaign link markers (types 6/7, 9/10, 11/12, 13/14): count by type, statnum, tile and cstat."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from collections import Counter
 from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map

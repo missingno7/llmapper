@@ -2,11 +2,11 @@
  "id": "blood-overlooks-at-body-scale",
  "topic": "place",
  "standing": "tendency",
- "claim": "Blood overlooks its big rooms from half a body to three bodies up: around spaces of 5+ square bodies E6M6 has 78 walkable neighbours 0.5 to 3 bodies above (parapets, galleries) and none a full storey up. It also carries ledges and plinths at ~7 per 100 sectors (E1M1 7.5, E6M5 6.5), and 48% of E6M6's doorway sectors have more than four corners: Build cannot curve a wall top, so an arch is shaped in plan.",
+ "claim": "Blood overlooks its big rooms from half a body to three bodies up: around spaces of 5+ square bodies E6M6 has 78 walkable neighbours 0.5 to 3 bodies above (parapets, galleries), 7 from 3 to 8 bodies and none higher. Ledges and plinths run 0.6 to 7.5 per 100 playable sectors over eight Blood maps (E1M1 7.5, E6M5 6.5, median about 4.4), and 48% of E6M6's two-neighbour doorway sectors have more than four corners: splayed passages that funnel or dog-leg in plan, not shaped arch heads.",
  "evidence": [
-  "tools/mine_patterns.py, knowledge/blood/design/patterns-v1.json (2026-08-27); our candidate map had 1 such parapet, 0.7 ledges per 100 sectors and 10% shaped door heads despite a 32-body height range."
+  "tools/mine_patterns.py, knowledge/blood/design/patterns-v1.json (2026-08-27): rise_bands_around_big_spaces, maps[].ledge and maps[].arch, definitions.arch (the correction); our candidate map had 1 such parapet, 0.7 ledges per 100 sectors and 10% of such doorways despite a 32-body height range."
  ],
- "use": "Add verticality at body scale (parapets, steps, ledges) before whole storeys; shape door heads in plan.",
+ "use": "Add verticality at body scale (parapets, steps, ledges) before whole storeys; let some passages splay in plan rather than run as square tubes.",
  "code": [],
  "scope": "blood",
  "learned": {
@@ -21,5 +21,10 @@
   "parapet",
   "plinth",
   "verticality"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "knowledge/blood/design/patterns-v1.json: rise_bands E6M6 0.5-3.0 parapet 78, 3-8 gallery 7, over 8 0; candidate parapet 1. Ledges per 100: BB2 4.1, DWE2M11 0.6, E1M1 7.5, E3M8 3.4, E6M3 3.3, E6M5 6.5, E6M6 4.6, E6M7 6.0 (median 4.35). E6M6 arch share 0.475 of 118, candidate 0.097. definitions.arch: MISNAMED, these are splayed passages, 82 of 112 with ceiling equal to both rooms.",
+  "of": "619b4a30536c"
+ }
 }

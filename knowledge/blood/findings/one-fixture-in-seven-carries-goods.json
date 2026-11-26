@@ -2,11 +2,11 @@
  "id": "one-fixture-in-seven-carries-goods",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "The median fixture (counter, pedestal, shelf run) in Blood's detail maps carries no sprites, and few carry any goods: 28 of 171 in DWE3M1, 11 of 136 in DWE3M10, 2 of 43 in E6M1, 1 of 62 in E4M9, 42 of 412 in all (one in ten; one in six at most, in one map). Fixtures come in families with rise, tile and depth pinned and width free (DWE3M10's counter: rise 3,072, tile 345, depth 1,024, widths 512 and 1,024).",
+ "claim": "The median fixture (counter, pedestal, shelf run) in Blood's detail maps carries no sprites, and few carry any goods: 28 of 171 in DWE3M1, 11 of 136 in DWE3M10, 2 of 43 in E6M1, 1 of 62 in E4M9, 26 of 156 in E1M4, 68 of 568 in all (about one in eight; one in six at most, in E1M4 and DWE3M1). Fixtures come in families with rise, tile and depth pinned and width free (DWE3M10's counter: rise 3,072, tile 345, depth 1,024, widths 512 and 1,024).",
  "evidence": [
-  "knowledge/blood/design/fixtures-v1.json (fixtures per map), quoted in projects/blood-city/level/fixtures.py:146, whose GOODS_SHARE 0.14 ('call it one in seven') is above the pooled rate"
+  "knowledge/blood/design/fixtures-v1.json (fixtures and goods_per_fixture.bare per map, five maps), quoted for four of them in projects/blood-city/level/fixtures.py:146, whose GOODS_SHARE 0.14 ('call it one in seven') is above the pooled rate"
  ],
- "use": "Build fixtures from a family with one free length, and put goods on about one in ten (no more than one in six).",
+ "use": "Build fixtures from a family with one free length, and put goods on about one in eight (no more than one in six).",
  "code": [
   "projects/blood-city/level/fixtures.py"
  ],
@@ -22,5 +22,10 @@
   "merchandise",
   "shelf",
   "shop"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "knowledge/blood/design/fixtures-v1.json has five sources: DWE3M1 171 fixtures, bare 143 (28 carry); DWE3M10 136/125 (11); E6M1 43/41 (2); E4M9 62/61 (1); E1M4 156/130 (26, 16.7%, the highest). Pooled 68 of 568 (12%); the finding's 42 of 412 leaves E1M4 out. Medians 0 in all five. DWE3M10 family rise 3072, tile 345, depth 1024, widths 512/1024, 8 of them. fixtures.py:146-149 quotes four sources; GOODS_SHARE 0.14.",
+  "of": "a27f76a9833e"
+ }
 }

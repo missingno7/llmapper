@@ -2,9 +2,11 @@
  "id": "blood-sewers-are-water-and-flicker",
  "topic": "place",
  "standing": "tendency",
- "claim": "Blood's own sewer map is wet and restless: E3M3 has 90 underwater sectors (29% of its 309) plus 26 shallow, 36 of its 37 link pairs are water dives, 175 sectors (57%) carry animated shade at a median shade +34, and it is lightly wired (23 user channels against a campaign median of 47). DukCity's sewers are dry corridors (wet share 0.00-0.02).",
+ "claim": "Blood's own sewer map is wet and restless: E3M3 has 90 underwater sectors (29% of its 309) plus 26 shallow, 36 of its 37 link pairs are water dives, 175 sectors (57%) carry animated shade (their floor-shade median 36; the map's 34), and it is lightly wired (21 channels of 100 and up against a campaign median of 45). DukCity's sewers are dry corridors (wet share 0.00-0.02).",
  "evidence": [
-  "tools/mine_room_grammar.py on E3M3 (knowledge/blood/references/room-grammar.json); tools/mine_sewers.py on DukCity1-4"
+  "tools/mine_room_grammar.py on E3M3 (knowledge/blood/references/room-grammar.json): 309 sectors, 90 underwater, 26 shallow, 37 stacks of which 36 water, 175 animated, floor-shade median 34",
+  "knowledge/blood/findings/probes/audit2_flicker_and_channels.py over the 43 campaign maps: E3M3 175/309 animated (floor-shade median of those 36), 21 channels >= 100, campaign median 45",
+  "tools/mine_sewers.py on DukCity1-4: knowledge/blood/references/sewer-patterns.md, measured-anatomy table, wet share 0.00-0.02"
  ],
  "use": "Build a Blood sewer round water channels and dives, with flickering shade, and spend its channels on sound rather than mechanisms.",
  "code": [
@@ -21,5 +23,10 @@
   "sewer",
   "underwater",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/room-grammar.json E3M3 (regenerated 2026-11-26, user channels from 100): 309 sectors, underwater 90, shallow 26, stacks 37 (36 water), animated_shade_sectors 175, floor_shade median 34, user_channels 21. Ran probes/audit2_flicker_and_channels.py: E3M3 175/309 animated, their floor-shade median 36, 21 channels >= 100; campaign median 45 (mechanisms-v1.json agrees). sewer-patterns.md table: DukCity wet share 0.00-0.02.",
+  "of": "d7d5415bdec1"
+ }
 }

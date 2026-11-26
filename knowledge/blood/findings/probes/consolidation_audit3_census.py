@@ -1,5 +1,9 @@
 """Third audit share: recount cheap campaign tallies quoted by findings."""
-import sys, math, statistics as st; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys, math, statistics as st
 from collections import Counter, defaultdict
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps

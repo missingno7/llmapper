@@ -2,7 +2,7 @@
  "id": "an-edge-mass-needs-a-sky-backing",
  "topic": "renderer",
  "standing": "precedent",
- "claim": "A one-sided wall of an open street runs up to the street's ceiling height, under its sky, so whatever stands at the map's edge is as tall as the street's sky is high. Blood puts a sky backing behind it: a sector with floor and ceiling at the same z and a parallax ceiling, which draws no wall; the mass in front is two-sided to it, both skies parallax, and the eye passes over into sky.",
+ "claim": "A one-sided wall of an open street runs up to the street's ceiling height, under its sky, so whatever stands at the map's edge is as tall as the street's sky is high. E3M1 puts a sky backing behind its street-end masses: a sector with floor and ceiling at the same z and a parallax ceiling, which draws no wall; the mass in front (a raised-floor sector under the sky) is two-sided to it, both skies parallax, and the eye passes over into sky.",
  "evidence": [
   "E3M1 s340: floor_z = ceiling_z = 8192, ceiling_stat 3 (parallax); also E3M1 s338."
  ],
@@ -22,5 +22,10 @@
   "parallax",
   "sky",
   "vista"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E3M1 (work sec.py): s340 floor_z = ceiling_z = 8192, ceiling_stat 3, ceiling 3491, walls 401, neighbour s0 (floor -90112, sky); s338 floor_z = ceiling_z = 8192, ceiling_stat 3, neighbour s339 (floor -57344, sky). bloodmap/skyline.py:309-321 is_sky_backing: parallax and floor_z == ceiling_z.",
+  "of": "3a5c9756b1db"
+ }
 }

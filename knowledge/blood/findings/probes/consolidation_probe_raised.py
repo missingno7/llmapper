@@ -1,4 +1,8 @@
-"""Raised blocks: roofed sectors whose floor stands above every neighbour, rise = min neighbour floor - own floor. Per map, or campaign."""
+"""Raised blocks: roofed sectors whose floor stands above every neighbour, rise = min neighbour floor - own floor, per map or over the campaign."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, math, statistics as st
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps, corpus_map_path

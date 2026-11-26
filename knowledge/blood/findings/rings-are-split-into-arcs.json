@@ -2,9 +2,9 @@
  "id": "rings-are-split-into-arcs",
  "topic": "construction",
  "standing": "practice",
- "claim": "Round or star-shaped places built of sectors are cheapest laid as shapes over one another with joints and paint from one table; split rings into arcs and exempt them from light cutting, or the light stage spends hundreds of walls on them.",
+ "claim": "In Gravesend, round or star-shaped places built of sectors were cheapest laid as shapes over one another with joints and paint from one table; rings were split into arcs and exempted from light cutting, because the light stage's cuts of the Cabal's three round tiers cost 600 walls.",
  "evidence": [
-  "Gravesend's Cabal circle, 2026-11-24, near the 16,384-wall limit (the city at ~13,900)."
+  "Gravesend's Cabal circle, 2026-11-24 (projects/blood-city/level/cabal_rite.py:144-153), when the city stood at about 13,900 of 16,384 walls; bloodmap/light_stage.py:250-253 (LightRule.cut: the tiers' cuts cost 600 walls)"
  ],
  "use": "bloodmap.arrangement for round places; give their light rule cut=False.",
  "code": [
@@ -22,5 +22,10 @@
   "ring",
   "round room",
   "wall budget"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "bloodmap/arrangement.py read (add/resolve/lay, arc() at :47, lay at :201); projects/blood-city/level/cabal_rite.py:144-153 lays gallery, tiers and floor as arcs 'so each is lit by the fires nearest it without being cut'; bloodmap/light_stage.py:250-253 LightRule.cut docstring: 'the cuts of the Cabal's three round tiers cost 600 walls'. The ~13,900 wall total is a dated figure. Reworded as ours.",
+  "of": "68624c721963"
+ }
 }

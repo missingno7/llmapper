@@ -4,7 +4,8 @@
  "standing": "tendency",
  "claim": "Crossing walls alone leaves a median 8.5% of each campaign map unreachable (97% of E6M5); following room-over-room link markers (paired by data1) and kSectorTeleport destinations as well leaves a median 2.8%, never more than 13.8%, and that rest is closets, signatures and helpers.",
  "evidence": [
-  "portal-graph reachability over the 43 campaign maps, docs/blood-mechanics-and-conventions.md (removed from the working tree in the 2026-11-26 consolidation; read it at commit ea7be12); teleport via triggers.cpp OperateTeleport"
+  "knowledge/blood/findings/probes/audit2_reachability_share.py (bloodmap.reachability over campaign_maps(), share of sectors unreached from the player start), 2026-11-26: walls only median 8.5%, E6M5 97.1%; with links and teleports median 2.8%, worst E4M8 13.8%",
+  "first counted in docs/blood-mechanics-and-conventions.md (removed in the 2026-11-26 consolidation; read it at commit ea7be12); teleport via triggers.cpp OperateTeleport"
  ],
  "use": "A reachability reader must join sectors by link markers and teleports, not only by two-sided walls.",
  "code": [
@@ -21,5 +22,10 @@
   "reachability",
   "teleport",
   "unreachable"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "git show ea7be12:docs/blood-mechanics-and-conventions.md lines 66-70: 8.5% median by walls, 97% of E6M5, 2.8% median and never more than 13.8% with links and teleports. Recounted with knowledge/blood/findings/probes/audit2_reachability_share.py (bloodmap.reachability portal_graph and analyze_reachability over the 43 campaign maps, share of sectors): walls only median 0.085, E6M5 0.971 (worst E4M3 0.985); with links and teleports median 0.028, worst E4M8 0.138.",
+  "of": "4d3ff6d16f84"
+ }
 }

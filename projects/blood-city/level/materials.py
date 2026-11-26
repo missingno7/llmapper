@@ -20,7 +20,8 @@ E3M1's facade census, for the record: 417 (55k units of street-facing wall),
 which is the point.
 
 The opening/jamb tile is a property of the material, not a per-room choice:
-of the 8,320 campaign rooms with more than one wall tile, 74% put a
+of the 7,585 campaign sectors with more than one wall tile and both
+two-sided and solid walls, 74% put a
 different tile on their two-sided walls than on their solid ones.  Every
 material here therefore carries one, and the compiler applies it through
 `portal_wall_picnum`.
@@ -142,7 +143,7 @@ HOARDING = Material(wall=414, floor=ROADWAY, ceiling=SKY, opening=417,
 #:   common   E3M1's largest complex (123 sectors)   108 / 304 / 454
 #:   saloon   E3M1 building 3 (56 sectors)            28 / 390 /  40
 #:   parlor   E3M1 building 4 (63 sectors)           100 / 294 /  20
-#:   theatre  E3M2 building 4 (28 sectors)           119 / 300 / 422
+#:   theatre  E3M2's wall-119 rooms (under 433; 300/422 is E2M4's)  119 / 300 / 422
 #:   shop     E6M1's shop, the venue reference        2294 / 290 / 40
 #:   service  E3M1 building 5 (20 sectors)           379 / 304 / 379
 INTERIORS = {

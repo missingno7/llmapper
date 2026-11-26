@@ -2,17 +2,18 @@
  "id": "a-lever-only-for-what-hands-cannot-open",
  "topic": "mechanism",
  "standing": "ruling",
- "claim": "A door that opens by hand gets no lever beside it; a lever opens something that cannot be opened by hand. The campaign's lever is tile 1070: 283 sprites over the 43 maps, 184 of them wall-aligned, the pushed ones mounted at a median 0.79 player heights; 280 carry a tx, the modal command is 1 (kCmdOn, 147), and 160 set trigger_push and 241 trigger_on.",
+ "claim": "In Gravesend a door that opens by hand gets no lever beside it; a lever opens something that cannot be opened by hand (the owner's ruling on its shop doors). The campaign's lever is tile 1070: 283 sprites over the 43 maps, 184 of them wall-aligned, the 156 pushed ones in switches-v1.json mounted at a median 0.785 player heights; 280 carry a tx, the modal command is 1 (kCmdOn, 147), and 160 set trigger_push and 241 trigger_on.",
  "evidence": [
-  "the owner, 2026-11-25: 'some of the shops have lever next to it, but it just opens door the same way you would interact with them' (projects/blood-city/level/l3_theatre.py)",
-  "recount 2026-11-26 over the 43 campaign maps (every sprite of tile 1070); the 0.79 height from knowledge/blood/design/switches-v1.json by_how.pushed",
-  "projects/blood-city/level/doorswitch.py's docstring carries the same 283/280/147 (an earlier 356/351/230/316 did not reproduce and was corrected)"
+  "the owner, 2026-11-25: 'some of the shops have lever next to it, but it just opens door the same way you would interact with them' (projects/blood-city/level/l3_theatre.py:369-370)",
+  "knowledge/blood/findings/probes/audit2_lever_1070.py over the 43 campaign maps (every sprite of tile 1070): 283, 184 wall-aligned, 280 with tx, command 1 on 147, trigger_push 160, trigger_on 241",
+  "knowledge/blood/design/switches-v1.json rows with picnum 1070 and how 'pushed': 156, median above_floor_humans 0.785 (by_how.pushed, 0.79, is of every pushed switch tile)",
+  "projects/blood-city/level/doorswitch.py's docstring carries the same 283/280/147"
  ],
  "use": "Place levers through bloodmap.switches.pressed_switch, which sets trigger_push and trigger_on; a hand-rolled one could not be pushed. Say on and off when it is to work both ways.",
  "code": [
   "bloodmap.switches.pressed_switch"
  ],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-25"
@@ -23,5 +24,10 @@
   "lever",
   "push",
   "switch"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words read at projects/blood-city/level/l3_theatre.py:369-370 (2026-11-25, about Gravesend's shops) and doorswitch.py docstring. Recounted with knowledge/blood/findings/probes/audit2_lever_1070.py: 283 sprites of tile 1070, 184 wall-aligned, 280 with a tx, command 1 on 147, trigger_push 160, trigger_on 241. switches-v1.json by_how.pushed median 0.79 is of all 453 pushed switches; its rows of picnum 1070 pushed: 156, median 0.785. pressed_switch (switches.py:93-106) sets trigger_on and trigger_push. Ruling was about one level: scope narrowed.",
+  "of": "e60b61adac89"
+ }
 }

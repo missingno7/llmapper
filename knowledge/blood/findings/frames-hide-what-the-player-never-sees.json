@@ -2,12 +2,13 @@
  "id": "frames-hide-what-the-player-never-sees",
  "topic": "validation",
  "standing": "ruling",
- "claim": "A frame is evidence of what a player sees, so control sprites must be hidden before looking: player starts and every marker (types 1-19), generators and sound sprites (700-712), the exploder (459), anything on statnum 10, and sprites set to launch only in modes not being played. For judging the building, also hide dudes, weapons, ammo, items and keys.",
+ "claim": "A frame is evidence of what a player sees, so what the engine hides must be hidden before looking: player starts and markers (types 1-19), the trigger generator (700), the exploder (459), anything on statnum 10, and sprites set to launch only in modes not being played. The other generators and sound sprites (701-712) are NOT hidden by the engine: they are unseen only when the map gives them the invisible bit, and the campaign leaves 112 visible on purpose (stone faces that spit fireballs, bubbling weed). For judging the building, also hide dudes, weapons, ammo, items and keys.",
  "evidence": [
-  "The owner, 2026-11-18: 'you should be hiding these control things which are normally invisible like player starts, stack markers, sounds'; and 'check how it looks like without enemies and pickups'.",
-  "The engine hides them: warp.cpp:108-133, triggers.cpp:2362 (kGenTrigger made invisible), actor.cpp:2507 (kTrapExploder), blood.cpp:696-704 (launch flags delete). A blind reader took exploder sprites for 'orange sparks from a crack'."
+  "The owner, 2026-11-18, kept in tests/test_city_look.py:3-5 and :68-69 and bloodmap/visual.py:63-65: 'you should be hiding these control things which are normally invisible like player starts, stack markers, sounds'; and 'check how it looks like without enemies and pickups'.",
+  "What the engine hides: warp.cpp:108-133 (warpInit, link markers), triggers.cpp:2350-2363 (InitGenerator: kGenTrigger only), actor.cpp:2503-2507 (actInit, kTrapExploder), blood.cpp:696-704 (launch flags delete). A blind reader took exploder sprites for 'orange sparks from a crack'.",
+  "knowledge/blood/findings/probes/audit2_drawn_generators.py over the 43 campaign maps: 131 sprites of types 700-712 carry no invisible bit (19 of them 700, which the engine hides); the 112 drawn are 703 x41 (34 on tile 249), 706 x33 and 707 x28 (on 660/664), 702 x4, 701 x3, 708 x3. Until 2026-11-26 bloodmap.visual.as_played hid them too."
  ],
- "use": "Render through bloodmap.visual.as_played (empty=True for the building); judge play on as-played frames only.",
+ "use": "Render through bloodmap.visual.as_played (empty=True for the building); judge play on as-played frames only. When you place a sound or a generator, give it cstat 32768 yourself: the engine will draw it otherwise.",
  "code": [
   "bloodmap.visual.as_played"
  ],
@@ -23,5 +24,10 @@
   "observer",
   "render",
   "screenshot"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read triggers.cpp:2350-2363 (InitGenerator hides kGenTrigger only), actor.cpp:2503-2507 (actInit, kTrapExploder), warp.cpp:108-133 (link markers), blood_types.py HIDDEN_TYPES (1-19, 700, 459 since 2026-11-26). Ran probes/audit2_drawn_generators.py: 131 sprites of 700-712 without the invisible bit in 21 of 43 maps, 112 of them 701-708 (703 on tile 249 x34, 706/707 on 660/664 x61). tests/test_city_look.py:3-5 the owner's words.",
+  "of": "49273427733d"
+ }
 }

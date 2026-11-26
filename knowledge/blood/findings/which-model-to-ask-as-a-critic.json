@@ -23,5 +23,10 @@
   "model",
   "naming",
   "reviewer"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/critic-bench/v1/score.json: gpt-6.2-sol@high named 12/12, faults 4/6, false alarms 0/17, and is the only entry without rails_across among its missed faults; terra@high 12/12, 1/6; luna 0/6, luna@high 1/6, haiku 1/6, sonnet 1/6; every entry misses track_through_hall and chairs_in_air. projects/blood-city/experiments/critics/critic_bench.py exists. Worded as ours, with its small sample.",
+  "of": "3d5eee492637"
+ }
 }

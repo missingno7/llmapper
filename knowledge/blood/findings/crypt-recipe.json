@@ -2,7 +2,7 @@
  "id": "crypt-recipe",
  "topic": "place",
  "standing": "precedent",
- "claim": "E1M1's crypt: rubble walls (110), an earth floor (270) under dark worked stone (253), ONE sarcophagus as the thing the room is for (a stone chest with bevelled shoulders and a lid), gold plaques on the walls (128, palette 8, explode objects at 1.2 bodies) and translucent cobwebs (1067/1068) hung in open air. A closed tomb lid is a floor tile laid whole on the chest's top (E3M8 s249 tile 128; E1M1 s0 and s9 tile 346).",
+ "claim": "E1M1's crypt (s150): walls of tile 110 (the owner's 'cobblestone') and 1011 outside, 89 ('stone wall') round the tomb, an earth floor (270) under dark worked stone (253), ONE sarcophagus as the thing the room is for (a stone chest with bevelled shoulders and a lid), five wall plaques of tile 128 (unnamed by the owner, read as a carved figure in a niche; palette 8, explode objects at 1.2 bodies) and translucent cobwebs (1067/1068) hung as wall sprites at 2.3 bodies. A closed tomb lid is a floor tile laid whole on the chest's top (E3M8 s249 and s445 tile 128; E1M1 s0, a push-opened Z-motion lid, and s9, tile 346).",
  "evidence": [
   "E1M1 sector 150, sectors 1-3 (shoulders, heinum -2048), sprites 185-189 (plaques), sprites 150-154 (cobwebs); E3M8 s249, s445; E1M1 s0, s9"
  ],
@@ -22,5 +22,10 @@
   "crypt",
   "sarcophagus",
   "tomb"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E1M1: s150 floor 270, ceiling 253; its walls 110 x22 (15 outer), 89 x22 (all two-sided), 1011 x8 (outer), 70 x8; catalog show 110: owner 'cobblestone', not rubble. s1-s3 floor heinum -2048. Sprites 185-189 type 417, tile 128 (owner unnamed; read 'grey stone figure carved in a niche'), pal 8, wall-aligned, 1.21 bodies up; 150-154 type 417 tiles 1067 x4/1068, cstat 146 (translucent wall sprites) 2.29 bodies up. E3M8 s249 and s445 floor tile 128; E1M1 s0 (type 600 push lid) and s9 floor 346 (owner 'gravestone').",
+  "of": "7d5ec9441403"
+ }
 }

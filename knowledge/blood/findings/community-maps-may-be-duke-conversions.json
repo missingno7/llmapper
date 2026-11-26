@@ -2,10 +2,10 @@
  "id": "community-maps-may-be-duke-conversions",
  "topic": "workflow",
  "standing": "practice",
- "claim": "Some Blood community maps are conversions of Duke levels and say nothing about Blood: FORDTHEA (141 sectors from Duke's E1L1), Intime~2, HollHolo, Duke1 and AFTSHOCK (73) are E1L1, so FORDTHEA is not a Blood theatre exemplar. Several maps sharing one source are one witness, not several. Exemplars of a room are found by scanning every map for its parts and rendering the leads, not by file name.",
+ "claim": "Some Blood community maps are conversions of Duke levels and say nothing about Blood: knowledge/blood/duke-conversions.json finds ten, seven of them Duke's E1L1 (E1L1.MAP, Duke1, HollHolo, FORDTHEA with 141 of its sectors matching the Duke level, Intime~2, AFTSHOCK with 73, melte1m1), so FORDTHEA is not a Blood theatre exemplar. Several maps sharing one source are one witness, not several. In our work exemplars of a room were found by scanning every map for its parts and rendering the leads, not by file name.",
  "evidence": [
   "The owner, 2026-11-23: 'AFTSHOCK is actually conversion of E1L1 map from Duke3D'; knowledge/blood/duke-conversions.json made by experiments/room_scan/duke_conversions.py lists them.",
-  "knowledge/blood/duke-conversions.json conversions: community/FORDTHEA.MAP duke E1L1.MAP, 141 sectors, share 0.43 (read 2026-11-26)"
+  "knowledge/blood/duke-conversions.json conversions: community/FORDTHEA.MAP duke E1L1.MAP, sectors 141, share_of_duke_level 0.43; `sectors` there is how many of the map's sectors match the Duke level (duke_conversions.py:64-70), not how many the map has (read 2026-11-26)"
  ],
  "use": "Check each lead against knowledge/blood/duke-conversions.json before treating it as Blood practice.",
  "code": [
@@ -25,5 +25,10 @@
   "exemplar",
   "fordthea",
   "theatre"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/duke-conversions.json: 10 conversions, 7 of Duke's E1L1; `sectors` is the count of the map's sectors that match the Duke level (experiments/room_scan/duke_conversions.py:64-70: best[0]), not its size: FORDTHEA 141 matching (share of the Duke level 0.43), AFTSHOCK 73 (0.22). The owner's words of 2026-11-23 are in the file's rule.",
+  "of": "eb1d67353237"
+ }
 }

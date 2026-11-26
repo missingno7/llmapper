@@ -4,7 +4,8 @@
  "standing": "practice",
  "claim": "An isolated git worktree has no maps/ (gitignored) and no reference/ (the ART), so corpus tests skip silently and ART-dependent rules regrade to zero. Junction those two to the main checkout; never junction NBlood or xmapedit (it breaks git status through submodule resolution), and read the engine by absolute path instead.",
  "evidence": [
-  "2026-09-03: two of nine 'worktree failures' were only the missing reference/ junction; adding it un-skipped 27 tests. BLOODMAP_ART does not substitute (read_surfaces reads it only through read_facts.recover)."
+  "2026-09-03, kept only in the agent's working notes, not recounted: two of nine 'worktree failures' were only the missing reference/ junction; adding it un-skipped 27 tests.",
+  "bloodmap/read_facts.py:650-660: inside bloodmap/ BLOODMAP_ART is read only here (wall_art_sizes from BLOODMAP_ART or reference/blood), so read_surfaces called on its own does not see it."
  ],
  "use": "New-Item -ItemType Junction for maps and reference after git worktree add; unlink the junctions before removing the worktree.",
  "code": [],
@@ -20,5 +21,10 @@
   "parallel agents",
   "reference",
   "worktree"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "grep BLOODMAP_ART over the repository: inside bloodmap/ only read_facts.py:650-660 reads it (wall_art_sizes from the variable or reference/blood); outside it projects/campaign-census/source/_common.py:22, tools/decompile_stages/_common.py:80 and two tests do. The 2026-09-03 figures (two of nine failures, 27 tests) are kept only in the agent's notes, not recounted.",
+  "of": "00592e1e5902"
+ }
 }

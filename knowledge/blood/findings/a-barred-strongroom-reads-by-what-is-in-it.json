@@ -2,9 +2,10 @@
  "id": "a-barred-strongroom-reads-by-what-is-in-it",
  "topic": "place",
  "standing": "practice",
- "claim": "A barred strongroom in a shop's back wall (a recess a step up at the room's own floor and ceiling, a blocking masked grille, the owner's grate 463, a lit lower room behind) reads as a jail cell until goods stand inside it; then it is 'a shop's secure stock'. It is a detail, not depth: it moved none of the per-interior measures that separate a flat interior from the campaign's, and a cage nothing meets and nobody can open reads as decoration.",
+ "claim": "In Gravesend's pawn shop (2026-11-18) a barred strongroom in the back wall (a recess a quarter of a body up under a ceiling half a body lower, a blocking masked grille in the owner's grate 463, a lit room behind) read to a blind reviewer as a jail cell until goods stood inside it; then it was 'a shop's secure stock'. It was a detail, not depth: the shop's floor heights (5 and 5) and shade spread (17 and 18) hardly moved and the city's medians per interior did not; and a cage nothing meets and nobody can open read as decoration.",
  "evidence": [
-  "projects/blood-city/experiments/pledge-room/what-if.png, five unlabelled sets; the pawn shop before and after: floor heights 5 and 5, ceiling heights 3 and 4, wall tiles 10 and 13, shade spread 17 and 18 (tools/city_profile.py --interiors); tests/test_whatif.py PledgeRoomTests, GrilleTests"
+  "projects/blood-city/experiments/pledge-room/README.md and measurements.txt (2026-11-18): the pawn shop before and after: floor heights 5 and 5, ceiling heights 3 and 4, wall tiles 10 and 13, shade spread 17 and 18 (tools/city_profile.py --interiors); critic.md, five unlabelled sets, what-if.png",
+  "projects/blood-city/tests/test_whatif.py PledgeRoomTests, GrilleTests"
  ],
  "use": "Build it with bloodmap.glass.grille and stock it; piercing a wall changes which wall is the longest solid one, so anything placed by that rule (the shop's sign) moves.",
  "code": [
@@ -21,5 +22,10 @@
   "grille",
   "pawn",
   "strongroom"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/experiments/pledge-room/README.md and measurements.txt: recess 'a quarter of a body up', ceiling half a body lower; pawn shop before->final floor heights 5->5, ceiling heights 3->4, wall tiles 10->13, shade spread 17->18; city medians per interior unchanged; critic.md: 'turns a jail cell into a shop's secure stock'. Tile 463 owner 'grate'. bloodmap/glass.py:206 grille. PledgeRoomTests and GrilleTests are at projects/blood-city/tests/test_whatif.py:262,312, not tests/.",
+  "of": "33a75ae3793b"
+ }
 }

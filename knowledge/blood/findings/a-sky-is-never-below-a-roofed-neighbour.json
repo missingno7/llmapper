@@ -2,9 +2,10 @@
  "id": "a-sky-is-never-below-a-roofed-neighbour",
  "topic": "renderer",
  "standing": "tendency",
- "claim": "A sector open to the sky holds its ceiling at least as high as any roofed neighbour's: otherwise the upper wall is drawn and daylight shows below the surrounding roofline. The campaign holds 73% of such pairs exactly equal with a median gap of zero; the four that go the other way are all in E3M4.",
+ "claim": "A sector open to the sky holds its ceiling at least as high as any roofed neighbour's: otherwise the upper wall is drawn and daylight shows below the surrounding roofline. Over the 43 campaign maps, of 1348 open-sector/roofed-neighbour pairs the sky stands higher in 1338 (median 32768, about two bodies), equal in 6, and lower in 4, all of them in E3M4.",
  "evidence": [
-  "bloodmap/rules_blood.py rule 'sky-is-never-below-a-roof', counted over the 43 campaign maps; NBlood/source/build/src/engine.cpp:4688 draws the upper wall whenever either side is roofed"
+  "knowledge/blood/findings/probes/audit2_sky_below_roof.py over the 43 campaign maps (pairs as bloodmap/rules_blood.py rule 'sky-is-never-below-a-roof'): 1348 pairs, 1338 higher, 6 equal, 4 lower (E3M4)",
+  "NBlood/source/build/src/engine.cpp:4688 (classicDrawBunches) draws the upper wall whenever either side is roofed"
  ],
  "use": "Run the rule on a built map; a doorway from a room to a yard keeps the yard's sky at or above the room's ceiling.",
  "code": [
@@ -20,5 +21,10 @@
   "doorway",
   "parallax",
   "sky"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_sky_below_roof.py, pairing as rules_blood._sky_is_never_below_a_roof does (portal_graph, open sector vs roofed neighbour) over 43 campaign maps: 1348 pairs, equal 6 (0.4%), sky higher 1338, sky lower 4 (all E3M4), median gap 32768 with the sky higher. engine.cpp:4688 (classicDrawBunches) draws the upper wall when either side is roofed.",
+  "of": "3fd9c4f7a29d"
+ }
 }

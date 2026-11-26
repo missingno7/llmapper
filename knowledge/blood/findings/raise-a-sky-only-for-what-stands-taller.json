@@ -2,9 +2,10 @@
  "id": "raise-a-sky-only-for-what-stands-taller",
  "topic": "construction",
  "standing": "practice",
- "claim": "An apron (a strip of open ground against a face, with its own sky) is how a single thing is made TALLER than the common sky, a tower say: a raised sky hides nothing. One sector per distinct height; where two aprons of different height meet at an inside corner the seam must run diagonally from the corner, or one sector owns both faces and draws one of them at the wrong height.",
+ "claim": "In Gravesend's church (2026-11-17) an apron (a strip of open ground against a face, with its own sky) is how we made a single thing TALLER than the common sky, the tower: a raised sky hides nothing. One sector per distinct height; where two aprons meet at an inside corner we ran the seam diagonally from the corner, so that no one sector owns both faces and draws one of them at the wrong height.",
  "evidence": [
-  "projects/blood-city/experiments/church-skyline: the tower at 17.4 bodies and the churchyard wall; tests/test_skyline.py"
+  "projects/blood-city/experiments/church-skyline: the tower at 17.4 bodies and the churchyard wall; projects/blood-city/level/l3_church.py:416-450 (the tower's gable aprons, mitred at the corners)",
+  "bloodmap/skyline.py:39-41; tests/test_skyline.py ApronTests"
  ],
  "use": "skyline.apron for the one tall thing; never use it to make something lower.",
  "code": [
@@ -20,5 +21,10 @@
   "skyline",
   "taller",
   "tower"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "bloodmap/skyline.py:39-41 docstring: apron 'is for making something taller than the common sky (a tower). A raised sky hides nothing.'; :80 apron. projects/blood-city/level/l3_church.py:416-450: the tower's six gable aprons meet at the corners on diagonals (e.g. (tx1, ty0) to (tx1+a, ty0-a)). The reason for the diagonal seam is written nowhere but this finding. tests/test_skyline.py:74 ApronTests.",
+  "of": "e60fe0dfd889"
+ }
 }

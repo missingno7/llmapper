@@ -2,9 +2,10 @@
  "id": "a-kerb-is-the-join-of-road-and-pavement",
  "topic": "texture",
  "standing": "ruling",
- "claim": "A kerb is not an object but the join of road and pavement: the kerb tile on the road record's lower band. Joins differ by pair (road to road continues, road to pavement is a kerb, road to end wall cuts with facade stone, facade to opening needs a holder). E3M1's kerb tile 6 (64x8) is E3M1's choice, not a law; the campaign also uses 2490, 67, 110 and 2499 in that slot.",
+ "claim": "The owner (2026-09-02): a kerb is not an object but what the join of road and pavement looks like, the texture on the road record's face; joins differ by pair (road to road continues, road to pavement makes a kerb, a termination cuts the road). The seed table drawn from E3M1 and E6M1 the same day adds: road to end wall shows facade stone, facade to opening needs a holder. E3M1's kerb tile 6 (64x8) is E3M1's choice, not a law: over 1,046 outdoor kerb records in the campaign the band wears 2490 (149), 67 (65), 110 (51), 2499 (49) and 6 (38).",
  "evidence": [
-  "The owner, 2026-09-02 (projects/blood-city/reports/street-model-decisions-2026-09-02.md section 13)."
+  "The owner, 2026-09-02 (projects/blood-city/reports/street-model-decisions-2026-09-02.md section 13, lines 604-612; seed table lines 626-636)",
+  "projects/blood-city/reports/street-model-decisions-2026-09-02.md section 11, lines 428-434: the campaign's kerb band tiles, counted 2026-09-02, not recounted"
  ],
  "use": "Dress a raised face in a street from the street's (lower) record; decide every shared edge by its pair.",
  "code": [
@@ -23,5 +24,10 @@
   "road",
   "step",
   "street"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/reports/street-model-decisions-2026-09-02.md section 13 (lines 604-612): the owner: 'a kerb is not an object. It is what the join road|pavement looks like ... road|road simply continues; road|pavement makes a kerb; a termination cuts the road'. The end-wall (facade stone) and holder rows are the agent's seed table (lines 626-636) from E3M1/E6M1. Section 11 lines 428-434: kerb band over 1046 outdoor kerb records wears 2490 (149), 67 (65), 110 (51), 2499 (49), 6 (38). tile_size(6) = 64x8. skyline.py:172 dress_steps.",
+  "of": "5655beb3810f"
+ }
 }

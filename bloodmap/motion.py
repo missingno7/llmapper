@@ -447,8 +447,8 @@ def marker_convention(disk: Any, sector_id: int) -> str | None:
     pair's absolute position on the grid is free, and a pair parked in the
     middle of the sector drives it identically to one placed at the poses.
 
-    Both conventions are in the curriculum -- 196 mechanisms place the pair at
-    the two poses, 52 park it elsewhere -- so this reports which one is in
+    Both conventions are in the curriculum -- 83 mechanisms place the pair at
+    the two poses, 123 park it elsewhere, 11 cannot be read -- so this reports which one is in
     use, and nothing more. `"at the poses"` means the reading of the markers
     as places is meaningful for this sector; `"parked"` means it is not.
     """

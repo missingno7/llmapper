@@ -2,10 +2,10 @@
  "id": "difficulty-is-five-lockout-bits",
  "topic": "gameplay",
  "standing": "engine",
- "claim": "Which difficulty a sprite appears on is XSPRITE lSkill, a mask of five LOCKOUT bits: a set bit for difficulty n deletes the sprite at level start. Four masks carry 1,872 of the campaign's 1,959 masked sprites: 7 (only on the two hardest, 699), 3 (not on the two easiest, 665), 15 (only on the hardest, 317), 1 (not on the easiest, 191). The rest are mostly the reverse, things removed from the harder: 28 (only on the two easiest, 26), 24 (only on the three easiest, 20).",
+ "claim": "Which difficulty a sprite appears on is XSPRITE lSkill, a mask of five LOCKOUT bits: a set bit for difficulty n deletes the sprite at level start. Four masks carry 1,872 of the campaign's 1,949 masked sprites: 7 (only on the two hardest, 699), 3 (not on the two easiest, 665), 15 (only on the hardest, 317), 1 (not on the easiest, 191). The rest are mostly the reverse, things removed from the harder: 28 (only on the two easiest, 26), 24 (only on the three easiest, 20).",
  "evidence": [
-  "NBlood/source/blood/src/blood.cpp:699: `if ((pXSprite->lSkill & (1 << pOpt->nDifficultyQuantity)) ...) DeleteSprite(i)`",
-  "2026-11-26 recount of launch_skill over the 43 campaign maps: 7 x699, 3 x665, 15 x317, 1 x191, 28 x26, 24 x20, ten other masks x31 (projects/blood-city/level/difficulty.py's docstring names only the four)"
+  "NBlood/source/blood/src/blood.cpp:699 (StartLevel): `if ((pXSprite->lSkill & (1 << pOpt->nDifficultyQuantity)) ...) DeleteSprite(i)`",
+  "knowledge/blood/findings/probes/audit2_skill_masks.py over the 43 campaign maps: 1,949 masked sprites; 7 x699, 3 x665, 15 x317, 1 x191, 28 x26, 24 x20, ten other masks x31"
  ],
  "use": "Set the bits a foe is NOT on, counting from the easiest; thin and add foes per difficulty as difficulty.py does.",
  "code": [
@@ -23,5 +23,10 @@
   "lockout",
   "lskill",
   "skill"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "blood.cpp:699 in StartLevel (from :607): DeleteSprite when lSkill & (1 << nDifficultyQuantity). Recounted with knowledge/blood/findings/probes/audit2_skill_masks.py over 43 campaign maps: 1949 masked sprites, 16 masks: 7 x699, 3 x665, 15 x317, 1 x191 (1872), 28 x26, 24 x20, ten others x31.",
+  "of": "b6f16712f305"
+ }
 }

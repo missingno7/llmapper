@@ -2,9 +2,9 @@
  "id": "a-mirror-tile-wall-becomes-one-way-at-load",
  "topic": "renderer",
  "standing": "engine",
- "claim": "Blood turns every wall whose picnum is the mirror tile 504 into a one-way wall at level start (cstat |= 32, over_picnum = 504) and draws a reflection through it; a wall whose over_picnum is 504 with a stack XWALL type is a room-over-room link and gets the same bit.",
+ "claim": "Blood turns each wall whose picnum is the mirror tile 504 into a one-way wall at level start (cstat |= 32, over_picnum = 504) and draws a reflection through it, up to kMaxMirrors (128) mirrors; a wall whose over_picnum is 504 with a stack XWALL type and a partner wall of the same type and data is a room-over-room link and gets the same bit.",
  "evidence": [
-  "NBlood/source/blood/src/mirrors.cpp:466-469 (InitMirrors) and :442-451; kMirrorTile 504 at mirrors.cpp:37"
+  "NBlood/source/blood/src/mirrors.cpp:466-469 (InitMirrors, the picnum branch) and :442-451 (the stack-link branch, partner search); kMirrorTile 504 at mirrors.cpp:37; kMaxMirrors 128 at mirrors.h:27"
  ],
  "use": "Use tile 504 on a wall only for a mirror; render_slots applies the transform when it says what a wall draws.",
  "code": [
@@ -19,5 +19,10 @@
   "504",
   "mirror",
   "reflection"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "mirrors.cpp read: kMirrorTile 504 at :37; InitMirrors from :426 walks walls while mirrorcnt < kMaxMirrors (128, mirrors.h:27); :442 overpicnum==504 && extra>0 && kWallStack -> cstat |= CSTAT_WALL_1WAY (1<<5, buildtypes.h:154) only when a partner wall of the same type and data is found (:444-451); :466-469 else picnum==504 -> cstat |= 32, overpicnum = 504. render_slots.py:256-257 applies it in wall_draw.",
+  "of": "3deee09dbf0b"
+ }
 }

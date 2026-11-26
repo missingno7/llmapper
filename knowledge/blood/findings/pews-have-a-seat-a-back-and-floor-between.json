@@ -2,7 +2,7 @@
  "id": "pews-have-a-seat-a-back-and-floor-between",
  "topic": "construction",
  "standing": "precedent",
- "claim": "Blood's pews have a profile: in E3M4's chapel each pew is a seat 512 deep raised 6,144 (0.36 of a body) in wood (top 34, faces 88), the rows 1,536 apart so floor shows between them; DWE1M4's cathedral pairs a seat (5,120) with a taller back strip behind it (14,336, 0.85). Flat kerbs 1,024 apart read as one stepped mass.",
+ "claim": "Two of Blood's churches give their pews a profile: in E3M4's chapel each pew is a seat 512 deep raised 6,144 (0.36 of a body) in wood (top 34, faces 88), the rows 1,536 apart so floor shows between them; DWE1M4's cathedral pairs a seat (5,120) with a taller back strip behind it (14,336, 0.85). In Gravesend, flat kerbs 1,024 apart read as one stepped mass.",
  "evidence": [
   "E3M4 s280-285: floor 43,008 over the nave's 49,152, 512 deep, centres 1,536 apart, floor tile 34, walls 88 (knowledge/blood/findings/probes/consolidation_audit3_p3.py, 2026-11-26)",
   "DWE1M4 s229 (seat, floor 149,504) and s230 (back, 140,288) over aisle s276 at 154,624",
@@ -23,5 +23,10 @@
   "nave",
   "pew",
   "seating"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E3M4 s280-285: floor 43,008, nave s286/s287 at 49,152 (rise 6,144), floor tile 34, boxes 512 deep at x 16384, 14848, 13312 (1,536 apart), pew walls 130 but the nave's walls facing them 88. DWE1M4 s229 floor 149,504 (tile 251), s230 140,288, aisle s276 154,624 (rises 5,120 and 14,336). knowledge/blood/studies/church/gaps.md:21-32: kerbs 1,024 apart read as one stepped mass; the 0.72 back is our recipe. templates.py:702 chapel_furnishing.",
+  "of": "c54b9083ee17"
+ }
 }

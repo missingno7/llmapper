@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "Spawned subagents run on at most Opus, never inheriting a higher tier from the supervising session.",
  "evidence": [
-  "The owner, 2026-09-01 (in Czech: generally give them at most Opus). Said to the agent in conversation on 2026-09-01; not quoted in the repository."
+  "The owner, 2026-09-01: 'obecně bych jim dával max Opus' (generally I would give them at most Opus), kept in the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/subagents-max-opus.md; not quoted in the repository"
  ],
  "use": "Pass the model explicitly on every agent spawn.",
  "code": [],
@@ -18,5 +18,10 @@
   "cost",
   "model",
   "subagent"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/subagents-max-opus.md (modified 2026-09-01): the owner said 'obecně bych jim dával max Opus' after two spawned agents inherited Fable from the supervising session; how to apply: pass model opus on every Agent call. MEMORY.md indexes it. Nothing in the repository quotes it (grep).",
+  "of": "e63641520587"
+ }
 }

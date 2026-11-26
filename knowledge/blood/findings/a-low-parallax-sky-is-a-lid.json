@@ -2,10 +2,10 @@
  "id": "a-low-parallax-sky-is-a-lid",
  "topic": "renderer",
  "standing": "engine",
- "claim": "A parallax sky set low covers the view like a ceiling: it is painted from the far wall's top upward, so whatever stands beyond and above it is not drawn. A building made low by lowering the sky in front of it hides everything behind it. No campaign map does it (0 of 38 raise every street wall to the sky either).",
+ "claim": "A parallax sky set low covers the view like a ceiling: it is painted from the far wall's top upward, so whatever stands beyond and above it is not drawn. A building made low by lowering the sky in front of it hides everything behind it. (A separate count: in 0 of the 38 campaign maps with open sky are all one-sided walls under the sky drawn to one height.)",
  "evidence": [
-  "Seen in a run of NBlood by the owner, 2026-11-17: 'when you put parallax sky low it is covering view like a normal ceiling'.",
-  "tools/mine_skylines.py over the campaign: 0 of 38 maps."
+  "Seen in a run of NBlood by the owner, 2026-11-17: 'when you put parallax sky low it is covering view like a normal ceiling' (projects/blood-city/experiments/church-roofs/README.md:10); the experiment's before/ frames show the tower from the churchyard painting 0 pixels (before-after.png)",
+  "tools/mine_skylines.py over the campaign: maps_with_one_wall_height 0 of 38 maps with open sky (43 maps)"
  ],
  "use": "Raise the floor, never lower the sky: a low mass is a sector whose floor is its top under the common sky. Raise a sky only for the one thing taller than the town.",
  "code": [
@@ -27,5 +27,10 @@
   "roof",
   "sky",
   "skyline"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words found in projects/blood-city/experiments/church-roofs/README.md:10 and hypothesis.json:10 ('when you put parallax sky low it is covering view like a normal ceiling'); README records yard_to_tower painting 0 px of a 17.4-body tower. Ran tools/mine_skylines.py: 43 maps, 38 with open sky, maps_with_one_wall_height 0 - it counts one-sided-wall heights under sky, not lowered skies, so 'no campaign map does it' had no count behind it and is taken out.",
+  "of": "ebf032806d6e"
+ }
 }

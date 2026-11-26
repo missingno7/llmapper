@@ -22,5 +22,10 @@
   "rotate",
   "swap",
   "track"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E1M2 sector 34: type 614, floor_stat 4, floor_picnum 1129; its outline 3584 x 61952 (north-south). l3_station.py:1352-1360 'THE RAILS RUN ALONG THE TRAIN': the owner's words 'rails are going 90 degrees from train', the copied floor_stat 4, rails along tile 1129's x, 'Neither I nor three readers over two rounds named it', then floor_stat &= ~4. catalog show 1129: owner 'railway track with sleepers'.",
+  "of": "1a7d9723ed03"
+ }
 }

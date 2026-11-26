@@ -32,8 +32,10 @@ and both skies are parallax, so the engine draws no upper step
 opposite of this morning's lowered sky: that one hid what stood behind it;
 this one is put where nothing does.
 
-And the faces: E3M1 wears its facade on them at **shade -8, cstat 1**
-(blocking), against 24 to 34 on the masonry beside them.
+And the faces: the masses' own records wear facade stone at **shade -8,
+cstat 1** (blocking), but the engine draws a step from the viewer's side,
+so what the road sees is the road sector's own wall: tile 414 at shade 24,
+like the masonry beside it.
 
 ## What was built
 
@@ -102,7 +104,8 @@ Determinism, load oracle and suite: `measurements.txt`.
   the end masses' faces at -8). Weighed over every open-sky surface
   (`tools/city_profile.py`), E3M1's road is at 32 and its pavement at 34,
   the same as Gravesend's 32. What E3M1 has that this city lacks is
-  **contrast**: chosen facade faces at -8 against masonry at 34, where every
-  wall here is a flat 9. E6M1 is a brighter map (ground 8, walls 24).
+  **contrast**, though not at the end masses: their -8 faces are drawn only
+  from the mass, and the road sees its own 414 at 24; every wall here is a
+  flat 9. E6M1 is a brighter map (ground 8, walls 24).
 - The avenue's south end and the spur's ends were not given end walls: the
   river and the yard are there.

@@ -1,5 +1,9 @@
 """Re-run tools/mine_run_rhythm.py's measure per population, and say what the 'items' on runs are."""
-import sys, collections, statistics; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys, collections, statistics
 from bloodmap.format import read_map
 from bloodmap.corpus import list_corpus_maps
 PLAN = 1024

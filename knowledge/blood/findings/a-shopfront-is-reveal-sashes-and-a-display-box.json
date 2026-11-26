@@ -2,10 +2,10 @@
  "id": "a-shopfront-is-reveal-sashes-and-a-display-box",
  "topic": "construction",
  "standing": "practice",
- "claim": "A shop window built from the street inward: a reveal, one sash pocket per bay with solid mullions between, a display box, then the shop; reveal, sashes and box share one floor and one ceiling, so the pane hung between a sash and the box carries no step band. The street-side record is two-sided to the reveal and carries the facade's lintel and stall riser at the facade's scale. A mullion must not reach the street face, where it would be a full-height slice of the facade's painted windows.",
+ "claim": "In Gravesend a shop window is built from the street inward: a reveal, one sash pocket per bay with solid mullions between, a display box, then the shop; reveal, sashes and box share one floor and one ceiling, so the pane hung between a sash and the box carries no step band. The street-side record is two-sided to the reveal and carries the facade's lintel and stall riser at the facade's scale. A mullion must not reach the street face, where it would be a full-height slice of the facade's painted windows.",
  "evidence": [
-  "Gravesend before: 24 of 24 glazed records also carried a step band (one drawn at 4x the facade's scale, another at 0.57x); after: 0 of 20, and continuing collinear joins rose from 85% to 97% (tools/texture_continuity.py)",
-  "a blind reviewer: 'set into the wall: a recess, mullions or posts, a sill ledge and a dark frame' against 'laid flat on the wall' (experiments/shopfronts-streets/before-after.png)",
+  "Gravesend, 2026-11-17 (projects/blood-city/experiments/shopfronts-streets/README.md): before, 24 of 24 glazed records also carried a step band; after, 0 of 20, and continuing collinear joins rose from 85% to 97% (tools/texture_continuity.py)",
+  "a blind reviewer: 'set into the wall: a recess, mullions or posts, a sill ledge and a dark frame' against 'laid flat on the wall' (projects/blood-city/experiments/shopfronts-streets/before-after.png)",
   "the same helper served three venues built three ways (theatre, market hall, arcade)"
  ],
  "use": "glass.shopfront in blood-city gives the rectangles; bloodmap.glass.glaze(fit=True) keeps E6M1's glass density on a pane of any length; glass.recess_faults also accepts E6M1's own arrangement (pane between the recess and the shop, sill under the glass).",
@@ -25,5 +25,10 @@
   "mullion",
   "sash",
   "shop window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/experiments/shopfronts-streets/README.md (2026-11-17): table rows 'glazed records that also carry a step band 24 of 24 / 0 of 20', 'collinear solid-portal joins that continue in x 85% / 97%', reviewer quote G5 'a recess, mullions or posts, a sill ledge and a dark frame' vs 'laid flat on the wall', theatre/market hall/arcade three ways at :43. glass.py:81 shopfront returns reveal/sash/box rectangles; bloodmap/glass.py:119 glaze(fit=True), :418 recess_faults (E6M1 recess s4, sill check). Claim reworded as ours.",
+  "of": "5d6ee590b00b"
+ }
 }

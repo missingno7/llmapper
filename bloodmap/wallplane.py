@@ -798,8 +798,8 @@ class TextStyle:
     #: `lettering.PITCH` (1.45, near the LINE pitch 1.455 rather than the
     #: letter spacing; kept because changing it moves every sign in
     #: Gravesend).  The corpus's uniform signs sit at a median
-    #: 1.333 and its mixed ones at 1.004, and E1M4 tracks ROTTEN CANDY at
-    #: 2.0 -- wide tracking is part of what makes a carnival sign one.
+    #: 1.333 and its mixed ones at 1.004, and E1M4 tracks ROTTEN CANDY, a
+    #: mixed-palette sign, at 2.0 -- wide tracking is part of what makes a carnival sign one.
     tracking: float | None = None
     #: How far a letter may wander in z from the line, in drawn heights,
     #: chosen deterministically per letter.  0 for every ordinary sign: the

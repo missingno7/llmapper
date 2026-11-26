@@ -2,7 +2,7 @@
  "id": "a-duke-pattern-is-taken-only-if-blood-agrees",
  "topic": "workflow",
  "standing": "practice",
- "claim": "Duke maps answer Blood questions only in structure measured in bodies: tile numbers, raw coordinates (Blood is built at 3:2 of Duke, by the hand-converted E3L1 pair) and raw shade do not cross. A Duke pattern is adopted only when Blood's campaign also does it or does nothing against it; where they disagree, Blood wins (kerb 0.121 body in E3M1 against Duke's 0.091; pavement 1.93 bodies against 1.09; street walls at seven heights against Duke's one).",
+ "claim": "In Gravesend we let Duke maps answer Blood questions only in structure measured in bodies: tile numbers, raw coordinates (Blood is built at 3:2 of Duke, by the hand-converted E3L1 pair) and raw shade do not cross. A Duke pattern is adopted only when Blood's campaign also does it or does nothing against it; where they disagree, Blood wins (kerb 0.121 body in E3M1 against Duke's 0.091; pavement 1.93 bodies against 1.09; E3M1's street walls at seven heights, 38% at the commonest, against DukCity's 88 to 96% at one).",
  "evidence": [
   "knowledge/blood/references/dukcity-transfer.md, 2026-11-17: tools/city_profile.py over DukCity1-4, E3M1, E6M1 and Gravesend"
  ],
@@ -22,5 +22,10 @@
   "duke",
   "scale",
   "transfer"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened knowledge/blood/references/dukcity-transfer.md: line 19 '3:2 of Duke (the hand-converted E3L1 pair)'; lines 17-21 tiles, coordinates, shade do not cross, structure in bodies does; line 65 kerb 0.091 Duke vs 0.121 E3M1; line 66 pavement 1.09 vs 1.93; line 62 Duke 88 to 96% of street-wall length at one height vs E3M1 38% at its commonest, seven heights. tools/city_profile.py and tools/duke_view.py exist. The doc's dukcity-walk/ folder it cites is not in the repository.",
+  "of": "c8278753e71d"
+ }
 }

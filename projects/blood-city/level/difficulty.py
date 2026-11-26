@@ -1,13 +1,13 @@
 """How many are met on each difficulty: fewer on the two easier, more on the two harder, as the campaign has it.
 
 Over the campaign's 43 maps, against the middle difficulty: 0.75, 0.81, 1, 1.19, 1.28 (by a
-map's median 0.74, 0.79, 1, 1.21, 1.29). The city stood at 0.88, 0.90, 1, 1.01, 1.01. The
+map's median 0.76, 0.79, 1, 1.22, 1.29). The city stood at 0.88, 0.90, 1, 1.01, 1.01. The
 middle one is what the owner has walked and stays as it is: `thin` keeps some of those who
 are there from the easier, `add` sets others beside them for the harder.
 
 `launch_skill` is a set of LOCKOUT bits (`blood.cpp:699`): 1 is not on the first, 3 not on
 the first two, 7 on the last two only, 15 on the last only -- the campaign's four commonest
-masks (1,872 of its 1,959 masked sprites; 28, 24 and ten others also occur).
+masks (1,872 of its 1,949 masked sprites; 28, 24 and ten others also occur).
 """
 
 from __future__ import annotations

@@ -23,5 +23,10 @@
   "room over room",
   "ror",
   "stack"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/audit2_ror_per_map.py: 11 of 43 campaign maps have no link marker (E2M4, E3M4, E3M7, E3M8, E4M5, E4M8, E6M3, E6M6, E6M7, E6M8, E6M9); upper markers per map 0 x11, 1 x4, 2 x5, 3 x1, 4 x3, 5 x2, 6 x6 ... 32, 37, as reports/blood-swept-mechanisms.md:66-76 gives. E1M1: s65 type 614, ceiling 504, lower stack marker sprite 0; s30 type 614 with marker 46 (type 12) and s28 with marker 47 (type 11). 'Believed reason' is so worded.",
+  "of": "445fe657e631"
+ }
 }

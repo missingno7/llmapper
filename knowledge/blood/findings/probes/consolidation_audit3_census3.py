@@ -1,5 +1,9 @@
 """Third audit share: type 456 and stone gargoyles with Teslas over every corpus map."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from bloodmap.format import read_map
 from bloodmap import corpus
 from bloodmap.model import record_fields as F

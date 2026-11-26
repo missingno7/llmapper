@@ -2,10 +2,10 @@
  "id": "a-ward-is-a-row-of-bays",
  "topic": "construction",
  "standing": "precedent",
- "claim": "E3M4's hospital wards are rows of geometry bays, not big rooms with sprite beds: 24 congruent 1,152x1,024 chambers in several rows, with 0 to 3 sprites each, and 23 divider strips 384x1,024 between them. Its corridors are 512-1,024 wide, an order narrower than streets, which is why it reads institutional.",
+ "claim": "E3M4's hospital wards are rows of geometry bays, not big rooms with sprite beds: 24 congruent 1,152x1,024 chambers in several rows, with 0 to 3 sprites each (13 of them one), and 23 divider strips 384x1,024 between them. Its 74 corridor sectors are a median 512 wide (90th percentile 1,024).",
  "evidence": [
-  "E3M4 s42, s63, s65 (bays) and s41, s64, s66 (dividers), tools/mine_room_grammar.py (room-grammar.json)",
-  "recount 2026-11-26: the 24 four-walled 1,152x1,024 sectors of E3M4 lie in rows at s63-s96, s120-s133 and s42"
+  "E3M4 s42, s63, s65 (bays) and s41, s64, s66 (dividers); knowledge/blood/findings/probes/audit2_e3m4_ward_bays.py lists all 24 and 23",
+  "knowledge/blood/references/room-grammar.json per_map E3M4 corridors (tools/mine_room_grammar.py): 74, width median 512, p90 1,024"
  ],
  "use": "Build a dormitory, cell row or ward as repeated small bay sectors.",
  "code": [
@@ -23,5 +23,10 @@
   "dormitory",
   "hospital",
   "ward"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_e3m4_ward_bays.py: 24 four-walled 1,024x1,152 sectors (42, 63-96 odd-ish, 120-133), sprites per bay 0:5, 1:13, 2:5, 3:1; 23 dividers 384x1,024 (41, 64, 66 ...). knowledge/blood/references/room-grammar.json per_map E3M4 corridors: 74, width min 128, median 512, p90 1,024, max 3,072. 'An order narrower than streets' has no count behind it: removed.",
+  "of": "26e6b312fea0"
+ }
 }

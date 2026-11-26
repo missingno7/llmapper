@@ -2,9 +2,10 @@
  "id": "underwater-sectors-are-dark-but-not-black",
  "topic": "light",
  "standing": "tendency",
- "claim": "The campaign's underwater floors are a median shade 26 and ceilings 30 (quartiles 16 to 35); E3M3 lights its water with a faint wave over floor and walls. Drawn at the dark end of that range a sump came out black.",
+ "claim": "The campaign's underwater sectors (618) have floors a median shade 26 (quartiles 16 to 35) and ceilings 30 (19 to 36); 77 of them carry a shade wave, and E3M3 lights its water with a faint wave over floor, ceiling and walls. Drawn at the dark end of that range a sump of ours came out black.",
  "evidence": [
-  "campaign underwater sectors, projects/blood-city/level/underwater.py; E3M3 sector 63 (the surface wave)"
+  "knowledge/blood/findings/probes/audit2_underwater_shade.py (2026-11-26) over the 43 campaign maps; projects/blood-city/level/underwater.py:133",
+  "E3M3 sector 63 (underwater, shade_wave 7, amplitude 4, frequency 4: the surface wave)"
  ],
  "use": "Shade drowned sectors near the median and give them a slow light wave.",
  "code": [
@@ -20,5 +21,10 @@
   "shade",
   "underwater",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_underwater_shade.py: 618 campaign sectors with the XSECTOR underwater flag; floor shade q1 16, median 26, q3 35; ceiling q1 19, median 30, q3 36; 77 carry a shade wave. catalog record E3M3 s63: underwater, shade_wave 7, amplitude 4, frequency 4, on floor, ceiling and walls. underwater.py:133 holds the same 26/30 and the black sump. Evidence pointed at no count: probe cited, ceiling quartiles given.",
+  "of": "13e403766c80"
+ }
 }

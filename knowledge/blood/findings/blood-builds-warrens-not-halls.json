@@ -2,9 +2,10 @@
  "id": "blood-builds-warrens-not-halls",
  "topic": "place",
  "standing": "tendency",
- "claim": "E3M1's roofed sectors are small: their upper quartile is 1.13M units squared and only 2% exceed 10M. A level whose rooms run q3 8.39M with 23% over 10M (Gravesend) builds halls where Blood builds warrens, and loses ceiling share, loops and its dead-end fraction with it. A campaign block is a web: dead-end fraction 0.159, mean degree 2.74, 37.7 loops per 100 sectors.",
+ "claim": "E3M1's roofed sectors are small: their upper quartile is 1.05M units squared and 2% exceed 10M. Gravesend's, when it was measured (l3_church.py), ran q3 8.39M with 23% over 10M: it built halls where Blood builds warrens, and lost ceiling share, loops and its dead-end fraction with it. A campaign level is a web: median dead-end fraction 0.159, mean degree 2.74, 37.7 loops per 100 sectors.",
  "evidence": [
-  "measured in projects/blood-city/level/l3_church.py and l3_theatre.py (the discriminator)"
+  "knowledge/blood/findings/probes/audit2_roofed_areas.py: E3M1 roofed q3 1,048,576, 2.4% over 10M; medians over the 43 campaign maps of bloodmap.level_profile: dead_end_fraction 0.159, mean_degree 2.74, loops_per_100_sectors 37.7 (2026-11-26)",
+  "Gravesend's 8.39M and 23%: projects/blood-city/level/l3_church.py:15-17, measured before the church and theatre circuits; l3_theatre.py:97-100 the discriminator's figures (tools/map_discriminator.py)"
  ],
  "use": "Braid several rooms round a main one and close circuits behind venues rather than hanging each off the street.",
  "code": [
@@ -21,5 +22,10 @@
   "loops",
   "room size",
   "warren"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_roofed_areas.py (level_profile._sector_area): E3M1 337 roofed sectors, q3 1,048,576 (not 1.13M), 2.4% over 10M; campaign medians over 43 maps dead_end_fraction 0.159, mean_degree 2.74, loops per 100 sectors 37.7 as claimed. Gravesend's 8.39M / 23% is quoted in l3_church.py:15-17 from before the braiding; today blood-city-current.MAP gives q3 1.60M and 4.0% over 10M, so it is dated.",
+  "of": "904abcc34b0f"
+ }
 }

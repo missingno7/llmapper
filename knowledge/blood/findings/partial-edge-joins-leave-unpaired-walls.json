@@ -2,12 +2,15 @@
  "id": "partial-edge-joins-leave-unpaired-walls",
  "topic": "construction",
  "standing": "practice",
- "claim": "Two rooms that share only part of an edge leave coincident walls that are not paired as a portal; every coincident edge must be one declared wall pair, including zero-height pieces to each other and to the street.",
+ "claim": "In our planar layout, two rooms that share only part of an edge leave coincident walls that are not paired as a portal; every coincident edge must be one declared wall pair, including zero-height pieces to each other and to the street. (Blood's campaign has no such unpaired pair in 113,261 walls.)",
  "evidence": [
-  "Met repeatedly in Gravesend (2026-08-27 Market Slip, 2026-11-18 second walk); the rule gate catches unpaired walls."
+  "Met repeatedly in Gravesend (2026-08-27 Market Slip, 2026-11-18 second walk); bloodmap/planar_layout.py:1619 reports unpaired_portal_candidates and bloodmap/geometry_audit.py:323 unpaired_coincident_walls; planar_layout.py:73-82 for the campaign's zero."
  ],
  "use": "Join rooms through a neck whose whole face is the mouth, or cut the longer edge at the shorter one's ends.",
- "code": [],
+ "code": [
+  "bloodmap.planar_layout",
+  "bloodmap.geometry_audit"
+ ],
  "scope": "blood",
  "learned": {
   "in": "blood-city",
@@ -20,5 +23,10 @@
   "nextwall",
   "portal",
   "unpaired"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened bloodmap/planar_layout.py:73-82 (an unpaired shared edge makes two coincident solid walls; the campaign has none in 113,261 walls of 43 maps) and :1619 (conservation.unpaired_portal_candidates); bloodmap/geometry_audit.py:323 lists unpaired_coincident_walls. The agent's note city-second-walk (2026-11-18): every coincident edge needs a declared connection, zero-height pieces included.",
+  "of": "f2644fb33d16"
+ }
 }

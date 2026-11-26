@@ -2,11 +2,12 @@
  "id": "ror-floor-must-wear-a-mirror-tile",
  "topic": "engine",
  "standing": "engine",
- "claim": "Blood draws the far side of a room-over-room floor or ceiling only if that surface wears a mirror tile (or has the 0x180 stat bits); an ordinary floor over a linked sector is drawn as itself.",
+ "claim": "Blood (NBlood's InitMirrors) draws through a room-over-room stack only if the upper sector's floor wears a mirror tile (kMirrorTile or the mirror range) or has floorstat bits 0x180; an ordinary floor over a linked sector is drawn as itself. The lower sector's ceiling needs nothing: InitMirrors gives it the mirror tile when it lacks one.",
  "evidence": [
-  "NBlood/source/blood/src/mirrors.cpp:243 IsRorSector: mirrorPicStart..mirrorPicEnd, kMirrorTile or floorstat & 0x180"
+  "NBlood/source/blood/src/mirrors.cpp:243-256 (IsRorSector: mirrorPicStart..mirrorPicEnd, kMirrorTile or stat & 0x180)",
+  "NBlood/source/blood/src/mirrors.cpp:494-503 (InitMirrors: a stack is built only when the upper floor passes IsRorSector; a lower ceiling that does not is set to kMirrorTile)"
  ],
- "use": "Give both halves of a see-through link the mirror tile; the rules_blood rule stack-portal-wears-the-mirror-tile reports a portal that does not.",
+ "use": "Give the upper sector's floor the mirror tile (504); the lower ceiling may wear it too but the engine forces it. rules_blood's stack-portal-wears-the-mirror-tile reports either half without 504.",
  "code": [
   "bloodmap.rules_blood"
  ],
@@ -21,5 +22,10 @@
   "portal",
   "ror",
   "see-through"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "mirrors.cpp:243-256 IsRorSector: floor or ceiling picnum in mirrorPicStart..mirrorPicEnd (2 if stat & 0x180, else 1), == kMirrorTile (1), or stat & 0x180 (2), else 0. InitMirrors (426): 494 a stack is made only when the upper sector's FLOOR passes IsRorSector; 502-503 if the lower sector's ceiling does not, its ceilingpicnum is forced to kMirrorTile. So only the floor half must wear it.",
+  "of": "4ba206cf8e2a"
+ }
 }

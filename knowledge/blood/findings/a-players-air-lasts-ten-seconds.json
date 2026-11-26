@@ -22,5 +22,10 @@
   "oxygen",
   "swim",
   "underwater"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "player.cpp:2200-2202 (playerProcess, from 2095): if !isUnderwater underwaterTime = 1200. actor.cpp (actProcessSprites, from 5285): 5828 kTicRate*10 with suit or god mode; 5830 underwaterTime - kTicsPerFrame clipped at 0; 5831-5832 packUseItem diving suit when < 1080 and carried; 5833 choking at 0 (chokeEffect, Chance, kDamageDrown 3<<4). common_game.h:82-84 kTicRate 120, kTicsPerFrame 4, kTicsPerSec 30: 1200/4/30 = 10 s.",
+  "of": "99e602717a0e"
+ }
 }

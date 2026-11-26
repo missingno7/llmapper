@@ -2,13 +2,15 @@
  "id": "linked-sectors-are-never-cut",
  "topic": "construction",
  "standing": "practice",
- "claim": "A sector carrying a room-over-room link, and the one it joins, stay one sector each: later passes that split sectors (light pools, shadow cuts) leave them whole, or the pair no longer matches.",
+ "claim": "In Gravesend a sector carrying a room-over-room link, and the one it joins, stay one sector each: the light stage's cutting passes (shadows, light pools) leave them whole, or the pair would no longer match.",
  "evidence": [
-  "Gravesend's light stage exempts every linked surface (projects/blood-city/level/lights.py, OWN_LIGHT; projects/blood-city/level/pump_engine.py)"
+  "bloodmap/light_stage.py:1279-1283 linked() and :1313 (run: every sector with a link marker joins `whole`, which cut_shadows does not cut)",
+  "projects/blood-city/level/lights.py:35, :89 (named linked regions with cut=False); projects/blood-city/level/pump_engine.py:13"
  ],
  "use": "Exempt linked sectors from any cutting pass; light them by shade alone.",
  "code": [
-  "projects/blood-city/level/lights.py"
+  "bloodmap.light_stage.linked",
+  "bloodmap.light_stage.run"
  ],
  "scope": "blood",
  "learned": {
@@ -21,5 +23,10 @@
   "ror",
   "split",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/lights.py: OWN_LIGHT (:147) lists drowned and lit places, not links; :35 and :89 exempt named linked regions (pump_station/tank_0, ramp, crypt shaft and lift) with cut=False. What exempts EVERY linked sector is bloodmap/light_stage.py:1279-1283 linked() (sectors holding an UP_FAMILY or LOW_FAMILY marker) added to `whole` at :1313 in run(), which cut_shadows leaves uncut. pump_engine.py:13 says a linked floor stays one sector. Code and evidence corrected.",
+  "of": "27166fb53851"
+ }
 }

@@ -2,9 +2,10 @@
  "id": "street-signs-hang-two-and-a-half-bodies-up",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "A sign read from the street has its letters a median 2.536 player heights above the street floor: 26 campaign signs (2.053 to 5.132), and 86 with the curated maps added (1.691 to 5.132), the same median. Signs at 1.2-1.5 read as shopfront notices. Notices read from close by (a staff door, a plate) are not covered by the count and stay low.",
+ "claim": "A sign read from the street has its letters a median 2.536 player heights above the street floor: 26 campaign letters, on 3 facades in 2 maps (2.053 to 5.132), and 86 letters with the curated maps added (1.691 to 5.132), the same median. Gravesend's signs at 1.2-1.5 read as shopfront notices. Notices read from close by (a staff door, a plate) are not covered by the count and stay low.",
  "evidence": [
-  "reports/blood-lintel-band.md, the datum table: blood-campaign n=26, campaign + curated n=86 (the row measured from the floor; the row from the opening's head is noisier, cv 0.79-0.86)"
+  "reports/blood-lintel-band.md:66-75, the datum table: blood-campaign n=26 letters, campaign + curated n=86 (the row measured from the floor; the row from the opening's head is noisier, cv 0.79-0.86); :133 the 26 are on 3 facades in 2 maps",
+  "projects/blood-city/level/signage.py:43-44: Gravesend's signs were at 1.2-1.5"
  ],
  "use": "Hang a frontage's name from the floor measure; keep interior notices near eye height.",
  "code": [
@@ -21,5 +22,10 @@
   "lintel",
   "shop name",
   "sign"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "reports/blood-lintel-band.md:66-75 datum table read: blood-campaign height above the street floor n=26 median 2.536 [2.053, 5.132], cv 0.37; campaign + curated n=86 median 2.536 [1.691, 5.132], cv 0.33; from the opening's head cv 0.86 and 0.79. :133 'n' counts LETTERS: '26 campaign letters on 3 facades in 2 maps, 86 in all' - not 26 signs. The 1.2-1.5 is Gravesend's own (signage.py:43-44).",
+  "of": "bc52ef4d711f"
+ }
 }

@@ -19,8 +19,8 @@ representation. A material here carries:
 
 ``opening``
     the tile this material dresses its own doorways in. Blood does not paint a
-    room in one material: of the 8,320 campaign rooms that use more than one wall
-    tile, 74% put a different tile on their two-sided walls than on their solid
+    room in one material: of the 7,585 campaign sectors that use more than one wall
+    tile and have both two-sided and solid walls, 74% put a different tile on their two-sided walls than on their solid
     ones -- ashlar at the jambs, rubble in the spans. That is a property of the
     material, not a decision per room, so it lives here.
 

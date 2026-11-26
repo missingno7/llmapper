@@ -319,7 +319,7 @@ Each runs a library sensor over `corpus.campaign_maps()` and writes a versioned 
 | `mine_overlooks` | How Blood builds the thing you get shot from. |
 | `mine_patterns` | Compositional patterns, counted -- the things that make a room look built. |
 | `mine_prefabs` | What a Blood level is made of, below the size of a room. |
-| `mine_prop_catalogue` | A measured catalogue of every prop the campaign uses more than rarely. |
+| `mine_prop_catalogue` | A measured catalogue of every prop the reference corpus view uses more than rarely. |
 | `mine_run_rhythm` | How often the campaign places detail along a run. |
 | `mine_secrets` | How shipped maps hide a secret: what stands before it, what opens that, what gives it away, and what is inside. |
 | `mine_sector_motion_sounds` | Count sector motion sound profiles in the Blood campaign and tutorials. |

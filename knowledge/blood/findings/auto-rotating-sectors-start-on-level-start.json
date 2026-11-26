@@ -2,11 +2,12 @@
  "id": "auto-rotating-sectors-start-on-level-start",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "An endlessly spinning sector in Blood is a type 615 kSectorRotateMarked with an axis marker inside it, rx 7 (the level-start broadcast), retrigger on both waves and an asymmetric busy_time a/b that sets direction and speed; no key, push or wallpush. Only 6 such sectors stand in 3 campaign maps (E1M4, E3M2, E4M2); 88 in 14 maps counting the Death Wish, curated community and converted maps. As a turnstile door they come in pairs, usually counter-rotating, flanking one entrance, each carrying four grate-tile blade sprites (332) and a sound sprite beside one rotor.",
+ "claim": "An endlessly spinning sector in Blood is a rotating sector (type 615 kSectorRotateMarked or 617 kSectorRotate) with an axis marker inside it, rx 7 (the level-start broadcast), retrigger on both waves and an asymmetric busy_time a/b that sets direction and speed; no key, push or wallpush. Only 6 stand in 3 campaign maps (E1M4, E3M2, E4M2); 88 in 14 maps counting the Death Wish, curated community and converted maps, 66 of them type 617. As a turnstile door (E1M4, DWE1M9, DNE3L6) they come in pairs flanking one entrance, counter-rotating in two of the three, each with four grate-tile blade sprites and a sound sprite in or beside the rotors.",
  "evidence": [
-  "E1M4 s151 and s314: type 615, rx_id 7, retrigger_a/b 1, busy_time_a 255 vs 0 (counter-rotating), marker_0 the axis",
+  "E1M4 s151 and s314: type 615, rx_id 7, retrigger_a/b 1, busy_time 255/0 and 0/255 (counter-rotating), marker_0 the axis, four 332 and a 2521 sound sprite on each",
   "DWE1M9 s61 and s64: the same pair at busy 100/0 and 0/100, blades tile 332",
-  "88 instances in 14 maps, knowledge/blood/references/auto-rotators.json (reference view plus conversions; 6 of them campaign, recounted 2026-11-26)"
+  "88 instances in 14 maps (617 x66, 615 x22), knowledge/blood/references/auto-rotators.json (reference view plus conversions); the 6 campaign ones recounted with knowledge/blood/findings/probes/audit2_auto_rotators.py",
+  "NBlood/source/blood/src/common_game.h:473 kSectorRotateMarked = 615, :475 kSectorRotate = 617"
  ],
  "use": "For a turnstile or rotating scenery, copy the signature; start it from the level-start wire, not a switch. Decide door vs scenery by whether the rotor sits in a doorway with two portal walls.",
  "code": [
@@ -26,5 +27,10 @@
   "rotor",
   "spin",
   "turnstile"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/audit2_auto_rotators.py over the 43 campaign maps (types 613/615/617, rx 7, both retriggers): 6 in 3 maps, E1M4 s151 615 busy 255/0 and s314 615 0/255 each with four 332 and a 2521, E3M2 s232/s234 617, E4M2 s257 617 and s258 615; no key or push. auto-rotators.json: 88 instances in 14 maps, types 617 x66, 615 x22. DWE1M9 s61 615 100/0, s64 0/100, four 332 each. common_game.h:473 kSectorRotateMarked = 615, :475 kSectorRotate = 617.",
+  "of": "b805933ac882"
+ }
 }

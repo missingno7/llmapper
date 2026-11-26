@@ -21,5 +21,10 @@
   "switch",
   "xwall"
  ],
- "instead": "57% of hidden and 59% of visible switch sprites sit in a logic closet no player enters; the mapper wires the sprite by channel and what the player pushes is an XWALL elsewhere. Study the pushed XWALLs, not switch sprites."
+ "instead": "57% of hidden and 59% of visible switch sprites sit in a logic closet no player enters; the mapper wires the sprite by channel and what the player pushes is an XWALL elsewhere. Study the pushed XWALLs, not switch sprites.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "reports/blood-hidden-switch-placement.md:38 1396 switch sprites, 1281 visible, 115 hidden; :65, 73 the two contrasts at balanced accuracy 0.532 and 0.529 against the 0.65 floor (line 5); :90-91 hidden logic_closet 65 (57%), visible 752 (59%); :98-100 'what the player pushes is an XWALL on a wall somewhere else'. reports/blood-effects-switches.md:37-38 115 in 18 maps / 1281 in 43.",
+  "of": "1a66d3c9bcbb"
+ }
 }

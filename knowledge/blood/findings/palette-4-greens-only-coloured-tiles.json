@@ -21,5 +21,10 @@
   "pal 4",
   "palette",
   "tint"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/references/phantom-terminus-design.md:105-107 'Green is palette 4 on 109, 304, 454, 146 and 1665. On 300 and 301 it is camouflage; as the colour of a floor's light it reads as moss. Both were tried and taken out'; :128-129 'It leaves greys grey: 374 under palette 4 stays white, 1717 goes green'. Claim says the same, as tried in the Phantom Terminus.",
+  "of": "c56a7944787d"
+ }
 }

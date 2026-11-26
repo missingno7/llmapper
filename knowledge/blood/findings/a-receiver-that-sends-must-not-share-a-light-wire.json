@@ -2,13 +2,14 @@
  "id": "a-receiver-that-sends-must-not-share-a-light-wire",
  "topic": "mechanism",
  "standing": "practice",
- "claim": "Never put a sector that also sends (a secret credit, a relay) on a wire that switches lights: when the lamps go out, it sends too. In Gravesend the booking hall that credits a secret would have credited it when the lamps went out.",
+ "claim": "In Gravesend we never put a sector that also sends (a secret credit, a relay) on a wire that switches lights: when the lamps go out it sends too. The booking hall that credits a secret would have credited it when the lamps went out (Phantom Terminus rebuild, 2026-11-24).",
  "evidence": [
-  "Phantom Terminus rebuild, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md)"
+  "Phantom Terminus rebuild, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md:101-102)",
+  "bloodmap/light_stage.py:1119-1123 (switch_lamps): a sector holding a tx_id or another rx_id is not given a lamp group's wire"
  ],
- "use": "Give lit sectors their own receivers; check with wiring.Circuit read-back that no sender listens on a light's channel.",
+ "use": "Give lit sectors their own receivers; light_stage.switch_lamps already refuses a sector that has a tx_id or another rx_id and lists it under held_by_another_wire: read that list.",
  "code": [
-  "bloodmap.wiring.Circuit",
+  "bloodmap.light_stage.switch_lamps",
   "projects/blood-city/references/phantom-terminus-design.md"
  ],
  "scope": "blood",
@@ -23,5 +24,10 @@
   "secret",
   "sender",
   "wire"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "phantom-terminus-design.md:101-102 read: 'A receiver that also sends is never given a light's wire: the booking hall credits the secret, and would have credited it when the lamps went out.' The guard is in bloodmap/light_stage.py:1119-1123 (switch_lamps): a sector with amplitude, another rx_id, or a tx_id is skipped and reported in held_by_another_wire; no wiring.Circuit read-back checks this.",
+  "of": "b9e929d3c4db"
+ }
 }

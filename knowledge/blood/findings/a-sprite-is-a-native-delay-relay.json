@@ -23,5 +23,10 @@
   "relay",
   "timer",
   "wait_time"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp SetSpriteState (85): 98-99 'if (restState != nState && waitTime > 0) evPost(..., waitTime*120/10, restState ? kCmdOn : kCmdOff)'; 100-105 evSend txID with command when triggerOn && state, or triggerOff && !state. OperateSprite (322) default case 646-656 sends On/Off/toggle of a plain sprite to SetSpriteState. projects/duke-e4l1-remake/briefing.py:11 arm_wait=27, collapse_wait=30 (2.7 s, 3.0 s); :56-57, 63-64 relays on=False off=True rest_state=0 command=1.",
+  "of": "68ee830ac6da"
+ }
 }

@@ -286,12 +286,27 @@ needs no level and proving that Gravesend's map does not change by a byte.
 - **A project status of two kinds.** `tools.project status` is every level's; Gravesend's
   `level/status.py` and the E4L1 remake's `status.py` know their own places. The place table
   (`character.PLACES`, `places.json`) is the part worth making common.
-- **The findings are cited, not yet all true.** The shelf was filled in a day from notes and
-  comments, audited whole once (81 of 322 corrected), and two later samples read more strictly
-  still found a wrong figure or citation in a quarter to two fifths of what they opened. Its
-  check holds form. Until each finding has been read against its evidence by someone who is
-  not its author, treat a number on it as a pointer to its citation. A few stale figures the
-  audits disproved are still in source comments: `build_skeleton.py` (273 link markers; it is
-  502), `bloodmap/city.py:753` (1,269 doors; 594 ceiling doors), `motion_sounds.py` (165 as
-  metal's commonest stop; it is 169), `knowledge/blood/references/urban-semantics.md` (E3M1
-  "most vertical"; E3M2's multi-storey share is higher).
+- **The findings are checked, and a few will still be wrong.** The shelf was filled in a day
+  from notes and comments. A first audit (81 of 322 corrected) left a false statement in a
+  quarter or more of it. The second, on 2026-11-26, opened every citation: 233 of 327 were
+  corrected and each finding now carries a mark saying what was opened and what was read there
+  (`checked`; `python -m tools.findings unchecked` lists what has none, or has been rewritten
+  since). Two independent verifiers then re-opened 48: 36 held entirely, 9 had a slip that
+  misleads nobody, 3 still said something false (all twelve since corrected). So expect about
+  one marked finding in sixteen to be wrong somewhere, and correct it when you meet it
+  (`tools.findings amend`). One ruling is unmarked because the owner's words are kept nowhere
+  (`plan-drawings-put-plus-y-down`).
+- **Values the audit showed to rest on a wrong figure, left as they are because changing them
+  changes Gravesend's map** (each says so where it stands): `l3_church.PITCH` 21878 (the
+  campaign's median slope rise in the retired 0x1600 unit; in bodies it is about 7,290),
+  `fixtures.GOODS_SHARE` 0.14 (the five maps pooled give 0.12), `scale.HOLE_MEDIAN` /
+  `HOLE_LARGE` (from a sweep that was not kept; the 96 kept holes give 1,664 / 1.57 and
+  2,208 / 1.95), `lettering.PITCH` 1.45 (the campaign's letter pitch is 1.333; 1.45 is its line
+  pitch). Whether Gravesend should move to the true figures is a design decision.
+- **Small things the audit met and did not settle.** `tools/mine_city_assets.py` and
+  `tools/mine_stands.py` name their maps by path (`TOWN_MAPS`) instead of through
+  `bloodmap.corpus`. `bloodmap/conditional.py` gives E1M2's reachability cut as from 231
+  sectors and `reports/blood-swept-mechanisms.md` as from 226; neither run was kept.
+  `blood_types.sprite_visibility` calls every generator "wiring", though the campaign draws
+  112 of them. `HIDDEN_TYPES` still holds markers 8 and 15-19 on belief: the engine's hiding
+  of those was not read.

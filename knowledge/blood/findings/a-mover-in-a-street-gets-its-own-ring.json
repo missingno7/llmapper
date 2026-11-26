@@ -2,13 +2,16 @@
  "id": "a-mover-in-a-street-gets-its-own-ring",
  "topic": "light",
  "standing": "practice",
- "claim": "A mover's host sector is never cut for light and shadow, so a mover set straight into a big lit street leaves a hole in the street's lighting; give it its own thin ring of sector (an apron) between it and the street.",
+ "claim": "Our light stage (bloodmap.light_stage.run) never cuts a mover's host sector for light and shadow, so in Gravesend a mover set straight into a big lit street would leave a hole in the street's lighting; the carousel on the square (2026-11-25) was given its own thin ring of the street's sector (an apron, 0.22 of a plan unit) between it and the street.",
  "evidence": [
-  "Gravesend's carousel on the square, 2026-11-25 (projects/blood-city/level/fair.py)."
+  "Gravesend's carousel on the square, 2026-11-25: projects/blood-city/level/fair.py:25, 42-43 (APRON = 0.22)",
+  "bloodmap/light_stage.py:1296-1311 (run): a sector swept_state.hosts names is lit but never cut"
  ],
  "use": "Wrap every mover placed in a large open sector in an apron ring.",
  "code": [
-  "projects/blood-city/level/fair.py"
+  "projects/blood-city/level/fair.py",
+  "bloodmap.light_stage.run",
+  "bloodmap.swept_state.hosts"
  ],
  "scope": "blood",
  "learned": {
@@ -21,5 +24,10 @@
   "lighting",
   "mover",
   "street"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/fair.py:25 ('The host is a ring of the street's own (APRON)'), :42-43 APRON = 0.22 'what a mover stands in is not cut up by light and shadow'; bloodmap/light_stage.py:1296-1311 (run): swept_state.hosts are added to 'whole', 'lit but never cut'. So the uncut host is our light stage's rule, not Blood's.",
+  "of": "aaec8c3d3baf"
+ }
 }

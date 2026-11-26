@@ -24,5 +24,10 @@
   "town",
   "upper floor",
   "vertical"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/city-norms.md:129-147 (section 5): rooftop share 0.528 E3M1, 0.072 DWE3M1, 0.001/0.014/0.004/0.020 DukCity1-4; below-grade 0, 20, 17, 99, 125, 75; E3M1 '3 stack + 1 water'. urban-semantics.json storey_mix: E3M2 5/8, E3M1 7/15, E1M4 6/25, TEDE1M2 4/25, DWE3M10 2/52; urban-semantics.md table 7/58, 8/48, 6/34, 4/66 (6-18%).",
+  "of": "931b1c224717"
+ }
 }

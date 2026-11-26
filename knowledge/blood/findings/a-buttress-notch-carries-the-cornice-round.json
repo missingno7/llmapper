@@ -2,9 +2,11 @@
  "id": "a-buttress-notch-carries-the-cornice-round",
  "topic": "construction",
  "standing": "practice",
- "claim": "A buttress can be let into a sector's outline as a notch (three walls, no sector: 256 proud, 384 wide, on the bay grid), and it stands exactly as tall as the eaves. But it then carries the facade tile's cornice round its own top, so the roofline steps at every buttress and reads as battlements; a buttress that stops below the eaves needs its own lower roof sector.",
+ "claim": "In Gravesend's church (2026-11-17, round 2 of the church-skyline experiment) buttresses let into the building's outline as notches stood exactly as tall as the eaves and carried the facade's cornice round their tops, so the roofline stepped at every buttress and a blind reviewer read it as a flat crenellated line, a fortress or warehouse. A buttress that stops below the eaves needs its own lower roof sector.",
  "evidence": [
-  "projects/blood-city/experiments/church-skyline/after: portal, avenue_front; a blind reviewer read pilasters by the door and 'a flat crenellated line', fortress or warehouse"
+  "projects/blood-city/experiments/church-skyline/README.md:46 (round 2 added buttresses) and :124 ('The buttresses step the cornice and read as battlements')",
+  "projects/blood-city/experiments/church-skyline/critic-round2.md:10-12: avenue_front, 'the top is a flat crenellated line, so it reads as a fortress or warehouse'",
+  "bloodmap/skyline.py:35 and :124 (roof): the low thing, a buttress among them, is a sector whose floor is its top"
  ],
  "use": "Use a notch for a pilaster that runs to the eaves; for a buttress, make it a raised-floor sector (skyline.roof) lower than the eaves.",
  "code": [
@@ -20,5 +22,10 @@
   "bay",
   "buttress",
   "pilaster"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/experiments/church-skyline: README.md:46 (round 2 added buttresses) and :124 'The buttresses step the cornice and read as battlements'; critic-round2.md:10-12 avenue_front 'the top is a flat crenellated line, so it reads as a fortress or warehouse'; no 'pilaster' in any critic file; the buttress code is gone from the level and from git history, so 256/384 cannot be read; bloodmap/skyline.py:124 roof() is a raised-floor sector, docstring :35 names a buttress.",
+  "of": "721270f7a419"
+ }
 }

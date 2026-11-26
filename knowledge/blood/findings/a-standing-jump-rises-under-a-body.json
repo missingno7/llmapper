@@ -2,13 +2,14 @@
  "id": "a-standing-jump-rises-under-a-body",
  "topic": "gameplay",
  "standing": "engine",
- "claim": "A standing jump (normalJumpZ -0xbaaaa against kDudeGravity 58,254) rises about 15,370 z, 0.91 of a standing body, so with the walking step on top a player gets out of a pit or onto a ledge of roughly 20,000 z and no more. For the other direction: fall damage is mulscale30(zvel, zvel) - kFallDamageFloor (1,600) at the landing, so the last painless drop is 62,564 z (3.69 bodies), 68,025 (4.01) is the first that hurts and 127,411 (7.51) kills from full health.",
+ "claim": "A standing jump (normalJumpZ -0xbaaaa against kDudeGravity 58,254, stepped tick by tick as MoveDude does) rises about 15,370 z, 0.91 of a standing body, so with the 4,096 walking step on top a player gets out of a pit or onto a ledge of roughly 19,500 z and no more. For the other direction: landing damage is mulscale30(zvel, zvel) - kFallDamageFloor (1,600), and gravity is not added on the tick whose move already reaches the floor; stepped so, the last painless drop from rest is 67,570 z (3.98 bodies), the next unit hurts, and raw damage reaches 1,600 (100 hit points before the player's damage factor) at 126,957 (7.49 bodies).",
  "evidence": [
-  "NBlood/source/blood/src/actor.h:185-187 (kDudeGravity, kDudeAirborneHeight, kFallDamageFloor); player.cpp:134 normalJumpZ; actor.cpp:4595-4631 (integration) and :4835-4847 (landing damage).",
-  "bloodmap.layers.fall_cost runs the same integrator; in a bot run AGTST3 climbed an 11,264 rise by jumping and refused a 21,504 one (2026-08-27).",
-  "2026-11-26: stepping MoveDude's order (z += zvel>>8, then z += (2*kDudeGravity)>>8 and zvel += kDudeGravity, actor.cpp:4596-4631) from zvel -0xbaaaa gives an apex of 15,367; the continuous v*v/2g is 19,600, which ignores the per-tick gravity displacement. bloodmap/supplies.py:40 and :72 quote 19,600 as the apex; bloodmap.player_space has no jump height (jump is a flag)"
+  "NBlood/source/blood/src/actor.h:185-187 (kDudeGravity, kDudeAirborneHeight, kFallDamageFloor); player.cpp:134 normalJumpZ; actor.cpp:4596-4631 (MoveDude's integration; gravity skipped at :4625 when bottom >= floorZ) and :4815-4847 (landing damage; actFloorBounceVector :2691-2698 returns zvel on a flat floor)",
+  "knowledge/blood/findings/probes/audit2_jump_fall.py steps that order: apex 15,367; last painless 67,570; 1,600 raw at 126,957 (2026-11-26)",
+  "in a bot run AGTST3 climbed an 11,264 rise by jumping and refused a 21,504 one (2026-08-27, not repeated)",
+  "bloodmap.player_space PLAYER_PROFILES['blood'].max_step 4096"
  ],
- "use": "A drop entry under ~3.7 bodies never hurts; a mouth or ledge under jump plus step (about 20,000 z) can be climbed back out, which is the test for 'this pit is not a trap'.",
+ "use": "A drop entry under about 3.9 bodies never hurts; a mouth or ledge under jump plus step (about 19,500 z) can be climbed back out, which is the test for 'this pit is not a trap'. bloodmap.layers.fall_cost prices a drop in the same order.",
  "code": [
   "bloodmap.layers.fall_cost"
  ],
@@ -26,5 +27,10 @@
   "jump",
   "pit",
   "trap"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "player.cpp:134 normalJumpZ -0xbaaaa; actor.h:185-187 g 58254, floor 100<<4; actor.cpp:4595-4632 (MoveDude) gravity skipped when bottom >= floorZ (:4625), landing :4826-4847. Ran probes/audit2_jump_fall.py: apex 15,367; last painless 67,570; 1,600 raw at 126,957. bloodmap.layers.fall_cost agrees since its correction on 2026-11-26 (67,570 -> 0, 67,571 -> 4.44).",
+  "of": "925b837aadd5"
+ }
 }

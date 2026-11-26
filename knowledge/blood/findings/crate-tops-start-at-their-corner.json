@@ -4,10 +4,11 @@
  "standing": "tendency",
  "claim": "71% of the campaign's 110 raised crate tops begin their tile at the crate's own corner, so the box wears a whole picture whatever the world grid.",
  "evidence": [
-  "71% of the campaign's 110 raised crate tops begin at the crate's corner (counted for projects/blood-city/level/build_skeleton.py)"
+  "knowledge/blood/findings/probes/audit2_crate_tops.py over the 43 campaign maps: 110 raised crate tops (CRATE_FLOOR_TILES), 78 (71%) land the tile grid on their own corner; 62% expanded, 59% panned, 6% floorstat 64 (bloodmap/texture_frame.py:1236-1239)"
  ],
- "use": "Relative-align the top of a crate or a tomb to its first wall.",
+ "use": "Anchor the tile grid of a crate's or tomb's top at its own corner by panning (texture_frame.frame_raised_solids); first-wall relative alignment (floorstat 64) is what only 6% of the campaign's crate tops use.",
  "code": [
+  "bloodmap.texture_frame.frame_raised_solids",
   "projects/blood-city/level/build_skeleton.py"
  ],
  "scope": "blood",
@@ -21,5 +22,10 @@
   "crate",
   "floor",
   "relative"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_crate_tops.py (texture_frame.raised_solids on CRATE_FLOOR_TILES, surface_is_whole at sector_corner) over 43 campaign maps: 110 raised crate tops, 78 (71%) whole at their corner, 62% expanded, 59% panned, 6% first-wall relative (texture_frame.py:1236-1239 says the same). build_skeleton.py:2086-2089 calls frame_raised_solids, which anchors by panning at the lowest corner, not floorstat 64.",
+  "of": "898edc2adb9e"
+ }
 }

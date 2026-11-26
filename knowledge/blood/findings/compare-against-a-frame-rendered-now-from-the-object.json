@@ -2,9 +2,9 @@
  "id": "compare-against-a-frame-rendered-now-from-the-object",
  "topic": "workflow",
  "standing": "practice",
- "claim": "A side-by-side means something only when the campaign's instance is rendered by the same call, settings and binary in the same session, from a pose standing in the object's own host sector with a line of sight to it. Memory of a frame let a sky fault survive four iterations; poses without a host stood behind walls and compared corridors.",
+ "claim": "In Gravesend's object loop a side-by-side meant something only when the campaign's instance was rendered by the same call, settings and binary in the same session, from a pose standing in the object's own host sector with a line of sight to it. Memory of a frame let a sky fault survive four iterations; poses without a host stood behind walls and compared corridors.",
  "evidence": [
-  "Gravesend's object loop, projects/blood-city/level/object_loop.py (approach_poses, campaign_instance), as committed at HEAD; the file is removed from the working tree in the 2026-11-26 consolidation"
+  "projects/blood-city/level/object_loop.py at commit d0339c4~1 (git show d0339c4~1:projects/blood-city/level/object_loop.py; deleted by d0339c4): docstring :9-12 (four iterations, same binary, same session), approach_poses :76-84 (a corridor with a doorway), campaign_instance :168, :223-225 (the altar frames a blank wall)"
  ],
  "use": "Render reference and candidate together; constrain both poses to the host sector; compare an instance, not a class.",
  "code": [
@@ -21,5 +21,10 @@
   "pose",
   "reference",
   "render"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "git show d0339c4~1:projects/blood-city/level/object_loop.py read: docstring :9-12 'Comparing against memory is how the sky bug survived four iterations; comparing against a frame rendered from the same binary at the same size in the same session is what caught it'; :76-84 approach_poses: without host 'the first reference render this loop produced was a corridor with a doorway in it'; :168 campaign_instance; :223-225 our altar frames were a blank wall. git cat-file at HEAD: path does not exist. tools/look.py exists.",
+  "of": "153b5758a46e"
+ }
 }

@@ -23,5 +23,10 @@
   "shooting gallery",
   "slide",
   "targets"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/consolidation_audit3_p2.py (PYTHONPATH=.) and read E1M4: sectors 27, 34-41 type 616 rx 108, retrigger_a/b 1, markers 231-248; sprites 40, 44-51 tiles 852/853 type 416 on them; sprite 41 (1074) tx 108; sprite 47 (853) tx 110 -> sector 64 (600, rx 110, tx 2, command 64); 9 bottles (759, type 416) in s298, sprites 569/571/575 tx 124 -> sprite 202 (type 22, data_2 3) tx 106 -> sector 174 (600, rx 106); sprite 999 (967) tx 200 -> sector 373 (600).",
+  "of": "8e3950bb166c"
+ }
 }

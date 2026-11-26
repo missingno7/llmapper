@@ -39,8 +39,8 @@ where it is looked for, and say how it is known:
 | a function a second level would write again | `bloodmap/`, with a test that needs no level |
 
 A thing that worked in one level is `practice`, not a rule of Blood. Cite what another
-agent can open (never `work/`), and open a finding's citation before you build on its
-number: the shelf's check holds form, not truth. A project keeps only its own.
+agent can open (never `work/`). A finding shown as `unchecked` has not been held against
+its citation: open it, then `tools.findings checked` or `amend`. A project keeps only its own.
 
 ## Rules of the codebase
 

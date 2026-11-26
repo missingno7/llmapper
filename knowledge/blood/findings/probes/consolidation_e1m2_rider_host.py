@@ -1,5 +1,9 @@
 """E1M2 s34, the host of things riding outside a moving body: its type, its sprites' bit 8192, which of its walls carry bit 16384."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map
 from bloodmap.model import record_fields as F, record_extra as X

@@ -2,10 +2,10 @@
  "id": "light-kind-fits-the-place-in-rows",
  "topic": "light",
  "standing": "ruling",
- "claim": "Light a place with the kind of fitting such a place has (panels, ceiling lamps, chain lamps, standing pairs), torches only where a torch makes sense, one kind to a room, laid in rows along its long axis rather than scattered over the ceiling.",
+ "claim": "The owner, 2026-11-20: light a place with the types of light source existing levels use, torches only where a torch makes sense, and not scattered over the ceiling. Tiles 501, 2290, 2288 and 796 may be textures (261 and 511 too, but they are not light sources); the rest of the light tiles are sprites only. Our reading, built into Gravesend: one kind of fitting to a room (panels, ceiling lamps, chain lamps, standing pairs), laid in rows along its long axis.",
  "evidence": [
-  "the owner, 2026-11-20: 'you should be using different types of light sources, check existing levels ... Torches should be used only where it makes sense'; then 'it looks like you are just scattering stuff on the ceiling'",
-  "the owner, 2026-11-20: tiles 501, 2290, 2288, 796 may be used as textures, the rest of the light tiles only as sprites"
+  "the owner, 2026-11-20: 'you should be using different types of light sources, check existing levels ... Torches should be used only where it makes sense'; then 'it looks like you are just scattering stuff on the ceiling' (bloodmap/light_kinds.py:3-5, projects/blood-city/level/lights.py:3-8, bloodmap/light_stage.py:8)",
+  "the owner, 2026-11-20: '501, 2290, 2288, 796 can be used as textures, 261 and 511 can also be textures, but they are not direct light sources. rest of them would be sprite only' (bloodmap/light_kinds.py:6-8)"
  ],
  "use": "Name each place's light form and spacing in a table; let bloodmap.light_stage.lay_lights lay the rows.",
  "code": [
@@ -23,5 +23,10 @@
   "lighting",
   "rows",
   "torch"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Found the words in bloodmap/light_kinds.py:3-8 and projects/blood-city/level/lights.py:3-8 and light_stage.py:6-8: the owner, 2026-11-20, 'you should be using different types of light sources, check existing levels ... Torches should be used only where it makes sense'; '501, 2290, 2288, 796 can be used as textures ... 261 and 511 can also be textures ...'; 'just scattering stuff on the ceiling'. 'One kind per room, in rows along the long axis' is lights.py's reading, not his words. lay_lights at light_stage.py:371.",
+  "of": "c086a9c7d763"
+ }
 }

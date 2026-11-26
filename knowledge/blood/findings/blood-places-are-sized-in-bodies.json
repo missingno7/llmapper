@@ -2,10 +2,11 @@
  "id": "blood-places-are-sized-in-bodies",
  "topic": "place",
  "standing": "tendency",
- "claim": "Blood's sizes, in its own units (a player 16,960 z tall and 384 wide; a plan unit of 1,024 is about 1.7 m): lift platforms a median 600 x 1,408 (upper quartile 1,536 x 2,048; 434 lifts); blast holes 1,280 wide opening 1.45 bodies (177); indoor rooms 1.93 bodies high (q3 3.38); halls of 40M area and more a median short side 11,776 and 3.62 bodies high.",
+ "claim": "Blood's sizes, in its own units (a player 16,960 z tall and 384 wide; a plan unit of 1,024 is about 1.7 m), as counted over the campaign on 2026-11-18 by a sweep whose script was not kept (the figures stand as constants in scale.py, not recounted): lift platforms a median 600 x 1,408 (upper quartile 1,536 x 2,048; 434 lifts); blast holes 1,280 wide opening 1.45 bodies (177); indoor rooms 1.93 bodies high (q3 3.38); halls of 40M area and more a median short side 11,776 and 3.62 bodies high. tools/place_character's kept norms put indoor halls' short side at p25 11,776 and p50 14,336.",
  "evidence": [
-  "campaign sweep by tools/place_character.py (projects/blood-city/level/scale.py)",
-  "the owner, 2026-11-18: the crypt 'feels tiny' and the pump station 'feels like a miniature'"
+  "projects/blood-city/level/scale.py:16-39 (the constants and their counts; the sweep that made them was not kept)",
+  "knowledge/blood/design/place-character-v1.json (tools/place_character.py --norms): indoor/hall short_side p25 11776, p50 14336",
+  "the owner, 2026-11-18: the crypt 'feels tiny' and the pump station 'feels like a miniature' (scale.py docstring)"
  ],
  "use": "State a size in bodies or metres first and lay out from these medians; never pick a width because it is one plan unit.",
  "code": [
@@ -24,5 +25,10 @@
   "room height",
   "scale",
   "size"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "scale.py:16-39: LIFT 600x1408 / 1536x2048 (434), HOLE 1280, 1.45 (177), ROOM_HEIGHT 1.93/3.38, HALL 11776, 3.62; the owner's words 2026-11-18 at :3-8. tools/place_character.py has no lift or hole sweep, and its kept place-character-v1.json gives indoor halls (its band, area_M 80 and over) short side p50 14336, p25 11776, and no heights. The script that counted these was not kept (scale.py added in 08ca862, 2026-11-19).",
+  "of": "1323fa2be419"
+ }
 }

@@ -14,7 +14,9 @@ the blown hole 0.87 m wide.
 
 The numbers below are measured over the campaign (`tools.place_character`
 holds the rooms; lifts and blast holes are from the same sweep, 434 and
-177 of them). Lay a thing out FROM these, then let the build's character
+177 of them, which is not kept: the 96 holes kept in
+knowledge/blood/findings/probes/sewer-study_breach_shapes.json give a
+median (1664, 1.57) and upper quartile (2208, 1.95)). Lay a thing out FROM these, then let the build's character
 sheet say whether the place came out cramped.
 
 The convention: state a size in bodies or metres first (`bodies`,

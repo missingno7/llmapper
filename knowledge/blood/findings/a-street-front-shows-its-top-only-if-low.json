@@ -2,9 +2,9 @@
  "id": "a-street-front-shows-its-top-only-if-low",
  "topic": "renderer",
  "standing": "practice",
- "claim": "At a level gaze the top of what fronts a street shows against the sky from the far kerb only if it is lower than about 0.6 of the street's width (plan units; times 16 for z): on a 7-unit street about 3.9 bodies. Eaves at 6.8 bodies showed no sky at all from the same pose. Taller things are skyline for the long view down the street, not for the facade view.",
+ "claim": "In the observer on Gravesend's avenue (2026-11-17), the top of what fronted the street showed against the sky from the far kerb at a level gaze only when it was lower than about 0.6 of the street's width (plan units; times 16 for z): on the 7-unit avenue about 3.9 bodies. Eaves at 6.8 bodies showed no sky at all from the same pose. Taller things are skyline for the long view down the street, not for the facade view.",
  "evidence": [
-  "projects/blood-city/experiments/church-skyline/result.json, view avenue_front: the prediction that sky share would rise 0.15 failed (0.0 at 6.8 bodies; 0.133 at 3.9)",
+  "projects/blood-city/experiments/church-skyline/result.json, view avenue_front: sky share 0.0 with eaves at 6.8 bodies (round 1), 0.1326 with the body at 3.9 (README.md:45-47, 52, 63-66)",
   "measured with the observer's vertical half-field of about 30 degrees at 640x480; NBlood's field of view may differ"
  ],
  "use": "Make the height that must read from a street the height of what fronts it (a church's low side range, not its nave).",
@@ -21,5 +21,10 @@
   "field of view",
   "roofline",
   "street width"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "church-skyline/result.json before->round1 avenue_front sky_share [0.0, 0.0] (eaves 6.8 bodies), before->after [0.0, 0.1326]; README.md:45-47 rounds (body 6.8, then 3.9), :63-66 'a wall shows its top at a level gaze only from about 1.7 times its height away' (1/1.7 = 0.59). 0.6 x 7 units x 16 = 67,200 z = 3.96 bodies.",
+  "of": "a3ef5d54aa00"
+ }
 }

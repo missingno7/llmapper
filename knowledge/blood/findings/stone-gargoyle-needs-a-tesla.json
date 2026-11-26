@@ -5,8 +5,8 @@
  "claim": "The stone gargoyle takes a twenty-fifth of the damage from bullets and blasts (10 of 256) and a quarter from the Tesla (64), so the campaign gives a Tesla Cannon in 17 of the 18 maps that place one; over the whole corpus, 139 of the 169 maps that place one.",
  "evidence": [
   "NBlood/source/blood/src/dude.cpp:249, dudeInfo for kDudeGargoyleStone (207): startDamage fall 0, burn 0, bullet 10, explode 10, choke 0, spirit 128, tesla 64",
-  "knowledge/blood/findings/probes/consolidation_audit3_census2.py and census3.py, 2026-11-26: sprites of type 207 (or statue 209) and item 45 (kItemWeaponTeslaCannon) in one map; campaign 17 of 18; corpus 139 of 169 with type 207",
-  "projects/blood-city/level/cabal_rite.py:496 quoted '21 of the 26 maps', a count no tool reproduces"
+  "knowledge/blood/findings/probes/consolidation_audit3_census2.py and census3.py, rerun 2026-11-26: sprites of type 207 (or statue 209) and item 45 (kItemWeaponTeslaCannon) in one map; campaign 17 of 18; over the 1,771 maps census3 reads, 139 of 169 with type 207",
+  "projects/blood-city/level/cabal_rite.py:496 quotes the campaign's 17 of 18"
  ],
  "use": "Put a weapon that hurts it in reach of any fight with it.",
  "code": [
@@ -23,5 +23,10 @@
   "stone",
   "tesla",
   "weapon"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "dude.cpp:226-253 is dudeInfo entry 7 (kDudeGargoyleStone 207); :249 startDamage 0,0,10,10,0,128,64 in actor.h's order fall, burn, bullet, explode, choke, spirit, tesla. Ran consolidation_audit3_census2.py: 18 campaign maps with 207/209, 17 with item 45 (kItemWeaponTeslaCannon, common_game.h:249); census3.py read 1,771 maps: 207 in 169, with Tesla 139. cabal_rite.py:496 now says '17 of the 18', not '21 of the 26': stale evidence line replaced.",
+  "of": "873af129c202"
+ }
 }

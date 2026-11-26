@@ -4,8 +4,8 @@
  "standing": "ruling",
  "claim": "A wall-aligned sprite with air behind it is not a fault: railings, gates, curtains, cobwebs, flags and bars stand free, and when seen from both sides must be two-sided (no cstat 64) and, for railings, blocking (cstat 1). Only hung things (posters, notices, boards) need a wall behind them.",
  "evidence": [
-  "The owner, 2026-11-19: 'not all wall sprites will be on the wall and it doesn't mean it is wrong'; 'that balcony at station is not 2 sided sprite, so it is invisible from the other side'.",
-  "Campaign cstats copied from a sprite may carry bit 64 (E1M2's gate 8413)."
+  "The owner, 2026-11-19: 'not all wall sprites will be on the wall and it doesn't mean it is wrong ... Two sided wall sprite can be used for balcony railing' (bloodmap/tile_looks.py:75-77); 'that balcony at station is not 2 sided sprite, so it is invisible from the other side' and 'that balcony railing is not solid' (projects/blood-city/level/l3_station.py:971-976); posters 'hanging mid air' (projects/blood-city/tests/test_library_city.py:413)",
+  "Campaign cstats copied from a sprite may carry bit 64: E1M2's gate sprites 473-477 (tile 1044) are cstat 8413."
  ],
  "use": "Never refuse a free wall sprite; lint hung paper for a wall behind it.",
  "code": [
@@ -24,5 +24,10 @@
   "railing",
   "two-sided",
   "wall sprite"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Words found: bloodmap/tile_looks.py:75-77 (2026-11-19: 'not all wall sprites will be on the wall and it doesn't mean it is wrong ... Two sided wall sprite can be used for balcony railing'); projects/blood-city/level/l3_station.py:971-976 ('that balcony at station is not 2 sided sprite, so it is invisible from the other side', 'that balcony railing is not solid'); test_library_city.py:413-414 posters 'hanging mid air'. E1M2 read: sprites 473-477 tile 1044 cstat 8413 (bit 64 set).",
+  "of": "7e34b73c6246"
+ }
 }

@@ -2,9 +2,10 @@
  "id": "slopes-are-common",
  "topic": "construction",
  "standing": "tendency",
- "claim": "A median 21.7% of a campaign map's surfaces are sloped, and a pitched ceiling rises a median 1.29 player heights; a level with none (Gravesend had 0 in 182 sectors) is visibly boxy.",
+ "claim": "Slopes are common in the campaign: a median 9.5% of a map's floor and ceiling surfaces are sloped (15% of its sectors have one), and a sloped surface rises a median 0.43 player heights across its sector (ceilings 0.42, floors 0.45). Gravesend had 0 sloped surfaces in 182 sectors when this was measured, and looked boxy.",
  "evidence": [
-  "measured for projects/blood-city/level/l3_church.py"
+  "knowledge/blood/findings/probes/audit2_slopes.py (2026-11-26) over the 43 campaign maps: 1,077 sloped floors, 1,538 sloped ceilings; rise q1 0.24, median 0.43, q3 0.72 bodies of 16,960",
+  "projects/blood-city/level/l3_church.py:866-869 (Gravesend's 0 in 182; the earlier 21.7% and 1.29, not reproduced: 1.29 is 0.43 read in the old 0x1600 unit)"
  ],
  "use": "Pitch the ceilings of halls and naves, and slope the walks of tunnels, with bloodmap.slope.",
  "code": [
@@ -21,5 +22,10 @@
   "pitched",
   "roof",
   "slope"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_slopes.py: 1,077 sloped floors and 1,538 ceilings (slope.py's own population), rise across the sector from its first wall: floors median 0.45, ceilings 0.42, both 0.43 bodies (q1 0.24, q3 0.72); median share of sloped surfaces per map 9.5% (sectors with any slope 15.3%). slope.py:74-76's 1.29 is 7,290 z, i.e. 0.43 x 16,960 read in the old 5,632 unit (0x1600). 21.7% not reproduced. l3_church.py:866-869 holds Gravesend's 0 in 182.",
+  "of": "d9695f341c66"
+ }
 }

@@ -202,7 +202,8 @@ NBlood common_game.h):
 - **Destruction set-pieces, 18**: kTrapExploder 459 ×13, kThingObjectExplode
   417 ×5 — Ghost Town's collapsing/exploding moments are its second-largest
   channel spend.
-- **Switches 13** (types 20–23) as transmitters into the above.
+- **Switches 13** (types 20–23) as receivers; as transmitters into the
+  above, switches send on 22 channels.
 - **Scripted sound and spawns, 15**: kGenSound ×6, kSoundPlayer ×4, Ambient
   SFX ×2, kMarkerDudeSpawn ×3 — fan-outs that stage an event (sound + spawn +
   motion on one channel).

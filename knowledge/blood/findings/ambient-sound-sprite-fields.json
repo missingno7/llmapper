@@ -4,8 +4,9 @@
  "standing": "engine",
  "claim": "An ambient sound in Blood is a type 710 sprite on statnum 12 (kStatAmbience): the sound id is XSPRITE data_3, data_1 and data_2 are the near and far radius, data_4 the volume, and it plays only while its state is 1. ambInit skips any emitter whose data_1 is not smaller than data_2, so radii given the wrong way round are silently no sound at all. The sprite's owner is the runtime channel, -1 in all 1,778 campaign emitters.",
  "evidence": [
-  "NBlood/source/blood/src/asound.cpp:55 and :120 walk headspritestat[kStatAmbience]; :124 `if (pXSprite->data1 >= pXSprite->data2) continue;`; :64 plays while state; :72 volume from data4",
-  "campaign census in knowledge/blood/studies/ambient-sounds/notes.md: invisible cstat 32896, shade -128; data_4 50 in 1,177 of 1,778; state 1 in 1,582 of 1,778"
+  "NBlood/source/blood/src/asound.cpp:55 (ambProcess) and :120 (ambInit) walk headspritestat[kStatAmbience]; :124 `if (pXSprite->data1 >= pXSprite->data2) continue;`; :64 plays while state; :73 volume from data4; :137 the sound is data3; common_game.h:165 kStatAmbience = 12",
+  "knowledge/blood/findings/probes/audit2_ambient_emitters.py (run with PYTHONPATH=.): 1,778 type 710 emitters in the 43 campaign maps, all statnum 12, owner -1, shade -128; cstat 32896 in 1,677; data_4 50 in 1,177; state 1 in 1,582",
+  "knowledge/blood/studies/ambient-sounds/notes.md:9 and :24: the census population and the fields asound.cpp reads"
  ],
  "use": "Write emitters through the level's ambience fields helper rather than by hand, with data_1 < data_2, state 1 and the sound id in data_3; check the id's meaning with `python -m tools.catalog show sound:<id>` before choosing it.",
  "code": [
@@ -23,5 +24,10 @@
   "radius",
   "sfx",
   "sound"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/blood/src/asound.cpp: :51-80 ambProcess walks headspritestat[kStatAmbience] (:55), skips owner<0, plays if pXSprite->state (:64), vs from data4*busy (:73), radii data1/data2 (:74); :115-137 ambInit walks the stat (:120), skips data1>=data2 (:124), sound id data3 (:137); common_game.h:165 kStatAmbience = 12. Ran probes/audit2_ambient_emitters.py: 1,778 type 710, all status 12, owner -1, shade -128, data_1<data_2; cstat 32896 in 1,677 (32900 in 87, 41088 in 14); state 1 in 1,582; data_4 50 in 1,177.",
+  "of": "0cf653aaed66"
+ }
 }

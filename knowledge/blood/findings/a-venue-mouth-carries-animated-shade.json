@@ -2,9 +2,9 @@
  "id": "a-venue-mouth-carries-animated-shade",
  "topic": "light",
  "standing": "tendency",
- "claim": "A venue's marquee is animated shade, not geometry: threshold sectors at the mouth carry an xsector shade wave. Every E1M4 attraction mouth has it (the ring's mouth 9 animated sectors, others 1-3) and E3M1's saloon and its neighbour carry one each. Signs cluster within 2,048 of the door on the public side (39 face sprites round 7 doorways in E3M1's complex).",
+ "claim": "A venue's marquee can be animated shade rather than geometry: threshold sectors at the mouth carrying an xsector shade wave. In tools/mine_venues.py's run, 9 of E1M4's 23 venues have such mouth sectors (the ring, comp 60, has 9; others 1 to 5) and 14 have none; in E3M1 3 of 9 (the saloon complex and its neighbour one each, comp 6 three); DWE3M1 none of 8. Signs cluster within 2,048 of the door on the public side (39 face sprites round 7 doorways in E3M1's complex).",
  "evidence": [
-  "tools/mine_venues.py over E1M4, E3M1 and DWE3M1: 9 animated mouth sectors on E1M4's ring, 1-3 on its other attractions, 1 each on E3M1's saloon and neighbour (venue-mining.json)"
+  "tools/mine_venues.py over E1M4, E3M1 and DWE3M1 (knowledge/blood/references/venue-mining.json, entrance.marquee_animated_sectors): E1M4 9 of 23 venues, E3M1 3 of 9, DWE3M1 0 of 8; E3M1 comp 2 has 7 doorways and 39 public-face sprites"
  ],
  "use": "Give each venue door one or more flickering threshold sectors and its signs on the street side; it costs no walls.",
  "code": [
@@ -22,5 +22,10 @@
   "shade wave",
   "sign",
   "venue"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/venue-mining.json (tools/mine_venues.py output) per venue, entrance.marquee_animated_sectors: E1M4 has 23 venues, 9 with animated mouth sectors (comp 60: 9; 16 and 29: 5; 14 and 46: 3; 10: 2; 13, 62, 64: 1) and 14 with none; E3M1 9 venues, comps 2 and 5 one each, comp 6 three, six none; DWE3M1 0 of 8. E3M1 comp 2: 7 doorways, 39 public_face sprites.",
+  "of": "76e824e5860d"
+ }
 }

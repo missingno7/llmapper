@@ -1,14 +1,34 @@
-"""E3M1 street walls at 16 units a pixel: is x panning phased to world position or to the wall's start (pan 0)?"""
-import sys, os, math; sys.path.insert(0, os.getcwd()); sys.path.insert(0,'work/consolidation/audit_mid')
-from m import *
+"""E3M1 street walls at 16 units a pixel: how many have x panning phased to world position, how many pan 0 from the wall's start, and how many both."""
+import math
+import sys
 from collections import Counter
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+from bloodmap.corpus import corpus_map_path
+from bloodmap.format import read_map
+from bloodmap.model import record_extra, record_fields
 from bloodmap.texture_align import wall_art_sizes
+
+
+def load(name):
+    m = read_map(corpus_map_path(name))
+    S = [dict(record_fields(s), **(record_extra(s) or {})) for s in m.sectors]
+    W = [dict(record_fields(w), **(record_extra(w) or {})) for w in m.walls]
+    return S, W
+
+
+def walls_of(S, si):
+    s = S[si]
+    return list(range(s["wall_ptr"], s["wall_ptr"] + s["wall_count"]))
+
+
 sizes = wall_art_sizes()
 name = sys.argv[1] if len(sys.argv) > 1 else 'E3M1'
-S,W,P = load(name)
+S,W = load(name)
 owner = {}
 for i,s in enumerate(S):
-    for w in walls_of(S,W,i): owner[w]=i
+    for w in walls_of(S,i): owner[w]=i
 c = Counter()
 for w,x in enumerate(W):
     s = S[owner[w]]

@@ -2,9 +2,10 @@
  "id": "a-valid-map-can-still-crash-the-engine",
  "topic": "validation",
  "standing": "practice",
- "claim": "Structural validity is not engine acceptance: a map passed every validator and gate and still took SIGSEGV in NBlood. Loading it in the engine is the check; a crash is bisected by stripping content categories, about six runs.",
+ "claim": "Structural validity is not engine acceptance: on 2026-08-26 our monastery map passed every validator and gate and still took SIGSEGV in NBlood. Loading it in the engine is the check; the crash was bisected by stripping content categories, in about six runs.",
  "evidence": [
-  "Monastery, 2026-08-26: validate_map 0 diagnostics, 13 gates passed, crash on load in a headless NBlood run."
+  "the monastery, 2026-08-26, kept only in the agent's working note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/nblood-map-smoke-test.md: validate_map 0 diagnostics, validate_authored_level 0 errors, 13 hard gates passed, SIGSEGV on load; about six bisection runs",
+  "bloodmap/oracle.py:131 (_FATAL_PATTERN matches 'Caught signal') and :195 (CREATE_NO_WINDOW): the hidden run"
  ],
  "use": "Smoke-load a built map in hidden NBlood (-j pointing at the game directory with BLOOD.RFF) and grep for 'Caught signal'.",
  "code": [
@@ -22,5 +23,10 @@
   "segfault",
   "smoke",
   "validate"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/nblood-map-smoke-test.md: on 2026-08-26 the monastery passed validate_map (0 diagnostics), validate_authored_level (0 errors) and all 13 hard gates incl. native_structure_valid and still took SIGSEGV; bisected by stripping content categories in about six runs; run with -j pointing at reference/blood (BLOOD.RFF), grep 'Caught signal'. bloodmap/oracle.py:131 _FATAL_PATTERN 'Caught signal|FATAL|ERROR', :195 CREATE_NO_WINDOW. grep: no repository file keeps the monastery run.",
+  "of": "01f6f1ae80b2"
+ }
 }

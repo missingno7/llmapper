@@ -2,11 +2,12 @@
  "id": "blood-lightning-is-a-generator-shade-waves-and-thunder",
  "topic": "light",
  "standing": "precedent",
- "claim": "Blood's lightning over an open court is three things on one channel: a kGenTrigger (type 700) that fires repeatedly, the exposed sectors as shade-wave receivers (wave 8, amplitude -17, frequency 5, floor, ceiling and walls, wait_time_a 20 with retrigger_a to return), and a kGenSound (type 708) playing sound 255, the distant thunder.",
+ "claim": "Blood's lightning over open ground in E1M5 is three things on one channel (108): a kGenTrigger (type 700, sprite 86) that fires repeatedly, 47 sectors as shade-wave receivers (wave 8, frequency 5, floor and walls and mostly ceiling, wait_time_a 20 with retrigger_a to return; amplitude -17 in 25 of them, from -8 to -25 in the rest), and a kGenSound (type 708, sprite 88) playing sound 255, the distant thunder.",
  "evidence": [
   "E1M5 sprite 86: type 700, busy_time 45, data_1 20, tx 108",
   "E1M5 sector 392: rx 108, shade_wave 8, amplitude -17, shade_frequency 5, wait_time_a 20, retrigger_a 1",
-  "E1M5 sprite 88: type 708, rx 108, data_2 255 (catalog show sound:255: THUNDER2, distant lightning strike)"
+  "E1M5 sprite 88: type 708, rx 108, data_2 255 (catalog show sound:255: THUNDER2, distant lightning strike)",
+  "E1M5: 47 sectors carry rx 108, all shade_wave 8, shade_frequency 5, wait_time_a 20, retrigger_a 1; amplitudes -17 (25), -25 (8), -10 (6), -12 (3), -21 (2), -24 (2), -8 (1); 29 of them parallax-ceilinged. NBlood/source/blood/src/triggers.cpp:2385-2386 (ActivateGenerator) plays data2 for kGenSound."
  ],
  "use": "Declare the storm as one wire on a wiring.Circuit (the E4L1 weather.py does); the study works-yard has the frames.",
  "code": [
@@ -23,5 +24,10 @@
   "storm",
   "thunder",
   "weather"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E1M5 sprite 86: type 700, tx 108, cmd 1, busy_time 45, data_1 20; s392: rx 108, shade_wave 8, amplitude -17, freq 5, wait_time_a 20, retrigger_a 1, floor/ceiling/walls; sprite 88: type 708, rx 108, data_2 255, wait 15; sound 255 THUNDER2. Counted rx 108 sectors in E1M5: 47, all wave 8, freq 5, wait 20, retrigger; amplitude -17 in 25, -25 in 8, -10 in 6, -12 in 3, -21, -24 in 2, -8 in 1; 29 of the 47 parallax. triggers.cpp:2385-2386 ActivateGenerator plays data2 for kGenSound.",
+  "of": "ae97b0346e78"
+ }
 }

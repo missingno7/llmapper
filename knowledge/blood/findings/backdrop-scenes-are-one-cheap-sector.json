@@ -2,10 +2,10 @@
  "id": "backdrop-scenes-are-one-cheap-sector",
  "topic": "construction",
  "standing": "precedent",
- "claim": "Blood shows a city it never lets you walk: E2M1's street view is one sky sector, 12 walls, 10,240 x 11,520 in plan, sunk 20,480 below the parapets it is seen over, its far walls one large tile as painted distance. The campaign has 88 such scene components of at least 20M area in 6 sectors or fewer (E4M1 a 9-wall horizon of 1,006M; E2M6 an 80-wall panorama).",
+ "claim": "Blood shows a city it never lets you walk: E2M1's street view is one sky sector, 12 walls, 10,240 x 11,520 in plan, sunk 20,480 below the parapets it is seen over; its far walls wear 2490 (light marble, a 128 tile). Over the 43 campaign maps mine_city_norms finds 88 scene components (sky networks unreachable from the start in its optimistic model) of at least 20M area in 6 sectors or fewer (E4M1 a 9-wall horizon of 1,006M; E2M6 an 80-wall panorama of 917M).",
  "evidence": [
-  "E2M1 s163 (ceiling_stat 5, 12 walls), catalog record",
-  "88 scene components across the campaign, tools/mine_city_norms.py scene detection (city-norms-v2.json)"
+  "E2M1 s163 (ceiling_stat 5, 12 walls, floor 18432 against s30 and s141 at -2048), catalog record",
+  "knowledge/blood/findings/probes/audit2_scene_components.py (tools/mine_city_norms.street_component over campaign_maps()), 2026-11-26: 437 scene components, 88 of >=20M in <=6 sectors"
  ],
  "use": "Buy city depth with an unreachable overlook sector framed by red walls, at 10-30 walls each.",
  "code": [
@@ -23,5 +23,10 @@
   "scene",
   "skyline",
   "vista"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E2M1 sector 163: ceiling_stat 5, 12 walls; read_map: plan 10240 x 11520, floor 18432 vs neighbours s30/s141 at -2048 (20480 below); walls 2490 x8, 177 x4; catalog show 2490: owner 'light marble', 128x128. Recounted with knowledge/blood/findings/probes/audit2_scene_components.py (mine_city_norms.street_component over 43 campaign maps): 437 scene components, 88 of >=20M in <=6 sectors; E4M1 s6 9 walls 1006M; E2M6 s208 80 walls 917M; E2M1 s163 60M.",
+  "of": "346e329aa473"
+ }
 }

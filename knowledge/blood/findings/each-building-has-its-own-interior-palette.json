@@ -2,10 +2,10 @@
  "id": "each-building-has-its-own-interior-palette",
  "topic": "texture",
  "standing": "tendency",
- "claim": "Blood tells buildings apart by their wall/floor/ceiling tiles: E3M1 puts 20 interior palettes in 337 sectors, TEDE1M2 35 in 613, E3M2 29 in 473. One palette for every interior reads as one brown box four times over.",
+ "claim": "Blood tells buildings apart by their wall/floor/ceiling tiles: a per-building census of 2026-08-28 found 20 interior palettes in E3M1's 337 roofed sectors, 35 in TEDE1M2's 613 and 29 in E3M2's 473 (counted then, the tool not kept). One palette for every interior reads as one brown box four times over.",
  "evidence": [
-  "per-building census of the town maps (projects/blood-city/level/materials.py, the interior roles)",
-  "e.g. E3M1's largest complex 108/304/454, its building 3 28/390/40, building 4 100/294/20; E3M2 building 4 119/300/422"
+  "per-building census of the town maps, 2026-08-28, quoted in projects/blood-city/level/materials.py:135-136; not recounted (no tool kept)",
+  "e.g. E3M1's largest complex 108/304/454 (19 roofed sectors carry wall 108 over floor 304 under ceiling 454), its building 3 28/390/40 (5), building 4 100/294/20 (33); E3M2's wall-119 rooms are 119/300/433 (5 sectors)"
  ],
  "use": "Take a campaign building's whole triple for each interior role rather than assembling one from parts.",
  "code": [
@@ -22,5 +22,10 @@
   "palette",
   "register",
   "tile set"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "materials.py:135-145 quotes the census (E3M1 20 palettes in 337, TEDE1M2 35 in 613, E3M2 29 in 473) but no tool that made it is kept; my count of roofed sectors gives E3M1 337, TEDE1M2 619, E3M2 488, and the palette count depends on an unkept per-building grouping: dated. Examples read: E3M1 roofed sectors with floor 304/ceiling 454 and wall 108: 19; 390/40 with wall 28: 5; 294/20 with wall 100: 33. E3M2 has no 119/300/422 sector: its wall-119 rooms are floor 300 under ceiling 433 (5 sectors); 300/422 is E2M4's (16).",
+  "of": "94c5d3dca731"
+ }
 }

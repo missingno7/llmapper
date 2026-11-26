@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "A map without the modern flag can have at most 128 sectors busy at once (kMaxBusyCountVanilla); a modern map gets kMaxXSectors >> 2 = 1,024. A vehicle built of many sectors spends one slot per member, and a sector past the limit simply does not start.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.h:48-49; triggers.cpp:182 refuses a new busy sector past the count.",
-  "NBlood/source/blood/src/db.h:27 kMaxXSectors 4096; triggers.cpp:182 consoleSysMsg 'Max busy reached' and return"
+  "NBlood/source/blood/src/triggers.h:48-49; triggers.cpp:182 (AddBusy, from :168) refuses a new busy sector past the count.",
+  "NBlood/source/blood/src/db.h:27 kMaxXSectors 4096; triggers.cpp:187 consoleSysMsg 'Max busy reached' and return"
  ],
  "use": "Count the members of everything that can move at the same moment before building a large rigid body.",
  "code": [
@@ -24,5 +24,10 @@
   "movers",
   "train",
   "vehicle"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.h:48 kMaxBusyCountVanilla 128, :49 kMaxBusyCount kMaxXSectors >> 2; db.h:27 kMaxXSectors 4096 (so 1024); triggers.cpp:168 AddBusy: :182 refuses when !gModernMap && gBusyCount >= 128 (or >= kMaxBusyCount), :187 consoleSysMsg 'Max busy reached' and return. bloodmap.mechanism.rigid_body at mechanism.py:1312.",
+  "of": "7e0fff171fa8"
+ }
 }

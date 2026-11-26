@@ -5,7 +5,8 @@
  "claim": "A slide or rotate sector (types 614-617) is drawn in the map at its ON pose: at load the engine translates it back by one whole travel to make the OFF pose its base, and then to its saved state. A marked slide drawn where it should rest shut starts one travel away from it.",
  "evidence": [
   "NBlood/source/blood/src/triggers.cpp:2222-2246 trInit: TranslateSector(..., -65536, ...), setBaseWallSect, then TranslateSector to pXSector->busy (65536 when state is ON, triggers.cpp:2210-2211)",
-  "E1M2 s261: type 614 kSectorSlideMarked, markers 359/360 -- the kitchen slab that gives"
+  "E1M2 s261: type 614 kSectorSlideMarked, markers 359/360 -- the kitchen slab that gives",
+  "triggers.cpp:2222-2246 is in trInit (from :2164)."
  ],
  "use": "Draw a slide or rotate sector where it stands when ON; give it state 1 in the file if it should start there.",
  "code": [
@@ -25,5 +26,10 @@
   "marked",
   "rotate",
   "slide"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:2164 trInit; :2210-2211 busy = 65536 when state; :2222-2233 for 614/616 (two markers) and 615/617 TranslateSector(i, 0, -65536, ...), :2243 setBaseWallSect/setBaseSpriteSect, :2245-2246 TranslateSector to pXSector->busy. catalog record E1M2 s261: type 614 kSectorSlideMarked, marker_0 359, marker_1 360, rx 160. secret_places.py:74 hands and phantom_terminus.py:89 _ghost_hatch exist.",
+  "of": "08580d0251f1"
+ }
 }

@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "A door sector opening straight onto a street draws the wall above the opening from the street-side record up to the street's ceiling or sky, in that record's tile: with no porch a door's tile rises six storeys, or a doorway carries the street's facade (windows and all) to the sky.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:4721 the upper step spans the two sectors' ceilings",
-  "projects/blood-city/level/l3_market.py and l3_foundry.py: the market hall's and the canteen's doors before porches; l3_station.py: the station's arches before the forecourt"
+  "NBlood/source/build/src/engine.cpp:4720-4725 (classicDrawBunches): the upper step is drawn with the near wall's own picnum from the far sector's ceiling to the near sector's",
+  "projects/blood-city/level/l3_market.py:957-963 and l3_foundry.py:296-298: the market hall's and the canteen's doors drew a six-storey slab of the door's tile before their porches"
  ],
  "use": "Put a thin porch or reveal at door height between the street and the leaf, so the facade owns the wall above; frame_z_doors does this for type-600 doors.",
  "code": [
@@ -23,5 +23,10 @@
   "lintel",
   "porch",
   "reveal"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood engine.cpp:4720-4725 in classicDrawBunches: the upper step is set up from wal->picnum of the wall being looked through, between nextsec->ceilingz and sec->ceilingz, so the street's record draws from the door's ceiling to the street's. l3_market.py:957-963 and l3_foundry.py:296-298 record the six-storey door slab before porches. l3_station.py's arches (:1090-1093) are sloped half-sectors, not a case of this: citation dropped. frame_z_doors at aperture.py:1118.",
+  "of": "b1f007299ab9"
+ }
 }

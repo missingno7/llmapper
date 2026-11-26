@@ -23,5 +23,10 @@
   "church",
   "flicker",
   "shade wave"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/audit2_flicker_and_channels.py: animated share order E3M3 175/309, E1M8 245/433, E4M1 120/215, E6M1 59/123, E1M5 191/429 (44.5%, fifth); E1M5 66 channels >= 100. room-grammar.json E1M5: 683 sprites, face 556, wall 116, floor 11. Loaded E1M5: type 0 and not cstat 32768: face 38, wall 22, floor 11. church-patterns.md:35-37 gives 191 and 556/116. The id's 'most' is not the claim's; the claim says fifth.",
+  "of": "cd5a84a7ec28"
+ }
 }

@@ -2,9 +2,9 @@
  "id": "sliding-leaves-fill-their-slot",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "Blood's sliding leaves fill their slot: the leaf's walls touch the frame's, two walls meeting, so no gap shows at rest or open.",
+ "claim": "E1M1's sliding door (s4) fills its slot: each leaf's faces lie on the same line as the pocket's walls, two walls touching, so no gap shows at rest or open.",
  "evidence": [
-  "E1M1 s4 (614 sliding door, markers 336/337)."
+  "E1M1 s4 (614 sliding door, markers 336/337): pocket walls w22, w26 and leaf faces w23, w25 on y 39,552 and 39,808; the other leaf's w30-w34 the same"
  ],
  "use": "Seat leaves after compile (the layout refuses a self-touching outline).",
  "code": [
@@ -21,5 +21,10 @@
   "leaf",
   "slide",
   "slot"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read E1M1 s4 (type 614, markers 336/337, rx 100): pocket wall w22 (-256,39552)-(640,39552) and leaf face w23 (640,39552)-(-384,39552) lie on one line, as do w26 and w25 on y 39808; the left leaf likewise (w34/w33, w30/w31). bloodmap/mechanism.py:852 seat_leaves docstring cites the same walls. One map: worded as E1M1's.",
+  "of": "67b3c8d60c71"
+ }
 }

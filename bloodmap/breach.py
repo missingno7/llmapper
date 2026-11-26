@@ -2,11 +2,11 @@
 
 The owner, 2026-11-22: "Blown out holes are usually using sloped floor and
 ceiling and usually aren't regular, our look too blocky." Measured over the
-campaign's 185 sectors a wall crack opens (`work/sewer-study/breach_shapes.py`):
+campaign's 185 sectors a wall crack opens (`knowledge/blood/findings/probes/sewer-study_breach_shapes.json`):
 
 * a hole is one to three sectors side by side across the wall (of 96
   holes, 46 are one piece, 23 two, 20 three, 5 four, and one each of five
-  and six);
+  and eight);
 * 137 of the 185 have an edge on the slant: the seams between the pieces
   and the jambs at the ends cut across the wall's thickness at an angle
   (E1M1 sector 25: a 1,792-wide hole whose west jamb runs 192 along over

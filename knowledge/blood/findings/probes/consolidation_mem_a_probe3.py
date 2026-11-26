@@ -1,4 +1,8 @@
 """Count campaign link markers by statnum and tile."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 from collections import Counter
 from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map

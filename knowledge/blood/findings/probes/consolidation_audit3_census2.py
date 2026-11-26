@@ -1,5 +1,9 @@
 """Third audit share: gargoyles and Teslas, barrel groups and cracks, type 456."""
-import sys, math; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys, math
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps
 from bloodmap.model import record_fields as F, record_extra as X

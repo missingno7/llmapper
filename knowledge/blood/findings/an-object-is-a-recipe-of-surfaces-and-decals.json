@@ -2,9 +2,10 @@
  "id": "an-object-is-a-recipe-of-surfaces-and-decals",
  "topic": "construction",
  "standing": "ruling",
- "claim": "A built object (locomotive, ship, machine, statue) is several surfaces by role plus decal sprites, taken from Blood's own instance of it, never one tile on boxes. E1M4's locomotive is four tiles (255 body, 470 underframe, 2453 riveted barrel, 438 tops) and three sprites (wheels, flame, smokes 754/672). A thing with two sides needs its decals on both.",
+ "claim": "The owner rejected a locomotive made of one texture and asked that textures and decal combinations be studied in other levels' locomotives. So a built object (locomotive, ship, machine, statue) is made as several surfaces by role plus decal sprites, taken from Blood's own instance of it. E1M4's engine wears 255 on its body, 2453 where it is round and 438 on a top, with sprites for the wheels (2322), a flame (3566) and smokes (754, 672); the riveted underframe plate 470 is TEDE1M7's, not E1M4's.",
  "evidence": [
-  "The owner, 2026-11-18: 'Locomotive is made from one texture ... You should study more textures, decals combinations and locomotives in other levels'."
+  "The owner, 2026-11-18: 'Locomotive is made from one texture and there is grave on it. You should study more textures, decals combinations and locomotives in other levels.' (knowledge/blood/studies/locomotive/notes.md:5)",
+  "knowledge/blood/studies/locomotive/round_E1M4/recipe.json (255, 2453, 438; 2322, 3566, 754, 672) and round_TEDE1M7/recipe.json (470)"
  ],
  "use": "Walk round Blood's instance with look_at and write its recipe before building.",
  "code": [
@@ -22,5 +23,10 @@
   "object",
   "recipe",
   "ship"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words read in knowledge/blood/studies/locomotive/notes.md:5 (2026-11-18): 'Locomotive is made from one texture and there is grave on it. You should study more textures, decals combinations and locomotives in other levels.' Opened round_E1M4/recipe.json: walls 255 x10, 2453 x8, floor 438 x1, sprites 2322 wheels, 3566 flame, 754 and 672 smokes; no 470. Map count: E1M4 has 470 on no wall or flat, only sprites 172-174 in sector 156 far from the engine; 470 is in round_TEDE1M7/recipe.json. Claim corrected; the 'two sides' sentence is not in the words: dropped.",
+  "of": "faa284129f1d"
+ }
 }

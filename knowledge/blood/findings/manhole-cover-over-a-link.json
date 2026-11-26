@@ -2,9 +2,10 @@
  "id": "manhole-cover-over-a-link",
  "topic": "construction",
  "standing": "precedent",
- "claim": "Blood's manhole is a flat breakable sprite (type 417, tile 191, a metal hatch) lying 3,072 above a see-through link floor (floor tile 504), with a fall below: a flat sprite holds a player up only where it lies above its sector's floor.",
+ "claim": "E4M3's manhole (sprite 130) is a flat breakable sprite (type 417, tile 191, a metal hatch) lying 3,072 above a see-through link floor (sector 224, floor tile 504, an upper stack marker in it), with a fall below: a flat sprite holds a player up only where it lies above its sector's floor.",
  "evidence": [
-  "E4M3 sprite 130: type 417, tile 191, cstat 417 (flat, blocking), statnum 4, repeat 48, z -35,840 over its sector 224's floor -32,768 of tile 504 (3,072), data_1 5 (python -m tools.catalog record E4M3 sprite 130 / sector 224); community maps SLUMS2C sprite 62, BCE3M5 sprite 141 in a street",
+  "E4M3 sprite 130: type 417, tile 191, cstat 417 (flat, blocking), statnum 4, repeat 48, z -35,840 over its sector 224's floor -32,768 of tile 504 (3,072), data_1 5; sector 224 holds sprite 128, type 11 (python -m tools.catalog record E4M3 sprite 130 / sector 224)",
+  "community maps in a street: SLUMS2C sprite 62 (type 417, tile 218, 32,768 above its floor), BCE3M5 sprite 141 (type 416, tile 219, 14,336 above)",
   "E2M2 sprite 38: type 417, tile 483 (the grate type 411 wears on walls), cstat 417, flat",
   "E1M4 sprites 966-983 (type 417, tile 250, cstat 161) also lie 3,072 above their floor (z 54,272 over 57,344)"
  ],
@@ -24,5 +25,10 @@
   "flat sprite",
   "manhole",
   "sewer entrance"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E4M3 sprite 130: type 417, picnum 191, cstat 417, status 4, repeat 48, z -35,840, data_1 5, in sector 224 (floor -32,768, floor_picnum 504) whose sprites include 128, type 11 (an upper stack marker: the see-through link). E2M2 sprite 38: type 417, picnum 483, cstat 417. E1M4 966-983: all type 417, picnum 250, cstat 161, z 54,272 over floor 57,344. SLUMS2C sprite 62: type 417 tile 218 in a sky sector, 32,768 above its floor; BCE3M5 sprite 141: type 416 tile 219, 14,336 above. One map's manhole worded as Blood's.",
+  "of": "f5ed1a10331e"
+ }
 }

@@ -2,10 +2,10 @@
  "id": "e3m3-sewer-corridor-section",
  "topic": "construction",
  "standing": "precedent",
- "claim": "E3M3's sewer corridor is 2,048 wide: a 512 walk each side of a 1,024 channel that lies 2,048 lower; the walks' ceilings slope 8,192 down to the outer wall (heinum 4,096) and the channel's is flat, 28,672 over the walks; the water sectors carry shade wave 7, amplitude -4, frequency 4. Corners are pools at the water's level. The module repeats about 30 times as a ~2,048x512 segment class.",
+ "claim": "E3M3's sewer corridor (s136, s120, s117) is 2,048 wide: a 512 walk each side of a 1,024 channel whose water lies 2,048 lower; the walks' ceilings slope 8,192 down to the outer wall (heinum 4,096) and the channel's is flat, 28,672 over the walks; walks and water both carry shade wave 7, amplitude -4, frequency 4, and the water pans at 8. The same section recurs at s135, s129, s144.",
  "evidence": [
-  "E3M3 s136: ceiling heinum 4096, floor 568, shade_wave 7, amplitude -4, shade_frequency 4 (catalog record)",
-  "E3M3 s120 and s117 complete the section (knowledge/blood/findings/probes/sewer-study_e3m3_section.py)",
+  "E3M3 s136: ceiling heinum 4096, floor 568, shade_wave 7, amplitude -4, shade_frequency 4 (catalog record); s120 the same wave, floor 1120, pan_velocity 8",
+  "E3M3 s120 and s117 complete the section, and s135, s129, s144 repeat it (knowledge/blood/findings/probes/sewer-study_e3m3_section.py)",
   "2026-11-26: E3M3 s136 (walk) floor 90,112 and s120 (water, tile 1120) floor 92,160: the walk stands 2,048 over the water, half of a 4,096 step; l3_sewer.py's docstring 'one max step (4096) above the water' does not describe E3M3"
  ],
  "use": "Copy the section for any brick sewer; where a side channel enters, drop that walk to the water's level as a ford.",
@@ -25,5 +25,10 @@
   "sewer",
   "vault",
   "walk height"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran sewer-study_e3m3_section.py: across channel 120, s136 walk 512 floor 90,112 ceil 61,440 cheinum 4,096; s120 water 1,024 floor 92,160 flat ceiling 61,440 (28,672 over the walks), pan 8; s117 walk 512 as s136; same at s135/s129/s144. catalog records: shade_wave 7, amplitude -4, frequency 4 on s136, s117 AND s120. room-grammar.json's E3M3 class of 30 (area 1,048,576, aspect 4) samples s42, s46, s50: a ledge, a step, a water sector, not this module. 'Corners are pools' was not checked: removed.",
+  "of": "6bfd15470d51"
+ }
 }

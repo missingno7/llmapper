@@ -23,5 +23,10 @@
   "sprites",
   "street light"
  ],
- "instead": "E3M1's 45 'light props' are its invisible sound generators (tiles 2519/2521, cstat 32896, types 708/710), not lamps; the town has no visible outdoor lamp, only one bonfire (sprite 329). There is no campaign lamp spacing to copy from E3M1 (see outdoor-lamps-stand-in-fairs-and-snow-not-in-e3m1). The plaza figure of 4.0-4.2 sprites per 10M of open area is unchecked."
+ "instead": "E3M1's 45 'light props' are its invisible sound generators (tiles 2519/2521, cstat 32896, types 708/710), not lamps; the town has no visible outdoor lamp, only one bonfire (sprite 329). There is no campaign lamp spacing to copy from E3M1 (see outdoor-lamps-stand-in-fairs-and-snow-not-in-e3m1). The plaza figure of 4.0-4.2 sprites per 10M of open area is unchecked.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/street-furniture.md:40-45 (the 45 'light props' are invisible sound sprites; only bonfire 329). Loaded E3M1: in sky sectors 28 type 710 tile 2521 statnum 12 and 17 type 708 tile 2519 statnum 0, all cstat 32896; consolidation_probe_outdoor_lamps.py gives E3M1 one visible light sprite, 3566 (sprite 329). The finding outdoor-lamps-stand-in-fairs-and-snow-not-in-e3m1 exists.",
+  "of": "0108ed20ccec"
+ }
 }

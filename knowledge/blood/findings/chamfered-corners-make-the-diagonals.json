@@ -2,9 +2,10 @@
  "id": "chamfered-corners-make-the-diagonals",
  "topic": "construction",
  "standing": "tendency",
- "claim": "A Build city is far from rectangular: 35% of E3M1's walls are diagonal (DukCity 23-34%, TEDE1M2 32%) and 30-59% of their sectors are plain axis-aligned rectangles. A level of rectangles (Gravesend: 7% and 72%) reads as boxes; a chamfered outside corner costs one wall.",
+ "claim": "A Build city is far from rectangular: 34% of E3M1's walls are diagonal (DukCity1-5 18-31%, TEDE1M2 31%) and 35-59% of their sectors are plain axis-aligned four-walled rectangles. Gravesend measured 7% and 72% before its corners were chamfered (build_skeleton.py), and read as boxes; its built map is now 32.5% and 37%. A chamfered outside corner costs one wall.",
  "evidence": [
-  "diagonal wall share 35% in E3M1, 23-34% in DukCity, 32% in TEDE1M2, 7% in Gravesend (measured for projects/blood-city/level/build_skeleton.py chamfer_corners)"
+  "knowledge/blood/findings/probes/audit2_diagonal_walls.py (2026-11-26): E3M1 34.3/34.8, TEDE1M2 30.8/40.6, DukCity1-5 17.9-31.4 diagonal and 40.0-59.1 rectangles, projects/blood-city/level/blood-city-current.MAP 32.5/37.1",
+  "projects/blood-city/level/build_skeleton.py:141-147 (the earlier 7% / 72%, chamfer_corners)"
  ],
  "use": "Cut back every convex corner of a mass that sticks into the street.",
  "code": [
@@ -21,5 +22,10 @@
   "corner",
   "diagonal",
   "rectangular"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_diagonal_walls.py: diagonal walls / four-walled rectangles: E3M1 34.3% / 34.8%, TEDE1M2 30.8% / 40.6%, DukCity1-5 31.4/48.9, 28.3/45.6, 20.5/59.1, 19.1/53.3, 17.9/40.0; Gravesend's built map today 32.5% / 37.1%. build_skeleton.py:141-147 holds the earlier 7%/72% and E3M1 35%, DukCity 23-34%, TEDE1M2 32%, references 30-59%; CHAMFER 512, chamfer_corners :150 costs one wall a corner.",
+  "of": "bde11e7cdc30"
+ }
 }

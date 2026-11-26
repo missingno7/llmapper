@@ -4,12 +4,12 @@
  "standing": "engine",
  "claim": "Build keeps one open span per screen column. When a building's walls are low enough to see over, the columns above them stay open for what is behind, and anything the renderer reaches through a door in that wall paints into them too: an open door into a roofed room smeared 18,000 to 23,000 pixels of its ceiling across the sky over the facade.",
  "evidence": [
-  "seen in the XMapEdit observer run of experiments/church-roofs (README there); the owner saw the matching lid of a low sky walking it in NBlood, 2026-11-17",
+  "seen in the XMapEdit observer run of projects/blood-city/experiments/church-roofs (README.md:55-65); the owner saw the matching lid of a low sky walking it in NBlood, 2026-11-17",
   "projects/blood-city/level/l3_church.py: the church is entered only through its tower, whose walls close every column they cover",
-  "measured in the observer (JFBuild's classic renderer, not NBlood's default renderer): porch under the roof with the door shut 395 to 3,970 px across nine frames, door open 6,960 to 23,262; entrance through the tower with its doors shut 0 (experiments/church-roofs measurements.txt; tests/test_skyline.py LeakTests)",
+  "measured in the observer (JFBuild's classic renderer, not NBlood's default renderer), projects/blood-city/experiments/church-roofs/measurements.txt:102 and README.md:61-65: porch under the roof with the door shut 395 to 3,970 px across nine frames; porch door open 18,074 to 23,262 in the three frames tabled; entrance through the tower with its doors shut 0 in the standard cameras (1,515 in tower_door_close), both tower doors open 808 to 14,475; tests/test_skyline.py LeakTests",
   "self-closing doors (doors.z_motion_door(close_after=30)) only mitigate: with both held open the leak is there"
  ],
- "use": "Enter a building that is seen over through a part nothing is seen over (a tower, a porch with its own tall sky), or through two doors that are never open together; bloodmap.skyline checks it on the source. skyline.leaks_under_roofs(layout) finds the violating doors on the source.",
+ "use": "Enter a building that is seen over through a part nothing is seen over (a tower, a porch with its own tall sky), or through two doors that are never open together; skyline.leaks_under_roofs(layout) finds the violating doors on the source.",
  "code": [
   "bloodmap.skyline",
   "bloodmap.skyline.leaks_under_roofs",
@@ -31,5 +31,10 @@
   "sky",
   "smear",
   "umost"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "church-roofs/README.md:55-65 read: 'one open span per screen column'; door open: avenue_front_up 23,262, avenue_south_up 18,939, tower_foot 18,074. measurements.txt:102: round2 (porch, door shut) nine frames 395 to 3,970; after (tower, doors shut) only tower_door_close 1,515, README table: standard cameras 0; both doors open 808 to 14,475 in seven frames. No 6,960 anywhere. tests/test_skyline.py:237 LeakTests; skyline.py:329 leaks_under_roofs; doors.py:92 z_motion_door.",
+  "of": "27f16fb2518d"
+ }
 }

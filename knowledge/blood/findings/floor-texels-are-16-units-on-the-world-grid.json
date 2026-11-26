@@ -4,10 +4,11 @@
  "standing": "engine",
  "claim": "A floor or ceiling texel is 16 map units (8 with floorstat/ceilingstat bit 3, 'double smooshiness'), and unless bit 6 (relative alignment) is set the pattern is laid on the map's own grid. Moving a sector by anything but a whole number of its tile's period (pixels x 16) shifts its floor pattern; a 64-pixel crate tile covers 1,024 units, a 128-pixel one 2,048.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:2797-2799 globalxshift from the tile's size, one more with globalorientation&8",
-  "NBlood/source/build/include/buildtypes.h:24 bit 3 double smooshiness; :27 bit 6 align texture to first wall"
+  "NBlood/source/build/src/engine.cpp:2797-2799 (calc_globalshifts) globalxshift from the tile's size, one more with globalorientation&8",
+  "NBlood/source/build/include/buildtypes.h:24 bit 3 double smooshiness; :27 bit 6 align texture to first wall",
+  "projects/blood-city/level/release.py:34-36 SHIFT (-128, -16) plan units, PERIOD 16,384"
  ],
- "use": "Size floor-textured modules from the art (pixels x 16); translate geometry only by whole periods (Gravesend's release shift is 16,384: four of its longest tile's period, and on the 1,024 plan grid).",
+ "use": "Size floor-textured modules from the art (pixels x 16); translate geometry only by whole periods (Gravesend's release shift is (-131,072, -16,384): each a whole number of 16,384, four of its longest tile's period, and on the 1,024 plan grid).",
  "code": [
   "projects/blood-city/level/release.py",
   "projects/blood-city/level/templates.py:TextureModule"
@@ -23,5 +24,10 @@
   "relative alignment",
   "smoosh",
   "texel"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine.cpp:2795-2799 read (calc_globalshifts): globalxshift = 8 - log2 width, globalyshift likewise, one more each when globalorientation&8. buildtypes.h:20-27 ceilingstat/floorstat comment: bit 3 'double smooshiness' at :24, bit 6 'Align texture to first wall' at :27. release.py:34-36: SHIFT = (-128*1024, -16*1024) = (-131,072, -16,384), PERIOD 16,384 - the shift is not '16,384' alone; use corrected.",
+  "of": "0ac4789dad8b"
+ }
 }

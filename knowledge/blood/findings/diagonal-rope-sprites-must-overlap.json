@@ -22,5 +22,10 @@
   "rigging",
   "rope",
   "stay"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Found the words at projects/blood-city/level/harbour_ship.py:193-194 in stay() (:190): the owner, 2026-11-25, 'diagonal ropes would need to have little bit of overlapping because how the texture is done, right now it has visible gaps even the sprites itself are aligned correctly'; :194-196 our measure (33 of 38 columns, 50 of 52 rows). The finding rope-tile-513-ends-before-its-tile-edge it points to exists.",
+  "of": "654cdd2c8843"
+ }
 }

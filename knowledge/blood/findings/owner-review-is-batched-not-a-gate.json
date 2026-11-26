@@ -2,9 +2,10 @@
  "id": "owner-review-is-batched-not-a-gate",
  "topic": "workflow",
  "standing": "ruling",
- "claim": "The owner reviews in large batches; agent loops must not stop for approval. Gates are automated acceptance checks, human judgments go to a review queue, and every iteration keeps a playable build.",
+ "claim": "The owner gives feedback in large batches and wants creation automated as far as it will go: agent loops must not stop for his approval. Our way of doing that: gates are automated acceptance checks, human judgments go to a review queue, and every iteration keeps a playable build.",
  "evidence": [
-  "The owner, 2026-08-27, designing the Blood City process: feedback comes in bigger chunks and creation should be automated as far as it will go. Said to the agent in conversation on 2026-08-27; not quoted in the repository (docs/history/llmapper_level_understanding_handbook/HANDOFF-ARCHITECT-2026-09-01.md restates it: 'Owner review is batched, never blocking')."
+  "The owner, 2026-08-27, designing the Blood City process, recorded in the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/owner-review-is-batched-not-blocking.md: he can give suggestions in bigger chunks, but the creation process should be automated as far as it will go; not quoted verbatim in the repository",
+  "docs/history/llmapper_level_understanding_handbook/HANDOFF-ARCHITECT-2026-09-01.md:223 restates it: 'Owner review is batched, never blocking'"
  ],
  "use": "Proceed when the automated checks pass; flag what only a player can judge.",
  "code": [],
@@ -19,5 +20,10 @@
   "owner",
   "queue",
   "review"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/owner-review-is-batched-not-blocking.md (2026-08-27): owner 'can give suggestions in bigger chunks, but the creation process should be automated as far as it will go. Do not design hard stop and wait for owner approval gates'; the acceptance criteria, review queue and playable build are under 'How to apply'. docs/history/llmapper_level_understanding_handbook/HANDOFF-ARCHITECT-2026-09-01.md:223 'Owner review is batched, never blocking'.",
+  "of": "f8361fb9edf2"
+ }
 }

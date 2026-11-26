@@ -21,5 +21,10 @@
   "suite",
   "tail",
   "test"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened tools/suite.py: :35 LOG = work/suite.log, :157 parses '^Ran (\\d+) test' from each module's output and :165 prints its own Ran line; the pipe's exit status is the last command's (tail) by POSIX shell rule without pipefail. The 2026-09-01 event is the dated run the evidence names (also in the agent's working note suite-exit-code-through-a-pipe, unittest | tail -15).",
+  "of": "71d752164e42"
+ }
 }

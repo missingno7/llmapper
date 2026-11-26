@@ -2,7 +2,7 @@
  "id": "sea-recipe",
  "topic": "place",
  "standing": "precedent",
- "claim": "Blood's open sea is tile 2490 or 2448 in palette 10 with a panning floor (E2M1 s125 2448 at shade 34, E2M9 s49 2490 at shade 16). DWE3M4, a community map, shows the whole recipe: shade 38 to 44 darkening outward in bands of 3, depth 0, lying 1.75 bodies below its quay, its far bands blocked so it is seen and never reached, ending at a zero-height horizon sector parallaxed on floor and ceiling.",
+ "claim": "In the campaign the open sea is tile 2490 or 2448 in palette 10 with a panning floor in the two places cited (E2M1 s125 2448 at shade 34, bobbing; E2M9 s49 2490 at shade 16). DWE3M4, a community map, shows the whole recipe: shade 38 to 44 darkening outward in bands of 3, depth 0, lying 1.75 bodies below its quay, its far bands blocked so it is seen and never reached, ending at a zero-height horizon sector parallaxed on floor and ceiling.",
  "evidence": [
   "DWE3M4 s636, s528, s527 (boardwalk -8,192 over sea 21,504); E2M1 s125; E2M9 s49",
   "DWE3M4 s648 the horizon ring; every wall between s527 and s856 carries the blocking bit",
@@ -28,5 +28,10 @@
   "sea",
   "shore",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read sectors: E2M1 s125 type 614, floor 2448 pal 10 shade 34, pan_always/pan_floor, bob_floor/bob_always; E2M9 s49 floor 2490 pal 10 shade 16, pan_always; DWE3M4 s636/s528/s527 floor 21,504, 2490 pal 10, shades 38/41/44, depth 0; s856 shade 44; s648 floor = ceiling 21,504, floor_stat 1 and ceiling_stat 1 (parallax, zero height); the 11 walls from s527 to s856 all cstat 1. 21,504 + 8,192 = 29,696 = 1.75 bodies. Two campaign seas worded as 'Blood's open sea'.",
+  "of": "e6bc67a4e319"
+ }
 }

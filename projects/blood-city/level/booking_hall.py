@@ -24,8 +24,8 @@ way out; red brick and grey. Ours takes those and its own plan:
 The waiting room off the waiting hall is laid here too, for the sake of its longcase
 clock and its hearth. The owner, 2026-11-25: "grandfather clock and telephone booth
 shouldn't be just sprite but a made out of sector". Blood's are blocks that stand against
-a wall and wear the tile: the clock 512 wide and 24,576 high (E3M2 s193, E2M4 s476), a
-telephone 1,024 by 32,768 (E1M2 s181).
+a wall and wear the tile: the clocks 448 by 256 and 24,576 high (E3M2 s193), 576 by 192
+and 22,528 high (E2M4 s476), a telephone 3,072 by 512 and 31,744 high (E1M2 s181).
 
 Laid by `bloodmap.arrangement`; the arches' gates and the way to the platform are rooms
 of the tree (`l3_station`). Design: `references/station-design.md`.

@@ -2,9 +2,10 @@
  "id": "marked-movers-drag-only-flagged-walls",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "Sector types 616/617 drag every wall of the sector; the Marked types 614/615 drag only walls flagged cstat 16384 (with the motion) or 32768 (against it). Sprites in the sector move only by their own cstat 8192 (with) or 16384 (against), whatever the walls do, and markers never move. A gate can therefore be sprites alone: 35 campaign mechanisms move only sprites.",
+ "claim": "Sector types 616/617 drag every wall of the sector; the Marked types 614/615 drag only walls flagged cstat 16384 (with the motion) or 32768 (against it). Sprites in the sector ride by their own cstat 8192 (with) or 16384 (against), whatever the walls do; an unflagged sprite standing on the floor rides too when the XSECTOR's drag bit is set; markers never move (in modern maps, unless flagged 1). A gate can therefore be sprites alone: 30 marked sectors in the campaign move only sprites.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:879-925 (bAllWalls branch, cstat&16384, cstat&32768) and :930-960 (sprites by cstat 8192/16384, markers skipped); bAllWalls is type==kSectorSlide/kSectorRotate at :2231-2232.",
+  "NBlood/source/blood/src/triggers.cpp:879-925 (TranslateSector: bAllWalls branch, cstat&16384, cstat&32768) and :926-977 (sprites by cstat 8192/16384, else by pXSector->Drag if resting on the floor; markers skipped); bAllWalls is type==kSectorSlide/kSectorRotate at :2231-2232 (trInit).",
+  "knowledge/blood/findings/probes/audit2_sprite_only_movers.py: of 349 sectors of type 614/615 in the 43 campaign maps, 36 flag no wall and 30 of those flag sprites to ride (2026-11-26)",
   "E1M1 s65 (614): 49 walls, none flagged; sprites 37/38 are the whole gate."
  ],
  "use": "Choose 616/617 when the whole sector outline moves; 614/615 with flagged walls when only a leaf inside it does; flag every sprite that should ride.",
@@ -28,5 +29,10 @@
   "cstat",
   "drag",
   "sprite"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp TranslateSector (:856): :879-888 bAllWalls drags all; :890-925 only cstat 16384/32768 walls; :926-977 sprites by cstat 8192/16384, ELSE if pXSector->Drag a floor-resting sprite rides (:963-976); markers skipped unless modern flags&1. trInit :2231-2232 bAllWalls for 616/617. probes/audit2_sprite_only_movers.py: 349 marked sectors, 36 flag no wall, 30 move flagged sprites (not 35). E1M1 s65: 614, 49 walls unflagged, sprites 37 (cstat 16797), 38 (8605).",
+  "of": "88721bd4a2ca"
+ }
 }

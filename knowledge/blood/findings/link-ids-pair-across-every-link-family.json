@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "warpInit pairs an upper link marker with a lower one on XSPRITE data_1 alone, across every family (water, stack, plain link): a stack and a pool that share an id pair with each other, and with more than one match the last one wins. A marker with no XSprite is not collected.",
  "evidence": [
-  "NBlood/source/blood/src/warp.cpp:155-176 (nLink = data1; any lower link with the same data1)",
-  "bloodmap/roomoverroom.py: all 502 campaign link markers carry an XSprite"
+  "NBlood/source/blood/src/warp.cpp:153-180 (warpInit: nLink = data1; any lower link with the same data1, last match wins); :55-57 only sprites with an XSprite are collected",
+  "bloodmap/roomoverroom.py:32 and :48: all 502 campaign link markers carry an XSprite (recounted 2026-11-26 over campaign_maps())"
  ],
  "use": "Give every link pair a map-unique id; roomoverroom numbers them.",
  "code": [
@@ -21,5 +21,10 @@
   "link marker",
   "room over room",
   "ror"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood warp.cpp warpInit (from :43): markers are collected only inside 'if (nXSprite > 0)' (:55-57); types 7/6, 9/10, 11/12, 13/14 fill gUpperLink/gLowerLink; :153-180 pairs each upper with every lower whose xsprite data1 equals its own, regardless of family, overwriting owner so the last match wins. Counted over campaign_maps(): 502 link markers (6/7: 22+22, 9/10: 191+191, 11/12: 38+38), all 502 with extra > 0.",
+  "of": "80d9e5fadd9c"
+ }
 }

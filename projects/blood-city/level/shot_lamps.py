@@ -9,7 +9,7 @@ floor it lights (NBlood has 4,096; the city used 571), and one receiver to a sec
 piece that two lamps light can answer only one of them, so lamps go where each has its
 own pool.
 
-Which: over 102 of Blood's maps 62 of 288 fluorescent panels (2290) break, 8 of 9 of the
+Which: over 98 of Blood's maps 62 of 288 fluorescent panels (2290) break, 8 of 9 of the
 long ones, 6 of 14 brass lamps, 5 of 148 brass lanterns (693; all five take their light
 with them: E2M1 sprites 10, 43 and 53), a round glass lamp (676, E1M3 sprite 18). A lamp
 post, a chain lamp, a torch, a candle: none, or two with nothing behind them. So the

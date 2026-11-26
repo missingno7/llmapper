@@ -750,7 +750,7 @@ DOOR_WIDTH = 1024
 DOOR_THICKNESS = 256
 #: What one opens to: the LINTEL, never the roof. E3M1's four that move travel
 #: 16384, 17408, 18432 and 22528; the campaign's quartiles are 16384 and
-#: 30720, and `l3_church` measured a median open height of 31744 over 1269 of
+#: 30720, and `l3_church` measured a median open height of 31744 over 1231 of
 #: them. 30720 is the campaign's own q3 and 1.81 player heights.
 DOOR_TRAVEL = 30720
 #: How deep the reveal is: whatever is left of the wall once the door has its

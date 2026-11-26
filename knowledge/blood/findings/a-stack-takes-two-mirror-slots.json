@@ -24,5 +24,10 @@
   "mirror",
   "room over room",
   "stack"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "mirrors.h:27 kMaxMirrors 128; mirrors.cpp InitMirrors (from :426): :480-484 'if (numsectors + 1 >= kMaxSectors || numwalls + 4 >= kMaxWalls)' with message args 1 and 4, mirrorcnt = 0 cancels the wall mirrors; :490-533 the stack loop runs after the wall loop while mirrorcnt < kMaxMirrors - 1 (127) and adds an OBJ_FLOOR entry and an OBJ_CEILING entry, mirrorcnt++ twice.",
+  "of": "9fcec66f7e87"
+ }
 }

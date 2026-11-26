@@ -2,7 +2,7 @@
  "id": "duke-city-sewers-are-displaced-boxes",
  "topic": "place",
  "standing": "tendency",
- "claim": "A DukCity sewer never lies under its street (under-street share 0.00 in all four maps): it is built elsewhere in map space and reached by 0-2 point entries per network (elevator in 5 of 7, one floor drop), 2.6-5.2 bodies deep; its larger networks loop on their own (cycle rank 7-52), two small ones not at all. It is a destination with one or two doors, used as a required passage, a secret or a dead end, never as a shortcut.",
+ "claim": "A DukCity sewer does not lie under its street (under-street share 0.00 in all seven networks of the four maps): it is built elsewhere in map space and reached by 0-2 point entries per network (5 of the 6 entries an elevator, one a floor drop), its median depth 1.05-5.2 bodies (2.6-5.2 for all but DukCity1's pocket); five of its networks loop on their own (cycle rank 7-52), two small ones not at all. It is a destination with one or two doors, used as a required passage, a secret or a dead end, not as a shortcut.",
  "evidence": [
   "tools/mine_sewers.py over DukCity1-4, 7 networks (knowledge/blood/references/sewer-mining.json; table in sewer-patterns.md:27-35)"
  ],
@@ -21,5 +21,10 @@
   "manhole",
   "sewer",
   "underground"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/sewer-mining.json: under_street_area_share 0.0 for all 7 networks in 4 maps; entries 0,1,1,2,0,1,1 = 6 entries, 5 elevator and 1 drop (not '5 of 7'). sewer-patterns.md:27-35 table: depth medians 1.05, 2.63, 4.63, 2.84, 5.16, 3.47, 4.11 (range 1.05-5.16, not 2.6-5.2); cycle rank 16, 52, 0, 24, 20, 0, 7: loops 7-52 in five, two at 0 as claimed.",
+  "of": "0323c2a1aeff"
+ }
 }

@@ -4,8 +4,8 @@
  "standing": "ruling",
  "claim": "A railing of wall sprites is drawn from both sides and blocks (cstat bit 1); a one-sided railing is invisible from behind and one walks through a non-blocking one off a balcony. A rail meets the middle of its post's face and goes no further.",
  "evidence": [
-  "the owner, walking the station (projects/blood-city/level/l3_station.py, 2026-11-25): 'that balcony at station is not 2 sided sprite, so it is invisible from the other side', 'that balcony railing is not solid'",
-  "the owner, 2026-11-25, of the booking hall's newels: 'It should be like exactly ending in the middle of it'"
+  "the owner, 2026-11-19, of the station's balcony (projects/blood-city/level/l3_station.py:970-975): 'that balcony at station is not 2 sided sprite, so it is invisible from the other side ... Two sided wall sprite can be used for balcony railing', 'that balcony railing is not solid'",
+  "the owner, 2026-11-25, of the booking hall's newels (projects/blood-city/level/booking_hall.py:390-392): 'It should be like exactly ending in the middle of it. It is wrong on both sides'"
  ],
  "use": "Write railing sprites without bit 64 and with bit 1; end each run at a post's centre line.",
  "code": [
@@ -24,5 +24,10 @@
   "blocking",
   "railing",
   "two-sided"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words: l3_station.py:970-975 'that balcony at station is not 2 sided sprite, so it is invisible from the other side ... Two sided wall sprite can be used for balcony railing' and 'that balcony railing is not solid'; both committed in 08ca862 on 2026-11-19 and dated 2026-11-19 in memory wall-sprites-may-stand-free.md, not 2026-11-25. booking_hall.py:390-392 'It should be like exactly ending in the middle of it. It is wrong on both sides' (commit d6c034d, 2026-11-25). The station balustrade is written cstat 16|128|1 (no 64).",
+  "of": "b2896db83dd3"
+ }
 }

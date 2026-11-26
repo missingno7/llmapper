@@ -2,9 +2,10 @@
  "id": "a-room-over-room-landing-keeps-the-body-below-the-plane",
  "topic": "construction",
  "standing": "practice",
- "claim": "The floor a stack link lands a body on lies deep enough that the standing body's centre (8,480 over its feet) is below the link plane, or it is carried straight back up; and shallow enough to jump back out.",
+ "claim": "In Gravesend we set the floor a stack link lands a body on deep enough that the standing body's centre (8,480 over its feet) is below the link plane, or CheckLink carries it straight back up; and shallow enough to jump back out (10,240 under the plane for the pit's landing).",
  "evidence": [
-  "Gravesend's pit and grate links (projects/blood-city/level/resolution.py, the stack-link mouths)"
+  "NBlood/source/blood/src/warp.cpp:183-240 (CheckLink): the move up is taken when the lower sector's link plane is at or above the sprite's z",
+  "projects/blood-city/level/resolution.py:57-60 PIT_LANDING_DEPTH 10,240, written for Gravesend's pit and grate links; both links have since been removed (build_skeleton.py:765-771) and the constant is unused"
  ],
  "use": "Set the landing's floor from the body's centre height, not from the plane.",
  "code": [
@@ -23,5 +24,10 @@
   "ror",
   "stack",
   "warp"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood warp.cpp:183-240 CheckLink: in the lower sector a sprite is carried up when the ceiling link plane z >= its z, in the upper down when plane <= its z; so a landed body whose z lies above the plane goes straight back. projects/blood-city/level/resolution.py:57-60 states it (centre 8480 over the feet) with PIT_LANDING_DEPTH 10240. That constant is now only imported (build_skeleton.py:64) and the grate link and pit it served were removed (build_skeleton.py:765-771; city_plan.py works_stair note, 2026-11-21): evidence reworded as past.",
+  "of": "9575a55e2e08"
+ }
 }

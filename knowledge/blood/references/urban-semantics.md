@@ -45,8 +45,9 @@ counted from the full circulation network (street ∪ arcades).
   share (which could not see frontage buildings at all). Gravesend's
   venue plan (10 venues over ~40–50 plan buildings ≈ 0.2–0.25) sits
   mid-band. Candidate L1 contract row; queued.
-- **Storey mix**: E3M1 is the corpus's most vertical town (47% of buildings
-  multi-storey); DukCity runs 10–17%, the pier 4%. Phase 2 massing note:
+- **Storey mix**: E3M1 is the second most vertical town measured (47% of
+  buildings multi-storey, after E3M2's 5 of 8); DukCity runs 6–18%, the pier
+  4%. Phase 2 massing note:
   roughly **half of Old Crossing/Theatre buildings should carry an upper
   storey**, a quarter elsewhere — E3M1 is the town Gravesend answers to.
 - **E3M2 is rampart urbanism, and its v2 number needs an asterisk**: its

@@ -2,11 +2,12 @@
  "id": "street-furniture-is-sectors-at-fixed-rises",
  "topic": "construction",
  "standing": "precedent",
- "claim": "Town furniture is made of sectors: a fountain basin sunk 4,096 at ~1,200 square with a water floor; a well a ~750-square shaft 5,120-12,288 deep whose rim is its own walls; a market stall a platform 3,072-4,096 up with goods sprites on top and awnings as wall sprites; a bench a 2,048-high pair; a green a soft floor raised 2,048 with planting sprites.",
+ "claim": "In DWE3M1, TEDE1M2 and DWE3M10 town furniture is made of sectors: a fountain basin sunk 4,096 with a water floor (DWE3M1 twin basins, 1,024x2,048 and 1,792x1,280); a well a small shaft of about 0.5M area (2,048x256 in DWE3M1, 1,024x512 in TEDE1M2) 5,120-12,288 deep whose rim is its own walls; a market stall a platform 3,072-4,096 up (TEDE1M2's three step to 9,216); a bench a pair 2,048 high; a green a soft floor raised 2,048.",
  "evidence": [
-  "DWE3M1 s40 and s41 (twin basins, floor 404)",
-  "DWE3M1 s553, s554 and TEDE1M2 s572 (wells)",
-  "TEDE1M2 s300 and s453-455 (stalls), DWE3M10 s145, s146 (benches), DWE3M1 s49 (green)"
+  "DWE3M1 s40 and s41 (twin basins, floor 404, 4,096 below the paving)",
+  "DWE3M1 s553, s554 (2,048x256, 5,120 and 10,240 below s552) and TEDE1M2 s572 (1,024x512) (wells)",
+  "TEDE1M2 s300 (+4,096) and s453-455 (+9,216, +6,144, +3,072) (stalls; no sprites stand on them), DWE3M10 s145, s146 (benches, +2,048 over s177), DWE3M1 s49 (green, floor 374, +2,048)",
+  "knowledge/blood/references/street-furniture.md:11-35 (the goods, awnings and planting it names are counted over each map's open space, not on these sectors)"
  ],
  "use": "Furnish a plaza with these sectors; water features in civic space, carts and cargo in yards.",
  "code": [
@@ -25,5 +26,10 @@
   "stall",
   "street furniture",
   "well"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded: DWE3M1 s40/s41 floor 82944, pic 404, 4,096 below s557/s541 (78848), boxes 1024x2048 and 1792x1280; s553/s554 2048x256, floors 5,120 and 10,240 below s552; s49 pic 374, 2,048 above s50, no sprites. TEDE1M2 s572 1024x512, 3,072 below s349 and 12,288 below s460; s300 1024x2560 4,096 above s573; s453-455 9,216, 6,144, 3,072 above s573, no sprites on any. DWE3M10 s145/s146 triangles 1,536 a side, 2,048 above s177. knowledge/blood/references/street-furniture.md:11-35.",
+  "of": "2340e0fac517"
+ }
 }

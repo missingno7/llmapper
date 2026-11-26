@@ -5,7 +5,8 @@
  "claim": "Which damage breaks a breakable thing is fixed by its type: a wall crack (408) and an explode object (417) take only explosive damage (417 also tesla); a gib object (416) also takes bullets and falls. A blast-only floor cover, such as a manhole, is a type 417.",
  "evidence": [
   "NBlood/source/blood/src/actor.cpp:1819 Wall Crack, :1947 Gib Object, :1963 Explode Object: the damage-shift rows 0,0,0,256,0,0,0 / 256,0,256,256,0,0,128 / 0,0,0,256,0,0,128",
-  "E4M3 sprite 130: type 417, tile 191, cstat 417, repeat 48, data_1 5, data_4 314, a flat cover over a link floor"
+  "E4M3 sprite 130: type 417, tile 191, cstat 417, repeat 48, data_1 5, data_4 314, a flat cover over a link floor",
+  "NBlood/source/blood/src/actor.h:31-38 DAMAGE_TYPE order (Fall, Burn, Bullet, Explode, Drown, Spirit, Tesla); actor.cpp:3480 actDamageSprite scales by thingInfo[].dmgControl. The gib object row also takes tesla (128). E4M3 sector 224 holds sprite 128, type 11 (upper stack marker)."
  ],
  "use": "Choose 416 when anything should break it, 417 for blast only, 408 for a crack that only a charge opens.",
  "code": [
@@ -25,5 +26,10 @@
   "explosion",
   "gib",
   "manhole"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp thingInfo rows: :1819 Wall Crack dmgControl 0,0,0,256,0,0,0; :1947 Gib Object 256,0,256,256,0,0,128; :1963 Explode Object 0,0,0,256,0,0,128; order from actor.h:31-38 Fall, Burn, Bullet, Explode, Drown, Spirit, Tesla; used at actor.cpp:3480 (actDamageSprite). So 408 explosion only, 417 explosion and tesla, 416 also falls and bullets (and tesla). catalog record E4M3 sprite 130: type 417, pic 191, cstat 417 (floor sprite), repeat 48, data_1 5, data_4 314, sector 224 which holds an upper-stack marker (sprite 128 type 11).",
+  "of": "06544bf26a1c"
+ }
 }

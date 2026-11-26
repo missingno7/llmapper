@@ -4,7 +4,7 @@
  "standing": "practice",
  "claim": "When something built does not work, diff it against a working artifact of the same kind (a campaign instance, an earlier map that works) before theorising; when an engine behaviour is in doubt, read NBlood's source rather than infer from the corpus; and never take your own tool agreeing with your own construction as proof.",
  "evidence": [
-  "The dead room-over-room of 2026-08-28 was found by comparing with working water links and reading db.cpp, after an inferred answer was wrong."
+  "The dead room-over-room of 2026-08-28 (link markers on statnum 10, deleted by PropagateMarkerReferences, NBlood/source/blood/src/db.cpp:679): the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/blood-marker-statnum.md records the comparison with the campaign's 502 link markers, all on statnum 0, and the reading of db.cpp; the finding stack-markers-on-statnum-10-are-deleted"
  ],
  "use": "Find the campaign record with catalog record and compare field by field.",
  "code": [],
@@ -19,5 +19,10 @@
   "diff",
   "engine source",
   "proof"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/blood-marker-statnum.md (modified 2026-08-28): PropagateMarkerReferences at db.cpp:681 deletes statnum-10 sprites unless of four marker types; all 502 campaign link markers are on statnum 0; 'the owner found it by walking the first one'. Read NBlood/source/blood/src/db.cpp:679-690 (PropagateMarkerReferences walks headspritestat[kStatMarker]). The note does not say an inferred answer came first.",
+  "of": "c1d3aa0cc30c"
+ }
 }

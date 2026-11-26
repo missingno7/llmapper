@@ -30,5 +30,10 @@
   "sfx",
   "stack",
   "stacked"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "asound.cpp:65-74 read in ambProcess (from :50): dx>>=4, dy>>=4, dz>>=8, nDist = ksqrt(...), volume scale(nDist, data1, data2, vs, 0) - no sector or wall test. sfx.cpp:72-79 in Calc3DValues (from :64) the same shifts. release.py:5-6 docstring: '62 of the city's 97 ambiences, the sewers' own, were heard on its streets'; sewers-outside.md:16-17 53,248 z = 208 units = 3.25 plan units; 208 x 16 = 3,328 as claimed.",
+  "of": "d04ae7d278f2"
+ }
 }

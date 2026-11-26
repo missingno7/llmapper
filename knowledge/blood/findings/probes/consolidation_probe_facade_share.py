@@ -1,4 +1,8 @@
 """E3M1: share of wall length per tile on walls bounding sky sectors (one-sided, or two-sided onto a roofed neighbour)."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import collections, math
 from bloodmap.format import read_map
 from bloodmap.corpus import corpus_map_path

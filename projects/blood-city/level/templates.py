@@ -108,8 +108,8 @@ TABLE_SIDE = 1024
 
 #: The gap kept between a shelf run and the counter in front of it.
 STAND_CLEAR = 512
-#: The way round the end of a counter too high to step over: a player
-#: width.
+#: The way round the end of a counter too high to step over: about 2.7
+#: player widths (a body is 384 wide).
 COUNTER_PASS = 1024
 #: How far a fixture stands off its room's own walls.  Not a style choice:
 #: a carve whose edge lies exactly on the room outline produces two

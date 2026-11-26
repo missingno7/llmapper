@@ -9,7 +9,7 @@
  ],
  "use": "Light streets with sky shade and the light field; hang lamps only where something real holds them (a porch, an arcade, a wall bracket).",
  "code": [
-  "work/consolidation/probe_outdoor_lamps.py"
+  "knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py"
  ],
  "scope": "blood",
  "learned": {
@@ -25,5 +25,10 @@
   "outdoor lamp",
   "street"
  ],
- "instead": "Blood does light some outdoor ground with lamp sprites, but not E3M1's town: over the 43 campaign maps 91 visible light-tile sprites stand in sky-ceilinged sectors, in 15 maps, mostly E1M4's fair (34: candles 560, flames 2101, posts 640) and the snow maps' street lamps 2493 (E2M3 14, E2M5 11, E2M2 2, E2M4 2); E1M1's graveyard has three 640 posts. E3M1 has one bonfire (3566, sprite 329) and no lamp: its 45 bright outdoor sprites (2519/2521, cstat 32896, types 708/710) are invisible sound generators. See outdoor-lamps-stand-in-fairs-and-snow-not-in-e3m1."
+ "instead": "Blood does light some outdoor ground with lamp sprites, but not E3M1's town: over the 43 campaign maps 91 visible light-tile sprites stand in sky-ceilinged sectors, in 15 maps, mostly E1M4's fair (34: candles 560, flames 2101, posts 640) and the snow maps' street lamps 2493 (E2M3 14, E2M5 11, E2M2 2, E2M4 2); E1M1's graveyard has three 640 posts. E3M1 has one bonfire (3566, sprite 329) and no lamp: its 45 bright outdoor sprites (2519/2521, cstat 32896, types 708/710) are invisible sound generators. See outdoor-lamps-stand-in-fairs-and-snow-not-in-e3m1.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py (PYTHONPATH=.): campaign total 91 in 15 maps (E1M4 34: 560 15, 640 7, 2101 6, 3566 4, 795 2; E2M3 14, E2M5 12 incl. 11 of 2493, E2M2 2, E2M4 2; E1M1 640 x3; E3M1 one 3566, sprite 329). E3M1 outdoor 2519/2521 sprites: 45 (17 type 708, 28 type 710), all cstat 32896. The refuted 0-in-43 is false; instead stands. code named work/consolidation/probe_outdoor_lamps.py (scratch): now the kept probe.",
+  "of": "9a82187644b7"
+ }
 }

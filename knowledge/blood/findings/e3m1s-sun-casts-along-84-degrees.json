@@ -2,9 +2,10 @@
  "id": "e3m1s-sun-casts-along-84-degrees",
  "topic": "light",
  "standing": "tendency",
- "claim": "E3M1 cuts its streets at shadow edges that run along one sun: of 112 shade boundaries in its street surface, 60 are axis-aligned and the 20 oblique ones lie between 52 and 84 degrees with a median of 84 (Build angle 478). Its street shades: 8 lit (nine sectors), 24 penumbra (seven), 32-34 shadow (twenty), 44 for the quay and far bank.",
+ "claim": "E3M1 cuts its streets at shadow edges that run along one sun. Measured for Gravesend's resolution.py (2026-09-02, no counter kept, not recounted): of 112 shade boundaries in its street surface, 60 axis-aligned and 20 oblique between 52 and 84 degrees, median 84 (Build angle 478); street shades 8 lit, 24 penumbra, 32-34 shadow, 44 for the quay and far bank. A recount over its sky street at or below grade (2026-11-26) finds 16 shade boundaries, 7 of them oblique at 82.9-86.4 degrees, median 84.2, and shades 8, 24, 32-34 and 44.",
  "evidence": [
-  "E3M1's street sectors, measured for projects/blood-city/level/resolution.py:86-102 (SUN_BEARING 478; oblique edges at 52.1, 71.1, 78.7, 82.9, 83.8, 84.2 degrees); E3M1 s8 is cut lengthwise, s45 across",
+  "projects/blood-city/level/resolution.py:84-105 (SUN_BEARING 478; oblique edges at 52.1, 71.1, 78.7, 82.9, 83.8, 84.2 degrees; 112 boundaries, 60 axis-aligned, 20 oblique) and :116-119 (shades over 68 street sectors): a measurement written as a comment, its counter not kept",
+  "knowledge/blood/findings/probes/audit2_e3m1_sun.py: E3M1's 21 sky sectors with floor_z >= 8192, 16 boundaries of different floor shade, 9 axis-aligned, 7 oblique 82.9-86.4 degrees (median 84.2); E3M1 s8 (shade 8) meets s45 (shade 32)",
   "the shadow length equal to the mass's height is a convention (resolution.py SUN_SHADOW_PER_HEIGHT: 'Blood has no real sun elevation'), not a measurement"
  ],
  "use": "Cast every mass's shadow on one bearing; cut a surface only where a shadow crosses it. Length equal to height is our convention, not a measured one.",
@@ -23,5 +24,10 @@
   "shadow",
   "street",
   "sun"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/level/resolution.py:84-105 (112 boundaries, 60 axis, 20 oblique at 52.1-84.2, median 84.0, SUN_BEARING 478), :107-114 SUN_SHADOW_PER_HEIGHT 1.0, :116-119 shades over 68 street sectors. Ran probes/audit2_e3m1_sun.py: 21 sky sectors with floor_z >= 8192, shades 8x4, 24x2, 32x3, 34x8, 44x3; 16 boundaries, 9 axis-aligned, 7 oblique 82.9-86.4, median 84.2. E3M1 has 45 sky sectors. s8 floor 352 shade 8 borders s45 shade 32.",
+  "of": "dcacb7e200fa"
+ }
 }

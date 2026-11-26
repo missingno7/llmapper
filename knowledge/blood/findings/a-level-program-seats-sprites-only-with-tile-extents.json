@@ -27,5 +27,10 @@
   "floor",
   "placement",
   "sunk"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read bloodmap/planar_layout.py:1381-1422 (place_on_floor): seat='floor' is set only 'if self.tile_extents', else z on the anchor (docstring: buried to the waist); levelprog.py:783-793 LevelProgram takes tile_extents and :833 hands it to PlanarLayout; tools/starter/level/build.py:61-62 passes art_sizes() and sprite_tile_extents(); planar_layout.py:1905-1907 the compile error hints cstat 128; projects/cold-store/level/build.py:69 passes tile_extents and its reports/build-manifest.json sunk_actors is []. The 50% figure of the day is not kept; it is dated as such.",
+  "of": "4d51d5da1f98"
+ }
 }

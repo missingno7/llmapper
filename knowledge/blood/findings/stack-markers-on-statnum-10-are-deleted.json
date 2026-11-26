@@ -28,5 +28,10 @@
   "stack",
   "statnum",
   "warp"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood db.cpp:679-715 PropagateMarkerReferences: walks headspritestat[kStatMarker] (10), keeps kMarkerOff/Axis/WarpDest/On only when owner is a sector with an XSector, else DeleteSprite; called :1325 at the end of dbLoadMap; blood.cpp:750 warpInit later in StartLevel. Ran consolidation_link_markers.py: 502 markers, 6/7 22 each, 9/10 191 each, 11/12 38 each, no 13/14, all statnum 0, cstat 128 x486, 8320 x9, 32896 x4, 192 x2, 16512 x1; upper types wear 2332 (251), lower 2331 (251). E3M1 types 11/12: six, statnum 0, cstat 128.",
+  "of": "11fae2df3e20"
+ }
 }

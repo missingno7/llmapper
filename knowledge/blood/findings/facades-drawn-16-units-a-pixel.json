@@ -2,9 +2,10 @@
  "id": "facades-drawn-16-units-a-pixel",
  "topic": "texture",
  "standing": "tendency",
- "claim": "Blood draws street walls at 16 world units per tile pixel (133 of 152 E3M1 street walls; 216 of 260 in TEDE1M2), so a 64-wide facade tile's bay, one painted window and its pier, is 1,024; E3M1's modal street opening is exactly one bay.",
+ "claim": "E3M1 draws most of its street walls at 16 world units per tile pixel, and so does the community map TEDE1M2: counted 2026-08-28 as 133 of 152 and 216 of 260 (facade_pass.py, not reproducible), recounted 2026-11-26 over every wall of a sky sector that does not open to sky as 146 of 193 and 361 of 605. So a 64-wide facade tile's bay, one painted window and its pier, is 1,024. E3M1's modal street opening is one bay, by the same 2026-08-28 note, not recounted.",
  "evidence": [
-  "133 of 152 E3M1 street walls and 216 of 260 in TEDE1M2 at 16 units a pixel (measured in projects/blood-city/level/facade_pass.py, snap_opening)"
+  "projects/blood-city/level/facade_pass.py:244-246, 255-258 and projects/blood-city/reports/refinement-log.md:260-262 (2026-08-28): 133 of 152 E3M1 street walls and 216 of 260 in TEDE1M2",
+  "recount 2026-11-26, knowledge/blood/findings/probes/audit2_street_wall_scale.py: E3M1 146 of 193, TEDE1M2 361 of 605 walls of sky sectors at 16 units a pixel"
  ],
  "use": "Put openings on the 1,024 bay grid, a whole number of bays wide.",
  "code": [
@@ -23,5 +24,10 @@
   "opening",
   "repeat",
   "scale"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "facade_pass.py:244-246 (comment over UNITS_PER_TILE_PIXEL) and refinement-log.md:260-262 give 133 of 152 E3M1 and 216 of 260 TEDE1M2; no script kept. Recount with probes/audit2_street_wall_scale.py (walls of sky sectors not opening to sky): E3M1 146 of 193, TEDE1M2 361 of 605; the consolidation probe's axis-aligned set gives E3M1 142. TEDE1M2 is a community map. 'Modal opening one bay' is the docstring's (facade_pass.py:257), not recounted.",
+  "of": "56178dab1e6c"
+ }
 }

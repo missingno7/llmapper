@@ -16,14 +16,15 @@ streets are barren at 0.08, so its density ratios read high).
 ## The threshold law
 
 - Venue interiors are **as dark as or darker than the night street** on
-  average (shade step street→venue: +1.7 to +33; only open-front booths go
-  brighter, at −2.7 to −3.9). What sells a lit venue is not a bright room but
+  average (shade step street→venue: −19.2 to +33.3 over 40 venues; nine go
+  brighter, four of them E1M4 venues by 7 to 19 shades and three small E1M4
+  booths by −2.7 to −3.9). What sells a lit venue is not a bright room but
   **high internal contrast**: venue shade spans of 30–50+ points (E3M1 saloon
   wing: −8 to +44) against the street's near-uniform band.
 - **The marquee is animated shade, not geometry**: threshold sectors carry
-  xsector `amplitude`/`shade_wave` on the mouth. Every E1M4 attraction mouth
-  has it (comp 60: 9 animated sectors; comps 10, 13, 14: 1–3), and E3M1's
-  saloon and its neighbor carry one each. This is the cheapest signature we
+  xsector `amplitude`/`shade_wave` on the mouth. 9 of E1M4's 23 mined venues
+  have it (comp 60: 9 animated sectors; the others 1–5), and 3 of E3M1's 9
+  (the saloon and its neighbor one each, comp 6 three); none of DWE3M1's 8. This is the cheapest signature we
   can steal — it costs zero walls.
 - Signage clusters *at the doorway, on the public side*: face sprites within
   2048 units of the mouth (E3M1 complex: 39 public-side face sprites across 7
@@ -176,7 +177,8 @@ wired map measured in this project) and does not scale down whole. Judgment,
 stated: **no hospital venue in Gravesend**; these named elements fold into
 existing types:
 
-- **The bed bay module**: 24 congruent 1024x1152 chambers, one sprite each,
+- **The bed bay module**: 24 congruent 1024x1152 chambers, 0 to 3 sprites
+  each (13 of them one),
   with 23 companion 384x1024 divider strips (sectors 42/63/65...; 41/64/66).
   A ward is a *row of geometry bays*, not a big room with sprite beds.
   Reusable in any dormitory, bunkhouse, or cell-row interior.

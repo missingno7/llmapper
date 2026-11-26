@@ -2,9 +2,9 @@
  "id": "a-town-spends-its-channels-on-doors-and-destruction",
  "topic": "mechanism",
  "standing": "tendency",
- "claim": "E3M1 spends 69 user channels: 29 on doors and motion (21 z-motion, 6 slide, 2 rotate), 18 on destruction set pieces (kTrapExploder 459 x13, kThingObjectExplode 417 x5), 13 on switches and 15 on staged sound and spawns (kGenSound, kSoundPlayer, kMarkerDudeSpawn) that fan out on one channel. DWE3M1 spends 58, with kSoundPlayer x22. A town that wires only doors is under-wired.",
+ "claim": "Of E3M1's 67 user channels (100 and over), 29 reach doors and motion (21 z-motion, 6 slide, 2 rotate), 18 reach destruction set pieces (kTrapExploder 459 on 13, kThingObjectExplode 417 on 5), 13 reach switches and 15 reach staged sound and spawns (kGenSound 6, kSoundPlayer 4, 710 on 2, kMarkerDudeSpawn 3); a channel may reach several kinds. DWE3M1 spends 58, with kSoundPlayer on 22. By these two towns, a town that wires only doors is under-wired.",
  "evidence": [
-  "tools/mine_city_norms.py channel section on E3M1 and DWE3M1 (knowledge/blood/references/city-norms.json)"
+  "tools/mine_city_norms.py channel section on E3M1 and DWE3M1 (knowledge/blood/references/city-norms-v2.json, per_map mechanisms: user_channels and each channel's receiver_types, counted per type). The older city-norms.json says 69: it counted from channel 30 and so took in the engine's 80 and 81"
  ],
  "use": "Reserve channels for exploding set pieces and for staged sound+spawn events, not only doors.",
  "code": [
@@ -21,5 +21,10 @@
   "exploder",
   "set piece",
   "wiring budget"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened knowledge/blood/references/city-norms-v2.json (regenerated 2026-11-26 with user channels from 100, kChannelUser eventq.h:69) per_map mechanisms: E3M1 user_channels 67, DWE3M1 58. Counted channels by receiver type: E3M1 600 x21, 614 x6, 615 x2, 459 x13, 417 x5, 20 x12, 21 x1, 708 x6, 711 x4, 710 x2, 18 x3; DWE3M1 711 x22.",
+  "of": "e0710d22065d"
+ }
 }

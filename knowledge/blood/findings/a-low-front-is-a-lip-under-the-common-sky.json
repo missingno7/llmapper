@@ -2,11 +2,12 @@
  "id": "a-low-front-is-a-lip-under-the-common-sky",
  "topic": "construction",
  "standing": "practice",
- "claim": "To make an enterable building's front read as two storey bands (brick plinth, timber upper) from a lane: a lip 128 deep along its face with its floor at the plinth top and the lane's own sky. The lane's lower step draws the plinth in the lane's record, the lip's back wall the upper storey in the lip's. A lower sky on the lip is refused by open-neighbours-share-a-sky unless out of a body's reach, so the lane's sky comes down to the roof line instead. Over a door the lane's upper band must be painted the upper storey's tile.",
+ "claim": "In the signal box we made an enterable building's front read as two storey bands (brick plinth, timber upper) from a lane with a lip 128 deep along its face, its floor at the plinth top and the lane's own sky. The lane's lower step draws the plinth in the lane's record, the lip's back wall the upper storey in the lip's. A lower sky on the lip would be refused by open-neighbours-share-a-sky unless out of a body's reach, so the lane's sky comes down to the roof line instead. Over a door the lane's upper band must be painted the upper storey's tile.",
  "evidence": [
-  "projects/signal-box/level/build.py lip(); frames r2-start/d_box.png"
+  "projects/signal-box/level/build.py:56-65 (OUTDOOR sky at TOP, BASE, LIP 128), :118-136 lip() and its connections, :196-197 the wall over the door painted BOARDS",
+  "bloodmap/rules_blood.py:538 open-neighbours-share-a-sky"
  ],
- "use": "",
+ "use": "For a two-band front seen from a street: a lip sector a few units deep, floor at the plinth top, under the street's sky; paint the street's wall above any door in the upper storey's tile.",
  "code": [],
  "scope": "blood",
  "learned": {
@@ -19,5 +20,10 @@
   "plinth",
   "signal box",
   "storey"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/signal-box/level/build.py: LIP = 0.125 plan units (128) :65; lip() :120-125 floor FLOOR-BASE (BASE = 1.4 bodies, the plinth), clear TOP-BASE so its parallax sky is at TOP, the lane's OUTDOOR clear_height RISE+1.7 bodies = TOP (:56, :64); lip walls BOARDS, lane walls BRICK; :196-197 paints the lane's wall over the door BOARDS. Rule open-neighbours-share-a-sky at bloodmap/rules_blood.py:538. The frames r2-start/d_box.png are not in the repository: citation replaced.",
+  "of": "6753b8eabe16"
+ }
 }

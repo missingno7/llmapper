@@ -25,5 +25,10 @@
   "ride",
   "rotate",
   "spin"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "read_map(E1M4), record_extra: s321-329 each type 617, rx 128, retrigger_a 1, retrigger_b 1, drag 1, busy_time_a 255, busy_time_b 0. s352: tx 128, command 1, trigger_on, trigger_once, trigger_enter; the only object with tx 128. 72 sprites in s321-329: cstat 8577 x12 and 41376 x7 carry 8192; not carried: 816, 817, 1087 type 206, 1088 type 105 (tile 2557), 49 type 416 all cstat 32768 (invisible).",
+  "of": "82d0ebbdf9b6"
+ }
 }

@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "Wall cstat 1 (blocking) and 64 (hitscan) are clip masks only; the wall pass never reads them. A two-sided wall with either bit and no drawn band (no step, not masked) is an invisible fence. A two-sided wall draws a middle only when masked (cstat&48 == 16, from over_picnum) or one-way (32); one carrying both 16 and 32 is drawn as one-way, never masked.",
  "evidence": [
-  "NBlood/source/build/src/clip.cpp:1491 dawalclipmask; build.h:225-226 CLIPMASK0 = (1<<16)+1, CLIPMASK1 = (256<<16)+64",
-  "NBlood/source/build/src/engine.cpp:4685-4686 masked deferral only when (cstat&48)==16; :4938-4940 one-sided or one-way walls draw picnum / overpicnum"
+  "NBlood/source/build/src/clip.cpp:1491 (clipmove) dawalclipmask; build.h:225-226 CLIPMASK0 = (1<<16)+1, CLIPMASK1 = (256<<16)+64",
+  "NBlood/source/build/src/engine.cpp:4685-4686 (classicDrawBunches) masked deferral only when (cstat&48)==16; :4938-4940 one-sided or one-way walls draw picnum / overpicnum"
  ],
  "use": "Give a blocking two-sided wall something to see (a masked over_picnum, a step) unless the fence is meant to be invisible; render_slots.wall_draw says which band each wall draws.",
  "code": [
@@ -23,5 +23,10 @@
   "masked",
   "one-way",
   "over_picnum"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood build/src/clip.cpp:1491 in clipmove (from :1481): dawalclipmask = cliptype & 65535; build/include/build.h:225-226 CLIPMASK0 (1<<16)+1, CLIPMASK1 (256<<16)+64; engine.cpp:4685-4686 in classicDrawBunches (from :4498): maskwall deferred only when (cstat&48)==16; :4938-4940 'nextsectnum < 0 || (wal->cstat&32)' draws picnum or overpicnum as a one-way wall, so 16|32 is drawn one-way. As claimed; function names added to the citations.",
+  "of": "c47681e231c0"
+ }
 }

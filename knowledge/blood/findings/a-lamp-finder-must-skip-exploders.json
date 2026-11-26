@@ -2,13 +2,15 @@
  "id": "a-lamp-finder-must-skip-exploders",
  "topic": "light",
  "standing": "practice",
- "claim": "Exploder sprites (type 459) wear the flame tile 908, so a lighting pass that finds lamps by tile lights the rooms they stand in as if lamps were there.",
+ "claim": "Exploder sprites (type 459, kTrapExploder) wear the flame tile 908 (all 1,085 in the 43 campaign maps), so a lighting pass that finds lamps by tile alone lights the rooms they wait in as if lamps were there; it did so in Gravesend's sewer on 2026-11-21.",
  "evidence": [
-  "Gravesend's sewer, 2026-11-21 (fixed in the level's light kinds)."
+  "NBlood/source/blood/src/common_game.h:437 kTrapExploder = 459; counted 2026-11-26 over campaign_maps(): 1,085 type-459 sprites, every one picnum 908",
+  "Gravesend's sewer, 2026-11-21; fixed in bloodmap/light_kinds.py:119-129 (sprite_lights skips blood_types.HIDDEN_TYPES, which holds 459)"
  ],
  "use": "Classify light sources by type as well as tile.",
  "code": [
-  "projects/blood-city/level/lights.py"
+  "bloodmap/light_kinds.py:sprite_lights",
+  "bloodmap/blood_types.py:HIDDEN_TYPES"
  ],
  "scope": "blood",
  "learned": {
@@ -22,5 +24,10 @@
   "flame",
   "lamp",
   "light"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Counted over the 43 campaign maps (read_map, record_fields): all 1,085 type-459 sprites wear picnum 908. common_game.h:437 kTrapExploder = 459. The fix is bloodmap/light_kinds.py:119-129 (sprite_lights): skips HIDDEN_TYPES, blood_types.py:396 which holds 459; projects/blood-city/level/lights.py has no type test.",
+  "of": "879a116736c5"
+ }
 }

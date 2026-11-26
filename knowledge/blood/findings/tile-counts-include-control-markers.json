@@ -24,5 +24,10 @@
   "marker",
   "signage"
  ],
- "instead": "3997 is Blood's invisible marker/control tile; its count measures wiring, not decoration. Drop marker and control sprites before reading a tile count as dressing."
+ "instead": "3997 is Blood's invisible marker/control tile; its count measures wiring, not decoration. Drop marker and control sprites before reading a tile count as dressing.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E3M4: 91 sprites of tile 3997 (33 type 3 and 33 type 4 invisible, 22 type 21, 2 type 5, 1 type 700). Campaign: every one of the 308 type 614 sectors has both markers on 3997 (recount); 1,096 campaign sprites wear it, 396/396/263 of them types 3/4/5. bloodmap/mechanism.py:39 and :48 MARKER_PICNUM = 3997; knowledge/blood/references/venue-patterns.md:183-185 the correction of 2026-08-27.",
+  "of": "19c51e010f9f"
+ }
 }

@@ -2,12 +2,12 @@
  "id": "long-walls-sort-wrong-in-the-classic-renderer",
  "topic": "renderer",
  "standing": "engine",
- "claim": "The classic renderer decides which wall is in front by products of wall coordinates that overflow 32 bits for very long walls far apart: with sea bands one wall wide, everything past about 38 plan units was drawn under the water in the observer. DWE3M4's longest wall is 71,943.",
+ "claim": "The classic renderer decides which wall is in front by products of wall coordinates that overflow 32 bits for very long walls far apart: with sea bands one wall wide, everything past about 38 plan units was drawn under the water in the observer. DWE3M4's longest wall is 71,943; the campaign's longest is 109,061 (E1M7).",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:2227 wallfront (dmulscale2 into int32); the same in xmapedit/src/engine.c, seen in the XMapEdit observer run of the harbour",
-  "projects/blood-city/level/l3_market.py: the sea's bands"
+  "NBlood/source/build/src/engine.cpp:2227 (wallfront: dmulscale2 into int32_t); the same in xmapedit/src/engine.c:876 (wallfront), seen in the XMapEdit observer run of the harbour",
+  "projects/blood-city/level/l3_market.py:99-101: the sea's bands; longest walls measured 2026-11-26 with read_map: DWE3M4 71,943, E1M7 109,061 (the campaign's longest)"
  ],
- "use": "Cut big water and ground sectors so no wall is longer than the campaign's longest (about 72k).",
+ "use": "Cut big water and ground sectors so no wall is longer than DWE3M4's longest (about 72k), as Gravesend's sea does.",
  "code": [
   "projects/blood-city/level/l3_market.py"
  ],
@@ -23,5 +23,10 @@
   "sea",
   "sort",
   "wallfront"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine.cpp:2227 (wallfront): t1/t2 = dmulscale2(...) of wall coordinate differences into int32_t; xmapedit/src/engine.c:876 the same function. l3_market.py:99-101: the observer run of the harbour, everything past 38 units under the water, DWE3M4's longest 71,943. Measured: DWE3M4 longest wall 71,943; the campaign's longest is 109,061 (E1M7), so 72k is not the campaign's longest.",
+  "of": "89924787bc91"
+ }
 }

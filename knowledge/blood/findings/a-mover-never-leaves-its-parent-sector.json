@@ -2,10 +2,11 @@
  "id": "a-mover-never-leaves-its-parent-sector",
  "topic": "mechanism",
  "standing": "ruling",
- "claim": "A moving or rotating sector never leaves its parent sector, and nothing else (a lighting cut, a pocket, masonry round it) may cut that parent. Leaves hang alone in an open bay of the room, about 64 thick.",
+ "claim": "The owner (2026-11-23): a moving or rotating sector never leaves its parent sector ('this is the rule of build engine'). What we draw from it: nothing else (our lighting cuts, a pocket, masonry round it) cuts that parent, and a leaf hangs alone in an open bay of the room, as E2M5's two 64-thick rotating leaves (sectors 569, 570) stand alone in sector 571.",
  "evidence": [
-  "The owner, 2026-11-23: 'moving or rotating sector can never leave it's parent sector this is the rule of build engine'.",
-  "Precedent for a lone leaf in its bay: E2M5 s569/s570 (617)."
+  "The owner, 2026-11-23: 'moving or rotating sector can never leave it's parent sector this is the rule of build engine' (projects/blood-city/level/wing_doors.py:11-12; projects/blood-city/tests/test_city_third_walk.py:414-415)",
+  "Precedent for a lone leaf in its bay: E2M5 sectors 569 and 570 (type 617, 64 x 1024, every wall facing sector 571)",
+  "bloodmap/light_stage.py:1296-1311 (run): a mover's host is lit but never cut"
  ],
  "use": "Check the sweep stays in the host; keep light stages from cutting hosts.",
  "code": [
@@ -26,5 +27,10 @@
   "rotate",
   "slide",
   "sweep"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words found at projects/blood-city/level/wing_doors.py:11-12, tests/test_city_third_walk.py:414-415 and memory note movers-stay-in-their-host.md: 'moving or rotating sector can never leave it's parent sector this is the rule of build engine' (2026-11-23). E2M5 sectors 569 and 570 type 617, each 4 walls 64 x 1024 (x -29760..-29696; -31744..-31680), every wall's next sector 571. swept_state.py:90 hosts, :112 escape. The no-cut and no-masonry parts are ours (light_stage.py:1296).",
+  "of": "50c8f39e37f8"
+ }
 }

@@ -24,5 +24,10 @@
   "rxid",
   "txid",
   "xsector"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/blood/src/db.h:27 '#define kMaxXSectors 4096'; db.h:60-61 'unsigned int txID : 10; rxID : 10' (one rx per X-record, also :134-135, :220-222); eventq.h:69 kChannelUser = 100, so 1,024-100 = 924. probes/audit2_flicker_and_channels.py: the campaign's most channels >= 100 is E1M3 with 145. projects/blood-city/level/shot_lamps.py:7 'the campaign's most is 145; with these, 95 of 924, 654 XSECTORs'.",
+  "of": "16e96715d03c"
+ }
 }

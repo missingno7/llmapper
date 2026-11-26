@@ -1,5 +1,9 @@
 """Third audit share: does each connected outdoor region of a campaign map wear one sky picnum?"""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from collections import Counter
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps

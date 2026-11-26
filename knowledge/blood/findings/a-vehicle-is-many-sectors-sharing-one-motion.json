@@ -2,7 +2,7 @@
  "id": "a-vehicle-is-many-sectors-sharing-one-motion",
  "topic": "mechanism",
  "standing": "ruling",
- "claim": "A vehicle (train, carriage, cart) is several sectors sharing one travel and one wire, its ceiling included, never one sector dressed in sprites (the owner). Ours: only one member carries the voice.",
+ "claim": "The owner, of Gravesend's ghost train, which was one sector dressed in sprites: make it of sectors that share one motion, its ceiling included, so that it feels solid and not cut out of paper. We build our vehicles so; ours, not his words: only one member carries the voice.",
  "evidence": [
   "The owner, 2026-11-24, of a train that was one sector dressed in sprites: 'we should be able to make it out of sectors if they will share same motion it will work ... more solid and not feeling like cut out of paper' (bloodmap/mechanism.py rigid_body docstring); its ceiling must move with it (projects/blood-city/references/phantom-terminus-design.md, 'As rebuilt'). Blind readers had scored the sprite train 4 for recognition in ghost-station critique rounds 1-4 and none called it paper; only the owner's ride did.",
   "One voice is our practice, not his words: projects/blood-city/level/motion_sounds.py VOICE ('one body of many sectors has one voice')"
@@ -14,7 +14,7 @@
   "bloodmap.motion_sim.rigid_bodies",
   "bloodmap.motion_sim.body_health"
  ],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-24"
@@ -26,5 +26,10 @@
   "slide",
   "train",
   "vehicle"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "mechanism.py:1326-1328 (rigid_body docstring) quotes the owner 2026-11-24: 'we should be able to make it out of sectors if they will share same motion it will work ... more solid and not feeling like cut out of paper'. phantom-terminus-design.md:72-76 'As rebuilt': its ceiling must move with it (paraphrase). ghost-station critique rounds 1-4 reviews.json: recognition score 4 each, no 'paper' in any review. motion_sounds.py:71 VOICE, :93-94 one voice.",
+  "of": "df10650c7f51"
+ }
 }

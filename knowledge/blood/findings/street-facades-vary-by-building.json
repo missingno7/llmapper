@@ -2,10 +2,10 @@
  "id": "street-facades-vary-by-building",
  "topic": "texture",
  "standing": "tendency",
- "claim": "E3M1's street fronts vary by building: over the walls two or more bodies tall that bound its open-sky sectors, 17 tiles appear and none covers more than 16.4% of the length (181 16.4%, 400 14.4%, 401 11.1%, 417 11.1%, 393 10.0%). Counted over every one-sided wall of its open sectors, low pavement and edge walls included, 401 leads at 27.6% (417 21.5%, 181 11.6%, 400 8.7%). One tile per district reads as one stamped building. A city's edge of building backs is cut into building lengths (E3M1's longest tall non-facade wall is 8,704).",
+ "claim": "E3M1's street fronts vary by building: over the walls two or more bodies tall that bound its open-sky sectors, 17 tiles appear and none covers more than 16.4% of the length (181 16.4%, 400 14.4%, 401 11.1%, 417 11.1%, 393 10.0%). Counted over every one-sided wall of its open sectors, low pavement and edge walls included, 401 leads at 27.6% (417 21.5%, 181 11.6%, 400 8.7%). One tile per district reads as one stamped building. E3M1's tall walls under its sky are records of building length: all but two are under 8,800 long (the longest, w859, 16,128).",
  "evidence": [
   "knowledge/blood/findings/probes/consolidation_probe_facade_share.py on E3M1, 2026-11-26: tile share by wall length; 'tall' = the face from the open sector's ceiling to its floor (one-sided) or to the neighbour's ceiling (two-sided onto a roofed sector) at least 2 x 16,960",
-  "projects/blood-city/level/build_graph_slice2.py:61 quotes the one-sided population (401 at 27.6%); facade_pass.py:3 quotes 13 tiles and 'none over 22%' with no tool behind it"
+  "projects/blood-city/level/facade_pass.py:3-6 quotes the same 17 tiles and 16.4%"
  ],
  "use": "Give each building its own facade from its district's family, keyed on where it stands; split long boundary walls into building-length records.",
  "code": [
@@ -25,5 +25,10 @@
   "share",
   "texture",
   "variety"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/consolidation_probe_facade_share.py (PYTHONPATH=.): both_tall 17 tiles, 181 16.4, 400 14.4, 401 11.1, 417 11.1, 393 10.0; one_sided 401 27.6, 417 21.5, 181 11.6, 400 8.7 - as claimed. '8,704 longest tall non-facade wall' has no source; my list of tall walls under E3M1's sky has 16,128 (w859, 401) and 8,960 (w645) above it: replaced. build_graph_slice2.py no longer exists; facade_pass.py:3-6 now quotes 17 tiles and 16.4%.",
+  "of": "9d08f39bc719"
+ }
 }

@@ -26,5 +26,10 @@
   "sector",
   "shelf",
   "sprite"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/pattern-zoo/registry.py:22-26 docstring: 'The representation taxonomy is binding. Every concept is realized at its own level: a standalone sprite (mannequin), a sector volume (crate, counter), a wall texture on shallow sectors (shelf), a maskwall panel (grate), a thin deforming sector (curtain)'; owner's model 2026-09-01 in memory owner-anchors-and-zoo.md:46-58 incl. sprite bridge and the zoo v1 shelf/crate errors; booking_hall.py:25-26 owner 2026-11-25 'grandfather clock and telephone booth shouldn't be just sprite but a made out of sector'. tools/look_at.py exists.",
+  "of": "05a49489ead6"
+ }
 }

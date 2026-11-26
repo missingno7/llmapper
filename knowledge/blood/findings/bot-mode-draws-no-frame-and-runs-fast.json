@@ -2,11 +2,12 @@
  "id": "bot-mode-draws-no-frame-and-runs-fast",
  "topic": "validation",
  "standing": "engine",
- "claim": "In the llmapper NBlood fork, -bot without -bot_visible draws no frame and runs the game clock as fast as it can; -bot_trajectory writes the player's x/y/z and sector each tick. The window is still made: launched hidden (bloodmap.oracle's SW_HIDE and CREATE_NO_WINDOW) and in the background, the run takes nothing from the desktop, and its per-tick sector is a better readout than any screenshot.",
+ "claim": "In the llmapper NBlood fork, -bot without -bot_visible (or -bot_realtime) draws no frame and runs the game clock as fast as it can; -bot_trajectory writes the player's x/y/z and sector once per game frame. The window is still made: launched hidden (bloodmap.oracle's SW_HIDE and CREATE_NO_WINDOW) and in the background, the run takes nothing from the desktop, and its per-frame sector is a better readout than any screenshot.",
  "evidence": [
   "NBlood/source/blood/src/blood.cpp:2008 (bot Fast: totalclock = gNetFifoClock), :2066 (bDraw only when Visible), :1275/:1278 (flags)",
   "bloodmap/oracle.py _hidden_process_options (STARTF_USESHOWWINDOW with SW_HIDE, CREATE_NO_WINDOW): nothing in the -bot path stops the SDL window being made",
-  "The owner, 2026-08-31: run NBlood 'only ... completely in background'. Said to the agent in conversation on 2026-08-31; not quoted in the repository."
+  "The owner, 2026-08-31: run NBlood 'only ... completely in background'. Said to the agent in conversation on 2026-08-31; not quoted in the repository.",
+  "blood.cpp:2008 and :2066 are in app_main; :1646 -bot_realtime clears Fast; llmapper/bot/bot.cpp:1592-1596 samples the trajectory once per gFrame; llmapper/bot/debug/bot_debug.cpp:159-166 sampleTrajectory writes tick, x, y, z, sector."
  ],
  "use": "Run the engine only with -bot hidden, through a background process; read the trajectory.",
  "code": [
@@ -24,5 +25,10 @@
   "nblood",
   "oracle",
   "trajectory"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "blood.cpp:2008-2009 in app_main: totalclock = gNetFifoClock when bot Enabled and Fast; :2066-2068 bDraw only if Visible; :1275 bot_trajectory, :1278 bot_visible; :1646 -bot_realtime SetFast(false); llmapper/bot/bot.cpp:1675 m_fast true by default, :1706-1711 SetVisible clears fast; :1592-1596 one trajectory sample per game frame (gFrame); bot_debug.cpp:163-166 writes tick, x, y, z, sector. oracle.py:189-195 _hidden_process_options: STARTF_USESHOWWINDOW, wShowWindow 0, CREATE_NO_WINDOW.",
+  "of": "932703c2dfc6"
+ }
 }

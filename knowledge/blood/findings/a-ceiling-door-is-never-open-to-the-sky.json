@@ -2,10 +2,10 @@
  "id": "a-ceiling-door-is-never-open-to-the-sky",
  "topic": "mechanism",
  "standing": "tendency",
- "claim": "A door that opens by lifting its ceiling has a roofed ceiling: its ceiling IS the moving part, and as sky it would be a hole in the roof showing daylight in a building. A door that opens by dropping its floor may be open to the sky (a gate in an outdoor wall). Of the campaign's Z-motion sectors (600/602) 6 of 779 that move their ceiling are open to the sky (0.8%, all six in E6M4), against 95 of 658 that move their floor (14.4%).",
+ "claim": "A door that opens by lifting its ceiling almost always has a roofed ceiling: its ceiling IS the moving part, and as sky it would be a hole in the roof showing daylight in a building. A door that opens by dropping its floor may be open to the sky (a gate in an outdoor wall). Of the campaign's Z-motion sectors (600/602) 6 of 779 that move their ceiling are open to the sky (0.8%, all six in E6M4), against 95 of 658 that move their floor (14.4%).",
  "evidence": [
-  "recount 2026-11-26 over the 43 campaign maps (every type 600/602 sector with an XSECTOR, moving ceiling = off_ceiling_z != on_ceiling_z, open = ceiling_stat bit 0): 6/779 against 95/658",
-  "the rule's own text, bloodmap/rules_blood.py 'ceiling-mover-is-not-open-to-the-sky', says 18.4% against 0.5% with three in one map; that was not reproduced over all Z-motion sectors and may have counted doors only",
+  "knowledge/blood/findings/probes/audit2_ceiling_movers_sky.py (run from the root with PYTHONPATH=.): over the 43 campaign maps, every type 600/602 sector with an XSECTOR, moving ceiling = off_ceiling_z != on_ceiling_z, open = ceiling_stat bit 0: 6/779 (all E6M4) against 95/658",
+  "bloodmap/rules_blood.py:614-653, rule 'ceiling-mover-is-not-open-to-the-sky', states the same counts",
   "both poses rendered when the rule was written (its first version asserted the opposite)"
  ],
  "use": "Give a ceiling-lifting door a real ceiling; use a floor-dropping gate under the sky.",
@@ -23,5 +23,10 @@
   "parallax",
   "sky",
   "z-motion"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/audit2_ceiling_movers_sky.py over the 43 campaign maps (types 600/602 with an XSECTOR, ceiling moves = on_ceiling_z != off_ceiling_z, sky = ceiling_stat bit 0): ceiling movers 6/779 open to the sky (0.8%), all 6 in E6M4; floor movers 95/658 (14.4%). Read bloodmap/rules_blood.py:614-653 (_ceiling_movers_are_not_open_to_the_sky, rule text): it now gives the same 95/658 and 6/779.",
+  "of": "ed50cae52454"
+ }
 }

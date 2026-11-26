@@ -28,5 +28,10 @@
   "parallax",
   "sky shade",
   "sprite shade"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "view.cpp:2864-2883 (viewProcessSprites, from :2678): nShade = own shade; if ceilingstat&1 and (floorstat&32768)==0 add tileShade[ceilingpicnum]+ceilingshade, else floor's; add tileShade[picnum]; clip -128..127. grep: view.cpp:2875 is the only read of floorstat&32768 in blood/src. Recounted over 43 campaign maps: 1,768 open sectors, 12 with floorstat 0x8000, ceiling minus floor shade median -16, quartiles -28/-6.",
+  "of": "df983a23844c"
+ }
 }

@@ -4,10 +4,10 @@
  "standing": "refuted",
  "claim": "A sector's facade (the wall an opening interrupts) is the commonest picnum among its wall records.",
  "evidence": [
-  "bloodmap/aperture.py dominant_wall_tile docstring (changed 2026-11-17); the owner, 2026-11-17: 'these ceiling crates doesn't feel right'",
-  "tests/test_shopfront.py FacadeIsAWallTests",
+  "bloodmap/aperture.py:362-374 dominant_wall_tile docstring (changed 2026-11-17); the owner, 2026-11-17: 'these ceiling crates doesn't feel right'",
+  "projects/blood-city/tests/test_shopfront.py:396 FacadeIsAWallTests",
   "knowledge/blood/design/apertures-v1.json was re-measured on 2026-11-19 by tools/mine_apertures.py, which imports aperture.dominant_wall_tile; re-run on 2026-11-26 it wrote the same bytes",
-  "Gravesend, 2026-11-17 (aperture dominant wall tile).",
+  "Gravesend, 2026-11-17 (projects/blood-city/experiments/shopfronts-streets/README.md:128-134: 24,064 units of crate band).",
   "Merged 2026-11-26 from dominant-means-by-surface-not-by-record: 'a pass that picks the commonest tile must weigh it by length or area, not by count of wall records: sixteen short crate rims outvoted a hall's plaster and the lintel pass painted crates round the room'"
  ],
  "use": "Ask aperture.dominant_wall_tile; knowledge/blood/design/apertures-v1.json already uses it. Weigh any census of surfaces by surface (length or area), never by record count.",
@@ -33,5 +33,10 @@
   "tile",
   "weigh"
  ],
- "instead": "Count length, not records, and only solid walls: the facade is the one-sided wall weighed by its length; only a sector with no solid wall falls back to its two-sided records. A market hall with sixteen 1,024-long crate rims and 11,776 units of plaster came out as 'crate' by record count, and a lintel pass ran 24,064 units of crate band round it."
+ "instead": "Count length, not records, and only solid walls: the facade is the one-sided wall weighed by its length; only a sector with no solid wall falls back to its two-sided records. A market hall with sixteen 1,024-long crate rims and five long plaster walls came out as 'crate' by record count, and a lintel pass ran 24,064 units of crate band round it.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "bloodmap/aperture.py:362-387 read (dominant_wall_tile): solid walls weighed by length, falling back to every record only with no solid wall; docstring: 'sixteen 1024-long crate rims and five long plaster walls'. shopfronts-streets/README.md:132-133: 'Crate won, and 24,064 units of band wore it'. The '11,776 units of plaster' is in no source: replaced by 'five long plaster walls'. FacadeIsAWallTests is at projects/blood-city/tests/test_shopfront.py:396, not tests/. tools/mine_apertures.py:52 imports dominant_wall_tile. The old belief is false, instead true.",
+  "of": "fc797d6b33d5"
+ }
 }

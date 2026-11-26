@@ -2,9 +2,9 @@
  "id": "church-lit-from-floor-toward-altar",
  "topic": "light",
  "standing": "precedent",
- "claim": "Two chapels light from the floor up and toward the altar, the roof the darkest surface and the chancel the brightest: E3M4's funeral chapel (s286: floor 9 under a sloped ceiling at 45) and DWE1M4's church (s288: chancel floor 24 against a nave at 36).",
+ "claim": "Two churches light from the floor up, the roof the darkest surface: E3M4's funeral chapel (s286: floor 9 under a sloped ceiling at 45) and DWE1M4's cathedral (nave floor 36 under 43-46). DWE1M4 also lights toward the altar, its chancel floor (s288) at 24 against the nave's 36; E3M4 does not, its chancel s295 is at 16 under 55.",
  "evidence": [
-  "E3M4 s286: floor_shade 9, ceiling_shade 45 (python -m tools.catalog record E3M4 sector 286); DWE1M4 s288: floor_shade 24 (knowledge/blood/studies/church/notes.md, gaps.md:14)",
+  "E3M4 s286: floor_shade 9, ceiling_shade 45; chancel s295 floor 16, ceiling 55 (python -m tools.catalog record E3M4 sector 286 / 295); DWE1M4 s288: floor_shade 24, ceiling 43; nave s276 floor 36, ceiling 46 (knowledge/blood/studies/church/notes.md:69,85)",
   "two instances, one of them a community map: a precedent, not a count"
  ],
  "use": "Shade a church's ceiling darkest and its chancel brightest; flickering candle sectors are common in Blood's church map E1M5 (see church-interiors-are-the-most-flickering).",
@@ -23,5 +23,10 @@
   "light",
   "nave",
   "shade"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E3M4 sector 286: floor_shade 9, ceiling_shade 45 sloped (heinum 4096); s287 floor 11 ceiling 45; but its chancel s295 and lectern s293 have floor 16, ceiling 55 - darker than the nave floor, so 'chancel the brightest' is false for E3M4. DWE1M4 s288 floor 24, ceiling 43; nave s275/s276/s277/s280/s284 floor 36, ceiling 43-46: there the chancel is brightest. Notes.md:69 and :85 say the same.",
+  "of": "d0dce193c371"
+ }
 }

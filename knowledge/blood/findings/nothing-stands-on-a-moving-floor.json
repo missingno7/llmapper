@@ -2,13 +2,14 @@
  "id": "nothing-stands-on-a-moving-floor",
  "topic": "sprite",
  "standing": "ruling",
- "claim": "A floor that travels or pans (a conveyor, a lift, a rotating ride) carries no decoration that is meant to stay put; a drain cover laid on a belt is wrong.",
+ "claim": "The owner, 2026-11-18: decoration laid on a conveyor belt (a pipe entrance's drain cover) is illogical; it belongs on the floor beside it. We take it further in Gravesend: a floor that travels (a conveyor, a lift, a rotating ride) carries no decoration that is meant to stay put.",
  "evidence": [
-  "the owner, 2026-11-18: 'there are few illogical things like that pipe entrance decoration on the conveyor belt instead on the floor'"
+  "the owner, 2026-11-18: 'there are few illogical things like that pipe entrance decoration on the conveyor belt instead on the floor' (projects/blood-city/level/dressing.py:175-177; bloodmap/sprite_fit.py:394-395)"
  ],
  "use": "Exclude movers from generic dressing passes; things that ride a mover are set carried (cstat 8192) on purpose.",
  "code": [
-  "projects/blood-city/level/dressing.py"
+  "projects/blood-city/level/dressing.py",
+  "bloodmap.sprite_fit.on_travelling_floor"
  ],
  "scope": "blood",
  "learned": {
@@ -21,5 +22,10 @@
   "decoration",
   "dressing",
   "mover"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Found the words at projects/blood-city/level/dressing.py:175-179 and bloodmap/sprite_fit.py:394-395: the owner, 2026-11-18, 'there are few illogical things like that pipe entrance decoration on the conveyor belt instead on the floor, sometimes we have details like this missed'. dressing.py:174 skips any region that moves; sprite_fit.on_travelling_floor counts only pan+drag floors (conveyors), not water.",
+  "of": "33a17bf1a381"
+ }
 }

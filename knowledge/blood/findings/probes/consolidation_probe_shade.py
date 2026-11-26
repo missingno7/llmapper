@@ -1,4 +1,8 @@
 """Floor shade of sky sectors vs roofed sectors per map: mean, area-weighted mean, median."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import sys, statistics as st
 from bloodmap.format import read_map
 from bloodmap.corpus import corpus_map_path

@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "A wall record has one x_repeat and one y_repeat, and they scale its masked middle and its step bands alike. Glass hung on a wall whose sides stand at different heights forces the facade band above and below it to the glass's scale.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:4426 and :4435: the scale of every band is taken from wal->yrepeat",
-  "the owner, 2026-11-17: 'the glass should sit in an aperture/frame so glass texture scaling won't be colliding with facade texture'"
+  "NBlood/source/build/src/engine.cpp:4425 and :4434 (setup_globals_wall2: the band's scale is taken from wal->yrepeat), called with the wall's own record for the upper band (:4721), the lower band even when cstat 2 borrows the next wall's picture (:4835), a one-sided wall (:4941) and the masked middle (:7232, renderDrawMaskedWall)",
+  "the owner, 2026-11-17: 'the glass should sit in a aperure/frame so glass texture scaling won't be colliding with facade texture' (projects/blood-city/experiments/shopfronts-streets/README.md:11; projects/blood-city/level/glass.py:22-24)"
  ],
  "use": "Hang a pane, a grille or bars only on a wall between two sectors of the same floor and ceiling (a reveal and a sash pocket behind the facade line); the facade's record keeps the facade's scale.",
  "code": [
@@ -26,5 +26,10 @@
   "repeat",
   "scale",
   "window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine.cpp setup_globals_wall2 (4398): globalyscale from wal->yrepeat at 4425 and 4434 (cited 4426, 4435). Its callers pass the wall's own record: 4721 (upper band), 4835 (lower band: setup_globals_wall1 takes the picnum of nextwall when cstat 2, but setup_globals_wall2(wal) keeps this wall's yrepeat), 4941 (one-sided), 7232 (renderDrawMaskedWall). Owner's words: projects/blood-city/level/glass.py:22-24, experiments/shopfronts-streets/README.md:11.",
+  "of": "21805ebc6498"
+ }
 }

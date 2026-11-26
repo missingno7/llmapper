@@ -2,10 +2,10 @@
  "id": "a-panorama-sky-needs-its-panel-offsets",
  "topic": "renderer",
  "standing": "precedent",
- "claim": "A parallax sky drawn in several panels needs the map header's sky bits and offsets: E1M5 wears tile 3678 with sky_bits 4 and offsets 0 to 15, sixteen panels round. A map that sets the tile with offsets left at zero repeats the first panel, and it draws as broken bands.",
+ "claim": "A parallax sky drawn in several panels needs the map header's sky bits and offsets: E1M5 wears tile 3678 with sky_bits 4 and offsets 0 to 15, sixteen panels round (so do the nine other campaign maps that wear it). Our E4L1 map set the tile with sky_bits 0 and one offset, so only the first panel was drawn, and it drew as broken bands.",
  "evidence": [
-  "E1M5 s392 and its other open sectors wear 3678 as a parallax ceiling; read_map(E1M5).header sky_bits 4, sky_offsets 0..15",
-  "E4L1 pass 01 set 3678 alone and drew bands; pass 02 took E1M5's bits and offsets and drew the sky (evidence/pass-03 frames)"
+  "E1M5 s392 and 30 other sectors wear 3678 as a parallax ceiling; read_map(E1M5).header sky_bits 4, sky_offsets 0..15",
+  "projects/duke-e4l1-remake/passes/02-storm-panorama-and-service-gate.json (sky bits 0 to 4, offsets [0] to 0..15, after E1M5); projects/duke-e4l1-remake/DESIGN.md: the first tile alone produced broken bands"
  ],
  "use": "Copy the sky bits and offsets of a campaign map that wears the same sky.",
  "code": [],
@@ -20,5 +20,10 @@
   "parallax",
   "sky",
   "sky_bits"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "read_map(E1M5): header sky_bits 4, sky_offsets 0..15; s392 ceiling 3678 stat 1, 31 sectors so. Ten campaign maps wear 3678 parallax, all with offsets 0..15. E4L1-baseline.MAP: sky_bits 0, offsets [0]; passes/02-storm-panorama-and-service-gate.json sets bits 0->4 and offsets [0]->0..15, citing E1M5; DESIGN.md:95-98 says the first tile alone drew broken bands.",
+  "of": "1ed95d9d5d23"
+ }
 }

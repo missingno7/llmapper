@@ -22,5 +22,10 @@
   "facade",
   "panning",
   "window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/level/facade_bays.py docstring (lines 1-20) read: phased from the 1,024 grid with every corner cut back half a bay, '43 of the 236 windowed walls ended inside a window'; a stretch from corner or opening to the next carries whole windows, plaster taking the rest; 'A stretch too short for a window wears the front's windowless twin'; windows_on at :72; apply uses facade_pass.BLANK_OF (:177-197). Ruling finding whole-painted-windows-on-facades exists. Worded as ours.",
+  "of": "db634114e36a"
+ }
 }

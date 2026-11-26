@@ -2,10 +2,10 @@
  "id": "movers-drag-their-coincident-neighbours",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "DragPoint moves a wall's point and follows nextwall round to every wall that shares that point, so a sliding or rotating sector whose edges coincide with its host's drags the host's walls with it.",
+ "claim": "DragPoint moves a wall's point and follows nextwall round to every wall joined to that point through a portal, so a sliding or rotating sector whose edges are portals into its host (coincident walls paired as nextwall) drags the host's walls with it; a wall that only lies on the same point without a nextwall link is not moved.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:817 DragPoint walks nextwall",
-  "projects/blood-city/level/curtains.py: a curtain fin carved as the auditorium's own hole moved the auditorium; DOOR-CURTAINS s3 cuts the slot as a notch of one-sided walls instead"
+  "NBlood/source/blood/src/triggers.cpp:817-854 DragPoint walks nextwall round the vertex, and back by lastwall's nextwall",
+  "projects/blood-city/level/curtains.py:105-119: a curtain fin carved as the auditorium's own hole paired all eight walls as portals and moved the auditorium; DOOR-CURTAINS s3 cuts the slot as a notch of one-sided walls instead"
  ],
  "use": "Stand a mover in a hole of its host with only the edges meant to be portals shared; check the whole swept travel, as the build's swept-state gate does.",
  "code": [
@@ -23,5 +23,10 @@
   "rotate",
   "slide",
   "sweep"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:817-854 read (DragPoint): sets the wall's point, then walks wall[vb].nextwall -> point2 round the vertex, and when it meets a one-sided wall walks back by lastwall(vb).nextwall: it reaches only walls joined to the moved one through nextwall links, not walls that merely coincide. curtains.py:105-119 says the first curtain's eight coincident walls all paired as portals, and that moved the auditorium; DOOR-CURTAINS s3 cuts a notch of one-sided walls. Claim narrowed to linked walls.",
+  "of": "be42b3232f3f"
+ }
 }

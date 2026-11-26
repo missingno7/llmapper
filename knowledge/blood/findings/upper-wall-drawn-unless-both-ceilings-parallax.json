@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "Between two sectors the upper wall band is drawn, and clips the view above it, whenever either ceiling is not parallaxed. Between two parallaxed ceilings no wall is drawn above the lower one: the sky comes down to it. A sector with a real ceiling standing in a street therefore cuts off everything behind it above its roof line.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:4688 `if (((sec->ceilingstat&1) == 0) || ((nextsec->ceilingstat&1) == 0))`",
-  "DWE3M4 s648: a zero-height horizon sector with parallax floor and ceiling brings the sky down to the waterline",
+  "NBlood/source/build/src/engine.cpp:4687 (classicDrawBunches) `if (((sec->ceilingstat&1) == 0) || ((nextsec->ceilingstat&1) == 0))`",
+  "DWE3M4 s648: a zero-height horizon sector with parallax floor and ceiling (tile 2500) brings the sky down to the waterline",
   "E3M1's buildings are not sectors: its facades are the one-sided walls of its outdoor sectors"
  ],
  "use": "Make a city's buildings voids in the street (their walls one-sided), not roofed sectors; end a sea or plain in a zero-height sector parallaxed on both surfaces.",
@@ -25,5 +25,10 @@
   "parallax",
   "sky",
   "upper"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/src/engine.cpp:4684-4690 (classicDrawBunches, from :4498): :4687 'if (((sec->ceilingstat&1) == 0) || ((nextsec->ceilingstat&1) == 0))' opens the upper-wall branch. Loaded DWE3M4 s648: floor_z = ceiling_z = 21504, ceiling_stat 1, floor_stat 1, both tile 2500, neighbours s644-646 parallax at floor 21504.",
+  "of": "1e5bb955d0e0"
+ }
 }

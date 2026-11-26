@@ -2,12 +2,13 @@
  "id": "a-lift-can-rise-through-a-stack-plane",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "A lift may carry the player through a room-over-room plane: the car is the LOWER sector (type 600, ceiling 504) and stops 4,096 under the plane, and above it one sector of the same plan has a floor of 504. The player steps down onto it and looks down the shaft after it has gone.",
+ "claim": "In E4M4 a lift carries the player through a room-over-room plane: the car is the LOWER sector (s159, type 600, ceiling 504 at -24,576, low-stack marker sprite 100) and stops 4,096 under the plane, and over it, through stack link 21, one sector of the same outline (s154, up-stack marker sprite 101) has a floor of 504. One switch works it: sprite 109 (tile 1074) in the neighbouring s160, which moves on the same channel 105.",
  "evidence": [
-  "E4M4 s159: type 600, ceiling 504 at -24,576, floor 8,192 to -20,480 (catalog record)",
-  "E4M4 s154: same plan, floor 504"
+  "E4M4 s159: type 600, ceiling 504 at -24,576, floor 8,192 to -20,480, rx 105 (catalog record); sprite 100 type 12, data_1 21",
+  "E4M4 s154: same outline offset (3584, -1024), floor 504 at 8,192; sprite 101 type 11, data_1 21",
+  "E4M4 sprite 109: tile 1074 kSwitchToggle in s160, tx 105 command 2: the only sender on 105"
  ],
- "use": "Copy this for a lift between two stacked layers; switches at the stops call it, since one on the car is not seen across the plane.",
+ "use": "Copy this for a lift between two stacked layers. In Gravesend's plan (sewers-outside.md) switches at the two stops call it, since one on the car is not seen across the plane; that is our choice, E4M4 has one switch beside the car.",
  "code": [
   "projects/blood-city/references/sewers-outside.md",
   "bloodmap/roomoverroom.py"
@@ -23,5 +24,10 @@
   "room over room",
   "shaft",
   "stack"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "catalog record E4M4 sector 159: type 600, ceiling 504 at -24576, floor 8192, on_floor_z -20480, rx 105; sector 154: type 0, floor 504 at 8192. Map read: s159 has sprite 100 type 12 (low stack) data_1 21 at z -24576, s154 sprite 101 type 11 (up stack) data_1 21; outlines are the same 1024 x 1280 rectangle offset by (3584, -1024). The only sender on 105 is sprite 109 (tile 1074, kSwitchToggle, command 2) in s160 beside the car, itself type 600 on rx 105; so the 'switches at the stops' advice is ours, not E4M4's.",
+  "of": "494ef5d1d7ba"
+ }
 }

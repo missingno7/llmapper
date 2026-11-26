@@ -20,5 +20,10 @@
   "overlap",
   "sectnum",
   "sprite sector"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "db.cpp:1195 read in dbLoadMap (from :788): InsertSpriteSect(i, sprite[i].sectnum), and no updatesector/FindSector anywhere in db.cpp; warp.cpp:67 in warpInit (from :43) pZone->sectnum = pSprite->sectnum for kMarkerSPStart; triggers.cpp:1577 in OperateTeleport (from :1549) ChangeSpriteSect(nSprite, pDest->sectnum).",
+  "of": "17b4c67c476e"
+ }
 }

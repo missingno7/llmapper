@@ -2,9 +2,10 @@
  "id": "a-spire-is-an-apron-split-into-gables",
  "topic": "construction",
  "standing": "practice",
- "claim": "Build has no pyramid, but a tower can end in a point: split the apron on each face at the face's centre line, hinge each half on that line and slope its parallax sky down toward the corner, and mitre the corners (six sectors for three street faces). A gable under about a quarter of the shaft's visible height foreshortens to nothing, and even a steep one does not show from the tower's own foot.",
+ "claim": "Build has no pyramid, but in Gravesend's church (2026-11-17) a tower was made to end in a point: the apron on each face split at the face's centre line, each half hinged on that line with its parallax sky sloping down toward the corner, the corners mitred (six sectors for three street faces). Gables of 1.9 bodies on the 15.5-body tower read as a chimney or obelisk; at 3.9 bodies the far silhouette read as a church steeple, but from the tower's own foot the slope foreshortened flat and it read as a plain shaft.",
  "evidence": [
-  "projects/blood-city/experiments/church-skyline round 2 and 3: a 1.9-body gable on a 15.5-body shaft read 'chimney / obelisk'; a 3.9-body gable read 'church steeple (certain)' from far away and 'a plain square shaft' from the foot (critic-round2.md, critic-round3.md)"
+  "projects/blood-city/experiments/church-skyline/README.md:44-47 and measurements.txt:2-3: round 2 six tower gables of 1.9 bodies on a 15.5-body apron, round 3 gables 3.9, ridge 17.4",
+  "critic-round2.md: 'obelisk' (vista_far), 'chimney or pillar' (avenue_south_up); critic-round3.md: 'Church steeple (certain as a silhouette)' (vista_far), 'a plain square shaft' (avenue_south_up), and :41-45 on the foreshortening from the foot"
  ],
  "use": "Use gables for the far silhouette only; the near read of a tower needs something at eye height.",
  "code": [
@@ -21,5 +22,10 @@
   "spire",
   "steeple",
   "tower"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/blood-city/experiments/church-skyline/README.md:44-47 (round 2: 'six tower gables of 1.9'; round 3: gables to 3.9, ridge 17.4), measurements.txt:2-3 (tower apron 15.5 bodies), critic-round2.md (vista_far 'obelisk', avenue_south_up 'chimney or pillar'), critic-round3.md:8-17 ('Church steeple (certain as a silhouette)' far; 'a plain square shaft' near) and :41-45 (3.9 bodies of slope on a 13.5-body shaft seen from 5 units is foreshortened flat); bloodmap/skyline.py:80-97 (apron, ceiling_slope hinged on a face's centre line draws a gable).",
+  "of": "ba4d102c8506"
+ }
 }

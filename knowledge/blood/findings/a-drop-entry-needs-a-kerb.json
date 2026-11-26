@@ -1,12 +1,14 @@
 {
  "id": "a-drop-entry-needs-a-kerb",
  "topic": "place",
- "standing": "practice",
- "claim": "A shaft dropped into from above reads as an entrance when it has a kerb, one sector with the shaft as its hole, raised about 1,024 (a quarter of a step, so walked over), and when the lit space below is visible through it.",
+ "standing": "refuted",
+ "claim": "A shaft dropped into from above reads as an entrance when it has a kerb (one sector with the shaft as its hole, raised about 1,024) and the lit space below is visible through it.",
  "evidence": [
-  "Gravesend's sewer grate entrance (2026-08-27)."
+  "projects/blood-city/reports/refinement-log.md, Iteration 12 (the kerb ring built)",
+  "projects/blood-city/level/build_skeleton.py:765-771 (the owner, 2026-11-19, and its removal 2026-11-25); :1123 grate_kerb 0",
+  "projects/blood-city/level/l3_foundry.py:677-689 (the grate as flat sprites of tile 502); l3_shed.py docstring (the stair entrance)"
  ],
- "use": "Raise a kerb round every drop and light what is below it; keep the drop under 3.7 bodies or provide a way back up.",
+ "use": "Do not cut a see-through hole with a kerb for a sewer entrance on the strength of this; a grate is laid as flat sprites of tile 502 (l3_foundry.sprinkle), and a way down is a stair. A one-way drop needs a way back up.",
  "code": [],
  "scope": "blood",
  "learned": {
@@ -20,5 +22,11 @@
   "manhole",
   "sewer",
   "shaft"
- ]
+ ],
+ "instead": "In Gravesend the kerbed, see-through drop was built (refinement-log iteration 12: a 2,048 ring raised 1,024) and then taken out: the owner, walking it on 2026-11-19, found 'this weird rectangle hole' odd and the sewer entrances too close together; on 2026-11-25 the link, the ring and the mouth went, and the grate is a flat sprite of tile 502 on the yard over the shaft, which stays as the sewer's riser. Entrances to the sewer in Gravesend are now a stair from a small building on the street (l3_shed.py).",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/reports/refinement-log.md 'Iteration 12 - the grate gets its kerb': a 2048 kerb ring, one sector with the shaft as hole, raised 1024 (a quarter of the 4096 max step); then build_skeleton.py:765-771: the owner on 2026-11-19 called it 'this weird rectangle hole', and on 2026-11-25 the link, the flush ring and its mouth were removed; the grate is now tile 502 flat sprites (l3_foundry.py:677-689) and build_skeleton.py:1123 counts grate_kerb 0. The practice did not hold.",
+  "of": "ac0ebce2f114"
+ }
 }

@@ -10,14 +10,15 @@ Found through the wheel tiles (2320, 2322, 2323: three coupled wheels and a rod 
 
 ## What makes it read as that
 
-It is never one surface. E1M4's engine is four tiles and three sprites:
+It is never one surface. E1M4's engine is three tiles and three sprites:
 
 - body: 255, dark rusted plate
-- under the body, where the wheel sprite hangs: 470, riveted plates
 - where it is round (the front, the pillars): 2453, a riveted barrel
 - every top: 438, diamond plate (a FLOOR, which is what the owner named it)
 - a wood-framed opening in the cab
 - a flame (3566) and two smokes over the chimney (754 thin, 672 plume)
+
+The riveted underframe plate, 470, is TEDE1M7's engine's, not E1M4's.
 
 The Death Wish trains add a barred vent (794) in the side, a horned face (634) on the front, a lamp, the train's NAME lettered along the wagon, and roofs arched with slopes. E1M3 hangs a bill (356) on its carriage's livery.
 

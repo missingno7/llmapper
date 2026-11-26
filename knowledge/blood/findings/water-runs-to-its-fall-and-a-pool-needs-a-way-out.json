@@ -2,14 +2,14 @@
  "id": "water-runs-to-its-fall-and-a-pool-needs-a-way-out",
  "topic": "place",
  "standing": "ruling",
- "claim": "Water must flow meaningfully: currents above a fall run toward the fall and the pool below a fall needs a way out (the owner). Gravesend met it with channels running toward an outfall or basin, landings running fast toward the main channel, and barred culverts out of the pools (ours).",
+ "claim": "In Gravesend water must run where its fall says: the owner found the water above the stockyard fall running away from it. Currents above a fall run toward the fall. The agent's notes record a second owner rule, that the pool below a fall needs a way out, but not his words. Gravesend met both with channels running toward an outfall or basin, landings running fast toward the main channel, and barred culverts out of the pools.",
  "evidence": [
-  "The owner, 2026-11-23, of the Stockyard Drain: 'the rest of the water is going the other direction than the waterfall would suggest' (quoted in projects/blood-city/references/sewer-design.md). His sewer-overhaul words of 2026-11-21 (water that flows) and the pool's way out were said to the agent in conversation and are not quoted in the repository.",
-  "projects/blood-city/references/sewer-design.md: the barred culvert at each pool's east end"
+  "The owner, 2026-11-23, of the Stockyard Drain: 'the rest of the water is going the other direction than the waterfall would suggest' (projects/blood-city/level/l3_sewer.py:67-68; tests/test_city_third_walk.py:384-385 in projects/blood-city). The pool's way out is recorded as his rule only in the agent's notes, unquoted.",
+  "projects/blood-city/references/sewer-design.md:236-243: the barred culvert at each pool's east end"
  ],
  "use": "Every new water piece states where its water comes from and where it goes; set pan direction by that.",
  "code": [],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-23"
@@ -22,5 +22,10 @@
   "pan",
   "sewer",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words found at projects/blood-city/level/l3_sewer.py:67-68 and projects/blood-city/tests/test_city_third_walk.py:384-385 (2026-11-23: 'the rest of the water is going the other direction than the waterfall would suggest'), not in sewer-design.md as cited. No words for a pool's way out anywhere in the repository (the agent's note movers-stay-in-their-host.md states it as an owner rule, unquoted): claim says so. sewer-design.md:236-243 the barred culvert at each pool's east end. Scope project:blood-city.",
+  "of": "709c987d5dcc"
+ }
 }

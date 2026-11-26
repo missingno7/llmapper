@@ -23,5 +23,10 @@
   "modern",
   "tutorial",
   "xmapedit"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Counted the folder: maps/blood/mechanism/Vanilla 98 files, top level 38 '#'-prefixed .MAP, Modern 35. bloodmap/curriculum.py:1-17: 'The owner supplied a curriculum', Modern/ refused by mine_folder. The instruction is in the agent's note mechanism-curriculum (2026-09-01): 'consult this folder FIRST for any mechanism question'. catalog show lesson:DOOR-CURTAINS answers from the tutorials.",
+  "of": "98ba9bd53c9b"
+ }
 }

@@ -1,5 +1,9 @@
 """Recount logic closets and signature letters over the campaign with bloodmap.reachability."""
-import sys, os; sys.path.insert(0, os.getcwd())
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys, os
 import statistics
 from bloodmap.corpus import campaign_maps
 from bloodmap.format import read_map

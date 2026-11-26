@@ -1,5 +1,9 @@
 """E3M1's street: its road sectors (floor 352 under sky) and their width, the pavements beside them, and every wall wearing kerb tile 6."""
-import sys; sys.path.insert(0, ".")
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
+import sys
 from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map
 from bloodmap.model import record_fields as F

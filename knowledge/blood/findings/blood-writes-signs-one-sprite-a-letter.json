@@ -2,10 +2,11 @@
  "id": "blood-writes-signs-one-sprite-a-letter",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "Blood has no text primitive: a sign is one wall-aligned sprite per letter from the alphabet at tiles 3808 (A) to 3833 (Z), recoloured by palette. Uniform signs set letters a median 1.333 drawn widths apart (E1M4's ROTTEN CANDY 2.0); lines of one sign stand 1.455 drawn heights apart (163 gaps, 117 signs); a word written downward 1.095 (11 columns, all hanging signs in the Death Wish maps). Only 9 of 160 signs mix palettes, at carnivals and fairs.",
+ "claim": "Blood has no text primitive: a sign is one wall-aligned sprite per letter from the alphabet at tiles 3808 (A) to 3833 (Z), recoloured by palette. Uniform signs set letters a median 1.333 drawn widths apart (150 signs); lines of one sign stand 1.455 drawn heights apart (163 gaps, 117 stacks); a word written downward 1.095 (11 columns: ten in Death Wish maps, one in TEDE1M4; the campaign has none). 9 of 160 signs mix palettes: E1M4's fair (ROTTEN CANDY, tracked at 2.0, and FORTUNES), DWE1M9's SPOOKY WORLD, and others on control panels (DWE2M2) and shop fronts (ICE in DWE3M4 and DWE3M10, TEDE1M4).",
  "evidence": [
   "tools/mine_wall_sprites.py --corpus over 393 words; knowledge/blood/design/wall-sprites-v1.json (figures in bloodmap/wallplane.py)",
-  "knowledge/blood/design/wall-sprites-v1.json sign_composition.tracking_drawn_widths.uniform: n 150, median 1.333, q1 1.143, q3 1.6 (read 2026-11-26); bloodmap/lettering.py:58 PITCH = 1.45 is not that median and matches the LINE pitch (text_geometry.lines.line_pitch_drawn_heights median 1.455) instead"
+  "knowledge/blood/design/wall-sprites-v1.json sign_composition: signs 160, mixed 9 by map, tracking_drawn_widths.uniform n 150 median 1.333; text_geometry.lines 117 stacks, line_pitch n 163 median 1.455; columns 11, pitch median 1.095 (read 2026-11-26); bloodmap/lettering.py:58 PITCH = 1.45 is not the letter median and matches the LINE pitch instead",
+  "E1M4 sprites 161-171 (ROTTEN CANDY): 256 apart at x_repeat 64, palettes 4, 11, 0, 13"
  ],
  "use": "Write with bloodmap.lettering through a wall-plane style; keep the letter tiles for signs only.",
  "code": [
@@ -27,5 +28,10 @@
   "sign",
   "text",
   "tracking"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/design/wall-sprites-v1.json: words 393; sign_composition signs 160, mixed 9, uniform tracking n 150 median 1.333; text_geometry lines 117 stacks, 163 gaps, median 1.455; columns count 11 (DWE1M7 2, DWE2M2 1, DWE3M10 3, DWE3M4 3, DWE3M9 1, TEDE1M4 1), pitch median 1.095 over 45 gaps. E1M4 ROTTEN CANDY sprites 161-171 as in the evidence.",
+  "of": "eb2bc58df14d"
+ }
 }

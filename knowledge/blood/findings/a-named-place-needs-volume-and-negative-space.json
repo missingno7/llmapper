@@ -2,16 +2,17 @@
  "id": "a-named-place-needs-volume-and-negative-space",
  "topic": "place",
  "standing": "ruling",
- "claim": "A place the player is meant to remember must feel its size: at least Blood's median room (1.93 bodies high, 14M of floor), with floor to walk round the things in it. Fewer pieces and quiet places are wanted as much as new ones: one strong thing a place, leftovers deleted, floors at different heights rather than one flat level.",
+ "claim": "The owner, of Gravesend: its crypt felt tiny and its pump station like a miniature, with no negative space, and he wants a sense of space and volume (2026-11-18); not everything crowded, negative space useful, the city less flat with things on different floors, as in E3M1 (2026-11-25).",
  "evidence": [
-  "The owner, 2026-11-18: 'crypt feels tiny ... no negative space ... it feels like a miniature'.",
-  "The owner, 2026-11-25: 'We don't have to make everything too crowded ... negative space can also be useful'; 'less flat ... similar to what they did in E3M1'."
+  "The owner, 2026-11-18: 'crypt feels tiny ... there is really no negative space ... [the pump station] feels like a miniature. We should do something to really have sense of space volume' (projects/blood-city/level/scale.py:3-8)",
+  "The owner, 2026-11-25: 'less flat and have some things in different floors - similar to what they did in E3M1', 'sometimes negative space can also be useful' (projects/blood-city/level/gallows.py:4-6; projects/blood-city/references/market-design.md:6-7)"
  ],
- "use": "Stand furniture free of walls with aisles on both sides; check free floor share and short side against the campaign.",
+ "use": "Size a named place from the campaign (Gravesend's character.py flags one under 14M of floor or 1.93 bodies high, which it takes as Blood's median indoor room); stand furniture free of walls with aisles on both sides; check free floor share and short side against the campaign; prefer floors at different heights.",
  "code": [
-  "tools/place_character.py"
+  "tools/place_character.py",
+  "projects/blood-city/level/character.py"
  ],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-25"
@@ -24,5 +25,10 @@
   "scale",
   "space",
   "volume"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Owner's words: projects/blood-city/level/scale.py:3-8 (2026-11-18: 'crypt feels tiny ... really no negative space ... pump station ... feels like a miniature ... sense of space volume'); gallows.py:4-6 and memory owner-walk-2026-11-25.md:8 (2026-11-25: 'less flat ... similar to what they did in E3M1', 'We don't have to make everything too crowded ... negative space can also be useful'). The 14M / 1.93-body threshold is ours: character.py:319-321; scale.py ROOM_HEIGHT = (1.93, 3.38). 'One strong thing, leftovers deleted' is the agent's how-to, not his words.",
+  "of": "fee35a6c132b"
+ }
 }

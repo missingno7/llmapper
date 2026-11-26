@@ -2,9 +2,10 @@
  "id": "ground-shadows-need-a-26-shade-step",
  "topic": "light",
  "standing": "practice",
- "claim": "A ground shadow at +12 shade on ground at 30 is invisible; E3M1's contrast is a bright sunlit quarter (8-24) under a base of 34. A step of 26 (sun -14, shadow +12) reads. Shadows are cast by masses, not by boundary edges, or kerbed roads stay unshadowed.",
+ "claim": "In Gravesend a ground shadow at +12 shade on ground at 30 was invisible; E3M1's contrast is a bright sunlit quarter (8-24) under a base of 34. A step of 26 (sun -14, shadow +12) read. Shadows had to be cast by masses, not by boundary edges, or kerbed roads stayed unshadowed.",
  "evidence": [
-  "Gravesend's shadows checked against E3M1, 2026-11-20."
+  "Gravesend's shadows checked against E3M1, 2026-11-20: the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/surface-overlays-cut-last.md:11-21",
+  "projects/blood-city/level/build_skeleton.py:103 GROUND_SUN = (12, -14); bloodmap/sunlight.py:370 SHADOW_SHADE = 12 and :457 cast_shadows (masses, step = shade - sunlit)"
  ],
  "use": "Cast from masses and make the lit/shadow step at least about 26.",
  "code": [
@@ -21,5 +22,10 @@
   "shade",
   "shadow",
   "sun"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read memory/surface-overlays-cut-last.md:11 (owner 2026-11-20: shadows 'not very visible, check it with E3M1 shades') and :21 ('Shadow +12 alone is invisible on ground at 30; E3M1's contrast is a bright lit quarter (8-24) under a 34 base. Step 26 (sun -14 / shadow +12) reads') and :19 (cast by masses). bloodmap/sunlight.py:370 SHADOW_SHADE = 12, :457-474 cast_shadows from masses, step = shade - sunlit; projects/blood-city/level/build_skeleton.py:103 GROUND_SUN = (12, -14). probes/audit2_e3m1_sun.py: E3M1 sky street shades 8, 24, 32-34, 44.",
+  "of": "1dc545e365d7"
+ }
 }

@@ -2,9 +2,9 @@
  "id": "cut-floor-patches-into-the-finished-map",
  "topic": "construction",
  "standing": "practice",
- "claim": "Floor patches (shadows, decoration) are declared on the layout and cut into the finished map last. Cut at compile they split regions that some thirty later passes look up as one sector. Keep a sliver clear of slanted walls, XWALL walls and walls facing typed sectors (rounding leaves the neighbour's line), and shift a whole floor rather than cut it.",
+ "claim": "In Gravesend's experiment of 2026-11-20 (bloodmap.overlays, off in its build by default: GROUND_SHADOWS = False), floor patches (shadows, decoration) are declared on the layout and cut into the finished map last. Cut at compile they split regions that dozens of later passes (about thirty allocation lookups) look up as one sector. Keep a sliver (128) clear of slanted walls, XWALL walls and walls facing typed sectors (rounding leaves the neighbour's line), and lay a patch over a whole floor without cutting it.",
  "evidence": [
-  "Gravesend, 2026-11-20: bloodmap.overlays and the build's re-run of rules after the cut."
+  "Gravesend, 2026-11-20: bloodmap/overlays.py:1-62 (EXPERIMENTAL; SLIVER 128) and :372 lay; projects/blood-city/level/build_skeleton.py:101 GROUND_SHADOWS = False, :1853 the cut and the re-run of rules."
  ],
  "use": "Declare overlays on the layout and lay them on the disk map.",
  "code": [
@@ -22,5 +22,10 @@
   "patch",
   "shadow",
   "split"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened bloodmap/overlays.py:1-62: EXPERIMENTAL, not used by the city's build by default (build_skeleton.py:101 GROUND_SHADOWS = False); cut at compile 'dozens of passes' broke; laid last on the disk map; SLIVER = 128 kept clear of slanted walls, XWALL walls and walls facing typed or XSECTOR sectors; a whole-floor patch is laid without a cut; lay at :372. The agent's note surface-overlays-cut-last counts ~30 allocation lookups.",
+  "of": "5f2c8449decb"
+ }
 }

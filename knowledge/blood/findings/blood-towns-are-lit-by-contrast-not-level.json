@@ -25,5 +25,10 @@
   "shade",
   "street",
   "town"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_e3m1_street_shade.py (outline_and_holes areas, open-sky sectors): pavement (4) 65.0% at 34, 17.9% at 8, 17.1% at 24, mean 27.6; road (352) s8 47.9% at 8, rest 52.1% at 32, mean 20.5; open-sky walls below 0: 52, 50 at -8 (400 x18, 401 x16, 108 x6, 393 x4, 380 x4, 6, 384), two of 204 at -5/-2. city_profile on E3M1's path: ground median shade 34, street wall median 28; one-sided open-sky walls 72% at 24-36.",
+  "of": "46739482203f"
+ }
 }

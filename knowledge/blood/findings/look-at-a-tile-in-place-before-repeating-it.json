@@ -26,5 +26,10 @@
   "prop",
   "sheet",
   "tile"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/experiments/town-goods/README.md:91-95: tile 505 stood by three shop doors read 'says danger, not hall ... the most obvious repeat', removed; :32 'Every tile is used by at least two of those maps and set down with their fields'. goods.py:210-214 records the same. tools/mine_city_assets.py:46-51 TOWN_MAPS E3M1, E3M2, E1M2, E1M4, E6M1, DWE3M1, DWE3M10. catalog show 505: unnamed by the owner, read as a blood-smeared WASTE bin.",
+  "of": "025f6a1eb396"
+ }
 }

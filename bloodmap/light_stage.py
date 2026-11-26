@@ -591,9 +591,9 @@ def cut_shadows(disk, model: Model, keep: frozenset = frozenset()) -> dict[str, 
 
 #: a floor is cut where its light spans at least this many shades ...
 FLOOR_SPREAD = 12
-#: ... into bands this many shades apart: the campaign's own step between
-#: two floors cut only for light is 10 to 14 (E1M4 10, E3M1 12, E3M2 14,
-#: E3M5 14.5; `work/lightstage/budget.py`); at 6 the city cut three times as
+#: ... into bands this many shades apart: the campaign's own median step
+#: between two floors cut only for light is 10 to 14.5 (E1M4 10, E3M1 12,
+#: E3M2 14, E3M5 14.5; `knowledge/blood/findings/probes/lightstage_budget.py`); at 6 the city cut three times as
 #: often for steps nobody sees
 FLOOR_BAND = 12
 #: a band piece is kept only if its light differs from the piece around it by

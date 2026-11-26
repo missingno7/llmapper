@@ -4,8 +4,8 @@
  "standing": "refuted",
  "claim": "A wall standing under a parallax sky is drawn up to the sky.",
  "evidence": [
-  "projects/blood-city/level/l3_station.py, the train shed note: 'I had written that a wall under a parallax sky runs to the sky. It runs to its sector's ceiling; the sky is drawn above that.'",
-  "NBlood/source/build/src/engine.cpp:4721 the upper step is drawn between the two sectors' ceilings"
+  "projects/blood-city/level/l3_station.py:137-139, the train shed note: 'I had written that a wall under a parallax sky runs to the sky. It runs to its sector's ceiling; the sky is drawn above that.'",
+  "NBlood/source/build/src/engine.cpp:4938-4942 (classicDrawBunches): a one-sided wall is drawn from sec->ceilingz to sec->floorz; :4721 the upper step of a two-sided wall between the two sectors' ceilings"
  ],
  "use": "Give anything with openings a ceiling at its own roof height, or build it of sectors whose floors are its walls' tops.",
  "code": [
@@ -23,5 +23,10 @@
   "train",
   "wall"
  ],
- "instead": "A wall runs to its own sector's ceiling height and the sky is drawn above that. A free-standing car or kiosk under the open sky can have no door or window band, because the wall over an opening runs to that sector's ceiling; under a roof at the object's own height it can."
+ "instead": "A wall runs to its own sector's ceiling height and the sky is drawn above that. A free-standing car or kiosk under the open sky can have no door or window band, because the wall over an opening runs to that sector's ceiling; under a roof at the object's own height it can.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/src/engine.cpp (classicDrawBunches, from :4498): :4721 setup_globals_wall2(wal, .., nextsec->ceilingz, sec->ceilingz) for the upper step; :4938-4942 a one-sided wall (nextsectnum < 0) gets top sec->ceilingz and bottom sec->floorz, so it runs to its own sector's ceiling, sky or not. projects/blood-city/level/l3_station.py:137-139 'I had written that a wall under a parallax sky runs to the sky. It runs to its sector's ceiling'. carriage.py exists (sector-built carriage).",
+  "of": "77c785d1a6df"
+ }
 }

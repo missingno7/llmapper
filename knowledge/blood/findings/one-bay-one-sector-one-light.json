@@ -2,7 +2,7 @@
  "id": "one-bay-one-sector-one-light",
  "topic": "light",
  "standing": "practice",
- "claim": "A repetitive corridor reads best as bays each of one sector lit by one fitting: each bay is as dark as its own tube and a dead tube makes a dark bay, with no light pools cut, so the corridor costs no more walls than an unlit one.",
+ "claim": "In Gravesend's underpass a repetitive corridor is bays each of one sector lit by one fitting: each bay is as dark as its own tube and a dead tube makes a dark bay, with no light pools cut, so the corridor costs no more walls than an unlit one.",
  "evidence": [
   "Gravesend's underpass, 2026-11-24 (projects/blood-city/references/underpass-design.md)"
  ],
@@ -23,5 +23,10 @@
   "liminal",
   "tube light",
   "underpass"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/references/underpass-design.md:11-15: six beams, one bay between each two; one tube to a bay, two dead and one failing (underpass.LOOSE); 'Each bay is one sector and one light: no pool is cut, and a bay is as dark as its tube'. bloodmap/light_stage.py:981 LampGroup (lamps on, off or flickering as one, the owner 2026-11-24). Nothing measures that it reads best: it is what Gravesend did.",
+  "of": "d4d7421bf33a"
+ }
 }

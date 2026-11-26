@@ -4,7 +4,7 @@
  "standing": "engine",
  "claim": "A floor or ceiling is world-aligned unless its stat has bit 64 (relative alignment, measured from the sector's first wall). A sliding or rotating sector without bit 64 slides under a texture that stays still, so every member of a moving body needs bit 64 on floor AND ceiling. Conversely a world-aligned floor moved in the plan needs its panning shifted with it.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:3699 and :4026 (globalorientation&64: relative alignment).",
+  "NBlood/source/build/src/engine.cpp:2830 (setup_globals_cf1: flat floor/ceiling, world-aligned unless globalorientation&64, then measured from the sector's first wall), :3699 (fgrouscan) and :4026 (grouscan) for sloped ones.",
   "Seen on Gravesend's train (2026-11-24) and its moved station floor (track tile 1129, 2026-11-25)."
  ],
  "use": "Set floor_stat and ceiling_stat bit 64 on every sector of a mover; shift panning when moving a world-aligned floor.",
@@ -25,5 +25,10 @@
   "relative",
   "slide",
   "train"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "engine.cpp:2830 (setup_globals_cf1, flat ceilings and floors): if (globalorientation&64)==0 panning from globalposx/y (world), else from wall[sec->wallptr] and its direction. :3699 (fgrouscan) and :4026 (grouscan) are the same test for sloped surfaces only, which is all the finding cited. Gravesend's train and moved floor read from the finding's dates, not re-run.",
+  "of": "6e9ac979b115"
+ }
 }

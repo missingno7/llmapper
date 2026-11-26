@@ -2,9 +2,9 @@
  "id": "owners-own-maps-are-for-ideas-not-copying",
  "topic": "workflow",
  "standing": "ruling",
- "claim": "The owner's own Blood maps (D:/Games/DOS/BLOOD/Maps/RABID; RABIDN01-09 are his city) are references for ideas, never to be copied or brought into the repository.",
+ "claim": "The owner's own Blood maps (D:/Games/DOS/BLOOD/Maps/RABID; RABIDN01-09 are his city) are references he points at for ideas: of his street memorial in RABIDN09 he said 'you don't have to directly copy it'. Keeping them out of the repository is our rule, not his words.",
  "evidence": [
-  "The owner, 2026-11-20, of his street memorial in RABIDN09: 'you don't have to directly copy it'. Said to the agent in conversation on 2026-11-20; not quoted in the repository (projects/blood-city/reports/owner-review-queue.md says only 'read for ideas, not copied'). Keeping his maps out of the repository is AGENTS.md's rule for commercial data applied, not his words."
+  "The owner, 2026-11-20, of his street memorial in RABIDN09: 'you don't have to directly copy it' (the agent's note C:/Users/jiriv/.claude/projects/D--Games-DOS-llmapper/memory/owner-maps-as-references.md); projects/blood-city/reports/owner-review-queue.md:229 says 'read for ideas, not copied'. Keeping his maps out of the repository is AGENTS.md's rule for commercial data applied, not his words."
  ],
  "use": "When he names a rabid map, find the thing by tile and plan view and read it for ideas.",
  "code": [
@@ -20,5 +20,10 @@
   "owner",
   "rabid",
   "reference"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "The owner's words are kept in the agent's note memory/owner-maps-as-references.md (2026-11-20): of his RABIDN09 memorial 'you don't have to directly copy it', and the maps at D:/Games/DOS/BLOOD/Maps/RABID, RABIDN01-09 his city; owner-review-queue.md:229 'read for ideas, not copied'; l3_market.py:1089 cites the memorial. 'Never to be copied' goes beyond 'you don't have to directly copy it'; reworded, and the repository rule marked as ours.",
+  "of": "60733e1273f5"
+ }
 }

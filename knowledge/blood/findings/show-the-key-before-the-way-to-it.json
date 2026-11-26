@@ -23,5 +23,10 @@
   "reveal",
   "sight line",
   "vantage"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/references/pump-hall-design.md:8-14 (railed deck, key lit under a hood between the presses, the lever the second thing seen) and arcade-design.md:8-11 (eye key seen from the door, the gallery's middle span fallen). E3M6 sprite 355 type 105 kItemKeyMoon in s410 floor -82944; s413 floor -50176 (32768 lower); s378 and s379 floor -115712 (higher), all neighbours of s410.",
+  "of": "d95bb054d73a"
+ }
 }

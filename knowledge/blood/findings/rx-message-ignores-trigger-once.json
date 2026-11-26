@@ -5,7 +5,8 @@
  "claim": "Trigger Once only stops a sprite, wall or sector being set off directly (pushed, shot, touched, entered); a message arriving on its rx channel is obeyed every time. And a state command that names the state the object is already in sends nothing, so a toggle driven by explicit ON reports only its first change.",
  "evidence": [
   "NBlood/source/blood/src/triggers.cpp:1888-1893 trTriggerSprite checks and sets isTriggered/triggerOnce (1843 sectors, 1867 walls); trMessageSprite at triggers.cpp:1956 does not look at it",
-  "NBlood/source/blood/src/triggers.cpp:85-88 SetSpriteState returns 0 without sending when state already equals nState"
+  "NBlood/source/blood/src/triggers.cpp:85-88 SetSpriteState returns 0 without sending when state already equals nState",
+  "Functions: triggers.cpp:1841 trTriggerSector, :1865 trTriggerWall, :1889 trTriggerSprite, :1956 trMessageSprite (also :1913 trMessageSector, :1934 trMessageWall), :85 SetSpriteState."
  ],
  "use": "To latch something that is also wired, do not rely on Trigger Once: send it an explicit ON (command 1), or put a counter/once-only relay in front of it.",
  "code": [
@@ -22,5 +23,10 @@
   "once only",
   "rx",
   "trigger once"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:1841-1845 trTriggerSector, :1865-1869 trTriggerWall, :1889-1893 trTriggerSprite: each acts only if !locked && !isTriggered and sets isTriggered when triggerOnce; :1956-1977 trMessageSprite tests only locked, then OperateSprite (trMessageSector :1913, trMessageWall :1934 likewise). :85-88 SetSpriteState returns 0 when busy is settled and state == nState, before any evSend.",
+  "of": "84ad25685899"
+ }
 }

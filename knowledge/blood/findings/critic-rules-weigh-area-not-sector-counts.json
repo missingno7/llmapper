@@ -2,9 +2,10 @@
  "id": "critic-rules-weigh-area-not-sector-counts",
  "topic": "validation",
  "standing": "practice",
- "claim": "A critic rule that counts sectors measures the wrong thing: a 1,008-square-body courtyard was called 'circulation' because six tiny stair steps outnumbered it. Weigh by floor area, express scale as a percentile among corpus sectors of comparable footprint (never a round multiple of the body), never count a skipped evaluator as a pass, and cross-check a new rule against a rendered frame before trusting it.",
+ "claim": "In our first authoring-loop pilot (2026-08-21) a critic rule that counted sectors measured the wrong thing: a courtyard of 1,008 player areas was called 'circulation' because six tiny stair steps outnumbered it. Since then our rules weigh by floor area, express scale as a percentile among corpus sectors of comparable footprint (never a round multiple of the body), never count a skipped evaluator as a pass, and a new rule is cross-checked against a rendered frame before it is trusted.",
  "evidence": [
-  "First authoring-loop pilot, 2026-08-21: three iterations passed every gate while the level was an axis-aligned grid in the bottom decile for ceiling height."
+  "First authoring-loop pilot, 2026-08-21: docs/authoring-loop.md:87-91; three iterations passed every gate while the level was an axis-aligned grid in the bottom decile for ceiling height",
+  "bloodmap/authoring_loop.py:725-747 (transition_regions_dominate_space fires on floor-area share, not sector count)"
  ],
  "use": "Area-weighted measures and corpus percentiles; no aggregate quality score.",
  "code": [
@@ -22,5 +23,10 @@
   "metric",
   "percentile",
   "rule"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "docs/authoring-loop.md:87-91 read: 'An early version counted sectors and called a 1008 player-area courtyard \"circulation\" because six tiny stair steps outnumbered it'; bloodmap/authoring_loop.py:725-747 (transition_regions_dominate_space) now fires on floor area share > 0.5. Memory note llmapper-authoring-loop.md: 'three iterations passed every gate ... bottom decile of the corpus for ceiling height'. The courtyard was 1,008 player areas, not square bodies.",
+  "of": "9484ea7638be"
+ }
 }

@@ -4,7 +4,8 @@
  "standing": "practice",
  "claim": "XMapEdit autosaves (ASAVE*.map) appear inside corpus directories whenever the owner edits in place, and a census over the directory counts them: one silently inflated a curtain census by duplicating E1M1's s125.",
  "evidence": [
-  "Three found by 2026-09-01 (campaign/ twice, mechanism/ once); maps/blood/corpus.json is the manifest."
+  "Three found by 2026-09-01 (campaign/ twice, mechanism/ once): reports/owner-review-queue.md sections on ASAVE1 (the second campaign one inflated the curtain census from 39 to 40 sectors through a copy of E1M1's s125); maps/blood/corpus.json is the manifest.",
+  "bloodmap/corpus.py is_editor_autosave and _admitted: an autosave is never admitted (one is in maps/blood/campaign/ again on 2026-11-26 and campaign_maps() still returns 43)."
  ],
  "use": "Enumerate maps only through bloodmap.corpus (campaign_maps, named_maps) and quarantine a file whose name contradicts its directory; regenerate the manifest rather than trusting a count in prose (the campaign is 43 maps).",
  "code": [
@@ -21,5 +22,10 @@
   "contamination",
   "corpus",
   "glob"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "reports/owner-review-queue.md:91 (ASAVE1.map strayed into blood/campaign/), :103-108 (maps/blood/mechanism/ASAVE1.map), :362-371 (a second campaign ASAVE1, its s125 duplicating E1M1's curtain: census 39 to 40, two-leaf 12 to 13). bloodmap/corpus.py:274-284 is_editor_autosave, :337-342 never admitted (owner 2026-09-02 'ignore them'). maps/blood/campaign/ASAVE1.map is there today and campaign_maps() still gives 43.",
+  "of": "bafc148828b9"
+ }
 }

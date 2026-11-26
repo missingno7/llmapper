@@ -2,9 +2,9 @@
  "id": "half-of-blood-decoration-hangs-on-walls",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "Of the 263 props the campaign uses more than rarely, 142 are wall-aligned (paintings, posters, signs, windows), 77 stand on the floor, 40 are floor decals and 4 are brackets. A tile's alignment belongs to the tile: 795, the flat round light, is floor-aligned and lies flat against the ceiling (147 of its 159 campaign uses, at the ceiling's own z).",
+ "claim": "Of the 263 props used 12 or more times over the reference corpus view (campaign, BloodBath and curated community maps; prop-catalogue.json), 142 are wall-aligned (paintings, posters, signs, windows), 77 stand on the floor, 40 are floor decals and 4 are brackets; over the campaign and BloodBath alone, 37 of 71. A tile's alignment belongs to the tile: 795, the flat round light, is floor-aligned and lies flat against the ceiling (147 of its 159 campaign uses, at the ceiling's own z).",
  "evidence": [
-  "263 props classed 142 / 77 / 40 / 4 by tools/mine_prop_catalogue.py from each tile's cstat alignment bits",
+  "knowledge/blood/references/prop-catalogue.json (tools/mine_prop_catalogue.py, default --view reference, --min-instances 12): 263 props, 142 / 77 / 40 / 4; with --view original (campaign and BloodBath), 2026-11-26: 71 props, 37 / 18 / 14 / 2",
   "2026-11-26, knowledge/blood/findings/probes/consolidation_probe_tile.py 795: 159 campaign uses in 18 maps, 147 floor-aligned and 12 wall-aligned, median distance under the ceiling 0"
  ],
  "use": "Dress with a wall anchor as well as a floor one, and read each tile's alignment from the catalogue instead of declaring it; refuse to stand on the floor a tile Blood hangs.",
@@ -23,5 +23,10 @@
   "dressing",
   "prop",
   "wall-aligned"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/prop-catalogue.json: 263 props, kind wall_aligned 142, floor 77, decal 40, bracket 4. tools/mine_prop_catalogue.py:57-66 mines the 'reference' view (campaign, BloodBath, curated community), not the campaign; rerun to scratch with --view original (campaign + BloodBath): 71 props, 37/18/14/2; default view today 262, 145/72/40/5. consolidation_probe_tile.py 795: 159 uses in 18 campaign maps, 147 floor- and 12 wall-aligned, median 0 under the ceiling.",
+  "of": "cd89dad6f1c6"
+ }
 }

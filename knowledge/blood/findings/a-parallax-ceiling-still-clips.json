@@ -6,7 +6,8 @@
  "evidence": [
   "NBlood/source/blood/src/gameutil.cpp:739-740 GetZRange: only without PARALLAXCLIP_CEILING is a parallax ceiling's z replaced by 0x80000000; actor.cpp:4598 and :4647 (MoveDude) pass PARALLAXCLIP_CEILING, actor.cpp:4305 (MoveThing) does not",
   "NBlood/source/build/src/clip.cpp:2032 getzrange takes the sector's ceiling from getzsofslope with no test of ceilingstat bit 0",
-  "bloodmap/skyline.py: REACH (three bodies) is the height under which an apron's sky would be a ceiling to jump into, and apron refuses it"
+  "bloodmap/skyline.py: REACH (three bodies) is the height under which an apron's sky would be a ceiling to jump into, and apron refuses it",
+  "Functions: gameutil.cpp:709 GetZRange; actor.cpp:4435 MoveDude, :4258 MoveThing; clip.cpp:1991 getzrange; skyline.py:77 REACH, :99-102 the refusal."
  ],
  "use": "Keep any sky over walkable ground at least three bodies above it; skyline.apron refuses a lower one.",
  "code": [
@@ -24,5 +25,10 @@
   "jump",
   "parallax",
   "sky"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "gameutil.cpp:739-740 in GetZRange: ceilZ = 0x80000000 only if (nClipParallax & PARALLAXCLIP_CEILING) == 0 and ceilingstat&1; gameutil.h:81 default nClipParallax = 0. actor.cpp:4598 and :4647 are in MoveDude (from :4435) and pass PARALLAXCLIP_CEILING|FLOOR; :4305 in MoveThing (from :4258) passes none. clip.cpp:2032 getzrange calls getzsofslope with no ceilingstat test. skyline.py:77 REACH = 3 * STANDING_HEIGHT, apron raises below it (:99-102).",
+  "of": "c4836927528e"
+ }
 }

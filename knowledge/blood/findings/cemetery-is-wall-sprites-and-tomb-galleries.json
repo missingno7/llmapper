@@ -2,7 +2,7 @@
  "id": "cemetery-is-wall-sprites-and-tomb-galleries",
  "topic": "place",
  "standing": "precedent",
- "claim": "E1M1's cemetery is walled ground with gates; tombstones are sprites, mausoleums are long narrow tomb galleries (sectors 33, 34 and 46: congruent halls of 2,097,152 square units at aspect 8 in a row against the grounds' edge), its crypt is a stack pair under the grounds, and its dead rise from the ground (nine kDudeZombieAxeBuried, type 205). The whole map's 155 sectors have floor shade median +30 and 50 animated sectors; of its 559 sprites 148 are wall-aligned and 364 face, but those counts include foes, pickups and control sprites: visible plain decoration is 34 wall and 41 face sprites.",
+ "claim": "E1M1's cemetery is walled ground with gates; tombstones are sprites, mausoleums are long narrow tomb galleries (sectors 33, 34 and 46: congruent halls of 4,096 by 512, 2,097,152 square units at aspect 8; 33 and 34 side by side against the grounds' edge, 46 elsewhere), its crypt is a stack pair under the grounds, and its dead rise from the ground (nine kDudeZombieAxeBuried, type 205). The whole map's 155 sectors have floor shade median +30 and 50 animated sectors; of its 559 sprites 148 are wall-aligned and 364 face, but those counts include foes, pickups and control sprites: visible plain decoration is 34 wall and 41 face sprites.",
  "evidence": [
   "E1M1 s33, s34, s46 (galleries), tools/mine_room_grammar.py (knowledge/blood/references/room-grammar.json); knowledge/blood/references/church-patterns.md:12-31",
   "2026-11-26 recount on E1M1: 148/364/47 wall/face/floor-aligned sprites of all kinds; 34/41/22 among visible type-0 sprites; nine type 205; 50 sectors with an XSECTOR amplitude"
@@ -23,5 +23,10 @@
   "mausoleum",
   "tomb",
   "zombie"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Loaded E1M1 (work script): 155 sectors, floor shade median 30, 50 sectors with amplitude; 559 sprites, 364 face/148 wall/47 floor; type 0 visible 41 face/34 wall/22 floor; nine type 205. s33, s34, s46: 4 walls each, 4096 x 512, area 2,097,152, aspect 8. s33 and s34 are side by side with outer walls (next_sector -1) on two sides; s46 is at x 8704 with neighbours on all four walls, not in that row. church-patterns.md:12-31 read.",
+  "of": "5f19853bf9a8"
+ }
 }

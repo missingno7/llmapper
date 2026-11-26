@@ -2,7 +2,7 @@
  "id": "e3m8-density-is-short-walls-and-trim",
  "topic": "construction",
  "standing": "tendency",
- "claim": "E3M8, the prettiest dense Blood map, is not bigger than a plain one but denser: 34.2 sectors per 100 square bodies (E1M1 13.3); median wall run 1.33 body widths; 40 wall tiles including a trim tier of narrow pilasters (93, 115, 195, 479 at 32x128 and 16x128) and thin string courses (6 at 64x8, 200 at 32x16); median shade step between neighbours 2 (p95 31); 27% of sectors sloped; 52 floor levels within 6.3 bodies of range.",
+ "claim": "E3M8, the prettiest dense Blood map, is not bigger than a plain one but denser: 34.2 sectors per 100 square bodies (E1M1 13.3); median wall run 1.33 body widths (E1M1 the same); 40 wall tiles (E1M1 40) including a tier of narrow tiles (93 and 115, read as pilasters, 32x128; 479, the owner's stone column, 32x128; 195, his jamb-face metal track, 16x128) and thin bands (6, his kerb, 64x8; 200, his riveted metal threshold, 32x16); median shade step between neighbours 2 (p95 31); 27% of sectors sloped; 52 floor levels within 6.3 bodies of range.",
  "evidence": [
   "knowledge/blood/design/e3m8-reference-v1.json (2026-08-27), with E1M1 as control; our candidate: wall run 3.00, 17 tiles, shade step 7, 2% slopes."
  ],
@@ -23,5 +23,10 @@
   "slopes",
   "string course",
   "trim"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "knowledge/blood/design/e3m8-reference-v1.json: sectors per 100 sq human E3M8 34.18, E1M1 13.31; median segment 1.33 body widths for both; wall tiles 40 and 40; second tier 93, 115, 479 (32x128), 195 (16x128), 6 (64x8), 200 (32x16); shade step median 2, p95 31; sloped 0.27; 52 floor levels, range 6.3; candidate 3.0, 17, 7, 0.02. Owner names (catalog show): 195 'metal rail/track, inside faces of jambs', 479 'stone column texture', 6 'kerb', 200 'metal threshold with rivets'; 93, 115 unnamed (read as pilasters).",
+  "of": "4d26db2c1f33"
+ }
 }

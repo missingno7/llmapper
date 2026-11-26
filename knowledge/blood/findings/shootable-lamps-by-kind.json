@@ -2,10 +2,11 @@
  "id": "shootable-lamps-by-kind",
  "topic": "light",
  "standing": "tendency",
- "claim": "Which lamps Blood lets the player shoot out: over 102 maps, 62 of 288 fluorescent panels (2290), 8 of 9 long ones, 6 of 14 brass lamps, 5 of 148 brass lanterns (693; each takes its light with it), a round glass lamp (676); posts, chain lamps, torches and candles none. A row of panels is one circuit: shoot one and the row goes.",
+ "claim": "Which lamps can be shot out, over the 98 maps of the reference view (campaign, BloodBath, curated community): 62 of 288 fluorescent panels (2290), 8 of 9 long ones (2288), 6 of 14 brass lamps (945), 5 of 148 brass lanterns (693; each takes its light with it), one of 68 round glass lamps (676); chain lamps 2 of 452; posts and torches none. In E1M2 a row of panels is one circuit (sprites 630-633 send and listen on 189): shoot one and the row goes.",
  "evidence": [
-  "E2M1 sprite 10 (693, type 416, shade -128, tx 108); E1M3 sprite 18 (676); E1M2 sprites 630-633 (2288, type 416, tx and rx 189)",
-  "counts in projects/blood-city/level/shot_lamps.py"
+  "2026-11-26 recount by knowledge/blood/findings/probes/audit2_shot_lamps.py (a thing of types 400-433, or a switch 20-22 triggered by vector or impact); in the campaign alone 2290 is 33 of 85",
+  "E2M1 sprite 10 (693, type 416, shade -128, tx 108); E1M3 sprite 18 (676, type 416); E1M2 sprites 630-633 (2288, type 416, tx and rx 189)",
+  "the 2026-11-25 counts in projects/blood-city/level/shot_lamps.py:12-16"
  ],
  "use": "Make panels, lanterns and globes breakable where a room is lit by them; switch the light with each (LampGroup), one pool to a lamp.",
  "code": [
@@ -24,5 +25,10 @@
   "lamp",
   "panel",
   "shoot"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with probes/audit2_shot_lamps.py (breakable = a thing of types 400-433, or a switch 20-22 triggered by vector or impact) over the reference view (campaign, BloodBath, curated community): 98 maps listed and read, not 102; 2290 62 of 288, 2288 8 of 9, 945 6 of 14, 693 5 of 148, 676 1 of 68; but chain lamps 641 2 of 452 (not none); posts 640 0 of 629; torches 506 0 of 194. Campaign alone: 2290 33 of 85. Records: E2M1 sprite 10 type 416, 693, shade -128, tx 108; E1M3 sprite 18 type 416, 676; E1M2 sprite 630 type 416, 2288, tx 189 rx 189.",
+  "of": "86fedb2da41d"
+ }
 }

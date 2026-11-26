@@ -24,5 +24,10 @@
   "kwallgib",
   "pane",
   "window"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood common_game.h:459 kWallGib = 511; triggers.cpp:715 in OperateWall (from :692): only case kWallGib runs SetupGibWallState and GibWall; the default case only toggles state. Counted masked two-sided walls with over_picnum 263/266: E1M4 266 x2, E1M1 263 x6, E1M2 263 x6, E3M1 266 x16, E3M2 266 x2, every one type 511.",
+  "of": "e54dc18e256a"
+ }
 }

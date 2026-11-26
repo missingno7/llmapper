@@ -4,7 +4,8 @@
  "standing": "engine",
  "claim": "A sector's shade wave (flicker, pulse, strobe) runs only if its XSECTOR amplitude is non-zero: InitSectorFX lists no sector without it, and every other shade field is then inert. With amplitude set it runs while the sector is busy, or always if shade_always is 1; at a partial busy the amplitude is scaled by it, so the shade is a range, not a value.",
  "evidence": [
-  "NBlood/source/blood/src/sectorfx.cpp:360-364 InitSectorFX (amplitude); :162 `if (pXSector->shadeAlways || pXSector->busy)`; :166-171 scaling and the wave"
+  "NBlood/source/blood/src/sectorfx.cpp:363-364 (InitSectorFX: only a sector with amplitude is put on shadeList); :162 (DoSectorLighting: `if (pXSector->shadeAlways || pXSector->busy)`); :165-170 (amplitude scaled by busy unless shadeAlways, then GetWaveValue)",
+  "NBlood/source/blood/src/nnexts.cpp:5562-5566: a modern map's sector FX changer is the one other way onto shadeList"
  ],
  "use": "effects.shade_at says what a sector's faces show at a given busy.",
  "code": [
@@ -21,5 +22,10 @@
   "lighting effect",
   "shade wave",
   "shade_always"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "sectorfx.cpp InitSectorFX (352): 363-364 'if (pXSector->amplitude) shadeList[shadeCount++]'; DoSectorLighting (116): 162 'if (pXSector->shadeAlways || pXSector->busy)', 165-167 nAmp = mulscale16(nAmp, busy) when not shadeAlways, 170 GetWaveValue. Only other entry to shadeList: nnexts.cpp:5562-5566 (a modern sector FX changer). effects.py:805 shade_at exists.",
+  "of": "c00feb0f0a87"
+ }
 }

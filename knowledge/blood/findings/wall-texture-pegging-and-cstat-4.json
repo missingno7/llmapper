@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "Where Build hangs a wall's tile: a one-sided wall from its sector's ceiling; the upper step of a two-sided wall from the NEXT sector's ceiling (the head of the opening); the lower step from the next sector's floor. Wall cstat 4 instead pegs the band to this sector's own ceiling (both bands, on a two-sided wall). So a banded facade breaks phase over every opening unless the header carries cstat 4.",
  "evidence": [
-  "NBlood/source/build/src/engine.cpp:4438-4440 globalzd from topzref unless (globalorientation&4); the calls at :4721 (upper: nextsec ceiling / sec ceiling), :4835 (lower: nextsec floor / sec ceiling), :4941 (one-sided: sec ceiling)",
-  "E3M1 sets bit 4 on 21 of its 35 street headers (projects/blood-city/level/facade_pass.py align_headers)"
+  "NBlood/source/build/src/engine.cpp:4438-4441 (setup_globals_wall2) globalzd from topzref unless (globalorientation&4); the calls at :4721 (upper: nextsec ceiling / sec ceiling), :4835 (lower: nextsec floor / sec ceiling), :4940-4942 (one-sided: sec ceiling / sec floor, so cstat 4 pegs a one-sided wall to its floor)",
+  "E3M1 sets bit 4 on 21 of its 35 street headers by projects/blood-city/level/facade_pass.py:213 (a comment, its count not kept); knowledge/blood/findings/probes/audit2_e3m1_headers.py over every wall of an E3M1 sky sector onto a lower roofed ceiling: 23 of 47"
  ],
  "use": "Set cstat 4 on the wall over a street opening when the facade is banded; the texture frame depends on it rather than deciding it.",
  "code": [
@@ -25,5 +25,10 @@
   "orgoutside",
   "panning",
   "peg"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/src/engine.cpp:4398-4441 (setup_globals_wall2): globalzd from topzref unless (globalorientation&4), then from botzref; calls :4721 (nextsec->ceilingz, sec->ceilingz), :4835 (nextsec->floorz, sec->ceilingz), :4940-4942 (one-sided: sec->ceilingz, sec->floorz). projects/blood-city/level/facade_pass.py:205-216 comment '21 of its 35 street headers'. Ran probes/audit2_e3m1_headers.py: 47 walls of E3M1 sky sectors stepping to a lower roofed ceiling, 23 with cstat 4.",
+  "of": "ba659224ccfd"
+ }
 }

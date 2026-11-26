@@ -2,9 +2,10 @@
  "id": "foes-per-difficulty-ratios",
  "topic": "gameplay",
  "standing": "tendency",
- "claim": "Over the campaign's 43 maps the number of foes met on each of the five difficulties, against the middle one, is 0.75, 0.81, 1, 1.19, 1.28 (by a map's median 0.74, 0.79, 1, 1.21, 1.29). A level that keeps nearly one population on every difficulty (Gravesend stood at 0.88, 0.90, 1, 1.01, 1.01) has no real easy or hard.",
+ "claim": "Over the campaign's 43 maps the number of foes met on each of the five difficulties, against the middle one, is 0.75, 0.81, 1, 1.19, 1.28 (types 201-250; 0.76 with type-18 spawners counted; by a map's median 0.76, 0.79, 1, 1.22, 1.29). A level that keeps nearly one population on every difficulty (Gravesend stood at 0.88, 0.90, 1, 1.01, 1.01 before difficulty.py; 0.73, 0.80, 1, 1.20, 1.28 after) has no real easy or hard.",
  "evidence": [
-  "counted in projects/blood-city/level/difficulty.py (module docstring) over the 43 campaign maps"
+  "knowledge/blood/findings/probes/audit2_foes_per_difficulty.py over the 43 campaign maps (launch_skill bits; foes as projects/blood-city/level/difficulty.py _foe)",
+  "projects/blood-city/level/blood-city-current.MAP, 2026-11-26: 123, 135, 169, 203, 216 foes"
  ],
  "use": "Author the middle difficulty, then thin free-standing ordinary foes for the two easier and add some beside them for the two harder, away from the start and from heights that see it.",
  "code": [
@@ -20,5 +21,10 @@
   "enemies",
   "population",
   "skill"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with knowledge/blood/findings/probes/audit2_foes_per_difficulty.py over 43 campaign maps, launch_skill bits, foes as difficulty._foe (types 201-250 and 18): 2638/2832/3476/4150/4455, pooled 0.76, 0.81, 1, 1.19, 1.28; without type 18 0.75, 0.81, 1, 1.19, 1.28; by a map's median 0.76, 0.79, 1, 1.22, 1.29 either way. Gravesend's blood-city-current.MAP now 123/135/169/203/216 = 0.73, 0.80, 1, 1.20, 1.28 (the 0.88... was before difficulty.py).",
+  "of": "77961b81eedc"
+ }
 }

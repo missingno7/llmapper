@@ -4,8 +4,8 @@
  "standing": "engine",
  "claim": "A rotating sector (615/617) uses one marker: its x/y is the pivot, so its absolute position matters, and its ang is the total turn, not a heading. Angles wrap at 2048 (Sin/Cos mask with 2047), so whole circles spin and come back: a tutorial gear turns 20480 (ten revolutions), a door -1024 or 512.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:2232 (marker0 passed as pivot and its ang as the end turn); trig.cpp:47 RotatePoint; trig.h:34-42 Sin/Cos index costable with & 2047.",
-  "Tutorial GEAR s1 ang 20480, s3 ang -1024 (maps/blood/mechanism)."
+  "NBlood/source/blood/src/triggers.cpp:2232 (trInit: marker0 passed as pivot and its ang as the end turn); trig.cpp:47 RotatePoint; trig.h:34-42 Sin/Cos index costable with & 2047.",
+  "maps/blood/mechanism/Vanilla/MACHINERY-GEAR.map s1 (marker sprite 11, ang 20480) and s3 (sprite 33, ang -1024); maps/blood/mechanism/#SWDOOR.MAP s1 ang 512, s2 ang -512."
  ],
  "use": "Put the marker on the hinge or axle; write the turn as an angle in 2048ths, signed.",
  "code": [
@@ -24,5 +24,10 @@
   "hinge",
   "pivot",
   "rotate"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp:2232 (trInit, case kSectorRotate): TranslateSector(i,0,-65536, m1.x,m1.y, m1.x,m1.y, 0, m1.x,m1.y, m1.ang, ...): pivot m1 x/y, turn 0..m1.ang. trig.cpp:47 RotatePoint; trig.h:34-42 Sin/Cos mask & 2047. MACHINERY-GEAR.map: s1 marker_0 11 ang 20480, s3 marker 33 ang -1024. Over the course's 615/617 markers: -512 x161, 512 x157, 20480 x12, -1024 x10; #SWDOOR s1 512, s2 -512.",
+  "of": "50470b5cb3d3"
+ }
 }

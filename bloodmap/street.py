@@ -277,7 +277,10 @@ def runs_from_plan(nodes: dict[str, Sequence[float]],
 #:
 #: Its faces to the road and to the pavements are two-sided, **blocking**
 #: (cstat 1), at `y_repeat` 8, in the district's own facade stone -- 400 on
-#: s0, 401 on s339, 108 on s343. Where a face meets a pedestrian path instead
+#: s0, 401 on s339, 108 on s343. Those are the mass's own records and are
+#: drawn only from the mass: the engine draws a step from the viewer's
+#: sector, so from the road the face is the road's own wall record (414 at
+#: shade 24, engine.cpp:4801-4833). Where a face meets a pedestrian path instead
 #: of a road it is NOT blocking (s339's walls to s10/s11, picnum 181,
 #: cstat 0): you may walk between the houses, you may not walk up the end of
 #: the street.

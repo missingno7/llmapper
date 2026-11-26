@@ -2,10 +2,11 @@
  "id": "a-court-under-a-lower-sky-makes-its-neighbours-paper-thin",
  "topic": "renderer",
  "standing": "ruling",
- "claim": "Open ground under a lower sky between tall buildings cuts their sides at its sky line, and above it each building is a front with nothing behind it. The court takes the street's sky and its sides wear the neighbours' facade round the corner; a low front's height belongs to a thin lip (about 128 deep) before it.",
+ "claim": "The owner, 2026-11-25, of Gravesend's station forecourt: open ground under a lower sky between two tall buildings 'makes buildings next to it to look like paper thin because of the sky' (a wall is drawn to its own sector's sky, so the court's sides stop at its sky line). What Gravesend did about it, not his words: the court takes the street's sky, its sides wear the neighbours' facades round the corner, and the low front's height is the sky of a lip 128 deep before it.",
  "evidence": [
-  "The owner, 2026-11-25: the forecourt 'makes buildings next to it to look like paper thin because of the sky'.",
-  "Exemplar of a roofed, columned portico giving the mass depth: E1M7 s12."
+  "The owner, 2026-11-25: the forecourt 'makes buildings next to it to look like paper thin because of the sky' (projects/blood-city/level/l3_station.py:1096-1098; bloodmap/skyline.py:268-269).",
+  "projects/blood-city/level/l3_station.py:1099-1105 and :1115 (LIP_D = 128): the remedy as built.",
+  "Exemplar of a roofed, columned portico giving the mass depth: E1M7 s12 (roofed, 8 round columns as holes)."
  ],
  "use": "Run the thin-front check after any change of sky height.",
  "code": [
@@ -23,5 +24,10 @@
   "portico",
   "sky",
   "thin"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Found the words in projects/blood-city/level/l3_station.py:1096-1105 and bloodmap/skyline.py:262-270: the owner, 2026-11-25, of Gravesend's station forecourt, 'makes buildings next to it to look like paper thin because of the sky'. The remedy (street's sky on the court, neighbours' walls round the corner, a lip) is ours: l3_station.py:1115 LIP_D = 128. E1M7 s12: roofed (ceiling_stat 0), 146 walls, outline 18 points with 8 round holes of 16 points (columns).",
+  "of": "5b03d619bd51"
+ }
 }

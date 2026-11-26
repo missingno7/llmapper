@@ -22,5 +22,10 @@
   "radius",
   "statnum",
   "thing"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "actor.cpp:2717 actRadiusDamage: loops headspritestat[kStatDude] at 2728 and [kStatThing] at 2762 only; the explosion pass in actProcessSprites (5530) likewise walks kStatDude (5574) and kStatThing (5603), walls by trTriggerWall. catalog record E4M3 sprite 130: type 417, status 4. Owner's words at projects/blood-city/level/l3_sewer.py:1664 and tests/test_city_third_walk.py:367. Census: all 3,796 campaign sprites of types 400-433 are status 4.",
+  "of": "9b4978184590"
+ }
 }

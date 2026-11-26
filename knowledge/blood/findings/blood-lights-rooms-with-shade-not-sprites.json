@@ -2,9 +2,10 @@
  "id": "blood-lights-rooms-with-shade-not-sprites",
  "topic": "light",
  "standing": "tendency",
- "claim": "Only 3% of campaign rooms hold a light-giving prop (shade -20 or brighter); 88% hold no prop at all, and 12% of rooms over a plan unit square carry grime, two pieces at the median (p75 3, p90 5).",
+ "claim": "In the campaign's rooms (sectors of at least a plan unit square and 1.2 bodies' height, not movers) about 3% hold a light-giving prop (177 of 6,745, prop shade -20 or brighter) and 86% hold no prop at all (5,824). Grime: 12% of such rooms carry it, two pieces at the median (p75 3, p90 5), counted 2026-08-28 and not recounted.",
  "evidence": [
-  "3% / 88% / 12% from tools/mine_prop_catalogue.py and tools/mine_style_combinations.py, as quoted in projects/blood-city/level/props.py"
+  "recount 2026-11-26 by knowledge/blood/findings/probes/audit2_room_props.py (the room definition of tools/mine_style_combinations.py, over the 43 campaign maps): 6,745 rooms, 5,824 bare, 177 with a light prop; over its default reference view 19,474 rooms, 77% bare, 5.5% lit",
+  "the grime share and counts as quoted in projects/blood-city/level/props.py:109-112 (2026-08-28), not recounted"
  ],
  "use": "Light by sector shade first; dress the few rooms that earn it, and leave most bare.",
  "code": [
@@ -21,5 +22,10 @@
   "grime",
   "light prop",
   "prop density"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Rooms as tools/mine_style_combinations.py defines them, recounted with probes/audit2_room_props.py: campaign 6,745 rooms, 5,824 with no prop (86.3%), 177 with a prop of prop-catalogue shade <= -20 (2.6%); its default 'reference' view: 19,474 rooms, 77.4% bare, 5.5% lit. props.py:17, 105, 109-110, 153 quote 3%, 12%, median 2/p75 3/p90 5, 88%. Neither tool prints the shares; the grime figures were not reproducible (no grime set kept).",
+  "of": "2650f29093df"
+ }
 }

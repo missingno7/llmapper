@@ -2,9 +2,10 @@
  "id": "an-object-sends-only-on-trigger-on-or-trigger-off",
  "topic": "mechanism",
  "standing": "engine",
- "claim": "Having a tx_id is not sending. A sprite, wall or sector sends its command only when it turns ON with trigger_on set or turns OFF with trigger_off set; a toggle lever with only trigger_on sends on every second push. Link is the exception: kSwitchCombo sends kCmdLink from its own path.",
+ "claim": "Having a tx_id is not sending. Through its state change a sprite, wall or sector sends its command only when it turns ON with trigger_on set or turns OFF with trigger_off set; a toggle lever with only trigger_on sends on every second push. The other ways out: a decoupled object sends its command each time it is triggered, without changing state; a generator sends on every repeat; and kCmdLink is sent by kSwitchCombo and by a moving sector while busy, from their own paths.",
  "evidence": [
-  "NBlood/source/blood/src/triggers.cpp:102-104 (SetSpriteState), :123-125 (SetWallState), :140 and the OFF branch below it (SetSectorState); kSwitchCombo's Link send at triggers.cpp:491.",
+  "NBlood/source/blood/src/triggers.cpp:102-105 (SetSpriteState), :123-126 (SetWallState), :140-141 and :152-153 (SetSectorState)",
+  "NBlood/source/blood/src/triggers.cpp:1848-1849, 1872-1873, 1895-1896 (trTriggerSector / trTriggerWall / trTriggerSprite: decoupled sends directly); :601-603 (OperateSprite, a generator's kCmdRepeat); :491-492 (kSwitchCombo's Link); :1199, 1248 (VSpriteBusy, VDoorBusy send kCmdLink)",
   "Secrets built with secret=True omitted trigger_on and were never counted (found 2026-11-19)."
  ],
  "use": "Declare every wire on a Circuit, which refuses a sender reporting neither change; for a toggle say on and off.",
@@ -26,5 +27,10 @@
   "trigger_off",
   "trigger_on",
   "tx"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "triggers.cpp read: SetSpriteState 102-105, SetWallState 123-126, SetSectorState 140-141 and 152-153 send only on triggerOn&&state / triggerOff&&!state. But: trTriggerSector/Wall/Sprite 1848-1849, 1872-1873, 1895-1896 evSend the command directly when the object is decoupled; OperateSprite 601-603 a generator sends on every kCmdRepeat; kSwitchCombo 491-492 and the busy functions (VSpriteBusy 1199, VDoorBusy 1248, ...) send kCmdLink.",
+  "of": "d1da8f59eb78"
+ }
 }

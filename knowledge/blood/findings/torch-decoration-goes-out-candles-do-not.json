@@ -1,12 +1,13 @@
 {
  "id": "torch-decoration-goes-out-candles-do-not",
  "topic": "light",
- "standing": "engine",
- "claim": "A torch decoration (type 30) draws its flame only while its state is 1 and smoke when it is off, so it can be put out by a wire. A candle or other plain decoration keeps its flame whatever its state.",
+ "standing": "refuted",
+ "claim": "A torch decoration (type 30) can be put out by a wire, but a candle decoration keeps its flame whatever its state.",
  "evidence": [
-  "NBlood/source/blood/src/view.cpp:2930 case kDecorationTorch: state 1 draws picnum+1 and the high torch effect, otherwise smoke"
+  "NBlood/source/blood/src/view.cpp:2930-2936 (viewProcessSprites, case kDecorationTorch: no XSPRITE or state 1 draws picnum+1 and the high torch effect, otherwise smoke)",
+  "NBlood/source/blood/src/view.cpp:2922-2929 (case kDecorationCandle: no XSPRITE or state 1 gives shade -128 and kViewEffectPhase, otherwise shade -8) and :2360-2373 (kViewEffectPhase adds tile 626 at the sprite's top, shade 26); types at common_game.h:239-240"
  ],
- "use": "Use type 30 for fires that a rite or switch puts out, with LampGroup for the light they give; never wire a candle to go dark.",
+ "use": "Use type 30 or 32 for fires that a rite or switch puts out, with LampGroup for the light they give; a candle that must never go dark is a plain decoration or a type 32 with no XSPRITE.",
  "code": [
   "bloodmap.light_stage.LampGroup",
   "projects/blood-city/level/cabal_rite.py"
@@ -23,5 +24,11 @@
   "flame",
   "smoke",
   "torch"
- ]
+ ],
+ "instead": "Both can be put out. A torch (type 30) draws picnum+1 with the high torch effect while its state is 1 and smoke otherwise; a candle (kDecorationCandle, type 32) is drawn at shade -128 with a flame sprite (tile 626, itself at shade 26) over its top while its state is 1, and at shade -8 without it otherwise. One of either type with no XSPRITE is always lit, and so is a plain decoration whose tile shows a flame.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "view.cpp:2920-2936 (viewProcessSprites) read: kDecorationCandle with no XSPRITE or state 1 gets shade -128 and kViewEffectPhase, else shade -8; kDecorationTorch with no XSPRITE or state 1 draws picnum+1 and kViewEffectTorchHigh, else kViewEffectSmokeHigh. view.cpp:2360-2373: kViewEffectPhase inserts tile 626 at the sprite's top at shade 26, repeat 24.",
+  "of": "8b287d556d02"
+ }
 }

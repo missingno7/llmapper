@@ -4,8 +4,8 @@
  "standing": "tendency",
  "claim": "39 of 43 campaign maps keep a logic closet: an unreachable sector holding switches and generators, wired to the level by channel only (52 closets, every one a single sector; 26 maps have one, 13 two, 4 none; median 11 switches, E1M6 67). It is the level's control panel, not a room.",
  "evidence": [
-  "2026-11-26 recount with bloodmap.reachability.classify_offmap over bloodmap.corpus.campaign_maps() (knowledge/blood/findings/probes/consolidation_audit_mid_closets.py): 52 logic closets in 39 maps, all one sector; switches median 11, most E1M6 67, E3M4 44, E6M1 44, E2M7 42, E1M2 41",
-  "the same figures were in docs/blood-mechanics-and-conventions.md, which is at HEAD but removed from the working tree in the 2026-11-26 consolidation"
+  "2026-11-26 recount with bloodmap.reachability.classify_offmap over bloodmap.corpus.campaign_maps() (knowledge/blood/findings/probes/consolidation_audit_mid_closets.py): 52 logic closets in 39 maps, all one sector; switches median 11 (least 0), most E1M6 67, E3M4 44, E6M1 44, E2M7 42, E1M2 41",
+  "the same figures were in docs/blood-mechanics-and-conventions.md, removed in commit d0339c4 (git show d0339c4^:docs/blood-mechanics-and-conventions.md)"
  ],
  "use": "Exclude closets from any statistic about rooms (bloodmap.reachability.design_sectors); put a relay or combo's hidden switches in one off-map sector.",
  "code": [
@@ -24,5 +24,10 @@
   "logic",
   "relay",
   "unreachable"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/consolidation_audit_mid_closets.py: 52 closets in 39 maps, sizes [1], switches median 11, min 0, max 67; E1M6 67, E3M4 44, E6M1 44, E2M7 42, E1M2 41; maps with 1: 26, 2: 13, 0: 4. docs/blood-mechanics-and-conventions.md is no longer at HEAD: git log shows it removed in commit d0339c4. reachability.py:329 classify_offmap, :418 design_sectors.",
+  "of": "4ddcaf969615"
+ }
 }

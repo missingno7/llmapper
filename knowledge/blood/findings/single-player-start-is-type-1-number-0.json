@@ -2,12 +2,11 @@
  "id": "single-player-start-is-type-1-number-0",
  "topic": "gameplay",
  "standing": "engine",
- "claim": "Player starts are marker sprites: type 1 for single player and co-op, type 2 for Bloodbath, data1 the player's number; type 1 number 0 is where a game alone starts. The engine reads them into start zones at load and deletes them. The campaign maps carry eight type-1 markers (one map nine) and seven to nine type-2 (pictures 2522-2529), z on the floor. The map header's start is only a fallback and is not where the game starts: in 37 of 43 campaign maps it disagrees with the marker. Pick number 0, not the first marker by index.",
+ "claim": "Player starts are marker sprites: type 1 for single player and co-op, type 2 for Bloodbath, data1 the player's number; type 1 number 0 is where a game alone starts. The engine reads them into start zones at load and deletes them. The campaign maps carry eight type-1 markers (one map nine) and seven to nine type-2 (pictures 2522-2529). The map header's start is only a fallback and is not where the game starts: in 37 of 43 campaign maps it lies in another sector than the marker. Pick number 0, not the first marker by index: in 12 maps the first is another number.",
  "evidence": [
-  "NBlood/source/blood/src/warp.cpp:61-70 kMarkerSPStart -> gStartZone[data1] for nGameType <= coop, DeleteSprite; warp.cpp:72-80 kMarkerMPStart for Bloodbath",
-  "Recounted 2026-11-26 over the 43 campaign maps (knowledge/blood/findings/probes/consolidation_audit3_p6.py): eight type-1 markers in 42 maps and nine in one; seven to nine type-2 markers (eight in 36)",
-  "NBlood/source/blood/src/blood.cpp:724-731: the header start fills gStartZone first and is only the fallback",
-  "all 43 campaign maps carry the marker and the header disagrees with it on 37; the first start marker by sprite index is wrong on E3M7, E4M3 and E6M7 (docs/blood-mechanics-and-conventions.md, 2026-08-23)"
+  "NBlood/source/blood/src/warp.cpp:61-70 (warpInit) kMarkerSPStart -> gStartZone[data1] for nGameType <= coop, DeleteSprite; warp.cpp:72-80 kMarkerMPStart for Bloodbath",
+  "knowledge/blood/findings/probes/audit2_player_starts.py (2026-11-26): eight type-1 markers in 42 maps and nine in one; type-2 seven in 4, eight in 36, nine in 3; header sector differs from type 1 number 0 in 37; first type-1 marker by index is not number 0 in 12 maps",
+  "NBlood/source/blood/src/blood.cpp:724-731 (StartLevel): the header start fills gStartZone first and is only the fallback"
  ],
  "use": "Give every map both eights; stand number 0 of type 1 exactly where the player should begin.",
  "code": [
@@ -28,5 +27,10 @@
   "spawn",
   "start",
   "start position"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood warp.cpp:61-70 and :72-80 (warpInit), blood.cpp:724-731 (StartLevel). Recount with audit2_player_starts.py: type-1 markers 8 in 42 maps, 9 in one; type-2 7 in 4, 8 in 36, 9 in 3, pictures 2522-2529; number 0 present in all 43; header start_sector differs from it in 37, the position in all 43. The first type-1 marker by index is not number 0 in 12 maps (E1M2, E2M2, E2M3, E2M5, E3M7, E4M3, E4M7, E4M8, E4M9, E6M2, E6M7, E6M9), not three.",
+  "of": "5466c7b0e629"
+ }
 }

@@ -1,7 +1,7 @@
 """The pumping station: a road-level way into the sewer, with stairs.
 
 The grate is a one-way drop -- 3.14 player heights, which the engine
-forgives (kFallDamageFloor covers anything under 3.70) but which nobody can
+forgives (kFallDamageFloor covers anything under 3.98) but which nobody can
 climb back up.  The works stair is the way out, and it is tucked inside a
 superblock where a player will not find it.
 

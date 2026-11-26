@@ -22,5 +22,10 @@
   "hash",
   "render.json",
   "stale"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened tools/look.py:44 pose_hash (sha256 of the poses' json) and observe:95-121 which writes render.json with source_sha256, observed_sha256, the poses hash via about, and a sha256 per frame; tools/critique.py:129-133 writes packet.json with source_sha256, poses_sha256 and frames; projects/duke-e4l1-remake/status.py:33-41 evidence_state returns 'historical map' / 'historical poses' / 'current'. As claimed, worded as practice.",
+  "of": "ea04e8108ca9"
+ }
 }

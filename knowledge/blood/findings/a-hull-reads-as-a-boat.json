@@ -2,12 +2,15 @@
  "id": "a-hull-reads-as-a-boat",
  "topic": "place",
  "standing": "practice",
- "claim": "A boat reads as a boat from a thin rim higher than the deck inside it, a pointed end, and a hull tile different from the deck's; a flat deck reads as a raft.",
+ "claim": "In Gravesend a boat read as a boat once it had a thin rim higher than the deck inside it, a pointed end, and a hull tile different from the deck's; the flat deck before it read as a raft (the owner's walk of 2026-11-18).",
  "evidence": [
-  "Gravesend's harbour boat after the owner's walk of 2026-11-18."
+  "Gravesend's harbour boat after the owner's walk of 2026-11-18: harbour_ship.py HULL (pointed bow), rim cell over the deck (l3_market.py:108-109), SHIP_HULL 68 against the deck's boardwalk (l3_market.py:116); test_city_second_walk.py:128."
  ],
  "use": "Build the rim, the bow and a distinct hull tile before anything else on a boat.",
- "code": [],
+ "code": [
+  "projects/blood-city/level/harbour_ship.py",
+  "projects/blood-city/tests/test_city_second_walk.py"
+ ],
  "scope": "blood",
  "learned": {
   "in": "blood-city",
@@ -19,5 +22,10 @@
   "hull",
   "raft",
   "ship"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened projects/blood-city/level/harbour_ship.py: HULL outline of 7 points with a pointed bow (23,58)-(24,59)-(23,60); rim cell floor above the deck (l3_market.py:108-109 SHIP_RIM 11264, SHIP_DECK_DROP 4096); hull side tile SHIP_HULL 68 vs deck BOARDWALK (l3_market.py:116). projects/blood-city/tests/test_city_second_walk.py:128 asserts one rim, one deck, deck has more than 12 walls. Memory note city-second-walk.md: owner's walk 2026-11-18.",
+  "of": "f3421c4999e1"
+ }
 }

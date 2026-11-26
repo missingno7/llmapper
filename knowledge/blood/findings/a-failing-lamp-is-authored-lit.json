@@ -2,13 +2,14 @@
  "id": "a-failing-lamp-is-authored-lit",
  "topic": "light",
  "standing": "practice",
- "claim": "A lamp that flickers out must be authored LIT with a positive shade amplitude, so it is drawn lit at rest and drops out; authored dark and flickering on, it reads in frames and at rest as a ring of light round a hole.",
+ "claim": "In the Phantom Terminus (2026-11-24) we authored a lamp that flickers out LIT with a positive shade amplitude, so it is drawn lit at rest and drops out; authored dark and flickering on, it read as a ring of light round a hole.",
  "evidence": [
-  "Phantom Terminus, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md); frames draw a wave at its lit instant (bloodmap.visual.shade_waves_lit)"
+  "projects/blood-city/references/phantom-terminus-design.md:103-104, 135-136 (Phantom Terminus, 2026-11-24); frames draw a wave at its lit instant (bloodmap/visual.py:110 shade_waves_lit)"
  ],
  "use": "Give a failing lamp its lit shade and a positive amplitude; let light_stage.switch_lamps move its neighbours with it.",
  "code": [
-  "bloodmap/visual.py",
+  "bloodmap.visual.shade_waves_lit",
+  "bloodmap.light_stage.switch_lamps",
   "projects/blood-city/references/phantom-terminus-design.md"
  ],
  "scope": "blood",
@@ -22,5 +23,10 @@
   "flicker",
   "lamp",
   "shade wave"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "projects/blood-city/references/phantom-terminus-design.md:135-136 read: 'A failing lamp is authored LIT with a positive amplitude ... authored dark it reads as a ring of light round a hole'; :103-104 frames show a wave at its lit instant. bloodmap/visual.py:110 shade_waves_lit adds amplitude only when shade_wave is 0, else min(0, amplitude); light_stage.py:1075 switch_lamps exists.",
+  "of": "37d40c1e644f"
+ }
 }

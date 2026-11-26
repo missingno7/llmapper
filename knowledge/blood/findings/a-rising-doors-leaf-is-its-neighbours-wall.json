@@ -4,9 +4,9 @@
  "standing": "practice",
  "claim": "A door that rises is a sector with no height at rest, so its own walls are never drawn while it is shut: the leaf a player sees is the upper band of each NEIGHBOUR's wall onto it. Paint the leaf's tile on the neighbours' sides of the two portal edges; a tile painted on the door sector's own walls is drawn nowhere.",
  "evidence": [
-  "projects/cold-store, 2026-11-26: tile 495 on the door sector's walls was refused by the rule wall-tile-is-drawn-somewhere (one-sided wall in a zero-height sector draws nothing); painted on the passage's and the hall's side of the door's edges, the frame shows a metal leaf",
+  "projects/cold-store, 2026-11-26: tile 495 on the door sector's walls was refused by the rule wall-tile-is-drawn-somewhere (bloodmap/rules_blood.py); in projects/cold-store/level/cold-store.MAP the door (sector 3, height 0) wears 180 on its own walls and the passage's and hall's walls onto it (walls 21 and 36) wear 495",
   "bloodmap.render_slots: which band the renderer draws each wall tile on",
-  "projects/signal-box: rule warning on tile 170 until both sides were painted; frames/mech-gate/pairs.png shows the boards rising"
+  "projects/signal-box/level/build.py:191-195 paints the gate's boards (170) on the track's and far road's walls onto the shut gate; signal-box.MAP walls 25 and 155 wear 170"
  ],
  "use": "After program.compile(): bloodmap.doors.hang_leaf(layout, door, tile, (\"west\", passage), (\"east\", hall)) paints the leaf on each neighbour's side (doors.rising_door makes the door room). The gate names the mistake as wall-tile-is-drawn-somewhere.",
  "code": [
@@ -31,5 +31,10 @@
   "shut",
   "upper",
   "zmotion"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read bloodmap/doors.py:160-203 (rising_door, hang_leaf paints the tile on each neighbour's wall over the door's edge); cold-store build.py:48,116 hangs LEAF_TILE 495. Read both built maps: cold-store.MAP door sector 3 height 0, its own walls 25-28 wear 180, neighbours' walls 21 (sector 2) and 36 (sector 4) wear 495; signal-box.MAP door sector 3 height 0, neighbours' walls 25 and 155 wear 170. The cited signal-box frames/mech-gate/pairs.png does not exist in the repository; replaced.",
+  "of": "54e01d5b9bf7"
+ }
 }

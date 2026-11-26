@@ -2,9 +2,9 @@
  "id": "floor-tiles-must-have-power-of-two-sides",
  "topic": "texture",
  "standing": "engine",
- "claim": "A floor or ceiling tile is sampled as if each side were rounded DOWN to a power of two: a 64x400 tile on a floor shows only its first 64x256 and the rest is never drawn. Walls are not affected the same way.",
+ "claim": "In Build's classic renderer a floor or ceiling tile is sampled as if each side were rounded DOWN to a power of two: a 64x400 tile on a floor shows only its first 64x256 and the rest is never drawn. Walls are not affected the same way.",
  "evidence": [
-  "NBlood/source/build/src/tiles.cpp:281-292 tileUpdatePicSiz stores log2 rounded down; the floor rasteriser masks texture lookups with it (engine.cpp:2951 ceilscan)"
+  "NBlood/source/build/src/tiles.cpp:281-292 tileUpdatePicSiz stores log2 rounded down; the floor rasteriser masks texture lookups with it: engine.cpp:2886 (setup_globals_cf1, sethlinesizes from picsiz, used by ceilscan and florscan) and :2951-2959 (ceilscan's masked and translucent cases)"
  ],
  "use": "Put only power-of-two tiles on floors and ceilings; rules_blood 'flat-tile-power-of-two' checks a map.",
  "code": [
@@ -20,5 +20,10 @@
   "floor tile",
   "pow2",
   "texture size"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read NBlood/source/build/src/tiles.cpp:281-292 (tileUpdatePicSiz): j counts down from 15 while pow2long[j] > tilesiz, so picsiz holds log2 rounded down (400 -> 8, i.e. 256). engine.cpp:2802-2886 (setup_globals_cf1, called by ceilscan :2902 and florscan): :2886 sethlinesizes(picsiz&15, picsiz>>4) for the opaque floor; :2951/:2955/:2959 msethlineshift/tsethlineshift for masked and translucent floors. bloodmap/rules_blood.py:49 _flat_tiles_are_power_of_two, rule 'flat-tile-power-of-two' at :71.",
+  "of": "a17bae9cfbfa"
+ }
 }

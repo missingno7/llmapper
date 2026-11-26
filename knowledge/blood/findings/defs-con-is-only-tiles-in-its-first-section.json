@@ -22,5 +22,10 @@
   "letters",
   "sign",
   "tile names"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "tools/extract_duke_semantics.py:39-45 splits at 'Defines weapon'; knowledge/duke3d/semantics-v1.json: tile_count 740, tiles_with_art 582, non_tile_constants 450 (KNEE_WEAPON, RPG_WEAPON...). dnames.h:47 EJECT_CLIP__ = 4 and :190 ACTIVATORLOCKED__ = 4 in one file. tools/read_duke_signs.py:43-45: 2822..2915 ASCII from '!', 2940..2965 capitals from A, 2966..2991 a second capital style.",
+  "of": "f3b698e61fd8"
+ }
 }

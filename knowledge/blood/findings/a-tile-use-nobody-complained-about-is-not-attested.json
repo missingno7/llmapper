@@ -2,9 +2,9 @@
  "id": "a-tile-use-nobody-complained-about-is-not-attested",
  "topic": "texture",
  "standing": "practice",
- "claim": "A tile use recorded as fitting by an agent because nobody objected hides the misuse from every later check: a train's wall decals (51/52) recorded as 'loose brick' passed tile discovery until the owner rode it.",
+ "claim": "In the Phantom Terminus we recorded the wall decals 51 and 52, stood in the train as facing sprites, as fitting ('a loose broken brick', by critique, because no blind reader faulted them); the record hid the misuse from every later check until the owner rode it (2026-11-24). A use nobody complained about is not attested.",
  "evidence": [
-  "Phantom Terminus, 2026-11-24."
+  "Phantom Terminus, 2026-11-24: commit 3db9fda replaces the critique records (fits true, slot sprite_face, 'no reader faulted this piece') with the owner's misfits, knowledge/blood/tile-contexts/readings.jsonl:7-8; projects/blood-city/references/phantom-terminus-design.md:76-77"
  ],
  "use": "Record only uses with evidence; record misfits when a reader or the owner says a tile reads wrong.",
  "code": [
@@ -22,5 +22,10 @@
   "misfit",
   "record",
   "tile"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "git show 3db9fda (2026-11-24) removes from knowledge/blood/tile-contexts/readings.jsonl two records by 'critique', fits true, tiles 51 and 52, slot sprite_face, 'a loose broken brick on the top of an unfinished wall', evidence 'no reader faulted this piece', and adds the owner's misfits (readings.jsonl:7-8: 'decals on the wall, not objects put as a non flat sprite'). phantom-terminus-design.md:76-77: '51 and 52 are wall decals and no objects'.",
+  "of": "ceec00751ff6"
+ }
 }

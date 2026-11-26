@@ -1,4 +1,8 @@
 """Z-motion sector openings over the campaign: all type 600, and those whose ceiling moves while the floor stays."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4]))
 import statistics as st
 from bloodmap.format import read_map
 from bloodmap.corpus import campaign_maps

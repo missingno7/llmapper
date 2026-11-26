@@ -25,5 +25,10 @@
   "grate",
   "manhole"
  ],
- "instead": "The type-411 grates (five, tile 483: E6M6 sprite 63, E6M8 sprites 6, 7, 21, 22) do all stand on walls, but the campaign lays flat breakable grates as type 417 (kThingObjectExplode): E4M3 sprite 130 (tile 191, a metal hatch, cstat 417 = flat and blocking, statnum 4) lies 3,072 over a floor of mirror tile 504, and E2M2 sprite 38 (tile 483, cstat 417) lies flat too. See manhole-cover-over-a-link."
+ "instead": "The type-411 grates (five, tile 483: E6M6 sprite 63, E6M8 sprites 6, 7, 21, 22) do all stand on walls, but the campaign lays flat breakable grates as type 417 (kThingObjectExplode): E4M3 sprite 130 (tile 191, a metal hatch, cstat 417 = flat and blocking, statnum 4) lies 3,072 over a floor of mirror tile 504, and E2M2 sprite 38 (tile 483, cstat 417) lies flat too. See manhole-cover-over-a-link.",
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Census over the 43 campaign maps: type 411 sprites are five, all tile 483 and wall-aligned (cstat&48 16): E6M6 63, E6M8 6, 7, 21, 22; no flat 411. Flat 417: E4M3 sprite 130 tile 191 (owner: metal hatch/grate with X brace) cstat 417 status 4, z -35840 over floor -32768 of tile 504 (3,072); E2M2 sprite 38 tile 483 cstat 417. catalog record E1M4 s368 type 602; E4M4 s92 floor 1120 at 40960.",
+  "of": "f1c75fbdd0f6"
+ }
 }

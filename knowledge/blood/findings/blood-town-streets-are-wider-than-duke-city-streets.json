@@ -24,5 +24,10 @@
   "plaza",
   "street width",
   "town"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/city-norms.md:23-30 (table of tools/mine_city_norms.py): E3M1 median 7168, canyon 1.68, 701 samples; DWE3M1 7552, 0.32, 1011; DukCity1-4 5248/5120/5120/5120, canyon 2.07-2.12, 2567/2818/2398/2013 samples; :32-34 alleys ~1024, plazas 8k-24k, Blood ~19 player widths (7168/384 = 18.7, 7552/384 = 19.7; v2 json street_width_player_widths medians 18.7 and 19.7).",
+  "of": "d549f508b8fe"
+ }
 }

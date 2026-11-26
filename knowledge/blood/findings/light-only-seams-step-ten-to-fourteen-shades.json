@@ -2,9 +2,9 @@
  "id": "light-only-seams-step-ten-to-fourteen-shades",
  "topic": "light",
  "standing": "tendency",
- "claim": "Where four campaign maps cut a floor only to change its light, the step across the seam is 10 to 14.5 shades (E1M4 10, E3M1 12, E3M2 14, E3M5 14.5); smaller steps vanish in Blood's dark, contrasty textures (facade tiles have texel spreads of 12 to 34 at shade 0).",
+ "claim": "Where four campaign maps cut a floor only to change its light, the median step across the seam is 10 to 14.5 shades (E1M4 10, E3M1 12, E3M2 14, E3M5 14.5), though some seams step a shade or less (27 of E1M4's 107). Smaller steps vanish in Blood's dark, contrasty textures (facade tiles measured 2026-11-20 with bloodmap.shade_table at texel spreads of 12 to 34 at shade 0; not recounted).",
  "evidence": [
-  "bloodmap/light_stage.py:592-598 (FLOOR_BAND 12, from knowledge/blood/findings/probes/lightstage_budget.py) and :883-887 (WALL_BAND 14: on a textured wall a step under ~10 does not show); facade texel spread from bloodmap/shade_table.py, 2026-11-20",
+  "knowledge/blood/findings/probes/lightstage_budget.py E1M4 E3M1 E3M2 E3M5: median seam steps 10, 12, 14, 14.5 over 107, 68, 72, 14 light-only seams (27, 14, 18, 4 of them at 1 shade or less); bloodmap/light_stage.py:591-596 (FLOOR_BAND 12) and :883-887 (WALL_BAND 14)",
   "The owner, 2026-11-20: the usable range is roughly 0 to 40, and 40 is visibly dark.",
   "an agent's note of 2026-11-21 that E3M1 has 41% of its room floor inside lamp pools is not re-measured"
  ],
@@ -24,5 +24,10 @@
   "light pool",
   "lighting",
   "shade step"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran knowledge/blood/findings/probes/lightstage_budget.py E1M4 E3M1 E3M2 E3M5: seam_steps_median 10, 12.0, 14.0, 14.5 over 107, 68, 72, 14 light-only seams, of which 27, 14, 18, 4 step 1 shade or less. light_stage.py:591-596 FLOOR_SPREAD 12, FLOOR_BAND 12 (cites work/lightstage/budget.py); :883-887 WALL_BAND 14. The 12-34 texel spread is not in shade_table.py's text; it is the agent's note blood-shade-scale (2026-11-20), not recounted.",
+  "of": "9db66ee8b919"
+ }
 }

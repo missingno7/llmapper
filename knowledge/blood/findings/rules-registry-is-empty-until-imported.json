@@ -4,7 +4,8 @@
  "standing": "practice",
  "claim": "bloodmap.rules.evaluate returns no diagnostics at all unless bloodmap.rules_blood has been imported, because the registry is filled by that import's side effect: zero diagnostics can be silence, not a clean map.",
  "evidence": [
-  "projects/blood-city/level/build_skeleton.py, the corpus-graded rule registry"
+  "bloodmap/rules.py:130 RULES = {} is filled by register() (:133), which bloodmap.rules_blood calls on import; evaluate (:218) runs RULES.values(): 0 rules before the import, 33 after (run 2026-11-26)",
+  "projects/blood-city/level/build_skeleton.py:51 imports bloodmap.rules_blood"
  ],
  "use": "Import bloodmap.rules_blood (noqa F401) wherever rules.evaluate runs.",
  "code": [
@@ -22,5 +23,10 @@
   "lint",
   "registry",
   "rules"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "bloodmap/rules.py read: :130 RULES = {} filled only by register() (:133); evaluate (:218) runs list(RULES.values()) when no rules are passed. Ran it: len(rules.RULES) is 0 after 'from bloodmap import rules', 33 after 'import bloodmap.rules_blood'. build_skeleton.py:51 imports from rules_blood. Evidence now names the registry line.",
+  "of": "77012a58f021"
+ }
 }

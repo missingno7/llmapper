@@ -15,8 +15,10 @@ the project already measured that between *episodes*.
 
 Method notes, so a number here can be argued with instead of trusted:
 
-* "Street" is the largest connected component of sky-ceiling sectors linked by
-  red walls the player can walk through at grade (floor step <= max_step).
+* "Street" is the connected component of sky-ceiling sectors linked by red
+  walls the player can walk through at grade (floor step <= max_step) that
+  has the most doorways into interiors (area breaks ties; see
+  street_component).
   Sky rooftops reached through interiors land in other components and are
   counted under verticality instead.
 * Widths are measured by ray-casting from street boundary walls across a

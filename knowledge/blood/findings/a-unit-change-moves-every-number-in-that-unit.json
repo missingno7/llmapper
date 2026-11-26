@@ -19,5 +19,10 @@
   "scale",
   "switch",
   "unit"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened tests/test_switches.py:1-16: standing_height corrected from 0x1600 (5632) to 16960 multiplied every wall-mounted sprite by 3.01 (16960/5632 = 3.011); SWITCH_HEIGHT 2.18 had been 12,277 z and became 36,972; :106 test_no_wall_sprite_sits_above_the_campaign_for_its_tile compares wall sprite heights per tile with the campaign. Working note unit-change-moves-derived-numbers (2026-08-27): every rule and 587 tests passed, found by pressing a switch.",
+  "of": "9065493e2e3e"
+ }
 }

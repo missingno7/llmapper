@@ -2,10 +2,10 @@
  "id": "town-maps-use-sixty-to-a-hundred-and-forty-decoration-tiles",
  "topic": "sprite",
  "standing": "tendency",
- "claim": "Blood's town maps set down many distinct decoration tiles: E3M1 61, E1M4 104, E1M2 109, DWE3M1 142; 335 decoration tiles across seven town maps, 143 of them in two or more maps. A town with under 40 reads as one small kit repeated.",
+ "claim": "Blood's town maps set down many distinct decoration tiles: E3M1 61, E3M2 87, DWE3M10 91, E1M4 104, E1M2 109, DWE3M1 142, though E6M1 only 32; 335 decoration tiles across the seven, 143 of them in two or more maps. Gravesend had 38.",
  "evidence": [
-  "tools/mine_city_assets.py over seven town maps (knowledge/blood/references/city-assets.json); Gravesend went from 38 to 85 and a blind reviewer stopped calling interiors 'a small kit'",
-  "Recounted 2026-11-26 from city-assets.json: 335 tiles, 143 of them in two or more of its seven maps (E3M1, E3M2, E1M2, E1M4, E6M1, DWE3M1, DWE3M10)"
+  "tools/mine_city_assets.py over seven town maps (knowledge/blood/references/city-assets.json), recounted 2026-11-26: 335 tiles, 143 of them in two or more of its seven maps; per map E3M1 61, E3M2 87, E1M2 109, E1M4 104, E6M1 32, DWE3M1 142, DWE3M10 91",
+  "Gravesend went from 38 to 85 (memory/town-assets-and-goods.md); at 85 a blind reviewer still said 'It is a small kit ... Interiors get 1 to 3 props each' (projects/blood-city/experiments/town-goods/critic.md:47-50)"
  ],
  "use": "Draw a town's goods from city-assets.json, each tile with the fields the town maps give it, and check a tile's campaign uses before reading its picture.",
  "code": [
@@ -23,5 +23,10 @@
   "goods",
   "props",
   "variety"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read knowledge/blood/references/city-assets.json: 335 tiles over 7 maps; per map DWE3M1 142, E1M2 109, E1M4 104, DWE3M10 91, E3M2 87, E3M1 61, E6M1 32; 143 tiles in two or more maps. projects/blood-city/experiments/town-goods/critic.md:47-50 and README.md:108-109: at 85 tiles the reviewer said 'It is a small kit ... Interiors get 1 to 3 props each'. memory/town-assets-and-goods.md: 38 -> 85.",
+  "of": "9d63bd757d13"
+ }
 }

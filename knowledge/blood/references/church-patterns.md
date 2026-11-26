@@ -17,8 +17,9 @@ grammar, the raised chancel over the nave, the door-face rule).
   face sprites over 155 sectors), monuments and mausoleums are small
   masses. Cheap articulation per wall spent.
 - **The mausoleum gallery module**: 4 congruent halls of ~2097k area at
-  aspect 8 (sectors 33/34/46...) — long narrow tomb galleries in a row
-  against the grounds' edge, each a few crypt slots deep. Twin grave-slot
+  aspect 8 (sectors 33/34/46...) — long narrow tomb galleries, 33 and 34
+  side by side against the grounds' edge and 46 elsewhere, each a few crypt
+  slots deep. Twin grave-slot
   modules repeat besides (5× 262k aspect 4).
 - **The crypt is a paired-sector stack**: E1M1 has 2 stack pairs, one
   overlapping in plan — the below-ground layer under the grounds is built
@@ -34,9 +35,10 @@ grammar, the raised chancel over the nave, the door-face rule).
 
 - E1M5 at full scale: 429 sectors / 3627 walls, one 182-sector main space,
   **191 animated-shade sectors** (candle light as the dominant interior
-  language), 556 face + 116 wall sprites, 68 user channels. A whole map —
-  not importable, but its ratios are: the church interior is the *most*
-  flicker-dense and sprite-dressed interior register in the corpus.
+  language), 556 face + 116 wall sprites, 66 user channels of 100 and up.
+  A whole map — not importable, but its ratios are: the church interior is
+  flicker-dense (fifth in the campaign by share of animated sectors, after
+  E3M3, E1M8, E4M1 and E6M1) and sprite-dressed.
 - The buildable church at city scale is the monastery chapel pattern:
   nave + aisles + raised chancel + apse, apertures with named leaves,
   door faces on the portals. City dose: **nave 3–4 texture-repeats tall,

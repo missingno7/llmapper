@@ -4,9 +4,9 @@
  "standing": "engine",
  "claim": "Operating an ST23 negates each armed SE11's step (T4 = -T4) before it moves, and spawn sets T4 to 2 when the effector's angle is over 1024 and -2 otherwise: the first swing runs opposite to the sign the spawn gave. A converter that swings in the spawn's direction opens every door the wrong way, and can drag a neighbour loop through itself.",
  "evidence": [
-  "reference/eduke32/source/duke3d/src/sector.cpp:993 (T4(i) = -T4(i) before T5(i) = 1)",
-  "reference/eduke32/source/duke3d/src/game.cpp:3255 (T4 = (ang > 1024) ? 2 : -2)",
-  "E4L1 door 50: swung the spawn's way it folded sector 389 loop 3 at 8 of 16 sampled positions; reversed, none"
+  "reference/eduke32/source/duke3d/src/sector.cpp:992-993 (G_OperateSectors, case ST_23: T5(i) = 1; T4(i) = -T4(i), before any movement)",
+  "reference/eduke32/source/duke3d/src/game.cpp:3255 (A_Spawn, SE_11: T4 = (ang > 1024) ? 2 : -2)",
+  "E4L1 door 50: swung the spawn's way it folded sector 389 loop 3 at 8 of 16 sampled positions; reversed, none (projects/duke-e4l1-remake/DESIGN.md:228-230, audit_report.py:21)"
  ],
  "use": "Take the first swing's direction as -1 for an angle over 1024 and +1 otherwise.",
  "code": [
@@ -21,5 +21,10 @@
   "door",
   "se11",
   "swing direction"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read reference/eduke32/source/duke3d/src/sector.cpp:976-1003 (G_OperateSectors, ST_23): returns if any matching SE11 has T5||T6; else for each SE11 with the hitag: lotag ^ 0x8000, :992 T5(i) = 1, :993 T4(i) = -T4(i). game.cpp:3254-3255 (A_Spawn, SE_11): T4 = (ang > 1024) ? 2 : -2. bloodmap/duke_motion.py:85-94 direction = -1 if angle > 1024 else 1. projects/duke-e4l1-remake/DESIGN.md:228-230 and audit_report.py:21: door 50 folded sector 389 loop 3 at 8 of 16 positions; corrected, none.",
+  "of": "d1edbef90605"
+ }
 }

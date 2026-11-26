@@ -2,12 +2,12 @@
  "id": "falling-water-hangs-on-the-lower-rooms-wall",
  "topic": "texture",
  "standing": "precedent",
- "claim": "Blood draws a waterfall as an always-panning vertical wall of water on the LOWER room's own wall below the lip, in the waterfall tile 1005 (the owner's 'waterfall'), panned in y (E2M7 w482 at -80, E4M3 w59 at -120). Over the campaign 1005 is on 52 y-panning walls, the sewer water 1120 on 9; velocities mostly -75 to -128, most often -120, -75 and -80.",
+ "claim": "In E2M7 (w482, at -80) and E4M3 (w59, at -120) a waterfall is an always-panning vertical wall of water on the LOWER room's own wall below the lip, in the waterfall tile 1005 (the owner's 'waterfall'), panned in y. Over the campaign 1005 is on 52 y-panning walls, the sewer water 1120 on 9; 1005's velocities run -75 to -128 on 48 of them, most often -120, -75 and -80.",
  "evidence": [
   "E2M7 w482: picnum 1005, pan_always 1, pan_y_velocity -80, in s55 (floor -196,608) below s83 (floor -253,952)",
   "E4M3 w59: picnum 1005, pan_always 1, pan_y_velocity -120, in s4 (floor 18,432) below s153 (floor 11,264)",
   "E1M8 w1309 (picnum 1120, -85) joins two sectors at one floor and ceiling, so it draws no step: not a waterfall face",
-  "2026-11-26 count of walls with pan_always and a y velocity over the campaign: 1005 x52, 1120 x9, 528 x5; python -m tools.catalog show 1005 (owner: waterfall)"
+  "2026-11-26 count of walls with pan_always and a y velocity over the campaign, knowledge/blood/findings/probes/audit2_panning_falls.py: 1005 x52, 1120 x9, 528 x5; python -m tools.catalog show 1005 (owner: waterfall)"
  ],
  "use": "Paint the fall on the lower sector's wall record in tile 1005 so the upper room's lintel pass cannot repaint it; panning walls need an XWALL with pan_always.",
  "code": [
@@ -25,5 +25,10 @@
   "sewagefall",
   "water",
   "waterfall"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "probes/audit2_panning_falls.py: pan_always + y velocity walls: 1005 x52, 1120 x9, 528 x5; 1005 velocities -120 x20, -75 x13, -80 x12, -128 x3, others 4 (48 of 52 in -75..-128). E2M7 w482 picnum 1005 vy -80 in s55 floor -196,608 next s83 floor -253,952; E4M3 w59 1005 vy -120 in s4 floor 18,432 next s153 11,264; E1M8 w1309 1120 vy -85, s243 and s242 both floor 34,816 ceiling -30,720. Tile 1005 owner 'waterfall'.",
+  "of": "460b573d51f1"
+ }
 }

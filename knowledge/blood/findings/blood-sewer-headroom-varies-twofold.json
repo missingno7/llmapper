@@ -4,7 +4,8 @@
  "standing": "tendency",
  "claim": "E3M3, Blood's own sewer, varies its sector heights by a factor of two: median 28,672, q1 16,384, q3 32,768. A sewer built at one flat 20,480 had a ceiling filling 0.35-0.40 of every frame against the campaign's median 0.025 (E3M3 0.042).",
  "evidence": [
-  "E3M3 sector heights and visual.composition.ceiling (projects/blood-city/level/resolution.py)"
+  "E3M3 sector heights (floor_z - ceiling_z over its 309 sectors): median 28,672, q1 16,384, q3 32,768, recounted 2026-11-26; quoted in projects/blood-city/level/resolution.py:49",
+  "ceiling share of the frame by visual.composition.ceiling, measured 2026-08-28 and not repeated: Gravesend's sewer 0.35-0.40, campaign median 0.025, E3M3 0.042 (resolution.py:43-47)"
  ],
  "use": "Give runs headroom between E3M3's q1 and median and rooms its q3; vary it.",
  "code": [
@@ -21,5 +22,10 @@
   "height",
   "sewer",
   "tunnel"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "E3M3 read with bloodmap.format: 309 sectors, floor_z - ceiling_z median 28,672, q1 16,384, q3 32,768 (statistics.quantiles, both methods) as claimed. The frame shares 0.35-0.40 / 0.025 / 0.042 are quoted in projects/blood-city/level/resolution.py:43-47 from an observer run of 2026-08-28 that was not repeated; worded as dated.",
+  "of": "f763144da3f9"
+ }
 }

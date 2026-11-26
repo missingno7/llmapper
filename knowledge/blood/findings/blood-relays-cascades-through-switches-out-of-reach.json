@@ -2,9 +2,9 @@
  "id": "blood-relays-cascades-through-switches-out-of-reach",
  "topic": "mechanism",
  "standing": "tendency",
- "claim": "603 of Blood's 2,775 campaign wiring chains pass through a listener placed where no player goes, used as a relay that turns one event into a cascade; most such relays are switches (types 20-22), the rest plain sprites, sectors and generators.",
+ "claim": "603 of Blood's 2,775 campaign wiring chains pass through a listener placed where no player goes, used as a relay that turns one event into a cascade; most such relays are switches (1,448 of 1,682 relay steps are types 20-22), the rest mostly plain sprites and sectors, with a few generators, lying zombies, Z-motion sectors and exploders.",
  "evidence": [
-  "2,775 chains over the campaign by bloodmap.wiring.chains with reach from bloodmap.reachability.sector_kinds; 603 with closet_relays, recounted 2026-11-26 (bloodmap/wiring.py:154 says 607)"
+  "2,775 chains over the campaign by bloodmap.wiring.chains with reach from bloodmap.reachability.sector_kinds; 603 with closet_relays; recounted 2026-11-26 by knowledge/blood/findings/probes/audit2_closet_relay_chains.py (bloodmap/wiring.py:154 says the same)"
  ],
  "use": "A switch in a sealed closet is a relay, not a mistake; read it as part of the chain.",
  "code": [
@@ -21,5 +21,10 @@
   "hidden",
   "relay",
   "switch"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Recounted with probes/audit2_closet_relay_chains.py (wiring.chains with reachability.sector_kinds, 43 maps): 2,775 chains, 603 through a closet relay; relay occurrences 1,682: kSwitchToggle 713, kSwitchCombo 399, kSwitchOneWay 336 (1,448 switches), plain sprites 149, plain sectors 56, kGenTrigger 12, kDudeZombieAxeLaying 9, kSectorZMotion 6, kTrapExploder 2. bloodmap/wiring.py:154 now says 603, not 607.",
+  "of": "0e12d6405a1c"
+ }
 }

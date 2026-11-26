@@ -22,5 +22,10 @@
   "patch",
   "precondition",
   "xmapedit"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read projects/duke-e4l1-remake/edit_map.py:39-146 (apply_patch): refuses E4L1-baseline.MAP (:42), refuses a non-byte-exact read/write, identity fields per record (:60-62), each field [before, after] refused if neither (:70-73), appended sprites named and recovered from the report (:84-104), validate_map on the reparsed bytes (:107-110), sha256-named backup in snapshots/ (:130-133), atomic .pending write. passes/ holds 10 patches and reports/ 10 -applied.json. tests/test_e4l1_edit.py: conflict, dry run, appended-not-duplicated, interrupted report, baseline tests.",
+  "of": "ce437d5e9eaa"
+ }
 }

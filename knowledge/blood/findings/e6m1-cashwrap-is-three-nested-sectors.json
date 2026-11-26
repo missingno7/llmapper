@@ -27,5 +27,10 @@
   "register",
   "shop",
   "store"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Read E6M1 sectors: s32 floor 83,968, 1024x3072, neighbours 33, 34, 61; s61 floor 90,112 (6,144 below s32); s33, s34 512x512, floor 81,920 (2,048 up), floor_picnum 2476, floor_stat 122, heinum -1792, bounded only by s32; s58 512 square floor 73,728 (16,384 up); tile 73: 9 sprites, all in s45, cstat 144, z 75,776; 2377: 3 sprites, all in s50. Tile 2476 owner 'cash register top surface'.",
+  "of": "cf139d330dbf"
+ }
 }

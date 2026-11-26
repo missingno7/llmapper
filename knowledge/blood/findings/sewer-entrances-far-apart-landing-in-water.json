@@ -2,14 +2,14 @@
  "id": "sewer-entrances-far-apart-landing-in-water",
  "topic": "place",
  "standing": "ruling",
- "claim": "Ways into a sewer stand far apart (one a town quarter) and land the player in water, not on stone or hard against a building. A manhole is a flat breakable cover over a hole (type 417, flat and blocking, lying above its sector's floor), not a wall crack or moving floor.",
+ "claim": "In Gravesend the ways into the sewer stand on its far sides, apart (the owner: the entrances were 'so close to each other'; 'these manholes should be on the far sides of sewers'), and a way down lands the player in water ('You should fall into water'). A manhole cover breaks, by explosion only if that works; Blood's own, E4M3 sprite 130, is a flat type 417 lying 3,072 above its sector's floor.",
  "evidence": [
-  "The owner, 2026-11-21: 'You are always putting these sewers enterances so close to each other'.",
-  "Blood's manhole: E4M3 sprite 130, type 417 kThingObjectExplode, cstat 417."
+  "The owner, 2026-11-21: 'You are always putting these sewers enterances so close to each other ... keep the pump station one and these manholes should be on the far sides of sewers' (projects/blood-city/level/l3_sewer.py:176-178); 'You should fall into water' (projects/blood-city/level/build_skeleton.py:873); 2026-11-23: 'Manhole covers are breakable now, I would try to make them explosion breakable only if it will work' (l3_sewer.py:217-218)",
+  "Blood's manhole: E4M3 sprite 130, type 417 kThingObjectExplode, cstat 417, z -35,840 over sector 224's floor at -32,768."
  ],
  "use": "Check a new way down against the others' distance before adding it.",
  "code": [],
- "scope": "blood",
+ "scope": "project:blood-city",
  "learned": {
   "in": "blood-city",
   "date": "2026-11-21"
@@ -21,5 +21,10 @@
   "manhole",
   "sewer",
   "water"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Words: l3_sewer.py:176-178 (2026-11-21) entrances 'so close to each other ... manholes should be on the far sides'; build_skeleton.py:873 'You should fall into water'; l3_sewer.py:217-218 (2026-11-23) 'explosion breakable only if it will work'. No words for 'not against a building' or 'not a wall crack or moving floor': removed. E4M3 sprite 130: type 417, cstat 417, z -35,840 over s224 floor -32,768 (3,072 above). Scope project:blood-city.",
+  "of": "7afb3c64139d"
+ }
 }

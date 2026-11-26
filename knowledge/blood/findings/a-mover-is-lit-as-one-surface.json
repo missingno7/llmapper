@@ -2,11 +2,11 @@
  "id": "a-mover-is-lit-as-one-surface",
  "topic": "light",
  "standing": "practice",
- "claim": "A leaf drawn open is traced open by a light model, so its faces come out in patches of different shade that move with it; a mover's faces must take one shade.",
+ "claim": "In Gravesend a leaf drawn open was traced open by the light model, so its faces came out in patches of different shade that moved with it; a sliding or rotating sector's (616, 617) faces must take one shade.",
  "evidence": [
-  "Gravesend's second playthrough, 2026-11-23; fixed by even_movers."
+  "Gravesend's second playthrough, 2026-11-23 (commit 41ac4b8); fixed by bloodmap/light_stage.py:1149 even_movers, called at :1343 after the shade pass."
  ],
- "use": "Even the shade of every moving sector's faces after any light pass.",
+ "use": "After any light pass, even the shade of the faces of every sector that moves whole (616, 617): light_stage.even_movers gives them the length-weighted mean.",
  "code": [
   "bloodmap.light_stage.even_movers"
  ],
@@ -21,5 +21,10 @@
   "light",
   "mover",
   "shade"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Opened bloodmap/light_stage.py:1149-1171 (even_movers): only sectors of type 616 and 617 are evened, to the length-weighted mean shade of their faces, and a mover touching a kept sector is skipped; called at :1343 after shade(). Memory note movers-stay-in-their-host.md: second playthrough 2026-11-23, commit 41ac4b8 (git log: 'After the owner's second playthrough').",
+  "of": "2ab3315f30de"
+ }
 }

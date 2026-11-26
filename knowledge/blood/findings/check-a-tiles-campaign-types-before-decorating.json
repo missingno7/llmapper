@@ -2,10 +2,10 @@
  "id": "check-a-tiles-campaign-types-before-decorating",
  "topic": "texture",
  "standing": "ruling",
- "claim": "A tile whose every campaign use is one engine type is that thing to players and must not be decoration: tile 2183, which reads as a recessed wall lamp, is the wall flame trap (all 40 campaign uses are wall sprites of type 452, kTrapFlame). A light texture goes only where the surface is the light, and pickups keep Blood's sizes.",
+ "claim": "Tile 2183, which reads as a recessed wall lamp, is the wall flame trap: all 40 campaign uses are wall sprites of type 452 (kTrapFlame). The owner, 2026-11-25, of our using it as decoration: 'it is usually used in different contexts'. He also asked for a light texture only where the surface is the light, and for pickups at Blood's sizes.",
  "evidence": [
-  "The owner, 2026-11-25: 'I see you are using that wall turret firing sprite on multiple places ... it is usually used in different contexts'; of the diving suit, 'smaller than default' (bloodmap/light_kinds.py:72)",
-  "2026-11-26 recount: 40 campaign sprites wear 2183, all type 452; kTrapFlame = 452 at NBlood/source/blood/src/common_game.h:434"
+  "The owner, 2026-11-25: 'I see you are using that wall turret firing sprite on multiple places ... it is usually used in different contexts' (bloodmap/light_kinds.py:72-73); of a ceiling, 'texture of lights, I would use different texture for that' (projects/blood-city/level/pump_engine.py:32); of the diving suit, 'smaller than default' (kept only in the agent's notes)",
+  "2026-11-26 recount: 40 campaign sprites wear 2183, all type 452, all wall-aligned; kTrapFlame = 452 at NBlood/source/blood/src/common_game.h:434"
  ],
  "use": "Read a tile's types and slots in the campaign before using it as decoration.",
  "code": [
@@ -25,5 +25,10 @@
   "tile",
   "trap",
   "type"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Counted over campaign_maps(): 40 sprites wear 2183, all type 452 and wall-aligned (cstat&48 16); no wall or sector wears it. common_game.h:434 kTrapFlame = 452. Owner's turret words at bloodmap/light_kinds.py:72-73 (2026-11-25). The diving suit's 'smaller than default' is in no repository file, only the agent note tiles-have-jobs; 'texture of lights' is at projects/blood-city/level/pump_engine.py:32.",
+  "of": "89bdc4a081e6"
+ }
 }
