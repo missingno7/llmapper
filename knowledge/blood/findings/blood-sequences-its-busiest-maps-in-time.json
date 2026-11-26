@@ -1,0 +1,31 @@
+{
+ "id": "blood-sequences-its-busiest-maps-in-time",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "Blood's busiest maps sequence their wiring in time, not only in connection: E1M3 has 83 live chains with a waiting step (a listener with a wait time) among 212, E2M5 76 of 128, E1M4 68 of 151, against a campaign median of 16 timed of 47 chains. Chains are shallow everywhere (median deepest 4, at most 8, in E1M3); the complexity is in how many relay through another object (median 12, E1M4 and E2M5 85) and in the waits. Gravesend as built on 2026-11-26 has 149 live chains, 47 relayed, deepest 5, but only 21 with a wait.",
+ "evidence": [
+  "knowledge/blood/findings/probes/mechanism_chain_profile.py over the 43 campaign maps (2026-11-26): live (not silent) chains of bloodmap.wiring.chains; relayed = depth 2 or more; timed = a step whose receiver has a wait; widest = most steps in one chain (E3M1 178). Gravesend from its blood-city-current.MAP the same day"
+ ],
+ "use": "When a place should feel alive as the player walks, plan the waits and the order as much as the connections; compare a built map with the probe.",
+ "code": [
+  "bloodmap.wiring.chains"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "chain",
+  "delay",
+  "relay",
+  "sequence",
+  "timing",
+  "wait"
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "Ran probes/mechanism_chain_profile.py: campaign median chains 47, relayed 12 (max 85 E1M4, E2M5), deepest 4 (max 8 E1M3), timed 16 (E1M3 83 of 212, E2M5 76 of 128, E1M4 68 of 151), widest 29 (max 178 E3M1); blood-city-current.MAP 149 chains, 47 relayed, deepest 5, 21 timed, widest 162.",
+  "of": "e2acfd3c53db"
+ }
+}

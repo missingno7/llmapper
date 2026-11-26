@@ -1,0 +1,32 @@
+{
+ "id": "mechanisms-are-designed-like-levels",
+ "topic": "mechanism",
+ "standing": "ruling",
+ "claim": "A level's mechanisms are designed the way the level itself is: a mechanism can be as complex as the level, a language of connected parts like a script, composed and laid out with the same care as its rooms, its atmosphere and its light. A level made for mechanisms (a liminal space full of interconnected interactivity) is begun with one hall where things happen as the player walks, to find the best way to approach it.",
+ "evidence": [
+  "The owner, 2026-11-26, in conversation with the agent: 'mechanisms ... can be as complex as the level itself. Basically, this is like a language of scripting kind of ... the mechanism should be designed like the similar way as the levels are' and 'I would start just with like one like hall where things will be happening as you will walk'."
+ ],
+ "use": "Before building such a level, study how Blood's busiest maps sequence their wiring (E1M3, E2M5, E1M4) and the mechanism tutorials; author a place's mechanisms as part of its program, and read them back as what happens, in order, when the player walks through.",
+ "code": [
+  "bloodmap.wiring.Circuit",
+  "bloodmap.wiring.chains"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "chain",
+  "hall",
+  "interactivity",
+  "liminal",
+  "scripting",
+  "sequence"
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "The owner's words are this conversation of 2026-11-26, quoted in the evidence as he said them; no other copy exists, which the evidence says.",
+  "of": "fec1bc9fdc84"
+ }
+}
