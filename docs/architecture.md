@@ -294,8 +294,7 @@ needs no level and proving that Gravesend's map does not change by a byte.
   since). Two independent verifiers then re-opened 48: 36 held entirely, 9 had a slip that
   misleads nobody, 3 still said something false (all twelve since corrected). So expect about
   one marked finding in sixteen to be wrong somewhere, and correct it when you meet it
-  (`tools.findings amend`). One ruling is unmarked because the owner's words are kept nowhere
-  (`plan-drawings-put-plus-y-down`).
+  (`tools.findings amend`).
 - **Values the audit showed to rest on a wrong figure, left as they are because changing them
   changes Gravesend's map** (each says so where it stands): `l3_church.PITCH` 21878 (the
   campaign's median slope rise in the retired 0x1600 unit; in bodies it is about 7,290),

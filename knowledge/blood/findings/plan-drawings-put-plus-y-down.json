@@ -2,12 +2,12 @@
  "id": "plan-drawings-put-plus-y-down",
  "topic": "workflow",
  "standing": "ruling",
- "claim": "Every top-down drawing of a Build map puts +Y down, as XMapEdit does; a drawing with +Y up is a mirror of the editor and turns every left/right and north/south in a report wrong.",
+ "claim": "llmapper's top-down map views put +Y down by default, the orientation XMapEdit draws in, so that a plan reads the same way round as the editor: a drawing that silently puts +Y up is a mirror of it and turns every left/right and north/south in a report wrong. This is a convention for our drawings, not a law of the engine and not an absolute restriction: another orientation is fine when it is explicitly intended and useful, and says so.",
  "evidence": [
-  "The owner, 2026-09-02, finding an E3M1 review map mirrored against the editor. Said to the agent in conversation on 2026-09-02; his words are not quoted in the repository. tests/test_plan_orientation.py holds the rule ('The owner reads this map in XMapEdit').",
-  "bloodmap/sector_map.py:168 and bloodmap/analysis.py:336 draw +Y down (read 2026-11-26); a note that the library's renders are Y-flipped is out of date"
+  "The owner, 2026-11-26, confirming the convention when asked: 'using the same orientation as XMapEdit (+Y down) makes sense as the default convention for top-down map views across llmapper. However, treat this as a project-wide visualization convention, not an engine law or an absolute restriction. Alternative orientations are fine when explicitly intended and useful.' He does not recall setting the rule earlier, and no earlier words of his are kept: it stands from this day.",
+  "bloodmap/sector_map.py:167-169 and bloodmap/analysis.py:335-337 draw +Y down; tests/test_plan_orientation.py holds the library's three renderers to it. The convention was adopted by the agent on 2026-09-02 after an E3M1 review map came out mirrored against the editor."
  ],
- "use": "Draw with the library's renderers, which follow the editor; never flip.",
+ "use": "Draw with the library's renderers, which follow the editor. A view drawn another way round says so on the drawing and in its caption.",
  "code": [
   "bloodmap.analysis.render_svg",
   "bloodmap.sector_map"
@@ -26,5 +26,10 @@
   "render",
   "xmapedit",
   "y"
- ]
+ ],
+ "checked": {
+  "date": "2026-11-26",
+  "how": "The owner's message of 2026-11-26, quoted in the evidence, read in full: a default convention, not an engine law; other orientations fine when intended; no earlier decision of his to be claimed. bloodmap/sector_map.py:167-169 and bloodmap/analysis.py:335-337 (render_svg) read: both map a larger world y to a larger page y, +Y down; tests/test_plan_orientation.py pins it with an asymmetric wedge.",
+  "of": "dc469d85d6b6"
+ }
 }
