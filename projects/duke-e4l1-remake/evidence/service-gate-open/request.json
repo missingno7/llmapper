@@ -1,0 +1,23 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/evidence/service-gate-open/played/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "projects/duke-e4l1-remake/evidence/service-gate-open",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "inside-approach",
+   "x": 768,
+   "y": 35700,
+   "z": -3360,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 110,
+   "screenshot": true
+  }
+ ]
+}

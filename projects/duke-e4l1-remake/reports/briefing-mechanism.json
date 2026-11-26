@@ -1,0 +1,1010 @@
+{
+  "source_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+  "duke_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+  "owner_identification": "Self-destructible Mission Impossible tape player",
+  "source_wall": {
+    "index": 2318,
+    "fields": {
+      "x": -1840,
+      "y": 30189,
+      "point2": 2315,
+      "next_wall": 2294,
+      "next_sector": 403,
+      "cstat": 256,
+      "picnum": 4391,
+      "over_picnum": 0,
+      "shade": 4,
+      "pal": 0,
+      "x_repeat": 4,
+      "y_repeat": 8,
+      "x_panning": 1,
+      "y_panning": 236,
+      "lotag": 8000,
+      "hitag": 327,
+      "extra": -1
+    }
+  },
+  "source_master_switch": {
+    "index": 119,
+    "fields": {
+      "x": -1504,
+      "y": 30272,
+      "z": 1024,
+      "cstat": 0,
+      "picnum": 8,
+      "shade": 0,
+      "pal": 0,
+      "clipdist": 32,
+      "blend": 0,
+      "x_repeat": 64,
+      "y_repeat": 64,
+      "x_offset": 0,
+      "y_offset": 0,
+      "sector": 390,
+      "status": 0,
+      "angle": 1536,
+      "owner": -1,
+      "x_velocity": 0,
+      "y_velocity": 0,
+      "z_velocity": 0,
+      "lotag": 8000,
+      "hitag": 80,
+      "extra": -1
+    }
+  },
+  "source_exploders": [
+    {
+      "index": 114,
+      "fields": {
+        "x": -2272,
+        "y": 30240,
+        "z": 3072,
+        "cstat": 0,
+        "picnum": 1247,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 4,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 405,
+        "status": 0,
+        "angle": 1536,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 75,
+        "hitag": 8002,
+        "extra": -1
+      }
+    },
+    {
+      "index": 115,
+      "fields": {
+        "x": -1728,
+        "y": 30464,
+        "z": 2048,
+        "cstat": 0,
+        "picnum": 1247,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 4,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 390,
+        "status": 0,
+        "angle": 1536,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 50,
+        "hitag": 8002,
+        "extra": -1
+      }
+    },
+    {
+      "index": 116,
+      "fields": {
+        "x": -1792,
+        "y": 30080,
+        "z": 3072,
+        "cstat": 0,
+        "picnum": 1247,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 4,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 405,
+        "status": 0,
+        "angle": 1536,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 25,
+        "hitag": 8002,
+        "extra": -1
+      }
+    }
+  ],
+  "source_effectors": [
+    {
+      "index": 117,
+      "fields": {
+        "x": -1632,
+        "y": 30368,
+        "z": 1024,
+        "cstat": 0,
+        "picnum": 1,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 390,
+        "status": 0,
+        "angle": 512,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 13,
+        "hitag": 8002,
+        "extra": -1
+      }
+    },
+    {
+      "index": 118,
+      "fields": {
+        "x": -2144,
+        "y": 30368,
+        "z": 1024,
+        "cstat": 0,
+        "picnum": 1,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 405,
+        "status": 0,
+        "angle": 512,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 13,
+        "hitag": 8002,
+        "extra": -1
+      }
+    },
+    {
+      "index": 120,
+      "fields": {
+        "x": -2048,
+        "y": 30144,
+        "z": -3072,
+        "cstat": 0,
+        "picnum": 1,
+        "shade": 0,
+        "pal": 0,
+        "clipdist": 32,
+        "blend": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "x_offset": 0,
+        "y_offset": 0,
+        "sector": 403,
+        "status": 0,
+        "angle": 512,
+        "owner": -1,
+        "x_velocity": 0,
+        "y_velocity": 0,
+        "z_velocity": 0,
+        "lotag": 13,
+        "hitag": 8002,
+        "extra": -1
+      }
+    }
+  ],
+  "source_semantics": [
+    "sector.cpp CheckDoorTile includes DOORTILE23 (4391); P_ActivateSwitch sends wall lotag to G_OperateMasterSwitches and plays hitag sound.",
+    "actors.cpp MASTERSWITCH counts hitag in 30Hz ticks then arms same-sector SEENINE; SEENINE shares arming by hitag and counts lotag down by 3 per tick.",
+    "actors.cpp DETONATE sets matching SE13 t_data[2], starting expansion to the authored sector heights.",
+    "DEFS.CON DESTRUCT=327; USER.CON binds it to detruct2.voc. No Blood briefing speech has been substituted."
+  ],
+  "native_contract": {
+    "one_shot_use": true,
+    "arming_seconds": 2.7,
+    "collapse_seconds": 3.0,
+    "exploder_fuses_seconds": {
+      "327": 0.8,
+      "328": 0.6,
+      "329": 0.3
+    },
+    "explanation": "Normal invisible sprites return from state 1 to rest state 0 after waitTime; Off-only reporting sends On to the listeners. NBlood triggers.cpp SetSpriteState and default OperateSprite.",
+    "timing_approximation": "2.6667s MasterSwitch and 0.2778/0.5556/0.8333s fuses rounded to Blood tenths; collapse starts at the rounded first detonation. Source speech and intermediate SE13 travel are not reproduced exactly."
+  },
+  "chain": {
+    "root": "wall 2318",
+    "root_kind": "wall",
+    "root_type_id": 0,
+    "root_type": "Normal",
+    "tile": 2546,
+    "sector": 405,
+    "cause": [
+      "push"
+    ],
+    "key": 0,
+    "once": true,
+    "silent": false,
+    "dead_relays": [],
+    "closet_relays": [],
+    "steps": [
+      {
+        "from": "wall 2318",
+        "channel": 125,
+        "command": 1,
+        "to": "sprite 345",
+        "to_kind": "sprite",
+        "to_type_id": 0,
+        "to_type": "Decoration",
+        "wait": 27
+      },
+      {
+        "from": "wall 2318",
+        "channel": 125,
+        "command": 1,
+        "to": "sprite 346",
+        "to_kind": "sprite",
+        "to_type_id": 0,
+        "to_type": "Decoration",
+        "wait": 30
+      },
+      {
+        "from": "sprite 345",
+        "channel": 112,
+        "command": 1,
+        "to": "sprite 327",
+        "to_kind": "sprite",
+        "to_type_id": 459,
+        "to_type": "kTrapExploder",
+        "wait": 8
+      },
+      {
+        "from": "sprite 345",
+        "channel": 112,
+        "command": 1,
+        "to": "sprite 328",
+        "to_kind": "sprite",
+        "to_type_id": 459,
+        "to_type": "kTrapExploder",
+        "wait": 6
+      },
+      {
+        "from": "sprite 345",
+        "channel": 112,
+        "command": 1,
+        "to": "sprite 329",
+        "to_kind": "sprite",
+        "to_type_id": 459,
+        "to_type": "kTrapExploder",
+        "wait": 3
+      },
+      {
+        "from": "sprite 346",
+        "channel": 111,
+        "command": 1,
+        "to": "sector 390",
+        "to_kind": "sector",
+        "to_type_id": 600,
+        "to_type": "kSectorZMotion",
+        "wait": 0
+      },
+      {
+        "from": "sprite 346",
+        "channel": 111,
+        "command": 1,
+        "to": "sector 403",
+        "to_kind": "sector",
+        "to_type_id": 600,
+        "to_type": "kSectorZMotion",
+        "wait": 0
+      },
+      {
+        "from": "sprite 346",
+        "channel": 111,
+        "command": 1,
+        "to": "sector 405",
+        "to_kind": "sector",
+        "to_type_id": 600,
+        "to_type": "kSectorZMotion",
+        "wait": 0
+      }
+    ],
+    "depth": 2,
+    "receivers": {
+      "Decoration": 2,
+      "kTrapExploder": 3,
+      "kSectorZMotion": 3
+    }
+  },
+  "rest": {
+    "root": "wall 2318",
+    "cause": [
+      "push"
+    ],
+    "end": "rest (as at load)",
+    "objects": [
+      {
+        "object": "wall 2318",
+        "kind": "wall",
+        "index": 2318,
+        "type_id": 0,
+        "type": "Normal",
+        "role": "sender",
+        "cause": "push",
+        "state": [
+          0,
+          null
+        ],
+        "why_state": "wall state is not read here",
+        "messages": 0,
+        "wait": 0,
+        "done": [],
+        "not_posed": [
+          "a wall's state change is not posed (a switch wall's picture) -- not transcribed here"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 345",
+        "kind": "sprite",
+        "index": 345,
+        "type_id": 0,
+        "type": "Decoration",
+        "role": "listener",
+        "from": "wall 2318",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 27,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "",
+        "done": [],
+        "not_posed": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 346",
+        "kind": "sprite",
+        "index": 346,
+        "type_id": 0,
+        "type": "Decoration",
+        "role": "listener",
+        "from": "wall 2318",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 30,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "",
+        "done": [],
+        "not_posed": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 327",
+        "kind": "sprite",
+        "index": 327,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 8,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 328",
+        "kind": "sprite",
+        "index": 328,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 6,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 329",
+        "kind": "sprite",
+        "index": 329,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 3,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sector 390",
+        "kind": "sector",
+        "index": 390,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor already at 1536"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": false,
+        "where": [
+          [
+            -2344,
+            45475
+          ]
+        ]
+      },
+      {
+        "object": "sector 403",
+        "kind": "sector",
+        "index": 403,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor already at -4608"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": false,
+        "where": [
+          [
+            -3060,
+            45274
+          ]
+        ]
+      },
+      {
+        "object": "sector 405",
+        "kind": "sector",
+        "index": 405,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor already at 1536"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": false,
+        "where": [
+          [
+            -3024,
+            45412
+          ]
+        ]
+      }
+    ],
+    "posed": [],
+    "not_posed": [
+      {
+        "object": "wall 2318",
+        "type": "Normal",
+        "why": [
+          "a wall's state change is not posed (a switch wall's picture) -- not transcribed here"
+        ]
+      },
+      {
+        "object": "sprite 345",
+        "type": "Decoration",
+        "why": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 346",
+        "type": "Decoration",
+        "why": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 327",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 328",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 329",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      }
+    ],
+    "observer": "xmapedit-observe draws one static state and reads no XSPRITE (obs_main.c:369), so a switch's state picture is posed by picnum",
+    "not_modelled": [
+      "whether a sender's state actually changes: SetSpriteState returns before sending when it does not (triggers.cpp:87-88), and the pose shows what the listeners do IF the message arrives. (A thing saved at state 0 does change: `actInit` sets every thing but a few to state 1 at level start, actor.cpp:2551, so its destruction is a real 1 -> 0.) A silent sender's listeners are not posed; a trigger_on/trigger_off gate the new state misses is flagged per listener (triggers.cpp:100-106)",
+      "wait_time: a listener that returns on its own is shown at the far end of its travel, before it returns",
+      "busy waves and the moment in between: only the two ends are posed"
+    ],
+    "art": true
+  },
+  "collapsed": {
+    "root": "wall 2318",
+    "cause": [
+      "push"
+    ],
+    "end": "other state",
+    "objects": [
+      {
+        "object": "wall 2318",
+        "kind": "wall",
+        "index": 2318,
+        "type_id": 0,
+        "type": "Normal",
+        "role": "sender",
+        "cause": "push",
+        "state": [
+          0,
+          null
+        ],
+        "why_state": "wall state is not read here",
+        "messages": 0,
+        "wait": 0,
+        "done": [],
+        "not_posed": [
+          "a wall's state change is not posed (a switch wall's picture) -- not transcribed here"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 345",
+        "kind": "sprite",
+        "index": 345,
+        "type_id": 0,
+        "type": "Decoration",
+        "role": "listener",
+        "from": "wall 2318",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 27,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "",
+        "done": [],
+        "not_posed": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 346",
+        "kind": "sprite",
+        "index": 346,
+        "type_id": 0,
+        "type": "Decoration",
+        "role": "listener",
+        "from": "wall 2318",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 30,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "",
+        "done": [],
+        "not_posed": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 327",
+        "kind": "sprite",
+        "index": 327,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 8,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 328",
+        "kind": "sprite",
+        "index": 328,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 6,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sprite 329",
+        "kind": "sprite",
+        "index": 329,
+        "type_id": 459,
+        "type": "kTrapExploder",
+        "role": "listener",
+        "from": "sprite 345",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "generic OperateSprite reading; its picture is not derived from state",
+        "wait": 3,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 2.7 s (triggers.cpp:98-99, then :100-106)"
+        ],
+        "not_posed": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ],
+        "undecided": [],
+        "changed": false
+      },
+      {
+        "object": "sector 390",
+        "kind": "sector",
+        "index": 390,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor z 1536 -> 3072 (on_floor_z)",
+          "sprites [206, 328] ride the floor (triggers.cpp:1044-1062 / :1090-1099)"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": true,
+        "where": [
+          [
+            -2344,
+            45475
+          ]
+        ]
+      },
+      {
+        "object": "sector 403",
+        "kind": "sector",
+        "index": 403,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor z -4608 -> 4608 (on_floor_z)"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": true,
+        "where": [
+          [
+            -3060,
+            45274
+          ]
+        ]
+      },
+      {
+        "object": "sector 405",
+        "kind": "sector",
+        "index": 405,
+        "type_id": 600,
+        "type": "kSectorZMotion",
+        "role": "listener",
+        "from": "sprite 346",
+        "command": 1,
+        "state": [
+          0,
+          1
+        ],
+        "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+        "wait": 0,
+        "messages": 1,
+        "silent": "",
+        "gate": "",
+        "arrives": "arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+        "done": [
+          "message arrives when its sender returns to state 0 after 3 s (triggers.cpp:98-99, then :100-106)",
+          "floor z 1536 -> 4608 (on_floor_z)",
+          "sprites [327, 329] ride the floor (triggers.cpp:1044-1062 / :1090-1099)"
+        ],
+        "not_posed": [],
+        "undecided": [],
+        "changed": true,
+        "where": [
+          [
+            -3024,
+            45412
+          ]
+        ]
+      }
+    ],
+    "posed": [
+      "sector 390",
+      "sector 403",
+      "sector 405"
+    ],
+    "not_posed": [
+      {
+        "object": "wall 2318",
+        "type": "Normal",
+        "why": [
+          "a wall's state change is not posed (a switch wall's picture) -- not transcribed here"
+        ]
+      },
+      {
+        "object": "sprite 345",
+        "type": "Decoration",
+        "why": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 346",
+        "type": "Decoration",
+        "why": [
+          "Decoration (decoration): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 327",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 328",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      },
+      {
+        "object": "sprite 329",
+        "type": "kTrapExploder",
+        "why": [
+          "kTrapExploder (trap): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+        ]
+      }
+    ],
+    "observer": "xmapedit-observe draws one static state and reads no XSPRITE (obs_main.c:369), so a switch's state picture is posed by picnum",
+    "not_modelled": [
+      "whether a sender's state actually changes: SetSpriteState returns before sending when it does not (triggers.cpp:87-88), and the pose shows what the listeners do IF the message arrives. (A thing saved at state 0 does change: `actInit` sets every thing but a few to state 1 at level start, actor.cpp:2551, so its destruction is a real 1 -> 0.) A silent sender's listeners are not posed; a trigger_on/trigger_off gate the new state misses is flagged per listener (triggers.cpp:100-106)",
+      "wait_time: a listener that returns on its own is shown at the far end of its travel, before it returns",
+      "busy waves and the moment in between: only the two ends are posed"
+    ],
+    "art": true
+  },
+  "endpoints": {
+    "390": {
+      "rest": 1536,
+      "collapsed": 3072,
+      "authored_on": 3072
+    },
+    "403": {
+      "rest": -4608,
+      "collapsed": 4608,
+      "authored_on": 4608
+    },
+    "405": {
+      "rest": 1536,
+      "collapsed": 4608,
+      "authored_on": 4608
+    }
+  },
+  "runtime_events_executed": false,
+  "limits": "Posed final heights, not an explosion animation, timer execution, damage test, speech playback or proof of Use reach."
+}

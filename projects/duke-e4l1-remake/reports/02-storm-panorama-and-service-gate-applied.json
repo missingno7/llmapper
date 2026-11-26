@@ -1,0 +1,533 @@
+{
+  "id": "02-storm-panorama-and-service-gate",
+  "patch_sha256": "b91f520b269ef1224f9f3661df41206a16dc16410eaf8864b190b9e226ecbd1a",
+  "before_sha256": "a1557b5fda29e64c9be2483e967083252fe50d13c8d98040e7637c3cc9814c9f",
+  "after_sha256": "892bc8f1db15c09b99f50b500a5b64812afa7b58ad10c8855e571de0676b0733",
+  "changes": [
+    {
+      "kind": "sky",
+      "index": 0,
+      "extension": false,
+      "field": "bits",
+      "before": 0,
+      "after": 4
+    },
+    {
+      "kind": "sky",
+      "index": 0,
+      "extension": false,
+      "field": "offsets",
+      "before": [
+        0
+      ],
+      "after": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    {
+      "kind": "sector",
+      "index": 371,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 371,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 372,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 372,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 427,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 427,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 429,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 429,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 430,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 430,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 432,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 432,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 434,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 434,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 436,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 436,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 437,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 437,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 438,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 438,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 440,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 440,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 441,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 441,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 442,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 442,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 444,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 444,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 445,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 445,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 446,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 446,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 439,
+      "after": 255
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 439,
+      "after": 272
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "shade",
+      "before": 46,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 532,
+      "extension": false,
+      "field": "picnum",
+      "before": 2534,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 532,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 534,
+      "extension": false,
+      "field": "picnum",
+      "before": 2534,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 534,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 109,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 378,
+      "after": 255
+    },
+    {
+      "kind": "sector",
+      "index": 109,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 378,
+      "after": 272
+    },
+    {
+      "kind": "sector",
+      "index": 109,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 109,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 535,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 535,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 536,
+      "extension": false,
+      "field": "picnum",
+      "before": 378,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 536,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 537,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 537,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 538,
+      "extension": false,
+      "field": "picnum",
+      "before": 378,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 538,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 24
+    }
+  ],
+  "sprites": {},
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 341
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\a1557b5fda29e64c9be2483e967083252fe50d13c8d98040e7637c3cc9814c9f.MAP"
+}

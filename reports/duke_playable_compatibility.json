@@ -1,0 +1,1073 @@
+{
+  "$schema": "llmapper.duke-playable-compatibility",
+  "schema_version": 1,
+  "source_revision": "EDuke32 ec5824db81817866f70da326d3811bb0f52b3517",
+  "corpus": "maps/duke3d",
+  "maps_examined": 46,
+  "baseline_converted": 22,
+  "baseline_failed": 24,
+  "converted_encoded_reparsed_validated": 46,
+  "source_maps_unchanged": true,
+  "diagnostic_counts": {
+    "static-progression-unproven": 19,
+    "duke-transport-unsupported": 28,
+    "converted-sprite-outside-volume": 30
+  },
+  "verification": "Convert each corpus map, encode, write to work/duke-playable-compatibility, read from disk, validate, and compare source SHA-256 and in-memory Duke re-encoding. Reproduce corpus assertions with python -m unittest tests.test_duke_transport.",
+  "runtime_gameplay_tested": false,
+  "maps": [
+    {
+      "map": "DukCity1.map",
+      "source_sha256": "ff2a2d64e180e77e2244e4bcc03fe720d12801c2214d9a5452e8d437453e6800",
+      "target_sha256": "d6fe0a4b703de96850119d94bfd36b258d8fb4711c34b843031ef06d6d923fc3",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 634,
+        "walls": 5464,
+        "sprites": 159
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "6": 1,
+        "27": 22
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "DukCity2.map",
+      "source_sha256": "c422315324dd3c2231849f2c1e90940ecaaa781d0a7fe0f39c9289eecb8279a5",
+      "target_sha256": "e8527bd48b7ee6a93d19cb354220158ca5041c4af3ca45276b2b31144da2a36e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 496,
+        "walls": 4211,
+        "sprites": 221
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {},
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "DukCity3.map",
+      "source_sha256": "c01ba7972c301e865a0fbcb9468321f9984e5a10313b87b37cc8d48548c5e150",
+      "target_sha256": "f91997f8020aa6236734b88524c3fc101a409840aa9faaa4b33fc9a8cb33d7b5",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 994,
+        "walls": 8185,
+        "sprites": 270
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "6": 2,
+        "14": 2
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "DukCity4.map",
+      "source_sha256": "95b36c66c514ebd422c2a973ad9049b332e26d072d496fe47a762964b24a1e01",
+      "target_sha256": "9491369cd1d7d73f32805f33fd77383971c3f1e333a836215df88d60afdd217b",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 715,
+        "walls": 5420,
+        "sprites": 310
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "27": 6
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "DukCity5.map",
+      "source_sha256": "c14ae615c25564c46a1a0de7227759030b0dbf5cf271d88c246567747493ce82",
+      "target_sha256": "a3a3be44e1e8e2c5259a35c397f3b4157c16f65ee9d1431b7703082a63622f56",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 10,
+        "walls": 56,
+        "sprites": 7
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {},
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E1L1.MAP",
+      "source_sha256": "582949828ad025fc8aff555bbdc1a68cf9e4b258c2637316e8b56a009ec2a6fc",
+      "target_sha256": "afe470d7ddaa4f3d3bffb509898bdf82f9cf172a7d00882e2b9c93902d689f67",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 325,
+        "walls": 1975,
+        "sprites": 197
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 5,
+        "8": 6,
+        "27": 5,
+        "33": 5
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E1L2.MAP",
+      "source_sha256": "b7d41cd5c98423a9e9ff531f676d16d6337a106be748cc9bababaa238e7733f3",
+      "target_sha256": "629e78a86811fed1213867d0bd2d0d1ef476181f00fc807f428ac2cd8d0daf23",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 278,
+        "walls": 1759,
+        "sprites": 326
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "8": 19,
+        "27": 2,
+        "33": 1
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E1L3.MAP",
+      "source_sha256": "f270a3c5420e700a505a624b6697bf6000d8eeb1fd6ef9deaeee8a2809f34119",
+      "target_sha256": "677b9aaa829070c7349341d74b926c69e7d7d0692492e869f92d65923301f641",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 478,
+        "walls": 3050,
+        "sprites": 249
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 34,
+        "25": 2,
+        "27": 9
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E1L4.MAP",
+      "source_sha256": "4fa3e4efad3fc058d9fc15f9f7efb1a9114c1fa55f5c3a249a80045d6e69cd59",
+      "target_sha256": "b9fe856c6f75bae0a5e9196079485b93d1bcc32f4c8377fbfac7f48e263e347d",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 557,
+        "walls": 3437,
+        "sprites": 288
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 4,
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "2": 1,
+        "7": 4,
+        "8": 16,
+        "27": 11,
+        "29": 14,
+        "30": 4,
+        "33": 2,
+        "34": 1,
+        "36": 2
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 138 has 1 endpoints"
+    },
+    {
+      "map": "E1L5.MAP",
+      "source_sha256": "4fd279315945f58d6d94712089235d2a4eee2148ac31b63b7c98c4ede1fe73ea",
+      "target_sha256": "a3db4a5f4a2646cdf72d07f8ab2f19f14384e35728aa3c19ee92ebf11506093a",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 479,
+        "walls": 3198,
+        "sprites": 375
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 8,
+        "8": 8,
+        "27": 9,
+        "36": 1
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E1L6.MAP",
+      "source_sha256": "b929baeb18446eabcab8a614e9ff8ba59cf8e5a15d51aceb4ab0f38cc3c6d43b",
+      "target_sha256": "d7457a7e3a8a2a54fbb238b8cb3006e9554673189fdd11a249911d0b533f1273",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 341,
+        "walls": 1924,
+        "sprites": 276
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 1,
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "7": 1,
+        "8": 24,
+        "27": 3
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E1L7.MAP",
+      "source_sha256": "b607a0e7d20cdc7f4b5b4ea3936986213967c67ea41af33b02ba0bee67e9ec39",
+      "target_sha256": "02e106dd1a41a2413dcb91b9778a0aec894de893cfb26826c9c4b4b5a2783ed1",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 205,
+        "walls": 1478,
+        "sprites": 128
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 16
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "7": 16,
+        "25": 4,
+        "27": 1,
+        "29": 14
+      },
+      "previously_converted_output_unchanged": false,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E1L8.MAP",
+      "source_sha256": "30ace9067515bf9cece4d1241161be31466d1456e1d3ace079b16e5213d0b334",
+      "target_sha256": "370b232c2ab3f436e049dfca683bc8a51b938d6f8fb265d8ec9e1b9d6f8c952d",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 8,
+        "walls": 100,
+        "sprites": 25
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "27": 1
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E2L1.MAP",
+      "source_sha256": "3d3eca8462b8c344e1e55f615ab2d7bc6b5f3ae7043926f5571e4cef8bdd9a2b",
+      "target_sha256": "feac704cfc532b682cc178e5bc393537afae8329e11af564b1d364e1a6da5b6c",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 357,
+        "walls": 2397,
+        "sprites": 133
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "6": 1,
+        "8": 3,
+        "27": 3,
+        "29": 1
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L10.MAP",
+      "source_sha256": "33c820805309403cd5b664ff77acf06105db1e98761d4f2f4bcd3c213bda49ff",
+      "target_sha256": "7f23e9a656ee7ca1ee64a65c4eddb09d148b709d0805a5afa90003ef41de84bb",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 105,
+        "walls": 1198,
+        "sprites": 87
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "27": 3
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L11.MAP",
+      "source_sha256": "f7da80a3406b51571b8307c0fb1b566629ffff7b8d4946b1a6e7bbef1bb5c209",
+      "target_sha256": "5a535d625fec1e87de1bd1e2fcc9f4a49b3d9f22d120844d4078c41a6d7e231d",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 196,
+        "walls": 952,
+        "sprites": 57
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 2,
+        "36": 1
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L2.MAP",
+      "source_sha256": "77a71d42dce428e51ea9705b2b6024dac1a83b6fa14ea4d979817b6f1bbfacbc",
+      "target_sha256": "92c0130a81e4ceb6ac53b0974564faab252f1de2a892c7ea37acc23b708aba51",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 278,
+        "walls": 1989,
+        "sprites": 138
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 11,
+        "27": 5,
+        "29": 2,
+        "30": 1
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L3.MAP",
+      "source_sha256": "151311f6ba0ad8bb97ba92558a2b522049e5a9178c9957df8910f7a05c7433a7",
+      "target_sha256": "19234f07b4b80d5376d05bf79a66764fb4952aa923006207172ae655df7c68e1",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 511,
+        "walls": 3612,
+        "sprites": 237
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "8": 11,
+        "27": 9,
+        "30": 1
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E2L4.MAP",
+      "source_sha256": "59b553341fa352c05c2b6ffe4ee3653c8f9e15e6b9320205b81fc5085c182310",
+      "target_sha256": "cc1fa9dc7eba307eaae2e59974b6a2ec3b4053da6566443f5d2b75105b6e656e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 422,
+        "walls": 2875,
+        "sprites": 343
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "25": 4,
+        "27": 5,
+        "30": 2
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E2L5.MAP",
+      "source_sha256": "1d80fa453505156198d82b483bb7ea9cab8120ab38471070b704097d1e81153f",
+      "target_sha256": "4cd35b9aa49e877c703838936167823c6ab3010487a267c18655fbccb9dcc54e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 255,
+        "walls": 1452,
+        "sprites": 184
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 20,
+        "27": 4,
+        "36": 4
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L6.MAP",
+      "source_sha256": "0e504e1d7013a610a5232f6da2b57ca756d56948f7d73a64c5d7572c8bdd5e82",
+      "target_sha256": "97dfade01bf00d2170e7d92b0c7f79f9148ae624a70e9d4d92d36d5e2394ea40",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 344,
+        "walls": 2445,
+        "sprites": 234
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "8": 12,
+        "27": 6,
+        "29": 6,
+        "30": 8
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E2L7.MAP",
+      "source_sha256": "afeab75e0e545644b32954a4403d372b173bdc153f6dddfa8fb31c49b5091a0b",
+      "target_sha256": "d88857d9319f8301871b0300ff6839f5aef4d5711b25049960b33a8c69c5f225",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 445,
+        "walls": 2865,
+        "sprites": 340
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "2": 4,
+        "8": 17,
+        "27": 7,
+        "29": 9,
+        "30": 2,
+        "33": 5
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E2L8.MAP",
+      "source_sha256": "49f16917527222b36c37334752db52f4e1c2a948bc2ee7b40103fe60c80b45ed",
+      "target_sha256": "370838df7bbc2941e7091e9064e7b3610ffdbe4597e9068f55dbc2b8cdfaa7e1",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 739,
+        "walls": 5471,
+        "sprites": 440
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 1
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 4,
+        "7": 1,
+        "25": 3,
+        "27": 6,
+        "29": 2,
+        "30": 3
+      },
+      "previously_converted_output_unchanged": false,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E2L9.MAP",
+      "source_sha256": "8bd15108bf09b397158fe9e23249fede4895f8886477689004d5561285208488",
+      "target_sha256": "4a38d100711b68f99b2a435cf06b1882dcf6b25a5064ed7b3b495dab81209629",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 252,
+        "walls": 1487,
+        "sprites": 226
+      },
+      "diagnostics": {
+        "converted-sprite-outside-volume": 1
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "27": 5,
+        "29": 3,
+        "36": 10
+      },
+      "baseline_status": "error",
+      "baseline_error": "sprite z 118272 is outside sector range 24625..49103"
+    },
+    {
+      "map": "E3L1.MAP",
+      "source_sha256": "31957af58e82855d318a82e99a6f4d9b915250bec53a86d8aead9992d89da1dd",
+      "target_sha256": "5f31e5d46d23b2d44b5c61fb4a78c579b39fad54268aa23691d3428f30e33e12",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 345,
+        "walls": 2334,
+        "sprites": 258
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "27": 4
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L10.MAP",
+      "source_sha256": "3d33c764ae78343d117218ff91746ee41eca098f129c73401ff081f3b4728882",
+      "target_sha256": "6b1b16aaeddb5be34b4936a3e20a3277228e80788837c2495c94c927934ec295",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 179,
+        "walls": 1885,
+        "sprites": 137
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 24,
+        "27": 3
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L11.MAP",
+      "source_sha256": "ffbfc53f6cce7df7fca58b83f417485baff05ef5c334058bb78174f144aae5cc",
+      "target_sha256": "5830f197693ff9e68d98b1a8b5b850cdbcff4a54ef453a46319e338f7caed363",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 253,
+        "walls": 1600,
+        "sprites": 297
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 1,
+        "8": 6,
+        "27": 5,
+        "33": 6
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L2.MAP",
+      "source_sha256": "b9b2d10ddbff8a1fb753fa4bb8b2fe45d5e6beddd778054463b6bbc1090c5690",
+      "target_sha256": "308ce3d3b664850b8a312771e364216cf616b65698ba30206bf61bbe87b77105",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 245,
+        "walls": 2375,
+        "sprites": 199
+      },
+      "diagnostics": {
+        "converted-sprite-outside-volume": 2
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "27": 2
+      },
+      "baseline_status": "error",
+      "baseline_error": "sprite position is outside its sector"
+    },
+    {
+      "map": "E3L3.MAP",
+      "source_sha256": "5cc6acb46b9a5364376dcc4fda4afba7655d0c1ab7aee2d99b29884a16f9f705",
+      "target_sha256": "0f50b2dff1d1b402e92b38923a50686fd15b3348e3e39d4b139571d918aa9f4e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 262,
+        "walls": 1804,
+        "sprites": 262
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 12,
+        "27": 5
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L4.MAP",
+      "source_sha256": "56002222d5c72f2a5260b739481a2e37a095e153eb30352a3181a06259bf8155",
+      "target_sha256": "9e007b97d1afa61b9047e512e7859394ccef1b91e57268dece54b363a25c2d1b",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 238,
+        "walls": 1594,
+        "sprites": 246
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 4,
+        "27": 5,
+        "33": 3
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L5.MAP",
+      "source_sha256": "32427e4f3326e6750057cbc699c913ebcda18e8a88368f6e97b27619f0e4eced",
+      "target_sha256": "93d64b1d3a2b0f0e026b26aad2443fc607bc41ec9711948ae06c387068f02d76",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 209,
+        "walls": 1399,
+        "sprites": 198
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "2": 1,
+        "8": 5,
+        "27": 3,
+        "33": 4
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E3L6.MAP",
+      "source_sha256": "a77d1c2694d75891f8b9bdb66fcfbfbf61e9f5ad32bc499558f0cfa2cac55e86",
+      "target_sha256": "bdfa01a724c5ca1830dd617332b850aafe38bccceaf3e79c9d64c143e2930352",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 186,
+        "walls": 1794,
+        "sprites": 209
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "6": 2,
+        "8": 2,
+        "14": 2,
+        "27": 3,
+        "29": 3
+      },
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E3L7.MAP",
+      "source_sha256": "97df5b58d9fc87b796128b5a240d8249b1782f4b7b054610fbcf503854fbe6a6",
+      "target_sha256": "62bf98ccd0b05d6fdec2f985bed768275d281d1f8794e0d56e70b2a6beebe39f",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 234,
+        "walls": 1449,
+        "sprites": 190
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "27": 3
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L8.MAP",
+      "source_sha256": "9e29152b102ea6e68482d9eceeb2538e7c28fede83c91e3a048497048e0416b8",
+      "target_sha256": "422f9f3047aed429cfc007888a2267404fcde3e8700707469a8a9c46fcd6fe84",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 359,
+        "walls": 2454,
+        "sprites": 254
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 2,
+        "27": 5,
+        "33": 7
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E3L9.MAP",
+      "source_sha256": "b88933de76752431e64233f28804b1999f653ba0709218b4b8256e4a43f5c35d",
+      "target_sha256": "9063150d2fc93cdeae846280808262f1c693b66a4c7914c9ddcb31b79fae3ba4",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 15,
+        "walls": 114,
+        "sprites": 76
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {},
+      "baseline_status": "error",
+      "baseline_error": "converted map has no statically reachable Blood exit"
+    },
+    {
+      "map": "E4L1.MAP",
+      "source_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+      "target_sha256": "46bc703687f309d938e538d1adbbb6026ace7def1ceb28b3a48942ca942db6fc",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 546,
+        "walls": 3488,
+        "sprites": 334
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "25": 2,
+        "27": 10,
+        "28": 3,
+        "128": 1
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 9017 has 1 endpoints"
+    },
+    {
+      "map": "E4L10.MAP",
+      "source_sha256": "760ef6791f571df8705344278df7bd57933eed0fac19e6d84a7bb8c0eee9ac89",
+      "target_sha256": "c947ac7e80a34f172aa115f84b0bdd11568c4076b3d0819776c33c85a88166d1",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 845,
+        "walls": 5292,
+        "sprites": 354
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "18": 20,
+        "25": 2,
+        "27": 4
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 851 has 1 endpoints"
+    },
+    {
+      "map": "E4L11.MAP",
+      "source_sha256": "638f950321b25191e3bc0e4166fc1a6ab06b5716f995e51a3197da47813ef1c0",
+      "target_sha256": "7d785026f79e8b6e056d17c07b39a79b48e1ad04745e478dacdeac63bbe5dd26",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 668,
+        "walls": 4370,
+        "sprites": 605
+      },
+      "diagnostics": {
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "2": 6,
+        "9": 2,
+        "25": 3,
+        "27": 5
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 95 has 1 endpoints"
+    },
+    {
+      "map": "E4L2.MAP",
+      "source_sha256": "ed3bb8fe05fec19d87846fde430d7ef595e0be7f1c38e88d42f30cd8fc3222d5",
+      "target_sha256": "8271d0b48e1d5751482c95f8c82c783ad4818a9fc17d1ee9c1fcaec07e1f20ce",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 385,
+        "walls": 2468,
+        "sprites": 205
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 5,
+        "8": 5,
+        "25": 4,
+        "27": 4,
+        "33": 15
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E4L3.MAP",
+      "source_sha256": "98664ae95911abae2b31e1aa0bed6e1f889456ca263ca5b9c06946ec0e9d1fd7",
+      "target_sha256": "ff8d0bbce11ae121c03f6a8255d61aa37e1533c725b5a96733c67a5090456f4e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 370,
+        "walls": 2490,
+        "sprites": 189
+      },
+      "diagnostics": {
+        "converted-sprite-outside-volume": 26
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "25": 4,
+        "33": 1,
+        "43": 1
+      },
+      "baseline_status": "error",
+      "baseline_error": "sprite z -125952 is outside sector range -125952..-240938"
+    },
+    {
+      "map": "E4L4.MAP",
+      "source_sha256": "cc29bf6396ff8e6ba974ccecbc71c72fddeda21129cebac51e87d873848253ac",
+      "target_sha256": "61e0d4440202ac32903c88802a1d90ad533239a93242b5102bc8e7c8e6b58b66",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 389,
+        "walls": 2585,
+        "sprites": 227
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "6": 3,
+        "8": 6,
+        "29": 5,
+        "36": 10,
+        "166": 1
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E4L5.MAP",
+      "source_sha256": "54e90000da26465cea14e896b46a68996e9688b6960a0aa9c39bb9ba1737af26",
+      "target_sha256": "bb9d7edd3e0aa6d24ce0c371b9da300612cca407753904e990fb0e3b0b422aee",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 564,
+        "walls": 3769,
+        "sprites": 224
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 5,
+        "27": 3
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E4L6.MAP",
+      "source_sha256": "efabd73232f58bf2f687e1938c47f1128a210d79e3a65667b7be20d18fc5e871",
+      "target_sha256": "37e31270f6bed38a45de4744baac69bdefdf22d8c2093e005d6b8897e1fb0895",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 339,
+        "walls": 2060,
+        "sprites": 219
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "2": 1,
+        "8": 16,
+        "27": 3,
+        "33": 11
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 3 has 1 endpoints"
+    },
+    {
+      "map": "E4L7.MAP",
+      "source_sha256": "98d38ff90b0a1c8f40b130478500d480a51f00821c8507f13f3e0e1de32a6adb",
+      "target_sha256": "cb2574f8ed0e6897258af080f2cf38b504a6beab40a38cdfe7cd86d19370c977",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 284,
+        "walls": 1922,
+        "sprites": 347
+      },
+      "diagnostics": {},
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "8": 18,
+        "25": 2,
+        "27": 4,
+        "36": 7
+      },
+      "previously_converted_output_unchanged": true,
+      "baseline_status": "ok"
+    },
+    {
+      "map": "E4L8.MAP",
+      "source_sha256": "68840340bbb8917d0b167530329692d4f71a976192c17998620d9604e5c054af",
+      "target_sha256": "e552813eb2e5db27b7efc0250a2e1a6637a8321b01285ab577714f1ae947188e",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 378,
+        "walls": 2523,
+        "sprites": 452
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 2,
+        "converted-sprite-outside-volume": 1,
+        "static-progression-unproven": 1
+      },
+      "static_exit_access_proven": false,
+      "unsupported_sector_effector_lotags": {
+        "2": 22,
+        "7": 2,
+        "8": 18,
+        "27": 3,
+        "33": 17
+      },
+      "baseline_status": "error",
+      "baseline_error": "Duke SE7 link 8779 has 1 endpoints"
+    },
+    {
+      "map": "E4L9.MAP",
+      "source_sha256": "2c23d5d6ce8a9e3814e96410f178d220de818ca875f1e8d27d0d8caa5da2b3cf",
+      "target_sha256": "96743a79cedb3cbd98eb4fc376018ae9fbebd6c2ee13fdecc8d8388c00104f70",
+      "encoded_reparsed_validated": true,
+      "source_unchanged": true,
+      "counts": {
+        "sectors": 812,
+        "walls": 5070,
+        "sprites": 430
+      },
+      "diagnostics": {
+        "duke-transport-unsupported": 4
+      },
+      "static_exit_access_proven": true,
+      "unsupported_sector_effector_lotags": {
+        "7": 4,
+        "8": 18,
+        "25": 4,
+        "28": 4
+      },
+      "previously_converted_output_unchanged": false,
+      "baseline_status": "ok"
+    }
+  ],
+  "blood_city_scope": "No Blood City files edited and no city build invoked by this converter change. Concurrent pre-existing city work was left alone.",
+  "normal_cli_smoke_test": {
+    "map": "E4L1.MAP",
+    "art_engine": "role-aware ART palette/spatial nearest-neighbour over corpus ceiling, floor, wall, and parallax families",
+    "reparsed": true,
+    "sha256": "dedbac01100f373790b47dbbd288a8d359e03b7d72e93f3572c4ea6c7a79c226",
+    "source_sprite": 1036,
+    "destination_sprite": 1039,
+    "hitag": 9017
+  },
+  "focused_tests": {
+    "tests_run": 78,
+    "passed": true,
+    "modules": [
+      "tests.test_duke_semantics",
+      "tests.test_e3l11",
+      "tests.test_e2l1",
+      "tests.test_duke_motion",
+      "tests.test_duke_transport",
+      "tests.test_architecture",
+      "tests.test_module_map"
+    ]
+  },
+  "broader_suite": {
+    "status": "not completed",
+    "reason": "Optional shapely dependency is absent in the available Python runtime; fail-fast discovery confirms ModuleNotFoundError in test_aldermack_backstage. The continuing full run was stopped after reporting errors.",
+    "fail_fast_tests_run": 8,
+    "fail_fast_errors": 1,
+    "converter_failures_in_focused_tests": 0
+  }
+}

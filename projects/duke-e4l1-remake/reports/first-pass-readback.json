@@ -1,0 +1,116 @@
+{
+  "schema": "e4l1-remake-first-pass-readback",
+  "map": "E4L1-current.MAP",
+  "map_sha256": "f639fae83771303193e597103c06361c8e409ea95209762e936f335172250fed",
+  "baseline_sha256": "dedbac01100f373790b47dbbd288a8d359e03b7d72e93f3572c4ea6c7a79c226",
+  "baseline_unchanged": true,
+  "source_duke_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 341
+  },
+  "structural_errors": [],
+  "structural_warnings": [
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[34]"
+    },
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[40]"
+    },
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[42]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-wall",
+      "message": "wall 215 points back to 210; Build accepts this original-map portal trick",
+      "location": "wall[207]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-sector",
+      "message": "wall 215 points to sector 42, expected 41",
+      "location": "wall[207]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-wall",
+      "message": "wall 207 points back to 215; Build accepts this original-map portal trick",
+      "location": "wall[211]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-sector",
+      "message": "wall 207 points to sector 43, expected 42",
+      "location": "wall[211]"
+    }
+  ],
+  "geometry_topology_start_original_sprites_and_existing_mechanisms_preserved": true,
+  "added_sprites": {
+    "storm-clock": 334,
+    "storm-thunder": 335,
+    "storm-wind": 336,
+    "entry-lamp-west": 337,
+    "entry-lamp-east": 338,
+    "fallen-rock-west": 339,
+    "fallen-rock-east": 340
+  },
+  "new_sprite_fit_faults": [],
+  "existing_sunk_actor_count": 72,
+  "weather_wire_agrees": true,
+  "weather_receivers": 19,
+  "native_sky": {
+    "bits": 4,
+    "offsets": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "service_gate": {
+    "sector": 108,
+    "controls": {
+      "trigger_push": 1,
+      "trigger_wall_push": 1,
+      "wait_time_a": 60,
+      "on_ceiling_z": -19968,
+      "on_floor_z": 10752
+    },
+    "open_height": 30720,
+    "player_standing_height": 16960
+  },
+  "posed_frames": "evidence/pass-03/after and evidence/pass-03/flash",
+  "runtime_gameplay_or_audio_executed": false,
+  "unresolved": [
+    "72 pre-existing actors partly below floors",
+    "Exit sequence and route to sector 311 unverified",
+    "Native mirror at sector 117 / support sector 57 needs repair or reinterpretation",
+    "Forecast/camera-only components identified and excluded; physical deletion not yet applied",
+    "Rain particles and explicit visible lightning bolt not authored in this pass",
+    "Interior areas remain at baseline quality; schematic boundaries need area-by-area refinement",
+    "Owner walking and independent visual review remain pending"
+  ]
+}

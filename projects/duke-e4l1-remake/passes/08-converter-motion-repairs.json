@@ -1,0 +1,2839 @@
+{
+  "id": "08-converter-motion-repairs",
+  "purpose": "Source-backed SE11 opening direction, distance/speed-based Z timing, linear motion waves, SE10 return units/edge, and prevention of SE12 control overwrite; preserve all manual materials, weather and briefing wiring.",
+  "edits": [
+    {
+      "kind": "sector",
+      "index": 8,
+      "identity": {
+        "wall_ptr": 44,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          29,
+          9
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          29,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 15,
+      "identity": {
+        "wall_ptr": 72,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 16,
+      "identity": {
+        "wall_ptr": 76,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 24,
+      "identity": {
+        "wall_ptr": 128,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "identity": {
+        "wall_ptr": 140,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          40,
+          6
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          27
+        ],
+        "busy_time_b": [
+          40,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "identity": {
+        "wall_ptr": 144,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          40,
+          6
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          27
+        ],
+        "busy_time_b": [
+          40,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "identity": {
+        "wall_ptr": 240,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "amplitude": [
+          16,
+          0
+        ],
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "wait_time_b": [
+          0,
+          30
+        ],
+        "busy_time_a": [
+          18,
+          3
+        ],
+        "command": [
+          3,
+          0
+        ],
+        "shade_walls": [
+          1,
+          0
+        ],
+        "interruptable": [
+          1,
+          0
+        ],
+        "rx_id": [
+          675,
+          0
+        ],
+        "shade_floor": [
+          1,
+          0
+        ],
+        "shade_ceiling": [
+          1,
+          0
+        ],
+        "retrigger_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          0
+        ],
+        "shade_frequency": [
+          18,
+          0
+        ],
+        "shade_wave": [
+          1,
+          0
+        ],
+        "retrigger_a": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          18,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "identity": {
+        "wall_ptr": 293,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "amplitude": [
+          16,
+          0
+        ],
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          18,
+          3
+        ],
+        "command": [
+          3,
+          0
+        ],
+        "shade_walls": [
+          1,
+          0
+        ],
+        "interruptable": [
+          1,
+          0
+        ],
+        "rx_id": [
+          661,
+          0
+        ],
+        "shade_floor": [
+          1,
+          0
+        ],
+        "shade_ceiling": [
+          1,
+          0
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "shade_frequency": [
+          18,
+          0
+        ],
+        "shade_wave": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          18,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 73,
+      "identity": {
+        "wall_ptr": 345,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          32,
+          5
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          32,
+          5
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 81,
+      "identity": {
+        "wall_ptr": 391,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          24,
+          7
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          24,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 88,
+      "identity": {
+        "wall_ptr": 428,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          24,
+          7
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          24,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "identity": {
+        "wall_ptr": 460,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          5
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          5
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "identity": {
+        "wall_ptr": 473,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "wait_time_b": [
+          0,
+          41
+        ],
+        "retrigger_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          0
+        ],
+        "retrigger_a": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "identity": {
+        "wall_ptr": 481,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          16,
+          3
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          27
+        ],
+        "busy_time_b": [
+          16,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 98,
+      "identity": {
+        "wall_ptr": 485,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 99,
+      "identity": {
+        "wall_ptr": 489,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "identity": {
+        "wall_ptr": 525,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          8
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          17
+        ],
+        "busy_time_b": [
+          10,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "identity": {
+        "wall_ptr": 529,
+        "wall_count": 6
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          60,
+          12
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          31
+        ],
+        "busy_time_b": [
+          60,
+          12
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "identity": {
+        "wall_ptr": 543,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          5
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          39
+        ],
+        "busy_time_b": [
+          10,
+          5
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "identity": {
+        "wall_ptr": 559,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          6
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          32
+        ],
+        "busy_time_b": [
+          10,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "identity": {
+        "wall_ptr": 613,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          3
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          24
+        ],
+        "busy_time_b": [
+          10,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 146,
+      "identity": {
+        "wall_ptr": 698,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 147,
+      "identity": {
+        "wall_ptr": 702,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 149,
+      "identity": {
+        "wall_ptr": 719,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 150,
+      "identity": {
+        "wall_ptr": 723,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "identity": {
+        "wall_ptr": 735,
+        "wall_count": 28
+      },
+      "fields": {},
+      "extra": {
+        "amplitude": [
+          16,
+          0
+        ],
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          18,
+          3
+        ],
+        "command": [
+          3,
+          1
+        ],
+        "shade_walls": [
+          1,
+          0
+        ],
+        "interruptable": [
+          1,
+          0
+        ],
+        "rx_id": [
+          661,
+          0
+        ],
+        "shade_floor": [
+          1,
+          0
+        ],
+        "shade_ceiling": [
+          1,
+          0
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "shade_frequency": [
+          18,
+          0
+        ],
+        "shade_wave": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          18,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "identity": {
+        "wall_ptr": 819,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          5,
+          1
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          21
+        ],
+        "busy_time_b": [
+          5,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "identity": {
+        "wall_ptr": 841,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          8
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "identity": {
+        "wall_ptr": 881,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          3
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "identity": {
+        "wall_ptr": 929,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "identity": {
+        "wall_ptr": 937,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "identity": {
+        "wall_ptr": 945,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "identity": {
+        "wall_ptr": 953,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "identity": {
+        "wall_ptr": 1016,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          9
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          35
+        ],
+        "busy_time_b": [
+          10,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "identity": {
+        "wall_ptr": 1020,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "amplitude": [
+          16,
+          0
+        ],
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          18,
+          5
+        ],
+        "command": [
+          3,
+          0
+        ],
+        "shade_walls": [
+          1,
+          0
+        ],
+        "shade_floor": [
+          1,
+          0
+        ],
+        "shade_ceiling": [
+          1,
+          0
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "shade_frequency": [
+          18,
+          0
+        ],
+        "shade_wave": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          18,
+          5
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 242,
+      "identity": {
+        "wall_ptr": 1226,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 243,
+      "identity": {
+        "wall_ptr": 1230,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 244,
+      "identity": {
+        "wall_ptr": 1234,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 245,
+      "identity": {
+        "wall_ptr": 1238,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "identity": {
+        "wall_ptr": 1312,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          16,
+          3
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          16,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 263,
+      "identity": {
+        "wall_ptr": 1336,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 264,
+      "identity": {
+        "wall_ptr": 1340,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "identity": {
+        "wall_ptr": 1383,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          9
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "identity": {
+        "wall_ptr": 1391,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          4
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          24
+        ],
+        "busy_time_b": [
+          10,
+          4
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 278,
+      "identity": {
+        "wall_ptr": 1403,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 279,
+      "identity": {
+        "wall_ptr": 1407,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 280,
+      "identity": {
+        "wall_ptr": 1411,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 281,
+      "identity": {
+        "wall_ptr": 1415,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 284,
+      "identity": {
+        "wall_ptr": 1428,
+        "wall_count": 5
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 285,
+      "identity": {
+        "wall_ptr": 1433,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 286,
+      "identity": {
+        "wall_ptr": 1437,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 287,
+      "identity": {
+        "wall_ptr": 1441,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 288,
+      "identity": {
+        "wall_ptr": 1445,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "identity": {
+        "wall_ptr": 1457,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          6,
+          2
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          6,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 294,
+      "identity": {
+        "wall_ptr": 1491,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 295,
+      "identity": {
+        "wall_ptr": 1495,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 296,
+      "identity": {
+        "wall_ptr": 1499,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 297,
+      "identity": {
+        "wall_ptr": 1503,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 298,
+      "identity": {
+        "wall_ptr": 1507,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 299,
+      "identity": {
+        "wall_ptr": 1511,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 300,
+      "identity": {
+        "wall_ptr": 1515,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 301,
+      "identity": {
+        "wall_ptr": 1519,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 314,
+      "identity": {
+        "wall_ptr": 1600,
+        "wall_count": 7
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 317,
+      "identity": {
+        "wall_ptr": 1631,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 318,
+      "identity": {
+        "wall_ptr": 1635,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "identity": {
+        "wall_ptr": 1639,
+        "wall_count": 6
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          14,
+          12
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          14,
+          12
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "identity": {
+        "wall_ptr": 1645,
+        "wall_count": 6
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          14,
+          12
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          14,
+          12
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "identity": {
+        "wall_ptr": 1699,
+        "wall_count": 20
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          21,
+          9
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          21,
+          9
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 327,
+      "identity": {
+        "wall_ptr": 1719,
+        "wall_count": 8
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 328,
+      "identity": {
+        "wall_ptr": 1727,
+        "wall_count": 8
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 333,
+      "identity": {
+        "wall_ptr": 1777,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          7,
+          24
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          7,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "identity": {
+        "wall_ptr": 1987,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          5
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          17
+        ],
+        "busy_time_b": [
+          10,
+          5
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "identity": {
+        "wall_ptr": 2043,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "amplitude": [
+          16,
+          0
+        ],
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "wait_time_b": [
+          0,
+          30
+        ],
+        "busy_time_a": [
+          18,
+          3
+        ],
+        "command": [
+          3,
+          0
+        ],
+        "shade_walls": [
+          1,
+          0
+        ],
+        "interruptable": [
+          1,
+          0
+        ],
+        "rx_id": [
+          665,
+          0
+        ],
+        "shade_floor": [
+          1,
+          0
+        ],
+        "shade_ceiling": [
+          1,
+          0
+        ],
+        "retrigger_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          0
+        ],
+        "shade_frequency": [
+          18,
+          0
+        ],
+        "shade_wave": [
+          1,
+          0
+        ],
+        "retrigger_a": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          18,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "identity": {
+        "wall_ptr": 2193,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 391,
+      "identity": {
+        "wall_ptr": 2197,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          24,
+          35
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          24,
+          35
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "identity": {
+        "wall_ptr": 2261,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          60,
+          36
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "identity": {
+        "wall_ptr": 2269,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          7
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          7
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "identity": {
+        "wall_ptr": 2293,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "identity": {
+        "wall_ptr": 2309,
+        "wall_count": 10
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 406,
+      "identity": {
+        "wall_ptr": 2319,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 407,
+      "identity": {
+        "wall_ptr": 2323,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 408,
+      "identity": {
+        "wall_ptr": 2327,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          8,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          8,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 410,
+      "identity": {
+        "wall_ptr": 2345,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "identity": {
+        "wall_ptr": 2801,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          10,
+          3
+        ],
+        "interruptable": [
+          0,
+          1
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          10,
+          3
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 520,
+      "identity": {
+        "wall_ptr": 3310,
+        "wall_count": 4
+      },
+      "fields": {},
+      "extra": {
+        "busy_wave_b": [
+          0,
+          1
+        ],
+        "busy_time_a": [
+          24,
+          16
+        ],
+        "busy_wave_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          24,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "sprite",
+      "index": 0,
+      "identity": {
+        "x": -27069,
+        "y": 41865,
+        "owner": 410,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          512,
+          -512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 1,
+      "identity": {
+        "x": -32826,
+        "y": 48620,
+        "owner": 318,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          512,
+          -512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 2,
+      "identity": {
+        "x": -29768,
+        "y": 48620,
+        "owner": 317,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 3,
+      "identity": {
+        "x": -5570,
+        "y": 40514,
+        "owner": 15,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          512,
+          -512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 4,
+      "identity": {
+        "x": -5571,
+        "y": 42426,
+        "owner": 16,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 5,
+      "identity": {
+        "x": -11324,
+        "y": 44342,
+        "owner": 24,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          512,
+          -512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 6,
+      "identity": {
+        "x": 22410,
+        "y": 43042,
+        "owner": 50,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "identity": {
+        "x": 24390,
+        "y": 49167,
+        "owner": 152,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 8,
+      "identity": {
+        "x": 24393,
+        "y": 47436,
+        "owner": 61,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 9,
+      "identity": {
+        "x": -17842,
+        "y": 51882,
+        "owner": 95,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 10,
+      "identity": {
+        "x": -30528,
+        "y": 54432,
+        "owner": 327,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          512,
+          -512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 11,
+      "identity": {
+        "x": -32064,
+        "y": 54432,
+        "owner": 328,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sprite",
+      "index": 12,
+      "identity": {
+        "x": 28420,
+        "y": 43196,
+        "owner": 369,
+        "type": 5
+      },
+      "fields": {
+        "angle": [
+          -512,
+          512
+        ]
+      },
+      "extra": {}
+    }
+  ],
+  "sprites": []
+}

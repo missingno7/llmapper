@@ -58,7 +58,7 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(reparsed.sectors[84].extra.rx_id, 158)
         self.assertEqual(reparsed.sectors[111].extra.rx_id, 125)
         self.assertEqual(reparsed.sectors[159].extra.rx_id, 141)
-        self.assertEqual(reparsed.sectors[83].extra.busy_time_a, 5)   # GPSPEED 1024
+        self.assertEqual(reparsed.sectors[83].extra.busy_time_a, 6)   # 69632 / (1024*4), 17 ticks
         # Sliding doors and rotate bridges now take their duration from the
         # engine rather than from a fitted curve. The SE15 leaf in sector 159
         # runs sector.extra >> 3 == 56 ticks at 30 Hz, which is 19 tenths of a
@@ -86,7 +86,12 @@ class E3L11PlayableConversionTests(unittest.TestCase):
         self.assertEqual(report["mechanisms"]["counts"]["linked-explosion"], 6)
         self.assertEqual(report["mechanisms"]["counts"]["explosive-z-sector"], 11)
         self.assertEqual(report["mechanisms"]["counts"]["hatch-marker"], 4)
-        self.assertEqual(report["mechanisms"]["counts"]["switchable-light-pulse"], 32)
+        self.assertEqual(report["mechanisms"]["counts"]["switchable-light-pulse"], 31)
+        # SE12 in 196 shares a touchplate's XSECTOR. Replacing its command
+        # would silently change the entry signal; report the lighting gap.
+        self.assertTrue(any(row["code"]=="duke-light-control-conflict" and row["source_sector"]==196
+                            for row in report["diagnostics"]))
+        self.assertEqual(reparsed.sectors[196].extra.command, 1)
         # 139 now reaches the SEENINE cascade and 160/161 reach dude-spawn
         # markers. 159 stays: it is a lone Duke touchplate wired to nothing in
         # E3L11 itself, so a converted map that dropped it would be inventing a

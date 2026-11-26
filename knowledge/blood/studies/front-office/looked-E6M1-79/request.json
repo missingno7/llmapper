@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/intake/E6M1-79/played/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "projects/duke-e4l1-remake/studies/intake/E6M1-79",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "v1",
+   "x": 48583,
+   "y": 29866,
+   "z": 43232,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "v2",
+   "x": 48583,
+   "y": 29866,
+   "z": 43232,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "v3",
+   "x": 48583,
+   "y": 29866,
+   "z": 43232,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "v4",
+   "x": 48583,
+   "y": 29866,
+   "z": 43232,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  }
+ ]
+}

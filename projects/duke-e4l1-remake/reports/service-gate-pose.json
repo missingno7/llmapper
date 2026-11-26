@@ -1,0 +1,51 @@
+{
+  "root": "sector 108",
+  "cause": [
+    "push"
+  ],
+  "end": "other state",
+  "objects": [
+    {
+      "object": "sector 108",
+      "kind": "sector",
+      "index": 108,
+      "type_id": 600,
+      "type": "kSectorZMotion",
+      "role": "sender",
+      "cause": "push",
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "OperateDoor: off/on, else toggle (triggers.cpp:1680-1696)",
+      "messages": 0,
+      "wait": 60,
+      "done": [
+        "floor z -4608 -> 10752 (on_floor_z)",
+        "ceiling z -4608 -> -19968 (on_ceiling_z)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 60: returns on its own after 6 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          405,
+          36480
+        ]
+      ]
+    }
+  ],
+  "posed": [
+    "sector 108"
+  ],
+  "not_posed": [],
+  "observer": "xmapedit-observe draws one static state and reads no XSPRITE (obs_main.c:369), so a switch's state picture is posed by picnum",
+  "not_modelled": [
+    "whether a sender's state actually changes: SetSpriteState returns before sending when it does not (triggers.cpp:87-88), and the pose shows what the listeners do IF the message arrives. (A thing saved at state 0 does change: `actInit` sets every thing but a few to state 1 at level start, actor.cpp:2551, so its destruction is a real 1 -> 0.) A silent sender's listeners are not posed; a trigger_on/trigger_off gate the new state misses is flagged per listener (triggers.cpp:100-106)",
+    "wait_time: a listener that returns on its own is shown at the far end of its travel, before it returns",
+    "busy waves and the moment in between: only the two ends are posed"
+  ],
+  "art": false
+}

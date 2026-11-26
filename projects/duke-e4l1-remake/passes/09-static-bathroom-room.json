@@ -1,0 +1,99 @@
+{
+  "id": "09-static-bathroom-room",
+  "purpose": "Do not activate an inert SE11 in ordinary room 152. Preserve its entry TX and the separate real ST23 door61. Retire marker7 without deleting or renumbering anything.",
+  "edits": [
+    {
+      "kind": "sector",
+      "index": 152,
+      "identity": {
+        "wall_ptr": 735,
+        "wall_count": 28
+      },
+      "fields": {
+        "type": [
+          617,
+          0
+        ]
+      },
+      "extra": {
+        "on_floor_z": [
+          1536,
+          0
+        ],
+        "off_ceiling_z": [
+          -46080,
+          0
+        ],
+        "on_ceiling_z": [
+          -46080,
+          0
+        ],
+        "state": [
+          1,
+          0
+        ],
+        "busy_wave_a": [
+          1,
+          0
+        ],
+        "busy_time_a": [
+          3,
+          0
+        ],
+        "busy_wave_b": [
+          1,
+          0
+        ],
+        "busy_time_b": [
+          3,
+          0
+        ],
+        "trigger_push": [
+          1,
+          0
+        ],
+        "off_floor_z": [
+          1536,
+          0
+        ],
+        "marker_0": [
+          7,
+          -1
+        ],
+        "trigger_wall_push": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "identity": {
+        "x": 24390,
+        "y": 49167,
+        "owner": 152,
+        "type": 5
+      },
+      "fields": {
+        "type": [
+          5,
+          0
+        ],
+        "status": [
+          10,
+          0
+        ],
+        "owner": [
+          152,
+          -1
+        ],
+        "picnum": [
+          3997,
+          0
+        ]
+      }
+    }
+  ],
+  "sprites": []
+}

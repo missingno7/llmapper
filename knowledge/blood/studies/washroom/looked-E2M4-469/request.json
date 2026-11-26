@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/washhouse/E2M4-469/played/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "projects/duke-e4l1-remake/studies/washhouse/E2M4-469",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "a0",
+   "x": 20096,
+   "y": 7584,
+   "z": -41760,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 469,
+   "screenshot": true
+  },
+  {
+   "id": "a512",
+   "x": 20096,
+   "y": 7584,
+   "z": -41760,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 469,
+   "screenshot": true
+  },
+  {
+   "id": "a1024",
+   "x": 20096,
+   "y": 7584,
+   "z": -41760,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 469,
+   "screenshot": true
+  },
+  {
+   "id": "a1536",
+   "x": 20096,
+   "y": 7584,
+   "z": -41760,
+   "angle": 1536,
+   "horiz": 100,
+   "sector": 469,
+   "screenshot": true
+  }
+ ]
+}

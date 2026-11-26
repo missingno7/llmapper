@@ -20,14 +20,14 @@ table that equates numeric tags between games.
 | Duke runtime meaning | Semantic mechanism | Blood lowering | Fidelity |
 |---|---|---|---|
 | ST20 / ST18 tagged-sector Z motion | `MovingSector(z)` | type 600; unbuttoned doors get XSECTOR `Push` **and** `Wallpush` (NBlood `ActionScan` uses Wallpush when the Use hitscan hits the portal wall from the adjacent room); buttoned doors are RX-only | faithful where endpoints can be inferred from adjacent sectors |
-| SE31 / SE32 endpoint controller | `MovingSector(floor/ceiling)` | type 600 off/on surface values; speed follows effector shade, not GPSPEED; same Push/Wallpush vs RX split | faithful |
+| SE31 / SE32 endpoint controller | `MovingSector(floor/ceiling)` | type 600 off/on surface values; speed follows sector extra copied into effector yvel; same Push/Wallpush vs RX split | faithful |
 | SE15 horizontal controller | `MovingSector(translation)` | type 616, markers at angle 0, travel `16 * (sector.extra >> 3)` | faithful |
 | ST30 + SE0/SE1 + MasterSwitch group | `MovingSector(rotation + z)` | type 617, marker angle `2 * sector.extra` signed by `pal`, plus the floor endpoint | faithful for recovered groups |
-| SE11 / ST23 swinging door | `MovingSector(rotation)` | type 617, axis at the effector, marker angle a signed 512 -- `ang > 1024` turns positive | faithful |
-| SE20 / ST27 stretch bridge | `StretchSector` | type **614**, marked slide: only the two walls nearest the effector carry `cstat & 16384` | faithful |
-| SE10 autoclose timer | `DoorAutoclose` | XSECTOR `wait_time_a` plus `retrigger_a` on the host door (DNE3L1); `wait_time_b` stays 0 | semantically approximated |
+| SE11 / ST23 swinging door | `MovingSector(rotation)` | type 617, axis at the effector, first operation reverses spawn T4; angles above 1024 swing negative | faithful |
+| SE20 / ST27 stretch bridge | `StretchSector` | type **614**, marked slide: only the two nearest vertices move; only their connecting edge carries `cstat & 16384` | faithful |
+| SE10 autoclose timer | `DoorAutoclose` | XSECTOR return on the open end (A or B) of the host door | semantically approximated |
 | SE7 pair in ST1/ST2 sectors | `WaterLink` | Blood upper/lower-water markers | faithful |
-| Paired SE7, both ONFLOORZ, not water | `TeleportLink` | type 604 plus warp destination marker; `dudeLockout` so only the player fires enter | faithful |
+| SE7 ONFLOORZ in an untagged sector, targeting SE7 or SE23 | `TeleportLink` | directed type 604 plus warp destination marker; SE23 never generates a return route; `dudeLockout` so only the player fires enter | faithful transport direction; player-enter approximation |
 | Paired SE7 off the floor (hatch/manhole) | `AirHatch` | congruent copies → stack markers 11/12; otherwise room-link 7/6 | faithful for stack, approximated for physical-only link |
 | SE17 / ST15 warp elevator | `TeleportLink` | type 604 plus warp destination marker between cabins; `dudeLockout` | semantically approximated (cabin Z-motion is not reproduced) |
 | ST16 platform down | `MovingSector(z)` | type 600 floor endpoint from the nearest neighbor floor | faithful where a neighbor floor exists |
@@ -92,6 +92,22 @@ physics instead of dropping back to air in the doorway.
 
 EDuke32 sets `ONFLOORZ` from `sprite.z == sector.floorz` at SE7 spawn.
 
+Transport destinations are **not** inferred by counting SE7s. At EDuke32 commit
+`ec5824db81817866f70da326d3811bb0f52b3517`, `A_Spawn` in
+`reference/eduke32/source/duke3d/src/game.cpp:2916` scans ascending sprite indices
+for the first other live SE7 **or SE23** with the same full signed hitag. There
+is no preference for SE23 when both kinds match. More than two endpoints is a
+valid directed graph. SE23 owns itself; `G_MoveTransports` in `actors.cpp:3908`
+skips self-owned sprites, so SE23 is destination-only. The same initialization
+leaves a genuinely unmatched SE7 self-owned and inactive.
+
+The reported hitag 9017 is E4L1's SE7 sprite 1036 (sector 537) targeting SE23
+sprite 1039 (sector 538). It is a valid one-way floor teleporter. The converter
+now creates one type-604 source and a destination marker owned by sector 537,
+with the SE23's scaled xyz and facing. Sector 538 gets no return teleporter.
+The destination need not be on its floor. Coordinates outside the destination
+volume are preserved and diagnosed, rather than clamped to an invented pad.
+
 - On the floor, with sector lotag 0: the player must be grounded; flash teleport
   to the destination SE xyz. Blood type 604 plus warp dest (type 8).
 - Off the floor: silent relative XY teleport when `|SE.z - player.z| < 6144`.
@@ -100,6 +116,51 @@ EDuke32 sets `ONFLOORZ` from `sprite.z == sector.floorz` at SE7 spawn.
   copies, otherwise physical room-link markers (types 7/6). Pairing is XSPRITE
   `data_1`, matching water markers.
 - ST1+ST2 pairs remain Blood water markers 9/10.
+
+Only reciprocal off-floor SE7 pairs become hatches. A mixed floor/off-floor
+pair has different activation semantics in each direction: its floor route
+can be lowered independently and its silent route is reported unsupported.
+One-way water/silent routes and nonreciprocal water/hatch graphs are also
+reported unsupported: paired Blood markers would invent reverse transport.
+Multiple competing source transports in one sector, or transport combined
+with sector motion, are diagnosed before any existing behavior is overwritten.
+
+The conversion report's `diagnostics` list identifies unsupported routes by
+hitag, source/destination sprite and sector, and includes every endpoint's
+SE lotag, xyz, angle, sector lotag and ONFLOORZ state, with a reason and the
+action taken. Source mechanisms also remain in `semantic_inventory`.
+
+Other corpus compatibility checks found three additional development-board
+assumptions:
+
+- SE17 groups with other than two stops were silently skipped. They now have
+  explicit unsupported diagnostics; EDuke32 selects stops using sector hitags
+  and travel direction, so arbitrarily pairing them is unsafe.
+- Failure of the static progression reader is a report warning, including
+  absent exits and unproven dynamic progression. It no longer aborts conversion,
+  and `guaranteed_exit_channel` is null when the reader cannot prove access.
+  No replacement exits are generated.
+- New-level sprite containment rules rejected outside motion markers, original
+  header starts beyond a floor, and hidden timers in closed/crushing sectors.
+  The converter retains these sector-assigned records and reports their
+  coordinates. NBlood `db.cpp::PropagateMarkerReferences` binds motion/warp
+  markers by `owner`, independent of containment. General `LevelBuilder`
+  authoring rules are unchanged. Structural errors and real Blood record/channel
+  limits still abort; the user-channel allocator rejects exhaustion at 1023.
+
+`python -m unittest tests.test_duke_transport` checks synthetic directed graphs,
+unsupported configurations, report writing, source preservation and every map
+enumerated by `bloodmap.corpus.list_corpus_maps` in `DUKEMAP_CORPUS` (default
+`maps/duke3d`). The corpus run is recorded in
+`reports/duke_playable_compatibility.json`. It proves conversion/read-back and
+structural validity, not that every level can be completed in Blood.
+
+In the 46-map local run, the old converter completed 22 maps and aborted on 24;
+all 46 now encode, reparse and validate. Nineteen of the previously successful
+outputs remain byte-identical. Three intentionally change: E2L8 hitag 188 is
+a mixed floor/silent pair, while E1L7 and E4L9 combine floor transport with
+SE31/SE32 motion. The previous output overwrote those moving-sector behaviors
+with teleports; the report now exposes the Blood representation conflict.
 
 XMAPEDIT/NBlood's ROR helper makes the same split: congruent floor/ceiling copies
 are stack, otherwise link.
@@ -276,3 +337,64 @@ effector onto the SE1 pivot only when its angle is exactly 512. An SE0 authored
 at any other angle turns about itself, and using the pivot for it swings the
 sector through an arc it never travels -- E3L11's fifth bridge is authored at
 1536 and is the one that does this.
+
+
+## Motion audit and the boundary of automatic conversion (2026-11-24)
+
+E4L1 exposed defects that structural validity and normalized own-polygon
+sweeps could not establish. ST23 negates the SE11 spawn direction before the
+first movement; ST25 adds 1024 to SE15 before moving. Using the authored
+rather than activated direction swung door 50 through its adjoining
+sector 389. The corrected sweep has no introduced fold in that neighbour.
+
+`duke_motion.tagged_z_motion` reads strict directional neighbour heights and
+Duke load state for ST16-22. It derives duration from travel / (sector extra
+* TICSPERFRAME), at 30 updates per second, then rounds to Blood tenths. It
+supports ST17/19/21 as well as previously handled tags, and reports unusable
+non-positive speeds without inventing replacements. Motion uses linear Blood
+wave 1. SE31/32 inherit sector extra in sprite.yvel at spawn. SE10 hitag is a
+30Hz counter; a rotation's opened state is OFF, so its return belongs on B.
+The remaining timer is estimated after subtracting opening travel. Presence
+holds, exact timer phase, and engine tick quantization remain approximations.
+
+SE20 selects two vertices. Blood's marked-wall translation carries point2
+implicitly: flag their connecting edge once, not both vertices. ST30 Z
+endpoints must also respect the state-1 load convention. Its rotation is
+64*(extra>>5), equal to 2*extra only for multiples of 32. Unequal simultaneous
+Z/rotation durations are reported as an approximation. Independent SE12 light
+controls cannot overwrite a mover's RX, duration or return settings. Independent
+SE13/horizontal motion conflicts are diagnosed rather than changing a rotor
+into a Z-only sector.
+
+`tools.verify_motion` now records timing and native waves, source and target
+hashes, and every neighbour loop reached by Duke/Blood DragPoint calls. Its
+`--converted` option audits an existing editable Blood MAP without writing it.
+`--corpus` enumerates through `bloodmap.corpus`. The 46-map audit is in
+`reports/duke-motion-compatibility.json`: 379 modeled horizontal motions pass
+sampled geometric comparison, including affected loops, within 2 Blood units.
+This is model verification, not a runtime or finishability guarantee.
+
+The conversion report's `mechanisms.coverage` and per-object warning diagnostics
+separate actual lowering from theoretical family support. Tagged vertex/compound
+doors, coupled local leaves, independent control conflicts, locks, secrets,
+sounds and MasterSwitch choreography can require manual authoring. The user
+explicitly accepts that boundary. Do not invent endpoints, force unrelated
+mechanisms together or equate a successful conversion with full gameplay parity.
+E4L1's itemized list and guarded native repair are recorded in
+`projects/duke-e4l1-remake/reports/converter-mechanism-audit.md`.
+
+SE11 does not imply an operable door by itself. In sector.cpp, ST23 finds its
+local SE11 and arms the same-hitag group; actors.cpp runs movement only while
+that group's counter is active. E4L1's plain room 152 contains SE11 sprite
+487, hitag 409, with no same-hitag ST23 operator. E1L2 room 262 is another
+case. These controllers stay intentionally inactive, with a source-specific
+diagnostic, rather than becoming invented Push rotors. A plain-sector SE11
+member of a group with an actual ST23 operator still gets its geometry
+lowered, without an invented local Use action; shared activation needs the
+linked-group treatment recorded in coverage. E4L1 room 152 retains its entry
+signal; its independent SE12 light conflict is diagnosed separately.
+
+The earlier room-389 bathroom label was incorrect. Actual E4L1 toilet and
+urinal sprites identify rooms 58/59/119/152; valid stall door 61 uses SE11
+hitag 408. The guarded local repair retires the generated room-152 marker
+in place and preserves the real door and source geometry.

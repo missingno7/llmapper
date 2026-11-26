@@ -1,0 +1,63 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/evidence/pass-01/after/played/as-empty.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/reference/blood",
+ "output": "projects/duke-e4l1-remake/evidence/pass-01/after",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "arrival",
+   "x": -3564,
+   "y": 31872,
+   "z": -3360,
+   "angle": 2044,
+   "horiz": 100,
+   "sector": 453,
+   "screenshot": true
+  },
+  {
+   "id": "arrival-back",
+   "x": -3564,
+   "y": 31872,
+   "z": -3360,
+   "angle": 1020,
+   "horiz": 100,
+   "sector": 453,
+   "screenshot": true
+  },
+  {
+   "id": "arrival-entrance",
+   "x": -3564,
+   "y": 31872,
+   "z": -3360,
+   "angle": 508,
+   "horiz": 100,
+   "sector": 453,
+   "screenshot": true
+  },
+  {
+   "id": "entry-front",
+   "x": 512,
+   "y": 31200,
+   "z": -3360,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 453,
+   "screenshot": true
+  },
+  {
+   "id": "quarry-floor",
+   "x": 6000,
+   "y": 31700,
+   "z": -3360,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 453,
+   "screenshot": true
+  }
+ ]
+}

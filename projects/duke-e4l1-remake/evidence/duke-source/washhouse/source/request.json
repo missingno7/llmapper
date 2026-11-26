@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/washhouse/source/viewing-copy.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/work/duke-view-resources",
+ "output": "projects/duke-e4l1-remake/studies/washhouse/source",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "main",
+   "x": 11443,
+   "y": 26680,
+   "z": -8704,
+   "angle": 170,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "basins",
+   "x": 11500,
+   "y": 26500,
+   "z": -8704,
+   "angle": 1922,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "stalls",
+   "x": 12300,
+   "y": 27200,
+   "z": -8704,
+   "angle": 1181,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  }
+ ]
+}

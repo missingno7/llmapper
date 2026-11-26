@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/washroom/E2M4_487/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/washroom/E2M4_487",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 21120,
+   "y": 7296,
+   "z": -39840,
+   "angle": 1316,
+   "horiz": 100,
+   "sector": 487,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 21120,
+   "y": 5504,
+   "z": -39840,
+   "angle": 896,
+   "horiz": 100,
+   "sector": 487,
+   "screenshot": true
+  }
+ ]
+}

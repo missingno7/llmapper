@@ -1,0 +1,43 @@
+{
+  "map_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+  "focused_tests": {
+    "command": "C:/msys64/mingw64/bin/python.exe -m unittest tests.test_duke_motion_compat tests.test_duke_motion tests.test_e3l11 tests.test_duke_semantics tests.test_duke_transport tests.test_e4l1_edit tests.test_e4l1_status tests.test_e4l1_briefing tests.test_architecture tests.test_module_map",
+    "count": 106,
+    "exit_code": 0,
+    "seconds": 15.829
+  },
+  "corpus": {
+    "$schema": "llmapper.motion-verification",
+    "schema_version": 1,
+    "tolerance": 8.0,
+    "steps": 16,
+    "maps": 46,
+    "conversion_failures": [],
+    "moving_sectors": 379,
+    "modelled": 379,
+    "ok": 379,
+    "problems": 0,
+    "worst_deviation": 2.0
+  },
+  "native_remake_motion": {
+    "moving_sectors": 12,
+    "ok": 12,
+    "problems": 0,
+    "worst_deviation": 1.58,
+    "intrusion_checked": true
+  },
+  "round_trip_exact": true,
+  "source_maps_unchanged": 46,
+  "source_code_sha256": {
+    "bloodmap/e3l11.py": "863c0ed06f3eb5a750e92e3df9be1a12046f43fbc34257330001474834ba5e98",
+    "bloodmap/duke_semantics.py": "0b95bdd9a9c3ed8a9ef675dbf4586122df8de34e07a5216c94c9ad56c32f368d",
+    "bloodmap/duke_motion.py": "02b49e04b340a8fa1adf3e2593cf89f769d79dc7a3c16f337e25fca7a466e49e",
+    "bloodmap/motion_sim.py": "f5156a4a758dd33a3c656e301b6bf77542e943dfd31303539ee10dc145c5d725",
+    "tools/verify_motion.py": "5b51285b4238d3130720f423fa6662536d0c9827f17739066226e595157f75a0",
+    "tests/test_duke_motion_compat.py": "49e3476c4f4076208ad1b18c349d8a803e91bac715efe778fc39ca67d0a7f615"
+  },
+  "runtime_events_executed": false,
+  "independent_review": "prepared / unanswered",
+  "full_suite": "Not rerun for this continuation; focused tests include architecture and module-map checks.",
+  "scope": "Only converter/docs/tests and the Duke remake were edited by this task; no Blood City write operation."
+}

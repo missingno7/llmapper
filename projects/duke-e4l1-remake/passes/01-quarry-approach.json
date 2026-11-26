@@ -1,0 +1,4546 @@
+{
+  "id": "01-quarry-approach",
+  "intent": "A stormy quarry approach to a covert Cabal pumping works; coherent geology, practical entrance lighting, native thunder and lightning.",
+  "source_reference": "E4L1 original exterior; owner-confirmed Mission Impossible facility during a night storm.",
+  "precedents": [
+    "E1M5:392 night cloud sky and triggered shade-wave lightning",
+    "E1M5 sprite 86 weather timer and sprite 88 thunder receiver",
+    "E1M4:114 rough industrial yard",
+    "E3M5:2 practical metal service architecture"
+  ],
+  "circuit": [
+    {
+      "name": "quarry:storm",
+      "says": "The level-started weather clock briefly illuminates the exposed quarry and sounds distant lightning strikes.",
+      "channel": 124,
+      "engine": null,
+      "when": [
+        "level start on placement storm-clock"
+      ],
+      "then": [
+        "region 104",
+        "region 105",
+        "region 133",
+        "region 134",
+        "region 135",
+        "region 136",
+        "region 205",
+        "region 206",
+        "region 415",
+        "region 416",
+        "region 417",
+        "region 418",
+        "region 419",
+        "region 420",
+        "region 421",
+        "region 422",
+        "region 451",
+        "region 452",
+        "region 453",
+        "placement storm-thunder"
+      ]
+    }
+  ],
+  "area_sectors": [
+    104,
+    105,
+    133,
+    134,
+    135,
+    136,
+    205,
+    206,
+    415,
+    416,
+    417,
+    418,
+    419,
+    420,
+    421,
+    422,
+    451,
+    452,
+    453,
+    110
+  ],
+  "edits": [
+    {
+      "kind": "sector",
+      "index": 104,
+      "identity": {
+        "wall_ptr": 510,
+        "wall_count": 7,
+        "floor_z": 1536,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          40,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 510,
+      "identity": {
+        "x": 15792,
+        "y": 37440,
+        "point2": 511,
+        "next_wall": 523,
+        "next_sector": 106
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 511,
+      "identity": {
+        "x": 14160,
+        "y": 37440,
+        "point2": 512,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          30,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 512,
+      "identity": {
+        "x": 13632,
+        "y": 37056,
+        "point2": 513,
+        "next_wall": 2827,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 513,
+      "identity": {
+        "x": 13632,
+        "y": 35520,
+        "point2": 514,
+        "next_wall": 2826,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 514,
+      "identity": {
+        "x": 14208,
+        "y": 32736,
+        "point2": 515,
+        "next_wall": 517,
+        "next_sector": 105
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          52,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 515,
+      "identity": {
+        "x": 16896,
+        "y": 32256,
+        "point2": 516,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 516,
+      "identity": {
+        "x": 16128,
+        "y": 37440,
+        "point2": 510,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "identity": {
+        "wall_ptr": 517,
+        "wall_count": 4,
+        "floor_z": -18432,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          40,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 517,
+      "identity": {
+        "x": 16896,
+        "y": 32256,
+        "point2": 518,
+        "next_wall": 514,
+        "next_sector": 104
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 518,
+      "identity": {
+        "x": 14208,
+        "y": 32736,
+        "point2": 519,
+        "next_wall": 2825,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 519,
+      "identity": {
+        "x": 12864,
+        "y": 29952,
+        "point2": 520,
+        "next_wall": 2398,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          48,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 520,
+      "identity": {
+        "x": 15360,
+        "y": 28800,
+        "point2": 517,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "identity": {
+        "wall_ptr": 645,
+        "wall_count": 6,
+        "floor_z": 4608,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          34,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 645,
+      "identity": {
+        "x": 3072,
+        "y": 28224,
+        "point2": 646,
+        "next_wall": 2844,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 646,
+      "identity": {
+        "x": 3840,
+        "y": 29184,
+        "point2": 647,
+        "next_wall": 2843,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 647,
+      "identity": {
+        "x": 3840,
+        "y": 30336,
+        "point2": 648,
+        "next_wall": 661,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 648,
+      "identity": {
+        "x": 3264,
+        "y": 30048,
+        "point2": 649,
+        "next_wall": 665,
+        "next_sector": 136
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 649,
+      "identity": {
+        "x": 2304,
+        "y": 28608,
+        "point2": 650,
+        "next_wall": 653,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 650,
+      "identity": {
+        "x": 2304,
+        "y": 28032,
+        "point2": 645,
+        "next_wall": 2845,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "identity": {
+        "wall_ptr": 651,
+        "wall_count": 6,
+        "floor_z": 6144,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          44,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 651,
+      "identity": {
+        "x": 864,
+        "y": 28992,
+        "point2": 652,
+        "next_wall": 2838,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 652,
+      "identity": {
+        "x": 1248,
+        "y": 28416,
+        "point2": 653,
+        "next_wall": 2837,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 653,
+      "identity": {
+        "x": 2304,
+        "y": 28032,
+        "point2": 654,
+        "next_wall": 649,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 654,
+      "identity": {
+        "x": 2304,
+        "y": 28608,
+        "point2": 655,
+        "next_wall": 664,
+        "next_sector": 136
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 655,
+      "identity": {
+        "x": 1344,
+        "y": 30048,
+        "point2": 656,
+        "next_wall": 659,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          46,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 656,
+      "identity": {
+        "x": 768,
+        "y": 30336,
+        "point2": 651,
+        "next_wall": 2839,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "identity": {
+        "wall_ptr": 657,
+        "wall_count": 6,
+        "floor_z": 6144,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          44,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 657,
+      "identity": {
+        "x": 2688,
+        "y": 31104,
+        "point2": 658,
+        "next_wall": 2841,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 658,
+      "identity": {
+        "x": 2016,
+        "y": 31104,
+        "point2": 659,
+        "next_wall": 2840,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 659,
+      "identity": {
+        "x": 768,
+        "y": 30336,
+        "point2": 660,
+        "next_wall": 655,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 660,
+      "identity": {
+        "x": 1344,
+        "y": 30048,
+        "point2": 661,
+        "next_wall": 663,
+        "next_sector": 136
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 661,
+      "identity": {
+        "x": 3264,
+        "y": 30048,
+        "point2": 662,
+        "next_wall": 647,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          52,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 662,
+      "identity": {
+        "x": 3840,
+        "y": 30336,
+        "point2": 657,
+        "next_wall": 2842,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          288,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "identity": {
+        "wall_ptr": 663,
+        "wall_count": 3,
+        "floor_z": -13824,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          40,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 663,
+      "identity": {
+        "x": 3264,
+        "y": 30048,
+        "point2": 664,
+        "next_wall": 660,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 664,
+      "identity": {
+        "x": 1344,
+        "y": 30048,
+        "point2": 665,
+        "next_wall": 654,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          46,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 665,
+      "identity": {
+        "x": 2304,
+        "y": 28608,
+        "point2": 663,
+        "next_wall": 648,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "identity": {
+        "wall_ptr": 993,
+        "wall_count": 4,
+        "floor_z": 10752,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          275
+        ],
+        "floor_shade": [
+          30,
+          25
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 993,
+      "identity": {
+        "x": -6336,
+        "y": 30528,
+        "point2": 994,
+        "next_wall": 1001,
+        "next_sector": 206
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 994,
+      "identity": {
+        "x": -8832,
+        "y": 30528,
+        "point2": 995,
+        "next_wall": 1381,
+        "next_sector": 272
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          28,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 995,
+      "identity": {
+        "x": -8832,
+        "y": 28032,
+        "point2": 996,
+        "next_wall": 2404,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 996,
+      "identity": {
+        "x": -6336,
+        "y": 28032,
+        "point2": 993,
+        "next_wall": 2819,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "identity": {
+        "wall_ptr": 997,
+        "wall_count": 7,
+        "floor_z": -29184,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          32,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 997,
+      "identity": {
+        "x": -4416,
+        "y": 33024,
+        "point2": 998,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          42,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 998,
+      "identity": {
+        "x": -5376,
+        "y": 34944,
+        "point2": 999,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 999,
+      "identity": {
+        "x": -6336,
+        "y": 34944,
+        "point2": 1000,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 1000,
+      "identity": {
+        "x": -8256,
+        "y": 33024,
+        "point2": 1001,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          28,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 1001,
+      "identity": {
+        "x": -8832,
+        "y": 30528,
+        "point2": 1002,
+        "next_wall": 993,
+        "next_sector": 205
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 1002,
+      "identity": {
+        "x": -6336,
+        "y": 30528,
+        "point2": 1003,
+        "next_wall": 2818,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 1003,
+      "identity": {
+        "x": -5760,
+        "y": 32448,
+        "point2": 997,
+        "next_wall": 2817,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "identity": {
+        "wall_ptr": 2365,
+        "wall_count": 4,
+        "floor_z": -73728,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          48,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2365,
+      "identity": {
+        "x": -1824,
+        "y": 23040,
+        "point2": 2366,
+        "next_wall": 2369,
+        "next_sector": 416
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2366,
+      "identity": {
+        "x": -1824,
+        "y": 23328,
+        "point2": 2367,
+        "next_wall": 2409,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2367,
+      "identity": {
+        "x": -6336,
+        "y": 24192,
+        "point2": 2368,
+        "next_wall": 2379,
+        "next_sector": 418
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2368,
+      "identity": {
+        "x": -6528,
+        "y": 24000,
+        "point2": 2365,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          34,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "identity": {
+        "wall_ptr": 2369,
+        "wall_count": 4,
+        "floor_z": -73728,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          48,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2369,
+      "identity": {
+        "x": -1824,
+        "y": 23328,
+        "point2": 2370,
+        "next_wall": 2365,
+        "next_sector": 415
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2370,
+      "identity": {
+        "x": -1824,
+        "y": 23040,
+        "point2": 2371,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2371,
+      "identity": {
+        "x": 4896,
+        "y": 23328,
+        "point2": 2372,
+        "next_wall": 2381,
+        "next_sector": 419
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2372,
+      "identity": {
+        "x": 4800,
+        "y": 23616,
+        "point2": 2369,
+        "next_wall": 2410,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "identity": {
+        "wall_ptr": 2373,
+        "wall_count": 4,
+        "floor_z": -53760,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          46,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2373,
+      "identity": {
+        "x": -8256,
+        "y": 27744,
+        "point2": 2374,
+        "next_wall": 2406,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2374,
+      "identity": {
+        "x": -8736,
+        "y": 27744,
+        "point2": 2375,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2375,
+      "identity": {
+        "x": -7968,
+        "y": 26400,
+        "point2": 2376,
+        "next_wall": 2377,
+        "next_sector": 418
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2376,
+      "identity": {
+        "x": -7776,
+        "y": 26496,
+        "point2": 2373,
+        "next_wall": 2407,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "identity": {
+        "wall_ptr": 2377,
+        "wall_count": 4,
+        "floor_z": -56832,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          48,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2377,
+      "identity": {
+        "x": -7776,
+        "y": 26496,
+        "point2": 2378,
+        "next_wall": 2375,
+        "next_sector": 417
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2378,
+      "identity": {
+        "x": -7968,
+        "y": 26400,
+        "point2": 2379,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          32,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2379,
+      "identity": {
+        "x": -6528,
+        "y": 24000,
+        "point2": 2380,
+        "next_wall": 2367,
+        "next_sector": 415
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          58,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2380,
+      "identity": {
+        "x": -6336,
+        "y": 24192,
+        "point2": 2377,
+        "next_wall": 2408,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "identity": {
+        "wall_ptr": 2381,
+        "wall_count": 4,
+        "floor_z": -73728,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          50,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2381,
+      "identity": {
+        "x": 4800,
+        "y": 23616,
+        "point2": 2382,
+        "next_wall": 2371,
+        "next_sector": 416
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2382,
+      "identity": {
+        "x": 4896,
+        "y": 23328,
+        "point2": 2383,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2383,
+      "identity": {
+        "x": 7680,
+        "y": 24288,
+        "point2": 2384,
+        "next_wall": 2385,
+        "next_sector": 420
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2384,
+      "identity": {
+        "x": 7584,
+        "y": 24576,
+        "point2": 2381,
+        "next_wall": 2411,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "identity": {
+        "wall_ptr": 2385,
+        "wall_count": 6,
+        "floor_z": -76800,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          50,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2385,
+      "identity": {
+        "x": 7584,
+        "y": 24576,
+        "point2": 2386,
+        "next_wall": 2383,
+        "next_sector": 419
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2386,
+      "identity": {
+        "x": 7680,
+        "y": 24288,
+        "point2": 2387,
+        "next_wall": 2358,
+        "next_sector": 413
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2387,
+      "identity": {
+        "x": 8448,
+        "y": 24576,
+        "point2": 2388,
+        "next_wall": 2364,
+        "next_sector": 414
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2388,
+      "identity": {
+        "x": 9600,
+        "y": 24960,
+        "point2": 2389,
+        "next_wall": 2356,
+        "next_sector": 412
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2389,
+      "identity": {
+        "x": 10272,
+        "y": 25248,
+        "point2": 2390,
+        "next_wall": 2393,
+        "next_sector": 421
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          52,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2390,
+      "identity": {
+        "x": 10176,
+        "y": 25536,
+        "point2": 2385,
+        "next_wall": 2412,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "identity": {
+        "wall_ptr": 2391,
+        "wall_count": 4,
+        "floor_z": -69120,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          50,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2391,
+      "identity": {
+        "x": 15264,
+        "y": 28704,
+        "point2": 2392,
+        "next_wall": 2396,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2392,
+      "identity": {
+        "x": 14976,
+        "y": 28800,
+        "point2": 2393,
+        "next_wall": 2395,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2393,
+      "identity": {
+        "x": 10176,
+        "y": 25536,
+        "point2": 2394,
+        "next_wall": 2389,
+        "next_sector": 420
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          52,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2394,
+      "identity": {
+        "x": 10272,
+        "y": 25248,
+        "point2": 2391,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "identity": {
+        "wall_ptr": 2395,
+        "wall_count": 18,
+        "floor_z": -29184,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          274
+        ],
+        "floor_shade": [
+          38,
+          29
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2395,
+      "identity": {
+        "x": 10176,
+        "y": 25536,
+        "point2": 2396,
+        "next_wall": 2392,
+        "next_sector": 421
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2396,
+      "identity": {
+        "x": 14976,
+        "y": 28800,
+        "point2": 2397,
+        "next_wall": 2391,
+        "next_sector": 421
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2397,
+      "identity": {
+        "x": 15264,
+        "y": 28704,
+        "point2": 2398,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2398,
+      "identity": {
+        "x": 15360,
+        "y": 28800,
+        "point2": 2399,
+        "next_wall": 519,
+        "next_sector": 105
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2399,
+      "identity": {
+        "x": 12864,
+        "y": 29952,
+        "point2": 2400,
+        "next_wall": 2824,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2400,
+      "identity": {
+        "x": 9216,
+        "y": 27264,
+        "point2": 2401,
+        "next_wall": 2823,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2401,
+      "identity": {
+        "x": 4512,
+        "y": 25728,
+        "point2": 2402,
+        "next_wall": 2822,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2402,
+      "identity": {
+        "x": -1536,
+        "y": 25344,
+        "point2": 2403,
+        "next_wall": 2821,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2403,
+      "identity": {
+        "x": -5184,
+        "y": 26112,
+        "point2": 2404,
+        "next_wall": 2820,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2404,
+      "identity": {
+        "x": -6336,
+        "y": 28032,
+        "point2": 2405,
+        "next_wall": 995,
+        "next_sector": 205
+      },
+      "fields": {
+        "picnum": [
+          358,
+          273
+        ],
+        "shade": [
+          20,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2405,
+      "identity": {
+        "x": -8832,
+        "y": 28032,
+        "point2": 2406,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          28,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2406,
+      "identity": {
+        "x": -8736,
+        "y": 27744,
+        "point2": 2407,
+        "next_wall": 2373,
+        "next_sector": 417
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2407,
+      "identity": {
+        "x": -8256,
+        "y": 27744,
+        "point2": 2408,
+        "next_wall": 2376,
+        "next_sector": 417
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          32,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2408,
+      "identity": {
+        "x": -7776,
+        "y": 26496,
+        "point2": 2409,
+        "next_wall": 2380,
+        "next_sector": 418
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          34,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2409,
+      "identity": {
+        "x": -6336,
+        "y": 24192,
+        "point2": 2410,
+        "next_wall": 2366,
+        "next_sector": 415
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          34,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2410,
+      "identity": {
+        "x": -1824,
+        "y": 23328,
+        "point2": 2411,
+        "next_wall": 2372,
+        "next_sector": 416
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2411,
+      "identity": {
+        "x": 4800,
+        "y": 23616,
+        "point2": 2412,
+        "next_wall": 2384,
+        "next_sector": 419
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2412,
+      "identity": {
+        "x": 7584,
+        "y": 24576,
+        "point2": 2395,
+        "next_wall": 2390,
+        "next_sector": 420
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "identity": {
+        "wall_ptr": 2805,
+        "wall_count": 4,
+        "floor_z": -6144,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          272
+        ],
+        "floor_shade": [
+          56,
+          29
+        ],
+        "floor_y_panning": [
+          40,
+          0
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2805,
+      "identity": {
+        "x": 4032,
+        "y": 34944,
+        "point2": 2806,
+        "next_wall": 2834,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          62,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2806,
+      "identity": {
+        "x": 4032,
+        "y": 35040,
+        "point2": 2807,
+        "next_wall": 2810,
+        "next_sector": 452
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          62,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2807,
+      "identity": {
+        "x": 3264,
+        "y": 35040,
+        "point2": 2808,
+        "next_wall": 2836,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          62,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2808,
+      "identity": {
+        "x": 3264,
+        "y": 34944,
+        "point2": 2805,
+        "next_wall": 2835,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          62,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "identity": {
+        "wall_ptr": 2809,
+        "wall_count": 4,
+        "floor_z": 10752,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          275
+        ],
+        "floor_shade": [
+          62,
+          25
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2809,
+      "identity": {
+        "x": 3072,
+        "y": 35328,
+        "point2": 2810,
+        "next_wall": 2813,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2810,
+      "identity": {
+        "x": 3264,
+        "y": 35040,
+        "point2": 2811,
+        "next_wall": 2806,
+        "next_sector": 451
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          62,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2811,
+      "identity": {
+        "x": 4032,
+        "y": 35040,
+        "point2": 2812,
+        "next_wall": 2833,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          52,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2812,
+      "identity": {
+        "x": 3840,
+        "y": 35328,
+        "point2": 2809,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "identity": {
+        "wall_ptr": 2813,
+        "wall_count": 33,
+        "floor_z": 10752,
+        "ceiling_z": -118272
+      },
+      "fields": {
+        "floor_picnum": [
+          292,
+          275
+        ],
+        "floor_shade": [
+          24,
+          25
+        ],
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      },
+      "extra": {
+        "rx_id": [
+          0,
+          124
+        ],
+        "amplitude": [
+          0,
+          -17
+        ],
+        "shade_frequency": [
+          0,
+          5
+        ],
+        "shade_wave": [
+          0,
+          8
+        ],
+        "shade_floor": [
+          0,
+          1
+        ],
+        "shade_ceiling": [
+          0,
+          1
+        ],
+        "shade_walls": [
+          0,
+          1
+        ],
+        "wait_time_a": [
+          0,
+          20
+        ],
+        "retrigger_a": [
+          0,
+          1
+        ],
+        "busy_time_b": [
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2813,
+      "identity": {
+        "x": 3264,
+        "y": 35040,
+        "point2": 2814,
+        "next_wall": 2809,
+        "next_sector": 452
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          62,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2814,
+      "identity": {
+        "x": 3072,
+        "y": 35328,
+        "point2": 2815,
+        "next_wall": 541,
+        "next_sector": 110
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2815,
+      "identity": {
+        "x": -1536,
+        "y": 35328,
+        "point2": 2816,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2816,
+      "identity": {
+        "x": -2496,
+        "y": 33024,
+        "point2": 2817,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2817,
+      "identity": {
+        "x": -4416,
+        "y": 33024,
+        "point2": 2818,
+        "next_wall": 1003,
+        "next_sector": 206
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2818,
+      "identity": {
+        "x": -5760,
+        "y": 32448,
+        "point2": 2819,
+        "next_wall": 1002,
+        "next_sector": 206
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          28,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2819,
+      "identity": {
+        "x": -6336,
+        "y": 30528,
+        "point2": 2820,
+        "next_wall": 996,
+        "next_sector": 205
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          26,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2820,
+      "identity": {
+        "x": -6336,
+        "y": 28032,
+        "point2": 2821,
+        "next_wall": 2403,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          34,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2821,
+      "identity": {
+        "x": -5184,
+        "y": 26112,
+        "point2": 2822,
+        "next_wall": 2402,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          36,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2822,
+      "identity": {
+        "x": -1536,
+        "y": 25344,
+        "point2": 2823,
+        "next_wall": 2401,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2823,
+      "identity": {
+        "x": 4512,
+        "y": 25728,
+        "point2": 2824,
+        "next_wall": 2400,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2824,
+      "identity": {
+        "x": 9216,
+        "y": 27264,
+        "point2": 2825,
+        "next_wall": 2399,
+        "next_sector": 422
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2825,
+      "identity": {
+        "x": 12864,
+        "y": 29952,
+        "point2": 2826,
+        "next_wall": 518,
+        "next_sector": 105
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2826,
+      "identity": {
+        "x": 14208,
+        "y": 32736,
+        "point2": 2827,
+        "next_wall": 513,
+        "next_sector": 104
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          46,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2827,
+      "identity": {
+        "x": 13632,
+        "y": 35520,
+        "point2": 2828,
+        "next_wall": 512,
+        "next_sector": 104
+      },
+      "fields": {
+        "picnum": [
+          354,
+          273
+        ],
+        "shade": [
+          48,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2828,
+      "identity": {
+        "x": 13632,
+        "y": 37056,
+        "point2": 2829,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2829,
+      "identity": {
+        "x": 10944,
+        "y": 37056,
+        "point2": 2830,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2830,
+      "identity": {
+        "x": 6912,
+        "y": 33024,
+        "point2": 2831,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2831,
+      "identity": {
+        "x": 4992,
+        "y": 33024,
+        "point2": 2832,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          40,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2832,
+      "identity": {
+        "x": 4224,
+        "y": 35328,
+        "point2": 2833,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2833,
+      "identity": {
+        "x": 3840,
+        "y": 35328,
+        "point2": 2834,
+        "next_wall": 2811,
+        "next_sector": 452
+      },
+      "fields": {
+        "picnum": [
+          387,
+          80
+        ],
+        "shade": [
+          32,
+          20
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2834,
+      "identity": {
+        "x": 4032,
+        "y": 35040,
+        "point2": 2835,
+        "next_wall": 2805,
+        "next_sector": 451
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          52,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2835,
+      "identity": {
+        "x": 4032,
+        "y": 34944,
+        "point2": 2836,
+        "next_wall": 2808,
+        "next_sector": 451
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          36,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2836,
+      "identity": {
+        "x": 3264,
+        "y": 34944,
+        "point2": 2813,
+        "next_wall": 2807,
+        "next_sector": 451
+      },
+      "fields": {
+        "picnum": [
+          180,
+          272
+        ],
+        "shade": [
+          62,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2837,
+      "identity": {
+        "x": 2304,
+        "y": 28032,
+        "point2": 2838,
+        "next_wall": 652,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2838,
+      "identity": {
+        "x": 1248,
+        "y": 28416,
+        "point2": 2839,
+        "next_wall": 651,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          48,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2839,
+      "identity": {
+        "x": 864,
+        "y": 28992,
+        "point2": 2840,
+        "next_wall": 656,
+        "next_sector": 134
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          48,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2840,
+      "identity": {
+        "x": 768,
+        "y": 30336,
+        "point2": 2841,
+        "next_wall": 658,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          48,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2841,
+      "identity": {
+        "x": 2016,
+        "y": 31104,
+        "point2": 2842,
+        "next_wall": 657,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          46,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2842,
+      "identity": {
+        "x": 2688,
+        "y": 31104,
+        "point2": 2843,
+        "next_wall": 662,
+        "next_sector": 135
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          42,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2843,
+      "identity": {
+        "x": 3840,
+        "y": 30336,
+        "point2": 2844,
+        "next_wall": 646,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          38,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2844,
+      "identity": {
+        "x": 3840,
+        "y": 29184,
+        "point2": 2845,
+        "next_wall": 645,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          34,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 2845,
+      "identity": {
+        "x": 3072,
+        "y": 28224,
+        "point2": 2837,
+        "next_wall": 650,
+        "next_sector": 133
+      },
+      "fields": {
+        "picnum": [
+          2448,
+          273
+        ],
+        "shade": [
+          40,
+          30
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "sector",
+      "index": 110,
+      "identity": {
+        "wall_ptr": 539,
+        "wall_count": 4,
+        "floor_z": 10752,
+        "ceiling_z": -21504
+      },
+      "fields": {
+        "floor_picnum": [
+          492,
+          275
+        ],
+        "ceiling_picnum": [
+          492,
+          255
+        ],
+        "floor_shade": [
+          36,
+          18
+        ],
+        "ceiling_shade": [
+          50,
+          24
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 539,
+      "identity": {
+        "x": 3072,
+        "y": 36048,
+        "point2": 540,
+        "next_wall": 535,
+        "next_sector": 109
+      },
+      "fields": {
+        "picnum": [
+          378,
+          255
+        ],
+        "shade": [
+          50,
+          18
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 540,
+      "identity": {
+        "x": -1536,
+        "y": 36048,
+        "point2": 541,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          255
+        ],
+        "shade": [
+          30,
+          18
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 541,
+      "identity": {
+        "x": -1536,
+        "y": 35328,
+        "point2": 542,
+        "next_wall": 2814,
+        "next_sector": 453
+      },
+      "fields": {
+        "picnum": [
+          429,
+          255
+        ],
+        "shade": [
+          50,
+          18
+        ]
+      },
+      "extra": {}
+    },
+    {
+      "kind": "wall",
+      "index": 542,
+      "identity": {
+        "x": 3072,
+        "y": 35328,
+        "point2": 539,
+        "next_wall": -1,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          387,
+          255
+        ],
+        "shade": [
+          42,
+          18
+        ]
+      },
+      "extra": {}
+    }
+  ],
+  "sprites": [
+    {
+      "name": "storm-clock",
+      "fields": {
+        "sector": 453,
+        "x": -2912,
+        "y": 29248,
+        "z": -40000,
+        "type": 700,
+        "picnum": 0,
+        "status": 0,
+        "cstat": 32896,
+        "x_repeat": 4,
+        "y_repeat": 4,
+        "shade": 0,
+        "angle": 0
+      },
+      "extra": {
+        "tx_id": 124,
+        "command": 1,
+        "trigger_on": 1,
+        "rx_id": 7,
+        "state": 0,
+        "busy_time": 80,
+        "data_1": 20
+      }
+    },
+    {
+      "name": "storm-thunder",
+      "fields": {
+        "sector": 453,
+        "x": -2912,
+        "y": 29248,
+        "z": -48000,
+        "type": 708,
+        "picnum": 2519,
+        "status": 0,
+        "cstat": 32896,
+        "x_repeat": 4,
+        "y_repeat": 4,
+        "shade": -128,
+        "angle": 0
+      },
+      "extra": {
+        "rx_id": 124,
+        "data_2": 255,
+        "wait_time": 15
+      }
+    },
+    {
+      "name": "storm-wind",
+      "fields": {
+        "sector": 453,
+        "x": 768,
+        "y": 32000,
+        "z": -24000,
+        "type": 710,
+        "picnum": 0,
+        "status": 12,
+        "cstat": 32896,
+        "x_repeat": 4,
+        "y_repeat": 4,
+        "shade": 0,
+        "angle": 0
+      },
+      "extra": {
+        "state": 1,
+        "busy": 65536,
+        "data_1": 800,
+        "data_2": 16000,
+        "data_3": 16,
+        "data_4": 36
+      }
+    },
+    {
+      "name": "entry-lamp-west",
+      "fields": {
+        "sector": 453,
+        "x": -1986,
+        "y": 34164,
+        "z": -10000,
+        "type": 0,
+        "picnum": 2183,
+        "status": 0,
+        "cstat": 208,
+        "x_repeat": 32,
+        "y_repeat": 32,
+        "shade": -32,
+        "angle": 1919
+      },
+      "extra": {}
+    },
+    {
+      "name": "entry-lamp-east",
+      "fields": {
+        "sector": 453,
+        "x": 4032,
+        "y": 35296,
+        "z": -10000,
+        "type": 0,
+        "picnum": 2183,
+        "status": 0,
+        "cstat": 208,
+        "x_repeat": 32,
+        "y_repeat": 32,
+        "shade": -32,
+        "angle": 1536
+      },
+      "extra": {}
+    },
+    {
+      "name": "fallen-rock-west",
+      "fields": {
+        "sector": 453,
+        "x": -3100,
+        "y": 28000,
+        "z": 10752,
+        "type": 0,
+        "picnum": 806,
+        "status": 0,
+        "cstat": 128,
+        "x_repeat": 40,
+        "y_repeat": 40,
+        "shade": 0,
+        "angle": 0
+      },
+      "extra": {}
+    },
+    {
+      "name": "fallen-rock-east",
+      "fields": {
+        "sector": 453,
+        "x": 4300,
+        "y": 30200,
+        "z": 10752,
+        "type": 0,
+        "picnum": 806,
+        "status": 0,
+        "cstat": 128,
+        "x_repeat": 40,
+        "y_repeat": 40,
+        "shade": 0,
+        "angle": 0
+      },
+      "extra": {}
+    }
+  ]
+}

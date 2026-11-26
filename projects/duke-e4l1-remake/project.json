@@ -1,0 +1,15 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "E4L1 Blood remake",
+  "kind": "level",
+  "status": "live",
+  "game": "blood",
+  "about": "Duke3D's E4L1 converted to Blood and remade by hand as a disused quarry and pumping works; the native MAP is edited, not built. Read README.md and reports/STATUS.md.",
+  "map": "E4L1-current.MAP",
+  "level": ".",
+  "poses": "poses.json",
+  "critique": "reports/critique",
+  "tests": "tests",
+  "status_script": "status.py"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "07-recorder-panel-scale",
+  "purpose": "Show the full radio cabinet dial and grille on the retained 6144-high recorder face.",
+  "edits": [
+    {
+      "kind": "wall",
+      "index": 2318,
+      "identity": {
+        "x": -2760,
+        "y": 45284,
+        "point2": 2315
+      },
+      "fields": {
+        "y_repeat": [
+          16,
+          21
+        ]
+      }
+    }
+  ],
+  "sprites": []
+}

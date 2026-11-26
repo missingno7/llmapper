@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/washhouse/E2M4-fixtures/played/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "projects/duke-e4l1-remake/studies/washhouse/E2M4-fixtures",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "toilet",
+   "x": 20800,
+   "y": 6500,
+   "z": -38688,
+   "angle": 708,
+   "horiz": 60,
+   "sector": 487,
+   "screenshot": true
+  },
+  {
+   "id": "washroom",
+   "x": 21000,
+   "y": 7000,
+   "z": -38688,
+   "angle": 1200,
+   "horiz": 100,
+   "sector": 487,
+   "screenshot": true
+  }
+ ]
+}

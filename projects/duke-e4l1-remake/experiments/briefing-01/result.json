@@ -1,0 +1,243 @@
+{
+  "$schema": "llmapper.design-experiment-result",
+  "compare": {
+    "before->after": {
+      "approach": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "device-front": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "hall-context": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "use-position": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "hypothesis_sha256": "3b944a59404530ebf36337c278953d7c9a469a3749a6a634f8fb0c6db24e44c4",
+  "runs": {
+    "after": {
+      "map": "projects\\duke-e4l1-remake\\experiments\\briefing-01\\after\\played\\as-empty.MAP",
+      "map_sha256": "c6df8424ebc1b7a38adb5364b0984c662eff29f51ed073fbe71420ea37eb0a6b",
+      "sectors": 546,
+      "skyline": {
+        "by_bodies": {
+          "0.0": 3,
+          "2.6": 3,
+          "2.9": 1,
+          "3.6": 1,
+          "3.8": 1,
+          "5.3": 6,
+          "5.8": 1,
+          "5.9": 1,
+          "7.1": 3,
+          "7.2": 2,
+          "7.6": 8
+        },
+        "distinct_heights": 11,
+        "lowered_skies": 0,
+        "tallest": 129024,
+        "tallest_sectors": [
+          452,
+          453
+        ],
+        "walls": 30
+      },
+      "sprites": 348,
+      "views": {
+        "approach": {
+          "camera": {
+            "angle": 833,
+            "horiz": 100,
+            "x": 0,
+            "y": 43800,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "5a1d88cfb95d047497dd185ff9e6aee831a7d52ac5e68aaa053e543c4b6dbfaf",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "device-front": {
+          "camera": {
+            "angle": 719,
+            "horiz": 100,
+            "x": -2200,
+            "y": 44100,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "53a5b84cadda6694922be9071a78361fcf99cf72ea9c638f12dbc74332212200",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-context": {
+          "camera": {
+            "angle": 1152,
+            "horiz": 100,
+            "x": 5000,
+            "y": 43200,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "700a163a1eee392a21df88567eb4ff67f995f76788e9760982e52f90039119cd",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "use-position": {
+          "camera": {
+            "angle": 576,
+            "horiz": 100,
+            "x": -3000,
+            "y": 44710,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "79a82253bf7a8785779f740d4df601854f3e500d9d035b6ef7be432ee5f9773e",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 3488
+    },
+    "before": {
+      "map": "projects\\duke-e4l1-remake\\experiments\\briefing-01\\before\\played\\as-empty.MAP",
+      "map_sha256": "c4b6faf2ac93d473b34090f5ddb625139d225f920ad9be855b344e73ed5ee276",
+      "sectors": 546,
+      "skyline": {
+        "by_bodies": {
+          "0.0": 3,
+          "2.6": 3,
+          "2.9": 1,
+          "3.6": 1,
+          "3.8": 1,
+          "5.3": 6,
+          "5.8": 1,
+          "5.9": 1,
+          "7.1": 3,
+          "7.2": 2,
+          "7.6": 8
+        },
+        "distinct_heights": 11,
+        "lowered_skies": 0,
+        "tallest": 129024,
+        "tallest_sectors": [
+          452,
+          453
+        ],
+        "walls": 30
+      },
+      "sprites": 345,
+      "views": {
+        "approach": {
+          "camera": {
+            "angle": 833,
+            "horiz": 100,
+            "x": 0,
+            "y": 43800,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "384610c2d5874829d849420d032ca6b8b419659e3e52ac9adba45c4bab8f49a4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "device-front": {
+          "camera": {
+            "angle": 719,
+            "horiz": 100,
+            "x": -2200,
+            "y": 44100,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "c61e0cfba8e650b1e4353c6905dc2503b3eb2a47415ae353e46e6931b7ca37ee",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-context": {
+          "camera": {
+            "angle": 1152,
+            "horiz": 100,
+            "x": 5000,
+            "y": 43200,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "09bd1a2c2b3908d89167ea171508359e9de2f49754fc098b896bc1358670cbb4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "use-position": {
+          "camera": {
+            "angle": 576,
+            "horiz": 100,
+            "x": -3000,
+            "y": 44710,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "c531b9829b0ad5aa352192ab9852544e53e6e1220226201363d7423cdfbafd67",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 3488
+    }
+  },
+  "schema_version": 1
+}

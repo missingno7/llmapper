@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/projects/duke-e4l1-remake/evidence/briefing-mechanism/collapsed/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/projects/duke-e4l1-remake/evidence/briefing-mechanism/collapsed",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "approach",
+   "x": 0,
+   "y": 43800,
+   "z": -2976,
+   "angle": 833,
+   "horiz": 100,
+   "sector": 486,
+   "screenshot": true
+  },
+  {
+   "id": "device-front",
+   "x": -2200,
+   "y": 44100,
+   "z": -2976,
+   "angle": 719,
+   "horiz": 100,
+   "sector": 486,
+   "screenshot": true
+  },
+  {
+   "id": "hall-context",
+   "x": 5000,
+   "y": 43200,
+   "z": -2976,
+   "angle": 1152,
+   "horiz": 100,
+   "sector": 486,
+   "screenshot": true
+  },
+  {
+   "id": "use-position",
+   "x": -3000,
+   "y": 44710,
+   "z": -2976,
+   "angle": 576,
+   "horiz": 100,
+   "sector": 481,
+   "screenshot": true
+  }
+ ]
+}

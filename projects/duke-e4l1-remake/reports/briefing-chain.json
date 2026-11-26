@@ -1,0 +1,104 @@
+{
+  "root": "wall 2318",
+  "root_kind": "wall",
+  "root_type_id": 0,
+  "root_type": "Normal",
+  "tile": 2546,
+  "sector": 405,
+  "cause": [
+    "push"
+  ],
+  "key": 0,
+  "once": true,
+  "silent": false,
+  "dead_relays": [],
+  "closet_relays": [],
+  "steps": [
+    {
+      "from": "wall 2318",
+      "channel": 125,
+      "command": 1,
+      "to": "sprite 345",
+      "to_kind": "sprite",
+      "to_type_id": 0,
+      "to_type": "Decoration",
+      "wait": 27
+    },
+    {
+      "from": "wall 2318",
+      "channel": 125,
+      "command": 1,
+      "to": "sprite 346",
+      "to_kind": "sprite",
+      "to_type_id": 0,
+      "to_type": "Decoration",
+      "wait": 30
+    },
+    {
+      "from": "sprite 345",
+      "channel": 112,
+      "command": 1,
+      "to": "sprite 327",
+      "to_kind": "sprite",
+      "to_type_id": 459,
+      "to_type": "kTrapExploder",
+      "wait": 8
+    },
+    {
+      "from": "sprite 345",
+      "channel": 112,
+      "command": 1,
+      "to": "sprite 328",
+      "to_kind": "sprite",
+      "to_type_id": 459,
+      "to_type": "kTrapExploder",
+      "wait": 6
+    },
+    {
+      "from": "sprite 345",
+      "channel": 112,
+      "command": 1,
+      "to": "sprite 329",
+      "to_kind": "sprite",
+      "to_type_id": 459,
+      "to_type": "kTrapExploder",
+      "wait": 3
+    },
+    {
+      "from": "sprite 346",
+      "channel": 111,
+      "command": 1,
+      "to": "sector 390",
+      "to_kind": "sector",
+      "to_type_id": 600,
+      "to_type": "kSectorZMotion",
+      "wait": 0
+    },
+    {
+      "from": "sprite 346",
+      "channel": 111,
+      "command": 1,
+      "to": "sector 403",
+      "to_kind": "sector",
+      "to_type_id": 600,
+      "to_type": "kSectorZMotion",
+      "wait": 0
+    },
+    {
+      "from": "sprite 346",
+      "channel": 111,
+      "command": 1,
+      "to": "sector 405",
+      "to_kind": "sector",
+      "to_type_id": 600,
+      "to_type": "kSectorZMotion",
+      "wait": 0
+    }
+  ],
+  "depth": 2,
+  "receivers": {
+    "Decoration": 2,
+    "kTrapExploder": 3,
+    "kSectorZMotion": 3
+  }
+}

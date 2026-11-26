@@ -1,0 +1,154 @@
+{
+  "id": "09-static-bathroom-room",
+  "patch_sha256": "5ced5c755f8b0c09842b6f1dd3366b6e317479ffb80958e46aef4ba5a4ca226a",
+  "before_sha256": "f4d2fac817911148452bfb599ba179fbb2beec783cf6bd38804cf6b5a0aa99d8",
+  "after_sha256": "692ad84dc626f9a1ed934f6df63d0d7fa114cf8f3d6845b272b5819e10e7aab3",
+  "changes": [
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": false,
+      "field": "type",
+      "before": 617,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "on_floor_z",
+      "before": 1536,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "off_ceiling_z",
+      "before": -46080,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "on_ceiling_z",
+      "before": -46080,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "state",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "trigger_push",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "off_floor_z",
+      "before": 1536,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "marker_0",
+      "before": 7,
+      "after": -1
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "trigger_wall_push",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "extension": false,
+      "field": "type",
+      "before": 5,
+      "after": 0
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "extension": false,
+      "field": "status",
+      "before": 10,
+      "after": 0
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "extension": false,
+      "field": "owner",
+      "before": 152,
+      "after": -1
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "extension": false,
+      "field": "picnum",
+      "before": 3997,
+      "after": 0
+    }
+  ],
+  "sprites": {},
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 348
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\f4d2fac817911148452bfb599ba179fbb2beec783cf6bd38804cf6b5a0aa99d8.MAP"
+}

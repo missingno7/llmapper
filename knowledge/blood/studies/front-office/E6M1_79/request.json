@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/front-office/E6M1_79/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/front-office/E6M1_79",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": 52228,
+   "y": 29918,
+   "z": 42080,
+   "angle": 925,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": 48627,
+   "y": 30195,
+   "z": 42080,
+   "angle": 60,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": 53336,
+   "y": 31303,
+   "z": 42080,
+   "angle": 1108,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": 51120,
+   "y": 31303,
+   "z": 42080,
+   "angle": 1282,
+   "horiz": 100,
+   "sector": 79,
+   "screenshot": true
+  }
+ ]
+}

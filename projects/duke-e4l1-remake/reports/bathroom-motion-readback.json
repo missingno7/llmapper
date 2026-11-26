@@ -1,0 +1,126 @@
+{
+  "pass": "08-converter-motion-repairs",
+  "runtime_events_executed": false,
+  "samples": 16,
+  "states": {
+    "before": {
+      "source_sha256": "e9bf3a8a2cd5b1aebd8a6a27da4823c6ed24cbcdb0f671fd21ac8cece12aa375",
+      "marker_angle": -512,
+      "bathroom_fold_steps": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "posed": {
+        "4": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\before\\travel-04\\sample.MAP",
+          "source_sha256": "683155a149969ef3421a645cb8acec0e65aefc6aeb04b316b7d1538f294c3d14",
+          "observed_sha256": "655a69f817da377889acacbed7ae717f694d96e2fc2dd797e7d9542320149228",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        },
+        "8": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\before\\travel-08\\sample.MAP",
+          "source_sha256": "7315e8a7e3a128c792d355d1b9bfba649eac3f61b87cb79102233126e544bc05",
+          "observed_sha256": "852dddff4a783c6b389a974d02d0309b9722aba4158033e29f5ab17654af0423",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        },
+        "16": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\before\\travel-16\\sample.MAP",
+          "source_sha256": "a98cfcdb7f2d8c8e3383015de22df6c340fec3d33afd0528c06167305a2aac5f",
+          "observed_sha256": "7219b424851a26ff89395d60d6984d8cbe31bc93b99b91c7f32ec89614f49536",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        }
+      }
+    },
+    "after": {
+      "source_sha256": "f4d2fac817911148452bfb599ba179fbb2beec783cf6bd38804cf6b5a0aa99d8",
+      "marker_angle": 512,
+      "bathroom_fold_steps": [],
+      "posed": {
+        "4": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\after\\travel-04\\sample.MAP",
+          "source_sha256": "35a36d71e5d4b3fa50d1f98baa68385d53a4a2fec47be063bd5b9f08017cfb1e",
+          "observed_sha256": "d4c78899d018e72ba322589fd18eec4117b662d34b1e48f4db1ee0820cd5a644",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        },
+        "8": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\after\\travel-08\\sample.MAP",
+          "source_sha256": "2955ffe05fbbc1d98c5c46499198fa056edfff2ef65bf131c1ce35a27de620dd",
+          "observed_sha256": "c0403ace515f90727518e2eb584118af1ed16b264fb44ff0bb16faab591d0e3f",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        },
+        "16": {
+          "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\after\\travel-16\\sample.MAP",
+          "source_sha256": "5b33f436d7012ac5c44f20313277b289c2b5deb8ef8a718d1be0ea05a065e6c2",
+          "observed_sha256": "e53714d876d73e9a062458252d2c6aa5b1c01a8812b1a06e644200aa0ff105a1",
+          "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+          "views": [
+            "room",
+            "door",
+            "across-room"
+          ],
+          "state": "saved/rest state",
+          "empty": true,
+          "signs_muted": false,
+          "pose_set": "bathroom",
+          "runtime_events_executed": false
+        }
+      }
+    }
+  }
+}

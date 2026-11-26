@@ -1,0 +1,16 @@
+{
+  "intent": "Preserve the owner-identified self-destructible Mission Impossible tape player as a Blood-era cabinet recording device on a dispatch desk.",
+  "source_sha256": "c1baceebfddcc385c7f4db3facf09a653b36bd33ba7ed0a7f1c8aee631c5dd4e",
+  "predictions": [
+    "Wooden cabinet sides and radio-panel art make the recording device and its desk legible without signage.",
+    "The original Use face becomes a one-shot sender, reaching both timed relays.",
+    "An Off-only generic relay arms the retained exploders after 2.7 seconds; their existing 0.3/0.6/0.8-second fuses remain. A second Off-only relay starts the retained collapse after 3.0 seconds.",
+    "Moving parts change only materials; original geometry, endpoints and trap fuses are preserved.",
+    "A flat ledger rests on stationary sector 404, outside the moving pieces."
+  ],
+  "evidence_limits": [
+    "Native read-back and posed endpoints do not execute timers, damage or sound.",
+    "Original speech DESTRUCT 327 / detruct2.voc is not a Blood sound and is not fabricated or renumbered. A suitable briefing recording remains open.",
+    "Owner identified the tape player; radio-cabinet art is a visual adaptation, not a claim about the original device."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "07-recorder-panel-scale",
+  "patch_sha256": "6626fb3e1c6329e8102e550800471a221213b9e80b55e828b14d339b8fe77660",
+  "before_sha256": "b2cbd088c964abaeaa7ba97ee83d0320fdd40c18aae52dd38800f485ad4a8265",
+  "after_sha256": "e9bf3a8a2cd5b1aebd8a6a27da4823c6ed24cbcdb0f671fd21ac8cece12aa375",
+  "changes": [
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 21
+    }
+  ],
+  "sprites": {},
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 348
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\b2cbd088c964abaeaa7ba97ee83d0320fdd40c18aae52dd38800f485ad4a8265.MAP"
+}

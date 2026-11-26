@@ -1,0 +1,7114 @@
+{
+ "$schema": "llmapper.motion-verification",
+ "schema_version": 1,
+ "tolerance": 8.0,
+ "steps": 16,
+ "maps": 1,
+ "conversion_failures": [],
+ "moving_sectors": 12,
+ "modelled": 12,
+ "ok": 12,
+ "problems": 0,
+ "worst_deviation": 1.58,
+ "results": [
+  {
+   "map": "E4L1",
+   "source_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+   "converted_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+   "moving_sectors": 12,
+   "modelled": 12,
+   "ok": 12,
+   "problems": 0,
+   "worst_deviation": 1.58,
+   "findings": [
+    {
+     "kind": "swinging-door",
+     "sector": 410,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.28,
+     "duke_travel": 2156.9,
+     "relative_error": 0.0003,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 0.71
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 409,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.28,
+       "duke_travel": 2156.9,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 410,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.28,
+       "duke_travel": 2156.9,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 318,
+     "blood_type": 617,
+     "max_deviation": 1.0,
+     "mean_deviation": 0.45,
+     "duke_travel": 2177.83,
+     "relative_error": 0.0005,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 1.0
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 318,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.45,
+       "duke_travel": 2177.83,
+       "relative_error": 0.0005,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 321,
+       "loop": 2,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.45,
+       "duke_travel": 2177.83,
+       "relative_error": 0.0005,
+       "worst": {
+        "step": 16,
+        "wall": 2,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 317,
+     "blood_type": 617,
+     "max_deviation": 1.58,
+     "mean_deviation": 0.68,
+     "duke_travel": 2175.72,
+     "relative_error": 0.0007,
+     "worst": {
+      "step": 16,
+      "wall": 3,
+      "distance": 1.58
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 317,
+       "loop": 0,
+       "max_deviation": 1.58,
+       "mean_deviation": 0.68,
+       "duke_travel": 2175.72,
+       "relative_error": 0.0007,
+       "worst": {
+        "step": 16,
+        "wall": 3,
+        "distance": 1.58
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 321,
+       "loop": 1,
+       "max_deviation": 1.58,
+       "mean_deviation": 0.68,
+       "duke_travel": 2175.72,
+       "relative_error": 0.0007,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 1.58
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 15,
+     "blood_type": 617,
+     "max_deviation": 1.58,
+     "mean_deviation": 0.53,
+     "duke_travel": 1364.21,
+     "relative_error": 0.0012,
+     "worst": {
+      "step": 16,
+      "wall": 3,
+      "distance": 1.58
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 14,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.13,
+       "duke_travel": 3.0,
+       "relative_error": 0.3333,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 15,
+       "loop": 0,
+       "max_deviation": 1.58,
+       "mean_deviation": 0.53,
+       "duke_travel": 1364.21,
+       "relative_error": 0.0012,
+       "worst": {
+        "step": 16,
+        "wall": 3,
+        "distance": 1.58
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 17,
+       "loop": 0,
+       "max_deviation": 1.58,
+       "mean_deviation": 0.19,
+       "duke_travel": 1364.21,
+       "relative_error": 0.0012,
+       "worst": {
+        "step": 16,
+        "wall": 10,
+        "distance": 1.58
+       },
+       "samples": 238,
+       "duke_fold_steps": [
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "blood_fold_steps": [
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "introduced_fold": false
+      },
+      {
+       "sector": 528,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.01,
+       "duke_travel": 3.0,
+       "relative_error": 0.3333,
+       "worst": {
+        "step": 16,
+        "wall": 4,
+        "distance": 1.0
+       },
+       "samples": 612,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [
+      14,
+      528
+     ],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 16,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.28,
+     "duke_travel": 1353.44,
+     "relative_error": 0.0005,
+     "worst": {
+      "step": 16,
+      "wall": 1,
+      "distance": 0.71
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 14,
+       "loop": 0,
+       "max_deviation": 0.0,
+       "mean_deviation": 0.0,
+       "duke_travel": 9.49,
+       "relative_error": 0.0,
+       "worst": {
+        "step": 15,
+        "wall": 0,
+        "distance": 0.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 16,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.28,
+       "duke_travel": 1353.44,
+       "relative_error": 0.0005,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 17,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.08,
+       "duke_travel": 1353.44,
+       "relative_error": 0.0005,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 0.71
+       },
+       "samples": 238,
+       "duke_fold_steps": [
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "blood_fold_steps": [
+        12,
+        13,
+        14,
+        15,
+        16
+       ],
+       "introduced_fold": false
+      },
+      {
+       "sector": 528,
+       "loop": 0,
+       "max_deviation": 0.0,
+       "mean_deviation": 0.0,
+       "duke_travel": 9.49,
+       "relative_error": 0.0,
+       "worst": {
+        "step": 15,
+        "wall": 9,
+        "distance": 0.0
+       },
+       "samples": 612,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [
+      14,
+      528
+     ],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 24,
+     "blood_type": 617,
+     "max_deviation": 1.0,
+     "mean_deviation": 0.49,
+     "duke_travel": 797.64,
+     "relative_error": 0.0013,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 1.0
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 22,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.05,
+       "duke_travel": 16.16,
+       "relative_error": 0.0619,
+       "worst": {
+        "step": 16,
+        "wall": 6,
+        "distance": 1.0
+       },
+       "samples": 170,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 23,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.13,
+       "duke_travel": 16.16,
+       "relative_error": 0.0619,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 24,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.49,
+       "duke_travel": 797.64,
+       "relative_error": 0.0013,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 528,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.07,
+       "duke_travel": 797.64,
+       "relative_error": 0.0013,
+       "worst": {
+        "step": 16,
+        "wall": 17,
+        "distance": 1.0
+       },
+       "samples": 612,
+       "duke_fold_steps": [
+        12
+       ],
+       "blood_fold_steps": [
+        12
+       ],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [
+      22,
+      23
+     ],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 50,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.37,
+     "duke_travel": 1881.68,
+     "relative_error": 0.0004,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 0.71
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 49,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.09,
+       "duke_travel": 20.89,
+       "relative_error": 0.0338,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 50,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.37,
+       "duke_travel": 1881.68,
+       "relative_error": 0.0004,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 389,
+       "loop": 3,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.09,
+       "duke_travel": 1881.68,
+       "relative_error": 0.0004,
+       "worst": {
+        "step": 16,
+        "wall": 5,
+        "distance": 0.71
+       },
+       "samples": 357,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [
+      49
+     ],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 61,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.09,
+     "duke_travel": 2158.77,
+     "relative_error": 0.0003,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 0.71
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 61,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.09,
+       "duke_travel": 2158.77,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 152,
+       "loop": 2,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.09,
+       "duke_travel": 2158.77,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 3,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 95,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.37,
+     "duke_travel": 2153.16,
+     "relative_error": 0.0003,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 0.71
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 95,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.37,
+       "duke_travel": 2153.16,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 342,
+       "loop": 1,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.37,
+       "duke_travel": 2153.16,
+       "relative_error": 0.0003,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 0.71
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [
+      94
+     ],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 327,
+     "blood_type": 617,
+     "max_deviation": 0.71,
+     "mean_deviation": 0.14,
+     "duke_travel": 1084.14,
+     "relative_error": 0.0007,
+     "worst": {
+      "step": 16,
+      "wall": 2,
+      "distance": 0.71
+     },
+     "samples": 136,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 327,
+       "loop": 0,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.14,
+       "duke_travel": 1084.14,
+       "relative_error": 0.0007,
+       "worst": {
+        "step": 16,
+        "wall": 2,
+        "distance": 0.71
+       },
+       "samples": 136,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 331,
+       "loop": 1,
+       "max_deviation": 0.71,
+       "mean_deviation": 0.14,
+       "duke_travel": 1084.14,
+       "relative_error": 0.0007,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 0.71
+       },
+       "samples": 136,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 328,
+     "blood_type": 617,
+     "max_deviation": 1.0,
+     "mean_deviation": 0.22,
+     "duke_travel": 1086.25,
+     "relative_error": 0.0009,
+     "worst": {
+      "step": 16,
+      "wall": 1,
+      "distance": 1.0
+     },
+     "samples": 136,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 328,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.22,
+       "duke_travel": 1086.25,
+       "relative_error": 0.0009,
+       "worst": {
+        "step": 16,
+        "wall": 1,
+        "distance": 1.0
+       },
+       "samples": 136,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 331,
+       "loop": 2,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.22,
+       "duke_travel": 1086.25,
+       "relative_error": 0.0009,
+       "worst": {
+        "step": 16,
+        "wall": 5,
+        "distance": 1.0
+       },
+       "samples": 136,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    },
+    {
+     "kind": "swinging-door",
+     "sector": 369,
+     "blood_type": 617,
+     "max_deviation": 1.0,
+     "mean_deviation": 0.53,
+     "duke_travel": 1623.98,
+     "relative_error": 0.0006,
+     "worst": {
+      "step": 16,
+      "wall": 0,
+      "distance": 1.0
+     },
+     "samples": 68,
+     "rest_displacement": 0.0,
+     "folds_at_steps": [],
+     "duke_folds_at_steps": [],
+     "fold_inherited": false,
+     "affected_loops": [
+      {
+       "sector": 368,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.53,
+       "duke_travel": 1623.98,
+       "relative_error": 0.0006,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      },
+      {
+       "sector": 369,
+       "loop": 0,
+       "max_deviation": 1.0,
+       "mean_deviation": 0.53,
+       "duke_travel": 1623.98,
+       "relative_error": 0.0006,
+       "worst": {
+        "step": 16,
+        "wall": 0,
+        "distance": 1.0
+       },
+       "samples": 68,
+       "duke_fold_steps": [],
+       "blood_fold_steps": [],
+       "introduced_fold": false
+      }
+     ],
+     "intrudes_into": [],
+     "overlaps_in_both": [],
+     "duke_only_overlaps": [],
+     "status": "ok",
+     "problems": []
+    }
+   ],
+   "timings": [
+    {
+     "sector": 8,
+     "kind": "ceiling-door",
+     "duke_ticks": 27,
+     "blood_busy_time": 9,
+     "blood_completion_ticks": 28,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 27,
+     "kind": "splitting-door",
+     "duke_ticks": 18,
+     "blood_busy_time": 6,
+     "blood_completion_ticks": 19,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 28,
+     "kind": "splitting-door",
+     "duke_ticks": 18,
+     "blood_busy_time": 6,
+     "blood_completion_ticks": 19,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 73,
+     "kind": "elevator",
+     "duke_ticks": 14,
+     "blood_busy_time": 5,
+     "blood_completion_ticks": 16,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 81,
+     "kind": "platform",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 88,
+     "kind": "platform",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 93,
+     "kind": "ceiling-door",
+     "duke_ticks": 16,
+     "blood_busy_time": 5,
+     "blood_completion_ticks": 16,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 97,
+     "kind": "splitting-door",
+     "duke_ticks": 9,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 107,
+     "kind": "ceiling-door",
+     "duke_ticks": 24,
+     "blood_busy_time": 8,
+     "blood_completion_ticks": 25,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 108,
+     "kind": "splitting-door",
+     "duke_ticks": 36,
+     "blood_busy_time": 12,
+     "blood_completion_ticks": 37,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 111,
+     "kind": "ceiling-door",
+     "duke_ticks": 14,
+     "blood_busy_time": 5,
+     "blood_completion_ticks": 16,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 115,
+     "kind": "ceiling-door",
+     "duke_ticks": 17,
+     "blood_busy_time": 6,
+     "blood_completion_ticks": 19,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 126,
+     "kind": "ceiling-door",
+     "duke_ticks": 9,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 166,
+     "kind": "ceiling-door",
+     "duke_ticks": 3,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 171,
+     "kind": "ceiling-door",
+     "duke_ticks": 23,
+     "blood_busy_time": 8,
+     "blood_completion_ticks": 25,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 178,
+     "kind": "ceiling-door",
+     "duke_ticks": 10,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 190,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 192,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 194,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 196,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 210,
+     "kind": "ceiling-door",
+     "duke_ticks": 26,
+     "blood_busy_time": 9,
+     "blood_completion_ticks": 28,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 211,
+     "kind": "ceiling-door",
+     "duke_ticks": 14,
+     "blood_busy_time": 5,
+     "blood_completion_ticks": 16,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 258,
+     "kind": "splitting-door",
+     "duke_ticks": 10,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 273,
+     "kind": "ceiling-door",
+     "duke_ticks": 26,
+     "blood_busy_time": 9,
+     "blood_completion_ticks": 28,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 275,
+     "kind": "ceiling-door",
+     "duke_ticks": 11,
+     "blood_busy_time": 4,
+     "blood_completion_ticks": 13,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 291,
+     "kind": "ceiling-door",
+     "duke_ticks": 7,
+     "blood_busy_time": 2,
+     "blood_completion_ticks": 7,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 319,
+     "kind": "ceiling-door",
+     "duke_ticks": 35,
+     "blood_busy_time": 12,
+     "blood_completion_ticks": 37,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 320,
+     "kind": "ceiling-door",
+     "duke_ticks": 35,
+     "blood_busy_time": 12,
+     "blood_completion_ticks": 37,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 326,
+     "kind": "ceiling-door",
+     "duke_ticks": 28,
+     "blood_busy_time": 9,
+     "blood_completion_ticks": 28,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 333,
+     "kind": "platform",
+     "duke_ticks": 73,
+     "blood_busy_time": 24,
+     "blood_completion_ticks": 73,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 362,
+     "kind": "ceiling-door",
+     "duke_ticks": 14,
+     "blood_busy_time": 5,
+     "blood_completion_ticks": 16,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 396,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 398,
+     "kind": "ceiling-door",
+     "duke_ticks": 21,
+     "blood_busy_time": 7,
+     "blood_completion_ticks": 22,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 450,
+     "kind": "ceiling-door",
+     "duke_ticks": 10,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 391,
+     "kind": "floor-rise-fall",
+     "duke_ticks": 104,
+     "blood_busy_time": 35,
+     "blood_completion_ticks": 106,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 520,
+     "kind": "floor-rise-fall",
+     "duke_ticks": 48,
+     "blood_busy_time": 16,
+     "blood_completion_ticks": 49,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 410,
+     "kind": "swinging-door",
+     "duke_ticks": 64,
+     "blood_busy_time": 21,
+     "blood_completion_ticks": 64,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 318,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 317,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 15,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 16,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 24,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 50,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 61,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 95,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 327,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 328,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 369,
+     "kind": "swinging-door",
+     "duke_ticks": 8,
+     "blood_busy_time": 3,
+     "blood_completion_ticks": 10,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 408,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 407,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 406,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 390,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 405,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 403,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 263,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 264,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 98,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 99,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 147,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 149,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 150,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 146,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 243,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 242,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 244,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 245,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 285,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 3,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 286,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 284,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 4,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0,
+     "blood_wave": 1
+    },
+    {
+     "sector": 287,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 288,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 3,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 278,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 281,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 3,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0333,
+     "blood_wave": 1
+    },
+    {
+     "sector": 280,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 279,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 2,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.0667,
+     "blood_wave": 1
+    },
+    {
+     "sector": 294,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 295,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 296,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 297,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 298,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 299,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 300,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 314,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    },
+    {
+     "sector": 301,
+     "kind": "explosive-z-sector",
+     "duke_ticks": 1,
+     "blood_busy_time": 1,
+     "blood_completion_ticks": 4,
+     "error_seconds": 0.1,
+     "blood_wave": 1
+    }
+   ],
+   "coverage": [
+    {
+     "source_sprite": 13,
+     "source_sector": 373,
+     "lotag": 28,
+     "hitag": 2,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 14,
+     "source_sector": 74,
+     "lotag": 27,
+     "hitag": 6000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 15,
+     "source_sector": 5,
+     "lotag": 27,
+     "hitag": 6000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 31,
+     "source_sector": 514,
+     "lotag": 25,
+     "hitag": 0,
+     "kind": "piston",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 50,
+     "source_sector": 504,
+     "lotag": 25,
+     "hitag": 0,
+     "kind": "piston",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 62,
+     "source_sector": 365,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 63,
+     "source_sector": 364,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 65,
+     "source_sector": 363,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 66,
+     "source_sector": 467,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 67,
+     "source_sector": 468,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 68,
+     "source_sector": 475,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 69,
+     "source_sector": 471,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 70,
+     "source_sector": 460,
+     "lotag": 12,
+     "hitag": 36,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 71,
+     "source_sector": 459,
+     "lotag": 12,
+     "hitag": 36,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 72,
+     "source_sector": 463,
+     "lotag": 12,
+     "hitag": 36,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 73,
+     "source_sector": 461,
+     "lotag": 12,
+     "hitag": 36,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 81,
+     "source_sector": 406,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 82,
+     "source_sector": 408,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 83,
+     "source_sector": 407,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 86,
+     "source_sector": 389,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 92,
+     "source_sector": 410,
+     "lotag": 11,
+     "hitag": 456,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 93,
+     "source_sector": 408,
+     "lotag": 13,
+     "hitag": 422,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 99,
+     "source_sector": 407,
+     "lotag": 13,
+     "hitag": 421,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 101,
+     "source_sector": 406,
+     "lotag": 13,
+     "hitag": 424,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 113,
+     "source_sector": 391,
+     "lotag": 31,
+     "hitag": 0,
+     "kind": "floor_rise_fall",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 117,
+     "source_sector": 390,
+     "lotag": 13,
+     "hitag": 8002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 118,
+     "source_sector": 405,
+     "lotag": 13,
+     "hitag": 8002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 120,
+     "source_sector": 403,
+     "lotag": 13,
+     "hitag": 8002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 122,
+     "source_sector": 27,
+     "lotag": 10,
+     "hitag": 96,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 123,
+     "source_sector": 28,
+     "lotag": 10,
+     "hitag": 96,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 132,
+     "source_sector": 520,
+     "lotag": 31,
+     "hitag": 0,
+     "kind": "floor_rise_fall",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 163,
+     "source_sector": 318,
+     "lotag": 11,
+     "hitag": 6550,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 164,
+     "source_sector": 317,
+     "lotag": 11,
+     "hitag": 6550,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 169,
+     "source_sector": 275,
+     "lotag": 10,
+     "hitag": 80,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 176,
+     "source_sector": 263,
+     "lotag": 13,
+     "hitag": 6300,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 177,
+     "source_sector": 264,
+     "lotag": 13,
+     "hitag": 6300,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 178,
+     "source_sector": 266,
+     "lotag": 4,
+     "hitag": 0,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 179,
+     "source_sector": 265,
+     "lotag": 4,
+     "hitag": 0,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 180,
+     "source_sector": 270,
+     "lotag": 4,
+     "hitag": 0,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 187,
+     "source_sector": 222,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 194,
+     "source_sector": 221,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 196,
+     "source_sector": 218,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 197,
+     "source_sector": 217,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 198,
+     "source_sector": 216,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 199,
+     "source_sector": 215,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 200,
+     "source_sector": 214,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 201,
+     "source_sector": 213,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 202,
+     "source_sector": 212,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 205,
+     "source_sector": 211,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 207,
+     "source_sector": 210,
+     "lotag": 10,
+     "hitag": 128,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 278,
+     "source_sector": 154,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 279,
+     "source_sector": 32,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 280,
+     "source_sector": 33,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 281,
+     "source_sector": 155,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 282,
+     "source_sector": 153,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 283,
+     "source_sector": 36,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 320,
+     "source_sector": 368,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 332,
+     "source_sector": 117,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 333,
+     "source_sector": 56,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 334,
+     "source_sector": 239,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 335,
+     "source_sector": 118,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 371,
+     "source_sector": 115,
+     "lotag": 10,
+     "hitag": 112,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 392,
+     "source_sector": 108,
+     "lotag": 10,
+     "hitag": 128,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 403,
+     "source_sector": 98,
+     "lotag": 13,
+     "hitag": 4011,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 404,
+     "source_sector": 99,
+     "lotag": 13,
+     "hitag": 4011,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 432,
+     "source_sector": 37,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 433,
+     "source_sector": 163,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 434,
+     "source_sector": 157,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 435,
+     "source_sector": 156,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 436,
+     "source_sector": 32,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 437,
+     "source_sector": 33,
+     "lotag": 24,
+     "hitag": 702,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 457,
+     "source_sector": 15,
+     "lotag": 11,
+     "hitag": 401,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 458,
+     "source_sector": 16,
+     "lotag": 11,
+     "hitag": 401,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 461,
+     "source_sector": 24,
+     "lotag": 11,
+     "hitag": 402,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 466,
+     "source_sector": 43,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 467,
+     "source_sector": 41,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 468,
+     "source_sector": 356,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 469,
+     "source_sector": 35,
+     "lotag": 24,
+     "hitag": 701,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 470,
+     "source_sector": 45,
+     "lotag": 7,
+     "hitag": 501,
+     "kind": "water_link",
+     "classification": "faithfully-convertible",
+     "destination_sprite": 471,
+     "destination_sector": 46,
+     "destination_lotag": 7,
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 471,
+     "source_sector": 46,
+     "lotag": 7,
+     "hitag": 501,
+     "kind": "water_link",
+     "classification": "faithfully-convertible",
+     "destination_sprite": 470,
+     "destination_sector": 45,
+     "destination_lotag": 7,
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 474,
+     "source_sector": 50,
+     "lotag": 11,
+     "hitag": 405,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 476,
+     "source_sector": 50,
+     "lotag": 10,
+     "hitag": 96,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 487,
+     "source_sector": 152,
+     "lotag": 11,
+     "hitag": 409,
+     "kind": "inactive_swing_controller",
+     "classification": "intentionally-inactive",
+     "reason": null,
+     "lowered": true
+    },
+    {
+     "source_sprite": 488,
+     "source_sector": 61,
+     "lotag": 11,
+     "hitag": 408,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 491,
+     "source_sector": 376,
+     "lotag": 12,
+     "hitag": 36,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 505,
+     "source_sector": 95,
+     "lotag": 11,
+     "hitag": 411,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 518,
+     "source_sector": 107,
+     "lotag": 10,
+     "hitag": 72,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 524,
+     "source_sector": 111,
+     "lotag": 10,
+     "hitag": 128,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 529,
+     "source_sector": 374,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 530,
+     "source_sector": 54,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 531,
+     "source_sector": 58,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 532,
+     "source_sector": 61,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 533,
+     "source_sector": 55,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 534,
+     "source_sector": 59,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 535,
+     "source_sector": 53,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 536,
+     "source_sector": 119,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 537,
+     "source_sector": 52,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 538,
+     "source_sector": 60,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 547,
+     "source_sector": 368,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 548,
+     "source_sector": 39,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 549,
+     "source_sector": 38,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 550,
+     "source_sector": 235,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 551,
+     "source_sector": 44,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 552,
+     "source_sector": 45,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 553,
+     "source_sector": 164,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 554,
+     "source_sector": 161,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 555,
+     "source_sector": 160,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 556,
+     "source_sector": 158,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 557,
+     "source_sector": 159,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 558,
+     "source_sector": 157,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 559,
+     "source_sector": 162,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 560,
+     "source_sector": 37,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 566,
+     "source_sector": 95,
+     "lotag": 10,
+     "hitag": 128,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 568,
+     "source_sector": 166,
+     "lotag": 10,
+     "hitag": 64,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 569,
+     "source_sector": 97,
+     "lotag": 10,
+     "hitag": 88,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 577,
+     "source_sector": 125,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 583,
+     "source_sector": 126,
+     "lotag": 10,
+     "hitag": 80,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 585,
+     "source_sector": 11,
+     "lotag": 3,
+     "hitag": 5051,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 586,
+     "source_sector": 13,
+     "lotag": 3,
+     "hitag": 5052,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 587,
+     "source_sector": 132,
+     "lotag": 7,
+     "hitag": 502,
+     "kind": "water_link",
+     "classification": "faithfully-convertible",
+     "destination_sprite": 635,
+     "destination_sector": 223,
+     "destination_lotag": 7,
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 596,
+     "source_sector": 152,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 597,
+     "source_sector": 141,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 598,
+     "source_sector": 139,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 599,
+     "source_sector": 140,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 600,
+     "source_sector": 375,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 601,
+     "source_sector": 144,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 606,
+     "source_sector": 147,
+     "lotag": 13,
+     "hitag": 5100,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 607,
+     "source_sector": 149,
+     "lotag": 13,
+     "hitag": 5100,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 608,
+     "source_sector": 150,
+     "lotag": 13,
+     "hitag": 5100,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 609,
+     "source_sector": 146,
+     "lotag": 13,
+     "hitag": 5100,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 619,
+     "source_sector": 151,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 620,
+     "source_sector": 50,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 621,
+     "source_sector": 369,
+     "lotag": 10,
+     "hitag": 96,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 626,
+     "source_sector": 171,
+     "lotag": 128,
+     "hitag": 88,
+     "kind": "glass_break_controller",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 635,
+     "source_sector": 223,
+     "lotag": 7,
+     "hitag": 502,
+     "kind": "water_link",
+     "classification": "faithfully-convertible",
+     "destination_sprite": 587,
+     "destination_sector": 132,
+     "destination_lotag": 7,
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 637,
+     "source_sector": 243,
+     "lotag": 13,
+     "hitag": 6200,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 638,
+     "source_sector": 242,
+     "lotag": 13,
+     "hitag": 6200,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 652,
+     "source_sector": 244,
+     "lotag": 13,
+     "hitag": 6200,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 653,
+     "source_sector": 245,
+     "lotag": 13,
+     "hitag": 6200,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 660,
+     "source_sector": 253,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 661,
+     "source_sector": 255,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 662,
+     "source_sector": 254,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 663,
+     "source_sector": 220,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 664,
+     "source_sector": 219,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 669,
+     "source_sector": 285,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 670,
+     "source_sector": 286,
+     "lotag": 13,
+     "hitag": 6002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 671,
+     "source_sector": 284,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 672,
+     "source_sector": 287,
+     "lotag": 13,
+     "hitag": 6002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 675,
+     "source_sector": 288,
+     "lotag": 13,
+     "hitag": 6002,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 676,
+     "source_sector": 278,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 681,
+     "source_sector": 281,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 682,
+     "source_sector": 280,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 683,
+     "source_sector": 279,
+     "lotag": 13,
+     "hitag": 6001,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 714,
+     "source_sector": 294,
+     "lotag": 13,
+     "hitag": 6005,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 715,
+     "source_sector": 295,
+     "lotag": 13,
+     "hitag": 6005,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 716,
+     "source_sector": 296,
+     "lotag": 13,
+     "hitag": 6005,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 717,
+     "source_sector": 297,
+     "lotag": 13,
+     "hitag": 6005,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 718,
+     "source_sector": 298,
+     "lotag": 13,
+     "hitag": 6003,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 719,
+     "source_sector": 299,
+     "lotag": 13,
+     "hitag": 6003,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 720,
+     "source_sector": 300,
+     "lotag": 13,
+     "hitag": 6003,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 721,
+     "source_sector": 314,
+     "lotag": 13,
+     "hitag": 6003,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 722,
+     "source_sector": 301,
+     "lotag": 13,
+     "hitag": 0,
+     "kind": "explosive_z_sector",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 729,
+     "source_sector": 302,
+     "lotag": 3,
+     "hitag": 6100,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 754,
+     "source_sector": 327,
+     "lotag": 11,
+     "hitag": 6570,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 755,
+     "source_sector": 328,
+     "lotag": 11,
+     "hitag": 6570,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 758,
+     "source_sector": 362,
+     "lotag": 10,
+     "hitag": 64,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 762,
+     "source_sector": 240,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 772,
+     "source_sector": 369,
+     "lotag": 11,
+     "hitag": 0,
+     "kind": "swinging_door",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 778,
+     "source_sector": 369,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 798,
+     "source_sector": 396,
+     "lotag": 10,
+     "hitag": 128,
+     "kind": "door_autoclose",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 808,
+     "source_sector": 468,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 809,
+     "source_sector": 454,
+     "lotag": 3,
+     "hitag": 999,
+     "kind": "shot_out_random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 817,
+     "source_sector": 511,
+     "lotag": 4,
+     "hitag": 2,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 818,
+     "source_sector": 358,
+     "lotag": 4,
+     "hitag": 2,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 819,
+     "source_sector": 359,
+     "lotag": 4,
+     "hitag": 2,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 820,
+     "source_sector": 73,
+     "lotag": 4,
+     "hitag": 2,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 821,
+     "source_sector": 72,
+     "lotag": 4,
+     "hitag": 2,
+     "kind": "random_lighting",
+     "classification": "visual-only-approximation",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 841,
+     "source_sector": 64,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 842,
+     "source_sector": 63,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "semantically-approximated",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 864,
+     "source_sector": 528,
+     "lotag": 27,
+     "hitag": 8500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 865,
+     "source_sector": 389,
+     "lotag": 27,
+     "hitag": 8500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 866,
+     "source_sector": 368,
+     "lotag": 27,
+     "hitag": 6300,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 867,
+     "source_sector": 321,
+     "lotag": 27,
+     "hitag": 10000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 868,
+     "source_sector": 31,
+     "lotag": 27,
+     "hitag": 10400,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 869,
+     "source_sector": 479,
+     "lotag": 27,
+     "hitag": 8200,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 870,
+     "source_sector": 467,
+     "lotag": 27,
+     "hitag": 10800,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 872,
+     "source_sector": 453,
+     "lotag": 27,
+     "hitag": 9500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 954,
+     "source_sector": 453,
+     "lotag": 28,
+     "hitag": 1,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 965,
+     "source_sector": 453,
+     "lotag": 28,
+     "hitag": 0,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior."
+    },
+    {
+     "source_sprite": 1036,
+     "source_sector": 537,
+     "lotag": 7,
+     "hitag": 9017,
+     "kind": "floor_teleport",
+     "classification": "faithfully-convertible",
+     "destination_sprite": 1039,
+     "destination_sector": 538,
+     "destination_lotag": 23,
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1037,
+     "source_sector": 537,
+     "lotag": 24,
+     "hitag": 0,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1039,
+     "source_sector": 538,
+     "lotag": 23,
+     "hitag": 9017,
+     "kind": "teleport_destination",
+     "classification": "controller",
+     "on_floor": true,
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1040,
+     "source_sector": 538,
+     "lotag": 24,
+     "hitag": 0,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1045,
+     "source_sector": 539,
+     "lotag": 24,
+     "hitag": 0,
+     "kind": "conveyor",
+     "classification": "faithfully-convertible",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sector": 8,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 15,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 16,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 24,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 27,
+     "sector_lotag": 22,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 28,
+     "sector_lotag": 22,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 45,
+     "sector_lotag": 1,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 46,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 50,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 61,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 73,
+     "sector_lotag": 18,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 81,
+     "sector_lotag": 16,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 88,
+     "sector_lotag": 16,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 93,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 95,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 97,
+     "sector_lotag": 22,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 107,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 108,
+     "sector_lotag": 22,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 111,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 115,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 116,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 126,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 129,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 130,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 131,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 132,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 166,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 171,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 178,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 190,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 192,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 194,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 196,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 210,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 211,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 221,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 223,
+     "sector_lotag": 1,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 232,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 258,
+     "sector_lotag": 22,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 270,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 273,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 274,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 275,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 291,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 317,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 318,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 319,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 320,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 326,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 327,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 328,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 329,
+     "sector_lotag": 26,
+     "kind": "compound_slide_door",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 333,
+     "sector_lotag": 16,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 362,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 369,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 388,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 396,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 398,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 410,
+     "sector_lotag": 23,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 414,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 450,
+     "sector_lotag": 20,
+     "kind": "tagged_motion",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 453,
+     "sector_lotag": 10331,
+     "kind": "enter_sound_sector",
+     "classification": "unsupported",
+     "lowered": false
+    },
+    {
+     "source_sector": 504,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sector": 514,
+     "sector_lotag": 2,
+     "kind": "water_sector",
+     "classification": "lowered-see-record",
+     "lowered": true
+    },
+    {
+     "source_sprite": 2,
+     "source_sector": 270,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 1100,
+     "hitag": 2048,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 17,
+     "source_sector": 391,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 909,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 18,
+     "source_sector": 221,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 86,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 19,
+     "source_sector": 344,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 87,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 20,
+     "source_sector": 270,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 308,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 24,
+     "source_sector": 448,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 96,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 26,
+     "source_sector": 265,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 194,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 27,
+     "source_sector": 266,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 194,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 28,
+     "source_sector": 352,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 781,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 29,
+     "source_sector": 514,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 64,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 30,
+     "source_sector": 514,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 89,
+     "hitag": 4000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 33,
+     "source_sector": 504,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 89,
+     "hitag": 5000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 34,
+     "source_sector": 496,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 364,
+     "hitag": 2120,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 35,
+     "source_sector": 467,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 364,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 49,
+     "source_sector": 504,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 64,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 78,
+     "source_sector": 326,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 84,
+     "source_sector": 97,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 9000,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 87,
+     "source_sector": 362,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 4499,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 90,
+     "source_sector": 410,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 91,
+     "source_sector": 410,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 908,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 102,
+     "source_sector": 520,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 910,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 119,
+     "source_sector": 390,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 8000,
+     "hitag": 80,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 127,
+     "source_sector": 273,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 170,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 128,
+     "source_sector": 273,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 7020,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 154,
+     "source_sector": 171,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6540,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 156,
+     "source_sector": 330,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 6580,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 157,
+     "source_sector": 329,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 158,
+     "source_sector": 329,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6580,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 159,
+     "source_sector": 338,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 6570,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 161,
+     "source_sector": 317,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 162,
+     "source_sector": 318,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 167,
+     "source_sector": 275,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 168,
+     "source_sector": 275,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6350,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 203,
+     "source_sector": 211,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 256,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 204,
+     "source_sector": 211,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 563,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 206,
+     "source_sector": 210,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 227,
+     "source_sector": 393,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 234,
+     "source_sector": 196,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 235,
+     "source_sector": 196,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 236,
+     "source_sector": 196,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 5,
+     "hitag": 5,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 241,
+     "source_sector": 194,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 242,
+     "source_sector": 194,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 144,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 243,
+     "source_sector": 194,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 5,
+     "hitag": 5,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 248,
+     "source_sector": 192,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 249,
+     "source_sector": 192,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 48,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 250,
+     "source_sector": 192,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 5,
+     "hitag": 5,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 255,
+     "source_sector": 190,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 96,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 256,
+     "source_sector": 190,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 257,
+     "source_sector": 190,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 5,
+     "hitag": 5,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 268,
+     "source_sector": 187,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 269,
+     "source_sector": 186,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 270,
+     "source_sector": 185,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 271,
+     "source_sector": 184,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 272,
+     "source_sector": 183,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 273,
+     "source_sector": 182,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 274,
+     "source_sector": 181,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 275,
+     "source_sector": 180,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 276,
+     "source_sector": 369,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 329,
+     "source_sector": 166,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 207,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 370,
+     "source_sector": 115,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 621,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 372,
+     "source_sector": 115,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 405,
+     "source_sector": 97,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 409,
+     "source_sector": 93,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 205,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 438,
+     "source_sector": 28,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 128,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 439,
+     "source_sector": 28,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 440,
+     "source_sector": 24,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 449,
+     "source_sector": 166,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 450,
+     "source_sector": 166,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 1024,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 451,
+     "source_sector": 8,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 201,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 452,
+     "source_sector": 8,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 176,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 453,
+     "source_sector": 8,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 459,
+     "source_sector": 15,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 460,
+     "source_sector": 16,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 464,
+     "source_sector": 27,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 465,
+     "source_sector": 27,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 128,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 475,
+     "source_sector": 50,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 489,
+     "source_sector": 61,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 490,
+     "source_sector": 73,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 502,
+     "source_sector": 93,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 503,
+     "source_sector": 81,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 504,
+     "source_sector": 88,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 506,
+     "source_sector": 95,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 519,
+     "source_sector": 107,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 521,
+     "source_sector": 108,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 258,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 522,
+     "source_sector": 108,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 72,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 523,
+     "source_sector": 111,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 582,
+     "source_sector": 126,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 148,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 584,
+     "source_sector": 126,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 888,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 625,
+     "source_sector": 171,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 630,
+     "source_sector": 178,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 631,
+     "source_sector": 178,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 781,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 666,
+     "source_sector": 258,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 673,
+     "source_sector": 289,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 6025,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 684,
+     "source_sector": 291,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 880,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 685,
+     "source_sector": 291,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6025,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 686,
+     "source_sector": 291,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 687,
+     "source_sector": 293,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 6025,
+     "hitag": 4610,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 688,
+     "source_sector": 293,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 6025,
+     "hitag": 4610,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 742,
+     "source_sector": 326,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6560,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 743,
+     "source_sector": 319,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6560,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 744,
+     "source_sector": 320,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6560,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 745,
+     "source_sector": 323,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 6555,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 746,
+     "source_sector": 321,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 6560,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 747,
+     "source_sector": 318,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6555,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 748,
+     "source_sector": 317,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6555,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 749,
+     "source_sector": 326,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 240,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 750,
+     "source_sector": 319,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 360,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 751,
+     "source_sector": 320,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 360,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 752,
+     "source_sector": 328,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 6570,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 753,
+     "source_sector": 328,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 756,
+     "source_sector": 333,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 759,
+     "source_sector": 362,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 775,
+     "source_sector": 464,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 406,
+     "hitag": 1680,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 776,
+     "source_sector": 464,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 406,
+     "hitag": 1680,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 777,
+     "source_sector": 152,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 406,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 779,
+     "source_sector": 396,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 780,
+     "source_sector": 398,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 784,
+     "source_sector": 391,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 170,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 785,
+     "source_sector": 520,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 85,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 793,
+     "source_sector": 410,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 36,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 799,
+     "source_sector": 450,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 910,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 814,
+     "source_sector": 126,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 512,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 816,
+     "source_sector": 116,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 4499,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 843,
+     "source_sector": 333,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 768,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 847,
+     "source_sector": 467,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 277,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 849,
+     "source_sector": 102,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 86,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 850,
+     "source_sector": 450,
+     "kind": "activator",
+     "tile": 2,
+     "lotag": 59,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 860,
+     "source_sector": 191,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 96,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 861,
+     "source_sector": 193,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 96,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 862,
+     "source_sector": 195,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 96,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 863,
+     "source_sector": 197,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 96,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 966,
+     "source_sector": 453,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 358,
+     "hitag": 14000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields."
+    },
+    {
+     "source_sprite": 1038,
+     "source_sector": 537,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 144,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1041,
+     "source_sector": 538,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 144,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1042,
+     "source_sector": 539,
+     "kind": "gpspeed",
+     "tile": 10,
+     "lotag": 144,
+     "hitag": 0,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_sprite": 1062,
+     "source_sector": 468,
+     "kind": "touchplate",
+     "tile": 3,
+     "lotag": 364,
+     "hitag": 1,
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "source_wall": 2318,
+     "kind": "tagged_use_wall",
+     "tile": 4391,
+     "lotag": 8000,
+     "hitag": 327,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Tagged Duke wall Use controls are not translated by the sprite-switch pass."
+    },
+    {
+     "kind": "linked_moving_group",
+     "effector_lotag": 11,
+     "hitag": 401,
+     "source_sprites": [
+      457,
+      458
+     ],
+     "source_sectors": [
+      15,
+      16
+     ],
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Local operation must start all same-hitag leaves; independent Push sectors do not reproduce this group."
+    },
+    {
+     "kind": "linked_moving_group",
+     "effector_lotag": 11,
+     "hitag": 6550,
+     "source_sprites": [
+      163,
+      164
+     ],
+     "source_sectors": [
+      318,
+      317
+     ],
+     "classification": "lowered-see-record",
+     "lowered": true,
+     "reason": null
+    },
+    {
+     "kind": "linked_moving_group",
+     "effector_lotag": 11,
+     "hitag": 6570,
+     "source_sprites": [
+      754,
+      755
+     ],
+     "source_sectors": [
+      327,
+      328
+     ],
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Local operation must start all same-hitag leaves; independent Push sectors do not reproduce this group."
+    }
+   ],
+   "diagnostics": [
+    {
+     "severity": "note",
+     "code": "duke-inactive-swing-controller",
+     "source_sprite": 487,
+     "source_sector": 152,
+     "hitag": 409,
+     "reason": "SE11 has no same-hitag ST23 operator; converting it to Push motion would invent activation.",
+     "action": "Preserved static geometry and independent controls; no rotation marker created."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-light-motion-conflict",
+     "source_sprite": 205,
+     "source_sector": 211,
+     "hitag": 563,
+     "action": "Kept motion speed, triggers, RX and return timing; omitted independent SE12 light switching.",
+     "reason": "One Blood XSECTOR cannot independently receive and time light and motion controls."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-light-motion-conflict",
+     "source_sprite": 532,
+     "source_sector": 61,
+     "hitag": 561,
+     "action": "Kept motion speed, triggers, RX and return timing; omitted independent SE12 light switching.",
+     "reason": "One Blood XSECTOR cannot independently receive and time light and motion controls."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-light-control-conflict",
+     "source_sprite": 596,
+     "source_sector": 152,
+     "hitag": 561,
+     "action": "Kept the entry signal TX, command and triggers; omitted independent SE12 light switching.",
+     "reason": "The entry signal and independent lighting need separate state and command handling; SE12 lowering would replace the entry command and busy timing."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-light-motion-conflict",
+     "source_sprite": 620,
+     "source_sector": 50,
+     "hitag": 575,
+     "action": "Kept motion speed, triggers, RX and return timing; omitted independent SE12 light switching.",
+     "reason": "One Blood XSECTOR cannot independently receive and time light and motion controls."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-light-motion-conflict",
+     "source_sprite": 778,
+     "source_sector": 369,
+     "hitag": 565,
+     "action": "Kept motion speed, triggers, RX and return timing; omitted independent SE12 light switching.",
+     "reason": "One Blood XSECTOR cannot independently receive and time light and motion controls."
+    },
+    {
+     "severity": "warning",
+     "code": "static-progression-unproven",
+     "reason": "The static reader cannot reach every converted exit; dynamic or unsupported progression may be required.",
+     "action": "Conversion retained for review; completion is not guaranteed and no exit was invented.",
+     "progression": {
+      "model": "reciprocal portals open at configured endpoints plus paired water, stack/link, and teleports",
+      "minimum_portal_width": 512,
+      "minimum_opening": 4096,
+      "start_sector": 453,
+      "reachable_sectors": 423,
+      "total_sectors": 546,
+      "exit_sectors": [
+       311
+      ],
+      "all_exits_reachable": false
+     }
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 13,
+     "source_sector": 373,
+     "lotag": 28,
+     "hitag": 2,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 14,
+     "source_sector": 74,
+     "lotag": 27,
+     "hitag": 6000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 15,
+     "source_sector": 5,
+     "lotag": 27,
+     "hitag": 6000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 31,
+     "source_sector": 514,
+     "lotag": 25,
+     "hitag": 0,
+     "kind": "piston",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 50,
+     "source_sector": 504,
+     "lotag": 25,
+     "hitag": 0,
+     "kind": "piston",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 205,
+     "source_sector": 211,
+     "lotag": 12,
+     "hitag": 563,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 532,
+     "source_sector": 61,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 596,
+     "source_sector": 152,
+     "lotag": 12,
+     "hitag": 561,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 620,
+     "source_sector": 50,
+     "lotag": 12,
+     "hitag": 575,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 626,
+     "source_sector": 171,
+     "lotag": 128,
+     "hitag": 88,
+     "kind": "glass_break_controller",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 778,
+     "source_sector": 369,
+     "lotag": 12,
+     "hitag": 565,
+     "kind": "switchable_lighting",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 864,
+     "source_sector": 528,
+     "lotag": 27,
+     "hitag": 8500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 865,
+     "source_sector": 389,
+     "lotag": 27,
+     "hitag": 8500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 866,
+     "source_sector": 368,
+     "lotag": 27,
+     "hitag": 6300,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 867,
+     "source_sector": 321,
+     "lotag": 27,
+     "hitag": 10000,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 868,
+     "source_sector": 31,
+     "lotag": 27,
+     "hitag": 10400,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 869,
+     "source_sector": 479,
+     "lotag": 27,
+     "hitag": 8200,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 870,
+     "source_sector": 467,
+     "lotag": 27,
+     "hitag": 10800,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 872,
+     "source_sector": 453,
+     "lotag": 27,
+     "hitag": 9500,
+     "kind": "demo_camera",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 954,
+     "source_sector": 453,
+     "lotag": 28,
+     "hitag": 1,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 965,
+     "source_sector": 453,
+     "lotag": 28,
+     "hitag": 0,
+     "kind": "lightning",
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "No complete native lowering for this source controller; retained geometry is not proof of behavior.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 116,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 221,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 232,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 270,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 274,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 329,
+     "sector_lotag": 26,
+     "kind": "compound_slide_door",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 388,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 414,
+     "sector_lotag": 32767,
+     "kind": "secret_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sector": 453,
+     "sector_lotag": 10331,
+     "kind": "enter_sound_sector",
+     "classification": "unsupported",
+     "lowered": false,
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 2,
+     "source_sector": 270,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 1100,
+     "hitag": 2048,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 18,
+     "source_sector": 221,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 86,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 19,
+     "source_sector": 344,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 87,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 20,
+     "source_sector": 270,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 308,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 26,
+     "source_sector": 265,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 194,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 27,
+     "source_sector": 266,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 194,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 30,
+     "source_sector": 514,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 89,
+     "hitag": 4000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 33,
+     "source_sector": 504,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 89,
+     "hitag": 5000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 78,
+     "source_sector": 326,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 84,
+     "source_sector": 97,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 9000,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 87,
+     "source_sector": 362,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 4499,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 90,
+     "source_sector": 410,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 91,
+     "source_sector": 410,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 908,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 102,
+     "source_sector": 520,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 910,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 119,
+     "source_sector": 390,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 8000,
+     "hitag": 80,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 127,
+     "source_sector": 273,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 170,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 157,
+     "source_sector": 329,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 161,
+     "source_sector": 317,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 162,
+     "source_sector": 318,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 167,
+     "source_sector": 275,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 203,
+     "source_sector": 211,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 256,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 206,
+     "source_sector": 210,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 234,
+     "source_sector": 196,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 235,
+     "source_sector": 196,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 241,
+     "source_sector": 194,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 242,
+     "source_sector": 194,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 144,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 248,
+     "source_sector": 192,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 249,
+     "source_sector": 192,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 48,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 255,
+     "source_sector": 190,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 770,
+     "hitag": 96,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 256,
+     "source_sector": 190,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 357,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 276,
+     "source_sector": 369,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 329,
+     "source_sector": 166,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 207,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 372,
+     "source_sector": 115,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 405,
+     "source_sector": 97,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 409,
+     "source_sector": 93,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 205,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 439,
+     "source_sector": 28,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 440,
+     "source_sector": 24,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 449,
+     "source_sector": 166,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 451,
+     "source_sector": 8,
+     "kind": "locked_activator",
+     "tile": 4,
+     "lotag": 201,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 453,
+     "source_sector": 8,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 459,
+     "source_sector": 15,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 460,
+     "source_sector": 16,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 464,
+     "source_sector": 27,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 475,
+     "source_sector": 50,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 489,
+     "source_sector": 61,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 490,
+     "source_sector": 73,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 502,
+     "source_sector": 93,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 503,
+     "source_sector": 81,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 504,
+     "source_sector": 88,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 506,
+     "source_sector": 95,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 519,
+     "source_sector": 107,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 521,
+     "source_sector": 108,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 258,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 523,
+     "source_sector": 111,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 582,
+     "source_sector": 126,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 148,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 625,
+     "source_sector": 171,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 630,
+     "source_sector": 178,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 167,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 666,
+     "source_sector": 258,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 262,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 686,
+     "source_sector": 291,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 687,
+     "source_sector": 293,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 6025,
+     "hitag": 4610,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 688,
+     "source_sector": 293,
+     "kind": "respawn",
+     "tile": 9,
+     "lotag": 6025,
+     "hitag": 4610,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 753,
+     "source_sector": 328,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 165,
+     "hitag": 165,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 756,
+     "source_sector": 333,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 71,
+     "hitag": 73,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 759,
+     "source_sector": 362,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 779,
+     "source_sector": 396,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 780,
+     "source_sector": 398,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 166,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 784,
+     "source_sector": 391,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 170,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 785,
+     "source_sector": 520,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 85,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 799,
+     "source_sector": 450,
+     "kind": "master_switch",
+     "tile": 8,
+     "lotag": 910,
+     "hitag": 0,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 847,
+     "source_sector": 467,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 277,
+     "hitag": 6000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 849,
+     "source_sector": 102,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 86,
+     "hitag": 2000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_sprite": 966,
+     "source_sector": 453,
+     "kind": "sound_controller",
+     "tile": 5,
+     "lotag": 358,
+     "hitag": 14000,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Native controller choreography, locking or audio is not fully implemented; see source fields.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "source_wall": 2318,
+     "kind": "tagged_use_wall",
+     "tile": 4391,
+     "lotag": 8000,
+     "hitag": 327,
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Tagged Duke wall Use controls are not translated by the sprite-switch pass.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "kind": "linked_moving_group",
+     "effector_lotag": 11,
+     "hitag": 401,
+     "source_sprites": [
+      457,
+      458
+     ],
+     "source_sectors": [
+      15,
+      16
+     ],
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Local operation must start all same-hitag leaves; independent Push sectors do not reproduce this group.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    },
+    {
+     "severity": "warning",
+     "code": "duke-mechanism-not-lowered",
+     "kind": "linked_moving_group",
+     "effector_lotag": 11,
+     "hitag": 6570,
+     "source_sprites": [
+      754,
+      755
+     ],
+     "source_sectors": [
+      327,
+      328
+     ],
+     "classification": "unsupported",
+     "lowered": false,
+     "reason": "Local operation must start all same-hitag leaves; independent Push sectors do not reproduce this group.",
+     "action": "Recorded limitation; no replacement mechanism or missing endpoint invented."
+    }
+   ],
+   "intrusion_checked": true,
+   "runtime_events_executed": false
+  }
+ ]
+}

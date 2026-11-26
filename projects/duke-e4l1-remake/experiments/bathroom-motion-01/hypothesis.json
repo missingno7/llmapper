@@ -1,0 +1,12 @@
+{
+  "intent": "Correct bathroom door 50 first-operation direction without changing the saved room geometry.",
+  "source_sha256": "e9bf3a8a2cd5b1aebd8a6a27da4823c6ed24cbcdb0f671fd21ac8cece12aa375",
+  "predictions": [
+    "Rest geometry and materials are identical.",
+    "Old positive first swing folds bathroom sector389 loop3 in 8/16 sampled steps; corrected negative swing does not fold it.",
+    "Only guarded motor fields and marker angles change; native lighting, materials, added briefing relays and weather are preserved."
+  ],
+  "evidence_limits": [
+    "Posed end states and sampled sweeps, not runtime player obstruction or damage."
+  ]
+}

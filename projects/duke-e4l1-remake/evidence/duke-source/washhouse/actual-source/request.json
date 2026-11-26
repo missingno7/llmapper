@@ -1,0 +1,73 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/washhouse/actual-source/viewing-copy.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/work/duke-view-resources",
+ "output": "projects/duke-e4l1-remake/studies/washhouse/actual-source",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "s152-a0",
+   "x": 17232,
+   "y": 34951,
+   "z": -8704,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "s152-a1024",
+   "x": 17232,
+   "y": 34951,
+   "z": -8704,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "s119-a0",
+   "x": 15600,
+   "y": 34688,
+   "z": -8704,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 119,
+   "screenshot": true
+  },
+  {
+   "id": "s119-a1024",
+   "x": 15600,
+   "y": 34688,
+   "z": -8704,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 119,
+   "screenshot": true
+  },
+  {
+   "id": "s59-a0",
+   "x": 15616,
+   "y": 33280,
+   "z": -8704,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 59,
+   "screenshot": true
+  },
+  {
+   "id": "s58-a0",
+   "x": 15616,
+   "y": 32128,
+   "z": -8704,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 58,
+   "screenshot": true
+  }
+ ]
+}

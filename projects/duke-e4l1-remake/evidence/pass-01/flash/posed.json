@@ -1,0 +1,747 @@
+{
+  "root": "sprite 334",
+  "cause": [
+    "channel 7 kChannelLevelStart"
+  ],
+  "end": "other state",
+  "objects": [
+    {
+      "object": "sprite 334",
+      "kind": "sprite",
+      "index": 334,
+      "type_id": 700,
+      "type": "kGenTrigger",
+      "role": "sender",
+      "cause": "channel 7 kChannelLevelStart",
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "generic OperateSprite reading; its picture is not derived from state",
+      "messages": 0,
+      "wait": 0,
+      "done": [],
+      "not_posed": [
+        "kGenTrigger (generator): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+      ],
+      "undecided": [],
+      "changed": false
+    },
+    {
+      "object": "sprite 335",
+      "kind": "sprite",
+      "index": 335,
+      "type_id": 708,
+      "type": "kGenSound",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "generic OperateSprite reading; its picture is not derived from state",
+      "wait": 15,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [],
+      "not_posed": [
+        "kGenSound (sound): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+      ],
+      "undecided": [],
+      "changed": false
+    },
+    {
+      "object": "sector 104",
+      "kind": "sector",
+      "index": 104,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          14921,
+          35698
+        ]
+      ]
+    },
+    {
+      "object": "sector 105",
+      "kind": "sector",
+      "index": 105,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          14832,
+          30936
+        ]
+      ]
+    },
+    {
+      "object": "sector 133",
+      "kind": "sector",
+      "index": 133,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          3104,
+          29072
+        ]
+      ]
+    },
+    {
+      "object": "sector 134",
+      "kind": "sector",
+      "index": 134,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          1472,
+          29072
+        ]
+      ]
+    },
+    {
+      "object": "sector 135",
+      "kind": "sector",
+      "index": 135,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          2320,
+          30496
+        ]
+      ]
+    },
+    {
+      "object": "sector 136",
+      "kind": "sector",
+      "index": 136,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          2304,
+          29568
+        ]
+      ]
+    },
+    {
+      "object": "sector 205",
+      "kind": "sector",
+      "index": 205,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          -7584,
+          29280
+        ]
+      ]
+    },
+    {
+      "object": "sector 206",
+      "kind": "sector",
+      "index": 206,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          -6473,
+          32777
+        ]
+      ]
+    },
+    {
+      "object": "sector 415",
+      "kind": "sector",
+      "index": 415,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          -4128,
+          23640
+        ]
+      ]
+    },
+    {
+      "object": "sector 416",
+      "kind": "sector",
+      "index": 416,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          1512,
+          23328
+        ]
+      ]
+    },
+    {
+      "object": "sector 417",
+      "kind": "sector",
+      "index": 417,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          -8184,
+          27096
+        ]
+      ]
+    },
+    {
+      "object": "sector 418",
+      "kind": "sector",
+      "index": 418,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          -7152,
+          25272
+        ]
+      ]
+    },
+    {
+      "object": "sector 419",
+      "kind": "sector",
+      "index": 419,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          6240,
+          23952
+        ]
+      ]
+    },
+    {
+      "object": "sector 420",
+      "kind": "sector",
+      "index": 420,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          8960,
+          24864
+        ]
+      ]
+    },
+    {
+      "object": "sector 421",
+      "kind": "sector",
+      "index": 421,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          12672,
+          27072
+        ]
+      ]
+    },
+    {
+      "object": "sector 422",
+      "kind": "sector",
+      "index": 422,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          2218,
+          26666
+        ]
+      ]
+    },
+    {
+      "object": "sector 451",
+      "kind": "sector",
+      "index": 451,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          3648,
+          34992
+        ]
+      ]
+    },
+    {
+      "object": "sector 452",
+      "kind": "sector",
+      "index": 452,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          3552,
+          35184
+        ]
+      ]
+    },
+    {
+      "object": "sector 453",
+      "kind": "sector",
+      "index": 453,
+      "type_id": 0,
+      "type": "Normal",
+      "role": "listener",
+      "from": "sprite 334",
+      "command": 1,
+      "state": [
+        0,
+        1
+      ],
+      "why_state": "a light: its wave is scaled by busy (sectorfx.cpp:162-206)",
+      "wait": 20,
+      "messages": 1,
+      "silent": "",
+      "gate": "",
+      "arrives": "",
+      "done": [
+        "its light on (wave amplitude -17)"
+      ],
+      "not_posed": [],
+      "undecided": [
+        "wait_time 20: returns on its own after 2 s"
+      ],
+      "changed": true,
+      "where": [
+        [
+          3460,
+          32548
+        ]
+      ]
+    }
+  ],
+  "posed": [
+    "sector 104",
+    "sector 105",
+    "sector 133",
+    "sector 134",
+    "sector 135",
+    "sector 136",
+    "sector 205",
+    "sector 206",
+    "sector 415",
+    "sector 416",
+    "sector 417",
+    "sector 418",
+    "sector 419",
+    "sector 420",
+    "sector 421",
+    "sector 422",
+    "sector 451",
+    "sector 452",
+    "sector 453"
+  ],
+  "not_posed": [
+    {
+      "object": "sprite 334",
+      "type": "kGenTrigger",
+      "why": [
+        "kGenTrigger (generator): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+      ]
+    },
+    {
+      "object": "sprite 335",
+      "type": "kGenSound",
+      "why": [
+        "kGenSound (sound): what it does is an effect over time (a sound, an explosion, a spawn, a light) or a state with no picture of its own"
+      ]
+    }
+  ],
+  "observer": "xmapedit-observe draws one static state and reads no XSPRITE (obs_main.c:369), so a switch's state picture is posed by picnum",
+  "not_modelled": [
+    "whether a sender's state actually changes: SetSpriteState returns before sending when it does not (triggers.cpp:87-88), and the pose shows what the listeners do IF the message arrives. (A thing saved at state 0 does change: `actInit` sets every thing but a few to state 1 at level start, actor.cpp:2551, so its destruction is a real 1 -> 0.) A silent sender's listeners are not posed; a trigger_on/trigger_off gate the new state misses is flagged per listener (triggers.cpp:100-106)",
+    "wait_time: a listener that returns on its own is shown at the far end of its travel, before it returns",
+    "busy waves and the moment in between: only the two ends are posed"
+  ],
+  "art": false
+}

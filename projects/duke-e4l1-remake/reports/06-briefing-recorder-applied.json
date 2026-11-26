@@ -1,0 +1,942 @@
+{
+  "id": "06-briefing-recorder",
+  "patch_sha256": "39c9d583a370910c018544060d4ebefb9be6902dd690ca56b6ee351afb2ae00c",
+  "before_sha256": "c1baceebfddcc385c7f4db3facf09a653b36bd33ba7ed0a7f1c8aee631c5dd4e",
+  "after_sha256": "b2cbd088c964abaeaa7ba97ee83d0320fdd40c18aae52dd38800f485ad4a8265",
+  "changes": [
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 161,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 161,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 255
+    },
+    {
+      "kind": "sector",
+      "index": 404,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 161,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 404,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 161,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": false,
+      "field": "floor_stat",
+      "before": 84,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": false,
+      "field": "floor_x_panning",
+      "before": 254,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": false,
+      "field": "floor_y_panning",
+      "before": 11,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 479,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 215,
+      "after": 2290
+    },
+    {
+      "kind": "sector",
+      "index": 479,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 2,
+      "after": -24
+    },
+    {
+      "kind": "wall",
+      "index": 2193,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2193,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 11
+    },
+    {
+      "kind": "wall",
+      "index": 2194,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2194,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2195,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2195,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 12,
+      "after": 6
+    },
+    {
+      "kind": "wall",
+      "index": 2195,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2196,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2196,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 18,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2196,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2293,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2293,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 6,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2293,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 45,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2294,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2294,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2295,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2295,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 6,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2295,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 45,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2296,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2296,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 24,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2296,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 45,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2297,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2297,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 6
+    },
+    {
+      "kind": "wall",
+      "index": 2298,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2298,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2299,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2299,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 10
+    },
+    {
+      "kind": "wall",
+      "index": 2300,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2300,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2301,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2301,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 2,
+      "after": 5
+    },
+    {
+      "kind": "wall",
+      "index": 2302,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2302,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2303,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2303,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 6
+    },
+    {
+      "kind": "wall",
+      "index": 2304,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2304,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2305,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2305,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 100,
+      "after": 36
+    },
+    {
+      "kind": "wall",
+      "index": 2305,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 45,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2305,
+      "extension": false,
+      "field": "x_panning",
+      "before": 251,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2305,
+      "extension": false,
+      "field": "y_panning",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2306,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2306,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 42,
+      "after": 15
+    },
+    {
+      "kind": "wall",
+      "index": 2306,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 45,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2306,
+      "extension": false,
+      "field": "x_panning",
+      "before": 19,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2307,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2307,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 96,
+      "after": 36
+    },
+    {
+      "kind": "wall",
+      "index": 2307,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 43,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2308,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2308,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 39,
+      "after": 15
+    },
+    {
+      "kind": "wall",
+      "index": 2308,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 43,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2308,
+      "extension": false,
+      "field": "x_panning",
+      "before": 19,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2309,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2309,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 11
+    },
+    {
+      "kind": "wall",
+      "index": 2310,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2310,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 9,
+      "after": 5
+    },
+    {
+      "kind": "wall",
+      "index": 2310,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2311,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2311,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 16,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2311,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2312,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2312,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 20,
+      "after": 10
+    },
+    {
+      "kind": "wall",
+      "index": 2312,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2313,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2313,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 4,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2314,
+      "extension": false,
+      "field": "picnum",
+      "before": 416,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2314,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 3,
+      "after": 6
+    },
+    {
+      "kind": "wall",
+      "index": 2315,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2315,
+      "extension": false,
+      "field": "x_panning",
+      "before": 21,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2315,
+      "extension": false,
+      "field": "y_panning",
+      "before": 66,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2316,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2316,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 6,
+      "after": 9
+    },
+    {
+      "kind": "wall",
+      "index": 2316,
+      "extension": false,
+      "field": "y_panning",
+      "before": 65,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2317,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 2317,
+      "extension": false,
+      "field": "x_panning",
+      "before": 21,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2317,
+      "extension": false,
+      "field": "y_panning",
+      "before": 52,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 3048,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 3048,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 30,
+      "after": 12
+    },
+    {
+      "kind": "wall",
+      "index": 3048,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 3048,
+      "extension": false,
+      "field": "x_panning",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 3049,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 36
+    },
+    {
+      "kind": "wall",
+      "index": 3049,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 72,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 3049,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 3101,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 3101,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 30,
+      "after": 12
+    },
+    {
+      "kind": "wall",
+      "index": 3101,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 3102,
+      "extension": false,
+      "field": "picnum",
+      "before": 215,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 3102,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 72,
+      "after": 12
+    },
+    {
+      "kind": "wall",
+      "index": 3102,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 32,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 3102,
+      "extension": false,
+      "field": "x_panning",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2546
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "cstat",
+      "before": 256,
+      "after": 260
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 6,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 8,
+      "after": 16
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "x_panning",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": false,
+      "field": "y_panning",
+      "before": 236,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": true,
+      "field": "tx_id",
+      "before": 0,
+      "after": 125
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": true,
+      "field": "command",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": true,
+      "field": "trigger_on",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": true,
+      "field": "trigger_push",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "wall",
+      "index": 2318,
+      "extension": true,
+      "field": "trigger_once",
+      "before": 0,
+      "after": 1
+    }
+  ],
+  "sprites": {
+    "briefing-arm-delay": 345,
+    "briefing-collapse-delay": 346,
+    "dispatch-ledger": 347
+  },
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 348
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\c1baceebfddcc385c7f4db3facf09a653b36bd33ba7ed0a7f1c8aee631c5dd4e.MAP"
+}

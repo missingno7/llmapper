@@ -1,0 +1,701 @@
+{
+ "slug": "washroom",
+ "want": "a washroom or workers' toilets in a working building: stalls, toilets, urinals, a basin",
+ "date": "2026-11-26",
+ "seeds": [
+  {
+   "seed": "E2M4:487!",
+   "map": "maps\\blood\\campaign\\E2M4.MAP",
+   "host": 487,
+   "sectors": [
+    367,
+    368,
+    369,
+    467,
+    468,
+    469,
+    470,
+    478,
+    479,
+    480,
+    486,
+    487
+   ],
+   "metres": [
+    6.5,
+    7.7,
+    5.4
+   ],
+   "area_M": 11.15,
+   "clear_bodies": 3.02,
+   "free_floor_share": 0.9,
+   "shade_spread": 34,
+   "floor": [
+    299,
+    ""
+   ],
+   "ceiling": [
+    251,
+    ""
+   ],
+   "walls": [
+    [
+     1012,
+     0.59,
+     ""
+    ],
+    [
+     171,
+     0.119,
+     ""
+    ],
+    [
+     297,
+     0.087,
+     "tiles"
+    ],
+    [
+     43,
+     0.083,
+     "stone"
+    ],
+    [
+     170,
+     0.051,
+     "wooden boarding"
+    ],
+    [
+     20,
+     0.038,
+     "wood"
+    ]
+   ],
+   "things": [
+    {
+     "sector": 367,
+     "corners": 4,
+     "size": [
+      1024,
+      256
+     ],
+     "rise_bodies": 0.0,
+     "floor_tile": 292,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      1011
+     ]
+    },
+    {
+     "sector": 368,
+     "corners": 16,
+     "size": [
+      1280,
+      2048
+     ],
+     "rise_bodies": 0.6,
+     "floor_tile": 272,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      1011,
+      1012
+     ]
+    },
+    {
+     "sector": 369,
+     "corners": 14,
+     "size": [
+      1280,
+      3072
+     ],
+     "rise_bodies": 0.18,
+     "floor_tile": 365,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      297,
+      1011,
+      1012
+     ]
+    },
+    {
+     "sector": 467,
+     "corners": 8,
+     "size": [
+      512,
+      256
+     ],
+     "rise_bodies": 0.48,
+     "floor_tile": 43,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      1012
+     ]
+    },
+    {
+     "sector": 468,
+     "corners": 16,
+     "size": [
+      448,
+      448
+     ],
+     "rise_bodies": 0.24,
+     "floor_tile": 43,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      1011
+     ]
+    },
+    {
+     "sector": 469,
+     "corners": 6,
+     "size": [
+      192,
+      288
+     ],
+     "rise_bodies": 0.18,
+     "floor_tile": 997,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43
+     ]
+    },
+    {
+     "sector": 470,
+     "corners": 4,
+     "size": [
+      768,
+      1280
+     ],
+     "rise_bodies": 0.02,
+     "floor_tile": 1008,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43
+     ]
+    },
+    {
+     "sector": 478,
+     "corners": 8,
+     "size": [
+      1472,
+      1120
+     ],
+     "rise_bodies": 0.02,
+     "floor_tile": 270,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      170,
+      171
+     ]
+    },
+    {
+     "sector": 479,
+     "corners": 4,
+     "size": [
+      768,
+      32
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      504
+     ]
+    },
+    {
+     "sector": 480,
+     "corners": 6,
+     "size": [
+      768,
+      64
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 68,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      20,
+      1011
+     ]
+    },
+    {
+     "sector": 486,
+     "corners": 4,
+     "size": [
+      512,
+      448
+     ],
+     "rise_bodies": 0.54,
+     "floor_tile": 45,
+     "sloped": false,
+     "type": 0,
+     "wall_tiles": [
+      43,
+      1012
+     ]
+    }
+   ],
+   "sprites": [
+    {
+     "tile": 146,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 2,
+     "repeats": [
+      32,
+      16
+     ],
+     "pal": 10,
+     "over_floor_bodies": 0.42
+    },
+    {
+     "tile": 6,
+     "type": 0,
+     "type_name": "Decoration",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      40,
+      16
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.68
+    },
+    {
+     "tile": 1009,
+     "type": 416,
+     "type_name": "kThingObjectGib",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.32
+    },
+    {
+     "tile": 268,
+     "type": 417,
+     "type_name": "kThingObjectExplode",
+     "align": "wall",
+     "count": 1,
+     "repeats": [
+      64,
+      64
+     ],
+     "pal": 0,
+     "over_floor_bodies": 1.21
+    },
+    {
+     "tile": 589,
+     "type": 62,
+     "type_name": "kItemAmmoTNTBundle",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 827,
+     "type": 115,
+     "type_name": "kItemJumpBoots",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.0
+    },
+    {
+     "tile": 3060,
+     "type": 210,
+     "type_name": "kDudePhantasm",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      40,
+      40
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.95
+    },
+    {
+     "tile": 525,
+     "type": 70,
+     "type_name": "kItemAmmoVoodooDoll",
+     "align": "face",
+     "count": 1,
+     "repeats": [
+      48,
+      48
+     ],
+     "pal": 0,
+     "over_floor_bodies": 0.2
+    }
+   ],
+   "plan": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\E2M4_487\\plan.png",
+   "frames": [
+    "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\E2M4_487\\frames.png"
+   ]
+  }
+ ],
+ "like": [],
+ "tiles": {
+  "6": {
+   "tile": 6,
+   "pixels": [
+    64,
+    8
+   ],
+   "world_at_repeat_8": [
+    1024,
+    2048
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-6.png"
+  },
+  "20": {
+   "tile": 20,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-20.png"
+  },
+  "43": {
+   "tile": 43,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-43.png"
+  },
+  "45": {
+   "tile": 45,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-45.png"
+  },
+  "68": {
+   "tile": 68,
+   "pixels": [
+    64,
+    16
+   ],
+   "world_at_repeat_8": [
+    1024,
+    4096
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-68.png"
+  },
+  "146": {
+   "tile": 146,
+   "pixels": [
+    32,
+    128
+   ],
+   "world_at_repeat_8": [
+    512,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-146.png"
+  },
+  "170": {
+   "tile": 170,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-170.png"
+  },
+  "171": {
+   "tile": 171,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-171.png"
+  },
+  "251": {
+   "tile": 251,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-251.png"
+  },
+  "268": {
+   "tile": 268,
+   "pixels": [
+    64,
+    128
+   ],
+   "world_at_repeat_8": [
+    1024,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-268.png"
+  },
+  "270": {
+   "tile": 270,
+   "pixels": [
+    128,
+    128
+   ],
+   "world_at_repeat_8": [
+    2048,
+    32768
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-270.png"
+  },
+  "272": {
+   "tile": 272,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-272.png"
+  },
+  "292": {
+   "tile": 292,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-292.png"
+  },
+  "297": {
+   "tile": 297,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-297.png"
+  },
+  "299": {
+   "tile": 299,
+   "pixels": [
+    32,
+    32
+   ],
+   "world_at_repeat_8": [
+    512,
+    8192
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-299.png"
+  },
+  "365": {
+   "tile": 365,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-365.png"
+  },
+  "525": {
+   "tile": 525,
+   "pixels": [
+    29,
+    35
+   ],
+   "world_at_repeat_8": [
+    464,
+    8960
+   ],
+   "see_through_share": 0.558,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-525.png"
+  },
+  "589": {
+   "tile": 589,
+   "pixels": [
+    11,
+    25
+   ],
+   "world_at_repeat_8": [
+    176,
+    6400
+   ],
+   "see_through_share": 0.218,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-589.png"
+  },
+  "827": {
+   "tile": 827,
+   "pixels": [
+    36,
+    35
+   ],
+   "world_at_repeat_8": [
+    576,
+    8960
+   ],
+   "see_through_share": 0.371,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-827.png"
+  },
+  "997": {
+   "tile": 997,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-997.png"
+  },
+  "1008": {
+   "tile": 1008,
+   "pixels": [
+    64,
+    64
+   ],
+   "world_at_repeat_8": [
+    1024,
+    16384
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-1008.png"
+  },
+  "1009": {
+   "tile": 1009,
+   "pixels": [
+    38,
+    41
+   ],
+   "world_at_repeat_8": [
+    608,
+    10496
+   ],
+   "see_through_share": 0.322,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-1009.png"
+  },
+  "1012": {
+   "tile": 1012,
+   "pixels": [
+    32,
+    256
+   ],
+   "world_at_repeat_8": [
+    512,
+    65536
+   ],
+   "see_through_share": 0.0,
+   "is_mask": false,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-1012.png"
+  },
+  "3060": {
+   "tile": 3060,
+   "pixels": [
+    118,
+    147
+   ],
+   "world_at_repeat_8": [
+    1888,
+    37632
+   ],
+   "see_through_share": 0.535,
+   "is_mask": true,
+   "picture": "D:\\Games\\DOS\\llmapper\\knowledge\\blood\\studies\\washroom\\tiles\\tile-3060.png"
+  }
+ }
+}

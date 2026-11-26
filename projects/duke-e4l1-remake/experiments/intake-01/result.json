@@ -1,0 +1,369 @@
+{
+  "$schema": "llmapper.design-experiment-result",
+  "compare": {
+    "before->after": {
+      "desk-front": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "dispatch-desk": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "hall-to-works": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "hall-wide": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "north-entry": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "return-to-gate": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      },
+      "workbench": {
+        "changed_px": null,
+        "same_pose": true,
+        "sky_share": [
+          0.0,
+          0.0
+        ],
+        "tall_wall_px": [
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "hypothesis_sha256": "b545d25781aae00b41426e723ac818ca7cfb72ac58c190af9ab7dd6e35ef1983",
+  "runs": {
+    "after": {
+      "map": "projects\\duke-e4l1-remake\\experiments\\intake-01\\after\\played\\as-empty.MAP",
+      "map_sha256": "c4b6faf2ac93d473b34090f5ddb625139d225f920ad9be855b344e73ed5ee276",
+      "sectors": 546,
+      "skyline": {
+        "by_bodies": {
+          "0.0": 3,
+          "2.6": 3,
+          "2.9": 1,
+          "3.6": 1,
+          "3.8": 1,
+          "5.3": 6,
+          "5.8": 1,
+          "5.9": 1,
+          "7.1": 3,
+          "7.2": 2,
+          "7.6": 8
+        },
+        "distinct_heights": 11,
+        "lowered_skies": 0,
+        "tallest": 129024,
+        "tallest_sectors": [
+          452,
+          453
+        ],
+        "walls": 30
+      },
+      "sprites": 345,
+      "views": {
+        "desk-front": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 800,
+            "y": 39000,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "f3a5a0e85b949c5b3f87d3e32d8d9e2b3de56013b31b1765a665bb4c0a195eca",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "dispatch-desk": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 3800,
+            "y": 40400,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "917effe325df64725a16ea920005f44ea44e14185d497e66dfc2ed94b052434a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-to-works": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 3755,
+            "y": 43659,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "ef9f175b161f15bfbd3027b47402bf3d81602b1157090b53ba66b29679750d8a",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-wide": {
+          "camera": {
+            "angle": 1152,
+            "horiz": 100,
+            "x": 5000,
+            "y": 43200,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "09bd1a2c2b3908d89167ea171508359e9de2f49754fc098b896bc1358670cbb4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "north-entry": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 768,
+            "y": 38300,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "b0753f587813af0e20dd51d35ef2f739a5a471fb36ae23d0b1f0b0ed0112157d",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "return-to-gate": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 3755,
+            "y": 43659,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "f711a7da41db60b0eb899830b917fe58128794e4499d19e13f5e9f73ccb8ab40",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "workbench": {
+          "camera": {
+            "angle": 833,
+            "horiz": 100,
+            "x": 0,
+            "y": 43800,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "384610c2d5874829d849420d032ca6b8b419659e3e52ac9adba45c4bab8f49a4",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 3488
+    },
+    "before": {
+      "map": "projects\\duke-e4l1-remake\\experiments\\intake-01\\before\\played\\as-empty.MAP",
+      "map_sha256": "fd49ca13d0a9b0d3f01aa52d5f5178ce66b8131b5c82406b6a8301c9a983c69f",
+      "sectors": 546,
+      "skyline": {
+        "by_bodies": {
+          "0.0": 3,
+          "2.6": 3,
+          "2.9": 1,
+          "3.6": 1,
+          "3.8": 1,
+          "5.3": 6,
+          "5.8": 1,
+          "5.9": 1,
+          "7.1": 3,
+          "7.2": 2,
+          "7.6": 8
+        },
+        "distinct_heights": 11,
+        "lowered_skies": 0,
+        "tallest": 129024,
+        "tallest_sectors": [
+          452,
+          453
+        ],
+        "walls": 30
+      },
+      "sprites": 341,
+      "views": {
+        "desk-front": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 800,
+            "y": 39000,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "8950f3e427056cd04c483ac8add79598ef19312e677cc1649f18a0f7da837750",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "dispatch-desk": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 3800,
+            "y": 40400,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "01dbc7a5f1006f8a0ff57e3a9ba476baa3cfeaa8a98e400f7464806488fa0e0c",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-to-works": {
+          "camera": {
+            "angle": 1024,
+            "horiz": 100,
+            "x": 3755,
+            "y": 43659,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "79f0db505397c7ff2c0dac9c71ce3e13ae30d1efd761abc013c4cae0149425ab",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "hall-wide": {
+          "camera": {
+            "angle": 1152,
+            "horiz": 100,
+            "x": 5000,
+            "y": 43200,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "4dfa7248d0105b4bbd2b649967fb8b36db1d1a47a98c87f010c8bb184093e7f3",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "north-entry": {
+          "camera": {
+            "angle": 512,
+            "horiz": 100,
+            "x": 768,
+            "y": 38300,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "35e8091a9c6b9e605ce6bd245fd2e29b268420653f2afaa5bb34bd60de8b34f0",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "return-to-gate": {
+          "camera": {
+            "angle": 1536,
+            "horiz": 100,
+            "x": 3755,
+            "y": 43659,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "890f76277acaa4622da652cd21e1114539ca875e888748ec483ca8ab36b9ae18",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        },
+        "workbench": {
+          "camera": {
+            "angle": 833,
+            "horiz": 100,
+            "x": 0,
+            "y": 43800,
+            "z": -1824
+          },
+          "ceiling_leak_px": 0,
+          "frame_sha256": "ba2c3af7dd0627f29f09b1ea27d1c6b443338f4d64a68d1405347a1fd25ca2ef",
+          "sky_share": 0.0,
+          "status": "ok",
+          "tall_wall_px": 0,
+          "upper_steps": []
+        }
+      },
+      "walls": 3488
+    }
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,29 @@
+{
+ "map": "projects/duke-e4l1-remake/E4L1-current.MAP",
+ "source_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+ "observed_sha256": "6364f5304ad4e7af2e3da5f867b621025787adad2cb593ae540010c4bf27d7cd",
+ "project": "duke-e4l1-remake",
+ "pose_sets": [
+  "washhouse"
+ ],
+ "poses_sha256": "d7ac00114acf7028d4d1991d1c33eca2720a00f095f8699dd2d4e871d6cd8a79",
+ "empty": false,
+ "words_hidden": null,
+ "views": [
+  "room-to-stalls",
+  "room-to-mirror",
+  "stalls",
+  "urinals",
+  "toilet",
+  "stall-door"
+ ],
+ "frames": {
+  "room-to-stalls": "9b4a97ba04187356fc2ff326a6a81ecaf65bf67d7edcf56a39786cfe092d16b5",
+  "room-to-mirror": "1708775281d4769583ccdad5c042c73ead7dce38268296daad3895af33bf1ede",
+  "stalls": "03852f661f1bc2a8a31c50034d29372532f8e37e5da35e48fcade2f082437a32",
+  "urinals": "1ed1111cea98552ce3715319854ecf0c3de206143883808e6462d8c05ff657cc",
+  "toilet": "52181c6a9d5089fc8a3d9a25023c2c011c835b21d69b0e8f0727db56e58aab2f",
+  "stall-door": "703cd2b015835e0807d52709cf10aaf24dc6134bc4cbe2ec56993fdeb39ab09f"
+ },
+ "runtime_events_executed": false
+}

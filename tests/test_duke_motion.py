@@ -7,11 +7,11 @@ heuristic drifted.  The corpus cases skip themselves without the Duke maps.
 
 from __future__ import annotations
 
-import glob
 import unittest
 from pathlib import Path
 
 from bloodmap.duke import read_duke_map
+from bloodmap.corpus import list_corpus_maps
 from bloodmap.duke_motion import (
     DEFAULT_SECTOR_EXTRA,
     SWING_ANGLE,
@@ -29,7 +29,7 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def duke_maps() -> list[Path]:
-    return [Path(p) for p in sorted(glob.glob(str(ROOT / "maps" / "duke3d" / "*.MAP")))]
+    return [item.path for item in list_corpus_maps(ROOT / "maps/duke3d")]
 
 
 HAVE_CORPUS = bool(duke_maps())
@@ -151,10 +151,10 @@ class CorpusMotionTests(unittest.TestCase):
         self.assertGreater(seen, 100)
 
     def test_swing_direction_follows_the_effector_angle(self):
-        """Spawn sets T4 = (ang > 1024) ? +2 : -2 -- above 1024 turns positive."""
+        """ST23 negates spawn T4 before the first movement."""
         for name, duke, sprite in self._effectors(11):
             with self.subTest(map=name, ang=sprite.angle):
-                expected = 1 if sprite.angle > 1024 else -1
+                expected = -1 if sprite.angle > 1024 else 1
                 self.assertEqual(swinging_door(duke, sprite)["direction"], expected)
 
     def test_slide_extents_vary_with_gpspeed_rather_than_being_constant(self):

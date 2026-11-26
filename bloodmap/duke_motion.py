@@ -34,6 +34,7 @@ So a Duke motion lasting *n* effector ticks lasts ``n / 30`` seconds and wants
 from __future__ import annotations
 
 from typing import Any
+from math import ceil
 
 from .duke import DukeDiskMap
 from .duke_semantics import GPSPEED_TILE
@@ -70,9 +71,9 @@ def sector_extra(duke: DukeDiskMap, sector_id: int) -> int:
     speeds = [
         int(sprite.lotag)
         for sprite in duke.sprites
-        if sprite.picnum == GPSPEED_TILE and sprite.sector == sector_id and sprite.lotag
+        if sprite.picnum == GPSPEED_TILE and sprite.sector == sector_id
     ]
-    return max(speeds) if speeds else DEFAULT_SECTOR_EXTRA
+    return speeds[-1] if speeds else DEFAULT_SECTOR_EXTRA
 
 
 def busy_time(ticks: int) -> int:
@@ -85,19 +86,84 @@ def swinging_door(duke: DukeDiskMap, sprite: Any) -> dict[str, int]:
 
     ``game.cpp`` spawn sets ``T4 = (ang > 1024) ? 2 : -2``; ``actors.cpp`` then
     steps ``t_data[2] += (SP(i) >> 3) * T4`` per tick and stops at 512.  So the
-    hinge is the effector, the extent is a quarter turn, and the *sign* comes
-    from the effector's angle -- with ``ang > 1024`` turning positive.
+    hinge is the effector. ST23 reverses T4 before moving, so the first
+    operation turns negative for ``ang > 1024``, positive otherwise.
     """
     extra = sector_extra(duke, sprite.sector)
-    direction = 1 if int(sprite.angle) > 1024 else -1
+    # ST23 negates the spawn T4 BEFORE the first movement (sector.cpp).
+    direction = -1 if int(sprite.angle) > 1024 else 1
     step = max(1, (extra >> 3) * 2)
+    ticks = max(1, ceil((511 if direction < 0 else 512) / step))
+    # The final A_MoveSector follows T3 &= 0xffffff00, including signed floor.
+    angle = ((direction * ticks * step) // 256) * 256
     return {
-        "angle": SWING_ANGLE * direction,
+        "angle": angle,
         "direction": direction,
         "step_per_tick": step,
-        "ticks": max(1, SWING_ANGLE // step),
+        "ticks": ticks,
         "sector_extra": extra,
     }
+
+
+def tagged_z_motion(duke: DukeDiskMap, sector_id: int) -> dict[str, Any]:
+    """Transcribe ST16-22 endpoints and SetAnimation's extra*4 Z step at 30Hz."""
+    sector = duke.sectors[sector_id]
+    tag = int(sector.lotag) & 0x3fff
+    if tag not in {16, 17, 18, 19, 20, 21, 22}:
+        raise ValueError(f"ST{tag} is not a tagged Z motion")
+    neighbors = [duke.sectors[i] for i in dict.fromkeys(
+        int(duke.walls[w].next_sector)
+        for w in range(sector.wall_ptr, sector.wall_ptr + sector.wall_count)
+        if duke.walls[w].next_sector >= 0)]
+    ceiling, floor = int(sector.ceiling_z), int(sector.floor_z)
+    on_ceiling, on_floor = ceiling, floor
+    def neighbor(surface, z, direction):
+        values = [int(getattr(n, surface + "_z")) for n in neighbors]
+        values = [v for v in values if (v > z if direction > 0 else v < z)]
+        if not values:
+            raise ValueError(f"No {surface} neighbor {'below' if direction > 0 else 'above'} Z {z}")
+        return min(values) if direction > 0 else max(values)
+    # prelevel sets the open bit on ordinary ST20/ST22 with a positive gap.
+    opened = bool(int(sector.lotag) & 0x8000) or (int(sector.lotag) in {20, 22} and floor > ceiling)
+    if tag in {16, 17}:
+        try:
+            on_floor = neighbor("floor", floor, 1)
+        except ValueError:
+            on_floor = neighbor("floor", floor, -1)
+    elif tag in {18, 19}:
+        try:
+            on_floor = neighbor("floor", floor, -1)
+        except ValueError:
+            on_floor = neighbor("floor", floor, 1)
+        on_ceiling = ceiling + on_floor - floor
+    elif tag == 20:
+        if opened:
+            # SE9 supplies a closing height instead of the floor, when present.
+            light = next((s for s in reversed(duke.sprites) if s.picnum == 1 and s.lotag == 9 and s.sector == sector_id), None)
+            on_ceiling = int(light.z) if light else floor
+        else:
+            try:
+                on_ceiling = neighbor("ceiling", ceiling, -1)
+            except ValueError:
+                on_ceiling = floor  # REDODOOR's explicit fallback.
+    elif tag == 21:
+        on_floor = neighbor("floor", ceiling, 1) if floor == ceiling else ceiling
+    else:
+        if opened:
+            on_ceiling = on_floor = (ceiling + floor) >> 1
+        else:
+            on_ceiling = neighbor("ceiling", ceiling, -1)
+            on_floor = neighbor("floor", floor, 1)
+    speed = sector_extra(duke, sector_id)
+    if speed <= 0:
+        raise ValueError(f"Non-positive GPSPEED/sector extra {speed}; no invented velocity")
+    distances = {"ceiling": abs(on_ceiling-ceiling), "floor": abs(on_floor-floor)}
+    ticks = {k: ceil(v / (speed * 4)) for k, v in distances.items() if v}
+    return {"tag": tag, "off_ceiling_z": ceiling, "on_ceiling_z": on_ceiling,
+            "off_floor_z": floor, "on_floor_z": on_floor, "speed": speed,
+            "ticks": max(ticks.values(), default=0), "surface_ticks": ticks,
+            "kind": {16:"platform",17:"platform",18:"elevator",19:"elevator",
+                     20:"ceiling-door",21:"floor-door",22:"splitting-door"}[tag]}
 
 
 def sliding_door(duke: DukeDiskMap, sprite: Any) -> dict[str, int]:
@@ -114,7 +180,8 @@ def sliding_door(duke: DukeDiskMap, sprite: Any) -> dict[str, int]:
     ticks = max(1, extra >> 3)
     return {
         "distance": SLIDE_STEP * ticks,
-        "angle": int(sprite.angle) & 2047,
+        # ST25 adds 1024 before its first A_MoveSector, not after travel.
+        "angle": (int(sprite.angle) + 1024) & 2047,
         "ticks": ticks,
         "sector_extra": extra,
     }
@@ -174,7 +241,7 @@ def rotate_rise_bridge(duke: DukeDiskMap, sprite: Any, pivot: Any) -> dict[str, 
     centre_x = int(pivot.x) if snapped else int(sprite.x)
     centre_y = int(pivot.y) if snapped else int(sprite.y)
     return {
-        "angle": (2 * extra) * direction,
+        "angle": (64 * (extra >> 5)) * direction,
         "direction": direction,
         "ticks": ticks,
         "floor_z": int(sprite.z),

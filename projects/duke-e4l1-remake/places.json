@@ -1,0 +1,126 @@
+{
+  "quarry": {
+    "name": "Storm quarry and service gate",
+    "intent": "An exposed night approach to a guarded pumping works, with rock silhouettes and practical entrance lights.",
+    "sectors": [
+      104,
+      105,
+      108,
+      109,
+      110,
+      133,
+      134,
+      135,
+      136,
+      205,
+      206,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      451,
+      452,
+      453
+    ],
+    "pose_set": "quarry",
+    "kind": "quarry",
+    "study": "works-yard",
+    "open": [
+      "Owner weather timing/audio and gate Use check",
+      "Rain/bolt presentation",
+      "Independent visual review"
+    ],
+    "notes": "DESIGN.md"
+  },
+  "intake": {
+    "name": "Intake hall",
+    "intent": "A guarded shift entrance and briefing point between the quarry and the works, with a self-destructing cabinet recording device, practical work surfaces and clear circulation.",
+    "sectors": [
+      0,
+      1,
+      14,
+      390,
+      403,
+      404,
+      405,
+      479,
+      480,
+      481,
+      482,
+      483,
+      484,
+      485,
+      486,
+      487,
+      488,
+      489,
+      490
+    ],
+    "pose_set": "intake",
+    "kind": "office",
+    "study": "front-office",
+    "open": [
+      "Central enclosed sector 148 is not an ordinary counter",
+      "Neighbouring interiors still have inherited materials",
+      "Independent recognition/comparison/use/sense review",
+      "Owner navigation and mechanism check",
+      "Recorder speech and actual timed destruction need gameplay/audio verification"
+    ],
+    "notes": "notes/intake.md"
+  },
+  "briefing": {
+    "name": "Self-destructing briefing recorder",
+    "intent": "Preserve the owner-identified Mission Impossible tape player as a Blood-era cabinet recording device with a one-shot delayed self-destruction sequence.",
+    "sectors": [
+      390,
+      403,
+      404,
+      405,
+      481
+    ],
+    "pose_set": "briefing",
+    "kind": "office",
+    "study": "front-office",
+    "open": [
+      "Suitable briefing speech remains unresolved",
+      "Owner Use, timing, damage and sound check",
+      "Independent visual review",
+      "Destroyed-state scorch/debris treatment beyond the retained geometry is pending"
+    ],
+    "notes": "notes/briefing.md"
+  },
+  "washhouse": {
+    "name": "Workers' washhouse",
+    "intent": "Grimy workers' toilets and wall urinals in the pumping works, with practical lighting, metal stall partitions and stone fixtures grounded in Blood's bathrooms.",
+    "sectors": [
+      52,
+      53,
+      54,
+      55,
+      58,
+      59,
+      60,
+      61,
+      64,
+      67,
+      119,
+      125,
+      152
+    ],
+    "pose_set": "washhouse",
+    "kind": "bathroom",
+    "study": "washroom",
+    "open": [
+      "Owner stall-door Use and obstruction check",
+      "Owner fixture collision and flush sound check",
+      "Independent recognition/comparison/use/sense review",
+      "Mirror alcove 117 and native mirror support 57 remain outside this pass",
+      "Fixtures use rectangular native sprite assemblies; rounded geometry remains a possible refinement"
+    ],
+    "notes": "notes/washhouse.md"
+  }
+}

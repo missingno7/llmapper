@@ -1,0 +1,43 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/evidence/bathroom-motion/before/travel-08/played/as-empty.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/reference/blood",
+ "output": "projects/duke-e4l1-remake/evidence/bathroom-motion/before/travel-08",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "room",
+   "x": 17165,
+   "y": 40021,
+   "z": -12576,
+   "angle": 170,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "door",
+   "x": 20000,
+   "y": 41700,
+   "z": -12576,
+   "angle": 180,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  },
+  {
+   "id": "across-room",
+   "x": 21000,
+   "y": 40500,
+   "z": -12576,
+   "angle": 600,
+   "horiz": 100,
+   "sector": 389,
+   "screenshot": true
+  }
+ ]
+}

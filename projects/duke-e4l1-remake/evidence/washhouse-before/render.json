@@ -1,0 +1,17 @@
+{
+  "map": "D:\\Games\\DOS\\llmapper\\projects\\duke-e4l1-remake\\E4L1-current.MAP",
+  "source_sha256": "692ad84dc626f9a1ed934f6df63d0d7fa114cf8f3d6845b272b5819e10e7aab3",
+  "observed_sha256": "4d4b0ccce0f6f7d6cecbf83860a955405f5ef207372d8a7076940a9dd5004d60",
+  "poses_sha256": "6e5718381247d475a862d4785173e07f4424426cb8e39678eede4d3a41790a5f",
+  "views": [
+    "room-to-stalls",
+    "room-to-mirror",
+    "stalls",
+    "urinals"
+  ],
+  "state": "saved/rest state",
+  "empty": true,
+  "signs_muted": false,
+  "pose_set": "washhouse",
+  "runtime_events_executed": false
+}

@@ -1,0 +1,3474 @@
+{
+  "id": "08-converter-motion-repairs",
+  "patch_sha256": "e64d8ce7504b207c40a5375e965fd83404686793dd842fb970f232d6837b1773",
+  "before_sha256": "e9bf3a8a2cd5b1aebd8a6a27da4823c6ed24cbcdb0f671fd21ac8cece12aa375",
+  "after_sha256": "f4d2fac817911148452bfb599ba179fbb2beec783cf6bd38804cf6b5a0aa99d8",
+  "changes": [
+    {
+      "kind": "sector",
+      "index": 8,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 8,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 29,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 8,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 8,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 8,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 29,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 15,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 15,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 16,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 16,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 24,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 24,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 40,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 27
+    },
+    {
+      "kind": "sector",
+      "index": 27,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 40,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 40,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 27
+    },
+    {
+      "kind": "sector",
+      "index": 28,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 40,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "amplitude",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "wait_time_b",
+      "before": 0,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "command",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "interruptable",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "rx_id",
+      "before": 675,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "retrigger_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 18,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 50,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "amplitude",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "command",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "interruptable",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "rx_id",
+      "before": 661,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 18,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 73,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 73,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 32,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 73,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 73,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 32,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 81,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 81,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 24,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 81,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 81,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 24,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 88,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 88,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 24,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 88,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 88,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 24,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 93,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "wait_time_b",
+      "before": 0,
+      "after": 41
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "retrigger_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 95,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 16,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 27
+    },
+    {
+      "kind": "sector",
+      "index": 97,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 16,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 98,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 98,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 98,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 98,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 99,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 99,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 99,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 99,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 17
+    },
+    {
+      "kind": "sector",
+      "index": 107,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 60,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 31
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 60,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 39
+    },
+    {
+      "kind": "sector",
+      "index": 111,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 32
+    },
+    {
+      "kind": "sector",
+      "index": 115,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 6
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 126,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 146,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 146,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 146,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 146,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 147,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 147,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 147,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 147,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 149,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 149,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 149,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 149,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 150,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 150,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 150,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 150,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "amplitude",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "command",
+      "before": 3,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "interruptable",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "rx_id",
+      "before": 661,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 18,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 5,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 21
+    },
+    {
+      "kind": "sector",
+      "index": 166,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 5,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 171,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 178,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 190,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 192,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 194,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 196,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 35
+    },
+    {
+      "kind": "sector",
+      "index": 210,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "amplitude",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 18,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "command",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 18,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 211,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 18,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 242,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 242,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 242,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 242,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 243,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 243,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 243,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 243,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 244,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 244,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 244,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 244,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 245,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 245,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 245,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 245,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 16,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 258,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 16,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 263,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 263,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 263,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 263,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 264,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 264,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 264,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 264,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 273,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 4
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 275,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 4
+    },
+    {
+      "kind": "sector",
+      "index": 278,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 278,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 278,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 278,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 279,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 279,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 279,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 279,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 280,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 280,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 280,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 280,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 281,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 281,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 281,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 281,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 284,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 284,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 284,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 284,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 285,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 285,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 285,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 285,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 286,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 286,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 286,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 286,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 287,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 287,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 287,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 287,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 288,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 288,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 288,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 288,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 6,
+      "after": 2
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 291,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 6,
+      "after": 2
+    },
+    {
+      "kind": "sector",
+      "index": 294,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 294,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 294,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 294,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 295,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 295,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 295,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 295,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 296,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 296,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 296,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 296,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 297,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 297,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 297,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 297,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 298,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 298,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 298,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 298,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 299,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 299,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 299,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 299,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 300,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 300,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 300,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 300,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 301,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 301,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 301,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 301,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 314,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 314,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 314,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 314,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 317,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 317,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 318,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 318,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 14,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 319,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 14,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 14,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 320,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 14,
+      "after": 12
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 21,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 326,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 21,
+      "after": 9
+    },
+    {
+      "kind": "sector",
+      "index": 327,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 327,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 328,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 328,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 333,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 333,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 7,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 333,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 333,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 7,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 17
+    },
+    {
+      "kind": "sector",
+      "index": 362,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "amplitude",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "wait_time_b",
+      "before": 0,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "command",
+      "before": 3,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "interruptable",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "rx_id",
+      "before": 665,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "retrigger_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 18,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 369,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 18,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 390,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 391,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 391,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 24,
+      "after": 35
+    },
+    {
+      "kind": "sector",
+      "index": 391,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 391,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 24,
+      "after": 35
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 60,
+      "after": 36
+    },
+    {
+      "kind": "sector",
+      "index": 396,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 398,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 7
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 403,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 405,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 406,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 406,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 406,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 406,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 407,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 407,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 407,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 407,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 408,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 408,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 408,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 408,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 8,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 410,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 410,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "extension": true,
+      "field": "interruptable",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 450,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 10,
+      "after": 3
+    },
+    {
+      "kind": "sector",
+      "index": 520,
+      "extension": true,
+      "field": "busy_wave_b",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 520,
+      "extension": true,
+      "field": "busy_time_a",
+      "before": 24,
+      "after": 16
+    },
+    {
+      "kind": "sector",
+      "index": 520,
+      "extension": true,
+      "field": "busy_wave_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 520,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 24,
+      "after": 16
+    },
+    {
+      "kind": "sprite",
+      "index": 0,
+      "extension": false,
+      "field": "angle",
+      "before": 512,
+      "after": -512
+    },
+    {
+      "kind": "sprite",
+      "index": 1,
+      "extension": false,
+      "field": "angle",
+      "before": 512,
+      "after": -512
+    },
+    {
+      "kind": "sprite",
+      "index": 2,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 3,
+      "extension": false,
+      "field": "angle",
+      "before": 512,
+      "after": -512
+    },
+    {
+      "kind": "sprite",
+      "index": 4,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 5,
+      "extension": false,
+      "field": "angle",
+      "before": 512,
+      "after": -512
+    },
+    {
+      "kind": "sprite",
+      "index": 6,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 7,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 8,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 9,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 10,
+      "extension": false,
+      "field": "angle",
+      "before": 512,
+      "after": -512
+    },
+    {
+      "kind": "sprite",
+      "index": 11,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    },
+    {
+      "kind": "sprite",
+      "index": 12,
+      "extension": false,
+      "field": "angle",
+      "before": -512,
+      "after": 512
+    }
+  ],
+  "sprites": {},
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 348
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\e9bf3a8a2cd5b1aebd8a6a27da4823c6ed24cbcdb0f671fd21ac8cece12aa375.MAP"
+}

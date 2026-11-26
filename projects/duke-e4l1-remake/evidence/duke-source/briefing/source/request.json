@@ -1,0 +1,33 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/workbench/source/viewing-copy.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/work/duke-view-resources",
+ "output": "projects/duke-e4l1-remake/studies/workbench/source",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "bench",
+   "x": 0,
+   "y": 29200,
+   "z": -1536,
+   "angle": 828,
+   "horiz": 100,
+   "sector": 486,
+   "screenshot": true
+  },
+  {
+   "id": "bench-close",
+   "x": -1600,
+   "y": 29500,
+   "z": -1536,
+   "angle": 512,
+   "horiz": 100,
+   "sector": 481,
+   "screenshot": true
+  }
+ ]
+}

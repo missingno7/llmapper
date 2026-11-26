@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/knowledge/blood/studies/works-yard/E1M5_392/as-played.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/knowledge/blood/studies/works-yard/E1M5_392",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "corner_0",
+   "x": -38528,
+   "y": 8832,
+   "z": 48224,
+   "angle": 1241,
+   "horiz": 100,
+   "sector": 392,
+   "screenshot": true
+  },
+  {
+   "id": "corner_1",
+   "x": -53120,
+   "y": 8832,
+   "z": 48224,
+   "angle": 1824,
+   "horiz": 100,
+   "sector": 392,
+   "screenshot": true
+  },
+  {
+   "id": "corner_2",
+   "x": -53888,
+   "y": -384,
+   "z": 48224,
+   "angle": 131,
+   "horiz": 100,
+   "sector": 392,
+   "screenshot": true
+  },
+  {
+   "id": "corner_3",
+   "x": -37760,
+   "y": 4224,
+   "z": 48224,
+   "angle": 1073,
+   "horiz": 100,
+   "sector": 392,
+   "screenshot": true
+  }
+ ]
+}

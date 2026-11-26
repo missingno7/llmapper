@@ -1,0 +1,2485 @@
+{
+  "id": "04-intake-hall",
+  "purpose": "Practical intake-hall material hierarchy and fittings; preserve explosive installations and geometry.",
+  "scope": {
+    "sectors": [
+      479,
+      480,
+      481,
+      482,
+      485,
+      486,
+      14,
+      483,
+      484,
+      487,
+      488,
+      489,
+      490,
+      0,
+      1
+    ],
+    "actor_z_only": [
+      119,
+      189,
+      190
+    ]
+  },
+  "edits": [
+    {
+      "kind": "sector",
+      "index": 479,
+      "identity": {
+        "wall_ptr": 3020,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          303,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 480,
+      "identity": {
+        "wall_ptr": 3024,
+        "wall_count": 20
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          161,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 481,
+      "identity": {
+        "wall_ptr": 3044,
+        "wall_count": 6
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          161,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 482,
+      "identity": {
+        "wall_ptr": 3050,
+        "wall_count": 14
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          161,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 485,
+      "identity": {
+        "wall_ptr": 3072,
+        "wall_count": 3
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          161,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 486,
+      "identity": {
+        "wall_ptr": 3075,
+        "wall_count": 28
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          161,
+          215
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 14,
+      "identity": {
+        "wall_ptr": 68,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          305,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 483,
+      "identity": {
+        "wall_ptr": 3064,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 484,
+      "identity": {
+        "wall_ptr": 3068,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 487,
+      "identity": {
+        "wall_ptr": 3103,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 488,
+      "identity": {
+        "wall_ptr": 3107,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 489,
+      "identity": {
+        "wall_ptr": 3111,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 490,
+      "identity": {
+        "wall_ptr": 3115,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          378,
+          365
+        ],
+        "ceiling_picnum": [
+          378,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 0,
+      "identity": {
+        "wall_ptr": 0,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          300,
+          255
+        ],
+        "ceiling_picnum": [
+          385,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 1,
+      "identity": {
+        "wall_ptr": 4,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          300,
+          255
+        ],
+        "ceiling_picnum": [
+          385,
+          255
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3020,
+      "identity": {
+        "x": -4608,
+        "y": 45120,
+        "point2": 3021
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          3,
+          13
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3021,
+      "identity": {
+        "x": -3456,
+        "y": 46272,
+        "point2": 3022
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          9,
+          4
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3022,
+      "identity": {
+        "x": -4032,
+        "y": 46272,
+        "point2": 3023
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          3,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3023,
+      "identity": {
+        "x": -4608,
+        "y": 45696,
+        "point2": 3020
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3024,
+      "identity": {
+        "x": -3456,
+        "y": 46272,
+        "point2": 3025
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          9,
+          68
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3025,
+      "identity": {
+        "x": 5184,
+        "y": 46272,
+        "point2": 3026
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          4,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          48,
+          0
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3026,
+      "identity": {
+        "x": 4608,
+        "y": 46848,
+        "point2": 3027
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          10,
+          15
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3027,
+      "identity": {
+        "x": 2640,
+        "y": 46848,
+        "point2": 3028
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          24,
+          33
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          41,
+          0
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3028,
+      "identity": {
+        "x": -1536,
+        "y": 46848,
+        "point2": 3029
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          12,
+          18
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          64,
+          0
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3029,
+      "identity": {
+        "x": -3840,
+        "y": 46848,
+        "point2": 3030
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          12,
+          17
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          1,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3030,
+      "identity": {
+        "x": -5376,
+        "y": 45312,
+        "point2": 3031
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          6,
+          9
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          1,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3031,
+      "identity": {
+        "x": -5376,
+        "y": 44160,
+        "point2": 3032
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3032,
+      "identity": {
+        "x": -5376,
+        "y": 43008,
+        "point2": 3033
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3033,
+      "identity": {
+        "x": -5184,
+        "y": 42816,
+        "point2": 3034
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3034,
+      "identity": {
+        "x": -5184,
+        "y": 42432,
+        "point2": 3035
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          10,
+          15
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          25,
+          0
+        ],
+        "y_panning": [
+          158,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3035,
+      "identity": {
+        "x": -5184,
+        "y": 40512,
+        "point2": 3036
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          5,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3036,
+      "identity": {
+        "x": -5184,
+        "y": 40128,
+        "point2": 3037
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          5,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3037,
+      "identity": {
+        "x": -5376,
+        "y": 39936,
+        "point2": 3038
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3038,
+      "identity": {
+        "x": -5376,
+        "y": 38784,
+        "point2": 3039
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          3
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          17,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3039,
+      "identity": {
+        "x": -5376,
+        "y": 38400,
+        "point2": 3040
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          6,
+          8
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          17,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3040,
+      "identity": {
+        "x": -4608,
+        "y": 37632,
+        "point2": 3041
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          44,
+          58
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3041,
+      "identity": {
+        "x": -4608,
+        "y": 45120,
+        "point2": 3042
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          3,
+          4
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          255,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3042,
+      "identity": {
+        "x": -4608,
+        "y": 45696,
+        "point2": 3043
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          4,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3043,
+      "identity": {
+        "x": -4032,
+        "y": 46272,
+        "point2": 3024
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          3,
+          4
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          255,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3045,
+      "identity": {
+        "x": -2880,
+        "y": 44160,
+        "point2": 3046
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          14,
+          20
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3046,
+      "identity": {
+        "x": -384,
+        "y": 44160,
+        "point2": 3047
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          14,
+          12
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3047,
+      "identity": {
+        "x": -384,
+        "y": 45696,
+        "point2": 3048
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          4,
+          8
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3050,
+      "identity": {
+        "x": 5952,
+        "y": 39744,
+        "point2": 3051
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3051,
+      "identity": {
+        "x": 1920,
+        "y": 42240,
+        "point2": 3052
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          4
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3052,
+      "identity": {
+        "x": 1920,
+        "y": 41760,
+        "point2": 3053
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3053,
+      "identity": {
+        "x": 1920,
+        "y": 41472,
+        "point2": 3054
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          9,
+          12
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          17,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3054,
+      "identity": {
+        "x": 1920,
+        "y": 39936,
+        "point2": 3055
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          14,
+          18
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3055,
+      "identity": {
+        "x": -384,
+        "y": 39936,
+        "point2": 3056
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          18,
+          25
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3056,
+      "identity": {
+        "x": 576,
+        "y": 36864,
+        "point2": 3057
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          14,
+          20
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          254,
+          0
+        ],
+        "y_panning": [
+          121,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3057,
+      "identity": {
+        "x": 3072,
+        "y": 36864,
+        "point2": 3058
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          24,
+          6
+        ],
+        "y_repeat": [
+          17,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3058,
+      "identity": {
+        "x": 3072,
+        "y": 37632,
+        "point2": 3059
+      },
+      "fields": {
+        "picnum": [
+          643,
+          255
+        ],
+        "x_repeat": [
+          24,
+          6
+        ],
+        "y_repeat": [
+          17,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3059,
+      "identity": {
+        "x": 3840,
+        "y": 37632,
+        "point2": 3060
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          24,
+          6
+        ],
+        "y_repeat": [
+          17,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3060,
+      "identity": {
+        "x": 3840,
+        "y": 36864,
+        "point2": 3061
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          4,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3061,
+      "identity": {
+        "x": 4608,
+        "y": 36864,
+        "point2": 3062
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          12,
+          17
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3062,
+      "identity": {
+        "x": 6144,
+        "y": 38400,
+        "point2": 3063
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3063,
+      "identity": {
+        "x": 6144,
+        "y": 39552,
+        "point2": 3050
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3072,
+      "identity": {
+        "x": -1344,
+        "y": 36864,
+        "point2": 3073
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          4,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3073,
+      "identity": {
+        "x": -1536,
+        "y": 37632,
+        "point2": 3074
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          12,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3074,
+      "identity": {
+        "x": -1536,
+        "y": 36864,
+        "point2": 3072
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          254,
+          0
+        ],
+        "y_panning": [
+          121,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3075,
+      "identity": {
+        "x": -1536,
+        "y": 37632,
+        "point2": 3076
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          12,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3076,
+      "identity": {
+        "x": -1344,
+        "y": 36864,
+        "point2": 3077
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          10,
+          15
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          254,
+          0
+        ],
+        "y_panning": [
+          121,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3077,
+      "identity": {
+        "x": 576,
+        "y": 36864,
+        "point2": 3078
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          18,
+          25
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3078,
+      "identity": {
+        "x": -384,
+        "y": 39936,
+        "point2": 3079
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          14,
+          18
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3079,
+      "identity": {
+        "x": -384,
+        "y": 42240,
+        "point2": 3080
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          8,
+          11
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          9,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3080,
+      "identity": {
+        "x": 1056,
+        "y": 42240,
+        "point2": 3081
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          4
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          49,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3081,
+      "identity": {
+        "x": 1536,
+        "y": 42240,
+        "point2": 3082
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          3
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          57,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3082,
+      "identity": {
+        "x": 1920,
+        "y": 42240,
+        "point2": 3083
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          27,
+          37
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3083,
+      "identity": {
+        "x": 5952,
+        "y": 39744,
+        "point2": 3084
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3084,
+      "identity": {
+        "x": 5952,
+        "y": 40128,
+        "point2": 3085
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          10,
+          15
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          4,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3085,
+      "identity": {
+        "x": 5952,
+        "y": 42048,
+        "point2": 3086
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3086,
+      "identity": {
+        "x": 5952,
+        "y": 42432,
+        "point2": 3087
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3087,
+      "identity": {
+        "x": 6144,
+        "y": 42624,
+        "point2": 3088
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          8,
+          9
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3088,
+      "identity": {
+        "x": 6144,
+        "y": 43776,
+        "point2": 3089
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          9,
+          12
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3089,
+      "identity": {
+        "x": 6144,
+        "y": 45312,
+        "point2": 3090
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          8,
+          11
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          48,
+          0
+        ],
+        "y_panning": [
+          3,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3090,
+      "identity": {
+        "x": 5184,
+        "y": 46272,
+        "point2": 3091
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          50,
+          68
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3091,
+      "identity": {
+        "x": -3456,
+        "y": 46272,
+        "point2": 3092
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          9,
+          13
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3092,
+      "identity": {
+        "x": -4608,
+        "y": 45120,
+        "point2": 3093
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          3,
+          58
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          255,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3093,
+      "identity": {
+        "x": -4608,
+        "y": 37632,
+        "point2": 3094
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          6,
+          8
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          17,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3094,
+      "identity": {
+        "x": -3840,
+        "y": 36864,
+        "point2": 3095
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          9,
+          12
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "x_panning": [
+          17,
+          0
+        ],
+        "y_panning": [
+          2,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3095,
+      "identity": {
+        "x": -2304,
+        "y": 36864,
+        "point2": 3096
+      },
+      "fields": {
+        "picnum": [
+          97,
+          255
+        ],
+        "x_repeat": [
+          24,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3096,
+      "identity": {
+        "x": -2304,
+        "y": 37632,
+        "point2": 3075
+      },
+      "fields": {
+        "picnum": [
+          643,
+          255
+        ],
+        "x_repeat": [
+          24,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3097,
+      "identity": {
+        "x": -1344,
+        "y": 45888,
+        "point2": 3098
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          4,
+          8
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3098,
+      "identity": {
+        "x": -384,
+        "y": 45696,
+        "point2": 3099
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          9,
+          12
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3099,
+      "identity": {
+        "x": -384,
+        "y": 44160,
+        "point2": 3100
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          14,
+          20
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3100,
+      "identity": {
+        "x": -2880,
+        "y": 44160,
+        "point2": 3101
+      },
+      "fields": {
+        "picnum": [
+          196,
+          181
+        ],
+        "x_repeat": [
+          6,
+          8
+        ],
+        "y_repeat": [
+          6,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 69,
+      "identity": {
+        "x": -5568,
+        "y": 40512,
+        "point2": 70
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 71,
+      "identity": {
+        "x": -5184,
+        "y": 42432,
+        "point2": 68
+      },
+      "fields": {
+        "picnum": [
+          405,
+          255
+        ],
+        "y_repeat": [
+          6,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3069,
+      "identity": {
+        "x": 638,
+        "y": 36672,
+        "point2": 3070
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          24,
+          19
+        ],
+        "y_repeat": [
+          12,
+          32
+        ],
+        "x_panning": [
+          127,
+          0
+        ],
+        "y_panning": [
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3111,
+      "identity": {
+        "x": -1280,
+        "y": 36672,
+        "point2": 3112
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          1
+        ],
+        "y_repeat": [
+          12,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3114,
+      "identity": {
+        "x": -1536,
+        "y": 36672,
+        "point2": 3111
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "y_repeat": [
+          12,
+          32
+        ],
+        "x_panning": [
+          255,
+          0
+        ],
+        "y_panning": [
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3116,
+      "identity": {
+        "x": -1280,
+        "y": 36672,
+        "point2": 3117
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          21,
+          15
+        ],
+        "y_repeat": [
+          12,
+          32
+        ],
+        "x_panning": [
+          9,
+          0
+        ],
+        "y_panning": [
+          5,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3117,
+      "identity": {
+        "x": 638,
+        "y": 36672,
+        "point2": 3118
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          1
+        ],
+        "y_repeat": [
+          12,
+          32
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 0,
+      "identity": {
+        "x": -2304,
+        "y": 36864,
+        "point2": 1
+      },
+      "fields": {
+        "picnum": [
+          2457,
+          255
+        ],
+        "x_repeat": [
+          14,
+          6
+        ],
+        "y_repeat": [
+          17,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 1,
+      "identity": {
+        "x": -1536,
+        "y": 36864,
+        "point2": 2
+      },
+      "fields": {
+        "picnum": [
+          288,
+          255
+        ],
+        "y_repeat": [
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 2,
+      "identity": {
+        "x": -1536,
+        "y": 37632,
+        "point2": 3
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          4,
+          6
+        ],
+        "y_repeat": [
+          6,
+          32
+        ],
+        "y_panning": [
+          67,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 3,
+      "identity": {
+        "x": -2304,
+        "y": 37632,
+        "point2": 0
+      },
+      "fields": {
+        "picnum": [
+          288,
+          255
+        ],
+        "y_repeat": [
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 4,
+      "identity": {
+        "x": 3072,
+        "y": 36864,
+        "point2": 5
+      },
+      "fields": {
+        "picnum": [
+          2457,
+          255
+        ],
+        "x_repeat": [
+          14,
+          6
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 5,
+      "identity": {
+        "x": 3840,
+        "y": 36864,
+        "point2": 6
+      },
+      "fields": {
+        "picnum": [
+          288,
+          255
+        ],
+        "x_repeat": [
+          9,
+          6
+        ],
+        "y_repeat": [
+          12,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 6,
+      "identity": {
+        "x": 3840,
+        "y": 37632,
+        "point2": 7
+      },
+      "fields": {
+        "picnum": [
+          180,
+          181
+        ],
+        "x_repeat": [
+          2,
+          6
+        ],
+        "y_repeat": [
+          8,
+          32
+        ],
+        "y_panning": [
+          243,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 7,
+      "identity": {
+        "x": 3072,
+        "y": 37632,
+        "point2": 4
+      },
+      "fields": {
+        "picnum": [
+          288,
+          255
+        ],
+        "y_repeat": [
+          8,
+          16
+        ]
+      }
+    },
+    {
+      "kind": "sprite",
+      "index": 119,
+      "identity": {
+        "x": 768,
+        "y": 43008,
+        "sector": 486,
+        "picnum": 2820
+      },
+      "fields": {
+        "z": [
+          12288,
+          3808
+        ]
+      }
+    },
+    {
+      "kind": "sprite",
+      "index": 189,
+      "identity": {
+        "x": -2304,
+        "y": 40704,
+        "sector": 486,
+        "picnum": 2820
+      },
+      "fields": {
+        "z": [
+          12288,
+          3808
+        ]
+      }
+    },
+    {
+      "kind": "sprite",
+      "index": 190,
+      "identity": {
+        "x": 4608,
+        "y": 44544,
+        "sector": 486,
+        "picnum": 2820
+      },
+      "fields": {
+        "z": [
+          12288,
+          3808
+        ]
+      }
+    }
+  ],
+  "sprites": [
+    {
+      "name": "shift-clock",
+      "fields": {
+        "sector": 482,
+        "x": 800,
+        "y": 39920,
+        "z": -14000,
+        "type": 0,
+        "picnum": 1165,
+        "status": 0,
+        "cstat": 208,
+        "x_repeat": 24,
+        "y_repeat": 24,
+        "shade": -4,
+        "angle": 1536
+      },
+      "extra": {}
+    },
+    {
+      "name": "entry-worklight",
+      "fields": {
+        "sector": 482,
+        "x": 4600,
+        "y": 38700,
+        "z": -52192,
+        "type": 0,
+        "picnum": 2290,
+        "status": 0,
+        "cstat": 32,
+        "x_repeat": 48,
+        "y_repeat": 48,
+        "shade": -24,
+        "angle": 0
+      },
+      "extra": {}
+    },
+    {
+      "name": "hall-worklight-west",
+      "fields": {
+        "sector": 486,
+        "x": -3000,
+        "y": 42500,
+        "z": -52192,
+        "type": 0,
+        "picnum": 2290,
+        "status": 0,
+        "cstat": 32,
+        "x_repeat": 48,
+        "y_repeat": 48,
+        "shade": -24,
+        "angle": 0
+      },
+      "extra": {}
+    },
+    {
+      "name": "hall-worklight-south",
+      "fields": {
+        "sector": 486,
+        "x": 2500,
+        "y": 44800,
+        "z": -52192,
+        "type": 0,
+        "picnum": 2290,
+        "status": 0,
+        "cstat": 32,
+        "x_repeat": 48,
+        "y_repeat": 48,
+        "shade": -24,
+        "angle": 512
+      },
+      "extra": {}
+    }
+  ]
+}

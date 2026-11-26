@@ -1,0 +1,4322 @@
+{
+  "id": "01-quarry-approach",
+  "patch_sha256": "0a7ef2f1bc59e93e0ade8aa31bb37bc53a1d2a0e336ea8224cfeec3301c054cb",
+  "before_sha256": "dedbac01100f373790b47dbbd288a8d359e03b7d72e93f3572c4ea6c7a79c226",
+  "after_sha256": "a1557b5fda29e64c9be2483e967083252fe50d13c8d98040e7637c3cc9814c9f",
+  "changes": [
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 40,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 104,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 510,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 510,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 511,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 511,
+      "extension": false,
+      "field": "shade",
+      "before": 30,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 512,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 512,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 513,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 513,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 514,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 514,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 515,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 515,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 516,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 516,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 40,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 105,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 517,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 517,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 518,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 518,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 519,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 519,
+      "extension": false,
+      "field": "shade",
+      "before": 48,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 520,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 520,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 34,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 133,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 645,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 645,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 646,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 646,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 647,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 648,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 649,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 649,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 650,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 650,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 134,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 651,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 651,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 652,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 652,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 653,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 653,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 654,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 654,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 655,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 655,
+      "extension": false,
+      "field": "shade",
+      "before": 46,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 656,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 656,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 135,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 657,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 657,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 658,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 658,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 659,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 659,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 660,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 660,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 661,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 661,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 662,
+      "extension": false,
+      "field": "picnum",
+      "before": 288,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 662,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 40,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 136,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 663,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 663,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 664,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 664,
+      "extension": false,
+      "field": "shade",
+      "before": 46,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 665,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 665,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 275
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 30,
+      "after": 25
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 205,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 993,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 994,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 994,
+      "extension": false,
+      "field": "shade",
+      "before": 28,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 995,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 995,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 996,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 996,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 32,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 206,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 997,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 997,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 998,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 998,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 999,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 1000,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 1000,
+      "extension": false,
+      "field": "shade",
+      "before": 28,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 1001,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 1001,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 1002,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 1002,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 1003,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 1003,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 48,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 415,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2365,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2365,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2366,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2366,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2367,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2367,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2368,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2368,
+      "extension": false,
+      "field": "shade",
+      "before": 34,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 48,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 416,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2369,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2369,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2370,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2370,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2371,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2371,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2372,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2372,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 46,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 417,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2373,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2373,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2374,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2375,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2375,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2376,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2376,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 48,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 418,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2377,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2377,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2378,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2378,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2379,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2379,
+      "extension": false,
+      "field": "shade",
+      "before": 58,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2380,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2380,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 50,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 419,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2381,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2381,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2382,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2382,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2383,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2383,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2384,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2384,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 50,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 420,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2385,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2385,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2386,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2386,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2387,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2387,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2388,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2388,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2389,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2389,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2390,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2390,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 50,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 421,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2391,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2391,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2392,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2392,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2393,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2393,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2394,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2394,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 274
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 38,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 422,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2395,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2395,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2396,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2396,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2397,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2397,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2398,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2398,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2399,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2399,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2400,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2400,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2401,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2401,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2402,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2402,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2403,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2403,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2404,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2404,
+      "extension": false,
+      "field": "shade",
+      "before": 20,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2405,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2405,
+      "extension": false,
+      "field": "shade",
+      "before": 28,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2406,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2406,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2407,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2407,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2408,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2408,
+      "extension": false,
+      "field": "shade",
+      "before": 34,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2409,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2409,
+      "extension": false,
+      "field": "shade",
+      "before": 34,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2410,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2410,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2411,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2411,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2412,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2412,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 272
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 56,
+      "after": 29
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": false,
+      "field": "floor_y_panning",
+      "before": 40,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 451,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2805,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2805,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2806,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2806,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2807,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2807,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2808,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2808,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 275
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 62,
+      "after": 25
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 452,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2809,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2809,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2810,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2810,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2811,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2811,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2812,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2812,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 292,
+      "after": 275
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 24,
+      "after": 25
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 2500,
+      "after": 3678
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": false,
+      "field": "ceiling_y_panning",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "rx_id",
+      "before": 0,
+      "after": 124
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "amplitude",
+      "before": 0,
+      "after": -17
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "shade_frequency",
+      "before": 0,
+      "after": 5
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "shade_wave",
+      "before": 0,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "shade_floor",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "shade_ceiling",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "shade_walls",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "wait_time_a",
+      "before": 0,
+      "after": 20
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "retrigger_a",
+      "before": 0,
+      "after": 1
+    },
+    {
+      "kind": "sector",
+      "index": 453,
+      "extension": true,
+      "field": "busy_time_b",
+      "before": 0,
+      "after": 2
+    },
+    {
+      "kind": "wall",
+      "index": 2813,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2813,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2814,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2814,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2815,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2815,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2816,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2816,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2817,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2818,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2818,
+      "extension": false,
+      "field": "shade",
+      "before": 28,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2819,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2819,
+      "extension": false,
+      "field": "shade",
+      "before": 26,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2820,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2820,
+      "extension": false,
+      "field": "shade",
+      "before": 34,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2821,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2821,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2822,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2822,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2823,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2823,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2824,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2824,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2825,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2825,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2826,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2826,
+      "extension": false,
+      "field": "shade",
+      "before": 46,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2827,
+      "extension": false,
+      "field": "picnum",
+      "before": 354,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2827,
+      "extension": false,
+      "field": "shade",
+      "before": 48,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2828,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2828,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2829,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2829,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2830,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2830,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2831,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2831,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2832,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2832,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2833,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 80
+    },
+    {
+      "kind": "wall",
+      "index": 2833,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 20
+    },
+    {
+      "kind": "wall",
+      "index": 2834,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2834,
+      "extension": false,
+      "field": "shade",
+      "before": 52,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2835,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2835,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2836,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 272
+    },
+    {
+      "kind": "wall",
+      "index": 2836,
+      "extension": false,
+      "field": "shade",
+      "before": 62,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 2837,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2837,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2838,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2838,
+      "extension": false,
+      "field": "shade",
+      "before": 48,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2839,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2839,
+      "extension": false,
+      "field": "shade",
+      "before": 48,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2840,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2840,
+      "extension": false,
+      "field": "shade",
+      "before": 48,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2841,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2841,
+      "extension": false,
+      "field": "shade",
+      "before": 46,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2842,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2842,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2843,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2843,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2844,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2844,
+      "extension": false,
+      "field": "shade",
+      "before": 34,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 2845,
+      "extension": false,
+      "field": "picnum",
+      "before": 2448,
+      "after": 273
+    },
+    {
+      "kind": "wall",
+      "index": 2845,
+      "extension": false,
+      "field": "shade",
+      "before": 40,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 110,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 492,
+      "after": 275
+    },
+    {
+      "kind": "sector",
+      "index": 110,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 492,
+      "after": 255
+    },
+    {
+      "kind": "sector",
+      "index": 110,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 36,
+      "after": 18
+    },
+    {
+      "kind": "sector",
+      "index": 110,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 50,
+      "after": 24
+    },
+    {
+      "kind": "wall",
+      "index": 539,
+      "extension": false,
+      "field": "picnum",
+      "before": 378,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 539,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 18
+    },
+    {
+      "kind": "wall",
+      "index": 540,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 540,
+      "extension": false,
+      "field": "shade",
+      "before": 30,
+      "after": 18
+    },
+    {
+      "kind": "wall",
+      "index": 541,
+      "extension": false,
+      "field": "picnum",
+      "before": 429,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 541,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 18
+    },
+    {
+      "kind": "wall",
+      "index": 542,
+      "extension": false,
+      "field": "picnum",
+      "before": 387,
+      "after": 255
+    },
+    {
+      "kind": "wall",
+      "index": 542,
+      "extension": false,
+      "field": "shade",
+      "before": 42,
+      "after": 18
+    }
+  ],
+  "sprites": {
+    "storm-clock": 334,
+    "storm-thunder": 335,
+    "storm-wind": 336,
+    "entry-lamp-west": 337,
+    "entry-lamp-east": 338,
+    "fallen-rock-west": 339,
+    "fallen-rock-east": 340
+  },
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 341
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\dedbac01100f373790b47dbbd288a8d359e03b7d72e93f3572c4ea6c7a79c226.MAP"
+}

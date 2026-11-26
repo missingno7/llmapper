@@ -1,0 +1,584 @@
+{
+  "id": "02-storm-panorama-and-service-gate",
+  "intent": "Complete the native 16-panel Blood storm sky and make the quarry service gate read as a metal shutter without changing its movement or controls.",
+  "precedents": [
+    "E1M5 native sky header and 3678..3693 panorama",
+    "E3M5 industrial doorway material separation"
+  ],
+  "edits": [
+    {
+      "kind": "sky",
+      "index": 0,
+      "fields": {
+        "bits": [
+          0,
+          4
+        ],
+        "offsets": [
+          [
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 371,
+      "identity": {
+        "wall_ptr": 2059,
+        "wall_count": 4
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 372,
+      "identity": {
+        "wall_ptr": 2063,
+        "wall_count": 4
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 427,
+      "identity": {
+        "wall_ptr": 2589,
+        "wall_count": 13
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 429,
+      "identity": {
+        "wall_ptr": 2605,
+        "wall_count": 18
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 430,
+      "identity": {
+        "wall_ptr": 2623,
+        "wall_count": 11
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 432,
+      "identity": {
+        "wall_ptr": 2637,
+        "wall_count": 16
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 434,
+      "identity": {
+        "wall_ptr": 2657,
+        "wall_count": 10
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 436,
+      "identity": {
+        "wall_ptr": 2671,
+        "wall_count": 10
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 437,
+      "identity": {
+        "wall_ptr": 2681,
+        "wall_count": 6
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 438,
+      "identity": {
+        "wall_ptr": 2687,
+        "wall_count": 13
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 440,
+      "identity": {
+        "wall_ptr": 2703,
+        "wall_count": 6
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 441,
+      "identity": {
+        "wall_ptr": 2709,
+        "wall_count": 12
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 442,
+      "identity": {
+        "wall_ptr": 2721,
+        "wall_count": 13
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 444,
+      "identity": {
+        "wall_ptr": 2737,
+        "wall_count": 18
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 445,
+      "identity": {
+        "wall_ptr": 2755,
+        "wall_count": 12
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 446,
+      "identity": {
+        "wall_ptr": 2767,
+        "wall_count": 16
+      },
+      "fields": {
+        "ceiling_picnum": [
+          2500,
+          3678
+        ],
+        "ceiling_y_panning": [
+          0,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 108,
+      "identity": {
+        "wall_ptr": 529,
+        "wall_count": 6
+      },
+      "fields": {
+        "ceiling_picnum": [
+          439,
+          255
+        ],
+        "floor_picnum": [
+          439,
+          272
+        ],
+        "floor_shade": [
+          36,
+          24
+        ],
+        "ceiling_shade": [
+          36,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "identity": {
+        "x": 3072,
+        "y": 36672,
+        "point2": 530,
+        "next_sector": 484
+      },
+      "fields": {
+        "picnum": [
+          180,
+          255
+        ],
+        "shade": [
+          46,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "identity": {
+        "x": 638,
+        "y": 36672,
+        "point2": 531,
+        "next_sector": 490
+      },
+      "fields": {
+        "picnum": [
+          180,
+          255
+        ],
+        "shade": [
+          36,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "identity": {
+        "x": -1280,
+        "y": 36672,
+        "point2": 532,
+        "next_sector": 489
+      },
+      "fields": {
+        "picnum": [
+          180,
+          255
+        ],
+        "shade": [
+          50,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 532,
+      "identity": {
+        "x": -1536,
+        "y": 36672,
+        "point2": 533,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          2534,
+          255
+        ],
+        "shade": [
+          36,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "identity": {
+        "x": -1536,
+        "y": 36096,
+        "point2": 534,
+        "next_sector": 109
+      },
+      "fields": {
+        "picnum": [
+          180,
+          255
+        ],
+        "shade": [
+          42,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 534,
+      "identity": {
+        "x": 3072,
+        "y": 36096,
+        "point2": 529,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          2534,
+          255
+        ],
+        "shade": [
+          36,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 109,
+      "identity": {
+        "wall_ptr": 535,
+        "wall_count": 4
+      },
+      "fields": {
+        "ceiling_picnum": [
+          378,
+          255
+        ],
+        "floor_picnum": [
+          378,
+          272
+        ],
+        "floor_shade": [
+          50,
+          24
+        ],
+        "ceiling_shade": [
+          50,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 535,
+      "identity": {
+        "x": -1536,
+        "y": 36048,
+        "point2": 536,
+        "next_sector": 110
+      },
+      "fields": {
+        "picnum": [
+          387,
+          255
+        ],
+        "shade": [
+          50,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 536,
+      "identity": {
+        "x": 3072,
+        "y": 36048,
+        "point2": 537,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          378,
+          255
+        ],
+        "shade": [
+          50,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 537,
+      "identity": {
+        "x": 3072,
+        "y": 36096,
+        "point2": 538,
+        "next_sector": 108
+      },
+      "fields": {
+        "picnum": [
+          180,
+          255
+        ],
+        "shade": [
+          42,
+          24
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 538,
+      "identity": {
+        "x": -1536,
+        "y": 36096,
+        "point2": 535,
+        "next_sector": -1
+      },
+      "fields": {
+        "picnum": [
+          378,
+          255
+        ],
+        "shade": [
+          50,
+          24
+        ]
+      }
+    }
+  ],
+  "sprites": []
+}

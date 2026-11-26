@@ -1,0 +1,3200 @@
+{
+  "id": "10-washhouse",
+  "purpose": "Restore the workers' washhouse with native Blood materials and stone plumbing fixtures; retain source geometry, entry signal and the repaired stall door.",
+  "input_sha256": "692ad84dc626f9a1ed934f6df63d0d7fa114cf8f3d6845b272b5819e10e7aab3",
+  "scope": {
+    "rooms": [
+      58,
+      59,
+      60,
+      119,
+      125,
+      152
+    ],
+    "partitions": [
+      52,
+      53,
+      54,
+      55,
+      61
+    ],
+    "vents": [
+      64,
+      67
+    ],
+    "excluded_support": [
+      57
+    ]
+  },
+  "edits": [
+    {
+      "kind": "sector",
+      "index": 58,
+      "identity": {
+        "wall_ptr": 278,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          293,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 278,
+      "identity": {
+        "x": 24384,
+        "y": 47424,
+        "point2": 279
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 279,
+      "identity": {
+        "x": 24384,
+        "y": 48960,
+        "point2": 280
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 280,
+      "identity": {
+        "x": 22464,
+        "y": 48960,
+        "point2": 281
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          16,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 281,
+      "identity": {
+        "x": 22464,
+        "y": 47424,
+        "point2": 278
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "x_panning": [
+          16,
+          0
+        ],
+        "y_panning": [
+          68,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 59,
+      "identity": {
+        "wall_ptr": 282,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          293,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 282,
+      "identity": {
+        "x": 24384,
+        "y": 49152,
+        "point2": 283
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 283,
+      "identity": {
+        "x": 24384,
+        "y": 50688,
+        "point2": 284
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 284,
+      "identity": {
+        "x": 22464,
+        "y": 50688,
+        "point2": 285
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          8,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 285,
+      "identity": {
+        "x": 22464,
+        "y": 49152,
+        "point2": 282
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 60,
+      "identity": {
+        "wall_ptr": 286,
+        "wall_count": 7
+      },
+      "fields": {
+        "floor_picnum": [
+          293,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 286,
+      "identity": {
+        "x": 24384,
+        "y": 53376,
+        "point2": 287
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 287,
+      "identity": {
+        "x": 24384,
+        "y": 54720,
+        "point2": 288
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          56,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 288,
+      "identity": {
+        "x": 22656,
+        "y": 54720,
+        "point2": 289
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 289,
+      "identity": {
+        "x": 22464,
+        "y": 54528,
+        "point2": 290
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          8,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 290,
+      "identity": {
+        "x": 22464,
+        "y": 54432,
+        "point2": 291
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          32,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 291,
+      "identity": {
+        "x": 22464,
+        "y": 53664,
+        "point2": 292
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 292,
+      "identity": {
+        "x": 22464,
+        "y": 53376,
+        "point2": 286
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 119,
+      "identity": {
+        "wall_ptr": 581,
+        "wall_count": 8
+      },
+      "fields": {
+        "floor_picnum": [
+          293,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 581,
+      "identity": {
+        "x": 24384,
+        "y": 50880,
+        "point2": 582
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 582,
+      "identity": {
+        "x": 24384,
+        "y": 53184,
+        "point2": 583
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 583,
+      "identity": {
+        "x": 22464,
+        "y": 53184,
+        "point2": 584
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          32,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 584,
+      "identity": {
+        "x": 22464,
+        "y": 52464,
+        "point2": 585
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          56,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 585,
+      "identity": {
+        "x": 22416,
+        "y": 52416,
+        "point2": 586
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 586,
+      "identity": {
+        "x": 22416,
+        "y": 51648,
+        "point2": 587
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          32,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 587,
+      "identity": {
+        "x": 22464,
+        "y": 51600,
+        "point2": 588
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          40,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 588,
+      "identity": {
+        "x": 22464,
+        "y": 50880,
+        "point2": 581
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 125,
+      "identity": {
+        "wall_ptr": 609,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          406,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 609,
+      "identity": {
+        "x": 26784,
+        "y": 49056,
+        "point2": 610
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 610,
+      "identity": {
+        "x": 27072,
+        "y": 50496,
+        "point2": 611
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 611,
+      "identity": {
+        "x": 24774,
+        "y": 50934,
+        "point2": 612
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 612,
+      "identity": {
+        "x": 24576,
+        "y": 49440,
+        "point2": 609
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "identity": {
+        "wall_ptr": 735,
+        "wall_count": 28
+      },
+      "fields": {
+        "floor_picnum": [
+          293,
+          296
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          30
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 735,
+      "identity": {
+        "x": 25344,
+        "y": 46464,
+        "point2": 736
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 736,
+      "identity": {
+        "x": 27264,
+        "y": 46848,
+        "point2": 737
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 737,
+      "identity": {
+        "x": 27264,
+        "y": 46944,
+        "point2": 738
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          8,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 738,
+      "identity": {
+        "x": 27312,
+        "y": 46992,
+        "point2": 739
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          8,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 739,
+      "identity": {
+        "x": 27312,
+        "y": 47760,
+        "point2": 740
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          45,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 740,
+      "identity": {
+        "x": 27264,
+        "y": 47808,
+        "point2": 741
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          48,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 741,
+      "identity": {
+        "x": 27264,
+        "y": 52416,
+        "point2": 742
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 742,
+      "identity": {
+        "x": 27264,
+        "y": 52992,
+        "point2": 743
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 743,
+      "identity": {
+        "x": 27264,
+        "y": 54528,
+        "point2": 744
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 744,
+      "identity": {
+        "x": 27264,
+        "y": 54720,
+        "point2": 745
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 745,
+      "identity": {
+        "x": 24384,
+        "y": 54720,
+        "point2": 746
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 746,
+      "identity": {
+        "x": 24384,
+        "y": 53376,
+        "point2": 747
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 747,
+      "identity": {
+        "x": 24384,
+        "y": 53184,
+        "point2": 748
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 748,
+      "identity": {
+        "x": 24384,
+        "y": 50880,
+        "point2": 749
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 749,
+      "identity": {
+        "x": 24384,
+        "y": 50688,
+        "point2": 750
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 750,
+      "identity": {
+        "x": 24384,
+        "y": 49152,
+        "point2": 751
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 751,
+      "identity": {
+        "x": 24384,
+        "y": 48960,
+        "point2": 752
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 752,
+      "identity": {
+        "x": 24384,
+        "y": 47424,
+        "point2": 753
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 753,
+      "identity": {
+        "x": 24384,
+        "y": 47232,
+        "point2": 754
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "x_panning": [
+          24,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 754,
+      "identity": {
+        "x": 25344,
+        "y": 47232,
+        "point2": 735
+      },
+      "fields": {
+        "picnum": [
+          363,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 755,
+      "identity": {
+        "x": 24576,
+        "y": 49440,
+        "point2": 756
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 756,
+      "identity": {
+        "x": 24774,
+        "y": 50934,
+        "point2": 757
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 757,
+      "identity": {
+        "x": 27072,
+        "y": 50496,
+        "point2": 758
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 758,
+      "identity": {
+        "x": 26784,
+        "y": 49056,
+        "point2": 755
+      },
+      "fields": {
+        "picnum": [
+          312,
+          297
+        ],
+        "shade": [
+          44,
+          30
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 759,
+      "identity": {
+        "x": 24390,
+        "y": 48960,
+        "point2": 760
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 760,
+      "identity": {
+        "x": 24480,
+        "y": 48960,
+        "point2": 761
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 761,
+      "identity": {
+        "x": 24480,
+        "y": 47520,
+        "point2": 762
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 762,
+      "identity": {
+        "x": 24390,
+        "y": 47428,
+        "point2": 759
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 52,
+      "identity": {
+        "wall_ptr": 248,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          302,
+          2453
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          24
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 248,
+      "identity": {
+        "x": 24384,
+        "y": 53184,
+        "point2": 249
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 249,
+      "identity": {
+        "x": 24384,
+        "y": 53376,
+        "point2": 250
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 250,
+      "identity": {
+        "x": 22464,
+        "y": 53376,
+        "point2": 251
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "x_panning": [
+          24,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 251,
+      "identity": {
+        "x": 22464,
+        "y": 53184,
+        "point2": 248
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 53,
+      "identity": {
+        "wall_ptr": 252,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          302,
+          2453
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          24
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 252,
+      "identity": {
+        "x": 24384,
+        "y": 50688,
+        "point2": 253
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 253,
+      "identity": {
+        "x": 24384,
+        "y": 50880,
+        "point2": 254
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 254,
+      "identity": {
+        "x": 22464,
+        "y": 50880,
+        "point2": 255
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 255,
+      "identity": {
+        "x": 22464,
+        "y": 50688,
+        "point2": 252
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 54,
+      "identity": {
+        "wall_ptr": 256,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          302,
+          2453
+        ],
+        "ceiling_picnum": [
+          363,
+          215
+        ],
+        "floor_shade": [
+          44,
+          24
+        ],
+        "ceiling_shade": [
+          44,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 256,
+      "identity": {
+        "x": 24384,
+        "y": 47232,
+        "point2": 257
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 257,
+      "identity": {
+        "x": 24384,
+        "y": 47424,
+        "point2": 258
+      },
+      "fields": {
+        "picnum": [
+          312,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          14,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 258,
+      "identity": {
+        "x": 22464,
+        "y": 47424,
+        "point2": 259
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "x_panning": [
+          16,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 259,
+      "identity": {
+        "x": 22464,
+        "y": 47232,
+        "point2": 256
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          50,
+          28
+        ],
+        "x_panning": [
+          11,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 55,
+      "identity": {
+        "wall_ptr": 260,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          302,
+          2453
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          24
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 260,
+      "identity": {
+        "x": 24384,
+        "y": 48960,
+        "point2": 261
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 261,
+      "identity": {
+        "x": 24384,
+        "y": 49152,
+        "point2": 262
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 262,
+      "identity": {
+        "x": 22464,
+        "y": 49152,
+        "point2": 263
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "x_panning": [
+          8,
+          0
+        ],
+        "y_panning": [
+          148,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 263,
+      "identity": {
+        "x": 22464,
+        "y": 48960,
+        "point2": 260
+      },
+      "fields": {
+        "picnum": [
+          180,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "identity": {
+        "wall_ptr": 293,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          302,
+          2453
+        ],
+        "ceiling_picnum": [
+          624,
+          215
+        ],
+        "floor_shade": [
+          44,
+          24
+        ],
+        "ceiling_shade": [
+          54,
+          38
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 293,
+      "identity": {
+        "x": 24390,
+        "y": 47428,
+        "point2": 294
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 294,
+      "identity": {
+        "x": 24480,
+        "y": 47520,
+        "point2": 295
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 295,
+      "identity": {
+        "x": 24480,
+        "y": 48960,
+        "point2": 296
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 296,
+      "identity": {
+        "x": 24390,
+        "y": 48960,
+        "point2": 293
+      },
+      "fields": {
+        "picnum": [
+          406,
+          2453
+        ],
+        "shade": [
+          44,
+          28
+        ],
+        "y_repeat": [
+          13,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 64,
+      "identity": {
+        "wall_ptr": 305,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          365,
+          2453
+        ],
+        "ceiling_picnum": [
+          365,
+          2453
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 305,
+      "identity": {
+        "x": 27552,
+        "y": 47760,
+        "point2": 306
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2178
+        ],
+        "shade": [
+          36,
+          34
+        ],
+        "y_repeat": [
+          16,
+          8
+        ],
+        "x_panning": [
+          1,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "identity": {
+        "x": 27312,
+        "y": 47760,
+        "point2": 307
+      },
+      "fields": {
+        "picnum": [
+          363,
+          2453
+        ],
+        "shade": [
+          44,
+          34
+        ],
+        "y_repeat": [
+          7,
+          8
+        ],
+        "x_panning": [
+          9,
+          0
+        ],
+        "y_panning": [
+          116,
+          0
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 307,
+      "identity": {
+        "x": 27312,
+        "y": 46992,
+        "point2": 308
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2178
+        ],
+        "shade": [
+          36,
+          34
+        ],
+        "y_repeat": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 308,
+      "identity": {
+        "x": 27552,
+        "y": 46992,
+        "point2": 305
+      },
+      "fields": {
+        "picnum": [
+          358,
+          2453
+        ],
+        "shade": [
+          24,
+          34
+        ],
+        "y_repeat": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "sector",
+      "index": 67,
+      "identity": {
+        "wall_ptr": 317,
+        "wall_count": 4
+      },
+      "fields": {
+        "floor_picnum": [
+          365,
+          2453
+        ],
+        "ceiling_picnum": [
+          365,
+          2453
+        ],
+        "floor_shade": [
+          32,
+          36
+        ],
+        "ceiling_shade": [
+          38,
+          36
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 317,
+      "identity": {
+        "x": 22416,
+        "y": 52416,
+        "point2": 318
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2178
+        ],
+        "shade": [
+          32,
+          34
+        ],
+        "y_repeat": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 318,
+      "identity": {
+        "x": 21888,
+        "y": 52416,
+        "point2": 319
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2453
+        ],
+        "shade": [
+          44,
+          34
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 319,
+      "identity": {
+        "x": 21888,
+        "y": 51648,
+        "point2": 320
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2178
+        ],
+        "shade": [
+          38,
+          34
+        ],
+        "y_repeat": [
+          16,
+          8
+        ]
+      }
+    },
+    {
+      "kind": "wall",
+      "index": 320,
+      "identity": {
+        "x": 22416,
+        "y": 51648,
+        "point2": 317
+      },
+      "fields": {
+        "picnum": [
+          365,
+          2453
+        ],
+        "shade": [
+          44,
+          34
+        ],
+        "x_panning": [
+          17,
+          0
+        ],
+        "y_panning": [
+          35,
+          0
+        ]
+      }
+    }
+  ],
+  "sprites": [
+    {
+      "name": "toilet-58-front",
+      "fields": {
+        "sector": 58,
+        "x": 23296,
+        "y": 48192,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-back",
+      "fields": {
+        "sector": 58,
+        "x": 22656,
+        "y": 48192,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 32,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-left",
+      "fields": {
+        "sector": 58,
+        "x": 22976,
+        "y": 47936,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 40,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-58-right",
+      "fields": {
+        "sector": 58,
+        "x": 22976,
+        "y": 48448,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 40,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-58-rim-front",
+      "fields": {
+        "sector": 58,
+        "x": 23248,
+        "y": 48192,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 6,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-rim-back",
+      "fields": {
+        "sector": 58,
+        "x": 22704,
+        "y": 48192,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 6,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-rim-left",
+      "fields": {
+        "sector": 58,
+        "x": 22976,
+        "y": 47984,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 6,
+        "y_repeat": 28,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-rim-right",
+      "fields": {
+        "sector": 58,
+        "x": 22976,
+        "y": 48400,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 6,
+        "y_repeat": 28,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-water",
+      "fields": {
+        "sector": 58,
+        "x": 22976,
+        "y": 48192,
+        "z": -2048,
+        "type": 0,
+        "picnum": 2915,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 20,
+        "y_repeat": 28,
+        "shade": -10
+      }
+    },
+    {
+      "name": "toilet-58-cistern-front",
+      "fields": {
+        "sector": 58,
+        "x": 22656,
+        "y": 48192,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 45,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-cistern-back",
+      "fields": {
+        "sector": 58,
+        "x": 22496,
+        "y": 48192,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 36,
+        "y_repeat": 45,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-cistern-left",
+      "fields": {
+        "sector": 58,
+        "x": 22576,
+        "y": 47904,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 10,
+        "y_repeat": 45,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-58-cistern-right",
+      "fields": {
+        "sector": 58,
+        "x": 22576,
+        "y": 48480,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 10,
+        "y_repeat": 45,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-58-cistern-top",
+      "fields": {
+        "sector": 58,
+        "x": 22576,
+        "y": 48192,
+        "z": -9984,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 10,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-58-flush",
+      "fields": {
+        "sector": 58,
+        "x": 22912,
+        "y": 48192,
+        "z": -8192,
+        "type": 20,
+        "picnum": 0,
+        "status": 0,
+        "cstat": 33152,
+        "angle": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "shade": 22
+      },
+      "extra": {
+        "trigger_push": 1,
+        "data_1": 369,
+        "data_2": 369
+      }
+    },
+    {
+      "name": "toilet-59-front",
+      "fields": {
+        "sector": 59,
+        "x": 23296,
+        "y": 49920,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-back",
+      "fields": {
+        "sector": 59,
+        "x": 22656,
+        "y": 49920,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 32,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-left",
+      "fields": {
+        "sector": 59,
+        "x": 22976,
+        "y": 49664,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 40,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-59-right",
+      "fields": {
+        "sector": 59,
+        "x": 22976,
+        "y": 50176,
+        "z": -512,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 40,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-59-rim-front",
+      "fields": {
+        "sector": 59,
+        "x": 23248,
+        "y": 49920,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 6,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-rim-back",
+      "fields": {
+        "sector": 59,
+        "x": 22704,
+        "y": 49920,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 32,
+        "y_repeat": 6,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-rim-left",
+      "fields": {
+        "sector": 59,
+        "x": 22976,
+        "y": 49712,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 6,
+        "y_repeat": 28,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-rim-right",
+      "fields": {
+        "sector": 59,
+        "x": 22976,
+        "y": 50128,
+        "z": -2560,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 6,
+        "y_repeat": 28,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-water",
+      "fields": {
+        "sector": 59,
+        "x": 22976,
+        "y": 49920,
+        "z": -2048,
+        "type": 0,
+        "picnum": 2915,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 20,
+        "y_repeat": 28,
+        "shade": -10
+      }
+    },
+    {
+      "name": "toilet-59-cistern-front",
+      "fields": {
+        "sector": 59,
+        "x": 22656,
+        "y": 49920,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 45,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-cistern-back",
+      "fields": {
+        "sector": 59,
+        "x": 22496,
+        "y": 49920,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 36,
+        "y_repeat": 45,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-cistern-left",
+      "fields": {
+        "sector": 59,
+        "x": 22576,
+        "y": 49632,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 10,
+        "y_repeat": 45,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-59-cistern-right",
+      "fields": {
+        "sector": 59,
+        "x": 22576,
+        "y": 50208,
+        "z": -4224,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 10,
+        "y_repeat": 45,
+        "shade": -8
+      }
+    },
+    {
+      "name": "toilet-59-cistern-top",
+      "fields": {
+        "sector": 59,
+        "x": 22576,
+        "y": 49920,
+        "z": -9984,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 10,
+        "shade": -12
+      }
+    },
+    {
+      "name": "toilet-59-flush",
+      "fields": {
+        "sector": 59,
+        "x": 22912,
+        "y": 49920,
+        "z": -8192,
+        "type": 20,
+        "picnum": 0,
+        "status": 0,
+        "cstat": 33152,
+        "angle": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "shade": 22
+      },
+      "extra": {
+        "trigger_push": 1,
+        "data_1": 369,
+        "data_2": 369
+      }
+    },
+    {
+      "name": "urinal-1-front",
+      "fields": {
+        "sector": 119,
+        "x": 22928,
+        "y": 51456,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 24,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-back",
+      "fields": {
+        "sector": 119,
+        "x": 22544,
+        "y": 51456,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 36,
+        "y_repeat": 24,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-left",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51168,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 24,
+        "y_repeat": 24,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-1-right",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51744,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 24,
+        "y_repeat": 24,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-1-rim-front",
+      "fields": {
+        "sector": 119,
+        "x": 22896,
+        "y": 51456,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 4,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-rim-back",
+      "fields": {
+        "sector": 119,
+        "x": 22576,
+        "y": 51456,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 4,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-rim-left",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51200,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-rim-right",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51712,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-water",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51456,
+        "z": -7680,
+        "type": 0,
+        "picnum": 2915,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 28,
+        "y_repeat": 16,
+        "shade": -10
+      }
+    },
+    {
+      "name": "urinal-1-backplate",
+      "fields": {
+        "sector": 119,
+        "x": 22528,
+        "y": 51456,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 48,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-1-pipe",
+      "fields": {
+        "sector": 119,
+        "x": 22544,
+        "y": 51456,
+        "z": -18432,
+        "type": 0,
+        "picnum": 2453,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-1-flush",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 51456,
+        "z": -14336,
+        "type": 20,
+        "picnum": 0,
+        "status": 0,
+        "cstat": 33152,
+        "angle": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "shade": 22
+      },
+      "extra": {
+        "trigger_push": 1,
+        "data_1": 369,
+        "data_2": 369
+      }
+    },
+    {
+      "name": "urinal-2-front",
+      "fields": {
+        "sector": 119,
+        "x": 22928,
+        "y": 52608,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 24,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-back",
+      "fields": {
+        "sector": 119,
+        "x": 22544,
+        "y": 52608,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1024,
+        "x_repeat": 36,
+        "y_repeat": 24,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-left",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52320,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 1536,
+        "x_repeat": 24,
+        "y_repeat": 24,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-2-right",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52896,
+        "z": -5120,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 512,
+        "x_repeat": 24,
+        "y_repeat": 24,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-2-rim-front",
+      "fields": {
+        "sector": 119,
+        "x": 22896,
+        "y": 52608,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 4,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-rim-back",
+      "fields": {
+        "sector": 119,
+        "x": 22576,
+        "y": 52608,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 4,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-rim-left",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52352,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-rim-right",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52864,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-water",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52608,
+        "z": -7680,
+        "type": 0,
+        "picnum": 2915,
+        "status": 0,
+        "cstat": 33,
+        "angle": 0,
+        "x_repeat": 28,
+        "y_repeat": 16,
+        "shade": -10
+      }
+    },
+    {
+      "name": "urinal-2-backplate",
+      "fields": {
+        "sector": 119,
+        "x": 22528,
+        "y": 52608,
+        "z": -8192,
+        "type": 0,
+        "picnum": 43,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 36,
+        "y_repeat": 48,
+        "shade": -12
+      }
+    },
+    {
+      "name": "urinal-2-pipe",
+      "fields": {
+        "sector": 119,
+        "x": 22544,
+        "y": 52608,
+        "z": -18432,
+        "type": 0,
+        "picnum": 2453,
+        "status": 0,
+        "cstat": 401,
+        "angle": 0,
+        "x_repeat": 4,
+        "y_repeat": 16,
+        "shade": -8
+      }
+    },
+    {
+      "name": "urinal-2-flush",
+      "fields": {
+        "sector": 119,
+        "x": 22736,
+        "y": 52608,
+        "z": -14336,
+        "type": 20,
+        "picnum": 0,
+        "status": 0,
+        "cstat": 33152,
+        "angle": 0,
+        "x_repeat": 64,
+        "y_repeat": 64,
+        "shade": 22
+      },
+      "extra": {
+        "trigger_push": 1,
+        "data_1": 369,
+        "data_2": 369
+      }
+    },
+    {
+      "name": "stall-light",
+      "fields": {
+        "sector": 152,
+        "x": 25200,
+        "y": 48000,
+        "z": -46048,
+        "type": 0,
+        "picnum": 2290,
+        "status": 0,
+        "cstat": 32,
+        "angle": 512,
+        "x_repeat": 48,
+        "y_repeat": 48,
+        "shade": -24
+      }
+    },
+    {
+      "name": "wash-light",
+      "fields": {
+        "sector": 152,
+        "x": 25200,
+        "y": 52700,
+        "z": -46048,
+        "type": 0,
+        "picnum": 2290,
+        "status": 0,
+        "cstat": 32,
+        "angle": 512,
+        "x_repeat": 48,
+        "y_repeat": 48,
+        "shade": -24
+      }
+    }
+  ]
+}

@@ -23,13 +23,14 @@ from .duke_motion import (
     rotate_rise_bridge,
     sliding_door,
     stretch_bridge,
-    swinging_door,
+    swinging_door, tagged_z_motion, sector_extra,
 )
 from .duke_semantics import (
-    CRACK_TILES, analyze_duke_mechanisms, classify_se7_groups, gpspeed_busy_time,
-    hatch_endpoint_roles,
+    CRACK_TILES, analyze_duke_mechanisms, classify_se7_groups,
+    hatch_endpoint_roles, conversion_coverage, swing_group_operable,
 )
-from .format import read_map
+from .format import SPRITE_FIELDS, read_map
+from .model import record_fields, record_extra
 from .style import corpus_parallax_tiles, load_visual_style, style_tile_usage
 
 
@@ -188,8 +189,8 @@ class ChannelAllocator:
             return candidate
         while self._overflow in self._used:
             self._overflow += 1
-            if self._overflow > USER_CHANNEL_MAX:
-                raise PlayableConversionError(f"Duke tag {tag} cannot be allocated to a Blood user channel")
+        if self._overflow > USER_CHANNEL_MAX:
+            raise PlayableConversionError(f"Duke tag {tag} cannot be allocated to a Blood user channel")
         self._map[tag] = self._overflow
         self._used.add(self._overflow)
         self._overflow += 1
@@ -221,7 +222,7 @@ def _underwater_sectors(duke: DukeDiskMap, builder: LevelBuilder) -> list[int]:
     """Stack XSECTOR.Underwater onto every Blood record that needs swim physics.
 
     DNE3L11, a partial 3:2 conversion of E3L11, sets underwater on every Duke
-    ST2 sector — including SE13 holes that are also type-600. DWE1M1 authors
+    ST2 sector â€” including SE13 holes that are also type-600. DWE1M1 authors
     type-600 doors that sit in a water volume with Push+Wallpush still set.
     Blood XSECTOR flags combine; a sector type does not replace underwater.
     """
@@ -446,14 +447,50 @@ def _mean_shade(values) -> float:
     return sum(ordinary) / len(ordinary)
 
 
-def _add_marker(
-    builder: LevelBuilder, *, sector: int, owner: int, x: int, y: int, z: int,
-    type: int, angle: int = 0,
-) -> int:
+def _add_conversion_sprite(builder: LevelBuilder, diagnostics: list[dict[str, Any]] | None = None, **values: int) -> int:
+    """Retain engine-valid control/start positions outside a sector's volume.
+
+    LevelBuilder checks containment for newly authored things. Build loads
+    sprites by sectnum instead: motion markers may sit outside their leaf,
+    timers may occupy closed/crushing sectors, and original header starts can
+    lie beyond a floor. Keep those coordinates, with a diagnostic, rather than
+    moving an axis, changing a spawn, or rejecting the whole board. Invalid
+    sector indices and malformed target records still fail validation.
+    """
+    sector, x, y, z = (int(values[key]) for key in ("sector", "x", "y", "z"))
+    if not 0 <= sector < len(builder.level.sectors):
+        return builder.add_sprite(**values)  # keep LevelBuilder's structural error
     ceiling = _sector_surface_z(builder.level, sector, x, y, "ceiling")
     floor = _sector_surface_z(builder.level, sector, x, y, "floor")
-    z = max(ceiling, min(floor, z))
-    sprite_id = builder.add_sprite(
+    if _point_in_sector(builder.level, sector, (x, y)) != 0 and ceiling <= z <= floor:
+        return builder.add_sprite(**values)
+    sprite_id = len(builder.level.sprites)
+    fields = {name: 0 for name, _ in SPRITE_FIELDS}
+    fields.update(cstat=128, clipdist=32, x_repeat=64, y_repeat=64, owner=-1, extra=-1)
+    fields.update(values)
+    fields.update(index=sprite_id, initial_type=fields["type"], angle=fields["angle"] & 2047)
+    builder.level.sprites.append({"id": sprite_id, "fields": fields, "blood": None})
+    if diagnostics is not None:
+        diagnostics.append({
+            "severity": "warning", "code": "converted-sprite-outside-volume",
+            "target_sprite": sprite_id, "target_type": fields["type"],
+            "source_sector": sector, "position": [x, y, z],
+            "ceiling_z": ceiling, "floor_z": floor,
+            "reason": "Build accepts sector-assigned sprites outside their sector volume; strict new-level placement is not a conversion prerequisite.",
+            "action": "Retained converted coordinates; review gameplay placement.",
+        })
+    return sprite_id
+
+
+def _add_marker(
+    builder: LevelBuilder, *, sector: int, owner: int, x: int, y: int, z: int,
+    type: int, angle: int = 0, diagnostics: list[dict[str, Any]] | None = None,
+) -> int:
+    if type != 8:
+        ceiling = _sector_surface_z(builder.level, sector, x, y, "ceiling")
+        floor = _sector_surface_z(builder.level, sector, x, y, "floor")
+        z = max(ceiling, min(floor, z))
+    sprite_id = _add_conversion_sprite(builder, diagnostics,
         sector=sector, x=x, y=y, z=z, type=type, picnum=3997,
         status=10, angle=0, cstat=32896, x_repeat=64, y_repeat=64,
     )
@@ -588,6 +625,9 @@ def convert_e3l11_to_blood(
     blood_maps: str | Path | None = None,
     style_map: str | Path | None = None,
 ) -> tuple[Any, dict[str, Any]]:
+    for source_id, sprite in enumerate(duke.sprites):
+        if not 0 <= sprite.sector < len(duke.sectors):
+            raise PlayableConversionError(f"source sprite {source_id} has invalid sector {sprite.sector}")
     scale = native_scale("duke3d", "blood")
     geometry, _base_report = convert_build_ir(duke.to_build_ir(), "blood", policy="geometry-only")
     builder = LevelBuilder(geometry.to_level_ir())
@@ -623,13 +663,15 @@ def convert_e3l11_to_blood(
 
     mechanism_counts: Counter[str] = Counter()
     mechanism_records: list[dict[str, Any]] = []
+    diagnostics: list[dict[str, Any]] = []
+    unsupported_sources: set[int] = set()
     channels = ChannelAllocator()
 
     def motion_fields(sector_id: int, **extra: int) -> dict[str, int]:
         target = builder.level.sectors[sector_id]["fields"]
         values = {
             "state": 0, "busy": 0, "busy_time_a": 20, "busy_time_b": 20,
-            "interruptable": 0,
+            "interruptable": 0, "busy_wave_a": 1, "busy_wave_b": 1,
             "off_ceiling_z": target["ceiling_z"], "on_ceiling_z": target["ceiling_z"],
             "off_floor_z": target["floor_z"], "on_floor_z": target["floor_z"],
         }
@@ -651,84 +693,29 @@ def convert_e3l11_to_blood(
     for sector_id, source in enumerate(duke.sectors):
         tag = source.lotag & 0x3FFF
         target = builder.level.sectors[sector_id]["fields"]
-        if tag == 20:  # ceiling door
-            current = source.ceiling_z
-            possible = [duke.sectors[n].ceiling_z for n in _neighbors(duke, sector_id) if duke.sectors[n].ceiling_z < current]
-            if not possible:
-                continue
-            target["type"] = 600
-            busy = gpspeed_busy_time(duke, sector_id, 10)
-            fields = motion_fields(sector_id, on_ceiling_z=_scale(max(possible), scale), busy_time_a=busy, busy_time_b=busy)
-            builder.set_behavior("sector", sector_id, **fields)
-            mechanism_counts["ceiling-door"] += 1
-            mechanism_records.append({"source_sector": sector_id, "blood_type": 600, "kind": "ceiling-door"})
-        elif tag == 18:  # elevator; preserve room height at the selected stop
-            current_floor = source.floor_z
-            possible = [duke.sectors[n].floor_z for n in _neighbors(duke, sector_id) if duke.sectors[n].floor_z < current_floor]
-            if not possible:
-                continue
-            target_floor = max(possible)
-            delta = target_floor - source.floor_z
-            target["type"] = 600
-            busy = gpspeed_busy_time(duke, sector_id, 32)
-            fields = motion_fields(
-                sector_id,
-                on_ceiling_z=_scale(source.ceiling_z + delta, scale),
-                on_floor_z=_scale(target_floor, scale),
-                busy_time_a=busy, busy_time_b=busy,
-            )
-            builder.set_behavior("sector", sector_id, **fields)
-            mechanism_counts["elevator"] += 1
-            mechanism_records.append({"source_sector": sector_id, "blood_type": 600, "kind": "elevator"})
-        elif tag == 16:  # ST16 platform: floor seeks the nearest neighbor floor.
-            current = source.floor_z
-            neighbor_floors = [duke.sectors[n].floor_z for n in _neighbors(duke, sector_id)]
-            down = [z for z in neighbor_floors if z > current]
-            up = [z for z in neighbor_floors if z < current]
-            if down:
-                target_floor = min(down)
-            elif up:
-                target_floor = max(up)
-            else:
-                continue
-            target["type"] = 600
-            busy = gpspeed_busy_time(duke, sector_id, 24)
-            fields = motion_fields(
-                sector_id, on_floor_z=_scale(target_floor, scale),
-                busy_time_a=busy, busy_time_b=busy,
-            )
-            builder.set_behavior("sector", sector_id, **fields)
-            mechanism_counts["platform"] += 1
-            mechanism_records.append({
-                "source_sector": sector_id, "blood_type": 600, "kind": "platform",
-                "classification": "faithfully-convertible",
-            })
-        elif tag == 22:  # ST22 splitting door: both surfaces meet, then reopen to neighbors.
-            neighbors = _neighbors(duke, sector_id)
-            if not neighbors:
-                continue
-            open_ceiling = min(duke.sectors[n].ceiling_z for n in neighbors)
-            open_floor = max(duke.sectors[n].floor_z for n in neighbors)
-            collapsed = abs(source.ceiling_z - source.floor_z) <= 256
-            if collapsed:
-                on_ceiling, on_floor = open_ceiling, open_floor
-            else:
-                midpoint = (source.ceiling_z + source.floor_z) // 2
-                on_ceiling = on_floor = midpoint
-            target["type"] = 600
-            busy = gpspeed_busy_time(duke, sector_id, 16)
-            fields = motion_fields(
-                sector_id,
-                on_ceiling_z=_scale(on_ceiling, scale),
-                on_floor_z=_scale(on_floor, scale),
-                busy_time_a=busy, busy_time_b=busy,
-            )
-            builder.set_behavior("sector", sector_id, **fields)
-            mechanism_counts["splitting-door"] += 1
-            mechanism_records.append({
-                "source_sector": sector_id, "blood_type": 600, "kind": "splitting-door",
-                "classification": "faithfully-convertible", "starts_closed": collapsed,
-            })
+        if tag not in {16, 17, 18, 19, 20, 21, 22}:
+            continue
+        try:
+            motion = tagged_z_motion(duke, sector_id)
+        except ValueError as error:
+            diagnostics.append({"severity": "warning", "code": "duke-motion-unsupported",
+                                "source_sector": sector_id, "sector_lotag": int(source.lotag),
+                                "reason": str(error), "action": "Retained geometry; no motion endpoint invented."})
+            continue
+        target["type"] = 600
+        busy = duke_busy_time(motion["ticks"])
+        fields = motion_fields(sector_id, busy_time_a=busy, busy_time_b=busy,
+                               interruptable=1 if tag in {20,21,22} else 0,
+                               **{k: _scale(motion[k], scale) for k in
+                                  ("off_ceiling_z", "on_ceiling_z", "off_floor_z", "on_floor_z")})
+        builder.set_behavior("sector", sector_id, **fields)
+        mechanism_counts[motion["kind"]] += 1
+        unequal = len(set(motion["surface_ticks"].values())) > 1
+        mechanism_records.append({"source_sector": sector_id, "blood_type": 600,
+                                  "kind": motion["kind"], "classification": "semantically-approximated" if unequal else "faithfully-convertible",
+                                  "duke_ticks": motion["ticks"], "duke_surface_ticks": motion["surface_ticks"],
+                                  "blood_busy_time": busy, "duke_speed": motion["speed"],
+                                  "timing_note": "Blood shares one duration between both surfaces; unequal Duke completion times are approximated." if unequal else "Constant-speed travel rounded to Blood tenths."})
 
     # Duke SE31/SE32 store one endpoint in the effector Z and the other in the
     # authored sector surface. When angle != 1536 Duke moves to the effector
@@ -741,6 +728,17 @@ def convert_e3l11_to_blood(
         source_sector = duke.sectors[sector_id]
         target = builder.level.sectors[sector_id]["fields"]
         target["type"] = 600
+        speed = sector_extra(duke, sector_id)
+        if speed <= 0:
+            unsupported_sources.add(source_id)
+            diagnostics.append({"severity":"warning", "code":"duke-motion-unsupported",
+                                "source_sprite":source_id, "source_sector":sector_id,
+                                "reason":"Non-positive SE31/32 sector speed; no velocity invented."})
+            continue
+        authored_z = int(source_sector.ceiling_z if sprite.lotag == 32 else source_sector.floor_z)
+        distance = abs(authored_z-int(sprite.z))
+        ticks = max(1, distance//speed if sprite.lotag==32 else (distance+speed-1)//speed)
+        busy = duke_busy_time(ticks)
         if sprite.lotag == 32:
             authored, effector = _scale(source_sector.ceiling_z, scale), _scale(sprite.z, scale)
             off, on = (effector, authored) if sprite.angle != 1536 else (authored, effector)
@@ -748,7 +746,7 @@ def convert_e3l11_to_blood(
             fields = motion_fields(
                 sector_id, off_ceiling_z=off, on_ceiling_z=on,
                 off_floor_z=target["floor_z"], on_floor_z=target["floor_z"],
-                busy_time_a=24, busy_time_b=24,
+                busy_time_a=busy, busy_time_b=busy,
             )
             kind = "ceiling-rise-fall"
         else:
@@ -758,12 +756,13 @@ def convert_e3l11_to_blood(
             fields = motion_fields(
                 sector_id, off_floor_z=off, on_floor_z=on,
                 off_ceiling_z=target["ceiling_z"], on_ceiling_z=target["ceiling_z"],
-                busy_time_a=24, busy_time_b=24,
+                busy_time_a=busy, busy_time_b=busy,
             )
             kind = "floor-rise-fall"
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts[kind] += 1
-        mechanism_records.append({"source_sector": sector_id, "source_effector": source_id, "blood_type": 600, "kind": kind})
+        mechanism_records.append({"source_sector": sector_id, "source_effector": source_id, "blood_type": 600, "kind": kind,
+                                  "duke_ticks":ticks,"blood_busy_time":busy,"duke_speed":speed})
 
     # Duke SE15 sliding door -> Blood two-marker horizontal slide.
     for source_id, sprite in enumerate(duke.sprites):
@@ -772,7 +771,7 @@ def convert_e3l11_to_blood(
         sector_id = sprite.sector
         target = builder.level.sectors[sector_id]["fields"]
         target["type"] = 616
-        x, y, z = _scaled_position(builder, sprite, scale)
+        x, y, z = (_scale(value, scale) for value in (sprite.x, sprite.y, sprite.z))
         motion = sliding_door(duke, sprite)
         # Both markers keep angle 0. TranslateSector interpolates the rotation
         # as interpolate(marker0.ang, marker1.ang, busy), and interpolate(a, a, t)
@@ -780,8 +779,8 @@ def convert_e3l11_to_blood(
         # by that angle for the whole slide instead of leaving it flat. 1021 of
         # the 1054 slide sectors in the Blood corpus author both markers at 0
         # and carry the direction in marker1's position alone.
-        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
-        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
+        marker0 = _add_marker(builder, diagnostics=diagnostics, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
+        marker1 = _add_marker(builder, diagnostics=diagnostics, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
         # The leaf travels 16 units per tick for (sector.extra >> 3) ticks. The
         # effector's own texture repeat says nothing about how far it goes.
         distance = _scale(motion["distance"], scale)
@@ -829,7 +828,7 @@ def convert_e3l11_to_blood(
         # together -- which it does only for an SE0 authored at angle 512.
         axis_sector = pivot.sector if motion["snapped_to_pivot"] else sprite.sector
         marker = _add_marker(
-            builder, sector=axis_sector, owner=sector_id,
+            builder, diagnostics=diagnostics, sector=axis_sector, owner=sector_id,
             x=_scale(motion["centre_x"], scale), y=_scale(motion["centre_y"], scale),
             z=_scale(pivot.z if motion["snapped_to_pivot"] else sprite.z, scale),
             # Negated for the same reason the slide's marker1 is reversed: the
@@ -845,7 +844,8 @@ def convert_e3l11_to_blood(
         # sector does both halves once it is given the floor endpoint.
         fields = motion_fields(
             sector_id, marker_0=marker, busy_time_a=busy, busy_time_b=busy,
-            on_floor_z=_scale(motion["floor_z"], scale), state=1,
+            off_floor_z=_scale(motion["floor_z"], scale),
+            on_floor_z=_scale(duke.sectors[sector_id].floor_z, scale), state=1,
         )
         if activation_tag is not None:
             fields.update(trigger_push=0, trigger_wall_push=0, rx_id=channels.allocate(activation_tag))
@@ -853,16 +853,26 @@ def convert_e3l11_to_blood(
         mechanism_counts["rotate-bridge"] += 1
         mechanism_records.append({
             "source_sector": sector_id, "source_effector": source_id, "blood_type": 617,
-            "kind": "rotate-bridge", "classification": "faithfully-convertible" if activation_tag is not None else "semantically-approximated",
+            "kind": "rotate-bridge", "classification": "faithfully-convertible" if activation_tag is not None and abs(duke.sectors[sector_id].floor_z-motion["floor_z"]) in {0,32768} else "semantically-approximated",
             "activation_tag": activation_tag,
             "rotation": motion["angle"], "duke_ticks": motion["ticks"],
             "sector_extra": motion["sector_extra"], "rises_to": motion["floor_z"],
+            "timing_note":"Rotation takes 64 Duke ticks; independent 512-Z-unit floor velocity is approximated when its duration differs.",
         })
 
     # SE11 swinging doors pivot about the effector itself (EDuke32 stores wall
     # origins relative to the SE). DNE3L3 lowers the same ST23 pair as type 617.
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 1 or sprite.lotag != 11:
+            continue
+        if not swing_group_operable(duke,sprite):
+            diagnostics.append({"severity":"note","code":"duke-inactive-swing-controller",
+                                "source_sprite":source_id,"source_sector":sprite.sector,
+                                "hitag":int(sprite.hitag),
+                                "reason":"SE11 has no same-hitag ST23 operator; converting it to Push motion would invent activation.",
+                                "action":"Preserved static geometry and independent controls; no rotation marker created."})
+            mechanism_records.append({"source_effector":source_id,"source_sector":sprite.sector,
+                                      "kind":"inactive-swing-controller","classification":"intentionally-inactive"})
             continue
         sector_id = sprite.sector
         target = builder.level.sectors[sector_id]["fields"]
@@ -874,12 +884,16 @@ def convert_e3l11_to_blood(
         # 1024 turns positive.
         motion = swinging_door(duke, sprite)
         marker = _add_marker(
-            builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z,
+            builder, diagnostics=diagnostics, sector=sector_id, owner=sector_id, x=x, y=y, z=z,
             type=5, angle=-motion["angle"],
         )
         busy = duke_busy_time(motion["ticks"])
         fields = motion_fields(sector_id, marker_0=marker, busy_time_a=busy,
                                busy_time_b=busy, state=1)
+        if int(duke.sectors[sector_id].lotag) & 0x3fff != 23:
+            # A plain-sector group member moves when its ST23 peer operates;
+            # it does not acquire a local Use action of its own.
+            fields.update(trigger_push=0, trigger_wall_push=0)
         builder.set_behavior("sector", sector_id, **fields)
         mechanism_counts["swinging-door"] += 1
         mechanism_records.append({
@@ -901,20 +915,30 @@ def convert_e3l11_to_blood(
             continue
         sector_id = sprite.sector
         target = builder.level.sectors[sector_id]["fields"]
+        moving_vertices = set(stretch_bridge(duke, sprite)["walls"])
+        flagged = [w for w in moving_vertices if int(duke.walls[w].point2) in moving_vertices]
+        if len(flagged) != 1:
+            unsupported_sources.add(source_id)
+            diagnostics.append({"severity":"warning","code":"duke-stretch-unsupported",
+                                "source_sprite":source_id,"source_sector":sector_id,
+                                "reason":"The two dragged vertices do not form one edge; Blood marked-wall endpoint propagation would move extra geometry."})
+            continue
         target["type"] = 614
         x, y, z = _scaled_position(builder, sprite, scale)
         motion = stretch_bridge(duke, sprite)
         # Angle 0 on both, as for SE15: the extension direction is marker1's
         # position, and a shared non-zero angle would turn the bridge instead.
-        marker0 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
-        marker1 = _add_marker(builder, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
+        marker0 = _add_marker(builder, diagnostics=diagnostics, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=3, angle=0)
+        marker1 = _add_marker(builder, diagnostics=diagnostics, sector=sector_id, owner=sector_id, x=x, y=y, z=z, type=4, angle=0)
         distance = _scale(motion["distance"], scale)
         radians = motion["angle"] * pi / 1024.0
         # Same rest convention as SE15: the authored pose is busy == 1.
         builder.level.sprites[marker1]["fields"]["x"] = x - int(round(distance * cos(radians)))
         builder.level.sprites[marker1]["fields"]["y"] = y - int(round(distance * sin(radians)))
         moved = []
-        for wall_id in motion["walls"]:
+        # Blood moves the flagged wall's vertex AND its unflagged point2.
+        # Flagging both Duke vertices would incorrectly move a third vertex.
+        for wall_id in flagged:
             if 0 <= wall_id < len(builder.level.walls):
                 wall_fields = builder.level.walls[wall_id]["fields"]
                 wall_fields["cstat"] = int(wall_fields["cstat"]) | 16384
@@ -930,30 +954,65 @@ def convert_e3l11_to_blood(
         mechanism_records.append({
             "source_sector": sector_id, "source_effector": source_id, "blood_type": 614,
             "kind": "stretch-bridge", "classification": "faithfully-convertible" if moved else "semantically-approximated",
-            "moved_walls": moved, "travel": motion["distance"], "duke_ticks": motion["ticks"],
+            "moved_walls": motion["walls"], "flagged_walls":moved,
+            "travel": motion["distance"], "duke_ticks": motion["ticks"],
         })
 
     # SE10 is an autoclose timer on the host door sector, not a tag channel.
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 1 or sprite.lotag != 10:
             continue
-        wait = max(1, min(60, int(sprite.hitag) if sprite.hitag else 20))
-        builder.set_behavior(
-            "sector", sprite.sector,
-            wait_time_a=wait, retrigger_a=1,
-        )
+        target = builder.level.sectors[sprite.sector]
+        extra = (target.get("blood") or {}).get("fields", {})
+        if target["fields"]["type"] not in {600,602,614,615,616,617}:
+            unsupported_sources.add(source_id)
+            diagnostics.append({"severity":"warning", "code":"duke-autoclose-unsupported",
+                                "source_sprite":source_id, "source_sector":sprite.sector,
+                                "reason":"Host motion was not lowered; no standalone timer invented."})
+            continue
+        travel = next((r.get("duke_ticks",0) for r in reversed(mechanism_records)
+                       if r.get("source_sector")==sprite.sector and "duke_ticks" in r),0)
+        wait = duke_busy_time(max(0, int(sprite.hitag)+2-int(travel)))
+        if target["fields"]["type"] in {614,615,616,617}:
+            open_state = 0
+        else:
+            off_gap = extra.get("off_floor_z",0)-extra.get("off_ceiling_z",0)
+            on_gap = extra.get("on_floor_z",0)-extra.get("on_ceiling_z",0)
+            open_state = int(on_gap > off_gap)
+        suffix = "a" if open_state else "b"
+        builder.set_behavior("sector", sprite.sector,
+                             **{f"wait_time_{suffix}":wait, f"retrigger_{suffix}":1})
         mechanism_counts["door-autoclose"] += 1
-        mechanism_records.append({
-            "source_sector": sprite.sector, "source_effector": source_id,
-            "kind": "door-autoclose", "classification": "semantically-approximated",
-            "wait_time": wait,
-        })
+        mechanism_records.append({"source_sector":sprite.sector,"source_effector":source_id,
+                                  "kind":"door-autoclose","classification":"semantically-approximated",
+                                  "wait_time":wait,"open_state":open_state,"duke_delay_ticks":int(sprite.hitag)+2,
+                                  "timing_note":"SE10 counts during opening; remaining delay rounded to Blood tenths. Player-presence hold is not emulated."})
 
     # Duke SE7 is three different runtime machines depending on sector lotag
     # and ONFLOORZ (sprite.z == sector.floorz at spawn).
     se7_groups = classify_se7_groups(duke)
     water_links: Counter[int] = Counter()
     hatch_links: Counter[int] = Counter()
+    floor_routes = [
+        route for group in se7_groups.values() for route in group["routes"]
+        if route["kind"] == "floor_teleport"
+    ]
+    floor_sources = Counter(route["source_sector"] for route in floor_routes)
+    motion_sectors = {
+        sprite.sector for sprite in duke.sprites
+        if sprite.picnum == 1 and sprite.lotag in {0, 11, 13, 15, 17, 20, 31, 32}
+    }
+
+    def unsupported_transport(link: int, group: dict[str, Any], route: dict[str, Any], reason: str) -> None:
+        unsupported_sources.add(route["source_sprite"])
+        diagnostics.append({
+            "severity": "warning", "code": "duke-transport-unsupported",
+            "hitag": link,
+            **route, "classification": "unsupported",
+            "endpoints": group["endpoints"], "reason": reason,
+            "action": "Transport not lowered; source records retained in semantic_inventory. No target endpoint or reverse route invented.",
+        })
+
     for link, group in sorted(se7_groups.items()):
         pair = [
             (endpoint["source_sprite"], duke.sprites[endpoint["source_sprite"]])
@@ -964,7 +1023,7 @@ def convert_e3l11_to_blood(
                 sector_tag = duke.sectors[sprite.sector].lotag & 0x3FFF
                 kind, tile = (9, 2332) if sector_tag == 1 else (10, 2331)
                 x, y, z = _scaled_position(builder, sprite, scale)
-                new_id = builder.add_sprite(
+                new_id = _add_conversion_sprite(builder, diagnostics,
                     sector=sprite.sector, x=x, y=y, z=z,
                     type=kind, picnum=tile, status=0, angle=sprite.angle, cstat=32896,
                     x_repeat=64, y_repeat=64,
@@ -975,21 +1034,6 @@ def convert_e3l11_to_blood(
                 water_links[link] += 1
                 mechanism_counts["water-marker"] += 1
                 mechanism_records.append({"source_sprite": source_id, "target_sprite": new_id, "kind": "upper-water" if kind == 9 else "lower-water", "link": link})
-        elif group["kind"] == "floor_teleport":
-            for (source_id, source), (_dest_id, destination) in ((pair[0], pair[1]), (pair[1], pair[0])):
-                x, y, z = _scaled_position(builder, destination, scale)
-                marker = _add_marker(
-                    builder, sector=destination.sector, owner=source.sector,
-                    x=x, y=y, z=z, type=8, angle=destination.angle,
-                )
-                builder.level.sprites[marker]["fields"]["picnum"] = 3193
-                builder.level.sectors[source.sector]["fields"]["type"] = 604
-                builder.set_behavior(
-                    "sector", source.sector,
-                    marker_0=marker, trigger_enter=1, dude_lockout=1, data=0,
-                )
-                mechanism_counts["teleporter"] += 1
-                mechanism_records.append({"source_sprite": source_id, "target_marker": marker, "source_sector": source.sector, "destination_sector": destination.sector, "kind": "teleporter", "link": link})
         elif group["kind"] == "air_hatch":
             # Silent relative teleport when the SE is off the floor. Blood type
             # 604 fires on sector enter; hatches need stack (congruent ROR) or
@@ -999,7 +1043,7 @@ def convert_e3l11_to_blood(
             for (source_id, sprite), role in zip(pair, roles):
                 kind, tile = (upper_type, 2332) if role == "upper" else (lower_type, 2331)
                 x, y, z = _scaled_position(builder, sprite, scale)
-                new_id = builder.add_sprite(
+                new_id = _add_conversion_sprite(builder, diagnostics,
                     sector=sprite.sector, x=x, y=y, z=z,
                     type=kind, picnum=tile, status=0, angle=sprite.angle, cstat=128,
                     x_repeat=64, y_repeat=64,
@@ -1012,8 +1056,38 @@ def convert_e3l11_to_blood(
                     "kind": "upper-stack" if kind == 11 else "lower-stack" if kind == 12 else "upper-link" if kind == 7 else "lower-link",
                     "link": link, "classification": group["classification"],
                 })
-        else:
-            raise E3L11ConversionError(f"Duke SE7 link {link} has {len(pair)} endpoints")
+        for route in group["routes"]:
+            if route["classification"] == "unsupported":
+                unsupported_transport(link, group, route, route["reason"])
+                continue
+            if route["kind"] != "floor_teleport":
+                continue
+            source_id = route["source_sprite"]
+            source = duke.sprites[source_id]
+            destination = duke.sprites[route["destination_sprite"]]
+            if (floor_sources[source.sector] != 1 or source.sector in motion_sectors
+                    or builder.level.sectors[source.sector]["fields"]["type"] != 0):
+                unsupported_transport(link, group, route,
+                                      "Blood has one sector behavior and one warp destination per source sector; multiple transports or a motion controller conflict here. No behavior was overwritten.")
+                continue
+            # Floor transport copies the destination SE's exact xyz and angle.
+            # Its Z need not be the destination floor; do not invent a pad there.
+            x, y, z = (_scale(value, scale) for value in (destination.x, destination.y, destination.z))
+            marker = _add_marker(
+                builder, diagnostics=diagnostics, sector=destination.sector, owner=source.sector,
+                x=x, y=y, z=z, type=8, angle=destination.angle,
+            )
+            record_fields(builder.level.sprites[marker])["picnum"] = 3193
+            record_fields(builder.level.sectors[source.sector])["type"] = 604
+            builder.set_behavior(
+                "sector", source.sector,
+                marker_0=marker, trigger_enter=1, dude_lockout=1, data=0,
+            )
+            mechanism_counts["teleporter"] += 1
+            mechanism_records.append({
+                **route, "target_marker": marker, "kind": "teleporter", "link": link,
+                "one_way": destination.lotag == 23,
+            })
 
     # SE17 warp elevator: the cabin moves, then teleports to the matching SE17.
     # Blood type 604 already warps on sector enter; that is the playable
@@ -1024,11 +1098,20 @@ def convert_e3l11_to_blood(
             warp_elevators[int(sprite.hitag)].append((source_id, sprite))
     for link, pair in sorted(warp_elevators.items()):
         if len(pair) != 2:
+            unsupported_sources.update(source_id for source_id, _ in pair)
+            diagnostics.append({
+                "severity": "warning", "code": "duke-warp-elevator-unsupported",
+                "classification": "unsupported", "hitag": link,
+                "source_sprites": [source_id for source_id, _ in pair],
+                "source_sectors": [sprite.sector for _, sprite in pair],
+                "reason": "SE17 uses sector hitags and travel direction to select elevator stops. This converter only lowers two-stop groups; no arbitrary pair was selected.",
+                "action": "Warp elevator not lowered; source records retained in semantic_inventory.",
+            })
             continue
         for (source_id, source), (_dest_id, destination) in ((pair[0], pair[1]), (pair[1], pair[0])):
             x, y, z = _scaled_position(builder, destination, scale)
             marker = _add_marker(
-                builder, sector=destination.sector, owner=source.sector,
+                builder, diagnostics=diagnostics, sector=destination.sector, owner=source.sector,
                 x=x, y=y, z=z, type=8, angle=destination.angle,
             )
             builder.level.sprites[marker]["fields"]["picnum"] = 3193
@@ -1039,7 +1122,8 @@ def convert_e3l11_to_blood(
             )
             mechanism_counts["warp-elevator"] += 1
             mechanism_records.append({
-                "source_sprite": source_id, "target_marker": marker,
+                # the coverage audit knows a lowered effector by `source_effector`
+                "source_sprite": source_id, "source_effector": source_id, "target_marker": marker,
                 "source_sector": source.sector, "destination_sector": destination.sector,
                 "kind": "warp-elevator", "link": link,
                 "classification": "semantically-approximated",
@@ -1096,6 +1180,19 @@ def convert_e3l11_to_blood(
     # this is an approximation rather than claiming identical persistent shade.
     for source_id, sprite in enumerate(duke.sprites):
         if sprite.picnum != 1 or sprite.lotag != 12 or not sprite.hitag:
+            continue
+        existing = builder.level.sectors[sprite.sector]
+        existing_behavior = (existing.get("blood") or {}).get("fields",{})
+        moving = existing["fields"]["type"] in {600,602,604,614,615,616,617}
+        if moving or existing_behavior.get("tx_id"):
+            unsupported_sources.add(source_id)
+            diagnostics.append({"severity":"warning", "code":"duke-light-motion-conflict" if moving else "duke-light-control-conflict",
+                                "source_sprite":source_id, "source_sector":sprite.sector,
+                                "hitag":int(sprite.hitag),
+                                "action":("Kept motion speed, triggers, RX and return timing; omitted independent SE12 light switching." if moving else
+                                          "Kept the entry signal TX, command and triggers; omitted independent SE12 light switching."),
+                                "reason":("One Blood XSECTOR cannot independently receive and time light and motion controls." if moving else
+                                          "The entry signal and independent lighting need separate state and command handling; SE12 lowering would replace the entry command and busy timing.")})
             continue
         builder.set_behavior(
             "sector", sprite.sector,
@@ -1158,9 +1255,16 @@ def convert_e3l11_to_blood(
         sector_id = sprite.sector
         source_sector = duke.sectors[sector_id]
         target = builder.level.sectors[sector_id]["fields"]
+        if target["type"] in {614,615,616,617}:
+            unsupported_sources.add(source_id)
+            diagnostics.append({"severity":"warning","code":"duke-motion-conflict",
+                                "source_sprite":source_id,"source_sector":sector_id,"effector_lotag":13,
+                                "reason":"Independent explosive Z expansion and horizontal motion cannot share one Blood busy state.",
+                                "action":"Kept horizontal motion; recorded omitted SE13 expansion instead of overwriting the mover."})
+            continue
         authored_ceiling = _scale(source_sector.ceiling_z, scale)
         authored_floor = _scale(source_sector.floor_z, scale)
-        effector = max(authored_ceiling, min(authored_floor, _scale(sprite.z, scale)))
+        effector = _scale(sprite.z, scale)
         closer_to_ceiling = abs(source_sector.ceiling_z - sprite.z) < abs(source_sector.floor_z - sprite.z)
         if sprite.angle == 512:
             if closer_to_ceiling:
@@ -1173,11 +1277,18 @@ def convert_e3l11_to_blood(
             off_ceiling = off_floor = effector
             on_ceiling, on_floor = authored_ceiling, authored_floor
         target["type"] = 600
+        source_speed = (sector_extra(duke, sector_id) << 5) | 1
+        if sprite.angle == 512:
+            distance = abs((source_sector.ceiling_z if closer_to_ceiling else source_sector.floor_z)-sprite.z)
+        else:
+            distance = max(abs(source_sector.ceiling_z-sprite.z),abs(source_sector.floor_z-sprite.z))
+        ticks = max(1, (distance+max(1,source_speed)-1)//max(1,source_speed))
+        busy = duke_busy_time(ticks)
         fields = motion_fields(
             sector_id,
             off_ceiling_z=off_ceiling, on_ceiling_z=on_ceiling,
             off_floor_z=off_floor, on_floor_z=on_floor,
-            busy_time_a=8, busy_time_b=8,
+            busy_time_a=busy, busy_time_b=busy,
             trigger_push=0, trigger_wall_push=0, rx_id=channels.allocate(sprite.hitag),
         )
         builder.set_behavior("sector", sector_id, **fields)
@@ -1187,6 +1298,7 @@ def convert_e3l11_to_blood(
             "source_sector": sector_id, "source_effector": source_id,
             "blood_type": 600, "kind": "explosive-z-sector",
             "link": sprite.hitag, "single_surface": sprite.angle == 512,
+            "duke_ticks":ticks,"blood_busy_time":busy,"duke_step_per_tick":source_speed,
         })
 
     explosive_tags = {
@@ -1198,7 +1310,7 @@ def convert_e3l11_to_blood(
             continue
         channel = channels.allocate(sprite.hitag)
         x, y, z = _scaled_position(builder, sprite, scale)
-        crack = builder.add_sprite(
+        crack = _add_conversion_sprite(builder, diagnostics,
             sector=sprite.sector, x=x, y=y, z=z, type=408, picnum=1127,
             status=4, angle=sprite.angle, cstat=_crack_cstat(sprite.cstat),
             x_repeat=CRACK_REPEAT, y_repeat=CRACK_REPEAT,
@@ -1214,7 +1326,7 @@ def convert_e3l11_to_blood(
             "sprite", crack, tx_id=channel, command=1, state=0,
             trigger_on=1, trigger_off=1, trigger_vector=1, trigger_impact=1,
         )
-        explosive = builder.add_sprite(
+        explosive = _add_conversion_sprite(builder, diagnostics,
             sector=sprite.sector, x=x, y=y, z=z, type=459, picnum=908,
             status=11, angle=sprite.angle, cstat=32896, x_repeat=4, y_repeat=4,
         )
@@ -1236,7 +1348,7 @@ def convert_e3l11_to_blood(
         source = duke.sprites[source_id]
         type_, tile, status, cstat, repeat, classification = definition
         x, y, z = _scaled_position(builder, source, scale)
-        new_id = builder.add_sprite(
+        new_id = _add_conversion_sprite(builder, diagnostics,
             sector=source.sector, x=x, y=y, z=z,
             type=type_, picnum=tile, status=status, angle=source.angle, cstat=cstat,
             x_repeat=repeat, y_repeat=repeat, shade=0,
@@ -1281,7 +1393,7 @@ def convert_e3l11_to_blood(
         x, y, z = _scaled_position(builder, sprite, scale)
         base = SWITCH_CSTAT_WALL if int(sprite.cstat) & 16 else SWITCH_CSTAT_FACE
         cstat = base | (int(sprite.cstat) & (4 | 8))
-        new_id = builder.add_sprite(
+        new_id = _add_conversion_sprite(builder, diagnostics,
             sector=sprite.sector, x=x, y=y, z=z,
             type=switch_type, picnum=tile, status=0, angle=sprite.angle, cstat=cstat,
             x_repeat=repeat, y_repeat=repeat,
@@ -1352,7 +1464,7 @@ def convert_e3l11_to_blood(
             # lotag ticks / 3 per tick / 30 Hz = lotag / 90 seconds, and Blood
             # waitTime is tenths of a second, so the fuse is lotag / 9.
             fuse = max(1, min(4095, int(round(int(sprite.lotag) / 9.0))))
-            trap = builder.add_sprite(
+            trap = _add_conversion_sprite(builder, diagnostics,
                 sector=sprite.sector, x=x, y=y, z=z, type=459, picnum=908,
                 status=11, angle=sprite.angle, cstat=32896, x_repeat=4, y_repeat=4,
             )
@@ -1365,7 +1477,7 @@ def convert_e3l11_to_blood(
             if visible:
                 # Duke only draws the ones bigger than 8, and those are the ones
                 # the player can shoot. Give them a barrel to shoot at.
-                barrel = builder.add_sprite(
+                barrel = _add_conversion_sprite(builder, diagnostics,
                     sector=sprite.sector, x=x, y=y, z=z, type=400, picnum=907,
                     status=4, angle=sprite.angle, cstat=385,
                     x_repeat=64, y_repeat=64,
@@ -1401,7 +1513,7 @@ def convert_e3l11_to_blood(
             continue
         channel = channels.allocate(sprite.lotag)
         x, y, z = _scaled_position(builder, sprite, scale)
-        marker = builder.add_sprite(
+        marker = _add_conversion_sprite(builder, diagnostics,
             sector=sprite.sector, x=x, y=y, z=z, type=18, picnum=3997,
             status=10, angle=sprite.angle, cstat=32768, x_repeat=64, y_repeat=64,
         )
@@ -1423,7 +1535,7 @@ def convert_e3l11_to_blood(
     start = builder.level.player_start
     start_sector = int(start["sector"])
     start_x, start_y = _nudge_into_sector(builder, start_sector, int(start["x"]), int(start["y"]))
-    start_marker = builder.add_sprite(
+    start_marker = _add_conversion_sprite(builder, diagnostics,
         sector=start_sector, x=start_x, y=start_y, z=int(start["z"]),
         type=1, picnum=2332, status=10, angle=int(start["angle"]) & 2047,
         cstat=32768, x_repeat=64, y_repeat=64,
@@ -1497,20 +1609,28 @@ def convert_e3l11_to_blood(
     progression = _static_progression(disk)
     channel_audit = _channel_audit(disk)
     if not progression["all_exits_reachable"]:
-        raise E3L11ConversionError("converted map has no statically reachable Blood exit")
+        diagnostics.append({
+            "severity": "warning", "code": "static-progression-unproven",
+            "reason": "No converted exit was found." if not progression["exit_sectors"] else "The static reader cannot reach every converted exit; dynamic or unsupported progression may be required.",
+            "action": "Conversion retained for review; completion is not guaranteed and no exit was invented.",
+            "progression": progression,
+        })
 
     semantic_inventory = analyze_duke_mechanisms(duke)
-    lowered_effectors = {0, 1, 3, 4, 7, 10, 11, 12, 13, 15, 17, 20, 24, 31, 32}
-    unsupported_effectors = Counter(
-        sprite.lotag for sprite in duke.sprites
-        if sprite.picnum == 1 and sprite.lotag not in lowered_effectors
-    )
+    coverage = conversion_coverage(duke, mechanism_records, unsupported_sources)
+    unsupported_effectors = Counter(r["lotag"] for r in coverage
+                                    if "source_sprite" in r and "tile" not in r and "lotag" in r and r["classification"] == "unsupported")
+    for row in coverage:
+        if row["classification"] == "unsupported":
+            diagnostics.append({"severity":"warning", "code":"duke-mechanism-not-lowered", **row,
+                                "action":"Recorded limitation; no replacement mechanism or missing endpoint invented."})
     report = {
         "$schema": "llmapper.playable-conversion-report",
         "schema_version": 1,
         "source_game": "duke3d",
         "target_game": "blood",
         "profile": "playable-duke-to-blood",
+        "diagnostics": diagnostics,
         "geometry": {
             "coordinate_scale": "3:2", "topology_preserved": True,
             "sectors": len(duke.sectors), "walls": len(duke.walls),
@@ -1527,6 +1647,7 @@ def convert_e3l11_to_blood(
             "counts": dict(sorted(mechanism_counts.items())),
             "records": mechanism_records,
             "semantic_inventory": semantic_inventory,
+            "coverage": coverage,
             "water_link_ids": dict(sorted(water_links.items())),
             "hatch_link_ids": dict(sorted(hatch_links.items())),
             "channel_audit": channel_audit,
@@ -1540,15 +1661,15 @@ def convert_e3l11_to_blood(
         "overall": {
             "structural_validity": True,
             "gameplay_fidelity": "playable approximation",
-            "guaranteed_exit_channel": 4,
+            "guaranteed_exit_channel": 4 if progression["all_exits_reachable"] else None,
             "static_progression": progression,
             "limitations": [
                 "Switchable lighting uses a Blood XSECTOR pulse rather than Duke's persistent shade state; random lighting uses a continuous visual approximation.",
                 "CRACK1..4 groups linked to SE13 become shootable Blood wall-crack things (Vector+Impact, hitscan-block cstat) that TX collapsed type-600 sectors and hidden exploders; the hole is Z-expansion, not a gibbed wall.",
                 "Duke ST2 sectors keep XSECTOR.Underwater even when they are also type-600 holes or neighbor a Z-door; Blood stacks those flags on one extra record.",
-                "Air-hatch SE7 pairs become Blood stack or room-link markers; floor-standing SE7 pairs remain type-604 teleports. Congruent copies use stack, otherwise physical link.",
-                "Unbuttoned Z-motion is armed with XSECTOR Push and Wallpush; buttoned motion is RX-only. SE10 autoclose is wait_time_a plus retrigger_a.",
-                "SE11 swinging doors become type-617 rotations about the effector; SE20 stretch bridges become type-616 slides.",
+                "Reciprocal air-hatch SE7 pairs become Blood stack or room-link markers. Floor SE7 routes resolve the first other same-hitag SE7/SE23 by sprite index and become directed type-604 teleports; SE23 destinations never acquire a return route. Unsupported transports are diagnosed individually.",
+                "Unbuttoned Z-motion is armed with XSECTOR Push and Wallpush; buttoned motion is RX-only. SE10 autoclose uses the open endpoint's A/B return timing.",
+                "SE11 swinging doors become type-617 rotations about the effector; SE20 stretch bridges become type-614 marked slides (one edge carries both selected vertices).",
                 "SE17 warp elevators become type-604 teleports between cabins; the moving-cabin Z animation is not reproduced. ST16 platforms and ST22 splitting doors become type-600 Z-motion. Type-604 pads set dudeLockout so only the player fires enter/TeleFrag.",
                 "Earthquake, door-linked lighting, demo-camera, locator, respawn, subway, and master-switch choreography remains explicitly unsupported or visual-only.",
                 "Enemy and inventory substitutions preserve combat roles, not exact balance.",

@@ -29,20 +29,24 @@ engine's ``DragPoint`` moves shared vertices, so a door and its frame are
 from __future__ import annotations
 
 import argparse
-import glob
+import math
+import hashlib
 import json
 import pathlib
 from typing import Any
 
 from bloodmap.duke import read_duke_map
+from bloodmap.corpus import list_corpus_maps
 from bloodmap.e3l11 import convert_playable_duke_to_blood
-from bloodmap.format import encode_map, parse_map
+from bloodmap.format import encode_map, parse_map, read_map
+from bloodmap.model import record_extra
 from bloodmap.motion_sim import (
     blood_sector_walls,
     duke_sector_walls,
     blood_sweep,
     compare_sweeps,
     duke_sweep,
+    duke_loop_sweeps,
     polygons_overlap,
     rest_displacement,
     self_intersections,
@@ -63,10 +67,10 @@ def _neighbors(level: Any, sector_id: int) -> set[int]:
 
 
 def verify_map(duke_path: pathlib.Path, *, steps: int, tolerance: float,
-               check_intrusion: bool) -> dict[str, Any]:
+               check_intrusion: bool, converted_path: pathlib.Path | None = None) -> dict[str, Any]:
     duke = read_duke_map(duke_path)
     disk, report = convert_playable_duke_to_blood(duke)
-    level = parse_map(encode_map(disk))
+    level = read_map(converted_path) if converted_path else parse_map(encode_map(disk))
 
     # Every sector that moves, and where it ends up. A rotating assembly is
     # several sectors turning about one pivot in formation, so checking a moved
@@ -119,6 +123,21 @@ def verify_map(duke_path: pathlib.Path, *, steps: int, tolerance: float,
         entry["duke_folds_at_steps"] = duke_folds
         entry["fold_inherited"] = bool(folds and duke_folds)
         introduced_fold = bool(folds) and not duke_folds
+        source_loops = duke_loop_sweeps(duke,int(record["source_effector"]),steps=steps)
+        target_loops = blood_sweep(level,sector_id,steps=steps,by_loop=True)
+        loop_findings = []
+        for key, source_frames in source_loops.items():
+            target_frames = target_loops.get(key)
+            if target_frames is None:
+                loop_findings.append({"sector":key[0],"loop":key[1],"missing":True})
+                continue
+            comparison_loop = compare_sweeps(source_frames,target_frames)
+            source_bad = [i for i,frame in enumerate(source_frames) if self_intersections(frame,min_depth=tolerance/1.5)]
+            target_bad = [i for i,frame in enumerate(target_frames) if self_intersections(frame,min_depth=tolerance)]
+            loop_findings.append({"sector":key[0],"loop":key[1],**comparison_loop,
+                                  "duke_fold_steps":source_bad,"blood_fold_steps":target_bad,
+                                  "introduced_fold":bool(target_bad) and not source_bad})
+        entry["affected_loops"] = loop_findings
 
         # Overlap on its own is not a defect. Duke levels park bridge leaves on
         # top of each other at different floor heights, and a plan-view test
@@ -152,6 +171,10 @@ def verify_map(duke_path: pathlib.Path, *, steps: int, tolerance: float,
             problems.append("displaced_at_rest")
         if introduced_fold:
             problems.append("folds")
+        if any(row.get("missing") or row.get("max_deviation",0)>tolerance for row in loop_findings):
+            problems.append("neighbor_motion")
+        if any(row.get("introduced_fold") for row in loop_findings):
+            problems.append("neighbor_folds")
         if intrusions:
             problems.append("intrusion")
         entry["status"] = "ok" if not problems else "problem"
@@ -159,14 +182,36 @@ def verify_map(duke_path: pathlib.Path, *, steps: int, tolerance: float,
         findings.append(entry)
 
     modelled = [f for f in findings if f["status"] != "unmodelled"]
+    timings = []
+    for record in report["mechanisms"]["records"]:
+        if "duke_ticks" not in record or record.get("blood_type") not in {600,614,616,617}:
+            continue
+        extra = record_extra(level.sectors[record["source_sector"]]) or {}
+        key = "busy_time_b" if extra.get("state") else "busy_time_a"
+        busy = int(extra.get(key,0))
+        # NBlood AddBusy integer delta, ProcessBusy in four 120Hz ticks.
+        delta = 65536 // max(1,12*busy)
+        ticks = math.ceil(65536 / (4*max(1,delta)))
+        timings.append({"sector":record["source_sector"],"kind":record["kind"],
+                        "duke_ticks":record["duke_ticks"],"blood_busy_time":busy,
+                        "blood_completion_ticks":ticks,
+                        "error_seconds":round((ticks-record["duke_ticks"])/30,4),
+                        "blood_wave":extra.get("busy_wave_b" if extra.get("state") else "busy_wave_a",0)})
     return {
         "map": duke_path.stem.upper(),
+        "source_sha256":hashlib.sha256(duke_path.read_bytes()).hexdigest(),
+        "converted_sha256":hashlib.sha256(converted_path.read_bytes() if converted_path else encode_map(level)).hexdigest(),
         "moving_sectors": len(findings),
         "modelled": len(modelled),
         "ok": sum(1 for f in modelled if f["status"] == "ok"),
         "problems": sum(1 for f in modelled if f["status"] == "problem"),
         "worst_deviation": max((f["max_deviation"] for f in modelled), default=0.0),
         "findings": findings,
+        "timings": timings,
+        "coverage":report["mechanisms"]["coverage"],
+        "diagnostics":report["diagnostics"],
+        "intrusion_checked":check_intrusion,
+        "runtime_events_executed":False,
     }
 
 
@@ -181,13 +226,15 @@ def main(argv: list[str] | None = None) -> int:
                         help="Blood units of drift attributable to 3:2 rounding")
     parser.add_argument("--no-intrusion", action="store_true",
                         help="skip the sector-overlap pass, which is the slow one")
+    parser.add_argument("--converted", type=pathlib.Path,
+                        help="audit this existing Blood MAP instead of generating a temporary conversion")
     args = parser.parse_args(argv)
 
     if not args.map and not args.corpus:
         parser.error("give a MAP or --corpus")
 
     paths = (
-        [pathlib.Path(p) for p in sorted(glob.glob(str(pathlib.Path(args.corpus) / "*.MAP")))]
+        [item.path for item in list_corpus_maps(args.corpus)]
         if args.corpus else [pathlib.Path(args.map)]
     )
     results, failures = [], []
@@ -200,6 +247,7 @@ def main(argv: list[str] | None = None) -> int:
             results.append(verify_map(
                 path, steps=args.steps, tolerance=args.tolerance,
                 check_intrusion=not args.no_intrusion,
+                converted_path=args.converted,
             ))
         except Exception as error:  # a map that will not convert is its own finding
             failures.append({"map": path.stem.upper(), "error": f"{type(error).__name__}: {error}"})

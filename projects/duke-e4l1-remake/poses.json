@@ -1,0 +1,254 @@
+{
+  "quarry": [
+    {
+      "id": "arrival",
+      "x": -3564,
+      "y": 31872,
+      "angle": 2044,
+      "sector": 453,
+      "horiz": 100
+    },
+    {
+      "id": "arrival-back",
+      "x": -3564,
+      "y": 31872,
+      "angle": 1020,
+      "sector": 453,
+      "horiz": 100
+    },
+    {
+      "id": "arrival-entrance",
+      "x": -3564,
+      "y": 31872,
+      "angle": 508,
+      "sector": 453,
+      "horiz": 100
+    },
+    {
+      "id": "entry-front",
+      "x": 512,
+      "y": 31200,
+      "angle": 512,
+      "sector": 453,
+      "horiz": 100
+    },
+    {
+      "id": "quarry-floor",
+      "x": 6000,
+      "y": 31700,
+      "angle": 1024,
+      "sector": 453,
+      "horiz": 100
+    }
+  ],
+  "intake": [
+    {
+      "id": "north-entry",
+      "x": 768,
+      "y": 38300,
+      "angle": 512,
+      "sector": 482,
+      "horiz": 100
+    },
+    {
+      "id": "dispatch-desk",
+      "x": 3800,
+      "y": 40400,
+      "angle": 1024,
+      "sector": 482,
+      "horiz": 100
+    },
+    {
+      "id": "hall-to-works",
+      "x": 3755,
+      "y": 43659,
+      "angle": 1024,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "return-to-gate",
+      "x": 3755,
+      "y": 43659,
+      "angle": 1536,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "desk-front",
+      "x": 800,
+      "y": 39000,
+      "angle": 512,
+      "sector": 482,
+      "horiz": 100
+    },
+    {
+      "id": "hall-wide",
+      "x": 5000,
+      "y": 43200,
+      "angle": 1152,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "workbench",
+      "x": 0,
+      "y": 43800,
+      "angle": 833,
+      "sector": 486,
+      "horiz": 100
+    }
+  ],
+  "briefing": [
+    {
+      "id": "approach",
+      "x": 0,
+      "y": 43800,
+      "angle": 833,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "device-front",
+      "x": -2200,
+      "y": 44100,
+      "angle": 719,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "hall-context",
+      "x": 5000,
+      "y": 43200,
+      "angle": 1152,
+      "sector": 486,
+      "horiz": 100
+    },
+    {
+      "id": "use-position",
+      "x": -3000,
+      "y": 44710,
+      "angle": 576,
+      "sector": 481,
+      "horiz": 100
+    }
+  ],
+  "washhouse": [
+    {
+      "id": "room-to-stalls",
+      "x": 25848,
+      "y": 52426,
+      "angle": 1280,
+      "sector": 152
+    },
+    {
+      "id": "room-to-mirror",
+      "x": 25848,
+      "y": 52426,
+      "angle": 1792,
+      "sector": 152
+    },
+    {
+      "id": "stalls",
+      "x": 23424,
+      "y": 49920,
+      "angle": 0,
+      "sector": 59
+    },
+    {
+      "id": "urinals",
+      "x": 23400,
+      "y": 52032,
+      "angle": 1024,
+      "sector": 119
+    },
+    {
+      "id": "toilet",
+      "x": 24000,
+      "y": 49920,
+      "angle": 1024,
+      "sector": 59,
+      "horiz": 60
+    },
+    {
+      "id": "stall-door",
+      "x": 25400,
+      "y": 48000,
+      "angle": 1024,
+      "sector": 152,
+      "horiz": 100
+    }
+  ],
+  "service-room389": [
+    {
+      "id": "room",
+      "x": 17165,
+      "y": 40021,
+      "angle": 170,
+      "sector": 389,
+      "horiz": 100
+    },
+    {
+      "id": "door",
+      "x": 20000,
+      "y": 41700,
+      "angle": 180,
+      "sector": 389,
+      "horiz": 100
+    },
+    {
+      "id": "across-room",
+      "x": 21000,
+      "y": 40500,
+      "angle": 600,
+      "sector": 389,
+      "horiz": 100
+    }
+  ],
+  "bathroom": [
+    {
+      "id": "room-to-stalls",
+      "x": 25848,
+      "y": 52426,
+      "angle": 1280,
+      "sector": 152
+    },
+    {
+      "id": "room-to-mirror",
+      "x": 25848,
+      "y": 52426,
+      "angle": 1792,
+      "sector": 152
+    },
+    {
+      "id": "stalls",
+      "x": 23424,
+      "y": 49920,
+      "angle": 0,
+      "sector": 59
+    },
+    {
+      "id": "urinals",
+      "x": 23400,
+      "y": 52032,
+      "angle": 1024,
+      "sector": 119
+    },
+    {
+      "id": "toilet",
+      "x": 24000,
+      "y": 49920,
+      "angle": 1024,
+      "sector": 59,
+      "horiz": 60
+    },
+    {
+      "id": "stall-door",
+      "x": 25400,
+      "y": 48000,
+      "angle": 1024,
+      "sector": 152,
+      "horiz": 100
+    }
+  ]
+}

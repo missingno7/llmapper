@@ -1,0 +1,1285 @@
+{
+  "map_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 404
+  },
+  "baseline_sha256": "dedbac01100f373790b47dbbd288a8d359e03b7d72e93f3572c4ea6c7a79c226",
+  "duke_source_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+  "preserved_references": {
+    "blood_baseline": true,
+    "duke_source": true,
+    "intake_input_snapshot": true
+  },
+  "briefing_circuit": {
+    "evidence": "current",
+    "agrees": true,
+    "wires": 3
+  },
+  "motion_audit": {
+    "evidence": "current",
+    "sweeps": 12,
+    "problems": 0,
+    "manual_or_unsupported": {
+      "lightning": 3,
+      "demo_camera": 10,
+      "piston": 2,
+      "switchable_lighting": 5,
+      "glass_break_controller": 1,
+      "secret_sector": 7,
+      "compound_slide_door": 1,
+      "enter_sound_sector": 1,
+      "sound_controller": 56,
+      "locked_activator": 6,
+      "master_switch": 7,
+      "respawn": 2,
+      "tagged_use_wall": 1,
+      "linked_moving_group": 2
+    }
+  },
+  "washhouse": {
+    "evidence": "current",
+    "room_static": true,
+    "fit_faults": 0,
+    "flat_overlaps": 0,
+    "flush_controls_agree": true
+  },
+  "structural_diagnostics": {
+    "warning": 7
+  },
+  "structural_details": [
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[34]"
+    },
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[40]"
+    },
+    {
+      "severity": "warning",
+      "code": "degenerate-sector",
+      "message": "sector has only 2 walls; accepted by Build but geometrically degenerate",
+      "location": "sector[42]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-wall",
+      "message": "wall 215 points back to 210; Build accepts this original-map portal trick",
+      "location": "wall[207]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-sector",
+      "message": "wall 215 points to sector 42, expected 41",
+      "location": "wall[207]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-wall",
+      "message": "wall 207 points back to 215; Build accepts this original-map portal trick",
+      "location": "wall[211]"
+    },
+    {
+      "severity": "warning",
+      "code": "portal-nonreciprocal-sector",
+      "message": "wall 207 points to sector 43, expected 42",
+      "location": "wall[211]"
+    }
+  ],
+  "baseline_geometry": [],
+  "intake_input_sha256": "f639fae83771303193e597103c06361c8e409ea95209762e936f335172250fed",
+  "since_intake_input": {
+    "geometry_changes": [],
+    "start_changes": [],
+    "existing_extension_changes": [
+      "sector 8",
+      "sector 15",
+      "sector 16",
+      "sector 24",
+      "sector 27",
+      "sector 28",
+      "sector 50",
+      "sector 61",
+      "sector 73",
+      "sector 81",
+      "sector 88",
+      "sector 93",
+      "sector 95",
+      "sector 97",
+      "sector 98",
+      "sector 99",
+      "sector 107",
+      "sector 108",
+      "sector 111",
+      "sector 115",
+      "sector 126",
+      "sector 146",
+      "sector 147",
+      "sector 149",
+      "sector 150",
+      "sector 152",
+      "sector 166",
+      "sector 171",
+      "sector 178",
+      "sector 190",
+      "sector 192",
+      "sector 194",
+      "sector 196",
+      "sector 210",
+      "sector 211",
+      "sector 242",
+      "sector 243",
+      "sector 244",
+      "sector 245",
+      "sector 258",
+      "sector 263",
+      "sector 264",
+      "sector 273",
+      "sector 275",
+      "sector 278",
+      "sector 279",
+      "sector 280",
+      "sector 281",
+      "sector 284",
+      "sector 285",
+      "sector 286",
+      "sector 287",
+      "sector 288",
+      "sector 291",
+      "sector 294",
+      "sector 295",
+      "sector 296",
+      "sector 297",
+      "sector 298",
+      "sector 299",
+      "sector 300",
+      "sector 301",
+      "sector 314",
+      "sector 317",
+      "sector 318",
+      "sector 319",
+      "sector 320",
+      "sector 326",
+      "sector 327",
+      "sector 328",
+      "sector 333",
+      "sector 362",
+      "sector 369",
+      "sector 390",
+      "sector 391",
+      "sector 396",
+      "sector 398",
+      "sector 403",
+      "sector 405",
+      "sector 406",
+      "sector 407",
+      "sector 408",
+      "sector 410",
+      "sector 450",
+      "sector 520",
+      "wall 2318"
+    ],
+    "existing_sprite_changes": [
+      {
+        "sprite": 0,
+        "fields": {
+          "angle": [
+            512,
+            -512
+          ]
+        }
+      },
+      {
+        "sprite": 1,
+        "fields": {
+          "angle": [
+            512,
+            -512
+          ]
+        }
+      },
+      {
+        "sprite": 2,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 3,
+        "fields": {
+          "angle": [
+            512,
+            -512
+          ]
+        }
+      },
+      {
+        "sprite": 4,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 5,
+        "fields": {
+          "angle": [
+            512,
+            -512
+          ]
+        }
+      },
+      {
+        "sprite": 6,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 7,
+        "fields": {
+          "picnum": [
+            3997,
+            0
+          ],
+          "angle": [
+            -512,
+            512
+          ],
+          "status": [
+            10,
+            0
+          ],
+          "owner": [
+            152,
+            -1
+          ],
+          "type": [
+            5,
+            0
+          ]
+        }
+      },
+      {
+        "sprite": 8,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 9,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 10,
+        "fields": {
+          "angle": [
+            512,
+            -512
+          ]
+        }
+      },
+      {
+        "sprite": 11,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 12,
+        "fields": {
+          "angle": [
+            -512,
+            512
+          ]
+        }
+      },
+      {
+        "sprite": 119,
+        "fields": {
+          "z": [
+            12288,
+            3808
+          ]
+        }
+      },
+      {
+        "sprite": 189,
+        "fields": {
+          "z": [
+            12288,
+            3808
+          ]
+        }
+      },
+      {
+        "sprite": 190,
+        "fields": {
+          "z": [
+            12288,
+            3808
+          ]
+        }
+      }
+    ],
+    "added_sprites": 63
+  },
+  "sunk_actor_authoring_count": 69,
+  "sunk_actor_authoring_rows": [
+    {
+      "sprite": 59,
+      "tile": 2825,
+      "type": 202,
+      "sector": 322,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 60,
+      "tile": 1470,
+      "type": 206,
+      "sector": 339,
+      "sunk": 0.31
+    },
+    {
+      "sprite": 65,
+      "tile": 2825,
+      "type": 202,
+      "sector": 496,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 66,
+      "tile": 1570,
+      "type": 217,
+      "sector": 370,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 67,
+      "tile": 1470,
+      "type": 206,
+      "sector": 464,
+      "sunk": 0.14
+    },
+    {
+      "sprite": 68,
+      "tile": 2825,
+      "type": 202,
+      "sector": 116,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 69,
+      "tile": 2825,
+      "type": 202,
+      "sector": 468,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 74,
+      "tile": 2820,
+      "type": 201,
+      "sector": 252,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 75,
+      "tile": 2820,
+      "type": 201,
+      "sector": 252,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 76,
+      "tile": 2820,
+      "type": 201,
+      "sector": 252,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 77,
+      "tile": 1470,
+      "type": 206,
+      "sector": 252,
+      "sunk": 0.48
+    },
+    {
+      "sprite": 78,
+      "tile": 1470,
+      "type": 206,
+      "sector": 252,
+      "sunk": 0.48
+    },
+    {
+      "sprite": 103,
+      "tile": 2820,
+      "type": 201,
+      "sector": 221,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 105,
+      "tile": 2825,
+      "type": 202,
+      "sector": 197,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 106,
+      "tile": 2820,
+      "type": 201,
+      "sector": 197,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 107,
+      "tile": 2825,
+      "type": 202,
+      "sector": 195,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 108,
+      "tile": 2820,
+      "type": 201,
+      "sector": 195,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 110,
+      "tile": 2825,
+      "type": 202,
+      "sector": 193,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 111,
+      "tile": 2820,
+      "type": 201,
+      "sector": 193,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 112,
+      "tile": 2825,
+      "type": 202,
+      "sector": 191,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 113,
+      "tile": 2820,
+      "type": 201,
+      "sector": 191,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 114,
+      "tile": 2820,
+      "type": 201,
+      "sector": 191,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 118,
+      "tile": 2820,
+      "type": 201,
+      "sector": 336,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 127,
+      "tile": 1570,
+      "type": 217,
+      "sector": 370,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 128,
+      "tile": 2825,
+      "type": 202,
+      "sector": 496,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 129,
+      "tile": 2820,
+      "type": 201,
+      "sector": 89,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 130,
+      "tile": 2820,
+      "type": 201,
+      "sector": 88,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 131,
+      "tile": 2820,
+      "type": 201,
+      "sector": 81,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 132,
+      "tile": 2820,
+      "type": 201,
+      "sector": 528,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 133,
+      "tile": 2820,
+      "type": 201,
+      "sector": 528,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 134,
+      "tile": 2825,
+      "type": 202,
+      "sector": 336,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 135,
+      "tile": 2820,
+      "type": 201,
+      "sector": 336,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 140,
+      "tile": 1570,
+      "type": 217,
+      "sector": 60,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 141,
+      "tile": 2820,
+      "type": 201,
+      "sector": 31,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 142,
+      "tile": 2825,
+      "type": 202,
+      "sector": 543,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 143,
+      "tile": 2825,
+      "type": 202,
+      "sector": 31,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 144,
+      "tile": 2825,
+      "type": 202,
+      "sector": 31,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 145,
+      "tile": 2825,
+      "type": 202,
+      "sector": 543,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 146,
+      "tile": 2825,
+      "type": 202,
+      "sector": 31,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 147,
+      "tile": 2820,
+      "type": 201,
+      "sector": 389,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 148,
+      "tile": 2820,
+      "type": 201,
+      "sector": 389,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 149,
+      "tile": 2820,
+      "type": 201,
+      "sector": 389,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 150,
+      "tile": 2825,
+      "type": 202,
+      "sector": 389,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 168,
+      "tile": 2820,
+      "type": 201,
+      "sector": 368,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 172,
+      "tile": 2825,
+      "type": 202,
+      "sector": 174,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 173,
+      "tile": 2820,
+      "type": 201,
+      "sector": 174,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 179,
+      "tile": 2820,
+      "type": 201,
+      "sector": 302,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 180,
+      "tile": 2825,
+      "type": 202,
+      "sector": 302,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 181,
+      "tile": 2820,
+      "type": 201,
+      "sector": 302,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 182,
+      "tile": 2825,
+      "type": 202,
+      "sector": 513,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 183,
+      "tile": 2825,
+      "type": 202,
+      "sector": 513,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 184,
+      "tile": 2825,
+      "type": 202,
+      "sector": 513,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 185,
+      "tile": 2825,
+      "type": 202,
+      "sector": 305,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 186,
+      "tile": 2820,
+      "type": 201,
+      "sector": 305,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 191,
+      "tile": 2825,
+      "type": 202,
+      "sector": 496,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 192,
+      "tile": 2825,
+      "type": 202,
+      "sector": 496,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 193,
+      "tile": 2825,
+      "type": 202,
+      "sector": 496,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 194,
+      "tile": 1270,
+      "type": 211,
+      "sector": 528,
+      "sunk": 0.6
+    },
+    {
+      "sprite": 195,
+      "tile": 1270,
+      "type": 211,
+      "sector": 528,
+      "sunk": 0.6
+    },
+    {
+      "sprite": 196,
+      "tile": 1570,
+      "type": 217,
+      "sector": 119,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 200,
+      "tile": 2820,
+      "type": 201,
+      "sector": 528,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 201,
+      "tile": 2820,
+      "type": 201,
+      "sector": 174,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 202,
+      "tile": 2825,
+      "type": 202,
+      "sector": 389,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 203,
+      "tile": 2825,
+      "type": 202,
+      "sector": 543,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 204,
+      "tile": 2825,
+      "type": 202,
+      "sector": 31,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 205,
+      "tile": 1570,
+      "type": 217,
+      "sector": 152,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 207,
+      "tile": 2820,
+      "type": 201,
+      "sector": 144,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 211,
+      "tile": 2820,
+      "type": 201,
+      "sector": 293,
+      "sunk": 0.5
+    },
+    {
+      "sprite": 212,
+      "tile": 2820,
+      "type": 201,
+      "sector": 293,
+      "sunk": 0.5
+    }
+  ],
+  "added_sprite_fit_faults": [],
+  "places": {
+    "quarry": {
+      "name": "Storm quarry and service gate",
+      "intent": "An exposed night approach to a guarded pumping works, with rock silhouettes and practical entrance lights.",
+      "sectors": [
+        104,
+        105,
+        108,
+        109,
+        110,
+        133,
+        134,
+        135,
+        136,
+        205,
+        206,
+        415,
+        416,
+        417,
+        418,
+        419,
+        420,
+        421,
+        422,
+        451,
+        452,
+        453
+      ],
+      "pose_set": "quarry",
+      "kind": "quarry",
+      "study": "works-yard",
+      "open": [
+        "Owner weather timing/audio and gate Use check",
+        "Rain/bolt presentation",
+        "Independent visual review"
+      ],
+      "notes": "DESIGN.md",
+      "profile": {
+        "host": 453,
+        "sectors": 22,
+        "sky": true,
+        "area_M": 265.32,
+        "clear_bodies": 7.61,
+        "short_side": 14400,
+        "long_side": 25728,
+        "metres": [
+          24.5,
+          43.7,
+          13.7
+        ],
+        "free_floor_share": 0.62,
+        "solid_wall": 146949,
+        "wall_tiles": [
+          [
+            273,
+            0.796
+          ],
+          [
+            80,
+            0.146
+          ],
+          [
+            495,
+            0.028
+          ]
+        ],
+        "wall_tile_count": 3,
+        "dominant_share": 0.796,
+        "median_record": 1920,
+        "floor_tile": 275,
+        "ceiling_tile": 3678,
+        "wall_art": {
+          "2183": 2
+        },
+        "wall_art_per_10k": 0.14,
+        "flat_art": {},
+        "flat_art_per_M": 0.0,
+        "standing": {
+          "806": 2
+        },
+        "standing_per_M": 0.01,
+        "floor_levels": 14,
+        "shade_spread": 11,
+        "masked_walls": 0,
+        "moving_sectors": 20,
+        "machines": 7,
+        "layers": {
+          "second": true,
+          "trim": true,
+          "wall_art": true,
+          "flat_art": false,
+          "standing": true,
+          "levels": true,
+          "masked": false,
+          "light": false,
+          "motion": true,
+          "machines": true
+        },
+        "layer_count": 7
+      },
+      "campaign_comparison": {
+        "band": "outdoor/hall",
+        "cramped": [],
+        "campaign_p25": 4,
+        "campaign_p50": 6,
+        "thin": false,
+        "missing": [
+          "light"
+        ]
+      },
+      "critique_round": null,
+      "evidence": "missing",
+      "independent_review": "no round prepared",
+      "owner_walk": "pending"
+    },
+    "intake": {
+      "name": "Intake hall",
+      "intent": "A guarded shift entrance and briefing point between the quarry and the works, with a self-destructing cabinet recording device, practical work surfaces and clear circulation.",
+      "sectors": [
+        0,
+        1,
+        14,
+        390,
+        403,
+        404,
+        405,
+        479,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490
+      ],
+      "pose_set": "intake",
+      "kind": "office",
+      "study": "front-office",
+      "open": [
+        "Central enclosed sector 148 is not an ordinary counter",
+        "Neighbouring interiors still have inherited materials",
+        "Independent recognition/comparison/use/sense review",
+        "Owner navigation and mechanism check",
+        "Recorder speech and actual timed destruction need gameplay/audio verification"
+      ],
+      "notes": "notes/intake.md",
+      "profile": {
+        "host": 486,
+        "sectors": 19,
+        "sky": false,
+        "area_M": 105.5,
+        "clear_bodies": 3.8,
+        "short_side": 10176,
+        "long_side": 11712,
+        "metres": [
+          17.3,
+          19.9,
+          6.8
+        ],
+        "free_floor_share": 0.97,
+        "solid_wall": 43426,
+        "wall_tiles": [
+          [
+            181,
+            0.597
+          ],
+          [
+            255,
+            0.287
+          ],
+          [
+            34,
+            0.069
+          ],
+          [
+            36,
+            0.034
+          ]
+        ],
+        "wall_tile_count": 4,
+        "dominant_share": 0.597,
+        "median_record": 815,
+        "floor_tile": 365,
+        "ceiling_tile": 215,
+        "wall_art": {
+          "1165": 1
+        },
+        "wall_art_per_10k": 0.23,
+        "flat_art": {
+          "2290": 3,
+          "349": 1
+        },
+        "flat_art_per_M": 0.04,
+        "standing": {},
+        "standing_per_M": 0.0,
+        "floor_levels": 4,
+        "shade_spread": 58,
+        "masked_walls": 0,
+        "moving_sectors": 3,
+        "machines": 8,
+        "layers": {
+          "second": true,
+          "trim": true,
+          "wall_art": true,
+          "flat_art": true,
+          "standing": false,
+          "levels": true,
+          "masked": false,
+          "light": true,
+          "motion": true,
+          "machines": true
+        },
+        "layer_count": 8
+      },
+      "campaign_comparison": {
+        "band": "indoor/hall",
+        "cramped": [
+          "short side 10176 (campaign p25 11776)"
+        ],
+        "campaign_p25": 4,
+        "campaign_p50": 6,
+        "thin": false,
+        "missing": []
+      },
+      "critique_round": null,
+      "evidence": "missing",
+      "independent_review": "no round prepared",
+      "owner_walk": "pending"
+    },
+    "briefing": {
+      "name": "Self-destructing briefing recorder",
+      "intent": "Preserve the owner-identified Mission Impossible tape player as a Blood-era cabinet recording device with a one-shot delayed self-destruction sequence.",
+      "sectors": [
+        390,
+        403,
+        404,
+        405,
+        481
+      ],
+      "pose_set": "briefing",
+      "kind": "office",
+      "study": "front-office",
+      "open": [
+        "Suitable briefing speech remains unresolved",
+        "Owner Use, timing, damage and sound check",
+        "Independent visual review",
+        "Destroyed-state scorch/debris treatment beyond the retained geometry is pending"
+      ],
+      "notes": "notes/briefing.md",
+      "profile": {
+        "host": 481,
+        "sectors": 5,
+        "sky": false,
+        "area_M": 5.25,
+        "clear_bodies": 3.8,
+        "short_side": 1728,
+        "long_side": 3264,
+        "metres": [
+          2.9,
+          5.5,
+          6.8
+        ],
+        "free_floor_share": 0.58,
+        "solid_wall": 2596,
+        "wall_tiles": [
+          [
+            36,
+            0.563
+          ],
+          [
+            34,
+            0.357
+          ],
+          [
+            2546,
+            0.08
+          ]
+        ],
+        "wall_tile_count": 3,
+        "dominant_share": 0.563,
+        "median_record": 0,
+        "floor_tile": 365,
+        "ceiling_tile": 215,
+        "wall_art": {},
+        "wall_art_per_10k": 0.0,
+        "flat_art": {
+          "349": 1
+        },
+        "flat_art_per_M": 0.19,
+        "standing": {},
+        "standing_per_M": 0.0,
+        "floor_levels": 3,
+        "shade_spread": 20,
+        "masked_walls": 0,
+        "moving_sectors": 3,
+        "machines": 4,
+        "layers": {
+          "second": true,
+          "trim": true,
+          "wall_art": false,
+          "flat_art": true,
+          "standing": false,
+          "levels": true,
+          "masked": false,
+          "light": true,
+          "motion": true,
+          "machines": true
+        },
+        "layer_count": 7
+      },
+      "campaign_comparison": {
+        "band": "indoor/small",
+        "cramped": [],
+        "campaign_p25": 0,
+        "campaign_p50": 1,
+        "thin": false,
+        "missing": []
+      },
+      "critique_round": null,
+      "evidence": "missing",
+      "independent_review": "no round prepared",
+      "owner_walk": "pending"
+    },
+    "washhouse": {
+      "name": "Workers' washhouse",
+      "intent": "Grimy workers' toilets and wall urinals in the pumping works, with practical lighting, metal stall partitions and stone fixtures grounded in Blood's bathrooms.",
+      "sectors": [
+        52,
+        53,
+        54,
+        55,
+        58,
+        59,
+        60,
+        61,
+        64,
+        67,
+        119,
+        125,
+        152
+      ],
+      "pose_set": "washhouse",
+      "kind": "bathroom",
+      "study": "washroom",
+      "open": [
+        "Owner stall-door Use and obstruction check",
+        "Owner fixture collision and flush sound check",
+        "Independent recognition/comparison/use/sense review",
+        "Mirror alcove 117 and native mirror support 57 remain outside this pass",
+        "Fixtures use rectangular native sprite assemblies; rounded geometry remains a possible refinement"
+      ],
+      "notes": "notes/washhouse.md",
+      "profile": {
+        "host": 152,
+        "sectors": 13,
+        "sky": false,
+        "area_M": 37.7,
+        "clear_bodies": 2.81,
+        "short_side": 5664,
+        "long_side": 8256,
+        "metres": [
+          9.6,
+          14.0,
+          5.1
+        ],
+        "free_floor_share": 0.94,
+        "solid_wall": 33110,
+        "wall_tiles": [
+          [
+            2453,
+            0.549
+          ],
+          [
+            297,
+            0.405
+          ],
+          [
+            2178,
+            0.046
+          ]
+        ],
+        "wall_tile_count": 3,
+        "dominant_share": 0.549,
+        "median_record": 240,
+        "floor_tile": 296,
+        "ceiling_tile": 215,
+        "wall_art": {
+          "43": 26,
+          "2453": 2
+        },
+        "wall_art_per_10k": 8.46,
+        "flat_art": {
+          "43": 18,
+          "2915": 4,
+          "2290": 2
+        },
+        "flat_art_per_M": 0.64,
+        "standing": {},
+        "standing_per_M": 0.0,
+        "floor_levels": 5,
+        "shade_spread": 12,
+        "masked_walls": 0,
+        "moving_sectors": 11,
+        "machines": 2,
+        "layers": {
+          "second": true,
+          "trim": true,
+          "wall_art": true,
+          "flat_art": true,
+          "standing": false,
+          "levels": true,
+          "masked": false,
+          "light": true,
+          "motion": true,
+          "machines": true
+        },
+        "layer_count": 8
+      },
+      "campaign_comparison": {
+        "band": "indoor/large",
+        "cramped": [
+          "short side 5664 (campaign p25 6144)"
+        ],
+        "campaign_p25": 2,
+        "campaign_p50": 5,
+        "thin": false,
+        "missing": []
+      },
+      "critique_round": 1,
+      "evidence": "current",
+      "independent_review": "prepared, no reader has answered",
+      "owner_walk": "pending"
+    }
+  },
+  "open": [
+    "Exit sequence and route to 311 unverified",
+    "Mirror support 57 needs native mirror repair",
+    "Camera-only scenery 535-542 excluded but not deleted",
+    "Other interiors still need passes",
+    "Runtime weather, audio and actual Use activation unverified"
+  ],
+  "runtime_events_executed": false
+}

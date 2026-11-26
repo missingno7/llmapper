@@ -1,0 +1,43 @@
+[
+  {
+    "name": "intake:briefing-use",
+    "says": "Using the recording device once starts its two self-destruction delay relays.",
+    "channel": 125,
+    "engine": null,
+    "when": [
+      "push on the face of 405 from (-2760, 45284) to (-3312, 45120)"
+    ],
+    "then": [
+      "placement briefing-arm-delay",
+      "placement briefing-collapse-delay"
+    ]
+  },
+  {
+    "name": "intake:briefing-explosions",
+    "says": "After the MasterSwitch delay, arm the three retained exploders with their original converted fuses.",
+    "channel": 112,
+    "engine": null,
+    "when": [
+      "relay on placement briefing-arm-delay"
+    ],
+    "then": [
+      "placement existing-327",
+      "placement existing-328",
+      "placement existing-329"
+    ]
+  },
+  {
+    "name": "intake:briefing-collapse",
+    "says": "At the first detonation, lower the existing recorder and desk fragments to their authored endpoints.",
+    "channel": 111,
+    "engine": null,
+    "when": [
+      "relay on placement briefing-collapse-delay"
+    ],
+    "then": [
+      "region 390",
+      "region 403",
+      "region 405"
+    ]
+  }
+]

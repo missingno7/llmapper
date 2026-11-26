@@ -1,0 +1,26 @@
+{
+ "map": "projects/duke-e4l1-remake/E4L1-current.MAP",
+ "source_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+ "observed_sha256": "516b3a348d9724ced19425d1d745020b0ffb200fcbf6c42b81d9b15b205ccb12",
+ "project": "duke-e4l1-remake",
+ "pose_sets": [
+  "briefing"
+ ],
+ "poses_sha256": "0ef5c6b5d8ffb223f673021a2e0090b88435fb86854d5d121daaa79471612856",
+ "state": "collapsed: the chain from wall 2318 posed (bloodmap.posed)",
+ "empty": true,
+ "words_hidden": null,
+ "views": [
+  "approach",
+  "device-front",
+  "hall-context",
+  "use-position"
+ ],
+ "frames": {
+  "approach": "a17bd0883ae479a86f3c9f6d3c6f436ca5fa237f4fe12b872d8cda77c8ca1800",
+  "device-front": "9525fde52616b5fa20d08fd626c1eb34d1561f0eed481364a574ca1ab1fff565",
+  "hall-context": "3e35a80140a2b14b6d50369d9da896642e8a541e13de21ebbf8aeb9a377cef9b",
+  "use-position": "1252a6b6b7a2234b2bd1826958f3b23af41710e7bc5fa00b741c21d1176bb06e"
+ },
+ "runtime_events_executed": false
+}

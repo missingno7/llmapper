@@ -1,0 +1,41 @@
+{
+ "project": "duke-e4l1-remake",
+ "slug": "washhouse",
+ "kind": "bathroom",
+ "round": 1,
+ "poses": [
+  "washhouse"
+ ],
+ "views": 6,
+ "references": 1,
+ "study": "washroom",
+ "readers": [
+  "recognition",
+  "comparison",
+  "use",
+  "sense"
+ ],
+ "map": "projects/duke-e4l1-remake/E4L1-current.MAP",
+ "source_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+ "poses_sha256": "d7ac00114acf7028d4d1991d1c33eca2720a00f095f8699dd2d4e871d6cd8a79",
+ "frames": {
+  "ours/frames/view_01.png": "1708775281d4769583ccdad5c042c73ead7dce38268296daad3895af33bf1ede",
+  "ours/frames/view_02.png": "9b4a97ba04187356fc2ff326a6a81ecaf65bf67d7edcf56a39786cfe092d16b5",
+  "ours/frames/view_03.png": "703cd2b015835e0807d52709cf10aaf24dc6134bc4cbe2ec56993fdeb39ab09f",
+  "ours/frames/view_04.png": "03852f661f1bc2a8a31c50034d29372532f8e37e5da35e48fcade2f082437a32",
+  "ours/frames/view_05.png": "52181c6a9d5089fc8a3d9a25023c2c011c835b21d69b0e8f0727db56e58aab2f",
+  "ours/frames/view_06.png": "1ed1111cea98552ce3715319854ecf0c3de206143883808e6462d8c05ff657cc",
+  "ours_mute/frames/view_01.png": "1708775281d4769583ccdad5c042c73ead7dce38268296daad3895af33bf1ede",
+  "ours_mute/frames/view_02.png": "3212eac65e2b811b11250e9e09c30e216440b16b95bf9d70dfa523eccec5794b",
+  "ours_mute/frames/view_03.png": "703cd2b015835e0807d52709cf10aaf24dc6134bc4cbe2ec56993fdeb39ab09f",
+  "ours_mute/frames/view_04.png": "39f05f428dc76290bf58b15e1fd1beb78844b9daa8eb52b7025fa5bd445adb83",
+  "ours_mute/frames/view_05.png": "f4f2c8e6f9b01c2c305aa9a76432f3b93494f5f205c995eb937c9d16f7027c65",
+  "ours_mute/frames/view_06.png": "1ed1111cea98552ce3715319854ecf0c3de206143883808e6462d8c05ff657cc",
+  "ours_empty/frames/view_01.png": "1708775281d4769583ccdad5c042c73ead7dce38268296daad3895af33bf1ede",
+  "ours_empty/frames/view_02.png": "3212eac65e2b811b11250e9e09c30e216440b16b95bf9d70dfa523eccec5794b",
+  "ours_empty/frames/view_03.png": "703cd2b015835e0807d52709cf10aaf24dc6134bc4cbe2ec56993fdeb39ab09f",
+  "ours_empty/frames/view_04.png": "39f05f428dc76290bf58b15e1fd1beb78844b9daa8eb52b7025fa5bd445adb83",
+  "ours_empty/frames/view_05.png": "f4f2c8e6f9b01c2c305aa9a76432f3b93494f5f205c995eb937c9d16f7027c65",
+  "ours_empty/frames/view_06.png": "1ed1111cea98552ce3715319854ecf0c3de206143883808e6462d8c05ff657cc"
+ }
+}

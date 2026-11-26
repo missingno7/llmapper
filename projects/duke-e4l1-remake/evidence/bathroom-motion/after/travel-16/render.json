@@ -1,0 +1,16 @@
+{
+  "map": "projects\\duke-e4l1-remake\\evidence\\bathroom-motion\\after\\travel-16\\sample.MAP",
+  "source_sha256": "5b33f436d7012ac5c44f20313277b289c2b5deb8ef8a718d1be0ea05a065e6c2",
+  "observed_sha256": "e53714d876d73e9a062458252d2c6aa5b1c01a8812b1a06e644200aa0ff105a1",
+  "poses_sha256": "ce717b34150e66b2af2f86912362fb554546eb688ae51742f15bee7b80857329",
+  "views": [
+    "room",
+    "door",
+    "across-room"
+  ],
+  "state": "saved/rest state",
+  "empty": true,
+  "signs_muted": false,
+  "pose_set": "bathroom",
+  "runtime_events_executed": false
+}

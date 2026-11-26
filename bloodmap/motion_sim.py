@@ -81,6 +81,29 @@ def duke_sector_walls(duke: DukeDiskMap, sector_id: int) -> Polygon:
     ]
 
 
+def duke_loop_sweeps(duke: DukeDiskMap, effector_index: int, *, steps: int = 16) -> dict:
+    """Replay Duke DragPoint calls over every affected neighbour loop, in source units."""
+    sprite = duke.sprites[effector_index]
+    own = sector_walls(duke, sprite.sector)
+    own_index = {w:i for i,w in enumerate(own)}
+    drivers = stretch_bridge(duke,sprite)["walls"] if sprite.lotag==20 else own
+    frames = duke_sweep(duke,effector_index,steps=steps)
+    chains = {w:drag_chain(duke,w) for w in drivers}
+    moved = {w for chain in chains.values() for w in chain}
+    owners = wall_owners(duke)
+    loops = {(sid,i):walls for sid in sorted({owners[w] for w in moved})
+             for i,walls in enumerate(sector_loops(duke,sid)) if moved.intersection(walls)}
+    result = {key:[] for key in loops}
+    for frame in frames:
+        positions = {}
+        for driver in drivers:
+            for member in chains[driver]:
+                positions[member] = frame[own_index[driver]]
+        for key,walls in loops.items():
+            result[key].append([positions.get(w,(_wall_field(duke,w,"x"),_wall_field(duke,w,"y"))) for w in walls])
+    return result
+
+
 def blood_sector_walls(level: Any, sector_id: int) -> Polygon:
     return [
         (float(_wall_field(level, w, "x")), float(_wall_field(level, w, "y")))

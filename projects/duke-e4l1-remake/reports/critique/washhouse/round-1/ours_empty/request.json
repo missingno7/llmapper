@@ -1,0 +1,73 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "D:/Games/DOS/llmapper/projects/duke-e4l1-remake/reports/critique/washhouse/round-1/ours_empty/as-empty.MAP",
+ "resource_dir": "reference/blood",
+ "output": "D:/Games/DOS/llmapper/projects/duke-e4l1-remake/reports/critique/washhouse/round-1/ours_empty",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "room-to-stalls",
+   "x": 25848,
+   "y": 52426,
+   "z": -13728,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "room-to-mirror",
+   "x": 25848,
+   "y": 52426,
+   "z": -13728,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "stalls",
+   "x": 23424,
+   "y": 49920,
+   "z": -13728,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 59,
+   "screenshot": true
+  },
+  {
+   "id": "urinals",
+   "x": 23400,
+   "y": 52032,
+   "z": -13728,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 119,
+   "screenshot": true
+  },
+  {
+   "id": "toilet",
+   "x": 24000,
+   "y": 49920,
+   "z": -13728,
+   "angle": 1024,
+   "horiz": 60,
+   "sector": 59,
+   "screenshot": true
+  },
+  {
+   "id": "stall-door",
+   "x": 25400,
+   "y": 48000,
+   "z": -13728,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  }
+ ]
+}

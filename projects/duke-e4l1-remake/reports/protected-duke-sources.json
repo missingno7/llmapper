@@ -1,0 +1,232 @@
+[
+  {
+    "map": "DukCity1",
+    "path": "maps\\duke3d\\DukCity1.map",
+    "source_sha256": "ff2a2d64e180e77e2244e4bcc03fe720d12801c2214d9a5452e8d437453e6800"
+  },
+  {
+    "map": "DukCity2",
+    "path": "maps\\duke3d\\DukCity2.map",
+    "source_sha256": "c422315324dd3c2231849f2c1e90940ecaaa781d0a7fe0f39c9289eecb8279a5"
+  },
+  {
+    "map": "DukCity3",
+    "path": "maps\\duke3d\\DukCity3.map",
+    "source_sha256": "c01ba7972c301e865a0fbcb9468321f9984e5a10313b87b37cc8d48548c5e150"
+  },
+  {
+    "map": "DukCity4",
+    "path": "maps\\duke3d\\DukCity4.map",
+    "source_sha256": "95b36c66c514ebd422c2a973ad9049b332e26d072d496fe47a762964b24a1e01"
+  },
+  {
+    "map": "DukCity5",
+    "path": "maps\\duke3d\\DukCity5.map",
+    "source_sha256": "c14ae615c25564c46a1a0de7227759030b0dbf5cf271d88c246567747493ce82"
+  },
+  {
+    "map": "E1L1",
+    "path": "maps\\duke3d\\E1L1.MAP",
+    "source_sha256": "582949828ad025fc8aff555bbdc1a68cf9e4b258c2637316e8b56a009ec2a6fc"
+  },
+  {
+    "map": "E1L2",
+    "path": "maps\\duke3d\\E1L2.MAP",
+    "source_sha256": "b7d41cd5c98423a9e9ff531f676d16d6337a106be748cc9bababaa238e7733f3"
+  },
+  {
+    "map": "E1L3",
+    "path": "maps\\duke3d\\E1L3.MAP",
+    "source_sha256": "f270a3c5420e700a505a624b6697bf6000d8eeb1fd6ef9deaeee8a2809f34119"
+  },
+  {
+    "map": "E1L4",
+    "path": "maps\\duke3d\\E1L4.MAP",
+    "source_sha256": "4fa3e4efad3fc058d9fc15f9f7efb1a9114c1fa55f5c3a249a80045d6e69cd59"
+  },
+  {
+    "map": "E1L5",
+    "path": "maps\\duke3d\\E1L5.MAP",
+    "source_sha256": "4fd279315945f58d6d94712089235d2a4eee2148ac31b63b7c98c4ede1fe73ea"
+  },
+  {
+    "map": "E1L6",
+    "path": "maps\\duke3d\\E1L6.MAP",
+    "source_sha256": "b929baeb18446eabcab8a614e9ff8ba59cf8e5a15d51aceb4ab0f38cc3c6d43b"
+  },
+  {
+    "map": "E1L7",
+    "path": "maps\\duke3d\\E1L7.MAP",
+    "source_sha256": "b607a0e7d20cdc7f4b5b4ea3936986213967c67ea41af33b02ba0bee67e9ec39"
+  },
+  {
+    "map": "E1L8",
+    "path": "maps\\duke3d\\E1L8.MAP",
+    "source_sha256": "30ace9067515bf9cece4d1241161be31466d1456e1d3ace079b16e5213d0b334"
+  },
+  {
+    "map": "E2L1",
+    "path": "maps\\duke3d\\E2L1.MAP",
+    "source_sha256": "3d3eca8462b8c344e1e55f615ab2d7bc6b5f3ae7043926f5571e4cef8bdd9a2b"
+  },
+  {
+    "map": "E2L10",
+    "path": "maps\\duke3d\\E2L10.MAP",
+    "source_sha256": "33c820805309403cd5b664ff77acf06105db1e98761d4f2f4bcd3c213bda49ff"
+  },
+  {
+    "map": "E2L11",
+    "path": "maps\\duke3d\\E2L11.MAP",
+    "source_sha256": "f7da80a3406b51571b8307c0fb1b566629ffff7b8d4946b1a6e7bbef1bb5c209"
+  },
+  {
+    "map": "E2L2",
+    "path": "maps\\duke3d\\E2L2.MAP",
+    "source_sha256": "77a71d42dce428e51ea9705b2b6024dac1a83b6fa14ea4d979817b6f1bbfacbc"
+  },
+  {
+    "map": "E2L3",
+    "path": "maps\\duke3d\\E2L3.MAP",
+    "source_sha256": "151311f6ba0ad8bb97ba92558a2b522049e5a9178c9957df8910f7a05c7433a7"
+  },
+  {
+    "map": "E2L4",
+    "path": "maps\\duke3d\\E2L4.MAP",
+    "source_sha256": "59b553341fa352c05c2b6ffe4ee3653c8f9e15e6b9320205b81fc5085c182310"
+  },
+  {
+    "map": "E2L5",
+    "path": "maps\\duke3d\\E2L5.MAP",
+    "source_sha256": "1d80fa453505156198d82b483bb7ea9cab8120ab38471070b704097d1e81153f"
+  },
+  {
+    "map": "E2L6",
+    "path": "maps\\duke3d\\E2L6.MAP",
+    "source_sha256": "0e504e1d7013a610a5232f6da2b57ca756d56948f7d73a64c5d7572c8bdd5e82"
+  },
+  {
+    "map": "E2L7",
+    "path": "maps\\duke3d\\E2L7.MAP",
+    "source_sha256": "afeab75e0e545644b32954a4403d372b173bdc153f6dddfa8fb31c49b5091a0b"
+  },
+  {
+    "map": "E2L8",
+    "path": "maps\\duke3d\\E2L8.MAP",
+    "source_sha256": "49f16917527222b36c37334752db52f4e1c2a948bc2ee7b40103fe60c80b45ed"
+  },
+  {
+    "map": "E2L9",
+    "path": "maps\\duke3d\\E2L9.MAP",
+    "source_sha256": "8bd15108bf09b397158fe9e23249fede4895f8886477689004d5561285208488"
+  },
+  {
+    "map": "E3L1",
+    "path": "maps\\duke3d\\E3L1.MAP",
+    "source_sha256": "31957af58e82855d318a82e99a6f4d9b915250bec53a86d8aead9992d89da1dd"
+  },
+  {
+    "map": "E3L10",
+    "path": "maps\\duke3d\\E3L10.MAP",
+    "source_sha256": "3d33c764ae78343d117218ff91746ee41eca098f129c73401ff081f3b4728882"
+  },
+  {
+    "map": "E3L11",
+    "path": "maps\\duke3d\\E3L11.MAP",
+    "source_sha256": "ffbfc53f6cce7df7fca58b83f417485baff05ef5c334058bb78174f144aae5cc"
+  },
+  {
+    "map": "E3L2",
+    "path": "maps\\duke3d\\E3L2.MAP",
+    "source_sha256": "b9b2d10ddbff8a1fb753fa4bb8b2fe45d5e6beddd778054463b6bbc1090c5690"
+  },
+  {
+    "map": "E3L3",
+    "path": "maps\\duke3d\\E3L3.MAP",
+    "source_sha256": "5cc6acb46b9a5364376dcc4fda4afba7655d0c1ab7aee2d99b29884a16f9f705"
+  },
+  {
+    "map": "E3L4",
+    "path": "maps\\duke3d\\E3L4.MAP",
+    "source_sha256": "56002222d5c72f2a5260b739481a2e37a095e153eb30352a3181a06259bf8155"
+  },
+  {
+    "map": "E3L5",
+    "path": "maps\\duke3d\\E3L5.MAP",
+    "source_sha256": "32427e4f3326e6750057cbc699c913ebcda18e8a88368f6e97b27619f0e4eced"
+  },
+  {
+    "map": "E3L6",
+    "path": "maps\\duke3d\\E3L6.MAP",
+    "source_sha256": "a77d1c2694d75891f8b9bdb66fcfbfbf61e9f5ad32bc499558f0cfa2cac55e86"
+  },
+  {
+    "map": "E3L7",
+    "path": "maps\\duke3d\\E3L7.MAP",
+    "source_sha256": "97df5b58d9fc87b796128b5a240d8249b1782f4b7b054610fbcf503854fbe6a6"
+  },
+  {
+    "map": "E3L8",
+    "path": "maps\\duke3d\\E3L8.MAP",
+    "source_sha256": "9e29152b102ea6e68482d9eceeb2538e7c28fede83c91e3a048497048e0416b8"
+  },
+  {
+    "map": "E3L9",
+    "path": "maps\\duke3d\\E3L9.MAP",
+    "source_sha256": "b88933de76752431e64233f28804b1999f653ba0709218b4b8256e4a43f5c35d"
+  },
+  {
+    "map": "E4L1",
+    "path": "maps\\duke3d\\E4L1.MAP",
+    "source_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd"
+  },
+  {
+    "map": "E4L10",
+    "path": "maps\\duke3d\\E4L10.MAP",
+    "source_sha256": "760ef6791f571df8705344278df7bd57933eed0fac19e6d84a7bb8c0eee9ac89"
+  },
+  {
+    "map": "E4L11",
+    "path": "maps\\duke3d\\E4L11.MAP",
+    "source_sha256": "638f950321b25191e3bc0e4166fc1a6ab06b5716f995e51a3197da47813ef1c0"
+  },
+  {
+    "map": "E4L2",
+    "path": "maps\\duke3d\\E4L2.MAP",
+    "source_sha256": "ed3bb8fe05fec19d87846fde430d7ef595e0be7f1c38e88d42f30cd8fc3222d5"
+  },
+  {
+    "map": "E4L3",
+    "path": "maps\\duke3d\\E4L3.MAP",
+    "source_sha256": "98664ae95911abae2b31e1aa0bed6e1f889456ca263ca5b9c06946ec0e9d1fd7"
+  },
+  {
+    "map": "E4L4",
+    "path": "maps\\duke3d\\E4L4.MAP",
+    "source_sha256": "cc29bf6396ff8e6ba974ccecbc71c72fddeda21129cebac51e87d873848253ac"
+  },
+  {
+    "map": "E4L5",
+    "path": "maps\\duke3d\\E4L5.MAP",
+    "source_sha256": "54e90000da26465cea14e896b46a68996e9688b6960a0aa9c39bb9ba1737af26"
+  },
+  {
+    "map": "E4L6",
+    "path": "maps\\duke3d\\E4L6.MAP",
+    "source_sha256": "efabd73232f58bf2f687e1938c47f1128a210d79e3a65667b7be20d18fc5e871"
+  },
+  {
+    "map": "E4L7",
+    "path": "maps\\duke3d\\E4L7.MAP",
+    "source_sha256": "98d38ff90b0a1c8f40b130478500d480a51f00821c8507f13f3e0e1de32a6adb"
+  },
+  {
+    "map": "E4L8",
+    "path": "maps\\duke3d\\E4L8.MAP",
+    "source_sha256": "68840340bbb8917d0b167530329692d4f71a976192c17998620d9604e5c054af"
+  },
+  {
+    "map": "E4L9",
+    "path": "maps\\duke3d\\E4L9.MAP",
+    "source_sha256": "2c23d5d6ce8a9e3814e96410f178d220de818ca875f1e8d27d0d8caa5da2b3cf"
+  }
+]

@@ -1,0 +1,162 @@
+{
+  "id": "03-service-gate-panels",
+  "patch_sha256": "2be330990ad06feb729a4cdc38d31bee80005cd10f7c445034988376df7e7093",
+  "before_sha256": "892bc8f1db15c09b99f50b500a5b64812afa7b58ad10c8855e571de0676b0733",
+  "after_sha256": "f639fae83771303193e597103c06361c8e409ea95209762e936f335172250fed",
+  "changes": [
+    {
+      "kind": "wall",
+      "index": 537,
+      "extension": false,
+      "field": "picnum",
+      "before": 255,
+      "after": 495
+    },
+    {
+      "kind": "wall",
+      "index": 537,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 48,
+      "after": 18
+    },
+    {
+      "kind": "wall",
+      "index": 537,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "extension": false,
+      "field": "picnum",
+      "before": 255,
+      "after": 495
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 54,
+      "after": 18
+    },
+    {
+      "kind": "wall",
+      "index": 533,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "picnum",
+      "before": 255,
+      "after": 495
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 28,
+      "after": 10
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 529,
+      "extension": false,
+      "field": "x_panning",
+      "before": 130,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "picnum",
+      "before": 255,
+      "after": 495
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 21,
+      "after": 7
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 530,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "picnum",
+      "before": 255,
+      "after": 495
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "x_repeat",
+      "before": 2,
+      "after": 1
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 12,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 531,
+      "extension": false,
+      "field": "x_panning",
+      "before": 255,
+      "after": 0
+    }
+  ],
+  "sprites": {},
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 341
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\892bc8f1db15c09b99f50b500a5b64812afa7b58ad10c8855e571de0676b0733.MAP"
+}

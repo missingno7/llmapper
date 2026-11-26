@@ -1,0 +1,299 @@
+{
+  "source_sha256": "723842a82e6f5d1980977f172997dd1c5fc5ffe24bb8ee23496e90080bbe25dd",
+  "map_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 404
+  },
+  "native_round_trip_exact": true,
+  "source_maps": [
+    {
+      "map": "DukCity1",
+      "unchanged": true
+    },
+    {
+      "map": "DukCity2",
+      "unchanged": true
+    },
+    {
+      "map": "DukCity3",
+      "unchanged": true
+    },
+    {
+      "map": "DukCity4",
+      "unchanged": true
+    },
+    {
+      "map": "DukCity5",
+      "unchanged": true
+    },
+    {
+      "map": "E1L1",
+      "unchanged": true
+    },
+    {
+      "map": "E1L2",
+      "unchanged": true
+    },
+    {
+      "map": "E1L3",
+      "unchanged": true
+    },
+    {
+      "map": "E1L4",
+      "unchanged": true
+    },
+    {
+      "map": "E1L5",
+      "unchanged": true
+    },
+    {
+      "map": "E1L6",
+      "unchanged": true
+    },
+    {
+      "map": "E1L7",
+      "unchanged": true
+    },
+    {
+      "map": "E1L8",
+      "unchanged": true
+    },
+    {
+      "map": "E2L1",
+      "unchanged": true
+    },
+    {
+      "map": "E2L10",
+      "unchanged": true
+    },
+    {
+      "map": "E2L11",
+      "unchanged": true
+    },
+    {
+      "map": "E2L2",
+      "unchanged": true
+    },
+    {
+      "map": "E2L3",
+      "unchanged": true
+    },
+    {
+      "map": "E2L4",
+      "unchanged": true
+    },
+    {
+      "map": "E2L5",
+      "unchanged": true
+    },
+    {
+      "map": "E2L6",
+      "unchanged": true
+    },
+    {
+      "map": "E2L7",
+      "unchanged": true
+    },
+    {
+      "map": "E2L8",
+      "unchanged": true
+    },
+    {
+      "map": "E2L9",
+      "unchanged": true
+    },
+    {
+      "map": "E3L1",
+      "unchanged": true
+    },
+    {
+      "map": "E3L10",
+      "unchanged": true
+    },
+    {
+      "map": "E3L11",
+      "unchanged": true
+    },
+    {
+      "map": "E3L2",
+      "unchanged": true
+    },
+    {
+      "map": "E3L3",
+      "unchanged": true
+    },
+    {
+      "map": "E3L4",
+      "unchanged": true
+    },
+    {
+      "map": "E3L5",
+      "unchanged": true
+    },
+    {
+      "map": "E3L6",
+      "unchanged": true
+    },
+    {
+      "map": "E3L7",
+      "unchanged": true
+    },
+    {
+      "map": "E3L8",
+      "unchanged": true
+    },
+    {
+      "map": "E3L9",
+      "unchanged": true
+    },
+    {
+      "map": "E4L1",
+      "unchanged": true
+    },
+    {
+      "map": "E4L10",
+      "unchanged": true
+    },
+    {
+      "map": "E4L11",
+      "unchanged": true
+    },
+    {
+      "map": "E4L2",
+      "unchanged": true
+    },
+    {
+      "map": "E4L3",
+      "unchanged": true
+    },
+    {
+      "map": "E4L4",
+      "unchanged": true
+    },
+    {
+      "map": "E4L5",
+      "unchanged": true
+    },
+    {
+      "map": "E4L6",
+      "unchanged": true
+    },
+    {
+      "map": "E4L7",
+      "unchanged": true
+    },
+    {
+      "map": "E4L8",
+      "unchanged": true
+    },
+    {
+      "map": "E4L9",
+      "unchanged": true
+    }
+  ],
+  "structural_diagnostics": {
+    "warning": 7
+  },
+  "source_fixtures": [
+    {
+      "sprite": 477,
+      "picnum": 571,
+      "sector": 119,
+      "x": 14994,
+      "y": 35075,
+      "z": -2048,
+      "cstat": 80,
+      "angle": 0
+    },
+    {
+      "sprite": 478,
+      "picnum": 571,
+      "sector": 119,
+      "x": 15000,
+      "y": 34306,
+      "z": -1792,
+      "cstat": 80,
+      "angle": 0
+    },
+    {
+      "sprite": 479,
+      "picnum": 569,
+      "sector": 59,
+      "x": 15232,
+      "y": 33280,
+      "z": 1024,
+      "cstat": 65,
+      "angle": 0
+    },
+    {
+      "sprite": 480,
+      "picnum": 569,
+      "sector": 58,
+      "x": 15232,
+      "y": 32128,
+      "z": 1024,
+      "cstat": 65,
+      "angle": 0
+    }
+  ],
+  "static_room": {
+    "sector": 152,
+    "source_sector_lotag": 0,
+    "source_effector": 487,
+    "hitag": 409,
+    "same_hitag_st23_operator": false,
+    "native_type": 0,
+    "marker_0": -1,
+    "entry_signal_preserved": true,
+    "no_invented_local_use": true
+  },
+  "stall_door": {
+    "sector": 61,
+    "native_type": 617,
+    "motor_unchanged_by_washhouse_pass": true,
+    "marker": 8
+  },
+  "pass10_preservation": {
+    "geometry_changes": [],
+    "start_changes": [],
+    "existing_extension_changes": [],
+    "existing_sprite_changes": [],
+    "added_sprites": 56
+  },
+  "fixture_fit_faults": {
+    "sunk": [],
+    "through": [],
+    "squeezed": []
+  },
+  "fixture_flat_overlaps": [],
+  "flush_controls": [
+    {
+      "name": "toilet-58-flush",
+      "sprite": 362,
+      "type": 20,
+      "agrees": true
+    },
+    {
+      "name": "toilet-59-flush",
+      "sprite": 377,
+      "type": 20,
+      "agrees": true
+    },
+    {
+      "name": "urinal-1-flush",
+      "sprite": 389,
+      "type": 20,
+      "agrees": true
+    },
+    {
+      "name": "urinal-2-flush",
+      "sprite": 401,
+      "type": 20,
+      "agrees": true
+    }
+  ],
+  "runtime_events_executed": false,
+  "limits": "Static render and native read-back only. Live collision, flush sound/Use, door obstruction and encounters need owner play. Mirror support 57 is excluded. Fixtures are native sprite assemblies, interpreted from E2M4's sector-built stone toilet rather than copied geometry."
+}

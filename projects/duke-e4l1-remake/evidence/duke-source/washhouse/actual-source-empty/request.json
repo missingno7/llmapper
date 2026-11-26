@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/studies/washhouse/actual-source-empty/view.MAP",
+ "resource_dir": "work/duke-view-resources",
+ "output": "projects/duke-e4l1-remake/studies/washhouse/actual-source-empty",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "room-to-stalls",
+   "x": 17232,
+   "y": 34950,
+   "z": -8704,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "room-to-mirror",
+   "x": 17232,
+   "y": 34950,
+   "z": -8704,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "stalls",
+   "x": 15616,
+   "y": 33280,
+   "z": -8704,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 59,
+   "screenshot": true
+  },
+  {
+   "id": "urinals",
+   "x": 15600,
+   "y": 34688,
+   "z": -8704,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 119,
+   "screenshot": true
+  }
+ ]
+}

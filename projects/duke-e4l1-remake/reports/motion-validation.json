@@ -1,0 +1,43 @@
+{
+  "map_sha256": "f4d2fac817911148452bfb599ba179fbb2beec783cf6bd38804cf6b5a0aa99d8",
+  "saved_geometry_and_all_material_fields_unchanged": true,
+  "changed_marker_angles": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "source_maps_unchanged": 46,
+  "baseline_preserved": true,
+  "native_round_trip_exact": true,
+  "storm_wiring_agrees": true,
+  "corpus": {
+    "$schema": "llmapper.motion-verification",
+    "schema_version": 1,
+    "tolerance": 8.0,
+    "steps": 16,
+    "maps": 46,
+    "conversion_failures": [],
+    "moving_sectors": 381,
+    "modelled": 381,
+    "ok": 381,
+    "problems": 0,
+    "worst_deviation": 2.0
+  },
+  "targeted_tests": {
+    "run": 99,
+    "result": "OK",
+    "log": "work/duke-motion-audit-verified-tests.log"
+  },
+  "repository_module_index_check": "Separately fails for concurrent unregistered bloodmap/supplies and tools/mine_supplies; those files were not edited by this task.",
+  "runtime_events_executed": false
+}

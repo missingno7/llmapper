@@ -1,0 +1,23 @@
+{
+  "id": "intake-01",
+  "intent": "A guarded intake hall between the stormy quarry entrance and the works; practical work surfaces, restrained materials, readable branching circulation. Desk dressing is deferred pending the explosive workbench trace.",
+  "before_map_sha256": "f639fae83771303193e597103c06361c8e409ea95209762e936f335172250fed",
+  "predictions": [
+    "Slab floor replaces the leaf-pattern carpet throughout the explicit hall boundary.",
+    "Pressed metal ceiling and properly scaled masonry reduce the tomb-like reading without changing layout.",
+    "A wall clock and ceiling work lights suggest a staffed shift entrance without signage.",
+    "Only actors 119, 189 and 190 are reseated by ART drawn extents: sunk actor count should fall from 72 to 69."
+  ],
+  "preserve": [
+    "All geometry, slopes, player start, native mechanism fields, gate controls and explosive sectors.",
+    "The central enclosed sector 148 and the explosive workbench are not safe dressing surfaces yet.",
+    "Original Duke source and baseline; Blood City."
+  ],
+  "pose_set": "intake",
+  "references": [
+    "E3M4:153 admission hall: hierarchy of circulation, framing and fittings",
+    "E6M1:79 actual office adjoining the catalog seed 91: clock, work furniture, practical ceiling fixture",
+    "E1M3:316 factory: restrained work-floor and metal construction"
+  ],
+  "review_status": "Independent recognition/comparison/use/sense review pending; these predictions are not a pass."
+}

@@ -1,0 +1,2379 @@
+{
+  "id": "10-washhouse",
+  "patch_sha256": "7cc282f3815c8b3e06a39c990a9c7c7c4c085fc8d96f75575fa33f9ec3bfff49",
+  "before_sha256": "692ad84dc626f9a1ed934f6df63d0d7fa114cf8f3d6845b272b5819e10e7aab3",
+  "after_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac",
+  "changes": [
+    {
+      "kind": "sector",
+      "index": 58,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 293,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 58,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 58,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 58,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 278,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 278,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 279,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 279,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 280,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 280,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 280,
+      "extension": false,
+      "field": "x_panning",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 280,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 281,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 281,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 281,
+      "extension": false,
+      "field": "x_panning",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 281,
+      "extension": false,
+      "field": "y_panning",
+      "before": 68,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 59,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 293,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 59,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 59,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 59,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 282,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 282,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 283,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 283,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 284,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 284,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 284,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 284,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 285,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 285,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 60,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 293,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 60,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 60,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 60,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 286,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 286,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 287,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 287,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 287,
+      "extension": false,
+      "field": "x_panning",
+      "before": 56,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 287,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 288,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 288,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 288,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 289,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 289,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 289,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 289,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 290,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 290,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 290,
+      "extension": false,
+      "field": "x_panning",
+      "before": 32,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 290,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 291,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 291,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 291,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 292,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 292,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 119,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 293,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 119,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 119,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 119,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 581,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 581,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 582,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 582,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 583,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 583,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 583,
+      "extension": false,
+      "field": "x_panning",
+      "before": 32,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 583,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 584,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 584,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 584,
+      "extension": false,
+      "field": "x_panning",
+      "before": 56,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 584,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 585,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 585,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 585,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 586,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 586,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 586,
+      "extension": false,
+      "field": "x_panning",
+      "before": 32,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 586,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 587,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 587,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 587,
+      "extension": false,
+      "field": "x_panning",
+      "before": 40,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 587,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 588,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 588,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 125,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 406,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 125,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 125,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 125,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 609,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 609,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 609,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 610,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 610,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 610,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 611,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 611,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 611,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 612,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 612,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 612,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 293,
+      "after": 296
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "sector",
+      "index": 152,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 735,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 735,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 736,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 736,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 736,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 737,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 737,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 737,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 737,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 738,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 738,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 738,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 738,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 739,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 739,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 739,
+      "extension": false,
+      "field": "x_panning",
+      "before": 45,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 739,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 740,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 740,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 740,
+      "extension": false,
+      "field": "x_panning",
+      "before": 48,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 740,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 741,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 741,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 741,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 742,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 742,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 742,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 743,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 743,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 743,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 744,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 744,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 744,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 745,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 745,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 746,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 746,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 747,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 747,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 748,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 748,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 749,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 749,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 750,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 750,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 751,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 751,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 752,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 752,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 753,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 753,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 753,
+      "extension": false,
+      "field": "x_panning",
+      "before": 24,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 753,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 754,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 754,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 754,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 755,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 755,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 756,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 756,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 757,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 757,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 758,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 297
+    },
+    {
+      "kind": "wall",
+      "index": 758,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 30
+    },
+    {
+      "kind": "wall",
+      "index": 759,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 759,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 759,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 760,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 760,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 760,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 761,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 761,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 761,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 762,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 762,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 762,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 52,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 302,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 52,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 52,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 52,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 248,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 248,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 249,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 249,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 250,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 250,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 250,
+      "extension": false,
+      "field": "x_panning",
+      "before": 24,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 250,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 251,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 251,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 53,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 302,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 53,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 53,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 53,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 252,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 252,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 253,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 253,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 254,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 254,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 254,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 255,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 255,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 54,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 302,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 54,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 363,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 54,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 54,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 44,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 256,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 256,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 257,
+      "extension": false,
+      "field": "picnum",
+      "before": 312,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 257,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 257,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 14,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 258,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 258,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 258,
+      "extension": false,
+      "field": "x_panning",
+      "before": 16,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 258,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 259,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 259,
+      "extension": false,
+      "field": "shade",
+      "before": 50,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 259,
+      "extension": false,
+      "field": "x_panning",
+      "before": 11,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 259,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "sector",
+      "index": 55,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 302,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 55,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 55,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 55,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 260,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 260,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 261,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 261,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 262,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 262,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 262,
+      "extension": false,
+      "field": "x_panning",
+      "before": 8,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 262,
+      "extension": false,
+      "field": "y_panning",
+      "before": 148,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 263,
+      "extension": false,
+      "field": "picnum",
+      "before": 180,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 263,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 302,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 624,
+      "after": 215
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 44,
+      "after": 24
+    },
+    {
+      "kind": "sector",
+      "index": 61,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 54,
+      "after": 38
+    },
+    {
+      "kind": "wall",
+      "index": 293,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 293,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 293,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 294,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 294,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 294,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 295,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 295,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 295,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 296,
+      "extension": false,
+      "field": "picnum",
+      "before": 406,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 296,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 28
+    },
+    {
+      "kind": "wall",
+      "index": 296,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 13,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 64,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 64,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 305,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2178
+    },
+    {
+      "kind": "wall",
+      "index": 305,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 305,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 305,
+      "extension": false,
+      "field": "x_panning",
+      "before": 1,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "extension": false,
+      "field": "picnum",
+      "before": 363,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 7,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "extension": false,
+      "field": "x_panning",
+      "before": 9,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 306,
+      "extension": false,
+      "field": "y_panning",
+      "before": 116,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 307,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2178
+    },
+    {
+      "kind": "wall",
+      "index": 307,
+      "extension": false,
+      "field": "shade",
+      "before": 36,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 307,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 308,
+      "extension": false,
+      "field": "picnum",
+      "before": 358,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 308,
+      "extension": false,
+      "field": "shade",
+      "before": 24,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 308,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 8
+    },
+    {
+      "kind": "sector",
+      "index": 67,
+      "extension": false,
+      "field": "floor_picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 67,
+      "extension": false,
+      "field": "ceiling_picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "sector",
+      "index": 67,
+      "extension": false,
+      "field": "floor_shade",
+      "before": 32,
+      "after": 36
+    },
+    {
+      "kind": "sector",
+      "index": 67,
+      "extension": false,
+      "field": "ceiling_shade",
+      "before": 38,
+      "after": 36
+    },
+    {
+      "kind": "wall",
+      "index": 317,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2178
+    },
+    {
+      "kind": "wall",
+      "index": 317,
+      "extension": false,
+      "field": "shade",
+      "before": 32,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 317,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 318,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 318,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 319,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2178
+    },
+    {
+      "kind": "wall",
+      "index": 319,
+      "extension": false,
+      "field": "shade",
+      "before": 38,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 319,
+      "extension": false,
+      "field": "y_repeat",
+      "before": 16,
+      "after": 8
+    },
+    {
+      "kind": "wall",
+      "index": 320,
+      "extension": false,
+      "field": "picnum",
+      "before": 365,
+      "after": 2453
+    },
+    {
+      "kind": "wall",
+      "index": 320,
+      "extension": false,
+      "field": "shade",
+      "before": 44,
+      "after": 34
+    },
+    {
+      "kind": "wall",
+      "index": 320,
+      "extension": false,
+      "field": "x_panning",
+      "before": 17,
+      "after": 0
+    },
+    {
+      "kind": "wall",
+      "index": 320,
+      "extension": false,
+      "field": "y_panning",
+      "before": 35,
+      "after": 0
+    }
+  ],
+  "sprites": {
+    "toilet-58-front": 348,
+    "toilet-58-back": 349,
+    "toilet-58-left": 350,
+    "toilet-58-right": 351,
+    "toilet-58-rim-front": 352,
+    "toilet-58-rim-back": 353,
+    "toilet-58-rim-left": 354,
+    "toilet-58-rim-right": 355,
+    "toilet-58-water": 356,
+    "toilet-58-cistern-front": 357,
+    "toilet-58-cistern-back": 358,
+    "toilet-58-cistern-left": 359,
+    "toilet-58-cistern-right": 360,
+    "toilet-58-cistern-top": 361,
+    "toilet-58-flush": 362,
+    "toilet-59-front": 363,
+    "toilet-59-back": 364,
+    "toilet-59-left": 365,
+    "toilet-59-right": 366,
+    "toilet-59-rim-front": 367,
+    "toilet-59-rim-back": 368,
+    "toilet-59-rim-left": 369,
+    "toilet-59-rim-right": 370,
+    "toilet-59-water": 371,
+    "toilet-59-cistern-front": 372,
+    "toilet-59-cistern-back": 373,
+    "toilet-59-cistern-left": 374,
+    "toilet-59-cistern-right": 375,
+    "toilet-59-cistern-top": 376,
+    "toilet-59-flush": 377,
+    "urinal-1-front": 378,
+    "urinal-1-back": 379,
+    "urinal-1-left": 380,
+    "urinal-1-right": 381,
+    "urinal-1-rim-front": 382,
+    "urinal-1-rim-back": 383,
+    "urinal-1-rim-left": 384,
+    "urinal-1-rim-right": 385,
+    "urinal-1-water": 386,
+    "urinal-1-backplate": 387,
+    "urinal-1-pipe": 388,
+    "urinal-1-flush": 389,
+    "urinal-2-front": 390,
+    "urinal-2-back": 391,
+    "urinal-2-left": 392,
+    "urinal-2-right": 393,
+    "urinal-2-rim-front": 394,
+    "urinal-2-rim-back": 395,
+    "urinal-2-rim-left": 396,
+    "urinal-2-rim-right": 397,
+    "urinal-2-water": 398,
+    "urinal-2-backplate": 399,
+    "urinal-2-pipe": 400,
+    "urinal-2-flush": 401,
+    "stall-light": 402,
+    "wash-light": 403
+  },
+  "counts": {
+    "sectors": 546,
+    "walls": 3488,
+    "sprites": 404
+  },
+  "structural_errors": 0,
+  "geometry_and_start_preserved": true,
+  "dry_run": false,
+  "backup": "snapshots\\692ad84dc626f9a1ed934f6df63d0d7fa114cf8f3d6845b272b5819e10e7aab3.MAP"
+}

@@ -1,0 +1,7 @@
+*.[Mm][Aa][Pp]
+snapshots/
+evidence/**/*.png
+experiments/**/*.png
+reports/area-overview.svg
+reports/plan-geometry.json
+__pycache__/

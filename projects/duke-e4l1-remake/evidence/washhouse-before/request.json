@@ -1,0 +1,53 @@
+{
+ "$schema": "llmapper.xmapedit-observation-request",
+ "schema_version": 1,
+ "map": "projects/duke-e4l1-remake/evidence/washhouse-before/played/as-empty.MAP",
+ "resource_dir": "D:/Games/DOS/llmapper/reference/blood",
+ "output": "projects/duke-e4l1-remake/evidence/washhouse-before",
+ "width": 640,
+ "height": 480,
+ "screenshots": true,
+ "brightness": 0,
+ "views": [
+  {
+   "id": "room-to-stalls",
+   "x": 25848,
+   "y": 52426,
+   "z": -12576,
+   "angle": 1280,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "room-to-mirror",
+   "x": 25848,
+   "y": 52426,
+   "z": -12576,
+   "angle": 1792,
+   "horiz": 100,
+   "sector": 152,
+   "screenshot": true
+  },
+  {
+   "id": "stalls",
+   "x": 23424,
+   "y": 49920,
+   "z": -12576,
+   "angle": 0,
+   "horiz": 100,
+   "sector": 59,
+   "screenshot": true
+  },
+  {
+   "id": "urinals",
+   "x": 23400,
+   "y": 52032,
+   "z": -12576,
+   "angle": 1024,
+   "horiz": 100,
+   "sector": 119,
+   "screenshot": true
+  }
+ ]
+}

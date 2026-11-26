@@ -1,0 +1,669 @@
+{
+  "wires": [
+    {
+      "name": "intake:briefing-use",
+      "says": "Using the recording device once starts its two self-destruction delay relays.",
+      "channel": 125,
+      "engine": null,
+      "senders": [
+        "wall 2318"
+      ],
+      "answers": [
+        "sprite 345",
+        "sprite 346"
+      ],
+      "faults": []
+    },
+    {
+      "name": "intake:briefing-explosions",
+      "says": "After the MasterSwitch delay, arm the three retained exploders with their original converted fuses.",
+      "channel": 112,
+      "engine": null,
+      "senders": [
+        "sprite 345"
+      ],
+      "answers": [
+        "sprite 327",
+        "sprite 328",
+        "sprite 329"
+      ],
+      "faults": []
+    },
+    {
+      "name": "intake:briefing-collapse",
+      "says": "At the first detonation, lower the existing recorder and desk fragments to their authored endpoints.",
+      "channel": 111,
+      "engine": null,
+      "senders": [
+        "sprite 346"
+      ],
+      "answers": [
+        "sector 390",
+        "sector 403",
+        "sector 405"
+      ],
+      "faults": []
+    }
+  ],
+  "undeclared": [
+    {
+      "channel": 100,
+      "senders": [
+        "sprite 213"
+      ],
+      "listeners": [
+        "sector 97"
+      ]
+    },
+    {
+      "channel": 101,
+      "senders": [],
+      "listeners": [
+        "sector 171"
+      ]
+    },
+    {
+      "channel": 102,
+      "senders": [
+        "sprite 215",
+        "sprite 216"
+      ],
+      "listeners": [
+        "sector 273"
+      ]
+    },
+    {
+      "channel": 103,
+      "senders": [
+        "sprite 231"
+      ],
+      "listeners": [
+        "sector 275"
+      ]
+    },
+    {
+      "channel": 104,
+      "senders": [
+        "sector 289"
+      ],
+      "listeners": [
+        "sector 291"
+      ]
+    },
+    {
+      "channel": 105,
+      "senders": [],
+      "listeners": [
+        "sector 190",
+        "sector 192",
+        "sector 194",
+        "sector 196"
+      ]
+    },
+    {
+      "channel": 106,
+      "senders": [
+        "sector 321"
+      ],
+      "listeners": [
+        "sector 319",
+        "sector 320",
+        "sector 326"
+      ]
+    },
+    {
+      "channel": 107,
+      "senders": [
+        "sector 116"
+      ],
+      "listeners": [
+        "sector 362"
+      ]
+    },
+    {
+      "channel": 108,
+      "senders": [
+        "sector 323"
+      ],
+      "listeners": [
+        "sector 317",
+        "sector 318"
+      ]
+    },
+    {
+      "channel": 109,
+      "senders": [
+        "sector 338"
+      ],
+      "listeners": [
+        "sector 328"
+      ]
+    },
+    {
+      "channel": 110,
+      "senders": [
+        "sector 330"
+      ],
+      "listeners": []
+    },
+    {
+      "channel": 113,
+      "senders": [
+        "sprite 26"
+      ],
+      "listeners": [
+        "sprite 27",
+        "sprite 322",
+        "sprite 323",
+        "sprite 324",
+        "sprite 325",
+        "sprite 326",
+        "sector 263",
+        "sector 264"
+      ]
+    },
+    {
+      "channel": 114,
+      "senders": [
+        "sprite 28",
+        "sprite 30"
+      ],
+      "listeners": [
+        "sprite 29",
+        "sprite 31",
+        "sprite 270",
+        "sprite 271",
+        "sprite 272",
+        "sprite 273",
+        "sprite 274",
+        "sprite 275",
+        "sector 98",
+        "sector 99"
+      ]
+    },
+    {
+      "channel": 115,
+      "senders": [
+        "sprite 32",
+        "sprite 34"
+      ],
+      "listeners": [
+        "sprite 33",
+        "sprite 35",
+        "sprite 276",
+        "sprite 277",
+        "sprite 278",
+        "sprite 279",
+        "sprite 280",
+        "sector 146",
+        "sector 147",
+        "sector 149",
+        "sector 150"
+      ]
+    },
+    {
+      "channel": 116,
+      "senders": [
+        "sprite 36",
+        "sprite 52"
+      ],
+      "listeners": [
+        "sprite 37",
+        "sprite 53",
+        "sprite 308",
+        "sprite 309",
+        "sprite 310",
+        "sprite 311",
+        "sprite 312",
+        "sprite 313",
+        "sprite 314",
+        "sprite 315",
+        "sprite 316",
+        "sprite 317",
+        "sprite 318",
+        "sprite 319",
+        "sprite 320",
+        "sprite 321",
+        "sector 242",
+        "sector 243",
+        "sector 244",
+        "sector 245"
+      ]
+    },
+    {
+      "channel": 117,
+      "senders": [
+        "sprite 38"
+      ],
+      "listeners": [
+        "sprite 39",
+        "sprite 281",
+        "sprite 282",
+        "sprite 283",
+        "sprite 284",
+        "sprite 285",
+        "sprite 286",
+        "sprite 287",
+        "sprite 288",
+        "sprite 289",
+        "sprite 290",
+        "sprite 291",
+        "sprite 292",
+        "sprite 293",
+        "sprite 294",
+        "sprite 295",
+        "sprite 296",
+        "sprite 297",
+        "sprite 298",
+        "sprite 299",
+        "sprite 300",
+        "sprite 301",
+        "sprite 302",
+        "sprite 303",
+        "sprite 304",
+        "sprite 305",
+        "sprite 306",
+        "sprite 307",
+        "sector 278",
+        "sector 279",
+        "sector 280",
+        "sector 281",
+        "sector 284",
+        "sector 285"
+      ]
+    },
+    {
+      "channel": 118,
+      "senders": [
+        "sprite 40",
+        "sprite 50"
+      ],
+      "listeners": [
+        "sprite 41",
+        "sprite 51",
+        "sector 286",
+        "sector 287",
+        "sector 288"
+      ]
+    },
+    {
+      "channel": 119,
+      "senders": [
+        "sprite 42"
+      ],
+      "listeners": [
+        "sprite 43",
+        "sector 294",
+        "sector 295",
+        "sector 296",
+        "sector 297"
+      ]
+    },
+    {
+      "channel": 120,
+      "senders": [
+        "sprite 44"
+      ],
+      "listeners": [
+        "sprite 45",
+        "sector 298",
+        "sector 299",
+        "sector 300",
+        "sector 314"
+      ]
+    },
+    {
+      "channel": 121,
+      "senders": [],
+      "listeners": [
+        "sector 301"
+      ]
+    },
+    {
+      "channel": 122,
+      "senders": [
+        "sprite 219"
+      ],
+      "listeners": []
+    },
+    {
+      "channel": 123,
+      "senders": [],
+      "listeners": [
+        "sprite 243",
+        "sprite 244",
+        "sprite 245"
+      ]
+    },
+    {
+      "channel": 124,
+      "senders": [
+        "sprite 334"
+      ],
+      "listeners": [
+        "sprite 335",
+        "sector 104",
+        "sector 105",
+        "sector 133",
+        "sector 134",
+        "sector 135",
+        "sector 136",
+        "sector 205",
+        "sector 206",
+        "sector 415",
+        "sector 416",
+        "sector 417",
+        "sector 418",
+        "sector 419",
+        "sector 420",
+        "sector 421",
+        "sector 422",
+        "sector 451",
+        "sector 452",
+        "sector 453"
+      ]
+    },
+    {
+      "channel": 136,
+      "senders": [
+        "sprite 217",
+        "sprite 218",
+        "sprite 233",
+        "sprite 234"
+      ],
+      "listeners": [
+        "sector 376",
+        "sector 459",
+        "sector 460",
+        "sector 461",
+        "sector 463"
+      ]
+    },
+    {
+      "channel": 159,
+      "senders": [],
+      "listeners": [
+        "sector 450"
+      ]
+    },
+    {
+      "channel": 200,
+      "senders": [],
+      "listeners": [
+        "sprite 246",
+        "sprite 247",
+        "sprite 248",
+        "sprite 249",
+        "sprite 250",
+        "sprite 251",
+        "sprite 252",
+        "sprite 253",
+        "sprite 254",
+        "sprite 255",
+        "sprite 256",
+        "sprite 257",
+        "sprite 258",
+        "sprite 259",
+        "sprite 260",
+        "sprite 262",
+        "sprite 263",
+        "sprite 264",
+        "sprite 265",
+        "sprite 266",
+        "sprite 267",
+        "sprite 268",
+        "sprite 269"
+      ]
+    },
+    {
+      "channel": 301,
+      "senders": [
+        "sprite 222",
+        "sprite 227",
+        "sprite 228",
+        "sprite 229"
+      ],
+      "listeners": [
+        "sector 8"
+      ]
+    },
+    {
+      "channel": 305,
+      "senders": [
+        "sprite 221",
+        "sprite 224",
+        "sprite 225",
+        "sprite 226"
+      ],
+      "listeners": [
+        "sector 93"
+      ]
+    },
+    {
+      "channel": 307,
+      "senders": [],
+      "listeners": [
+        "sector 166"
+      ]
+    },
+    {
+      "channel": 464,
+      "senders": [
+        "sector 467",
+        "sector 468"
+      ],
+      "listeners": [
+        "sprite 330"
+      ]
+    },
+    {
+      "channel": 506,
+      "senders": [
+        "sector 152"
+      ],
+      "listeners": [
+        "sprite 331",
+        "sprite 332"
+      ]
+    },
+    {
+      "channel": 521,
+      "senders": [
+        "sprite 22",
+        "sprite 24"
+      ],
+      "listeners": [
+        "sprite 23",
+        "sprite 25",
+        "sector 407"
+      ]
+    },
+    {
+      "channel": 522,
+      "senders": [
+        "sprite 18",
+        "sprite 20"
+      ],
+      "listeners": [
+        "sprite 19",
+        "sprite 21",
+        "sector 408"
+      ]
+    },
+    {
+      "channel": 524,
+      "senders": [
+        "sprite 46",
+        "sprite 48"
+      ],
+      "listeners": [
+        "sprite 47",
+        "sprite 49",
+        "sector 406"
+      ]
+    },
+    {
+      "channel": 661,
+      "senders": [],
+      "listeners": [
+        "sector 52",
+        "sector 53",
+        "sector 54",
+        "sector 55",
+        "sector 56",
+        "sector 58",
+        "sector 59",
+        "sector 60",
+        "sector 63",
+        "sector 64",
+        "sector 117",
+        "sector 118",
+        "sector 119",
+        "sector 125",
+        "sector 139",
+        "sector 140",
+        "sector 141",
+        "sector 144",
+        "sector 239",
+        "sector 240",
+        "sector 374",
+        "sector 375"
+      ]
+    },
+    {
+      "channel": 663,
+      "senders": [],
+      "listeners": [
+        "sector 211",
+        "sector 212",
+        "sector 213",
+        "sector 214",
+        "sector 215",
+        "sector 216",
+        "sector 217",
+        "sector 218",
+        "sector 219",
+        "sector 220",
+        "sector 221",
+        "sector 222",
+        "sector 253",
+        "sector 254",
+        "sector 255"
+      ]
+    },
+    {
+      "channel": 665,
+      "senders": [],
+      "listeners": [
+        "sector 36",
+        "sector 37",
+        "sector 38",
+        "sector 39",
+        "sector 44",
+        "sector 45",
+        "sector 151",
+        "sector 157",
+        "sector 158",
+        "sector 159",
+        "sector 160",
+        "sector 161",
+        "sector 162",
+        "sector 164",
+        "sector 235",
+        "sector 368"
+      ]
+    },
+    {
+      "channel": 675,
+      "senders": [],
+      "listeners": [
+        "sector 32",
+        "sector 33",
+        "sector 153",
+        "sector 154",
+        "sector 155",
+        "sector 389"
+      ]
+    },
+    {
+      "channel": 721,
+      "senders": [
+        "sprite 223",
+        "sprite 230"
+      ],
+      "listeners": [
+        "sector 115"
+      ]
+    },
+    {
+      "channel": 801,
+      "senders": [],
+      "listeners": [
+        "sector 35",
+        "sector 41",
+        "sector 43",
+        "sector 156",
+        "sector 163",
+        "sector 356"
+      ]
+    },
+    {
+      "channel": 870,
+      "senders": [
+        "sector 180",
+        "sector 181",
+        "sector 182",
+        "sector 183",
+        "sector 184",
+        "sector 185",
+        "sector 186",
+        "sector 187",
+        "sector 393"
+      ],
+      "listeners": []
+    },
+    {
+      "channel": 881,
+      "senders": [
+        "sector 352"
+      ],
+      "listeners": [
+        "sector 178"
+      ]
+    },
+    {
+      "channel": 988,
+      "senders": [
+        "sprite 214",
+        "sprite 220"
+      ],
+      "listeners": [
+        "sector 126"
+      ]
+    },
+    {
+      "channel": 1008,
+      "senders": [],
+      "listeners": [
+        "sector 410"
+      ]
+    },
+    {
+      "channel": 1009,
+      "senders": [],
+      "listeners": [
+        "sector 391"
+      ]
+    },
+    {
+      "channel": 1010,
+      "senders": [],
+      "listeners": [
+        "sector 520"
+      ]
+    }
+  ],
+  "silent": [],
+  "agrees": true,
+  "source_sha256": "57f31fb53a5987220fced36a9370377a9f6c623029436ffce8d0ee9d1211ceac"
+}

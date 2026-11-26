@@ -42,9 +42,9 @@ the map file never carries this value.
 
 | Mechanism | Motion | Extent | Speed | Direction from |
 | --- | --- | --- | --- | --- |
-| SE11 / ST23 swinging door | rotation about the effector | **512, always** | `(extra>>3) * 2` per tick | `ang > 1024 ? + : -` |
-| SE15 / ST25 sliding door | translation along `ang` | `16 * (extra>>3)` | 16 per tick | `ang`, +1024 on each operation |
-| SE0 in ST30 rotate bridge | rotation about the SE1 pivot, **plus floor Z** | `2 * extra` | `extra>>5` per tick, always 64 ticks | `pal` |
+| SE11 / ST23 swinging door | rotation about the effector | 512 bound; final angle snaps down to a signed multiple of 256 | `(extra>>3) * 2` per tick | `ang > 1024 ? - : +` (ST23 reverses spawn T4) |
+| SE15 / ST25 sliding door | translation along `ang` | `16 * (extra>>3)` | 16 per tick | authored `ang` +1024 on the first operation |
+| SE0 in ST30 rotate bridge | rotation about the SE1 pivot, **plus floor Z** | `64 * (extra >> 5)` | `extra>>5` per tick, always 64 ticks | `pal` |
 | SE0 elsewhere | continuous rotation about the pivot | unbounded | `extra>>3` per tick | the *pivot's* `ang` |
 | SE20 / ST27 stretch bridge | two walls only | `extra` | 8 per tick | `ang` |
 
@@ -64,7 +64,7 @@ those two. The rest of the sector stays put, so the bridge *extends*.
 
 Blood splits on exactly that distinction: `TranslateSector` with `bAllWalls`
 clear moves only walls flagged `cstat & 16384`. So SE20 lowers to
-**`kSectorSlideMarked` (614)** with those two walls marked. Lowering it to 616
+**`kSectorSlideMarked` (614)** with their connecting edge marked once; Blood also carries its point2 vertex. Lowering it to 616
 slides the whole bridge away instead of extending it.
 
 ## Two Blood details that look like nothing and are not
@@ -116,8 +116,8 @@ from the source is the bug; a shared behaviour was authored.
 
 ## Result
 
-Across the 26 classic boards that convert, **258 of 258 modelled moving sectors
-follow their Duke original**, worst deviation 1.58 Blood units over travels up to
+The original 26-board audit reported **258 of 258 modelled moving sectors
+following their Duke original**, worst deviation 1.58 Blood units over travels up to
 3,000 -- which is 3:2 rounding. Before this pass the same check reported
 sliding doors opening to 14% of their travel, bridges turning half as far as
 they should or 315 degrees the wrong way, and stretch bridges carrying
@@ -131,3 +131,25 @@ themselves off their abutments.
 * The intrusion pass compares plan-view outlines and ignores Z, so it relies on
   the Duke comparison to suppress the many legitimate overlaps between sectors
   at different heights.
+
+
+## Source audit corrections (2026-11-24)
+
+The initial SE11 sign description used spawn T4; ST23 negates it before moving.
+The first swing is positive for angles <=1024 and negative above 1024. SE15
+likewise moves along its *operated* angle, authored angle +1024. Regression
+expectations now include independent transformed points, rather than comparing
+two implementations that share the same mistaken helper.
+
+A Blood marked wall also carries its point2 vertex. SE20's two adjacent moving
+vertices therefore require one marked edge. Two flagged edges move a third
+vertex. The verifier now checks affected neighbour loops and integer motor
+completion times, not only the moving sector's normalized outline. See the
+E4L1 audit in the remake project for source-specific bugs and manual limitations.
+
+The current available-corpus audit covers 46 maps and 379 active horizontal
+motions, all within 2 Blood units at the sampled positions. Two previously
+counted SE11s are intentionally inert: E1L2 sector 262 and E4L1 sector 152
+have no same-hitag ST23 operator. An SE11 alone must not make a plain room
+locally operable. The E4L1 bathroom's real stall door is sector 61; room 389's
+separate door-50 repair was earlier mislabelled as the bathroom repair.
