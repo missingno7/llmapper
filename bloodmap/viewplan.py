@@ -451,9 +451,51 @@ def named_poses(level: LevelIR, poses: Mapping[str, Sequence[Any]], *, unit: int
     return out
 
 
+#: A sector narrower than this (a step, a door, a niche, a curtain) is looked AT from its largest neighbour: from
+#: inside it the view is a wall at arm's length. Three standing bodies (384 wide each).
+SMALL_SECTOR = 3 * 384
+
+
+def _look_from_outside(level: LevelIR, sector_id: int, horiz: int) -> Viewpoint | None:
+    """Stand in the sector's widest neighbour, as far back from it as that room allows, and look at it."""
+    from .sector_geom import outline_and_holes
+
+    target_outer, _holes = outline_and_holes(level, sector_id)
+    tx = sum(p[0] for p in target_outer) / len(target_outer)
+    ty = sum(p[1] for p in target_outer) / len(target_outer)
+    neighbours = sorted({int(p["neighbour"]) for p in portals_of(level, sector_id)},
+                        key=lambda s: -sector_area(level, s))
+    for neighbour in neighbours:
+        inside, z = interior_point(level, neighbour), eye_z(level, neighbour)
+        if inside is None or z is None:
+            continue
+        outer, _holes = outline_and_holes(level, neighbour)
+        # its corners pulled a third of the way in, the one farthest from what is looked at, if it is still inside
+        best = inside
+        for corner in outer:
+            pulled = (round(corner[0] + (inside[0] - corner[0]) / 3), round(corner[1] + (inside[1] - corner[1]) / 3))
+            if (pulled[0] - tx) ** 2 + (pulled[1] - ty) ** 2 > (best[0] - tx) ** 2 + (best[1] - ty) ** 2 \
+                    and _inside(level, neighbour, pulled):
+                best = pulled
+        return Viewpoint(view_id=f"sector_{sector_id}", x=best[0], y=best[1], z=z,
+                         angle=int(angle_toward(best, (tx, ty))) & 2047, horiz=horiz, sector=neighbour,
+                         node=f"sector:{sector_id}", purpose="reference", screenshot=True,
+                         note=f"reference sector {sector_id}, seen from sector {neighbour}")
+    return None
+
+
+def _inside(level: LevelIR, sector_id: int, point: tuple[int, int]) -> bool:
+    from .sector_geom import outline_and_holes
+    from .planar_geom import point_in_loops
+
+    outer, holes = outline_and_holes(level, sector_id)
+    return point_in_loops(point, [list(outer)] + [list(h) for h in holes]) == 1
+
+
 def sector_poses(level: LevelIR, sectors: Iterable[int], *, horiz: int = 100,
                  refused: list[str] | None = None) -> list[Viewpoint]:
-    """One view of each sector from inside it, toward its farthest corner: how a reference map's room is looked at.
+    """One view of each sector: from inside it toward its farthest corner, how a reference map's room is looked at;
+    a sector too small to look round in (`SMALL_SECTOR`) from its widest neighbour, looking at it.
 
     A sector that is not in the map, or has no room to stand in, is left out and named in `refused`.
     """
@@ -462,6 +504,14 @@ def sector_poses(level: LevelIR, sectors: Iterable[int], *, horiz: int = 100,
     out = []
     for sector_id in sectors:
         there = 0 <= int(sector_id) < len(level.sectors)
+        if there:
+            outer, _holes = outline_and_holes(level, sector_id)
+            xs, ys = [p[0] for p in outer], [p[1] for p in outer]
+            if min(max(xs) - min(xs), max(ys) - min(ys)) < SMALL_SECTOR:
+                seen = _look_from_outside(level, sector_id, horiz)
+                if seen is not None:
+                    out.append(seen)
+                    continue
         point, z = (interior_point(level, sector_id), eye_z(level, sector_id)) if there else (None, None)
         if point is None or z is None:
             if refused is not None:

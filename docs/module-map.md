@@ -411,6 +411,8 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | --- | --- |
 | `catalog` | The mapper's catalogues: what every tile looks like, what every place is. |
 | `findings` | Look up and file findings: what building levels has taught us, each saying how it is known. |
+| `findings_review` | The findings a level leans on, gathered for its owner to mark, with a frame of the Blood map spot each cites. |
+| `library_usage` | Which parts of the library a project's code uses, which findings it leans on, and what nothing uses. |
 | `study` | Study how Blood built a thing before building one. |
 | `ideas` | An idea catalogue: tour a map nobody asked about, and file what is seen. |
 | `place_character` | What a place is made of, layer by layer, against Blood's own rooms. |
