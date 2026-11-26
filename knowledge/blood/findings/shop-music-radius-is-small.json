@@ -1,0 +1,26 @@
+{
+ "id": "shop-music-radius-is-small",
+ "topic": "sound",
+ "standing": "ruling",
+ "claim": "A shop's or arcade's music is heard only near it: near and far radius about 150 and 350, not the campaign's 900 and 1,500 over a whole mall.",
+ "evidence": [
+  "the owner, 2026-11-23: 'you can hear that shop music from arcades too broad ... it should be enough to have just 150/350'",
+  "E4M9's whole-mall emitters use (900, 1500)"
+ ],
+ "use": "Give music emitters in shops small radii; keep the campaign's large radii for hums and winds.",
+ "code": [
+  "projects/blood-city/level/ambience.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "ambient",
+  "arcade",
+  "music",
+  "radius",
+  "shop"
+ ]
+}

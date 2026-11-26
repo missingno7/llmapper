@@ -1,0 +1,27 @@
+{
+ "id": "campaign-runs-78-ambient-emitters-a-map",
+ "topic": "sound",
+ "standing": "refuted",
+ "claim": "Blood's campaign maps carry a median of 78 ambient sound emitters each, 23.6 per hundred sectors.",
+ "evidence": [
+  "2026-11-26 recount over bloodmap.corpus.campaign_maps(): sprites of type 710 per map, 1,778 in all (the total the study also gives), median 30, median per hundred sectors 10.6 (work/consolidation/audit_mid/counts.py)",
+  "knowledge/blood/studies/ambient-sounds/notes.md counts 1,778 emitters; the 78 and 23.6 are in projects/blood-city/level/ambience.py:5-6 and its fill(target_per_100_sectors=23.6), and are not reproduced",
+  "Gravesend had one emitter before the count was taken (projects/blood-city/level/ambience.py docstring)"
+ ],
+ "use": "Budget about one emitter per ten sectors (more in machine and water places) and choose each sound from a campaign room of the same kind; never fill rooms one emitter each without counting.",
+ "code": [
+  "projects/blood-city/level/ambience.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "ambience",
+  "density",
+  "rate",
+  "sound"
+ ],
+ "instead": "The 43 campaign maps carry a median of 30 type-710 ambient emitters each (mean 41, range 0 to 131; 1,778 in all), a median 10.6 per hundred sectors. Two maps have none (E2M8, E3M8); the busiest are E6M4 131, E3M6 128, E1M3 121. A level with a handful of emitters is still far below the campaign, and no rendered frame shows it."
+}

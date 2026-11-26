@@ -1,0 +1,24 @@
+{
+ "id": "objects-keep-their-own-palette",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "A thing keeps its own palette; it takes its sector's palette only in a fogged place. A town census that records the sector's palette on every sprite (DWE3M1 is fogged: 963 sprites with palette 1 in palette-1 sectors) teaches the wrong colours.",
+ "evidence": [
+  "The owner, 2026-11-18: 'objects should have different palettes if they are not in foggy place.'"
+ ],
+ "use": "Mine a thing's own palette only (tools/mine_city_assets.py).",
+ "code": [
+  "tools/mine_city_assets.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "fog",
+  "pal",
+  "palette",
+  "sprite colour"
+ ]
+}

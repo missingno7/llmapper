@@ -1,0 +1,23 @@
+{
+ "id": "a-hull-reads-as-a-boat",
+ "topic": "place",
+ "standing": "practice",
+ "claim": "A boat reads as a boat from a thin rim higher than the deck inside it, a pointed end, and a hull tile different from the deck's; a flat deck reads as a raft.",
+ "evidence": [
+  "Gravesend's harbour boat after the owner's walk of 2026-11-18."
+ ],
+ "use": "Build the rim, the bow and a distinct hull tile before anything else on a boat.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "boat",
+  "harbour",
+  "hull",
+  "raft",
+  "ship"
+ ]
+}

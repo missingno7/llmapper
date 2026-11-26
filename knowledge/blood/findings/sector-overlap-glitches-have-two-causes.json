@@ -1,0 +1,26 @@
+{
+ "id": "sector-overlap-glitches-have-two-causes",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "Overlapping Build sectors glitch when the overlap's footprint is reachable down both branches, or when the parents' walls mutually straddle (wallfront -2) while both are drawn. Floors carry no depth of their own; they inherit the order of the walls they hang on.",
+ "evidence": [
+  "Calibrated on the owner's hand-built maps in tests/data/sector_overlap (bad_1..9, good_1, 2, 5), 2026-08-29."
+ ],
+ "use": "Check overlaps with the vector report; its test runs in under a second.",
+ "code": [
+  "tools/vector_report.py",
+  "tests/test_sector_overlap.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-29"
+ },
+ "words": [
+  "glitch",
+  "layer",
+  "overlap",
+  "sector over sector",
+  "wallfront"
+ ]
+}

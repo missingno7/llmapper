@@ -151,7 +151,7 @@ def chains(disk: Any, only: Iterable[int] | None = None, *,
     (`bloodmap.reachability.sector_kinds`). With it a chain lists its
     `closet_relays`: listeners that send on and sit where no player goes.
     Blood's mappers keep a cascade's switches in a sealed room and wire them
-    by channel, and 607 of the campaign's 2,775 chains pass through one.
+    by channel, and 603 of the campaign's 2,775 chains pass through one.
 
     `only` keeps the chains whose first object is in one of those sectors. A
     step whose `to` is ``engine`` ends on a channel the engine owns; its
@@ -409,6 +409,37 @@ class Circuit:
         """Give the circuit the layout its names are names in."""
         self.layout = layout
         return self
+
+    @classmethod
+    def from_plan(cls, plan: Iterable[tuple[str, str]], engine: Iterable[tuple[str, str, str]] = ()) -> "Circuit":
+        """A circuit holding a level's wires as one table: `(name, what it is for)` rows, numbered from 100 in order.
+
+        A table kept in one file is how a level's wiring stays readable: the
+        numbers are places in the table, so a wire is added at the end and
+        nothing is renumbered. `engine` rows are `(name, says, engine channel)`
+        for wires one end of which is the engine; they take its number and none
+        of the level's. A row nothing declares an end of is left out by
+        `drop_idle`.
+        """
+        made = cls()
+        for index, (name, says) in enumerate(plan):
+            made.wire(name, says, channel=USER_CHANNELS_FROM + index)
+        for name, says, channel in engine:
+            made.wire(name, says, engine=channel)
+        return made
+
+    def named(self, name: str) -> Wire:
+        """A wire of this circuit by its name, to declare an end of."""
+        for made in self.wires:
+            if made.name == name:
+                return made
+        raise WireError(f"no wire called {name!r}")
+
+    def drop_idle(self) -> list[str]:
+        """Leave out every wire nothing declared an end of, and say which they were."""
+        idle = [made.name for made in self.wires if not made.senders and not made.answers]
+        self.wires = [made for made in self.wires if made.senders or made.answers]
+        return idle
 
     # ---- declaring -----------------------------------------------------------
 

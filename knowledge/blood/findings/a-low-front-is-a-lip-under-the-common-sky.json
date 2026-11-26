@@ -1,0 +1,23 @@
+{
+ "id": "a-low-front-is-a-lip-under-the-common-sky",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "To make an enterable building's front read as two storey bands (brick plinth, timber upper) from a lane: a lip 128 deep along its face with its floor at the plinth top and the lane's own sky. The lane's lower step draws the plinth in the lane's record, the lip's back wall the upper storey in the lip's. A lower sky on the lip is refused by open-neighbours-share-a-sky unless out of a body's reach, so the lane's sky comes down to the roof line instead. Over a door the lane's upper band must be painted the upper storey's tile.",
+ "evidence": [
+  "projects/signal-box/level/build.py lip(); frames r2-start/d_box.png"
+ ],
+ "use": "",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "signal-box",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "facade",
+  "lip",
+  "plinth",
+  "signal box",
+  "storey"
+ ]
+}

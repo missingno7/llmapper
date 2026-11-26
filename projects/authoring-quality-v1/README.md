@@ -1,7 +1,7 @@
 # First controlled quality experiment
 
 Status: protocol prepared 2026-09-09; no player preference result exists yet.
-The independent audit is `reports/independent-audit-2026-09-09.md`.
+The independent audit is `reports/archive/independent-audit-2026-09-09.md`.
 Do not expand the discriminator or hierarchy framework before testing whether
 its feedback helps an author produce a better playable map.
 

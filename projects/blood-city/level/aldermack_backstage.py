@@ -8,7 +8,7 @@ from bloodmap.texture_align import sprite_tile_extents
 import citytree
 import detailing
 import setpieces
-import wallplane
+from bloodmap import wallplane
 from materials import Material
 from resolution import GRADE
 

@@ -127,8 +127,8 @@ class TheCity(unittest.TestCase):
         from tools.symmetry_diff import compare
 
         try:
-            declared = FactStore.read("projects/blood-city/facts")
-            found = recover("projects/blood-city/level/slice2-streets.MAP")
+            declared = FactStore.read("tests/fixtures/city-slices/facts")
+            found = recover("tests/fixtures/city-slices/slice2-streets.MAP")
         except Exception as error:  # pragma: no cover - environment-dependent
             raise unittest.SkipTest(f"the city is not readable here: {error}")
         cls.result = compare(declared, found["store"],
@@ -173,8 +173,8 @@ class TheCity(unittest.TestCase):
         from bloodmap.read_store import FactStore
 
         declared = {fact.id: fact.to_dict() for fact in
-                    FactStore.read("projects/blood-city/facts")["shade_depth"]}
-        found = recover("projects/blood-city/level/slice2-streets.MAP")
+                    FactStore.read("tests/fixtures/city-slices/facts")["shade_depth"]}
+        found = recover("tests/fixtures/city-slices/slice2-streets.MAP")
         recovered = {fact.id: fact.to_dict()
                      for fact in found["store"]["shade_depth"]}
         shared = sorted(set(declared) & set(recovered))

@@ -1,0 +1,27 @@
+{
+ "id": "the-rest-state-of-a-swept-door-is-the-shut-one",
+ "topic": "mechanism",
+ "standing": "refuted",
+ "claim": "A sliding or turning mechanism blocks the way in its rest state.",
+ "evidence": [
+  "Assuming it cut E1M2 from 226 reachable sectors to 26.",
+  "A door's two portals are adjacent as often as opposite (E1M1 s63's are 512 apart on the same side); which state blocks is answered for only 5 of 628 swept mechanisms."
+ ],
+ "use": "Decide which state blocks from the swept polygon, per mechanism.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "blocks",
+  "door",
+  "reachability",
+  "rest",
+  "rotate",
+  "shut",
+  "slide"
+ ],
+ "instead": "Either state of a swept mechanism may be the shut one; it cannot be read from the rest state or from the line between portal midpoints."
+}

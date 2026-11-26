@@ -195,20 +195,19 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     parser.add_argument("maps", nargs="*", default=list(TOWN_MAPS))
     parser.add_argument("--json", default=str(
-        ROOT / "projects" / "blood-city" / "references" / "city-assets.json"))
+        ROOT / "knowledge" / "blood" / "references" / "city-assets.json"))
     parser.add_argument("--sheet", default=str(
-        ROOT / "projects" / "blood-city" / "references" / "city-assets.png"))
-    parser.add_argument("--against", default=str(
-        ROOT / "projects" / "blood-city" / "level" / "blood-city-current.MAP"),
-        help="a built map: its own tiles are left off the sheet")
+        ROOT / "knowledge" / "blood" / "references" / "city-assets.png"))
+    parser.add_argument("--against", default="",
+                        help="a built map (a project's): the tiles it already uses are left off the sheet")
     args = parser.parse_args(argv)
     found = census(args.maps)
     pathlib.Path(args.json).write_text(json.dumps(
         {"maps": list(args.maps), "tiles": {str(k): v for k, v in sorted(found.items())}},
         indent=1), "utf-8")
     ours = set()
-    against = pathlib.Path(args.against)
-    if against.exists():
+    against = pathlib.Path(args.against or "no-map")
+    if args.against and against.exists():
         from bloodmap.format import read_map
 
         ours = {int(s.fields["picnum"]) for s in read_map(against).sprites

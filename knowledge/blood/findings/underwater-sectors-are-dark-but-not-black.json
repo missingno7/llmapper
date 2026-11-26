@@ -1,0 +1,24 @@
+{
+ "id": "underwater-sectors-are-dark-but-not-black",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "The campaign's underwater floors are a median shade 26 and ceilings 30 (quartiles 16 to 35); E3M3 lights its water with a faint wave over floor and walls. Drawn at the dark end of that range a sump came out black.",
+ "evidence": [
+  "campaign underwater sectors, projects/blood-city/level/underwater.py; E3M3 sector 63 (the surface wave)"
+ ],
+ "use": "Shade drowned sectors near the median and give them a slow light wave.",
+ "code": [
+  "projects/blood-city/level/underwater.py:_drowned"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "dark",
+  "shade",
+  "underwater",
+  "water"
+ ]
+}

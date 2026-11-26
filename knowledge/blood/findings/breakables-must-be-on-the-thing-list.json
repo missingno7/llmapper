@@ -1,0 +1,26 @@
+{
+ "id": "breakables-must-be-on-the-thing-list",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Radius damage reaches only sprites on the dude list and the thing list (statnum 4). A breakable placed on statnum 0 is never hurt by an explosion, whatever its type.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:2717 actRadiusDamage walks headspritestat[kStatDude] (:2728) and headspritestat[kStatThing] (:2762) only",
+  "E4M3 sprite 130 (the campaign's manhole cover) is status 4; Gravesend's covers on status 0 could not be blown ('Manhole covers can't be destroyed by explosion', the owner)"
+ ],
+ "use": "Put every breakable thing on statnum 4, as the campaign does.",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "breakable",
+  "explosion",
+  "radius",
+  "statnum",
+  "thing"
+ ]
+}

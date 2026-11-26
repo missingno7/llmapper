@@ -1,0 +1,25 @@
+{
+ "id": "verify-a-restructure-with-two-runs",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "Python's per-process string hashing makes set iteration order vary between runs, so a verdict can change from run to run; one run cannot show a restructure is safe.",
+ "evidence": [
+  "The overlap validator's transparent cluster iterated a set, 2026-08-29 (tools/vector_report.py)."
+ ],
+ "use": "Compare two consecutive runs byte for byte; sort before iterating anything that decides output.",
+ "code": [
+  "tools/vector_report.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-29"
+ },
+ "words": [
+  "byte",
+  "determinism",
+  "hash",
+  "nondeterminism",
+  "set"
+ ]
+}

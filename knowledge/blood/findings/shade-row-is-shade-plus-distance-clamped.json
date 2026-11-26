@@ -1,0 +1,31 @@
+{
+ "id": "shade-row-is-shade-plus-distance-clamped",
+ "topic": "light",
+ "standing": "engine",
+ "claim": "The palette row a surface is drawn with is clamp(shade + visibility-distance term, 0, numshades-1). A shade below 0 looks the same as 0 up close; it only resists darkening with distance. Blood's NORMAL.PLU is linear, about 1/64 of the texel's brightness per shade (100/88/75/63/50/38/25% at 0/8/16/24/32/40/48; 63 is black), and at visibility 800 distance adds about 1.2 shades per 1024 units (+13 at 8k, +38 at 32k).",
+ "evidence": [
+  "NBlood/source/build/src/engine_priv.h:241-243 getpalookup.",
+  "Table and distance term measured from the game's own PAL/PLU in BLOOD.RFF by bloodmap/shade_table.py (2026-11-20).",
+  "bloodmap/sunlight.py: Blood's facade tiles are dark and busy (mean 39-67 of 255 at shade 0, texel spread 12-34), so a step under about 10-12 shades does not show on them; a blind reader called a shade-8 facade step 'nearly identical'"
+ ],
+ "use": "Choose shade steps with shade_table.brightness(tile, shade), not by number. On a facade a light step must be 10-20 shades to show.",
+ "code": [
+  "bloodmap.shade_table.brightness",
+  "bloodmap.sunlight"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "brightness",
+  "contrast",
+  "distance",
+  "facade",
+  "palookup",
+  "plu",
+  "shade",
+  "visibility"
+ ]
+}

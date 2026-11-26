@@ -1,0 +1,25 @@
+{
+ "id": "a-blank-wall-wears-its-facades-windowless-twin",
+ "topic": "texture",
+ "standing": "ruling",
+ "claim": "A building wall that should have no windows (a flank, a side wall over rock) wears the same facade tile without the window, not a different brick: Blood's facade tiles come in pairs (380 with windows, 381 without).",
+ "evidence": [
+  "The owner, 2026-11-19: '380 is building facade with windows and 381 is the same thing just without windows'."
+ ],
+ "use": "Look for the companion tile of a facade before choosing a flank material.",
+ "code": [
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "companion",
+  "facade",
+  "flank",
+  "side wall",
+  "window"
+ ]
+}

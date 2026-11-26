@@ -1,0 +1,27 @@
+{
+ "id": "big-wastewater-halls-get-height-from-tiers",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "Blood's big sewage halls get their height from tiers, not one tall ceiling: E3M3's hall stacks a pool, a main walk 5.3 bodies up, catwalks 3.4 bodies over that and a top gallery with trusses and lifts between; E1M8's is plank walks half a body over a sea of sewage. Inflow is a low pipe slot spilling down a panned wall into a pool 2.4 bodies lower.",
+ "evidence": [
+  "E3M3 s15 (25 x 27 x 14 m) and E3M3 s173, s174 (the sewagefall)",
+  "E1M8 s243 (45 x 63 x 7 m), study in projects/blood-city/references/sewer-design.md"
+ ],
+ "use": "Build a large wet hall as walks and catwalks over water at several levels.",
+ "code": [
+  "projects/blood-city/references/sewer-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "catwalk",
+  "hall",
+  "sewer",
+  "tank",
+  "tiers",
+  "wastewater"
+ ]
+}

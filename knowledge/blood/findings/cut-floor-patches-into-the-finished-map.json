@@ -1,0 +1,26 @@
+{
+ "id": "cut-floor-patches-into-the-finished-map",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "Floor patches (shadows, decoration) are declared on the layout and cut into the finished map last. Cut at compile they split regions that some thirty later passes look up as one sector. Keep a sliver clear of slanted walls, XWALL walls and walls facing typed sectors (rounding leaves the neighbour's line), and shift a whole floor rather than cut it.",
+ "evidence": [
+  "Gravesend, 2026-11-20: bloodmap.overlays and the build's re-run of rules after the cut."
+ ],
+ "use": "Declare overlays on the layout and lay them on the disk map.",
+ "code": [
+  "bloodmap.overlays.lay"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "cut",
+  "decoration",
+  "overlay",
+  "patch",
+  "shadow",
+  "split"
+ ]
+}

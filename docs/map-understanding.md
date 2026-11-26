@@ -100,7 +100,7 @@ See [design-pattern-discovery.md](design-pattern-discovery.md).
 push motion, and exit channels 4/5 are a separate graph:
 
 ```text
-python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o reports/E2M2-progression.json
+python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o work/E2M2-progression.json
 ```
 
 Object-to-wall attachment is mined separately (`placement-mine`). See
@@ -126,38 +126,38 @@ NEW, UNMEASURABLE.
 
 The first instance is BB2:
 
-- [BB2 understanding](../reports/BB2-understanding.md)
-- [reconstruction understanding](../reports/BB2-reconstruction-understanding.md)
-- [semantic roundtrip](../reports/BB2-semantic-roundtrip.md)
-- [revision plan](../reports/BB2-semantic-revision-plan.md)
-- [v2 candidate understanding](../reports/BB2-reconstruction-v2-understanding.md)
-- [v2 comparison](../reports/BB2-semantic-roundtrip-v2.md)
-- [v2 geometry audit](../reports/BB2-v2-geometry-audit.md)
-- [v3 candidate understanding](../reports/BB2-reconstruction-v3-understanding.md)
-- [v3 comparison](../reports/BB2-semantic-roundtrip-v3.md)
-- [BB6 pattern-aware understanding](../reports/BB6-understanding.md)
-- [BB6 semantic roundtrip](../reports/BB6-semantic-roundtrip.md)
+- [BB2 understanding](../reports/archive/BB2-understanding.md)
+- [reconstruction understanding](../reports/archive/BB2-reconstruction-understanding.md)
+- [semantic roundtrip](../reports/archive/BB2-semantic-roundtrip.md)
+- [revision plan](../reports/archive/BB2-semantic-revision-plan.md)
+- [v2 candidate understanding](../reports/archive/BB2-reconstruction-v2-understanding.md)
+- [v2 comparison](../reports/archive/BB2-semantic-roundtrip-v2.md)
+- [v2 geometry audit](../reports/archive/BB2-v2-geometry-audit.md)
+- [v3 candidate understanding](../reports/archive/BB2-reconstruction-v3-understanding.md)
+- [v3 comparison](../reports/archive/BB2-semantic-roundtrip-v3.md)
+- [BB6 pattern-aware understanding](../reports/archive/BB6-understanding.md)
+- [BB6 semantic roundtrip](../reports/archive/BB6-semantic-roundtrip.md)
 
 Order is mandatory: freeze the candidate reading **before** opening the
 target description.
 
 ## BB2 experiment outputs
 
-- [BB2 understanding (prose)](../reports/BB2-understanding.md)
-- [BB2 understanding (structured)](../reports/BB2-understanding.json)
+- [BB2 understanding (prose)](../reports/archive/BB2-understanding.md)
+- [BB2 understanding (structured)](../reports/archive/BB2-understanding.json)
 - Semantic roundtrip:
-  [v1 candidate understanding](../reports/BB2-reconstruction-understanding.md),
-  [v1 comparison](../reports/BB2-semantic-roundtrip.md),
-  [v2 candidate understanding](../reports/BB2-reconstruction-v2-understanding.md),
-  [v2 comparison](../reports/BB2-semantic-roundtrip-v2.md),
-  [v2 geometry audit](../reports/BB2-v2-geometry-audit.md),
-  [v3 candidate understanding](../reports/BB2-reconstruction-v3-understanding.md),
-  [v3 comparison](../reports/BB2-semantic-roundtrip-v3.md),
-  [revision plan](../reports/BB2-semantic-revision-plan.md),
+  [v1 candidate understanding](../reports/archive/BB2-reconstruction-understanding.md),
+  [v1 comparison](../reports/archive/BB2-semantic-roundtrip.md),
+  [v2 candidate understanding](../reports/archive/BB2-reconstruction-v2-understanding.md),
+  [v2 comparison](../reports/archive/BB2-semantic-roundtrip-v2.md),
+  [v2 geometry audit](../reports/archive/BB2-v2-geometry-audit.md),
+  [v3 candidate understanding](../reports/archive/BB2-reconstruction-v3-understanding.md),
+  [v3 comparison](../reports/archive/BB2-semantic-roundtrip-v3.md),
+  [revision plan](../reports/archive/BB2-semantic-revision-plan.md),
   first reconstruction notes:
-  [pre-unblinding](../reports/BB2-reconstruction-preblind.md),
-  [comparison](../reports/BB2-reconstruction-comparison.md),
-  [information loss](../reports/BB2-reconstruction-gaps.md)
+  [pre-unblinding](../reports/archive/BB2-reconstruction-preblind.md),
+  [comparison](../reports/archive/BB2-reconstruction-comparison.md),
+  [information loss](../reports/archive/BB2-reconstruction-gaps.md)
 
 The prose is the reconstruction bottleneck. It must not smuggle the MAP.
 

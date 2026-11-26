@@ -1,0 +1,27 @@
+{
+ "id": "a-kerb-is-the-join-of-road-and-pavement",
+ "topic": "texture",
+ "standing": "ruling",
+ "claim": "A kerb is not an object but the join of road and pavement: the kerb tile on the road record's lower band. Joins differ by pair (road to road continues, road to pavement is a kerb, road to end wall cuts with facade stone, facade to opening needs a holder). E3M1's kerb tile 6 (64x8) is E3M1's choice, not a law; the campaign also uses 2490, 67, 110 and 2499 in that slot.",
+ "evidence": [
+  "The owner, 2026-09-02 (projects/blood-city/reports/street-model-decisions-2026-09-02.md section 13)."
+ ],
+ "use": "Dress a raised face in a street from the street's (lower) record; decide every shared edge by its pair.",
+ "code": [
+  "bloodmap.skyline.dress_steps"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-02"
+ },
+ "words": [
+  "curb",
+  "join",
+  "kerb",
+  "pavement",
+  "road",
+  "step",
+  "street"
+ ]
+}

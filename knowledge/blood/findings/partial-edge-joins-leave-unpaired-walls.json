@@ -1,0 +1,24 @@
+{
+ "id": "partial-edge-joins-leave-unpaired-walls",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "Two rooms that share only part of an edge leave coincident walls that are not paired as a portal; every coincident edge must be one declared wall pair, including zero-height pieces to each other and to the street.",
+ "evidence": [
+  "Met repeatedly in Gravesend (2026-08-27 Market Slip, 2026-11-18 second walk); the rule gate catches unpaired walls."
+ ],
+ "use": "Join rooms through a neck whose whole face is the mouth, or cut the longer edge at the shorter one's ends.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "coincident",
+  "connection",
+  "join",
+  "nextwall",
+  "portal",
+  "unpaired"
+ ]
+}

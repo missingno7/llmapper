@@ -15,6 +15,24 @@ library module and every tool, one line each, generated from the code so it
 cannot go stale -- is [the module map](module-map.md). Which module owns which
 kind of fact is [architecture](architecture.md).
 
+## Starting a level, and finishing its map
+
+| I want to… | Reach for | Not |
+| --- | --- | --- |
+| start a level | `python -m tools.project new <name> --title "..."`: a project that builds as it stands, with poses, a test and its own page | copying another level's directory |
+| take a declared layout to a map on disk: compile, align, gates, overlays, light, tidy, write, manifest | `bloodmap.finish.finish(layout, out, circuit=..., light=...)`; a level with passes of its own between them calls the same functions in that order | reading Gravesend's build to learn the order |
+| know where a level stands | `python -m tools.project status <name>` (every open item and what to do) | a status page written by hand |
+| look at a level from named poses | `python -m tools.look <name> --set <poses>`; the poses are the project's `level/poses.py` | a look script of the project's own |
+| point a tool at a level | `bloodmap.project.named(name)`: its map, poses, reports, critique rounds | a path typed into the tool |
+| a door that rises, and the leaf a player sees | `doors.rising_door(parent, id, wide=, floor_z=, opening=, key=, remote=)`, then `doors.hang_leaf(layout, door, tile, ("west", a), ("east", b))` after compile | a type-600 room assembled by hand; a tile on the door's own walls (never drawn) |
+| a room on another floor, or set back from the face it was laid against | `room.place_against(...).move(dx=, dy=, dz=)` (up is negative z) | rewriting `room.frame` |
+| a stretch of a wall by where it is, not by a fraction | `room.face_at(name, (x, y), width=)`; `face(at=)` runs the way the outline walks: `south` east to west, `west` south to north | guessing which end `at=0.25` is |
+| a pickup or an enemy as Blood sets it down | `supplies.item(kind)`, `supplies.dude(kind)`, `keys.pickup(key)` as the fields of `layout.place_on_floor`; the program needs `tile_extents=sprite_tile_extents()` to seat them | a table of tiles and repeats in the level |
+| keep a level's wires in one table | `wiring.Circuit.from_plan(rows, engine_rows)`, `.named(name)`, `.drop_idle()` | channel numbers in modules |
+| cut a finished room into cells without touching what hangs on it | `bloodmap.refit.refit`, then `settle(layout)` before compile | rebuilding the room and every door, wire and sign on it |
+| nest a level's parts and find them again | `bloodmap.leveltree` (`nest`, `sub`, `plan`, `find`, `zoom`, `summary`) | a flat program told apart by name prefixes |
+| know which tiles are words or paper | `bloodmap.tile_looks.word_tiles()`, `hung_tiles()`, `tile_name()` | a list of tile numbers |
+
 ## Before any of it: the map, the record, the body
 
 | I want to… | Reach for | Not |
@@ -126,7 +144,7 @@ Do not add a check anywhere else. If it is worth enforcing it is worth grading.
 | how complex are these interiors, against the campaign's | `python -m tools.city_profile --interiors <maps...>` — per interior: floor and ceiling heights, floor range in bodies, floor and wall tiles, shade spread, slopes. E3M1 is the target; the largest gap is light |
 | how does another Build game (or a campaign map) do this, in terms I can use | `python -m tools.city_profile <maps...>` — one list of structural questions (street-wall heights, kerb, pavement, glass and its records, openings, sky backings, light) answered in bodies and shares, so a Duke map, a Blood map and a built map are columns of one table. Tiles and raw coordinates do not cross; ratios do |
 | stand in a Duke Nukem 3D map and look | `python -m tools.duke_view <map> -o DIR [--pose name:x,y,tx,ty] [--sectors a,b]` — a viewing copy in Blood's format (nothing scaled), Duke's ART, and Duke's own palette, shade table and palette swaps in an archive the observer can read, through the same observer. Shape, colour and light as authored are Duke's; the sky is not. Never a conversion |
-| how has something recognisable been built before, and did it read | `knowledge/blood/design/visual-construction-atlas-v1.json` — native facts, derived counts and viewers' readings kept apart, with a status per record |
+| how has something recognisable been built before, and did it read; what the engine does with it; what a check cannot see | `python -m tools.findings find <words>` — one finding a file under `knowledge/blood/findings/`, each saying how it is known (engine, ruling, precedent, tendency, practice, hypothesis, refuted) |
 | is there a way from the start to this place | `conditional.build_graph` — gates and what works them; Blood City's `walk_static.py` renders the chain. **A reading of the map, not a walk** |
 
 ## Knowing what Blood does

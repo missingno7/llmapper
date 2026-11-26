@@ -1,0 +1,29 @@
+{
+ "id": "stocked-shelf-is-a-niche",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "Blood's stocked shelf is a recess in a wall raised about half a body over the floor (6,144 to 8,192), 256 to 512 deep, 12,288 to 16,384 high inside, holding a thing every 300 to 350 units, mostly breakable bottles and jars (type 416). Books are a wall surface (bookcase-front tiles), not sprites.",
+ "evidence": [
+  "E3M2 s82 and s87: 256 deep, 1,536 long, raised 7,168 over s83, six and eight bottles and jars",
+  "E1M4 s298: 512 deep, 3,072 long, raised 6,144 over s297, nine bottles (759), three of them shooting-gallery targets wired to sprite 202",
+  "E1M2 s213: a 1,280-square recess raised 8,192 over s211, 12,288 high, five bottles (work/consolidation/audit3/p3.py, 2026-11-26)",
+  "E1M4 s167, once cited here, is a grill (type 618 damage sector with smoke), not a shelf"
+ ],
+ "use": "Cut shelves into a wall with void behind it, the room's own record drawing the riser and the band over; frame a picture tile in a niche whole from its own corner.",
+ "code": [
+  "projects/blood-city/level/fixtures.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "books",
+  "goods",
+  "niche",
+  "shelf",
+  "shop",
+  "stock"
+ ]
+}

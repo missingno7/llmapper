@@ -1,0 +1,25 @@
+{
+ "id": "sprites-drawn-in-order-of-their-middles",
+ "topic": "renderer",
+ "standing": "hypothesis",
+ "claim": "Wall sprites at nearly one depth are drawn in the order of their middles, so one wide backing board behind a word of letter sprites loses the far letters when seen aslant; a piece of board behind each letter keeps them.",
+ "evidence": [
+  "projects/blood-city/level/fair.py, the stall name boards; seen in frames, not traced in the engine"
+ ],
+ "use": "Back each letter with its own piece of board, the board two-sided and plain, the letters one-sided so nobody reads them backwards.",
+ "code": [
+  "projects/blood-city/level/fair.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "board",
+  "letters",
+  "sign",
+  "sort",
+  "z-fight"
+ ]
+}

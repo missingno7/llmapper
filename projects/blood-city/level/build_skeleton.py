@@ -33,25 +33,18 @@ from bloodmap.roomoverroom import (
     MARKER_UP_STACK, MARKER_LOW_STACK, MIRROR_TILE,
 )
 
-#: NOT bloodmap.roomoverroom.MARKER_TILE (3997).  Censused across the whole
-#: campaign: all 273 link markers use picnum **2332 on the upper half and
-#: 2331 on the lower**, 100% of instances of every family (link 6/7,
-#: water 9/10, stack 11/12).  This project's own working example agrees --
-#: reasoned-authoring-v1's water links are 2332/2331.  Tile 3997 is drawn
-#: by XMapEdit as a torch, which is exactly what a map built with it looks
-#: like in the editor: a normal sector with a torch instead of a link.
+#: The link markers' tiles: 2332 on the upper half, 2331 on the lower, as on
+#: all 273 link markers of the campaign.  The same values as
+#: bloodmap.roomoverroom.MARKER_TILE_UPPER/LOWER, which once said 3997 (a
+#: torch in XMapEdit) and has since been corrected.
 MARKER_TILE_UPPER = 2332
 MARKER_TILE_LOWER = 2331
 
-#: NOT bloodmap.roomoverroom.MARKER_STATNUM (10 = kStatMarker).  Read from
-#: NBlood: db.cpp `PropagateMarkerReferences` walks every sprite on
-#: kStatMarker and DeleteSprite()s any whose type is not kMarkerOff/Axis/
-#: WarpDest/On -- which includes kMarkerUpStack(11) and kMarkerLowStack(12).
-#: It runs at the end of dbLoadMap (db.cpp:1325); warpInit runs later, at
-#: level start (blood.cpp:750).  So a stack marker placed on statnum 10 is
-#: deleted before the link is ever registered: no link, solid floor, no way
-#: down.  All six stack markers in E3M1 sit on statnum 0 with cstat 128,
-#: and warpInit sets the invisible bit itself.  Filed as a grammar request.
+#: The same as bloodmap.roomoverroom.MARKER_STATNUM/MARKER_CSTAT (0 and 128).
+#: Not 10 (kStatMarker): db.cpp `PropagateMarkerReferences` deletes every
+#: kStatMarker sprite whose type is not kMarkerOff/Axis/WarpDest/On at the end
+#: of dbLoadMap, before warpInit registers the link, so a stack marker there
+#: leaves no link.  All six stack markers in E3M1 sit on statnum 0, cstat 128.
 STACK_MARKER_STATNUM = 0        # kStatDecoration
 STACK_MARKER_CSTAT = 128        # the campaign's stored value
 
@@ -1076,7 +1069,8 @@ def build():
     #
     # A named empty node is the honest way to say "this space is planned and
     # its contents are not made": it is findable, it is legible as a plan,
-    # and `conformance.py` can hold the tree to the plan in both directions.
+    # and the tree can be held to the plan in both directions (the old
+    # `level/conformance.py` did; it is in git history).
     # An ABSENT node says nothing at all, which is how three of the plan's
     # ten venues went missing without anything noticing.
     import citytree
@@ -1241,7 +1235,7 @@ def _seat_actors(layout) -> int:
     half of every zombie was under the floor in the editor. The game moves
     a dude to the floor when it spawns, which is why nobody saw it in play.
     """
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_lift
 
     sizes = wallplane.art()
@@ -1282,7 +1276,7 @@ def _drop_flat_overlaps(layout) -> list:
     so. `tools/sprite_fit.flat_overlaps` holds the result.
     """
     import props
-    import wallplane
+    from bloodmap import wallplane
 
     sizes = wallplane.art()
     taken: dict = {}
@@ -1714,7 +1708,7 @@ def main() -> int:
     STAGE("shops-and-goods",
           "fascia names, display lamps, venue detail, goods on fixtures, grime")
     # A shop is named on its fascia and lit behind its glass
-    # (`glass.surround`; DukCity and E3M1, `references/dukcity-transfer.md`).
+    # (`glass.surround`; DukCity and E3M1, `knowledge/blood/references/dukcity-transfer.md`).
     import glass as _shopfronts
     print("fascia names:", _shopfronts.write_names(layout))
     print("display lamps:", _shopfronts.hang_lamps(layout))
@@ -1862,7 +1856,7 @@ def main() -> int:
             layout, shade=GROUND_SUN[0], sunlit=GROUND_SUN[1])
         print("ground shadows:", {k: v for k, v in ctx["manifest"]["ground_shadows"].items()
                                    if k not in ("skipped", "shadowed")})
-    import refit
+    from bloodmap import refit
     print("moved to the cell it stands in:", refit.settle(layout))
     compiled = layout.compile()
     # Held for `citytree --cost`: later passes mutate this level in
@@ -2478,7 +2472,7 @@ def main() -> int:
     print("fronts drawn whole again:", {k: v for k, v in facade_bays.apply(disk).items() if k != "blank"})
     # what the passes split and nothing needs any more (the owner, 2026-11-25: "reducing number of walls where it makes sense")
     from bloodmap import tidy as _tidy
-    ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("wallplane").art())
+    ctx["manifest"]["tidy"] = _tidy.unsplit(disk, __import__("bloodmap.wallplane", fromlist=["art"]).art())
     print("walls joined:", ctx["manifest"]["tidy"])
     import solidity as _solidity
     ctx["manifest"]["solidity"] = _solidity.apply(disk)

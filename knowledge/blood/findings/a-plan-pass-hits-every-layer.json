@@ -1,0 +1,25 @@
+{
+ "id": "a-plan-pass-hits-every-layer",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A pass that works only in 2D over the whole map reaches the underground too: a facade pass painted church stone on sewer walls lying under the church's outline.",
+ "evidence": [
+  "Gravesend's sewer, 2026-11-21 (facade_pass face_landmark, fixed with deepest=)."
+ ],
+ "use": "Restrict a plan-view pass to the layer it means.",
+ "code": [
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "2d",
+  "facade",
+  "layer",
+  "pass",
+  "underground"
+ ]
+}

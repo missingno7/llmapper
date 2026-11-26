@@ -1,0 +1,26 @@
+{
+ "id": "an-edge-mass-needs-a-sky-backing",
+ "topic": "renderer",
+ "standing": "precedent",
+ "claim": "A one-sided wall of an open street runs up to the street's ceiling height, under its sky, so whatever stands at the map's edge is as tall as the street's sky is high. Blood puts a sky backing behind it: a sector with floor and ceiling at the same z and a parallax ceiling, which draws no wall; the mass in front is two-sided to it, both skies parallax, and the eye passes over into sky.",
+ "evidence": [
+  "E3M1 s340: floor_z = ceiling_z = 8192, ceiling_stat 3 (parallax); also E3M1 s338."
+ ],
+ "use": "Give anything lower than the sky at the map's edge a backing sector; the skyline rules exempt it.",
+ "code": [
+  "bloodmap.skyline.is_sky_backing"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "backing",
+  "edge",
+  "horizon",
+  "parallax",
+  "sky",
+  "vista"
+ ]
+}

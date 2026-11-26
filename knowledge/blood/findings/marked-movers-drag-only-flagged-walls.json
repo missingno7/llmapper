@@ -1,0 +1,32 @@
+{
+ "id": "marked-movers-drag-only-flagged-walls",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Sector types 616/617 drag every wall of the sector; the Marked types 614/615 drag only walls flagged cstat 16384 (with the motion) or 32768 (against it). Sprites in the sector move only by their own cstat 8192 (with) or 16384 (against), whatever the walls do, and markers never move. A gate can therefore be sprites alone: 35 campaign mechanisms move only sprites.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:879-925 (bAllWalls branch, cstat&16384, cstat&32768) and :930-960 (sprites by cstat 8192/16384, markers skipped); bAllWalls is type==kSectorSlide/kSectorRotate at :2231-2232.",
+  "E1M1 s65 (614): 49 walls, none flagged; sprites 37/38 are the whole gate."
+ ],
+ "use": "Choose 616/617 when the whole sector outline moves; 614/615 with flagged walls when only a leaf inside it does; flag every sprite that should ride.",
+ "code": [
+  "bloodmap.mechanism.rigid_body",
+  "bloodmap.mechanism.carry_fittings"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "16384",
+  "32768",
+  "614",
+  "615",
+  "616",
+  "617",
+  "8192",
+  "cstat",
+  "drag",
+  "sprite"
+ ]
+}

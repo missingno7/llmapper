@@ -809,6 +809,13 @@ def section_of(label: str) -> Section:
 # RegionSpec.surface_z measures a plane for sprite placement. It is a query
 # on a region, outside the catalogue of module-level constructors below.
 SKIP: dict[str, str] = {
+    "bloodmap.doors.rising_door":
+        "z_motion_door set down as a room of a level program; the mechanism is "
+        "exhibited by z_motion_door's own stall, and the room is read back in "
+        "tests/test_readback.py (RisingDoorReadBack)",
+    "bloodmap.doors.hang_leaf":
+        "paints the two neighbours' walls over a shut door; no mechanism of its "
+        "own. Read back with the door it dresses (RisingDoorReadBack)",
     "bloodmap.mechanism.add_sector_sound":
         "Invisible audio control. The Gravesend build and motion-sound "
         "read-back check the emitted marker and all four sound fields.",

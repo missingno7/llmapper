@@ -1,0 +1,26 @@
+{
+ "id": "tutorial-shove-is-an-xwall-on-the-surface",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "The XMapEdit tutorials make a push open a sector by an XWALL on the surface the player pushes, not by trigger_wall_push on the sector, which keeps the sector's one tx free.",
+ "evidence": [
+  "DOOR-CURTAINS s3: walls 38, 39, 40 carry tx 100 while the sector is only rx 100 (maps/blood/mechanism; xmapedit manual p.239)."
+ ],
+ "use": "Put the push trigger on the walls the player touches.",
+ "code": [
+  "tools/catalog.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "curtain",
+  "door",
+  "push",
+  "trigger",
+  "tutorial",
+  "xwall"
+ ]
+}

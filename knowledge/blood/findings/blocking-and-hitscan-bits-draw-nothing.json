@@ -1,0 +1,27 @@
+{
+ "id": "blocking-and-hitscan-bits-draw-nothing",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "Wall cstat 1 (blocking) and 64 (hitscan) are clip masks only; the wall pass never reads them. A two-sided wall with either bit and no drawn band (no step, not masked) is an invisible fence. A two-sided wall draws a middle only when masked (cstat&48 == 16, from over_picnum) or one-way (32); one carrying both 16 and 32 is drawn as one-way, never masked.",
+ "evidence": [
+  "NBlood/source/build/src/clip.cpp:1491 dawalclipmask; build.h:225-226 CLIPMASK0 = (1<<16)+1, CLIPMASK1 = (256<<16)+64",
+  "NBlood/source/build/src/engine.cpp:4685-4686 masked deferral only when (cstat&48)==16; :4938-4940 one-sided or one-way walls draw picnum / overpicnum"
+ ],
+ "use": "Give a blocking two-sided wall something to see (a masked over_picnum, a step) unless the fence is meant to be invisible; render_slots.wall_draw says which band each wall draws.",
+ "code": [
+  "bloodmap.render_slots.wall_draw"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "cstat",
+  "fence",
+  "invisible wall",
+  "masked",
+  "one-way",
+  "over_picnum"
+ ]
+}

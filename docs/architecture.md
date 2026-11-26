@@ -73,9 +73,9 @@ episodes needed to reproduce an agent's work. See
 `bloodmap.materials` measures ART appearance and original-map usage before any
 semantic texture vocabulary exists. Clusters and co-occurrence relations stay
 unlabeled until an offline review imports an INTERPRETED facet schema.
-Blood now has a versioned review under `knowledge/blood/` (v1 → contradiction
-pass → v2). Native IDs are never material semantics. See
-[materials.md](materials.md) and [materials-discovery.md](materials-discovery.md).
+Blood has a versioned review, `knowledge/blood/ontology-v2.json` (the second
+pass, after a contradiction pass over the first). Native IDs are never material
+semantics. See [materials.md](materials.md).
 
 `bloodmap.player_space` is a derived presentation over exact geometry. It
 normalizes openings, clearances, footprints, and steps against a source-backed
@@ -116,6 +116,10 @@ convenient.
 | whether an object with a channel can send at all | `wiring.py` (`can_send`, `silent_senders`; `motion.silent_transmitters` and the rule `transmitter-reports-an-edge` call it) | a check that looks at sprites only |
 | which tile the renderer shows on which band of a wall (steps, mask, one-way) | `render_slots.py` | a `next_sector < 0` test in the consumer |
 | a measured, versioned, citable design number | `knowledge/blood/design/*-vN.json` | a constant in the module that needed it |
+| something a level taught us that fits no other shelf: what the engine does with a construction, how a thing is built, a renderer limit, a trap a check cannot see, a ruling of the owner's | a finding, saying how it is known: `python -m tools.findings add` (`bloodmap/findings.py`) | the docstring of the level module that met it; an agent's memory |
+| where a level's map, poses, reports and critique rounds are | its `project.json`, read through `bloodmap.project` | a path typed into a tool |
+| the order a level's map goes through from layout to file | `bloodmap/finish.py` | the last seven hundred lines of one level's build |
+| what one level decided for itself: its plan, its places, its rows | `projects/<name>/level/` | `bloodmap/`, where every other level would inherit it |
 | something an author should be able to *write* | a `vocabulary.py` / `prefab.py` constructor | the knowledge store |
 
 A sensor lives in the library; a tool is its run over a corpus. `tools/mine_*.py`
@@ -247,3 +251,38 @@ maps in local NBlood and EDuke32 installations. They compare a known-good baseli
 and candidate in isolated directories, require engine-specific initialization
 markers and a healthy grace period, and report revisions, identities, and fatal
 indicators. These are load/startup checks, not gameplay-equivalence proofs.
+
+## Known debts
+
+What the consolidation of 2026-11-26 left undone, so that it is not found again by
+surprise. Each is paid when a second level needs the thing, by moving it with a test that
+needs no level and proving that Gravesend's map does not change by a byte.
+
+- **Gravesend's build does not call `bloodmap.finish.finish`.** It runs the same library
+  passes itself with dozens of its own between them (`projects/blood-city/level/build_skeleton.py`,
+  one function of two thousand lines sharing a `ctx`). The order is written once, in
+  `finish.py`; the two can drift. Paying it means giving `finish` hooks at every point where
+  Gravesend interleaves.
+- **Techniques still written against Gravesend's layout**, each a worked example the findings
+  point at: the arrangement-place kit (`_q`, `_rect`, `_ring`, `keep` in eight modules; the
+  general form is `settling_hall.put_back` over `bloodmap.surface.RecordOwner`), `props`,
+  `setpieces`, `fixtures`, `templates`, `facade_pass`, `facade_bays`, `windows`, `glass.shopfront`,
+  `wing_doors`, `doorswitch`, `curtains`, `motion_sounds`, `solidity`, `apertures`, `dressing`,
+  `runs`, `ambience`, `sewerkit`, `difficulty`, `players`, `first_sight`, `playthrough`,
+  `release.shift`, the flight of `ghost_stair`.
+- **Gravesend's choices encoded in the library as if general:** `joins.TILE_CLASSES` (and the
+  readers `read_joins`, `read_facts` that score a band by that one tile), `read_plan.WIDTH_CLASSES`,
+  the weights of `view_score.score` (fitted on Gravesend's showcase rounds only), and the
+  city-shaped modules `city`, `street`, `street_model`.
+- **Three ways to author a level that no level uses** (August 2026): `construction.LevelBuilder`
+  with `designs`; fragment composition with `recipe` and `recipes/*.json`; the authoring loop
+  and probes (`authoring_loop`, `probes`, `probe_schema`, `state_model`, `design_contract`,
+  `counterfactual`). They are tested and reachable from the CLI; whether to remove them is the
+  owner's decision. A level is authored with `levelprog` and finished with `finish`.
+- **Capabilities tested only on Gravesend's map** (their tests are in `projects/blood-city/tests`):
+  `tidy.merge_alike`, `sprite_fit.unbacked`, `texture_frame.split_bands_unpegged`,
+  `catalog.directional_floor_faults`, the clock rules of `breakables`, the overlay
+  rounding-drift regressions (they import `resolution.SUN_BEARING`).
+- **A project status of two kinds.** `tools.project status` is every level's; Gravesend's
+  `level/status.py` and the E4L1 remake's `status.py` know their own places. The place table
+  (`character.PLACES`, `places.json`) is the part worth making common.

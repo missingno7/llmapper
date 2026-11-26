@@ -1,0 +1,27 @@
+{
+ "id": "ambient-sound-sprite-fields",
+ "topic": "sound",
+ "standing": "engine",
+ "claim": "An ambient sound in Blood is a type 710 sprite on statnum 12 (kStatAmbience): the sound id is XSPRITE data_3, data_1 and data_2 are the near and far radius, data_4 the volume, and it plays only while its state is 1. ambInit skips any emitter whose data_1 is not smaller than data_2, so radii given the wrong way round are silently no sound at all. The sprite's owner is the runtime channel, -1 in all 1,778 campaign emitters.",
+ "evidence": [
+  "NBlood/source/blood/src/asound.cpp:55 and :120 walk headspritestat[kStatAmbience]; :124 `if (pXSprite->data1 >= pXSprite->data2) continue;`; :64 plays while state; :72 volume from data4",
+  "campaign census in knowledge/blood/studies/ambient-sounds/notes.md: invisible cstat 32896, shade -128; data_4 50 in 1,177 of 1,778; state 1 in 1,582 of 1,778"
+ ],
+ "use": "Write emitters through the level's ambience fields helper rather than by hand, with data_1 < data_2, state 1 and the sound id in data_3; check the id's meaning with `python -m tools.catalog show sound:<id>` before choosing it.",
+ "code": [
+  "projects/blood-city/level/ambience.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "710",
+  "ambience",
+  "emitter",
+  "radius",
+  "sfx",
+  "sound"
+ ]
+}

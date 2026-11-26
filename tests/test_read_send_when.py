@@ -29,7 +29,7 @@ import unittest
 
 from tests.helpers import corpus_disk
 
-CITY = "projects/blood-city/level/slice2-streets.MAP"
+CITY = "tests/fixtures/city-slices/slice2-streets.MAP"
 
 
 def _disk(path):

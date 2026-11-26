@@ -7,7 +7,7 @@ like the street grid above it or runs its own line, how deep it sits, how wet
 it is, and what role it plays in the route (keycard evidence for required
 passage, entry count for shortcut loops, Duke secret tags for secrets).
 
-    python -m tools.mine_sewers -o projects/blood-city/references/sewer-mining.json
+    python -m tools.mine_sewers -o knowledge/blood/references/sewer-mining.json
 
 Structure only -- dressing for Blood City's sewer comes from the Blood-side
 water and underground norms already in knowledge/blood/design/.
@@ -246,7 +246,7 @@ def analyze(name: str, game: str, path: str) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("-o", "--output",
-                        default="projects/blood-city/references/sewer-mining.json")
+                        default="knowledge/blood/references/sewer-mining.json")
     args = parser.parse_args(argv)
     payload = {
         "$schema": SCHEMA,

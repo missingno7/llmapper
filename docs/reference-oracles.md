@@ -29,7 +29,7 @@ git clone https://github.com/EDuke32/eduke32.git reference/eduke32
 These inputs are evidence, not runtime dependencies. The Python package must keep
 working without `reference/`, and ordinary tests use synthetic fixtures or the
 separately ignored `maps/` corpus. When a verification claim depends on an
-upstream checkout, record its commit in `reports/verification.md` so the result is
+upstream checkout, record its commit in `reports/archive/verification.md` so the result is
 reproducible.
 
 Never copy game resources, ART files, generated screenshots, executables, or nested Git
@@ -82,7 +82,7 @@ python -m bloodmap oracle-nblood work/oracle_composed.MAP \
   --game-dir reference/blood \
   --seconds 6 \
   --work-dir work/oracle-harness \
-  -o reports/nblood_oracle.json
+  -o work/nblood_oracle.json
 ```
 
 The current composition fixture is reproducible from the ignored corpus:
@@ -127,7 +127,7 @@ python -m bloodmap oracle-nblood-behavior \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   --work-dir work/behavior-oracle \
-  -o reports/nblood_behavior_oracle.json
+  -o work/nblood_behavior_oracle.json
 ```
 
 This is a focused integration scenario, not a universal gameplay proof. It covers
@@ -146,7 +146,7 @@ python -m bloodmap oracle-nblood-action work/first-puzzle-room.MAP \
   --nblood reference/blood/nblood.exe \
   --game-dir reference/blood \
   --work-dir work/first-puzzle-room-action \
-  -o reports/nblood_first_puzzle_room_action.json
+  -o work/nblood_first_puzzle_room_action.json
 ```
 
 The oracle proves a controlled Use input changed the rendered game state while
@@ -167,12 +167,12 @@ python -m bloodmap extract maps/blood/campaign/E1M1.MAP --sectors 1 \
   -o work/attachment-room.json
 python -m bloodmap attach maps/blood/campaign/E1M2.MAP work/attachment-room.json \
   --destination-wall 138 --fragment-wall 0 --z -36864 \
-  --channel-policy remap --report reports/attachment_fixture.json \
+  --channel-policy remap --report work/attachment_fixture.json \
   -o work/real-attachment.MAP
 python -m bloodmap oracle-nblood work/real-attachment.MAP \
   --baseline maps/blood/campaign/E1M2.MAP --nblood reference/blood/nblood.exe \
   --game-dir reference/blood --seconds 6 \
-  -o reports/nblood_attachment_oracle.json
+  -o work/nblood_attachment_oracle.json
 ```
 
 Only derived reports are tracked. The source maps and generated mashup remain in

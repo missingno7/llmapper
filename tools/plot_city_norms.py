@@ -5,7 +5,7 @@ component filled, walk-around blocks hatched, doorways from street marked.
 The classifier's mistakes (a landscape picked as a street, a courtyard read
 as a block) are invisible in the JSON and obvious here.
 
-    python -m tools.plot_city_norms -o projects/blood-city/references/plots
+    python -m tools.plot_city_norms -o knowledge/blood/references/plots
 """
 
 from __future__ import annotations
@@ -68,7 +68,7 @@ def plot_map(name: str, game: str, path: str, out_dir: pathlib.Path) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("-o", "--output", default="projects/blood-city/references/plots")
+    parser.add_argument("-o", "--output", default="knowledge/blood/references/plots")
     parser.add_argument("--maps", nargs="*")
     args = parser.parse_args(argv)
     out_dir = pathlib.Path(args.output)

@@ -1,0 +1,27 @@
+{
+ "id": "doorways-to-the-open-wear-neutral-surfaces",
+ "topic": "texture",
+ "standing": "ruling",
+ "claim": "A doorway to the street is one frame from the street to the room side of its leaf: its leaf sector and reveal do not wear the room's carpet, chequers or office ceiling. Blood's sills, jambs and heads under wooden doors are planks (tiles 20 and 68 lead both lists over 192 doorways to the open).",
+ "evidence": [
+  "the owner, 2026-11-25: 'some door around city has floor and ceiling in door aperature area from the room inside, so from the outside it looks bad'",
+  "E1M1 s59, s90; E1M3 s135 (its whole frame in planks)"
+ ],
+ "use": "Paint a doorway from the street through the leaf with one neutral frame material; apertures.neutral does it over a finished map.",
+ "code": [
+  "projects/blood-city/level/apertures.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "door",
+  "frame",
+  "jamb",
+  "reveal",
+  "sill",
+  "threshold"
+ ]
+}

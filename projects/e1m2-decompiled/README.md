@@ -15,7 +15,7 @@ python -m bloodmap decompile maps/blood/campaign/E1M2.MAP -o work/E1M2.level-sou
 ## Why this map
 
 The residue curve over all 43 campaign maps
-([reports/residue-curve-2026-09-03.md](../../reports/residue-curve-2026-09-03.md))
+([reports/archive/residue-curve-2026-09-03.md](../../reports/archive/residue-curve-2026-09-03.md))
 says the join grammar reaches only four maps at all, and outside E3M1 this is
 by far the strongest: **12 layer-3 claims over 313 sectors**, four road
 sectors, one island, seven kerb records. It was chosen as the second map under
@@ -44,7 +44,7 @@ anything was found.**
 
 4126 of 101049 claimable fields have a claim (**4.083%**); 3559 residue facts.
 Per layer, and against the other two maps, in
-[reports/sleep-phase-2026-09-03.md](../../reports/sleep-phase-2026-09-03.md).
+[reports/archive/sleep-phase-2026-09-03.md](../../reports/archive/sleep-phase-2026-09-03.md).
 
 Its own measurements, where they differ from E3M1's: measured island rise
 **1024** (E3M1's is 2048), base plane z 17408, kerb tile **281** on 7 of 7

@@ -1,0 +1,28 @@
+{
+ "id": "room-over-room-is-a-teleport-not-a-hole",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Blood's room-over-room has no hole: warpInit pairs an upper and a lower link marker by XSprite data1; GetZRange then re-queries inside the linked sector, so the floor a body is told it stands on is the far side's (that is why it falls); CheckLink, called by MoveDude every frame in both directions, moves the sprite by the difference between the two markers (stack markers cross at the sector's own floor or ceiling plane). Seeing through is separate: the floor or ceiling must be a mirror tile (504) or carry stat 0x180.",
+ "evidence": [
+  "NBlood/source/blood/src/warp.cpp:110-118 (gUpperLink/gLowerLink set in warpInit), :153-179 (upper and lower paired by data1 through owner); gameutil.cpp:726-770 (GetZRange follows gUpperLink/gLowerLink); warp.cpp:183-252 CheckLink (a link marker crosses at its own z, a stack at getflorzofslope/getceilzofslope), called by MoveDude at actor.cpp:4644; mirrors.cpp:243-256 IsRorSector."
+ ],
+ "use": "Build both surfaces of a stack as tile 504 and both markers per the statnum rule; a stacked shaft's real headroom is the two sectors together, so any reader of floorz/ceilingz must follow the link.",
+ "code": [
+  "bloodmap.roomoverroom"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "504",
+  "checklink",
+  "getzrange",
+  "link",
+  "mirror",
+  "room-over-room",
+  "ror",
+  "stack"
+ ]
+}

@@ -3,8 +3,8 @@
 The owner, 2026-11-25: "sounds from sewers are leaking into overgournd, but I am affraid
 that only way to handle it would be to move the whole sewers layer outside of the city."
 Measured on the build of that day. The owner: "Yes, build the links". Both links are built (2026-11-25, `l3_church.link_slab`,
-`l3_shed.RAMP`, tests/test_links.py), and the owner, having walked them: "Both stacks work, go ahead with the shift." The shift is
-`level/release.py` (tests/test_release.py): 735 sectors by (-128, -16) units. `blood-city-current.MAP` stays in the plan's own coordinates,
+`l3_shed.RAMP`, projects/blood-city/tests/test_links.py), and the owner, having walked them: "Both stacks work, go ahead with the shift." The shift is
+`level/release.py` (projects/blood-city/tests/test_release.py): 735 sectors by (-128, -16) units. `blood-city-current.MAP` stays in the plan's own coordinates,
 where every tool and test reads it; `gravesend.MAP` is the one that is played, and no reader had to learn anything (the fourth
 point below). 68 frames of the sewers, the crypt, the rite and the railway are the same to the pixel in both. What differs from what is written below:
 the ramp is 3.5 units long and falls 30,720 (heinum 2,194, 28 degrees), and the slab carries no switch: a skull hangs on the shaft's

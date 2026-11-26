@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "Nested authoring v1",
+  "kind": "pilot",
+  "status": "frozen",
+  "about": "The first nested level program (2026-08); superseded by bloodmap.levelprog."
+}

@@ -1,0 +1,27 @@
+{
+ "id": "torch-decoration-goes-out-candles-do-not",
+ "topic": "light",
+ "standing": "engine",
+ "claim": "A torch decoration (type 30) draws its flame only while its state is 1 and smoke when it is off, so it can be put out by a wire. A candle or other plain decoration keeps its flame whatever its state.",
+ "evidence": [
+  "NBlood/source/blood/src/view.cpp:2930 case kDecorationTorch: state 1 draws picnum+1 and the high torch effect, otherwise smoke"
+ ],
+ "use": "Use type 30 for fires that a rite or switch puts out, with LampGroup for the light they give; never wire a candle to go dark.",
+ "code": [
+  "bloodmap.light_stage.LampGroup",
+  "projects/blood-city/level/cabal_rite.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "candle",
+  "extinguish",
+  "fire",
+  "flame",
+  "smoke",
+  "torch"
+ ]
+}

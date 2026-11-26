@@ -3,7 +3,7 @@
 An agent starting on Gravesend needs four things it cannot work out cheaply:
 how big the build is, what state each named place is in, what is open, and
 what nobody has verified. They existed -- in a build manifest of 38 keys, in
-critique rounds under the studies, and in one agent's private notes -- and the
+critique rounds under reports/critique/, and in one agent's private notes -- and the
 two pages that claimed to summarise them described September's map.
 
 This reads those sources and writes two files beside the manifest:
@@ -11,7 +11,7 @@ This reads those sources and writes two files beside the manifest:
 ``reports/status.json``  every place and every open item, one record each
 ``reports/STATUS.md``    forty lines to read first, generated from it
 
-Nothing here is typed by hand, and `tests/test_city_status.py` fails while
+Nothing here is typed by hand, and `projects/blood-city/tests/test_city_status.py` fails while
 either file is stale. The build runs this as its last step; run it again
 after recording a critique round.
 
@@ -121,11 +121,13 @@ def stage_seconds() -> dict[str, float]:
 
 def _critique(slug: str | None) -> dict[str, Any] | None:
     """The last critique round of a study, or None if it has never had one."""
-    if not slug or not (STUDIES / slug / "critique").is_dir():
-        return None
+    from bloodmap import project as P
     from tools.critique import verdict
 
-    rounds = verdict(slug)
+    project = P.read(PROJECT)
+    if not slug or not project.rounds(slug).is_dir():
+        return None
+    rounds = verdict(project, slug)
     if not rounds:
         return None
     last = rounds[-1]
@@ -134,11 +136,11 @@ def _critique(slug: str | None) -> dict[str, Any] | None:
         "scores": last["scores"], "named_as": last["named"],
         "readers_missing": last["reviews_missing"],
         "blocking": last["blocking"],
-        "packet": f"knowledge/blood/studies/{slug}/critique/round-{last['round']}",
+        "packet": f"projects/{PROJECT.name}/reports/critique/{slug}/round-{last['round']}",
     }
 
 
-SHOWCASE = ROOT / "projects" / "blood-city" / "reports" / "showcase"
+SHOWCASE = PROJECT / "reports" / "showcase"
 
 
 def _showcase() -> list[dict[str, Any]]:

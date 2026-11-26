@@ -1,0 +1,25 @@
+{
+ "id": "ground-shadows-need-a-26-shade-step",
+ "topic": "light",
+ "standing": "practice",
+ "claim": "A ground shadow at +12 shade on ground at 30 is invisible; E3M1's contrast is a bright sunlit quarter (8-24) under a base of 34. A step of 26 (sun -14, shadow +12) reads. Shadows are cast by masses, not by boundary edges, or kerbed roads stay unshadowed.",
+ "evidence": [
+  "Gravesend's shadows checked against E3M1, 2026-11-20."
+ ],
+ "use": "Cast from masses and make the lit/shadow step at least about 26.",
+ "code": [
+  "bloodmap.sunlight.cast_shadows"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "contrast",
+  "light",
+  "shade",
+  "shadow",
+  "sun"
+ ]
+}

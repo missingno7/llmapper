@@ -1,0 +1,26 @@
+{
+ "id": "blood-windows-are-sill-sectors-through-the-wall",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "A window one can see through is a four-walled sill sector through the wall between a room and the street: 768 to 1,024 wide, as deep as the wall (128-256), the sill 0.5-0.6 of a body up and the opening 1.0-1.5 bodies tall; most are open, the rest glazed with breakable glass (266 or 263, type 511). Recesses in a front are rarer: E3M1 cuts twelve, 1,024 wide (one facade-tile column), 224-288 deep, sills 2.42-4.35 bodies up.",
+ "evidence": [
+  "74 windows measured over E1M4, E1M1, E1M2, E3M1, E3M2 (sill medians 0.6, 0.54, 0.6 in E1M4, E1M1, E1M2); E3M1's 12 recesses: 0.43 per 10,000 of street wall (projects/blood-city/level/windows.py)"
+ ],
+ "use": "Cut real windows as sill sectors; align each with a painted window of the facade tile, a whole number of tile columns from the building's corner.",
+ "code": [
+  "projects/blood-city/level/windows.py:cut_through",
+  "projects/blood-city/level/windows.py:cut"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "facade",
+  "glass",
+  "recess",
+  "sill",
+  "window"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "sprites-are-as-solid-as-blood-makes-that-tile",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "A sprite blocks as Blood's own uses of that tile, standing that way, block: where eight or more of the campaign's uses agree four in five, follow them. Only ever make things more solid; leave what lies flat and bodies on the ground passable (two in three of Blood's block, and a player trips on them).",
+ "evidence": [
+  "the owner, 2026-11-25: 'Check if there are no other sprites that supposed to be blocking and are not, like lamps and other stuff'",
+  "counts by tile and stance: tools/mine_solidity.py"
+ ],
+ "use": "Run the solidity pass last over every placed sprite.",
+ "code": [
+  "projects/blood-city/level/solidity.py:apply",
+  "tools/mine_solidity.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "blocking",
+  "cstat",
+  "hitscan",
+  "lamp",
+  "solid"
+ ]
+}

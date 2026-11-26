@@ -36,8 +36,8 @@ from tests.test_relations import furnished_map
 
 
 ROOT = Path(__file__).resolve().parents[1]
-E6M1_REFERENCE = ROOT / "projects" / "blood-city" / "references" / "e6m1-shop.json"
-SEWER_REFERENCE = ROOT / "projects" / "blood-city" / "references" / "sewer-kit.json"
+E6M1_REFERENCE = ROOT / "knowledge" / "blood" / "references" / "e6m1-shop.json"
+SEWER_REFERENCE = ROOT / "knowledge" / "blood" / "references" / "sewer-kit.json"
 
 
 def tiled_map():

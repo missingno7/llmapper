@@ -1,0 +1,27 @@
+{
+ "id": "blood-towns-front-their-buildings-rather-than-loop-round-them",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "E3M1 wraps its street round one 14,848-unit block and fronts its other buildings as masses at the street's edge; TEDE1M2's dense core has 1 loop in 58 street sectors (a web of lanes round a square) and DWE3M10 one. But DWE3M1 loops 8 small blocks, as many as DukCity's 7-11, so a Blood town may loop or not; E3M1's model needs no grid of blocks.",
+ "evidence": [
+  "tools/mine_city_norms.py: E3M1 1 loop, DWE3M1 8, DukCity1-4 7-11 (knowledge/blood/references/city-norms.md:48-67); TEDE1M2 1, DWE3M10 1, E3M2 3, E3M1 2 in the v2 run (city-norms-v2.json summary.street_loops)"
+ ],
+ "use": "A Blood town need not be a grid of blocks you walk round: front the street with masses and let lanes end.",
+ "code": [
+  "knowledge/blood/references/city-norms.md",
+  "knowledge/blood/references/dense-town-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "block",
+  "frontage",
+  "layout",
+  "loop",
+  "town",
+  "urban"
+ ]
+}

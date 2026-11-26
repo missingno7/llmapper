@@ -1,0 +1,24 @@
+{
+ "id": "a-panorama-sky-needs-its-panel-offsets",
+ "topic": "renderer",
+ "standing": "precedent",
+ "claim": "A parallax sky drawn in several panels needs the map header's sky bits and offsets: E1M5 wears tile 3678 with sky_bits 4 and offsets 0 to 15, sixteen panels round. A map that sets the tile with offsets left at zero repeats the first panel, and it draws as broken bands.",
+ "evidence": [
+  "E1M5 s392 and its other open sectors wear 3678 as a parallax ceiling; read_map(E1M5).header sky_bits 4, sky_offsets 0..15",
+  "E4L1 pass 01 set 3678 alone and drew bands; pass 02 took E1M5's bits and offsets and drew the sky (evidence/pass-03 frames)"
+ ],
+ "use": "Copy the sky bits and offsets of a campaign map that wears the same sky.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "clouds",
+  "panorama",
+  "parallax",
+  "sky",
+  "sky_bits"
+ ]
+}

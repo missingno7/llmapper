@@ -1,0 +1,28 @@
+{
+ "id": "light-only-seams-step-ten-to-fourteen-shades",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "Where four campaign maps cut a floor only to change its light, the step across the seam is 10 to 14.5 shades (E1M4 10, E3M1 12, E3M2 14, E3M5 14.5); smaller steps vanish in Blood's dark, contrasty textures (facade tiles have texel spreads of 12 to 34 at shade 0).",
+ "evidence": [
+  "bloodmap/light_stage.py:592-598 (FLOOR_BAND 12, from work/lightstage/budget.py) and :883-887 (WALL_BAND 14: on a textured wall a step under ~10 does not show); facade texel spread from bloodmap/shade_table.py, 2026-11-20",
+  "The owner, 2026-11-20: the usable range is roughly 0 to 40, and 40 is visibly dark.",
+  "an agent's note of 2026-11-21 that E3M1 has 41% of its room floor inside lamp pools is not re-measured"
+ ],
+ "use": "Cut light pieces only where the step is at least ~10 shades; lowering base light alone only darkens, contrast needs falloff from sources.",
+ "code": [
+  "bloodmap.light_stage",
+  "bloodmap.daylight"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "banding",
+  "contrast",
+  "light pool",
+  "lighting",
+  "shade step"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "town-windows-are-painted-on-facade-tiles",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "City windows are texture, not geometry: masked-glass walls on street frontage run at most 0.011 per 1,024 units of frontage (one per ~93k units) in E3M1, DWE3M1 and DukCity. Facade geometry is coarse, one vertex per 1.4k-3.7k units of frontage, spent on corners, setbacks and doorway reveals; signs and fixtures are wall sprites at 0.03-0.26 per 1,024.",
+ "evidence": [
+  "tools/mine_city_norms.py, facade section of knowledge/blood/references/city-norms.json: wall vertices 0.28-0.73/1024, masked glass 0.000-0.011/1024"
+ ],
+ "use": "Choose a facade tile with windows painted on for rhythm; spend walls on silhouette and doorways.",
+ "code": [
+  "knowledge/blood/references/city-norms.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "articulation",
+  "facade",
+  "frontage",
+  "glass",
+  "window"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "blood-mechanisms-are-wiring-not-parts",
+ "topic": "mechanism",
+ "standing": "ruling",
+ "claim": "A mechanism is the chain of a cause, the object it happens to, the channel it sends on and everything that answers, laid over sectors, walls and sprites. There is no simple door or simple lift: a sector type is a part, and the same part is a door or a lift by its wiring.",
+ "evidence": [
+  "The owner, 2026-11-19: 'these mechanics things are like a programming language of the level, same things are used for different purposes according to what author wants'."
+ ],
+ "use": "Ask and describe mechanisms by what happens (catalog wiring), read chains with the wiring reader, never name one by its sector type.",
+ "code": [
+  "bloodmap.wiring.chains",
+  "tools/catalog.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "chain",
+  "door",
+  "lift",
+  "mechanism",
+  "sector type",
+  "wiring"
+ ]
+}

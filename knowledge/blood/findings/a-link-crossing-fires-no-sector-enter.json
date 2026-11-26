@@ -1,0 +1,28 @@
+{
+ "id": "a-link-crossing-fires-no-sector-enter",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "A sprite that changes sector by passing through a room-over-room link (water, stack) does not fire the destination sector's Enter trigger: Enter and Exit are tested before the link is checked, and the next tick already finds the sprite in its new sector. A secret or trigger sector reached only through a link never fires.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:4552-4572 Exit/Enter (kCmdSectorEnter) on an ordinary sector change, then actor.cpp:4644 CheckLink moves the sprite with no Enter",
+  "noted in projects/blood-city/level/underwater.py (the flooded branch's secret is the dry bank beyond the dive)"
+ ],
+ "use": "Put a secret or a trigger on a sector the player walks into after the link (the bank, the landing), never on the linked sector itself.",
+ "code": [
+  "projects/blood-city/level/underwater.py",
+  "bloodmap.roomoverroom.water_link"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "dive",
+  "enter",
+  "room over room",
+  "ror",
+  "secret",
+  "underwater"
+ ]
+}

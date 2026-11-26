@@ -1,0 +1,27 @@
+{
+ "id": "stacking-techniques-are-forced-by-what-is-below",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "Blood stacks space three ways and the choice is forced: enclosed room over enclosed room is plain plan overlap; a space you must SEE into is room-over-room; anything over an OPEN space must be a deck of blocking floor-aligned sprites, because a sector over an open volume cannot be separated from it in z (37 of 43 campaign maps use blocking floor-aligned sprites, and 37 use plan overlap). BB4's regular grammar: 32,768 z of clear height per layer (1.93 bodies), an 8,192 slab, 40,960 floor to floor.",
+ "evidence": [
+  "tools/mine_layers.py, knowledge/blood/design/layers-v1.json technique_usage (2026-08-28): blocking_floor_aligned_sprite 37 maps (0.8605), plan_overlap 37, both 34; BB4 has 71 sectors, 68 plan overlaps and no z clash."
+ ],
+ "use": "Pick the technique by what lies below; take storey heights from BB4's grammar.",
+ "code": [
+  "bloodmap.layers"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "bridge",
+  "deck",
+  "floor sprite",
+  "overlap",
+  "room over room",
+  "stacking",
+  "storey"
+ ]
+}

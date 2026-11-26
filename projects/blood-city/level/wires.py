@@ -163,11 +163,7 @@ def channel(name: str) -> int:
 def begin() -> wiring.Circuit:
     """A new circuit holding the plan. Called once, as the build starts."""
     global _CIRCUIT
-    _CIRCUIT = wiring.Circuit()
-    for name, says in PLAN:
-        _CIRCUIT.wire(name, says, channel=channel(name))
-    for name, says, engine in ENGINE_PLAN:
-        _CIRCUIT.wire(name, says, engine=engine)
+    _CIRCUIT = wiring.Circuit.from_plan(PLAN, ENGINE_PLAN)
     return _CIRCUIT
 
 
@@ -184,10 +180,10 @@ def circuit() -> wiring.Circuit:
 
 def wire(name: str) -> wiring.Wire:
     """A planned wire, to declare an end of."""
-    for made in circuit().wires:
-        if made.name == name:
-            return made
-    raise wiring.WireError(f"no wire called {name!r} in projects/blood-city/level/wires.py")
+    try:
+        return circuit().named(name)
+    except wiring.WireError:
+        raise wiring.WireError(f"no wire called {name!r} in projects/blood-city/level/wires.py") from None
 
 
 def shot(index: int, what: str) -> wiring.Wire:
@@ -205,7 +201,4 @@ def by_channel(number: int) -> wiring.Wire:
 
 def close() -> list[str]:
     """Leave out every planned wire nothing declared an end of; say which."""
-    built = circuit()
-    idle = [made.name for made in built.wires if not made.senders and not made.answers]
-    built.wires = [made for made in built.wires if made.senders or made.answers]
-    return idle
+    return circuit().drop_idle()

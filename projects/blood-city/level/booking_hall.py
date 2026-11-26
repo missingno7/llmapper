@@ -328,7 +328,7 @@ GLOBES = (("office", 29.0, -7.5), ("kiosk", 41.7, -8.25))
 
 
 def _furnish(layout, regions) -> None:
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap import flatsprite
     from bloodmap.placement import drawn_extent, seated_z
     from shapely.geometry import Point, Polygon

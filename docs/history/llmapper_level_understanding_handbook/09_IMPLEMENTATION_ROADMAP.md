@@ -1,0 +1,5307 @@
+# Implementation Roadmap
+
+This roadmap is ordered to minimize speculative framework work. Each phase now
+records three things against the repository as of 2026-08:
+
+- **Already in the repository** — do not rebuild this.
+- **Gap** — what is genuinely missing.
+- **Agent task** — a self-contained work item with deliverables and exit
+  criteria, sized for one focused agent run.
+
+Each task ends with evidence, regression tests
+(`python -m unittest discover -s tests`), and a stated next question.
+Generated maps are never evidence. The NBlood submodule is off-limits for
+these tasks (it hosts the playtest bot; never stage its pointer).
+
+---
+
+# Phase 0a — Corpus integration (DONE, 2026-08-31)
+
+**Status: complete.** The registry is in `bloodmap/patterns.py`
+(`list_corpus_maps`, `resolve_corpus_map`, `unadmitted_corpus_maps`,
+`build_corpus_manifest`, `observed_mode`); the CLI gained `corpus-manifest`,
+`corpus-health`, and `--recursive` / `--population` / `--view` on `corpus` and
+`roundtrip-all`. Manifest: `maps/blood/corpus.json`. Health:
+`reports/blood-corpus-health.md` plus four per-population JSON reports.
+Tests: `tests/test_corpus_registry.py`. Measured counts and the community gate
+result are in `07_...md`; the campaign is **43** `E*M*.MAP` files, not 44 — the
+old figure counted `DNE3L1.MAP` (a conversion) in a flat inventory.
+
+Two findings for the owner, not fixed here:
+
+- `maps/blood/campaign/ASAVE1.map` (an editor autosave) appeared in the
+  campaign directory mid-run. It is quarantined by the name cross-check and
+  reported in `corpus.json` under `unadmitted`, never mined as campaign
+  convention. Move or delete it.
+- `tests/test_rules.RoomOverRoomTests.test_the_two_rooms_meet_at_one_plane`
+  now runs (it was hidden behind a corpus-dependent class skip) and **fails**:
+  `room_over_room` treats the stack's own upper region as a plan-overlapping
+  neighbour, so `lower.ceiling_z` is clamped to the upper region's ceiling
+  instead of its floor (`bloodmap/roomoverroom.py:135`). Pre-existing, and
+  outside Phase 0a.
+
+## Why first
+
+The corpus moved into subdirectories (`maps/blood/{campaign,curated,
+conversions,community,tiered,mechanism}` with `multiplayer/` mode subdirs —
+final layout in `07_...md`, physically done by the owner 2026-08-31) and
+grew by ~1500 community maps, but `bloodmap.patterns.list_original_maps`
+iterates one flat directory and classifies population purely from
+filenames. Every corpus command (`corpus`, `roundtrip-all`, `pattern-mine`,
+`spatial-corpus`, …) currently sees zero or partial maps. Until this is
+fixed, no other phase can cite corpus evidence honestly.
+
+Additionally, existing code and docs carry a **provenance error corrected by
+the owner (2026-08-31)**: `DWE*` (Death Wish) and `TEDE*` are hand-picked
+community source maps, and `DNE*` are the owner's own Duke3D→Blood
+conversions — yet `classify_map_population` and the population table in
+`docs/design-pattern-discovery.md` label all three prefixes `conversion`.
+
+## Already in the repository
+
+- fail-closed filename classifier `classify_map_population` (patterns.py) —
+  needs the correction above,
+- native losslessness gate and `roundtrip-all` (docs/corpus.md),
+- tier metadata in `maps/blood/tiered/{manifest,research,summary}.json`
+  (heuristic classifier from the `selection` branch; absolute paths stale).
+
+## Agent task
+
+1. The physical reorganization is already done by the owner — verify
+   against the layout in `07_...md` rather than moving files. Record it in
+   a corpus manifest (`maps/blood/corpus.json` + short README, replacing
+   the stale flat-corpus `campaign/README.md`) including the named view
+   `reference = campaign + curated`, the mode axis (`mode=sp|multiplayer`
+   from the `multiplayer/` subdirectories, cross-checked against player
+   starts), and the owner-provenance notes.
+2. Introduce a corpus registry that resolves populations from the directory
+   layout (directory provenance authoritative, filename prefixes only a
+   sanity cross-check); fix `classify_map_population` and the population
+   table in `docs/design-pattern-discovery.md` accordingly; keep the
+   `BLOODMAP_CORPUS` override.
+3. Make corpus enumeration recursive and population-aware; `community` and
+   `tiered` must resolve to one population with tier as metadata, never two.
+4. Run the parse gate over the community corpus fail-closed: emit a
+   machine-readable report (per map: parses / roundtrips / version /
+   failure reason) under `reports/`; do not normalize failures.
+5. Update `docs/corpus.md` and `docs/design-pattern-discovery.md` command
+   examples to the new layout.
+6. Tests: population resolution for each directory, tier metadata attach,
+   the `reference` view membership, fail-closed behavior on an unsupported
+   fixture.
+
+## Exit criteria
+
+`python -m bloodmap corpus`-level commands enumerate the new layout;
+`pattern-mine --population blood-campaign` finds exactly the original
+`E*M*.MAP` set and nothing hand-picked or converted; `blood-bloodbath`
+resolves to `campaign/multiplayer/` (BB1–BB9 only); DWE/TEDE resolve to
+`community-curated` and DNE to `own-conversion`; a community-corpus health
+report exists and states how many maps pass the gate.
+
+---
+
+# Phase 0 — Stabilize current foundations (DONE, 2026-08-31)
+
+**Status: complete.** `docs/architecture.md` gained a "Where a new fact
+belongs" section: a table mapping thirteen kinds of fact to the module that
+owns each, the two-direction observe/promote rule pointing at
+`knowledge/blood/design/README.md`, and the `context_signature` module move as
+the worked example — it was written in `anchors.py`, the pattern pipeline
+needed the same key, and the import would have closed a
+`patterns → anchors → patterns` cycle. The section also states the two rules
+that keep costing more than they look: *a label is not a filter*, and *compute
+a whole-map fact once per map*.
+
+Pinning tests in `tests/test_architecture.py` (15), only where a boundary was
+load-bearing and untested: the layering arrows that the cycle would violate
+(checked by parsing module-level imports, since `relations.py` reaches the
+corpus registry inside a function body on purpose), that `context_signature`
+is re-exported rather than copied, that `blood_types.py` stays a leaf, that
+`reachability.py` never depends on its consumers, that visibility is decided
+in one place and needs both of its signals, and that a generated map can never
+be cited as a population. No new abstractions.
+
+## Already in the repository
+
+Ownership boundaries exist and are documented in module docstrings and
+`docs/architecture.md`:
+
+- `Assembly` = mechanism membership + relations (`bloodmap/assembly.py`),
+- `doors.py` = specialized dynamic interpretation,
+- `spatial.py` = independent derived spatial views,
+- `knowledge/blood/design/` = evidence-backed retrieval surface with an
+  explicit promotion rule (README),
+- generated maps never become evidence (`docs/design-pattern-discovery.md`).
+
+## Gap
+
+No single note states these boundaries for a newcomer agent; a few behaviors
+lack pinning tests.
+
+## Agent task
+
+Write a short architecture note (or extend `docs/architecture.md`) mapping
+"where does a new fact of kind X belong"; add pinning tests only where a
+boundary is load-bearing and untested. No new abstractions.
+
+## Exit criteria
+
+An agent can explain where a new mechanism fact belongs without inventing a
+parallel framework.
+
+---
+
+# Phase 1 — General relation extraction (DONE, 2026-08-31)
+
+**Status: complete.** `bloodmap/relations.py` extracts ten object-scale
+relation kinds over a `BuildIR` neighborhood (`extract_relations`,
+`neighborhood`, `sprite_dense_seeds`, `mine_relations`); CLI `relation-dump`
+and `relation-mine`; report `reports/blood-object-relations-pilot.{json,md}`;
+tests `tests/test_relations.py`.
+
+Frame independence is pinned, not asserted: the same neighborhood of a
+translated or quarter-turn-rotated map yields an identical document, checked on
+a synthetic map and on three campaign maps. The first run of that check failed
+(`repeats_along` ordered its members by position, so a half turn reversed the
+row) and the fix is in.
+
+Measured on 5 campaign maps' sprite-densest neighborhoods, 2432 relations:
+268/310 `rests_on` sit exactly on the floor plane, 261/297 `faces_wall` are
+exactly square to the wall's inward normal, and `against_wall` distance is
+bimodal -- but that second mode is one map's repeated furnishing, not a
+convention. Evenly spaced identical sprite rows are **rare** (1 run in the
+sample), which is a negative result about Blood: the detector does find them
+where they exist, recovering E6M1's three-mannequin display row from geometry
+alone.
+
+**Known defect (owner-flagged 2026-08-31, measured):** `sprite_dense_seeds`
+ignores `bloodmap/reachability.py`, and a logic closet is the sprite-densest
+place on a map — 3 of the pilot's 15 seeds are off-map (E1M2 sector 19, the
+map's densest, is its switch closet; E1M3 291; E1M5 231), so the pilot
+distributions include switch-closet relations. Phase 3 inherits it: 81/6803
+campaign object-context samples (1.2%) sit in off-map sectors. Fix by
+*labeling*, not dropping: tag every seed/sample with the reachability kind
+(`reachable` / `logic_closet` / `signature` / bare off-map) — closets are
+wiring evidence for Phases 8–9, they just must not pose as furniture.
+
+**Fixed 2026-08-31 (labelled, not dropped).** `reachability.sector_kinds`
+answers "what is this sector, and why" for every sector, computed once per map
+and passed in; `sprite_dense_seeds` takes it and ranks reachable sectors by
+*visible* objects, while `excluded_dense_seeds` reports what the two filters
+held back and why. Every relation document now carries `sector_kinds` and each
+`in_sector` relation a `visibility` label; absent a reachability map, sectors
+are `unknown` rather than assumed reachable.
+
+Measured on the regenerated pilot: **0 of 15 seeds off-map** (was 3), and seven
+sectors held back in all — the three switch closets plus four reachable but
+wiring-dominated ones (E1M4 sector 321 holds 72 sprites of which 56 are wiring;
+E1M3 sector 284, 40 of 59). The headline statistic moved: `rests_on` exactly on
+the floor plane fell from **86.5% (268/310) to 63.5% (106/167)** once sound
+markers stopped counting, because markers sit exactly on the plane 41 times out
+of 42. `faces_wall` exactly square was unaffected (87.9% → 88.5%), which is what
+a fact about drawn things should do. See
+`reports/archive/blood-object-relations-pilot.md`.
+
+## Already in the repository
+
+- `design.py` / `spatial.py`: adjacency, portals, polygon loops, derived
+  spatial views;
+- `structures.py`: object-scale candidates with evidence and residuals;
+- `prefab.py`: small-sector kinds; `reachability.py`: playable vs support
+  geometry; `assembly.py`: relational facts inside mechanisms.
+
+## Gap
+
+No unified, inspectable **object-scale relation dump** using the vocabulary
+of `03_...md` (against_wall, faces, aligned_with, repeats_along, supports,
+…), with provenance, usable as input for anchor and unsigned mining.
+
+## Agent task
+
+Build a relation extractor over `BuildIR` for a *local neighborhood*
+(sector cluster + sprites + walls), reusing existing sensors, emitting
+normalized JSON with provenance per relation. Pilot on 3–5 campaign maps.
+Do not add relations no consumer needs yet.
+
+## Exit criteria
+
+The system can describe a local object-scale neighborhood without semantic
+names, and the dump is stable under translation/rotation of the input.
+
+---
+
+# Phase 2 — Semantic-anchor mining (DONE, 2026-08-31)
+
+**Status: complete.** `bloodmap/anchors.py` is the general form of the two
+hand-written miners (`AnchorSpec`, `anchor_from_tiles` / `anchor_from_material`
+/ `anchor_from_regions`, `find_occurrences`, `context_signature`, `mine_anchor`,
+`mine_kit`, `load_kit`); CLI `anchor-mine` (with `--kit`, which reads a
+`role_assets` table -- including from a reference report's own); reports
+`reports/archive/anchor-queries.md` plus `anchor-{e6m1-shop,sewer-kit}.json`; tests
+`tests/test_anchors.py`.
+
+Both reference reports reproduce through the general path: e6m1-shop's 11
+`asset_counts` exactly, sewer-kit's 5 densest maps exactly (map, uses, and
+`affected_sectors`). `maps_with_use` differs by one for two sewer roles, and
+the new number is the right one -- the extra map in the old path is
+`campaign/ASAVE1.map`, the autosave Phase 0a quarantines. First statistic the
+quarantine has changed.
+
+Beyond tile lookup: each anchor gets a clustered context signature, its
+counterexamples, its anchor-free analogues, and an **enrichment** figure -- how
+much more often the anchor's sectors carry the dominant context than sectors
+with none of its tiles. Object anchors are strongly enriched (mannequin 30.4x,
+chair 11.6x, outlet 9.4x); bulk surface anchors are not (pipe walls 1.15x,
+sewer door 0.53x), which is the tool reporting that its own dominant cluster is
+meaningless for a material. That split is the phase's main finding.
+
+## Already in the repository
+
+`tools/mine_e6m1_shop.py` and `tools/mine_sewer_kit.py` are working
+single-anchor miners (owner-identified assets, carrying sectors, one-hop
+neighborhoods, no cross-map tile inference). CLI has `sprite-context-mine`,
+`door-mine`, `materials-mine`. A ready-made anchor input exists:
+`knowledge/blood/design/owner-anchors-v1.json` — ~37 owner hand-tagged
+picnums (shelves, crates, drawer/bookcase fronts, grates, pipes, machinery,
+clocks, …) including intact/broken state pairs and known dual roles.
+
+## Gap
+
+Each anchor is a hand-written script. There is no reusable anchor query that
+takes labels (tiles / materials / example regions) and runs the Phase 1
+neighborhood extraction across a chosen population.
+
+## Agent task
+
+Generalize the two mining scripts into one anchor-query tool
+(`python -m bloodmap anchor-mine …` or `tools/`): input = anchor spec,
+population; output = occurrences, multi-scale neighborhoods, clustered
+recurring relations, anchor-free analogue search, counterexamples. Validate
+by reproducing the e6m1-shop and sewer-kit reports through the new path.
+
+## Exit criteria
+
+One anchor produces useful knowledge beyond tile lookup, and the two
+existing reference reports are reproducible outputs, not one-offs.
+
+---
+
+# Phase 3 — Unsigned structural candidate discovery (DONE, 2026-08-31)
+
+**Status: complete.** One family added to the existing pipeline, not a new
+framework: `patterns.observe_object_context` + `_object_context_signature`,
+registered in `_SIGNATURES` and wired into `observe_map`, with features from
+Phase 1 relations. `pattern-mine` gained `--tier` and `--limit`. Report:
+`reports/archive/blood-object-context-families.md`. Tests: `tests/test_patterns.py`.
+
+Scale bands are corpus quartiles, not round numbers -- the first guess put
+nearly every campaign sector in one height bucket and made the facet
+decorative.
+
+Measured: 1328 campaign candidates over 6599 occurrences, **80% of them in
+candidates recurring across three or more maps** (`route-exposure`, already in
+the pipeline, manages 50%). 89% of BloodBath and 84% of tier-S object-context
+occurrences use a signature the campaign also uses. The clearest unprogrammed
+find is a contrast pair: a tiny, tight, two-portal sector holding exactly one
+wall-bound object, `seated:none` (77 occ / 28 maps) versus `seated:all` (72 occ
+/ 24 maps) -- a wall fixture in a passage niche against the same niche with the
+fixture on the floor.
+
+The Phase 2 prediction (object anchors cluster tightly, material anchors do
+not) was tested and is **directionally supported but not established**:
+r = 0.541 at n = 13, with `outlet` and `sewer_door` as clear counterexamples,
+and the two measures taken on different corpora.
+
+## Already in the repository
+
+`patterns.py` mines unsigned candidates over discrete signatures (spawn
+neighborhoods, route exposure, morphology, vertical transitions) with strict
+population separation; `structures.py` yields unsigned geometry candidates.
+
+## Gap
+
+No object-scale unsigned families: tiny-sector clusters, repeated shallow
+wall structures, sprite+wall furniture-like assemblies. No cross-map
+coverage stats over the enlarged corpus.
+
+## Agent task
+
+Add one or two object-scale signature families to the existing pattern
+pipeline (not a new framework), using Phase 1 relations as features. Run on
+campaign (SP + multiplayer), then sample `tiered/S`. Report candidate stability
+and cross-map coverage.
+
+## Exit criteria
+
+At least several visually/semantically meaningful clusters found that were
+not explicitly programmed as named concepts.
+
+---
+
+# Phase 4 — Contrastive concepts and counterexamples (DONE, 2026-08-31)
+
+**Status: complete.** Contrast machinery extends `bloodmap/anchors.py`
+(`CONTRAST_FEATURES`, `carrier_features`, `_separation`, `_map_transfer`,
+`contrast_anchor_sets`, `contrast_signature_classes`); CLI `anchor-contrast`;
+reports `reports/blood-contrast-{shelf-vs-crate,bookcase-vs-crate,niche-pair}`;
+tests `tests/test_contrast.py`. Nineteen relational features, none of which
+reads which tile a surface wears.
+
+**Pilot 1, shelf vs crate pile: rejected, and the rejection is the finding.**
+16 shelf-carrying sectors in 3 maps against 1047 crate-carrying in 59. Every
+discriminator `03_...md` predicts for this pair scores below the 0.65 floor:
+`stackable_identical_units` 0.53, `solid_closed_volume` 0.52,
+`requires_access_clearance` 0.52, and `repeated_horizontal_support_surfaces`
+separates the wrong way (98% of crate sectors share a plane against 62% of
+shelf). The best feature, `portals < 1.5` at 0.729, is a **map artifact**: it
+matches 89% of SSMALL's positives and 0% of E6M1's, and leave-one-map-out
+transfers to neither. Diagnosis: neither anchor delimits a class. `2026`/`2635`
+sit on shelf recesses in SSMALL and on retail-floor walls in E6M1; the crate
+tiles are bulk wall material spanning every plan size (16% of their sectors are
+halls, only 29% stand proud of every neighbour). A companion contrast on the
+owner's bookcase-front tiles (157 sectors, 31 maps) gives real n and still
+tops out at 0.663 while wrongly matching 574 crate sectors.
+
+The hypothesis was **re-encoded before it was rejected**: the first feature set
+mapped `stackable_identical_units` onto `above`, which means a volume stacked
+over a volume, not a platform raised over a floor. Two features were added to
+carry the platform reading and the contrast re-run; the answer did not change.
+
+**Pilot 2, the niche pair: one concept with two mounting variants.** Chosen
+over storefront-vs-window because the classes were already found relationally
+by Phase 3 rather than hand-assembled, and pilot 1 shows what hand-picked tiles
+are worth as class definitions. 77 vs 72 sectors across 28 and 24 maps. **No
+free feature reaches the floor** (best 0.634), and the defining relation is
+real rather than a threshold artifact: the raised variant sits at a median
+0.377 player heights (modal 6400 Build units, 22/64 across 12 maps), with only
+6 of 77 near the 0.15 `rests_on` cut, while 78% of the floor variant sits
+exactly on the plane. Decisively **not texture**: picnum 2520 is 83% of *both*
+classes -- the same object, mounted two ways.
+
+**Post-phase identification (2026-08-31): picnum 2520 is `kSoundSector`'s
+editor icon** — 1247/1250 campaign sprites wearing it are sprite type 709,
+invisible in game. The structural finding stands; the design reading
+reframes from "fixture niche" to "where mappers drop the sector-sound marker
+for a small ambient space" (addendum in
+`reports/blood-contrast-niche-pair.md`). Second instance of the same defect
+shape as the reachability one: wiring posing as furniture. Object-scale
+mining must separate non-visible wiring sprites (sound 709–711, markers,
+generators) from visible decoration — folded into the queued cleanup task.
+
+**Fixed 2026-08-31 (labelled, not dropped).** `blood_types.sprite_visibility`
+decides in one place, from the catalog's own categories (`sound`, `marker`,
+`start`, `generator`) *and* Build's invisible cstat bit — two independent
+signals, both needed: `start` sprites never carry the bit and are still
+invisible, while 730 campaign `thing` sprites carry it. No picnum list: the
+same tile 2520 is a sound marker 1247 times and a switch 3 times.
+
+The Phase 4 contrast was re-run on visible objects only
+(`reports/blood-contrast-niche-pair-visible-only.json`, re-run section appended
+to the MD). **The family dissolved: 77 → 13 and 72 → 10 sectors, 85% of members
+gone**, and picnum 2520 appears on neither side. What survives is genuinely
+furnished and still separated cleanly by the defining relation (raised median
+0.483 player heights, none on the plane; floor median 0.0, 6 of 10 on it), but
+its one feature above the discriminator floor has a map-transfer spread of 1.00
+across 10 maps — a map artifact, as in pilot 1. **A preserved counterexample got
+explained**: the 10 raised objects sitting *below* their sector's floor were all
+wiring, exactly as the addendum guessed.
+
+Phase 3 was regenerated too: 1962 of 6599 object-context occurrences (30%) left
+the default statistics — 1889 wiring-only sectors, 79 off-map (50 logic_closet,
+29 sealed) — and are clustered under `excluded_candidates` rather than dropped.
+Cross-map stability held at 78% (was 80%), so the recurring structure was never
+the wiring; the membership of individual families was.
+
+Counterexamples preserved: 10 of 77 raised objects sit *below* their sector's
+floor plane, unexplained; 26 distinct raised heights appear, so 6400 units is a
+preference, not a rule. Review-queue item: picnum 2520 is unlabelled in
+`owner-anchors-v1.json` and naming it would label 124 of 149 occurrences here.
+
+## Already in the repository
+
+Anchors for both sides of several contrasts exist (`furniture.py` named
+props, `item_display.py`, crate/shelf tiles in the e6m1-shop reference).
+
+## Gap
+
+No contrast reports; discriminating relations are not measured.
+
+## Agent task
+
+Pick two pilots (shelf vs crate pile; storefront vs generic window). For
+each: positive set, comparison set, measured discriminating relations,
+ambiguous cases, rejected hypotheses. Statistics must be actually measured,
+in the `10_...md` reporting style.
+
+## Exit criteria
+
+A hypothesis explains both positive and negative evidence relationally, not
+by texture or bounding box alone.
+
+---
+
+# Phase 5 — Object assemblies and negative space (DONE, 2026-08-31)
+
+**Status: complete.** Grouping in `bloodmap/anchors.py` (`Bundle`,
+`find_bundles`, `scatter_verdict`, `compare_placements`); clearance in
+`bloodmap/player_space.py` (`Clearance`, `bundle_clearance`,
+`check_clearance`); report `reports/blood-assembly-counters.{json,md}`; tests
+`tests/test_assembly_bundles.py` (26).
+
+**The bundle: a raised island.** One outer neighbour (the host), everything
+else inset in its own footprint (the caps), floor raised over the host by more
+than the 4096-unit step limit, in the waist band, elongated, carrying a cap or
+a visible prop. Proximity is not one of the signals. Given nothing but that
+rule it recovers E6M1's cashwrap exactly as the owner's shop reference
+describes it -- core S32, host S61, caps {S33, S34}, three props, rise 6144.
+**146 campaign bundles in 31 maps**, 238 curated as precedent; the waist band
+itself is measured, since of 958 campaign blocking islands 38.3% fall in
+4096-8192 units and a second mass (33.2%) above 1.45 player heights is wall
+stubs rather than furniture.
+
+**The clearance measurement overturned the obvious model.** `04_...md` suggests
+a clearance prism around an object. Measured: only **23%** of campaign counters
+keep half a player width on every side, **73% are flush against their host on
+at least one**, and **95% are asymmetric**. A clearance-all-round rule would
+reject 77% of the campaign's own counters. So `Clearance` represents an
+*access front* -- the widest free side, `hard: false`, owned by the assembly,
+narrow sides recorded rather than required. Every campaign bundle keeps at
+least 1.333 player widths on that side (median 9.33), which is the check;
+10 of 238 curated bundles fall below it and are preserved as counterexamples.
+
+**The scatter detector uses support, never sprite count.** An authored prop
+sits on something; a scattered one sits on the floor it landed on. Validated on
+a synthetic pair -- one host, one island, three props on it against the same
+three on the floor: support share 1.00 against 0.00, and doubling the scattered
+props does not move it. `compare_placements` answers the A/B question the exit
+criterion states. Run on E6M1's own selling floor it reports `mixed` at 0.16
+(three props on the counter, sixteen deliberately on the floor), so the verdict
+names what was measured rather than judging a room's author.
+
+Table + chairs was the stated fallback and was not needed: 146 campaign
+instances in 31 maps is not thin evidence.
+
+## Already in the repository
+
+`player_space.py` (openings, clearance, enclosure vs player profiles),
+`placement.py`, `furniture.py` mounting semantics, `assembly.py` grouping
+discipline for mechanisms.
+
+## Gap
+
+Assembly grouping for *static* furniture bundles; explicit negative-space
+representation (access fronts, pull-out volumes); random-scatter detector.
+
+## Agent task
+
+Implement grouping rules for one bundle type (counter + workspace, or table
++ chairs) mined from campaign maps; add a minimal clearance representation
+and check; build the scatter detector and validate it on synthetic
+authored-vs-scattered scenes (validation only, never evidence).
+
+## Exit criteria
+
+The system distinguishes an authored assembly from the same props randomly
+distributed nearby.
+
+---
+
+# Phase 6 — Functional regions (DONE, 2026-08-31)
+
+**Status: complete.** `spatial.zone_partition` is the derived view (connected
+sectors sharing a floor plane and floor tile) and knows nothing about bundles;
+`anchors.region_candidates` composes it with Phase 5 bundles into hierarchical
+containment — complex → zone → {sectors, bundles → core/caps/props}. Report
+`reports/blood-assembly-regions.{json,md}`; tests in
+`tests/test_assembly_bundles.py` (37 total).
+
+**E6M1 first, as the phase asks.** Two hops from the cashwrap's host gives a
+20-sector complex and 11 zones. The largest is the public shop floor — the
+apparel bay, display window, selling floor and their connectors, 8 sectors,
+746 player areas, 36 props, one plane and one tile — recovered as a single
+place, with the counter its own zone, each register cap another, and the
+sunken back office another. Corpus-wide: **every one of the 146 campaign
+counter complexes holds ≥2 zones (median 7), and in all 146 the counter is in
+a different zone from its host**; 92% are alone in theirs. Not a tautology —
+a counter at its host's plane and tile merges, and a test pins that.
+
+**Two namings were tested and both rejected**, which is the phase's real
+result. `04_...md` offers `customer_front` / `employee_workspace` either side
+of a counter boundary, and Phase 5's 95%-asymmetric figure looked like exactly
+that. (1) *The wide side is the customer front because that is where the ways
+out are*: 84.1% of a host's exits are on the wide side — but that side also
+carries 83.2% of the host's wall, a lift of **+0.024**, with only 43% of
+bundles beating their own wall share. The wide side has the exits because it
+has the wall. (2) *Merchandise stands on the customer side*: props on the wide
+side 0.651 against a floor share of 0.730, a lift of **−0.080** — the opposite
+of the guess. So the asymmetry is a shape fact, not a zoning fact, and
+`region_candidates` emits zones with **no names** and carries the rejections
+in `REJECTED_ZONE_NAMINGS`.
+
+**Stated ceiling.** The owner's shop reference names apparel bay, display
+window and selling floor as three zones; they share one plane and one tile and
+differ only in what they hold, so this view cannot separate them. That is
+anchor evidence, not geometric evidence, and the report says so rather than
+inventing a split.
+
+## Already in the repository
+
+`reachability.py` already assigns *roles* to non-playable geometry
+(logic_closet, letterforms) — the precedent for role assignment from
+relations. The e6m1-shop reference records counter / retail floor / display
+clusters for one real shop.
+
+## Gap
+
+In-room functional zoning (shop floor, counter boundary, storage, office
+corner) as mined candidates.
+
+## Agent task
+
+Using Phase 5 bundles + circulation from `spatial.py`, mine functional
+region candidates in the maps where anchors already exist (E6M1 shop first),
+then search analogues corpus-wide. Hierarchical containment in the output.
+
+## Exit criteria
+
+The system can explain that one room contains multiple functional zones,
+with evidence.
+
+---
+
+# Phase 7 — Facade grammar (DONE, 2026-08-31)
+
+**Status: complete.** `anchors.find_facades` mines facade candidates as
+maximal **collinear** runs of a sky-lit reachable sector's wall loop, at least
+two 1024-unit bays long, interrupted by at least one opening — where an
+opening is a two-sided wall with a **header**, per `06_...md`: the facade owns
+the openings. Signage is a member of the hierarchy (building → facade → bay →
+opening → signage), not decoration, per owner steering.
+`anchors.interior_components` and `anchors.party_wall_gaps` answer the
+building-extent question the first pass left open. Reports
+`reports/blood-facade-grammar.{json,md}` and
+`reports/blood-party-walls.{json,md}`, frames under
+`reports/blood-facade-views/`, tests in `tests/test_facade.py` (43) and
+`tests/test_party_walls.py` (19) and `tests/test_lintel.py` (22), with 36 of 36
+non-equivalent mutants caught. The facade JSON is abridged — every candidate in
+full is 32 MB — and says so.
+
+**Two defects, both found by the synthetic fixture rather than the corpus.**
+The numbers below are from the corrected extractor; none of the first draft's
+survive, and the reports carry both corrections rather than quietly restating.
+
+1. *The corner rule.* The first collinearity predicate measured the candidate
+   wall's **near** end, which in a closed loop is the previous wall's end and
+   lies on the run's line by construction. It collapsed to
+   `|dx_run| · |dy| / L` — correct for an east–west run, identically zero for
+   a north–south one, so every north–south street ran through its own corners.
+   The tell was in the draft as a limitation: median sign-to-plane distance
+   429 units, now **4**, and no letter more than 5 units off its plane.
+2. *The lintel rule.* The first extractor counted every two-sided wall as an
+   opening. **3187 of 4331 were not openings**: 2559 kerbs and 628 seams —
+   two sky-lit street sectors meeting at a step in the pavement, no hole and
+   no wall above. Requiring a header drops all 3187 and loses 4 genuine indoor
+   neighbours. Campaign candidates fall 3570 → 890, multi-opening runs
+   450 → 131, signed facades 27 → 11 — and the 11 are all real shopfronts
+   (LOADING, FEINMAN MEATS, STORAGE, EVERYTHING, BURGERS, SCREAMS, WATER, ICE,
+   BAIT) where the 27 included stray letters standing on pavement.
+
+**The exit criterion, answered with numbers.** 890 campaign candidates in 37
+maps; 131 have more than one opening, which is where "belonging together"
+means anything. What keeps them coherent: **one wall tile across the whole run
+(98%), then a header datum (79%) and a sill datum (77%) together, then a thin
+helper sector (71%)** — and *not* the bay grid, which 31% of their openings
+land on. Header and sill are within two points on 131 runs and are
+deliberately not ranked against one another.
+
+**A shipped constant partly contradicted.** `facade_pass.py`'s
+16-world-units-per-tile-pixel scale is confirmed corpus-wide (3869/5275, 73%)
+and is what makes `BAY = 1024` real. Its other two claims do not generalize:
+world-phased `x_panning` is 20% campaign-wide (E6M3 80%, E6M1 72%) and header
+cstat bit 4 is 28% (E3M1 38%). Both are local habits, and blood-city should
+not adopt them as rules. E6M3, not E3M1, is the campaign's most disciplined
+street: 81% of its openings a whole number of bays wide against 26%
+campaign-wide.
+
+**Signage.** 86 letter sprites on 11 facades (3 campaign in 2 maps, 8 curated
+— the statistics lean on Death Wish and say so). 100% flat on the wall, none a
+perpendicular flag; median 2.54 player heights up; 77% in the middle half of
+their run; 84% within one bay of an opening, 96% in the campaign. And the
+placement rule the lintel fix made visible: **every campaign sign letter
+(26/26) sits above the header of the opening it belongs to**, 85% corpus-wide.
+The two-tier reading from the E3M2 frame is confirmed but rests on 2 facades
+of 11 — real, not a convention.
+
+**Building extent: the objection was measured and withdrawn.** The first pass
+refused `facade_run()` because a candidate is a plane, not a building.
+`party_wall_gaps` tests that against the interior — two openings are in one
+building when their interiors connect without going back outside — and finds
+that **a run serving any interior serves exactly one building 98% of the time**
+(732/749), never below four bays, 2% at four to eight, 12% at eight to
+sixteen, 20% above. The city-block edge is real and is a long-run problem.
+Most of what looked like a run crossing a boundary was a stretch of pavement.
+
+**What marks a boundary, when there is one: almost nothing.** Over 241 judged
+pairs `gap_bays ≥ 0.1875` scores 0.877, but only because 177 of the 222
+one-building pairs have no pier at all — they are two halves of one hole. On
+the 63 pairs a pier genuinely separates, **only `header_changes` clears the
+0.65 floor (0.711)**, and it transfers across nine maps at 0.75–1.00.
+**Material is not a weak signal but the absence of one**: tile change fires on
+zero pairs of either class, which follows from the 98% one-tile figure. Pier
+width falls to 0.617 — Blood puts two- and three-bay piers *inside* one
+shopfront (E1M3 median 2.5 bays, E3M6 3.0).
+
+**The lintel band: recoverable, and not what places a sign.** The last stated
+blocker, measured. Blood paints its cornices and plinths into the wall art, so
+the band lives at a fixed texture row: `art.course_rows` finds it and
+`texture_align.course_z` puts it in the world. Every tile carrying campaign or
+curated signage has courses, and tile 80's bottom course, hung from the E3M2
+loading bay's head, lands 3 texture pixels below the LOADING letters — the band
+the rendered frame shows, computed from the art.
+
+**But Blood does not use it.** Letters sit within 3 texture rows of a painted
+course 22% of the time against a **27% null** for random rows on the same
+tiles — no closer than chance, marginally further. Nor is anything else tight:
+the best of four candidate datums is height above the street floor at a
+coefficient of variation of 0.33 (1.69 to 5.13 player heights), and measuring
+from the opening's head is *worse* (cv 0.79) even though every campaign letter
+is above it. The head is a constraint, not a datum.
+
+**Constructor promotion: unblocked, not yet done.** The blocker dissolves the
+opposite way round from expected — not because the missing datum was found, but
+because **there is no datum to miss**. "A constructor cannot place the band" is
+therefore not a reason to refuse `facade_run()`: placing a sign at ~2.5 player
+heights above the street and above its opening's head is as right as Blood is,
+and can carry the spread instead of implying a precision the corpus lacks.
+What promotion still needs is a generated facade that survives the validators
+and the engine — reading is not building — and opening positions taken rather
+than invented, since 53 repeating runs in 890 is not enough recurrence to give
+rhythm a default. Report `reports/blood-lintel-band.{json,md}`, tests in
+`tests/test_lintel.py` (22, 8 of 8 mutants caught).
+
+**A third defect, found on the way.** A wall texture's vertical span had two
+definitions in the codebase, reciprocal in `y_repeat` and agreeing only at
+`y_repeat` 16. `texture_align.repeat_span` is right — under it 48% of the
+campaign's 51571 one-sided walls with known art are exactly one repeat tall,
+against a mode of four repeats under the other — and `aperture.tile_span_z`
+now delegates to it. The dimensional check agrees: Blood's z is 16 times finer
+than x and y, so 2048/`y_repeat` is 256 z per texture pixel at `y_repeat` 8,
+which is 16 world units — the same 16 units per pixel the facade scale runs at
+horizontally. At the pairing Blood pins, a wall texture is square.
+`snap_leaf`'s docstring arithmetic was scaled by that error: tile 22 at
+`y_repeat` 8 spans 32768 z, which is the campaign's median aperture leaf
+outright — one repeat, not four — and over the 540 campaign walls carrying it
+the tile draws a median of 1.00 times up its wall. `at_least` drops from 2 to 1,
+which against the corrected span would otherwise have doubled every leaf.
+
+**Built, 2026-08-31: `aperture.facade_run`.** The phase's reading was crossed
+into authoring. One street frontage emitted from the measured defaults and
+nothing else, at two widths, in `projects/facade-pilot/`. Verified with "it
+compiled" excluded: `validate`, `roundtrip` (byte-exact) and
+`validate-authored` all clean at both widths, geometry-audit native 0 /
+authored 0, and an NBlood load/spawn smoke reaching map_initialization and the
+game loop. Width invariance holds -- at 6 and 10 bays the bay, the reveal, both
+datums, both materials and the sign seat are identical, which is Phase 13's
+exit shape piloted early. Report `reports/blood-facade-build.md`, tests
+`tests/test_facade_run.py` (26, 11 of 11 mutants caught).
+
+**Building corrected the reading twice, and both corrections are in the
+phase's numbers now.**
+
+1. *The datums were annotations.* Recording `header_z` beside the opening left
+   the mouth open floor-to-ceiling; the placement validator caught it as sign
+   letters hanging over a hole. The header **is** the neighbour's ceiling, so
+   it shapes the opening rather than describing it.
+2. *A facade wall has thickness, and the piers are void.* Giving the interior
+   the whole frontage and declaring the spans solid is a wall sandwich, which
+   the authored-geometry gate rejects. Asked directly, the corpus is
+   unanimous: of **780 campaign facade solid walls, 0 have a reversed
+   coincident partner and 780 stand alone**. So the interior is set back and
+   each opening is a passage cut through the wall -- the reveal -- whose depth
+   is measured too: 256 and 512 are the commonest of the 1140 sectors behind a
+   campaign facade opening, and 41% are at or under 512.
+
+`facade_run` is a **composable helper, not a `vocabulary.py` constructor**.
+That module admits a concept only when a compact parameter set reproduces
+held-out examples, which has never been run; the blockers are returned on every
+build rather than left in a comment.
+
+## Already in the repository
+
+`aperture.py` (an opening is a leaf plus mediation; reveal dressing rules),
+`texture_align.py`, `lettering.py`, run-rhythm and wall-thickness knowledge
+files, rendered street views under `projects/blood-city/references/
+e6m1-shop-views/`.
+
+## Gap
+
+Facade/bay hierarchy as a mined object: main plane, bays, datums (sill /
+header / cornice), rhythm, style inheritance.
+
+## Agent task
+
+Facade candidate extractor over street-facing campaign maps (E6M1 and the
+city episodes are natural pilots): identify facade extent, plane, openings,
+thin helper sectors, measure repeated datums; render street views for
+validation; search cross-map analogues; keep counterexamples.
+
+## Exit criteria
+
+The system can explain why several openings belong to one facade and what
+keeps it coherent. Only then may `facade_run()`-style constructors be
+promoted into `vocabulary.py`.
+
+---
+
+# Phase 8 — Neutral dynamic-state observations  **[DONE — Z-motion and swept; the polygon sweep is open]**
+
+**Owner steering (2026-08-31), the phase's program in one example.** The
+turnstile is where several planes meet — a kind of mechanism, a kind of
+space, a kind of style — and mechanics must be learned *generally*, factored
+along exactly those planes:
+
+1. **Physical primitive** — "a sector rotates about an axis": sector type,
+   the origin marker with its position *and angle*, busy_time as
+   speed/direction. Engine fact, no semantics.
+2. **Carried parts** — the sprites riding the motion (the turnstile's blade
+   grates) and their *relations* to the axis — `assembly.py`'s domain.
+3. **Embedding** — where it sits. This is where meaning is born, and it is
+   already measured: 88 instances of the same auto-rotating primitive, only
+   6 are doors; the rest are a carnival ride, station rotors, fans. Same
+   machine, different design object, decided by space, never by fields.
+4. **Style/readability** — the blades being see-through grates, the
+   counter-rotating pair, the ambient sound riding along.
+
+The same primitive family serves other purposes across the corpus, so this
+phase delivers a neutral state-change vocabulary plus the rule that the
+*name* is assigned from embedding — never a catalog of named prefabs. The
+`turnstile` constructor in `mechanism.py` is one worked example of the
+decomposition, not the deliverable's shape.
+
+**Owner-attested E1M1 mechanism reading (2026-09-01; sector ids
+owner-supplied, start/links verified against the map).** The campaign's
+opening is a showcase of themed realizations of the slide/rotate/ROR
+primitives — many *design objects* on the same machinery:
+
+- **the casket** — CORRECTED (owner, 2026-09-01; every field verified): a
+  FOUR-sector construct, two pairs. Hole sides: s28 (upper) + s30 (lower,
+  the player start), both kSectorSlideMarked, ROR-linked (link 10, sprites
+  47/46). Cover sides: s27 + s29, plain sectors. Each slide sector moves
+  exactly ONE flagged wall (cstat 16384) — s28's wall 221 against s27,
+  s30's wall 229 against s29 — and that wall is the hole/cover BOUNDARY:
+  its travel re-partitions plan area between the two, sliding the lid
+  open. The same travel vector runs on both sides of the ROR plane
+  (markers 42→43 Δx −1916, 44→45 Δx −1912; the "to" markers stand inside
+  the cover sectors), synced on rx 102, so the revealed holes meet through
+  the link. Owner's category: a **sliding ceiling/floor door** — planar
+  motion gating a VERTICAL crossing. Three concepts our stack lacks:
+  boundary-wall area re-partition, ROR links CONDITIONED by cover position
+  (conditional.py treats links as always-on — a Phase 9 gap), and the
+  paired-travel-across-a-link pattern as a recognizable design object.
+  *Narrative* — the primitive dressed as waking from a coffin.
+  **Owner-authored oracle: `maps/blood/mechanism/casket.map` (2026-09-01)**
+  — a minimal 7-sector demonstration of the same principle (floor sliding
+  doors uncovering a walkable ROR stack), and it teaches two dialects
+  E1M1 does not: the MOTOR may sit on either side of the boundary (here
+  the 614 sectors are the LIDS s2/s5 and the link-bearing holes s3/s6 are
+  plain — role assignment is free, only the flagged boundary matters),
+  and BOTH sides of the boundary wall pair may carry the flag (walls
+  18+22, 36+40) where E1M1 flags one. Also attested: lid thickness as a
+  1024 step between tray and hole; travel = full cover with the tray
+  sized to receive (the invariant the zoo build violated); one channel
+  (rx 100) syncing both planes; link markers 2332/2331 at exactly the
+  meeting planes, data_1-paired, statnum 0. **Answered, and then answered
+  better (2026-09-01): INTENT, not an editor leftover.** `trInit` translates
+  a moving sector by -65536 of the marker delta and records that as the base
+  (`triggers.cpp:2224-2245`), so the geometry saved in a map is the pose at
+  busy 65536 — state ON — always. A sector declaring `state=1` therefore
+  starts exactly where it was drawn, which is what s2 does and what its
+  author meant. The earlier "leftover" reading came from our own from/to
+  marker model and did not survive the loader. Both planes are DRAWN in the
+  same
+  physical pose — boundary at the on-marker — but `trInit` treats the
+  drawn geometry as the pose at busy 1, so a state-0 sector displaces
+  itself by the whole marker separation the instant the level loads.
+  Measured with `motion_sim`: s2 rests where it was drawn (displacement
+  0) and s5 jumps 1920. Two lids on ONE channel, out of step from the
+  first frame. `tests/test_attested_constructs.py` pins both numbers. This map is the primary fixture for the
+  planar-door constructor and the swept-state validation gate, and
+  reading it field-by-field corrected the MOTION MODEL itself:
+  `TranslateSector` drags a flagged wall's own vertex **and its
+  `point2`'s** unless that next wall is flagged too
+  (`triggers.cpp:897-909`), which is how flagging ONE wall translates a
+  whole EDGE. `motion_sim` moved only the flagged vertex, so it sheared
+  every Marked slide instead of sliding it — the oracle's lid came back
+  as a 2228224-unit trapezoid where the engine gives a 2048x128 strip.
+  Every swept measurement taken before that fix was of the wrong shape. s30's z rise (floor
+  −20480 → −26624) is NOT part of the lid mechanism — it lifts the player
+  so they can jump out. A new category: **ergonomic-assist motion**,
+  present for the body, not for topology; a reading that counts it as part
+  of the door's gating misreads the construct. And the z endpoints are
+  NOT a type-600 privilege: the two z states are available on other
+  sector types too, so rotation or translation composes freely with z
+  travel — the casket's s30 (614 + z) is the attested proof.
+
+**The owner's constitution for this whole track (2026-09-01): Blood has a
+LANGUAGE of mechanisms — more sophisticated than Duke3D's — and the goal
+is to understand the language, never to slavishly copy examples.** The
+grammar as currently understood:
+
+```text
+verbs        sector type selects the XY motion (slide/rotate/path/...);
+             the XSECTOR z endpoints are an ORTHOGONAL z verb available
+             regardless of type — verbs compose on one sector
+payload      wall cstat flags (16384/32768) and sprite flags select what
+             moves; 616/617 drag every wall, 614/615 only flagged ones;
+             a payload can be sprites alone (E1M1 s65's gate)
+parameters   MARKERS ARE STATE-ANCHORED, NOT JOURNEY-ANCHORED (settled
+             2026-09-01 against DOOR-CURTAINS.map, three exemplars to
+             the coordinate): type 3 = the position FOR STATE OFF,
+             type 4 = the position FOR STATE ON, axis+angle = type 5.
+             The mapper DRAWS the geometry at the ON pose (every
+             tutorial curtain's fabric hem is saved exactly at its
+             type-4 marker), and the XSECTOR `state` field decides where
+             it snaps at load. "Rest" is not a marker concept — it is
+             whatever `state` says. Our earlier from/to model was wrong
+             both ways and is why the zoo curtains ran backwards; it
+             also resolves the oracle map's s2 state=1 "mystery" — drawn
+             at ON, meant to start there. Bonus from the same map: the
+             tutorial curtain's fabric is an internal FIN with its own
+             vertices (the seam built into the sector's own outline),
+             which is why tutorial curtains never deform their rooms.
+             maps/blood/mechanism/ (Vanilla/ + Modern/) is a goldmine of
+             such single-mechanism tutorials — fixture them as they are
+             consulted. And the owner's state-preview idea: the XMapEdit
+             observer can render a mechanism's OFF and ON poses for a
+             visual state check — the components already exist.
+control bus  TX/RX channels + COMMAND VERBS (off/on/toggle/lock/unlock/
+             ...) — a lever TXing Lock locks a door, it does not open it;
+             reading every TX->RX as "operates" loses the verb. System
+             channels (level_start...); tense/aspect = trigger_once /
+             retrigger / interruptable / busy waves; chaining (s50→s51)
+             and fan-out are sentences
+interaction  three routes, orthogonal to everything else: XSECTOR Push/
+             Wallpush; remote RX; and XWALL triggers ON THE PAYLOAD WALLS
+             themselves TXing to their own sector's RX (E1M1 s4, verified:
+             both leaves' walls carry tx 100 / Toggle / trigger_push while
+             the sector has no push at all — the walls are the buttons,
+             the sector is the motor). doors.py reads only portal XWALLs,
+             so this third route is currently MISREAD as remote-only — a
+             known model defect to fix.
+payload dirs editor colors: cstat 16384 = BLUE = travels the marker
+             vector; 32768 = GREEN = travels exactly opposite — one
+             sector, two opposite-flagged leaves = a double door
+state+verb   (owner, 2026-09-01) a command must fit the receiver's STATE:
+             a mechanism saved at state ON receiving command ON is a
+             no-op — the zoo casket shipped exactly that (state 1, switch
+             sending only 1) and "did not work". Authoring rule: wire
+             TOGGLE unless the intent needs a directed verb; reading
+             rule: a trigger whose command cannot change the receiver's
+             state is a detectable defect.
+see-through  a walkable ROR stack is SEEN THROUGH only with floor picnum
+             504 or floorstat & 0x180 (mirrors.cpp IsRorSector; already
+             used in blood-city, forgotten in the zoo) — the view is a
+             separate property from the warp, one more independent axis.
+influence    (owner, 2026-09-01) A MECHANISM'S SENTENCE INCLUDES ITS
+             EFFECT NETWORK — what it connects to and influences (the
+             curtain whose room brightens via command-5 Link, the door
+             that TXs onward). And the network competes for FINITE
+             single-slot resources: a sector carries ONE XSECTOR — one
+             rx, one tx, one state machine, one shade wave, one marker
+             pair, one type; a wall one XWALL; a sprite one XSPRITE.
+             Compositions therefore COLLIDE, and the answer is never
+             "the door is impossible because the neighbour cannot take
+             the light change" — it is a DECISION, made and reported:
+             (a) SPLIT a sector to mint a new resource carrier (the
+             lightpools pattern blood-city already uses), (b) insert a
+             RELAY (a wired sprite carrying the extra channel hop),
+             (c) REROUTE channels, or (d) DEGRADE the secondary effect
+             under an intent hierarchy — mechanism function outranks
+             mediation, mediation outranks presentation; the primary
+             never blocks on the secondary. Every such decision is a
+             reported finding per the authoring-loop law, and conflict
+             DETECTION (two claims on one resource slot) is a gate-level
+             check like ownership conflicts.
+ownership    (owner hypothesis, 2026-09-01, confirmed by the accumulated
+             cases) WALL OWNERSHIP IS TWOFOLD. Storage ownership is
+             fixed by Build (each wall in exactly one sector's array; a
+             boundary exists twice as a red-wall twin pair). FUNCTIONAL
+             ownership — whose wall it is for a mechanism's purposes —
+             is NOT fixed: it depends on the mechanism type and intent.
+             Evidence: E1M1's curtain stretches walls stored in s125 AND
+             their twins stored in the room; the casket's boundary wall
+             functionally belongs to the four-sector construct; s65's
+             functional payload is sprites; the tutorial's fabric fin is
+             storage deliberately RESHAPED to match intended functional
+             ownership (own vertices for the fabric). Our code assumed
+             single ownership (spatial._owners, regions owning their
+             walls) — a root cause of the zoo's integration defects.
+             Consequences: a construct is a SUBGRAPH over sectors, walls,
+             vertices and sprites that may cross storage boundaries;
+             MechanismDecl members claim walls/vertices by ROLE across
+             sectors; the motion-set closure is the computed functional
+             ownership and the declared claims must match it; two
+             constructs claiming one vertex with different motions is a
+             detectable conflict; and constructors build storage topology
+             (fins, seams, splits) TO SERVE declared functional
+             ownership — never the other way round.
+vertex drag  (owner, 2026-09-01, the deepest payload rule) motion moves
+             VERTICES, not walls: a flagged wall carries its two points,
+             and EVERY wall incident on a moved point drags with it (one
+             end stays, one end moves). The true payload is the closure
+             over shared vertices, not the flag set. Consequence:
+             mechanisms need MOTION APERTURES — deliberate wall splits
+             that bound the deformation, exactly as a doorway's jamb
+             isolates the door's texture AND its motion. E1M1's curtain
+             works because the room wall is SPLIT so the fabric's end
+             vertices are its own; the zoo's curtain lacks that seam and
+             deforms the whole room (its markers are also reversed, so
+             rest reads open — two distinct defects). Detection law: for
+             every mechanism, compute the ACTUAL motion set (flags +
+             vertex closure) and diff it against the sentence's DECLARED
+             payload — any extra member is an integration defect even
+             when the geometry stays valid. This check belongs beside
+             the swept-state gate and must run without an owner walk.
+presentation shade/amplitude waves synced to state — the mechanism's
+             visual voice, not decoration
+composition  ROR links couple constructs across layers (casket); links
+             can be CONDITIONED by cover position; ROR carries a global
+             visibility budget authors design around
+access       keys/locks gate the control bus, not the geometry; "Player
+             only" (dude_lockout) excludes enemies — why E1M1's secret
+             arc s26 carries it
+voice        a SOUND QUARTET per mechanism: Off→On + its stopping,
+             On→Off + its stopping — the mechanism's audio feedback for
+             each direction and interruption; half its readability
+bus timing   "send at ON/OFF" chooses WHEN in the transition the TX
+             fires — chains can wait for arrival or fire immediately
+hazards      Crush, DamageType, Depth/Underwater (medium) — a lift that
+             crushes is one checkbox away from one that carries
+ambient      CONTINUOUS MOTION (bob floor/ceiling, rotate, Theta, always)
+             — perpetual motion WITHOUT the bus, a different class from
+             rx-7 self-retriggering rotors; plus MOTION FX texture
+             panning (conveyors, currents), wind, drag
+light color  color lights / pal2 per surface
+ergonomics   small motions exist for the player's body (the casket
+             lift-out), not for topology — a separate reading category
+
+The XMapEdit sector dialog IS the documented property surface (owner
+screenshots, 2026-09-01): the property-model deliverable should be
+structured panel-by-panel against it, each field source-cited and its
+campaign usage measured — an axis the campaign never touches is still
+part of the language.
+```
+
+**MEDIATION ELEMENTS (owner, 2026-09-01) — a first-class concept that
+unifies threads the plan has been nibbling at separately** (the aperture
+grammar's "leaf plus mediation", the motion apertures, chapter 04's
+negative space, the kerb): a mediation is anything that JOINS an element
+to its surroundings while SEPARATING them correctly. The taxonomy, each
+kind with checkable functions:
+
+```text
+FRAME      guides motion and isolates it: the door jamb (195+200) that
+           makes a leaf slide where intended; the casket tray's edges
+SEAT       sets an object into a surface and bounds materials: the
+           flowerpot for the flower, the plinth for the statue
+HOLDER     the surrounding sectors that hold a pane: the shopfront's
+           glass carried by its own reveal sectors
+JUNCTION   joins two zone materials with a readable edge: the kerb
+           between sidewalk and roadway
+SEAM       bounds deformation: the wall splits that keep a curtain's
+           motion out of the room (the motion aperture)
+CLEARANCE  reserved volume with a function: a revolving door must have
+           room to swing and must NOT collide with neighbouring
+           geometry; a drawer's pull-out; a counter's workspace
+```
+
+**PREFAB SLOTS (owner, 2026-09-01 — a principle offered loosely, NOT to
+be forced everywhere yet):** mediation composes with a slot mechanism. A
+host element exposes a bounded sequence of SLOTS whose capacity derives
+from its own dimensions — a corridor's length yields so many lamp/wall
+slots, a facade's width yields bays (the 1024 bay grid IS this), a shelf
+yields goods positions — and prefabs fill slots. A slot-filling prefab
+may itself be a mediation hosting further slots: the planter (SEAT
+toward the corridor) carries a row of flower slots. The reading side
+already measures the counterpart (repeats_along, run-rhythm, lamp
+service intervals, the E6M1 display row), so declared slots would be
+checkable against mined rhythm. Per the smallest-useful-abstraction
+guardrail: adopt it where a real case demands (corridor dressing, facade
+bays, shelf stocking), not as a universal scheme.
+
+Representation rule: every constructor OWNS its mediations — they are
+part of the construct, never the caller's afterthought — and every
+mediation's function is checkable: FRAME/SEAM by the motion-set gate,
+CLEARANCE by a swept-volume-vs-surroundings check (the swept-state gate
+validates the construct's own geometry; clearance extends it to what the
+sweep must not touch), SEAT/HOLDER/JUNCTION by the usage-kind and
+readability critics. In MechanismDecl (Phase 13), mediations are typed
+members alongside lid/hole/switch, so a sentence declares not only what
+moves but what seats, bounds and receives it.
+
+A construct (casket, furnace, turnstile pair) is a *sentence* in this
+language: several sectors conjugating different verbs on a shared bus.
+Understanding means parsing sentences into the grammar; copying means
+memorizing one sentence. Every mechanism deliverable is judged against
+this.
+
+**Properties are independent axes (owner, 2026-09-01; verified against
+NBlood db.h).** A sector/wall/sprite's TYPE is only one property among
+many, and the rest are orthogonal: XSPRITE carries identity-independent
+trigger capabilities (Push/Vector/Impact/Pickup/Touch/Sight/Proximity —
+any sprite with an XSPRITE can transmit; a switch's picnum toggle is its
+type's behavior, its triggering is separate wiring), the bus
+(txID/rxID/command/on/off), timing (busyTime/waitTime/restState/
+Interruptable/wave), once-ness (triggerOnce/Decoupled), access
+(key/locked/lockMsg), launch filters (skill and game-mode bits!), and
+data1-4. XSECTOR likewise: two z states, markers, payload flags, shade
+wave — all independent, all combinable.
+
+**Mandate: ground the property model in the sources and documentation,
+not in mined examples alone.** NBlood source (db.h structs, triggers.cpp
+dispatch — read-only, the submodule is never touched) and the XMapEdit
+manual (maps/blood/mechanism/xmapedit.pdf; reference/blood/xmpdocs/ for
+art/qav/seq) are the authorities. Mining then measures which corner of
+the language the campaign actually speaks — it never defines the
+language. The precedent is established: blood_types.py cites
+common_game.h, motion_sim transcribes TranslateSector, the payload rule
+came from triggers.cpp. The missing deliverable is the systematic
+PROPERTY MODEL: every XSECTOR/XWALL/XSPRITE axis, source-cited, with the
+campaign's usage measured against it.
+- **the crypt arc** — sector 26, kSectorRotate with a 20-wall arc,
+  trigger_wall_push, dude_lockout: a curved wall revealing a *secret*.
+- **the double sliding door out of the crypt** — sector 4 (one
+  kSectorSlideMarked carrying both leaves). NOT the ROR pair.
+- **the double rotating door** — sectors 50 + 51, two kSectorRotate leaves
+  chained by channel (50 rx 105 → tx 106 → 51 rx 106).
+- **sectors 65 + 90 are an ROR portal, not a door** — they connect the
+  building's second storey. Sector 65 is *additionally* slide-marked so it
+  can drive wall sprites 37/38, a small sliding gate at its entrance.
+  Owner explanation: **multiple ROR sectors must not be visible at once or
+  the view glitches**, so the level uses one giant ROR sector and hangs
+  the gate's motion on it — an engine-constraint-driven authoring
+  workaround, and a slide mechanism whose moved subject is *sprites*, not
+  its own walls.
+- **sector 99** — slides away and rats run out: an *ambush/flavor reveal*.
+- **the curtain — full anatomy (owner 2026-09-01, wall ids verified
+  exactly):** motor = s125 (slide-marked, markers 291/292); moving walls
+  1200 (BLUE) and 1210 (GREEN) travel TOWARD each other; unflagged
+  curtain walls 1201/1209/1183 STRETCH as the flagged endpoints migrate —
+  the squash/stretch of texture 146 IS the animation. No sprites, no z.
+  Interaction: XWALLs on the fabric walls (tx 125 → own rx, Toggle,
+  trigger_push) — push the curtain anywhere. And s125 TXs 126 with
+  command 5 (Link) to s124's shade amplitude: **the room's light follows
+  the curtain's busy value continuously** — a three-layer sentence
+  (motion → bus → presentation). General rule this teaches: door vs
+  curtain is the SAME verb with different PAYLOAD TOPOLOGY — flag the
+  whole leaf group and it translates rigidly (s4); flag only the leading
+  edges and the neighbours deform elastically. Rigid vs elastic is a
+  flagging pattern, not a mechanism type.
+- **sector 63** — a plain standalone sliding door.
+- **sector 70** — a shelf that is a *secret entrance*, sliding aside.
+- **the furnace** — sector 88 is only the interior; the whole crematorium
+  furnace composes a conveyor (sector 79) with sectors 81 and 89, embedded
+  in the wall — an *assembly spanning mechanisms and static parts* that is
+  deliberately hard to separate.
+- **sectors 86 + 139** — a sink with dirty water (fixture, not a door).
+
+Any swept-area/slide reading must describe all of these with ONE
+vocabulary and let embedding name them: narrative, secret, progression,
+ambush, furnishing, fixture, workaround. Two structural lessons: ROR links
+participate in mechanism composition (the casket) *and* impose global
+visibility constraints that reshape authoring (the 65/90 workaround); and
+a slide sector's moved subject may be carried sprites rather than its own
+geometry.
+
+**Before mining the excluded remainder, split it (2026-08-31).** The hygiene
+fix moved 30% of campaign object-context occurrences out of the default
+statistics and called them "wiring". Opening that bin
+(`reports/blood-wiring-placement.md`) shows three unrelated things, and only
+one is material for this phase:
+
+```text
+sound              1765   ambience; no state, no reachability effect
+marker              990   link/warp wiring, already consumed by reachability.py
+start               144
+hidden-thing        156   hidden-switch        85    >  triggers and spawners: THIS is Phase 8/9 input
+generator            75   /
+hidden-decoration    32
+```
+
+**Queued experiment: visible against hidden switches.** 85 campaign switch
+sprites carry Build's invisible cstat bit while their type category is
+`switch` -- a mapper deliberately concealing a trigger. `assembly.py` already
+records the TX/RX side, so the contrast is runnable with existing machinery:
+positives = hidden switches, comparison = visible ones, features = channel role
+and what the switch commands, **not** geometry. The question is whether a
+concealed trigger commands a different *kind* of thing than an exposed one. Use
+`anchors.contrast_anchor_sets`' discipline: balanced accuracy, a map-transfer
+check, counterexamples preserved. Not run yet; recorded so it is not lost.
+
+Roughly two thirds is ambience and navigation. `excluded_candidates` are now
+keyed on the wiring they hold (`wiring_signature`, `wiring_categories`) rather
+than on the visible objects they lack, so the three parts are separable without
+re-mining. The 316 hidden-mechanism occurrences plus the `logic_closet` sectors
+are the trigger evidence; the rest should not be read as mechanisms.
+
+Measured while checking: all 1247 campaign `kSoundSector` markers sit in
+**reachable** geometry and 84% of their sectors hold no visible object at all,
+so ambience pockets and switch closets are not even the same kind of sector.
+Marker z is placed at an absolute height, not a fraction of the room (top-three
+concentration 55% against 32%; only 3% at the sector midpoint), with 0 units
+(27%) and 6400 units (19%) the two preferences out of 204 distinct values --
+a preference, not a rule, and predicted but not determined by whether the
+sector has headroom. 116 markers (9%) sit below their own floor, which closes
+the Phase 4 contrast's last open counterexample.
+
+**Turnstile template promoted, 2026-08-31 -- partly.** The
+kSectorRotateMarked door subfamily (88 instances in 14 maps; the door/scenery
+split is spatial, not a field) is now a template mined by name from E1M4
+151/314 and DWE1M9 61/64, and a constructor: `mechanism.turnstile` and
+`turnstile_pair`, beside `sliding_gate`. Report
+`reports/blood-turnstile-build.md`, template
+`projects/facade-pilot/reports/turnstile-template.json`, tests
+`tests/test_turnstile.py` (23, 13 of 13 mutants caught).
+
+Its **state-change reading is this phase's material**: the rotor takes the
+`level_start` broadcast once on `rx_id` 7 and cycles for ever because both
+waves retrigger, which is a state machine with one input and no rest pose --
+a shape neither `doors.py` nor the Z-motion vocabulary covers.
+
+Two corrections to `auto-rotators.md` came out of building it. The ambient
+sound sprite is **not** a family trait -- E1M4 has one in both rotors and
+DWE1M9 in neither -- so it is off by default. And direction is **not** the
+marker's sign: both E1M4 rotors carry the same marker angle and mirrored busy
+fields, so what counter-rotates a pair is which busy field carries the period.
+
+**A silent defect found by the motion replay.** `construction.add_sprite`
+masked every sprite angle to `& 2047`. For a kMarkerAxis the angle is not a
+facing but the *travel* -- Blood interpolates `0 -> ang` -- and E1M4's -8192 is
+four whole turns, which masks to exactly **0**: a rotor that does not move,
+written silently with every validator green. The mask now applies to facings
+only.
+
+**Not proven, and the phase is not DONE on it:** that a player can pass through
+at the mined spin rates. The available oracles are a load/spawn smoke and an
+action oracle that presses Use once; neither walks a body through a moving
+aperture. The map loads, spawns and survives. Relatedly, `motion_sim` agrees
+with the original and cannot check this mechanism: a 615 sweeps only walls
+flagged `cstat & 16384/32768`, every E1M4 rotor wall is `cstat 0`, and what
+turns is the carried grates, which `blood_sweep` does not model.
+
+## Already in the repository
+
+Most of this phase: `assembly.py` (travel, pivot, carried parts),
+`doors.py` (rest/open geometry, interaction, condition, feedback,
+signifier), `mechanism.py` (template-driven construction), `motion_sim.py`
+(engine-exact motion), `state_model.py`, `mechanisms.py` (cross-game
+semantic layer).
+
+## Gap
+
+A single minimal physical-effect vocabulary (`move_z_floor`, `translate_xy`,
+`change_blocking`, `destroy`, …) shared by these modules, and the
+three-way experiment from `05_...md` (door vs lift vs third Z-motion
+mechanism described without naming them incorrectly).
+
+## Agent task
+
+Extract the neutral effect vocabulary from what `assembly.py`/`doors.py`
+already record — as a *reading*, not a rewrite. Run the door/lift/other
+experiment on campaign maps and report LOW LEVEL / SPATIAL EFFECT /
+SEMANTICS per `05_...md`.
+
+## Exit criteria
+
+The same low-level motion representation describes all three mechanisms;
+semantic distinction comes from spatial context, and the report shows it.
+
+## Status, 2026-08-31 — DONE for Z-motion, and for the switch question
+
+**The vocabulary exists as a reading.** `bloodmap/effects.py`, over what
+`doors.py` and `assembly.py` already record: `move_floor_z`,
+`move_ceiling_z`, `translate_xy`, `rotate_about_axis`, factored along the
+owner's four planes. `design_object` takes the embedding and **cannot be
+handed a sector type** — there is no parameter for one.
+
+**The three-way experiment is run and the exit criterion is met, for
+Z-motion.** 2027 moving sectors in 43 campaign maps
+(`reports/blood-effects-motion.md`):
+
+```text
+                      changes what fits   carries between   both   neither   undecidable
+z_ceiling   646              540                 –            –      102          4
+z_floor     541              122               168           95      152          4
+z_split     180               56                39           47       32          6
+slide       396                4                 –            –        5        387
+rotate      263                2                 –            –        1        260
+```
+
+**Naming from the surface that moves gets 40% of them wrong** — 471 of 1179.
+The third mechanism, described without its name, is a motion that changes
+neither: 292 of them, of which 46 open to more than a crouching body and less
+than a standing one. The reading returns `not decidable from z alone` for the
+662 that only slide or turn, because both embedding questions are about a
+vertical opening; filing those under "neither" was the first thing the
+experiment did wrong.
+
+**The queued hidden-vs-visible switch contrast is run, and the answer is
+no.** 115 hidden switches in 18 maps against 1281 visible
+(`reports/blood-effects-switches.md`). Not one feature of channel role or of
+what is commanded reaches the 0.65 discriminator floor; the best is
+`commands_nothing_in_this_map` at 0.614, and that one is the least
+trustworthy of them. Two absolutes worth a targeted test rather than a
+promotion: no hidden campaign switch ends the level (0/115 against 56/1281),
+and none is keyed (0/115 against 17/1281). Concealment is not a property of
+what a trigger does — which makes the placement question Phase 9's.
+
+The count is 115 here against the 85 recorded above; the two selections
+differ and are unreconciled.
+
+**NOT done, and the phase is not DONE on it.** Slide and rotate have no
+spatial effect test: `changes_what_fits` is z-only, and
+`motion_sim.blood_sweep` cannot supply the swept-area one for the rotor
+family. 650 mechanisms are returned undecided rather than guessed at.
+
+**Still not proven: that a body passes a turnstile.** A passage oracle now
+exists, is headless, and is calibrated in both directions — a body driven
+across an open corridor is recorded crossing, the same corridor walled is
+recorded staying put. It cannot answer for a rotor: the only available driver
+refuses to enter a `kSectorRotateMarked` sector at all, at every period from
+32 to 400, deriving `walk=0 why=no_stance` on the entry relation while the
+exit relation is `walk=1`. `reports/blood-passage-oracle.md`. The turnstile's
+promotion blocker stands and the Aldermack forecourt mouth is not sealed.
+
+## Handoff to Phase 9
+
+1. **Where hidden switches sit.** The contrast above is forbidden to look at
+   geometry and came back empty, so what distinguishes a concealed trigger is
+   its placement. That is the conditional view's question, and it is now a
+   sharp one rather than a fishing expedition.
+2. **The 292-sector residue is Phase 9 material.** A motion that changes
+   neither passability nor elevation still changes *something* — 118 shut to
+   nothing, 46 open only to a crouch. Conditional topology is where a
+   crouch-only way and a closing gap stop being the same thing.
+3. **`design_object` is the naming rule to build the conditional view on.**
+   It reads embedding and nothing else, and Phase 9 should extend the
+   embedding rather than reach back for fields.
+4. **Slide and rotate need a swept-area effect test** before either can be
+   named. Until then any conditional view over them is over undecided input.
+
+---
+
+# Phase 9 — Conditional topology and causal meaning  **[DONE — swept blocking states are open]**
+
+## Already in the repository
+
+`reachability.py` (at-rest reachability), `progression.py`,
+`sp_understand.py` (physical walkability kept separate from allowed
+progress), channel graphs in `fragment.py`/`assembly.py`.
+
+## Gap
+
+A derived `conditional_traversability` view: edges annotated with the
+mechanism state that enables them, and the trigger → mechanism →
+reachability chain.
+
+## Agent task
+
+Add the conditional view to `spatial.py`-style derived views, fed by Phase 8
+effects. Pilots: one lift, one breakable barrier, one keyed door, on
+campaign maps. Answer "what becomes reachable after this action" with
+causal provenance.
+
+## Exit criteria
+
+The question above is answered mechanically and the explanation cites
+native evidence (channels, XSECTOR fields), not prose.
+
+## Status, 2026-08-31 — DONE for Z-motion
+
+**The view exists.** `bloodmap/conditional.py`, a reading over
+`reachability.py`'s graph and `effects.py`'s embedding, plus
+`llmapper conditional`. Crossings are **directed** (climbing is capped at the
+engine's step-up 6656, falling is not) and collapse into **routes**, which is
+what a reader means by "the door": one mechanism, the two rooms it joins.
+
+**The question is answered mechanically, and the explanation is fields.**
+`llmapper conditional MAP --action destroy --target 373` returns the newly
+reachable set and, per crossing, trigger → channel → mechanism → topology
+delta → crossing. On E1M4's crack that reads: `sprite 373, type 408, shot,
+irreversible` → `channel 119` → `sector 276, enabling state on` → `opening
+0 → 28672` → `276 → 245`.
+
+**The campaign, measured** (43 maps, `reports/blood-conditional-topology.md`):
+
+```text
+Z-motion mechanisms 1365   wired 1235   inert (nothing can reach them) 130
+rotate and slide, scoped out                                          657
+conditional crossings 4160  -> 1069 routes    never passable        1085
+routes needing a key    87        routes that cannot be undone        156
+
+routes by reading            triggers
+door-like       665  62.2%   switch 514   push 264   shot 176
+lift-like       182  17.0%   unknown 170  touch 70
+both            134  12.5%
+neither          88   8.2%
+```
+
+Not one of the 113 distinct gating channels is below 100: the reserved band
+carries level start, exit and secrets and **never gates a door**.
+
+**Three pilots, each checked against the raw XSECTOR and the editor
+renderer**, not against the view's own graph. A lift (E1M3 s241: floor
+18432 → -16384, exactly its two neighbours' floors, gains 33). A breakable
+barrier (E1M4 sprite 373 → sectors 276/277, flush at rest, `trigger_once`,
+gains 14 — and the renderer independently **refused** sector 276 for want of
+standing clearance). A keyed door (E1M4 s295, `key=6`, gains 46 — and the
+render from s294 shows a moon lock plate on the wall).
+
+**The hidden-switch placement question is answered, and it is a null.**
+`reports/blood-hidden-switch-placement.md`: no spatial feature reaches the
+0.65 floor in either scope; the best is `distance_to_target` at 0.640. The
+weak signals agree in direction — hidden switches sit further from what they
+open, less often adjacent, less often in sight — but 0.64 on 22 positives is
+a tendency, not a distinction. The reframing finding is that **57% of hidden
+and 59% of visible switch sprites sit in a logic closet**, so the invisible
+cstat bit is largely a construction detail of closet wiring rather than a
+decision to hide a trigger. Both contrasts have been comparing two
+populations that are mostly the same thing.
+
+**115 against 85, reconciled and computed:** 115 = 85 hidden-switch
+occurrences inside `mine_object_contexts`' excluded scope + 30 whose sector
+is reachable *and* holds something visible. Both numbers are right; they
+count sprites and occurrences-in-a-bin respectively.
+
+**Slide and rotate unparked, 2026-09-01.** They are no longer excluded:
+`effects.py` reads the engine's own instruction (two markers for a slide, one
+for a rotate), **what the motion drags**, and how wide a gap the leaf
+vacates. 659 swept sectors described, 538 of them opening a body's width.
+`reports/blood-swept-mechanisms.md`.
+
+Owner-attested E1M1 reading (sector ids owner-supplied) is the specification
+and the evidence: one slide/rotate/ROR machinery, many design objects.
+
+Three engine facts now encoded rather than rediscovered.
+`TranslateSector`'s `bAllWalls` is `type == kSectorSlide/kSectorRotate`, so
+the unmarked types 616/617 drag every wall and the **Marked** 614/615 drag
+only walls flagged `cstat & 16384`/`& 32768` -- while **sprites are dragged
+on their own 8192/16384 whatever the walls do**. 35 campaign mechanisms move
+*only* sprites, E1M1's sector 65 among them: 49 walls, none flagged, two wall
+sprites doing the whole job of a gate. Room-over-room participates in
+mechanism composition (the casket is slide-marked *and* stack-linked) and is
+a **budget** -- two ROR volumes must not be in view at once, so 11 of 43 maps
+have none and most of the rest have a handful, and E1M1 reuses one big ROR
+volume as a slide carrier rather than spending another. And
+**kChannelLevelStart fires before the player moves**: E1M1's casket is opened
+by a switch on rx 7 that no body can reach, and treating that as a player
+action reported the level as 2 reachable sectors of 155.
+
+**NOT done, and it is now the only gap.** *Which state of a swept mechanism
+blocks* is answered for **5 of 628**. The cheap test -- does a leaf segment
+cross the line between two portal midpoints -- is correct where it fires and
+almost never fires, because a door's two portals are adjacent as often as
+opposite (E1M1 s63's are 512 apart on the same side). Assuming the rest state
+is the shut one is far worse and was measured as such: it cut E1M2 from 226
+reachable sectors to 26. **The polygon sweep is what remains.**
+
+The owner's eight design-object names are **not all recoverable from
+embedding**, and the measurements say where it stops: E1M1's rat trap and its
+curtain have identical topological signatures, and its plain sliding door is
+more load-bearing than the double rotating door built as the way on. What is
+assigned is narrative, technical workaround, fixture, and required against
+side passage; `secret_within_reach` and `dudes_immediately_beyond` are
+recorded and never named from.
+
+The turnstile family sits inside the remaining gap and is parked by owner
+decision; its passage blocker stands.
+
+## Base graph resolved, 2026-09-01
+
+**Three bases, one default, each saying what it assumes** (`conditional.BASES`):
+
+```text
+optimistic       reachability.portal_graph: every two-sided wall is a way.
+                 Reaches behind shut doors.
+blocking_aware   the default. portal_graph minus crossings whose wall carries
+                 the blocking cstat, plus the blocking walls a kWallGib
+                 mechanism reopens.
+strict           spatial.walkable_at_rest: blocking flag, width under 512 and
+                 opening under 4096 are all hard stops, none reopened.
+```
+
+**Only one wall mechanism reopens a blocked wall.** `triggers.cpp`
+`SetupGibWallState` clears `cstat & 65` and the masked bit on both sides when
+a kWallGib (type 511) XWALL's `state` is 1. Nothing else in the engine
+changes a wall's blocking bit — a Z-motion sector moves floors and ceilings,
+never cstat — so a blocking wall that is not a gib wall is shut for ever.
+
+Campaign, 43 maps: 60839 two-sided walls, 2272 blocking (3.7%). Of those,
+**205 are kWallGib, every one built shut and every one wired** — no
+exceptions to open by hand. The rest are permanently solid: 1183 plain, 850
+on a motion sector (the door's own jamb walls), 34 other XWALL types.
+
+Two rules the measurement forced. A **wall pair** is shut when *either* side
+carries the bit, because the engine sets it on one side and clears it on the
+other. A **sector pair** is shut only when *every* wall pair between the two
+blocks — reading it the other way made this base stricter than the strict
+base, and E1M1 fell to 28 sectors against strict's 34, which is how the
+mistake surfaced.
+
+```text
+map    sectors design |  optimistic | blocking-aware |   strict | sp_understand
+E1M1       155    146 |  125 > 131  |     97 > 120   |  34 > 38 |     2 > 2
+E1M2       313    293 |  231 > 238  |    226 > 233   | 218 > 225|   242 > 248
+E1M3       329    320 |  227 > 269  |    211 > 243   | 208 > 240|   243 > 271
+E1M4       398    387 |  260 > 362  |    253 > 357   | 231 > 308|   263 > 278
+E2M2       290    260 |  221 > 255  |    201 > 230   | 195 > 222|   204 > 221
+```
+
+Final-reachable agreement with `sp_understand` is still **exact 0 of 5** on
+every base; gaps on the blocking-aware base are 118, 15, 28, 79, 9. E1M1
+remains the outlier for the reason above, which is a defect in
+`analyze_progression`'s input rather than in any base.
+
+**The three Phase 9 pilots return identical answers on all three bases** —
+joins, reading, key and trigger kind unchanged. None of their crossings
+carries a blocking flag, so no base can move them; the test asserts it.
+
+**The 170 unknown-trigger routes are classified**, and they were never
+unknown triggers. The classifier was measuring the absence of a
+player-facing flag: `trigger_on` / `trigger_off` are *response* flags, not
+causes. Adding `relay` (listens on one channel, retransmits on another),
+`pickup`, `kill`, `generator` and `leave` (Blood's `trigger_exit`) takes the
+residue from **170 routes to 9 causes**, all one type: kTrapExploder sprites
+that transmit with no trigger flag and no `rx_id`, so nothing in the map says
+what fires them.
+
+## Handoff to Phase 10
+
+1. ~~**Neither base graph is right, and they are wrong in opposite
+   directions.**~~ **RESOLVED 2026-09-01, and the diagnosis above was
+   wrong.** E1M1's two blocking-flagged start portals carry no XWALL, so
+   nothing in the engine can ever open them — `analyze_spatial` is right to
+   treat them as hard stops. The real cause is that the player start is a
+   four-sector box whose way out is a **paired stack link** to sector 28:
+   `analyze_spatial` files it under `known_non_portal_transitions` and
+   `analyze_progression` never reads that list. The blocking-aware base is
+   built and is now the default; see the Phase 9 status note below.
+2. The multi-view bundle should carry the conditional view beside the spatial
+   one, and carry which base it ran on.
+3. 170 routes have a cause whose trigger kind is `unknown` — something
+   transmits and nothing explains how it fires.
+4. The switch question that survives is about **XWALLs**, not sprites: the
+   face a player actually pushes. Nothing has measured those.
+
+---
+
+# Phase 10 — Multi-view understanding bundle  **[DONE — one map]**
+
+## Already in the repository
+
+`understanding.py` and `sp_understand.py` already bundle sensors;
+`level_profile.py` gives the corpus-comparison view; `visual.py` the
+rendered view.
+
+## Gap
+
+One map, all views, cross-view contradictions made explicit.
+
+## Agent task
+
+For one selected original map, produce one machine-readable bundle + one
+human-readable report combining geometry, assemblies, functional regions,
+mechanisms, conditional topology, progression, visual/readability — with a
+section listing disagreements between views.
+
+## Exit criteria
+
+No single view pretends to be canonical; cross-view relations are explicit.
+
+## Status, 2026-09-01 — DONE for one map
+
+`bloodmap/bundle.py`, `reports/E1M4-bundle.json` (370 KiB) and
+`reports/E1M4-bundle.md`. **All eight views gathered, none missing.** Every
+view names the module that produced it and what that module assumes; nothing
+is merged.
+
+**E1M4 chosen over E3M2 and E6M1.** E3M2 exercises the conditional view
+harder (65 routes and 29 lifts against 26 and 4); E1M4 carries the most
+facades of any candidate (41) *and* three mechanisms already verified
+against the raw XSECTOR and the editor renderer independently of any code
+here. Checkability beat volume. The trade-off given up is lift variety.
+
+```text
+geometry            398 sectors, 3651 walls, 995 portals; 387 reachable
+assemblies          56, in 30 distinct shapes
+functional regions  257 candidates over 191 sectors (164 overlooks)
+facades             41: 37 single, 2 repeating, 2 centered
+effects             56 mechanisms; 29 not decidable from z alone
+conditional         26 routes; 16 blocking crossings, 4 reopened, 14 shut
+progression         253 at rest -> 357 after 5 rounds
+visual              8 frames; 1 sector refused for want of clearance
+```
+
+**Five disagreements, none reconciled.** Reachability 357 against
+`sp_understand`'s 278; 29 mechanisms both views refuse for the same reason
+but count differently; 4 sectors that are both frontage and structure; 30
+sectors the geometry calls player space that the traversal cannot enter; and
+the renderer refusing sector 276 — which is really an *agreement*, two
+readings with no shared code independently saying a body cannot stand there
+until the crack is shot.
+
+**NOT done.** One map only, and on that map 29 of 56 mechanisms are
+undecidable, so the bundle describes about half of E1M4's machinery. The
+rotate and slide swept-area reading is still the gap, and the turnstile
+inside it stays parked.
+
+---
+
+# Realign — plumbing, 2026-09-01  **[Phase 11's prerequisite]**
+
+Not a phase. An audit found the pipeline healthy and three structural
+defects, all of them plumbing, and Phase 11 cannot be built on them.
+
+**1. Owner knowledge was not consumed.** `owner-anchors-v1.json` -- 97 tiles
+the owner named by hand -- was read by people and not by code, so every
+module that needed a tile's meaning typed its own list. `bloodmap/
+owner_anchors.py` is the typed, schema-validated access: by picnum, kind,
+binding, the wiring set, the state pairs. A malformed entry now fails a test
+instead of a mining run. `anchors.anchor_from_owner` and `owner_anchor_kit`
+make a class out of the owner's readings (`anchor-mine --owner-anchor`,
+`--owner-kit`), and `effects.payload` names what a mechanism's moving parts
+are made of in the owner's words.
+
+**The binding rule is executable.** The owner's principle -- a visually
+singular tile binds its meaning, a generic surface is material -- becomes:
+**strong-binding tiles may contribute naming evidence, weak and untested
+ones never may.** Each use stamps provenance (`anchor 361, binding strong`)
+so a wrong name is traceable to the tile it rested on. The rule bites
+immediately: see the dressing plane below.
+
+**2. Mechanism naming read only topology.** `design_role` v2 proposes across
+four planes -- **position** (spawn, ROR pairing), **dressing** (strong-binding
+owner tiles on the moving faces), **contents** (secrets and dudes beyond),
+**topology** (the counterfactual) -- and reports which plane decided and
+which others disagreed. On the owner's thirteen attested E1M1 cases it
+recovers **7 of 13**, against 5 for the topology-only version: position 3,
+contents 5, topology 5. `reports/blood-role-v2.md`.
+
+The six misses are each traceable, and two are the most useful output of the
+run. s4/s50/s51 are unplaceable because the swept blocking state is unknown
+-- the parked polygon sweep. **s125's curtain is misnamed an ambush because
+its tile (146) has no owner binding**, so the plane that would have called it
+a furnishing is silent by the rule rather than guessing. A binding for 146
+would fix it; that is a request, not a tuning knob. Features were **not**
+tuned to hit thirteen labels.
+
+The owner has attested one map, so there is no held-out test and **the
+cross-cut frequency is uncharacterised**.
+
+**3. The retrieval surface predated most of the knowledge.**
+`bloodmap/knowledge_index.py` indexes the owner anchors, the pattern catalog,
+every versioned knowledge file, every report (JSON *and* prose-only -- the
+rotating-door census has no JSON and was unreachable), the bundle's
+per-sector readings, and the promoted constructors. 334 entries, every one
+naming the file it came from and its grade: **OWNER**, **DERIVED**,
+**INTERPRETED**. `llmapper knowledge "332"` / `"swinging doors"` /
+`"E1M4 sector 26"` all answer with sources from one entry point; a query
+nothing knows about relaxes and says so rather than answering no.
+`design-index` indexes maps by fingerprint and is a different axis; neither
+subsumes the other.
+
+---
+
+# Pattern Zoo — standing infrastructure, 2026-09-01
+
+The playable half of the batched review queue. `projects/pattern-zoo/` is a
+generated gallery in which every pattern, mechanism and constructor the
+pipeline has learned stands as one labelled exhibit, so the owner can walk
+it, try everything, and send corrections **per exhibit label**.
+
+Generated from a registry, never hand-placed. A conformance test fails when a
+public constructor has no exhibit and no explicit skip reason, which is what
+keeps the zoo current: **future constructor promotions must add an exhibit.**
+
+Labels are unique and stable, because owner feedback arrives by label name.
+Tour sheet: `reports/archive/pattern-zoo-tour.md`.
+
+## What v1 taught, 2026-09-01
+
+The owner walked v1 and it failed **conceptually**. Not one door worked. Every
+exhibit had hand-assembled its own `sector_behavior` dict and never set the
+sector *type*, so the map contained **zero type-600 sectors** and the XSECTOR
+data sat on type-0 sectors, which the engine ignores entirely. Alongside that:
+mannequins floated (a floor sprite's z is its *centre*), the shelf run was a
+sprite thrown at a wall (a shelf is a wall texture on shallow sectors), crates
+were sprites (a crate is a sector volume wearing crate textures), and every
+stall was 1.5 player heights against a campaign median of 1.96, so the facades
+had no room to be facades.
+
+v1 passed structural validation, byte-exact round trip, an NBlood load smoke
+and twenty-four renders. **Every gate it passed was a gate about depiction.**
+
+Two rules came out of it, and both are now enforced by the suite:
+
+1. **A showcase is assembled from the constructors that own each concept**, or
+   it is an honest EMPTY stall with the gap lettered on the wall. Re-deriving a
+   mechanism from parts inside an exhibit is how the type came to be missing.
+2. **It is verified by the understanding stack reading it back.**
+   `projects/pattern-zoo/selfread.py` reads the built map with
+   `bloodmap.effects` and `bloodmap.conditional` -- the same code that reads the
+   campaign -- and checks every registry claim against what that reading finds:
+   the sector type, the design object, the trigger, the channel, the key. A
+   dead map fails the build. Two further checks catch what the owner found by
+   walking: nothing the builder seated on a floor may hang off it, and no stall
+   may be unreachable from the start.
+
+The one-line version, for anything else the pipeline ever ships to a player:
+**depictions pass renders and fail players.**
+
+## What v3 taught, 2026-09-01: the knowledge was already here
+
+The owner's verdict on v3 was that the knowledge existed in this repo -- in
+the campaign corpus, in blood-city, in owner-anchors -- and the build neither
+consumed nor enforced it. The corpus audit bears that out precisely. Every
+tile error the zoo shipped was already answerable from a table nobody had
+compiled: 400 is a facade backdrop the owner had labelled, 2026 is a shelf the
+campaign only ever hangs on walls, 502 is a grate that appears 27 times as an
+over_picnum and never on a floor.
+
+So the fix is not more knowledge, it is **plumbing**: the usage-kind table is
+mined once, stored in knowledge, read by a validator, and run by the zoo's own
+gate. A build can no longer pass a gate the rest of the pipeline would fail it
+on -- which is exactly how v3 shipped eighteen transparency violations inside
+the exhibit that teaches the transparency law.
+
+A third rule arrived with the rebuild and is enforced by review rather than by
+test: a stall is a **habitat**, not a box. Its size, material and dressing are
+derived from that mechanism's own mined evidence and constitute a claim about
+correct usage. Where a habitat needs a technique no constructor owns, the
+honest-empty rule applies to the *dressing* too: the mechanism is built in a
+plainer room and the gap is recorded in the registry's `hand_composed` field,
+which the tour sheet prints as a promotion candidate.
+
+## What v2 taught, 2026-09-01: sections
+
+The owner walked v2 and rejected its **shape**. The mechanisms worked, and it
+was still wrong: a corridor of one-exhibit cells is not a gallery, and a
+mechanism shown in a generic box says nothing about how it is used. The
+habitat rule had been applied one room at a time, which is too small a unit
+for it to mean anything.
+
+v3 is therefore built out of **sections**. A section is one environment --
+a shop, a street, a sewer, a park -- holding the several exhibits that belong
+together in it, and the section is the habitat claim. The SHOP section is
+E6M1's shop re-expressed through our own constructors, which is also what
+functional zoning (Phase 6) looks like when it is built rather than read.
+
+Two structural facts fell out of building it, and both are general:
+
+**A label cannot go on the wall of the thing it names.** An exhibit is
+entitled to open all of its own wall -- a doorway, a park, a frontage -- and
+letters hung across an opening are refused, correctly. So every bay is
+preceded by a **pier** of solid wall, sized from the word it has to carry and
+one unit wider so the label can be justified hard against the bay it names.
+Centred on a tight pier, a label reads as belonging to either neighbour.
+
+**The representation taxonomy is checkable, and worth checking.** A concept
+realized at the wrong level is a build failure, not a style choice: a shelf is
+wall texture on shallow sectors, a crate is a sector volume, a mannequin is a
+sprite, a grate is a maskwall panel. `selfread.py` now asserts, per exhibit,
+that a tile claimed as wall texture is on that exhibit's own walls and is not
+thrown anywhere as a sprite. It also enforces the owner's **transparency law**
+-- no mask-carrying tile on any floor or ceiling, 0 of 28158 campaign non-sky
+surface slots -- and that check caught two violations in this very build: the
+tile museum wearing sprite tiles on its panel floors, and the sewer grate laid
+underfoot.
+
+## Engine usage laws, 2026-09-01
+
+Four laws about **where a tile may go**, each sourced in the engine, measured
+on the campaign, and registered in `bloodmap.rules_blood` so authored-map
+validation and the zoo's self-reading gate both enforce them. Grades are in
+`knowledge/blood/design/rules-v1.json`; the table they read is
+`knowledge/blood/design/usage-kinds-v1.json`.
+
+```text
+mask-tile-off-plain-surfaces     0 / 78805   engine.cpp:2902 ceilscan,
+  a mask-coloured tile never goes on a floor, a ceiling, or a one-sided
+  wall's picnum. Those have nothing behind them, so the engine draws the
+  frame buffer through the holes. 0 of 26383 non-parallax surface slots and
+  0 of 52422 one-sided wall slots. TWO tiles break it on two-sided walls
+  across 23 of 60839 slots -- 142 and 2464 -- which is where the owner's
+  suspected door-leaf exception lives and is too few to name a family, so
+  the rule leaves two-sided walls alone.
+
+parallax-wears-a-sky-tile        0 / 1775    usage-kinds sky_family
+  a parallaxed surface wears a tile from the sky family, which is DERIVED
+  and turns out to be exactly three: 2500, 3491, 3678. They are backdrops
+  rather than skies -- 3678 is a dark rock face used as a cavern roof 363
+  times -- and all three are 64x400.
+
+sky-tile-is-parallaxed           5 / 1780    tiles.cpp:281 tileUpdatePicSiz
+  and the mirror: a sky tile on a surface carries the bit. Without it the
+  strip is sampled through picsiz as 64x256. The campaign slips 5 times.
+
+tile-sits-in-an-attested-slot    tautological, and useful anyway
+  a tile goes in a slot the campaign is attested to use it in. Its grade is
+  0 BY CONSTRUCTION, because the table is mined from the corpus it is graded
+  against -- so the number means nothing and the rule is a WARNING tier. Its
+  value is entirely on authored maps, where it caught shelf goods laid on a
+  floor, crate tiles on a ceiling, and six sprite cut-outs painted on walls.
+```
+
+**The aspect law already existed and was already enforced.** The owner's list
+had it as a fourth violation; `flat-tile-power-of-two` has been in
+`rules_blood` and in `PlanarLayout._validate_flat_tiles` all along, and the
+zoo -- which builds through PlanarLayout -- never broke it. The finding is
+that it INTERLOCKS with parallax: all three sky tiles are 64x400, so a sky
+tile on an ordinary ceiling is wrong twice, and the aspect law's exemption
+for parallax surfaces is not a loophole but the other half of the same fact.
+
+**Slot correctness is not the whole of usage.** `usage_kinds.overused`
+compares a map's share of each wall tile against the campaign's. Tile 400 is
+a multi-storey facade backdrop with 48 wall slots in 43 maps; the zoo made it
+the default gallery wall and used it 162 times in one level -- 786x the
+campaign rate, every use in an attested slot, every one passing the
+usage-kind check. That is the crudest possible instrument and it found the
+largest error in the build.
+
+## Two payload shapes the model could not name
+
+`effects.payload_shape` reads what the ARRANGEMENT of flagged walls means,
+where before the model could only list which walls moved. Measured over the
+campaign's 659 swept sectors:
+
+```text
+340  nothing moves                sprite payload, or an unmarked type
+154  part of the sector travels   E1M1 s63, the plain slide door
+104  the sector resizes itself    OPPOSITE flags: one end advances while the
+                                  other retreats, so the sector's own extent
+                                  changes and the texture between deforms.
+                                  E1M1 s125 is the curtain; s4 is a two-leaf
+                                  door built the same way
+ 44  boundary re-partition        ONE flagged wall, and it is the portal to a
+                                  neighbour: its travel moves the line
+                                  between two sectors, so plan area passes
+                                  from one to the other. E1M1 s28 and s30 are
+                                  the casket
+ 17  the whole sector travels
+```
+
+Both named shapes are now constructors: `mechanism.curtain` and
+`mechanism.planar_door`, each built from E1M1's own fields rather than from
+memory. `PlanarLayout.carry_wall` is what made them possible -- until it
+existed there was no way to say which walls a Marked slide drags, and two
+whole classes of Blood mechanism could not be authored at all.
+
+## Promotion queue, 2026-09-01
+
+Promoted in this run, each with a zoo exhibit the conformance test holds it
+to: the four usage laws above; `PlanarLayout.carry_wall` and `paint_wall`;
+`mechanism.curtain` (CURTAIN); `mechanism.planar_door` (CASKET);
+`mechanism.shade_wave` (CASKET, on the cover); `aperture.maskwall_panel`
+(SEWER AND TECH, which had its grate lettered as a gap until this existed);
+`effects.payload_shape`; `furniture.place` and `furniture.mounting_for`.
+
+Queued, ranked by recurrence x cost. Recurrence is how many
+`projects/blood-city/level/*.py` modules reach for the technique by hand.
+
+```text
+rank  technique                     recurrence  why it is not done here
+1     ROR links CONDITIONED by      --          DONE 2026-09-01, and one
+      cover position                            expectation it disproved;
+                                                see below
+2     a lift constructor            --          DONE 2026-09-01:
+      (floor-travelling z-motion)               mechanism.lift, built to
+                                                Vanilla/MACHINERY-LIFT.map;
+                                                it needs no markers, because
+                                                the z pair IS the state pair
+3     porch                         10          street anatomy, with kerb
+4     grate/grille placement        9           HALF DONE: maskwall_panel is
+                                                the wall case; a free-standing
+                                                grille sprite is not
+5     jamb dressing 195 + 200       5           the reveal is built by hand in
+                                                every door exhibit
+6     kerb                          5           needs street anatomy first
+7     a service run                 --          four pipe sectors chained by
+                                                hand in the zoo
+8     shop fittings on PlanarLayout --          templates.py owns them on the
+                                                levelprog stack and cannot be
+                                                called from a PlanarLayout
+9     free-standing volumes         --          PlanarLayout refuses a region
+                                                wholly inside another, so a
+                                                crate cannot stand in the
+                                                middle of a floor
+10    wall-level interaction route  --
+
+Added 2026-09-01 from the owner-requested sweep of PROJECT MAPS (sources
+beyond blood-city; several are MechanismDecl-shaped sentences and should
+land as its first citizens):
+
+```text
+rank  technique                     source & why
+11    WATER LINK pair               reasoned-authoring-v1 candidate_v6 — the
+      (kMarkerUp/LowWater, data1-   repo's reference artifact for links (ROR
+      paired, congruent underwater  debugging diffed against it); a link-
+      volume ELSEWHERE, Underwater  primitive dialect (medium change), and
+      flag; + ripple helper)        the harbor/bay wishlist needs it
+12    PROSCENIUM / stage            l3_theatre — measured law already ("a
+                                    stage under a LOWER ceiling than the
+                                    house; one-max-step rise; 20k arch"),
+                                    owner-approved on the Theatre Row walk;
+                                    the curtain's natural habitat
+13    BREAKABLE GLASS pane          l3_theatre — two-sided gib wall with a
+                                    shop behind; conditional already READS
+                                    kWallGib, nothing writes it; storefronts
+                                    for the city overhaul
+14    STAGED EXPLOSION chain        l3_foundry dock (channel 30) + the
+                                    crack->exploder vocabulary from DNE3L6 —
+                                    an irreversible-spectacle sentence
+15    HATCH link + join-by-faces    vertical-fragment — _hatch_link and the
+      (against/side_of idiom)       against()/side_of() face-joining helpers
+                                    that levelprog's faces should absorb
+16    AMBIENT SOUND placement       setpieces.sound_gizmo + the measured
+                                    blood-wiring-placement heights (0 and
+                                    6400 as the two practices) — promote
+                                    with mined defaults
+17    the VOLUME-ON-FLOOR family    setpieces raised_solid/stepped_solid/
+      (counter, altar, basin,       inset/canopy/stall — blocked on rank 9
+      stall, canopy...)             (free-standing volumes); when rank 9
+                                    lands, this whole family moves into
+                                    bloodmap with it
+```
+
+Synergy note: reports/archive/E2M2-mechanism-patterns.json (fan-out TX/RX, single
+motion gates) has been waiting for "a mechanism view in the catalog" —
+MechanismDecl IS that view; when it lands, the E2M2 compositions become
+sentence templates rather than a stranded report.          doors.py models the sector
+      in doors.py                               route; the XWALL one is unread
+11    command-verb reading on the   --          command 5 on E1M1's curtain is
+      bus                                       unread by the whole stack
+```
+
+**Not promoted on purpose.** `aperture.facade_run` stays a helper rather than
+a `vocabulary` constructor, for the reasons its own report gives: the second
+half of the admission rule -- a compact parameter set reproducing held-out
+examples -- has never been run.
+
+## Rank 1, done 2026-09-01 -- and one thing it disproved
+
+`PlanarLayout.stack_link` builds a room-over-room pair: two marker sprites,
+types 11 and 12, matched on their XSPRITE `data_1`, on **statnum 0** because
+statnum 10 is culled at load and a link built there is a link that does not
+exist. Making a link declares the plan overlap it necessarily has, which is
+otherwise refused. `reachability.link_pairs` finds the result.
+
+`conditional.conditioned_links` and `repartition_edges` close the two model
+gaps together. A stack link one of whose sectors is a boundary re-partition
+mover is no longer treated as always open: it becomes a conditional edge
+gated on that mechanism's channel, with its cause chain. That is what makes a
+planar door a topology change at all -- it has no portal that opens or shuts,
+so every route through one had been invisible, and the zoo's casket could
+claim no trigger.
+
+**And the framing it disproved.** The expected picture was that at rest the
+cover lies ACROSS the link and no body passes, and that opening the lid
+uncovers it. E1M1's own casket does not do that: on BOTH halves the link
+marker sits deep inside the hole, well clear of the band the boundary wall
+sweeps. So `covered_at_rest` is measured and REPORTED, and the edge is gated
+on the structural fact instead -- that one side of the link is a
+re-partitioning mover, so the plan area the link plane sits in changes hands.
+The intuitive story is not what those fields say, and the code records the
+measurement rather than forcing the story onto it.
+
+
+## DOOR-CURTAINS, and what a curtain actually is, 2026-09-01
+
+`maps/blood/mechanism/Vanilla/` is a second tutorial folder -- one
+single-mechanism map per file, DOOR-SLIDING, DOOR-SWINGING, DOOR-ROTATING,
+DOOR-PORTCULLIS and the rest -- and DOOR-CURTAINS.map alone carries
+twenty-five curtain exemplars. It settles two things this project had wrong.
+
+**Markers are state-anchored, and that is now the primitive.** Type 3 is the
+position FOR STATE OFF, type 4 the position FOR STATE ON; the mapper draws
+the geometry at the ON pose and `state` decides which one it snaps to at
+load. There is no from/to journey and no rest marker. Verified to the
+coordinate on s3, s6 and s8, and `motion.drawn_pose` confirms every moving
+sector in the map -- and both planes of the oracle casket -- is saved at its
+ON pose. Consequences:
+
+* a state-0 sector displacing itself by the whole marker separation at load
+  is the NORMAL case, not a smell. It is how a curtain drawn open comes up
+  closed, and the swept gate now says so only when the displacement and the
+  separation DISAGREE;
+* the oracle's s2 state=1 is not a mystery and not a leftover: drawn at ON,
+  meant to start there;
+* our from/to model was wrong in both directions, which is why the zoo's
+  curtains ran backwards.
+
+**A curtain is an internal FIN.** s3 is eight walls: the four sides of the
+doorway, then the outline runs back along the anchored edge and out into a
+narrow tab -- 64 wide of a 256 opening, centred -- whose free END is the one
+flagged wall. Drawing it across stretches the tab's two sides. Because every
+moved vertex is interior to the sector's own outline, the isolation seam is
+PART OF THE SECTOR and nothing outside can deform: `motion_set` returns
+exactly `[s]` for s3, s24 and s53. Not a thin separate sector, and not the
+pair of opposed caps we built from E1M1 s125 -- that is a different, double
+arrangement, and the basic form is one fin.
+
+Also demonstrated there, one sector each and all fixtured: s6 self-closing on
+`wait_time`, s8 keyed, s24 the same law drawing along x instead of y, and s21
+driving a light on **command 5** -- kCmdLink, which `SetSpriteState` excludes
+from its evSend guards precisely because it couples state continuously
+instead of firing an edge.
+
+**The rule that follows: consult maps/blood/mechanism FIRST for any mechanism
+question, and fixture what you consult.**
+
+## The curtain family, and the rendering law, 2026-09-01
+
+Supervisor assignment P1. The wave-1b curtain deviation was right to refuse;
+re-reading the engine around it found that the constructor knew ONE of four
+attested dialects, and that the deviation had a second half nobody could see.
+
+### The census, re-run
+
+43 campaign maps, **39** type-614 sectors wearing 146/147: **26 one flagged
+wall, 12 two, 1 three** (E2M1 s95, not a dialect anything builds). 27 void
+slots, 12 not.
+
+A first pass gave 40 and 13 two-leaf. The extra was
+`maps/blood/campaign/ASAVE1.map` -- a SECOND editor autosave still sitting in
+the campaign directory after the first was pulled, different content, whose
+s125 duplicates E1M1's curtain exactly. Moved to the holding pen. The corpus
+is 43 campaign maps again and the census matches.
+
+### Four dialects, not one
+
+| source | leaves | slot | what it teaches |
+| --- | --- | --- | --- |
+| DOOR-CURTAINS s3 | 1 | void | the tutorial; fabric one-sided, XWALL push |
+| DOOR-CURTAINSD s2 | 2 | void | tips carry OPPOSITE flags, so leaves converge |
+| DOOR-CURTAINSD s4 | 2 | **pocket** | slot is a real sector; pocket-side wall MASKED with over 1060 |
+| E1M1 s125 | 2 | void | a PELMET on a stepped two-sided wall, and a command-5 Link to s124 |
+
+`curtain_spec` takes `leaves` and `slot`; `curtain_dialect` names which one a
+built sector is.
+
+### The rendering law, which the project had never asked
+
+`engine.cpp:4938-4940`: a wall's middle band is drawn from `picnum` only when
+the wall is ONE-SIDED, and from `overpicnum` only when it is two-sided AND
+one-way; otherwise a two-sided wall reaches its middle band only through the
+masked path. **So fabric on a two-sided unmasked wall shows on the step bands
+and nowhere a body walks.**
+
+The city's curtain was exactly that. It had a ceiling step, so its tile drew
+as a valance above head height -- accidentally the E1M1 pelmet -- and nothing
+in the walkable band. "Not built as a curtain" also meant "not visible".
+
+### Why carving the fin was wrong twice over
+
+The tree idiom carved the fin's own outline out of the auditorium, so hole and
+room were the SAME polygon: all eight walls coincided and all eight paired as
+portals. That made the motion drag the house (`DragPoint` walks `nextwall`,
+triggers.cpp:817-854; a flagged wall also drags its `point2` when unflagged,
+:897-910) AND made the fabric two-sided, hence invisible.
+
+DOOR-CURTAINS s3 does it the other way: the slot is a NOTCH and the space
+inside belongs to nobody. So the house gives up the DOORWAY RECT, the fin
+stands inside it, and the notch stays solid void. City s37 now reads
+`motion_set [37]`, `fabric_visible 3/3`, `closed_texel_scale [2.0, 2.0, 2.0]`.
+
+### Two templates that would have rejected the tutorial
+
+Worth recording because both were nearly shipped.
+
+**"every fabric wall must be visible"** fails DOOR-CURTAINSD s4, which has six
+fabric walls and two visible -- the masked pocket pair. The rule is at least
+one PER LEAF.
+
+**"closed texel scale 2.0 +/- 0.35"** fails s2 (1.33) and E1M1 (2.83, 4.0).
+Measured over 355 fabric walls in the originals: 2.0 is the mode by a
+distance (171 of 355) and the attested envelope runs 1.0 to 8.0. The
+constructor authors the mode; the gate flags the envelope. The defect it was
+written for measured 96.
+
+### The closure, walked the engine's way
+
+`motion.drag_closure` follows `nextwall` as `DragPoint` does, rather than
+matching coordinates. On the four originals and the rebuilt city the two
+**agree** -- a negative result worth keeping, since the coordinate reading can
+over-report and never under-reports.
+
+### The 256 was a mechanism running backwards
+
+Reported first as an imprecision: the two-leaf repeat derived from `span/2`
+= 1536 while the swept closed length measured 1280, leaving the pair at texel
+1.67 instead of the 2.0 mode. Inside the attested envelope, so every gate
+passed it.
+
+It was not an imprecision. **Both leaves were travelling OUTWARD.** Each tip
+began 128 inside the doorway and ended 1280 past its own jamb: the pair
+rested OPEN and "closing" retracted it out of the opening. The 256 was the
+two retractions.
+
+Which leaf carries which flag is not free. DOOR-CURTAINSD s2: span y -3072
+(low) to -1024 (high), marker delta +960 toward high, LOW-end tip `0x8000`
+AGAINST and HIGH-end tip `0x4000` WITH. Ours had them swapped. Corrected,
+both tips close to exactly midspan, `closed_len` is span/2 as the derivation
+always assumed, and the texel scale is 2.0 on all six fabric walls.
+
+The lesson is about the gates, not the flags: a number sitting comfortably
+inside a tolerance was the only visible trace of a mechanism that worked
+backwards. `tests/test_attested_constructs` now asserts the two tips MEET,
+and meet at midspan rather than at a jamb.
+
+### The city's state preview
+
+Filed as missing in wave 1b and built: `work/_city_state_preview.py` snaps the
+map to each pose and renders the house. OFF shows the fabric drawn across the
+proscenium at natural scale; ON shows it gathered. It also states both ends of
+the light the Link drives -- stage s24, rx 341, amplitude -24, shade 32 -> 8 --
+because `sectorfx.cpp:161-166` scales that by busy at runtime and a static
+render cannot show it moving.
+
+## The rendering law, made a reader, 2026-09-01
+
+Supervisor assignment P2, after a first attempt died mid-run (its work was
+committed untested as `f8f45fa` and is merged here). P1 had already read
+`engine.cpp:4938-4940` correctly and put the conclusion inside
+`conformance.fabric_is_visible`. This finishes the job: **one reader owns
+the law**, `bloodmap/render_slots.py`, and conformance calls it.
+
+### What the engine draws, transcribed and cited
+
+`classicDrawBunches` (`engine.cpp:4498-...`) and the deferred
+`renderDrawMaskedWall` (`:7189`). Vanilla; nothing here is under
+NOONE_EXTENSIONS or gModernMap.
+
+| band | tile | condition | lines |
+| --- | --- | --- | --- |
+| one-sided middle | `picnum` | `nextsector < 0`, ceiling to floor | 4938-4940 |
+| two-sided upper | `picnum` | neighbour's ceiling lower at either end; skipped when both ceilings parallaxed | 4688, 4690, 4720 |
+| two-sided lower | `picnum`, or the PARTNER's under `cstat&2` | neighbour's floor higher at either end; skipped when both floors parallaxed | 4799, 4801, 4832-4833 |
+| masked middle | `over_picnum` | `(cstat&48) == 16` -- masked AND NOT one-way; between `max(ceilings)` and `min(floors)` | 4685-4686, 7217-7218, 7231 |
+| one-way middle | `over_picnum` | `cstat&32`, through the white-wall branch, opaque | 4938-4940 |
+
+Blocking (`cstat&1`) and hitscan (`cstat&64`) draw nothing: neither bit is
+read in the wall pass, they are clip masks (`clip.cpp:1491`, `build.h:225`,
+`:226`). Sky is a SURFACE bit: it removes the two step bands when both
+sectors carry it and does nothing to a white or one-way wall. The mirror is
+a LOAD-TIME edit -- `mirrors.cpp:466-469` forces `CSTAT_WALL_1WAY` on and
+copies 504 into `overpicnum` before anything is drawn -- so the file and the
+running level disagree about the flags, and `render_slots.mirror_pass`
+applies it. The campaign has 8 mirror walls, and the one red one draws a
+`oneway_middle` that reading the file's cstat would miss.
+
+### Two things this reader says that the project had written down wrongly
+
+**E1M1's pelmet is tile 109, not 146.** Walls 1203-1207 (s125, ceiling
+-10240) face s122 whose ceiling is -75776. The neighbour's ceiling is
+*higher*, so on the curtain's side no upper step exists at all (`:4690`).
+The step is on s122's side and its walls 1102-1106 draw their own `picnum`
+109; their `over_picnum` 146 is behind cstat 0x6 and never read. **Tile 146
+on those five walls is drawn nowhere** -- the "attested valance" is an editor
+leftover, and the city curtain's excuse ("accidentally the E1M1 pelmet") was
+an excuse for reproducing the same invisibility. Fixtured.
+
+**DOOR-CURTAINSD s4's pocket dialect shows 1060, not 146.** Walls 28, 32, 37
+and 41 (cstat 0x51) draw `masked_middle 1060` at the full 24576 opening; the
+146 on their `picnum`, and on the flush pocket walls, is never on screen.
+
+### The gate, and the rate that grades it
+
+Three formulations of "a tile authored on a wall is drawn somewhere",
+measured over the 43 campaign maps:
+
+```text
+per wall            28539 / 107785   26.5%   note      wall-draws-its-own-tile
+per sector x tile    4515 /  27104   16.7%   (not registered)
+per map x tile         97 /   1979    4.9%   warning   wall-tile-is-drawn-somewhere  <- THE GATE
+```
+
+Per wall it is the editor's habit -- Build copies the previous wall's picnum
+on insert and nobody clears it -- so a rule there can only ever be a note.
+Per map it separates a leftover (drawn elsewhere in the same map) from a lost
+material (drawn nowhere): E1M1 loses none, E3M4 loses one.
+
+**Fail first, on a real map.** `blood-city-current.MAP` as committed at
+**8c42701**, before P1's rebuild: 6 of 32 authored wall tiles lost, tile 146
+on walls 276-278 among them. The test pulls that blob with `git cat-file` so
+the anchor outlives the fix. After the rebuild: 146 is gone from the list and
+**five tiles remain** -- 68, 93, 203, 1011 (the parlor, church, theatre and
+crypt `Material.opening` fields) and 194 (`sewerkit.MOUTH_TILE`), all on
+flush unmasked doorway thresholds. The curtain's defect, in four more
+districts. Owner queue item 9. The zoo loses zero and now runs the gate as a
+LAW rule.
+
+### usage-kinds by rendered slot
+
+`knowledge/blood/design/usage-kinds-v2.json` sits beside v1 with a diff in
+`reports/blood-usage-kinds-rendered.{json,md}`; `tools/mine_usage_kinds.py`
+is the mine. Tile 146, the test case: v1 said `wall_two_sided 129`; rendered
+that is **71 lower steps, 3 upper steps, 55 drawn nowhere, 0 masked
+middles** (173 + 71 + 3 + 55 = 302 = v1's 173 + 129, exactly). The mask law
+restated by band names the same two tiles the owner already ruled on -- 142
+and 2464 -- out of 79982 opaque band draws. 14 tiles v1 called "attested on
+walls" have no rendered wall slot at all.
+
+`usage_kinds.unattested_uses` judges walls by band when v2 is present, which
+is how the city's 12 tile-202 lower steps became visible to the attested-slot
+warning; surfaces and sprites are unchanged.
+
+### What is still unproven
+
+* Occlusion, room-over-room and the `yax` paths are not modelled: a band that
+  draws is a band the engine would rasterise if nothing stood in front of it.
+* Heights are read in the SAVED pose. A door saved closed whose material only
+  draws when open is reported as it is saved.
+* Slope endpoints use an exact integer square root where the engine uses its
+  `nsqrtasm` table, so a sloped z can differ by a unit; no step decision in
+  any campaign map turned on that unit, but that is a check, not a proof.
+* Polymost (`polymost.cpp:6528`) branches on the same
+  `(nextsectnum < 0) || (wal->cstat&32)`; it was not transcribed line by line.
+
+## The walk fixes, 2026-09-01
+
+The owner walked the rebuilt zoo. Casket works, lift works, curtains open the
+right way. Three mechanisms were still wrong and one was merely ugly, and all
+four were diagnosed against the ISOLATED tutorials rather than embedded
+campaign cases -- the owner's rule, and it paid: a tutorial shows one
+mechanism with nothing else in the way.
+
+**A crack is a THING, not a switch.** `#SPR408.MAP` spr0 is the record: type
+408, tile 1127, cstat 722, on the THING statnum 4, transmitting on Impact --
+damage landing -- and not on Vector, which is a hitscan crossing. The zoo had
+given it a switch's wiring, so it never fired. It had also omitted the part
+that makes a breach read as one: a CASCADE of three type-459 exploders (tile
+908, statnum 11) on the crack's own channel, staggered 2/1/1, plus the
+type-600 sectors that collapse on the same channel. Without them a wall does
+not blow, it silently stops existing. `motion.crack_thing`, `thing_transmitter`
+and `exploder` build the whole record, and `thing_faults` makes a type-408
+without the thing statnum or without impact triggering a constructor-level
+error.
+
+ENVIRONMENT-EXPLODEWALL is the second oracle and it DIFFERS in four fields:
+cstat 464 rather than 722, no Once on the crack, exploders with no
+`trigger_on` and a wider 0/3/6 stagger. The owner's queue also cites E1M4
+sprite 373 at cstat 209. Three sources, three cstats -- the isolated single is
+preferred, and the difference is fixtured so it stays a known fact.
+
+**A key pickup must wear the key it grants.** Mined over the 43 campaign maps:
+95 key pickups, six item types, and every one wears `2452 + type`. No map ever
+dresses a key as another key. The zoo granted the moon key (type 105) and
+placed the SKULL key's tile (2552): the lock opened and the thing on the floor
+was the wrong key. `keys.world_picnum` and `keys.pickup` derive art and type
+together so they cannot drift, and `keys.pickup_art_faults` is the
+readability check.
+
+**A secret is credited with a NUMBER.** `OTHERSECTORSFX-SECRETS.map`:
+`kChannelSecretFound` is 2 and `kCmdNumberic` is 64, so command 64 means
+secret 0 and 65 means secret 1. The zoo sent command 1 -- kCmdOn, a verb --
+and nothing declared the level total on channel 1, which every campaign map
+checked does. `motion.secret_credit`, `secret_total` and `secret_faults`.
+
+**A curtain is calibrated for its CLOSED span.** Measured across the whole
+DOOR-* family, natural texel scale is `length / x_repeat == 2 * tile_width`
+-- 3440 walls sit exactly there. DOOR-CURTAINS s3 and s53 carry x_repeat 16
+over a 1024 CLOSED span on tile 146 (32 wide), which is natural to the unit;
+s24 is the one exemplar at twice that. Because the geometry is saved at the
+ON pose, sizing the fabric to what the file shows is sizing it to the gathered
+bundle: ours came out at texel scale 96, forty-eight times natural. Now the
+repeat is computed from the OFF span, so the drape is natural shut and
+squashes to 0.08 open, which is what cloth does. Also: only the three FABRIC
+walls wear the fabric now -- the tutorial's s3 is eight walls and exactly
+three carry tile 146, and we had put curtain on the door frame.
+
+### Two bugs the texture work turned up
+
+**`off_pose` was translating the whole sector.** It subtracted the marker
+delta from every point instead of moving only the motion set, which is right
+only when the whole sector travels. A fin moved bodily instead of stretching,
+so its closed span measured the same as its drawn one and the fabric could
+not be calibrated at all. It delegates to the sweep now.
+
+**A sweep starts at the REST pose, not at busy 0.** `blood_sweep` runs from
+where the sector rests outwards, so `frames[0]` is busy 65536 for a state-1
+sector. Everything reading `frames[0]` as "OFF" printed such a mechanism
+backwards, and the zoo's two casket lids are exactly that. `motion_sim.
+blood_poses` returns (OFF, ON) whatever it rests at, and the state preview and
+state check now use it.
+
+### The mask law's scope has a reason now
+
+The owner ruled on both tiles. 142 is a skull-shaped FIREPLACE maskwall --
+not curtain family despite the 140s run -- and its two-sided uses are the
+legitimate see-through mouth, which is exactly the masked-overlay case the law
+permits. 2464 is an ejected shell casing and its two slots are accidents. The
+implementation does not change; the reasoning does, from "23 slots is too few
+to name a family" to a ruling. The rule text, the usage-kinds docstring and
+`tests/test_usage_laws.py` carry it.
+
+That ruling immediately broke something else, which is the useful part: the
+new strong anchors put 142 into the tile museum's strong-binding set, and the
+museum paints niche walls without distinguishing one-sided from two-sided --
+so the exhibit that teaches the transparency law shipped three violations of
+it. A tile attested only on two-sided walls now goes on the niche's OPENING as
+a `maskwall_panel`, which is the only two-sided wall a niche has.
+
+## The curriculum, mined, 2026-09-01
+
+`maps/blood/mechanism/` is a taught course, and it ships with its own
+981-page manual (`xmapedit.pdf`, XMAPEDIT 3rd ed. 2025). 136 maps mined,
+1291 constructs read, **17 laws** with detectors. `Modern/` is deliberately
+unmined: it is the NBlood-extension dialect and mining it as vanilla would
+put extension behaviour into base-engine laws. It is a queued phase.
+
+**Six of the seventeen laws CORRECT this project** rather than extend it, and
+three of those correct work from the run immediately before.
+
+Deliverables, so the retrieval surface is findable:
+
+```text
+knowledge/blood/design/mechanism-curriculum-v1.json  facts + laws + evidence
+reports/archive/blood-mechanism-curriculum.md                what it found, readably
+reports/zoo-state-check.json                         every mechanism measured
+                                                     in BOTH states
+reports/archive/owner-prescreen.html                         the phone state sheet
+bloodmap/curriculum.py, curriculum_laws.py           the mine and the laws
+bloodmap/construct.py                                functional ownership
+bloodmap/arbiter.py                                  single-slot arbitration
+tests/test_curriculum.py                             tier-1 fixtures, incl.
+                                                     BADROR as a NEGATIVE
+tests/test_ownership_and_arbitration.py              ownership + the arbiter
+```
+
+**The pose is not a convention, it is what the loader does.** `trInit`
+translates a moving sector by -65536 of the marker delta, records THAT as the
+base with `setBaseWallSect`, and only then applies the sector's own busy
+(triggers.cpp:2224-2245). So the outline saved in a map is the pose at busy
+65536 -- state ON -- always, whatever the author believed they were drawing,
+and the OFF pose is the drawn outline minus the delta. Confirmed to the unit
+on DOOR-CURTAINS s3. `motion.off_pose` computes it and `motion.drawn_pose` is
+deprecated to a constant.
+
+**A slide reads only the difference between its markers.** `TranslateSector`
+moves each base point by `interpolate(m1, m2, busy) - m1`, so the pair's
+absolute position on the grid is free -- 196 of the curriculum's mechanisms
+place the pair at the two poses and 52 park it elsewhere, and both drive the
+sector identically. The old `drawn_pose` compared a moved vertex against the
+markers' absolute coordinates and called the answer a pose; for the 52 it was
+measuring noise. It is now `marker_convention`, which reports which
+convention is in use and claims nothing more. A ROTATE is different and must
+not be read the same way: its single marker is the PIVOT, absolute position
+mattering, and its `ang` is the ON angle interpolated from 0.
+
+**The button is the surface you touch.** The tutorials do not wire a shove
+with the sector's `trigger_wall_push`. They put an XWALL on each face you are
+meant to push -- type 0 Decoration, tx on the mechanism's channel, Toggle,
+Trigger On Push -- and the sector merely RECEIVES (manual p.239;
+DOOR-CURTAINS s3 walls 38/39/40, whose sector's entire XSECTOR is rx 100, two
+busy times and the marker pair). A commit of mine claimed s3 carries
+`trigger_wall_push`. It does not. `motion.wall_button` and
+`PlanarLayout.wire_wall` build it the tutorial's way, and the payoff is
+twofold: the button is the cloth rather than the whole doorway, and the
+mechanism's one `tx` slot stays free for its downstream effects.
+
+**The edge rule binds switches, not senders.** `SetSpriteState` gates
+`evSend` on triggerOn/triggerOff, so a toggle, one-way or padlock switch with
+neither flag sends nothing -- but a kSwitchCombo sends from its own arm of
+`OperateSprite`, `if (command == kCmdLink && txID > 0)`, outside those guards,
+and kGenTrigger relays and sector-sound sprites transmit by other paths
+entirely. `motion.transmitter` refused all of them, which would have refused
+the tutorial's own relay. The curriculum's six edgeless switches are all
+combination switches on command 5, exactly as the source predicts.
+
+**Motion crossing a storage boundary is the NORM.** 94 of the curriculum's
+swept mechanisms deform more than their own sector, because `dragpoint` moves
+a vertex for every wall incident on it. We treated that as pathology to be
+engineered away. The isolation FIN -- every moved vertex interior to the
+sector's own outline -- is a deliberate construction for when a room must not
+be disturbed, and the same map slides other curtains straight into their
+neighbours where it does not matter. What matters is not whether a motion
+crosses a boundary but whether the construct DECLARED it, which is what
+`construct.check_declared_motion` now asks.
+
+Two more worth keeping. A **path sector fails silently**: `InitPath` prints a
+system message and returns when no marker matches its `data`, leaving a
+typed, wired, motionless sector. And **z motion is state-anchored in exactly
+the same shape as the horizontal** -- `off_floor_z`/`on_floor_z` and the
+ceiling's own pair, chosen by the same `state` -- which is why
+`mechanism.lift` needs no markers at all.
+
+### What a broken ROR looks like
+
+STACKS3DSPACES-BADROR is shipped as a negative example and a reading that
+passes it is wrong. The manual's rules (p.364-365) are congruent halves, 504
+on both facing planes, markers pegged to those planes and not floating,
+`data_1` pairing the links, never two links visible at once, and no
+over-complicated link sector. BADROR passes the first four. What separates it
+is the last: its two link sectors are the only CONCAVE ones among the working
+examples, ten-wall outer loops with the alcoves cut into the boundary, where
+ROR1 and ROR2 keep four- and six-wall convex outer loops and put their
+complexity in inner loops.
+
+That check is a RISK, not a rule, and it is reported as one: `STACKS3DSPACES`
+itself has two concave link sectors and ships as a working example. The
+honest statement is that concavity separates BADROR from the two maps built
+to demonstrate correctness, and not from everything.
+
+### A gate that could not fail, removed
+
+`swept_state` used to report a mechanism sitting away from its drawn outline
+at load. Under the engine law that is not measurable: the base is DERIVED
+from the markers, so a state-0 sector displaces by the marker separation by
+construction and the two can never disagree. The test that was meant to catch
+a disagreement had to move a marker to provoke one, which moved the
+separation with it. It is replaced by a **clearance** check that does fail:
+at every step of the travel, does the moving outline properly cross a wall
+belonging to a sector OUTSIDE the motion set? That is a mechanism sweeping
+through standing geometry, the fault the rotors were always suspected of and
+nothing ever checked.
+
+## The swept gate learned the closure, 2026-09-01
+
+Supervisor assignment P3. The gate swept the mover's own polygon and treated
+every neighbour as static. The engine does neither, and the curriculum's own
+law says so.
+
+### What the engine does
+
+`triggers.cpp:817-854` `DragPoint` sets a vertex for every wall that shares it,
+found by walking `nextwall`: forward through each partner's `point2`, and --
+this is the half both of our readers were missing -- when that walk meets a
+one-sided wall it restarts at the argument and goes the other way through
+`lastwall().nextwall` (`engine.cpp:13227`). `:897-910` a 16384 wall drags its
+`point2`'s vertex too when that wall carries no flag; `:912-926` the same in
+reverse for 32768. The `gModernMap` split in `TranslateSector` (`:874-878`) is
+about reverse-flagged SPRITES, so the wall path is the vanilla path.
+
+### One closure, not two
+
+`motion.drag_closure` and a second walk inside `motion_sim` were both live
+after the merge, and they were not the same function: the short one walked the
+ring forward only, so it under-reported precisely the fin-beside-a-void-slot
+case this project builds most. `motion_sim` owns the walk (it needs the
+per-driver sign and the loops the chains land in, for the sweep);
+`motion.drag_closure` delegates and keeps its published shape.
+`motion_sim` also stops re-declaring `MOVES_WITH` / `MOVES_AGAINST` /
+`MOVES_EVERY_WALL` / `wall_owners` and imports them from `motion`.
+
+### The gate
+
+`blood_sweep(..., by_loop=True)` returns frames for every loop the closure
+touches, keyed `(sector, loop)`; `sweep_health` takes that mapping and
+`closure_health` is the fuller check -- inversion against the DRAWN winding
+(not against frame 0, which would call the drawn pose the inverted one),
+self-intersection, and crossing a wall the motion does not move. The
+fail-first fixture is a `PlanarLayout` slide-marked strip whose flagged wall is
+shared with a thin sector that is inside out at busy 0: the mover's own polygon
+is healthy at every pose, and the previous gate passed it. That is kept as a
+test, not a claim (`test_the_mover_only_sweep_is_blind_to_the_neighbour`).
+
+Wired into `projects/pattern-zoo/sweep.py` (a conformance row) and
+`projects/blood-city/level/build_skeleton.py` (refuses to write the map).
+
+### Two corrections the census forced
+
+**An assembly cannot be judged one mechanism at a time.** The first run called
+10 campaign neighbours inverted and 72 self-crossing. Most were rotor rings and
+boats -- E1M4 s321-s329 around the hub s352, E3M2's fifteen sectors around s16
+-- where several mechanisms drag the same loop and it is whole only when all of
+them have travelled. `co_driven_walls` finds those per WALL; such loops are a
+note, never a problem. 215 campaign and 132 curriculum loops.
+
+**A graze is not a fold.** A 617 rotor hinges on a vertex OF the room it turns
+in, so its leaf tip crosses that room's wall a hair past the corner at small
+angles. `crossing_depth` measures how far two crossing segments reach into each
+other; the campaign's 27 folding neighbour loops split at 13.69 vs 19.98 units,
+and `SWEEP_GRAZE = 16.0` sits in the gap -- also the right order for the
+model's own rounded marker angle (~1.6 units at a 1024 radius).
+
+The two-leaf finding landed while this was being written and it is the right
+warning: a number inside a widened envelope was the only trace of a mechanism
+running backwards. So this tolerance accounts for itself. Every loop carries
+`grazing_steps`, every crossing its `depth` and a `graze` flag,
+`closure_health` returns `graze_tolerance` / `grazing_loops` /
+`grazing_crossings`, and the census prints them beside the findings (2
+loop-poses and 38 crossings in the course, 90 and 449 in the campaign). Set it
+to 0 and every graze becomes a fold; a test asserts that flip still happens.
+
+### Numbers
+
+429 swept mechanisms in the vanilla course (138 maps), 648 in the campaign (43).
+Isolated -- the fin technique -- 109 and 200: one in four. Deform a neighbour
+199 and 412. After both corrections: **zero** inverting or self-crossing
+neighbours in the whole taught course, against 1 and 18 in the campaign, and 2
+crossings against 89. The tutorials are built to a precision the shipped levels
+are not.
+
+The one campaign inversion is `E4M2 s201` (615) dragging `s200`, inside out at
+11 of 17 poses including the pose the level loads in. It is the only instance
+of the supervisor's inside-out case (b), and it is a candidate, not a verdict
+-- nobody has seen it in the engine. Queued for the owner.
+
+Full census: `reports/blood-mechanism-drag-closure.json` (215 KB: summaries and
+the mechanisms that have something to say; the 803 clean ones are counted, not
+listed) and a section in `reports/archive/blood-mechanism-curriculum.md`.
+
+### Still unproven
+
+- Whether the 18 folding campaign neighbours are visible in the engine. The
+  model rounds the marker angle where the engine rounds coordinates.
+- `cuts standing geometry` fires on 89 of 648 campaign mechanisms and 2 of 429
+  curriculum ones. At a 14% campaign rate it is not a build-blocking rule on
+  its own; a 617 leaf swinging through the room it opens into is the dominant
+  shape and may be legitimate.
+- The 69 `coincident but not chained` vertices are read as unwelded map
+  defects on the engine's own logic, but none has been observed tearing.
+
+## Round-trip closure moved to the constructor, 2026-09-01
+
+Supervisor assignment P7. Phase 11 item 3 -- *every constructor's test builds,
+reads back through effects/conditional, and asserts the parse equals the
+grammar sentence the constructor claims* -- was true of the pattern zoo only,
+because the gates lived in `projects/pattern-zoo/sweep.py` and `selfread.py`.
+The city built a curtain that failed conformance and nothing in its build said
+so until P1 added a call by hand.
+
+### One function, and a sentence that is a documented dict
+
+`bloodmap/readback.py`. `read_back(disk, sentences)` takes a built map and the
+sentences it was built from and returns structural equality or typed
+`Difference` records -- facet, wanted, found, and WHICH READER found it, so a
+diff can be re-run rather than believed. Seven readers behind one call:
+`effects.read_mechanism` and `payload`, `conditional.route_edges`,
+`motion_sim.drag_closure` and `closure_health`, `conformance.measure_*`,
+`render_slots`, and the state-pair measurement.
+
+`sentence()` REFUSES an unknown key. A misspelled claim that is silently
+dropped is a gate that measures nothing, which is the failure this module
+exists for; and a claim the source never made is never a difference, or the
+gate starts inventing intent. Facets no reader could measure go in
+`unmeasured` and are printed, never swallowed.
+
+The typed `MechanismDecl` (Phase 13) is deliberately NOT built. The dict's keys
+are what the comparison actually needed, which is the right shape to grow the
+typed layer from.
+
+**The state pair, in memory.** `readback.state_pair` is the measurement behind
+`reports/zoo-state-check.json`, whose generator (`work/_state_check.py`, commit
+929cdc1) wrote out two whole snapped maps and read them both. It needs no
+files: `motion_sim.blood_poses` already transcribes `TranslateSector` and knows
+which frame is OFF for a sector that rests open, and the z pair is in the
+XSECTOR. Four measures -- plan area, headroom, turn, marker travel -- and
+`changes` False is the generator's "NOTHING MEASURABLE CHANGED", with the
+whole-circle rotator exempt because ending where it began IS the mechanism.
+
+### The declared side is DERIVED, not written twice
+
+`sentences_from_layout(compiled, layout=)` reads the sentences off the source
+that built the map: each region's sector type, the XSECTOR its constructor
+asked for, and the payload it declared through `declare_motion`. A second
+hand-written manifest drifts from the source it describes, and then the gate
+compares two stale things.
+
+A curtain is identified by WHAT IT WEARS, not by its region id -- the lesson
+the zoo's sweep paid for, when routing the curtain check on a payload SHAPE
+stopped running the moment the constructor was corrected and the zoo reported
+13/13 conforming because the curtain was never asked.
+
+Worth running on the FINAL disk even though `compile` preflights the motion
+set: the city's facade, lintel and wall-sprite passes edit the compiled level
+AFTER `compile` returns, and the gate inside it saw the geometry before all of
+that.
+
+### The gate fails first, on the real defect
+
+`git show 8c42701:projects/blood-city/level/blood-city-current.MAP` -- the city
+as committed before P1's rebuild -- read back against the sentence its
+constructor claimed:
+
+```text
+PRE-P1   members: wanted [37], found [23, 37]
+             wall 209 of sector 23 shares the moved vertex (25472, 7072)
+             wall 210 of sector 23 shares the moved vertex (25472, 7008)
+         visibility.146.drawn: wanted 3, found 0
+         visibility.146.walkable_band: wanted 1, found 0
+         conformance: fabric is visible -- 0 of 1 per leaf
+CURRENT  all agree; motion_set [37], 146 authored 3 / drawn 3 / walkable 3
+```
+
+Both halves of the defect, and the second is the one nobody could see. Two more
+fail-first fixtures are mis-wired copies of current constructs: a Link receiver
+with `shade_always` set, which `sectorfx.cpp:161-166` makes deaf to busy, and a
+door with an rx that nothing transmits on.
+
+### Coverage, and the rule that keeps it
+
+`tests/test_readback.py`: 35 tests. Ten public constructors build in a minimal
+`PlanarLayout`, read back and assert equality; the two blood-city places from
+the TREE (`turnstiles.pair`/`populate`, `curtains.hang`/`furnish`) do the same
+in a minimal levelprog program, because the level is authored in two dialects
+and a flat-side test proves nothing about the tree side.
+
+`ReadBackRegistry` fails for any public constructor of `mechanism`, `doors`,
+`glass`, `aperture` or `street` with neither a read-back test nor a written
+reason -- the shape of `tests/test_pattern_zoo.ConformanceTest`. 45 public
+callables: 10 covered, 35 skipped with a reason that says what the function
+does INSTEAD of building. Three of those skips are PENDING rather than
+excused -- `aperture.framed_door`, `frame_z_doors` and `facade_run` all need
+ART tile extents to choose a reveal, and this suite has no corpus-free source
+for them. Named so the gap is countable.
+
+Both build scripts now call `read_back` over `sentences_from_layout` and refuse
+the build on a difference: `projects/pattern-zoo/build_zoo.py` after `glaze`
+edits compiled walls, `projects/blood-city/level/build_skeleton.py` after the
+swept gate and after every post-compile pass.
+
+### Two defects the gate found in existing readers
+
+**`motion.rotate_marker` read the wrong sprite for a sector with no marker.**
+`marker_0` is -1 for "no marker" and the guard checked only the top end, so
+Python indexed from the END: a lift -- a z motion, which carries no marker --
+read the map's LAST sprite, and would have reported a pivot and a turn if that
+sprite happened to be a kMarkerAxis. With no sprites at all it raised. Found by
+`state_pair` measuring a lift.
+
+**The interaction reading told a player to find a switch that does not exist.**
+`observe_motion_sector` collected XWALLs from PORTAL walls only, and Blood's
+canonical doors put the push on the sector's own leaf, which is routinely
+one-sided -- `#SLDOOR`, `#SWDOOR`, E1M1 s4, and this project's own
+`mechanism.curtain`. Reproduced on a map built here with no corpus: our curtain
+read `remote_rx`, its three push XWALLs sitting on `next -1` walls.
+
+The engine: `player.cpp:1637-1641` reads the hit wall's own XWALL and operates
+it when `triggerPush` is set, without consulting `nextsector` -- the
+`nextsector >= 0` branch under it is the FALLBACK to the neighbour's
+`Wallpush`. `trTriggerWall` (`triggers.cpp:1865-1884`) then reaches
+`OperateWall` (`:692`), whose default branch calls `SetWallState`
+(`:112-128`), which sends the wall's own `txID` on the state edge.
+
+`observe_motion_sector` now reports `own_xwalls` and routes on it. Over the 43
+campaign maps, 2027 mechanisms, **171 readings change**: 168 `remote_rx` ->
+`wall_push`, and 3 lose a `+remote` suffix that was never a second route --
+that channel is how a wall reaches a sector at all. Owner queue item 12; the
+mined door precedents under `knowledge/` are stale by 8.4% and were not
+re-mined here.
+
+### The three acceptance fixtures
+
+**The wall-level interaction route: PASSES.** `expectedFailure` removed, the
+assertion unchanged. A second fixture asserts the reading it needed -- the push
+XWALLs are on walls s4 owns and transmit on the channel it receives.
+
+**The light link as a facet: still fails, and the missing reader is named.**
+Every field is legible one at a time -- s125 `tx_id 126, command 5`; s124
+`rx_id 126, amplitude -8, shade_always 0, shade_floor 1, shade_walls 1`.
+Nothing in the stack reads a SECTOR's `command` as a verb at all, so
+`read_mechanism` returns eight keys and none is a transmitter-side facet. That
+is prompt P8's deliverable and was left to it rather than half-built here.
+
+**The stack-linked casket: still fails, and it is blocked on a LAYER.**
+`reachability.link_pairs` already reports `{link 10, sectors [28, 30], sprites
+[47, 46]}`; `motion.stack_pairs` reports nothing, because it looks for the
+floor-picnum-504 see-through marking this pair does not carry. What is missing
+is composition: nothing joins a per-sector record to the mechanism across its
+ROR plane, and four sectors in two planes cannot be said by a per-sector record
+at all. Adding a `stack_partner` key to make one test pass would put the
+composition in the wrong place; it belongs in MechanismDecl.
+
+### The twelve rendering errors, restated as what they are
+
+`readback.lost_tiles_as_differences` turns the `wall-tile-is-drawn-somewhere`
+violations into `Difference` records, and the city build prints them as
+`READ-BACK DIFF (non-blocking, owner-queue item 9)` rather than as `LOST` lines
+inside a rule count. They are not a style warning: the map claims a material
+and the engine draws something else, which is exactly the diff the constructors
+should own. Left non-blocking only because five flush doorway thresholds are
+still with the owner; the moment that is decided the list belongs above the
+build's `return 1`, and the comment there says so.
+
+### What is unproven
+
+* **Neither build was run end to end.** `reference/blood` holds no ART in this
+  environment and `PlanarLayout` refuses a seated placement without a tile
+  extent, so `build_zoo.py` and `build_skeleton.py` both stop before they
+  reach the new gate. The gate itself is exercised: 35 tests build and read
+  back through the same call, both tree placers included, and the two SHIPPED
+  maps were read back against the claims every mover makes by construction --
+  20 mechanisms in `pattern-zoo.MAP` and 14 in `blood-city-current.MAP`, all
+  agreeing. What is unproven is the wiring inside the two scripts.
+* The `members` claim is only as good as `declare_motion`. A constructor that
+  declares nothing gets no members check, and several do not declare.
+* `state_pair` reads the z pair the XSECTOR states rather than simulating the
+  travel, so a door whose endpoints are right and whose busy times are zero
+  measures as changing. `trProcessBusy` is not modelled here.
+* The conformance template routing is by construct NAME, and the name comes
+  from the sector type plus the fabric tile. A curtain that wears something
+  else is measured as a plain marked slide.
+
+## The Link, read as a verb, 2026-09-02
+
+Supervisor assignment P8. The reader could not say "the room light follows the
+curtain" although three attested pairs and the city's own are wired for it.
+P7 had measured exactly why and left it: every field is legible one at a time
+-- E1M1 s125 `tx_id 126, command 5`; s124 `rx_id 126, amplitude -8,
+shade_always 0` -- and **nothing in the stack read a sector's `command` as a
+verb at all**.
+
+### What changed
+
+`effects.transmission(disk, sector_id)` is the reader, and `read_mechanism`
+carries it as a fifth plane beside primitive / carried / embedding / style.
+The four planes describe one sector. This one cannot: what a mechanism drives
+is not a property of the mechanism or of the thing it drives, it is a property
+of the pair, and the only field holding it is `command`.
+
+It lives in `effects.py` rather than `conditional.py` because `conditional`
+imports `effects` and that arrow points one way; `receiver_index` -- the
+mirror of `conditional.transmitters` -- lives there for the same reason.
+
+The record carries two keys deliberately. `drives` is the flat list of driven
+sector ids, which is what a caller comparing two readings wants;
+`transmission` beside it is the whole facet -- channel, verb, every listener
+by kind, and per listener what the sender's `busy` does to it.
+
+### Evidence
+
+Engine, all vanilla and each line read before it was cited:
+
+* The send is from the **busy proc**, once per game tick for the whole
+  travel, carrying the sender's `busy`: `VSpriteBusy :1247`, `VDoorBusy
+  :1346`, `HDoorBusy :1374`, `RDoorBusy :1401`, `StepRotateBusy :1434`,
+  `GenSectorBusy :1454`. The seventh copy, `VCrushBusy :1198`, is
+  **unreachable in vanilla** -- `BUSYID_0` is referenced from
+  `nnexts.cpp:4222` alone, under `NOONE_EXTENSIONS`. The supervisor brief
+  listed six; there are seven, and one of them does not count.
+* `SetSectorState` sends no edge for such a sector: `:140` and `:152` both
+  open with `command != kCmdLink`.
+* `LinkSector` (`:1776-1801`) decides by the RECEIVER's type. Six types are
+  handed to their own busy proc (`:1781-1794`) and mirror the travel;
+  everything else takes the default (`:1795-1799`), which copies the busy and
+  calls `SetSectorState` only at a whole state.
+* `LinkSprite` (`:1803-1831`) and `LinkWall` (`:1833-1839`) do the same for
+  the other two kinds; `kSwitchCombo` is the one sprite that reads a Link as
+  DATA, copying the sender's `data1` (`:1806-1821`).
+* `sectorfx.cpp:162` is the lighting gate (`shadeAlways || busy`), `:166-168`
+  scales the amplitude by busy, `:171` evaluates the wave with
+  `phase*8 + freq*totalclock`, `:171-199` applies the result to the faces the
+  three `shade_*` flags select.
+* **`InitSectorFX:363`** is the fact the brief did not have: a sector enters
+  `shadeList` only `if (pXSector->amplitude)`. With amplitude 0 the sector is
+  never visited and every other shade field on it is inert. That is a harder
+  test than "no wave", and it is the correct one.
+* `trMessageSector:1916` / `trMessageWall:1937` / `trMessageSprite:1962` drop
+  every command but the two lock verbs on a `locked` receiver.
+
+Campaign, 43 maps, 2023 mechanisms, 752 transmitting sectors
+(`reports/blood-link-census.json`, section in
+`reports/blood-conditional-topology.md`):
+
+* **146 send a Link (19.4% of transmitters)**, reaching 269 receivers --
+  1.84 each.
+* **268 sectors (99.6%), one sprite (0.4%), no walls.**
+* **175 dim (65.1%), 93 mirror (34.6%), 1 flips only at a whole state.** The
+  Link is a lighting verb about twice as often as a coupling verb.
+* Senders: 600 (65), 617 (44), 614 (28), 615 (5), 616 (4). No 602, 613 or 612
+  -- which is where the engine stops being symmetric.
+* **152 of the 175 dimmers (86.9%) carry `shade_wave` 0**, which is not a
+  missing field: `GetWaveValue` case 0 returns the amplitude unchanged
+  (`:80-81`), so the shade IS the scaled amplitude and tracks the travel
+  linearly. This is the campaign's canonical dimmer.
+
+### Counterexamples
+
+* **The asymmetry the model had to grow to hold.** 613 SENDS a Link
+  (`StepRotateBusy:1434`) and is absent from `LinkSector`'s switch: a stepped
+  rotator can drive a mirror and cannot be one. 612 is the reverse -- `PathBusy`
+  (`:1465-1494`) is the one busy proc with no Link clause, so a `command 5`
+  path sector never sends. 604 runs no busy proc at all.
+* **A `command 5` sector with both busy times zero transmits NOTHING.**
+  `OperateSector:1717-1737` reaches `GenSectorBusy` only when there is a busy
+  time; otherwise it calls `SetSectorState`, whose sends `:140/:152` refuse
+  for a Link. No campaign map does this; the fixture is a mutated copy.
+* **One campaign receiver of 269 cannot answer: E4M2 s33 -> s200**,
+  `shade_always 1` with `shade_wave 7`. Its three fellow listeners on channel
+  103 all respond. Recorded as an observation, not a bug: a light meant to
+  flicker regardless is a legitimate thing to want and this reading cannot
+  tell that from a slip.
+* **Eight Link senders (5.5%) reach nobody** -- E1M3 s307, E1M4 s218, E1M5
+  s197, E1M8 s109, E2M5 s80, E2M5 s673, E3M2 s45, E3M6 s35 -- checked against
+  sectors, walls and sprites alike.
+* **126 of 146 (86.3%) carry edge flags the engine cannot consult.** Harmless.
+  Recorded so no reader reports an edge these mechanisms never report.
+
+### The gate, and what it failed on first
+
+`test_a_receiver_with_shade_always_cannot_follow` takes DOOR-CURTAINS s21 ->
+s20 and sets one bit on the receiver. With the `shade_always` clause removed
+from `_sector_receiver` the reading still says `follows [20]` and the test
+fails on `[20] != []`; with it, `cannot_respond` names s20 and quotes
+`sectorfx.cpp:166`. Every field on both sectors stays individually valid, so
+nothing else in the stack can tell. Four more mutated fixtures cover amplitude
+0, a locked receiver, an empty channel and the zero-busy-time sender.
+
+The acceptance fixture, `test_the_light_link_is_read_as_a_facet_of_the_
+mechanism`, passes with **its assertion unchanged**; `expectedFailure`
+removed.
+
+**And the suite log found a second copy of it.** The same gap had been
+recorded twice -- once on E1M1 in `test_attested_constructs` and once on the
+tutorial map as `test_door_curtains.WiringExemplarTest.test_the_light_link_is_
+read_as_a_facet` -- and the first full run came back `FAILED (unexpected
+successes=1)` with no ERROR or FAIL line anywhere in it. Closing one closed
+both, which nobody knew, because nothing in the repo had ever asked how many
+fixtures were waiting on the same missing reader. That is the supervisor's
+"never pipe the suite through tail" rule earning its keep for the second time
+in two days: the only trace was one line above the `Ran` line.
+
+### Regression tests
+
+`tests/test_attested_constructs.TheLinkIsAVerbTest`, 10 tests, plus the two
+that close the tutorial twin in `tests/test_door_curtains`: the two
+tutorial pairs (DOOR-CURTAINS s21 -> s20, DOOR-CURTAINSD s18 -> s17), E1M1's
+carnival rotator s50 driving four receivers of two kinds on one channel
+(s51 mirrors, s44/s45/s55 dim), the five fail-first mutations, the 613
+asymmetry and wave 0. Plus two new assertions on `CurtainTest` for the E1M1
+pair's shade numbers and its dead edge flags.
+
+### The city
+
+`projects/blood-city/level/build_skeleton.py` ran end to end -- P7 could not
+run it, because `reference/blood` held no ART; it does now, and the build is
+**byte-identical** to the committed map, 259 sectors / 1694 walls / 430
+sprites, `read-back: 44 sentence(s), all agree`. That closes P7's first
+unproven item as well as this one.
+
+s37 -> s24 reads `follow me`, `continuous`, sending from `HDoorBusy
+(triggers.cpp:1374)`, `follows [24]`, no faults. The stage light at each end
+of the curtain's travel:
+
+```text
+OFF (busy 0)      floor 32   ceiling 34   walls 32
+ON  (busy 65536)  floor  8   ceiling 10   walls  8      delta -24, wave 0
+```
+
+### What remains unknown
+
+* **The clock is not simulated.** `GetWaveValue`'s phase advances with
+  `freq*totalclock` (`:170-171`), so a receiver with a non-zero
+  `shade_frequency` has a shade RANGE, not a value. `wave_value` transcribes
+  waves 0-4 exactly; 5 and 11 need Build's `Sin`/`Cos` tables and 6-10 index
+  the four flicker tables and the strobe table, none transcribed here. **23 of
+  269 receivers (8.6%) report `unmeasurable` with the reason** rather than a
+  number nobody checked.
+* `trProcessBusy` is still not modelled (P7 said the same of `state_pair`), so
+  "at busy 65536" is the end of travel and not a time.
+* The facet reads a SECTOR's transmission. A wall or sprite that transmits is
+  a receiver here and never a sender; `conditional.transmitters` still owns
+  that side.
+* Nothing yet declares `drives` as a read-back claim, so a constructor cannot
+  yet be held to the light it says it drives. That is the natural next step
+  and it needs a `sentence()` key.
+
+### Next highest-value experiment
+
+Give `readback.sentence()` a `drives` key so `curtains.link_stage_light`'s
+claim is checked against the built map rather than trusted -- the arbiter
+already decides the tx slot and nothing verifies the decision survived. After
+that, the receiver-side twin of P7's 171 changed interaction readings: how
+many campaign mechanisms have a `drives` facet that the design-role reading
+should be consulting and is not.
+
+## Texture frames: where a material is, 2026-09-02
+
+Supervisor assignment P11, from the owner walk. Adjacent walls wearing the
+same tile did not continue the texture -- at vertices, on facades, in the
+arcades, across doorway and window cuts. The supervisor had measured why: the
+representation decides texture fields PER WALL, so nothing in it can state
+"this material is projected onto this run from this origin at this scale".
+
+### The law, read from the editor rather than re-derived
+
+`AlignWalls` (`xmapedit/src_blood/xmpmaped.cpp:3024-3050`) is the whole wall
+half in four lines: a wall consumes exactly `x_repeat * 8` texels, panning is
+a texel offset modulo the tile width, `y_repeat` is carried along a run, and
+`y_panning` shifts by `((z1-z0) * y_repeat) / (tilesizy*8)`. `GetWallZPeg`
+(`:2991-3022`) says where a wall hangs from -- and its two-sided branch is two
+`if`s rather than an if/else, so a wall with a top step AND a bottom step ends
+up pegged to the bottom one. `ED32_AutoAlignWalls` (`:3070-3145`) is the
+traversal, and the traversal is why a run is not a sector loop: at
+`:3142-3143` it steps `wall[wall[w1].nextwall].point2`, around the vertex into
+the neighbouring sector. That is how a facade continues past a doorway.
+
+**Three corrections to the brief, all from reading the lines.**
+
+* **The `>` key is not the recursive one.** `maproc.cpp:1146-1151` sets flag
+  `0x01` when shift is NOT held, so plain `.` aligns a whole run and `>`
+  (shift+period) aligns exactly one neighbour. `,` adds `0x10` (walk
+  `lastwall`), ctrl adds `0x04` (carry the scale), and `0x20` is automatic
+  when the cursor sits on a bottom-swapped band. `AutoAlignWalls`
+  (`:3205-3216`) then runs the recursion **twice** with a fresh visited list,
+  so a correct map is a fixed point of two passes.
+* **Lengths are `approxDist`** (`common_game.h:1004-1012`), Build's octagonal
+  approximation, not the Euclidean length. Every diagonal wall in the map is
+  measured with the wrong number otherwise.
+* **A floor texel is sixteen world units**, and the expanded bit
+  (`floorstat 8`) makes it eight, not thirty-two: `globalxshift = 8 - log2
+  tilesizx` (`engine.cpp:2797`), `globalxpanning <<= globalxshift + 6`
+  (`:2880`), and the bit *increments* the shift (`:2799`). So a 64-wide tile
+  covers 1024 world units, which is why a 1024 crate on the 1024 grid wears a
+  whole tile and one anywhere else wears a cut one.
+
+### What changed
+
+`bloodmap/texture_frame.py`. A `WallRunFrame` is `(tile, texels per unit,
+u-origin, v-origin as a world z, y_repeat, flip)` attached to a RUN; a
+`SurfaceFrame` is `(tile, anchor, expanded, flips)` for a floor or ceiling.
+`resolve_run` derives all six wall fields from the frame and the wall's own
+world geometry, and `resolve_surface` derives `floor_stat` and the two
+pannings -- so a portal cut changes nothing and the wall-list order is not an
+input.
+
+The one running quantity is the texel cursor, and it is a prefix sum of
+`x_repeat * 8` **because the engine's accumulator is** (`:3036`). Using the
+true world distance would drift from the editor by the accumulated rounding of
+every wall before it, and the invariance test below would fail. That is the
+sense in which this is closed form: closed in the wall list, not in the run.
+
+`frame_map` replaces `texture_align.align_wall_runs` and the floor-anchored
+`align_wall_textures` pass **together**, which is the fix -- those two fought
+each other. The run pass carried x inside a sector loop and refused every
+portal-to-portal join but one opted-in concourse; the anchor pass then set y
+from each wall's own sector height, breaking the vertical phase at every kerb,
+sill and lintel.
+
+### The gate, and the threshold that had to be measured twice
+
+`texture-continues-across-a-join` in `rules_blood.py`, over nine classes
+(collinear/bend/reflex x solid-solid/solid-portal/portal-portal) in two axes.
+
+The first version used the campaign aggregate minus fifteen points, as the
+brief specifies, **and it flagged E1M1 and E3M1**. The reason is that the
+aggregate is not a standard: `bend solid-solid` x runs from **28% to 95%
+across the campaign's own maps**. A rule fifteen points under the 68%
+aggregate is a rule about being below average, and a third of Blood is.
+
+The threshold is now each class's campaign **floor** -- the lowest any single
+campaign map with 30+ joins reaches, rounded DOWN to the per cent. A violation
+then says something falsifiable: *no campaign map is ever this bad in this
+class*. Rounding the floor to the NEAREST per cent instead flagged five maps
+with their own minimum, which is how that detail was found.
+
+Deliberate restarts are excluded **by axis**, not by class. The campaign
+restarts x at outside corners (19-25%) and between step bands (30%) and
+continues y in those very same joins 62-91% of the time, so dropping the whole
+class would stop looking at the half that is broken.
+
+### The acceptance test: the editor has nothing left to say
+
+`auto_align_walls` is a port of `ED32_AutoAlignWalls`, second pass included.
+Resolve a frame onto a run, then run it: **0 of 788 framed walls in 158 runs
+moved**, on pattern-zoo, blood-city and E1M1. `tests/test_texture_frame` holds
+it on E1M1 and E3M1 -- original geometry with diagonals, steps, portals and
+bottom-swapped walls, not a rectangle chosen to pass -- and a companion test
+nudges one wall by 7 to prove the check can fail.
+
+That test found a real transcription bug. `AlignWalls`'s y term has a negative
+numerator at every lintel, sill and kerb return; **C truncates toward zero and
+Python floors**, so `-1 // 8` is `-1` where C gives `0`, and `-1` becomes
+`y_panning` 255. Thirty-six walls of the pattern zoo read as misaligned by
+exactly that one step until `c_div` existed.
+
+### The class table, before and after
+
+```text
+                            campaign      pattern-zoo        blood-city
+                            n      x   y    before  after     before  after
+bend solid-solid          20021  68  99    x 41 -> 93       x 73 ->  95
+bend solid-portal         13366  34  61    x 60 -> 73       x 91 ->  83
+                                           y 78 -> 93       y 31 ->  97
+collinear solid-portal     4442  80  88    x 42 -> 71       x 94 ->  98
+                                           y 49 -> 100      y 58 ->  97
+bend portal-portal        28216  30  91         --          x 55 ->  93
+collinear portal-portal    3588  57  89         --          x 37 ->  87
+reflex solid-portal        2836  25  62         --          x  0 ->  58
+                                                            y  0 ->  12
+```
+
+Gate: **3 findings before, 0 after; 0 of 43 campaign maps flagged.** One class
+went down -- blood-city `bend solid-portal` x, 91% to 83% -- because
+`world_align_facades` had been phasing those walls from world position and now
+mostly stands aside (`walls_phased` 128 -> 1); at 83% it is still two and a
+half times the campaign rate, and the two passes wanting the same walls is
+worth a decision rather than a silent winner.
+
+### Crate tops
+
+The campaign's raised crate tops (floor tiles 95/298/375/452/456/462, above
+every neighbour): **110 of them, 62% expanded, 71% landing the tile grid on
+the crate's own corner, 59% panned, 6% first-wall-relative.** The city's
+eleven and the zoo's three used **none of it** -- no expanded bit, no panning,
+nothing on the grid. `frame_raised_solids` gives each an object-anchored
+`SurfaceFrame`: **11 of 11 and 3 of 3 now wear an uncut top**, up from 0. The
+expanded bit is left as authored, because halving the world size of a tile is
+a look and landing the grid on the corner is correctness.
+
+### The moving-wall law, which the zoo's read-back taught
+
+`frame_map`'s first run turned the zoo's curtain texel scale from 2.0 into
+0.02 and the read-back gate refused the build. A moving sector's walls have no
+projectable length: `TranslateSector` moves the flagged end every tick while
+`x_repeat` stays put, and a curtain's fabric repeat is authored for the span
+the cloth hangs ACROSS while the file is saved at the gathered pose. So
+`MOVING_SECTOR_TYPES` are skipped and counted (`walls_left_to_their_mechanism`
+92 in the zoo, 60 in the city). The authoring-loop law caught a representation
+mistake that no texture measurement would have.
+
+### The shopfront, measured -- and not yet applied
+
+E6M1's four glazed walls do not lie between the street and the shop. `s4` and
+`s64` are 4096 x **512** four-wall display recesses; against the shop `s52`
+that is a **sill 8192 up and a head 77824 down**, and the pane is the recess's
+INNER face, so the facade material crosses the mouth as a lintel band and the
+street never meets the glass. `glass.recess_spec` reproduces those two z values
+exactly from the shop's own, `recess_faults` tells a display box from a room
+(E6M1 s4/s64 clean, s52 flagged), and `panes_without_a_recess` is the
+map-level reader.
+
+**The census qualifies the brief: of the 356 glazed walls in the 43 campaign
+maps, 139 (39%) sit in a shallow pocket and 217 are on a room face.** The
+recess is a strong minority idiom for shopfronts, not a law about glass, which
+is why the constructor offers it rather than forcing it.
+
+Re-glazing blood-city's six spans through it is **not done** -- see below.
+
+### What remains unproven, and what was left out
+
+* **The city's six shopfronts are not re-glazed.** Eight of its thirteen
+  glass-bearing sectors are rooms, and the fix is a geometry change in the
+  levelprog tree -- carve a 512 recess, re-hang the pane on its inner face,
+  continue the facade run across the mouth -- which needs its own build pass
+  and its own read-back claim. The reader, the spec and the fixtures are in
+  place so that pass can be gated; doing it inside this run would have been an
+  unread-back geometry edit to a map that currently builds clean.
+* **Sloped walls are not modelled.** `GetWallZPeg` is transcribed as written,
+  which reads flat `floor_z`/`ceiling_z`; a sloped sector's peg varies along
+  the wall and this pass does not know it.
+* **Bottom-swapped walls are ported but not fixtured.**
+  `ED32_AutoAlignWalls_GetWall` (`:3058-3061`) and flag `0x20` are
+  transcribed; no test drives them, because no map to hand has a
+  `kWallSwap` run to drive them with.
+* **`world_align_facades` and `frame_map` overlap.** Both want the facade
+  walls, and the frames are winning by default. Owner queue item 16.
+* Wall x/y flips are carried from the run head as the editor does
+  (`cstat0`, `:3095`), but nothing chooses them: no frame in either build
+  sets a flip deliberately.
+
+### Regression tests
+
+`tests/test_texture_frame`, 15 tests: the engine arithmetic (approxDist, C
+division, the sixteen-unit texel, the 1024 grid line), the z peg against every
+one-sided wall of E1M1, the invariance pair plus its can-it-fail companion,
+the run crossing a sector boundary, the partition covering each wall once, the
+moving-wall skip on DOOR-CURTAINS, and the calibration (0 of 43 flagged, plus a
+fail-first on an E1M1 with every panning zeroed). `tests/test_glass` gains five
+for the recess.
+
+### Next highest-value experiment
+
+Carry the recess through: give `levelprog` a shopfront node that emits the
+recess, the pane and the facade run as one thing, and make
+`panes_without_a_recess` a build-blocking claim in `readback.sentence()`. Then
+decide the `world_align_facades` overlap, which is the last place two passes
+still want the same field.
+
+## The eight I dropped, 2026-09-02
+
+Supervisor assignment P13, and it is P11's regression. Between 8b70d51 and
+f843e2c every framed wall in both built maps was **eight times too narrow**.
+
+### The formula, and where the eight went
+
+`resolve_run` computed `round(length * texels_per_unit)`. The module's own
+docstring, six hundred lines above it, says `length * texels_per_unit / 8` --
+and it is right, because `x_repeat * 8` is the texel count a wall consumes
+(`AlignWalls`, `xmapedit/src_blood/xmpmaped.cpp:3036`, `xrepeat<<3`).
+`frame_map`'s carry was dimensionally correct, `scale = x_repeat * 8 /
+length`, so round-tripping it through the broken resolver gave `repeat =
+x_repeat * 8` exactly.
+
+The default scale was wrong too. 1/8 texels per unit is two texel steps; the
+campaign's is one, so the natural scale is **1/16**, which puts `x_repeat` at
+`length / 128` for a 64-wide tile. Three places in this repo now agree on that
+figure and did before this module existed: `texture_align.natural_x_repeat`
+(`length / (2 * tile_width)`), `facade_pass.UNITS_PER_TILE_PIXEL` (16), and
+the corpus.
+
+### The measurement, as texels per sixteen world units
+
+`x_repeat * 128 / length`, one Build texel step:
+
+```text
+                       one-sided                two-sided
+campaign, 43 maps      median 1.00 (n=46873)    median 1.00 (n=52801)
+every campaign map     median 0.84 .. 1.00      median 0.93 .. 1.00
+blood-city  fd31d02    median 8.00 (n=533)      median 8.00 (n=1101)
+pattern-zoo fd31d02    median 8.00 (n=273)      median 8.00 (n=163)
+both, after f843e2c    median 1.00              median 1.00
+```
+
+The moving walls `frame_map` refuses to project stayed at 1.00 throughout,
+which is what isolates the fault to the resolver rather than to the build.
+
+### Why every gate passed, and one that scored the defect HIGHER
+
+Not one of this project's texture checks is absolute. Continuity compares a
+wall to its neighbour; read-back compares a build to its own claims;
+conformance compares a construct to a template of ratios; `>`-invariance
+compares the resolver to the editor's accumulator, and the editor accumulates
+whatever repeat the resolver chose. A uniform scale error satisfies all four
+at once.
+
+It is worse than blindness. **At eight times natural the continuity gate
+rewards the defect**: every `x_repeat` is then a multiple of 8, so every wall
+consumes a whole multiple of 64 texels and the panning never advances from
+zero, and every join continues trivially. Resolved on E1M1 at natural against
+8x: `bend solid-portal` 59% -> 77%, `collinear portal-portal` 64% -> 89%,
+`reflex solid-solid` 9% -> 36%, and **not one class falls**. So P11's class
+table was flattered by the bug it shipped, and the numbers below are the
+honest ones. `test_the_relative_gate_SCORES_THE_BROKEN_MAP_HIGHER` pins it.
+
+### The magnitude gate
+
+`material-is-drawn-at-campaign-size`: per wall kind, the median texel step
+must lie in **[0.5, 2.0]** -- twice as wide either side as the campaign's own
+0.84-1.00, because half or double natural is a look a mapper may want and
+eight times is not. Moving walls are excluded **by construct**: a mover's
+length is not a fact about the world, since `TranslateSector` moves the
+flagged end while `x_repeat` stays put.
+
+Fail-first on the two maps exactly as committed at fd31d02 -- four findings,
+all `median 8.00` -- nothing after the fix, **0 of 43 campaign maps flagged**,
+graded 0 of 86, 0.00%, error tier.
+
+### The continuity table, honestly
+
+```text
+                         campaign   pre-P11   P11 (8x)   now
+blood-city
+  bend solid-solid       x 68%        73        95        98
+  bend portal-portal     x 30%        55        93        71
+  bend solid-portal      x 34%        91        83        83
+                         y 61%        31        97        97
+  collinear solid-portal x 80%        94        98        98
+                         y 88%        58        97        97
+  collinear portal-portal x 57%       37        87        68
+pattern-zoo
+  bend solid-solid       x 68%        41        93        91
+  bend solid-portal      y 61%        78        93        93
+  collinear solid-portal x 80%        42        71        71
+                         y 88%        49       100       100
+```
+
+Every class is still far above where P11 found it; the two that read lower
+than the 8x column are the ones the wrap artefact was inflating.
+
+### Notches, which is where both quantities change at once
+
+The owner's point: scale follows wall length and phase follows ceiling
+height, and a notch changes both. `ANotchInAFacade` is a hand-built facade
+4096 long with a 512-deep recess and a doorway, and it asserts each in turn:
+
+* each wall takes the repeat its own length asks for at one shared scale --
+  8, 4, 16, 4, 8;
+* the mouth wall carries a **non-zero** `y_panning` compensating for pegging
+  to the recess ceiling, and every join of the run still continues in y by
+  the editor's own pairwise predicate;
+* zeroing that compensation -- which is what a per-wall pass does -- breaks
+  the phase on **both** sides of it;
+* `cstat 4` pegs a header back to the facade's own ceiling (`GetWallZPeg`,
+  `:3009-3011`). Measured on E3M1: **68 of its 246 header walls carry the bit,
+  27%** -- not the 21-of-35 the brief carried, which is a narrower population
+  than I could reconstruct;
+* a wall with both a top and a bottom step pegs to the **bottom** one, the
+  two-`if`s-not-an-else clause at `:3013-3018`;
+* the ported `>` has nothing to change on the result.
+
+Building that fixture found two more of my own can't-fail checks: the first
+version gave the recess a sill as well as a head, so the top-step case it
+meant to test was really the bottom-step case; and it dropped the recess
+ceiling by exactly 16384, which at `y_repeat` 8 on a 64-high tile is exactly
+one full panning wrap, so the phase assertion passed for free. Both are the
+same mistake as the eight, and both are commented where they were made.
+
+### The district frame, and what it replaced
+
+Owner queue item 16, resolved, and the resolution was that the conflict was
+never real. `world_align_facades` phased every street wall from its own world
+coordinate -- which is what makes a bay grid exist -- and `frame_map` phased
+it from the run. A run whose **u-origin is a world point** does both:
+`texture_frame.world_u` computes it, `frame_map(world_phase=)` takes it, and
+blood-city names its street-front walls.
+
+Measured: the frame puts **640 of 1694 walls on the world bay grid against the
+old pass's 607**, and continuity rises with it (`bend solid-solid` x 91% ->
+98%). So `world_align_facades` is **deleted**, with the measurement in the
+comment that replaces it.
+
+**`align_headers` is NOT deleted**, and the brief expected it to be. It sets
+`cstat 4`, which is what makes a header peg to the facade's own ceiling rather
+than to the step -- the frame *depends* on that bit and does not decide it.
+Deleting it would break the header phase the notch fixture just pinned.
+
+### The shopfront recesses: counted, not carved
+
+Still not done, and now counted at every build rather than left to a report
+nobody re-runs: `glaze`'s report carries `panes_on_the_facade_line`, **4 in
+blood-city and 2 in the zoo**. Turning a span into E6M1's arrangement means
+new regions in `l3_theatre`, `l3_mall` and `l3_market` -- a carve per span,
+portal joins, floor and ceiling z -- and this run had the district frame, the
+magnitude gate and the notch fixture to land first. The prerequisites it was
+waiting on now exist: `recess_spec` for the geometry, the notch fixture for
+the phase across the mouth, and a build-time count that will go to zero when
+it is done.
+
+### Facades with holes, inserts with holders, 2026-09-02 (P13 addendum)
+
+The owner's model, implemented before any re-glazing: **a building's facade
+provides holes and has its own aligned texture; shopfronts, windows and doors
+are put INTO the holes.** `bloodmap/surface.py` carries it -- `Surface` (a
+planar face with one material, one frame and a list of `Opening`), `Insert` (a
+construct bound to one opening, owning its holder sectors and its frames), and
+`RecordOwner`, the ledger.
+
+### The binding, measured before it was fixed
+
+A Build wall record has one set of texture fields and `picnum` shares them
+with `over_picnum` (`AlignWalls`, xmapedit/src_blood/xmpmaped.cpp:3024-3050).
+blood-city had two passes writing them on the same 24 records: `glass.glaze`
+set `x_repeat` 32 on each pane, and `frame_map` then re-derived the facade run
+over the same records.
+
+**Fifteen kept the pane's number and nine got the facade's** -- wall 23 at 35,
+wall 753 at 8, wall 757 at 28 -- and which nine was decided by the order the
+two passes happen to run in. Nobody chose it and nothing reported it. That is
+the owner's "never writes fields on a record it does not own", in the map.
+
+### The ledger refuses at the write
+
+`RecordOwner.claim` raises on a second claim from a different owner, so this
+is not a convention anybody has to remember. `glaze` now takes `owner=` and
+`records=`: the overlay and its cstat always go on -- those are the insert's
+own fields and no run reads them -- while `x_repeat`/`y_repeat` are written
+only where the pane owns the record, and a record it does not own is counted
+in `borrowed` rather than fought over. `frame_map` takes the same ledger and
+skips what an insert already owns, reporting
+`records_left_to_their_insert`.
+
+```text
+blood-city   records_owned 1634 = surface:facade 1610 + insert:shop_glass 24
+             records_left_to_their_insert 24, borrowed 0, conceded 0
+pattern-zoo  records_owned  436 = surface:room    434 + insert:shop_window 2
+             records_left_to_their_insert  2, borrowed 0, conceded 0
+```
+
+Every record now has exactly one owner, and both maps read back clean (44 and
+21 sentences).
+
+`aperture.maskwall_panel` gains `require_holder`. It writes `over_picnum` and
+cstat and nothing else, so it inherits the host record's scale -- lawful when
+the host is a holder record and unlawful when it is a facade run's. It runs
+before compile, so there are no records to claim yet; what the source CAN say
+is whether either side of the partition is a pocket, and `require_holder`
+makes that a refusal.
+
+### The corpus corrected the law it was given
+
+The gate as specified: *"a wall record with a masked overlay whose picnum
+continues a surface run is a violation"*. Measured over the 43 campaign maps:
+
+* 527 masked insert records, of which 376 sit on a same-tile neighbour;
+* by the literal clause, **231 of 527 are violations (43.8%)**;
+* requiring the join to actually continue still leaves **34 across 14 of the
+  43 maps**.
+
+So the clause is not true of Blood. Putting a grate into a wall whose material
+carries on past it is a **practice**, not an error -- one record serves both
+because both want nearly the same scale.
+
+What the campaign never does is let the two diverge. Its 34 disagreements run
+**1.11x to 2.33x**, tightly packed, with exactly one outlier at **11.11x**. So
+`no-record-carries-two-frames` fires above 2.4x, which flags **1 of 43
+campaign maps** (E3M3 wall 1447, that outlier, named in the fixture), fires
+twice on blood-city exactly as committed at fd31d02 (wall 23 at 5.9x, wall
+1093 at 2.5x) and finds nothing after. Graded 1 of 231, 0.43%, error tier.
+
+That is the second law this pair of runs has had to correct by measuring it.
+The first was the continuity threshold; both times the brief's version was a
+reasonable-sounding absolute that the corpus does not obey, and both times the
+defensible form was the campaign's own ceiling.
+
+### What this does not yet do
+
+* **The recesses are still not carved.** `Insert.lawful` is False for all six
+  city shopfronts, `insert_faults` says so, and the build counts
+  `panes_on_the_facade_line` -- 4 in the city, 2 in the zoo. The ledger makes
+  the panes lawful in the weak sense that they now own their records outright;
+  it does not give them a holder, so the facade run still ends at each pane
+  instead of crossing a recess mouth above it.
+* **Surfaces and openings are not yet declared by the city's constructs.** The
+  objects exist and are tested; `frame_map` still discovers runs post hoc,
+  which the architect review calls "the crutch again, one level up". Binding a
+  facade `Surface` to a building node is the next step and is what makes the
+  recess carve a local change rather than a whole-map one.
+* `maskwall_panel`'s `require_holder` defaults to False, so nothing currently
+  fails on it; turning it on needs the zoo's grate exhibit to declare a holder.
+
+### What remains unproven
+
+* **The 8x maps were shipped and rendered and nobody saw it**, including me.
+  The renders in P11's own report were of the broken map. Frames are
+  regenerable and gitignored, so what is left is the count -- which is the
+  argument for the magnitude gate being a rule and not a report.
+* Sloped walls still unmodelled; bottom-swapped walls now have a `wall_z_peg`
+  fixture but still no `frame_map` fixture.
+* The recess carve, above.
+* `tools/grade_rules` still globs `maps/blood/*.MAP`, which the corpus reorg
+  emptied; run it with `--maps maps/blood/campaign`.
+
+### Regression tests
+
+`tests/test_texture_frame` is now 31: six absolute scale tests, seven notch
+tests, three magnitude-gate tests including the one that shows continuity
+scoring the broken map higher, and P11's fifteen kept unchanged.
+
+### Next highest-value experiment
+
+Carve one recess -- the theatre's, which is a single span in one module -- and
+watch `panes_on_the_facade_line` go from 4 to 3 with the read-back still
+clean. If that lands, the other five are the same edit.
+
+## The ground-plane city: the layers under it, 2026-09-02
+
+Supervisor assignment P14. **The L2 rebuild is NOT done** -- see "What this
+run did not do" below, which is most of it. What is done is the three layers
+the rebuild stands on, each measured, tested and landed on its own: the grid
+solver, partition overlays, and the sun.
+
+### E3M1, re-measured
+
+Every number below is read off the map, not carried forward:
+
+```text
+road       tile 352, z 10240, four strips: 7456x21504, 18048x4096,
+           7328x4096, 5120x5120 (the crossing)
+pavement   tile 4, z 8192 on 13 of 14; bands 512 x2, 1024 x1, 2048 x6,
+           2560 x1
+kerb       tile 6 on 11 of 11 road-side records at a road/pavement
+           boundary, step exactly -2048 every time
+sky        33 of 68 street sectors (48%)
+shade      8 on nine sectors, 34 on seventeen, 32 on three, 24 on seven
+shadow     112 shade boundaries inside the street: 60 axis-aligned, 20
+edges      oblique, clustering at 52.1 / 71.1 / 78.7 / 82.9 / 83.8 / 84.2,
+           median 83.98 -- and atan2(4096, 416) is 84.2
+area       road 290.5M against pavement 759.4M: the corridor is 27% of the
+           street surface
+```
+
+Two corrections. **Tile 379 is not "the plaza tile at pavement level"**: E3M1
+has 50 sectors wearing it, at z -122880, -90112 and -136192, which are
+interiors. And **"the kerb tile is 6" is E3M1's street, not a campaign law** --
+over the 43 maps' 1046 outdoor kerb-condition records the tiles are 2490
+(149), 67 (65), 110 (51), 2499 (49), 6 (38)... with the top eight sharing only
+43% between them.
+
+### 1. The grid, solved from the interiors up
+
+`projects/blood-city/level/city_solve.py`, with the envelopes in
+`city_plan.ENVELOPES`. A cell is as wide as the widest ENVELOPE standing in it
+-- interior, plus walls, plus P13's 512 facade recess where a face carries
+inserts -- and a gutter is its class minimum and no less. Roads are spacers:
+the solve never asks where there is room for a street, it sizes the islands
+and pushes them apart.
+
+```text
+             solved              old (norm-derived)
+x  col_a     17408               12288
+   col_b     15872               12288
+   col_c     19968               14336
+   total     73728               59392        built 72%  corridor 28%
+y  row_1     15872               12288
+   row_2     15360               14336
+   row_3      9728               10240
+   total     61440               57344        built 67%  corridor 33%
+```
+
+**The arcade, as a number.** `l3_mall.MASS` is 14336 wide; its envelope with
+walls and a west-facing recess is 15872; the norm gave the whole of col_c
+14336. The concourse was never going to fit, and the plan could not say so.
+
+**Against E3M1, as a rate.** Its corridor is 27% of the street surface; the
+solve comes out at 28% on x and 33% on y without being told to. That is the
+check that matters, and `test_city_solve.AgainstE3M1` holds it at +/- 12
+points, beside absolute checks on the class minima and the band -- because a
+city built entirely at the wrong scale satisfies every ratio in the file
+(owner-queue item 17).
+
+The city grows 24% on x. The wall budget is the constraint that decides
+whether that is affordable and it has not been re-checked against the solved
+grid, which is the first thing the rebuild must do.
+
+### 2. Partition overlays
+
+`bloodmap/overlay.py`. An overlay is a set of polygons that splits regions
+into pieces **without changing ownership, surfaces, frames or behaviour**;
+each piece inherits its parent's everything and differs only in what the
+overlay says. That inheritance is the contract that lets a road's texture run
+through a shadow edge as though the edge were not there.
+
+The geometry is a HALF-PLANE cut, deliberately: splitting a convex polygon by
+a line gives exactly two convex polygons with no tolerance anywhere, area is
+conserved exactly on axis cuts and to within 2 units on the 84-degree oblique
+one, and a rectangle is four cuts. A concave region is **refused loudly** --
+"insert a sector where there is room" is the idiom being replaced, and
+silently declining to cut is that same failure wearing a hat.
+
+`HeightIsland` carries the kerb: rise 2048, `floor_z(ground) = ground - 2048`,
+and `kerb_records` puts the tile on the **road-side** record. That is the
+correction the model rests on. Gravesend gave the band the house tiles because
+the band was a hole's edge in a street residue and inherited the building.
+
+### 3. One sun
+
+`resolution.SUN_BEARING = 478`, stated once with its convention: a Build angle,
+0..2047, zero along +x, increasing as `sprite.ang` does, naming the direction
+a shadow is cast TOWARDS. 478 units is 84.02 degrees, which is E3M1's own
+oblique shade-edge cluster and its 416-over-4096 geometry.
+`SUN_SHADOW_PER_HEIGHT` is 1.0 -- a 45-degree elevation, so a shadow is as
+long as its mass is tall, which is what E3M1's look like. The palette is its
+measured 8 / 34 / 24.
+
+### P14b slices 0 and 1, 2026-09-02
+
+**Slice 0 — the limits.** Target port NBlood at the V8 limits
+(`build.h:48-59`, `db.h:25-27`), now in `project.json`. The city stands at
+**259/4096 sectors (6%), 1694/16384 walls (10%), 430/16384 sprites (2%)**,
+X-objects 53/27/110 (at most 1%). Projected rebuild from the solved grid:
+streets about 36 sectors and 260 walls (E3M1's prior is 9.8 walls per street
+sector; the new model adds kerb and shadow cuts), masses and interiors
+carrying over near 200/1400, sewer 45/265 — **about 280 sectors and 1900
+walls, 7% and 12%**. Nothing is near a limit and nothing is to be shrunk for
+budget.
+
+**Slice 1 — one road, on the model.**
+`projects/blood-city/level/build_street_slice.py` writes its own map and
+leaves `blood-city-current.MAP` alone, so the city is never half-rebuilt while
+the model is being proved on it.
+
+The road is emitted WHOLE and then cut: by the kerb where an island lies on
+it, by the shadow where a mass falls across it. **One half-plane cuts
+everything it crosses** — road and pavement alike — which is not tidiness but
+the thing that makes the pieces line up: cutting only the road left the
+island's road-facing edge spanning two road pieces with nothing to pair
+against, and `PlanarLayout.compile` refused it as an unpaired portal. That
+refusal is the compiler doing its job, and it is the shape of the old "insert
+a sector where there is room" failure showing up one level higher.
+
+Result: 5 pieces (road in two, west island in two, east island whole), 3
+declared kerb records, 2 shadow edges, 3 lamps, one lawful shopfront insert;
+**5 sectors, 20 walls, 3 sprites.**
+
+#### The four gates, and the fail-first
+
+```text
+kerb        3 declared records, 0 faults
+sun         1 shadow edge, 0 off-bearing
+frame       the editor would change 0 walls after the kerb and shadow cuts
+sightline   from the road the faces standing up wear [6], above them [4]
+```
+
+**Fail-first on the committed city**: of the **74 faces standing up around its
+34 outdoor sectors, none wears a kerb tile** — they wear 380 (35), 417 (17),
+384 (8), 28 (8), 393 (5), 400 (1). Facade stone, all of it, because the band
+was a hole's edge in a street residue and inherited the building. The two
+slice-1 road pieces see `[6]` with `[4]` above.
+
+**Owner-queue item 18 is closed.** The gate P14 could not calibrate is exact
+now, and the reason is the population rather than the threshold: a kerb is a
+record `HeightIsland` declares, so `street_model.kerb_faults` checks a stated
+set instead of guessing which two-sided steps are kerbs. Three clauses — the
+band wears the declared tile, it never wears the material standing above it
+(the owner's), and the rise is **2048 absolutely**, E3M1's on 11 of 11. No
+corpus threshold anywhere. The same shape as P13's ownership ledger.
+
+Writing the reader found a bug in the reader. A boundary has two records and
+only one is the kerb; keying on edge orientation returned whichever was
+indexed first, so the first run reported the island's own facade tile as a
+kerb fault and read the rise as −2048. The road is the side whose floor is
+numerically larger, which is true by the definition of an island and needs no
+names carried in from the build.
+
+#### What slice 1 does not settle
+
+* **The east island is not cut by the shadow**, so this slice proves the
+  road/island pairing across a cut on one side only. Whether the pairing holds
+  when both islands are cut is slice 2's first question.
+* **The shopfront insert is declared, not carved.** `Insert.lawful` is True
+  because it names a holder region; that region is not emitted. The same gap
+  P13 left, now with a place to put it.
+* **A mass is a rectangle in this slice**, not an L3 module on an island. The
+  shadow is cast from its footprint and its height, which is the mechanism;
+  re-parenting the real masses is slice 3.
+* **The sightline gate reads geometry, not visibility.** It asks what a body
+  standing on the road would meet at the road's edge; it does not trace a
+  view. A kerb hidden behind something would pass it.
+
+### The owner's second walk: a building is a void, not a block
+
+Eight findings, each a gate that failed first with an absolute reading and now
+reads 0. Two changed the model.
+
+| | before | after | what it was |
+| --- | --- | --- | --- |
+| W5 door envelope | 35 | 0 | 4096x1024 sectors open at rest, 33920 of clear |
+| W6 switches | 9 | 0 | a tx with neither send-when bit, above the roof |
+| W7 prop roles | 27 | 0 | a plate chosen by brightness, on a red wall |
+| W8 sprite homes | 18 | 0 | a sector field `updatesector` disagrees with |
+| W9 horizontal tiles | 1 | 0 | the facade's window on an interior floor |
+| W10 mask partners | 9 | 0 | a mask on the street side only |
+| W11 facade shade | 12 | 0 | shade 9 on a piece at 32 |
+| W12 sky clipping | 85 | 0 | a roof-height ceiling beside the sky |
+
+**W12 changed the model, and the engine is the argument.**
+`engine.cpp:4688` raises `umost` to the far ceiling line whenever one of two
+ceilings is not parallaxed, so a roof-height slab beside the street cuts off
+everything above it behind. Sky against sky never clips -- E3M1 has 13
+differing sky|sky pairs and no visible cut. And E3M1's buildings are not
+sectors at all: **its facades ARE the one-sided records of its outdoor
+sectors, 122 of them**, and the stone between its rooms is simply absent from
+the map. So a building is now a VOID in the island, with its rooms as sectors
+inside it, its wall as the space no sector fills, and its facade as the
+island's own hole ring.
+
+**W5, the door envelope, measured.** 1231 campaign type-600 sectors: long side
+768-2048 across the middle half, median 1024; short side 256 on 339, the
+commonest by a distance. E3M1's six are 256-1024 long, 256 thick, CLOSED at
+rest -- ceiling on floor, all six -- and carry no masked record, which is W10
+answered from the same six. The mouth is a 1024 opening, a reveal taking the
+rest of the wall's depth, and a 256 leaf against the room that opens 30720 to
+its lintel.
+
+**W11 is one law, not two.** Over the campaign's 5320 one-sided outdoor
+records the median delta from the floor shade of the piece they stand on is
+**+6** with quartiles -3 to +15.75 -- the same +6 the kerb census gave. An
+outdoor record is shaded by the ground it stands on, whether it is a step's
+band or a building's face. E3M1's own 122 read a median 0 and it is the
+outlier here as it is on the shade step.
+
+**W6, and what "realised" now requires.** Slice 4 reported nine links
+`realised: true` because a sprite carried the tx and a sector carried the rx.
+`triggers.cpp:102-104` gates every message on the send-when bit of the state
+being ENTERED, and all nine switches had neither, so none could ever send --
+and they sat 5120 above the SHELL's roof, where no body stands. Realised now
+requires the send-when bit AND a reachable sprite, both read off the map.
+
+**W7, and the choice claim rewritten.** Two attempts at a street lamp produced
+a chained lantern hanging from the sky and a wall plate on a red wall
+mid-street. The corpus said the same thing both times: 0 visible outdoor lamps
+in 43 maps. Gravesend now chooses what the campaign chose, and a tile is
+picked by ROLE and never by a brightness statistic. One consequence: with the
+lamps gone the reader and the compiler agree on EVERY shade depth, where 143
+sectors disagreed because three carried two lamps each at shade -4 and moved
+the reader's elected base.
+
+**Two more that fell out of the rework.** A run walked THROUGH a shut door and
+carried its floor peg into the room behind, 40 walls of it -- a record no
+surface owns is a record no run may cross. And `interior|interior` at equal z
+draws nothing and is still a frame BOUNDARY: two rooms are two rooms, their
+ceilings need not be level, and carrying a run across one was the other half
+of those 40.
+
+**Which slice-4 gate should have caught each.** None could, and the shape of
+the answer is the same every time: they were all absolute questions about the
+built map that no gate was asking. The read-back checked a sentence's own
+claims and a door's envelope is not one of them; the frames gate checked
+panning and never a ceiling; the mission graph checked that a tx and an rx
+matched and never whether the tx could fire; nothing looked at where a sprite
+actually was. **W6 is the sharpest: it was reported as `realised: true`, and
+that report was wrong because "realised" meant two clauses where the engine
+needs three.**
+
+199 sectors, 1031 walls, 16 sprites; reachable with the mechanisms worked, 199
+of 199.
+
+### Slice 5: indoors is one law, and a building is eight rooms in one mass
+
+#### Three census results consumed
+
+**37e, the indoor law.** 49 821 `interior|interior` records over 43 maps fall
+in 25 classes, mirrored in pairs because both records of a join are counted
+and each sees the other's relation reversed. The `draws` column is
+`wallVisible`, the ENGINE's law: a two-sided record draws where a step exposes
+it on its own side. So the pairs are one rule and it is the kerb's law indoors
+-- 5382 of 5382 draw where the neighbour's floor is far above, 22 of 5382
+where it is far below.
+
+Three rows carry it: equal draws nothing; `b_above` puts the band on the
+record whose neighbour stands above; and `OVERRIDDEN` carries the residual --
+the 132 `level|level` records that draw where the geometry exposes nothing,
+**every one of them overridden by hand, 126 masked and 6 one-way**, which is
+the one thing about an indoor join that cannot be derived.
+
+**The band wears no CLASS, because there is none.** Over 12 857 records whose
+neighbour stands above, the commonest tile covers 4.9% of the length (449, 19
+maps) and the next four are 4.0, 3.5, 3.2 and 3.1% -- the flattest
+distribution this project has measured. An indoor band wears the room's own
+wall, so the row draws no tile.
+
+E3M1 replayed through `read_joins`: **1320 records of residue before, 198
+after**, and the 1122 interior|interior are gone from it.
+
+**37c, blocking is a choice.** 269 of the campaign's 285 road-side end-wall
+band records do not block; 41 of 49 pavement-side do not. It is not a height
+rule -- blocking sits at a median step of 88 064 and non-blocking at 114 688
+-- so E3M1's three are the exception the row was written from. `cstat=1` is
+out of both end-wall rows and gravity is the gate, as it is on 94% of the
+campaign.
+
+**37b, 400 is a choice inside its class.** Worn by 2 of the 285, which is
+0.7%; the class has 27 members, 449 on 75 and 2490 on 56. Recorded as
+`END_WALL_BAND_ENVELOPE` rather than promoting the mode, because a mode over
+21 maps is not a law.
+
+#### dressing: props stand on something
+
+`city.dressing(anchor, [props], spread=, facing=)` places a bundle against an
+ANCHOR RECORD and never by absolute coordinate, and every constraint in it is
+the reader's. `anchors.find_bundles` recovers a raised island only between the
+4096 step limit and half a body -- of 958 campaign blocking islands that band
+holds 38.3% -- and only when the footprint is twice as long as it is deep.
+`city.prop(name)` takes the campaign's own word for a tile, because
+`read_intent.named_props` counts nothing else.
+
+**The fail-first is the same two sprites, at the same two points, in the same
+room, with nothing under them: `find_bundles` returns [].**
+
+#### St Gallow's, re-parented
+
+`city.shell_of_rooms` is what a building with more than one room is. A shell
+gives it one and one room is a box; eight is a MASS WITH ROOMS TAKEN OUT OF
+IT, and the stone left between them is what makes a nave read as a nave. The
+facade is the footprint minus the rooms minus the door, traced by
+`overlay.ground_plane_rings` -- a mass with holes in it is a plane with blocks
+on it, one level up and inside out.
+
+The floor plan is `l3_church.py`'s own, moved to coordinates RELATIVE to the
+shell's interior origin so it survives a re-solve; the old one was absolute,
+and a width class changing underneath it would have left the church where it
+was and the island somewhere else.
+
+Three refusals on the way, each correct: a plinth flush on a 2048 depth is
+aspect 1.30 and not a counter; a hole loop is NEGATIVE in Build's screen space
+and an outer loop positive; and a 4096 mouth on a 1536 narthex spills over the
+nave, so a door is no wider than the room it serves and is centred on that
+room rather than on the shell.
+
+```text
+bundles          1 placed, 1 read back: core 127 in host 121, rise 6144,
+                 aspect 3.9, both props, and named_props counts them
+read-back        9 sentences, 0 differences, agrees=True
+church facts     12 sectors; 12 part_of and 12 surface declared, 12
+                 surface_kind and 12 join recovered, 8 attachment, 4 residue
+```
+
+#### stair, and a measurement that came out the other way round
+
+`city.stair(from_, to, treads=, width=, clear_height=)` states a run as its
+two ends and a count, never as a list of boxes, so it survives a landing
+moving. `read_stairs` recovers the fixture as one stepped run of five.
+
+**The flank residue is NOT demonstrated, and the honest reading is that I do
+not yet know the reader's continuation law.** The two variants differ in one
+field -- the flank's `x_panning`, a cursor per side against zero at every
+tread -- with the repeat from the record's own length in both, and a tread
+depth of 2816 chosen so that a record does not consume a whole number of
+tiles. `read_surfaces` explains the ZERO case (0 broken of 20) and calls the
+accumulated one broken (9). That is the opposite of the direction
+`AlignWalls` accumulates in, so one of the two is not the law I think it is,
+and the numbers are asserted so the day it changes something says so.
+
+#### The city
+
+```text
+sectors / walls / sprites   199 / 1131 / 34
+surfaces 55  pieces 199  welded 169  slivers 0  partition faults 0
+joins   1112 records, 0 unknown pairs (the writer's), 298 frame boundaries
+G1      194 declared, 0 missing      the editor would change 0 walls
+facts   2398 -> 2589 over 14 predicates; LoD gate 0
+```
+
+The row-for-row diff against P15's readers: **the 296 unnamed joins fall to
+134, and every one of the 134 is the waterfront** -- `water|water`,
+`water|shore`, `water|solid`. `join` is 1112 declared against 978 recovered
+with 978 THE SAME ID; `shade_depth` 199 against 146 with 146 the same.
+
+#### What is still unproven
+
+Six L3 interiors -- foundry, mall, market, sewer, shed, theatre -- are not
+re-parented. The stair is proved on a fixture and is not in the city, because
+St Gallow's crypt stair is a room in the plan and not a run. The waterfront is
+134 records the join table does not describe. And nothing has walked this map.
+
+#### What slice 6 must answer first
+
+**Whether a second building needs a second constructor.** The church fitted
+`shell_of_rooms` because it is rooms in a mass; the foundry is a hall with a
+gallery over it, which is the same relation one level up and may or may not be
+the same word. The way to find out is to port it and see which of
+`shell_of_rooms`, `stair` and `dressing` it needs unchanged -- and section 36's
+rule is already waiting: a macro that does not lower residue on two maps after
+landing is removed.
+
+### Slice 5, first answer: the weld was not the cause
+
+Slice 4 left one read-back difference per building, `members`, and named the
+weld as its cause: a curtain at a shell's mouth dragging the pavement's walls
+through a shared vertex. **That diagnosis was wrong, and the fixture that was
+going to settle void against pocket was never needed.**
+
+**A Z-motion door deforms nothing.** It moves its ceiling from one z to
+another; no point in the map travels. The leaf carried `0x4000` -- the bit
+that says a wall is DRAGGED -- on a mechanism that drags nothing, and
+`DragPoint` believed it: the walk left the door through the vertex it shares
+with the pavement and reported six walls in three sectors for a thing that
+moves a plane. The flag was a claim the mechanism never makes.
+
+The leaf stays MASKED and wearing the fabric, because `engine.cpp:4938-4940`
+draws a two-sided wall's middle band only when it is masked or one-way. It is
+simply not flagged, and `_leaf_for` flags one only where the sector type
+actually slides.
+
+```text
+read-back   9 sentences, 0 differences, agrees=True
+payload     0 mechanisms claim a deformation they do not make
+Rule 2      9 mechanisms, 0 closures moved
+```
+
+The sentences changed with the correction. A Z-motion door declares no motion
+set -- it has none -- and declares instead the two things it does have: a
+state pair that changes, and the channel it answers. Declaring five records it
+does not deform was the other half of the same mistake.
+
+**The gate, with its absolute reading:** a Z-motion door's motion set is
+EMPTY, read off the built map. The fail-first flags one leaf and the walk
+leaves the mechanism -- more than one sector comes back.
+
+### Slice 4: one fact store, a street that is as wide as it says, and a door that shuts
+
+#### Two writer defects the readers found, and a row that cited the wrong sectors
+
+**`kerb_records` took a `ground_outline` and never read it.** Every edge of an
+island got a kerb, so an island's back, the faces it turns to a building's
+interior and the face it presents to an end wall all asked for one: replayed
+over E3M1's three islands it claimed **81 records where the map makes 11**,
+the 70 extra facing 56 edges of void, 18 of interior and 13 of end wall.
+
+Two things had to change, and the second is the reader's. The writer emits one
+record per GROUND edge the island's boundary shares a stretch with, because
+the band goes on the ground's side and the two sides are not split alike --
+E3M1's islands present 7 outline edges to the road and the road answers with
+11 records. And `read_islands` replays EVERY loop: island:001 has two, and all
+four of its road-facing edges are on the shorter one.
+
+**`is_water`'s panning clause never ran on a decompiled level.** It read
+`getattr(sector, "extra", None)`, which is `None` for every `LevelIR` sector.
+On DWE3M10 the old accessor saw **0 of its 22 panning sectors** through a
+LevelIR and all 22 through a DiskMap.
+
+And the pavement|pavement row cited s10/s11 as a path between abutting
+islands. They are masses.
+
+#### One fact store
+
+Queue item 31, decided. `read_store.py` owns the row shape and the predicate
+table; `facts.py` is the compiler's writing end and adds a level of detail and
+the gate that makes one mean something. The row is the reader's --
+`{id, ...attrs, _from, _reader, _layer}` -- with `lod` as an attribute, and the
+LoD gate is a QUERY over it. `void`, `fill` and `lamp_delta` were added to the
+reader's table with a description each, because a compiler predicate the table
+does not have is added there and never invented locally.
+
+**What one store buys, measured.** The city's own facts against the facts P15's
+readers recover from the city's own map, row for row: **2398 declared, 6074
+recovered, 908 ids matching**, and the shape of the disagreement is the
+finding.
+
+```text
+join         1058 declared, 762 recovered, 762 the SAME ID
+shade_depth   191 declared, 146 recovered, 146 the same id
+surface        47 declared, 166 recovered -- different units, not a gap
+unknown_join    0 declared, 296 recovered: joins the writer makes and the
+                reader's table cannot name, every one at a facade, an
+                opening or a room
+residue       919 rows nothing explains
+```
+
+**A reader defect the diff found on its first run.** `surface_kinds` names
+water, a horizon and a solid before it looks at the street network, and then
+elected a base plane BY AREA over every sector of that network, water
+included. Gravesend has 41 water and shore sectors and 1.2 billion square
+units of them, so the SEA was elected the base plane, called the road, and
+every pavement and every carriageway fell through unnamed -- 124
+`outdoor_ground`, 41 "road" and **900** join records with no row. E3M1 reads
+exactly as it did: 4 road, 9 pavement.
+
+#### A width class is the full width
+
+Queue item 30a. `WIDTH_UNITS` means carriageway PLUS pavements, so a gutter's
+solved span is the whole street and the carriageway is what is left. Measured
+on E3M1: nine pavement sectors, median narrow dimension **2048**; four road
+sectors at 4096, 4096, 5120 and 7456. A street that cannot afford both bands
+gets ONE, on its low side, which is what E3M1's east arm is -- 6144 across, as
+4096 of road and one 2048 pavement.
+
+```text
+lane_west     lane     3072 -> 3072    0/0
+lane_north    lane     3072 -> 3072    0/0
+west_street   street   5120 -> 3072    2048/0
+spur          street   5120 -> 3072    2048/0
+market_street street   5120 -> 3072    2048/0
+avenue        avenue   7168 -> 3072    2048/2048
+theatre_row   row      6144 -> 2048    2048/2048
+quay          row      6144 -> 2048    2048/2048
+```
+
+184 sectors / 1042 walls / 14 sprites before, **191 / 1077 / 18** after. The
+level-0 diff is the point of having one store: the fourteen span rows are
+BYTE-IDENTICAL and 18 of the 19 island rings changed, which is exactly and
+only what the decision changed.
+
+#### The circuit is a sequence of surfaces
+
+Queue item 3. A leg is the surfaces a body passes through -- "the avenue
+between Theatre Row and Market Street" survives a re-solve and (35.5, 25) does
+not. 12 of 16 legs built, 0 unreachable; the other four are the sewer and each
+carries `built: false` with its reason.
+
+#### The question the slice was set, and its answer
+
+**Does a construct declared against a room's records survive the compiler's
+passes?** It does -- Rule 2 finds **0 of 9** DragPoint closures moved -- and it
+was not a curtain to begin with, which the read-back said before anything else
+was asked. A sector type with no flagged wall drags nothing:
+`drag_closure` found one wall where the sentence declared five, and
+`conformance.measure_curtain` said "found 0 leaves" and "fabric: wanted 146,
+found [401]". Each door has a LEAF now, flagged and wearing the fabric, and it
+is MASKED because `engine.cpp:4938-4940` draws a two-sided wall's middle band
+only when it is masked or one-way.
+
+**And the Rule 2 gate was measuring the wrong thing.** `DragPoint` moves
+POINTS. The field changes every wall index after the first cut and it changes
+how far a neighbouring wall runs, so comparing indices reports a difference on
+every mechanism and comparing spans reports one wherever a piece was cut
+beside a door. By the vertices it drags: 0 of 9.
+
+**What remains is one difference per building and it is `members`.** A curtain
+at a shell's mouth drags the PAVEMENT's walls through the vertex the weld made
+them share. That is the owner's motion-aperture law arriving from the other
+direction: the mouth needs a jamb, and a welded street has none to give.
+
+#### The mission graph, realised
+
+Nine switches and five keys, and every link and key flips to `realised: true`
+with its evidence read off the built map. The switch is measured -- of the
+campaign's type-20/21 sprites the commonest wall-aligned tile is **1070**, 104
+as kSwitchToggle and 78 as kSwitchOneWay, hung a median 5120 above the floor.
+A chain is ONE sentence with fan-out as a parameter.
+
+**And the door is a shutter.** `kSectorSlideMarked` names its two positions by
+SPRITE INDEX and the sweep validator runs during the compile, before any
+sprite has one: "sector 101 has no marker0", nine times. So the shopfront
+doors are Z-motion shutters, and the construct's NAME changed with them.
+
+That made the mission graph mean something for the first time: with the
+shutters shut **161 of 191** sectors are reachable and every room is not,
+which is what a shut door is; with the mechanisms worked **179** are,
+including all nine rooms and all nine sentences.
+
+#### The shade step is a choice, against a census
+
+Queue item 29a. `read_light.shade_step_envelope` is a census that reports its
+own population, because the number moves with what "the network" means:
+
+```text
+all parallax sectors        365 boundaries, 37 maps, median 12, q 8-16
+largest outdoor component   192 boundaries, 36 maps, median 13, q 9-18.75
+```
+
+A city's street is the second. Gravesend **chooses** 12 and the gate says so
+in those words, and the choice is inside the campaign's middle half.
+
+#### The city
+
+```text
+sectors / walls / sprites   191 / 1077 / 32   (4%, 6%, 0% of the limits)
+                            18 lamps, 9 switches, 5 keys
+surfaces 47  pieces 191  welded 159  slivers 0  partition faults 0
+joins   1058 records, 0 unknown pairs, 270 frame boundaries
+G1      174 declared, 0 missing      the editor would change 0 walls
+facts   2398 over 14 predicates and 4 levels; LoD gate 0
+walk    W1 0, W2 0, W3 0, W4 0
+```
+
+#### What is still unproven
+
+The seven L3 interiors are **not re-parented** -- each is written against the
+old builder's API and is a port of its own. Nothing has walked this map. The
+renders are plan views. And the one read-back difference per building is a
+real defect with a named cause and no fix yet.
+
+#### What slice 5 must answer first
+
+**Whether a leaf can be given a slot.** Everything else in the read-back is
+clean; what is left is that a door's moving vertices are shared with the
+street, and Blood's own answer is a slot -- one-sided fabric retracting into
+solid geometry, so the points that move belong to nothing else. It is a
+geometry change to `city.shell`, it is measurable before it is chosen (a
+pocket needs a sector and a void does not), and until it lands every mechanism
+this compiler builds at a mouth drags its neighbours.
+
+### Slice 3: the owner's walk, a fact store, and buildings that are there
+
+#### The walk, and why no slice-2 gate caught any of it
+
+Four findings, each measured, fixed, and gated with an absolute reading off
+the built map.
+
+**W1, the kerb tile as a default material.** 111 records wore tile 6 with no
+pavement on the other side -- shadow cuts, map edges, the faces of end walls
+-- because it was the plane's wall material and a join row only overwrites
+where it has something to say. E3M1 says it twice over: its eleven tile-6
+records all step 2048 from a road to a pavement, and its road|road records
+wear the district's facade family instead (401, 400, 380, 393). **111 before,
+0 after.**
+
+**W2, a step face that does not obey the sun.** Measured on E3M1's eleven kerb
+records, the only place the campaign states the relation: the six standing on
+road at floor shade 32 read a median **38**, the five on road at 8 read **8**,
+median delta **+6**, quartiles -8 and +10. A `JoinRule` now carries a
+`shade_offset` and the table writes the band's shade from the floor that owns
+it. The city's kerbs read 14, 26, 38 and 50 on floors of 8, 20, 32 and 44 --
+and 38 on a depth-2 floor is exactly what E3M1 reads. **232 before, 0 after.**
+
+**W3, a lantern hanging from nothing.** 641 is a ceiling lantern on a chain
+and all fifteen stood under open sky. Of the campaign's wall-aligned bright
+sprites the commonest are 795, 510 and 511; 510 is the sconce, 28 sprites at
+cstat 208, repeat 64, the bright ones a median 21504 above their floor. The
+lamps are sconces now, snapped onto the nearest wall record of their piece.
+**15 before, 0 after.**
+
+**W4, two skies side by side.** Across the 43 campaign maps, **271 of 271**
+connected outdoor regions carry exactly one sky picnum, at every size, with no
+exception -- a law, not a tendency. The horizon's trick is the zero height and
+the parallax bit on both surfaces, not DWE3M10's particular tile, so it
+inherits Gravesend's. **1 before, 0 after.**
+
+**Why none of slice 2's gates caught them.** All four are ABSOLUTE questions
+about the built map that no gate was asking. The join census checked that
+every pair had a rule, not that every record wearing a rule's tile had that
+pair; the light gates checked floors and never a wall; nothing looked at a
+sprite at all; and the sky was checked per surface and never per SPACE.
+
+**And two defects in the frames gate itself.** It ran `auto_align_walls` on
+the map it was about to write, so the emitter shipped whatever the probe had
+done to it -- the same map read 2 in memory and 87 off disk. And it shared one
+probe across every run, while the editor's recursion follows
+`wall[nextwall].point2` and does not stop at a run boundary, so one run's walk
+spilled into the next and the gate read its own spill back as a defect.
+
+**Plan views use the editor's orientation.** Three renderers flipped Y, so
+every plan view was mirrored against XMapEdit. The gate has to be asymmetric,
+because "larger page y for larger world y" is satisfied by a mirrored drawing
+too: the fixture is a wedge 2048 wide at the north and 16384 at the south, and
+flipped it reads 8.0 where correct it reads 0.125.
+
+#### The compiler writes its facts beside the map
+
+`bloodmap/facts.py`, JSONL per predicate in `tests/fixtures/city-slices/facts/`. 2398
+facts over fourteen predicates: `part_of`, `surface`, `island`, `frame`,
+`join`, `void`, `fill`, `shade_depth`, `lamp_delta`, `link`, `key`,
+`sentence`, `realises`, `claims`. A predicate nobody declared is refused
+rather than defaulted.
+
+Every declaration carries a level of detail -- plan 0, massing 1, facades 2,
+dressing 3 -- and **a pass at level N leaves every fact of level < N
+byte-identical**. The failure that gate exists for is silent by construction:
+a facade pass that nudges an envelope by one unit still compiles, still
+partitions, still aligns, and the only evidence anywhere is a level-0 line
+that moved. The fail-first moves exactly one number by exactly one.
+
+The three read-back gaps of slice 2i close, because all three were gaps in the
+MAP and not in what the compiler knew: thirteen pavement surfaces keep their
+own rows however the map connects them; every sector carries its `k` beside
+the shade `k` was summed into; fourteen lamp contributions survive as rows
+after LightBomb summed them.
+
+#### Masses become shells, and a clipper defect that had been waiting
+
+Each of the nine masses is now a building: a FACADE with an OPENING in it, an
+INSERT filling the opening in a sector of its own, and a room behind. The
+facade family is E3M1's 122 one-sided outdoor records weighted by the LENGTH
+each tile covers -- 401 at 27.6%, 417 at 21.5%, 181 at 11.6%, 400 at 8.7%,
+together 69.4%, every one of them at y_repeat 8. The city's 730 facade records
+are too.
+
+**Making a mass visible must not move its shadow**, and the gate is the city
+built twice: 37 ground pieces before, 37 after, 0 with a different depth.
+
+Getting there found a clipper defect of exactly this shape. A shell casts its
+shadow FROM its own footprint, and the footprint is the hole it stands in, so
+every shadow edge begins exactly on a hole vertex. `split_polygon` paired
+every on-line vertex as a chord endpoint -- but a ring that merely TOUCHES the
+cut does not pass through it, and pairing it makes the count odd. **Five
+islands lost between 14 and 21 million square units each, silently, and the
+pieces still looked like pieces.**
+
+The weld gained a third population, and it is the closure of the other two: a
+cut that lands collinear with an edge is merged into it and the merged edge
+has no parent. Every vertex any piece carries is an exact integer point, so
+exact collinearity is the right question for all of them at once. **Still no
+tolerance constant.**
+
+#### The frames pass uses the joins pass's answer
+
+A row whose `frame` is `"boundary"` says a run may not cross that record --
+the stated reason joins run before frames, and it had never been passed in.
+Without it a run walked out of a street into a building's room and the editor
+disagreed with the closed form on 84 walls, every one on the y term, because
+the two sides of such a record peg to different floors. With it: 744 runs, and
+**the editor would change 0 walls**.
+
+#### Rule 2 is asked for the first time
+
+Nine curtains carry sector type 614, so the light domain has a denominator at
+last: **admits 166, refuses 18 of 9 eligible, tested.** The gate compares each
+mechanism's `DragPoint` closure against the same city built with the sun
+switched off -- by GEOMETRY, not by wall index, because the field changes
+every index after the first cut -- and **0 of 9 moved**. The fail-first lays a
+shadow over a curtain and reads the change off the built map.
+
+#### The mission graph, declared and honest about itself
+
+Kept apart from the space graph. Nine `sentence` rows over nine curtains, nine
+`link`s and five `key`s, and **every link and key carries `realised: false`
+with its reason**, because no switch, generator or key pickup is emitted yet.
+An unrealised declaration is a row, not an absence. 181 of 184 sectors are
+reachable at rest and all nine sentences and nine rooms are among them.
+
+#### The vocabulary moved into `bloodmap`
+
+`bloodmap/city.py`: `street`, `island`, `end_wall`, `waterfront`, `facade`,
+`opening`, `room`, `insert`, `shell`. A project may choose its numbers and it
+may not own its nouns, and these are the words P15's readers of E3M1 have to
+recognise coming the other way.
+
+#### The city
+
+```text
+sectors / walls / sprites   184 / 1042 / 14   (4%, 6%, 0% of the limits)
+surfaces 47   pieces 184    welded 143   slivers 0   partition faults 0
+joins    1022 records, 0 unknown pairs, 266 frame boundaries
+G1       174 declared, 0 missing        the editor would change 0 walls
+facts    2398 over 14 predicates and 4 levels; LoD gate 0
+```
+
+#### What is still unproven
+
+The plan's 16-leg circuit is **not** checked against this map: its coordinates
+are in the 58x56 plan grid and the solve is 72x60, which is the correction
+slice 2i already owed. The nine rooms are empty boxes -- **the L3 interiors
+are not re-parented**. The renders are plan views; the observer is XMapEdit
+and this run does not launch it, so **nothing has walked this map**. And the
+sewer, the switches and the keys are declared and not realised.
+
+#### What slice 4 must answer first
+
+**Whether a room can hold a construct.** Every gate in this slice is about
+surfaces, joins and fields; none of them has ever looked inside a building.
+The moment an L3 interior is re-parented, the read-back has its first real
+sentence to compare -- and the question that decides the shape of everything
+after it is whether a construct declared against a room's records survives
+the compiler's own passes, or whether it needs its own level of detail below
+`dressing`.
+
+### Slice 2i: the compiler owns the pipeline, and the city reaches the water
+
+**Decision 1 -- an emitter declares and calls no pass.** `bloodmap/pipeline.py`
+takes an `Emission` -- surfaces, declarations, light, joins, frames -- and
+`compile_city` runs `planes -> declare -> light -> joins -> frames` itself,
+refusing an emission that omits one **naming the pass, before any pass runs**.
+The fail-first is slice 2h's own defect: that emitter never called `frame_map`,
+and what reported it was the frames GATE, at 191 misaligned walls. A gate
+downstream of a missing pass can only report the symptom.
+
+The distinction that makes it work is between an omission and a declared
+emptiness. `declarations=[]` says "this map has no mechanisms", which is a
+statement; `declarations=None` says nothing, which is the bug. `None` is
+refused, the empty list is not. `Compilation.require_complete` is the same
+assertion at the end -- the order assertion is now a completeness assertion.
+
+**Decision 2 -- a zero needs its denominator.** Slice 2h's manifest said
+"light domain: admits 104, refuses 0" and every reader of it, me included,
+read that as the rule holding. Nothing in that map was a mechanism, an insert
+or a holder, so the rule was never asked. `overlay.refusal_denominator` counts
+the population actually at risk beside the number refused, and prints 0 of 0
+as **UNTESTED**. It still reads UNTESTED today, and that is the honest line.
+
+#### A T is a T however it came to be one
+
+The weld was built for one kind of T -- a cut crossing recorded against the
+edge it came from. The rest of the city's edge found two more:
+
+* **a declared corner inside a declared edge.** A plaza let into a street, an
+  end wall across its mouth, a yard notched out of an island: the corner lands
+  in the middle of a neighbour's edge and NO CUT EVER MADE IT.
+  `seed_coincident_vertices` records those before any field runs.
+* **a parent's point reaching a grandchild.** The seed is recorded against the
+  DECLARED edge and the piece carrying that stretch is a grandchild of it.
+  Slice 2h's chain only walked upward; `by_edge` now walks both ways, and each
+  direction answers a different failure.
+* **a chord collinear with a declared edge.** A shadow landed at the cemetery's
+  own y, merged with the cemetery's top edge, and the collinear clean dropped
+  the corner between them. No crossing exists there to find. So the weld takes
+  a SECOND POPULATION with its own exact test: a vertex the solver placed is
+  not rounded at all, so exact collinearity is the right question for it.
+  **Two populations, two tests, both exact, and still no tolerance constant.**
+
+The weld also moved up a level: `build_field(weld_now=False)` and the pipeline
+welds every piece of every surface at once against one registry, because a
+crossing recorded while cutting the last surface belongs to the first one's
+edge too. The partition post-condition moved with it -- asking before the weld
+is asking a question whose answer is known.
+
+#### The city now reaches its own edge
+
+```text
+sectors / walls / sprites   179 / 866 / 15    (4%, 5%, 0% of the limits)
+surfaces declared           20      pieces after the field   179
+seeded vertices 16          welded vertices 80      slivers absorbed 0
+joins                       846 records, 0 unknown pairs
+                            242 kerb, 278 pavement-only path, 112 shore
+partition faults 0          G1: 66 declared, 0 missing
+the editor would change     0 walls
+```
+
+**End walls** stop the avenue, the spur and the west street in E3M1's dialect
+-- 5.8 player heights up, parallax sky above, blocking faces in facade stone --
+each just south of the perimeter lane so the lane stays whole. 3 declared, 0
+termination faults.
+
+**The waterfront** is DWE3M10's, read back off the built sectors: a quay walk,
+a shore one walkable step (3072, inside Blood's 4096 autostep) below it, the
+sea meeting the shore at equal z as stone 2490 under palette 10 with
+`pan_floor` + `pan_always` + `drag` at velocity 10 on angle 900, and a
+zero-height horizon at the sea's own z wearing sky 3678 on BOTH surfaces with
+the parallax bit on both.
+
+**Three open places** at pavement level, each an island with its own surface
+abutting the island it belongs to: the market plaza, the cemetery, and the
+works yard, which is notched out of `col_c/row_3` and leaves it an L.
+
+**The shade, off real sectors** (base 8, step 12; the lower value in each pair
+is a piece that also has a lamp on it):
+
+```text
+depth 0   shade  8 on 61 sectors,  2 on 3
+depth 1   shade 20 on 49,         14 on 5
+depth 2   shade 32 on 40,         26 on 5
+depth 3   shade 44 on 14,         38 on 2
+```
+
+#### Two corrections the corpus forced
+
+**"The shore at pavement level" is not attested.** It would want a
+PAVEMENT|SHORE row at EQUAL and DWE3M10 has none: every landward record of its
+shore steps UP, seven by 35840 (a quay wall) and one by 3072 (walkable). The
+row added is SHORE|PAVEMENT B_ABOVE with the band on the shore's own side, and
+asking for the EQUAL row still raises.
+
+**"Lamps at E3M1's rate" has no rate to take.** E3M1's 45 bright outdoor
+sprites carry cstat 32896, whose `0x8000` bit is INVISIBLE, statnum 12, and
+types 708 and 710 -- `kGenSound` and Ambient SFX. They are sound generators
+wearing an editor icon. Widened to the whole campaign: **0 visible outdoor
+lamps in 43 maps over 51,277,134,846 square units of outdoor ground**. Blood
+does not put lamps on its streets; its outdoor light is the sun and the shadow
+field, which is what the light field already models. So the rate is borrowed
+from the only lamp density Blood has, its indoor one -- a per-map median of one
+per 187,624,103 square units -- and the shade delta is ours and is declared as
+such.
+
+#### The read-back, and the gaps it names
+
+```text
+planes 1        islands 10 (13 pavement surfaces declared)
+road 38         pavement 96
+shade levels    [2, 8, 14, 20, 26, 32, 38, 44]
+iso-lines       380, of which 274 oblique
+sun bearing     84.02 degrees recovered against 84.02 declared
+```
+
+Three **symmetry gaps**, named rather than counted as failures: *surface
+identity* (two islands on a path are one component, so the reader counts
+networks and not declared surfaces); *field depth* (the map records a shade,
+and k is nowhere on disk once `base + k*step` has been summed); *lamp
+authorship* (a lamp's delta is inside `floor_shade` by the time it is written,
+so the contributions the ledger arbitrated are gone).
+
+#### What is still unproven
+
+The renders are **plan views, not eye views** -- the observer is XMapEdit and
+this run does not launch it. Nothing has walked the map. `bloodmap.readback`
+still has nothing to compare, because the emitter declares no constructs. And
+the light domain's denominator is zero.
+
+#### What slice 3 must answer first
+
+**Whether a mechanism survives the field**, and now the map is ready to ask:
+the moment L3 is re-parented, the denominator stops being zero and the
+UNTESTED line becomes a real rate. The gate is already written -- every
+mechanism's `drag_closure` motion set identical before and after the overlays
+-- and until something eligible exists, the light domain's zero means nothing.
+
+### Slice 2h: the genealogy, and the graph stands
+
+**The correction I owed.** I wrote that no invariant separated A from B. It
+was wrong, and the bound says so: a crossing is rounded PER COORDINATE, so it
+can sit up to `0.5 * sqrt(2) = 0.707` units off the edge it was computed from,
+and a half-unit containment misses every crossing that rounded toward the far
+corner of its unit cell. Searched empirically over 20000 random oblique edges,
+the worst offset found is **0.702** -- the bound is tight and it is reached.
+From here, "no invariant separates them" is shown by a fixture both options
+pass, never asserted.
+
+**Edges have a genealogy.** `overlay.CutRegistry` holds crossings keyed by
+undirected edge AND the parentage of every split: when a cut divides `(p, q)`
+at `r`, it records `{p,r} -> {p,q}` and `{r,q} -> {p,q}`. At weld time a
+crossing reaches any ring carrying its key **or any ancestor of it**, because
+a neighbour that was never cut still holds the whole edge. **No tolerance
+constant anywhere in `overlay.py`.**
+
+That was the whole of the remaining failure. Identity alone could not see a
+crossing recorded against a sub-edge; the ancestor chain can.
+
+#### The graph builds
+
+```text
+solved grid       73728 x 61440
+plane             one region, 10 rings -- the city boundary and nine block holes
+surfaces          10 before the field  ->  104 pieces after
+welded vertices   46          slivers absorbed  0
+joins             253 declared, 506 records, 96 kerb bands, 0 unknown pairs
+sectors / walls   104 / 534     (2% and 3% of the NBlood limits)
+```
+
+**The four absolute shade values, read off REAL sectors of the built city**
+(base 8, step 12):
+
+```text
+depth 0, full sun          shade  8   on 40 sectors
+depth 1, one shadow        shade 20   on 33
+depth 2, two shadows       shade 32   on 24
+depth 3, three shadows     shade 44   on  6
+depth 0 under a lamp       shade  2   on  1
+```
+
+Every gate green: G1 vertex fidelity 178 declared and 0 missing; G2 silent on
+every surface; a body on any of the 38 road pieces sees `[6]`, the kerb; the
+editor would change 0 walls after the frame pass; the light domain admits 104
+and refuses 0 (there are no mechanisms in this slice yet); magnitude 0
+violations; parallax 0 violations; no dropped PRESENTATION facets; no cuts
+refused; no out-of-domain crossings.
+
+The frame gate failed first, at 191 walls, and the cause was that the emitter
+never ran `frame_map` at all -- a missing pass rather than a defect. With it,
+314 runs over 534 walls and the editor has nothing to say.
+
+#### What is NOT in the map
+
+Deliverable 6's list is only half emitted. The graph, the islands, the
+junctions as pieces of the plane, the field and the joins are there. **The
+waterfront, the end walls, the plaza and cemetery, the yard notch, the
+pavement-only paths and the lamps are not** -- the emitter builds roads and
+islands and stops. Those are geometry the plan already states
+(`city_plan.BOUNDARY`, the areas, `street.end_wall`) and the next run wires
+in; nothing in the model blocks them.
+
+No read-back either: `bloodmap.readback` compares a built map against the
+sentences its constructors claimed, and this emitter declares no constructs
+yet.
+
+#### What slice 3 must answer first
+
+**Whether a mechanism survives the field.** The light domain currently refuses
+nothing because there is nothing to refuse -- no mover, no insert, no holder
+exists in this map. The moment slice 3 re-parents the L3 modules, Rule 2 has
+its first real work, and the gate that matters is the one already written:
+every mechanism's `drag_closure` motion set identical before and after the
+overlays.
+
+### Slice 2g: the weld, and the gate that chose it
+
+**G1, vertex fidelity.** `overlay.vertex_faults`: every vertex a surface
+declared must appear in the built map unmoved, exact set inclusion. A cut may
+ADD points -- that is what a cut does -- but may never move one the solver
+placed. Snapping crossings to a coarser grid fails it by construction, and on
+slice 1 it fails concretely: snapping to 8 moves **2 of its 11 distinct
+points** and G1 names both. The gate chose weld; no taste was required.
+
+**`_crossing` is canonical.** The endpoints are ordered before interpolating,
+because the SAME edge is given one way by a plane's hole ring and the other by
+the island standing in it, and two directions rounded to two different
+integers would leave the weld nothing to match. Over 2000 random oblique
+edges: **zero disagreements**.
+
+**The weld, by identity.** While cutting, each crossing is recorded against
+the UNDIRECTED key of the edge it came from, in a registry spanning every cut
+of a surface. Afterwards each recorded point is inserted into every ring that
+still carries that edge, ordered along it. No search radius anywhere.
+
+The captured regression now passes G2 with **zero faults**, one mass and all
+nine, welding 2 vertices.
+
+Three things that had to be got right, and each was wrong first:
+
+* **A registry point belongs to its edge by RECORD, not by re-derivation.** It
+  was rounded when it was computed, so it is routinely not exactly collinear
+  with the edge it came from -- 668 on the cross product for the fixture's own
+  crossing -- and an exact collinearity test rejected the very points the weld
+  exists to insert.
+* **Absorbed means the neighbour KEEPS the area.** The sliver branch returned
+  the CUT piece and discarded the scrap, losing 536 units on a 419-million
+  rectangle. The partition assertion found it the moment the weld removed the
+  overlap that had been masking it.
+* **The emitter must pair EVERY shared segment**, not the first. After welding,
+  two pieces routinely share several.
+
+The walls the weld adds are not overhead: Build needs a vertex wherever two
+sectors' boundaries meet, and a wall without one is a red wall.
+
+#### Deliverable 6 still did not land, and the symptom has moved
+
+`partial_area_overlap` is **gone** -- the weld closed it, and the plane-to-
+island pairs now pair. What remains is a narrower unpaired-portal set, all of
+it island-internal: one island edge is abutted by three neighbouring pieces in
+sub-segments the registry never recorded, because those endpoints were
+crossings on a DIFFERENT edge rather than on this one. The weld inserts a
+crossing into the edge it came from; it does not yet insert a neighbour's
+vertex into an edge that merely passes through it.
+
+So there are still no whole-graph counts, no waterfront, no end walls, no
+read-back, no renders, and the four absolute shade values remain fixture
+numbers.
+
+#### What slice 3 must answer first
+
+**Whether the weld should be by edge identity alone, or by edge identity plus
+containment.** The remaining failure is a T-junction the registry cannot see:
+piece B's corner sits on piece A's edge without ever having been a crossing of
+that edge. Extending the weld to insert any piece vertex lying within a
+segment's span would close it, and it reintroduces the containment test that
+edge identity was chosen to avoid -- so it needs its own invariant before it
+is written, not after.
+
+### Slice 2f: the assertion, and the cause captured
+
+**Step 1 -- the partition assertion.** `overlay.partition_faults` asks three
+questions where the clipper's tests asked one: the area (already), no two
+pieces' interiors overlapping, and every sampled interior point of the whole
+claimed by exactly one piece. Area conservation is **not** partition --
+`sum(pieces) == whole` is satisfied by a genuine partition and equally by a
+set that double-counts one region while losing another the same size.
+
+The two measured defects are fixed with their own fail-firsts:
+
+* **(a) phantom slivers.** `cut_region` reported "absorbed" whenever one side
+  was merely EMPTY, so a cut that missed the polygon entirely counted as a
+  sliver of area 0. The 11 and 18 "slivers absorbed" I reported in slices 2d
+  and 2e were mostly that. An empty side is now not an absorption, and a real
+  one still is.
+* **(b) a clockwise shadow cut nothing.** "Inside" is the left of every edge,
+  which holds only for a counter-clockwise polygon; a clockwise shadow gave
+  inside = nothing and outside = everything, silently. `cut_by_convex`
+  normalises the winding now, and the test cuts the same square with both.
+
+**Step 2 -- the capture, and the cause.** The emitter gained a per-surface
+post-condition before `add_region`; it fires on **10 of the graph's surfaces**
+and the first was dumped to `tests/fixtures/overlay_partition_regression.json`
+-- one island, the nine masses whose shadows fall on it.
+
+Bisected: a **single** `cut_by_convex` call on a plain rectangle, nothing
+absorbed, gains **334 units of area over 276 million** (1.2 parts per million)
+and puts one piece's vertex **0.05 units** inside its neighbour.
+
+> **The cause: every oblique half-plane cut rounds its crossings to Build's
+> integer grid independently, so two pieces that ought to share an edge
+> diverge by a fraction of a unit -- and both this assertion and
+> `PlanarLayout`'s overlap check were reading that as a real overlap.**
+
+Two corrections I owe on the way to that sentence. My first scan reported 0.05
+units and I called it rounding; a fuller scan then said **11780 units**, which
+would have been structural -- and that number was my own test taking the
+distance to the FURTHEST edge of the neighbour rather than the nearest, so it
+measured across the whole polygon. The point genuinely sits on a slanted edge
+that exact integer collinearity misses. The 0.05 was right; the 11780 was
+mine. And the first run of the assertion itself accused a correct partition of
+overlapping, because a vertex on a shared edge tests as inside or outside
+depending on which way the ray goes, so a boundary test has to come first.
+
+#### Deliverable 6 still did not land
+
+The cause is understood and not fixed: making the pieces share their crossing
+vertices exactly is vertex welding across the whole piece set, which is real
+work and not a tolerance. Loosening the assertion instead would be choosing
+not to see the thing it was just written to see.
+
+So there are still no whole-graph counts, no waterfront, no end walls, no
+read-back, no renders, and the four absolute shade values remain fixture
+numbers rather than city ones.
+
+#### What slice 3 must answer first
+
+**Whether to weld or to snap.** Either the pieces share crossing vertices
+exactly -- insert every cut's crossings into the neighbouring pieces that
+already existed, which is a T-junction pass over the piece set -- or every
+crossing is snapped to a coarser grid so that two independent roundings land
+on the same point. The first is exact and touches every piece; the second is
+cheap and moves geometry by up to half the grid. Owner queue item 26.
+
+### Slice 2e: the absolute light gate, and where the graph stops
+
+**Step 0 -- four shades read off a compiled map.** Every gate in slice 2d
+checked the field's SHAPE and not one checked the shade a sector ends up with,
+which is the hole the 8x texture regression went through. A fixture compiled
+end to end through `PlanarLayout` -- a plane, two masses whose shadows overlap
+where they cross it, one lamp in the sun -- gives four numbers off the built
+Build sectors:
+
+```text
+s3  depth 0, full sun                 shade  8   = base
+s1  depth 1, one shadow               shade 20   = base + 12
+s0  depth 2, two overlapping shadows  shade 32   = base + 24
+s2  depth 0 with a lamp on it         shade  2   = base - 6
+```
+
+4 pieces, levels [0, 1, 2], 11 slivers absorbed.
+
+The fail-first is the point of the exercise. Break the conversion from `k*12`
+to `k` and the absolute gate reads 9 where it wants 20, **while every shape
+gate stays green**: `field_faults` returns nothing, every iso-line is still at
+the sun's bearing, the level count is still inside the campaign's. A city one
+step too dark would have shipped with a clean report.
+
+**A ground plane is a polygon WITH HOLES.** Running the whole graph found it
+at once: a street grid encloses its blocks, so the plane's boundary is an
+outer ring plus one hole per block, and `ground_plane` traced only the first
+and then reported the rest as disconnected -- **Gravesend's own grid, 28
+boundary vertices of 64**. `ground_plane_rings` traces every ring, ordered
+outer-first, and connectivity is now a question about the CELLS, answered by
+flooding them, rather than about how many rings the boundary has. The
+single-ring form refuses a plane with holes instead of silently losing them.
+
+#### Deliverable 6 did not land, and exactly where it stopped
+
+The emitter is rewritten around the plane
+(`projects/blood-city/level/build_graph_slice2.py`) and gets further than any
+previous attempt: the solved grid, the plane traced as rings, the islands, the
+placeholder masses, the field cutting every surface, the passes entered in
+order through `channels.Compilation`. It then fails
+`PlanarLayout._validate_regions`:
+
+```text
+independent regions col_a/row_1#0 and col_a/row_1#3 have XY
+partial_area_overlap without a declared special relationship
+```
+
+Two pieces of ONE island overlap, so `build_field` is producing overlapping
+pieces for a single surface. The suspect is `cut_region`'s sliver branch: when
+a side falls under `MIN_PIECE_AREA` it returns the cut piece and DISCARDS the
+scrap rather than returning the polygon whole, so `cut_by_convex`'s inside and
+outside sets stop partitioning the input. That is a hypothesis, not a
+diagnosis -- I ran out of room to prove it, and guessing at it would be the
+fourth guess in this pipeline rather than the first measurement.
+
+So: no whole-graph counts, no waterfront, no end walls in a map, no read-back,
+no renders, no dropped PRESENTATION facets from a real build. The builder is
+committed as it stands because it is where the next run starts, not because it
+works.
+
+#### What slice 3 must answer first
+
+**Whether `cut_by_convex` partitions its input.** One test: cut a square by a
+convex shadow and assert `sum(inside) + sum(outside) == whole` AND that no
+inside piece overlaps an outside piece. The area half of that already passes;
+the overlap half has never been asserted, and the whole-graph failure says it
+does not hold. Everything downstream -- masses, interiors, mechanisms -- sits
+on a map that cannot compile until it does.
+
+### Slice 2d part two: channels, and the order asserted
+
+**Deliverable 4 -- two kinds of channel, and no more.** `bloodmap/channels.py`
+carries one table: `shade` is ADDITIVE; `floor_z`, `ceiling_z`, `sector_type`,
+`mechanism_state`, `frame` and `holder_role` are EXCLUSIVE. No priorities, no
+solver. A channel not in the table raises rather than defaulting to a kind.
+
+`RegionLedger` is P13's `RecordOwner` at region scope. Additive channels
+accumulate; an exclusive channel admits one owner and a second raises **by
+name**, because a refusal that says "conflict" teaches nobody which two passes
+to look at. On an exclusive conflict a PRESENTATION claim yields and is listed
+with its reason; FUNCTION against FUNCTION is an error; the order the two
+claims arrive in does not change the outcome.
+
+**Shade is additive, and LightBomb is its single summing owner.** Four things
+wrote `floor_shade` and nothing said who owned it -- the sun field, a lamp
+pool, a flicker base and a Link-driven wave. That is the same shape as the
+`glaze` / `frame_map` collision, where two passes wrote the same four fields
+on the same 24 records and pass order decided per record: fifteen kept one
+number, nine got the other, nobody chose, and it was invisible until somebody
+diffed. `lightbomb.apply_shade_channel` now reads the ledger and writes the
+sum once; the fail-first asserts four contributions of +12, -6, +3, -4 land as
++5 and that a region nobody wrote to does not move.
+
+Making shade exclusive instead would have dropped every Link-driven light in
+the city, and P8 counted 146 of those in the campaign.
+
+**Deliverable 5 -- the order asserted, not documented.**
+`channels.Compilation` fixes `planes -> declare -> light -> joins -> frames`
+and raises on anything out of order, with the reason: a field running before
+mechanisms are declared cuts a curtain nothing had yet marked uncuttable; the
+joins need the pieces the field makes; the frames need the joins' answer about
+which edges are boundaries.
+
+Every ordering bug this project has had was invisible for one reason -- the
+passes simply ran and the last one won. An order that raises cannot do that.
+
+#### Deliverable 6 is not built
+
+The emitter is not rewritten around `ground_plane` and the whole graph is not
+emitted. So there are no cuts refused in anger, no slivers absorbed in a
+build, no before/after sector and wall counts, no dropped PRESENTATION facets
+from a real map, no waterfront, no read-back and no renders. Everything
+reported above is measured on fixtures and on the slice-1 map.
+
+#### What slice 3 must answer first
+
+**Whether `light_field` and `lightbomb` agree about what a delta is.** The
+field produces a DEPTH (0..3) and `shade_for` turns it into `base + k*12`;
+LightBomb sums DELTAS. Nothing yet converts one to the other, and the obvious
+reading -- that the field contributes `k*12` -- is an assumption I have not
+tested against a built map. Getting it wrong is a whole city one step too
+dark, and it would pass every gate in this slice, because they all check the
+field's shape rather than the shade a sector ends up with.
+
+### Slice 2d: the light field, and the bug the sun found
+
+**The step, re-measured.** Over the 38 campaign maps with outdoor ground, on
+the 402 same-z outdoor boundaries where the shade changes:
+
+```text
+delta  16: 40    10: 34    12: 33     8: 30     4: 21     6: 20
+median 12.0   mean 14.1   quartiles 8 .. 18   half of all in [8, 16]
+```
+
+**The number 12 is right and the reason given for it is not.** It is the
+MEDIAN, exactly; it is not the mode. The distribution is flat -- the
+commonest value is 16 and takes 9% of the boundaries -- so no value is modal
+in any useful sense, and the gate is therefore the interval [8, 16], where
+half of them lie, rather than a number. `test_the_step_has_no_mode_worth_the_
+name` records that, because a later reader would otherwise assume the
+constant had been derived the way the decision says.
+
+Two more corrections to the decision's premises, both mine to report:
+
+* **four levels is right, at the right floor.** Counting a level as one
+  carrying at least a TENTH of a map's outdoor sectors, the median map uses 3
+  and 81% use 4 or fewer. At a twentieth the count runs to 17, which is noise
+  counted as design -- my first measurement did that and made the cap look
+  unsupported.
+* **the lit base runs wider than 0-30**: the per-map modal outdoor shade spans
+  -128 to 37, with 0 commonest on 12 maps. The stated range covers nearly all
+  of it; -128 is one map and is a fullbright, not a base.
+
+**Deliverable 3 -- the field.** `bloodmap/light_field.py`. Each mass's shadow
+is its outline swept along the sun vector and hulled; the field is built by
+cutting the plane with each shadow through `cut_by_convex`, depth accumulating
+additively and capped at three; the shade is `base + k * 12`. One field per
+plane, cut once, slivers absorbed and reported.
+
+On a crossing plane with two masses: **5 pieces, levels [0, 1], shades 8 and
+20, area conserved exactly, 4 iso-line edges and every one of them at the
+sun's bearing, 18 slivers absorbed.**
+
+#### The bug the sun found in the clipper I had just shipped
+
+`split_polygon` returned **both sides empty** on an oblique cut at the sun's
+bearing. The cause is worth stating in full because it is a class of mistake,
+not a typo: a crossing is computed in rationals and rounded to Build's integer
+grid, and the rounded point is then more than `ON_LINE` off the line it was
+cut on -- the cross product magnifies half a unit of rounding by the segment's
+length. Re-deriving "is this point on the line" from `_side` afterwards
+answered NO, so the chord was never built, the chain dangled, and `_loops`
+discarded it.
+
+**Axis-aligned cuts and a 45-degree one land exactly on integers**, which is
+precisely why the clipper's first six tests passed and the sun's 84 degrees
+did not. The fix is to record which points are crossings rather than re-derive
+it; the regression test cuts the plane at the sun's own bearing and at a
+deliberately awkward slope through a plain square.
+
+I shipped that clipper in ee5705b saying area was conserved on every case.
+It was, on every case I had thought to write.
+
+#### Not built
+
+Deliverables 4 to 6 -- channels and arbitration, the asserted order of
+operations, and the emitter rewritten around `ground_plane` -- are not started.
+So there are no dropped PRESENTATION facets to list, no whole-graph counts,
+no waterfront, no read-back and no renders. The field exists and is gated; it
+has not yet been applied to a map.
+
+#### What slice 3 must answer first
+
+**Deliverable 4, the channel table**, before any of the building. The field
+now writes shade, the joins write picnums, the islands write floor z, and
+nothing yet says who owns what -- which is the same shape as the pass-order
+collision P13 found between `glaze` and `frame_map`, and it will be found the
+same way (by accident, later) unless the ledger is extended to region channels
+first.
+
+### Slice 2c: domains and the clipper, 2026-09-02
+
+**Deliverable 1 — overlay domains.** An overlay declares the predicate over
+regions it may cut, and Rule 2 is folded in and not negotiable per overlay: a
+region carrying a sector type, a moving wall (`cstat 0x4000/0x8000`), a stack
+marker, a holder role or an insert is excluded from EVERY overlay.
+
+Run over the committed city, the LIGHT domain **admits 31 of 259 regions and
+refuses 228**: 197 with no parallax sky (the interiors), 14 mechanisms, 13
+inserts, 4 stack markers. The sun cannot reach a house, and a shadow falling
+on one is reported in the manifest rather than refused -- it is a fact about
+the world, not an error.
+
+The fail-first is the shape that matters rather than a synthetic: every one of
+the city's movers is refused by name, and every mechanism's `drag_closure`
+motion set is identical before and after, because the domain never admitted
+one.
+
+**Deliverable 2 — the clipper** (owner-queue item 21's default, built).
+`split_polygon` cuts a polygon WITH HOLES by a half-plane using even-odd chord
+pairing over **all rings at once**: every ring is augmented with its
+crossings, the edges on one side are kept with their original direction, and
+the gaps are closed by chords along the cut line, paired consecutively by
+their parameter. Holes need no special case, which is the entire reason to
+pair over all rings together.
+
+Area is conserved **exactly, in integers**, on every case the brief names:
+
+```text
+concave 12-vertex plane, vertical cut      183500800 -> 91750400 + 91750400
+the same plane, oblique at the sun          -> 15810560 + 167690240
+square with two island holes, three cuts    343932928 conserved in all three
+a U cut across its arms                     ONE side comes back as TWO pieces,
+                                            25165824 each, exactly equal
+convex shadow on a square                   inside 2048*2048, sum exact
+a shadow covering a whole island            no outside at all
+```
+
+The two-disconnected-pieces case is the one `split_convex` could never have
+said; a clipper that returned a single polygon there would be silently wrong.
+
+`cut_by_convex` applies a convex shadow as a sequence of half-plane cuts to
+the pieces still overlapping it, keeping the outside pieces separate so a
+caller can merge them back. `cut_region` absorbs a sliver rather than refusing
+it: a cut that would leave a scrap does not cut, the polygon stays on the side
+it is mostly on, and the absorption is **reported** -- an oblique shadow
+clipping a junction corner leaves a 43-unit triangle, and emitting it puts a
+degenerate loop in the map.
+
+The plane is NOT decomposed into convex pieces. That was item 21's rejected
+option and it would have handed the junction squares back through the side
+door.
+
+#### Not built, and the honest reason
+
+Deliverables 3 to 6 -- the light field, the channel table and arbitration, the
+fixed order of operations, and the emitter rewritten around `ground_plane` --
+are not started. Each is a piece of work the size of the two above, and the
+run had room for the two that unblock the rest. Nothing downstream of them is
+built: no whole graph, no waterfront, no read-back, no renders.
+
+What is now true that was not: the shadow CAN cut the plane, and it cannot
+reach a mechanism. Those were the two things stopping slice 2b.
+
+#### What slice 3 must answer first
+
+Unchanged in shape but no longer blocked on geometry: **the light field**
+(deliverable 3), because the cut set is its iso-lines and every later gate --
+shadow bearing, frame continuity across edges, sector counts before and after
+-- is stated over that field. The clipper is the instrument; the field is what
+decides where to cut.
+
+### Slice 2b: the table in the compiler, and the junction that is not a room
+
+**Deliverable 1 — the compiler applies the join table.** `joins.apply` walks
+every two-sided record after overlay partitioning, looks up
+`(kind A, kind B, height relation)` and writes what the row says: the band's
+tile class, the cstat bits, and whether the edge is a frame boundary.
+
+Proved on the committed slice-1 map, record by record. Its kerbs were painted
+by hand from `HeightIsland`; running the table over the same map changes
+**nothing** -- 10 shared records, 3 kerb bands on the road side, 0 unknown
+pairs, and a diff over `picnum`, `over_picnum`, `cstat` and all four texture
+fields comes back empty. The four pairs it finds are exactly the four rows it
+should: `road|pavement` both ways, `road|road` at the shadow cut,
+`pavement|pavement` at the same cut.
+
+Fail-first: relabel one sector a kind the table has no row against and
+`apply` raises, naming the pair. Before the compiler consulted the table that
+passed silently, because the record simply kept whatever tile its region
+carried -- which is the mechanism by which Gravesend's kerbs came to wear the
+houses.
+
+**Deliverable 2 — a junction is a place on the plane, not a room.** The
+supervisor's diagnosis was right and the fix is one line of model:
+`overlay.ground_plane` traces the union boundary of a network's strips and
+returns ONE concave outline. `PlanarLayout` takes it; Build sectors may be
+concave; and the junction is then simply the part of the plane no island
+covers, with no exits of its own to declare.
+
+```text
+crossing   12-vertex plane, area exactly 2*W*L - W*W;  5 sectors, 28 walls,
+           8 kerb records, junction square 5120 x 5120 (E3M1 s3's size,
+           and here it is the two strips' widths by construction)
+T           8-vertex plane;                            4 sectors, 20 walls,
+           5 kerb records
+```
+
+**No `zero_exit_gameplay_sector` on either.** Emitting the square as its own
+region had produced three of them across the graph; emitting the plane whole
+produces none, because the thing that had no exits was never a room.
+
+The connectivity check had to be written twice. A ring that closes is not
+proof a plane is connected -- two separate squares each close their own -- so
+`ground_plane` now requires the boundary walk to reach every boundary vertex
+there is, and says which strips did not join.
+
+#### What is still not built
+
+* **The whole graph (deliverable 3) is not built**, and neither are the
+  boundary segments: no shore, no sea, no horizon, no end walls in a map. The
+  emitter must be rewritten around `ground_plane` first -- it still emits
+  per-edge road rectangles and junction squares, which is the model this slice
+  retired.
+* **Shadows do not cut a concave plane.** `split_convex` refuses one, by
+  design, and the whole-graph plane is a lattice. Cutting it needs either a
+  simple-polygon splitter or a decomposition, and that is the first thing
+  deliverable 3 runs into.
+* No read-back, no renders, no norm re-baselining -- all downstream of a
+  compiling whole graph.
+
+#### What slice 3 must answer first
+
+Still not the masses. **How a shadow cuts a concave ground plane**, because
+the whole-graph plane is one region by the model above and `split_convex`
+refuses it. Everything after that -- masses, interiors, mechanisms re-placed
+through their own placers -- builds on a map that does not exist until it is
+answered.
+
+### The join table and the city's boundary, 2026-09-02 (P14b, continued)
+
+**`bloodmap/joins.py`.** Things are one table; joins are the other. A kerb is
+not an object -- it is what the join `road|pavement` looks like -- and four
+things that were separate special cases are now ROWS: P13's holder law, P14's
+kerb, `street.end_wall`'s terminations, and P11/P13's frame continuity.
+
+Eleven rows, each carrying its evidence: the six E3M1 outdoor ones, E6M1's
+shopfront (holder required), `building_back|void`, and the map-edge rows
+below. **A pair with no rule raises**, and the message names the defect it
+exists to stop -- Gravesend's kerbs wore the houses precisely because an
+undescribed join fell through to whatever the region happened to carry.
+
+**`city_plan.BOUNDARY`** states how each side of the city ends: south is the
+waterfront, north and east and west are building backs with end walls where
+the avenue, the spur and the west street's T reach the boundary.
+`building_back_sides()` returns the three with no perimeter lane to build,
+because nothing walks behind a building.
+
+#### Two corrections the corpus made to my own measurements
+
+**Tile 2490 is stone, not water.** The owner said so and the corpus agrees
+exactly: of its 34 campaign sectors, **25 carry floor palette 10 and pan, 8
+carry palette 0 and do not**, one is blue and still. Blood palettises stone to
+make water, so the test is the PALETTE and the behaviour, never the tile.
+`joins.is_water` asks that question.
+
+That corrects my published kerb census in a way worth stating precisely: water
+was contaminating it, but **less than it looked and not where it looked**.
+Excluding water by palette and panning removes **136 of 1046 outdoor step
+records (13%)** -- and 2490 still tops what remains, at 55, **as stone**. So
+the census was not wrong because of water; it was wrong because surface kinds
+are not readable from tiles, which is the thing this table fixes.
+
+**My first chasm measurement was wrong.** I compared each sector to its
+immediate neighbours and found nothing sunk more than 20 player heights.
+Against the city's median floor instead, DWE3M1's deepest sectors sit at z
+526336 against a median of 70656 -- **26.9 player heights down**, inside the
+26-28 the brief states -- wearing rock 274 (5), 270 (2) and 411 (1). The
+measurement was right and the reference frame was mine.
+
+#### The waterfront, measured on DWE3M10
+
+```text
+sea      18 sectors, tile 2490 under palette 10, pan_floor + pan_always,
+         velocity 10 on angle 900, drag set: it carries a body
+horizon  s404 is a ZERO-HEIGHT sector -- floor_z == ceiling_z == 21504 --
+         with tile 3678 on both surfaces and the parallax bit on both,
+         meeting the quay at delta 0. s201 and s202 are the same trick
+shore    the tiles that meet the sea: sand 433 (33), 21 (20), the horizon
+         tile itself (16), 255 (7), 181 (4), concrete 416
+```
+
+#### What is still not built
+
+* **The compiler does not apply the table yet.** The rows exist, the failure
+  is loud, and the tests hold it; wiring it into `PlanarLayout.compile` at
+  every shared edge after overlay partitioning is the next step and it belongs
+  with the slice-2 emitter, which still does not compile.
+* **`enclosure_backdrop` has no row and no precedent.** It is named in
+  `EDGE_KINDS` so the gap is countable, and asking for its row raises. I did
+  not find a corpus map that rings a city with walls and fake masses; a
+  pointer would settle it.
+* **`reachability.classify_offmap` does not raise.** The brief says it raises
+  TypeError on every map; it returns clean results on six campaign maps and on
+  both DWE3M1 and DWE3M10 (`{logic_closet 4, bare 20}` and `{logic_closet 1,
+  sealed 1, bare 20}`). I have not fixed it because I cannot reproduce it.
+* **L2 builds no boundary segments.** `BOUNDARY` is L1 data and the solver
+  reads `building_back_sides()`; nothing emits a shore, a sea or a horizon
+  yet.
+
+### P14b slice 1 completed; slice 2 NOT landed, 2026-09-02
+
+**(a) The sky.** Slice 1 as committed gave every parallaxed ceiling its own
+floor's tile -- road ceilings wearing 352, pavement ceilings wearing 4. Running
+it through the gates the city build runs reported **10 errors**:
+`parallax-wears-a-sky-tile` on all five sectors and
+`tile-sits-in-an-attested-slot` on all five. The law was already there; the
+slice had simply never been asked. Fixed to `SKY_TILE` 3491: **10 errors to
+0**, and the slice now passes every rule the city build runs.
+
+**(b) Terminations.** `bloodmap/street.py` gains `end_wall` and
+`termination_faults`, measured off E3M1's three (s0, s339, s343):
+
+```text
+id     walls  floor pic  ceiling    above the road   under the sky line
+s0       9      379      3491 sky   5.80 bodies      5.80
+s339    10      379      3491 sky   3.86             7.73
+s343     8      379      3491 sky   5.80 / 9.60      5.80
+```
+
+Faces to the road are two-sided, **blocking** (cstat 1), `y_repeat` 8, in the
+district's own facade stone -- 400 on s0, 401 on s339, 108 on s343. Where a
+face meets a pedestrian path instead it is NOT blocking (s339's walls to
+s10/s11, picnum 181, cstat 0): you may walk between the houses, you may not
+walk up the end of the street.
+
+And **this is where E3M1's 379 lives**: it is the top of an end wall, not a
+plaza surface. The correction from P14's first run stands and now has a
+positive home.
+
+#### The four unproven items
+
+**1. A shadow cutting both islands of a road: PROVED, and it needed a road
+running the other way.** With one sun at `SUN_BEARING` 478 -- 84 degrees, very
+nearly due +y -- a **north-south road is cut lengthwise and only an east-west
+road is cut across**. On a north-south street the shadow drifts 7100 in x per
+67500 in y, so it reaches the far pavement after about 125,000 units of run,
+longer than any street in this city. That is a property of having one sun, not
+a defect; E3M1 has both kinds (s8 is 7456 x 21504, s45 is 18048 x 4096) and
+its oblique shade edges are the ones its east-west roads carry.
+
+Built as a crossing pair: 12 pieces, 10 kerbs, 1 junction, 1 shadow edge, 6
+lamps; the shadow cut `ew:0` and the islands on **both** sides of it. It
+compiles. **The unpaired-portal refusal did not reappear**, because the
+emitter cuts everything in one pass by construction -- which was the fix
+slice 1 predicted.
+
+**4. Junctions: PROVED in the same build.** Where two roads cross, the overlap
+becomes a junction square and each road gives up its share, so the two never
+both own it.
+
+**2 and 3 are NOT done.** The shopfront recess is still declared rather than
+carved, and the sightline gate still reads geometry rather than visibility.
+They were third and fourth in the queue behind the two that block the graph.
+
+#### Slice 2 did not land, and exactly why
+
+`projects/blood-city/level/street_build.py` is the general emitter and
+`build_streets_slice2.py` drives it over the whole graph. It gets as far as
+**40 roads, 9 islands, 118 pieces, 75 kerbs, 16 junctions, 9 shadow edges, 30
+lamps, 16 end walls** and then `PlanarLayout.compile` refuses it. Four
+refusals, each a real defect and each fixed, and the fifth is where this run
+stopped:
+
+1. **Unpaired portals at every junction.** Pairing was keyed on whether two
+   surfaces' original RECTANGLES touched, which stops being the question the
+   moment a junction is subtracted out of a road. Replaced with pairing by
+   coincident wall segments, which is true whatever cut produced the pieces.
+2. **Slivers.** An oblique shadow clipping the corner off a junction left a
+   triangle 43 units across, and the compiler then found coincident segments
+   nobody had declared. Fixed by the rule that **a cut which would leave a
+   scrap does not cut** -- `overlay.MIN_PIECE_AREA`, the same figure
+   `clip_to_rect` already refuses on -- and the grazed surface takes the shade
+   of its larger half rather than keeping the lit default by accident.
+3. **Duplicate connections**: the explicit `cut:` joins became redundant once
+   pairing was general.
+4. **Float reconstruction of an oblique shared edge.** A cut gives both pieces
+   the *same* crossing points, so the shared edge is an exact endpoint match;
+   projecting onto a float unit vector lost the last unit and the compiler
+   reported nine pairs as unpaired. Now exact integers, with the three cases
+   separated.
+5. **STILL OPEN:** `zero_exit_gameplay_sector` on three junction squares --
+   "sector has no walkable-at-rest reciprocal portal". Every piece has
+   connections and none is isolated, so the junction's neighbours are being
+   found but not as *walkable* ones. That is the next thing to read, and it is
+   where this run stopped rather than leave a half-rebuilt map.
+
+`blood-city-current.MAP` is untouched, as it has been since slice 1.
+
+#### What slice 3 must answer first
+
+Not the masses. **The junction's walkable-reciprocal refusal**, because it is
+the last thing between the emitter and a compilable whole graph, and every
+later slice builds on that map. After it: whether the kerb and sightline gates
+hold over 75 declared kerbs rather than 3, and whether 118 pieces stay inside
+the frame-invariance property that 5 pieces did.
+
+### What this run did not do
+
+Most of the assignment, and the reasons are worth stating rather than
+implying:
+
+* **Deliverable 4, the L2 rebuild, is not started.** It is a from-scratch
+  regeneration of a 259-sector map that must preserve and re-read-back every
+  mechanism it already has -- the curtain, the turnstiles, thirteen doors, the
+  sewer stacks, the secret declaration. Attempting it with what was left of
+  this run would have left the city broken and the layers below it untested.
+* **The overlays are not inside `PlanarLayout.compile` yet.** The geometry and
+  the piece model are done and tested; wiring them into the compiler is part
+  of the rebuild, not separable from it.
+* **Deliverable 5's gates are not written**, and one of them turned out to
+  need work this run could not finish honestly. "Every kerb band wears the
+  kerb tile" has a clean fail-first -- **0 of 261 kerb-condition records in the
+  current city wear tile 6, and its steps are 1024/1536/2048/3072/4096 where
+  E3M1 uses 2048 only** -- but the absolute half does not calibrate: the
+  campaign's outdoor kerb tiles are diverse (top eight = 43%), and the
+  narrower clause "the band must not wear the material standing above it"
+  scores the campaign at 16% and the city at 0%, so the city is already
+  *better* by it. A gate that cannot separate them measures nothing, and it is
+  not shipped. What the gate needs is the rebuild: once kerbs are emitted by
+  `HeightIsland` there is a declared population to check rather than a
+  geometric guess at which steps are kerbs.
+* **No renders, no read-back, no norm re-baselining** -- all of those are
+  about the rebuilt map.
+
+### Regression tests
+
+`projects/blood-city/tests/test_city_solve` (13) and `tests/test_overlay` (15): the envelope
+arithmetic, roads as spacers, slack absorbing residue and a target the rigid
+parts exceed being refused; exact area conservation on axis and oblique cuts,
+a concave region refused, pieces inheriting their parent; E3M1's kerb read off
+the map inside the test (11 records, tile 6, step -2048), the sun's bearing
+against its own geometry, and an axis-aligned edge NOT reading as the sun's --
+because "shadow edges share the sun's angle" is otherwise satisfied by every
+sector boundary in the map.
+
+### Next highest-value experiment
+
+Wire `overlay.apply_overlay` into `PlanarLayout.compile` on ONE road: emit the
+west street as a ground plane with two pavement islands and let the compiler
+cut the kerb. If the road's frame survives the cut -- assert with the ported
+`>` and with `texture_frame.world_u` -- the rest of the rebuild is the same
+edit repeated, and the kerb gate gets its declared population.
+
+## The demonstration maps, and two things they said plainly
+
+`maps/blood/mechanism/` holds thirty-odd official XMapEdit tutorial maps, one
+mechanism each -- #SLDOOR, #SWDOOR, #STACK, #TYPE600/602/613/616/617,
+#REVDOOR, #ELEVATR, #PATHSEC and the rest -- beside the owner's own
+casket.map. This project had never read one of them, and both defects the
+owner then found by walking are stated outright in the first two opened.
+
+**A transmitter sends because it reports an EDGE, not because it has a
+channel.** `SetSpriteState` calls `evSend` only inside
+
+```c
+    triggers.cpp:100  if (pXSprite->txID) {
+                          if (command != kCmdLink && pXSprite->triggerOn
+                              && pXSprite->state)  evSend(...);
+                          if (command != kCmdLink && pXSprite->triggerOff
+                              && !pXSprite->state) evSend(...);
+```
+
+so a switch with a valid `tx_id`, a valid `command` and a valid
+`trigger_push` but neither edge flag flips its own state and sends NOTHING.
+The pattern zoo shipped five of them. Every field is individually valid, no
+static reading of the finished map can tell, and the owner found them by
+pushing each one. `#TYPE600.MAP`'s canonical switch is type 21 on picnum
+1046 with `trigger_on` and a 30-tenth `wait_time` so it springs back.
+Registered as `transmitter-reports-an-edge`: 13 of 2234 campaign
+transmitters, an error-tier rule.
+
+**And the canonical doors have no switch at all.** #SLDOOR and #SWDOOR carry
+`trigger_wall_push` on the moving SECTOR and no rx_id: you push the door
+itself. The route is orthogonal to the channel, which is what the grammar
+said and what the constructors did not offer.
+
+**A stack is marked on BOTH halves.** #STACK.MAP puts floor picnum 504 on
+the upper sector and ceiling picnum 504 on the lower, and the oracle does the
+same on s3 and s6. Marking only the upper -- which is what the zoo did --
+leaves the view from below looking at a solid ceiling.
+
+**A casket is FOUR sectors in TWO planes.** s2|s3 is a lid in the upper
+room's floor and s5|s6 its mirror in the lower room's ceiling, both on rx 100
+with the same travel, so the ceiling below opens as the floor above does.
+Building only the upper plane leaves a hole in the floor with an unbroken
+ceiling under it, which is what the owner saw.
+
+## The motion machinery, factored, 2026-09-01
+
+`bloodmap/motion.py` holds the four primitives every Blood motion mechanism
+is composed from, each separately readable, separately buildable and
+separately fixtured. `mechanism.planar_door` and `mechanism.curtain` are thin
+compositions that add only composition facts. The point is not tidiness: a
+grammar factored this way can read and build combinations nobody has named.
+
+```text
+1 MARKED-WALL MOTION  flags -> moved POINTS -> the vertex closure.
+                      `motion_set` is the closure and it spans sectors,
+                      because dragpoint (engine.cpp:13071) walks every wall
+                      around a moved vertex. payload_shape names the three
+                      arrangements: re-partition, self-resize, rigid
+2 MOTION MARKERS      the from/to pair; `owner` is the sector CONTROLLED,
+                      not the one it stands in; `state` says which pose the
+                      map is drawn in and a state-0 sector jumps at load
+3 CONTROL WIRING      route (push / wall-push / wall-button / remote /
+                      level_start / keyed) orthogonal to the verb, and the
+                      VERB IS CHECKED against the receiver's state
+4 ROR STACK           link pair 2332/2331 on statnum 0, data_1-paired, a
+                      TRANSLATION AT A PLANE -- and see-through as its own
+                      property, floor picnum 504 (mirrors.cpp IsRorSector)
+```
+
+**What the factoring corrected.** The isolation discipline is NOT universal,
+and measuring it said so. E1M1's curtain is isolated -- its motion reaches
+only itself and the alcove behind -- because the deformation runs along a
+face the player looks at, and the fabric is a RECESSED BULGE in a strip whose
+unmoved shoulders carry the room-facing wall. E1M1's casket is NOT isolated:
+s28 drags one wall each of sectors 1 and 2, s30 one each of 67 and 68,
+because a floor boundary sliding across a room meets that room's walls at its
+ends and nobody sees it. So the gate checks a construct against what it
+DECLARED rather than against a blanket rule, and `declare_motion` is how a
+constructor says what it means to touch.
+
+## The two gates that were missing
+
+Both were written first, watched fail on the zoo as it stood, and only then
+satisfied.
+
+**Swept-state** steps every mechanism's full travel through `motion_sim` and
+checks for inversion, collapse and wall crossings at each step. It caught the
+casket's cover sweeping 2304 units past its own far wall.
+
+**Motion-set conformance** computes the actual motion set and diffs it
+against the declared payload, naming the wall and the shared vertex it drags
+through. It caught the curtain deforming the section room: the fabric's
+moving vertices were the ROOM's corners.
+
+Both run in `PlanarLayout.compile` and in the zoo's own gate, alongside a
+whole-map sweep for wirings whose command cannot change their receiver.
+
+## The paid-for build gotchas
+
+Each of these cost a failed build at least once. They are properties of
+`PlanarLayout` and the Blood constructors, not of the zoo.
+
+```text
+sub-rooms go in a BACK BOX      a region wholly inside another is a
+                                containment the layout refuses, and rightly:
+                                neither side of that boundary can be a portal
+a feature narrower than the     leaves the rest of the shared stretch
+wall needs a NECK               coincident and unpaired; the corridor makes
+                                the same move onto every room
+a room may not be wider than    its near wall then meets the wall either side
+its own doorway                 over stretches that are neither portal nor
+                                solid
+a gate sector must be WIDER     the leaves retract past the ends of the
+than its threshold              opening into the jambs
+a rotor's clear height is a     a blade spans its rotor exactly, top on the
+whole number of blade tiles     ceiling and bottom on the floor; a height that
+                                is not is refused rather than filled
+a sprite may not span an        wall sprites are checked against the z range
+opening                         each wall is open over, so a sign goes above
+                                a header, never across a mouth
+a floor sprite's z is its       seating goes through `furniture.place`, which
+CENTRE                          dispatches on the tile's own mounting
+placement ids must be unique    `placement_sprites` is a dict; three gates
+across the whole map            named `<x>:gate` all produced `gate_leaf_west`
+                                and two of them became unfindable
+a marker's OWNER is the sector  E1M1's casket puts its "to" marker inside the
+it controls, not the one it     cover, which has no XSECTOR at all; the loader
+stands in                       deletes any marker whose owner names none
+half of four axis frames are    a reflection reverses a loop's winding AND the
+REFLECTIONS, not rotations      side a wall sprite offsets to; transport the
+                                local normal rather than reasoning about signs
+a branch's back boxes reach     so the gap between two branches on the same
+out of BOTH its long walls      side is the two facing runs' depths, not a
+                                constant
+```
+
+---
+
+# Phase 11 — Automatic discovery frontier + batched review
+
+**Status, 2026-09-01: the self-correction half is DONE and proven; the
+novelty frontier is OPEN.** What exists and holds: attested-construct
+fixtures, the conformance and swept-state gates, the motion-set check, the
+zoo reading itself back, the contradiction queue, and the batched review page
+(`reports/owner-review-queue.md`). What does not exist: anything that goes
+LOOKING for a pattern nobody has named — every finding so far came from a
+question someone asked. That asymmetry is the phase's remaining work, and it
+is not started.
+
+
+**The authoring-loop law (owner, 2026-09-01):** whenever the AI builds a
+mechanism in a level, it must immediately verify that the built thing
+does what was INTENDED — read it back through the understanding stack
+and compare against the declared sentence (self-read: it exists and
+fires; swept-state: valid through the whole travel; motion-set: only the
+declared payload moves; intent: the function claim holds in the
+embedding). A mismatch is always a finding: either a bug in the level or
+a bug in this project's constructors, readers, or grammar — and both
+kinds are wins. Building without this read-back is not finished work.
+This is why intent must be declarable (MechanismDecl, Phase 13): a
+comparison needs both sides in one language.
+
+**Owner steering (2026-09-01): the mining system must be built to
+self-correct and expose its own errors.** The working example is the
+curtain verification of the same day: an owner claim (sector id, wall
+ids, motion story) was checked field-by-field against the map, one id
+discrepancy surfaced honestly (motor is s125, s124 is the lit room), and
+a new rule fell out (rigid vs elastic payload topology). Generalize that
+loop into standing machinery:
+
+1. **Attested-construct fixtures** — every owner-attested construct
+   (casket s27-s30, curtain s124/125, door s4, the s65/s90 workaround,
+   the turnstiles) is a permanent test: the reading stack must parse the
+   real map into the expected grammar sentence, and any model change
+   that breaks a parse fails the suite. Owner knowledge becomes
+   regression armor, not prose.
+2. **Contradiction mining** — cross-layer consistency checks over the
+   knowledge index: owner anchors vs the corpus usage-kind table vs
+   constructor claims vs bundle views. Disagreements are ranked into the
+   review queue as first-class frontier items — a contradiction is a
+   discovery.
+3. **Round-trip closure** — every constructor's test builds, reads back
+   through effects/conditional, and asserts the parse equals the grammar
+   sentence the constructor claims (the zoo's self-reading gate,
+   generalized to unit scale).
+4. **Owner claims as probes** — when an owner statement disagrees with
+   the data, the system reports the discrepancy with evidence and lets
+   the review decide; it never silently accepts either side.
+
+## DONE, 2026-09-01: the self-correction half
+
+Owner-steered and proven. **PARTIALLY done overall** — the discovery
+frontier is untouched and said so below.
+
+**Template conformance** (`bloodmap/conformance.py`,
+`projects/pattern-zoo/sweep.py`). Every constructor promoted from a mined
+template gets a check that rebuilds it, measures it with the same relational
+miners that produced the template, and diffs. Relations, not absolutes:
+angular spacing about an axis, radial stand-off, span as a fraction of clear
+height — so a legitimate rescale passes and a rotation that forgot the angles
+does not.
+
+It was written to fail first, and it did. The owner walked v3 and found the
+turnstile's four blades in a SQUARE instead of a cross; the check reproduced
+that from the built map, and the campaign's own rotors (E1M4 151/314) passed
+it, which is what calibrated it. Then the sweep found the rest:
+
+```text
+what the sweep caught, before the fix        10 deviations, 10 constructs
+  6 rotors        blades in a square         the owner's report
+  4 sliding gates leaves edge-on to their    NOT owner-reported: found by
+                  own travel                 the machinery
+one root cause    frame.Framed rotated sprite POSITIONS and not their ANGLES
+```
+
+Four gates had shipped leaves that slid edge-on and stopped nothing. That is
+the "many similar oddities" the owner suspected, found automatically, and it
+is the argument for the whole mechanism: every one of those passed structural
+validation, the usage laws, the self-reading gate, byte-exact round trip, an
+NBlood load smoke and thirty-one renders.
+
+**Attested-construct fixtures** (`tests/test_attested_constructs.py`). Twenty-
+one assertions parsing the ORIGINAL campaign maps, turning owner knowledge
+into regression armor: the casket's four sectors, its boundary re-partitions
+and ergonomic z-assist and voice; the curtain's elastic payload, its
+push-the-fabric wall route and its command-5 light link to s124; s4's rigid
+double slide worked from its own leaf walls; s65/s90's synced ROR pair with a
+sprite-only payload; E1M4's counter-rotating turnstiles. Three facets the
+model still cannot produce are `expectedFailure` with their blueprint
+reference, so the gap is countable rather than absent — and an
+expectedFailure that starts passing reports as an unexpected success.
+
+**Contradiction mining, minimum viable** (`bloodmap/contradictions.py`,
+`llmapper contradictions`). One command comparing the four places this
+project keeps the same facts — owner anchors, the usage-kind table,
+constructor claims, a built map — ranked conflict / drift / open, each item
+named for confirm or reject. It independently surfaced the tile-502 drift a
+human found by hand last run, and it carries the two questions measurement
+could not settle.
+
+## STILL OPEN: the discovery frontier
+
+Ranking candidates by novelty, coverage and uncertainty over community
+mining, and batched review actions that PROPAGATE (confirm / reject / split /
+show counterexamples changing downstream state). None of that is built. The
+queue here is a comparison of what is already written down, not a search for
+what is not. The exit criterion — the user no longer needs to enumerate most
+concepts manually — is NOT met.
+
+## Two items awaiting the owner, not the machine
+
+Both are in the contradiction queue by name, and both are the owner's call by
+construction:
+
+* **`mask-law-two-sided-exception`** — tiles 142 and 2464 break the mask law
+  on two-sided walls in 23 of 60839 slots, against a clean zero everywhere
+  else. Family or accident decides whether the law gains a door-leaf clause
+  or a rate.
+* **`gallery-topology-exemption`** — the zoo measures mean_degree 2.09
+  against a campaign median of 2.74, and dead-ends 0.344 against 0.159.
+  Thirty-one exhibits are terminal by construction; the only way to hit the
+  norm is loops that go nowhere. The proposal is a documented exemption for
+  gallery-shaped artifacts rather than gaming the number.
+
+---
+
+# Phase 12 — Recursive knowledge growth
+
+Use learned concepts as new atoms (drawer unit → desk assembly → office
+region; storefront → facade → street frontage). Provenance must survive
+through abstraction layers.
+
+## Exit criteria
+
+The system discovers patterns not expressible in raw sector/wall/sprite
+terms.
+
+---
+
+# Phase 13 — Design intent + synthesis
+
+**PREREQUISITE (systemic review, 2026-09-01): ONE source language.** The
+level is currently authored in TWO dialects — the levelprog tree
+(blood-city, vertical-fragment, e2m3-decompiled) and flat PlanarLayout
+(pattern-zoo, facade-pilot, reasoned-authoring) — and the constructors
+are split BY dialect: mechanism.py and the facade builders speak flat,
+templates/setpieces speak tree. Measured symptoms: promotion-queue ranks
+8 and 9, blood-city's turnstiles.py hand-adapting a spec because the
+builder targets the other stack, and the zoo being written in the
+dialect without locality, style provenance, or an intent tree. Fix
+before MechanismDecl (or it gets implemented twice): the TREE is the
+only source language; PlanarLayout is demoted to compiler IR — output of
+the tree, never hand-authored; constructors re-homed to tree nodes; the
+zoo and facade-pilot rewritten as the proving migration. Alongside: the
+source layer should speak DERIVED units (player heights, steps, bays)
+with the compiler doing Build conversion — the 16:1 z anisotropy has
+burned this project repeatedly and raw numbers in source are where it
+hides.
+
+**Owner-steered entry point (2026-09-01), from the representation review:
+the missing layer is a shared CONSTRUCT/SENTENCE schema.** The review
+found: BuildIR/native needs no rework (byte-exact contract stays); the
+reading stack parses mechanisms into grammar sentences well; the level
+program tree understands architecture (locality, style provenance) but
+mechanisms are NOT citizens of the tree — they are imperative calls into
+flat PlanarLayout with sector_behavior dicts, and intent exists only as
+~15 free-text `intent={"purpose"}` strings. Reading and writing never
+meet in one schema; self-reading bridges them post-hoc. The rework:
+
+- **MechanismDecl**, a typed node used by BOTH sides: members+roles
+  (lid/hole/link/switch/blade...), primitives with parameters (the
+  four-primitive factoring), wiring (interaction route, channel, command
+  verb), and a TYPED function field — the E1M1 taxonomy (narrative /
+  secret / progression / ambush / furnishing / fixture /
+  ergonomic-assist / workaround) — with evidence for the claim
+  (INTERPRETED discipline: function is asserted from embedding, contents
+  and dressing, never free).
+- Level programs DECLARE mechanisms as tree nodes, compiled down to
+  PlanarLayout behaviors; readers (effects/conditional/assembly) EMIT
+  the same schema from original maps; fixtures, conformance and the zoo
+  self-read become structural equality between the declared and the
+  parsed sentence — the self-correction loop gains one common language,
+  and reading↔writing become symmetric.
+- Scope: a new declaration layer + adapters — NOT an IR rewrite.
+
+Fundamental understanding of mechanisms is what makes intent legible
+(the owner's thesis); this layer is where that intent lives and is
+checked.
+
+Generate from semantic/function/architecture intent, not coordinate soup.
+This must land in the existing source representation: level programs and
+`vocabulary.py` constructors, per the project's representation-first
+priority. Deliverables: design-intent IR, deterministic compilation,
+hard/soft/style constraints.
+
+## Exit criteria
+
+A prompt such as "small street-facing shop, two-bay facade, recessed
+storefront, counter, rear storage" produces a structure whose relationships
+survive changes of width, orientation, or art set.
+
+---
+
+# Phase 14 — Independent critics and scoped repair
+
+## Already in the repository
+
+Independent critics exist (geometry validate/audit, level_profile, NBlood
+oracle, visual observer, overlap validator) and feed `authoring_loop.py`.
+
+## Gap
+
+Structured diagnoses with repair scope; semantic-delta validation after
+repair. Standing warning: critic rules have historically measured the wrong
+thing — every critic must name its oracle and a failure it provably
+detects.
+
+## Exit criteria
+
+A facade readability failure can be repaired without changing progression
+or rebuilding unrelated rooms, and the semantic delta proves it.
+
+---
+
+# Phase 15 — Quality diversity
+
+Late-stage. Once understanding and critics are reliable, maintain diverse
+valid solutions along axes (verticality, loopiness, openness, clutter,
+facade rhythm, encounter density, mechanism complexity). Do not use
+quality-diversity to hide weak semantic understanding.

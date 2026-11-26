@@ -9,6 +9,9 @@ import sys
 import threading
 import time
 
+if len(sys.argv) < 3 or sys.argv[1] in ("-h", "--help"):
+    print(__doc__)
+    raise SystemExit(0 if sys.argv[1:2] in (["-h"], ["--help"]) else 2)
 out, script, *args = sys.argv[1:]
 sys.argv = [script, *args]
 sys.path.insert(0, os.path.dirname(os.path.abspath(script)))

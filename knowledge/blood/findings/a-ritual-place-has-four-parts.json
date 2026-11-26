@@ -1,0 +1,29 @@
+{
+ "id": "a-ritual-place-has-four-parts",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "A ritual place in Blood's maps (E6M6, and the Death Wish add-on's DWE3M6 and DWE1M4) is four things: something the room is arranged round, made of sectors (a stone-rimmed pool half a body high with candles ON its rim, a hexagonal dais, a drum in a moat); people arranged round it facing it; a victim and the thing it is for; and an answer when the player acts (walls fall, the earth shakes, phantoms come). It is seen from above before it is entered.",
+ "evidence": [
+  "E6M6 s192 and s281 (the pool), DWE3M6 s840 (a mouth of stone teeth), DWE1M4 s642 (seated congregation)",
+  "study knowledge/blood/studies/ritual-place, summarised in projects/blood-city/references/cabal-rite-design.md"
+ ],
+ "use": "Build the centre in sectors (bloodmap.arrangement), face the figures at it, wire an answer, and give a gallery over it.",
+ "code": [
+  "bloodmap/arrangement.py",
+  "projects/blood-city/references/cabal-rite-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "altar",
+  "circle",
+  "cult",
+  "pentagram",
+  "ritual",
+  "sacrifice",
+  "shrine"
+ ]
+}

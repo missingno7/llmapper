@@ -1,0 +1,25 @@
+{
+ "id": "xmapedit-autosaves-contaminate-the-corpus",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "XMapEdit autosaves (ASAVE*.map) appear inside corpus directories whenever the owner edits in place, and a census over the directory counts them: one silently inflated a curtain census by duplicating E1M1's s125.",
+ "evidence": [
+  "Three found by 2026-09-01 (campaign/ twice, mechanism/ once); maps/blood/corpus.json is the manifest."
+ ],
+ "use": "Enumerate maps only through bloodmap.corpus (campaign_maps, named_maps) and quarantine a file whose name contradicts its directory; regenerate the manifest rather than trusting a count in prose (the campaign is 43 maps).",
+ "code": [
+  "bloodmap.corpus.campaign_maps"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "autosave",
+  "census",
+  "contamination",
+  "corpus",
+  "glob"
+ ]
+}

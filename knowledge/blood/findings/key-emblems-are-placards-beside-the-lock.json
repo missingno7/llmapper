@@ -1,0 +1,25 @@
+{
+ "id": "key-emblems-are-placards-beside-the-lock",
+ "topic": "gameplay",
+ "standing": "tendency",
+ "claim": "The six key emblems (2540 skull, 2541 eye, 2542 flame, 2543 dagger, 2544 spider, 2545 moon) are placards hung beside a door that wants that key: 80% of the campaign's 265 keyed things carry one. Hung anywhere else they promise a lock that is not there.",
+ "evidence": [
+  "knowledge/blood/design/keys-v1.json, mined over 43 maps"
+ ],
+ "use": "Hang an emblem only by the lock it names.",
+ "code": [
+  "projects/blood-city/level/props.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "door",
+  "emblem",
+  "key",
+  "lock",
+  "placard"
+ ]
+}

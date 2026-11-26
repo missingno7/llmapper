@@ -1,5 +1,17 @@
 {
   "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "Gravesend",
+  "kind": "level",
+  "status": "live",
+  "game": "blood",
+  "about": "A Blood city: streets, six keyed places, sewers and a ghost railway. Read reports/STATUS.md first.",
+  "map": "level/blood-city-current.MAP",
+  "played": "level/gravesend.MAP",
+  "build": "level/build_skeleton.py",
+  "poses": "level/poses.py",
+  "plan_unit": 1024,
+  "ground_z": 8192,
   "authoring_model": "brief -> recipe/operations -> MAP -> validation/probes",
   "boundaries": [
     "derived observations never overwrite MAP truth",
@@ -7,7 +19,6 @@
     "structure norms come from E3M1 + DWE3M1 + DukCity1-4; art norms from the Blood two only (tile identity does not transfer between games)",
     "no global coordinate literals in the level program; districts are named assemblies, blocks are stamped prefabs, streets absorb layout residual"
   ],
-  "name": "Blood City: a Blood answer to DukCity",
   "phases": [
     "0 city-norms mining",
     "1 urban plan (flex streets + massing holes)",
@@ -28,5 +39,5 @@
     "reserve_note": "keep 10% headroom under each limit for iteration; the old 7000-wall cap and the 512 X-object figures were vanilla-DOS numbers (retired 2026-09-02)",
     "source": "NBlood/source/build/include/build.h:48-59, NBlood/source/blood/src/db.h:25-27"
   },
-  "schema_version": 1
+  "status_script": "level/status.py"
 }

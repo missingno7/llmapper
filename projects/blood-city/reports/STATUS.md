@@ -47,9 +47,10 @@ Each place's best view of about 800, chosen and named by a blind reader (`python
 - `critique`: 16
 - `dropped`: 5
 - `lost-tile`: 3
+- `misfit-use`: 1
 - `missing-layer`: 20
 - `never-critiqued`: 17
-- `outside-campaign`: 202
+- `outside-campaign`: 203
 - `owner-rework`: 1
 - `refused`: 5
 - `rule-warning`: 7

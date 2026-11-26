@@ -1,0 +1,26 @@
+{
+ "id": "ablate-a-change-for-a-blind-reviewer",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A build that adds several things at once cannot say which worked. Variants of the built map with one feature removed each, rendered from the same poses under random letters for one blind reviewer, give a ranking per feature: the reviewer reconstructed a 2x2x2 design unprompted and rated the sign decisive, the surround helpful, missing light mildly harmful.",
+ "evidence": [
+  "projects/blood-city/experiments/shop-surrounds, 2026-11-17."
+ ],
+ "use": "Plan ablations and predict their order before building; take the 'without' values from the before map.",
+ "code": [
+  "tools/whatif.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "ablation",
+  "blind",
+  "experiment",
+  "review",
+  "variant",
+  "what if"
+ ]
+}

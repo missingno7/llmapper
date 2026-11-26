@@ -1,0 +1,29 @@
+{
+ "id": "floor-sprite-width-runs-across-its-angle",
+ "topic": "sprite",
+ "standing": "engine",
+ "claim": "A floor-aligned sprite lays its tile WIDTH along (-sin a, cos a) and its HEIGHT along (-cos a, -sin a): at angle 0 the tile's x runs along map +y, not +x. Its size is texels x repeat / 4, and art picanm offsets and the sprite's own offsets move its centre.",
+ "evidence": [
+  "NBlood/source/build/src/engine_priv.h:479-493 get_floorspr_points (x2 = x1 - sin*span.x, y2 = y1 + cos*span.x).",
+  "A carriage roof written at angle 0 assuming tile x = map x lay 768 x 1024 per piece: gaps along the car and overhangs; the renderer showed them as dark bands, read at first as beams (2026-11-19)."
+ ],
+ "use": "Never size or place a floor sprite by hand: bloodmap.flatsprite.cover tiles a rectangle exactly, footprint/box say where one lies, faults proves a set covers with nothing bare or doubled. A regular pattern on a surface built of sprites is a fault until measured.",
+ "code": [
+  "bloodmap.flatsprite.cover",
+  "bloodmap.flatsprite.faults"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "angle",
+  "deck",
+  "flat sprite",
+  "floor sprite",
+  "orientation",
+  "roof",
+  "rotation"
+ ]
+}

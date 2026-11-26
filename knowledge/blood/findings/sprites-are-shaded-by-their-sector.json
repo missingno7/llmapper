@@ -1,0 +1,32 @@
+{
+ "id": "sprites-are-shaded-by-their-sector",
+ "topic": "light",
+ "standing": "engine",
+ "claim": "Blood draws a sprite at its own shade PLUS its sector's: the ceiling shade when the sector is open to the sky (ceilingstat 1) and floorstat bit 0x8000 is clear, otherwise the floor shade (plus SHADE.DAT per-tile terms). An outdoor sprite is lit by the sky shade, not by the ground it stands on.",
+ "evidence": [
+  "NBlood/source/blood/src/view.cpp:2864-2883 viewProcessSprites.",
+  "Campaign: an open sector's sky shade is its floor shade minus 16 at the median (quartiles -28/-6); floorstat 0x8000 is set in only 12 of 1,768 open sectors (2026-11-20).",
+  "Gravesend had every sky shade at 0, so every outdoor sprite was drawn full bright in the game; the owner saw it.",
+  "NBlood/source/blood/src/view.cpp:2875-2882 viewProcessSprites is the only read of floorstat 0x8000; the XMapEdit observer draws a sprite's own shade, so until 2026-11-20 frames showed every outdoor sprite lighter or darker than the game (bloodmap/visual.py sprite_shades_as_drawn)"
+ ],
+ "use": "Any lighting pass must set sky (ceiling) shades of open sectors as well as floors; a light sprite carries a strongly negative shade of its own (flames -128). Frames from a renderer that draws raw sprite shade lie: bake the rule in. Set floorstat 0x8000 on open sectors so the sky can be one shade and sprites follow the ground (daylight.SPRITES_TAKE_FLOOR).",
+ "code": [
+  "bloodmap.visual.as_played",
+  "bloodmap.daylight.SPRITES_TAKE_FLOOR",
+  "bloodmap.visual.sprite_shades_as_drawn"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "0x8000",
+  "floorstat",
+  "lighting",
+  "outdoor",
+  "parallax",
+  "sky shade",
+  "sprite shade"
+ ]
+}

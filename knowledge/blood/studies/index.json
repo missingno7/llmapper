@@ -291,6 +291,32 @@
     "DWE3M2:675"
    ],
    "date": "2026-11-25"
+  },
+  "washroom": {
+   "want": "a washroom or workers' toilets in a working building: stalls, toilets, urinals, a basin",
+   "seeds": [
+    "E2M4:487!"
+   ],
+   "date": "2026-11-26"
+  },
+  "front-office": {
+   "want": "a front office or reception hall: a desk or counter where people arriving are received, beside the way through, in a working building",
+   "seeds": [
+    "E3M4:153!",
+    "E6M1:79!",
+    "E1M3:316!"
+   ],
+   "date": "2026-11-26"
+  },
+  "works-yard": {
+   "want": "the yard of a works at night: rough ground and rock, a facility front with a framed service door, practical lamps, and lightning over it",
+   "seeds": [
+    "E1M5:392!",
+    "E1M4:114!",
+    "E1M4:331!",
+    "E3M5:2!"
+   ],
+   "date": "2026-11-26"
   }
  }
 }

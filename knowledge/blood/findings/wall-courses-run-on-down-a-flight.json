@@ -1,0 +1,28 @@
+{
+ "id": "wall-courses-run-on-down-a-flight",
+ "topic": "texture",
+ "standing": "precedent",
+ "claim": "Down a long flight of steps Blood carries the side walls' courses on from step to step instead of restarting the tile on every tread, and keeps one roof over the flight, sloped with it or flat, rather than stepping the ceiling with the treads.",
+ "evidence": [
+  "E3M1 s79, E3M7 s88, E6M5 s305: the wall's courses continue across the treads",
+  "E4M5 s113-s114: the ceilings slope (heinum -1,024) with the flight rather than stepping; E3M8 s113-s115 keeps one flat roof (ceiling 19,456) over its steps (checked 2026-11-26)",
+  "E6M5 s304, s305, s314: wall x_panning 8, 32, 56 at x_repeat 3, each the last plus x_repeat*8 (work/consolidation/audit3/p5.py)"
+ ],
+ "use": "Lay every tread's side wall from one origin: x_panning continues by x_panning + x_repeat*8 in the wall's own direction, and y_panning moves with the roof by dz * y_repeat / 2048 texels (times 256 / tile height). For an existing run of step sectors call align_flights.",
+ "code": [
+  "bloodmap.texture_align.align_flights",
+  "projects/blood-city/level/ghost_stair.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "alignment",
+  "panning",
+  "staircase",
+  "stairs",
+  "steps"
+ ]
+}

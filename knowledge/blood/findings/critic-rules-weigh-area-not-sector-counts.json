@@ -1,0 +1,26 @@
+{
+ "id": "critic-rules-weigh-area-not-sector-counts",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A critic rule that counts sectors measures the wrong thing: a 1,008-square-body courtyard was called 'circulation' because six tiny stair steps outnumbered it. Weigh by floor area, express scale as a percentile among corpus sectors of comparable footprint (never a round multiple of the body), never count a skipped evaluator as a pass, and cross-check a new rule against a rendered frame before trusting it.",
+ "evidence": [
+  "First authoring-loop pilot, 2026-08-21: three iterations passed every gate while the level was an axis-aligned grid in the bottom decile for ceiling height."
+ ],
+ "use": "Area-weighted measures and corpus percentiles; no aggregate quality score.",
+ "code": [
+  "bloodmap.authoring_loop"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-21"
+ },
+ "words": [
+  "area",
+  "critic",
+  "gate",
+  "metric",
+  "percentile",
+  "rule"
+ ]
+}

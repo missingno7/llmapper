@@ -1,0 +1,27 @@
+{
+ "id": "only-gib-walls-change-a-walls-blocking",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "In Blood the only thing that clears a wall's blocking bits at run time is a kWallGib (type 511) XWALL reaching state 1: SetupGibWallState clears cstat 1|64 on both sides and the masked bit 16. A Z-motion sector moves floors and ceilings, never wall cstat, so a blocking two-sided wall that is not a gib wall is shut for ever. The bit is carried per side: a wall pair blocks if EITHER record has it; two sectors are cut apart only if every wall pair between them blocks.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:662-690 SetupGibWallState; no other wall-cstat write in vanilla Blood code clears bit 1 (gameutil.cpp:621 clears only 64; mapedit.cpp is the editor).",
+  "Campaign: 2,272 blocking two-sided walls, 205 of them kWallGib, every one built shut and wired (bloodmap/conditional.py blocking_aware base, 2026-09-01)."
+ ],
+ "use": "A breakable wall is a kWallGib XWALL built blocking; a reachability reader ORs both wall records and reopens only what a mechanism drives.",
+ "code": [
+  "bloodmap.conditional"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "511",
+  "blocking",
+  "breakable",
+  "cstat",
+  "reachability",
+  "wall gib"
+ ]
+}

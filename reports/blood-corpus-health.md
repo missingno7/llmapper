@@ -6,10 +6,10 @@ carries a hard structural error is **skipped and reported**, never normalized
 and never silently dropped. Machine-readable per-map records:
 
 ```text
-reports/blood-community-corpus-health.json        community/ (1500)
-reports/blood-reference-corpus-health.json        reference view (102)
-reports/blood-mechanism-corpus-health.json        mechanism/ (172)
-reports/blood-own-conversion-corpus-health.json   conversions/ (4)
+reports/archive/blood-community-corpus-health.json        community/ (1500)
+reports/archive/blood-reference-corpus-health.json        reference view (102)
+reports/archive/blood-mechanism-corpus-health.json        mechanism/ (172)
+reports/archive/blood-own-conversion-corpus-health.json   conversions/ (4)
 ```
 
 The gate is the one in `docs/corpus.md`: supported major version, byte-exact

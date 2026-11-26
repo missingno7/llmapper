@@ -1,0 +1,26 @@
+{
+ "id": "detail-runs-one-thing-every-two-plan-units",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "Along Blood's long thin spaces (corridors, quays, tunnels) attached detail comes about once every two plan units: 702 runs, 4,755 gaps, 0.485 items per plan unit, median gap 0.5, q3 1.25, p90 2.99.",
+ "evidence": [
+  "702 runs and 4,755 gaps, by tools/mine_run_rhythm.py (figures in projects/blood-city/level/runs.py)"
+ ],
+ "use": "Space a run's beats at that density, evenly inside the span ((i + 0.5) / count), clear of its ends and of every opening, varied but deterministic.",
+ "code": [
+  "projects/blood-city/level/runs.py:Run"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "corridor",
+  "density",
+  "rhythm",
+  "run",
+  "spacing",
+  "tunnel"
+ ]
+}

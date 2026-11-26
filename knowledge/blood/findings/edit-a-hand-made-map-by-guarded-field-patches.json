@@ -1,0 +1,26 @@
+{
+ "id": "edit-a-hand-made-map-by-guarded-field-patches",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A map that is edited by hand in the editor is changed by a tool only through a patch that names each record by index and identity and each field by its old and new value: the patch is refused if any old value differs (the editor changed it), if records were renumbered, or if the target is the baseline; appended sprites are named so a second run adds nothing; the map is written only after validation and a reparse, with a content-addressed backup of what it replaced.",
+ "evidence": [
+  "projects/duke-e4l1-remake/edit_map.py: ten passes applied to E4L1-current.MAP without losing an editor save",
+  "projects/duke-e4l1-remake/tests/test_e4l1_edit.py: conflict, dry run, idempotence, interrupted report, baseline refusal"
+ ],
+ "use": "Never rebuild such a map; write a new pass against the live map, and resolve a conflict by revising the pass, not the map.",
+ "code": [
+  "projects/duke-e4l1-remake/edit_map.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "manual edits",
+  "native map",
+  "patch",
+  "precondition",
+  "xmapedit"
+ ]
+}

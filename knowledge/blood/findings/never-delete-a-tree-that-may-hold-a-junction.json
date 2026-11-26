@@ -1,0 +1,26 @@
+{
+ "id": "never-delete-a-tree-that-may-hold-a-junction",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "A recursive delete (git worktree remove, rm -rf, Remove-Item -Recurse, rmdir /s) follows a directory junction into its target: removing agent worktrees once wiped the whole local map corpus. Deleting a directory tree is the owner's action.",
+ "evidence": [
+  "2026-09-01 loss; the owner, 2026-09-02: 'this must never happen again'. Recovery in reports/archive/corpus-recovery-2026-09-01.md."
+ ],
+ "use": "Prefer BLOODMAP_CORPUS and absolute paths to junctions; unlink every reparse point non-recursively before any removal; refresh the corpus backup after a corpus change.",
+ "code": [
+  "tools/backup_corpus.ps1"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-02"
+ },
+ "words": [
+  "backup",
+  "corpus",
+  "delete",
+  "junction",
+  "rm",
+  "worktree"
+ ]
+}

@@ -63,7 +63,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
      "Writing a level as source. `LevelProgram` is the editable form; it "
      "lowers through `PlanarLayout` into `LevelIR`.",
      ["levelprog", "planar_layout", "layout", "layers", "vocabulary",
-      "prefab", "arrangement", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
+      "prefab", "arrangement", "refit", "leveltree", "aperture", "breach", "slope", "spiral", "roomoverroom", "skyline",
       "overlay", "construction", "composition", "fragment", "recipe",
       "designs"]),
     ("Authoring: surfaces and light",
@@ -74,7 +74,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Authoring: things and mechanisms",
      "Sprites, fixtures, controls and moving parts, built from mined "
      "templates.",
-     ["placement", "furniture", "decoration", "item_display", "keys",
+     ["placement", "wallplane", "furniture", "decoration", "item_display", "keys",
       "switches", "mechanism", "channels", "arbiter", "construct"]),
     ("Authoring: the city",
      "Street and block vocabulary, and the compiler pipeline that runs the "
@@ -83,7 +83,7 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Reading a map back",
      "The inverse of the writers: a built or original map read into facts, "
      "claims and a hierarchy, and diffed against what was declared.",
-     ["decompiler", "readback", "conformance", "geometry_audit", "facts",
+     ["decompiler", "readback", "same_map", "conformance", "geometry_audit", "facts",
       "read_store", "read_facts", "read_ledger", "read_census",
       "read_surfaces", "read_joins", "read_islands", "read_light",
       "read_stairs", "read_mechanisms", "read_edges", "read_plan",
@@ -91,13 +91,17 @@ LIBRARY: list[tuple[str, str, list[str]]] = [
     ("Rules and knowledge",
      "Graded claims about Blood, the owner's tile readings, and the indexes "
      "over `knowledge/blood/`.",
-     ["rules", "rules_blood", "owner_anchors", "usage_kinds", "tile_contexts", "curriculum",
+     ["rules", "rules_blood", "owner_anchors", "tile_looks", "usage_kinds", "tile_contexts", "findings", "curriculum",
       "curriculum_laws", "examples", "assets", "knowledge_index"]),
     ("Evidence loop and observation",
      "Compile a candidate, read it back independently, look at it through "
      "the observer, and keep the packet.",
      ["authoring_loop", "visual", "viewplan", "viewpoints", "view_score",
       "oracle", "workspace"]),
+    ("A level project",
+     "What a project is to the tools, and the order every level's map goes "
+     "through from its layout to the file.",
+     ["project", "finish", "sprite_fit"]),
     ("Cross-game conversion",
      "A converted map is a new authored map with a fidelity report, never a "
      "roundtrip.",
@@ -146,8 +150,8 @@ TOOLS: list[tuple[str, str, list[str]]] = [
     ("The library of Blood",
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "
      "the readers that criticise a place.",
-     ["catalog", "study", "ideas", "place_character", "tile_naming_sheet",
-      "critique", "critic_bench", "critic_lab", "tile_contexts", "wiki_levels",
+     ["catalog", "findings", "study", "ideas", "place_character", "tile_naming_sheet",
+      "critique", "tile_contexts", "wiki_levels",
       "sound_catalog", "sound_readback"]),
     ("Decompiling an original map",
      "From one MAP to a project: hierarchy, fact store, review packs, and "
@@ -163,6 +167,9 @@ TOOLS: list[tuple[str, str, list[str]]] = [
      "Reading the NBlood playtest bot's telemetry.",
      ["bot_invariants", "bot_map_render", "bot_narrative", "bot_scorecard",
       "map_topology"]),
+    ("A level project",
+     "Start a level, look at it from its poses, say where it stands.",
+     ["project", "look"]),
     ("This repository",
      "Keeping the map of the code current.",
      ["module_map"]),

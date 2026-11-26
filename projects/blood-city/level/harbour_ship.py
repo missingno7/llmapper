@@ -165,7 +165,7 @@ def _region_at(x: int, y: int):
 
 
 def _art(tile: int):
-    import wallplane
+    from bloodmap import wallplane
     return wallplane.art()[tile]
 
 
@@ -217,7 +217,7 @@ def _rig(layout) -> int:
 
 def dress(layout, river: str) -> dict:
     """The deckhouse's roof, its lantern, her name, what lies in the hold and the locker, and what comes aboard."""
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap import flatsprite
     from bloodmap.placement import seated_z
     from meat_market import spawn

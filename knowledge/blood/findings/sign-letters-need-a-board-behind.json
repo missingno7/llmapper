@@ -1,0 +1,25 @@
+{
+ "id": "sign-letters-need-a-board-behind",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "Letters of a sign must not float in mid air: they hang on a board, the board drawn from both sides and plain, the letters from their front only, so nobody reads them backwards from behind.",
+ "evidence": [
+  "the owner, 2026-11-25: 'The stands text like toffee or shootings are letter flying mid air, I would put something behind them, also be careful about two sidedness of it'"
+ ],
+ "use": "Hang a two-sided plain board with a piece behind each one-sided letter (fair.py's stall names).",
+ "code": [
+  "projects/blood-city/level/fair.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "board",
+  "letters",
+  "sign",
+  "text",
+  "two-sided"
+ ]
+}

@@ -1,0 +1,32 @@
+{
+ "id": "sea-recipe",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "Blood's open sea is tile 2490 or 2448 in palette 10 with a panning floor (E2M1 s125 2448 at shade 34, E2M9 s49 2490 at shade 16). DWE3M4, a community map, shows the whole recipe: shade 38 to 44 darkening outward in bands of 3, depth 0, lying 1.75 bodies below its quay, its far bands blocked so it is seen and never reached, ending at a zero-height horizon sector parallaxed on floor and ceiling.",
+ "evidence": [
+  "DWE3M4 s636, s528, s527 (boardwalk -8,192 over sea 21,504); E2M1 s125; E2M9 s49",
+  "DWE3M4 s648 the horizon ring; every wall between s527 and s856 carries the blocking bit",
+  "2026-11-26: E2M1 s125 (type 614, floor 2448 pal 10 shade 34, pan_always, bob) and E2M9 s49 (floor 2490 pal 10 shade 16, pan_always): the campaign's seas are not all shade 38-44"
+ ],
+ "use": "Build open water so, not in tile 1120 or a basin tile, which read as grass; wear the level's own sky on the horizon.",
+ "code": [
+  "projects/blood-city/level/l3_market.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "2448",
+  "2490",
+  "harbour",
+  "horizon",
+  "ocean",
+  "palette 10",
+  "quay",
+  "sea",
+  "shore",
+  "water"
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "id": "blood-towns-are-lit-by-contrast-not-level",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "E3M1's streets are two-tone, not dark: 48% of its road area (s8) is lit at shade 8 and the rest stands at 32; its pavements are 34 over 60% of their area and 8-24 over the rest (area-weighted means 20.5 and 27.6). Chosen facade faces are lit to -8 (50 street walls, tiles 400, 401, 108, 393, 380) against masonry at 24-36. One rendered sector says nothing of a map's light: read the whole surface.",
+ "evidence": [
+  "2026-11-26 count over E3M1's open-sky sectors by floor tile (352 road, 4 pavement), weighted by area; walls of open-sky sectors at shade below 0",
+  "python -m tools.city_profile on E3M1: ground median shade 34, street wall median 28",
+  "the 2026-11-17 reading 'road 32, pavement 34 ... s8 the misleading sample' overlooked that s8 is half the road"
+ ],
+ "use": "Compare light by area-weighted profile; light chosen faces and large lit pieces against a plain base.",
+ "code": [
+  "tools/city_profile.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "contrast",
+  "facade",
+  "light",
+  "shade",
+  "street",
+  "town"
+ ]
+}

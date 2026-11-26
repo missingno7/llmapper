@@ -1,0 +1,26 @@
+{
+ "id": "co-occurrence-is-not-what-a-prop-means",
+ "topic": "sprite",
+ "standing": "practice",
+ "claim": "Choosing props by what tiles they keep company with (PMI over the campaign) finds what goes with what -- the candelabrum 580 with walls 100 and 119, the chandelier 1701 with floor 110 -- but it put a dead tree (540, outdoors 61% of the time) in a saloon and a boulder on its bar, because both share plank walls in the corpus. Gate associations by context: whether the tile stands under sky, and judgement for terrain.",
+ "evidence": [
+  "Gravesend's dressing pass, projects/blood-city/level/props.py (ASSOCIATIONS, sky_share, the terrain exclusion)"
+ ],
+ "use": "Use props_for with its sky gate; never decorate from a single marginal statistic.",
+ "code": [
+  "projects/blood-city/level/props.py:props_for",
+  "tools/mine_style_combinations.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "association",
+  "dressing",
+  "pmi",
+  "prop",
+  "statistic"
+ ]
+}

@@ -163,7 +163,7 @@ BILLS = (("upper", "west", 5, 356, 34), ("upper", "east", 9, 453, 32), ("upper",
 
 
 def _dress(layout, regions) -> None:
-    import wallplane
+    from bloodmap import wallplane
     from phantom_terminus import _prop, _sign
     for n, (flight, side, down, tile, size) in enumerate(BILLS):
         head, floor = next((y, f) for name, y, f, _r in _flights() if name == flight)

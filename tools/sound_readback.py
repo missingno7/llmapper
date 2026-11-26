@@ -11,7 +11,6 @@ from bloodmap.format import read_map
 from bloodmap.model import record_extra, record_fields
 from tools.sound_catalog import SPRITE_SLOTS, facts
 
-CITY = Path(__file__).resolve().parents[1] / "projects/blood-city/level/blood-city-current.MAP"
 
 
 def sound_references(disk):
@@ -46,7 +45,7 @@ def sound_references(disk):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("map", type=Path, nargs="?", default=CITY)
+    parser.add_argument("map", type=Path, help="a built map, e.g. a project's (python -m tools.project list)")
     args = parser.parse_args()
     disk, catalogue = read_map(args.map), facts()
     counts = Counter()

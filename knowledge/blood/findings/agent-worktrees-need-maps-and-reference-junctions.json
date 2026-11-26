@@ -1,0 +1,24 @@
+{
+ "id": "agent-worktrees-need-maps-and-reference-junctions",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "An isolated git worktree has no maps/ (gitignored) and no reference/ (the ART), so corpus tests skip silently and ART-dependent rules regrade to zero. Junction those two to the main checkout; never junction NBlood or xmapedit (it breaks git status through submodule resolution), and read the engine by absolute path instead.",
+ "evidence": [
+  "2026-09-03: two of nine 'worktree failures' were only the missing reference/ junction; adding it un-skipped 27 tests. BLOODMAP_ART does not substitute (read_surfaces reads it only through read_facts.recover)."
+ ],
+ "use": "New-Item -ItemType Junction for maps and reference after git worktree add; unlink the junctions before removing the worktree.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-03"
+ },
+ "words": [
+  "art",
+  "corpus",
+  "junction",
+  "parallel agents",
+  "reference",
+  "worktree"
+ ]
+}

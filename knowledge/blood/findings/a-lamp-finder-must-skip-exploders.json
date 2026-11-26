@@ -1,0 +1,26 @@
+{
+ "id": "a-lamp-finder-must-skip-exploders",
+ "topic": "light",
+ "standing": "practice",
+ "claim": "Exploder sprites (type 459) wear the flame tile 908, so a lighting pass that finds lamps by tile lights the rooms they stand in as if lamps were there.",
+ "evidence": [
+  "Gravesend's sewer, 2026-11-21 (fixed in the level's light kinds)."
+ ],
+ "use": "Classify light sources by type as well as tile.",
+ "code": [
+  "projects/blood-city/level/lights.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "459",
+  "908",
+  "exploder",
+  "flame",
+  "lamp",
+  "light"
+ ]
+}

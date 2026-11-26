@@ -79,8 +79,8 @@ otherwise.
 
 **No geometry the player cannot reach.** E2M3's eleven off-map sectors are one
 switch closet, one sealed pocket and nine letters spelling an author's handle.
-They are excluded and the proposal records which spaces it dropped. See
-[Blood mechanics and conventions](../../../docs/blood-mechanics-and-conventions.md).
+They are excluded and the proposal records which spaces it dropped. How Blood wires its places is asked of the catalog
+(`python -m tools.catalog wiring ...`).
 
 ## The effect on the source
 

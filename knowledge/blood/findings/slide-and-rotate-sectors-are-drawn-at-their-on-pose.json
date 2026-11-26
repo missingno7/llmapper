@@ -1,0 +1,29 @@
+{
+ "id": "slide-and-rotate-sectors-are-drawn-at-their-on-pose",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A slide or rotate sector (types 614-617) is drawn in the map at its ON pose: at load the engine translates it back by one whole travel to make the OFF pose its base, and then to its saved state. A marked slide drawn where it should rest shut starts one travel away from it.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:2222-2246 trInit: TranslateSector(..., -65536, ...), setBaseWallSect, then TranslateSector to pXSector->busy (65536 when state is ON, triggers.cpp:2210-2211)",
+  "E1M2 s261: type 614 kSectorSlideMarked, markers 359/360 -- the kitchen slab that gives"
+ ],
+ "use": "Draw a slide or rotate sector where it stands when ON; give it state 1 in the file if it should start there.",
+ "code": [
+  "projects/blood-city/level/secret_places.py:hands",
+  "projects/blood-city/level/phantom_terminus.py:_ghost_hatch"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "614",
+  "616",
+  "initial pose",
+  "ksectorslidemarked",
+  "marked",
+  "rotate",
+  "slide"
+ ]
+}

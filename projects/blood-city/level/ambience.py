@@ -1,10 +1,13 @@
 """The city's sound, which it did not have.
 
 Found by studying Duke: DukCity carries 22 to 52 MUSICANDSFX emitters per
-map, which prompted the same count on the Blood side.  The Blood campaign
-runs a **median of 78 ambient sound sprites per map -- 23.6 per hundred
-sectors**.  Gravesend had one.  It is the largest single dimension the city
-was missing, and nothing in a rendered frame would ever have shown it.
+map, which prompted the same count on the Blood side.  It was first read as
+a median of 78 ambient sound sprites a map, 23.6 per hundred sectors, and
+`fill` still spends at that rate; a recount of type 710 on 2026-11-26 gives a
+**median of 30 a map, 10.6 per hundred sectors** (1,778 in all: the finding
+`campaign-runs-78-ambient-emitters-a-map`, refuted).  Gravesend had one.  It
+is the largest single dimension the city was missing, and nothing in a
+rendered frame would ever have shown it.
 
 The mechanism, read out of `NBlood/source/blood/src/asound.cpp` rather
 than inferred:
@@ -94,7 +97,7 @@ def fields(context: str, *, near=None, far=None, volume=None) -> dict:
 
 
 def fill(layout, regions, *, target_per_100_sectors: float = 23.6) -> dict:
-    """Put ambience through the city at the campaign's own rate.
+    """Put ambience through the city at a set rate (the default is over twice the campaign's 10.6: see the module's note).
 
     `regions` is a list of (region_id, context, local) -- the caller knows
     which spaces are which, and this does not guess.

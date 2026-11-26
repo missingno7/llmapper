@@ -1,0 +1,24 @@
+{
+ "id": "heredoc-scripts-lose-escaped-newlines",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A Python script sent through the Bash tool as a quoted heredoc does not receive a doubled backslash as written: '\\\\n' arrives as a real newline, so the script fails with an unterminated string or silently fails to match.",
+ "evidence": [
+  "Seen three times on 2026-11-19. The cause is believed to be the tool reducing escapes before Python sees them; not confirmed against the tool's source."
+ ],
+ "use": "Write the script to a file with the Write tool and run it, or build such strings with chr(10) / chr(92).",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "backslash",
+  "bash",
+  "escape",
+  "heredoc",
+  "newline",
+  "script"
+ ]
+}

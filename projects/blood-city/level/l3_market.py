@@ -32,9 +32,11 @@ from resolution import GRADE, PU, STREET_SKY
 #: The campaign's median room is one wall-texture repeat tall.
 ROOM_HEIGHT = 32768
 #: A doorway's clear height: half a texture repeat, ~1.9 player heights.
-# Campaign z-motion doors open to a median of 31,744 -- 1.87 player
-# heights, measured over 1,269 of them; even their 10th percentile is
-# 17,408.  Ours were 16,384, which is 0.97 of a player height: the owner
+# Blood's ceiling-lifting doors (594 in the campaign) open to a median of
+# 28,672 -- 1.69 player heights -- and 87% are taller than a body.  The
+# 31,744 used here is the median over all 1,231 type-600 sectors, lifts
+# included, not a door height; it is kept because changing it moves every
+# door in Gravesend.  Ours were 16,384, which is 0.97 of a player height: the owner
 # called them "short like for midgets" and the census agrees.  Blood has
 # no door TEXTURE to lean on (E3M1's own door leaves wear 379 and 449,
 # plain wall stone), so an opening reads as a door through its proportion
@@ -133,7 +135,7 @@ ROPES: list = []
 
 def rope(layout, name, region_id, a, b, floor_z) -> int:
     """Two sagging strands from a to b, as wall sprites seen from both sides."""
-    import wallplane
+    from bloodmap import wallplane
     wide, tall, _x, offset = wallplane.art()[ROPE_TILE]
     length = math.dist(a, b)
     angle = round(math.atan2(b[1] - a[1], b[0] - a[0]) * 1024 / math.pi + 512) % 2048
@@ -152,7 +154,7 @@ def fly_flag(layout) -> int:
             t=0.5, height_player_heights=2.3, offset_player_widths=0.02,
             **FLAG)
     # the light out in the bay: a fire in the open on the tower's head
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import seated_z
     for region_id in LIGHT_ROOM:
         region = layout.regions[region_id]
@@ -1222,7 +1224,7 @@ def dress_monument(layout, parts, street=None) -> dict:
     does not invent one.
     """
     import props
-    import wallplane
+    from bloodmap import wallplane
 
     report = {"lines": 0, "letters": 0, "lights": 0, "skipped": []}
     plinth = parts.get("plinth")

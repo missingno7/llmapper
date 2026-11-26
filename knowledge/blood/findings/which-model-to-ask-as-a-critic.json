@@ -1,0 +1,27 @@
+{
+ "id": "which-model-to-ask-as-a-critic",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "On a benchmark of 12 views of Blood places with known identity and 6 views of our station each with one planted fault (with clean twins), GPT-6.2 Sol at high effort named 12/12, caught 4/6 faults and raised 0/17 false alarms, the only one to catch rails laid across a track; Terra names well (12/12 high) but catches 1/6; Luna, Haiku and Sonnet one-shot are useless for faults. Nobody caught chairs in the air or track through the hall.",
+ "evidence": [
+  "projects/blood-city/experiments/critics/critic_bench.py, knowledge/blood/critic-bench/v1 (2026-11-19). Small samples: rerun score after adding views."
+ ],
+ "use": "Use Sol at high effort for faults and naming, Terra as a cheap namer; mix in Blood's own frames as known-answer controls and trust a miss only when the controls of that kind were hit.",
+ "code": [
+  "projects/blood-city/experiments/critics/critic_bench.py",
+  "tools/critique.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "benchmark",
+  "blind",
+  "critic",
+  "model",
+  "naming",
+  "reviewer"
+ ]
+}

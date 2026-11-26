@@ -1,0 +1,27 @@
+{
+ "id": "a-room-over-room-landing-keeps-the-body-below-the-plane",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "The floor a stack link lands a body on lies deep enough that the standing body's centre (8,480 over its feet) is below the link plane, or it is carried straight back up; and shallow enough to jump back out.",
+ "evidence": [
+  "Gravesend's pit and grate links (projects/blood-city/level/resolution.py, the stack-link mouths)"
+ ],
+ "use": "Set the landing's floor from the body's centre height, not from the plane.",
+ "code": [
+  "projects/blood-city/level/resolution.py",
+  "bloodmap.roomoverroom"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "landing",
+  "link",
+  "ping-pong",
+  "ror",
+  "stack",
+  "warp"
+ ]
+}

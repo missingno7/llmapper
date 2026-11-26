@@ -1,0 +1,372 @@
+{
+  "wires": {
+    "declared": [
+      {
+        "name": "gate",
+        "says": "pulling the signal lever lifts the crossing gate",
+        "channel": 100,
+        "engine": null,
+        "when": [
+          "push on placement signal_lever"
+        ],
+        "then": [
+          "region region:signal-box/gate"
+        ]
+      },
+      {
+        "name": "way-out",
+        "says": "pushing the switch at the far road's end ends the level",
+        "channel": 4,
+        "engine": "kChannelLevelExitNormal",
+        "when": [
+          "push on placement exit_switch"
+        ],
+        "then": []
+      }
+    ],
+    "idle": [],
+    "wires": [
+      {
+        "name": "gate",
+        "says": "pulling the signal lever lifts the crossing gate",
+        "channel": 100,
+        "engine": null,
+        "senders": [
+          "sprite 17"
+        ],
+        "answers": [
+          "sector 3"
+        ],
+        "faults": []
+      },
+      {
+        "name": "way-out",
+        "says": "pushing the switch at the far road's end ends the level",
+        "channel": 4,
+        "engine": "kChannelLevelExitNormal",
+        "senders": [
+          "sprite 18"
+        ],
+        "answers": [],
+        "faults": []
+      }
+    ],
+    "undeclared": [],
+    "silent": [],
+    "agrees": true
+  },
+  "lighting": {
+    "enabled": false,
+    "sources": 3
+  },
+  "level": {
+    "panes": 6,
+    "spans": 3,
+    "skipped_solid": 0,
+    "walls": [
+      53,
+      59,
+      61,
+      67,
+      69,
+      75
+    ],
+    "borrowed": []
+  },
+  "split_bands": {
+    "pegged": 6,
+    "left_to_their_owner": 0
+  },
+  "texture_frames": {
+    "runs": 31,
+    "walls_framed": 112,
+    "district_runs": 0,
+    "records_left_to_their_insert": 0,
+    "single_wall_runs": 8,
+    "fields_changed": 185,
+    "walls_unframed": 4,
+    "walls_left_to_their_mechanism": 4,
+    "walls_left_to_their_fixed_frame": 0,
+    "basis": "one WallRunFrame per run, resolved in closed form; the editor's AutoAlignWalls has nothing left to change"
+  },
+  "raised_solids": {
+    "solids": 0,
+    "fields_changed": 0,
+    "uncut_before": 0,
+    "uncut_after": 0,
+    "basis": "71% of the campaign's 110 raised crate tops land the tile grid on the crate's own corner"
+  },
+  "rules": {
+    "total": 41,
+    "by_severity": {
+      "note": 41
+    },
+    "by_code": {
+      "note:threshold-follows-the-roofed-side": 1,
+      "note:opening-clears-a-standing-body": 18,
+      "note:lintel-continues-the-facade": 1,
+      "note:wall-draws-its-own-tile": 21
+    },
+    "open": []
+  },
+  "swept": {
+    "mechanisms": 0,
+    "sound": 0,
+    "deforming_neighbours": 0,
+    "problems": [],
+    "notes": []
+  },
+  "readback": {
+    "$schema": "llmapper.readback",
+    "schema_version": 1,
+    "map": "signal-box.MAP",
+    "sentences": 1,
+    "agrees": true,
+    "differences": [],
+    "unmeasured": [],
+    "measured": [
+      {
+        "name": "region:signal-box/gate",
+        "construct": "z_motion_door",
+        "sector": 3,
+        "sectors": [
+          3
+        ],
+        "sector_type": 600,
+        "wiring": {
+          "rx_id": 100,
+          "tx_id": 0,
+          "command": 0,
+          "state": 0
+        },
+        "state_pair": {
+          "sector": 3,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 27136,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      }
+    ]
+  },
+  "sprite_fit": {
+    "rates": {
+      "sprites": 13,
+      "sunk": 0.0,
+      "through": 0.0,
+      "squeezed": 0.0
+    },
+    "sunk": [],
+    "through": [],
+    "squeezed": [],
+    "lifted": [],
+    "overlaps": [],
+    "flat_overlaps": [],
+    "unbacked": [],
+    "sunk_actors": [],
+    "on_travelling_floor": []
+  },
+  "tile_contexts": {
+    "new": [],
+    "outside": [
+      {
+        "tile": 1075,
+        "slot": "sprite_wall",
+        "place": "indoors",
+        "count": 6,
+        "source": "community-curated"
+      },
+      {
+        "tile": 49,
+        "slot": "floor",
+        "place": "outdoors",
+        "count": 3,
+        "source": "community-curated"
+      },
+      {
+        "tile": 925,
+        "slot": "sprite_face",
+        "place": "outdoors",
+        "count": 1,
+        "source": "community-curated"
+      },
+      {
+        "tile": 822,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated"
+      }
+    ],
+    "misfit": []
+  },
+  "light_stage": {
+    "sectors_before": 21,
+    "walls_before": 116,
+    "sprites_before": 19,
+    "mover_hosts": [],
+    "shadow_cut": {
+      "sectors": 2,
+      "pieces": 4,
+      "slivers_merged": 1,
+      "slivers_dropped": 0,
+      "walls_split": 12,
+      "seams": 4,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 2
+    },
+    "rooms": {
+      "region:signal-box/box/doorway": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/lever_room": {
+        "hanging 641": 3
+      },
+      "region:signal-box/box/locking_room": {
+        "hanging 641": 2
+      },
+      "region:signal-box/box/window_0_in": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/window_0_out": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/window_1_in": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/window_1_out": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/window_2_in": {
+        "its own lights": 0
+      },
+      "region:signal-box/box/window_2_out": {
+        "its own lights": 0
+      },
+      "region:stairs:up:step_01": {
+        "its own lights": 0
+      },
+      "region:stairs:up:step_02": {
+        "its own lights": 0
+      },
+      "region:stairs:up:step_03": {
+        "its own lights": 0
+      },
+      "region:stairs:up:step_04": {
+        "its own lights": 0
+      },
+      "region:stairs:up:step_05": {
+        "its own lights": 0
+      }
+    },
+    "panel_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 0,
+      "refused": {},
+      "left_whole": {}
+    },
+    "floor_cut": {
+      "sectors": 3,
+      "pieces": 9,
+      "slivers_merged": 1,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 114,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 3
+    },
+    "slope_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 0,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 0
+    },
+    "wall_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 51,
+      "seams": 0,
+      "refused": {},
+      "walls_cut": 20,
+      "left_whole": {},
+      "looked_at": 71
+    },
+    "shades": {
+      "surfaces": 171,
+      "windows": 0,
+      "spread_12": 1,
+      "movers_evened": 0
+    },
+    "kept": 0,
+    "sectors": 29,
+    "walls": 270,
+    "sprites": 24,
+    "pieces": 8,
+    "rules_that_laid_nothing": [
+      "region:signal-box/far_road",
+      "region:signal-box/lane",
+      "region:signal-box/lip_lane_n",
+      "region:signal-box/lip_lane_s"
+    ]
+  },
+  "merged": {
+    "sectors_merged": 0,
+    "walls_before": 270,
+    "walls": 270
+  },
+  "tidy": {
+    "walls_before": 270,
+    "walls": 264,
+    "joined": 6
+  },
+  "size": {
+    "sectors": 29,
+    "walls": 264,
+    "sprites": 24
+  },
+  "stages": [
+    {
+      "name": "compile",
+      "says": "the layout becomes sectors, walls and sprites"
+    },
+    {
+      "name": "level",
+      "says": "the level's own passes on the compiled level"
+    },
+    {
+      "name": "alignment",
+      "says": "one texture frame per run of walls, standing on its floor"
+    },
+    {
+      "name": "gates",
+      "says": "nothing is built: rules, swept closure, read-back, sprite fit, tile contexts, wiring"
+    },
+    {
+      "name": "light",
+      "says": "lamps laid, shadows and floor bands cut, every shade written"
+    },
+    {
+      "name": "write",
+      "says": "the map, its sector tags and the manifest"
+    }
+  ]
+}

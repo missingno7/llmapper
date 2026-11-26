@@ -12,8 +12,8 @@ so the plotter can draw the plan side-by-side with the precedent plans (the
 plotting convention renders 1 pu at 1024 Build units; the L2 generator owns
 the real resolution, level/resolution.py). Quarter-pu fractions are legal.
 
-Every quantity here traces to a contract: CN = references/city-norms.md,
-VP = references/venue-patterns.md, SP = references/sewer-patterns.md,
+Every quantity here traces to a contract: CN = knowledge/blood/references/city-norms.md,
+VP = knowledge/blood/references/venue-patterns.md, SP = knowledge/blood/references/sewer-patterns.md,
 ID = references/city-identity.md.
 """
 
@@ -156,12 +156,12 @@ BLOCKS = [
     # units away.  2.0 was the campaign's MEDIAN monument base
     # (monuments-v1.json: median 2.0, q1 1.5, q3 3.25), so this is between
     # its median and its q3 -- and 2,432 is the top of CN 2's free-standing
-    # band, which `plan_review` checks at 700..2,500.
+    # band (700..2,500; the retired `plan_review` checked it).
     #: ... and then the owner, 2026-11-20: "I would also rework that welcome
     #: to gravesend we can do some bigger memorial with water or something
     #: more eye catching". It is the plaza's cascade fountain now
     #: (`l3_market.memorial`), 8 by 7.5 plan units, and the owner's scale
-    #: outranks the mined band, which `plan_review` says.
+    #: outranks the mined band.
     {"id": "monument", "district": "market_slip", "role": "free_standing",
      "rect": (22.5, 41.25, 30.5, 48.75), "notches": [],
      "owner_scale": "2026-11-20: a bigger memorial with water"},
@@ -201,9 +201,9 @@ VENUES = [
     # The chandlery slot became the Gravesend Arcade: the owner asked for a
     # shopping mall and E4M9's grammar is a retail row, not an open front.
     # Recording it here rather than leaving L1 and the tree disagreeing --
-    # `conformance.py` checks that every venue declared here has a node and
-    # that its type matches the template that built it, so a plan left
-    # stale now fails a row instead of going unnoticed.
+    # a venue declared here should have a node whose type matches the
+    # template that built it (the retired `level/conformance.py` checked
+    # this; it is in git history).
     {"id": "arcade", "type": "retail_row", "block": "market_block_c",
      "face": "west@plaza", "doorways": 2,
      "note": "was 'chandlery/open_front'; E4M9's atrium: a sunk court and three shops"},
@@ -379,8 +379,8 @@ if __name__ == "__main__":
 # rooms, and the grid is solved from the envelopes. Taking a block from a norm
 # and carving rooms into it is what gave the arcade a concourse the wrong size.
 #
-# `interior` is the room extent; `city_solve.Envelope` adds the walls and the
-# facade depth an insert needs.
+# `interior` is the room extent; the walls and the facade depth an insert
+# needs are added to it (the retired `city_solve.Envelope` did the sum).
 ENVELOPES = {
     "church":       {"interior": (6144, 10240), "faced": ("east",),
                      "source": "l3_church.MASS, built"},

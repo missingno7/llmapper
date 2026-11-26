@@ -19,7 +19,7 @@ gives **E4M8 at 6.693%**, literally and with layer 2 excluded — no ambiguity,
 so no default. The earlier run of the census, which named E1M2, predated the
 step-2 reader corrections; item 28c stopped reading a raised outdoor mass with
 a sector type as an island, and four maps lost their streets. See
-[reports/residue-curve-2026-09-03.md](../../reports/residue-curve-2026-09-03.md).
+[reports/archive/residue-curve-2026-09-03.md](../../reports/archive/residue-curve-2026-09-03.md).
 
 It is also the third map's real value: it is **unlike** the other two. It has
 no stepped run, no water, one island, one road sector, and it names no
@@ -31,7 +31,7 @@ mechanism at all. Every assumption the other two share, it tests.
 three, and the reason the curve's ranking should not be read as understanding:
 E4M8 is a dense fragment, so layer 2 claims a large share of a small map.
 1059 residue facts. Per layer, and against the other two, in
-[reports/sleep-phase-2026-09-03.md](../../reports/sleep-phase-2026-09-03.md).
+[reports/archive/sleep-phase-2026-09-03.md](../../reports/archive/sleep-phase-2026-09-03.md).
 
 What it does not have is as useful as what it does:
 

@@ -1,0 +1,25 @@
+{
+ "id": "ror-floor-must-wear-a-mirror-tile",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Blood draws the far side of a room-over-room floor or ceiling only if that surface wears a mirror tile (or has the 0x180 stat bits); an ordinary floor over a linked sector is drawn as itself.",
+ "evidence": [
+  "NBlood/source/blood/src/mirrors.cpp:243 IsRorSector: mirrorPicStart..mirrorPicEnd, kMirrorTile or floorstat & 0x180"
+ ],
+ "use": "Give both halves of a see-through link the mirror tile; the rules_blood rule stack-portal-wears-the-mirror-tile reports a portal that does not.",
+ "code": [
+  "bloodmap.rules_blood"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "link",
+  "mirror",
+  "portal",
+  "ror",
+  "see-through"
+ ]
+}

@@ -1,7 +1,9 @@
 """Per-building facade variation, applied after compile.
 
-E3M1's street network carries **13 distinct facade tiles, none of them more
-than 22% of its street-facing wall length**.  Gravesend carried one tile per
+E3M1's street fronts (the walls two or more bodies tall that bound its
+open-sky sectors) carry **17 distinct facade tiles, none of them more than
+16.4% of their length** (181).  Counted over every one-sided wall of its open
+sectors, tile 401 leads at 27.6%.  Gravesend carried one tile per
 district, applied to every mass in it, so every building on a street was the
 same building -- the "stamped block" blandness the project was warned about,
 arriving as a texture fault rather than a geometry one.

@@ -112,7 +112,7 @@ def build(hall, *, shop, room) -> dict:
 # ---- what hangs, stands and lies in it ------------------------------------------
 
 def _art(tile: int):
-    import wallplane
+    from bloodmap import wallplane
     return wallplane.art()[tile]
 
 
@@ -150,7 +150,7 @@ def spawn(layout, name, what, region, x, y):
 def dress(layout, street: str) -> dict:
     """The meat, the blood under it, the counter, the gallery and its lever, the cold store and what wakes in it; the stalls."""
     import doorswitch
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap import motion
     sales, cold, gallery, lobby, counter = (ROOMS[k].region_id for k in ("sales", "cold", "gallery", "lobby", "counter"))
     put = 0

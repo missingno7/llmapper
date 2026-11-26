@@ -1,0 +1,22 @@
+{
+ "id": "spawned-agents-run-on-at-most-opus",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "Spawned subagents run on at most Opus, never inheriting a higher tier from the supervising session.",
+ "evidence": [
+  "The owner, 2026-09-01."
+ ],
+ "use": "Pass the model explicitly on every agent spawn.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "agent",
+  "cost",
+  "model",
+  "subagent"
+ ]
+}

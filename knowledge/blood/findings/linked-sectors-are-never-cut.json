@@ -1,0 +1,25 @@
+{
+ "id": "linked-sectors-are-never-cut",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A sector carrying a room-over-room link, and the one it joins, stay one sector each: later passes that split sectors (light pools, shadow cuts) leave them whole, or the pair no longer matches.",
+ "evidence": [
+  "Gravesend's light stage exempts every linked surface (projects/blood-city/level/lights.py, OWN_LIGHT; projects/blood-city/level/pump_engine.py)"
+ ],
+ "use": "Exempt linked sectors from any cutting pass; light them by shade alone.",
+ "code": [
+  "projects/blood-city/level/lights.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "cut",
+  "link",
+  "ror",
+  "split",
+  "water"
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "id": "a-lower-sky-in-front-makes-a-building-look-lower",
+ "topic": "renderer",
+ "standing": "refuted",
+ "claim": "To make a wall or building look lower, give a strip of open ground in front of it (an apron) a lower parallax sky: the face is drawn only up to that sky.",
+ "evidence": [
+  "the owner, 2026-11-17, walking the build in NBlood: 'when you put parallax sky low it is covering view like a normal ceiling'",
+  "projects/blood-city/experiments/church-roofs/before: the tower painted 0 px in yard_to_tower"
+ ],
+ "use": "Never lower a sky to shorten a face; skyline.lowered_skies finds one on a built map.",
+ "code": [
+  "bloodmap.skyline.roof",
+  "bloodmap.skyline.lowered_skies"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "apron",
+  "lid",
+  "lower sky",
+  "sky",
+  "skyline"
+ ],
+ "instead": "The face is shorter but the low sky is a lid: it is painted from the far wall's top upward over every column the strip covers, so everything behind and above it (a tower set back, the blocks beyond) vanishes. Lower a thing by making it a sector whose floor is its top, under the common sky."
+}

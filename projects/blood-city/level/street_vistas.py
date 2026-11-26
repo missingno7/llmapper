@@ -235,7 +235,7 @@ def follow(level, compiled) -> dict:
 
 def _furnish(layout, name, regions, cells) -> None:
     """The gate's two leaves' iron, and a lamp either side of the street behind it."""
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import seated_z
     edge, low, high, _wear = ENDS[name]
     m, at = high - low, _frame(edge, low)

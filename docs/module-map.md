@@ -136,6 +136,8 @@ Writing a level as source. `LevelProgram` is the editable form; it lowers throug
 | `vocabulary` | Authoring vocabulary: composable structures over :class:`PlanarLayout`. |
 | `prefab` | Detail at volume: the small sectors a Blood level is mostly made of. |
 | `arrangement` | A place drawn as shapes laid over one another, resolved into regions that meet edge to edge. |
+| `refit` | Refit a finished room in place: cut it into cells without touching what is joined to it, wired to it or put in it. |
+| `leveltree` | A level program as a tree you can stand anywhere in: nest parts, find them, and say what each holds and costs. |
 | `aperture` | A way through a wall, as a thing rather than an absence. |
 | `breach` | A hole blown through a wall, shaped the way Blood shapes one: ragged pieces with tilted sills and tops. |
 | `slope` | Sloped floors and ceilings, which this project had never built. |
@@ -180,6 +182,7 @@ Sprites, fixtures, controls and moving parts, built from mined templates.
 | Module | What it is |
 | --- | --- |
 | `placement` | Corpus-grounded object attachment: how sprites sit relative to architecture. |
+| `wallplane` | A wall is a vertical 2D surface, and a sprite on it is a rectangle. |
 | `furniture` | What a thing is, named rather than numbered. |
 | `decoration` | Campaign-modal appearance for Blood decoration tiles. |
 | `item_display` | Campaign-modal Blood sprite appearance for known types. |
@@ -209,6 +212,7 @@ The inverse of the writers: a built or original map read into facts, claims and 
 | --- | --- |
 | `decompiler` | Geometry-first, lossless level source reconstruction. |
 | `readback` | Read a built map back and diff it against the sentence that built it. |
+| `same_map` | Whether two maps are the same level whatever order their records are in. |
 | `conformance` | Measure a built construct with the miners that produced its template. |
 | `geometry_audit` | Forensic geometry/connectivity audit and strict authored-level validation. |
 | `facts` | The compiler's writer INTO the reader's fact store. |
@@ -236,8 +240,10 @@ Graded claims about Blood, the owner's tile readings, and the indexes over `know
 | `rules` | Rules that know how sure they are. |
 | `rules_blood` | The rules themselves: claims about Blood, each with somewhere to check it. |
 | `owner_anchors` | The owner's tile readings, as a first-class input. |
+| `tile_looks` | What a tile shows and whose word that is: the library's readings and the owner's names, for code that must ask. |
 | `usage_kinds` | Where the campaign is attested to use each tile, and the laws that follow. |
 | `tile_contexts` | What a tile is used as, where, and on whose evidence: a catalogue that grows. |
+| `findings` | What building levels has taught us, one finding a file, each saying how it is known. |
 | `curriculum` | Mine the mechanism tutorials in `maps/blood/mechanism/`. |
 | `curriculum_laws` | The laws the mechanism tutorials teach, each with the citation that made it. |
 | `examples` | Where Blood does each thing: every type, sector effect and taught lesson, with the maps that show it. |
@@ -257,6 +263,16 @@ Compile a candidate, read it back independently, look at it through the observer
 | `view_score` | How much of a place one rendered view shows, measured from the observer's surface list. |
 | `oracle` | NBlood as a runtime oracle. |
 | `workspace` | Persistent, replayable workspace records for an eventual design agent. |
+
+### A level project
+
+What a project is to the tools, and the order every level's map goes through from its layout to the file.
+
+| Module | What it is |
+| --- | --- |
+| `project` | A project as the tools know it: where its map is, where it is looked at from, and where its own reports go. |
+| `finish` | From a level's layout to its map on disk: compile, align, hold to the gates, light, tidy, write, and say what was measured. |
+| `sprite_fit` | Does every sprite fit where it was put? |
 
 ### Cross-game conversion
 
@@ -362,7 +378,7 @@ Lints and comparisons of one map against the engine or the campaign.
 | --- | --- |
 | `suite` | The whole test suite, a process a module, as many at once as the machine has room for: the same tests, in a tenth of the time. |
 | `sample_run` | Run a script and sample where its main thread is, fifty times a second: where a slow build spends its time. |
-| `sprite_fit` | Does every sprite fit where it was put? |
+| `sprite_fit` | Print where a map's sprites do not fit as the engine draws them: sunk, through a ceiling, squeezed, overlapping, hung on air. |
 | `light_profile` | The outdoor light of maps, against the campaign's town maps: corners, facing within a building, tone, ground. |
 | `light_sources` | How Blood's maps show things that give light: tiles drawn brighter than the room around them, as sprites or surfaces, and how the room is shaded around them. |
 | `reading_check` | Mark our map readers against the campaign: can they finish what is known to be finishable. |
@@ -402,13 +418,12 @@ Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and the readers
 | Module | What it is |
 | --- | --- |
 | `catalog` | The mapper's catalogues: what every tile looks like, what every place is. |
+| `findings` | Look up and file findings: what building levels has taught us, each saying how it is known. |
 | `study` | Study how Blood built a thing before building one. |
 | `ideas` | An idea catalogue: tour a map nobody asked about, and file what is seen. |
 | `place_character` | What a place is made of, layer by layer, against Blood's own rooms. |
 | `tile_naming_sheet` | The owner's tile-naming sheet: one word per tile the machine cannot name. |
 | `critique` | Criticism as a process: three readers who cannot be kind by accident. |
-| `critic_bench` | Which model is the best critic? |
-| `critic_lab` | The station as a laboratory: what can a critic tell, and from where? |
 | `tile_contexts` | Discover, catalogue and browse what tiles are used as, where, and on whose evidence. |
 | `wiki_levels` | What players wrote about each campaign level on the Blood Wiki, mined into facts the catalog can show and search. |
 | `sound_catalog` | Mine Blood's sound IDs, mapper-authored uses, and speech from the local game archive. |
@@ -450,6 +465,15 @@ Reading the NBlood playtest bot's telemetry.
 | `bot_narrative` | Human-readable story of one bot run: what it decided and why. |
 | `bot_scorecard` | Auditable, non-scalar scorecard for one LLMapper bot run. |
 | `map_topology` | Ground-truth sector topology for a Blood map, for bot run analysis only. |
+
+### A level project
+
+Start a level, look at it from its poses, say where it stands.
+
+| Module | What it is |
+| --- | --- |
+| `project` | Start a level, list the projects, and say where a level stands. |
+| `look` | Look at a level from its named poses, as the game shows it, through the XMapEdit observer. |
 
 ### This repository
 

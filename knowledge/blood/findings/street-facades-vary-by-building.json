@@ -1,0 +1,29 @@
+{
+ "id": "street-facades-vary-by-building",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "E3M1's street fronts vary by building: over the walls two or more bodies tall that bound its open-sky sectors, 17 tiles appear and none covers more than 16.4% of the length (181 16.4%, 400 14.4%, 401 11.1%, 417 11.1%, 393 10.0%). Counted over every one-sided wall of its open sectors, low pavement and edge walls included, 401 leads at 27.6% (417 21.5%, 181 11.6%, 400 8.7%). One tile per district reads as one stamped building. A city's edge of building backs is cut into building lengths (E3M1's longest tall non-facade wall is 8,704).",
+ "evidence": [
+  "work/consolidation/probe_facade_share.py on E3M1, 2026-11-26: tile share by wall length; 'tall' = the face from the open sector's ceiling to its floor (one-sided) or to the neighbour's ceiling (two-sided onto a roofed sector) at least 2 x 16,960",
+  "projects/blood-city/level/build_graph_slice2.py:61 quotes the one-sided population (401 at 27.6%); facade_pass.py:3 quotes 13 tiles and 'none over 22%' with no tool behind it"
+ ],
+ "use": "Give each building its own facade from its district's family, keyed on where it stands; split long boundary walls into building-length records.",
+ "code": [
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "181",
+  "401",
+  "building",
+  "facade",
+  "repetition",
+  "share",
+  "texture",
+  "variety"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "compare-against-a-frame-rendered-now-from-the-object",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A side-by-side means something only when the campaign's instance is rendered by the same call, settings and binary in the same session, from a pose standing in the object's own host sector with a line of sight to it. Memory of a frame let a sky fault survive four iterations; poses without a host stood behind walls and compared corridors.",
+ "evidence": [
+  "Gravesend's object loop, projects/blood-city/level/object_loop.py (approach_poses, campaign_instance), as committed at HEAD; the file is removed from the working tree in the 2026-11-26 consolidation"
+ ],
+ "use": "Render reference and candidate together; constrain both poses to the host sector; compare an instance, not a class.",
+ "code": [
+  "tools/look.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "comparison",
+  "frame",
+  "pose",
+  "reference",
+  "render"
+ ]
+}

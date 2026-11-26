@@ -13952,6 +13952,14 @@
         "maps": 15
       },
       {
+        "tile": 908,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 9,
+        "source": "blood-campaign",
+        "maps": 27
+      },
+      {
         "tile": 834,
         "slot": "sprite_face",
         "place": "indoors",
@@ -15320,7 +15328,21 @@
         "maps": 1
       }
     ],
-    "misfit": []
+    "misfit": [
+      {
+        "tile": 908,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 9,
+        "first": [
+          "sprite",
+          1512
+        ],
+        "said": [
+          "a flame to light a room by: 908 is the exploder's tile (type 459), a trap marker"
+        ]
+      }
+    ]
   },
   "directional_floors": [],
   "character": {

@@ -1,0 +1,33 @@
+{
+ "id": "a-sloped-ramp-can-cross-a-stack-plane",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "A walkable ramp can pass through a room-over-room plane, so a passage goes down without stairs: the upper half is one flat sector with floor 504 entered over one edge; the lower is one sector of the same plan with ceiling 504 whose floor slopes the whole length, from just under the plane to a step over the room below. CheckLink carries a body across as its middle passes the plane, both ways, so it is walked down and up.",
+ "evidence": [
+  "E2M1 s2 (floor 504, 1,024 x 2,560) and s20 (ceiling 504, floor heinum -2,752), catalog record",
+  "warp.cpp CheckLink; built and walked in Gravesend 2026-11-25",
+  "E2M1 s2 (floor 504 at 8,192) over s20 (ceiling 504, floor 15 sloped heinum -2,752, 34 degrees), checked 2026-11-26; E4M4 s159 under s154 for a shaft whose top is a linked floor"
+ ],
+ "use": "Use it to put a cellar or crypt somewhere the building above does not stand; keep each half one sector (no light cuts) with no other 504 in view of it; whatever is carried stays on its own side of the plane.",
+ "code": [
+  "bloodmap/roomoverroom.py",
+  "projects/blood-city/references/sewers-outside.md",
+  "projects/blood-city/level/l3_shed.py",
+  "projects/blood-city/level/l3_church.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "descent",
+  "link",
+  "ramp",
+  "room over room",
+  "ror",
+  "slope",
+  "stack",
+  "stairs"
+ ]
+}

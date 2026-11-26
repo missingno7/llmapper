@@ -116,7 +116,7 @@ give it space; the reapers' niches want flickering light.
 
 ## As first built (2026-11-24; the car, the light and the drowned end are superseded above)
 
-`level/phantom_terminus.py`; tests/test_phantom_terminus.py; pose set
+`level/phantom_terminus.py`; projects/blood-city/tests/test_phantom_terminus.py; pose set
 `phantom`. Built by one Sol worker in two rounds and finished by the
 integrator.
 

@@ -627,9 +627,11 @@ TARGET_SIDE, TARGET_PITCH = 512, 1536
 #: A pew, and the gap between two of them.
 #: PEWS, from the church study (`knowledge/blood/studies/church`): they
 #: were flat grey kerbs 1,024 apart and read as one stepped mass. Blood's
-#: have a PROFILE and a pitch: a seat 0.36 of a body up and a back 0.72
-#: behind it (DWE1M4 s229/s230), in wood -- top 34, ends 88 -- three rows
-#: 1,536 apart (E3M4 s280-285), so floor shows between them.
+#: have a PROFILE and a pitch: a seat 0.36 of a body up (E3M4) and a taller
+#: back behind it (DWE1M4 s229/s230 pair a 5,120 seat with a 14,336 back,
+#: 0.85 of a body; the 0.72 back here is our own recipe), in wood -- top 34,
+#: ends 88 -- three rows 1,536 apart (E3M4 s280-285), so floor shows between
+#: them.
 PEW_DEPTH, PEW_PITCH = 512, 1536
 PEW_SEAT, PEW_BACK = 6144, 12288
 PEW_WOOD = (88, 34)             # faces, top: the owner's pilaster and wood

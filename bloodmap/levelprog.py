@@ -514,9 +514,41 @@ class Room(Node):
         return (self.outline[index], self.outline[(index + 1) % len(self.outline)])
 
     def face(self, name: str, *, at: float = 0.5, width: float | None = None) -> FaceRef:
-        """Name a stretch of this room's boundary without computing a coordinate."""
+        """Name a stretch of this room's boundary without computing a coordinate.
+
+        `at` is a fraction ALONG THE FACE AS THE OUTLINE WALKS IT, not from the
+        west or the north: a rectangle's outline goes north, east, south, west
+        with the room on its left, so `north` runs west to east and `east`
+        north to south, but `south` runs EAST TO WEST and `west` SOUTH TO
+        NORTH. A stretch a quarter of the way along `south` is near the east
+        corner. `face_at` takes a point instead.
+        """
         self.local_edge(name)  # fail here rather than at compile time
         return FaceRef(self, name, at, width)
+
+    def face_at(self, name: str, point: Sequence[float], *, width: float | None = None) -> FaceRef:
+        """A stretch of a face centred nearest a point in this room's own coordinates.
+
+        For "the door is three bodies from my west corner on the south wall":
+        `room.face_at("south", (3 * U, depth), width=2 * U)`. The fraction along
+        the face is worked out here, whichever way the outline walks it.
+        """
+        (ax, ay), (bx, by) = self.local_edge(name)
+        length2 = (bx - ax) ** 2 + (by - ay) ** 2
+        if length2 == 0:
+            raise LevelProgramError(f"{self.path()}.{name} has zero length")
+        t = ((float(point[0]) - ax) * (bx - ax) + (float(point[1]) - ay) * (by - ay)) / length2
+        return FaceRef(self, name, max(0.0, min(1.0, t)), width)
+
+    def move(self, dx: float = 0, dy: float = 0, dz: float = 0) -> "Room":
+        """Shift this room in its parent: `dz` is in Build z, so a room a storey UP is moved by a NEGATIVE dz.
+
+        After `place_against`, which lays a face along another room's, this
+        is how a room is set back from it or put on another floor (a landing
+        at the head of a stair: `landing.move(dx=run, dz=-rise)`).
+        """
+        self.frame = replace(self.frame, dx=int(self.frame.dx + dx), dy=int(self.frame.dy + dy), dz=int(self.frame.dz + dz))
+        return self
 
     def face_anchor(self, name: str, *, at: float = 0.5, width: float | None = None) -> Anchor:
         frame = self.world_frame()
@@ -750,11 +782,15 @@ class LevelProgram(Assembly):
 
     def __init__(self, node_id: str = "level", *, name: str = "", visibility: int = 800,
                  style: Style | None = None, art_sizes: dict[int, tuple[int, int]] | None = None,
-                 note: str = "") -> None:
+                 tile_extents: dict[int, tuple[int, int]] | None = None, note: str = "") -> None:
         super().__init__(node_id, style=style, note=note)
         self.name = name or node_id
         self.visibility = int(visibility)
         self.art_sizes = dict(art_sizes or {})
+        #: picnum -> (pixel height, picanm yofs) (`texture_align.sprite_tile_extents()`). With it, whatever is stood on
+        #: a floor or hung from a ceiling is seated by the box the renderer draws; without it a sprite's z is put on
+        #: the anchor, which buries an enemy to the waist. A new level passes it; Gravesend seats its own.
+        self.tile_extents = dict(tile_extents or {})
         self.start: tuple[Room, tuple[float, float], int] | None = None
         self.stacks: list[tuple[str, str, str]] = []
         self.layer_bands: list[dict[str, Any]] = []
@@ -794,7 +830,7 @@ class LevelProgram(Assembly):
     # -- compilation ------------------------------------------------------
     def compile(self) -> PlanarLayout:
         """Lower the tree into flat planar source.  Absolute coordinates appear here."""
-        layout = PlanarLayout(name=self.name, visibility=self.visibility)
+        layout = PlanarLayout(name=self.name, visibility=self.visibility, tile_extents=self.tile_extents)
         for band in self.layer_bands:
             layout.declare_layer(
                 band["layer_id"], ceiling_z=band["ceiling_z"],

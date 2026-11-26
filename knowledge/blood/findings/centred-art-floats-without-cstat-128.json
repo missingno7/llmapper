@@ -1,0 +1,30 @@
+{
+ "id": "centred-art-floats-without-cstat-128",
+ "topic": "sprite",
+ "standing": "engine",
+ "claim": "The renderer puts a sprite's bottom at z minus (art yoffset x yrepeat x 4), and adds half its height back only when cstat 128 is set. A tile drawn to be centred (art yofs about half its height: statues, smoke, keys) placed with z on the floor and no cstat 128 hangs in the air by yofs x yrepeat x 4 (statue 536: 0.83 bodies).",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:5399-5404 (z2 = z - yoff*yrepeat<<2; += half height if cstat&128) and :12597.",
+  "The campaign writes every instance of 536, 754, 672 and 2553 with cstat 128; the owner spotted floating memorial statues in Gravesend that the frames had shown and nobody had seen (2026-11-20)."
+ ],
+ "use": "Take a sprite's cstat from a campaign record of the same tile (catalog record), and run tools.sprite_fit, which lists 'lifted' sprites.",
+ "code": [
+  "tools/sprite_fit.py",
+  "bloodmap.placement.seated_z"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "centred",
+  "cstat 128",
+  "float",
+  "floating",
+  "hover",
+  "lifted",
+  "statue",
+  "yoffset"
+ ]
+}

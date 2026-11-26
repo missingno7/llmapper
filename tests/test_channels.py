@@ -190,7 +190,7 @@ if __name__ == "__main__":
 class LightBombIsTheSingleSummingOwner(unittest.TestCase):
     """Nothing writes `floor_shade` directly any more."""
 
-    SLICE = "projects/blood-city/level/slice1-west-street.MAP"
+    SLICE = "tests/fixtures/city-slices/slice1-west-street.MAP"
 
     def _map(self):
         from pathlib import Path

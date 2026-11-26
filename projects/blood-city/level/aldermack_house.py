@@ -15,7 +15,7 @@ import citytree
 import curtains
 import doorswitch
 import wires
-import wallplane
+from bloodmap import wallplane
 from materials import INTERIORS
 from resolution import GRADE
 

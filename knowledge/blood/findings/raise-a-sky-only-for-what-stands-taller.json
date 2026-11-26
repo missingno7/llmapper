@@ -1,0 +1,24 @@
+{
+ "id": "raise-a-sky-only-for-what-stands-taller",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "An apron (a strip of open ground against a face, with its own sky) is how a single thing is made TALLER than the common sky, a tower say: a raised sky hides nothing. One sector per distinct height; where two aprons of different height meet at an inside corner the seam must run diagonally from the corner, or one sector owns both faces and draws one of them at the wrong height.",
+ "evidence": [
+  "projects/blood-city/experiments/church-skyline: the tower at 17.4 bodies and the churchyard wall; tests/test_skyline.py"
+ ],
+ "use": "skyline.apron for the one tall thing; never use it to make something lower.",
+ "code": [
+  "bloodmap.skyline.apron"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "sky step",
+  "skyline",
+  "taller",
+  "tower"
+ ]
+}

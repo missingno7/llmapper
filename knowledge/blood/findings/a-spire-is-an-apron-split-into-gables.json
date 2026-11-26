@@ -1,0 +1,25 @@
+{
+ "id": "a-spire-is-an-apron-split-into-gables",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "Build has no pyramid, but a tower can end in a point: split the apron on each face at the face's centre line, hinge each half on that line and slope its parallax sky down toward the corner, and mitre the corners (six sectors for three street faces). A gable under about a quarter of the shaft's visible height foreshortens to nothing, and even a steep one does not show from the tower's own foot.",
+ "evidence": [
+  "projects/blood-city/experiments/church-skyline round 2 and 3: a 1.9-body gable on a 15.5-body shaft read 'chimney / obelisk'; a 3.9-body gable read 'church steeple (certain)' from far away and 'a plain square shaft' from the foot (critic-round2.md, critic-round3.md)"
+ ],
+ "use": "Use gables for the far silhouette only; the near read of a tower needs something at eye height.",
+ "code": [
+  "bloodmap.skyline.apron"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "gable",
+  "sloped sky",
+  "spire",
+  "steeple",
+  "tower"
+ ]
+}

@@ -7,7 +7,7 @@ takes all six recommendations; otherwise name the numbers you want changed.
 Nothing here blocks the city enrichment wave. These are decisions the machine
 should not make alone, not obstacles.
 
-Companion: **[`reports/owner-prescreen.html`](owner-prescreen.html)** — the
+Companion: **[`reports/archive/owner-prescreen.html`](owner-prescreen.html)** — the
 phone-friendly state sheet, every mechanism at OFF and ON with the measured
 difference on each card. Items 1 and 2 have their evidence in it.
 
@@ -70,7 +70,7 @@ crate-side only**; nothing depends on it.
 
 **The evidence.** [`reports/blood-contrast-shelf-vs-crate.md`](blood-contrast-shelf-vs-crate.md),
 unchanged — the same sheet you were sent, no rework. Its bookcase-vs-crate
-companion is `reports/blood-contrast-bookcase-vs-crate.json`.
+companion is `reports/archive/blood-contrast-bookcase-vs-crate.json`.
 
 **Why it is here.** So it stops being an item you half-remember. If you do
 not want to do it, saying "drop 3" closes it for good and it will not
@@ -563,7 +563,7 @@ members plus roles).
 A supervisor cleanup (`git worktree remove --force` on a worktree holding a
 junction to the main checkout) deleted `maps/` and `reference/blood`. The
 corpus was rebuilt byte-exact from on-disk copies against the sha256
-manifests in `reports/` (see `reports/corpus-recovery-2026-09-01.md`), and
+manifests in `reports/` (see `reports/archive/corpus-recovery-2026-09-01.md`), and
 the game directory from `D:\Games\DOS\BLOOD`. **Not recoverable:** the bot's
 `AGTST1`–`AGTST18.map`, `overlap1.map`, the iter27 bot artifacts, your
 `casket.map`, `helix_stairs.map`, `SSFACE.MAP`, `SSHIVE.MAP` and
@@ -1476,7 +1476,7 @@ has named. Node `level`, E3M1 layer 8.
 
 All eight layers over 43 campaign maps,
 `projects/campaign-census/references/residue-curve.json`, full table in
-`reports/residue-curve-2026-09-03.md`.
+`reports/archive/residue-curve-2026-09-03.md`.
 
 **34a. E6M7 cannot be decompiled, and it is layer 1's reader.**
 `decompiler.decompile_level` raises `KeyError(144)` because `analyze_spatial`
@@ -1556,7 +1556,7 @@ a rebase rather than by the refactoring pass.*
 
 Measured by `projects/campaign-census/source/sleep_phase.py` over E3M1, E1M2
 and E4M8; every number is a query over the three fact stores. Full write-up in
-[reports/sleep-phase-2026-09-03.md](sleep-phase-2026-09-03.md). **No
+[reports/archive/sleep-phase-2026-09-03.md](sleep-phase-2026-09-03.md). **No
 constructor has been added to bloodmap — P14b owns `bloodmap/city.py` and this
 is the list.**
 

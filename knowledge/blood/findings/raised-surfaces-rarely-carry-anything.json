@@ -1,0 +1,25 @@
+{
+ "id": "raised-surfaces-rarely-carry-anything",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Only 56 of 1,198 raised surfaces (4.7%) in ten town and detail maps (eight campaign, two Death Wish) carry a sprite, and the commonest item is the candle 2101 (27 of 78), one to a surface at the median and up to 6 on E1M4's booths, about 400 units apart.",
+ "evidence": [
+  "56 of 1,198 surfaces over ten maps (DWE3M1, DWE3M10, E6M1, E4M9, E1M4, E1M1, E3M2, E2M1, E1M5, E3M1), by tools/mine_surface_items.py: knowledge/blood/design/surface-items-v1.json corpus block; candle 2101 is 27 of its items"
+ ],
+ "use": "Put things on counters at the campaign's rate; dress a bar's own counter deliberately and with bottles, not flames.",
+ "code": [
+  "tools/mine_surface_items.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "candle",
+  "counter",
+  "goods",
+  "surface",
+  "table"
+ ]
+}

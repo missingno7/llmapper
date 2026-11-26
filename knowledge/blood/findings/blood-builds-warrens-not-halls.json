@@ -1,0 +1,25 @@
+{
+ "id": "blood-builds-warrens-not-halls",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "E3M1's roofed sectors are small: their upper quartile is 1.13M units squared and only 2% exceed 10M. A level whose rooms run q3 8.39M with 23% over 10M (Gravesend) builds halls where Blood builds warrens, and loses ceiling share, loops and its dead-end fraction with it. A campaign block is a web: dead-end fraction 0.159, mean degree 2.74, 37.7 loops per 100 sectors.",
+ "evidence": [
+  "measured in projects/blood-city/level/l3_church.py and l3_theatre.py (the discriminator)"
+ ],
+ "use": "Braid several rooms round a main one and close circuits behind venues rather than hanging each off the street.",
+ "code": [
+  "projects/blood-city/level/l3_church.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "dead end",
+  "layout",
+  "loops",
+  "room size",
+  "warren"
+ ]
+}

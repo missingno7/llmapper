@@ -263,7 +263,7 @@ def _join(layout, regions, cells, shape) -> None:
 
 
 def _stand(layout, regions, cell, name, x, y, tile, size, *, tall=None, seat="floor", z=None, **fields):
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import seated_z
     room = layout.regions[regions[cell]]
     _w, height, _x, offset = wallplane.art()[tile]
@@ -278,7 +278,7 @@ def _stand(layout, regions, cell, name, x, y, tile, size, *, tall=None, seat="fl
 def _furnish(layout, regions) -> None:
     """The beam and what hangs from it; a lamp at the stair's head; the house's few things."""
     from bloodmap.placement import drawn_extent
-    import wallplane
+    from bloodmap import wallplane
     beam = TOP - 6144 - POST_TALL + 1024                  # the beam's middle, a little under the posts' tops
     long_ = (POSTS[1] - POSTS[0] + POST + 0.9) * PU
     middle = (POSTS[0] + POSTS[1]) / 2
@@ -371,7 +371,7 @@ def finish(level, compiled) -> int:
             f["floor_stat"] = int(f["floor_stat"]) | 4
             f["floor_x_panning"], f["floor_y_panning"] = 16 + 96 * k, round(-SLAB[2] * 64) % 256
     # the brick over and beside the doorway is one wall: hung from the sky, drawn from one corner
-    import wallplane
+    from bloodmap import wallplane
     wide = wallplane.art()[BRICK][0]
     face = []
     for wall in level.walls:

@@ -1,0 +1,27 @@
+{
+ "id": "movers-drag-their-coincident-neighbours",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "DragPoint moves a wall's point and follows nextwall round to every wall that shares that point, so a sliding or rotating sector whose edges coincide with its host's drags the host's walls with it.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:817 DragPoint walks nextwall",
+  "projects/blood-city/level/curtains.py: a curtain fin carved as the auditorium's own hole moved the auditorium; DOOR-CURTAINS s3 cuts the slot as a notch of one-sided walls instead"
+ ],
+ "use": "Stand a mover in a hole of its host with only the edges meant to be portals shared; check the whole swept travel, as the build's swept-state gate does.",
+ "code": [
+  "bloodmap.mechanism.curtain_spec",
+  "projects/blood-city/level/curtains.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "curtain",
+  "dragpoint",
+  "rotate",
+  "slide",
+  "sweep"
+ ]
+}

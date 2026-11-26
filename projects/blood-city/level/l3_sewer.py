@@ -9,7 +9,8 @@ secret branch.
 Three things from E3M3 shape what gets built, not just how much:
 
 * its **cross-section** is a ledge beside a channel -- 62 ledge-over-channel
-  pairs, the walk one max step (4096) above the water;
+  pairs, the walk 2,048 above the water (s136 at 90,112 over channel s120
+  at 92,160), not one max step;
 * it is **wet**: 29% of its sectors, against DukCity's dry 0-2%;
 * it is **lightly wired but restless**: 23 user channels, yet 175 of its 309
   sectors animate their shade.
@@ -32,7 +33,9 @@ from resolution import (PU, SEWER_CHAMBER_CLEAR, SEWER_CLEAR, SEWER_FLOOR,
 
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
-#: The walk sits one max step above its channel (E3M3's median step).
+#: The walk sits one max step (4096) above its channel here.  E3M3's walk
+#: is 2,048 above its water (s136 90,112 over s120 92,160); the value is kept
+#: because changing it moves the sewer in Gravesend.
 LEDGE_STEP = 4096
 #: Legs that carry water, not only the channels split off the long sides:
 #: the east leg is a channel with its towpath beside it, so the water that
@@ -1711,7 +1714,7 @@ def dress_niches(layout, rooms) -> list[str]:
             fields.update(extra)
             height = float(rise)
             if lift:
-                import wallplane
+                from bloodmap import wallplane
                 from resolution import PROFILE
                 tile_h = wallplane.art()[tile][1]
                 height = tile_h * fields["y_repeat"] * 4 / 2 / PROFILE.standing_height
@@ -1733,7 +1736,7 @@ def dress_niches(layout, rooms) -> list[str]:
                 layout.place_on_ceiling(pid, room.region_id, local=local, **fields,
                                         behavior=dict(spec["behavior"]))
             elif how == "wall":
-                import wallplane
+                from bloodmap import wallplane
                 # the back wall, wound so the sprite faces into the niche
                 wx0, wy0, wx1, wy1 = (int(v * PU) for v in rect)
                 a1, a2 = {("x", "low"): ((wx0, wy0), (wx1, wy0)), ("x", "high"): ((wx1, wy1), (wx0, wy1)),
@@ -2011,7 +2014,7 @@ def dress_lair(layout, rooms, attested) -> list[str]:
     """The lair's web, cocoons, victims, spiders and their mother, as E2M8 dresses its own."""
     import math
 
-    import wallplane
+    from bloodmap import wallplane
     from l3_foundry import _attested
 
     if "lair_hall" not in rooms:

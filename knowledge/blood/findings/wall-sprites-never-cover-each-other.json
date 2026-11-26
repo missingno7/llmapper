@@ -1,0 +1,28 @@
+{
+ "id": "wall-sprites-never-cover-each-other",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Blood almost never hangs one wall sprite over another: its town maps have 0 to 3.3 clashing pairs per 100 wall sprites (E2M1, E6M1, E4M9, E3M1) and its busiest 6.7 to 8.0 (E1M1, E3M2, DWE3M1, DWE3M10), with 0 to 4 fully hidden. Things may sit beside or above one another on a wall, never on the same spot.",
+ "evidence": [
+  "tools/mine_wall_sprites.py; Gravesend before the fix: 18.86 pairs per 100 and 26 fully hidden",
+  "the owner (bloodmap/wallplane.py docstring): 'they can be next to each other or on the top of each other, but not on the same place'"
+ ],
+ "use": "Hang through a wall-plane occupancy that reserves each sprite's drawn rectangle (along and down), then run tools.sprite_fit.",
+ "code": [
+  "bloodmap.wallplane.find_slot",
+  "tools/sprite_fit.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "clash",
+  "decal",
+  "overlap",
+  "poster",
+  "sign",
+  "wall sprite"
+ ]
+}

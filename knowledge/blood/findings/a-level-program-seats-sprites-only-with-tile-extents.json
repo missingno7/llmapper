@@ -1,0 +1,31 @@
+{
+ "id": "a-level-program-seats-sprites-only-with-tile-extents",
+ "topic": "sprite",
+ "standing": "practice",
+ "claim": "LevelProgram and PlanarLayout seat what is stood on a floor by the box the renderer draws only when they are given tile_extents (picnum to pixel height and picanm yofs). Without it a placement's z is put on its anchor: an enemy, whose art is offset, stands buried to the waist, and nothing is raised at compile time.",
+ "evidence": [
+  "projects/cold-store, 2026-11-26: three cultists placed with layout.place_on_floor were reported by the gate sprite_fit.sunk_actors as 50% under their floor; with LevelProgram(tile_extents=sprite_tile_extents()) the gate was clean",
+  "bloodmap/planar_layout.py place_on_floor: seat is set to floor only if self.tile_extents"
+ ],
+ "use": "Build a level program with art_sizes=rules.art_sizes() AND tile_extents=texture_align.sprite_tile_extents() (the starter does). A tile whose art is drawn centred then needs cstat 128, or compile refuses it as below the floor.",
+ "code": [
+  "bloodmap.levelprog.LevelProgram",
+  "bloodmap.texture_align.sprite_tile_extents",
+  "bloodmap.sprite_fit.sunk_actors",
+  "tools/starter/level/build.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "cold-store",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "actor",
+  "buried",
+  "dude",
+  "enemy",
+  "floor",
+  "placement",
+  "sunk"
+ ]
+}

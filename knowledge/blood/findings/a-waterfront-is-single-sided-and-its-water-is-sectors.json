@@ -1,0 +1,26 @@
+{
+ "id": "a-waterfront-is-single-sided-and-its-water-is-sectors",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "DWE3M10's pier promenade is one linear band (59 street sectors along ~60k units, 1 loop) whose buildings line the land side; its door rate along the water is 1.76 per 10,240 of frontage, denser than an inland street. The water side is real swimmable water sectors (215k units of red wall into water against 12.5k of white wall) with boats as sector geometry; only the far shore is backdrop.",
+ "evidence": [
+  "tools/mine_city_norms.py v2 on DWE3M10 (knowledge/blood/references/city-norms-v2.json)"
+ ],
+ "use": "Face a quay's doors landward, let it widen into a plaza, and make the water walkable space.",
+ "code": [
+  "knowledge/blood/references/promenade-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "boat",
+  "harbour",
+  "pier",
+  "promenade",
+  "quay",
+  "waterfront"
+ ]
+}

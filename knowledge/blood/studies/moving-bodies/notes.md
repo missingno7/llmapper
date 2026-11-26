@@ -8,8 +8,9 @@ Gravesend's Phantom Terminus rides a body of some seventy sectors built by
 **What hangs outside** a body stands in the host's space, where the body's own
 sectors cannot carry it. E1M2 makes the host itself a mover: s34 is type 614
 with the train's markers, time and wire, and its wheel sprites 66, 67, 70 and
-71 (tile 847) carry bit 8192. A 614 moves only flagged walls, so a host with
-none flagged moves nothing but those sprites. None of the campaign's 306
+71 (tile 847) carry bit 8192. A 614 moves only flagged walls: s34's outline
+is unflagged and stays put, while walls on two of its holes (386-390, 396,
+397) carry 16384 and move with the sprites. None of the campaign's 306
 carried sprites stands outside its sector; 15 of Death Wish's do.
 
 ## Corpus and measurement

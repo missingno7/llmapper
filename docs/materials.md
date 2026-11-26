@@ -39,10 +39,12 @@ mixed-use are valid terminal statuses.
 
 ## Commands
 
-Original Blood campaign maps can be selected with `--glob E*.MAP` so Duke
-conversions (`DWE*`, `DNE*`) and Doom recreations (`TEDE*`) do not enter the
-usage statistics. Those derived maps are useful as conversion evidence, not as
-Blood-native material authoring.
+`maps/blood` is the corpus root, not a flat directory of maps: given it as
+`--maps`, the CLI takes its named maps through `bloodmap.corpus` (campaign,
+BloodBath, curated, conversions), and `--glob E*.MAP` then narrows them to the
+43 campaign maps, the same set as `bloodmap.corpus.campaign_maps()` (which is
+what code should call). Duke conversions and Doom recreations are useful as
+conversion evidence, not as Blood-native material authoring.
 
 ```text
 python -m bloodmap materials-mine --game blood --maps maps/blood --glob E*.MAP \
@@ -59,9 +61,6 @@ python -m bloodmap materials-export-batch work/blood.materials.json \
   --art reference/blood --limit 80 -o work/blood.material-batch.json
 
 python -m bloodmap materials-import work/blood.materials.json \
-  knowledge/blood/ontology-v1.json -o work/blood.material-knowledge-v1.json
-
-python -m bloodmap materials-import work/blood.material-knowledge-v1.json \
   knowledge/blood/ontology-v2.json -o work/blood.material-knowledge-v2.json
 
 python -m bloodmap materials-audit work/blood.material-knowledge-v2.json \
@@ -108,7 +107,8 @@ Patch/PLAYPAL appearance decoding is intentionally out of this first pass.
 ## Local evidence snapshot
 
 These numbers come from a local original-map run. They are not checked in.
-Regenerate with `--glob E*.MAP` (Blood) / `E*.MAP` (Duke) and the Doom IWAD.
+Regenerate with the commands above (Blood: `--maps maps/blood --glob E*.MAP`;
+Duke: `--maps maps/duke3d --glob E*.MAP`) and the Doom IWAD.
 
 | Corpus | Maps | Assets | Substantial usage | Appearance | Animation families | Clusters |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -116,10 +116,10 @@ Regenerate with `--glob E*.MAP` (Blood) / `E*.MAP` (Duke) and the Doom IWAD.
 | Duke `E*.MAP` + ART | 41 | 3253 tiles | 1191 | 2774 | 63 | 141 |
 | Doom IWAD names | 36 | 345 textures | 330 | 0 | 0 | 1 |
 
-Blood now has a reviewed ontology under `knowledge/blood/`: v1 from an
-appearance-heavy pass, then v2 after contradiction-driven refinement. The
-package still ships with an empty ontology until that JSON is imported. See
-[materials-discovery.md](materials-discovery.md).
+Blood has a reviewed ontology, `knowledge/blood/ontology-v2.json`: the
+second pass, after contradiction-driven refinement of an appearance-heavy first
+one (the first pass and its compiler are in git history). The package still
+ships with an empty ontology until that JSON is imported.
 
 Isolated appearance remains misleading: tile 2500 looks like a vertical stone
 strip but is ceiling-only across 17 maps; tile 330 is a masked fence used only
@@ -180,9 +180,8 @@ named authoring roles using those same facets.
 
 This catalog is optional for Duke/Doom → Blood conversion. Existing role-aware
 ART matching remains the default so conversion tests stay independent of local
-knowledge artifacts. A separable ontology-aware probe is documented in
-[materials-discovery.md](materials-discovery.md); it does not replace
-`e3l11._apply_materials`.
+knowledge artifacts. An ontology-aware probe was tried beside it and does not
+replace `e3l11._apply_materials`.
 
 Doom mining still records named textures only. Patch/PLAYPAL composed-texture
 appearance decoding is out of scope until the Blood workflow is the thing being

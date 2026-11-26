@@ -1,7 +1,6 @@
 """Walls joined along a straight run: fewer of them, every sector the size it was, every portal whole."""
 
 import unittest
-from pathlib import Path
 
 from bloodmap import corpus, tidy
 from bloodmap.analysis import validate_map
@@ -44,26 +43,6 @@ class TidyTests(unittest.TestCase):
                 self.assertEqual(over["next_wall"], index)
                 end = record_fields(again.walls[f["point2"]])
                 self.assertEqual((over["x"], over["y"]), (end["x"], end["y"]))
-
-    def test_pieces_alike_are_one_and_the_ground_is_the_same(self):
-        path = Path("projects/blood-city/level/blood-city-current.MAP")
-        if not path.exists():
-            self.skipTest("the city is not built here")
-        disk = read_map(path)
-        total = sum(areas(disk))
-        sectors = len(disk.sectors)
-        report = tidy.merge_alike(disk, 1000, step=8)
-        self.assertGreater(report["sectors_merged"], 0)
-        self.assertEqual(len(disk.sectors), sectors - report["sectors_merged"])
-        self.assertEqual(sum(areas(disk)), total)
-        self.assertEqual(sorted(set(report["into"].values())), list(range(len(disk.sectors))))
-        self.assertFalse([d for d in validate_map(parse_map(encode_map(disk))) if d.severity == "error"])
-
-    def test_the_city_is_tidied(self):
-        path = Path("projects/blood-city/level/blood-city-current.MAP")
-        if not path.exists():
-            self.skipTest("the city is not built here")
-        self.assertLess(len(read_map(path).walls), 16384)
 
 
 if __name__ == "__main__":

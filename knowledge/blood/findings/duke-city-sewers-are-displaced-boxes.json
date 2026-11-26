@@ -1,0 +1,25 @@
+{
+ "id": "duke-city-sewers-are-displaced-boxes",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "A DukCity sewer never lies under its street (under-street share 0.00 in all four maps): it is built elsewhere in map space and reached by 0-2 point entries per network (elevator in 5 of 7, one floor drop), 2.6-5.2 bodies deep; its larger networks loop on their own (cycle rank 7-52), two small ones not at all. It is a destination with one or two doors, used as a required passage, a secret or a dead end, never as a shortcut.",
+ "evidence": [
+  "tools/mine_sewers.py over DukCity1-4, 7 networks (knowledge/blood/references/sewer-mining.json; table in sewer-patterns.md:27-35)"
+ ],
+ "use": "When translating a Duke city, put its sewer truly under the street with Blood stacks, and keep entries rare.",
+ "code": [
+  "knowledge/blood/references/sewer-patterns.md"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "duke",
+  "entry",
+  "manhole",
+  "sewer",
+  "underground"
+ ]
+}

@@ -107,7 +107,7 @@ def movers() -> frozenset[str]:
 
 
 def _art(tile: int):
-    import wallplane
+    from bloodmap import wallplane
     return wallplane.art()[tile]
 
 

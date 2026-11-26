@@ -353,7 +353,7 @@ class CorpusBundleTests(unittest.TestCase):
             self.skipTest("E6M1.MAP is not present in the local corpus")
 
     def test_the_e6m1_cashwrap_is_found_with_both_register_caps(self):
-        """`projects/blood-city/references/e6m1-shop.md`: S32 is the counter,
+        """`knowledge/blood/references/e6m1-shop.md`: S32 is the counter,
         S33/S34 the two register caps. The rule is told none of that."""
         from bloodmap.format import read_map
         from bloodmap.reachability import sector_kinds

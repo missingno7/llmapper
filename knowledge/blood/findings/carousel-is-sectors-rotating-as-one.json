@@ -1,0 +1,29 @@
+{
+ "id": "carousel-is-sectors-rotating-as-one",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "E1M4's carousel is nine type-617 rotating sectors (s321-329) turned as one body on one channel (rx 128): started once when the player first walks into sector 352 (trigger_enter, trigger_once, tx 128), retrigger at both ends, busy_time_a 255 (a whole slow turn, no way back). Its visible dressing (flat roof, poles, beasts: cstat 8577) rides by cstat 8192; the three gargoyles (type 206) and the pickup standing on it, and its 49 hidden gib objects, do not.",
+ "evidence": [
+  "E1M4 sectors 321-329 (s321: type 617, rx 128, retrigger_a 1, retrigger_b 1, drag 1, busy_time_a 255)",
+  "E1M4 s352: the only sender on channel 128, trigger_enter and trigger_once (checked 2026-11-26); the carousel is not on the level-start channel 7",
+  "2026-11-26: of the 72 sprites in s321-329, 19 carry cstat 8192 (12 at 8577, 7 at 41376); not carried: gargoyles 816, 817, 1087 (type 206), pickup 1088 (type 105), 49 invisible type-416 objects"
+ ],
+ "use": "Turn a ride's platform, drum and neck about one axis with one time via bloodmap.mechanism.rigid_body, in its own ring of host.",
+ "code": [
+  "bloodmap.mechanism.rigid_body",
+  "projects/blood-city/level/fair.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "617",
+  "carousel",
+  "fair",
+  "ride",
+  "rotate",
+  "spin"
+ ]
+}

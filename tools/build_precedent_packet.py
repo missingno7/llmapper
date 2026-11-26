@@ -11,6 +11,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from bloodmap.corpus import corpus_map_path
 from bloodmap.format import read_map
 from bloodmap.player_space import player_profile
 from bloodmap.spatial import analyze_spatial
@@ -149,7 +150,7 @@ def _sid(ref):
 
 
 def observe(map_name: str, sector_ids: list[int]) -> list[dict]:
-    path = Path("maps/blood") / map_name
+    path = corpus_map_path(map_name)
     disk = read_map(path)
     level = disk.to_level_ir()
     spatial = analyze_spatial(disk.to_build_ir())
@@ -197,7 +198,7 @@ def main() -> int:
         entries.append({
             "precedent_id": item["precedent_id"],
             "question": item["question"],
-            "source": source_identity(Path("maps/blood") / item["map"], game="blood"),
+            "source": source_identity(corpus_map_path(item["map"]), game="blood"),
             "observation": observe(item["map"], item["sectors"]),
             "relationship_consulted": item["relationship_consulted"],
             "abstract_lesson": item["lesson"],
@@ -223,4 +224,8 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    import sys
+    if any(arg in ("-h", "--help") for arg in sys.argv[1:]):
+        print(__doc__)
+        raise SystemExit(0)
     raise SystemExit(main())

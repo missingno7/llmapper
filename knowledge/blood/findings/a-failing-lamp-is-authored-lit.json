@@ -1,0 +1,26 @@
+{
+ "id": "a-failing-lamp-is-authored-lit",
+ "topic": "light",
+ "standing": "practice",
+ "claim": "A lamp that flickers out must be authored LIT with a positive shade amplitude, so it is drawn lit at rest and drops out; authored dark and flickering on, it reads in frames and at rest as a ring of light round a hole.",
+ "evidence": [
+  "Phantom Terminus, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md); frames draw a wave at its lit instant (bloodmap.visual.shade_waves_lit)"
+ ],
+ "use": "Give a failing lamp its lit shade and a positive amplitude; let light_stage.switch_lamps move its neighbours with it.",
+ "code": [
+  "bloodmap/visual.py",
+  "projects/blood-city/references/phantom-terminus-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "amplitude",
+  "failing light",
+  "flicker",
+  "lamp",
+  "shade wave"
+ ]
+}

@@ -1,0 +1,28 @@
+{
+ "id": "do-not-roof-a-stall-under-a-high-sky",
+ "topic": "renderer",
+ "standing": "practice",
+ "claim": "A roofed sector standing in an open street whose sky is far above it draws its upper wall from its roof all the way up to the street's sky (eleven bodies on Gravesend's quay), a tall slab, because the upper step is drawn whenever either side is roofed. Stalls, decks and kiosks in the open have the street's sky as their ceiling and are roofed with sprites.",
+ "evidence": [
+  "engine.cpp:4688 draws the upper step unless both ceilings are parallax",
+  "Gravesend's market stalls and the Demeter, 2026-11-25 (projects/blood-city/references/market-design.md)"
+ ],
+ "use": "Leave small open-air structures parallax-ceilinged and roof them with flat or wall sprites.",
+ "code": [
+  "projects/blood-city/references/market-design.md",
+  "bloodmap/skyline.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "kiosk",
+  "parallax",
+  "roof",
+  "sky",
+  "stall",
+  "upper wall"
+ ]
+}

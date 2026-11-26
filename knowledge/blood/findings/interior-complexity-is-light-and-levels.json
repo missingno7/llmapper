@@ -1,0 +1,26 @@
+{
+ "id": "interior-complexity-is-light-and-levels",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "What makes a Blood interior read as complex is contrast within a room and vertical range within a venue, not more rooms: per interior of 20+ square bodies E3M1 holds a median 15.5 floor heights over 2.96 bodies, 10.5 ceiling heights, 14.5 wall tiles and 37 shade steps between darkest and brightest floor (our city: 7.5, 1.45 bodies, 5.5, 7.5).",
+ "evidence": [
+  "python -m tools.city_profile --interiors (2026-11-17). Adding a strongroom moved none of the numbers; a blind reviewer still called it 'ONE flat box ... flat even light'."
+ ],
+ "use": "For a richer interior: light and dark inside one room (lamps with pools, dark corners), then levels (gallery, cellar, raised back), then materials; and put the trade's goods in.",
+ "code": [
+  "tools/city_profile.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "complexity",
+  "contrast",
+  "interior",
+  "levels",
+  "lighting",
+  "shop"
+ ]
+}

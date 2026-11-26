@@ -1,0 +1,27 @@
+{
+ "id": "blast-hole-sizes",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "Campaign blast holes are a median 1,280 wide and 1.45 bodies tall (upper quartile 1,792 and 1.8), and ragged, with sloped floors and ceilings; E3M4's 640-wide hole is too narrow for a ragged hole a body walks through.",
+ "evidence": [
+  "measured for projects/blood-city/level/l3_church.py and l3_mall.py (HOLE_MEDIAN); the owner, 2026-11-22: 'Blown out holes are usually using sloped floor and ceiling and usually aren't regular'"
+ ],
+ "use": "Lay a blown hole of 1,280 to 1,536 in three or four slanted pieces with bloodmap.breach.ragged, typed after the door pass so it is not framed as a door.",
+ "code": [
+  "bloodmap.breach.ragged",
+  "bloodmap.breach.lay"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "blast",
+  "breach",
+  "explosion",
+  "hole",
+  "ragged",
+  "wall"
+ ]
+}

@@ -11,7 +11,7 @@ already named).
 | 356 | bill: Jo-Jo book signing | 3 | 11 | out, wall |
 | 440 | bill: Tonight, monkey wrestling | 6 | 10 | in, wall |
 | 453 | bill: Possum Gallo | 5 | 10 | in, wall |
-| 505 | waste bin | 3 | 53 | out, face |
+| 505 | bin lettered WASTE, heaped with gore | 3 | 53 | out, face |
 | 517 | red flask | 2 | 4 | in, face |
 | 520 | skull goblet | 2 | 5 | in, face |
 | 521 | wine glass | 4 | 4 | in, face |

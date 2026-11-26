@@ -1,0 +1,26 @@
+{
+ "id": "duke-se11-swings-only-with-a-same-hitag-st23",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A Duke SE11 swinging-door effector moves only when an ST23 sector is operated and an SE11 in that ST23 sector shares its hitag; the operator sets T5 on every same-hitag SE11 and actors.cpp moves an SE11 only while T5 is set. An SE11 with no same-hitag ST23 operator is inert: its room never turns.",
+ "evidence": [
+  "reference/eduke32/source/duke3d/src/sector.cpp:961-1000 (ST23 case: finds the SE11 in its own sector, then arms every SE11 with that hitag)",
+  "reference/eduke32/source/duke3d/src/actors.cpp:7292 (SE_11 moves only while pData[4] is set)",
+  "E4L1 sprite 487 (hitag 409, plain room 152) has no hitag-409 ST23; E1L2 room 262 is a second case"
+ ],
+ "use": "Convert an SE11 without a same-hitag ST23 as a static room, not a rotor; keep the room's other signals.",
+ "code": [
+  "bloodmap.duke_motion"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "converter",
+  "inert",
+  "rotor",
+  "swinging door"
+ ]
+}

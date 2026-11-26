@@ -1,0 +1,27 @@
+{
+ "id": "player-climbs-three-quarters-of-its-foot-offset",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "A walking body clears a rise of footOffset - floordist, where MoveDude passes floordist = (bottom - z)/4: about three quarters of the half body, roughly 6,400 z for a 16,960 standing human (6,548 to 6,659 measured as the walk frames change the body's height). It is not a fixed autostep, and a step down is never refused: nothing stops a body walking off a ledge, the line is drawn at the landing.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:4450-4470 (bz = (bottom-z)/4 passed to ClipMove); build/src/clip.cpp:876-882, the default case of cliptestsector, which Blood's engine mode takes, blocks entry when the next floor is over 256 higher and posz >= daz2-(flordist-1).",
+  "Measured by the headless bot on AGTST18 (radius 192, height 17,316, flordist 2,220, foot offset ~8,880: 6,659); bloodmap's player profile uses max_step 4,096 as a deliberately conservative at-rest threshold."
+ ],
+ "use": "Treat rises up to ~4,096 as steps everyone takes and up to ~6,400 as the engine's own limit; anything taller is a jump or a wall.",
+ "code": [
+  "bloodmap.player_space.PLAYER_PROFILES"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "autostep",
+  "climb",
+  "floordist",
+  "ledge",
+  "step",
+  "step height"
+ ]
+}

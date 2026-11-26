@@ -8,7 +8,8 @@ improve critics of the actual map."
 
 So a place's picture is not chosen by the mapper who built it:
 
-``run``      Hundreds of cameras per place (`showcase-places.json`): a grid
+``run``      Hundreds of cameras per place (the project's
+             `level/showcase-places.json`): a grid
              of standing points thinned to the most spread out, eight
              compass headings and one toward the place, at eye height and
              raised one and three bodies looking down. Every view is
@@ -31,19 +32,24 @@ So a place's picture is not chosen by the mapper who built it:
 
 .. code-block:: bash
 
-    python -m tools.showcase run                  # a new round, every place
-    python -m tools.showcase run --place crypt --round 3
-    python -m tools.showcase judge --round 3      # GPT-6.2 Sol, high
-    python -m tools.showcase report --round 3
-    python -m tools.showcase calibrate            # does the measure follow the readers?
+    python -m tools.showcase --project blood-city run     # a new round, every place
+    python -m tools.showcase --project blood-city run --place crypt --round 3
+    python -m tools.showcase --project blood-city judge --round 3      # GPT-6.2 Sol, high
+    python -m tools.showcase --project blood-city report --round 3
+    python -m tools.showcase --project blood-city calibrate   # does the measure follow the readers?
 
-Each place's latest verdict is read into the city's STATUS.md (`status.py`):
-a place not recognised from its best view is an open item, `unrecognised`.
+`--project` may be left out when `LLMAPPER_PROJECT` names it. A place is a
+row of the project's `level/showcase-places.json`: `{"places": {key:
+{"focus": [x, y], "radius": r, "camera_radius": R, "floor": z?, "outdoors":
+bool?}}}` in the project's plan units.
 
-Rounds live in `projects/blood-city/reports/showcase/round-N/`: the JSON
-and the markdown are committed; the round's MAP and collage stay local and
-its frames are in `work/showcase/` (every camera is in `finalists.json`, so
-a frame can be rendered again from the same build).
+A project's status may read each place's latest verdict (Gravesend's
+`status.py` does: a place not recognised from its best view is an open item).
+
+Rounds live in the project's `reports/showcase/round-N/`: the JSON and the
+markdown are committed; the round's MAP and collage stay local and its frames
+are in `work/showcase/<project>/` (every camera is in `finalists.json`, so a
+frame can be rendered again from the same build).
 """
 
 from __future__ import annotations
@@ -62,18 +68,26 @@ import time
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from bloodmap import project as P
 from bloodmap.format import read_map, write_map
 from bloodmap.sector_geom import outline_and_holes, sector_contains
 from bloodmap.view_score import Subject, measure_view, score
 from bloodmap.viewplan import angle_toward, eye_z
 from bloodmap.visual import ObservationRequest, Viewpoint, as_played, run_observation
 
+#: the project a run is of, set by `use`: its plan unit, map, places, rounds, scratch and ground floor
 PU = 1024
-CITY = ROOT / "projects" / "blood-city" / "level" / "blood-city-current.MAP"
-PLACES = ROOT / "projects" / "blood-city" / "level" / "showcase-places.json"
-OUT = ROOT / "projects" / "blood-city" / "reports" / "showcase"
-WORK = ROOT / "work" / "showcase"
-STREET, BAND = 8192, 12288
+CITY = PLACES = OUT = WORK = None
+STREET, BAND = 0, 12288
+
+
+def use(project: P.Project) -> None:
+    """Point every path and unit here at one project."""
+    global PU, CITY, PLACES, OUT, WORK, STREET
+    PU, STREET = project.plan_unit, project.ground_z
+    CITY, PLACES, OUT = project.map, project.need("showcase_places"), project.need("showcase")
+    WORK = ROOT / "work" / "showcase" / project.key
+
 #: how far apart standing points are, and how many survive the thinning
 GRID, POSITIONS, FINALISTS = 768, 20, 8
 #: (lift above eye, horiz): Build's horiz 100 is level, lower looks down
@@ -523,7 +537,8 @@ def calibrate() -> dict:
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--project", default=None, help=f"whose places: a directory under projects/ (or ${P.ENV})")
     sub = parser.add_subparsers(dest="command", required=True)
     sub.add_parser("calibrate", help="how well the measure follows the readers")
     for name in ("run", "judge", "report"):
@@ -532,6 +547,11 @@ def main(argv=None) -> int:
         if name != "report":
             p.add_argument("--place", action="append", default=None)
     args = parser.parse_args(argv)
+    try:
+        use(P.named(args.project))
+    except P.ProjectError as exc:
+        print(exc, file=sys.stderr)
+        return 2
     if args.command == "calibrate":
         print(json.dumps(calibrate(), indent=1))
         return 0

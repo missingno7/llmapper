@@ -1,0 +1,26 @@
+{
+ "id": "crypt-recipe",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "E1M1's crypt: rubble walls (110), an earth floor (270) under dark worked stone (253), ONE sarcophagus as the thing the room is for (a stone chest with bevelled shoulders and a lid), gold plaques on the walls (128, palette 8, explode objects at 1.2 bodies) and translucent cobwebs (1067/1068) hung in open air. A closed tomb lid is a floor tile laid whole on the chest's top (E3M8 s249 tile 128; E1M1 s0 and s9 tile 346).",
+ "evidence": [
+  "E1M1 sector 150, sectors 1-3 (shoulders, heinum -2048), sprites 185-189 (plaques), sprites 150-154 (cobwebs); E3M8 s249, s445; E1M1 s0, s9"
+ ],
+ "use": "Build a crypt from that list, free-standing tombs with room to walk round; relative-align the lid from the tomb's own first wall.",
+ "code": [
+  "projects/blood-city/level/l3_church.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "catacomb",
+  "cemetery",
+  "coffin",
+  "crypt",
+  "sarcophagus",
+  "tomb"
+ ]
+}

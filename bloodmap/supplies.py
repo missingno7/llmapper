@@ -37,8 +37,10 @@ Engine facts, NBlood `source/blood/src`:
   shotgun cultist a shotgun or 4 shells (`actKillDude`, `actor.cpp:3053`).
 * ammo counts, health and armour: `gAmmoItemData`, `gWeaponItemData`
   (`actor.cpp:1148`, `:1382`), `gPowerUpInfo`, `armorData` (`player.cpp`).
-* a standing jump is `0xbaaaa` up against 58254 a frame: 19,600 z by that
-  sum, 15,052 by the bot's replay. `MAX_RISE` is 22,000 because shipped ways
+* a standing jump is `0xbaaaa` up against 58254 a frame: its apex is about
+  15,050-15,370 z when gravity is applied tick by tick as the engine does
+  (15,052 by the bot's replay); 19,600 is the continuous formula v^2/2g,
+  which the engine does not follow. `MAX_RISE` is 22,000 because shipped ways
   rise 22,528 and more; a way that is too high is still taken when nothing
   else is left, and counted as taken on trust.
 
@@ -69,7 +71,9 @@ SCHEMA_VERSION = 1
 DEFAULT_SKILL = 2
 BODY = PLAYER_PROFILES["blood"].standing_height
 EYE = PLAYER_PROFILES["blood"].eye_height
-#: A standing jump's apex (19,600) and the step a landing body still climbs.
+#: Not a jump's apex (that is about 15,050-15,370 per tick; 19,600 is the
+#: continuous formula): the rise shipped ways ask (22,528 and more), the jump
+#: plus the step a landing body still climbs, taken generously.
 MAX_RISE = 22000
 #: How wide a pit a running jump clears: "about three thousand units", flown by
 #: the bot (its leaping notes); a fall on the way lengthens it.
@@ -201,6 +205,45 @@ def as_launched(disk: Any, skill: int = DEFAULT_SKILL) -> Any:
             fields["type"], fields["status"], fields["extra"] = 0, 1024, -1
             out.append(DiskObject(fields=fields))
     return replace(disk, sprites=out)
+
+
+#: How a pickup lies in the world: type -> (tile, repeat). The repeats are the campaign's own for each (the owner,
+#: 2026-11-25: "pickups keep Blood's sizes"); a type missing here has not been set down by a level of ours yet.
+ITEM_ART: dict[int, tuple[int, int]] = {
+    41: (559, 48), 42: (558, 48), 43: (524, 48), 45: (539, 48), 46: (526, 48), 50: (800, 48), 60: (618, 40),
+    62: (589, 48), 63: (809, 48), 64: (811, 40), 65: (810, 40), 66: (820, 24), 67: (619, 48), 68: (812, 48),
+    69: (813, 48), 70: (525, 48), 72: (817, 48), 73: (548, 24), 76: (816, 48), 79: (801, 48), 107: (519, 48),
+    108: (822, 40), 109: (2169, 40), 110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 118: (830, 64),
+    121: (760, 40), 124: (2428, 40), 140: (2628, 64), 141: (2586, 64), 143: (2602, 64), 144: (2594, 64),
+}
+#: ... and the few that are not square: type -> the fields that differ
+ITEM_ART_FIELDS: dict[int, dict[str, int]] = {118: {'x_repeat': 80}}
+#: How an enemy stands in the world: type -> (tile, repeat, palette). The palette is what tells two cultists apart.
+DUDE_ART: dict[int, tuple[int, int, int]] = {
+    201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 48, 0), 205: (3054, 40, 0),
+    206: (1470, 40, 0), 210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13),
+    212: (1980, 32, 0), 218: (1870, 32, 0), 220: (1745, 24, 0),
+}
+
+
+def item(kind: int, **overrides: int) -> dict[str, int]:
+    """The sprite record of a pickup as Blood sets it down: type, tile and size derived together, on the item list."""
+    if kind not in ITEM_ART:
+        raise KeyError(f"item type {kind} has no art on file in bloodmap.supplies.ITEM_ART: look one up in the campaign "
+                       f"(python -m tools.catalog show sprite:{kind}) and add it")
+    tile, size = ITEM_ART[kind]
+    return {"type": kind, "picnum": tile, "x_repeat": size, "y_repeat": size, "status": 3, "shade": -8,
+            **ITEM_ART_FIELDS.get(kind, {}), **overrides}
+
+
+def dude(kind: int, **overrides: int) -> dict[str, int]:
+    """The sprite record of an enemy as Blood sets it down: type, tile, size and palette, blocking, on the dude list."""
+    if kind not in DUDE_ART:
+        raise KeyError(f"dude type {kind} has no art on file in bloodmap.supplies.DUDE_ART: look one up in the campaign "
+                       f"(python -m tools.catalog show sprite:{kind}) and add it")
+    tile, size, pal = DUDE_ART[kind]
+    return {"type": kind, "picnum": tile, "x_repeat": size, "y_repeat": size, "pal": pal, "cstat": 384, "status": 6,
+            "shade": -8, **overrides}
 
 
 def item_type(kind: int) -> dict[str, Any] | None:

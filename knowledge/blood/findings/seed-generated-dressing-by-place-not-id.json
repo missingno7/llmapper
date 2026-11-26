@@ -1,0 +1,25 @@
+{
+ "id": "seed-generated-dressing-by-place-not-id",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A generated pass that sorts or rolls on a region's id reshuffles every sprite whenever the level program is reorganised, so a restructure cannot be told from a redesign. Seeded from where the room is (its outline and floor), the pass is stable under reparenting and changes the moment the room moves.",
+ "evidence": [
+  "projects/blood-city/level/dressing.py; level/fingerprint.py compared compiled maps order-independently (removed from the working tree in the 2026-11-26 consolidation; at commit ea7be12)"
+ ],
+ "use": "Key pseudo-random choices on a place id or world position; compare a restructure with python -m bloodmap.same_map before.MAP after.MAP, which says whether two maps are the same level whatever order their records are in.",
+ "code": [
+  "projects/blood-city/level/dressing.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "deterministic",
+  "random",
+  "restructure",
+  "seed",
+  "stable"
+ ]
+}

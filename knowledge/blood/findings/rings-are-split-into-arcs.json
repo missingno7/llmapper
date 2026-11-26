@@ -1,0 +1,26 @@
+{
+ "id": "rings-are-split-into-arcs",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "Round or star-shaped places built of sectors are cheapest laid as shapes over one another with joints and paint from one table; split rings into arcs and exempt them from light cutting, or the light stage spends hundreds of walls on them.",
+ "evidence": [
+  "Gravesend's Cabal circle, 2026-11-24, near the 16,384-wall limit (the city at ~13,900)."
+ ],
+ "use": "bloodmap.arrangement for round places; give their light rule cut=False.",
+ "code": [
+  "bloodmap.arrangement.lay"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "arc",
+  "circle",
+  "pentagram",
+  "ring",
+  "round room",
+  "wall budget"
+ ]
+}

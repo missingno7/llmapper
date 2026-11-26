@@ -4,7 +4,7 @@
 
 The owner, 2026-11-25: "right now you just get attacked by a lot of enemies around you
 immediatelly". A dude that has a line to the player, within what its kind sees, and the
-player in front of it, is awake at once (`ai.cpp: aiScanForTarget`; a cultist's range is
+player in front of it, is awake at once (`ai.cpp: aiLookForTarget`; a cultist's range is
 the whole city). So the question is of lines. `cansee` is the engine's (`engine.cpp`):
 from sector to sector through the portals, refused where the line is under the floor or
 over the ceiling of either side. A sprite stops no line; a wall or a step does.

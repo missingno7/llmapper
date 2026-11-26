@@ -1,0 +1,27 @@
+{
+ "id": "facade-panning-follows-world-position",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "E3M1 keeps its facade bays on a world grid mostly by where its walls begin, not by panning: of its 142 street walls drawn at 16 units a pixel, 112 (79%) have x panning 0, 78 (55%) are in phase with a world 1,024 grid, and 67 of those are both, a wall starting on a multiple of 1,024 with no panning. So a 1,024-unit bay of its facade tiles falls on one grid across much of a district, and an opening one bay wide lines up with the painted windows beside it.",
+ "evidence": [
+  "2026-11-26 measurement (work/consolidation/audit_mid/facade_phase.py): E3M1 one-sided or upper walls of open-sky sectors at 16 units a tile pixel, axis-aligned; the earlier '70% phased to world position' (2026-09-01, an agent's note) is not reproduced",
+  "the owner, 2026-09-01: 'the entrance should copy the windows, not cut them in half' (projects/blood-city/level/facade_pass.py snap_opening)"
+ ],
+ "use": "Start facade walls and snap every opening to whole bays on the 1,024 world grid; keep a room's origin on the grid or no opening in its face can align.",
+ "code": [
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "alignment",
+  "bay",
+  "facade",
+  "grid",
+  "panning",
+  "window"
+ ]
+}

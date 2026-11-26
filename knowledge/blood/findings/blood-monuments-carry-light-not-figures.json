@@ -1,0 +1,25 @@
+{
+ "id": "blood-monuments-carry-light-not-figures",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "Blood's monuments are stepped bases of raised sectors under open sky: 421 over 66 maps of the campaign, Bloodbath and curated community maps, two tiers in 389 and three in 30, a tier rising a median 0.42 bodies, the base 2.0 plan units and the top a third of it (0.62). Only 77 carry anything, and that is light (23 an invisible generator, type 709 on tile 2520): Blood has no figure-on-a-plinth idiom.",
+ "evidence": [
+  "421 monuments over 66 maps, by tools/mine_monuments.py (figures in projects/blood-city/level/templates.py)"
+ ],
+ "use": "Build a monument as concentric tiers each carved from the one below; crown it with a flame.",
+ "code": [
+  "projects/blood-city/level/templates.py:monument"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "memorial",
+  "monument",
+  "pedestal",
+  "plinth",
+  "statue"
+ ]
+}

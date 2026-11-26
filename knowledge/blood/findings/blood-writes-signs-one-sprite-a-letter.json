@@ -1,0 +1,31 @@
+{
+ "id": "blood-writes-signs-one-sprite-a-letter",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Blood has no text primitive: a sign is one wall-aligned sprite per letter from the alphabet at tiles 3808 (A) to 3833 (Z), recoloured by palette. Uniform signs set letters a median 1.333 drawn widths apart (E1M4's ROTTEN CANDY 2.0); lines of one sign stand 1.455 drawn heights apart (163 gaps, 117 signs); a word written downward 1.095 (11 columns, all hanging signs in the Death Wish maps). Only 9 of 160 signs mix palettes, at carnivals and fairs.",
+ "evidence": [
+  "tools/mine_wall_sprites.py --corpus over 393 words; knowledge/blood/design/wall-sprites-v1.json (figures in bloodmap/wallplane.py)",
+  "knowledge/blood/design/wall-sprites-v1.json sign_composition.tracking_drawn_widths.uniform: n 150, median 1.333, q1 1.143, q3 1.6 (read 2026-11-26); bloodmap/lettering.py:58 PITCH = 1.45 is not that median and matches the LINE pitch (text_geometry.lines.line_pitch_drawn_heights median 1.455) instead"
+ ],
+ "use": "Write with bloodmap.lettering through a wall-plane style; keep the letter tiles for signs only.",
+ "code": [
+  "bloodmap.lettering",
+  "bloodmap.wallplane.text"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "alphabet",
+  "font",
+  "letter",
+  "letter spacing",
+  "lettering",
+  "pitch",
+  "sign",
+  "text",
+  "tracking"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "a-street-front-shows-its-top-only-if-low",
+ "topic": "renderer",
+ "standing": "practice",
+ "claim": "At a level gaze the top of what fronts a street shows against the sky from the far kerb only if it is lower than about 0.6 of the street's width (plan units; times 16 for z): on a 7-unit street about 3.9 bodies. Eaves at 6.8 bodies showed no sky at all from the same pose. Taller things are skyline for the long view down the street, not for the facade view.",
+ "evidence": [
+  "projects/blood-city/experiments/church-skyline/result.json, view avenue_front: the prediction that sky share would rise 0.15 failed (0.0 at 6.8 bodies; 0.133 at 3.9)",
+  "measured with the observer's vertical half-field of about 30 degrees at 640x480; NBlood's field of view may differ"
+ ],
+ "use": "Make the height that must read from a street the height of what fronts it (a church's low side range, not its nave).",
+ "code": [
+  "bloodmap.skyline.roof"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "eaves",
+  "field of view",
+  "roofline",
+  "street width"
+ ]
+}

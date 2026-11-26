@@ -14,7 +14,6 @@ from pathlib import Path
 
 DUKCITY1 = Path("maps/duke3d/DukCity1.map")
 E3M1 = Path("maps/blood/campaign/E3M1.MAP")
-CITY = Path("projects/blood-city/level/blood-city-current.MAP")
 GRP = Path("reference/duke3d/duke3d.grp")
 
 
@@ -174,7 +173,7 @@ class CityProfileTests(unittest.TestCase):
         from tools.city_profile import load, profile
 
         cls.profiles = {}
-        for name, path in (("duke", DUKCITY1), ("e3m1", E3M1), ("city", CITY)):
+        for name, path in (("duke", DUKCITY1), ("e3m1", E3M1)):
             if path.exists():
                 game, disk = load(path)
                 cls.profiles[name] = profile(disk, game)
@@ -217,19 +216,6 @@ class CityProfileTests(unittest.TestCase):
         glass = duke["derived"]["glass"]
         self.assertGreater(glass["masked_two_sided_walls"], 50)
         self.assertLess(glass["on_a_street_record_share"], 0.05)
-
-    def test_the_city_glazes_none_and_has_its_street_ends(self):
-        (city,) = self._need("city")
-        self.assertEqual(
-            city["derived"]["glass"]["on_a_street_record_share"], 0.0)
-        self.assertEqual(
-            city["derived"]["glass"]["sharing_a_record_with_a_step_band_share"],
-            0.0)
-        #: three behind the streets that go on (`street_vistas`) and the
-        #: sea's twenty-two horizon pieces (a horizon is the same thing with
-        #: the sky on its floor as well; `l3_market.SEA_STEP`); the
-        #: station's avenue front stands in a forecourt and needs none
-        self.assertEqual(city["native"]["sky_backings"], 25)
 
     def test_bloods_city_is_deeper_indoors_than_ours(self):
         # The measure behind "more complex interiors": E3M1's median interior

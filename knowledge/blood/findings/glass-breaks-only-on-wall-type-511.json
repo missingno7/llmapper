@@ -1,0 +1,28 @@
+{
+ "id": "glass-breaks-only-on-wall-type-511",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A pane breaks only when its wall's type is 511 (kWallGib); an XWALL with glass art and no type is decoration that never breaks.",
+ "evidence": [
+  "NBlood/source/blood/src/common_game.h:459 kWallGib = 511; operated at triggers.cpp:715 (case kWallGib).",
+  "Campaign through-windows wear glass 266/263 on type 511 (E1M4, E1M1, E1M2, E3M1, E3M2 windows, 2026-11-18)."
+ ],
+ "use": "Check the wall's type, not only that it has an XWALL; glaze through the library.",
+ "code": [
+  "bloodmap.glass.glaze"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "511",
+  "break",
+  "breakable",
+  "glass",
+  "kwallgib",
+  "pane",
+  "window"
+ ]
+}

@@ -93,7 +93,7 @@ def z_motion_door(floor_z: int, open_ceiling_z: int, *,
                   interaction: str = "direct", rx_id: int | None = None,
                   key: int | None = None, open_time: int = 5,
                   close_time: int | None = None,
-                  close_after: int | None = None) -> dict[str, int]:
+                  close_after: int | None = None, circuit: bool = False) -> dict[str, int]:
     """Complete XSECTOR behaviour for a rising Z-motion door.
 
     A type-600 sector with only :func:`z_motion_endpoints` is *not* a complete
@@ -113,13 +113,17 @@ def z_motion_door(floor_z: int, open_ceiling_z: int, *,
     door is a liability, which under a see-over roof it is.
 
     ``interaction`` is one of ``"direct"``, ``"remote"`` or ``"both"``.
-    ``rx_id`` is required for ``remote`` and ``both``; ``key`` only applies to
-    direct use.  Return this dictionary as a region's ``sector_behavior``.
+    ``key`` only applies to direct use. ``rx_id`` is required for ``remote``
+    and ``both`` unless ``circuit`` says the door answers a wire of a
+    `wiring.Circuit` (`wire.then(wiring.region(door))`): the circuit numbers
+    the channel and writes it, and a number typed here would be overwritten.
+    Return this dictionary as a region's ``sector_behavior``; `rising_door`
+    makes the whole room.
     """
     if interaction not in {"direct", "remote", "both"}:
         raise DoorError("interaction must be 'direct', 'remote', or 'both'")
-    if interaction in {"remote", "both"} and rx_id is None:
-        raise DoorError("a remote Z-motion door needs rx_id")
+    if interaction in {"remote", "both"} and rx_id is None and not circuit:
+        raise DoorError("a remote Z-motion door needs rx_id, or circuit=True when a wiring.Circuit wire answers to it")
     if int(open_time) < 1:
         raise DoorError("a Z-motion door needs open_time >= 1; zero is instant")
     if close_time is not None and int(close_time) < 1:
@@ -141,11 +145,62 @@ def z_motion_door(floor_z: int, open_ceiling_z: int, *,
     if interaction in {"remote", "both"}:
         # Do not use xsector_remote_rx here for the dual case: it correctly
         # clears direct-use bits for a remote-only door.
-        fields["rx_id"] = int(rx_id)
+        if rx_id is not None:
+            fields["rx_id"] = int(rx_id)
         if interaction == "remote":
             fields["trigger_push"] = 0
             fields["trigger_wall_push"] = 0
     return fields
+
+
+#: a rising door's leaf: as thick as the campaign's (z-motion-doors-are-closed-at-rest: 768 to 1,536 wide, 256 thick)
+LEAF_THICKNESS = 256
+
+
+def rising_door(parent: Any, node_id: str, *, wide: int, floor_z: int, opening: int, key: int | None = None,
+                remote: bool = False, thickness: int = LEAF_THICKNESS, along: str = "x", note: str = "",
+                **behaviour: Any) -> Any:
+    """A rising door as a room of a level program: shut at rest, lifting `opening` into its lintel.
+
+    `parent` is the `levelprog` assembly (or the level) the door belongs to.
+    The room is `thickness` deep in the direction the player walks through
+    it (`along="x"`: entered from the west or the east; `"y"`: from the north
+    or the south) and `wide` across. It is laid like any room
+    (`door.place_against("west", passage.face("east"))`) and joined on both
+    sides (`level.connect(passage.face("east"), door.face("west"))`).
+
+    Pushed open by hand unless `remote`, in which case it answers a wire
+    (`circuit.wire(...).when(...).then(wiring.region(door.region_id))`).
+    `key` makes a hand-opened door want that key; sign it with
+    `keys.sign_the_locks(layout)`. Other XSECTOR fields go in `behaviour`
+    (`close_after=30`).
+
+    A shut door has no height, so the tile on ITS walls is never drawn: the
+    leaf a player sees is the neighbours' wall over it. Give it one with
+    `hang_leaf` after `program.compile()`.
+    """
+    size = (int(thickness), int(wide)) if along == "x" else (int(wide), int(thickness))
+    door = parent.rect_room(node_id, size=size, role="doorway", note=note or "a rising door, shut at rest", region_kwargs={
+        "type": 600, "sector_behavior": z_motion_door(int(floor_z), int(floor_z) - int(opening), key=key,
+                                                       interaction="remote" if remote else "direct", circuit=remote,
+                                                       **behaviour)})
+    door.surfaces(clear_height=0)
+    return door
+
+
+def hang_leaf(layout: Any, door: Any, tile: int, *sides: tuple[str, Any], tile_width: int = 128) -> int:
+    """Paint a shut door's leaf where a player sees it: on each neighbour's wall over the door.
+
+    `sides` are `(face of the door, the room on that side)`:
+    `hang_leaf(layout, door, 495, ("west", passage), ("east", hall))`. The
+    tile is stretched once across the leaf. Returns how many walls were painted.
+    """
+    frame = door.world_frame()
+    for face, room in sides:
+        a, b = (frame.apply(point) for point in door.local_edge(face))
+        length = max(abs(b[0] - a[0]), abs(b[1] - a[1]))
+        layout.paint_wall(room.region_id, b, a, picnum=int(tile), x_repeat=max(1, round(length / tile_width)), fixed_frame=True)
+    return len(sides)
 
 
 def _extra(obj) -> dict[str, Any] | None:

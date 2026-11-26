@@ -1,0 +1,24 @@
+{
+ "id": "a-buttress-notch-carries-the-cornice-round",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A buttress can be let into a sector's outline as a notch (three walls, no sector: 256 proud, 384 wide, on the bay grid), and it stands exactly as tall as the eaves. But it then carries the facade tile's cornice round its own top, so the roofline steps at every buttress and reads as battlements; a buttress that stops below the eaves needs its own lower roof sector.",
+ "evidence": [
+  "projects/blood-city/experiments/church-skyline/after: portal, avenue_front; a blind reviewer read pilasters by the door and 'a flat crenellated line', fortress or warehouse"
+ ],
+ "use": "Use a notch for a pilaster that runs to the eaves; for a buttress, make it a raised-floor sector (skyline.roof) lower than the eaves.",
+ "code": [
+  "bloodmap.skyline.roof"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "battlements",
+  "bay",
+  "buttress",
+  "pilaster"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "a-sector-closes-itself-only-with-retrigger-a",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A sector that should shut again after opening needs retrigger_a: on turning ON, SetSectorState posts an OFF after wait_time_a tenths of a second only when reTriggerA is set (and an ON after wait_time_b with reTriggerB). A wait time alone does nothing on a sector.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:147-148 (else if (pXSector->reTriggerA) evPost(... waitTimeA*120/10, kCmdOff)).",
+  "E1M1 s4 (614 sliding door): retrigger_a=1, wait_time_a=40."
+ ],
+ "use": "For an auto-closing door set retrigger_a and wait_time_a together.",
+ "code": [
+  "bloodmap.doors.z_motion_door"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "auto",
+  "close",
+  "door",
+  "retrigger",
+  "timer",
+  "wait"
+ ]
+}

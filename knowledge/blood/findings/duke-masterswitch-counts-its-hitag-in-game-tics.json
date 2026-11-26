@@ -1,0 +1,23 @@
+{
+ "id": "duke-masterswitch-counts-its-hitag-in-game-tics",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A Duke MASTERSWITCH, once operated, counts its hitag down by one each game tic (30 a second) and at zero operates its sector and arms its effectors: hitag 80 is a delay of about 2.67 seconds, not 8.",
+ "evidence": [
+  "reference/eduke32/source/duke3d/src/actors.cpp:2554-2560 (yvel == 1: --hitag <= 0, then G_OperateSectors and the effectors)",
+  "E4L1 sprite 119 (hitag 80) delays the briefing recorder's charges"
+ ],
+ "use": "Convert a MASTERSWITCH delay as hitag/30 seconds, rounded to Blood's tenths.",
+ "code": [],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "30 hz",
+  "delay",
+  "masterswitch",
+  "timer"
+ ]
+}

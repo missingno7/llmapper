@@ -17,14 +17,14 @@ Both return **all** diagnostics. The first conflict does not stop the scan.
 python -m bloodmap validate maps/blood/campaign/multiplayer/BB2.MAP
 python -m bloodmap validate-authored work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
-    --json reports/BB2-v2-geometry-audit.json \
+    --json work/BB2-v2-geometry-audit.json \
     --svg reports/BB2-v2-geometry-audit.svg
 ```
 
 `geometry-audit` / `validate-authored` on a frozen MAP are fail-closed unless
 the caller passes blueprint declarations (water stacks, partitions, gated
 pockets). Compile-time validation does pass those declarations. The v2 forensic
-narrative in `reports/BB2-v2-geometry-audit.md` is hand-authored from the JSON
+narrative in `reports/archive/BB2-v2-geometry-audit.md` is hand-authored from the JSON
 packet; re-running `--markdown` overwrites it with a compact machine summary.
 
 ## PlanarLayout

@@ -21,7 +21,7 @@ from bloodmap.doors import z_motion_door
 from bloodmap.slope import SlopeSpec
 
 import keysign
-import wallplane
+from bloodmap import wallplane
 import wires
 from resolution import GRADE, SKY_TILE
 

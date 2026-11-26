@@ -1,0 +1,27 @@
+{
+ "id": "overlapping-sectors-are-told-apart-in-plan",
+ "topic": "construction",
+ "standing": "engine",
+ "claim": "After a move Build (Blood's ENGINE_19960925 path) picks the mover's sector as the first entry of clipsectorlist that contains the point IN PLAN, without consulting z; the list is seeded with the mover's own sector and only walls inside a box of move + MAXCLIPDIST (1024) + walldist + 8, about 2,264 units, are examined. So two sectors overlapping in plan are confusable only when they are portal neighbours within that box; rooms stacked one above the other with the way between them going out to a stairwell are safe at zero plan distance.",
+ "evidence": [
+  "NBlood/source/build/src/clip.cpp:1112-1121 clipmove_compat, :1508 (clipsectorlist[0] = own sector), :1500 (rad), engine_priv.h:19 MAXCLIPDIST 1024.",
+  "Over 2,614 campaign overlap pairs: 16.4% clash in z, 0.19% are confusable, and one pair (E1M1 45/55, a self-touching loop) is both (tools/mine_layers.py, knowledge/blood/design/layers-v1.json, 2026-08-28). A first rule of '5 portal hops' from the campaign median fired falsely on every small stacked building."
+ ],
+ "use": "Stack enclosed rooms by plan overlap freely; forbid only a portal-neighbour overlap that also clashes in z. bloodmap.layers enforces exactly that conjunction.",
+ "code": [
+  "bloodmap.layers"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "clipmove",
+  "layers",
+  "overlap",
+  "sector of a point",
+  "stacking",
+  "storey"
+ ]
+}

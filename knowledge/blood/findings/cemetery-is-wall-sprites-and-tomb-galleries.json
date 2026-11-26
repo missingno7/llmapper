@@ -1,0 +1,27 @@
+{
+ "id": "cemetery-is-wall-sprites-and-tomb-galleries",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "E1M1's cemetery is walled ground with gates; tombstones are sprites, mausoleums are long narrow tomb galleries (sectors 33, 34 and 46: congruent halls of 2,097,152 square units at aspect 8 in a row against the grounds' edge), its crypt is a stack pair under the grounds, and its dead rise from the ground (nine kDudeZombieAxeBuried, type 205). The whole map's 155 sectors have floor shade median +30 and 50 animated sectors; of its 559 sprites 148 are wall-aligned and 364 face, but those counts include foes, pickups and control sprites: visible plain decoration is 34 wall and 41 face sprites.",
+ "evidence": [
+  "E1M1 s33, s34, s46 (galleries), tools/mine_room_grammar.py (knowledge/blood/references/room-grammar.json); knowledge/blood/references/church-patterns.md:12-31",
+  "2026-11-26 recount on E1M1: 148/364/47 wall/face/floor-aligned sprites of all kinds; 34/41/22 among visible type-0 sprites; nine type 205; 50 sectors with an XSECTOR amplitude"
+ ],
+ "use": "Build a graveyard of sprites on cheap ground, galleries as repeated long sectors, a crypt as a stack, and buried zombies.",
+ "code": [
+  "knowledge/blood/references/church-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "cemetery",
+  "crypt",
+  "graveyard",
+  "mausoleum",
+  "tomb",
+  "zombie"
+ ]
+}

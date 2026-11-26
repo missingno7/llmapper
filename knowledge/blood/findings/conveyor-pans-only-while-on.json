@@ -1,0 +1,27 @@
+{
+ "id": "conveyor-pans-only-while-on",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A panning floor moves only while pan_always is set or the sector is busy; a belt that should stop and start is a pan_floor + drag sector without pan_always, toggled by its channel. Blood's belts are pan_floor, drag and a velocity: E3M5's at 48, angle 512.",
+ "evidence": [
+  "NBlood/source/blood/src/sectorfx.cpp:277 `if (pXSector->panAlways || pXSector->busy)`",
+  "E3M5 sector 44: pan_always 1, pan_floor 1, drag 1, pan_velocity 48, pan_angle 512; E6M3 and E4M9 the same at 10 and 20"
+ ],
+ "use": "Give a stoppable belt its lever on its own channel and leave pan_always off; a crusher over it can be wired so a press stopped shut is a belt stopped.",
+ "code": [
+  "projects/blood-city/level/l3_shed.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "belt",
+  "conveyor",
+  "drag",
+  "lever",
+  "machine",
+  "pan"
+ ]
+}

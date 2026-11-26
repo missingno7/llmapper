@@ -1,0 +1,31 @@
+{
+ "id": "street-end-mass-stands-under-six-bodies",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "E3M1 closes each street with a mass standing 3.86 to 5.80 bodies above the road (floor tile 379), outside the map's edge, faced in the district's facade lit to -8 against 24 to 34 on the masonry beside it, blocking, with a parallax sector of no height behind it so the sky comes down over it. Unlit, such an end is still a dark block at 30,000 units: the sky does the work at distance, the lit face up close. A mouth split between two districts is two masses and reads as two buildings.",
+ "evidence": [
+  "E3M1 s0 (floor -90112, sky -188416) and s339 (floor -57344), backed by s338 and s340 (floor = ceiling = 8192, ceiling_stat 3); heights from bloodmap.street.end_wall",
+  "projects/blood-city/experiments/street-ends/before-after.png; tests/test_shopfront.py CityStreetEndTests",
+  "E3M1 s343 (floor -90,112, floor tile 379, sky): the third street end"
+ ],
+ "use": "bloodmap.street.end_wall gives the mass; make it blocking and light its face, and declare its zero-exit to the geometry audit; a sky backing of no height is exempt from the lowered-sky rule. Other ways to end a city are a waterfront (DWE3M10) or a chasm (DWE3M1).",
+ "code": [
+  "bloodmap.street.end_wall",
+  "bloodmap.skyline.is_sky_backing"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "blocking",
+  "boundary",
+  "edge",
+  "end wall",
+  "lit",
+  "map edge",
+  "street end",
+  "vista"
+ ]
+}

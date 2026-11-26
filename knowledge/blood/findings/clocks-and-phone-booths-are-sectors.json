@@ -1,0 +1,27 @@
+{
+ "id": "clocks-and-phone-booths-are-sectors",
+ "topic": "construction",
+ "standing": "ruling",
+ "claim": "A longcase clock or a telephone booth is a block of sectors standing against a wall and wearing the tile, not a sprite. Blood's clocks are blocks about 450-580 by 190-260 standing 22,528-24,576 high (E3M2 s193, E2M4 s476); its telephone stands 31,744 high (E1M2 s181).",
+ "evidence": [
+  "the owner, 2026-11-25: 'grandfather clock and telephone booth shouldn't be just sprite but a made out of sector'",
+  "E3M2 s193: 448 x 256, floor 24,576 above its neighbour, walls 378/1011; E2M4 s476: 576 x 192, 22,528 up, wall 180; E1M2 s181: 3,072 x 512 bounds, 31,744 up, walls 179/180 (measured 2026-11-26; the earlier '512 wide' and '1,024 by 32,768' were rounded)"
+ ],
+ "use": "Raise a solid block against the wall at those sizes and paint its face with the tile, begun at the block's own top.",
+ "code": [
+  "projects/blood-city/level/booking_hall.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "block",
+  "booth",
+  "clock",
+  "furniture",
+  "phone",
+  "telephone"
+ ]
+}

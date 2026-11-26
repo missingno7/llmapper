@@ -1,0 +1,27 @@
+{
+ "id": "frames-hide-what-the-player-never-sees",
+ "topic": "validation",
+ "standing": "ruling",
+ "claim": "A frame is evidence of what a player sees, so control sprites must be hidden before looking: player starts and every marker (types 1-19), generators and sound sprites (700-712), the exploder (459), anything on statnum 10, and sprites set to launch only in modes not being played. For judging the building, also hide dudes, weapons, ammo, items and keys.",
+ "evidence": [
+  "The owner, 2026-11-18: 'you should be hiding these control things which are normally invisible like player starts, stack markers, sounds'; and 'check how it looks like without enemies and pickups'.",
+  "The engine hides them: warp.cpp:108-133, triggers.cpp:2362 (kGenTrigger made invisible), actor.cpp:2507 (kTrapExploder), blood.cpp:696-704 (launch flags delete). A blind reader took exploder sprites for 'orange sparks from a crack'."
+ ],
+ "use": "Render through bloodmap.visual.as_played (empty=True for the building); judge play on as-played frames only.",
+ "code": [
+  "bloodmap.visual.as_played"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "empty view",
+  "frame",
+  "markers",
+  "observer",
+  "render",
+  "screenshot"
+ ]
+}

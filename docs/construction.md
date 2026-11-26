@@ -70,7 +70,7 @@ python -m bloodmap design-first-room \
 The design is authored in `bloodmap/designs.py`. Switch A sends command `On` over
 channel 100 to the east vertical door. The revealed alcove contains Switch B,
 which sends `On` over channel 101 to the north reward door. A sawed-off shotgun is
-the current completion reward. See `reports/first_puzzle_room.md` for the exact
+the current completion reward. See `reports/archive/first_puzzle_room.md` for the exact
 layout and validation evidence.
 
 The generic action oracle can verify an intended interaction positioned at the

@@ -1,0 +1,28 @@
+{
+ "id": "study-blood-before-building-a-new-kind-of-place",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "Before building a new kind of place or thing, find and look at Blood's own instances, look tiles up for their every use, and write what will and will not be done; a use never seen is allowed when the picture supports it. One rendered frame of the campaign's instance has settled what months of measurement had not.",
+ "evidence": [
+  "The owner, 2026-11-18: 'I would like to build this, I am checking these levels how they did it ... to get inspiration and really think stuff through'.",
+  "Sky backing found by rendering E3M1 s8 with the same observer, 2026-11-17."
+ ],
+ "use": "Run the study tool and tile usage first; name the study on the place.",
+ "code": [
+  "tools/study.py",
+  "tools/tile_usage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "inspiration",
+  "place",
+  "reference",
+  "research",
+  "study",
+  "tile"
+ ]
+}

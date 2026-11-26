@@ -1,0 +1,23 @@
+{
+ "id": "chains-sink-into-ceilings",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "Hang a chained thing (skeleton, lantern) at the height that matters, its body or lamp, and let the chain run up into the ceiling; never shrink the chain to fit a low room.",
+ "evidence": [
+  "The owner, 2026-11-21: 'you can simply let it sink into ceiling and it looks good.' Shrunk chains (repeat 32-40) read small and odd; Blood's own chains run into ceilings."
+ ],
+ "use": "sprite_fit will report such a chain as 'through' the ceiling: expected. A layout-placed sprite still needs its origin (the chain's top for 689/641) under its sector's ceiling.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "ceiling",
+  "chain",
+  "hanging",
+  "lantern",
+  "skeleton"
+ ]
+}

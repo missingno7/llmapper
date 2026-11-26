@@ -1214,7 +1214,7 @@ leaves inside masonry/reveal bands rather than a door texture filling the tall
 facade.
 
 The durable routing rule is now documented in
-[`docs/authoring-toolkit.md`](../../../docs/authoring-toolkit.md), with links from
+`docs/authoring-toolkit.md` (since deleted; see [`docs/toolkit-index.md`](../../../docs/toolkit-index.md)), with links from
 level programs, door affordances, the knowledge catalog and the repository
 README.  The rule is simple: search the shared grammar for the noun before
 adding a local helper; if the shared capability is absent, add a tested general

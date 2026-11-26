@@ -1,0 +1,25 @@
+{
+ "id": "a-town-spends-its-channels-on-doors-and-destruction",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "E3M1 spends 69 user channels: 29 on doors and motion (21 z-motion, 6 slide, 2 rotate), 18 on destruction set pieces (kTrapExploder 459 x13, kThingObjectExplode 417 x5), 13 on switches and 15 on staged sound and spawns (kGenSound, kSoundPlayer, kMarkerDudeSpawn) that fan out on one channel. DWE3M1 spends 58, with kSoundPlayer x22. A town that wires only doors is under-wired.",
+ "evidence": [
+  "tools/mine_city_norms.py channel section on E3M1 and DWE3M1 (knowledge/blood/references/city-norms.json)"
+ ],
+ "use": "Reserve channels for exploding set pieces and for staged sound+spawn events, not only doors.",
+ "code": [
+  "knowledge/blood/references/city-norms.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "channels",
+  "destruction",
+  "exploder",
+  "set piece",
+  "wiring budget"
+ ]
+}

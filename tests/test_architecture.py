@@ -221,5 +221,71 @@ class EvidenceRuleTests(unittest.TestCase):
         self.assertTrue(readme.exists(), "the promotion rule must have a home")
 
 
+#: The live levels: projects whose map the build rewrites. A library test that
+#: reads one breaks when the level changes, and passes only while it exists.
+LIVE_LEVELS = ("blood-city", "cold-store", "duke-e4l1-remake")
+
+#: Library tests that still name a live level's project, each with the reason.
+#: None of them reads the level's built map from the working tree. Shrink it;
+#: do not grow it without the owner's word.
+STILL_NAMES_A_LEVEL = {
+    "test_readback.py":
+        "its fail-first fixture is the city map as committed at 8c42701, pulled from git: "
+        "a frozen revision, not the working tree",
+    "test_rendering_law.py":
+        "its fail-first fixture is the city map as committed at 8c42701, pulled from git: "
+        "a frozen revision, not the working tree",
+    "test_project.py":
+        "names blood-city only to assert that a new project's starter does not carry it",
+}
+
+
+def _names_a_live_level(path: Path) -> list[int]:
+    """The lines whose string literals (not docstrings) name a live level's project or map."""
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    docstrings = {id(node.body[0].value) for node in ast.walk(tree)
+                  if isinstance(node, (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef))
+                  and node.body and isinstance(node.body[0], ast.Expr)
+                  and isinstance(node.body[0].value, ast.Constant)}
+    import re
+
+    level = "|".join(re.escape(name) for name in LIVE_LEVELS)
+    named = re.compile(rf"(?:^|[/\\])(?:{level})(?:[/\\]|$)|(?:{level})-current|gravesend\.map", re.I)
+    return sorted({node.lineno for node in ast.walk(tree)
+                   if isinstance(node, ast.Constant) and isinstance(node.value, str)
+                   and id(node) not in docstrings and named.search(node.value)})
+
+
+class LevelTestsLiveWithTheirLevelTests(unittest.TestCase):
+    """`tests/` holds what is true of the library and the tools whatever levels
+    exist; `projects/<name>/tests/` holds one level's regression tests
+    (`python -m tools.suite --library` and `--project <name>`)."""
+
+    def test_no_library_test_names_a_live_level(self):
+        here = PACKAGE.parent / "tests"
+        found = {}
+        for path in sorted(here.rglob("*.py")):
+            if path.name == Path(__file__).name or path.name in STILL_NAMES_A_LEVEL:
+                continue
+            lines = _names_a_live_level(path)
+            if lines:
+                found[path.relative_to(here.parent).as_posix()] = lines
+        self.assertEqual(found, {}, (
+            "these library tests read a live level (" + ", ".join(LIVE_LEVELS) + "). A test of "
+            "one level goes in projects/<name>/tests/ (a test_<module>_city.py beside the "
+            "others for blood-city), run by `python -m tools.suite --project <name>`; a frozen "
+            "map or fact store the library's readers need is copied under tests/fixtures/ "
+            "(as tests/fixtures/city-slices/). File:lines: " + repr(found)))
+
+    def test_every_exception_still_needs_its_reason(self):
+        here = PACKAGE.parent / "tests"
+        for name, reason in STILL_NAMES_A_LEVEL.items():
+            self.assertGreater(len(reason), 40, name)
+            path = here / name
+            self.assertTrue(path.exists(), f"{name} is gone: drop it from STILL_NAMES_A_LEVEL")
+            self.assertTrue(_names_a_live_level(path),
+                            f"{name} no longer names a live level: drop it from STILL_NAMES_A_LEVEL")
+
+
 if __name__ == "__main__":
     unittest.main()

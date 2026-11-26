@@ -26,7 +26,8 @@ Units: 1,060 = 1.8 m = one body high (16,960 z).
    three rows (E3M4 has three) with their seat fronts at y 25,600, 27,136
    and 28,672, below the steps of gap 3; 1,536 long (x 28,672..30,208), 512
    side aisles as now; 1,536 of clear floor left at the south end. From E3M4 s280-s285 (seat, tiles, pitch) and DWE1M4 s229/s230
-   (back + seat pair). Frame test: in `nave_north` each pew shows a lit top
+   (back + seat pair: there the back is 14,336, 0.85 body, and the seat
+   5,120; the 0.72 back is our own recipe). Frame test: in `nave_north` each pew shows a lit top
    and a taller dark back, and the rows read as separate (floor visible
    between them), not as one stepped mass.
 

@@ -244,7 +244,7 @@ FALL_LIGHTS = (1, 3, 5)
 
 
 def _furnish(layout, regions) -> None:
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_extent
     for k, (cell, x, y) in enumerate(LAMPS):
         room = layout.regions[regions[cell]]

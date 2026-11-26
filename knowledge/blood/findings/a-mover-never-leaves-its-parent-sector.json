@@ -1,0 +1,30 @@
+{
+ "id": "a-mover-never-leaves-its-parent-sector",
+ "topic": "mechanism",
+ "standing": "ruling",
+ "claim": "A moving or rotating sector never leaves its parent sector, and nothing else (a lighting cut, a pocket, masonry round it) may cut that parent. Leaves hang alone in an open bay of the room, about 64 thick.",
+ "evidence": [
+  "The owner, 2026-11-23: 'moving or rotating sector can never leave it's parent sector this is the rule of build engine'.",
+  "Precedent for a lone leaf in its bay: E2M5 s569/s570 (617)."
+ ],
+ "use": "Check the sweep stays in the host; keep light stages from cutting hosts.",
+ "code": [
+  "bloodmap.swept_state.escape",
+  "bloodmap.swept_state.hosts"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "door",
+  "host",
+  "leaf",
+  "mover",
+  "parent",
+  "rotate",
+  "slide",
+  "sweep"
+ ]
+}

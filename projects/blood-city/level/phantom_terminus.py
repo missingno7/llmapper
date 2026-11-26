@@ -10,7 +10,7 @@ from bloodmap.player_space import PLAYER_PROFILES
 import carriage
 import ghost_stair
 import setpieces
-import wallplane
+from bloodmap import wallplane
 import wires
 from materials import SEWER, Material
 from resolution import SEWER_FLOOR
@@ -121,7 +121,7 @@ def _ghost_controls(layout, landing):
     from bloodmap import motion, wiring
     from bloodmap.placement import drawn_extent
     import l3_foundry
-    import wallplane
+    from bloodmap import wallplane
     import wires
 
     region = landing.region_id
@@ -168,7 +168,7 @@ def _ghost_controls(layout, landing):
 
 def _ghost_inspection(layout, plate):
     """Write the settings as one-based positions, in panel order."""
-    import wallplane
+    from bloodmap import wallplane
 
     a, b = (51328, 2368), (51328, 4672)
     wallplane.text(layout, "ghost:inspection", plate.region_id, a, b,

@@ -1,0 +1,27 @@
+{
+ "id": "a-ceiling-door-is-never-open-to-the-sky",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "A door that opens by lifting its ceiling has a roofed ceiling: its ceiling IS the moving part, and as sky it would be a hole in the roof showing daylight in a building. A door that opens by dropping its floor may be open to the sky (a gate in an outdoor wall). Of the campaign's Z-motion sectors (600/602) 6 of 779 that move their ceiling are open to the sky (0.8%, all six in E6M4), against 95 of 658 that move their floor (14.4%).",
+ "evidence": [
+  "recount 2026-11-26 over the 43 campaign maps (every type 600/602 sector with an XSECTOR, moving ceiling = off_ceiling_z != on_ceiling_z, open = ceiling_stat bit 0): 6/779 against 95/658",
+  "the rule's own text, bloodmap/rules_blood.py 'ceiling-mover-is-not-open-to-the-sky', says 18.4% against 0.5% with three in one map; that was not reproduced over all Z-motion sectors and may have counted doors only",
+  "both poses rendered when the rule was written (its first version asserted the opposite)"
+ ],
+ "use": "Give a ceiling-lifting door a real ceiling; use a floor-dropping gate under the sky.",
+ "code": [
+  "bloodmap.rules_blood._ceiling_movers_are_not_open_to_the_sky"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "door",
+  "gate",
+  "parallax",
+  "sky",
+  "z-motion"
+ ]
+}

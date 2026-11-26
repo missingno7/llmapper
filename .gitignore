@@ -95,6 +95,17 @@ knowledge/blood/critic-bench/**/*.[Mm][Aa][Pp]
 reports/tiles/**/*.png
 projects/*/reports/showcase/**/*.png
 projects/*/reports/showcase/**/*.MAP
+# a project's critique rounds: the readers' words are kept, the frames (ours, and Blood's beside them) are not
+projects/*/reports/critique/**/*.png
+projects/*/reports/critique/**/*.[Mm][Aa][Pp]
 
 # The archive of what is given out: package.py makes it from the two files beside it.
 projects/*/release/*.zip
+
+# what the miners dump beside the reference pages (renders of commercial maps, plots): the pages and their JSON are tracked
+knowledge/blood/references/*/
+knowledge/blood/references/*.png
+
+# 7 MB of per-motion rows, written by `python -m tools.verify_motion --corpus maps/duke3d -o reports/duke-motion-compatibility.json`;
+# docs/duke-blood-mechanisms.md gives its totals, and projects/duke-e4l1-remake/audit_report.py reads it when it is there
+reports/duke-motion-compatibility.json

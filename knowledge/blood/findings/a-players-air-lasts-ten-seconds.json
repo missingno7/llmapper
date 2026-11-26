@@ -1,0 +1,26 @@
+{
+ "id": "a-players-air-lasts-ten-seconds",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "A player without a diving suit has ten seconds of air under water: the timer is reset to 1,200 (kTicRate*10) whenever he is not under water and loses 4 tics each 30 Hz game frame under it; at 0 he starts to choke and take damage. A diving suit carried in the pack is put on by itself when under 1,080 remain.",
+ "evidence": [
+  "NBlood/source/blood/src/player.cpp:2200-2202 underwaterTime = 1200 when not under water; actor.cpp:5830 minus kTicsPerFrame; actor.cpp:5831-5832 the pack's diving suit; actor.cpp:5833 choking at 0; actor.cpp:5828 keeps it full with the suit on; common_game.h:82-84 kTicRate 120, kTicsPerFrame 4"
+ ],
+ "use": "Keep a dive between two airs under ten seconds at a walk (less if the way is not obvious), or put a diving suit before it.",
+ "code": [
+  "projects/blood-city/level/underwater.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "breath",
+  "dive",
+  "drown",
+  "oxygen",
+  "swim",
+  "underwater"
+ ]
+}

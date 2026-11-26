@@ -1,0 +1,26 @@
+{
+ "id": "glass-sits-in-its-own-aperture",
+ "topic": "texture",
+ "standing": "ruling",
+ "claim": "A pane of glass is its own wall record between two volumes, so its scale never fights the facade's; and a window cut in a front is aligned with a window painted on the facade tile.",
+ "evidence": [
+  "the owner, 2026-11-17: 'the glass should sit in an aperture/frame so glass texture scaling won't be colliding with facade texture'",
+  "the owner, 2026-11-25: 'align the windows cutouts with texture of the building that has windows on it'"
+ ],
+ "use": "Give the pane two sectors at one floor and ceiling with the glass on the wall between them; place the cut at a facade bay.",
+ "code": [
+  "projects/blood-city/level/windows.py:glaze",
+  "projects/blood-city/level/windows.py:cut_through"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "aperture",
+  "glass",
+  "pane",
+  "window"
+ ]
+}

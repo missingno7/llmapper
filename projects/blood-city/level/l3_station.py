@@ -690,7 +690,7 @@ def build(city, street):
 def furnish(layout, street_region_id: str, attested=None) -> dict:
     """Signs, boards, gates, wheels, the lever, and who is here."""
     import doorswitch
-    import wallplane
+    from bloodmap import wallplane
 
     report = {"signs": 0, "boards": 0, "gates": 0, "wheels": 0, "folk": 0}
     hall, office = ROOMS["hall"], ROOMS["office"]
@@ -849,7 +849,7 @@ def furnish(layout, street_region_id: str, attested=None) -> dict:
     #: over each wall (the owner, in the game: "sprite roof on carriage
     #: doesn't align").
     from bloodmap import flatsprite
-    import wallplane as _art
+    from bloodmap import wallplane as _art
 
     report["roof"] = 0
     car_room = ROOMS["carriage"]

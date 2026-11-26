@@ -1,0 +1,25 @@
+{
+ "id": "blood-overlooks-at-body-scale",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "Blood overlooks its big rooms from half a body to three bodies up: around spaces of 5+ square bodies E6M6 has 78 walkable neighbours 0.5 to 3 bodies above (parapets, galleries) and none a full storey up. It also carries ledges and plinths at ~7 per 100 sectors (E1M1 7.5, E6M5 6.5), and 48% of E6M6's doorway sectors have more than four corners: Build cannot curve a wall top, so an arch is shaped in plan.",
+ "evidence": [
+  "tools/mine_patterns.py, knowledge/blood/design/patterns-v1.json (2026-08-27); our candidate map had 1 such parapet, 0.7 ledges per 100 sectors and 10% shaped door heads despite a 32-body height range."
+ ],
+ "use": "Add verticality at body scale (parapets, steps, ledges) before whole storeys; shape door heads in plan.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "arch",
+  "composition",
+  "gallery",
+  "ledge",
+  "parapet",
+  "plinth",
+  "verticality"
+ ]
+}

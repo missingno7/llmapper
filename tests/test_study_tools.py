@@ -18,7 +18,6 @@ from pathlib import Path
 E1M1 = Path("maps/blood/campaign/E1M1.MAP")
 ART = Path("reference/blood")
 CRYPT = Path("knowledge/blood/studies/crypt")
-MANIFEST = Path("projects/blood-city/reports/build-manifest.json")
 
 
 @unittest.skipUnless(E1M1.exists() and ART.exists(), "no corpus or no ART")
@@ -82,21 +81,6 @@ class StudyTests(unittest.TestCase):
         self.assertTrue(any(row["tile"] == 128 for row in e1m1["sprites"]))
         index = json.loads((CRYPT.parent / "index.json").read_text("utf-8"))
         self.assertIn("crypt", index["studies"])
-
-    @unittest.skipUnless(MANIFEST.exists(), "the city is not built")
-    def test_the_build_names_the_places_built_without_a_study(self):
-        sheet = json.loads(MANIFEST.read_text("utf-8"))["character"]
-        self.assertNotIn("St Gallow's crypt", sheet["unstudied"])
-        self.assertEqual(sheet["places"]["St Gallow's crypt"]["study"],
-                         "crypt")
-        #: the last one built before the rule was studied on 2026-11-25
-        self.assertEqual(sheet["unstudied"], [])
-        #: the four studied the same day name their study
-        for name, slug in (("harbour", "harbour"), ("saloon", "saloon"), ("arcade concourse", "arcade"),
-                           ("St Gallow's nave", "church"),
-                           ("Aldermack auditorium", "aldermack-rebuild")):
-            self.assertEqual(sheet["places"][name]["study"], slug)
-            self.assertNotIn(name, sheet["unstudied"])
 
 
 if __name__ == "__main__":

@@ -4,8 +4,9 @@ The owner, 2026-11-22: "Blown out holes are usually using sloped floor and
 ceiling and usually aren't regular, our look too blocky." Measured over the
 campaign's 185 sectors a wall crack opens (`work/sewer-study/breach_shapes.py`):
 
-* a hole is one to three sectors side by side across the wall (46 holes of
-  one, 46 of two, 60 of three, 20 of four);
+* a hole is one to three sectors side by side across the wall (of 96
+  holes, 46 are one piece, 23 two, 20 three, 5 four, and one each of five
+  and six);
 * 137 of the 185 have an edge on the slant: the seams between the pieces
   and the jambs at the ends cut across the wall's thickness at an angle
   (E1M1 sector 25: a 1,792-wide hole whose west jamb runs 192 along over
@@ -15,9 +16,10 @@ campaign's 185 sectors a wall crack opens (`work/sewer-study/breach_shapes.py`):
   top is a zigzag and the sill rises and falls (E1M2 channel 104: three
   pieces, tops at -112,640, -109,568 and -116,736, ceilings pitched both
   ways);
-* the floor never moves; the ceiling drops onto it to shut the hole, and
-  every one keeps its ceiling slope at least its floor slope, so the shut
-  piece is solid everywhere and not only along its hinge;
+* a hole shuts by its ceiling coming down: in 87 pieces onto a floor that
+  stays, in 98 with floor and ceiling meeting between. 178 of the 185 keep
+  the ceiling slope at least the floor slope, so the shut piece is solid
+  everywhere and not only along its hinge (`ragged` builds the first kind);
 * the sill is above the floor it opens from (E1M2: 2,048-3,072; E1M1's
   are window holes, 7,168 up).
 

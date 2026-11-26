@@ -1,0 +1,25 @@
+{
+ "id": "reachability-must-cross-links-and-teleports",
+ "topic": "validation",
+ "standing": "tendency",
+ "claim": "Crossing walls alone leaves a median 8.5% of each campaign map unreachable (97% of E6M5); following room-over-room link markers (paired by data1) and kSectorTeleport destinations as well leaves a median 2.8%, never more than 13.8%, and that rest is closets, signatures and helpers.",
+ "evidence": [
+  "portal-graph reachability over the 43 campaign maps, docs/blood-mechanics-and-conventions.md (removed from the working tree in the 2026-11-26 consolidation; read it at commit ea7be12); teleport via triggers.cpp OperateTeleport"
+ ],
+ "use": "A reachability reader must join sectors by link markers and teleports, not only by two-sided walls.",
+ "code": [
+  "bloodmap/reachability.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-23"
+ },
+ "words": [
+  "link",
+  "portal graph",
+  "reachability",
+  "teleport",
+  "unreachable"
+ ]
+}

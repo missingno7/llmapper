@@ -1,0 +1,28 @@
+{
+ "id": "wall-sprites-may-stand-free",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "A wall-aligned sprite with air behind it is not a fault: railings, gates, curtains, cobwebs, flags and bars stand free, and when seen from both sides must be two-sided (no cstat 64) and, for railings, blocking (cstat 1). Only hung things (posters, notices, boards) need a wall behind them.",
+ "evidence": [
+  "The owner, 2026-11-19: 'not all wall sprites will be on the wall and it doesn't mean it is wrong'; 'that balcony at station is not 2 sided sprite, so it is invisible from the other side'.",
+  "Campaign cstats copied from a sprite may carry bit 64 (E1M2's gate 8413)."
+ ],
+ "use": "Never refuse a free wall sprite; lint hung paper for a wall behind it.",
+ "code": [
+  "tools/sprite_fit.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "64",
+  "balcony",
+  "cstat",
+  "poster",
+  "railing",
+  "two-sided",
+  "wall sprite"
+ ]
+}

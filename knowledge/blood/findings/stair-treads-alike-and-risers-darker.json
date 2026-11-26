@@ -1,0 +1,27 @@
+{
+ "id": "stair-treads-alike-and-risers-darker",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "On the campaign's 225 outdoor steps a riser is 12 shades darker than its tread and no tread differs in shade from the next; a stair lit by one light sample per narrow tread comes out blotchy.",
+ "evidence": [
+  "counted over 225 outdoor steps of the campaign (projects/blood-city/level/gallows.py, even())",
+  "the owner, twice: 'Gallows stairs shading looks flat', 'Gallows stairs still have weird shading' (2026-11-25)"
+ ],
+ "use": "After lighting, grade a flight evenly from its foot's shade to its head's, each riser 12 darker than its tread, and pan each tread so no two show the same piece of the tile.",
+ "code": [
+  "projects/blood-city/level/gallows.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "lighting",
+  "riser",
+  "shade",
+  "stairs",
+  "steps",
+  "tread"
+ ]
+}

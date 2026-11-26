@@ -1,0 +1,28 @@
+{
+ "id": "a-low-thing-is-a-raised-floor-under-the-common-sky",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A boundary wall, a building's low range or a pitched nave that must look lower than what stands beyond it is a sector whose FLOOR is its top, under the common sky; its face is the lower step of a two-sided wall and the view passes over it. Over an interior it is a second layer, with a band clear of the rooms beneath.",
+ "evidence": [
+  "projects/blood-city/experiments/church-roofs: a 3.1-body wall with nothing behind it, a 3.9-body range over an interior and a 5.8-7.0 sloped nave all read; skies lowered a body or more went from 5 to 0; a blind reviewer went from 'cemetery wall (guess)' to 'graveyard (certain)'",
+  "tests/test_skyline.py RoofTests"
+ ],
+ "use": "skyline.roof, then skyline.dress_steps so the face wears a tile from the side that sees it.",
+ "code": [
+  "bloodmap.skyline.roof",
+  "bloodmap.skyline.dress_steps",
+  "bloodmap.layers"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "low wall",
+  "nave",
+  "raised floor",
+  "roof",
+  "skyline"
+ ]
+}

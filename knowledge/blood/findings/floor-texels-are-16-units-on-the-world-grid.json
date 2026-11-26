@@ -1,0 +1,27 @@
+{
+ "id": "floor-texels-are-16-units-on-the-world-grid",
+ "topic": "texture",
+ "standing": "engine",
+ "claim": "A floor or ceiling texel is 16 map units (8 with floorstat/ceilingstat bit 3, 'double smooshiness'), and unless bit 6 (relative alignment) is set the pattern is laid on the map's own grid. Moving a sector by anything but a whole number of its tile's period (pixels x 16) shifts its floor pattern; a 64-pixel crate tile covers 1,024 units, a 128-pixel one 2,048.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:2797-2799 globalxshift from the tile's size, one more with globalorientation&8",
+  "NBlood/source/build/include/buildtypes.h:24 bit 3 double smooshiness; :27 bit 6 align texture to first wall"
+ ],
+ "use": "Size floor-textured modules from the art (pixels x 16); translate geometry only by whole periods (Gravesend's release shift is 16,384: four of its longest tile's period, and on the 1,024 plan grid).",
+ "code": [
+  "projects/blood-city/level/release.py",
+  "projects/blood-city/level/templates.py:TextureModule"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "floor texture",
+  "pan",
+  "relative alignment",
+  "smoosh",
+  "texel"
+ ]
+}

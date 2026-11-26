@@ -1,0 +1,25 @@
+{
+ "id": "a-release-readme-follows-xmapedit-template",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A released Blood map's readme takes the form of XMapEdit's TEMPLATE-MAPS.txt, the community's standard, with counts read from the MAP. Music for a map started alone is believed to come from a .DEF beside it naming a Song or Track (untried).",
+ "evidence": [
+  "Gravesend V0.1, 2026-11-25 (projects/blood-city/level/package.py)."
+ ],
+ "use": "Generate the readme from the map; try the .DEF before claiming music.",
+ "code": [
+  "projects/blood-city/level/package.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "def",
+  "music",
+  "package",
+  "readme",
+  "release"
+ ]
+}

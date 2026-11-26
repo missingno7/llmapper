@@ -10,10 +10,10 @@ the same thing from the other side: "the pawn's goods say 'boutique', not
 'pawn'", "the mall units sell nothing".
 
 Every tile here is used by at least two of Blood's own town maps, and is set
-down the way they set it down: `references/city-assets.json` holds, for each
+down the way they set it down: `knowledge/blood/references/city-assets.json` holds, for each
 tile, the repeats, cstat, shade, palette, type and status the mappers gave
 it and how far over the floor it sits. What a tile IS was read off its
-picture (`references/city-assets.png`); the owner's sheet is still the
+picture (`knowledge/blood/references/city-assets.png`); the owner's sheet is still the
 authority, and the tiles used here that the owner has not named are listed
 by `unnamed()` for the next one.
 
@@ -27,7 +27,7 @@ from __future__ import annotations
 import json
 import pathlib
 
-_REF = pathlib.Path(__file__).resolve().parents[1] / "references"
+_REF = pathlib.Path(__file__).resolve().parents[3] / "knowledge" / "blood" / "references"
 with (_REF / "city-assets.json").open(encoding="utf-8") as _handle:
     ASSETS = {int(k): v for k, v in json.load(_handle)["tiles"].items()}
 
@@ -42,7 +42,7 @@ ASSETS[1165] = {"count": 5, "maps": {"E3M2": 1, "E1M2": 1, "E6M1": 1, "DWE3M1": 
 
 #: What each tile is, read off its picture. A reading, not a measurement,
 #: and held to the owner's name and the library's reading by
-#: `tests/test_goods_names.py`: 2937 stood here as "roast" and is the owner's
+#: `projects/blood-city/tests/test_goods_names.py`: 2937 stood here as "roast" and is the owner's
 #: "dead cultist"; two of them lay in the grocer's windows.
 NAMES = {
     759: "bottle", 605: "brown bottle", 606: "blue bottle", 574: "drinking glass",
@@ -145,7 +145,7 @@ ON_TOP = [
 #: (path suffix, the tiles in order, repeated to fill it). The town maps'
 #: stocked shelves hold a thing every third of a player width: E1M2 213 five
 #: in 1.25, E3M2 87 five in 1.5, E1M4 298 nine in 3.0 (`tools/
-#: mine_stands.py`, `references/town-fixtures.png`).
+#: mine_stands.py`, `knowledge/blood/references/town-fixtures.png`).
 ROW_PITCH = 340
 ROWS = [
     ("saloon/main/shelf", [759, 605, 606, 759, 574, 605]),
@@ -252,7 +252,7 @@ def _inside(region, x: float, y: float, clear: float = 96.0) -> bool:
 def dress(layout, street_regions: dict, district_bounds: dict) -> dict:
     """Set everything in the plan down. Returns what was placed and what was
     refused, by reason: a prop with nowhere to stand is left out, and said."""
-    import wallplane
+    from bloodmap import wallplane
 
     placed: list[int] = []
     refused: list[str] = []

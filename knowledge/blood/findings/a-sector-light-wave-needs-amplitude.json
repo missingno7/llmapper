@@ -1,0 +1,25 @@
+{
+ "id": "a-sector-light-wave-needs-amplitude",
+ "topic": "light",
+ "standing": "engine",
+ "claim": "A sector's shade wave (flicker, pulse, strobe) runs only if its XSECTOR amplitude is non-zero: InitSectorFX lists no sector without it, and every other shade field is then inert. With amplitude set it runs while the sector is busy, or always if shade_always is 1; at a partial busy the amplitude is scaled by it, so the shade is a range, not a value.",
+ "evidence": [
+  "NBlood/source/blood/src/sectorfx.cpp:360-364 InitSectorFX (amplitude); :162 `if (pXSector->shadeAlways || pXSector->busy)`; :166-171 scaling and the wave"
+ ],
+ "use": "effects.shade_at says what a sector's faces show at a given busy.",
+ "code": [
+  "bloodmap.effects.shade_at"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-31"
+ },
+ "words": [
+  "amplitude",
+  "flicker",
+  "lighting effect",
+  "shade wave",
+  "shade_always"
+ ]
+}

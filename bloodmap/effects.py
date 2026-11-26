@@ -26,7 +26,7 @@ portal, and 102 whose *ceiling* moves change nothing at all. A namer reading
 the type and the moving surface gets 471 of 1179 wrong -- 40%. The same holds
 one family over: 88 instances of the auto-rotating primitive, only 6 are doors
 — the rest are a carnival ride, station rotors and fans, decided by space and
-never by fields (`projects/blood-city/references/auto-rotators.md`).
+never by fields (`knowledge/blood/references/auto-rotators.md`).
 
 So `design_object` below takes the embedding and nothing else, and it is
 deliberately impossible to call it with a sector type.

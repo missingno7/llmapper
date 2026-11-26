@@ -1,0 +1,26 @@
+{
+ "id": "room-over-room-is-water-stack-or-link",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "Blood's 251 paired links fall into three geometries: WATER (191 pairs, 24 maps), a congruent copy of the room parked far away and dived into (median offset 81 player widths, 7% overlap in plan); STACK (38 pairs, 20 maps), one room directly above another (median offset 0.8 widths, 66% overlap); and plain LINK (22 pairs, 12 maps). Congruence is not required: 15 of 38 stacks join differently shaped sectors; what must line up is the part you walk over.",
+ "evidence": [
+  "tools/mine_stacks.py over the 43 campaign maps, knowledge/blood/design/stacks-v1.json (bloodmap/roomoverroom.py docstring)"
+ ],
+ "use": "Build a stack with roomoverroom from one declaration; a water room is a separate copy elsewhere.",
+ "code": [
+  "bloodmap.roomoverroom",
+  "tools/mine_stacks.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "link",
+  "room over room",
+  "ror",
+  "stack",
+  "underwater"
+ ]
+}

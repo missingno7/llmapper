@@ -1,0 +1,25 @@
+{
+ "id": "build-clips-wall-ends-with-squares",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Build does not clip a body against a wall as a disc against a line: clipmove adds an axis-aligned square of half-width walldist at each wall endpoint. Blood's player walldist is clipdist<<2 = 192, so a body stops further from an outside corner (up to ~272 on the diagonal) than a disc model predicts.",
+ "evidence": [
+  "NBlood/source/build/src/clip.cpp:1666 ('Add 2 boxes at endpoints'); blood/src/actor.cpp:4452 (wd = clipdist<<2).",
+  "A disc-only model held the bot 193 units off a corner it believed clear (2026-08-24)."
+ ],
+ "use": "Size squeezes past pillars and corners with the square, not the radius.",
+ "code": [],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-24"
+ },
+ "words": [
+  "clipdist",
+  "clipping",
+  "collision",
+  "corner",
+  "passage width",
+  "walldist"
+ ]
+}

@@ -1,0 +1,24 @@
+{
+ "id": "owners-own-maps-are-for-ideas-not-copying",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "The owner's own Blood maps (D:/Games/DOS/BLOOD/Maps/RABID; RABIDN01-09 are his city) are references for ideas, never to be copied or brought into the repository.",
+ "evidence": [
+  "The owner, 2026-11-20: 'you don't have to directly copy it' (his street memorial in RABIDN09)."
+ ],
+ "use": "When he names a rabid map, find the thing by tile and plan view and read it for ideas.",
+ "code": [
+  "tools/tile_contexts.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "ideas",
+  "owner",
+  "rabid",
+  "reference"
+ ]
+}

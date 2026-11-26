@@ -1,7 +1,9 @@
 """The whole test suite, a process a module, as many at once as the machine has room for: the same tests, in a tenth of the time.
 
     python -m tools.suite                  every module; work/suite.log holds what failed, the last lines say how it went
-    python -m tools.suite city blasts      the modules whose name holds one of these words
+    python -m tools.suite --library        the library's and the tools' own tests (`tests/`): no level is needed
+    python -m tools.suite --project blood-city   one project's regression tests (`projects/<name>/tests/`)
+    python -m tools.suite door blasts      the modules whose name holds one of these words
     python -m tools.suite --changed        the modules that import what the working tree has changed, and the changed tests
     python -m tools.suite --slow 12        and the twelve slowest
 
@@ -9,6 +11,12 @@
 (649 s on 2026-11-24, on a machine with 32 threads). Each module here is its own
 process, so a module that leans on what another left behind fails: none does.
 A module that takes long is cut into its tests (`SPLIT`).
+
+Two kinds of test, in two places. `tests/` holds what must be true of the
+library and the tools whatever levels exist: a test there builds its own
+fixture or reads the corpus. `projects/<name>/tests/` holds what must stay true
+of one level: its places, its walks, the owner's rulings on it. A project's
+module is named `<project>:<module>` here, so a word finds it by either.
 """
 
 from __future__ import annotations
@@ -33,12 +41,23 @@ FIRST = ("test_corpus", "test_anchors", "test_completion", "test_fragment", "tes
 
 
 def modules() -> list[str]:
-    return sorted(path.stem for path in (ROOT / "tests").glob("test_*.py"))
+    """Every test module: the library's by name, a project's as `<project>:<name>`."""
+    out = sorted(path.stem for path in (ROOT / "tests").glob("test_*.py"))
+    for folder in sorted((ROOT / "projects").glob("*/tests")):
+        out += sorted(f"{folder.parent.name}:{path.stem}" for path in folder.glob("test_*.py"))
+    return out
+
+
+def path_of(module: str) -> Path:
+    if ":" in module:
+        project, name = module.split(":", 1)
+        return ROOT / "projects" / project / "tests" / f"{name}.py"
+    return ROOT / "tests" / f"{module}.py"
 
 
 def tests_of(module: str) -> list[str]:
     """Every test of a module by name, so that one can be run alone."""
-    tree = ast.parse((ROOT / "tests" / f"{module}.py").read_text(encoding="utf-8"))
+    tree = ast.parse(path_of(module).read_text(encoding="utf-8"))
     return [f"tests.{module}.{cls.name}.{fn.name}" for cls in tree.body if isinstance(cls, ast.ClassDef)
             for fn in cls.body if isinstance(fn, ast.FunctionDef) and fn.name.startswith("test")]
 
@@ -47,7 +66,7 @@ def units(chosen: list[str]) -> list[str]:
     order = {name: k for k, name in enumerate(FIRST)}
     out = []
     for name in sorted(chosen, key=lambda m: (order.get(m, len(FIRST)), m)):
-        out += (tests_of(name) or [f"tests.{name}"]) if name in SPLIT else [f"tests.{name}"]
+        out += [name] if ":" in name else (tests_of(name) or [f"tests.{name}"]) if name in SPLIT else [f"tests.{name}"]
     return out
 
 
@@ -77,7 +96,7 @@ def changed() -> list[str]:
     paths = [line[3:].strip().strip('"') for line in said.splitlines()]
     stems = {Path(p).stem for p in paths if p.endswith(".py")}
     texts = {Path(p).name for p in paths if not p.endswith(".py")}
-    files = [p for where in ("bloodmap", "tools", "projects/blood-city/level") for p in (ROOT / where).glob("*.py")]
+    files = [p for where in ("bloodmap", "tools", "projects/*/level") for p in ROOT.glob(f"{where}/*.py")]
     reach = {p.stem: imports(p) for p in files}
     grown = True
     while grown:
@@ -86,15 +105,18 @@ def changed() -> list[str]:
         stems |= more
     out = []
     for name in modules():
-        path = ROOT / "tests" / f"{name}.py"
-        if name in stems or imports(path) & stems or any(t in path.read_text(encoding="utf-8") for t in texts):
+        path = path_of(name)
+        if path.stem in stems or imports(path) & stems or any(t in path.read_text(encoding="utf-8") for t in texts):
             out.append(name)
     return out
 
 
 def run(unit: str) -> tuple[str, float, int, str]:
     start = time.perf_counter()
-    made = subprocess.run([sys.executable, "-m", "unittest", unit], cwd=ROOT, capture_output=True, text=True,
+    where = path_of(unit).parent.relative_to(ROOT).as_posix() if ":" in unit else ""
+    # a project's module is found in its own directory; the repository's root stays on the path for `bloodmap` and `tools`
+    command = (["discover", "-s", where, "-t", where, "-p", unit.split(":", 1)[1] + ".py"] if where else [unit])
+    made = subprocess.run([sys.executable, "-m", "unittest", *command], cwd=ROOT, capture_output=True, text=True,
                           encoding="utf-8", errors="replace")
     return unit, time.perf_counter() - start, made.returncode, made.stdout + made.stderr
 
@@ -103,10 +125,16 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("words", nargs="*")
     parser.add_argument("--changed", action="store_true")
+    parser.add_argument("--library", action="store_true", help="only tests/: what is true whatever levels exist")
+    parser.add_argument("--project", default=None, help="only one project's tests: a directory under projects/")
     parser.add_argument("--slow", type=int, default=0)
     parser.add_argument("--jobs", type=int, default=max(2, min(16, (os.cpu_count() or 4) // 2)))
     args = parser.parse_args(argv)
     chosen = changed() if args.changed else modules()
+    if args.library:
+        chosen = [name for name in chosen if ":" not in name]
+    if args.project:
+        chosen = [name for name in chosen if name.startswith(args.project + ":")]
     if args.words:
         chosen = [name for name in chosen if any(word in name for word in args.words)]
     start = time.perf_counter()

@@ -1,0 +1,27 @@
+{
+ "id": "fall-damage-forgiven-under-about-3-7-bodies",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "Blood forgives a fall's impact up to a floor (kFallDamageFloor): replaying MoveDude's integration, a drop of 62,564 z (3.69 standing heights) or less does no harm and the first that hurts is 68,025 (4.01); so a 3.1-body shaft is a safe one-way drop that nobody can climb back up.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:4845 `nDamage -= kFallDamageFloor`; actor.h:185-187 (kDudeGravity 58254, kFallDamageFloor 100<<4)",
+  "bloodmap/layers.py fall_cost replays the integration (3.69 painless, 4.01 first to hurt, 7.51 kills from full health); projects/blood-city/level/l3_shed.py docstring uses 3.70"
+ ],
+ "use": "Keep drop entries under 3.7 bodies and give every one-way drop a walking way back; bloodmap.layers.fall_cost prices any drop.",
+ "code": [
+  "bloodmap.layers.fall_cost",
+  "projects/blood-city/level/l3_shed.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "damage",
+  "drop",
+  "fall",
+  "height",
+  "one-way"
+ ]
+}

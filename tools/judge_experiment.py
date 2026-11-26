@@ -3,7 +3,7 @@
     python -m tools.judge_experiment projects/blood-city/experiments/church-skyline
 
 An experiment directory holds `hypothesis.json` (written before the change),
-`before/` and `after/` (two `look.py` runs of the SAME pose set), and receives
+`before/` and `after/` (two `tools.look` runs of the SAME pose set), and receives
 `result.json`.  This prints and records the measurements a prediction can be
 held to -- it does not decide whether the level got better.  That needs eyes.
 
@@ -58,7 +58,7 @@ def _changed_pixels(left: pathlib.Path, right: pathlib.Path) -> int | None:
 
 def measure_run(run_dir: pathlib.Path) -> dict:
     observation = json.loads((run_dir / "observation.json").read_text("utf-8"))
-    # The run's own copy of the MAP, when `look.py` left one: the path the
+    # The run's own copy of the MAP, when `tools.look` left one: the path the
     # observer was given is overwritten by the next build, the copy is not.
     map_path = run_dir / "observed.MAP"
     if not map_path.exists():

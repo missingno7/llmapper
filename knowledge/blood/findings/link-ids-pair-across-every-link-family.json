@@ -1,0 +1,25 @@
+{
+ "id": "link-ids-pair-across-every-link-family",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "warpInit pairs an upper link marker with a lower one on XSPRITE data_1 alone, across every family (water, stack, plain link): a stack and a pool that share an id pair with each other, and with more than one match the last one wins. A marker with no XSprite is not collected.",
+ "evidence": [
+  "NBlood/source/blood/src/warp.cpp:155-176 (nLink = data1; any lower link with the same data1)",
+  "bloodmap/roomoverroom.py: all 502 campaign link markers carry an XSprite"
+ ],
+ "use": "Give every link pair a map-unique id; roomoverroom numbers them.",
+ "code": [
+  "bloodmap.roomoverroom"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "data_1",
+  "link marker",
+  "room over room",
+  "ror"
+ ]
+}

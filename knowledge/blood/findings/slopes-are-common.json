@@ -1,0 +1,25 @@
+{
+ "id": "slopes-are-common",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "A median 21.7% of a campaign map's surfaces are sloped, and a pitched ceiling rises a median 1.29 player heights; a level with none (Gravesend had 0 in 182 sectors) is visibly boxy.",
+ "evidence": [
+  "measured for projects/blood-city/level/l3_church.py"
+ ],
+ "use": "Pitch the ceilings of halls and naves, and slope the walks of tunnels, with bloodmap.slope.",
+ "code": [
+  "bloodmap.slope"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "ceiling",
+  "heinum",
+  "pitched",
+  "roof",
+  "slope"
+ ]
+}

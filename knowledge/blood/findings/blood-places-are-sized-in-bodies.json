@@ -1,0 +1,28 @@
+{
+ "id": "blood-places-are-sized-in-bodies",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "Blood's sizes, in its own units (a player 16,960 z tall and 384 wide; a plan unit of 1,024 is about 1.7 m): lift platforms a median 600 x 1,408 (upper quartile 1,536 x 2,048; 434 lifts); blast holes 1,280 wide opening 1.45 bodies (177); indoor rooms 1.93 bodies high (q3 3.38); halls of 40M area and more a median short side 11,776 and 3.62 bodies high.",
+ "evidence": [
+  "campaign sweep by tools/place_character.py (projects/blood-city/level/scale.py)",
+  "the owner, 2026-11-18: the crypt 'feels tiny' and the pump station 'feels like a miniature'"
+ ],
+ "use": "State a size in bodies or metres first and lay out from these medians; never pick a width because it is one plan unit.",
+ "code": [
+  "projects/blood-city/level/scale.py:bodies",
+  "tools/place_character.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "body",
+  "hall",
+  "lift",
+  "room height",
+  "scale",
+  "size"
+ ]
+}

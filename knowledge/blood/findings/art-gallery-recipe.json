@@ -1,0 +1,26 @@
+{
+ "id": "art-gallery-recipe",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "E3M1's art gallery is made by how it is laid, not by special tiles: piers with their corners off and a picture on each face, every wall picture with its own lamp (795) over it and a half round of light in floor and ceiling under it, statues (536) on the floor, vases on stands in the corners, and pictures that can be shot to pieces.",
+ "evidence": [
+  "E3M1 sectors 178-209 (half rounds lit 12 and 24 in a room at 38)",
+  "the owner, 2026-11-25: 'Maybe just look at art gallery in E3M1 it would be better'"
+ ],
+ "use": "Lay a gallery as an enfilade of piers with lit half rounds; see gallery.py.",
+ "code": [
+  "projects/blood-city/level/gallery.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "art",
+  "gallery",
+  "museum",
+  "paintings",
+  "pictures"
+ ]
+}

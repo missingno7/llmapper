@@ -1,0 +1,30 @@
+{
+ "id": "stand-a-wall-material-on-its-floor",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "Many Blood wall tiles are compositions (a dado, a ground storey, a cornice), not patterns, so their vertical origin matters: framed from an accident of wall order, tile 2294 wore its tiled dado under the ceiling. Anchoring a run's vertical origin on the floor it stands on fixed it.",
+ "evidence": [
+  "Gravesend's market hall, 2026-11-17 (experiments/shopfronts-streets).",
+  "A wall texel is 2048 / y_repeat z tall (NBlood/source/build/src/engine.cpp:4435): tile 6, the owner's kerb, is 64x8, so at y_repeat 8 it is exactly E3M1's 2,048 kerb.",
+  "Anchoring is a change of phase for the whole map: every interior frame changed, and a facade tile used on something that is not a facade (market stall edges) showed brick instead of cornice, which is how that misuse was found. A tile with a cornice at the top and a base at the bottom fits only a wall a whole number of tiles tall: the floor wins."
+ ],
+ "use": "Look at the tile's art before judging a wall; frame with the floor as vertical anchor. frame_map(v_anchor='floor') sets one vertical origin per run: the z at which the tile's bottom row lies on the floor most of the run stands on.",
+ "code": [
+  "bloodmap.texture_frame.frame_map"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "alignment",
+  "cornice",
+  "dado",
+  "frame",
+  "texture",
+  "vertical origin",
+  "y_panning",
+  "ypanning"
+ ]
+}

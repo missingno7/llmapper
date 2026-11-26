@@ -1,0 +1,29 @@
+{
+ "id": "moving-floor-textures-need-relative-alignment",
+ "topic": "texture",
+ "standing": "engine",
+ "claim": "A floor or ceiling is world-aligned unless its stat has bit 64 (relative alignment, measured from the sector's first wall). A sliding or rotating sector without bit 64 slides under a texture that stays still, so every member of a moving body needs bit 64 on floor AND ceiling. Conversely a world-aligned floor moved in the plan needs its panning shifted with it.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:3699 and :4026 (globalorientation&64: relative alignment).",
+  "Seen on Gravesend's train (2026-11-24) and its moved station floor (track tile 1129, 2026-11-25)."
+ ],
+ "use": "Set floor_stat and ceiling_stat bit 64 on every sector of a mover; shift panning when moving a world-aligned floor.",
+ "code": [
+  "bloodmap.mechanism.rigid_body"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "64",
+  "alignment",
+  "ceiling_stat",
+  "floor_stat",
+  "panning",
+  "relative",
+  "slide",
+  "train"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "bot-mode-draws-no-frame-and-runs-fast",
+ "topic": "validation",
+ "standing": "engine",
+ "claim": "In the llmapper NBlood fork, -bot without -bot_visible draws no frame and runs the game clock as fast as it can; -bot_trajectory writes the player's x/y/z and sector each tick. That run takes no window from the desktop and its per-tick sector is a better readout than any screenshot.",
+ "evidence": [
+  "NBlood/source/blood/src/blood.cpp:2008 (bot Fast: totalclock = gNetFifoClock), :2066 (bDraw only when Visible), :1275/:1278 (flags).",
+  "The owner, 2026-08-31: run NBlood 'only ... completely in background'."
+ ],
+ "use": "Run the engine only with -bot hidden, through a background process; read the trajectory.",
+ "code": [
+  "bloodmap.oracle"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-31"
+ },
+ "words": [
+  "background",
+  "bot",
+  "headless",
+  "nblood",
+  "oracle",
+  "trajectory"
+ ]
+}

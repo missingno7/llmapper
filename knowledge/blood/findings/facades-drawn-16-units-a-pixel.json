@@ -1,0 +1,27 @@
+{
+ "id": "facades-drawn-16-units-a-pixel",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "Blood draws street walls at 16 world units per tile pixel (133 of 152 E3M1 street walls; 216 of 260 in TEDE1M2), so a 64-wide facade tile's bay, one painted window and its pier, is 1,024; E3M1's modal street opening is exactly one bay.",
+ "evidence": [
+  "133 of 152 E3M1 street walls and 216 of 260 in TEDE1M2 at 16 units a pixel (measured in projects/blood-city/level/facade_pass.py, snap_opening)"
+ ],
+ "use": "Put openings on the 1,024 bay grid, a whole number of bays wide.",
+ "code": [
+  "bloodmap.texture_frame.frame_map",
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "bay",
+  "facade",
+  "grid",
+  "opening",
+  "repeat",
+  "scale"
+ ]
+}

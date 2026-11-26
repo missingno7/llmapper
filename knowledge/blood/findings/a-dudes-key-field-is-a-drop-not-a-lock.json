@@ -1,0 +1,23 @@
+{
+ "id": "a-dudes-key-field-is-a-drop-not-a-lock",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "On a Blood enemy the XSprite key field is what it drops when it dies (key k drops item kItemKeyBase + k - 1), not a lock.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:3052-3053 (if pXSprite->key > 0 actDropObject ... kItemKeyBase + key - 1)."
+ ],
+ "use": "To have a key carried by a monster, set the monster's key field; a reader must not read it as a locked thing.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "carry",
+  "drop",
+  "dude",
+  "enemy",
+  "key"
+ ]
+}

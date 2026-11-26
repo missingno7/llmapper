@@ -1,0 +1,26 @@
+{
+ "id": "duke-door-art-walls-are-use-controls",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A Duke wall wearing door art (CheckDoorTile, e.g. DOORTILE23) with a lotag is a Use control like a switch: using it operates the activators and master switches on that lotag and plays its hitag as a sound. A converter that treats only switch tiles as controls loses these senders, leaving their receivers with nothing to start them.",
+ "evidence": [
+  "reference/eduke32/source/duke3d/src/sector.cpp:148-174 (CheckDoorTile includes DOORTILE23)",
+  "reference/eduke32/source/duke3d/src/sector.cpp:1351-1353 and 1519-1521 (a door tile passes P_ActivateSwitch; G_OperateMasterSwitches(lotag))",
+  "E4L1 wall 2318 (lotag 8000, hitag 327): its three charges and three falling sectors were converted on two channels with no sender"
+ ],
+ "use": "List tagged door-art walls as controls when converting (conversion_coverage reports them as tagged_use_wall) and wire them by hand until the converter lowers them.",
+ "code": [
+  "bloodmap.duke_semantics.conversion_coverage"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "converter",
+  "switch",
+  "tagged wall",
+  "use wall"
+ ]
+}

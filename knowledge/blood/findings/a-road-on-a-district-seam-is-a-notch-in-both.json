@@ -1,0 +1,27 @@
+{
+ "id": "a-road-on-a-district-seam-is-a-notch-in-both",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A carriageway cut into paved streets: a road lying on or across the seam between two districts must be a NOTCH in each street's outline, not a hole in one (a hole may not touch its outline); its parts are rooms of their own districts joined across the seam. Each road run reaches a junction's depth past its end nodes so roads meet edge to edge (two runs that stop at their nodes leave the junction to nobody), and the clear space is found as maximal rectangles, longest first: a guillotine tiling loses the full-width stretch beyond an obstacle on one side.",
+ "evidence": [
+  "projects/blood-city/experiments/shopfronts-streets; tests/test_shopfront.py CityStreetTests, SeamClipTests; tests/test_street_model.py",
+  "blind reviewers: a road ending at a kerb at a junction 'reads as an error'; 'pavement should never be a stripe down the road'; the owner, 2026-11-17, asked for the road down the middle"
+ ],
+ "use": "Lay roads with streets.lay; any face named with at=/width= must be re-derived after the outline is replaced. Plazas and lanes that stay one paved surface still read as unseparated.",
+ "code": [
+  "projects/blood-city/level/streets.py:lay"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "carriageway",
+  "district",
+  "junction",
+  "kerb",
+  "road",
+  "seam"
+ ]
+}

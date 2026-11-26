@@ -87,8 +87,8 @@ def main(argv: list[str] | None = None) -> int:
     print(table(f"{args.population} ({len(entries)} maps)", campaign))
 
     built = {}
-    for path in args.map or ("projects/blood-city/level/blood-city-current.MAP",
-                             "projects/pattern-zoo/level/pattern-zoo.MAP"):
+    for path in args.map or [str(p.map) for p in __import__("bloodmap.project", fromlist=["projects"]).projects("level")
+                             if p.map.exists()]:
         target = pathlib.Path(path)
         if not target.exists():
             print(f"\n{path}: absent")

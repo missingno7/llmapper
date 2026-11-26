@@ -1,0 +1,25 @@
+{
+ "id": "blood-sewer-headroom-varies-twofold",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "E3M3, Blood's own sewer, varies its sector heights by a factor of two: median 28,672, q1 16,384, q3 32,768. A sewer built at one flat 20,480 had a ceiling filling 0.35-0.40 of every frame against the campaign's median 0.025 (E3M3 0.042).",
+ "evidence": [
+  "E3M3 sector heights and visual.composition.ceiling (projects/blood-city/level/resolution.py)"
+ ],
+ "use": "Give runs headroom between E3M3's q1 and median and rooms its q3; vary it.",
+ "code": [
+  "projects/blood-city/level/resolution.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "ceiling",
+  "headroom",
+  "height",
+  "sewer",
+  "tunnel"
+ ]
+}

@@ -1,0 +1,25 @@
+{
+ "id": "nothing-stands-on-a-moving-floor",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "A floor that travels or pans (a conveyor, a lift, a rotating ride) carries no decoration that is meant to stay put; a drain cover laid on a belt is wrong.",
+ "evidence": [
+  "the owner, 2026-11-18: 'there are few illogical things like that pipe entrance decoration on the conveyor belt instead on the floor'"
+ ],
+ "use": "Exclude movers from generic dressing passes; things that ride a mover are set carried (cstat 8192) on purpose.",
+ "code": [
+  "projects/blood-city/level/dressing.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "belt",
+  "conveyor",
+  "decoration",
+  "dressing",
+  "mover"
+ ]
+}

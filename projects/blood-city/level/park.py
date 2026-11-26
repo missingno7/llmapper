@@ -50,7 +50,7 @@ def _lift(fields) -> float:
     """How far over the ground this sprite's z goes so that it is DRAWN
     standing on it (`bloodmap.placement.drawn_extent`). At z = floor the
     straw was sunk to half its height."""
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_lift
 
     size = wallplane.art().get(int(fields["picnum"]))

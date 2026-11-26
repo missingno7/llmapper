@@ -1,0 +1,29 @@
+{
+ "id": "check-a-tiles-campaign-types-before-decorating",
+ "topic": "texture",
+ "standing": "ruling",
+ "claim": "A tile whose every campaign use is one engine type is that thing to players and must not be decoration: tile 2183, which reads as a recessed wall lamp, is the wall flame trap (all 40 campaign uses are wall sprites of type 452, kTrapFlame). A light texture goes only where the surface is the light, and pickups keep Blood's sizes.",
+ "evidence": [
+  "The owner, 2026-11-25: 'I see you are using that wall turret firing sprite on multiple places ... it is usually used in different contexts'; of the diving suit, 'smaller than default' (bloodmap/light_kinds.py:72)",
+  "2026-11-26 recount: 40 campaign sprites wear 2183, all type 452; kTrapFlame = 452 at NBlood/source/blood/src/common_game.h:434"
+ ],
+ "use": "Read a tile's types and slots in the campaign before using it as decoration.",
+ "code": [
+  "tools/tile_contexts.py",
+  "tools/tile_usage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "decoration",
+  "light",
+  "pickup",
+  "size",
+  "tile",
+  "trap",
+  "type"
+ ]
+}

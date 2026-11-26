@@ -1,0 +1,23 @@
+{
+ "id": "owner-review-is-batched-not-a-gate",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "The owner reviews in large batches; agent loops must not stop for approval. Gates are automated acceptance checks, human judgments go to a review queue, and every iteration keeps a playable build.",
+ "evidence": [
+  "The owner, 2026-08-27."
+ ],
+ "use": "Proceed when the automated checks pass; flag what only a player can judge.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "approval",
+  "gate",
+  "owner",
+  "queue",
+  "review"
+ ]
+}

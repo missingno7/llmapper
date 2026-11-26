@@ -1,0 +1,24 @@
+{
+ "id": "parallel-workers-commit-first-and-copy-untracked",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "Parallel workers in git worktrees see only committed work, and removing a worktree deletes its untracked files (two studies were lost so). git apply --3way stages what it applies. Workers that each append to the same plan tables conflict on both sides; one build writer per checkout.",
+ "evidence": [
+  "Nine GPT workers on Gravesend, 2026-11-22."
+ ],
+ "use": "Commit before branching workers; list and copy each worktree's untracked files before removal; commit merges with explicit paths; give parallel briefs a plan and a z band, since two clear branches can collide in height.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-22"
+ },
+ "words": [
+  "merge",
+  "parallel",
+  "untracked",
+  "workers",
+  "worktree",
+  "z band"
+ ]
+}

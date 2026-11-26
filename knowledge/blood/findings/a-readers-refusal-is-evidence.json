@@ -1,0 +1,25 @@
+{
+ "id": "a-readers-refusal-is-evidence",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "Where a view of a map refuses to answer, the refusal is evidence: the observer refused E1M4 s276 for no standing clearance and the conditional reading independently called it a crossing shut until crack sprite 373 breaks. Views that all agree have been reconciled or are one view twice.",
+ "evidence": [
+  "The E1M4 bundle, 2026-09-01 (reports/E1M4-bundle.md)."
+ ],
+ "use": "Keep disagreements between readings listed, unreconciled.",
+ "code": [
+  "bloodmap.bundle"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "bundle",
+  "disagreement",
+  "reader",
+  "refusal",
+  "views"
+ ]
+}

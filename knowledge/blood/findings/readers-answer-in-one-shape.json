@@ -1,0 +1,25 @@
+{
+ "id": "readers-answer-in-one-shape",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A reader must return the same keys whether or not it found anything (None and zeros, not an empty dict), and a program written against one map must be run on a second before it is trusted: E3M1's decompilation crashed five times on E1M2 and E4M8, each where it had quietly assumed E3M1 (no sun, no stack, chains past a truncation, no named mechanism).",
+ "evidence": [
+  "projects/e3m1-decompiled run on E1M2 and E4M8, 2026-09-03; bloodmap.read_light.sun_axis follows the rule."
+ ],
+ "use": "Give every reader a full-shaped empty answer; labels and claims must name the map they are about.",
+ "code": [
+  "bloodmap.read_light.sun_axis"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-03"
+ },
+ "words": [
+  "assumption",
+  "generalise",
+  "keyerror",
+  "reader",
+  "second map"
+ ]
+}

@@ -14,7 +14,7 @@ from bloodmap import arrangement as A
 from bloodmap import motion, wiring
 from bloodmap.slope import SlopeSpec
 
-import wallplane
+from bloodmap import wallplane
 import wires
 
 LAYER = "rite"
@@ -493,7 +493,7 @@ def _people(layout, regions, cell, broken) -> None:
     # put there stone gargoyle", and "Stone gargoyle I mean the enemy": the live one, 207, and no statue). Its back is to
     # whoever comes, dark in the rose over the horned thing's head; it turns when the mouth shuts, or at a shot, and its
     # death breaks the rite (E1M7's are wired so). It shrugs off bullets and blasts (dudeInfo: 10 of 256): the room must
-    # hold what hurts it, as 21 of the 26 maps that have one give a Tesla Cannon
+    # hold what hurts it, as 17 of the 18 campaign maps that have one give a Tesla Cannon
     priest = _stand(layout, regions, "pulpit", "stone_beast", (PULPIT[0] + PULPIT[2]) / 2, (PULPIT[1] + PULPIT[3]) / 2, 1470,
                     40, cstat=384, type=207, status=6, shade=-8, pal=5, angle=512, behavior={"dude_deaf": 1})
     wires.wire("cabal:shut").then(wiring.placement(priest))

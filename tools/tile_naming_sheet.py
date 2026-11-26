@@ -158,7 +158,7 @@ def main() -> None:
     ap.add_argument("--title", default="Blood tiles without a role")
     args = ap.parse_args()
     extra = {
-        "Blood City": ROOT / "projects" / "blood-city" / "level" / "slice2-streets.MAP",
+        "Blood City": ROOT / "tests" / "fixtures" / "city-slices" / "slice2-streets.MAP",
         "E3M1": corpus_map_path("E3M1.MAP", root=corpus_root(), missing_ok=True),
     }
     rows = census(extra)

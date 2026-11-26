@@ -1,4 +1,7 @@
-"""Detail one precedent selection: geometry, player scale, ART usage, neighbors."""
+"""Detail one precedent selection: geometry, player scale, ART usage, neighbors.
+
+    python -m tools.precedent_detail MAP SECTOR[,SECTOR...]
+"""
 
 from __future__ import annotations
 
@@ -64,6 +67,9 @@ def detail(path: Path, sector_ids: list[int]) -> dict:
 
 
 if __name__ == "__main__":
+    if len(sys.argv) != 3 or sys.argv[1] in ("-h", "--help"):
+        print(__doc__)
+        raise SystemExit(0 if sys.argv[1:2] in (["-h"], ["--help"]) else 2)
     print(json.dumps(
         detail(Path(sys.argv[1]), [int(v) for v in sys.argv[2].split(",")]),
         indent=2, sort_keys=True,

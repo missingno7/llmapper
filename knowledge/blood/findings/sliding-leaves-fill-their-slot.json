@@ -1,0 +1,25 @@
+{
+ "id": "sliding-leaves-fill-their-slot",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "Blood's sliding leaves fill their slot: the leaf's walls touch the frame's, two walls meeting, so no gap shows at rest or open.",
+ "evidence": [
+  "E1M1 s4 (614 sliding door, markers 336/337)."
+ ],
+ "use": "Seat leaves after compile (the layout refuses a self-touching outline).",
+ "code": [
+  "bloodmap.mechanism.seat_leaves"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "door",
+  "gap",
+  "leaf",
+  "slide",
+  "slot"
+ ]
+}

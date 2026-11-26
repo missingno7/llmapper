@@ -1,0 +1,27 @@
+{
+ "id": "a-sprite-is-a-native-delay-relay",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A plain invisible sprite with an XSPRITE is a delay: given rest state 0, a wait_time and trigger_off only, an On it receives posts its own return to Off after wait_time tenths, and that Off edge sends its command (On) to its tx channel. Two such sprites on one sender give two delays without any timer type.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:98-99 (SetSpriteState posts the return after waitTime * 120 / 10 ticks when restState differs)",
+  "NBlood/source/blood/src/triggers.cpp:102-105 (triggerOn sends on the On edge, triggerOff on the Off edge)",
+  "E4L1 passes 06/07: briefing-arm-delay (2.7 s) and briefing-collapse-delay (3.0 s), circuit read-back agrees"
+ ],
+ "use": "Declare the relay on a wiring.Circuit like any sender; read the chain back with bloodmap.posed to see where it ends.",
+ "code": [
+  "projects/duke-e4l1-remake/briefing.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "delay",
+  "off-only",
+  "relay",
+  "timer",
+  "wait_time"
+ ]
+}

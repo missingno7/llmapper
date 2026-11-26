@@ -1,0 +1,27 @@
+{
+ "id": "light-kind-fits-the-place-in-rows",
+ "topic": "light",
+ "standing": "ruling",
+ "claim": "Light a place with the kind of fitting such a place has (panels, ceiling lamps, chain lamps, standing pairs), torches only where a torch makes sense, one kind to a room, laid in rows along its long axis rather than scattered over the ceiling.",
+ "evidence": [
+  "the owner, 2026-11-20: 'you should be using different types of light sources, check existing levels ... Torches should be used only where it makes sense'; then 'it looks like you are just scattering stuff on the ceiling'",
+  "the owner, 2026-11-20: tiles 501, 2290, 2288, 796 may be used as textures, the rest of the light tiles only as sprites"
+ ],
+ "use": "Name each place's light form and spacing in a table; let bloodmap.light_stage.lay_lights lay the rows.",
+ "code": [
+  "bloodmap.light_stage.lay_lights",
+  "projects/blood-city/level/lights.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "lamp",
+  "light source",
+  "lighting",
+  "rows",
+  "torch"
+ ]
+}

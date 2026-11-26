@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "Campaign census",
+  "kind": "analysis",
+  "status": "frozen",
+  "about": "Counts over the 43 campaign maps, as facts with provenance."
+}

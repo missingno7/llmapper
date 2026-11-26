@@ -1,0 +1,28 @@
+{
+ "id": "a-named-place-needs-volume-and-negative-space",
+ "topic": "place",
+ "standing": "ruling",
+ "claim": "A place the player is meant to remember must feel its size: at least Blood's median room (1.93 bodies high, 14M of floor), with floor to walk round the things in it. Fewer pieces and quiet places are wanted as much as new ones: one strong thing a place, leftovers deleted, floors at different heights rather than one flat level.",
+ "evidence": [
+  "The owner, 2026-11-18: 'crypt feels tiny ... no negative space ... it feels like a miniature'.",
+  "The owner, 2026-11-25: 'We don't have to make everything too crowded ... negative space can also be useful'; 'less flat ... similar to what they did in E3M1'."
+ ],
+ "use": "Stand furniture free of walls with aisles on both sides; check free floor share and short side against the campaign.",
+ "code": [
+  "tools/place_character.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "crowded",
+  "flat",
+  "negative space",
+  "room",
+  "scale",
+  "space",
+  "volume"
+ ]
+}

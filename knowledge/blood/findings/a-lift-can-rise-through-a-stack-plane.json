@@ -1,0 +1,27 @@
+{
+ "id": "a-lift-can-rise-through-a-stack-plane",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "A lift may carry the player through a room-over-room plane: the car is the LOWER sector (type 600, ceiling 504) and stops 4,096 under the plane, and above it one sector of the same plan has a floor of 504. The player steps down onto it and looks down the shaft after it has gone.",
+ "evidence": [
+  "E4M4 s159: type 600, ceiling 504 at -24,576, floor 8,192 to -20,480 (catalog record)",
+  "E4M4 s154: same plan, floor 504"
+ ],
+ "use": "Copy this for a lift between two stacked layers; switches at the stops call it, since one on the car is not seen across the plane.",
+ "code": [
+  "projects/blood-city/references/sewers-outside.md",
+  "bloodmap/roomoverroom.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "elevator",
+  "lift",
+  "room over room",
+  "shaft",
+  "stack"
+ ]
+}

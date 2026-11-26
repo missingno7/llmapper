@@ -156,7 +156,7 @@ FIRE = ("stove", 15.5625, 42.62)
 
 
 def _furnish(layout, regions) -> None:
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_extent
     from bloodmap.shade_table import _art
     from l3_foundry import _attested

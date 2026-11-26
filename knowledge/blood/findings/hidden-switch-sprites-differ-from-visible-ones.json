@@ -1,0 +1,25 @@
+{
+ "id": "hidden-switch-sprites-differ-from-visible-ones",
+ "topic": "mechanism",
+ "standing": "refuted",
+ "claim": "Hidden (invisible) switch sprites differ from visible ones in channel role or placement.",
+ "evidence": [
+  "Two controlled contrasts, 115 hidden against 1,281 visible campaign switch sprites, reached nothing near the 0.65 discriminator floor (reports/blood-effects-switches.md, reports/blood-hidden-switch-placement.md, 2026-08-31)."
+ ],
+ "use": "Do not re-run the contrast on sprites; to learn how Blood presents a switch, read the XWALL faces.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-31"
+ },
+ "words": [
+  "closet",
+  "hidden",
+  "invisible",
+  "relay",
+  "switch",
+  "xwall"
+ ],
+ "instead": "57% of hidden and 59% of visible switch sprites sit in a logic closet no player enters; the mapper wires the sprite by channel and what the player pushes is an XWALL elsewhere. Study the pushed XWALLs, not switch sprites."
+}

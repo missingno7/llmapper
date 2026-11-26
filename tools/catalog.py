@@ -71,41 +71,7 @@ SHEETS = ROOT / "reports" / "tiles" / "sheets"
 PER_PAGE, COLUMNS, CELL = 40, 8, 136
 
 
-def tile_looks() -> dict[int, dict]:
-    out: dict[int, dict] = {}
-    if LOOKS.exists():
-        for path in sorted(LOOKS.glob("part-*.json")):
-            for key, row in json.loads(path.read_text("utf-8")).items():
-                out[int(key)] = row
-    return out
-
-
-def owner_names() -> dict[int, str]:
-    data = json.loads((DESIGN / "owner-anchors-v1.json").read_text("utf-8"))
-    return {int(a["picnum"]): a.get("label_en", "") for a in data["anchors"]}
-
-
-def tile_name(tile: int) -> tuple[str, str]:
-    """What a tile is, and whose word that is: ("owner", ...) outranks ("looks", ...)."""
-    owner = owner_names().get(int(tile))
-    if owner:
-        return "owner", owner
-    row = tile_looks().get(int(tile), {})
-    return "looks", str(row.get("depicts") or row.get("looks") or "")
-
-
-def tile_is(tile: int, *words: str) -> bool:
-    """Whether the tile's name says it is one of `words` (the owner's name
-    when there is one, the library's reading otherwise).
-
-    The guard against choosing a tile by what it was called in code: the
-    city stocked a grocer's window with tile 2937 as "a roast" (the owner's
-    "dead cultist"), and shelved its market hall with 202 (the owner's
-    "worn wall/facade texture").
-    """
-    _source, name = tile_name(tile)
-    name = name.lower()
-    return any(word.lower() in name for word in words)
+from bloodmap.tile_looks import owner_names, tile_is, tile_looks, tile_name  # noqa: E402,F401
 
 
 def used_tiles() -> list[int]:
@@ -1089,12 +1055,21 @@ def map_reading(name: str, rooms: int = 12, shapes: int = 10) -> str:
 def find_all(words: list[str]) -> str:
     """Everything the library holds that answers to the words.
 
-    One question, every shelf: what the engine does (types, effects,
-    channels, lessons), what a mapper sees (tiles, places), and what has been
-    written down (studies, ideas, measured reports).
+    One question, every shelf: what we learned building (findings), what the
+    engine does (types, effects, channels, lessons), what a mapper sees
+    (tiles, places), and what has been written down (studies, ideas, measured
+    reports).
     """
-    out = ["PARTS  (a type, a sector effect, an engine channel, a lesson: "
-           "python -m tools.catalog show <key>)"]
+    from bloodmap import findings
+
+    out = ["FINDINGS  (what building levels taught us, each by how it is known: "
+           "python -m tools.findings show <id>)"]
+    found = findings.find(words)
+    out.extend(findings.line(row) for row in found[:12])
+    if len(found) > 12:
+        out.append(f"  ... and {len(found) - 12} more: python -m tools.findings find {' '.join(words)}")
+    out.append("PARTS  (a type, a sector effect, an engine channel, a lesson: "
+               "python -m tools.catalog show <key>)")
     out.extend(find_mechanisms(words))
     out.append("WIRING  (a mechanism: an act, the object it is done to, what answers)")
     out.extend(find_wiring(words))
@@ -1121,6 +1096,12 @@ def find_all(words: list[str]) -> str:
         text = notes.read_text("utf-8").lower()
         if all(re.search(rf"\b{re.escape(w.lower())}\b", text) for w in words):
             out.append(f"  {notes.parent.name}  ({notes})")
+    out.append("REFERENCE PAGES  (what was measured across maps about one subject, written up)")
+    for page in sorted((ROOT / "knowledge" / "blood" / "references").glob("*.md")):
+        text = page.read_text("utf-8").lower()
+        if all(re.search(r"\b" + re.escape(w.lower()), text) for w in words):
+            title = next((line.lstrip("# ").strip() for line in page.read_text("utf-8").splitlines() if line.startswith("#")), "")
+            out.append(f"  {page.stem}: {title}  (knowledge/blood/references/{page.name})")
     out.append("IDEAS")
     cards = ROOT / "knowledge" / "blood" / "ideas" / "cards"
     for path in sorted(cards.glob("*.json")):

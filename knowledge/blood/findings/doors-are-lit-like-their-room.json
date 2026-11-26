@@ -1,0 +1,24 @@
+{
+ "id": "doors-are-lit-like-their-room",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "Blood lights a door like the room it is in: over 720 walls facing a Z-motion door in E3M1, E3M2, E1M1, E6M1 and E4M9, the median shade against the owning room is +0.0 (p10 -5, p90 +7). Directional shading that leaves the door wall black hides the way out.",
+ "evidence": [
+  "720 walls facing a Z-motion door over E3M1, E3M2, E1M1, E6M1 and E4M9: median delta against the owning room's median +0.0, p10 -5, p90 +7 (projects/blood-city/reports/refinement-log.md:557-563; lightpools.settle_door_shading, named there, is no longer in projects/blood-city/level/lightpools.py)"
+ ],
+ "use": "After any directional pass, bring door-facing walls back to the room's median shade.",
+ "code": [
+  "projects/blood-city/level/lightpools.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "dark",
+  "door",
+  "light",
+  "shade"
+ ]
+}

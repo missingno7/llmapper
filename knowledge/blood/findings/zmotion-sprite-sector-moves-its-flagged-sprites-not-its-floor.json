@@ -1,0 +1,27 @@
+{
+ "id": "zmotion-sprite-sector-moves-its-flagged-sprites-not-its-floor",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A kSectorZMotionSprite sector (type 602) moves only the sprites standing in it that carry cstat 8192 (moved with the floor's on/off z) or 16384 (with the ceiling's); its own floor and ceiling stay where they are. It is how Blood raises bars or a portcullis while the ground under them stays put.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:1209 VSpriteBusy: only sprites with cstat&8192 / cstat&16384 get a new z; no floorz/ceilingz is written",
+  "E3M3 s254: type 602, off floor 141312, on floor 118784, rx 129 -- E3M3's portcullis (its sprite 198)",
+  "E3M3 s254's channel 129 is sent by two lever switches of tile 1070 (sprites 199 and 201, type 20), not by the valve wheel sprite 107 (which sends 124 to Z sector s94)"
+ ],
+ "use": "For bars, grilles or a gate that lifts out of a fixed floor, use type 602 with the bar sprites flagged 8192; use type 600 only when the floor itself should move.",
+ "code": [
+  "projects/blood-city/level/secret_places.py:bars_behavior"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "602",
+  "bars",
+  "grille",
+  "ksectorzmotionsprite",
+  "portcullis"
+ ]
+}

@@ -1,0 +1,30 @@
+{
+ "id": "one-wall-record-one-scale",
+ "topic": "texture",
+ "standing": "engine",
+ "claim": "A wall record has one x_repeat and one y_repeat, and they scale its masked middle and its step bands alike. Glass hung on a wall whose sides stand at different heights forces the facade band above and below it to the glass's scale.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:4426 and :4435: the scale of every band is taken from wal->yrepeat",
+  "the owner, 2026-11-17: 'the glass should sit in an aperture/frame so glass texture scaling won't be colliding with facade texture'"
+ ],
+ "use": "Hang a pane, a grille or bars only on a wall between two sectors of the same floor and ceiling (a reveal and a sash pocket behind the facade line); the facade's record keeps the facade's scale.",
+ "code": [
+  "bloodmap.glass.glaze",
+  "bloodmap.glass.grille",
+  "projects/blood-city/level/glass.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "bars",
+  "glass",
+  "grille",
+  "pane",
+  "repeat",
+  "scale",
+  "window"
+ ]
+}

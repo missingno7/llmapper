@@ -1,0 +1,26 @@
+{
+ "id": "predict-then-blind-review",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A visual change is judged by a prediction written before the edit and a blind reader after it, not by the author's own look: write hypothesis.json (observation, cause, predictions, a control that must not change), render before and after with the same poses, measure the pair, and hand only the frames to a fresh reader who has not seen the repo. Cameras must also look past and over the changed thing and from inside what is next to it.",
+ "evidence": [
+  "2026-11-17: two of seven predictions failed and were the findings; the author's 'reads as a steeple' was 'plain square shaft' to the blind reader near to; the owner found in a minute that lowered skies hid everything behind them, which no camera had looked at."
+ ],
+ "use": "python -m tools.judge_experiment <dir> --pair before:after; record reviewer readings as interpretation, not measurement.",
+ "code": [
+  "tools/judge_experiment.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "blind review",
+  "control",
+  "critique",
+  "experiment",
+  "frames",
+  "hypothesis"
+ ]
+}

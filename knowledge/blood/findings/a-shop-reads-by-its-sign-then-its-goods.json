@@ -1,0 +1,29 @@
+{
+ "id": "a-shop-reads-by-its-sign-then-its-goods",
+ "topic": "place",
+ "standing": "practice",
+ "claim": "What makes a shopfront say what it is, by ablation before a blind reviewer: the lettered name is decisive (it turned a 'dress shop' into a pawnbroker and a 'storeroom' into a grocer); a surround (reveal, fascia over the window head, pilasters between sashes) helps because the sign needs something to sit on; a lamp in the display barely matters; and goods that do not fit the trade contradict the sign.",
+ "evidence": [
+  "projects/blood-city/experiments/shop-surrounds/what-if.png and before-after.png, five unlabelled sets; tests/test_whatif.py ShopSurroundTests",
+  "outdoor letter sprites per map: DukCity 38 to 73, E1M4 33, E3M1 0 (Blood leans less on signs)"
+ ],
+ "use": "Name first (glass.write_names on a fascia), then the surround (glass.surround, stand pilasters after the lintel pass or one pilaster repaints the jambs), then goods of the trade. Fascia lettering is not legible from across a street; cut a chain lamp to a low display.",
+ "code": [
+  "projects/blood-city/level/glass.py:surround",
+  "projects/blood-city/level/glass.py:write_names",
+  "projects/blood-city/level/glass.py:hang_lamps",
+  "tools/whatif.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "ablation",
+  "fascia",
+  "shopfront",
+  "sign",
+  "signage"
+ ]
+}

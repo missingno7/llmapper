@@ -1,0 +1,26 @@
+{
+ "id": "kcmdlink-couples-state-continuously",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Command 5 (kCmdLink) is sent outside the ON/OFF edge guards: the receiver follows the sender's busy state the whole way rather than switching when it finishes. A stage light linked to a curtain brightens as the curtain draws.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:101-105 and :152: the edge sends are guarded by `command != kCmdLink`",
+  "E1M1 s125 -> s124, and maps/blood/mechanism DOOR-CURTAINS s21 -> s20"
+ ],
+ "use": "Link a light to a mover with command 5 on the mover's tx; it spends the mover's one tx, so decide that slot first.",
+ "code": [
+  "projects/blood-city/level/curtains.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "command 5",
+  "curtain",
+  "follow",
+  "light",
+  "link"
+ ]
+}

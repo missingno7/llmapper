@@ -377,7 +377,7 @@ def fit_whole(level, index) -> None:
     a wall's own scale the opening showed the middle of two of them, rails
     across the middle and bars cut off above and below.
     """
-    import wallplane
+    from bloodmap import wallplane
 
     f = _f(level.walls[index])
     n = _f(level.walls[int(f["point2"])])

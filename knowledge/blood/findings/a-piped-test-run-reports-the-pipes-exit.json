@@ -1,0 +1,25 @@
+{
+ "id": "a-piped-test-run-reports-the-pipes-exit",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "A test run piped through tail reports tail's exit code, and buffered output can push the Ran/OK/FAILED summary out of the last lines: a failing suite showed exit 0.",
+ "evidence": [
+  "2026-09-01, python -m unittest piped through tail -15."
+ ],
+ "use": "Redirect the suite to a log, then grep the log for Ran, OK and FAILED and quote that line.",
+ "code": [
+  "tools/suite.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "exit code",
+  "pipe",
+  "suite",
+  "tail",
+  "test"
+ ]
+}

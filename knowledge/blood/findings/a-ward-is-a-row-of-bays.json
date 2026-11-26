@@ -1,0 +1,27 @@
+{
+ "id": "a-ward-is-a-row-of-bays",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "E3M4's hospital wards are rows of geometry bays, not big rooms with sprite beds: 24 congruent 1,152x1,024 chambers in several rows, with 0 to 3 sprites each, and 23 divider strips 384x1,024 between them. Its corridors are 512-1,024 wide, an order narrower than streets, which is why it reads institutional.",
+ "evidence": [
+  "E3M4 s42, s63, s65 (bays) and s41, s64, s66 (dividers), tools/mine_room_grammar.py (room-grammar.json)",
+  "recount 2026-11-26: the 24 four-walled 1,152x1,024 sectors of E3M4 lie in rows at s63-s96, s120-s133 and s42"
+ ],
+ "use": "Build a dormitory, cell row or ward as repeated small bay sectors.",
+ "code": [
+  "knowledge/blood/references/venue-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "bay",
+  "bed",
+  "cell",
+  "dormitory",
+  "hospital",
+  "ward"
+ ]
+}

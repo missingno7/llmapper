@@ -1,0 +1,29 @@
+{
+ "id": "wall-texture-pegging-and-cstat-4",
+ "topic": "texture",
+ "standing": "engine",
+ "claim": "Where Build hangs a wall's tile: a one-sided wall from its sector's ceiling; the upper step of a two-sided wall from the NEXT sector's ceiling (the head of the opening); the lower step from the next sector's floor. Wall cstat 4 instead pegs the band to this sector's own ceiling (both bands, on a two-sided wall). So a banded facade breaks phase over every opening unless the header carries cstat 4.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:4438-4440 globalzd from topzref unless (globalorientation&4); the calls at :4721 (upper: nextsec ceiling / sec ceiling), :4835 (lower: nextsec floor / sec ceiling), :4941 (one-sided: sec ceiling)",
+  "E3M1 sets bit 4 on 21 of its 35 street headers (projects/blood-city/level/facade_pass.py align_headers)"
+ ],
+ "use": "Set cstat 4 on the wall over a street opening when the facade is banded; the texture frame depends on it rather than deciding it.",
+ "code": [
+  "bloodmap.texture_frame.frame_map",
+  "projects/blood-city/level/facade_pass.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "align",
+  "bottom",
+  "header",
+  "lintel",
+  "orgoutside",
+  "panning",
+  "peg"
+ ]
+}

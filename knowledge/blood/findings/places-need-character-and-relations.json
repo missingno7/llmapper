@@ -1,0 +1,25 @@
+{
+ "id": "places-need-character-and-relations",
+ "topic": "place",
+ "standing": "ruling",
+ "claim": "A place should be memorable and built as relations: this machine connects to that, a control panel here, a dirty tank, the water goes there. Each named place states its hero, the Blood room it transcribes, its measured layers and its relations.",
+ "evidence": [
+  "The owner, 2026-11-18: 'think about stuff in relations, like this machine connects to this, there is a control panel here, there is a dirty water tank, the water goes there'."
+ ],
+ "use": "Write the four lines for each place before building; measure its layers against the campaign.",
+ "code": [
+  "tools/place_character.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "character",
+  "machine",
+  "memorable",
+  "place",
+  "relations"
+ ]
+}

@@ -9,8 +9,11 @@ sector that goes back a little when pressed." What the campaign does is
 from the wall beside it; one worked from elsewhere is the wall's own, and the
 button is the tell.
 
-* the stash: seen through bars, which a valve wheel round the corner lifts (both
-  halves are E3M3's: the bars of its s254, the wheel of its sprites 107 and 108);
+* the stash: seen through bars, which a valve wheel round the corner lifts.  The
+  parts are E3M3's but there they are two separate chains: its wheels (sprites 107
+  and 108) drive s94/s93 into combination switch 349, which opens s96; its bars,
+  s254 (rx 129), are raised by levers 199 and 201 (tile 1070).  Here one wheel
+  works the bars;
 * the Rat King's shrine: its pipe is stopped with the wall's own tiles, and the
   bloody hands on the bleeding floor's wall are a slab that gives (E1M2's s261, of
   its freezer);

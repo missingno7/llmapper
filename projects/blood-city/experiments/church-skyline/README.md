@@ -64,7 +64,8 @@ property of a building here.
 a wall shows its top at a level gaze only from about 1.7 times its height
 away. So the height that matters on a street is the height of what *fronts*
 it — here the low side range, 1.9 to 2.4 bodies inside — and round 2 drew the
-body at 3.9. This is now a record in the visual construction atlas.
+body at 3.9. This became a record of the visual construction atlas, now a finding
+(`python -m tools.findings find <words>`).
 
 **P6's blind spot.** The shared aperture audit did not know that a step
 between two parallax ceilings paints nothing. Fixed in

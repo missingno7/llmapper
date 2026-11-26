@@ -1,0 +1,26 @@
+{
+ "id": "a-tile-use-nobody-complained-about-is-not-attested",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "A tile use recorded as fitting by an agent because nobody objected hides the misuse from every later check: a train's wall decals (51/52) recorded as 'loose brick' passed tile discovery until the owner rode it.",
+ "evidence": [
+  "Phantom Terminus, 2026-11-24."
+ ],
+ "use": "Record only uses with evidence; record misfits when a reader or the owner says a tile reads wrong.",
+ "code": [
+  "bloodmap.tile_contexts",
+  "tools/tile_contexts.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "context",
+  "evidence",
+  "misfit",
+  "record",
+  "tile"
+ ]
+}

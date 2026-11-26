@@ -8,7 +8,7 @@ Shapely and Matplotlib: install them into the same interpreter with
 Missing local corpus/oracle assets may still produce explicit skips.
 
 ```text
-python -m unittest discover -s tests -v
+python -m tools.suite              # tests/ (the library) and projects/*/tests (each level's own)
 python -m bloodmap --help
 ```
 

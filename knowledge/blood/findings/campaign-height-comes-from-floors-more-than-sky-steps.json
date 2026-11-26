@@ -1,0 +1,27 @@
+{
+ "id": "campaign-height-comes-from-floors-more-than-sky-steps",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "Blood's open-air maps vary their wall heights: of the 38 campaign maps with open sky none draws its street walls to one height and 32 draw three or more, but only 17 step the sky between open sectors (141 steps of a body or more; E1M3 29, E3M1 13, E1M1 12; E3M1's largest 15.4 bodies). Most of the variety comes from raised roof floors (E1M5: seven wall heights, no sky step). Sloped skies are rare: 23 sectors in 10 maps.",
+ "evidence": [
+  "tools/mine_skylines.py --population blood-campaign: 38 maps with open sky, 0 single-height, 32 with three or more wall heights, 17 with a stepped sky, 141 sky-step portals of a body or more; 10 maps with a sloped sky, 23 sectors"
+ ],
+ "use": "Vary a street's skyline by raising roof floors under one sky (skyline.roof); step the sky up only for a thing taller than the rest (skyline.apron).",
+ "code": [
+  "tools/mine_skylines.py",
+  "bloodmap.skyline.roof",
+  "bloodmap.skyline.apron"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "building height",
+  "roofline",
+  "sky step",
+  "skyline",
+  "stepped sky"
+ ]
+}

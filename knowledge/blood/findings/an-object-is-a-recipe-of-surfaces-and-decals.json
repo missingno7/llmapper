@@ -1,0 +1,26 @@
+{
+ "id": "an-object-is-a-recipe-of-surfaces-and-decals",
+ "topic": "construction",
+ "standing": "ruling",
+ "claim": "A built object (locomotive, ship, machine, statue) is several surfaces by role plus decal sprites, taken from Blood's own instance of it, never one tile on boxes. E1M4's locomotive is four tiles (255 body, 470 underframe, 2453 riveted barrel, 438 tops) and three sprites (wheels, flame, smokes 754/672). A thing with two sides needs its decals on both.",
+ "evidence": [
+  "The owner, 2026-11-18: 'Locomotive is made from one texture ... You should study more textures, decals combinations and locomotives in other levels'."
+ ],
+ "use": "Walk round Blood's instance with look_at and write its recipe before building.",
+ "code": [
+  "tools/look_at.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "decal",
+  "locomotive",
+  "machine",
+  "object",
+  "recipe",
+  "ship"
+ ]
+}

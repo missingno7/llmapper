@@ -1,0 +1,28 @@
+{
+ "id": "campaign-light-sources-by-kind",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "Blood shows light three ways: a CEILING PANEL (technical light 501, fluorescent 2290/2288) is a small 4-wall sector the size of the light, its ceiling recessed 1,024 above the room's at shade 0 against ~38 around, often with a lighter pool beneath (124 in the campaign); a FLAT SPRITE on the ceiling (795 round light: 147 flat uses in 18 campaign maps, 1,068 over 42 maps of the wider catalogue; also 2290, 796 tube); and FLAME SPRITES at own shade -128 (506 wall torch, 2101 small flame, 3566 bonfire, 641/1701 chain lamps, 580 candelabrum, 560/938 candles, 570/554 sconces, 550 brazier, 2493 street lamp).",
+ "evidence": [
+  "python -m tools.light_sources, knowledge/blood/light-sources.json (2026-11-20).",
+  "2026-11-26: 795's 1,068 flat uses in 42 maps is the tile catalogue's count over the curated corpus (python -m tools.catalog show 795); in the 43 campaign maps it has 159 uses in 18 maps (work/consolidation/probe_tile.py)"
+ ],
+ "use": "Pick the light that fits the place from these kinds (see light-fits-the-place).",
+ "code": [
+  "tools/light_sources.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-20"
+ },
+ "words": [
+  "candle",
+  "fitting",
+  "fluorescent",
+  "lamp",
+  "light",
+  "panel",
+  "torch"
+ ]
+}

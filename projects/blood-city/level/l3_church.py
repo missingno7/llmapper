@@ -1,6 +1,6 @@
 """St Gallow's: the parish church, Gravesend's mandatory landmark.
 
-Built to the contract in `references/church-patterns.md`, which mined E1M5
+Built to the contract in `knowledge/blood/references/church-patterns.md`, which mined E1M5
 (Blood's own church, at whole-map scale) and E1M1 (its cemetery and crypt):
 nave with an aisle, a raised chancel, an apse, a tower on the vista, a
 vestry, and a stair down toward the crypt -- the monastery chapel grammar
@@ -39,9 +39,11 @@ COMPASS = dict(zip(RECT_FACES, range(4)))
 #: its porch have somewhere to be.
 MASS = (26 * PU, 21 * PU, 32 * PU, 31 * PU)
 DOOR_D = PORCH_D = 256
-# Campaign z-motion doors open to a median of 31,744 -- 1.87 player
-# heights, measured over 1,269 of them; even their 10th percentile is
-# 17,408.  Ours were 16,384, which is 0.97 of a player height: the owner
+# Blood's ceiling-lifting doors (594 in the campaign) open to a median of
+# 28,672 -- 1.69 player heights -- and 87% are taller than a body.  The
+# 31,744 used here is the median over all 1,231 type-600 sectors, lifts
+# included, not a door height; it is kept because changing it moves every
+# door in Gravesend.  Ours were 16,384, which is 0.97 of a player height: the owner
 # called them "short like for midgets" and the census agrees.  Blood has
 # no door TEXTURE to lean on (E3M1's own door leaves wear 379 and 449,
 # plain wall stone), so an opening reads as a door through its proportion
@@ -588,7 +590,7 @@ def massing(parish, district, street, ground, gates, area_rect, gate_rects, *,
 
 def glaze(layout) -> dict:
     """Hang the lancets on the faces `massing` made.  Returns what it hung."""
-    import wallplane
+    from bloodmap import wallplane
     hung, refused = [], []
 
     def lancet(name, region_id, a1, a2, *, height=LANCET["height"],
@@ -701,7 +703,7 @@ CANDELABRUM = {"type": 0, "picnum": 580, "cstat": 385, "x_repeat": 64,
 def glaze_inside(layout, rooms) -> dict:
     """The inside counterparts of `glaze`'s lancets."""
     import props
-    import wallplane
+    from bloodmap import wallplane
     hung, refused = [], []
 
     def light(name, room, face, station, y_repeat, sill, over_steps):

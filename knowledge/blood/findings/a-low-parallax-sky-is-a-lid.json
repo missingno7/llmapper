@@ -1,0 +1,31 @@
+{
+ "id": "a-low-parallax-sky-is-a-lid",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "A parallax sky set low covers the view like a ceiling: it is painted from the far wall's top upward, so whatever stands beyond and above it is not drawn. A building made low by lowering the sky in front of it hides everything behind it. No campaign map does it (0 of 38 raise every street wall to the sky either).",
+ "evidence": [
+  "Seen in a run of NBlood by the owner, 2026-11-17: 'when you put parallax sky low it is covering view like a normal ceiling'.",
+  "tools/mine_skylines.py over the campaign: 0 of 38 maps."
+ ],
+ "use": "Raise the floor, never lower the sky: a low mass is a sector whose floor is its top under the common sky. Raise a sky only for the one thing taller than the town.",
+ "code": [
+  "bloodmap.skyline.roof",
+  "bloodmap.skyline.dress_steps",
+  "bloodmap.skyline.lowered_skies",
+  "bloodmap.skyline.apron"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "building",
+  "height",
+  "lid",
+  "parallax",
+  "roof",
+  "sky",
+  "skyline"
+ ]
+}

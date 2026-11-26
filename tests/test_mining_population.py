@@ -27,9 +27,9 @@ MINERS = {
     "mine_run_rhythm": "knowledge/blood/design/run-rhythm-v1.json",
     "mine_set_pieces": "knowledge/blood/design/set-pieces-v1.json",
     "mine_monuments": "knowledge/blood/design/monuments-v1.json",
-    "mine_prop_catalogue": "projects/blood-city/references/prop-catalogue.json",
+    "mine_prop_catalogue": "knowledge/blood/references/prop-catalogue.json",
     "mine_style_combinations":
-        "projects/blood-city/references/style-combinations.json",
+        "knowledge/blood/references/style-combinations.json",
 }
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]

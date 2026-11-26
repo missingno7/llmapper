@@ -8,7 +8,7 @@ wards), how wide the circulation is, what the water does, what hangs on the
 walls, and what the map spends its channels on.
 
     python -m tools.mine_room_grammar E6M1 E3M4 E3M3 E4M9 E1M1 E1M5 \\
-        -o projects/blood-city/references/room-grammar.json
+        -o knowledge/blood/references/room-grammar.json
 
 Derived measures only; naming a cluster "ward" or "storefront" happens in
 the pattern documents, marked interpreted, with sector ids to argue with.
@@ -261,7 +261,7 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("maps", nargs="+")
     parser.add_argument("-o", "--output",
-                        default="projects/blood-city/references/room-grammar.json")
+                        default="knowledge/blood/references/room-grammar.json")
     args = parser.parse_args(argv)
     payload = {"$schema": SCHEMA, "schema_version": SCHEMA_VERSION,
                "per_map": [analyze(name) for name in args.maps]}

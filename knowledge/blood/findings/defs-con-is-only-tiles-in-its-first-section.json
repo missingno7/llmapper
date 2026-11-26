@@ -1,0 +1,26 @@
+{
+ "id": "defs-con-is-only-tiles-in-its-first-section",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "Duke's DEFS.CON names tiles only in its first section; after the 'Defines weapon' comment come weapon ids, actor motion values, player actions and sound ids whose numbers collide with tiles (read whole, tile 4 is ACTIVATORLOCKED and RPG_WEAPON and more). EDuke32's dnames.h has the same pollution. Duke's letter sprites are three fonts: 2822-2915 ASCII from '!', 2940-2965 capitals from A (not '!' as documented) and 2966-2991 a second undocumented capital style.",
+ "evidence": [
+  "tools/extract_duke_semantics.py split at that comment and cross-checked against the shipped ART: 740 tile names (582 with art), 450 non-tile constants; fonts decoded by tools/read_duke_signs.py (2026-08-28). Duke's mechanisms are named by the ST_*/SE_* enums in reference/eduke32/source/duke3d/src/game.h."
+ ],
+ "use": "Split DEFS.CON before reading tile names from it.",
+ "code": [
+  "tools/read_duke_signs.py"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "defs.con",
+  "duke",
+  "font",
+  "letters",
+  "sign",
+  "tile names"
+ ]
+}

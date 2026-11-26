@@ -1,0 +1,28 @@
+{
+ "id": "a-parallax-ceiling-still-clips",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "A parallax ceiling is not drawn but it still bounds players and enemies: MoveDude asks GetZRange with PARALLAXCLIP_CEILING, which keeps the sky sector's own ceiling z, so a low sky over walkable ground is an invisible ceiling a jump hits. Things (MoveThing) ask without it, and a sky does not stop them.",
+ "evidence": [
+  "NBlood/source/blood/src/gameutil.cpp:739-740 GetZRange: only without PARALLAXCLIP_CEILING is a parallax ceiling's z replaced by 0x80000000; actor.cpp:4598 and :4647 (MoveDude) pass PARALLAXCLIP_CEILING, actor.cpp:4305 (MoveThing) does not",
+  "NBlood/source/build/src/clip.cpp:2032 getzrange takes the sector's ceiling from getzsofslope with no test of ceilingstat bit 0",
+  "bloodmap/skyline.py: REACH (three bodies) is the height under which an apron's sky would be a ceiling to jump into, and apron refuses it"
+ ],
+ "use": "Keep any sky over walkable ground at least three bodies above it; skyline.apron refuses a lower one.",
+ "code": [
+  "bloodmap.skyline.REACH",
+  "bloodmap.skyline.apron"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "headroom",
+  "invisible ceiling",
+  "jump",
+  "parallax",
+  "sky"
+ ]
+}

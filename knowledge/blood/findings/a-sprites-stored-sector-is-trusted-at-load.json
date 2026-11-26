@@ -1,0 +1,24 @@
+{
+ "id": "a-sprites-stored-sector-is-trusted-at-load",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Blood never recomputes a sprite's sector when it loads a map: the stored sectnum is what the sprite is in, and a player start or teleport destination takes its sector from its marker. A sprite written with the wrong sector (on a boundary, or in one of two spaces overlapping in plan) stays there.",
+ "evidence": [
+  "NBlood/source/blood/src/db.cpp:1195 InsertSpriteSect(i, sprite[i].sectnum) in dbLoadMap; warp.cpp:67 (start: pZone->sectnum = pSprite->sectnum); triggers.cpp:1577 (teleport destination)"
+ ],
+ "use": "Resolve every placement's sector explicitly (layers does it by z band where spaces overlap) and read it back after the build.",
+ "code": [
+  "bloodmap.layers"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-29"
+ },
+ "words": [
+  "load",
+  "overlap",
+  "sectnum",
+  "sprite sector"
+ ]
+}

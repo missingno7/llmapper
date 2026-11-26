@@ -47,9 +47,11 @@ SHED = (50 * PU, 5 * PU, 53 * PU, 8 * PU)   # x1 is the works' east face
 MOUTH_Y0, MOUTH_H = 6 * PU, 1024
 DOOR_D, PORCH_D = 512, 512
 #: A door-height porch so the facade owns the wall above the opening.
-# Campaign z-motion doors open to a median of 31,744 -- 1.87 player
-# heights, measured over 1,269 of them; even their 10th percentile is
-# 17,408.  Ours were 16,384, which is 0.97 of a player height: the owner
+# Blood's ceiling-lifting doors (594 in the campaign) open to a median of
+# 28,672 -- 1.69 player heights -- and 87% are taller than a body.  The
+# 31,744 used here is the median over all 1,231 type-600 sectors, lifts
+# included, not a door height; it is kept because changing it moves every
+# door in Gravesend.  Ours were 16,384, which is 0.97 of a player height: the owner
 # called them "short like for midgets" and the census agrees.  Blood has
 # no door TEXTURE to lean on (E3M1's own door leaves wear 379 and 449,
 # plain wall stone), so an opening reads as a door through its proportion
@@ -471,7 +473,7 @@ def machine_hall(shed, lobby, room):
         """
         import ambience
         import props
-        import wallplane
+        from bloodmap import wallplane
         for k, (a1, a2) in enumerate((((hx0 + 640, hy0), (hx0 + 1280, hy0)),)):
             spec = props.fields(1044)
             wallplane.sprite(

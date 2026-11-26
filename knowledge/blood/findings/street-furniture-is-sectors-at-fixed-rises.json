@@ -1,0 +1,29 @@
+{
+ "id": "street-furniture-is-sectors-at-fixed-rises",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "Town furniture is made of sectors: a fountain basin sunk 4,096 at ~1,200 square with a water floor; a well a ~750-square shaft 5,120-12,288 deep whose rim is its own walls; a market stall a platform 3,072-4,096 up with goods sprites on top and awnings as wall sprites; a bench a 2,048-high pair; a green a soft floor raised 2,048 with planting sprites.",
+ "evidence": [
+  "DWE3M1 s40 and s41 (twin basins, floor 404)",
+  "DWE3M1 s553, s554 and TEDE1M2 s572 (wells)",
+  "TEDE1M2 s300 and s453-455 (stalls), DWE3M10 s145, s146 (benches), DWE3M1 s49 (green)"
+ ],
+ "use": "Furnish a plaza with these sectors; water features in civic space, carts and cargo in yards.",
+ "code": [
+  "knowledge/blood/references/street-furniture.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "bench",
+  "fountain",
+  "park",
+  "plaza",
+  "stall",
+  "street furniture",
+  "well"
+ ]
+}

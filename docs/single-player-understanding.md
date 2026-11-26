@@ -26,7 +26,7 @@ key), and exit channels 4/5. It is not a player simulator. Destruction,
 one-shot walls, and undocumented types stay unknown.
 
 ```text
-python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o reports/E2M2-progression.json
+python -m bloodmap progression maps/blood/campaign/E2M2.MAP -o work/E2M2-progression.json
 ```
 
 A completion witness is a greedy grounded trace: spawn → collect reachable
@@ -74,9 +74,9 @@ python -m bloodmap door-mine --maps maps/blood -o reports/blood-door-families.js
 ```
 
 Door Use from a hallway requires XSECTOR `trigger_wall_push` (NBlood ActionScan).
-See [door-affordances.md](door-affordances.md) and
-[native-authoring-language.md](native-authoring-language.md).
+See [door-affordances.md](door-affordances.md) and, for its history,
+[native-authoring-language.md](history/native-authoring-language.md).
 
 See [object-placement.md](object-placement.md) for anchors.
-See [E2M2 understanding](../reports/E2M2-understanding.md) for the first
+See [E2M2 understanding](../reports/archive/E2M2-understanding.md) for the first
 campaign microscope.

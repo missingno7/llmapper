@@ -1,0 +1,26 @@
+{
+ "id": "goods-on-counters-make-a-shop-read",
+ "topic": "place",
+ "standing": "practice",
+ "claim": "Objects standing on counters and an altar's dressing decide what a room is read as; a bare bar reads as a sauna, a forge or a crypt. A small kit of one to three props a fixture is enough; printed matter barely registers.",
+ "evidence": [
+  "Blind reviewer on Gravesend's town goods, 2026-11-18 (experiments/town-goods)."
+ ],
+ "use": "Give goods fixtures to stand on (back bar, racks, counters) and dress them first.",
+ "code": [
+  "projects/blood-city/level/goods.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "bar",
+  "counter",
+  "fixture",
+  "goods",
+  "props",
+  "shop"
+ ]
+}

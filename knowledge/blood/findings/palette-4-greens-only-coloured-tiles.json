@@ -1,0 +1,25 @@
+{
+ "id": "palette-4-greens-only-coloured-tiles",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "Palette 4 turns tiles that hold colour green (109, 304, 454, 146, 1665, 1717) but leaves greys grey (374 stays white); on 300 and 301 it reads as camouflage and as a floor's light it reads as moss.",
+ "evidence": [
+  "tried and judged in Gravesend's Phantom Terminus, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md)"
+ ],
+ "use": "Look at a tile under a palette before relying on it for a colour; a sick green light is better on coloured surfaces than on floors.",
+ "code": [
+  "projects/blood-city/references/phantom-terminus-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "colour",
+  "green",
+  "pal 4",
+  "palette",
+  "tint"
+ ]
+}

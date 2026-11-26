@@ -462,7 +462,7 @@ def build_loading_shutter(city, stair, *, east, middle, floor) -> dict:
 def furnish_loading_shutter(layout, loading) -> dict:
     """Set the leaves' motion, and finish the two sides of them alike."""
     import underpass
-    import wallplane
+    from bloodmap import wallplane
     import wires
 
     region, alcove = loading["shutter"], loading["alcove"]
@@ -677,7 +677,7 @@ def sprinkle(layout, ctx, dressing) -> list[str]:
     # What lies on the mouth is the campaign's own sewer grate: tile 502,
     # laid as a floor sprite as Blood lays it (49 times in 9 maps).
     from bloodmap import flatsprite
-    import wallplane as _art
+    from bloodmap import wallplane as _art
 
     gx, gy = ctx["grate_at"]
     for index, piece in enumerate(flatsprite.cover((gx - 512, gy - 512, gx + 512, gy + 512),

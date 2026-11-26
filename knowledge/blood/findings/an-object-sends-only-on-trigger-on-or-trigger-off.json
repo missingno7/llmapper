@@ -1,0 +1,30 @@
+{
+ "id": "an-object-sends-only-on-trigger-on-or-trigger-off",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Having a tx_id is not sending. A sprite, wall or sector sends its command only when it turns ON with trigger_on set or turns OFF with trigger_off set; a toggle lever with only trigger_on sends on every second push. Link is the exception: kSwitchCombo sends kCmdLink from its own path.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:102-104 (SetSpriteState), :123-125 (SetWallState), :140 and the OFF branch below it (SetSectorState); kSwitchCombo's Link send at triggers.cpp:491.",
+  "Secrets built with secret=True omitted trigger_on and were never counted (found 2026-11-19)."
+ ],
+ "use": "Declare every wire on a Circuit, which refuses a sender reporting neither change; for a toggle say on and off.",
+ "code": [
+  "bloodmap.wiring.Circuit"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "channel",
+  "lever",
+  "secret",
+  "send",
+  "switch",
+  "toggle",
+  "trigger_off",
+  "trigger_on",
+  "tx"
+ ]
+}

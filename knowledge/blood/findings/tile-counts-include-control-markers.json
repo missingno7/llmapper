@@ -1,0 +1,28 @@
+{
+ "id": "tile-counts-include-control-markers",
+ "topic": "sprite",
+ "standing": "refuted",
+ "claim": "Tile 3997, used 91 times in E3M4, is the hospital's signage.",
+ "evidence": [
+  "knowledge/blood/references/venue-patterns.md correction of 2026-08-27; bloodmap/mechanism.py MARKER_PICNUM 3997 (all 308 campaign slide gates mark with it)"
+ ],
+ "use": "Filter by type and visibility (blood_types.HIDDEN_TYPES, mechanism.MARKER_PICNUM) before counting decoration tiles.",
+ "code": [
+  "bloodmap.mechanism.MARKER_PICNUM",
+  "bloodmap.blood_types.HIDDEN_TYPES",
+  "knowledge/blood/references/venue-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "3997",
+  "count",
+  "decoration",
+  "marker",
+  "signage"
+ ],
+ "instead": "3997 is Blood's invisible marker/control tile; its count measures wiring, not decoration. Drop marker and control sprites before reading a tile count as dressing."
+}

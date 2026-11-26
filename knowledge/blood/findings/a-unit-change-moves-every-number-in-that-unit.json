@@ -1,0 +1,23 @@
+{
+ "id": "a-unit-change-moves-every-number-in-that-unit",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "Correcting a unit constant rescales everything denominated in it: fixing the player height from 5,632 to 16,960 raised every wall sprite 3.01 times (a switch to 2.18 bodies, out of reach) and every check, written in the same unit, passed.",
+ "evidence": [
+  "2026-08-27: SWITCH_HEIGHT 2.18 x player height; caught by the owner pressing a switch; tests/test_switches.py now compares wall sprite heights with the campaign's band."
+ ],
+ "use": "Grep the consumers of a unit before calling its change done and re-measure them against the corpus.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "constant",
+  "player height",
+  "scale",
+  "switch",
+  "unit"
+ ]
+}

@@ -238,7 +238,7 @@ def surround(front: dict, *, name: str, kind: str, reveal, box, shop,
 
 def write_names(layout) -> dict:
     """Letter each shop's name on its fascia."""
-    import wallplane
+    from bloodmap import wallplane
 
     report = {"written": [], "no_room": []}
     for front in FRONTS:

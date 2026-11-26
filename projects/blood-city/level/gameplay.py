@@ -29,17 +29,8 @@ import keysign
 import wires
 
 PU = 1024
-#: placed by type: (tile, repeat)
-ITEMS = {41: (559, 48), 42: (558, 48), 43: (524, 48), 45: (539, 48), 46: (526, 48), 50: (800, 48), 60: (618, 40), 62: (589, 48),
-         63: (809, 48), 64: (811, 40), 65: (810, 40), 66: (820, 24), 67: (619, 48), 68: (812, 48), 69: (813, 48), 70: (525, 48),
-         72: (817, 48), 73: (548, 24), 76: (816, 48), 79: (801, 48), 107: (519, 48), 108: (822, 40), 109: (2169, 40),
-         110: (2433, 40), 113: (896, 40), 114: (825, 40), 117: (829, 40), 118: (830, 64), 121: (760, 40), 124: (2428, 40), 140: (2628, 64),
-         141: (2586, 64), 143: (2602, 64), 144: (2594, 64)}
-#: foes: (tile, repeat, palette)
-FOES = {201: (2820, 40, 3), 202: (2825, 40, 0), 203: (1170, 40, 0), 204: (1370, 48, 0), 205: (3054, 40, 0), 206: (1470, 40, 0),
-        210: (3060, 40, 0), 211: (1270, 40, 0), 217: (1570, 48, 0), 248: (2820, 40, 13),
-        212: (1980, 32, 0), 218: (1870, 32, 0), 220: (1745, 24, 0)}
-WIDER = {118: {"x_repeat": 80}}
+#: how a pickup and a foe are set down is the library's: `bloodmap.supplies.ITEM_ART`, `DUDE_ART`
+from bloodmap.supplies import DUDE_ART as FOES, ITEM_ART as ITEMS, ITEM_ART_FIELDS as WIDER  # noqa: E402
 STREET, SEWER, HALL, STATION, RITE = 8192, 61440, 102400, -12288, 102400
 
 #: --- the six keys --------------------------------------------------------------
@@ -232,7 +223,7 @@ def spot(layout, x, y, floor, *, room_for=200, within=2600):
 
 
 def _seat(layout, name, region, x, y, tile, size, **fields):
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import seated_z
     _w, height, _x, offset = wallplane.art()[tile]
     cstat = fields.pop("cstat", 128)

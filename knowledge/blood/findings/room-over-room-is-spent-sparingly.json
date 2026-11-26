@@ -1,0 +1,27 @@
+{
+ "id": "room-over-room-is-spent-sparingly",
+ "topic": "engine",
+ "standing": "tendency",
+ "claim": "Room-over-room is a budget in Blood: 11 of 43 campaign maps have none and most have a handful. E1M1 reuses its one big ROR volume (s65, ceiling 504) as a slide carrier instead of spending another, and its casket s30 is slide-marked and stack-linked to s28 at once. Believed reason: two ROR volumes must not be in view together.",
+ "evidence": [
+  "Count over the 43 campaign maps (reports/blood-swept-mechanisms.md), 2026-09-01.",
+  "E1M1 s65, s30, s28."
+ ],
+ "use": "Plan few stacks and keep them out of each other's view; a stack can also carry a mechanism.",
+ "code": [
+  "bloodmap.layers"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "504",
+  "layer",
+  "portal",
+  "room over room",
+  "ror",
+  "stack"
+ ]
+}

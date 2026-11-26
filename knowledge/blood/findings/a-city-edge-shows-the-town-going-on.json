@@ -1,0 +1,27 @@
+{
+ "id": "a-city-edge-shows-the-town-going-on",
+ "topic": "place",
+ "standing": "ruling",
+ "claim": "Where a street ends at the map's edge it must look as if the town goes on: the buildings beside the mouth carry on past the boundary wall at the same height and front, lower roofs behind them, and a barred gate through which the paving and lamps continue -- never a plain wall cut off by sky. Blood does it with an unreachable court whose walls wear other buildings' tiles and a sector of no height where the sky comes down.",
+ "evidence": [
+  "the owner, 2026-11-25: 'These walls on the city borders should have hint of continuing behind even it is unreachable'; and 'think about it like continuation of the buildings you see next to it'",
+  "E3M1 s333-337 and s366-368: courts out of reach, tiles 384, 401, 181, 418, 414; 397, 393, 417, 381"
+ ],
+ "use": "Build each end as an arrangement beyond the edge; raise floors of whole storeys for what stands behind, never lower the sky.",
+ "code": [
+  "projects/blood-city/level/street_vistas.py",
+  "bloodmap.skyline"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "backdrop",
+  "border",
+  "edge",
+  "street end",
+  "vista"
+ ]
+}

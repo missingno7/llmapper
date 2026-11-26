@@ -1,0 +1,27 @@
+{
+ "id": "church-interiors-are-the-most-flickering",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "E1M5, a church map, is flicker-dense: 191 of its 429 sectors (44.5%) carry animated shade (candlelight), about 66 channels of its own. By share of animated sectors it is fifth in the campaign, after E3M3 (57%, a sewer), E1M8, E4M1 and E6M1. Its 683 sprites count 556 face- and 116 wall-aligned, but most are foes, pickups and control sprites: visible plain decoration is 38 face, 22 wall and 11 floor sprites.",
+ "evidence": [
+  "tools/mine_room_grammar.py on E1M5 (knowledge/blood/references/room-grammar.json); knowledge/blood/references/church-patterns.md:36-37",
+  "2026-11-26 count of sectors with a non-zero XSECTOR amplitude over the 43 campaign maps: E3M3 175/309, E1M8 245/433, E4M1 120/215, E6M1 59/123, E1M5 191/429",
+  "2026-11-26 recount on E1M5: 683 sprites, 556/116/11 face/wall/floor-aligned; visible type-0 decoration 38/22/11; 66 distinct channels of 100 or more"
+ ],
+ "use": "Light a church with many flickering candle sectors, not steady panels.",
+ "code": [
+  "knowledge/blood/references/church-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "candle",
+  "chapel",
+  "church",
+  "flicker",
+  "shade wave"
+ ]
+}

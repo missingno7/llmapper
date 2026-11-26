@@ -1,0 +1,27 @@
+{
+ "id": "show-the-key-before-the-way-to-it",
+ "topic": "gameplay",
+ "standing": "practice",
+ "claim": "A key reads as the place's purpose when it is seen, lit, from a vantage before it can be reached: in Gravesend the machine hall's key is seen over a rail from a deck, lit under its own hood, with the lever that makes it safe the second thing seen; the arcade's key is in sight from the street door across a fallen gallery. E3M6 shows its moon key so, up between two drums.",
+ "evidence": [
+  "projects/blood-city/references/pump-hall-design.md and arcade-design.md, 2026-11-25",
+  "E3M6 sprite 355 (kItemKeyMoon) stands in s410, a floor 32,768 above s413 beside the higher s378 and s379 (record checked 2026-11-26; the drums are as Gravesend's notes describe it, not re-seen in a frame)"
+ ],
+ "use": "Put a key's light on it and a first view of it from where the player enters; make the way to it indirect.",
+ "code": [
+  "projects/blood-city/references/pump-hall-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "key",
+  "lighting",
+  "objective",
+  "reveal",
+  "sight line",
+  "vantage"
+ ]
+}

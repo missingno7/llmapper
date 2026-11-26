@@ -1,0 +1,26 @@
+{
+ "id": "a-leap-keeps-most-air-control-and-no-drag-over-a-pit",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "In the air the player keeps most of his steering: ProcessInput scales forward acceleration by 1 - height/kDudeAirborneHeight (256), and a standing jump's height above the floor (pXSprite->height, (floorZ - bottom) >> 8) peaks near 60, so about 77% of air control remains at the apex. MoveDude's ground drag is scaled the same way and switched off entirely past kDudeAirborneHeight, so over a DEEP pit a running leap has no braking and flies about 3,000 units whatever it was aimed at. A jump fires only on a fresh press: cantJump clears when the button is released, not on landing.",
+ "evidence": [
+  "NBlood/source/blood/src/player.cpp:1779-1783 (air acceleration), :1841/1855/1863 (cantJump); actor.cpp:4922-4926 (drag by height); actor.cpp:4906 height = (floorZ - bottom) >> 8; the apex of a standing jump is about 15,370 z (see a-standing-jump-rises-under-a-body).",
+  "Seen in bot runs on AGTST15 (2026-08-27): every hop between 1,024-wide stepping stones 600 apart over a damage pit overshot until the push was released early."
+ ],
+ "use": "Stepping stones over a deep pit need landing room along the flight, or a shallow pit so drag still acts; a gap the player must clear by running is sized by how long forward is held, not by take-off speed alone.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "air control",
+  "drag",
+  "gap",
+  "jump",
+  "leap",
+  "platforming",
+  "stepping stones"
+ ]
+}

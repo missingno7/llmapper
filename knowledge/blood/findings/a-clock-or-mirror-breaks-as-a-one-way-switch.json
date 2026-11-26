@@ -1,0 +1,26 @@
+{
+ "id": "a-clock-or-mirror-breaks-as-a-one-way-switch",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "A clock face or a mirror does not fall to pieces as a thing: it is a one-way switch that answers a bullet, shown in its next picture when its state changes (1165 becomes the smashed clock 1166, 710 the broken mirror 711), and it fires an unseen gib object where it hangs, which throws the glass and makes the noise.",
+ "evidence": [
+  "E1M1 sprites 505 and 506; E2M4 sprites 275 and 879",
+  "NBlood/source/blood/src/view.cpp:2735 a toggle or one-way switch draws picnum+1 while its state is 1"
+ ],
+ "use": "Wire a breakable wall fixture as a shot one-way switch sending to a hidden kThingObjectGib.",
+ "code": [
+  "bloodmap.breakables"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "breakable",
+  "clock",
+  "gib",
+  "mirror",
+  "shoot"
+ ]
+}

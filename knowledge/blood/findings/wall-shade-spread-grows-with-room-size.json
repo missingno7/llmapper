@@ -1,0 +1,25 @@
+{
+ "id": "wall-shade-spread-grows-with-room-size",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "The spread of wall shades within a campaign room grows with its floor area: median 7 (p75 15) under 2M units squared, 12 (22) to 10M, 19 (32) to 40M, 21 (32) above. Capping every room at the median flattened 102 of 135 rooms and cut the level's contrast from the campaign's 49.5 to 32; cap at p75.",
+ "evidence": [
+  "measured over 1,393 rooms of E3M1, E3M2, E6M1, E1M1 and E4M9 (projects/blood-city/level/lightpools.py)"
+ ],
+ "use": "Size a room's light modelling by its area, never by wall count, and clamp at p75.",
+ "code": [
+  "projects/blood-city/level/lightpools.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "contrast",
+  "lighting",
+  "room",
+  "shade",
+  "spread"
+ ]
+}

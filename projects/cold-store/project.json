@@ -1,0 +1,12 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "The Cold Store",
+  "kind": "level",
+  "status": "live",
+  "game": "blood",
+  "about": "A small cellar level begun from the starter: the proof that a level is built, looked at and tested by the shared tools alone.",
+  "map": "level/cold-store.MAP",
+  "build": "level/build.py",
+  "ground_z": 0
+}

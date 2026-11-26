@@ -1,0 +1,26 @@
+{
+ "id": "pressed-switches-at-eye-shot-switches-twice-as-high",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "Blood says how a switch is worked by its height and its art together: pressed switches hang a median 0.79 standing heights above their floor (453 of them, quartiles 0.60-0.79), at or just under the eye (0.83), because use is a hitscan from the eye; shot switches hang a median 1.93 (63, quartiles 1.00-3.26) and wear different tiles (2290, 710, 1165 against 1070, 1046, 1078). Of 50 exit switches 41 wear tile 318, which appears only 5 times elsewhere.",
+ "evidence": [
+  "knowledge/blood/design/switches-v1.json, every sprite of types 20-23 in the 43 campaign maps (bloodmap/switches.py)"
+ ],
+ "use": "Hang a pressed switch at about 0.8 bodies with a lever or button tile, a shot switch high with a target tile, and put tile 318 on the exit.",
+ "code": [
+  "bloodmap.switches"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "318",
+  "button",
+  "exit",
+  "height",
+  "lever",
+  "switch"
+ ]
+}

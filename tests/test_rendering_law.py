@@ -20,7 +20,6 @@ from bloodmap.format import SECTOR_FIELDS, WALL_FIELDS
 from bloodmap.model import DiskMap, DiskObject
 
 ROOT = Path(__file__).resolve().parents[1]
-CITY = ROOT / "projects" / "blood-city" / "level" / "blood-city-current.MAP"
 V2 = ROOT / "knowledge" / "blood" / "design" / "usage-kinds-v2.json"
 
 
@@ -151,19 +150,6 @@ class FailFirstTest(unittest.TestCase):
         per_wall = self.rules["wall-draws-its-own-tile"].check(disk)
         flagged = {v.location for v in per_wall.violations}
         self.assertTrue({"wall[276]", "wall[277]", "wall[278]"} <= flagged)
-
-    def test_the_rebuilt_city_curtain_passes_the_same_gate(self):
-        # And the fix is visible to the same gate: P1's one-sided fin puts
-        # 146 in a one_sided_middle, so the map no longer loses the tile.
-        # Five OTHER tiles are still lost -- the districts' `opening`
-        # materials on flush doorway thresholds -- which is the finding this
-        # rule was built to make and is in the owner review queue.
-        if not CITY.exists():
-            self.skipTest("no city build")
-        from bloodmap.format import read_map
-
-        found = self.rules["wall-tile-is-drawn-somewhere"].check(read_map(CITY))
-        self.assertNotIn("tile[146]", [v.location for v in found.violations])
 
     def test_both_rules_are_registered_with_an_engine_source(self):
         for rule_id in ("wall-draws-its-own-tile", "wall-tile-is-drawn-somewhere"):

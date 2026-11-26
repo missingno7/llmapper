@@ -1,0 +1,27 @@
+{
+ "id": "a-wall-under-the-sky-runs-to-the-sky",
+ "topic": "renderer",
+ "standing": "refuted",
+ "claim": "A wall standing under a parallax sky is drawn up to the sky.",
+ "evidence": [
+  "projects/blood-city/level/l3_station.py, the train shed note: 'I had written that a wall under a parallax sky runs to the sky. It runs to its sector's ceiling; the sky is drawn above that.'",
+  "NBlood/source/build/src/engine.cpp:4721 the upper step is drawn between the two sectors' ceilings"
+ ],
+ "use": "Give anything with openings a ceiling at its own roof height, or build it of sectors whose floors are its walls' tops.",
+ "code": [
+  "projects/blood-city/level/carriage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "opening",
+  "parallax",
+  "sky",
+  "train",
+  "wall"
+ ],
+ "instead": "A wall runs to its own sector's ceiling height and the sky is drawn above that. A free-standing car or kiosk under the open sky can have no door or window band, because the wall over an opening runs to that sector's ceiling; under a roof at the object's own height it can."
+}

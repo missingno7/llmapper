@@ -1,0 +1,28 @@
+{
+ "id": "tnt-barrels-in-threes-by-a-crack",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "Blood mostly stands a TNT barrel (type 400, tile 907, cstat 385, 64 by 64) alone, often by a wall crack: over the campaign the barrels fall into 90 groups (barrels within 1,024 of each other), 67 of them single, 14 pairs and 9 of three or more; 38 of the 90 groups stand within 1,200 of a crack (type 408), and 6 of the 9 larger ones. A barrel sets off its neighbour, so a short line of them can be a fuse to the wall.",
+ "evidence": [
+  "work/consolidation/audit3/census2.py over bloodmap.corpus.campaign_maps(), 2026-11-26: single-link groups at 1,024; nearest type-408 crack",
+  "E2M9 s1: barrels 448-450 (cstat 385) by crack sprite 451; E1M8 s390; E1M2 s270 (barrels 8-10 at cstat 8577, carried by their sector)"
+ ],
+ "use": "Stand a barrel or a short line of them where the player shoots, by a crack (type 408, which only a blast breaks); E6M1 sprite 262 is a crack sending to a shut Z-motion sector.",
+ "code": [
+  "bloodmap.breach.ragged",
+  "projects/blood-city/level/l3_church.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "barrel",
+  "chain",
+  "crack",
+  "explosive",
+  "fuse",
+  "tnt"
+ ]
+}

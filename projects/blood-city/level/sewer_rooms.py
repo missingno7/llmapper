@@ -24,7 +24,7 @@ from __future__ import annotations
 from bloodmap import arrangement as A, wiring
 from bloodmap.slope import SlopeSpec
 
-import refit
+from bloodmap import refit
 
 PU = 1024
 S = "region:gravesend/sewer/"
@@ -332,7 +332,7 @@ LYING = (("annex", "heap_n", 55.95, 15.1, 2333, 40, 42, 128), ("annex", "heap_s"
 def dress(layout) -> dict:
     """The lamps, the girders over the drum, the pumps' pipes, and what the bars have stopped."""
     import math
-    import wallplane
+    from bloodmap import wallplane
     for k, (room, cell, x, y, tile, xr, yr) in enumerate(LAMPS):
         region = BUILT[room][cell]
         r = layout.regions[region]

@@ -1,0 +1,27 @@
+{
+ "id": "wading-water-is-1120-at-depth-7",
+ "topic": "place",
+ "standing": "precedent",
+ "claim": "Blood's shallow water (a sewer channel, a slip, a basin) is tile 1120 with a faint shade wave (amplitude -4, frequency 4) and a slow floor pan; where a body should sink into it, its XSECTOR depth is 7 (E3M3 s198-217 and s227, 16 sectors), but most 1120 floors carry no depth at all (211 of the campaign's 227, E3M3's channel s120 among them). Tiles 404 and 433 read as dirt at the surface.",
+ "evidence": [
+  "E3M3 sector 120: floor 1120, shade_wave 7, amplitude -4, frequency 4, pan_floor, pan_velocity 8, depth 0",
+  "2026-11-26 count over the 43 campaign maps: 1120 floors by depth: 0 x211, 7 x16 (all E3M3: s198-200, s206-217, s227)"
+ ],
+ "use": "Use it for ankle-deep water; open sea is 2490/2448 in palette 10, and real underwater volumes need the underwater flag and a link pair.",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "1120",
+  "channel",
+  "sewer",
+  "shallow",
+  "wade",
+  "water"
+ ]
+}

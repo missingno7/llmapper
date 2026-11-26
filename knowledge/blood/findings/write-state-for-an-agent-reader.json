@@ -1,0 +1,25 @@
+{
+ "id": "write-state-for-an-agent-reader",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "Everything in llmapper is read by agents with no memory of it: state lives in the repository, generated and tested for staleness, as data a command can filter, each open item saying where it is owned and how to check it, and what is not known said so.",
+ "evidence": [
+  "The owner, 2026-11-19: 'you are doing everything for ai agents to work on that, so information needs to be done in a way that benefits them'."
+ ],
+ "use": "Put anything a later agent needs in a generated, queryable file, not in private notes.",
+ "code": [
+  "bloodmap.findings"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "agent",
+  "docs",
+  "memory",
+  "state",
+  "status"
+ ]
+}

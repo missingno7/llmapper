@@ -31,18 +31,22 @@ after the building. Nothing asked the three questions that matter:
                  vehicle. Added after two rounds of three readers passed
                  over rails laid ACROSS a train: nobody had been asked.
 
-A round is a packet (`prepare`) and its reviews (`record`), kept under
-the study. `verdict` reads them: a place PASSES a round only if the
+A round is a packet (`prepare`) and its reviews (`record`), kept by the
+project whose place it judges (`projects/<name>/reports/critique/<slug>`);
+Blood's own frames beside it come from the study of that slug, which every
+level shares. `verdict` reads them: a place PASSES a round only if the
 recognition reader names its kind unprompted and no reader marks a
 blocking defect. The mapper may not call a place done on its own frames.
 
 .. code-block:: bash
 
-    python -m tools.critique prepare station --poses railway --kind station
-    python -m tools.critique record station --round 1 --reader recognition \\
+    python -m tools.critique --project blood-city prepare station --poses railway --kind station
+    python -m tools.critique --project blood-city record station --round 1 --reader recognition \\
         --named "warehouse loading dock" --sure 2 --score 2 \\
         --blocking "the train reads as a striped wall" --file review.md
-    python -m tools.critique verdict station
+    python -m tools.critique --project blood-city verdict station
+
+`--project` may be left out when `LLMAPPER_PROJECT` names it.
 
 ``change`` hands a mechanism's before/after pairs (`tools.mechanism_look`)
 to readers who are told neither what the mechanism is nor which frame is
@@ -63,80 +67,75 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-sys.path.insert(0, str(ROOT / "projects" / "blood-city" / "level"))
+
+from bloodmap import project as P
 
 STUDIES = ROOT / "knowledge" / "blood" / "studies"
 READERS = ("recognition", "comparison", "use", "sense")
-CITY = ROOT / "projects" / "blood-city" / "level" / "blood-city-current.MAP"
 
 
 def mute_tiles() -> set[int]:
-    """Every tile the library reads as words: signs, boards, letters."""
-    from tools import catalog
+    """Every tile the library reads as words: signs, boards, letters (`bloodmap.tile_looks.word_tiles`)."""
+    from bloodmap.tile_looks import word_tiles
 
-    #: ... and any bill or poster the library tagged as carrying text
-    #: (round 2's reader: "a poster with legible lettering is still in")
-    return {tile for tile, row in catalog.tile_looks().items()
-            if row.get("class") in ("sign", "letter")
-            or "text" in row.get("tags", ())}
+    return set(word_tiles())
 
 
-def prepare(slug: str, poses: list[str], kind: str) -> pathlib.Path:
-    import look
-    from bloodmap.format import read_map, write_map
+def prepare(project: P.Project, slug: str, poses: list[str], kind: str, study: str | None = None) -> pathlib.Path:
+    """A new round of one place: our frames three ways, Blood's own beside them, and what they are frames OF.
 
-    folder = STUDIES / slug / "critique"
+    `study` names the shelf study whose seeds are Blood's frames (`knowledge/blood/studies/<study>`),
+    when the place's slug is not the study's. The packet records the map's SHA-256, the poses' and
+    every frame's: a reader's answer is about those bytes, and a later save makes it historical.
+    """
+    from bloodmap.format import read_map
+    from tools.look import digest, observe, pose_hash, poses_for
+
+    folder = project.rounds(slug)
     done = sorted(int(p.name.split("-")[1]) for p in folder.glob("round-*"))
     number = (done[-1] + 1) if done else 1
     packet = folder / f"round-{number}"
-    for sub in ("ours", "ours_mute", "ours_empty", "reference"):
-        (packet / sub).mkdir(parents=True, exist_ok=True)
-    level = read_map(CITY).to_level_ir()
+    (packet / "reference").mkdir(parents=True, exist_ok=True)
+    source = digest(project.map)
+    level = read_map(project.map).to_level_ir()
     views = []
     for name in poses:
-        views += look.poses_for(level, name)
-    quiet = mute_tiles()
+        views += poses_for(project, level, name)
+    about = {"project": project.key, "pose_sets": poses, "poses_sha256": pose_hash(project, poses)}
     #: `ours_empty` is the place with nobody and nothing to pick up in it
     #: (the owner: "without enemies and pickups ... to get rid of visual
     #: noise"): what the comparison and sense readers should judge the
-    #: BUILDING on. `ours_mute` is emptied too: a reader who must name the
-    #: place from its shapes should not name it from a clerk.
-    for sub, hide in (("ours", False), ("ours_mute", True),
-                      ("ours_empty", False)):
-        played = look.as_played(CITY, packet / sub,
-                                empty=sub != "ours")
-        if hide:
-            disk = read_map(played)
-            for sprite in disk.sprites:
-                if int(sprite.fields["picnum"]) in quiet:
-                    sprite.fields["cstat"] = int(sprite.fields["cstat"]) | 32768
-            write_map(disk, played)
-        look.run_observation(look.ObservationRequest(
-            map_path=played, output_dir=packet / sub,
-            resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
-            width=640, height=480, screenshots=[v.view_id for v in views],
-            brightness=0, rff=None))
+    #: BUILDING on. `ours_mute` is emptied too, and every word in it hidden
+    #: (sprites and walls): a reader who must name the place from its shapes
+    #: should not name it from a clerk or a sign.
+    frames = {}
+    for sub, empty, mute in (("ours", False, False), ("ours_mute", True, True), ("ours_empty", True, False)):
+        observe(project.map, views, packet / sub, empty=empty, mute=mute, about=about)
         #: neutral names, so a pose's name tells a reader nothing
-        frames = sorted((packet / sub / "frames").glob("*.png"))
-        for index, frame in enumerate(frames):
-            frame.rename(frame.with_name(f"view_{index + 1:02d}.png"))
+        for index, frame in enumerate(sorted((packet / sub / "frames").glob("*.png"))):
+            named = frame.with_name(f"view_{index + 1:02d}.png")
+            frame.rename(named)
+            frames[named.relative_to(packet).as_posix()] = digest(named)
     #: Blood's own, from the study's seeds
     count = 0
-    for sheet in sorted((STUDIES / slug).glob("*/frames.png")):
+    for sheet in sorted((STUDIES / (study or slug)).glob("*/frames.png")):
         count += 1
         shutil.copyfile(sheet, packet / "reference" / f"ref_{count:02d}.png")
+    if digest(project.map) != source:
+        raise RuntimeError(f"{project.map} was saved while the packet was made: prepare it again")
     (packet / "packet.json").write_text(json.dumps(
-        {"slug": slug, "kind": kind, "round": number, "poses": poses,
-         "views": len(views), "references": count,
-         "readers": list(READERS)}, indent=1), "utf-8")
+        {"project": project.key, "slug": slug, "kind": kind, "round": number, "poses": poses,
+         "views": len(views), "references": count, "study": study or slug,
+         "readers": list(READERS), "map": project.map.relative_to(ROOT).as_posix(), "source_sha256": source,
+         "poses_sha256": about["poses_sha256"], "frames": frames}, indent=1), "utf-8")
     return packet
 
 
-def record(slug: str, number: int, reader: str, named: str, sure: int,
+def record(project: P.Project, slug: str, number: int, reader: str, named: str, sure: int,
            score: int, blocking: list[str], text: str) -> None:
     if reader not in READERS:
         raise SystemExit(f"reader must be one of {READERS}")
-    packet = STUDIES / slug / "critique" / f"round-{number}"
+    packet = project.rounds(slug) / f"round-{number}"
     (packet / f"review-{reader}.md").write_text(text, "utf-8")
     path = packet / "reviews.json"
     data = json.loads(path.read_text("utf-8")) if path.exists() else {}
@@ -145,9 +144,10 @@ def record(slug: str, number: int, reader: str, named: str, sure: int,
     path.write_text(json.dumps(data, indent=1), "utf-8")
 
 
-def verdict(slug: str) -> list[dict]:
+def verdict(project: P.Project, slug: str) -> list[dict]:
+    """Every round a project has had of one place, oldest first, and whether each passes."""
     out = []
-    for packet in sorted((STUDIES / slug / "critique").glob("round-*"),
+    for packet in sorted(project.rounds(slug).glob("round-*"),
                          key=lambda p: int(p.name.split("-")[1])):
         meta = json.loads((packet / "packet.json").read_text("utf-8"))
         path = packet / "reviews.json"
@@ -196,26 +196,22 @@ ODD: <at most 20 words: anything that looks wrong or unreadable, or "nothing">
 SANDBOX = ROOT.parent / (ROOT.name + "-critique-sandbox")
 
 
-def prepare_things(slug: str) -> pathlib.Path:
+def prepare_things(project: P.Project, slug: str) -> pathlib.Path:
     import random
 
-    import look
-    from bloodmap.format import read_map, write_map
+    from bloodmap import visual as look
+    from bloodmap.format import read_map
+    from tools.look import hide_words, poses_for
 
-    spec = json.loads((STUDIES / slug / "things.json").read_text("utf-8"))
-    folder = STUDIES / slug / "critique"
+    folder = project.rounds(slug)
+    spec = json.loads((folder / "things.json").read_text("utf-8"))
     done = sorted(int(p.name.split("-")[1]) for p in folder.glob("things-*"))
     number = (done[-1] + 1) if done else 1
     packet = folder / f"things-{number}"
     (packet / "q").mkdir(parents=True, exist_ok=True)
-    played = look.as_played(CITY, packet / "render", empty=True)
-    disk = read_map(played)
-    quiet = mute_tiles()
-    for sprite in disk.sprites:
-        if int(sprite.fields["picnum"]) in quiet:
-            sprite.fields["cstat"] = int(sprite.fields["cstat"]) | 32768
-    write_map(disk, played)
-    views = look.poses_for(read_map(played).to_level_ir(), spec["poses"])
+    played = look.as_played(project.map, packet / "render", empty=True)
+    hide_words(played)
+    views = poses_for(project, read_map(played).to_level_ir(), spec["poses"])
     look.run_observation(look.ObservationRequest(
         map_path=played, output_dir=packet / "render",
         resource_dir=pathlib.Path("reference/blood"), viewpoints=views,
@@ -252,7 +248,7 @@ def _parse(text: str) -> dict:
     return out
 
 
-def ask_things(slug: str, number: int, models: list[str], effort: str,
+def ask_things(project: P.Project, slug: str, number: int, models: list[str], effort: str,
                workers: int = 8, repeat: int = 1) -> dict:
     """Every (model, view) asked by its own worker, all in parallel.
 
@@ -263,7 +259,7 @@ def ask_things(slug: str, number: int, models: list[str], effort: str,
     import subprocess
     import time
 
-    packet = STUDIES / slug / "critique" / f"things-{number}"
+    packet = project.rounds(slug) / f"things-{number}"
     key = json.loads((packet / "key.json").read_text("utf-8"))
     SANDBOX.mkdir(exist_ok=True)
     cx = pathlib.Path.home() / ".codex-dashboard" / "cx.py"
@@ -299,8 +295,8 @@ def ask_things(slug: str, number: int, models: list[str], effort: str,
     return answers
 
 
-def score_things(slug: str, number: int) -> dict:
-    packet = STUDIES / slug / "critique" / f"things-{number}"
+def score_things(project: P.Project, slug: str, number: int) -> dict:
+    packet = project.rounds(slug) / f"things-{number}"
     key = json.loads((packet / "key.json").read_text("utf-8"))
     answers = json.loads((packet / "answers.json").read_text("utf-8"))
 
@@ -455,11 +451,13 @@ def ask_change(packet: pathlib.Path, models: list[str], effort: str,
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("--project", default=None, help=f"whose place is judged: a directory under projects/ (or ${P.ENV})")
     sub = parser.add_subparsers(dest="command", required=True)
     prep = sub.add_parser("prepare")
     prep.add_argument("slug")
     prep.add_argument("--poses", action="append", required=True)
     prep.add_argument("--kind", required=True)
+    prep.add_argument("--study", default=None, help="the shelf study Blood's frames come from, when it is not the slug")
     rec = sub.add_parser("record")
     rec.add_argument("slug")
     rec.add_argument("--round", type=int, required=True)
@@ -500,16 +498,21 @@ def main(argv=None) -> int:
                 print(f"   {q} ({said['truth']['pose']}, after={said['truth']['after']}): "
                       f"said after={said['after']} sure {said['sure']}: {said['changed']}")
         return 0
+    try:
+        project = P.named(args.project)
+    except P.ProjectError as exc:
+        print(exc, file=sys.stderr)
+        return 2
     if args.command == "things":
         number = args.round
         if not number:
-            packet = prepare_things(args.slug)
+            packet = prepare_things(project, args.slug)
             number = int(packet.name.split("-")[1])
             print(packet)
         if args.model:
-            ask_things(args.slug, number, args.model, args.effort,
+            ask_things(project, args.slug, number, args.model, args.effort,
                        args.workers, args.repeat)
-            report = score_things(args.slug, number)
+            report = score_things(project, args.slug, number)
             for model, row in report["models"].items():
                 print(f"{model}: controls {row['controls_named']}, ours "
                       f"{row['ours_named']}, failed {row['failed']}, "
@@ -524,14 +527,14 @@ def main(argv=None) -> int:
                           f"{row['sure'][model]}) odd: {row['odd'][model]}")
         return 0
     if args.command == "prepare":
-        packet = prepare(args.slug, args.poses, args.kind)
+        packet = prepare(project, args.slug, args.poses, args.kind, args.study)
         print(packet)
     elif args.command == "record":
-        record(args.slug, args.round, args.reader, args.named, args.sure,
+        record(project, args.slug, args.round, args.reader, args.named, args.sure,
                args.score, args.blocking,
                pathlib.Path(args.file).read_text("utf-8"))
     else:
-        for row in verdict(args.slug):
+        for row in verdict(project, args.slug):
             print(f"round {row['round']}: "
                   f"{'PASSES' if row['passes'] else 'does not pass'}; "
                   f"named {row['named']!r} "

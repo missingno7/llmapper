@@ -1,0 +1,30 @@
+{
+ "id": "a-broken-thing-sends-off-on-death",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "A shootable object can open a secret: Blood hangs a fire extinguisher (kThingObjectGib) on a wall; when it dies the engine turns it OFF, and with trigger_off set that Off edge sends the thing's own command on its channel -- kCmdOn (1) in both precedents -- so a shut Z-motion sector in the wall behind it opens in a tenth of a second while exploders on the same channel go off staggered.",
+ "evidence": [
+  "E3M4 sprite 331 (type 416, tx 156, command 1, trigger_on and trigger_off) opens E3M4 s320 (type 600, rx 156, busy_time_a 1); E3M4 sprites 332-334 (type 459, rx 156, wait 1, 4, 3) the staggered charges",
+  "E1M2 sprite 489 (tx 114, command 1) opens E1M2 s240 and s241 (type 600) with exploders 490-492; that hole is a counted secret",
+  "NBlood/source/blood/src/actor.cpp:3513 trTriggerSprite(..., kCmdOff, ...) when a thing is destroyed; actor.cpp:2551 actInit starts every such thing at state 1, so the Off is an edge; triggers.cpp:626-634 OperateSprite turns it Off and gibs it; triggers.cpp:104-105 SetSpriteState sends pXSprite->command on the Off edge when triggerOff is set"
+ ],
+ "use": "Give the object a tx, trigger_off and the command the receivers need (On to open a shut sector); wire the hidden sector and the charges to it. Lay the hole ragged with bloodmap.breach.ragged.",
+ "code": [
+  "bloodmap.breach.ragged",
+  "projects/blood-city/level/l3_mall.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "blow",
+  "destructible",
+  "extinguisher",
+  "gib",
+  "hidden",
+  "reveal",
+  "secret"
+ ]
+}

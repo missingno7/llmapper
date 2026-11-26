@@ -405,8 +405,71 @@ def _slug(text: str) -> str:
     return slug or "view"
 
 
+def named_poses(level: LevelIR, poses: Mapping[str, Sequence[Any]], *, unit: int = 1024, ground_z: int = 0,
+                refused: list[str] | None = None) -> list[Viewpoint]:
+    """Poses written as directions, as viewpoints: `{view: (x, y, toward x, toward y, horiz, note[, floor z])}`.
+
+    A pose is where a person stands and what they face, in plan units of `unit`,
+    so that it reads like a direction ("on the quay, toward the avenue") and
+    survives a change of the plan around it. The eye is put at a standing
+    player's height over the floor of the sector the point is in; where places
+    are stacked, that is the sector whose floor is nearest `ground_z`, or
+    nearest the pose's own seventh item. A pose that stands in no sector is
+    left out and named in `refused`: the camera is never moved to where it fits.
+
+    A map that is edited by hand rather than built keeps its poses as it found
+    them: `{"x": .., "y": .., "angle": .., "sector": ..}` in Build units, with
+    `horiz` and `note` if wanted. The sector is the pose's word, not looked up.
+    """
+    from .sector_geom import sector_at
+
+    out = []
+    for view_id, pose in poses.items():
+        if isinstance(pose, Mapping):
+            sector = int(pose["sector"])
+            z = eye_z(level, sector)
+            if z is None:
+                if refused is not None:
+                    refused.append(f"{view_id}: no room for an eye in sector {sector}")
+                continue
+            out.append(Viewpoint(view_id=view_id, x=int(pose["x"]), y=int(pose["y"]), z=z, angle=int(pose["angle"]) & 2047,
+                                 horiz=int(pose.get("horiz", 100)), sector=sector, node=f"pose:{view_id}", purpose="loop",
+                                 screenshot=True, note=str(pose.get("note", ""))))
+            continue
+        px, py, tx, ty, horiz, note = pose[:6]
+        x, y = int(px * unit), int(py * unit)
+        sector = sector_at(level, x, y, floor_near=pose[6] if len(pose) > 6 else ground_z)
+        z = eye_z(level, sector) if sector is not None else None
+        if z is None:
+            if refused is not None:
+                refused.append(f"{view_id}: no sector to stand in at ({x},{y})" if sector is None
+                               else f"{view_id}: no room for an eye in sector {sector}")
+            continue
+        out.append(Viewpoint(view_id=view_id, x=x, y=y, z=z, angle=int(angle_toward((x, y), (int(tx * unit), int(ty * unit)))) & 2047,
+                             horiz=horiz, sector=sector, node=f"pose:{view_id}", purpose="loop", screenshot=True, note=note))
+    return out
+
+
+def sector_poses(level: LevelIR, sectors: Iterable[int], *, horiz: int = 100) -> list[Viewpoint]:
+    """One view of each sector from inside it, toward its farthest corner: how a reference map's room is looked at."""
+    from .sector_geom import outline_and_holes
+
+    out = []
+    for sector_id in sectors:
+        point, z = interior_point(level, sector_id), eye_z(level, sector_id)
+        if point is None or z is None:
+            continue
+        outer, _holes = outline_and_holes(level, sector_id)
+        far = max(outer, key=lambda p: (p[0] - point[0]) ** 2 + (p[1] - point[1]) ** 2)
+        out.append(Viewpoint(view_id=f"sector_{sector_id}", x=point[0], y=point[1], z=z, angle=int(angle_toward(point, far)) & 2047,
+                             horiz=horiz, sector=sector_id, node=f"sector:{sector_id}", purpose="reference", screenshot=True,
+                             note=f"reference sector {sector_id}"))
+    return out
+
+
 __all__ = [
     "PURPOSES", "ViewPlanError", "Pose",
     "sector_area", "interior_point", "eye_z", "angle_toward", "portals_of",
     "plan_node_views", "plan_connection_views", "plan_structure_views", "plan_level_views",
+    "named_poses", "sector_poses",
 ]

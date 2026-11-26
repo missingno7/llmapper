@@ -211,7 +211,7 @@ maps skipped (wall-ownership failure)   : 3
 
 Full rows for both classes, including every ambiguous sector, are in
 `reports/blood-contrast-shelf-vs-crate.json` and
-`reports/blood-contrast-bookcase-vs-crate.json`.
+`reports/archive/blood-contrast-bookcase-vs-crate.json`.
 
 
 ## Owner preliminary review (2026-08-31, rendered sector sheet)

@@ -1,0 +1,26 @@
+{
+ "id": "a-slide-reads-only-the-difference-of-its-markers",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A slide (614/616) moves its walls and sprites by the difference between its two markers (DragPoint to x+vc-a4), so where the marker pair stands is free: 52 of 248 tutorial movers park the pair far from the poses. A pose can never be read from the markers' coordinates.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:884-887 and :897 (DragPoint(nWall, x+vc-a4, y+v8-a5)).",
+  "Count of parked pairs over the tutorial movers by bloodmap.curriculum, 2026-09-01."
+ ],
+ "use": "Place the two markers wherever is convenient; read the travel as marker1 minus marker0.",
+ "code": [
+  "bloodmap.motion.off_pose"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "614",
+  "616",
+  "marker",
+  "slide",
+  "travel"
+ ]
+}

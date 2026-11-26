@@ -1,0 +1,24 @@
+{
+ "id": "a-turnstile-you-can-walk-round-reads-wrong",
+ "topic": "mechanism",
+ "standing": "ruling",
+ "claim": "A turnstile standing in an open concourse with free passage beside it reads as a toy: the player sees he can walk round it. A gate earns its place only where it is the way through.",
+ "evidence": [
+  "the owner, 2026-11-25, of Gravesend Station's turnstile: 'little weird if you can just go around it'; it was removed (projects/blood-city/references/station-design.md)"
+ ],
+ "use": "Put a turnstile in the only opening of a fenced line, or leave it out.",
+ "code": [
+  "projects/blood-city/references/station-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "barrier",
+  "fare",
+  "gate",
+  "turnstile"
+ ]
+}

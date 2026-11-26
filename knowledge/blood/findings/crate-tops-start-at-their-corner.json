@@ -1,0 +1,25 @@
+{
+ "id": "crate-tops-start-at-their-corner",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "71% of the campaign's 110 raised crate tops begin their tile at the crate's own corner, so the box wears a whole picture whatever the world grid.",
+ "evidence": [
+  "71% of the campaign's 110 raised crate tops begin at the crate's corner (counted for projects/blood-city/level/build_skeleton.py)"
+ ],
+ "use": "Relative-align the top of a crate or a tomb to its first wall.",
+ "code": [
+  "projects/blood-city/level/build_skeleton.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "align",
+  "box",
+  "crate",
+  "floor",
+  "relative"
+ ]
+}

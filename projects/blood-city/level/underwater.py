@@ -418,7 +418,7 @@ def build(layout) -> dict:
 
 
 def _put(layout, name, region, x, y, tile, repeats, *, cstat=128, up=0, z=None, **fields) -> str:
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_extent
     room = layout.regions[region]
     width_repeat, tall = repeats

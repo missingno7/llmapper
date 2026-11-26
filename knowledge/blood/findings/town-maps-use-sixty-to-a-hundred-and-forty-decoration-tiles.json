@@ -1,0 +1,27 @@
+{
+ "id": "town-maps-use-sixty-to-a-hundred-and-forty-decoration-tiles",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Blood's town maps set down many distinct decoration tiles: E3M1 61, E1M4 104, E1M2 109, DWE3M1 142; 335 decoration tiles across seven town maps, 143 of them in two or more maps. A town with under 40 reads as one small kit repeated.",
+ "evidence": [
+  "tools/mine_city_assets.py over seven town maps (knowledge/blood/references/city-assets.json); Gravesend went from 38 to 85 and a blind reviewer stopped calling interiors 'a small kit'",
+  "Recounted 2026-11-26 from city-assets.json: 335 tiles, 143 of them in two or more of its seven maps (E3M1, E3M2, E1M2, E1M4, E6M1, DWE3M1, DWE3M10)"
+ ],
+ "use": "Draw a town's goods from city-assets.json, each tile with the fields the town maps give it, and check a tile's campaign uses before reading its picture.",
+ "code": [
+  "tools/mine_city_assets.py",
+  "projects/blood-city/level/goods.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "assets",
+  "decoration",
+  "goods",
+  "props",
+  "variety"
+ ]
+}

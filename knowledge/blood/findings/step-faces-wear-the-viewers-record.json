@@ -1,0 +1,27 @@
+{
+ "id": "step-faces-wear-the-viewers-record",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "The side of a raised floor, a counter or a stall is drawn from the wall record on the side that sees it, usually the street's or room's own, not from the raised sector's. A raised thing's own wall tile shows on its face only if it is painted on its neighbours' records, or if the neighbour's record carries cstat 2, which draws the lower step from the other side's wall.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:4832-4835: the lower step takes its picture from twal = (wal->cstat&2) ? wall[wal->nextwall] : wal, where wal is the wall of the sector being drawn",
+  "projects/blood-city/level/build_skeleton.py: market stalls, the fountain rim and the monument steps all wore the street's facade until dressed"
+ ],
+ "use": "Paint a raised thing's face on the record of whoever looks at it (or set cstat 2 on that record to borrow the raised side's wall).",
+ "code": [
+  "bloodmap.skyline.dress_steps"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "band",
+  "counter",
+  "face",
+  "raised",
+  "riser",
+  "step"
+ ]
+}

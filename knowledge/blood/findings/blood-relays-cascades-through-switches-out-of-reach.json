@@ -1,0 +1,25 @@
+{
+ "id": "blood-relays-cascades-through-switches-out-of-reach",
+ "topic": "mechanism",
+ "standing": "tendency",
+ "claim": "603 of Blood's 2,775 campaign wiring chains pass through a listener placed where no player goes, used as a relay that turns one event into a cascade; most such relays are switches (types 20-22), the rest plain sprites, sectors and generators.",
+ "evidence": [
+  "2,775 chains over the campaign by bloodmap.wiring.chains with reach from bloodmap.reachability.sector_kinds; 603 with closet_relays, recounted 2026-11-26 (bloodmap/wiring.py:154 says 607)"
+ ],
+ "use": "A switch in a sealed closet is a relay, not a mistake; read it as part of the chain.",
+ "code": [
+  "bloodmap.wiring.chains"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "cascade",
+  "closet",
+  "hidden",
+  "relay",
+  "switch"
+ ]
+}

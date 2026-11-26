@@ -8,12 +8,12 @@ lever opens something that cannot be opened by hand.
 
 Measured, not chosen:
 
-* **tile 1070** is the lever -- a handle on a rusty plate, 356 instances,
-  more than twice the next switch tile.
+* **tile 1070** is the lever -- a handle on a rusty plate, 283 sprites over
+  the campaign's 43 maps.
 * it is **wall-aligned** (cstat 464 = 16 | 64 | 128 | 256) at repeats
   40x40, shade -8.
-* **351 of its 356 instances carry a tx_id**, and the modal command is
-  **1 = kCmdOn** (183 of them), with initial state 0 (350 of them).
+* **280 of its 283 sprites carry a tx_id**, and the modal command is
+  **1 = kCmdOn** (147 of them), with initial state 0.
 
 A switch that reports only its ON sends nothing every second push. `place` writes
 the push; whoever wires it says `on=True, off=True` when it is to work both ways.
@@ -47,7 +47,7 @@ def place(layout, placement_id: str, street_region_id: str, segment,
     Delegates to `bloodmap.switches.pressed_switch`, which is the general
     grammar for this and was sitting unused while this module reinvented
     it -- worse.  The hand-rolled version omitted `trigger_push` and
-    `trigger_on`, which 230 and 316 of the campaign's 356 tile-1070 levers
+    `trigger_on`, which 160 and 241 of the campaign's 283 tile-1070 levers
     respectively set: our levers could not be pushed.  It also had to
     rediscover the 0.79 mount height from `switches-v1.json` that
     `pressed_switch` already returns.

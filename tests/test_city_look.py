@@ -7,21 +7,17 @@ starts, stack markers, sounds, etc."
 
 from __future__ import annotations
 
-import sys
 import tempfile
 import unittest
 from pathlib import Path
 
-LEVEL = Path("projects/blood-city/level")
 E1M1 = Path("maps/blood/campaign/E1M1.MAP")
 
 
 @unittest.skipUnless(E1M1.exists(), "no E1M1")
 class AsPlayedTests(unittest.TestCase):
     def test_starts_markers_sounds_and_exploders_are_hidden(self):
-        if str(LEVEL) not in sys.path:
-            sys.path.insert(0, str(LEVEL))
-        import look
+        from bloodmap import visual as look
         from bloodmap.format import read_map
 
         with tempfile.TemporaryDirectory() as folder:
@@ -71,9 +67,7 @@ class AsPlayedTests(unittest.TestCase):
     def test_a_place_can_be_seen_with_nobody_and_nothing_in_it(self):
         #: the owner: "check how it looks like without enemies and pickups
         #: for example to get rid of visual noise"
-        if str(LEVEL) not in sys.path:
-            sys.path.insert(0, str(LEVEL))
-        import look
+        from bloodmap import visual as look
         from bloodmap.format import read_map
 
         with tempfile.TemporaryDirectory() as folder:

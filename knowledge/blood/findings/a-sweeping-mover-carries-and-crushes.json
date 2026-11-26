@@ -1,0 +1,24 @@
+{
+ "id": "a-sweeping-mover-carries-and-crushes",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A sector sliding across a room engulfs whatever stands in its path and carries it along on a perfectly good floor until it reaches a wall, where it is crushed: 'can a body stand there' is not 'is a body safe there'. A switch whose standing place lies in the swept area kills the player who uses it.",
+ "evidence": [
+  "Seen in a headless bot run on AGTST18 (2026-08-27): channel 112 drove a slide door (sector 70) and the room it sweeps (sector 87); the bot pressed it from a stance 57 units short of the wall's sector with a 192-wide body and died."
+ ],
+ "use": "Put every control of a sweeping mover outside the area it sweeps, with a body's width to spare.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "crush",
+  "door",
+  "slide",
+  "stance",
+  "sweep",
+  "switch"
+ ]
+}

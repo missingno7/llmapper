@@ -1,0 +1,28 @@
+{
+ "id": "a-vehicle-with-an-inside-is-hull-sectors-and-a-sprite-roof",
+ "topic": "construction",
+ "standing": "ruling",
+ "claim": "A vehicle you can enter (a railway carriage) is built of hull sectors about 256 thick with their floors at roof height, a window as a hull stretch whose floor sits at the sill, a door as a stretch whose floor sinks, the inside as a room under the common sky, and a roof of floor-aligned solid sprites (cstat 32|1|256) at the hull's top. Never lower a parallax sky over the vehicle: it looks bad from outside.",
+ "evidence": [
+  "The owner, 2026-11-19: 'Carriage can be made out of red sectors and ceiling can be made out of floor aligned solid sprites, this will make it working without lowering sky which looks bad from the outside.'"
+ ],
+ "use": "projects/blood-city/level/l3_station.py is the worked example; lay the roof with bloodmap.flatsprite.cover.",
+ "code": [
+  "projects/blood-city/level/l3_station.py",
+  "bloodmap.flatsprite.cover"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "boat",
+  "carriage",
+  "hull",
+  "roof",
+  "sky",
+  "train",
+  "vehicle"
+ ]
+}

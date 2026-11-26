@@ -1,0 +1,28 @@
+{
+ "id": "blood-town-streets-are-wider-than-duke-city-streets",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "In the two Blood towns measured, streets run a median 7,168 (E3M1) and 7,552 (DWE3M1) units wide, about 19 player widths, against 5,120-5,248 in all four DukCity maps; E3M1's facade height is a median 1.68 times its street width, DukCity's 2.1, DWE3M1's only 0.32 (a low town). DukCity's alleys are about 1,024 and its plazas 8k-24k.",
+ "evidence": [
+  "tools/mine_city_norms.py over E3M1, DWE3M1, DukCity1-4: 701 to 2,818 width samples a map; knowledge/blood/references/city-norms.md:23-35 and city-norms.json",
+  "one campaign map and one community map: a small population"
+ ],
+ "use": "Size a Blood main street 6,144-7,168 wide with its facades about 1.7 times that tall; a dense core lane 3,072-3,584.",
+ "code": [
+  "knowledge/blood/references/city-norms.md",
+  "tools/mine_city_norms.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "alley",
+  "canyon ratio",
+  "city",
+  "plaza",
+  "street width",
+  "town"
+ ]
+}

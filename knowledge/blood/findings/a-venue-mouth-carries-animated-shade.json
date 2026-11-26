@@ -1,0 +1,26 @@
+{
+ "id": "a-venue-mouth-carries-animated-shade",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "A venue's marquee is animated shade, not geometry: threshold sectors at the mouth carry an xsector shade wave. Every E1M4 attraction mouth has it (the ring's mouth 9 animated sectors, others 1-3) and E3M1's saloon and its neighbour carry one each. Signs cluster within 2,048 of the door on the public side (39 face sprites round 7 doorways in E3M1's complex).",
+ "evidence": [
+  "tools/mine_venues.py over E1M4, E3M1 and DWE3M1: 9 animated mouth sectors on E1M4's ring, 1-3 on its other attractions, 1 each on E3M1's saloon and neighbour (venue-mining.json)"
+ ],
+ "use": "Give each venue door one or more flickering threshold sectors and its signs on the street side; it costs no walls.",
+ "code": [
+  "knowledge/blood/references/venue-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "doorway",
+  "flicker",
+  "marquee",
+  "shade wave",
+  "sign",
+  "venue"
+ ]
+}

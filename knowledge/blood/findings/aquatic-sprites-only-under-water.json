@@ -1,0 +1,25 @@
+{
+ "id": "aquatic-sprites-only-under-water",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Weed and bubble sprites appear only in underwater sectors: tile 664 is 82 campaign sprites in 46 sectors and 660 is 145 sprites in 68 sectors, every one submerged (XSECTOR underwater), never in shallow depth water.",
+ "evidence": [
+  "recount 2026-11-26 over the 43 campaign maps; the rule aquatic-sprite-is-under-water in bloodmap.rules_blood, whose text says '82 sectors' and '142' where the sprites are 82 and 145. The rule's wet set also holds 546, which stands dry 7 times (E1M5, E3M4, E6M2)"
+ ],
+ "use": "Keep aquatic dressing out of wading water.",
+ "code": [
+  "bloodmap.rules_blood"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "aquatic",
+  "bubbles",
+  "kelp",
+  "underwater",
+  "weed"
+ ]
+}

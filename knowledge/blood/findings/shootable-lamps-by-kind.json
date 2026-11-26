@@ -1,0 +1,28 @@
+{
+ "id": "shootable-lamps-by-kind",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "Which lamps Blood lets the player shoot out: over 102 maps, 62 of 288 fluorescent panels (2290), 8 of 9 long ones, 6 of 14 brass lamps, 5 of 148 brass lanterns (693; each takes its light with it), a round glass lamp (676); posts, chain lamps, torches and candles none. A row of panels is one circuit: shoot one and the row goes.",
+ "evidence": [
+  "E2M1 sprite 10 (693, type 416, shade -128, tx 108); E1M3 sprite 18 (676); E1M2 sprites 630-633 (2288, type 416, tx and rx 189)",
+  "counts in projects/blood-city/level/shot_lamps.py"
+ ],
+ "use": "Make panels, lanterns and globes breakable where a room is lit by them; switch the light with each (LampGroup), one pool to a lamp.",
+ "code": [
+  "bloodmap.light_stage.LampGroup",
+  "projects/blood-city/level/shot_lamps.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "breakable",
+  "destructible",
+  "gib",
+  "lamp",
+  "panel",
+  "shoot"
+ ]
+}

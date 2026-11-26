@@ -1,0 +1,27 @@
+{
+ "id": "every-lit-sector-has-a-source",
+ "topic": "light",
+ "standing": "ruling",
+ "claim": "No sector may be lit without a visible source of that light, and a lamp that blinks, goes out or travels must change every sector it lights, not only its own.",
+ "evidence": [
+  "The owner, 2026-11-24: 'there are light sectors withou apparent source of light, when you made light blinking it should also affect neighbouring sectors that are lit by that light'."
+ ],
+ "use": "Hang lamps and let the light stage trace them rather than painting pools; a lamp that switches is a LampGroup and switch_lamps gives all its sectors the same wave and wire. A sector that transmits (a secret) cannot take a lamp's rx, since an object has one rx and one tx.",
+ "code": [
+  "bloodmap.light_stage.LampGroup",
+  "bloodmap.light_stage.switch_lamps"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "blinking",
+  "flicker",
+  "lamp",
+  "light",
+  "light pool",
+  "source"
+ ]
+}

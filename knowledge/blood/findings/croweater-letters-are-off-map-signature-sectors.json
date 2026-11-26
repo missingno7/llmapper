@@ -1,0 +1,27 @@
+{
+ "id": "croweater-letters-are-off-map-signature-sectors",
+ "topic": "validation",
+ "standing": "tendency",
+ "claim": "Fifteen campaign maps (E1M2, E1M5, E2M1-E2M4, E3M2, E3M4, E3M7, E3M8, E4M2, E4M3, E4M7-E4M9) plus BB3 and BB5 carry an off-map signature: nine empty sectors of 10-19 vertices in a row spelling 'croweater', 153 sectors in all. Read as rooms they corrupt any shape statistic.",
+ "evidence": [
+  "outlines in knowledge/blood/offmap-signature-glyphs.json; bloodmap/reachability.py:17-20",
+  "2026-11-26 recount with bloodmap.reachability.classify_offmap: 153 signature sectors in 15 of 43 campaign maps, nine in each and eighteen in E2M2 and E4M3 (work/consolidation/audit_mid/closets.py)"
+ ],
+ "use": "Measure level design through bloodmap.reachability.design_sectors, which leaves the letters, closets and helpers out.",
+ "code": [
+  "bloodmap.reachability.design_sectors",
+  "knowledge/blood/offmap-signature-glyphs.json"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-23"
+ },
+ "words": [
+  "letters",
+  "off-map",
+  "signature",
+  "statistics",
+  "unreachable"
+ ]
+}

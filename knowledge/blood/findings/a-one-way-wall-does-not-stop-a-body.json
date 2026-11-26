@@ -1,0 +1,26 @@
+{
+ "id": "a-one-way-wall-does-not-stop-a-body",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Wall cstat 32 (one-way) cuts the renderer's sector flood but not movement: clipmove tests only bit 0, so a body walks through a one-way wall unless bit 0 is set too. The cut is directional: the flag lives on one of the two coincident walls and stops only views that start on its own side.",
+ "evidence": [
+  "NBlood/source/build/include/buildtypes.h:154 CSTAT_WALL_1WAY = 1<<5; build.h:225 CLIPMASK0 is bits 0 and 16; clip.cpp:1626 tests wal->cstat & dawalclipmask"
+ ],
+ "use": "Flag both walls of a pair to cut visibility both ways; set bit 0 as well only where a body must be stopped. overlap_visibility reads the flood as a directed graph.",
+ "code": [
+  "bloodmap.overlap_visibility",
+  "bloodmap.planar_layout"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "cstat 32",
+  "flood",
+  "one-way",
+  "overlap",
+  "visibility"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "e3m8-density-is-short-walls-and-trim",
+ "topic": "construction",
+ "standing": "tendency",
+ "claim": "E3M8, the prettiest dense Blood map, is not bigger than a plain one but denser: 34.2 sectors per 100 square bodies (E1M1 13.3); median wall run 1.33 body widths; 40 wall tiles including a trim tier of narrow pilasters (93, 115, 195, 479 at 32x128 and 16x128) and thin string courses (6 at 64x8, 200 at 32x16); median shade step between neighbours 2 (p95 31); 27% of sectors sloped; 52 floor levels within 6.3 bodies of range.",
+ "evidence": [
+  "knowledge/blood/design/e3m8-reference-v1.json (2026-08-27), with E1M1 as control; our candidate: wall run 3.00, 17 tiles, shade step 7, 2% slopes."
+ ],
+ "use": "Segment long walls first (field / pilaster / field with bloodmap.layout.Run) so trim has somewhere to sit; then shade gradually and add small level changes.",
+ "code": [
+  "bloodmap.layout.Run"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "density",
+  "detail",
+  "e3m8",
+  "pilaster",
+  "slopes",
+  "string course",
+  "trim"
+ ]
+}

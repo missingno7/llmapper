@@ -1,0 +1,27 @@
+{
+ "id": "pews-have-a-seat-a-back-and-floor-between",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "Blood's pews have a profile: in E3M4's chapel each pew is a seat 512 deep raised 6,144 (0.36 of a body) in wood (top 34, faces 88), the rows 1,536 apart so floor shows between them; DWE1M4's cathedral pairs a seat (5,120) with a taller back strip behind it (14,336, 0.85). Flat kerbs 1,024 apart read as one stepped mass.",
+ "evidence": [
+  "E3M4 s280-285: floor 43,008 over the nave's 49,152, 512 deep, centres 1,536 apart, floor tile 34, walls 88 (work/consolidation/audit3/p3.py, 2026-11-26)",
+  "DWE1M4 s229 (seat, floor 149,504) and s230 (back, 140,288) over aisle s276 at 154,624",
+  "knowledge/blood/studies/church (gaps.md item 2: the 0.72-body back of templates.py is our recipe, not a measurement)"
+ ],
+ "use": "Build each pew as two tiers a slit apart; leave a side aisle for lights.",
+ "code": [
+  "projects/blood-city/level/templates.py:chapel_furnishing"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "bench",
+  "church",
+  "nave",
+  "pew",
+  "seating"
+ ]
+}

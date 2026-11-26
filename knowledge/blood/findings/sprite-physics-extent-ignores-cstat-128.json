@@ -1,0 +1,31 @@
+{
+ "id": "sprite-physics-extent-ignores-cstat-128",
+ "topic": "sprite",
+ "standing": "engine",
+ "claim": "Blood's GetSpriteExtents measures a sprite's top and bottom from the tile height and its y offset only, ignoring cstat 128, while the renderer honours bit 128. A sprite seated by its physics box is drawn sunk or floating. Town maps seat by what is drawn: their worst rates are 2.1% sunk and 5.6% squeezed.",
+ "evidence": [
+  "NBlood/source/blood/src/db.h:325-334 GetSpriteExtents; NBlood/source/build/src/engine.cpp:5140 and :5401 (cstat&128 in sprite drawing).",
+  "tools/sprite_fit.py --rates over the town maps, 2026-11-18."
+ ],
+ "use": "Seat sprites by the drawn extent and run the sprite lint after placing or moving any sprite; read the list, not just the rate.",
+ "code": [
+  "bloodmap.placement.drawn_extent",
+  "bloodmap.placement.drawn_lift",
+  "tools/sprite_fit.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "128",
+  "cstat",
+  "extent",
+  "floating",
+  "lint",
+  "seat",
+  "sprite",
+  "sunk"
+ ]
+}

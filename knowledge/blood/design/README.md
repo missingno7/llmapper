@@ -23,7 +23,6 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `e3m8-reference-v1.json` | one target map measured end to end, as a yardstick |
 | `fixtures-v1.json` | fixture tiles attested across Death Wish and the campaign |
 | `keys-v1.json` | key tiles, key-to-tile votes and the placards that signal them |
-| `knowledge-index-v1.json` | the index over these files, by provenance |
 | `layers-v1.json` | stacked space: technique usage, z ambiguity, portal separation |
 | `mechanism-curriculum-v1.json` | the mechanism tutorials mined: constructs, sentences and 17 laws, each with its detector's evidence and its citation |
 | `mechanisms-v1.json` | mechanism shapes: channels per map, objects per channel |
@@ -38,7 +37,6 @@ requires local unsigned mines in `work/` (gitignored). The compiled
 | `sprite-heights-v1.json` | attested seated heights per sprite tile |
 | `stacks-v1.json` | room-over-room pairs and their families |
 | `storeys-v1.json` | storey structure per map |
-| `visual-construction-atlas-v1.json` | how a recognisable thing is assembled from Build primitives: native facts, derived counts and what viewers took it for, kept apart, each record with a status (`observed_once`, `transferred`, `refuted`) |
 | `surface-items-v1.json` | what stands on surfaces, by source |
 | `surface-palettes-v1.json` | surface palettes conditioned on band, with held-out sectors |
 | `switches-v1.json` | switch tiles and the eye heights they sit at |
@@ -82,13 +80,13 @@ Nothing is being shipped on the strength of a body that was never walked.
 
 A project should record
 its one-off choice in source and its evidence in a report; a repeated need must
-be promoted to the relevant `bloodmap` constructor and regression test.  The
-[shared authoring toolkit](../../../docs/authoring-toolkit.md) gives the full
-routing and ownership rule.
+be promoted to the relevant `bloodmap` constructor and regression test.  
+[What is in the toolkit](../../../docs/toolkit-index.md) says where each need
+is answered.
 
 SP mechanism compositions from E2M2 (fan-out TX/RX, single motion gates) were
 searched on the 43-map campaign and stored in
-[`reports/E2M2-mechanism-patterns.json`](../../../reports/E2M2-mechanism-patterns.json).
+[`reports/archive/E2M2-mechanism-patterns.json`](../../../reports/archive/E2M2-mechanism-patterns.json).
 They are not catalog-v1 entries until `compile_catalog.py` grows a mechanism view.
 
 See [docs/design-pattern-discovery.md](../../../docs/design-pattern-discovery.md).

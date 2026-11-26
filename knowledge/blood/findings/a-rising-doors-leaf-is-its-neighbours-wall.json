@@ -1,0 +1,35 @@
+{
+ "id": "a-rising-doors-leaf-is-its-neighbours-wall",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A door that rises is a sector with no height at rest, so its own walls are never drawn while it is shut: the leaf a player sees is the upper band of each NEIGHBOUR's wall onto it. Paint the leaf's tile on the neighbours' sides of the two portal edges; a tile painted on the door sector's own walls is drawn nowhere.",
+ "evidence": [
+  "projects/cold-store, 2026-11-26: tile 495 on the door sector's walls was refused by the rule wall-tile-is-drawn-somewhere (one-sided wall in a zero-height sector draws nothing); painted on the passage's and the hall's side of the door's edges, the frame shows a metal leaf",
+  "bloodmap.render_slots: which band the renderer draws each wall tile on",
+  "projects/signal-box: rule warning on tile 170 until both sides were painted; frames/mech-gate/pairs.png shows the boards rising"
+ ],
+ "use": "After program.compile(): bloodmap.doors.hang_leaf(layout, door, tile, (\"west\", passage), (\"east\", hall)) paints the leaf on each neighbour's side (doors.rising_door makes the door room). The gate names the mistake as wall-tile-is-drawn-somewhere.",
+ "code": [
+  "bloodmap.doors.hang_leaf",
+  "bloodmap.doors.rising_door",
+  "bloodmap.render_slots",
+  "projects/cold-store/level/build.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "cold-store",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "band",
+  "crossing gate",
+  "door",
+  "door leaf",
+  "gate",
+  "leaf",
+  "lintel",
+  "shut",
+  "upper",
+  "zmotion"
+ ]
+}

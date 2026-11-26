@@ -25,7 +25,7 @@ BUILDING -- doorways on edge-frontage buildings included, which the
 walk-around block census structurally missed.
 
     python -m tools.mine_urban_semantics TEDE1M2 E3M2 E3M1 E1M4 DWE3M10 \\
-        -o projects/blood-city/references/urban-semantics.json --plots DIR
+        -o knowledge/blood/references/urban-semantics.json --plots DIR
 
 Derived labels; thresholds echoed in the output.
 """
@@ -492,7 +492,7 @@ def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("maps", nargs="+")
     parser.add_argument("-o", "--output",
-                        default="projects/blood-city/references/urban-semantics.json")
+                        default="knowledge/blood/references/urban-semantics.json")
     parser.add_argument("--plots", default=None)
     parser.add_argument("--game", default="blood")
     args = parser.parse_args(argv)

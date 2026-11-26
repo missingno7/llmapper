@@ -1,0 +1,27 @@
+{
+ "id": "a-gated-room-must-declare-its-zero-exit",
+ "topic": "construction",
+ "standing": "refuted",
+ "claim": "A room whose only way in is a shut door (a crossing gate, a vault) fails the compile with zero_exit_gameplay_sector at sector[N]; give it region_kwargs {'declared_zero_exit': True} and pass gated=True on both of the door's connections. The error names a sector number, not the region: count rooms in the order they were declared to find it.",
+ "evidence": [
+  "bloodmap/geometry_audit.py zero_exit_gameplay_sector; projects/signal-box/level/build.py far_road",
+  "bloodmap/planar_layout.py compile: rooms connected to a gated region are added to the declared zero-exit set; tests/test_readback.py RisingDoorReadBack builds a hall shut in by a door with no declaration"
+ ],
+ "use": "",
+ "code": [
+  "bloodmap.planar_layout.PlanarLayout.compile",
+  "bloodmap.doors.rising_door"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "signal-box",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "door",
+  "gate",
+  "locked",
+  "zero exit"
+ ],
+ "instead": "Since 2026-11-26 a room joined to a door (a type 600 or 602 sector, or a region of role doorway or gated_pocket) is accepted as shut in rather than cut off: PlanarLayout.compile allows it without a declaration. Only a room whose way out is something the compiler cannot see as a door (a lift it rides, a wall that gives) still needs region_kwargs={'declared_zero_exit': True}; a room joined to nothing is still refused, and the message now names the region and the remedy."
+}

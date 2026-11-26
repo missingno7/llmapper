@@ -1,0 +1,25 @@
+{
+ "id": "observer-frames-need-poses-snapped-to-1024",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "The XMapEdit observer truncates negative coordinates, so frames of a map translated by a fraction of 1,024 do not match; it also cannot draw a mirror (504 on a one-sided wall), which only the game shows.",
+ "evidence": [
+  "Gravesend's release translation and underpass mirror, 2026-11-25."
+ ],
+ "use": "Snap poses to 1/1024 before comparing frames; judge mirrors in play.",
+ "code": [
+  "bloodmap.visual.run_observation"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "frame",
+  "mirror",
+  "observer",
+  "pose",
+  "render"
+ ]
+}

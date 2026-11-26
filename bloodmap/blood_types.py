@@ -313,7 +313,7 @@ COMMANDS: dict[int, dict[str, Any]] = {
 
 #: ``kCmdNumberic``.  Every command from 64 upward carries the number
 #: ``command - 64`` rather than an instruction, and what the number means is
-#: decided by the channel it is sent on.  843 objects in the campaign use this
+#: decided by the channel it is sent on.  325 objects in the campaign use this
 #: and all 43 maps contain at least one.
 NUMERIC_COMMAND_BASE = 64
 NUMERIC_COMMAND_MAX = 255

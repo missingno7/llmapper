@@ -28,7 +28,7 @@ def build(layout) -> list[str]:
     """Write them, where the wall has room; returns what was written."""
     from shapely import Point, Polygon
     import gallows
-    import wallplane
+    from bloodmap import wallplane
     done = []
     for name, tile, (x, y, floor), (a, b), t, high, _about in WRITINGS:
         at = Point(x * PU, y * PU)

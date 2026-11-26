@@ -1,0 +1,35 @@
+{
+ "id": "a-roof-seen-over-forbids-a-door-beneath",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "Build keeps one open span per screen column. When a building's walls are low enough to see over, the columns above them stay open for what is behind, and anything the renderer reaches through a door in that wall paints into them too: an open door into a roofed room smeared 18,000 to 23,000 pixels of its ceiling across the sky over the facade.",
+ "evidence": [
+  "seen in the XMapEdit observer run of experiments/church-roofs (README there); the owner saw the matching lid of a low sky walking it in NBlood, 2026-11-17",
+  "projects/blood-city/level/l3_church.py: the church is entered only through its tower, whose walls close every column they cover",
+  "measured in the observer (JFBuild's classic renderer, not NBlood's default renderer): porch under the roof with the door shut 395 to 3,970 px across nine frames, door open 6,960 to 23,262; entrance through the tower with its doors shut 0 (experiments/church-roofs measurements.txt; tests/test_skyline.py LeakTests)",
+  "self-closing doors (doors.z_motion_door(close_after=30)) only mitigate: with both held open the leak is there"
+ ],
+ "use": "Enter a building that is seen over through a part nothing is seen over (a tower, a porch with its own tall sky), or through two doors that are never open together; bloodmap.skyline checks it on the source. skyline.leaks_under_roofs(layout) finds the violating doors on the source.",
+ "code": [
+  "bloodmap.skyline",
+  "bloodmap.skyline.leaks_under_roofs",
+  "bloodmap.doors.z_motion_door"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "column",
+  "dmost",
+  "door",
+  "leak",
+  "porch",
+  "roof",
+  "seen over",
+  "sky",
+  "smear",
+  "umost"
+ ]
+}

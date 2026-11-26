@@ -48,7 +48,12 @@ def _write_new(path: Path, value: str) -> None:
 
 
 def initialize_project(directory: str | Path, *, name: str, brief: str = "") -> dict[str, Any]:
-    """Create a non-destructive level-design workspace skeleton."""
+    """Create a non-destructive level-design workspace skeleton (the August way).
+
+    A new level is started with `python -m tools.project new <name>` today, which
+    makes a project that builds as it stands. This skeleton is kept because the
+    evidence ledger and its tests still use it.
+    """
     root = Path(directory)
     if root.exists() and any(root.iterdir()):
         raise WorkspaceError(f"project directory is not empty: {root}")

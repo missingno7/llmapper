@@ -1,0 +1,25 @@
+{
+ "id": "street-is-the-sky-component-with-most-doorways",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "To find a Blood map's town street automatically, take the sky-ceilinged component with the most doorways into interiors; the largest by area picks DWE3M1's landscape instead of its town.",
+ "evidence": [
+  "tools/mine_city_norms.py, 2026-08-27."
+ ],
+ "use": "Use doorway count, not area, to pick the street from a map's open spaces.",
+ "code": [
+  "tools/mine_city_norms.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "classifier",
+  "detection",
+  "open space",
+  "street",
+  "town"
+ ]
+}

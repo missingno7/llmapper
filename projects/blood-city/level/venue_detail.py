@@ -17,7 +17,7 @@ from typing import Any
 
 from bloodmap.placement import PLAYER_HEIGHT
 import props
-import wallplane
+from bloodmap import wallplane
 
 
 # (context, room key, preferred face, fraction along face, tile)
@@ -78,7 +78,7 @@ COMPOSITIONS = (
 
 
 def _blocks(rows):
-    import wallplane
+    from bloodmap import wallplane
     out = []
     for kind, value, options in rows:
         if kind == "painting":
@@ -130,7 +130,7 @@ def _mount(layout: Any, placement_id: str, room: Any, preferred: str,
 
 def apply(layout: Any, contexts: dict[str, dict[str, Any]]) -> dict[str, Any]:
     """Place deliberate, material-supported venue detail and source lights."""
-    import wallplane
+    from bloodmap import wallplane
 
     report = {"wall_details": 0, "light_sources": 0, "compositions": 0,
               "composed_sprites": 0, "skipped": []}

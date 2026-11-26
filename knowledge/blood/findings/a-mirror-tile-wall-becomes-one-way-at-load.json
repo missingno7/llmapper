@@ -1,0 +1,23 @@
+{
+ "id": "a-mirror-tile-wall-becomes-one-way-at-load",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "Blood turns every wall whose picnum is the mirror tile 504 into a one-way wall at level start (cstat |= 32, over_picnum = 504) and draws a reflection through it; a wall whose over_picnum is 504 with a stack XWALL type is a room-over-room link and gets the same bit.",
+ "evidence": [
+  "NBlood/source/blood/src/mirrors.cpp:466-469 (InitMirrors) and :442-451; kMirrorTile 504 at mirrors.cpp:37"
+ ],
+ "use": "Use tile 504 on a wall only for a mirror; render_slots applies the transform when it says what a wall draws.",
+ "code": [
+  "bloodmap.render_slots.wall_draw"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "504",
+  "mirror",
+  "reflection"
+ ]
+}

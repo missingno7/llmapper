@@ -592,7 +592,7 @@ def cmd_convert_e3l11(args: argparse.Namespace) -> int:
         "validation_warnings": sum(item.severity == "warning" for item in diagnostics),
     }
     _write_text(args.report, _json(report))
-    print(f"WROTE {args.output}: Duke playable -> Blood approximation, reparsed and validated")
+    print(f"WROTE {args.output}: Duke playable -> Blood approximation, reparsed and validated; {len(report['diagnostics'])} diagnostics")
     return 0
 
 
@@ -2314,7 +2314,7 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("probe-progression", help="summarize static accessibility and state-change candidates")
     p.add_argument("map"); p.add_argument("--world-state", help="inline JSON world state")
     p.add_argument("-o", "--output"); p.set_defaults(func=cmd_probe_progression)
-    p = sub.add_parser("project-init", help="create a non-destructive persistent level-design workspace")
+    p = sub.add_parser("project-init", help="create a bare level-design workspace (the August way; start a level with python -m tools.project new)")
     p.add_argument("directory"); p.add_argument("--name", required=True); p.add_argument("--brief", default="")
     p.add_argument("--brief-file", help="read the initial brief from UTF-8 text")
     p.add_argument("-o", "--output"); p.set_defaults(func=cmd_project_init)

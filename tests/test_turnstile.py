@@ -1,6 +1,6 @@
 """The turnstile door, built to a template mined from four rotors.
 
-`projects/blood-city/references/auto-rotators.md` found 88 kSectorRotateMarked
+`knowledge/blood/references/auto-rotators.md` found 88 kSectorRotateMarked
 instances in 14 maps and split them into doors and scenery -- a spatial split,
 not a field one. The template here is the door subfamily: E1M4 151/314
 (campaign) and DWE1M9 61/64 (curated, precedent and never convention).

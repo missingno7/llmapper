@@ -1,0 +1,30 @@
+{
+ "id": "auto-rotating-sectors-start-on-level-start",
+ "topic": "mechanism",
+ "standing": "precedent",
+ "claim": "An endlessly spinning sector in Blood is a type 615 kSectorRotateMarked with an axis marker inside it, rx 7 (the level-start broadcast), retrigger on both waves and an asymmetric busy_time a/b that sets direction and speed; no key, push or wallpush. Only 6 such sectors stand in 3 campaign maps (E1M4, E3M2, E4M2); 88 in 14 maps counting the Death Wish, curated community and converted maps. As a turnstile door they come in pairs, usually counter-rotating, flanking one entrance, each carrying four grate-tile blade sprites (332) and a sound sprite beside one rotor.",
+ "evidence": [
+  "E1M4 s151 and s314: type 615, rx_id 7, retrigger_a/b 1, busy_time_a 255 vs 0 (counter-rotating), marker_0 the axis",
+  "DWE1M9 s61 and s64: the same pair at busy 100/0 and 0/100, blades tile 332",
+  "88 instances in 14 maps, knowledge/blood/references/auto-rotators.json (reference view plus conversions; 6 of them campaign, recounted 2026-11-26)"
+ ],
+ "use": "For a turnstile or rotating scenery, copy the signature; start it from the level-start wire, not a switch. Decide door vs scenery by whether the rotor sits in a doorway with two portal walls.",
+ "code": [
+  "knowledge/blood/references/auto-rotators.md",
+  "bloodmap.mechanism.turnstile_spec"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-31"
+ },
+ "words": [
+  "615",
+  "carousel",
+  "fan",
+  "revolving door",
+  "rotor",
+  "spin",
+  "turnstile"
+ ]
+}

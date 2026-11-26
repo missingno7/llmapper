@@ -1,0 +1,25 @@
+{
+ "id": "water-runs-to-its-fall-and-a-pool-needs-a-way-out",
+ "topic": "place",
+ "standing": "ruling",
+ "claim": "Water must flow meaningfully: currents above a fall run toward the fall, channels run toward an outfall or basin, landings run fast toward the main channel, and the pool below a fall needs a way out (a barred culvert).",
+ "evidence": [
+  "The owner, 2026-11-21 (sewer overhaul) and 2026-11-23 (second playthrough)."
+ ],
+ "use": "Every new water piece states where its water comes from and where it goes; set pan direction by that.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "culvert",
+  "current",
+  "fall",
+  "flow",
+  "pan",
+  "sewer",
+  "water"
+ ]
+}

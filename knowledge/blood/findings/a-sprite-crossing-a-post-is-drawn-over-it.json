@@ -1,0 +1,26 @@
+{
+ "id": "a-sprite-crossing-a-post-is-drawn-over-it",
+ "topic": "sprite",
+ "standing": "practice",
+ "claim": "The software renderer draws the part of a wall-aligned sprite that runs inside a post or wall over that post. A rail must stop at the post's face, not run into it.",
+ "evidence": [
+  "Seen in Gravesend's shot-lamp and railing work, 2026-11-25 (projects/blood-city/level/shot_lamps.py)."
+ ],
+ "use": "Cut rails, beams and bars at the faces of what they meet.",
+ "code": [
+  "tools/sprite_fit.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "overlap",
+  "post",
+  "rail",
+  "railing",
+  "renderer",
+  "sprite"
+ ]
+}

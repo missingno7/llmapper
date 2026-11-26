@@ -1,0 +1,26 @@
+{
+ "id": "rules-registry-is-empty-until-imported",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "bloodmap.rules.evaluate returns no diagnostics at all unless bloodmap.rules_blood has been imported, because the registry is filled by that import's side effect: zero diagnostics can be silence, not a clean map.",
+ "evidence": [
+  "projects/blood-city/level/build_skeleton.py, the corpus-graded rule registry"
+ ],
+ "use": "Import bloodmap.rules_blood (noqa F401) wherever rules.evaluate runs.",
+ "code": [
+  "bloodmap.rules.evaluate",
+  "bloodmap.rules_blood"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "diagnostics",
+  "import",
+  "lint",
+  "registry",
+  "rules"
+ ]
+}

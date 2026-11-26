@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "The pattern zoo",
+  "kind": "fixture",
+  "status": "live",
+  "about": "Every mechanism the registry can build, each built and read back; the library's conformance fixture."
+}

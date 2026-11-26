@@ -1,0 +1,29 @@
+{
+ "id": "a-shopfront-is-reveal-sashes-and-a-display-box",
+ "topic": "construction",
+ "standing": "practice",
+ "claim": "A shop window built from the street inward: a reveal, one sash pocket per bay with solid mullions between, a display box, then the shop; reveal, sashes and box share one floor and one ceiling, so the pane hung between a sash and the box carries no step band. The street-side record is two-sided to the reveal and carries the facade's lintel and stall riser at the facade's scale. A mullion must not reach the street face, where it would be a full-height slice of the facade's painted windows.",
+ "evidence": [
+  "Gravesend before: 24 of 24 glazed records also carried a step band (one drawn at 4x the facade's scale, another at 0.57x); after: 0 of 20, and continuing collinear joins rose from 85% to 97% (tools/texture_continuity.py)",
+  "a blind reviewer: 'set into the wall: a recess, mullions or posts, a sill ledge and a dark frame' against 'laid flat on the wall' (experiments/shopfronts-streets/before-after.png)",
+  "the same helper served three venues built three ways (theatre, market hall, arcade)"
+ ],
+ "use": "glass.shopfront in blood-city gives the rectangles; bloodmap.glass.glaze(fit=True) keeps E6M1's glass density on a pane of any length; glass.recess_faults also accepts E6M1's own arrangement (pane between the recess and the shop, sill under the glass).",
+ "code": [
+  "projects/blood-city/level/glass.py:shopfront",
+  "bloodmap.glass.glaze",
+  "bloodmap.glass.recess_faults"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "display",
+  "glazing",
+  "mullion",
+  "sash",
+  "shop window"
+ ]
+}

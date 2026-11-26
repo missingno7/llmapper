@@ -1,0 +1,27 @@
+{
+ "id": "a-camera-on-a-sector-boundary-renders-nothing",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "The XMapEdit observer writes no frame for a camera standing exactly on a sector boundary (it is in neither sector); a pose that suddenly renders nothing may have had a boundary moved under it.",
+ "evidence": [
+  "Gravesend's avenue_front pose on 2026-11-17, after the kerb was cut at its x (tools/look.py, now poses.py)"
+ ],
+ "use": "Stand poses off boundaries (0.3 of a plan unit was enough) and name the floor a pose stands on in a stacked map.",
+ "code": [
+  "tools/look.py",
+  "bloodmap.viewplan.named_poses",
+  "bloodmap.visual.run_observation"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "camera",
+  "frame",
+  "observer",
+  "pose",
+  "render"
+ ]
+}

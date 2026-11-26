@@ -1,0 +1,27 @@
+{
+ "id": "a-lever-only-for-what-hands-cannot-open",
+ "topic": "mechanism",
+ "standing": "ruling",
+ "claim": "A door that opens by hand gets no lever beside it; a lever opens something that cannot be opened by hand. The campaign's lever is tile 1070: 283 sprites over the 43 maps, 184 of them wall-aligned, the pushed ones mounted at a median 0.79 player heights; 280 carry a tx, the modal command is 1 (kCmdOn, 147), and 160 set trigger_push and 241 trigger_on.",
+ "evidence": [
+  "the owner, 2026-11-25: 'some of the shops have lever next to it, but it just opens door the same way you would interact with them' (projects/blood-city/level/l3_theatre.py)",
+  "recount 2026-11-26 over the 43 campaign maps (every sprite of tile 1070); the 0.79 height from knowledge/blood/design/switches-v1.json by_how.pushed",
+  "projects/blood-city/level/doorswitch.py's docstring says 356 instances, 351 with tx, 230 push and 316 on; those do not reproduce over the campaign"
+ ],
+ "use": "Place levers through bloodmap.switches.pressed_switch, which sets trigger_push and trigger_on; a hand-rolled one could not be pushed. Say on and off when it is to work both ways.",
+ "code": [
+  "bloodmap.switches.pressed_switch"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "1070",
+  "door",
+  "lever",
+  "push",
+  "switch"
+ ]
+}

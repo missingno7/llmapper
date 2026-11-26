@@ -1,0 +1,25 @@
+{
+ "id": "church-glass-is-a-masked-wall-onto-the-sky",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "E1M5 glazes its church with tile 569 (32x32, four coloured lancets) as the masked middle of two-sided walls 512 wide at x_repeat 4, y_repeat 8, type 511 (breakable glass), opening from the church into a small alcove sector whose ceiling is the parallax sky. The glass is a real opening, not paint on a wall, and it breaks.",
+ "evidence": [
+  "E1M5 w29, w31, w39, w41: type 511, picnum 406, over_picnum 569, cstat 729, pal 9, x_repeat 4, y_repeat 8, next sector s362 (ceiling_stat 1); their other sides w3004, w3005, w3007, w3008 (type 511, cstat 725) face s9, s8, s7, s6 (rechecked 2026-11-26)",
+  "569 is also used in E1M3 (2) and E4M1 (2)"
+ ],
+ "use": "Where a church wall can be two-sided, glaze it the E1M5 way; on a one-sided wall the fallback is 569 as a wall sprite (x_repeat 48, y_repeat 192: 384 wide, 1.45 bodies), which reads as paint from close by.",
+ "code": [
+  "bloodmap.glass.glaze"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "569",
+  "church window",
+  "lancet",
+  "stained glass"
+ ]
+}

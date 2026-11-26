@@ -1,0 +1,25 @@
+{
+ "id": "lighting-and-motion-compete-for-one-xsector",
+ "topic": "mechanism",
+ "standing": "practice",
+ "claim": "A Blood sector has one XSECTOR, so a converted Duke sector that both moves and has independent SE12 lighting cannot keep both: E4L1's converter let the lighting overwrite the movers' controls in sectors 50, 61, 211 and 369 and the entry command of room 152. Keep the motion and the entry signal, and author the light separately.",
+ "evidence": [
+  "projects/duke-e4l1-remake/reports/converter-mechanism-audit.md (SE12 control conflicts)",
+  "E4L1 pass 08 restored the controls"
+ ],
+ "use": "When two Duke effectors want one Blood sector, keep the one the player needs to get through and report the other.",
+ "code": [
+  "bloodmap.duke_motion"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "conflict",
+  "converter",
+  "light",
+  "se12"
+ ]
+}

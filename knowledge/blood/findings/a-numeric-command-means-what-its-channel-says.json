@@ -1,0 +1,29 @@
+{
+ "id": "a-numeric-command-means-what-its-channel-says",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "A command of 64 or more (kCmdNumberic) is not an instruction but the number command - 64, and the channel decides its meaning: on channel 1 it sets the level's secret total, on 2 it credits a secret, on 3 it shows level message n (and on 6, modern maps only, ends to level n). 325 such commands appear in all 43 campaign maps.",
+ "evidence": [
+  "NBlood/source/blood/src/eventq.cpp:375-398 (the rxId switch); eventq.h:27-32 the channel numbers",
+  "recount 2026-11-26 over the 43 campaign maps: 325 objects carry a command of 64 or more, in all 43 maps; 227 send on channel 2, 55 on 3, 42 on 1 and one on user channel 165"
+ ],
+ "use": "Read a command with its channel: bloodmap.blood_types.classify('command', n) names kCmdNumberic + value and RESERVED_CHANNELS names the channel. A secret is tx 2 with 64+n, a total tx 1 with 64+n.",
+ "code": [
+  "bloodmap.blood_types.classify",
+  "bloodmap.blood_types.RESERVED_CHANNELS",
+  "bloodmap.blood_types.NUMERIC_COMMAND_BASE"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-23"
+ },
+ "words": [
+  "64",
+  "channel 1",
+  "channel 2",
+  "command",
+  "secret",
+  "text message"
+ ]
+}

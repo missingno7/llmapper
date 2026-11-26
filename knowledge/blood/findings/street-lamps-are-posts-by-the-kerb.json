@@ -1,0 +1,30 @@
+{
+ "id": "street-lamps-are-posts-by-the-kerb",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "In DWE3M1, a community town map, 26 lamp posts (tile 640) stand under the sky a median 512 from the kerb's edge (the nearer half 128-256), and 18 of them are drawn at repeat 120: 2.1 bodies, a lamp post. At repeat 64 the same tile is a lantern at eye level, as DWE3M10 and E1M4 use it on piers and stalls. The campaign's own street lamp is 2493, in the snow maps.",
+ "evidence": [
+  "DWE3M1 outdoor lamps counted for projects/blood-city/level/streets.py and projects/blood-city/level/props.py",
+  "the owner, 2026-11-18: 'lamps are also placed a little bit weirdly around the town'",
+  "Recounted 2026-11-26 (work/consolidation/probe_outdoor_lamps.py): DWE3M1 has 26 visible 640 sprites in sky sectors, x_repeat 120 x18, 64 x7, 112 x1; the kerb distance is the harvest's and was not re-measured"
+ ],
+ "use": "Stand street lamps as posts near the kerb, not in the middle of the walk.",
+ "code": [
+  "bloodmap.street.lamp_slots",
+  "projects/blood-city/level/streets.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "2493",
+  "640",
+  "dwe3m1",
+  "kerb",
+  "lamp",
+  "post",
+  "street light"
+ ]
+}

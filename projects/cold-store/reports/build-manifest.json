@@ -1,0 +1,283 @@
+{
+  "locks_signed": [
+    {
+      "region": "region:cold-store/door",
+      "key": 1,
+      "emblem": "skull",
+      "placards": 2,
+      "rooms": [
+        "region:cold-store/passage",
+        "region:cold-store/hall"
+      ]
+    }
+  ],
+  "wires": {
+    "declared": [
+      {
+        "name": "way-out",
+        "says": "pushing the switch on the landing ends the level",
+        "channel": 4,
+        "engine": "kChannelLevelExitNormal",
+        "when": [
+          "push on placement exit_switch"
+        ],
+        "then": []
+      }
+    ],
+    "idle": [],
+    "wires": [
+      {
+        "name": "way-out",
+        "says": "pushing the switch on the landing ends the level",
+        "channel": 4,
+        "engine": "kChannelLevelExitNormal",
+        "senders": [
+          "sprite 13"
+        ],
+        "answers": [],
+        "faults": []
+      }
+    ],
+    "undeclared": [],
+    "silent": [],
+    "agrees": true
+  },
+  "lighting": {
+    "enabled": false,
+    "sources": 0
+  },
+  "split_bands": {
+    "pegged": 0,
+    "left_to_their_owner": 0
+  },
+  "texture_frames": {
+    "runs": 15,
+    "walls_framed": 46,
+    "district_runs": 0,
+    "records_left_to_their_insert": 0,
+    "single_wall_runs": 1,
+    "fields_changed": 76,
+    "walls_unframed": 6,
+    "walls_left_to_their_mechanism": 4,
+    "walls_left_to_their_fixed_frame": 2,
+    "basis": "one WallRunFrame per run, resolved in closed form; the editor's AutoAlignWalls has nothing left to change"
+  },
+  "raised_solids": {
+    "solids": 0,
+    "fields_changed": 0,
+    "uncut_before": 0,
+    "uncut_after": 0,
+    "basis": "71% of the campaign's 110 raised crate tops land the tile grid on the crate's own corner"
+  },
+  "rules": {
+    "total": 5,
+    "by_severity": {
+      "note": 5
+    },
+    "by_code": {
+      "note:wall-draws-its-own-tile": 5
+    },
+    "open": []
+  },
+  "swept": {
+    "mechanisms": 0,
+    "sound": 0,
+    "deforming_neighbours": 0,
+    "problems": [],
+    "notes": []
+  },
+  "readback": {
+    "$schema": "llmapper.readback",
+    "schema_version": 1,
+    "map": "cold-store.MAP",
+    "sentences": 1,
+    "agrees": true,
+    "differences": [],
+    "unmeasured": [],
+    "measured": [
+      {
+        "name": "region:cold-store/door",
+        "construct": "z_motion_door",
+        "sector": 3,
+        "sectors": [
+          3
+        ],
+        "sector_type": 600,
+        "state_pair": {
+          "sector": 3,
+          "type": 600,
+          "measured": [
+            "headroom"
+          ],
+          "headroom_change": 23744,
+          "area_change": 0.0,
+          "declared_travel": 0.0,
+          "turn": null,
+          "whole_circles": false,
+          "changes": true
+        }
+      }
+    ]
+  },
+  "sprite_fit": {
+    "rates": {
+      "sprites": 10,
+      "sunk": 0.0,
+      "through": 0.0,
+      "squeezed": 0.0
+    },
+    "sunk": [],
+    "through": [],
+    "squeezed": [],
+    "lifted": [],
+    "overlaps": [],
+    "flat_overlaps": [],
+    "unbacked": [],
+    "sunk_actors": [],
+    "on_travelling_floor": []
+  },
+  "tile_contexts": {
+    "new": [],
+    "outside": [
+      {
+        "tile": 822,
+        "slot": "sprite_face",
+        "place": "indoors",
+        "count": 1,
+        "source": "community-curated"
+      }
+    ],
+    "misfit": []
+  },
+  "light_stage": {
+    "sectors_before": 11,
+    "walls_before": 52,
+    "sprites_before": 14,
+    "mover_hosts": [],
+    "shadow_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 0,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 0
+    },
+    "rooms": {
+      "region:cold-store/entry": {
+        "ceiling 795": 1
+      },
+      "region:cold-store/hall": {
+        "hanging 641": 2
+      },
+      "region:cold-store/landing": {
+        "ceiling 795": 1
+      },
+      "region:cold-store/store": {
+        "ceiling 795": 1
+      }
+    },
+    "panel_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 0,
+      "refused": {},
+      "left_whole": {}
+    },
+    "floor_cut": {
+      "sectors": 1,
+      "pieces": 2,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 8,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 1
+    },
+    "slope_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 0,
+      "seams": 0,
+      "refused": {},
+      "left_whole": {},
+      "looked_at": 0
+    },
+    "wall_cut": {
+      "sectors": 0,
+      "pieces": 0,
+      "slivers_merged": 0,
+      "slivers_dropped": 0,
+      "walls_split": 37,
+      "seams": 0,
+      "refused": {},
+      "walls_cut": 12,
+      "left_whole": {},
+      "looked_at": 28
+    },
+    "shades": {
+      "surfaces": 89,
+      "windows": 0,
+      "spread_12": 0,
+      "movers_evened": 0
+    },
+    "kept": 0,
+    "sectors": 12,
+    "walls": 82,
+    "sprites": 19,
+    "pieces": 1,
+    "rules_that_laid_nothing": [
+      "region:cold-store/passage",
+      "region:stairs:up:step_01",
+      "region:stairs:up:step_02",
+      "region:stairs:up:step_03",
+      "region:stairs:up:step_04",
+      "region:stairs:up:step_05"
+    ]
+  },
+  "merged": {
+    "sectors_merged": 0,
+    "walls_before": 82,
+    "walls": 82
+  },
+  "tidy": {
+    "walls_before": 82,
+    "walls": 68,
+    "joined": 14
+  },
+  "size": {
+    "sectors": 12,
+    "walls": 68,
+    "sprites": 19
+  },
+  "stages": [
+    {
+      "name": "compile",
+      "says": "the layout becomes sectors, walls and sprites"
+    },
+    {
+      "name": "alignment",
+      "says": "one texture frame per run of walls, standing on its floor"
+    },
+    {
+      "name": "gates",
+      "says": "nothing is built: rules, swept closure, read-back, sprite fit, tile contexts, wiring"
+    },
+    {
+      "name": "light",
+      "says": "lamps laid, shadows and floor bands cut, every shade written"
+    },
+    {
+      "name": "write",
+      "says": "the map, its sector tags and the manifest"
+    }
+  ]
+}

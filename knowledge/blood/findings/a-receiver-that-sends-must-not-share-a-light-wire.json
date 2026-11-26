@@ -1,0 +1,27 @@
+{
+ "id": "a-receiver-that-sends-must-not-share-a-light-wire",
+ "topic": "mechanism",
+ "standing": "practice",
+ "claim": "Never put a sector that also sends (a secret credit, a relay) on a wire that switches lights: when the lamps go out, it sends too. In Gravesend the booking hall that credits a secret would have credited it when the lamps went out.",
+ "evidence": [
+  "Phantom Terminus rebuild, 2026-11-24 (projects/blood-city/references/phantom-terminus-design.md)"
+ ],
+ "use": "Give lit sectors their own receivers; check with wiring.Circuit read-back that no sender listens on a light's channel.",
+ "code": [
+  "bloodmap.wiring.Circuit",
+  "projects/blood-city/references/phantom-terminus-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "blink",
+  "light",
+  "receiver",
+  "secret",
+  "sender",
+  "wire"
+ ]
+}

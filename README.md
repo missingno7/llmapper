@@ -1,11 +1,33 @@
 # llmapper
 
-`llmapper` is a dependency-free Python toolkit for lossless map inspection,
-transformation, and evidence-driven conversion. It currently supports Blood v7
-(`0x0700`), classic Duke Nukem 3D v7 maps, and classic Doom / Doom II binary
-maps as an engine-independence experiment.
+`llmapper` is a system in which AI agents author levels for Build-engine games
+(Blood first), and get better at it with every level. It has four parts, and
+keeping them apart is the point:
 
-The project separates these concerns:
+| Part | Where | What it holds |
+| --- | --- | --- |
+| the library | `bloodmap/` | lossless formats, geometry, sensors that read a map, constructors that write one, the passes every level's map goes through (`bloodmap.finish`), the gates that refuse a bad one |
+| the tools | `tools/` | the library run over the corpus or a level: look something up, study a kind of place, look at a level, lint it, hand it to blind readers |
+| what is known | `knowledge/blood/` | the catalog of tiles, parts and wiring, studies of how Blood built a kind of place, tile contexts, and the findings: what building taught us, each saying how it is known |
+| the levels | `projects/<name>/` | one directory a level: its brief, its own modules, poses, tests, reports and critique rounds. `python -m tools.project list` |
+
+A level uses everything above it and owns only its own design. What it learns
+about the game goes back onto the shared shelves, so the next level starts with
+it (`AGENTS.md`, "Give back what you learn"). Gravesend
+(`projects/blood-city`), a city of 1,800 sectors, is the largest level so far;
+`projects/cold-store` is a small one begun from the starter.
+
+```text
+python -m tools.project new my-level --title "My Level"   # a level that builds as it stands
+python projects/my-level/level/build.py                   # compile, align, gates, light, write
+python -m tools.project status my-level                   # every open item and what to do
+python -m tools.look my-level --set start -o work/look    # frames, as the game shows it
+python -m tools.catalog find <words>                      # look anything up before building it
+python -m tools.suite                                     # the tests: tests/ (library) and projects/*/tests
+```
+
+Under all of it is a binary-first foundation: Blood v7 (`0x0700`), classic Duke
+Nukem 3D v7 and classic Doom / Doom II maps are read and written exactly.
 
 1. `DiskMap`, `DukeDiskMap`, and `DoomDiskMap` preserve each game's native file
    exactly. Doom does **not** live inside `BuildIR`.
@@ -15,18 +37,19 @@ The project separates these concerns:
 3. `SemanticLevel` / `SemanticMechanism` sit above native encodings so a keyed
    door can be recognized in Doom, reasoned about without linedef numbers, and
    lowered into Blood XSECTOR motion.
-4. `LevelIR` remains the richer Blood authoring layer for triggers, channels,
-   fragments, room attachment, corridors, stairs, and scratch construction.
+4. `LevelIR` is the Blood authoring layer the level programs compile to.
 
 Neither writer caches the original file blob. The local corpora pass byte-exact
 native and `BuildIR` roundtrips: the 102 named Blood maps (campaign, BloodBath,
-curated, conversions) and 46 Duke3D maps, as of 2026-11-19.
+curated, conversions) and 46 Duke3D maps, as of 2026-11-19. The commercial maps
+and art are not distributed (`maps/README.md`).
 
 ## Where to start
 
 | You are about to... | Read |
 | --- | --- |
 | start a session as an agent | [AGENTS.md](AGENTS.md) -- the lookups, the rules, the loop, what not to do |
+| start a level | `python -m tools.project new <name> --title "..."`, then the project's own `README.md` |
 | build or change a map | [what is in the toolkit](docs/toolkit-index.md) -- one page, "reach for X, not Y" |
 | look something up about Blood before building it | [the library](knowledge/blood/LIBRARY.md) -- tiles, places, studies, ideas |
 | add a module, a sensor or a tool | [architecture](docs/architecture.md) -- which module owns which kind of fact |
@@ -37,7 +60,7 @@ The corpus is never globbed. `bloodmap.corpus` knows where every map lives:
 `campaign_maps()` for the original campaign, `named_maps()` for everything a
 bare filename names, `corpus_map_path("E3M1")` for one map.
 
-## Quick start
+## Quick start: formats, conversion and analysis
 
 Python 3.10 or newer is sufficient; there are no runtime dependencies.
 
@@ -189,12 +212,12 @@ python -m bloodmap design-first-room --report work/first-room.json \
 python -m experiments.bb2_reconstruction_v3 --report reports/BB2-v3-build-report.json \
   -o work/BB2-semantic-reconstruction-v3.MAP
 python -m bloodmap geometry-audit work/BB2-semantic-reconstruction-v2.MAP \
-  --markdown reports/BB2-v2-geometry-audit.md
+  --markdown work/BB2-v2-geometry-audit.md
 python -m bloodmap pattern-mine --maps maps/blood --population blood-bloodbath \
   -o work/blood-pattern-unsigned-bloodbath.json
 python -m bloodmap understand maps/blood/campaign/multiplayer/BB6.MAP --multiplayer-only \
   --patterns knowledge/blood/design/catalog-v1.json \
-  -o reports/BB6-understanding.json
+  -o work/BB6-understanding.json
 ```
 
 See [authored-geometry.md](docs/authored-geometry.md) for the planar compiler and
@@ -217,7 +240,7 @@ python -m bloodmap oracle-nblood work/E3L1-geometry-blood.MAP \
 Run all tests with:
 
 ```text
-python -m unittest discover -s tests -v
+python -m tools.suite              # every test module, a process each: about a minute
 ```
 
 ## Documentation
@@ -227,10 +250,8 @@ python -m unittest discover -s tests -v
 - [What is in the toolkit, and when to reach for it](docs/toolkit-index.md)
 - [The library of Blood: tiles, places, studies, ideas](knowledge/blood/LIBRARY.md)
 - [Reasoned authoring loop](docs/authoring-loop.md)
-- [Shared authoring toolkit](docs/authoring-toolkit.md)
 - [Level programs: hierarchical, editable level source](docs/level-programs.md)
 - [Structured visual observation through XMapEdit](docs/visual-observation.md)
-- [Blood mechanics, and what the campaign does with them](docs/blood-mechanics-and-conventions.md)
 - [Cliffside monastery authoring pilot](projects/reasoned-authoring-v1/reports/comparison.md)
 - [Design Understanding and grounded retrieval](docs/architecture.md#design-understanding)
 - [Multi-view spatial understanding](docs/spatial-understanding.md)
@@ -245,15 +266,13 @@ python -m unittest discover -s tests -v
 - [Scratch construction](docs/construction.md)
 - [Object placement and spatial anchors](docs/object-placement.md)
 - [Single-player understanding](docs/single-player-understanding.md)
-- [Native Blood authoring language](docs/native-authoring-language.md)
 - [Door affordances](docs/door-affordances.md)
-- [BB2 deathmatch understanding experiment](reports/BB2-understanding.md)
-- [BB2 semantic roundtrip](reports/BB2-semantic-roundtrip.md)
-- [BB6 pattern-aware understanding](reports/BB6-understanding.md)
-- [BB6 semantic roundtrip](reports/BB6-semantic-roundtrip.md)
-- [E2M2 single-player understanding](reports/E2M2-understanding.md)
-- [SP-progression-v1 independent understanding](reports/SP-progression-v1-understanding.md)
-- [Blood material ontology discovery](docs/materials-discovery.md)
+- [BB2 deathmatch understanding experiment (archived)](reports/archive/BB2-understanding.md)
+- [BB2 semantic roundtrip (archived)](reports/archive/BB2-semantic-roundtrip.md)
+- [BB6 pattern-aware understanding (archived)](reports/archive/BB6-understanding.md)
+- [BB6 semantic roundtrip (archived)](reports/archive/BB6-semantic-roundtrip.md)
+- [E2M2 single-player understanding (archived)](reports/archive/E2M2-understanding.md)
+- [SP-progression-v1 independent understanding (archived)](reports/archive/SP-progression-v1-understanding.md)
 - [Duke3D v7 format support](docs/duke3d.md)
 - [Cross-game normalization and conversion](docs/conversion.md)
 - [LevelIR authoring](docs/level-ir.md)
@@ -265,8 +284,8 @@ python -m unittest discover -s tests -v
 - [Duke mechanisms lowered to Blood](docs/duke-blood-mechanisms.md) and [Duke's moving sectors](docs/duke-moving-sectors.md)
 - [The NBlood playtest bot](docs/nblood-autonomous-playtest-bot.md)
 - [Local reference oracles](docs/reference-oracles.md)
-- [Long-term roadmap](docs/roadmap.md)
-- [Current verification](reports/verification.md)
+- [History: the old roadmap, handbook and audits](docs/history/README.md) (nothing there describes the present)
+- [Verification as of September (archived)](reports/archive/verification.md)
 - [E3L11 playable conversion summary](reports/e3l11_playable_summary.json)
 
 Commercial game data, maps, executables, ART files, and upstream reference

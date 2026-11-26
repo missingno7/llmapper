@@ -1,0 +1,27 @@
+{
+ "id": "e3m1s-sun-casts-along-84-degrees",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "E3M1 cuts its streets at shadow edges that run along one sun: of 112 shade boundaries in its street surface, 60 are axis-aligned and the 20 oblique ones lie between 52 and 84 degrees with a median of 84 (Build angle 478). Its street shades: 8 lit (nine sectors), 24 penumbra (seven), 32-34 shadow (twenty), 44 for the quay and far bank.",
+ "evidence": [
+  "E3M1's street sectors, measured for projects/blood-city/level/resolution.py:86-102 (SUN_BEARING 478; oblique edges at 52.1, 71.1, 78.7, 82.9, 83.8, 84.2 degrees); E3M1 s8 is cut lengthwise, s45 across",
+  "the shadow length equal to the mass's height is a convention (resolution.py SUN_SHADOW_PER_HEIGHT: 'Blood has no real sun elevation'), not a measurement"
+ ],
+ "use": "Cast every mass's shadow on one bearing; cut a surface only where a shadow crosses it. Length equal to height is our convention, not a measured one.",
+ "code": [
+  "projects/blood-city/level/resolution.py",
+  "bloodmap.sunlight.cast_shadows"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-02"
+ },
+ "words": [
+  "daylight",
+  "shade",
+  "shadow",
+  "street",
+  "sun"
+ ]
+}

@@ -145,7 +145,7 @@ evidence without embedding proprietary geometry.
 The E3L1 geometry-only Blood output initializes and remains healthy in NBlood
 `r14378-fbc5e1186`. The DNE3L1 geometry-only Duke output does the same in EDuke32
 `r10669-ec5824db8`. Both were tested beside untouched baselines in isolated
-directories. See [verification.md](../reports/verification.md).
+directories. See [verification.md](../reports/archive/verification.md).
 
 The E3L11 playable output also initializes, enters the game loop, and remains
 healthy for the bounded NBlood oracle run. This is a load/startup proof;

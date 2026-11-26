@@ -1,0 +1,26 @@
+{
+ "id": "sector-visibility-above-239-carries-light-over-distance",
+ "topic": "light",
+ "standing": "engine",
+ "claim": "A sector's visibility byte scales distance shading by (visibility+16) mod 256 sixteenths (0 leaves the map's own), so 240-255 give 0-15 sixteenths: less fog with distance, and 1-239 give more. Values in the 240s and low 250s keep a far water or plain lit to the horizon.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:4413-4414 (globvis = mulscale4(globvis, (uint8_t)(secvisibility+16))).",
+  "The campaign sets 249-252 on 9 sectors (E1M5 8, E2M7 1); work/consolidation/audit3, 2026-11-26. Gravesend's sea uses 243-252."
+ ],
+ "use": "Lower the distance shading of a wide open place (sea, plain) with visibility 243-252 instead of brightening its shade.",
+ "code": [],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "distance",
+  "far",
+  "fog",
+  "sea",
+  "shade",
+  "visibility",
+  "water"
+ ]
+}

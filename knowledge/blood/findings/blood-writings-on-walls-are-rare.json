@@ -1,0 +1,24 @@
+{
+ "id": "blood-writings-on-walls-are-rare",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "Words written in blood are rare in Blood: 826 (STAY OUT) seven times in six maps, 1105 (SLOTH) and 2345 (ONE EYED MONKS RULE) once each, at repeat 64 by 64, shade about -8, their middle about a body up, all but one indoors.",
+ "evidence": [
+  "campaign count in projects/blood-city/level/writings.py; the owner, 2026-11-25, asked for them 'on some places'"
+ ],
+ "use": "Use a few, each beside the thing it is about, never twice in one place.",
+ "code": [
+  "projects/blood-city/level/writings.py:build"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "826",
+  "blood writing",
+  "decal",
+  "graffiti"
+ ]
+}

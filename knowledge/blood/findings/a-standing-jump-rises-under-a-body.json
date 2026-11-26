@@ -1,0 +1,30 @@
+{
+ "id": "a-standing-jump-rises-under-a-body",
+ "topic": "gameplay",
+ "standing": "engine",
+ "claim": "A standing jump (normalJumpZ -0xbaaaa against kDudeGravity 58,254) rises about 15,370 z, 0.91 of a standing body, so with the walking step on top a player gets out of a pit or onto a ledge of roughly 20,000 z and no more. For the other direction: fall damage is mulscale30(zvel, zvel) - kFallDamageFloor (1,600) at the landing, so the last painless drop is 62,564 z (3.69 bodies), 68,025 (4.01) is the first that hurts and 127,411 (7.51) kills from full health.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.h:185-187 (kDudeGravity, kDudeAirborneHeight, kFallDamageFloor); player.cpp:134 normalJumpZ; actor.cpp:4595-4631 (integration) and :4835-4847 (landing damage).",
+  "bloodmap.layers.fall_cost runs the same integrator; in a bot run AGTST3 climbed an 11,264 rise by jumping and refused a 21,504 one (2026-08-27).",
+  "2026-11-26: stepping MoveDude's order (z += zvel>>8, then z += (2*kDudeGravity)>>8 and zvel += kDudeGravity, actor.cpp:4596-4631) from zvel -0xbaaaa gives an apex of 15,367; the continuous v*v/2g is 19,600, which ignores the per-tick gravity displacement. bloodmap/supplies.py:40 and :72 quote 19,600 as the apex; bloodmap.player_space has no jump height (jump is a flag)"
+ ],
+ "use": "A drop entry under ~3.7 bodies never hurts; a mouth or ledge under jump plus step (about 20,000 z) can be climbed back out, which is the test for 'this pit is not a trap'.",
+ "code": [
+  "bloodmap.layers.fall_cost"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "19600",
+  "apex",
+  "drop",
+  "fall damage",
+  "gravity",
+  "jump",
+  "pit",
+  "trap"
+ ]
+}

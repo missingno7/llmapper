@@ -276,7 +276,8 @@ room with its rectangle and kind).
   sea layer, to 26,624 clear, down a step from the drain's west walk. Its
   rails run four units further east, and the deck's floor moves with it
   (relative alignment). The drain's blood falls over the chamber's edge
-  beside the stair (`l3_sewer.pour`): E1M8 wall 1309's muddy 1120, panned
+  beside the stair (`l3_sewer.pour`): muddy 1120 as on E1M8 wall 1309 (which
+  is sewer water, not a fall: Blood's waterfall tile is 1005), panned
   down at -85, in the blood palette, on the LOWER room's own wall (the
   campaign's way: E2M7 wall 482, E4M3 wall 59), with E3M3's water sound at
   its foot. Painted on the upper wall and shown by bottom swap, the lintel

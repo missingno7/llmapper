@@ -12,7 +12,7 @@ floor and display clusters, and a one-hop sector neighbourhood around them.
 It is evidence for a prefab; it does not infer that an arbitrary use of a
 tile elsewhere in the map is also a shop.
 
-    python -m tools.mine_e6m1_shop -o projects/blood-city/references/e6m1-shop.json
+    python -m tools.mine_e6m1_shop -o knowledge/blood/references/e6m1-shop.json
 """
 
 from __future__ import annotations

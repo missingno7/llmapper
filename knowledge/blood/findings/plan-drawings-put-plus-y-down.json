@@ -1,0 +1,30 @@
+{
+ "id": "plan-drawings-put-plus-y-down",
+ "topic": "workflow",
+ "standing": "ruling",
+ "claim": "Every top-down drawing of a Build map puts +Y down, as XMapEdit does; a drawing with +Y up is a mirror of the editor and turns every left/right and north/south in a report wrong.",
+ "evidence": [
+  "The owner, 2026-09-02, finding an E3M1 review map mirrored against the editor.",
+  "bloodmap/sector_map.py:168 and bloodmap/analysis.py:336 draw +Y down (read 2026-11-26); a note that the library's renders are Y-flipped is out of date"
+ ],
+ "use": "Draw with the library's renderers, which follow the editor; never flip.",
+ "code": [
+  "bloodmap.analysis.render_svg",
+  "bloodmap.sector_map"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-02"
+ },
+ "words": [
+  "flip",
+  "map",
+  "mirror",
+  "orientation",
+  "plan",
+  "render",
+  "xmapedit",
+  "y"
+ ]
+}

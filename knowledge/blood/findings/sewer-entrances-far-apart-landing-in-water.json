@@ -1,0 +1,25 @@
+{
+ "id": "sewer-entrances-far-apart-landing-in-water",
+ "topic": "place",
+ "standing": "ruling",
+ "claim": "Ways into a sewer stand far apart (one a town quarter) and land the player in water, not on stone or hard against a building. A manhole is a flat breakable cover over a hole (type 417, flat and blocking, lying above its sector's floor), not a wall crack or moving floor.",
+ "evidence": [
+  "The owner, 2026-11-21: 'You are always putting these sewers enterances so close to each other'.",
+  "Blood's manhole: E4M3 sprite 130, type 417 kThingObjectExplode, cstat 417."
+ ],
+ "use": "Check a new way down against the others' distance before adding it.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "417",
+  "cover",
+  "entrance",
+  "manhole",
+  "sewer",
+  "water"
+ ]
+}

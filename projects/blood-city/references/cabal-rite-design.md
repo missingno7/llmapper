@@ -107,4 +107,5 @@ the room is the better place.
 * `SECTOR_SOUND_PROFILES`: `flesh_door` (E4M7), `great_stone` (E4M8).
 * Engine facts: a torch's flame and a candle's glow follow `state`
   (view.cpp:2922-2938); type 456 does nothing but show and hide its sprite
-  (triggers.cpp:393), used twice in all 1,600 maps, both in TUTORIUM.
+  (triggers.cpp:393): 49 sprites in 19 of the corpus's 1,771 maps, one in the
+  campaign (E6M4 sprite 156).

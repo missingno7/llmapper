@@ -1,0 +1,25 @@
+{
+ "id": "street-signs-hang-two-and-a-half-bodies-up",
+ "topic": "sprite",
+ "standing": "tendency",
+ "claim": "A sign read from the street has its letters a median 2.536 player heights above the street floor: 26 campaign signs (2.053 to 5.132), and 86 with the curated maps added (1.691 to 5.132), the same median. Signs at 1.2-1.5 read as shopfront notices. Notices read from close by (a staff door, a plate) are not covered by the count and stay low.",
+ "evidence": [
+  "reports/blood-lintel-band.md, the datum table: blood-campaign n=26, campaign + curated n=86 (the row measured from the floor; the row from the opening's head is noisier, cv 0.79-0.86)"
+ ],
+ "use": "Hang a frontage's name from the floor measure; keep interior notices near eye height.",
+ "code": [
+  "projects/blood-city/level/signage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "frontage",
+  "height",
+  "lintel",
+  "shop name",
+  "sign"
+ ]
+}

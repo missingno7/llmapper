@@ -1,0 +1,26 @@
+{
+ "id": "each-building-has-its-own-interior-palette",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "Blood tells buildings apart by their wall/floor/ceiling tiles: E3M1 puts 20 interior palettes in 337 sectors, TEDE1M2 35 in 613, E3M2 29 in 473. One palette for every interior reads as one brown box four times over.",
+ "evidence": [
+  "per-building census of the town maps (projects/blood-city/level/materials.py, the interior roles)",
+  "e.g. E3M1's largest complex 108/304/454, its building 3 28/390/40, building 4 100/294/20; E3M2 building 4 119/300/422"
+ ],
+ "use": "Take a campaign building's whole triple for each interior role rather than assembling one from parts.",
+ "code": [
+  "projects/blood-city/level/materials.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "interior",
+  "material",
+  "palette",
+  "register",
+  "tile set"
+ ]
+}

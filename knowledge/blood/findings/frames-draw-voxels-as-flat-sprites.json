@@ -1,0 +1,24 @@
+{
+ "id": "frames-draw-voxels-as-flat-sprites",
+ "topic": "renderer",
+ "standing": "practice",
+ "claim": "The frame renderer (xmapedit-observe) draws a tile the game shows as a voxel model (e.g. chair 758) as its flat sprite, so a frame shows neither the model's facing nor its true bulk.",
+ "evidence": [
+  "The owner, 2026-11-18, correcting a report that the chairs were 'far too big': 'maybe little bigger'."
+ ],
+ "use": "Judge a voxel's size from Blood's own repeats (tools.tile_usage N) and set its angle deliberately; never report a voxel's size or facing from a frame.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "chair",
+  "frame",
+  "observer",
+  "renderer",
+  "size",
+  "voxel"
+ ]
+}

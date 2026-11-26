@@ -1,0 +1,29 @@
+{
+ "id": "the-campaign-never-lays-a-breakable-grate-flat",
+ "topic": "mechanism",
+ "standing": "refuted",
+ "claim": "The campaign never lays a breakable grate flat: its manhole-like covers are an invisible explode object in a floor and a floor hole in an outhouse.",
+ "evidence": [
+  "E1M4 s368 (type 602 floor drop)",
+  "E4M4 s92 (floor 1120 at 40,960)",
+  "campaign study in projects/blood-city/references/sewer-design.md",
+  "2026-11-26 census of flat (cstat&48 == 32) types 411/417 over the 43 campaign maps: no flat 411; E4M3 sprite 130 and E2M2 sprite 38 are flat blocking 417 grates (python -m tools.catalog record E4M3 sprite 130)"
+ ],
+ "use": "A flat blast cover is Blood's construction: cite E4M3 sprite 130.",
+ "code": [
+  "projects/blood-city/references/sewer-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "411",
+  "breakable",
+  "floor hole",
+  "grate",
+  "manhole"
+ ],
+ "instead": "The type-411 grates (five, tile 483: E6M6 sprite 63, E6M8 sprites 6, 7, 21, 22) do all stand on walls, but the campaign lays flat breakable grates as type 417 (kThingObjectExplode): E4M3 sprite 130 (tile 191, a metal hatch, cstat 417 = flat and blocking, statnum 4) lies 3,072 over a floor of mirror tile 504, and E2M2 sprite 38 (tile 483, cstat 417) lies flat too. See manhole-cover-over-a-link."
+}

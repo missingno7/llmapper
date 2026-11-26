@@ -1,0 +1,24 @@
+{
+ "id": "e3m1-streets-carry-almost-no-props",
+ "topic": "sprite",
+ "standing": "precedent",
+ "claim": "E3M1's open streets carry almost no props: of the sprites standing in its sky-ceilinged sectors only five are visible plain decoration (a circus poster, a bonfire, a smoke column, flattened gore, a key emblem) and one a breakable tapestry (type 417); the rest are foes, pickups, wall cracks, markers, 159 exploders and 45 invisible sound sprites.",
+ "evidence": [
+  "E3M1 sprites 96 (tile 981 poster), 329 (3566 bonfire), 331 (754 smoke), 369 (2954 gore), 413 (2542 key emblem), all type 0; sprite 721 (type 417, tile 614): work/consolidation probe of visible sprites in parallax-ceiling sectors, 2026-11-26"
+ ],
+ "use": "A Blood town street is dressed by its facades and light, not by props; a few telling things (a poster, a fire, a sign of a key) are enough.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-26"
+ },
+ "words": [
+  "decoration",
+  "e3m1",
+  "outdoor",
+  "props",
+  "sprites",
+  "street"
+ ]
+}

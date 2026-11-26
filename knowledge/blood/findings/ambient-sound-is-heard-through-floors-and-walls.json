@@ -1,0 +1,34 @@
+{
+ "id": "ambient-sound-is-heard-through-floors-and-walls",
+ "topic": "sound",
+ "standing": "engine",
+ "claim": "An ambient sound sprite's loudness depends only on its straight-line 3D distance to the listener inside its data1..data2 range; walls, floors and sectors do not stop it. A sewer stacked under a street is heard on the street: Gravesend heard 62 of its 97 ambiences, the sewers' own, in the streets above them. Height barely counts: x and y are divided by 16 but z by 256, so a sound 53,248 below is as near as one 3,328 away across the floor.",
+ "evidence": [
+  "NBlood/source/blood/src/asound.cpp:66-74 ambProcess: nDist = ksqrt of dx>>4, dy>>4, dz>>8, no occlusion",
+  "count from projects/blood-city/level/release.py docstring (Gravesend, 2026-11-25)",
+  "NBlood/source/blood/src/sfx.cpp:73-79 Calc3DValues divides dx, dy by 16 and dz by 256 for every other sound too",
+  "arithmetic in projects/blood-city/references/sewers-outside.md: a floor 53,248 below is 208 distance units, as near as 3.25 plan units across"
+ ],
+ "use": "Keep a stacked level's ambiences short-ranged, or place what lies under another place elsewhere in plan and join it by links only (the release map moves the whole underside away by a whole number of floor-tile periods).",
+ "code": [
+  "projects/blood-city/level/release.py:shift",
+  "projects/blood-city/references/sewers-outside.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "ambience",
+  "ambient",
+  "falloff",
+  "hear",
+  "layers",
+  "leak",
+  "room over room",
+  "sfx",
+  "stack",
+  "stacked"
+ ]
+}

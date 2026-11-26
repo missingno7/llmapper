@@ -8,10 +8,12 @@ rather than tons of texts, it needs to be a real library you can use."
 
 | Shelf | What an entry is | Id | Where |
 |---|---|---|---|
+| Findings | one thing building levels taught us, small enough to act on: what the engine does, how a thing is built, a renderer limit, a trap a check cannot see, a ruling of the owner's. Each says how it is known (`engine`, `ruling`, `precedent`, `tendency`, `practice`, `hypothesis`, `refuted`) and cites what that kind must cite; `code` names the function that already does it | a slug (`wall-courses-run-on-down-a-flight`) | `findings/` (`python -m tools.findings find`, `show`, `add`, `check`; shown first by `catalog find`) |
 | Tiles | what a tile shows (class, layout, a name, themes), the owner's name for it, every way Blood uses it | the tile number | `design/tile-looks/`, `design/owner-anchors-v1.json`, `design/tile-usage-v1.json` |
 | Tile contexts | what a tile is used as, in which slot and kind of place, and whose evidence says so: the owner's word, then counts over the campaign, the owner's own maps, the curated, multiplayer and community maps, then agents' readings; agents add readings as they learn | the tile number, or a slot and a place | `tile-contexts/` (`python -m tools.tile_contexts`) |
 | Places | one room of the campaign or curated maps: size, lettering, distinctive tiles, its member sectors, what works and stands in it (by the Mechanisms keys), and its kind once somebody has looked | `MAP:sector` | `design/places-v1.json`, `design/place-labels/` |
 | Compositions | sprite rings and squares, rings of pillars, concentric floors, round rooms, common facings and groups that share a centre | `MAP:sector` | `design/compositions-v1.json`, `design/compositions-community-v1.json` (`python -m tools.mine_compositions`) |
+| Reference pages | what was measured across maps about one subject and written up, with the JSON it was written from: city norms, town semantics, venue and church and sewer patterns, street furniture, the E6M1 shop, the sewer kit, auto-rotators, what Duke's city transfers. Their miners write here (`tools/mine_city_norms.py`, `mine_venues.py`, `mine_sewers.py`, `mine_sewer_kit.py`, `mine_e6m1_shop.py`, `mine_urban_semantics.py`, `mine_room_grammar.py`, `mine_city_assets.py`) | the page's name | `references/` (searched by `catalog find`) |
 | Studies | how Blood built one KIND of place, looked at and written up, with a ranked recipe | a slug (`crypt`) | `studies/<slug>/` |
 | Ideas | one reusable idea seen on a tour, with a recipe | a card id | `ideas/cards/` |
 | Parts | what a mechanism is made of: every sector, wall and sprite type the campaign uses, every sector effect, every engine channel and every tutorial lesson, each with maps that show it, what sets it off and what it drives | `sector:614`, `effect:conveyor`, `channel:4`, `lesson:DOOR-SLIDING` | `design/mechanism-examples-v1.json` (`entries`) |
@@ -57,7 +59,9 @@ one thing keeps one name and a search for it finds all of it.
 ## Using it
 
 ```bash
-python -m tools.catalog find rail          # every shelf at once
+python -m tools.catalog find rail          # every shelf at once, findings first
+python -m tools.findings find stair flight # what we learned, the firmest first
+python -m tools.findings standings         # the kinds of knowing, and what each must cite
 python -m tools.catalog map E1M1           # one whole map: rooms, how it ends, wiring, materials
 python -m tools.catalog find conveyor      # ...a part is found the same way
 python -m tools.catalog find door creaking open

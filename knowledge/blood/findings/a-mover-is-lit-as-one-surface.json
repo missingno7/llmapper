@@ -1,0 +1,25 @@
+{
+ "id": "a-mover-is-lit-as-one-surface",
+ "topic": "light",
+ "standing": "practice",
+ "claim": "A leaf drawn open is traced open by a light model, so its faces come out in patches of different shade that move with it; a mover's faces must take one shade.",
+ "evidence": [
+  "Gravesend's second playthrough, 2026-11-23; fixed by even_movers."
+ ],
+ "use": "Even the shade of every moving sector's faces after any light pass.",
+ "code": [
+  "bloodmap.light_stage.even_movers"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "door",
+  "leaf",
+  "light",
+  "mover",
+  "shade"
+ ]
+}

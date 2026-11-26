@@ -1,0 +1,26 @@
+{
+ "id": "a-valid-map-can-still-crash-the-engine",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "Structural validity is not engine acceptance: a map passed every validator and gate and still took SIGSEGV in NBlood. Loading it in the engine is the check; a crash is bisected by stripping content categories, about six runs.",
+ "evidence": [
+  "Monastery, 2026-08-26: validate_map 0 diagnostics, 13 gates passed, crash on load in a headless NBlood run."
+ ],
+ "use": "Smoke-load a built map in hidden NBlood (-j pointing at the game directory with BLOOD.RFF) and grep for 'Caught signal'.",
+ "code": [
+  "bloodmap.oracle"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-26"
+ },
+ "words": [
+  "crash",
+  "load",
+  "nblood",
+  "segfault",
+  "smoke",
+  "validate"
+ ]
+}

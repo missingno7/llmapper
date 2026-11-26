@@ -74,8 +74,8 @@ GENERATOR_TYPES = frozenset({700, 701, 702, 703, 704, 705, 706, 707, 708, 709, 7
 SECTOR_TELEPORT = 604
 
 #: Enough switches in one unreachable sector that it is a control panel rather
-#: than a room someone forgot to connect.  The campaign's closets hold 14 to 67;
-#: nothing reachable comes close.
+#: than a room someone forgot to connect.  The campaign's closets hold a median
+#: of 11 and up to 67; nothing reachable comes close.
 CLOSET_SWITCH_FLOOR = 3
 
 

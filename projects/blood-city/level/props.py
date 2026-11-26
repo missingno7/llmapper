@@ -37,11 +37,10 @@ from __future__ import annotations
 import hashlib
 
 import json
-import math
 import pathlib
 
 PLAYER_HEIGHT = 16960
-_REF = pathlib.Path(__file__).resolve().parents[1] / "references"
+_REF = pathlib.Path(__file__).resolve().parents[3] / "knowledge" / "blood" / "references"
 
 with (_REF / "prop-catalogue.json").open(encoding="utf-8") as handle:
     CATALOGUE = {int(k): v for k, v in json.load(handle).items()}
@@ -122,12 +121,6 @@ STREET_LAMP_LIGHT = 1.8
 CANDELABRA = 580
 DEAD_TREE = 540
 CHANDELIER = 1701
-
-# A wall sprite has no depth buffer separation from another sprite hung on the
-# same plane.  Keeping their anchors at least one player body width apart avoids
-# view-angle-dependent painter-order flicker while still allowing a deliberately
-# dense authored composition to opt out at the direct layout level.
-MIN_WALL_PROP_SPACING = 384
 
 
 def fields(tile: int, **overrides) -> dict:
@@ -279,7 +272,7 @@ def mount_on_wall(layout, placement_id: str, room, face: str,
     declaration instead of rediscovering light from tile ids in a finishing
     pass.
     """
-    import wallplane
+    from bloodmap import wallplane
 
     a1, a2 = face_segment(room_rect(room), face)
     region_id = getattr(room, "region_id", None) or room.id
@@ -312,64 +305,6 @@ def mount_on_wall(layout, placement_id: str, room, face: str,
 
 class WallFull(ValueError):
     """This wall has no free rectangle the size of the thing being hung."""
-
-
-def safe_wall_fraction(layout, region_id: str, a1, a2, preferred: float,
-                       *, spacing: float = MIN_WALL_PROP_SPACING) -> float:
-    """One-dimensional anchor spacing.  Superseded by `wallplane`.
-
-    Kept because `runs.py` and a couple of direct callers still reach for
-    it, and because it documents what was wrong: it reserves a fixed run of
-    the supporting LINE and knows nothing about how wide or tall the sprite
-    is, nor about z at all.  Prefer `wallplane.find_slot`, which reserves
-    the rectangle the sprite actually draws.
-
-    Wall-aligned sprites are coplanar by design.  If two placements overlap on
-    one wall, Build's painter order can make them swap in front of each other as
-    the view moves.  Existing wall anchors on that physical wall (including
-    signs and anchors whose logical regions compile into one sector) therefore
-    reserve a short run of their supporting line.  This is only an automatic
-    safeguard for ordinary props; a specialised composition can call
-    ``layout.place_on_wall`` directly and state its own layering deliberately.
-    """
-    ax, ay = (float(a1[0]), float(a1[1]))
-    bx, by = (float(a2[0]), float(a2[1]))
-    dx, dy = bx - ax, by - ay
-    length = math.hypot(dx, dy)
-    if length <= 1.0:
-        return float(preferred)
-    ux, uy = dx / length, dy / length
-
-    reserved: list[float] = []
-    for placement in layout.placements:
-        if not placement.anchor:
-            continue
-        anchor = placement.anchor
-        if anchor.get("kind") != "wall":
-            continue
-        px = float(anchor["a1"][0]) + (
-            float(anchor["a2"][0]) - float(anchor["a1"][0])
-        ) * float(anchor.get("t", 0.5))
-        py = float(anchor["a1"][1]) + (
-            float(anchor["a2"][1]) - float(anchor["a1"][1])
-        ) * float(anchor.get("t", 0.5))
-        # The point must lie on this infinite supporting line and within this
-        # segment's useful extent.  That also catches a sign whose segment is a
-        # differently inset copy of the same wall.
-        normal = abs((px - ax) * uy - (py - ay) * ux)
-        along = (px - ax) * ux + (py - ay) * uy
-        if normal <= 1.0 and -spacing <= along <= length + spacing:
-            reserved.append(along)
-    if not reserved:
-        return max(0.0, min(1.0, float(preferred)))
-
-    candidates = [max(0.12, min(0.88, float(preferred)))]
-    candidates.extend(i / 10 for i in range(1, 10))
-    best = max(
-        candidates,
-        key=lambda value: min(abs(value * length - other) for other in reserved),
-    )
-    return float(best)
 
 
 def stand_on_floor(layout, placement_id: str, region_id: str,

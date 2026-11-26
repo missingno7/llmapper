@@ -1,0 +1,26 @@
+{
+ "id": "level-start-channel-fires-before-the-player-moves",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Channel 7 (kChannelLevelStart) is sent once at the end of trInit, as the level loads, before the player can act. Whatever listens on rx 7 changes before play begins, or a moment after through a relay: E1M1's casket (s30) opens on channel 102 from closet switch sprite 51, which listens on rx 7 and sends when it returns 0.6 s later. A reachability reader that treats it as a player action finds 2 of E1M1's 155 sectors.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:2316 (evSend(0, 0, kChannelLevelStart, kCmdOn, ...)); trInit is called at blood.cpp:800; eventq.h:33 kChannelLevelStart = 7.",
+  "E1M1 sprite 51: type 20, rx 7, tx 102, trigger_off, wait_time 6, in closet s31; s30 (type 614) is rx 102 (python -m tools.catalog record E1M1 sector 30; rechecked 2026-11-26)"
+ ],
+ "use": "Use rx 7 to start machines that run from the outset (crushers, belts); close the level-start closure before reading reachability.",
+ "code": [
+  "bloodmap.conditional.level_start_closure"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-09-01"
+ },
+ "words": [
+  "channel 7",
+  "level start",
+  "reachability",
+  "rx",
+  "start"
+ ]
+}

@@ -43,7 +43,7 @@ globbing a directory:
 
 ```text
 python -m bloodmap corpus-manifest maps/blood -o maps/blood/corpus.json
-python -m bloodmap corpus maps/blood --view reference -o reports/corpus_inventory.json
+python -m bloodmap corpus maps/blood --view reference -o work/corpus_inventory.json
 ```
 
 ## Native losslessness gate
@@ -71,8 +71,8 @@ python -m unittest discover -s tests -v
 ```
 
 Derived, non-proprietary inventories are tracked in
-`reports/corpus_inventory.json` (the `reference` view: 102 maps) and
-`reports/duke3d_corpus_inventory.json`; `reports/corpus_statistics.json`
+`reports/archive/corpus_inventory.json` (the `reference` view: 102 maps) and
+`reports/duke3d_corpus_inventory.json`; `reports/archive/corpus_statistics.json`
 retains the richer Blood semantic statistics.
 
 The previous flat inventory recorded "44 Blood maps". That figure was
@@ -88,9 +88,9 @@ skipped and reported, never normalized and never silently dropped.
 
 ```text
 python -m bloodmap corpus-health --maps maps/blood --population community \
-  -o reports/blood-community-corpus-health.json
+  -o work/blood-community-corpus-health.json
 python -m bloodmap corpus-health --maps maps/blood --view reference \
-  -o reports/blood-reference-corpus-health.json
+  -o work/blood-reference-corpus-health.json
 ```
 
 Measured 2026-08-31 (`reports/blood-corpus-health.md`):

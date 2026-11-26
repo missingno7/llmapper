@@ -6,7 +6,7 @@ and records the affected sectors plus their one-hop neighbours, so a later
 prefab reads the complete technical setting instead of borrowing a tile in
 isolation.
 
-    python -m tools.mine_sewer_kit -o projects/blood-city/references/sewer-kit.json
+    python -m tools.mine_sewer_kit -o knowledge/blood/references/sewer-kit.json
 """
 
 from __future__ import annotations

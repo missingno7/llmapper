@@ -1619,6 +1619,10 @@ class PlanarLayout:
             conservation.unpaired_portal_candidates = leftover
             raise PlanarLayoutError(
                 "unexplained unpaired portal candidates: " + ", ".join(leftover[:12])
+                + ". Two rooms of one layer have walls on one line that no connection joins. Either they share only "
+                "PART of an edge (join them along all of it, or put a wall's thickness between them), or their edges "
+                "are a unit or two apart (sizes and origins are whole numbers: a fraction was cut off), or a room was "
+                "moved after it was connected. python -m tools.findings show partial-edge-joins-leave-unpaired-walls"
             )
         level, allocations, wall_from_atomic = self._emit(atomics, pairs)
         builder = LevelBuilder(level)
@@ -1899,9 +1903,12 @@ class PlanarLayout:
                     y_repeat=placement.y_repeat, shade=placement.shade, pal=placement.pal,
                 )
             except ConstructionError as exc:
+                hint = (" (a sprite stood on a floor whose z comes out under it has art drawn to be centred: give it cstat "
+                        "128, python -m tools.findings show centred-art-floats-without-cstat-128)"
+                        if "outside sector range" in str(exc) else "")
                 raise PlanarLayoutError(
                     f"placement {placement.placement_id} in {placement.region_id} "
-                    f"at {(placement.x, placement.y, placement.z)}: {exc}"
+                    f"at {(placement.x, placement.y, placement.z)}: {exc}{hint}"
                 ) from exc
             placement_sprites[placement.placement_id] = sprite_id
             # A sprite on one of these statnums is given an XSprite whether or
@@ -1966,6 +1973,14 @@ class PlanarLayout:
             for region in self.regions.values()
             if region.declared_zero_exit or region.special in {"water", "stack", "helper"}
         }
+        # A room whose way out is a door is shut in, not cut off: at rest nothing can be walked out of it, and that is
+        # what the door is for. It need not be declared; a room joined to nothing at all still must be.
+        gated_regions = {region.region_id for region in self.regions.values()
+                         if region.type in {600, 602} or region.role in {"doorway", "gated_pocket"}}
+        for item in self.connections.values():
+            for door, room in ((item.region_a, item.region_b), (item.region_b, item.region_a)):
+                if door in gated_regions and room in allocations:
+                    zero_exit.add(allocations[room].sector_id)
         intended = [(item.region_a, item.region_b) for item in self.connections.values()]
         # Which sectors are not on the same sheet of paper. The audit asks its
         # questions in plan, and two layers do not share one.

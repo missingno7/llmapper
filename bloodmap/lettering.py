@@ -54,7 +54,10 @@ LETTER_HEIGHT = 11
 #: Wall-aligned, hitscan, 128. 108 of the campaign's 132 letters.
 LETTER_CSTAT = 208
 
-#: Centre-to-centre spacing, as a multiple of a letter's drawn width.
+#: Centre-to-centre spacing, as a multiple of a letter's drawn width.  The
+#: campaign's evenly spaced signs measure a median 1.333; 1.45 sits near the
+#: LINE pitch (1.455, `wallplane.LINE_PITCH`), which is a different spacing.
+#: The value is left as it is: changing it moves every sign in Gravesend.
 PITCH = 1.45
 
 #: The campaign's own shade for a letter.

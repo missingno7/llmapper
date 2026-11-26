@@ -42,7 +42,7 @@ keep both direct Use and their lever RX channels.  The build manifest records
 `door_frames: 13` and semantic LightBomb sources.
 
 The reusable route and the full authoring-tool map are in
-[`docs/authoring-toolkit.md`](../../../docs/authoring-toolkit.md).  Use it before
+[`docs/toolkit-index.md`](../../../docs/toolkit-index.md) (once `docs/authoring-toolkit.md`, since deleted).  Use it before
 adding project-local helpers.  Shared `bloodmap` changes are appropriate only
 when they are a tested generalisation of a concrete map case; do not edit
 unrelated primitives or the NBlood/xmapedit submodules.

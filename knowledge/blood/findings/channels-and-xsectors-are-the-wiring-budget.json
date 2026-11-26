@@ -1,0 +1,28 @@
+{
+ "id": "channels-and-xsectors-are-the-wiring-budget",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Channels are 10-bit (to 1,023) and below 100 are the engine's, so a level has 924 of its own; the campaign's busiest map uses 145. What runs out first is XSECTORs (4,096 in NBlood) and receivers: an object has one rx, so a piece of floor lit by two shootable lamps can go dark with only one of them.",
+ "evidence": [
+  "NBlood/source/blood/src/db.h:27 kMaxXSectors 4096; db.h:60-61 txID and rxID : 10 bits",
+  "campaign's most is 145 channels, Gravesend used 95 of 924 with 654 XSECTORs (projects/blood-city/level/shot_lamps.py docstring)"
+ ],
+ "use": "Count XSECTORs, not channels, when wiring light; put switchable lamps where each lights its own pool.",
+ "code": [
+  "bloodmap.light_stage.LampGroup",
+  "bloodmap.wiring"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "budget",
+  "channel",
+  "limit",
+  "rxid",
+  "txid",
+  "xsector"
+ ]
+}

@@ -1,0 +1,22 @@
+{
+ "id": "a-catalogue-seed-names-a-cluster-not-its-sector",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A room the catalogue labels by its cluster is not every sector of it: E6M1 sector 91 is catalogued as the office, but its own view is a crate closet; the office is sector 79. Look at the one sector before taking it as the precedent of a place.",
+ "evidence": [
+  "E6M1 s91 (catalog find office: labelled office), its own frames a crate closet; E6M1 s79 the counters and clock (study front-office)"
+ ],
+ "use": "Render the seed with tools.study or tools.look --ref MAP --sectors N before citing it.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "catalogue",
+  "office",
+  "precedent",
+  "seed"
+ ]
+}

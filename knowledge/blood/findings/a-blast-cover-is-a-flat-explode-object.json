@@ -1,0 +1,29 @@
+{
+ "id": "a-blast-cover-is-a-flat-explode-object",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "kThingObjectExplode (type 417) takes damage only from explosions (and half from tesla): its multipliers are 0 fall, 0 burn, 0 bullet, 256 explosion, 0 drown, 0 spirit, 128 tesla. Laid as a floor-aligned blocking sprite it is ground to walk on, because getzrange counts a blocking floor sprite as floor. So a manhole cover blown open by dynamite needs no wiring: a hole always there, under a flat 417.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:1963-1977 (thingInfo, Explode Object)",
+  "NBlood/source/build/src/clip.cpp:2300 (getzrange, floor-sprite case)",
+  "built in Gravesend's manholes 2026-11-21; campaign census 2026-11-26: floor-aligned 417s 177 (59 blocking), floor-aligned 416s 77 (43 blocking); E4M9 sprite 290 is type 416, not 417; campaign census 2026-11-26: floor-aligned 417s 177 (59 blocking), floor-aligned 416s 77 (43 blocking); E4M9 sprite 290 is type 416, not 417"
+ ],
+ "use": "Lay the cover a little larger than the hole on the thing list. A floor-aligned blocking 417 is the campaign's own (59 of them, e.g. E1M4 sprite 277); a flat kThingObjectGib (416) such as E4M9 sprite 290 (data_1 5 for shards) also breaks to bullets, so use it only where shooting it open is wanted.",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py",
+  "projects/blood-city/references/sewer-design.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "417",
+  "breakable",
+  "cover",
+  "dynamite",
+  "explode",
+  "manhole"
+ ]
+}

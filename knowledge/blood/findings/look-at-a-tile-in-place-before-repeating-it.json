@@ -1,0 +1,30 @@
+{
+ "id": "look-at-a-tile-in-place-before-repeating-it",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "A tile read off its picture on a sheet can be wrong for the job: 505 is a metal waste bin labelled WASTE heaped with gore, and set as a neutral bin at three shop doors it read to a blind reviewer as 'danger', the most obvious repeat. A decoration tile used by at least two of Blood's town maps, set with the fields they give it, held up.",
+ "evidence": [
+  "Gravesend's goods pass, 2026-11-18 (tools/mine_city_assets.py over E3M1, E3M2, E1M2, E1M4, E6M1, DWE3M1, DWE3M10).",
+  "python -m tools.tile_usage 505 (picture looked at 2026-11-26): a grey bin lettered WASTE, its top heaped and streaked with blood; projects/blood-city/level/goods.py:210 records the reviewer's words"
+ ],
+ "use": "Render a tile in place before repeating it; keep unanchored tiles on the owner's list.",
+ "code": [
+  "tools/mine_city_assets.py",
+  "tools/tile_usage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-18"
+ },
+ "words": [
+  "505",
+  "bin",
+  "decoration",
+  "goods",
+  "gore",
+  "prop",
+  "sheet",
+  "tile"
+ ]
+}

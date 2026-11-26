@@ -1,0 +1,27 @@
+{
+ "id": "e3m1-walks-its-roofs",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "E3M1's town is a second storey of routes: sky sectors above grade cover 52.8% of its street area, joined with 3 stack pairs; 7 of its 15 buildings are multi-storey (47%, the most vertical town measured). DukCity's roofs are scenery (at most 2% of street area) and its depth is a sewer of 75-125 sectors instead.",
+ "evidence": [
+  "tools/mine_city_norms.py (rooftop share 0.528 E3M1, 0.001-0.020 DukCity); tools/mine_urban_semantics.py (E3M1 7/15 buildings multi-storey, DukCity 10-17%)"
+ ],
+ "use": "Give a Blood town walkable roofs and upper storeys; that is the move Duke cannot make.",
+ "code": [
+  "knowledge/blood/references/city-norms.md",
+  "knowledge/blood/references/urban-semantics.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "roof",
+  "rooftop",
+  "storey",
+  "town",
+  "upper floor",
+  "vertical"
+ ]
+}

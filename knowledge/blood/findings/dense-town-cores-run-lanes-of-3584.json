@@ -1,0 +1,26 @@
+{
+ "id": "dense-town-cores-run-lanes-of-3584",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "A dense town core (TEDE1M2, 1,014 sectors, 7,361 walls) is a web of lanes, street width median 3,584 (p10 1,024), round one square, with the corpus's highest rate of substantial interiors, 0.38 per 10,240 units of frontage. E3M2 builds its whole walled town as 4 sky sectors with the buildings as holes, entered from the walls above.",
+ "evidence": [
+  "tools/mine_city_norms.py v2 on TEDE1M2 and E3M2 (knowledge/blood/references/city-norms-v2.json)"
+ ],
+ "use": "For a dense quarter use 3,072-3,584 lanes and many shallow interiors; an open town can be one sky region with masses carved out.",
+ "code": [
+  "knowledge/blood/references/dense-town-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "alley",
+  "dense",
+  "holes",
+  "lane",
+  "street width",
+  "town core"
+ ]
+}

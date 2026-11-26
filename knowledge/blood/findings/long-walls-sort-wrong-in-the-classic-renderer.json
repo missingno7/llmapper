@@ -1,0 +1,27 @@
+{
+ "id": "long-walls-sort-wrong-in-the-classic-renderer",
+ "topic": "renderer",
+ "standing": "engine",
+ "claim": "The classic renderer decides which wall is in front by products of wall coordinates that overflow 32 bits for very long walls far apart: with sea bands one wall wide, everything past about 38 plan units was drawn under the water in the observer. DWE3M4's longest wall is 71,943.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:2227 wallfront (dmulscale2 into int32); the same in xmapedit/src/engine.c, seen in the XMapEdit observer run of the harbour",
+  "projects/blood-city/level/l3_market.py: the sea's bands"
+ ],
+ "use": "Cut big water and ground sectors so no wall is longer than the campaign's longest (about 72k).",
+ "code": [
+  "projects/blood-city/level/l3_market.py"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "drawn under",
+  "long",
+  "overflow",
+  "sea",
+  "sort",
+  "wallfront"
+ ]
+}

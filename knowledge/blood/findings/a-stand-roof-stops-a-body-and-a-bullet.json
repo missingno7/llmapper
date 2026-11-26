@@ -1,0 +1,27 @@
+{
+ "id": "a-stand-roof-stops-a-body-and-a-bullet",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "The flat roof over a market stand or stall blocks: it stops a body and a bullet, as most of Blood's flat roof sprites do.",
+ "evidence": [
+  "the owner, 2026-11-25: 'roofs of stands aren't solid/blocking even they should be'",
+  "251 of Blood's 312 such roofs set both bits (projects/blood-city/level/meat_market.py, comment on the canopy)"
+ ],
+ "use": "Set cstat bits 1 and 256 on a stand's roof sprites.",
+ "code": [
+  "projects/blood-city/level/meat_market.py:_dress_stalls"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "blocking",
+  "canopy",
+  "hitscan",
+  "roof",
+  "solid",
+  "stall"
+ ]
+}

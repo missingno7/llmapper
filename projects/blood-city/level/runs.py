@@ -21,7 +21,7 @@ the method. Every choice is seeded from the run's stable identity and the
 beat index: two runs differ, the same run rebuilds byte-identically.
 
 **Cost is declared before emission.** `estimate` returns the walls a run
-will add so a planner can budget against the 7,000 cap before generating.
+will add so a planner can budget against the map limits (NBlood: 16,384 walls) before generating.
 A wall-mounted element costs nothing; a carved element costs eight.
 
 **The parameter range is the unit of test**, not one instance. `beats`

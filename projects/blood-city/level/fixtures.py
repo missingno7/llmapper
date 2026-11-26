@@ -2,7 +2,7 @@
 
 Every venue in Gravesend has been hand-built, which is why the pawn shop
 renders as an empty box: the shop grammar was documented in
-`references/venue-patterns.md` and written down exactly once, inline, in
+`knowledge/blood/references/venue-patterns.md` and written down exactly once, inline, in
 the canteen. This is that grammar as code, so every venue composes from the
 same parts.
 
@@ -127,7 +127,7 @@ FAMILIES = {f.name: f for f in (COUNTER, PEDESTAL, PANEL,
                                 BOOTH, STAGE, STANCHION, LEDGE, BAR)}
 
 #: A shelf let into a wall: E1M2 sector 213, E3M2 82 and 87, E1M4 167
-#: (`references/town-fixtures.png`). Its floor is a bar's height; its head
+#: (`knowledge/blood/references/town-fixtures.png`). Its floor is a bar's height; its head
 #: is 0.725 body over that (E1M2 213's own 12,288), which leaves the wall
 #: over it for the shop's name; a quarter to half a player width deep.
 SHELF_RISE = BAR.rise
@@ -143,7 +143,9 @@ SHELF_INTENT = "shelf_niche"
 SHELF_BACKS = {"books": 32}
 
 #: The share of fixtures that carry any merchandise at all. Measured across
-#: the four sources: 28/171, 11/136, 2/43, 1/62 -- call it one in seven.
+#: the four sources: 28/171, 11/136, 2/43, 1/62, pooled 42 of 412 -- one in
+#: ten (one in six at most, in DWE3M1 alone).  0.14 is more than that; it is
+#: kept because changing it moves the goods in Gravesend.
 GOODS_SHARE = 0.14
 
 #: Glazing and closing are the same masked two-sided wall.

@@ -1,0 +1,26 @@
+{
+ "id": "a-frame-is-evidence-of-one-map-and-one-pose-set",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A frame stands for the map bytes and the camera it was taken of: record the map's SHA-256, the poses' and each frame's beside it, and a status that compares them marks evidence historical after any save or moved camera, instead of letting an old frame vouch for a new map.",
+ "evidence": [
+  "tools/look.py observe writes render.json; tools/critique.py prepare writes the hashes into packet.json",
+  "projects/duke-e4l1-remake/status.py marks a place's last round current, historical map or historical poses"
+ ],
+ "use": "Look through tools.look and prepare through tools.critique; read freshness from render.json or packet.json, never from a file's date.",
+ "code": [
+  "tools.look.observe",
+  "tools.look.pose_hash"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "freshness",
+  "hash",
+  "render.json",
+  "stale"
+ ]
+}

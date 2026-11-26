@@ -1,0 +1,23 @@
+{
+ "id": "duke-st25-turns-its-se15-half-round-before-moving",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Operating an ST25 sliding door adds 1024 to its SE15 effector's angle before the first move, so the door first travels opposite to the effector's authored angle.",
+ "evidence": [
+  "reference/eduke32/source/duke3d/src/sector.cpp:1006-1021 (ST_25 case: SA(i) += 1024)"
+ ],
+ "use": "Slide a converted SE15 along its angle plus 1024 on the first operation.",
+ "code": [
+  "bloodmap.duke_motion"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "direction",
+  "se15",
+  "sliding door"
+ ]
+}

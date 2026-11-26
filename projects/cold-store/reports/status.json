@@ -1,0 +1,63 @@
+{
+ "project": "cold-store",
+ "title": "The Cold Store",
+ "map": "projects/cold-store/level/cold-store.MAP",
+ "size": {
+  "sectors": 12,
+  "walls": 68,
+  "sprites": 19
+ },
+ "limits": {
+  "nblood": {
+   "sectors": 4096,
+   "walls": 16384,
+   "sprites": 16384
+  },
+  "vanilla": {
+   "sectors": 1024,
+   "walls": 8192,
+   "sprites": 4096
+  }
+ },
+ "stages": [
+  "compile",
+  "alignment",
+  "gates",
+  "light",
+  "write"
+ ],
+ "finishable": {
+  "exits": [
+   {
+    "root": "sprite 13",
+    "cause": "push",
+    "sector": 5,
+    "to": "kChannelLevelExitNormal",
+    "reached": true
+   }
+  ],
+  "keys": [
+   {
+    "sprite": 3,
+    "name": "kItemKeySkull",
+    "sector": 1,
+    "reached": true
+   }
+  ]
+ },
+ "pose_sets": {
+  "start": 3,
+  "hall": 4
+ },
+ "critique": {},
+ "open": [
+  {
+   "kind": "never-critiqued",
+   "says": "no blind reader has looked at any place of this level",
+   "do": "python -m tools.critique --project cold-store prepare <slug> --poses <set> --kind <kind>"
+  }
+ ],
+ "open_by_kind": {
+  "never-critiqued": 1
+ }
+}

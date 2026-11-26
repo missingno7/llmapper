@@ -269,8 +269,8 @@ register(Rule(
     id="aquatic-sprite-is-under-water",
     statement="an aquatic tile belongs in a sector that is under water",
     because=(
-        "664 appears in 82 campaign sectors and every one is submerged; 660 in "
-        "142, likewise. They are weed, not creepers"),
+        "664 is 82 campaign sprites in 46 sectors and every one is submerged; "
+        "660 is 145 in 68, likewise. They are weed, not creepers"),
     source="corpus",
     scope="sprite",
     check=_aquatic_sprites_are_under_water,
@@ -644,8 +644,9 @@ register(Rule(
         "of this rule asserted the opposite and was wrong. A door that opens by "
         "*dropping its floor* has no such problem: it is a gate in an outdoor "
         "wall and the sky above it belongs there. The campaign separates them "
-        "sharply -- 18.4% of its floor-moving doors are open to the sky against "
-        "0.5% of its ceiling-moving ones, and all three of those sit in one map"),
+        "sharply -- over all its 600/602 sectors, 95 of 658 floor movers (14.4%) "
+        "are open to the sky against 6 of 779 ceiling movers (0.8%), and all six "
+        "of those sit in one map, E6M4"),
     source="NBlood/source/blood/src/triggers.cpp OperateDoor",
     scope="sector",
     check=_ceiling_movers_are_not_open_to_the_sky,
@@ -1626,7 +1627,7 @@ register(Rule(
         "y_panning on one wall record, so a pane fitted to its opening and a "
         "facade continuing past it cannot both be right on the same record. "
         "The only way to give an insert its own record is a holder sector, "
-        "and blood-city shipped 24 panes on the facade line where glaze and "
+        "and Gravesend shipped 24 panes on the facade line where glaze and "
         "frame_map overwrote each other -- fifteen kept the pane's scale and "
         "nine the facade's, decided by the order the passes ran"),
     source="xmapedit/src_blood/xmpmaped.cpp:3024-3050 AlignWalls",

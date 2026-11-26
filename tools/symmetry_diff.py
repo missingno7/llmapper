@@ -1,10 +1,12 @@
 """What the city DECLARED against what its built map SAYS, row for row.
 
-    PYTHONPATH=. python -m tools.symmetry_diff projects/blood-city \
-        --map projects/blood-city/level/slice2-streets.MAP \
-        --report projects/blood-city/reports/symmetry-diff.md
+    PYTHONPATH=. python -m tools.symmetry_diff tests/fixtures/city-slices \
+        --map tests/fixtures/city-slices/slice2-streets.MAP \
+        --report projects/blood-city/reports/symmetry-diff.md \
+        --json projects/blood-city/references/symmetry-diff.json
 
-The compiler writes a fact store as it builds (`projects/blood-city/facts/`).
+The compiler writes a fact store as it builds (the city's second slice wrote
+the one now frozen in `tests/fixtures/city-slices/facts/`).
 The readers recover a fact store from the finished `.MAP`
 (`bloodmap.read_facts.recover`). Symmetry is the claim that those two stores
 say the same thing. This tool is where that claim is CHECKED rather than

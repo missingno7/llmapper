@@ -1,0 +1,31 @@
+{
+ "id": "map-limits-are-nblood-v8",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "NBlood and EDuke32 load maps up to 4,096 sectors, 16,384 walls and 16,384 sprites (the V8 figures); the original DOS engines stop at 1,024 / 8,192 / 4,096 (V7). Past V8 a map loads nowhere; past V7 it loads only in the ports.",
+ "evidence": [
+  "NBlood/source/build/include/build.h:48-50 MAXSECTORSV8 etc.; :52-54 the V7 figures",
+  "the owner, 2026-09-02: 'our map is larger than E3M1 and that is fine'",
+  "A 7,000-wall budget once used for Gravesend was a vanilla-era cap and was retired on 2026-09-02; it is not an engine limit"
+ ],
+ "use": "Treat V8 as the error and V7 as a warning; build_ir validates both.",
+ "code": [
+  "bloodmap.build_ir.BUILD_LIMITS",
+  "bloodmap.build_ir.VANILLA_LIMITS"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-16"
+ },
+ "words": [
+  "7000",
+  "budget",
+  "limits",
+  "map size",
+  "max sectors",
+  "max sprites",
+  "max walls",
+  "wall cap"
+ ]
+}

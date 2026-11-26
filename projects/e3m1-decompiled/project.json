@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "E3M1 decompiled",
+  "kind": "analysis",
+  "status": "frozen",
+  "about": "E3M1 as a fact store with provenance; tools/decompile_stages/query.py owns every number."
+}

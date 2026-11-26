@@ -1,0 +1,23 @@
+{
+ "id": "an-owners-number-may-be-a-sprite-index",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "When the owner writes '#1303' or '#603' he may mean a sprite index in the map, not a tile number: #1303 was the secret counter drawn as tile 0, #603 an extinguisher of tile 658.",
+ "evidence": [
+  "Gravesend walks of 2026-11-18 and 2026-11-25."
+ ],
+ "use": "Check both readings before acting.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "index",
+  "number",
+  "owner",
+  "sprite",
+  "tile"
+ ]
+}

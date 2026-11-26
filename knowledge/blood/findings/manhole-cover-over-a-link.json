@@ -1,0 +1,28 @@
+{
+ "id": "manhole-cover-over-a-link",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "Blood's manhole is a flat breakable sprite (type 417, tile 191, a metal hatch) lying 3,072 above a see-through link floor (floor tile 504), with a fall below: a flat sprite holds a player up only where it lies above its sector's floor.",
+ "evidence": [
+  "E4M3 sprite 130: type 417, tile 191, cstat 417 (flat, blocking), statnum 4, repeat 48, z -35,840 over its sector 224's floor -32,768 of tile 504 (3,072), data_1 5 (python -m tools.catalog record E4M3 sprite 130 / sector 224); community maps SLUMS2C sprite 62, BCE3M5 sprite 141 in a street",
+  "E2M2 sprite 38: type 417, tile 483 (the grate type 411 wears on walls), cstat 417, flat",
+  "E1M4 sprites 966-983 (type 417, tile 250, cstat 161) also lie 3,072 above their floor (z 54,272 over 57,344)"
+ ],
+ "use": "Lay the cover blocking and flat over the shaft, wider than the hole across its corners, on statnum 4; land the fall in water.",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "cover",
+  "drain",
+  "drop",
+  "flat sprite",
+  "manhole",
+  "sewer entrance"
+ ]
+}

@@ -1,0 +1,29 @@
+{
+ "id": "community-maps-may-be-duke-conversions",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "Some Blood community maps are conversions of Duke levels and say nothing about Blood: FORDTHEA (141 sectors from Duke's E1L1), Intime~2, HollHolo, Duke1 and AFTSHOCK (73) are E1L1, so FORDTHEA is not a Blood theatre exemplar. Several maps sharing one source are one witness, not several. Exemplars of a room are found by scanning every map for its parts and rendering the leads, not by file name.",
+ "evidence": [
+  "The owner, 2026-11-23: 'AFTSHOCK is actually conversion of E1L1 map from Duke3D'; knowledge/blood/duke-conversions.json made by experiments/room_scan/duke_conversions.py lists them.",
+  "knowledge/blood/duke-conversions.json conversions: community/FORDTHEA.MAP duke E1L1.MAP, 141 sectors, share 0.43 (read 2026-11-26)"
+ ],
+ "use": "Check each lead against knowledge/blood/duke-conversions.json before treating it as Blood practice.",
+ "code": [
+  "knowledge/blood/duke-conversions.json"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "aftshock",
+  "community",
+  "conversion",
+  "corpus",
+  "duke",
+  "exemplar",
+  "fordthea",
+  "theatre"
+ ]
+}

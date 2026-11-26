@@ -1,0 +1,25 @@
+{
+ "id": "duke-st23-reverses-its-se11-before-the-first-swing",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Operating an ST23 negates each armed SE11's step (T4 = -T4) before it moves, and spawn sets T4 to 2 when the effector's angle is over 1024 and -2 otherwise: the first swing runs opposite to the sign the spawn gave. A converter that swings in the spawn's direction opens every door the wrong way, and can drag a neighbour loop through itself.",
+ "evidence": [
+  "reference/eduke32/source/duke3d/src/sector.cpp:993 (T4(i) = -T4(i) before T5(i) = 1)",
+  "reference/eduke32/source/duke3d/src/game.cpp:3255 (T4 = (ang > 1024) ? 2 : -2)",
+  "E4L1 door 50: swung the spawn's way it folded sector 389 loop 3 at 8 of 16 sampled positions; reversed, none"
+ ],
+ "use": "Take the first swing's direction as -1 for an angle over 1024 and +1 otherwise.",
+ "code": [
+  "bloodmap.duke_motion"
+ ],
+ "scope": "duke",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "door",
+  "se11",
+  "swing direction"
+ ]
+}

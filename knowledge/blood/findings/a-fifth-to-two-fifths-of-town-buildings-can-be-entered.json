@@ -1,0 +1,26 @@
+{
+ "id": "a-fifth-to-two-fifths-of-town-buildings-can-be-entered",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "Across both games 13-40% of a town's ground-floor buildings are entered from the street network: E3M1 6 of 15 (0.40), TEDE1M2 0.385, DukCity3 0.37, DukCity1-2 0.20, DWE3M10 0.135, DukCity4 0.13. The facade promises far more building than exists: interiors are 3-8k deep behind 24k frontages.",
+ "evidence": [
+  "tools/mine_urban_semantics.py, per-building segmentation (knowledge/blood/references/urban-semantics.json)",
+  "tools/mine_city_norms.py: interior area median 14M-115M (city-norms.json)"
+ ],
+ "use": "Make roughly a quarter of a town's buildings enterable, and shallow.",
+ "code": [
+  "knowledge/blood/references/urban-semantics.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "building",
+  "enterable",
+  "facade",
+  "interior",
+  "town"
+ ]
+}

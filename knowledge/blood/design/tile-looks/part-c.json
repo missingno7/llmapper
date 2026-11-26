@@ -1347,13 +1347,13 @@
   "by": "c"
  },
  "676": {
-  "class": "glass",
+  "class": "fixture",
   "layout": "sprite",
-  "looks": "round porthole glass in brass rim",
+  "looks": "round glass wall lamp in brass rim",
   "tags": [
    "glass",
-   "nautical",
-   "window"
+   "light",
+   "metal"
   ],
   "by": "c"
  },

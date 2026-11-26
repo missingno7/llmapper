@@ -1,0 +1,27 @@
+{
+ "id": "a-court-under-a-lower-sky-makes-its-neighbours-paper-thin",
+ "topic": "renderer",
+ "standing": "ruling",
+ "claim": "Open ground under a lower sky between tall buildings cuts their sides at its sky line, and above it each building is a front with nothing behind it. The court takes the street's sky and its sides wear the neighbours' facade round the corner; a low front's height belongs to a thin lip (about 128 deep) before it.",
+ "evidence": [
+  "The owner, 2026-11-25: the forecourt 'makes buildings next to it to look like paper thin because of the sky'.",
+  "Exemplar of a roofed, columned portico giving the mass depth: E1M7 s12."
+ ],
+ "use": "Run the thin-front check after any change of sky height.",
+ "code": [
+  "bloodmap.skyline.thin_fronts"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "court",
+  "facade",
+  "forecourt",
+  "portico",
+  "sky",
+  "thin"
+ ]
+}

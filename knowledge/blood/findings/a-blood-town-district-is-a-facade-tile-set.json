@@ -1,0 +1,25 @@
+{
+ "id": "a-blood-town-district-is-a-facade-tile-set",
+ "topic": "texture",
+ "standing": "tendency",
+ "claim": "E3M1's four street zones differ by facade tile set, not by floor or light: the three ground zones share floor 4 and the boardwalk is 352, and every zone's floor has a median shade of +32/+34 (one sector of each at 8). Seams fall at street junctions, not mid-street. Light variety comes from sources, not zone-wide shade bands.",
+ "evidence": [
+  "tools/mine_city_norms.py on E3M1: 4 zones, facade tops {400,414,181,417,418}, {380,381,393}, {384,393,181} (city-norms.json, districts)"
+ ],
+ "use": "Make a district a facade set plus a floor material under one night shade; put its edges at junctions.",
+ "code": [
+  "knowledge/blood/references/city-norms.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "district",
+  "facade set",
+  "palette",
+  "seam",
+  "zone"
+ ]
+}

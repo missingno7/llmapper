@@ -1,0 +1,23 @@
+{
+ "id": "diff-against-a-working-artifact-first",
+ "topic": "workflow",
+ "standing": "practice",
+ "claim": "When something built does not work, diff it against a working artifact of the same kind (a campaign instance, an earlier map that works) before theorising; when an engine behaviour is in doubt, read NBlood's source rather than infer from the corpus; and never take your own tool agreeing with your own construction as proof.",
+ "evidence": [
+  "The dead room-over-room of 2026-08-28 was found by comparing with working water links and reading db.cpp, after an inferred answer was wrong."
+ ],
+ "use": "Find the campaign record with catalog record and compare field by field.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "compare",
+  "debugging",
+  "diff",
+  "engine source",
+  "proof"
+ ]
+}

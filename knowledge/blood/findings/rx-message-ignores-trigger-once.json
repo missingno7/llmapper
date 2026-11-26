@@ -1,0 +1,26 @@
+{
+ "id": "rx-message-ignores-trigger-once",
+ "topic": "mechanism",
+ "standing": "engine",
+ "claim": "Trigger Once only stops a sprite, wall or sector being set off directly (pushed, shot, touched, entered); a message arriving on its rx channel is obeyed every time. And a state command that names the state the object is already in sends nothing, so a toggle driven by explicit ON reports only its first change.",
+ "evidence": [
+  "NBlood/source/blood/src/triggers.cpp:1888-1893 trTriggerSprite checks and sets isTriggered/triggerOnce (1843 sectors, 1867 walls); trMessageSprite at triggers.cpp:1956 does not look at it",
+  "NBlood/source/blood/src/triggers.cpp:85-88 SetSpriteState returns 0 without sending when state already equals nState"
+ ],
+ "use": "To latch something that is also wired, do not rely on Trigger Once: send it an explicit ON (command 1), or put a counter/once-only relay in front of it.",
+ "code": [
+  "projects/blood-city/level/phantom_terminus.py:_ghost_controls"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "latch",
+  "message",
+  "once only",
+  "rx",
+  "trigger once"
+ ]
+}

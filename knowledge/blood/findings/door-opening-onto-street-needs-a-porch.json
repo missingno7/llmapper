@@ -1,0 +1,27 @@
+{
+ "id": "door-opening-onto-street-needs-a-porch",
+ "topic": "construction",
+ "standing": "engine",
+ "claim": "A door sector opening straight onto a street draws the wall above the opening from the street-side record up to the street's ceiling or sky, in that record's tile: with no porch a door's tile rises six storeys, or a doorway carries the street's facade (windows and all) to the sky.",
+ "evidence": [
+  "NBlood/source/build/src/engine.cpp:4721 the upper step spans the two sectors' ceilings",
+  "projects/blood-city/level/l3_market.py and l3_foundry.py: the market hall's and the canteen's doors before porches; l3_station.py: the station's arches before the forecourt"
+ ],
+ "use": "Put a thin porch or reveal at door height between the street and the leaf, so the facade owns the wall above; frame_z_doors does this for type-600 doors.",
+ "code": [
+  "bloodmap.aperture.frame_z_doors"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "aperture",
+  "door",
+  "facade",
+  "lintel",
+  "porch",
+  "reveal"
+ ]
+}

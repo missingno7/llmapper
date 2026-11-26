@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "Authoring quality v1",
+  "kind": "pilot",
+  "status": "frozen",
+  "about": "A protocol for judging authoring quality by blind comparison; written, never run."
+}

@@ -12,7 +12,7 @@ python -c "from bloodmap.assets import mine_sprite_context, dump; ..."
 
 Reports:
 
-- `reports/blood-sprite-context.json` — families with independent shares
+- `reports/archive/blood-sprite-context.json` — families with independent shares
 - `reports/blood-key-signifiers.json` — keyed vs unkeyed co-occurrence
 
 Review packets (isolated bitmap + in-map usages) reuse the materials packet

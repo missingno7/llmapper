@@ -1,0 +1,8 @@
+{
+  "$schema": "bloodmap.level-project",
+  "schema_version": 1,
+  "name": "Mashup gate",
+  "kind": "pilot",
+  "status": "frozen",
+  "about": "A gate assembled from campaign fragments; a fixture of tests/test_mashup_upper.py."
+}

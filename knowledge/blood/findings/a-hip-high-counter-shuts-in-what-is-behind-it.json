@@ -1,0 +1,25 @@
+{
+ "id": "a-hip-high-counter-shuts-in-what-is-behind-it",
+ "topic": "gameplay",
+ "standing": "practice",
+ "claim": "A counter too high to step over, run wall to wall, shuts off what lies behind it: in Gravesend a pickup, a key and a foe were closed behind 8,192 units of wood, and only a blind reader saw it. Stop a counter a body's width short of one wall.",
+ "evidence": [
+  "projects/blood-city/level/templates.py (shop, COUNTER_PASS)"
+ ],
+ "use": "Leave a player width round the end of every counter; check what is reachable behind fixtures.",
+ "code": [
+  "projects/blood-city/level/templates.py:shop"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "bar",
+  "counter",
+  "fixture",
+  "key",
+  "reachability"
+ ]
+}

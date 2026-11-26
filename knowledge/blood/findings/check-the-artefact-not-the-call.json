@@ -1,0 +1,24 @@
+{
+ "id": "check-the-artefact-not-the-call",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "A constructor that returns without raising is not evidence it built something useful: nine flights of stairs ran into rock from a walk, connected at one end only, and reachability and the zero-exit check both passed. A jump in a metric is a hypothesis to falsify.",
+ "evidence": [
+  "Monastery parapets, 2026-08-27: 72 sectors of stairs to nowhere found by eye."
+ ],
+ "use": "After a constructor that connects things, assert the connection in the output (degree of the last piece).",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "connection",
+  "constructor",
+  "reachability",
+  "stairs",
+  "test",
+  "verify"
+ ]
+}

@@ -1,0 +1,27 @@
+{
+ "id": "backdrop-scenes-are-one-cheap-sector",
+ "topic": "construction",
+ "standing": "precedent",
+ "claim": "Blood shows a city it never lets you walk: E2M1's street view is one sky sector, 12 walls, 10,240 x 11,520 in plan, sunk 20,480 below the parapets it is seen over, its far walls one large tile as painted distance. The campaign has 88 such scene components of at least 20M area in 6 sectors or fewer (E4M1 a 9-wall horizon of 1,006M; E2M6 an 80-wall panorama).",
+ "evidence": [
+  "E2M1 s163 (ceiling_stat 5, 12 walls), catalog record",
+  "88 scene components across the campaign, tools/mine_city_norms.py scene detection (city-norms-v2.json)"
+ ],
+ "use": "Buy city depth with an unreachable overlook sector framed by red walls, at 10-30 walls each.",
+ "code": [
+  "knowledge/blood/references/backdrop-and-weave.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "backdrop",
+  "distance",
+  "overlook",
+  "scene",
+  "skyline",
+  "vista"
+ ]
+}

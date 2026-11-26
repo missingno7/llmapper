@@ -223,7 +223,7 @@ def _light(layout, regions) -> None:
         layout.add_sprite(f"underpass:tube_{cell}", regions[cell], x=_q(x), y=_q(y), z=room.ceiling_z + 64,
                           picnum=TUBE if lit else DEAD_TUBE, x_repeat=64, y_repeat=64, angle=1536,
                           cstat=32 | 128 | 8, shade=-16 if lit else 8)
-    import wallplane
+    from bloodmap import wallplane
     from bloodmap.placement import drawn_extent
     _w, height, _x, offset = wallplane.art()[BULB]
     top, _bottom = drawn_extent(height, offset, 32, 128)
@@ -234,7 +234,7 @@ def _light(layout, regions) -> None:
 def _hang(layout, regions) -> None:
     """The bills, the boards, and the little that stands on the floor."""
     import props
-    import wallplane
+    from bloodmap import wallplane
 
     def bill(name, cell, a, b, tile, size, *, t=0.5, high=1.18, cstat=16 | 64 | 128, shade=6, **more):
         wallplane.sprite(layout, f"underpass:{name}", regions[cell], (_q(a[0]), _q(a[1])), (_q(b[0]), _q(b[1])), tile=tile,
@@ -305,7 +305,7 @@ def _line(layout, regions) -> None:
     the player walks out of the ticket hall the bulb goes out and it comes
     down to the bars, behind him.
     """
-    import wallplane
+    from bloodmap import wallplane
     import wires
     from bloodmap import mechanism
     from bloodmap.motion import CMD_TOGGLE

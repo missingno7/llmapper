@@ -1,0 +1,23 @@
+{
+ "id": "coloured-glass-is-what-names-a-church",
+ "topic": "place",
+ "standing": "hypothesis",
+ "claim": "Coloured glass is the cue that makes a stone building read as a church: a blind reviewer named the glass as the only reason for 'church' twice, and called the same massing without it a warehouse or fortress.",
+ "evidence": [
+  "projects/blood-city/experiments/church-skyline critic-round1.md and critic-round2.md: one reviewer; round 2 changed eaves, buttresses and glass together, so this is not a controlled ablation"
+ ],
+ "use": "Test it with the glass alone removed on a second building before relying on it.",
+ "code": [
+  "tools/whatif.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "church",
+  "recognition",
+  "stained glass"
+ ]
+}

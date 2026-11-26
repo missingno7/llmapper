@@ -1,0 +1,25 @@
+{
+ "id": "blood-lights-rooms-with-shade-not-sprites",
+ "topic": "light",
+ "standing": "tendency",
+ "claim": "Only 3% of campaign rooms hold a light-giving prop (shade -20 or brighter); 88% hold no prop at all, and 12% of rooms over a plan unit square carry grime, two pieces at the median (p75 3, p90 5).",
+ "evidence": [
+  "3% / 88% / 12% from tools/mine_prop_catalogue.py and tools/mine_style_combinations.py, as quoted in projects/blood-city/level/props.py"
+ ],
+ "use": "Light by sector shade first; dress the few rooms that earn it, and leave most bare.",
+ "code": [
+  "projects/blood-city/level/props.py:props_for"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "bare",
+  "brazier",
+  "grime",
+  "light prop",
+  "prop density"
+ ]
+}

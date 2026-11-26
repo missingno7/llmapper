@@ -1,6 +1,6 @@
 """`facade` and `opening`: the two kinds the city's 296 unnamed joins asked for.
 
-Written fail-first against `projects/blood-city/level/slice2-streets.MAP`,
+Written fail-first against `tests/fixtures/city-slices/slice2-streets.MAP`,
 which our own writer built. 1058 of its records are two-sided, 762 were
 described by the join grammar and **296 were not** — and 144 of those 296 were
 pairs that say nothing about architecture:
@@ -52,7 +52,7 @@ def _corpus(name):
     return corpus_level(name)
 
 
-CITY = "projects/blood-city/level/slice2-streets.MAP"
+CITY = "tests/fixtures/city-slices/slice2-streets.MAP"
 
 
 class TheCityNoLongerHasAFacadeToName(unittest.TestCase):

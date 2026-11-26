@@ -5,7 +5,7 @@
     "source": "owner hand-tagging, first-glance visual reading of the tiles",
     "date": "2026-08-31",
     "language_of_original_labels": "cs",
-    "caveat": "These picnums may be used in other contexts elsewhere in the corpus. Entries are semantic anchors (probes) in the sense of docs/llmapper_level_understanding_handbook/03_SEMANTIC_ANCHORS_AND_SUBGRAPH_MINING.md: high-confidence seeds for corpus queries, not final classifications. Do not turn any entry into a picnum->object lookup rule.",
+    "caveat": "These picnums may be used in other contexts elsewhere in the corpus. Entries are semantic anchors (probes) in the sense of docs/history/llmapper_level_understanding_handbook/03_SEMANTIC_ANCHORS_AND_SUBGRAPH_MINING.md: high-confidence seeds for corpus queries, not final classifications. Do not turn any entry into a picnum->object lookup rule.",
     "batches": [
       {
         "date": "2026-09-03",

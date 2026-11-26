@@ -1,0 +1,28 @@
+{
+ "id": "railings-are-two-sided-and-solid",
+ "topic": "sprite",
+ "standing": "ruling",
+ "claim": "A railing of wall sprites is drawn from both sides and blocks (cstat bit 1); a one-sided railing is invisible from behind and one walks through a non-blocking one off a balcony. A rail meets the middle of its post's face and goes no further.",
+ "evidence": [
+  "the owner, walking the station (projects/blood-city/level/l3_station.py, 2026-11-25): 'that balcony at station is not 2 sided sprite, so it is invisible from the other side', 'that balcony railing is not solid'",
+  "the owner, 2026-11-25, of the booking hall's newels: 'It should be like exactly ending in the middle of it'"
+ ],
+ "use": "Write railing sprites without bit 64 and with bit 1; end each run at a post's centre line.",
+ "code": [
+  "projects/blood-city/level/booking_hall.py",
+  "projects/blood-city/level/l3_station.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "588",
+  "balcony",
+  "balustrade",
+  "blocking",
+  "railing",
+  "two-sided"
+ ]
+}

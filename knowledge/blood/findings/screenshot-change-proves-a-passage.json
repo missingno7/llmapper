@@ -1,0 +1,27 @@
+{
+ "id": "screenshot-change-proves-a-passage",
+ "topic": "validation",
+ "standing": "refuted",
+ "claim": "Whether a body passed through a mechanism can be read from screenshots, frame-to-frame change, or a level-exit channel fired by trigger_enter.",
+ "evidence": [
+  "Hashing frames: a rotor turns, so frames never match, and PNG-byte hashes score black and lit frames alike. Frame change: a rotor changes the picture whether anyone passes. kChannelLevelExitNormal with trigger_enter: no log line or exit in two runs (2026-08-31)."
+ ],
+ "use": "Read the engine's per-tick sector from the bot trajectory, with a positive control on the same driver.",
+ "code": [
+  "bloodmap.oracle.run_nblood_passage_oracle"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-31"
+ },
+ "words": [
+  "oracle",
+  "passage",
+  "rotor",
+  "screenshot",
+  "trajectory",
+  "turnstile"
+ ],
+ "instead": "Only the engine's own per-tick player sector (-bot_trajectory) shows a crossing; a non-crossing means nothing without a positive control sharing the driver."
+}

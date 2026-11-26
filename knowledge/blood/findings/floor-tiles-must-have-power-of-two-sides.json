@@ -1,0 +1,24 @@
+{
+ "id": "floor-tiles-must-have-power-of-two-sides",
+ "topic": "texture",
+ "standing": "engine",
+ "claim": "A floor or ceiling tile is sampled as if each side were rounded DOWN to a power of two: a 64x400 tile on a floor shows only its first 64x256 and the rest is never drawn. Walls are not affected the same way.",
+ "evidence": [
+  "NBlood/source/build/src/tiles.cpp:281-292 tileUpdatePicSiz stores log2 rounded down; the floor rasteriser masks texture lookups with it (engine.cpp:2951 ceilscan)"
+ ],
+ "use": "Put only power-of-two tiles on floors and ceilings; rules_blood 'flat-tile-power-of-two' checks a map.",
+ "code": [
+  "bloodmap.rules_blood._flat_tiles_are_power_of_two"
+ ],
+ "scope": "build",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "ceiling tile",
+  "floor tile",
+  "pow2",
+  "texture size"
+ ]
+}

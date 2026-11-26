@@ -1,0 +1,29 @@
+{
+ "id": "breakable-damage-by-thing-type",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Which damage breaks a breakable thing is fixed by its type: a wall crack (408) and an explode object (417) take only explosive damage (417 also tesla); a gib object (416) also takes bullets and falls. A blast-only floor cover, such as a manhole, is a type 417.",
+ "evidence": [
+  "NBlood/source/blood/src/actor.cpp:1819 Wall Crack, :1947 Gib Object, :1963 Explode Object: the damage-shift rows 0,0,0,256,0,0,0 / 256,0,256,256,0,0,128 / 0,0,0,256,0,0,128",
+  "E4M3 sprite 130: type 417, tile 191, cstat 417, repeat 48, data_1 5, data_4 314, a flat cover over a link floor"
+ ],
+ "use": "Choose 416 when anything should break it, 417 for blast only, 408 for a crack that only a charge opens.",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "416",
+  "417",
+  "breakable",
+  "crack",
+  "destructible",
+  "explosion",
+  "gib",
+  "manhole"
+ ]
+}

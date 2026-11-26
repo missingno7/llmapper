@@ -788,9 +788,14 @@ def validate_authored_level(
             )]
             continue
         if not any(item.code == "zero_exit_gameplay_sector" and f"sector[{sector_id}]" in item.location for item in out):
+            region = next((str(name) for name, sector in names.items() if int(sector) == int(sector_id)), "")
             out.append(Diagnostic(
                 "error", "zero_exit_gameplay_sector",
-                "large gameplay sector has zero exits and is not declared gated/helper",
+                "large gameplay sector has zero exits and is not declared gated/helper"
+                + (f" ({region})" if region else "")
+                + ": at rest nothing can be walked out of it. If a door or a lift is its way out, say so: the region is "
+                "declared with declared_zero_exit=True (a level program's room: region_kwargs={'declared_zero_exit': True}) "
+                "and the connection through the door with gated=True; otherwise it is cut off and needs a connection",
                 f"sector[{sector_id}]",
             ))
 

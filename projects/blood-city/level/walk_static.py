@@ -38,8 +38,6 @@ from bloodmap.format import read_map
 from bloodmap.viewplan import angle_toward, eye_z, interior_point
 from bloodmap.visual import ObservationRequest, Viewpoint, run_observation
 
-import look
-
 PROJECT = pathlib.Path(__file__).resolve().parents[1]
 PU = 1024
 
@@ -59,7 +57,7 @@ def sector_at_grade(level, x: int, y: int) -> int | None:
     """The sector at a point whose floor is nearest street level.
 
     The sewer runs under the avenue, so a point in plan can lie in two
-    sectors; `look.sector_at` returns the first and a route to "the belfry"
+    sectors; a plain point query returns the first and a route to "the belfry"
     was once answered with a route to the drain beneath it.
     """
     from bloodmap.viewpoints import _contains
@@ -171,7 +169,7 @@ def storyboard(level, path: list[int]) -> list[Viewpoint]:
 
 def main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--map", default=str(look.CURRENT))
+    parser.add_argument("--map", default=str(PROJECT / "level" / "blood-city-current.MAP"))
     parser.add_argument("--to", action="append", default=[])
     parser.add_argument("--render", default=None,
                         help="which --to place gets the frame strip")

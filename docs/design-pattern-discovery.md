@@ -24,7 +24,7 @@ Provenance is **the directory a map lives in**, resolved by the corpus registry
 in `bloodmap/corpus.py`; filename prefixes are only a sanity cross-check.
 Populations are never mixed while mining. Layout and owner-provenance notes:
 [`maps/blood/README.md`](../maps/blood/README.md) (local-only) and
-`docs/llmapper_level_understanding_handbook/07_...md`.
+`docs/history/llmapper_level_understanding_handbook/07_...md` (historical).
 
 | population | directory | files | standing |
 | --- | --- | --- | --- |
@@ -66,7 +66,7 @@ Unsigned candidates are discrete signatures over:
 - vertical transitions on at-rest walkable edges
 - object context: what a sector holds, what holds it up, and how the sector
   sits among its neighbours, from Phase 1 relations
-  (`reports/blood-object-context-families.md`)
+  (`reports/archive/blood-object-context-families.md`)
 
 No taxonomy of room / corridor / arena is searched for. After a signature
 recurs, an INTERPRETED label may be attached. Counterexamples can dispute or
@@ -86,7 +86,7 @@ python -m bloodmap pattern-inspect knowledge/blood/design/catalog-v1.json \
   pattern:spawn:open-hunting-cell
 python -m bloodmap understand maps/blood/campaign/multiplayer/BB6.MAP \
   --multiplayer-only --patterns knowledge/blood/design/catalog-v1.json \
-  -o reports/BB6-understanding.json
+  -o work/BB6-understanding.json
 ```
 
 `--maps` is the corpus **root**; the registry descends into the population
@@ -117,8 +117,8 @@ reports a map-transfer spread so a mapper's habit is not read as a convention:
 python -m bloodmap anchor-contrast --positive-name shelf   --positive-tile 2026 --positive-tile 2635 --comparison-name crate   --comparison-tile 95 --comparison-tile 452 --view reference   -o reports/blood-contrast-shelf-vs-crate.json
 ```
 
-See [`reports/blood-object-relations-pilot.md`](../reports/blood-object-relations-pilot.md),
-[`reports/anchor-queries.md`](../reports/anchor-queries.md), and the contrast
+See [`reports/archive/blood-object-relations-pilot.md`](../reports/archive/blood-object-relations-pilot.md),
+[`reports/archive/anchor-queries.md`](../reports/archive/anchor-queries.md), and the contrast
 pilots in [`reports/blood-contrast-shelf-vs-crate.md`](../reports/blood-contrast-shelf-vs-crate.md)
 and [`reports/blood-contrast-niche-pair.md`](../reports/blood-contrast-niche-pair.md).
 
@@ -134,8 +134,8 @@ evidence for the patterns.
 
 BB6 (Twin Fortress), not BB2:
 
-- [pattern-aware understanding](../reports/BB6-understanding.md)
-- [small blind reconstruction](../reports/BB6-semantic-roundtrip.md)
-- [examples](../reports/blood-pattern-examples.md)
-- [counterexamples](../reports/blood-pattern-counterexamples.md)
+- [pattern-aware understanding](../reports/archive/BB6-understanding.md)
+- [small blind reconstruction](../reports/archive/BB6-semantic-roundtrip.md)
+- [examples](../reports/archive/blood-pattern-examples.md)
+- [counterexamples](../reports/archive/blood-pattern-counterexamples.md)
 - [corpus summary](../reports/blood-pattern-corpus-summary.json)

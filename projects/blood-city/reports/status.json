@@ -2,7 +2,7 @@
  "$schema": "llmapper.blood-city-status",
  "schema_version": 1,
  "built_from": {
-  "manifest_sha256": "232b9e17c37c25e61be02caeee5578e16bb7ffacd08ac197ac1fc046b23281e4",
+  "manifest_sha256": "d4e93c273627d955245ff0734a87bb48278db00596b40a55f6c20e31ff5c2216",
   "map_sha256": "264259d177a0b58cebae640b7f7f4e5d75690075ec9cd7d7f01f4a4aa78f8380",
   "map": "projects/blood-city/level/blood-city-current.MAP"
  },
@@ -31,162 +31,162 @@
   {
    "name": "districts",
    "says": "the plan as district assemblies: one street region each, blocks carved out",
-   "at": "projects/blood-city/level/build_skeleton.py:340"
+   "at": "projects/blood-city/level/build_skeleton.py:333"
   },
   {
    "name": "cemetery",
    "says": "the cemetery as a walled, gated ground carved from its district",
-   "at": "projects/blood-city/level/build_skeleton.py:465"
+   "at": "projects/blood-city/level/build_skeleton.py:458"
   },
   {
    "name": "sewer",
    "says": "the sewer declared at depth beneath Foundry Ward",
-   "at": "projects/blood-city/level/build_skeleton.py:578"
+   "at": "projects/blood-city/level/build_skeleton.py:571"
   },
   {
    "name": "works-stair",
    "says": "the underpass: its two mouths, the passage between them and the freight recess",
-   "at": "projects/blood-city/level/build_skeleton.py:675"
+   "at": "projects/blood-city/level/build_skeleton.py:668"
   },
   {
    "name": "stack-links",
    "says": "the two room-over-room links between street and sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:719"
+   "at": "projects/blood-city/level/build_skeleton.py:712"
   },
   {
    "name": "sewer-network",
    "says": "the sewer's ring, its chambers and the necks between them",
-   "at": "projects/blood-city/level/build_skeleton.py:792"
+   "at": "projects/blood-city/level/build_skeleton.py:785"
   },
   {
    "name": "pumping-station",
    "says": "the second way down: the pumping station's stairs",
-   "at": "projects/blood-city/level/build_skeleton.py:820"
+   "at": "projects/blood-city/level/build_skeleton.py:813"
   },
   {
    "name": "manholes",
    "says": "drain covers in the streets that a blast opens onto a shaft into the sewer",
-   "at": "projects/blood-city/level/build_skeleton.py:864"
+   "at": "projects/blood-city/level/build_skeleton.py:857"
   },
   {
    "name": "light-pools",
    "says": "patches of lit floor in the streets, declared as regions",
-   "at": "projects/blood-city/level/build_skeleton.py:959"
+   "at": "projects/blood-city/level/build_skeleton.py:952"
   },
   {
    "name": "church",
    "says": "St Gallow's: nave, tower, crypt",
-   "at": "projects/blood-city/level/build_skeleton.py:999"
+   "at": "projects/blood-city/level/build_skeleton.py:992"
   },
   {
    "name": "arcade",
    "says": "the Gravesend Arcade and its shops",
-   "at": "projects/blood-city/level/build_skeleton.py:1017"
+   "at": "projects/blood-city/level/build_skeleton.py:1010"
   },
   {
    "name": "theatre",
    "says": "Theatre Row: the Aldermack, the saloon, the pawnshop",
-   "at": "projects/blood-city/level/build_skeleton.py:1023"
+   "at": "projects/blood-city/level/build_skeleton.py:1016"
   },
   {
    "name": "station",
    "says": "Gravesend Station behind the north wall",
-   "at": "projects/blood-city/level/build_skeleton.py:1031"
+   "at": "projects/blood-city/level/build_skeleton.py:1024"
   },
   {
    "name": "market",
    "says": "Market Slip: the quay, the harbour and the ship",
-   "at": "projects/blood-city/level/build_skeleton.py:1037"
+   "at": "projects/blood-city/level/build_skeleton.py:1030"
   },
   {
    "name": "foundry",
    "says": "Foundry Ward, the pilot district, with its machine hall",
-   "at": "projects/blood-city/level/build_skeleton.py:1048"
+   "at": "projects/blood-city/level/build_skeleton.py:1041"
   },
   {
    "name": "undeclared-venues",
    "says": "venues on the plan that nobody has built, declared as such",
-   "at": "projects/blood-city/level/build_skeleton.py:1073"
+   "at": "projects/blood-city/level/build_skeleton.py:1066"
   },
   {
    "name": "start",
    "says": "the player's start on the quay, and the manifest begins",
-   "at": "projects/blood-city/level/build_skeleton.py:1105"
+   "at": "projects/blood-city/level/build_skeleton.py:1099"
   },
   {
    "name": "street-anatomy",
    "says": "pavement, carriageway and kerb along every street",
-   "at": "projects/blood-city/level/build_skeleton.py:1141"
+   "at": "projects/blood-city/level/build_skeleton.py:1135"
   },
   {
    "name": "street-ends",
    "says": "the walls where the main streets stop",
-   "at": "projects/blood-city/level/build_skeleton.py:1166"
+   "at": "projects/blood-city/level/build_skeleton.py:1160"
   },
   {
    "name": "connect",
    "says": "the program becomes a planar layout; gates join the regions",
-   "at": "projects/blood-city/level/build_skeleton.py:1338"
+   "at": "projects/blood-city/level/build_skeleton.py:1332"
   },
   {
    "name": "set-pieces",
    "says": "what each venue is furnished with: curtain, flames, sewer runs, pews, stock",
-   "at": "projects/blood-city/level/build_skeleton.py:1386"
+   "at": "projects/blood-city/level/build_skeleton.py:1380"
   },
   {
    "name": "street-lamps",
    "says": "a lamp in every light pool and along every run",
-   "at": "projects/blood-city/level/build_skeleton.py:1498"
+   "at": "projects/blood-city/level/build_skeleton.py:1492"
   },
   {
    "name": "street-dressing",
    "says": "ambient sound, the signature porthole, the monument",
-   "at": "projects/blood-city/level/build_skeleton.py:1605"
+   "at": "projects/blood-city/level/build_skeleton.py:1599"
   },
   {
    "name": "green",
    "says": "what stands on the turf, then every sign in the city",
-   "at": "projects/blood-city/level/build_skeleton.py:1679"
+   "at": "projects/blood-city/level/build_skeleton.py:1673"
   },
   {
    "name": "shops-and-goods",
    "says": "fascia names, display lamps, venue detail, goods on fixtures, grime",
-   "at": "projects/blood-city/level/build_skeleton.py:1714"
+   "at": "projects/blood-city/level/build_skeleton.py:1708"
   },
   {
    "name": "doors-and-windows",
    "says": "door frames, detail panels, windows, building backs, actors seated",
-   "at": "projects/blood-city/level/build_skeleton.py:1777"
+   "at": "projects/blood-city/level/build_skeleton.py:1771"
   },
   {
    "name": "compile",
    "says": "the layout becomes sectors, walls and sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:1847"
+   "at": "projects/blood-city/level/build_skeleton.py:1841"
   },
   {
    "name": "faces",
    "says": "what every wall wears: facades, shop glass, the landmark's stone, the sea",
-   "at": "projects/blood-city/level/build_skeleton.py:1872"
+   "at": "projects/blood-city/level/build_skeleton.py:1866"
   },
   {
    "name": "alignment",
    "says": "one texture frame per run of walls; who owns each wall record",
-   "at": "projects/blood-city/level/build_skeleton.py:2029"
+   "at": "projects/blood-city/level/build_skeleton.py:2023"
   },
   {
    "name": "apertures",
    "says": "openings: sewer mouths, lintels, pilasters, niches, wall sprites",
-   "at": "projects/blood-city/level/build_skeleton.py:2109"
+   "at": "projects/blood-city/level/build_skeleton.py:2103"
   },
   {
    "name": "gates",
    "says": "nothing is built: rules, read-back, swept closure, sprite fit, character",
-   "at": "projects/blood-city/level/build_skeleton.py:2183"
+   "at": "projects/blood-city/level/build_skeleton.py:2177"
   },
   {
    "name": "write",
    "says": "the map, its sector tags, the manifest and the status",
-   "at": "projects/blood-city/level/build_skeleton.py:2382"
+   "at": "projects/blood-city/level/build_skeleton.py:2376"
   }
  ],
  "finish": {
@@ -2387,7 +2387,7 @@
      "comparison: the culvert's stone at the corridor mouth does not match",
      "use: the plain grey nest walls read as museum vitrines"
     ],
-    "packet": "knowledge/blood/studies/spider-lair/critique/round-6"
+    "packet": "projects/blood-city/reports/critique/spider-lair/round-6"
    }
   },
   {
@@ -2660,7 +2660,7 @@
      "recognition: the flesh passage alone cannot be placed",
      "sense: conditional: the sign's candles burn after the event (taken off since)"
     ],
-    "packet": "knowledge/blood/studies/ritual-place/critique/round-3"
+    "packet": "projects/blood-city/reports/critique/ritual-place/round-3"
    }
   },
   {
@@ -2713,7 +2713,7 @@
      "comparison: in the flooded view the visible car ends so abruptly that it reads as a kiosk",
      "sense: conditional: if the drowned carriage were an entrance, its flooded aisle has no dry surface (it is not one)"
     ],
-    "packet": "knowledge/blood/studies/ghost-station/critique/round-5"
+    "packet": "projects/blood-city/reports/critique/ghost-station/round-5"
    }
   },
   {
@@ -2767,7 +2767,7 @@
      "sense: view_09: locomotive wheels stand on the platform paving with no rails under them",
      "use: The street doorway is an unlit black slot with no name or canopy of its own; STATION reads as the neighbour's sign (view 11)"
     ],
-    "packet": "knowledge/blood/studies/station/critique/round-6"
+    "packet": "projects/blood-city/reports/critique/station/round-6"
    }
   },
   {
@@ -2847,7 +2847,7 @@
     "named_as": "small theater or cabaret",
     "readers_missing": [],
     "blocking": [],
-    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+    "packet": "projects/blood-city/reports/critique/aldermack-rebuild/round-2"
    }
   },
   {
@@ -2892,7 +2892,7 @@
     "named_as": "small theater or cabaret",
     "readers_missing": [],
     "blocking": [],
-    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+    "packet": "projects/blood-city/reports/critique/aldermack-rebuild/round-2"
    }
   },
   {
@@ -2938,7 +2938,7 @@
     "named_as": "small theater or cabaret",
     "readers_missing": [],
     "blocking": [],
-    "packet": "knowledge/blood/studies/aldermack-rebuild/critique/round-2"
+    "packet": "projects/blood-city/reports/critique/aldermack-rebuild/round-2"
    }
   },
   {
@@ -3351,28 +3351,28 @@
    "place": "the Weaver's Cellars",
    "says": "the large flat lit ceiling",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/spider-lair/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/spider-lair/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "the Weaver's Cellars",
    "says": "the alcove interiors read as cardboard boxes",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/spider-lair/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/spider-lair/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "the Weaver's Cellars",
    "says": "the culvert's stone at the corridor mouth does not match",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/spider-lair/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/spider-lair/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "the Weaver's Cellars",
    "says": "the plain grey nest walls read as museum vitrines",
    "owner": "blind reader: use",
-   "see": "knowledge/blood/studies/spider-lair/critique/round-6/review-use.md"
+   "see": "projects/blood-city/reports/critique/spider-lair/round-6/review-use.md"
   },
   {
    "kind": "missing-layer",
@@ -3568,14 +3568,14 @@
    "place": "the Cabal's chamber",
    "says": "the flesh passage alone cannot be placed",
    "owner": "blind reader: recognition",
-   "see": "knowledge/blood/studies/ritual-place/critique/round-3/review-recognition.md"
+   "see": "projects/blood-city/reports/critique/ritual-place/round-3/review-recognition.md"
   },
   {
    "kind": "critique",
    "place": "the Cabal's chamber",
    "says": "conditional: the sign's candles burn after the event (taken off since)",
    "owner": "blind reader: sense",
-   "see": "knowledge/blood/studies/ritual-place/critique/round-3/review-sense.md"
+   "see": "projects/blood-city/reports/critique/ritual-place/round-3/review-sense.md"
   },
   {
    "kind": "cramped",
@@ -3603,70 +3603,70 @@
    "place": "Phantom Terminus",
    "says": "in the flooded view the visible car ends so abruptly that it reads as a kiosk",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/ghost-station/critique/round-5/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/ghost-station/round-5/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "Phantom Terminus",
    "says": "conditional: if the drowned carriage were an entrance, its flooded aisle has no dry surface (it is not one)",
    "owner": "blind reader: sense",
-   "see": "knowledge/blood/studies/ghost-station/critique/round-5/review-sense.md"
+   "see": "projects/blood-city/reports/critique/ghost-station/round-5/review-sense.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "carriage windows are solid wood panels, so from the platform the train reads as a building wall, not a vehicle",
    "owner": "blind reader: recognition",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-recognition.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-recognition.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "tunnel mouth is a flat black rectangle with no depth; the line goes nowhere",
    "owner": "blind reader: recognition",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-recognition.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-recognition.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "Posters mounted on the outside of the train carriage (view_01, 05, 06)",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "Station entrance doorway renders as a flat black void (view_11)",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "Enclosed track shaft lidded with red marbled ceiling reading as lava, not sky (view_04, 09)",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "Wall sign text collides with gargoyle sprite on locomotive (view_09)",
    "owner": "blind reader: comparison",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-comparison.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-comparison.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "view_09: locomotive wheels stand on the platform paving with no rails under them",
    "owner": "blind reader: sense",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-sense.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-sense.md"
   },
   {
    "kind": "critique",
    "place": "Gravesend Station",
    "says": "The street doorway is an unlit black slot with no name or canopy of its own; STATION reads as the neighbour's sign (view 11)",
    "owner": "blind reader: use",
-   "see": "knowledge/blood/studies/station/critique/round-6/review-use.md"
+   "see": "projects/blood-city/reports/critique/station/round-6/review-use.md"
   },
   {
    "kind": "missing-layer",
@@ -3796,6 +3796,14 @@
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 2633",
    "at": "sprite[1968]"
+  },
+  {
+   "kind": "misfit-use",
+   "place": null,
+   "says": "tile 908 as sprite_face in indoors (9x): recorded as a misfit there -- a flame to light a room by: 908 is the exploder's tile (type 459), a trap marker",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 908",
+   "at": "sprite[1512]"
   },
   {
    "kind": "outside-campaign",
@@ -4013,6 +4021,13 @@
    "says": "tile 275 as two_sided_upper in indoors (9x) rests on community-curated evidence (15 maps), not the campaign's",
    "owner": "bloodmap/tile_contexts.py",
    "see": "python -m tools.tile_contexts show 275"
+  },
+  {
+   "kind": "outside-campaign",
+   "place": null,
+   "says": "tile 908 as sprite_face in indoors (9x) rests on blood-campaign evidence (27 maps), not the campaign's",
+   "owner": "bloodmap/tile_contexts.py",
+   "see": "python -m tools.tile_contexts show 908"
   },
   {
    "kind": "outside-campaign",
@@ -5341,35 +5356,35 @@
    "kind": "dropped",
    "place": null,
    "says": "cage:blood_2 (tile 730) would lie through prop:cart_barrel_0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1824",
+   "owner": "projects/blood-city/level/build_skeleton.py:1818",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_east_annex:1 (tile 191) would lie through run:sewer_east_annex:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1824",
+   "owner": "projects/blood-city/level/build_skeleton.py:1818",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "run:sewer_outfall_walk_a:2 (tile 515) would lie through run:sewer_outfall_walk_a:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1824",
+   "owner": "projects/blood-city/level/build_skeleton.py:1818",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_nw_corner (tile 795) would lie through run:sewer_nw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1824",
+   "owner": "projects/blood-city/level/build_skeleton.py:1818",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
    "kind": "dropped",
    "place": null,
    "says": "sig:sewer_sw_corner (tile 795) would lie through run:sewer_sw_corner:0",
-   "owner": "projects/blood-city/level/build_skeleton.py:1824",
+   "owner": "projects/blood-city/level/build_skeleton.py:1818",
    "see": "the 'flat sprites dropped' line the build prints"
   },
   {
@@ -5487,9 +5502,10 @@
   "critique": 16,
   "dropped": 5,
   "lost-tile": 3,
+  "misfit-use": 1,
   "missing-layer": 20,
   "never-critiqued": 17,
-  "outside-campaign": 202,
+  "outside-campaign": 203,
   "owner-rework": 1,
   "refused": 5,
   "rule-warning": 7,

@@ -1,0 +1,31 @@
+{
+ "id": "shop-units-follow-e4m9s-rhythm",
+ "topic": "place",
+ "standing": "tendency",
+ "claim": "In E4M9's mall a shop unit's long side is a median 2,560 (q1 1,280, q3 3,072; 51 units) and it opens on 1,536 of frontage (q1 652, q3 2,048; 85 shared walls). Blood's town shops keep stock on a shelf let into the back wall and serve over one hip-high counter. Its mouths cluster about two mouth-widths apart (spacing median 1,840), and the units repeat one plan class dressed differently.",
+ "evidence": [
+  "E4M9 concourse units (projects/blood-city/level/templates.py); shop fitting from tools/mine_stands.py",
+  "tools/mine_room_grammar.py on E4M9: 39 openings off the concourse, width median 1,536 (p90 4,096), nearest-neighbour spacing median 1,840 (knowledge/blood/references/room-grammar.json)"
+ ],
+ "use": "Derive a row of shops from the frontage length; fit each from its own rectangle.",
+ "code": [
+  "projects/blood-city/level/templates.py:retail_row",
+  "projects/blood-city/level/templates.py:shop",
+  "knowledge/blood/references/venue-patterns.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-28"
+ },
+ "words": [
+  "arcade",
+  "frontage",
+  "mall",
+  "retail",
+  "rhythm",
+  "shop",
+  "storefront",
+  "unit"
+ ]
+}

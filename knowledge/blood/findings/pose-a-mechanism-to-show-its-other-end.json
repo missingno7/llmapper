@@ -1,0 +1,26 @@
+{
+ "id": "pose-a-mechanism-to-show-its-other-end",
+ "topic": "validation",
+ "standing": "practice",
+ "claim": "The state a mechanism reaches can be shown without running the game by posing the map: every object a sender's chain answers set to its other state (bloodmap.posed), then rendered from the same poses. It is an endpoint, not a recording: no timing, sound, damage or animation is evidenced by it.",
+ "evidence": [
+  "E4L1: the storm clock (sprite 334) posed shows the quarry at its lightning peak; the briefing recorder (wall 2318) posed shows its collapsed sectors at their on heights",
+  "tools/look.py --posed; tools/mechanism_look.py for rest and fired pairs"
+ ],
+ "use": "python -m tools.look <project> --set <set> --posed 'sprite N' -o <dir>, and say of the frame that it is posed.",
+ "code": [
+  "bloodmap.posed.posed",
+  "tools.look.posed_copy"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "duke-e4l1-remake",
+  "date": "2026-11-24"
+ },
+ "words": [
+  "fired",
+  "lightning",
+  "mechanism frame",
+  "posed"
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "id": "the-commonest-wall-tile-is-the-facade",
+ "topic": "texture",
+ "standing": "refuted",
+ "claim": "A sector's facade (the wall an opening interrupts) is the commonest picnum among its wall records.",
+ "evidence": [
+  "bloodmap/aperture.py dominant_wall_tile docstring (changed 2026-11-17); the owner, 2026-11-17: 'these ceiling crates doesn't feel right'",
+  "tests/test_shopfront.py FacadeIsAWallTests",
+  "knowledge/blood/design/apertures-v1.json was re-measured on 2026-11-19 by tools/mine_apertures.py, which imports aperture.dominant_wall_tile; re-run on 2026-11-26 it wrote the same bytes",
+  "Gravesend, 2026-11-17 (aperture dominant wall tile).",
+  "Merged 2026-11-26 from dominant-means-by-surface-not-by-record: 'a pass that picks the commonest tile must weigh it by length or area, not by count of wall records: sixteen short crate rims outvoted a hall's plaster and the lintel pass painted crates round the room'"
+ ],
+ "use": "Ask aperture.dominant_wall_tile; knowledge/blood/design/apertures-v1.json already uses it. Weigh any census of surfaces by surface (length or area), never by record count.",
+ "code": [
+  "bloodmap.aperture.dominant_wall_tile",
+  "tools/mine_apertures.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-17"
+ },
+ "words": [
+  "area",
+  "census",
+  "dominant",
+  "dominant tile",
+  "facade",
+  "length",
+  "lintel",
+  "record count",
+  "statistic",
+  "tile",
+  "weigh"
+ ],
+ "instead": "Count length, not records, and only solid walls: the facade is the one-sided wall weighed by its length; only a sector with no solid wall falls back to its two-sided records. A market hall with sixteen 1,024-long crate rims and 11,776 units of plaster came out as 'crate' by record count, and a lintel pass ran 24,064 units of crate band round it."
+}

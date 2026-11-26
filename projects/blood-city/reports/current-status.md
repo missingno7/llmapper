@@ -24,5 +24,5 @@ Do not transfer its content or play claims onto the current slice.
 
 The former whole-graph junction gap is superseded for this slice by the working
 emitter/pipeline. Recent flat-plan renderings are construction views, not first-person
-or play evidence. See `reports/independent-audit-2026-09-09/city-probe.json` from the
+or play evidence. See `reports/archive/independent-audit-2026-09-09/city-probe.json` from the
 repository root for the recorded check. No NBlood play session was run.

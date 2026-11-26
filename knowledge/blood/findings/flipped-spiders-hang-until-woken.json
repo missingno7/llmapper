@@ -1,0 +1,25 @@
+{
+ "id": "flipped-spiders-hang-until-woken",
+ "topic": "sprite",
+ "standing": "engine",
+ "claim": "A spider placed flipped (cstat 8) is given no gravity at load, so it hangs on the ceiling until it wakes; others fall.",
+ "evidence": [
+  "NBlood/source/blood/src/ai.cpp:1649: spider types with cstat&8 get flags 9, otherwise 15 (kPhysGravity is 0x2, common_game.h:518)"
+ ],
+ "use": "Hang spiders and their mother upside down with their drawn top against the ceiling (E2M8's lair).",
+ "code": [
+  "projects/blood-city/level/l3_sewer.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "ceiling",
+  "gravity",
+  "lair",
+  "spider",
+  "upside"
+ ]
+}

@@ -7,7 +7,7 @@ is mostly interiors.  This pass measures the three city precedents the project
 names and writes the numbers the urban plan has to hit:
 
     python -m tools.mine_city_norms \\
-        -o projects/blood-city/references/city-norms.json
+        -o knowledge/blood/references/city-norms.json
 
 Structure comes from all sources (E3M1, DWE3M1, DukCity1-4); art comes from
 the Blood two only, because tile identity does not transfer between games --
@@ -1048,7 +1048,7 @@ def summarize(records: list[dict[str, Any]]) -> dict[str, Any]:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("-o", "--output", default="projects/blood-city/references/city-norms.json")
+    parser.add_argument("-o", "--output", default="knowledge/blood/references/city-norms.json")
     parser.add_argument("--maps", nargs="*", help="restrict to these map names")
     parser.add_argument("--input", action="append", default=[],
                         help="extra map as NAME=GAME=PATH (e.g. a compiled "

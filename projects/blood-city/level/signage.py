@@ -24,7 +24,7 @@ from __future__ import annotations
 
 
 import props
-import wallplane
+from bloodmap import wallplane
 
 #: (sign id, room key, face, text, **style**, height in player heights).
 #:

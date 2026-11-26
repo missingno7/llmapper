@@ -10,10 +10,10 @@ to architecture.
 
 ```text
 python -m bloodmap placement-mine --maps maps/blood --population blood-campaign \
-  -o reports/blood-object-placement.json
+  -o work/blood-object-placement.json
 ```
 
-Campaign `E*.MAP` (43 maps):
+The campaign (`--population blood-campaign`: `bloodmap.corpus` resolves it from the corpus root; 43 maps):
 
 | kind | n | dominant sit | median height (player-heights) | median wall distance (player-widths) |
 | --- | --- | --- | --- | --- |

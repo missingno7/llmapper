@@ -1,0 +1,24 @@
+{
+ "id": "a-drop-entry-needs-a-kerb",
+ "topic": "place",
+ "standing": "practice",
+ "claim": "A shaft dropped into from above reads as an entrance when it has a kerb, one sector with the shaft as its hole, raised about 1,024 (a quarter of a step, so walked over), and when the lit space below is visible through it.",
+ "evidence": [
+  "Gravesend's sewer grate entrance (2026-08-27)."
+ ],
+ "use": "Raise a kerb round every drop and light what is below it; keep the drop under 3.7 bodies or provide a way back up.",
+ "code": [],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-08-27"
+ },
+ "words": [
+  "drop",
+  "entrance",
+  "kerb",
+  "manhole",
+  "sewer",
+  "shaft"
+ ]
+}

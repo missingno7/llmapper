@@ -10,7 +10,7 @@ from bloodmap.placement import seated_z
 import citytree
 import detailing
 import setpieces
-import wallplane
+from bloodmap import wallplane
 import wing_doors
 import wires
 from materials import INTERIORS, Material

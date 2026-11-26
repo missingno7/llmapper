@@ -193,7 +193,7 @@ class WaterDoesNotVoteForTheBasePlane(unittest.TestCase):
         from bloodmap.format import read_map
         from bloodmap.read_joins import surface_kinds
 
-        built = Path("projects/blood-city/level/slice2-streets.MAP")
+        built = Path("tests/fixtures/city-slices/slice2-streets.MAP")
         if not built.exists():  # pragma: no cover - built artefact absent
             self.skipTest("the city has not been built")
         kinds = Counter(surface_kinds(read_map(built).to_level_ir())["kinds"]

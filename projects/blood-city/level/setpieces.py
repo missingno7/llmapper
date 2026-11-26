@@ -51,7 +51,7 @@ PLAYER = 16960
 PLAN = 1024
 COMPASS = dict(zip(RECT_FACES, range(4)))
 
-_REF = pathlib.Path(__file__).resolve().parents[1] / "references"
+_REF = pathlib.Path(__file__).resolve().parents[3] / "knowledge" / "blood" / "references"
 
 
 def _knowledge():

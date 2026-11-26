@@ -1,0 +1,29 @@
+{
+ "id": "a-rising-doors-sound-follows-its-leaf-tile",
+ "topic": "sound",
+ "standing": "ruling",
+ "claim": "A door that rises (type 600) sounds like what its leaf is made of, as the campaign's ceiling doors wearing that tile do: a wooden leaf (22) starts on 110 or 160, panelled metal (495) starts on 111 and commonly stops on 165, stone (110, 1011) uses 106. Stone's 106 on a wooden door sounds like moving stone.",
+ "evidence": [
+  "the owner, 2026-11-23: 'These wooden zdoor sound 106 sounds like a moving stone ... example 110 would be better'",
+  "campaign ceiling doors by leaf tile, tabulated in projects/blood-city/level/motion_sounds.py (22: 110/160 leads four times, 106 never)"
+ ],
+ "use": "Choose a mover's start and stop sounds from the tile its neighbours see of it; a body of many sectors gets one voice.",
+ "code": [
+  "projects/blood-city/level/motion_sounds.py:apply",
+  "projects/blood-city/level/motion_sounds.py:_leaf_faces"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-23"
+ },
+ "words": [
+  "door",
+  "mover",
+  "sfx",
+  "sound",
+  "stone",
+  "wooden",
+  "zdoor"
+ ]
+}

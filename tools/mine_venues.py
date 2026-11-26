@@ -8,7 +8,7 @@ announces itself, what happens to light at the threshold, how the main room
 sizes against the frontage, whether the counter/stage is geometry or sprites,
 and what the venue spends in channels and decoration.
 
-    python -m tools.mine_venues -o projects/blood-city/references/venue-mining.json
+    python -m tools.mine_venues -o knowledge/blood/references/venue-mining.json
 
 The city-street machinery does not transfer to E1M4 -- its midway fragments
 into small at-grade sky pieces -- so "public space" here is *all* sky-ceiling
@@ -264,7 +264,7 @@ def analyze_map(name: str) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("-o", "--output",
-                        default="projects/blood-city/references/venue-mining.json")
+                        default="knowledge/blood/references/venue-mining.json")
     args = parser.parse_args(argv)
     payload = {
         "$schema": SCHEMA,

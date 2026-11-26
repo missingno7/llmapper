@@ -1,0 +1,27 @@
+{
+ "id": "church-lit-from-floor-toward-altar",
+ "topic": "light",
+ "standing": "precedent",
+ "claim": "Two chapels light from the floor up and toward the altar, the roof the darkest surface and the chancel the brightest: E3M4's funeral chapel (s286: floor 9 under a sloped ceiling at 45) and DWE1M4's church (s288: chancel floor 24 against a nave at 36).",
+ "evidence": [
+  "E3M4 s286: floor_shade 9, ceiling_shade 45 (python -m tools.catalog record E3M4 sector 286); DWE1M4 s288: floor_shade 24 (knowledge/blood/studies/church/notes.md, gaps.md:14)",
+  "two instances, one of them a community map: a precedent, not a count"
+ ],
+ "use": "Shade a church's ceiling darkest and its chancel brightest; flickering candle sectors are common in Blood's church map E1M5 (see church-interiors-are-the-most-flickering).",
+ "code": [
+  "projects/blood-city/level/l3_church.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "altar",
+  "chapel",
+  "church",
+  "light",
+  "nave",
+  "shade"
+ ]
+}

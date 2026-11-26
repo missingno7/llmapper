@@ -561,5 +561,5 @@ copy exists anywhere on this machine or in the NBlood fork's history. The
 hard correctness gate in `tools/botcorpus.sh` therefore has no maps to run
 until they are re-authored. Recovery record: `reports/corpus-recovery-
 2026-09-01.md`. The rule that follows is in
-`docs/llmapper_level_understanding_handbook/10_AGENT_EXECUTION_PROTOCOL.md`,
+`docs/history/llmapper_level_understanding_handbook/10_AGENT_EXECUTION_PROTOCOL.md`,
 "Irreplaceable local data".

@@ -1,0 +1,25 @@
+{
+ "id": "a-mover-in-a-street-gets-its-own-ring",
+ "topic": "light",
+ "standing": "practice",
+ "claim": "A mover's host sector is never cut for light and shadow, so a mover set straight into a big lit street leaves a hole in the street's lighting; give it its own thin ring of sector (an apron) between it and the street.",
+ "evidence": [
+  "Gravesend's carousel on the square, 2026-11-25 (projects/blood-city/level/fair.py)."
+ ],
+ "use": "Wrap every mover placed in a large open sector in an apron ring.",
+ "code": [
+  "projects/blood-city/level/fair.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "apron",
+  "carousel",
+  "lighting",
+  "mover",
+  "street"
+ ]
+}

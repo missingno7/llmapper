@@ -1,0 +1,28 @@
+{
+ "id": "a-stack-takes-two-mirror-slots",
+ "topic": "engine",
+ "standing": "engine",
+ "claim": "Every room-over-room stack takes two of the 128 mirror slots (one for the floor, one for the ceiling), after the wall mirrors; stacks stop being prepared at 127. A map with wall mirrors must leave at least 2 sectors and 5 walls free under the limits (the test is numsectors + 1 >= kMaxSectors or numwalls + 4 >= kMaxWalls, though its message says 1 and 4) or every wall mirror is cancelled.",
+ "evidence": [
+  "NBlood/source/blood/src/mirrors.h:27 kMaxMirrors 128",
+  "mirrors.cpp:492-533 (two mirror entries per linked floor/ceiling pair)",
+  "mirrors.cpp:481-484 (the free-sector check)"
+ ],
+ "use": "Count stacks and mirror walls together against 128; keep sector and wall headroom when a map has a mirror.",
+ "code": [
+  "bloodmap/roomoverroom.py",
+  "projects/blood-city/references/sewers-outside.md"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "504",
+  "limit",
+  "mirror",
+  "room over room",
+  "stack"
+ ]
+}

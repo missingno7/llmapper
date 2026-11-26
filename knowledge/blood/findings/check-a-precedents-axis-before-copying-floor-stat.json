@@ -1,0 +1,26 @@
+{
+ "id": "check-a-precedents-axis-before-copying-floor-stat",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "Copying a precedent's floor_stat without asking which way its surface runs can lay a pattern a quarter turn wrong: E1M2 s34 swaps x and y (floor_stat 4) because its track runs north-south and tile 1129's rails run along the tile's x; an east-west track copied with the swap had rails across the train, and neither the agent nor three blind readers saw it.",
+ "evidence": [
+  "projects/blood-city/level/l3_station.py, THE RAILS RUN ALONG THE TRAIN; the owner caught it"
+ ],
+ "use": "Before transcribing floor_stat bits, compare the precedent's surface direction with yours.",
+ "code": [
+  "projects/blood-city/level/l3_station.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-19"
+ },
+ "words": [
+  "floor_stat",
+  "orientation",
+  "rails",
+  "rotate",
+  "swap",
+  "track"
+ ]
+}
