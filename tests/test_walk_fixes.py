@@ -1,4 +1,4 @@
-"""The three defects the owner found by walking the zoo, and their oracles.
+"""Three defects the owner found by walking an early exhibit map, and their oracles.
 
 Each is fixtured against the isolated tutorial rather than an embedded
 campaign case, per the owner's rule: a tutorial demonstrates one mechanism
@@ -17,10 +17,6 @@ SINGLES = Path("maps/blood/mechanism")
 
 def _map(path: Path):
     return require_map(path)
-
-
-def _zoo():
-    return _map(Path("projects/pattern-zoo/level/pattern-zoo.MAP"))
 
 
 def _extra(item):
@@ -112,19 +108,6 @@ class ACrackIsAThingNotASwitch(unittest.TestCase):
         self.assertTrue(faults)
         self.assertIn("hitscan crossing", " ".join(faults))
 
-    def test_the_zoo_now_carries_the_full_record(self):
-        from bloodmap.motion import thing_faults
-
-        zoo = _zoo()
-        self.assertEqual(thing_faults(zoo), [])
-        cracks = [s for s in zoo.sprites if int(s.fields["type"]) == 408]
-        puffs = [s for s in zoo.sprites if int(s.fields["type"]) == 459]
-        self.assertEqual(len(cracks), 1)
-        self.assertEqual(len(puffs), 3)
-        self.assertEqual(int(cracks[0].fields["cstat"]), 722)
-        self.assertEqual(int(cracks[0].fields["status"]), 4)
-
-
 class AKeyPickupWearsTheKeyItGrants(unittest.TestCase):
     """Readability, mined over the campaign: 95 pickups, zero exceptions."""
 
@@ -150,17 +133,17 @@ class AKeyPickupWearsTheKeyItGrants(unittest.TestCase):
     def test_the_check_catches_a_mismatch(self):
         from bloodmap.keys import pickup_art_faults
 
-        zoo = _zoo()
-        self.assertEqual(pickup_art_faults(zoo), [])
-        #: reintroduce the exact defect the owner walked into: the moon key
-        #: wearing the skull key's art
-        for sprite in zoo.sprites:
-            if int(sprite.fields["type"]) == 105:
-                sprite.fields["picnum"] = 2552
+        disk = _map(Path("maps/blood/campaign/E1M1.MAP"))
+        self.assertEqual(pickup_art_faults(disk), [])
+        #: reintroduce the defect the owner walked into: a key wearing another key's art (E1M1's skull key, type 100,
+        #: given the eye key's tile)
+        for sprite in disk.sprites:
+            if int(sprite.fields["type"]) == 100:
+                sprite.fields["picnum"] = 2553
                 break
-        faults = pickup_art_faults(zoo)
+        faults = pickup_art_faults(disk)
         self.assertTrue(faults)
-        self.assertIn("should be 2557", faults[0])
+        self.assertIn("should be 2552", faults[0])
 
 
 class ASecretIsCreditedWithANumber(unittest.TestCase):
@@ -207,12 +190,6 @@ class ASecretIsCreditedWithANumber(unittest.TestCase):
         self.assertTrue(any("is a verb" in f for f in faults))
         self.assertTrue(any("nothing sets the level total" in f
                             for f in faults))
-
-    def test_the_zoo_credits_its_one_secret_properly(self):
-        from bloodmap.motion import secret_faults
-
-        self.assertEqual(secret_faults(_zoo()), [])
-
 
 class ACurtainIsCalibratedForItsClosedSpan(unittest.TestCase):
     """DOOR-CURTAINS, measured: the repeat belongs to the OFF pose."""
@@ -265,47 +242,6 @@ class ACurtainIsCalibratedForItsClosedSpan(unittest.TestCase):
             self.assertLess(texel_scale(span, 32, int(fields["x_repeat"])),
                             1.0, f"wall {start + index}")
 
-    def test_our_curtain_hangs_naturally_closed_and_gathers_open(self):
-        import math
-
-        from bloodmap.motion_sim import blood_poses
-        from bloodmap.texture_align import NATURAL_TEXEL_SCALE, texel_scale
-
-        from bloodmap.motion import flagged_walls
-
-        zoo = _zoo()
-        #: the ONE-leaf curtain specifically, because the assertion is about
-        #: that dialect. The pair is exact too now -- it read 1.67 while its
-        #: leaves were travelling outward past their own jambs, and 2.0 once
-        #: the flags were the way DOOR-CURTAINSD s2 has them.
-        sector_id = next(
-            i for i, s in enumerate(zoo.sectors)
-            if int(s.fields["type"]) == 614
-            and len(flagged_walls(zoo, i)) == 1
-            and any(int(zoo.walls[w].fields["picnum"]) == 146
-                    for w in range(int(s.fields["wall_ptr"]),
-                                   int(s.fields["wall_ptr"])
-                                   + int(s.fields["wall_count"]))))
-        closed, drawn = blood_poses(zoo, sector_id)
-        start = int(zoo.sectors[sector_id].fields["wall_ptr"])
-        count = int(zoo.sectors[sector_id].fields["wall_count"])
-        checked = 0
-        for index in range(count):
-            fields = zoo.walls[start + index].fields
-            if int(fields["picnum"]) != 146:
-                continue
-            repeat = int(fields["x_repeat"])
-            a, b = closed[index], closed[(index + 1) % count]
-            shut = math.hypot(b[0] - a[0], b[1] - a[1])
-            c, d = drawn[index], drawn[(index + 1) % count]
-            open_span = math.hypot(d[0] - c[0], d[1] - c[1])
-            self.assertAlmostEqual(texel_scale(shut, 32, repeat),
-                                   NATURAL_TEXEL_SCALE, delta=0.05)
-            self.assertLessEqual(texel_scale(open_span, 32, repeat),
-                                 NATURAL_TEXEL_SCALE)
-            checked += 1
-        self.assertEqual(checked, 3)
-
     def test_only_the_fabric_wears_the_fabric(self):
         # The tutorial's s3 is eight walls and exactly three carry tile 146;
         # painting the whole region with cloth put curtain on the door frame.
@@ -325,48 +261,23 @@ class TheCurtainsConformanceActuallyRuns(unittest.TestCase):
     `measure_curtain` was written for the opposed-cap model and routed on the
     payload shape that model produces. When the constructor was rebuilt to
     the tutorial's fin, the shape changed and the check silently stopped
-    running: the zoo reported thirteen of thirteen conforming because the
-    curtain was never asked. It is routed on the fabric TILE now, which does
-    not change when the topology does.
+    running. It is routed on the fabric TILE now, which does not change when
+    the topology does. Held here to the tutorial's own curtains.
     """
 
-    def test_the_zoo_curtain_conforms(self):
+    def test_the_tutorials_curtains_conform(self):
         from bloodmap.conformance import measure_curtain
 
-        zoo = _zoo()
-        sector = self._curtain(zoo)
-        found = measure_curtain(zoo, sector, declared=[sector])
+        one = _map(VANILLA / "DOOR-CURTAINS.map")
+        found = measure_curtain(one, 3, declared=[3])
         self.assertEqual([d.relation for d in found.deviations], [])
         self.assertEqual(found.measured["leaves"], 1)
-        #: and the two-leaf exhibit beside it conforms too
-        pair = self._curtain(zoo, leaves=2)
-        paired = measure_curtain(zoo, pair, declared=[pair])
+        self.assertEqual(found.measured["motion_set"], [3])
+        self.assertGreaterEqual(found.measured["fabric_visible"], 1)
+        two = _map(VANILLA / "DOOR-CURTAINSD.map")
+        paired = measure_curtain(two, 2, declared=[2])
         self.assertEqual([d.relation for d in paired.deviations], [])
         self.assertEqual(paired.measured["leaves"], 2)
-        self.assertEqual(found.measured["motion_set"], [sector])
-        #: and the fabric is where a body can see it
-        self.assertGreaterEqual(found.measured["fabric_visible"], 1)
-
-    def _curtain(self, disk, leaves=1):
-        """The zoo's curtain with `leaves` leaves.
-
-        There are two now -- a one-leaf CURTAIN and a two-leaf CURTAIN PAIR --
-        so "the first 614 sector wearing 146" stopped meaning anything. These
-        tests are about the one-leaf dialect and say so.
-        """
-        from bloodmap.motion import flagged_walls
-
-        for index, sector in enumerate(disk.sectors):
-            if int(sector.fields["type"]) != 614:
-                continue
-            start = int(sector.fields["wall_ptr"])
-            count = int(sector.fields["wall_count"])
-            if not any(int(disk.walls[i].fields["picnum"]) == 146
-                       for i in range(start, start + count)):
-                continue
-            if len(flagged_walls(disk, index)) == leaves:
-                return index
-        self.fail(f"the zoo has no {leaves}-leaf curtain")
 
     def test_a_fabric_sized_to_the_DRAWN_span_is_caught(self):
         # The exact defect the owner walked into: the repeat authored for the
@@ -374,17 +285,14 @@ class TheCurtainsConformanceActuallyRuns(unittest.TestCase):
         # natural stretch when the curtain was drawn across.
         from bloodmap.conformance import measure_curtain
 
-        zoo = _zoo()
-        sector = self._curtain(zoo)
-        start = int(zoo.sectors[sector].fields["wall_ptr"])
-        count = int(zoo.sectors[sector].fields["wall_count"])
+        disk = _map(VANILLA / "DOOR-CURTAINS.map")
+        start = int(disk.sectors[3].fields["wall_ptr"])
+        count = int(disk.sectors[3].fields["wall_count"])
         for index in range(start, start + count):
-            if int(zoo.walls[index].fields["picnum"]) == 146:
-                zoo.walls[index].fields["x_repeat"] = 1
-        found = measure_curtain(zoo, sector)
-        self.assertTrue(found.deviations)
-        self.assertIn("closed-span texel scale",
-                      [d.relation for d in found.deviations])
+            if int(disk.walls[index].fields["picnum"]) == 146:
+                disk.walls[index].fields["x_repeat"] = 1
+        found = measure_curtain(disk, 3)
+        self.assertIn("closed-span texel scale", [d.relation for d in found.deviations])
 
     def test_a_curtain_that_deforms_something_undeclared_is_caught(self):
         # The relation is "the motion set is what the construct DECLARED".
@@ -393,22 +301,6 @@ class TheCurtainsConformanceActuallyRuns(unittest.TestCase):
         # moving two is.
         from bloodmap.conformance import measure_curtain
 
-        zoo = _zoo()
-        sector = self._curtain(zoo)
-        found = measure_curtain(zoo, sector, declared=[sector, 999])
+        disk = _map(VANILLA / "DOOR-CURTAINS.map")
+        found = measure_curtain(disk, 3, declared=[3, 999])
         self.assertIn("members", [d.relation for d in found.deviations])
-
-    def test_the_sweep_actually_reaches_the_curtain(self):
-        # The regression that hid all of the above: a construct that dodges
-        # its own check by changing shape.
-        import importlib.util
-        from pathlib import Path
-
-        spec = importlib.util.spec_from_file_location(
-            "_zoo_sweep", Path("projects/pattern-zoo/sweep.py"))
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
-        zoo = _zoo()
-        sector = self._curtain(zoo)
-        checks = module._for_sector(zoo, sector, "curtain")
-        self.assertIn("measure_curtain", [c.__name__ for c in checks])

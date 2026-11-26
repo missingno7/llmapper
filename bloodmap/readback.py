@@ -3,8 +3,8 @@
 The authoring-loop law, made one callable. Roadmap Phase 11 item 3: *every
 constructor's test builds, reads back through effects/conditional, and asserts
 the parse equals the grammar sentence the constructor claims*. That was true
-of the pattern zoo only, because the gates lived in `projects/pattern-zoo`;
-blood-city built a curtain that failed conformance and nothing in its build
+of the pattern zoo only (an exhibit map of September 2026, retired on
+2026-11-26), because the gates lived there; blood-city built a curtain that failed conformance and nothing in its build
 said so until a gate was added there by hand, one at a time.
 
 This module owns the comparison instead, so a project wires ONE call.
@@ -58,10 +58,9 @@ visibility  {tiles: [int], walkable_band: bool, per_leaf: bool}
 --- state ----------------------------------------------------------------
 state  {changes: bool, travel: int|None}
                     the state-pair measurement: the mechanism must measure
-                    DIFFERENT at OFF and at ON. Same four measures as
-                    `reports/zoo-state-check.json` (its generator is
-                    `work/_state_check.py`, which snapped two whole maps;
-                    this does it in memory from the poses).
+                    DIFFERENT at OFF and at ON. The four measures a
+                    September check took by snapping two whole maps; this
+                    takes them in memory from the poses.
 ```
 
 ## What it returns
@@ -228,9 +227,8 @@ def _area(points: Sequence[tuple[float, float]]) -> float:
 def state_pair(disk: Any, sector_id: int) -> dict[str, Any]:
     """Measure one mechanism at OFF and at ON, and say what changed.
 
-    The same four measures as `reports/zoo-state-check.json`, whose generator
-    (`work/_state_check.py`, commit 929cdc1) wrote two whole snapped maps and
-    read them both. Nothing here needs a file: `motion_sim.blood_poses`
+    The same four measures as a September check (commit 929cdc1) that wrote two
+    whole snapped maps and read them both. Nothing here needs a file: `motion_sim.blood_poses`
     already transcribes `TranslateSector` and knows which of the two frames
     is OFF for a sector that rests open, and the z pair lives in the XSECTOR.
 

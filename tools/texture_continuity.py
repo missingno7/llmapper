@@ -27,7 +27,7 @@ campaign itself continues.
 .. code-block:: bash
 
     python -m tools.texture_continuity
-    python -m tools.texture_continuity --map projects/pattern-zoo/level/pattern-zoo.MAP
+    python -m tools.texture_continuity --map projects/cold-store/level/cold-store.MAP
 """
 
 from __future__ import annotations

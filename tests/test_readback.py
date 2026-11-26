@@ -186,6 +186,21 @@ class CurtainReadBack(unittest.TestCase):
         claims.update(overrides)
         return sentence("curtain", **claims)
 
+    def test_a_built_curtain_conforms_to_the_tutorials_dialect(self):
+        # what DOOR-CURTAINS s3 and DOOR-CURTAINSD s2 measure: the fabric at natural scale over the CLOSED span,
+        # visible, moving only itself
+        from bloodmap.conformance import measure_curtain
+
+        for leaves in (1, 2):
+            with self.subTest(leaves=leaves):
+                layout = _layout()
+                self._hang(layout, leaves=leaves)
+                disk, sectors, _ = _built(layout)
+                found = measure_curtain(disk, sectors["leaf"], declared=[sectors["leaf"]])
+                self.assertEqual([d.relation for d in found.deviations], [])
+                self.assertEqual(found.measured["leaves"], leaves)
+                self.assertGreaterEqual(found.measured["fabric_visible"], 1)
+
     def test_a_one_leaf_curtain_reads_back_as_what_it_declared(self):
         from bloodmap.readback import read_back
 
@@ -1057,8 +1072,8 @@ SKIP: dict[str, str] = {
         "assume. Named here so the gap is countable",
     "bloodmap.aperture.facade_run":
         "PENDING a read-back: the frontage constructor's sign placement "
-        "needs ART extents. Its geometry is covered by tests/test_aperture.py "
-        "and by the zoo's FACADE exhibit; the read-back is still owed",
+        "needs ART extents. Its geometry is covered by tests/test_aperture.py; "
+        "the read-back is still owed",
     # --- street: derives, never builds -------------------------------------
     "bloodmap.street.carriageway":
         "derives the roadway rectangle of a run. It returns geometry for a "
@@ -1187,9 +1202,9 @@ class ReadBackRegistry(unittest.TestCase):
     """The rule that keeps this file current.
 
     Promote a constructor into one of the five modules and this fails until
-    it has a read-back test or a written reason -- exactly the way
-    `tests/test_pattern_zoo.ConformanceTest` fails a constructor that has no
-    exhibit in the zoo.
+    it has a read-back test or a written reason. (An exhibit map once held every
+    constructor to the same rule; it was retired on 2026-11-26, and this is the
+    rule that stays.)
     """
 
     def test_every_public_constructor_has_a_read_back_test_or_a_reason(self):

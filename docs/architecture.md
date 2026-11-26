@@ -299,6 +299,9 @@ tests read are under `tests/fixtures/`, the rest is in git history at commit `e0
 experiments and tools that served only them (the decompile pipeline, the precedent packet, the
 August project workspace), and the experiments directory itself (Gravesend's own moved into
 `projects/blood-city/experiments/`; the Duke-conversion finder became `tools.find_duke_conversions`);
+the pattern zoo (an exhibit map of September whose hand-made exhibits the owner judged outdated and
+wrong: its tests now read Blood's own maps, the mechanism tutorials and constructs the library builds,
+and `tests/test_readback.py` is the one rule that every constructor is built and read back);
 the library's letter pitch is the campaign's, and three of
 Gravesend's values that rest on a disproved figure say where they stand that they are its own
 choices (`l3_church.PITCH`, `fixtures.GOODS_SHARE`, `scale.HOLE_MEDIAN`; the owner: keep the

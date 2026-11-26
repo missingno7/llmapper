@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "Each kind of object is realised at one level, and building it at another is a category error: a standalone sprite (mannequin), a sector volume wearing textures (crate, counter, clock), a wall texture on a shallow sector (shelf, drawers), a thin sector (curtain), a masked wall (grate), or flat sprites composed into a volume (a sprite bridge). A shelf drawn as a sprite on a wall and crates as sprites were both wrong.",
  "evidence": [
-  "The owner's model of tile and sprite use, 2026-09-01, after walking the pattern zoo's first version: said to the agent in conversation; the taxonomy is written as binding in projects/pattern-zoo/registry.py's docstring.",
+  "The owner's model of tile and sprite use, 2026-09-01, after walking the pattern zoo's first version: said to the agent in conversation; the taxonomy was written as binding in projects/pattern-zoo/registry.py's docstring (the zoo was retired on 2026-11-26; read it at commit 7a86f83).",
   "The owner, 2026-11-25, of a clock and a booth: 'shouldn't be just sprite but a made out of sector'. (projects/blood-city/level/booking_hall.py)"
  ],
  "use": "Find how Blood realises a thing before building it.",
@@ -29,7 +29,7 @@
  ],
  "checked": {
   "date": "2026-11-26",
-  "how": "projects/pattern-zoo/registry.py:22-26 docstring: 'The representation taxonomy is binding. Every concept is realized at its own level: a standalone sprite (mannequin), a sector volume (crate, counter), a wall texture on shallow sectors (shelf), a maskwall panel (grate), a thin deforming sector (curtain)'; owner's model 2026-09-01 in memory owner-anchors-and-zoo.md:46-58 incl. sprite bridge and the zoo v1 shelf/crate errors; booking_hall.py:25-26 owner 2026-11-25 'grandfather clock and telephone booth shouldn't be just sprite but a made out of sector'. tools/look_at.py exists.",
-  "of": "05a49489ead6"
+  "how": "Citations into the retired pattern zoo now point at commit 7a86f83. Earlier: projects/pattern-zoo/registry.py:22-26 docstring: 'The representation taxonomy is binding. Every concept is realized at its own level: a standalone sprite (mannequin), a sector volume (crate, counter), a wall texture on shallow sectors (shelf), a maskwall panel (grate), a thin deforming sector (curtain)'; owner's model 2026-09-01 in memory owner-anchors-and-zoo.md:46-58 incl. sprite bridge and the zoo v1 shelf/crate errors; booking_hall.py:25-26 owner 2026-11-25 'grandfather clock and telephone booth shouldn't be just",
+  "of": "95496faa02fa"
  }
 }

@@ -2,7 +2,7 @@
 
 The recipe was read off E6M1 years ago and has been glazing blood-city since;
 these are the tests it never had while it lived inside a level. They check the
-campaign source, the two ways a pane can be silently dead, and that the zoo's
+campaign source, the two ways a pane can be silently dead (on E6M1's own panes), and that the
 exhibit is really glazed.
 """
 
@@ -12,7 +12,7 @@ from pathlib import Path
 from tests.helpers import require_map
 
 E6M1 = Path("maps/blood/campaign/E6M1.MAP")
-ZOO = Path("projects/pattern-zoo/level/pattern-zoo.MAP")
+E6M1 = Path("maps/blood/campaign/E6M1.MAP")
 
 
 def _map(path):
@@ -78,13 +78,13 @@ class APaneNeedsTwoSides(unittest.TestCase):
 class TheWaysAPaneDiesSilently(unittest.TestCase):
     """Both are invisible to every other reading."""
 
-    def _zoo(self):
-        return _map(ZOO)
+    def _panes(self):
+        return _map(E6M1)
 
-    def test_the_zoo_pane_is_sound(self):
+    def test_e6m1s_panes_are_sound(self):
         from bloodmap.glass import pane_faults
 
-        self.assertEqual(pane_faults(self._zoo()), [])
+        self.assertEqual(pane_faults(self._panes()), [])
 
     def test_glass_without_an_xwall_is_a_permanent_pane(self):
         # NBlood needs `wall.extra > 0` before it will even look at
@@ -92,7 +92,7 @@ class TheWaysAPaneDiesSilently(unittest.TestCase):
         # simply never breaks.
         from bloodmap.glass import GLASS_TILE, pane_faults
 
-        disk = self._zoo()
+        disk = self._panes()
         for wall in disk.walls:
             if int(wall.fields.get("over_picnum", 0)) == GLASS_TILE:
                 wall.extra.fields["trigger_vector"] = 0
@@ -103,7 +103,7 @@ class TheWaysAPaneDiesSilently(unittest.TestCase):
     def test_glass_on_a_one_sided_wall_is_caught(self):
         from bloodmap.glass import GLASS_TILE, pane_faults
 
-        disk = self._zoo()
+        disk = self._panes()
         for wall in disk.walls:
             if int(wall.fields.get("over_picnum", 0)) == GLASS_TILE:
                 wall.fields["next_sector"] = -1
@@ -111,31 +111,10 @@ class TheWaysAPaneDiesSilently(unittest.TestCase):
         self.assertTrue(any("ONE-SIDED" in f for f in pane_faults(disk)))
 
 
-class TheZooExhibitIsReallyGlazed(unittest.TestCase):
-    def test_both_sides_of_the_pair_are_glass(self):
-        # `trTriggerWall` clears the bits on pWall2 as well, so a pane glazed
-        # on one side only half-breaks.
-        from bloodmap.glass import GLASS_TILE
-
-        disk = _map(ZOO)
-        glazed = [i for i, w in enumerate(disk.walls)
-                  if int(w.fields.get("over_picnum", 0)) == GLASS_TILE]
-        self.assertEqual(len(glazed), 2, "a pane is a PAIR of walls")
-        first, second = (disk.walls[i].fields for i in glazed)
-        self.assertEqual(int(first["next_sector"]) >= 0, True)
-        self.assertEqual(int(second["next_sector"]) >= 0, True)
-
+class GlazeRefusesASolidWall(unittest.TestCase):
     def test_a_solid_wall_in_the_span_stays_a_pier(self):
         # A window needs something to see through to; `glaze` reports what it
         # refused rather than quietly doing nothing.
-        import importlib.util
-
-        spec = importlib.util.spec_from_file_location(
-            "_zoo_build", Path("projects/pattern-zoo/build_zoo.py"))
-        if not Path("projects/pattern-zoo/build_zoo.py").exists():
-            self.skipTest("zoo absent")
-        #: the build prints its report; here we just assert the constructor
-        #: has the behaviour, on a hand-made level
         from bloodmap.glass import glaze
 
         level = type("L", (), {})()
@@ -150,10 +129,6 @@ class TheZooExhibitIsReallyGlazed(unittest.TestCase):
         report = glaze(level, [(-10, -10, 200, 200)])
         self.assertEqual(report["skipped_solid"], 1)
         self.assertEqual(report["panes"], 1)
-
-
-if __name__ == "__main__":
-    unittest.main()
 
 
 class TheShopfrontIsABoxNotAPane(unittest.TestCase):
@@ -215,3 +190,7 @@ class TheShopfrontIsABoxNotAPane(unittest.TestCase):
                 face["x"] = int(face["x"]) * 8
                 face["y"] = int(face["y"]) * 8
         self.assertTrue(panes_without_a_recess(disk))
+
+
+if __name__ == "__main__":
+    unittest.main()

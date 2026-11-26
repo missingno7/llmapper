@@ -799,15 +799,11 @@ class FabricHasToBeVisible(unittest.TestCase):
         from bloodmap.format import read_map
         from bloodmap.motion_sim import blood_poses
 
-        zoo = Path("projects/pattern-zoo/level/pattern-zoo.MAP")
-        if not zoo.exists():
-            self.skipTest("the zoo is not built")
-        disk = read_map(zoo)
-        from bloodmap.motion import flagged_walls
-
-        pair = next(i for i, s in enumerate(disk.sectors)
-                    if int(s.fields["type"]) == 614
-                    and len(flagged_walls(disk, i)) == 2)
+        path = Path("maps/blood/mechanism/Vanilla/DOOR-CURTAINSD.map")
+        if not path.exists():
+            self.skipTest("the mechanism tutorials are not here")
+        disk = read_map(path)
+        pair = 2                                    # the tutorial's two-leaf curtain
         closed, drawn = blood_poses(disk, pair)
         xs = [p[0] for p in drawn] + [p[1] for p in drawn]
         start = int(disk.sectors[pair].fields["wall_ptr"])
