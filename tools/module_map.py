@@ -146,7 +146,7 @@ TOOLS: list[tuple[str, str, list[str]]] = [
     ("Looking",
      "Render what the game shows, through the XMapEdit observer.",
      ["observe", "render_precedent", "sweep_views", "look_at", "gallery", "mechanism_look", "tile_usage",
-      "showcase", "plan_view"]),
+      "showcase", "plan_view", "map_model"]),
     ("The library of Blood",
      "Tiles, places, studies and ideas (`knowledge/blood/LIBRARY.md`), and "
      "the readers that criticise a place.",
