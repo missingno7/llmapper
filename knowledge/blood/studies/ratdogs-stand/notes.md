@@ -93,4 +93,4 @@ From the frames, in the order a player meets them:
 `HATCH_SILL` 8,192 and up to the door's head); the counter is the grill's
 iron with rats and steam on it; the display pedestal is a wooden table
 (rise 7,168); the room wears the kitchen's materials at E1M4's shades. The
-sign is `signage.STREET_SIGNS`' RAT DOGS. Frames: `look.py --set canteen`.
+sign is `signage.STREET_SIGNS`' RAT DOGS. Frames: `python -m tools.look blood-city --set canteen`.

@@ -1974,12 +1974,22 @@ class PlanarLayout:
             if region.declared_zero_exit or region.special in {"water", "stack", "helper"}
         }
         # A room whose way out is a door is shut in, not cut off: at rest nothing can be walked out of it, and that is
-        # what the door is for. It need not be declared; a room joined to nothing at all still must be.
+        # what the door is for. It need not be declared -- but only where the door can be opened (by hand, or by a
+        # channel something was given) AND leads on to another region. A door nobody can work, or one that is the
+        # room's only neighbour and goes nowhere, leaves the room sealed, and that is still refused.
+        def _opens(region) -> bool:
+            behavior = dict(region.sector_behavior or {})
+            return bool(behavior.get("trigger_push") or behavior.get("trigger_wall_push") or int(behavior.get("rx_id", 0) or 0))
+
         gated_regions = {region.region_id for region in self.regions.values()
-                         if region.type in {600, 602} or region.role in {"doorway", "gated_pocket"}}
+                         if (region.type in {600, 602} or region.role in {"doorway", "gated_pocket"}) and _opens(region)}
+        beside: dict[str, set[str]] = {}
         for item in self.connections.values():
-            for door, room in ((item.region_a, item.region_b), (item.region_b, item.region_a)):
-                if door in gated_regions and room in allocations:
+            beside.setdefault(item.region_a, set()).add(item.region_b)
+            beside.setdefault(item.region_b, set()).add(item.region_a)
+        for door in gated_regions:
+            for room in beside.get(door, ()):
+                if room in allocations and beside[door] - {room}:
                     zero_exit.add(allocations[room].sector_id)
         intended = [(item.region_a, item.region_b) for item in self.connections.values()]
         # Which sectors are not on the same sheet of paper. The audit asks its

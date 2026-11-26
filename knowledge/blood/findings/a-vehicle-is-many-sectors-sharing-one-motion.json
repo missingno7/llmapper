@@ -2,9 +2,10 @@
  "id": "a-vehicle-is-many-sectors-sharing-one-motion",
  "topic": "mechanism",
  "standing": "ruling",
- "claim": "A vehicle (train, carriage, cart) is several sectors sharing one travel and one wire, its ceiling included, never one sector dressed in sprites. Only one member carries the voice.",
+ "claim": "A vehicle (train, carriage, cart) is several sectors sharing one travel and one wire, its ceiling included, never one sector dressed in sprites (the owner). Ours: only one member carries the voice.",
  "evidence": [
-  "The owner, 2026-11-24, of a train that was one sector dressed in sprites: 'we should be able to make it out of sectors if they will share same motion it will work ... more solid and not feeling like cut out of paper' (bloodmap/mechanism.py rigid_body docstring); its ceiling must move with it (projects/blood-city/references/phantom-terminus-design.md, 'As rebuilt'); blind readers had passed the sprite train."
+  "The owner, 2026-11-24, of a train that was one sector dressed in sprites: 'we should be able to make it out of sectors if they will share same motion it will work ... more solid and not feeling like cut out of paper' (bloodmap/mechanism.py rigid_body docstring); its ceiling must move with it (projects/blood-city/references/phantom-terminus-design.md, 'As rebuilt'). Blind readers had scored the sprite train 4 for recognition in ghost-station critique rounds 1-4 and none called it paper; only the owner's ride did.",
+  "One voice is our practice, not his words: projects/blood-city/level/motion_sounds.py VOICE ('one body of many sectors has one voice')"
  ],
  "use": "Build with rigid_body and carry_fittings; read back with motion_sim.rigid_bodies and body_health.",
  "code": [

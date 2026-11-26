@@ -5,8 +5,8 @@
  "claim": "Most of Blood's ceiling-lifting doors are CLOSED at rest: 509 of the campaign's 594 are shut in their OFF pose (ceiling down on the floor) and open by raising the ceiling to the lintel; 85 are open at rest and shut when turned on. E3M1's simple ones are 256 to 1,024 across and 57 to 256 thick (s52 768 by 256, s114 and s354 1,024 by 128).",
  "evidence": [
   "E3M1 s52: type 600, ceiling_z = floor_z = -7168 at rest, on_ceiling_z -25600 (python -m tools.catalog record E3M1 sector 52); likewise E3M1 s58, s114 and s354. (s59 and s60 open by dropping the floor, and s54's floor also moves 1,024: they are not ceiling-lifting doors.)",
-  "2026-11-26, work/consolidation/probe_zdoors.py variant: type 600 with ceiling moving and floor fixed, 509 with off_floor_z = off_ceiling_z, 85 with on_floor_z = on_ceiling_z; across the campaign wooden leaves are 128 (29 of 72) as often as 256 (26) (finding z-door-opening-heights)",
-  "E3M1's ceiling-lifting doors shut at rest with four walls (s52, s58, s105, s114, s181, s354) measure 256-1,024 across and 57-256 thick (work/consolidation/audit3/p6.py, 2026-11-26)"
+  "2026-11-26, knowledge/blood/findings/probes/consolidation_probe_zdoors.py variant: type 600 with ceiling moving and floor fixed, 509 with off_floor_z = off_ceiling_z, 85 with on_floor_z = on_ceiling_z; across the campaign wooden leaves are 128 (29 of 72) as often as 256 (26) (finding z-door-opening-heights)",
+  "E3M1's ceiling-lifting doors shut at rest with four walls (s52, s58, s105, s114, s181, s354) measure 256-1,024 across and 57-256 thick (knowledge/blood/findings/probes/consolidation_audit3_p6.py, 2026-11-26)"
  ],
  "use": "Build a Z door as a thin leaf sector shut at rest; choose its tile by its owner-anchored role (and see knob-doors-never-open-by-z-motion).",
  "code": [],

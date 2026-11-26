@@ -1,10 +1,11 @@
 {
  "id": "machine-rooms-are-tiles-not-sprites",
  "topic": "place",
- "standing": "tendency",
- "claim": "Over the campaign's 900 metal-walled sectors almost none of the detail is wall sprites (0.21 per 10,000 of wall). It is wall tiles with pipes and dials painted in, walls cut into panel and pilaster rhythm, hazard strips at openings, consoles let into a wall on a sill, faceted solids shaded facet by facet, and light pulsing on the machine.",
+ "standing": "practice",
+ "claim": "Ours, from looking at the campaign's machine rooms: their detail is wall tiles with pipes and dials painted in, walls cut into panel and pilaster rhythm, hazard strips at openings, consoles let into a wall on a sill, faceted solids shaded facet by facet, and light pulsing on the machine, with almost no wall sprites; Gravesend's machine hall was built that way. A count once quoted (900 metal-walled sectors, 0.21 wall sprites per 10,000 of wall) has no tool that reproduces it.",
  "evidence": [
-  "E3M5 s138 (298:1536 115:256 298:1536), s158; E6M3 s150-157 and E3M5 s6 hazard strips; E3M6 s414-416 consoles; E3M5 s14 facets 4 -> 16 -> 4; E3M3 generator pulse wave 5, amplitude -32 (projects/blood-city/level/l3_shed.py)"
+  "E3M5 s138 (298:1536 115:256 298:1536), s158; E6M3 s150-157 and E3M5 s6 hazard strips; E3M6 s414-416 consoles; E3M5 s14 facets 4 -> 16 -> 4; E3M3 generator pulse wave 5, amplitude -32 (projects/blood-city/level/l3_shed.py)",
+  "Unsettled: a miner that names the campaign's metal-walled sectors by a stated tile set and counts wall sprites per length of their wall would make this a tendency; the 0.21/10,000 figure survives only in projects/blood-city/level/l3_shed.py's comment"
  ],
  "use": "Compose a machine hall from wall records cut into a rhythm of technical tiles; hang at most a few grates.",
  "code": [

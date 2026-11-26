@@ -5,7 +5,7 @@
  "claim": "E3M1's town carries 45 light props over about 192k units of frontage, one lamp per 4-5k units, denser at venue mouths.",
  "evidence": [
   "street-furniture pass over E3M1, TEDE1M2, DWE3M1, DWE3M10 via tools/mine_urban_semantics.py labels (knowledge/blood/references/street-furniture.md)",
-  "2026-11-26: work/consolidation/probe_outdoor_lamps.py finds E3M1's 45 bright outdoor sprites are 28 x 2521 (type 710, statnum 12) and 17 x 2519 (type 708), all cstat 32896 (invisible); the only visible light sprite under its sky is 3566 (sprite 329)"
+  "2026-11-26: knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py finds E3M1's 45 bright outdoor sprites are 28 x 2521 (type 710, statnum 12) and 17 x 2519 (type 708), all cstat 32896 (invisible); the only visible light sprite under its sky is 3566 (sprite 329)"
  ],
  "use": "Do not space lamps by this figure.",
  "code": [

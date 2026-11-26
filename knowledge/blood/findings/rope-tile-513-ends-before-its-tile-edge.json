@@ -1,0 +1,26 @@
+{
+ "id": "rope-tile-513-ends-before-its-tile-edge",
+ "topic": "sprite",
+ "standing": "practice",
+ "claim": "Ours, measured: the diagonal rope art (tile 513) leaves its tile at 33 of 38 columns and 50 of 52 rows; past that is a loose tuft. So a rope of several 513 sprites closes when each piece reaches 38/32 of its share across and 52/49 down, the next covering the tuft.",
+ "evidence": [
+  "tile 513's art measured in projects/blood-city/level/harbour_ship.py stay(), 2026-11-25, for the owner's ruling diagonal-rope-sprites-must-overlap"
+ ],
+ "use": "Lay each piece to reach 38/32 and 52/49 of its share; stay() does it.",
+ "code": [
+  "projects/blood-city/level/harbour_ship.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "513",
+  "gap",
+  "overlap",
+  "rigging",
+  "rope",
+  "stay"
+ ]
+}

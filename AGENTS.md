@@ -38,8 +38,9 @@ where it is looked for, and say how it is known:
 | how Blood built a kind of place; an idea seen on a tour | `tools.study` and its `notes.md`; `python -m tools.ideas add` |
 | a function a second level would write again | `bloodmap/`, with a test that needs no level |
 
-A thing that worked in one level is `practice`, not a rule of Blood. A project
-keeps only its own: brief, modules, poses, tests, reports, critique rounds.
+A thing that worked in one level is `practice`, not a rule of Blood. Cite what another
+agent can open (never `work/`), and open a finding's citation before you build on its
+number: the shelf's check holds form, not truth. A project keeps only its own.
 
 ## Rules of the codebase
 
@@ -78,7 +79,9 @@ python -m tools.showcase --project <name> run         # which view shows each pl
 
 A build declares rooms as a program (`bloodmap.levelprog`), then
 `bloodmap.finish.finish` takes the layout to a map: compile, align, gates, light,
-tidy, write, manifest; a failed gate writes no map. Read a project's own page
+tidy, write, manifest. A rule error, a mechanism that breaks what it drags, a
+read-back difference or wiring that differs writes no map; the rest is measured
+and listed in the status for you to answer. Read a project's own page
 first: [projects/blood-city/README.md](projects/blood-city/README.md) for
 Gravesend, whose state is the generated
 [reports/STATUS.md](projects/blood-city/reports/STATUS.md). A new kind of place

@@ -5,7 +5,7 @@
  "claim": "E1M4's shooting gallery: tiers of hand-sized slabs sliding end to end for ever (type 616, retrigger at both ends, all on rx 108, started by lever sprite 41), a rubber duck (852) or smiling face (853) on each as a breakable target (type 416). The prizes are wired to particular targets, not to a tally of the ducks: one face (sprite 47) raises the well s64 and credits a secret; three of the nine bottles on the shelf s298 count into a combination switch (sprite 202, type 22, data2 3) that raises the prize well s174; a bullseye (sprite 999, tile 967) sends to s373.",
  "evidence": [
   "E1M4 sectors 27 and 34-41: type 616, rx 108, markers, retrigger_a and retrigger_b; sprites 40, 44-51 (852/853, type 416) on them; sprite 41 (tile 1074) sends 108",
-  "E1M4 sprite 47 tx 110 -> sector 64 (type 600, rx 110, tx 2 command 64); sprites 569, 571, 575 (tile 759) tx 124 -> sprite 202 (type 22) tx 106 -> sector 174 (type 600, rx 106); sprite 999 (967) tx 200 -> sector 373 (work/consolidation/audit3/p2.py, 2026-11-26)"
+  "E1M4 sprite 47 tx 110 -> sector 64 (type 600, rx 110, tx 2 command 64); sprites 569, 571, 575 (tile 759) tx 124 -> sprite 202 (type 22) tx 106 -> sector 174 (type 600, rx 106); sprite 999 (967) tx 200 -> sector 373 (knowledge/blood/findings/probes/consolidation_audit3_p2.py, 2026-11-26)"
  ],
  "use": "Build a target range from moving slabs and breakable targets, not dummy figures, and wire each prize to the targets that should win it (a combination switch counts them).",
  "code": [

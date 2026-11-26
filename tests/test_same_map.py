@@ -15,10 +15,12 @@ from bloodmap import finish
 class SameMap(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.disk = finish.finish(*two_rooms()[:1], circuit=two_rooms()[1], say=quiet).disk
+        layout, circuit = two_rooms()
+        cls.disk = finish.finish(layout, circuit=circuit, say=quiet).disk
 
     def test_a_map_is_itself_and_its_rebuild(self):
-        again = finish.finish(*two_rooms()[:1], circuit=two_rooms()[1], say=quiet).disk
+        layout, circuit = two_rooms()
+        again = finish.finish(layout, circuit=circuit, say=quiet).disk
         self.assertTrue(same_map.same(self.disk, again))
 
     def test_sprites_in_another_order_are_the_same_level(self):
@@ -33,6 +35,15 @@ class SameMap(unittest.TestCase):
         self.assertEqual(found["walls"], {"only_before": 1, "only_after": 1})
         self.assertEqual(found["sectors"], {"only_before": 0, "only_after": 0})
         self.assertFalse(same_map.same(self.disk, other))
+
+    def test_a_door_that_wants_another_key_is_not_the_same_level(self):
+        from bloodmap.model import record_extra
+
+        other = copy.deepcopy(self.disk)
+        switch = next(s for s in other.sprites if record_extra(s))
+        record_extra(switch)["tx_id"] = 5
+        found = same_map.difference(self.disk, other)
+        self.assertEqual(found["sprites"], {"only_before": 1, "only_after": 1})
 
 
 if __name__ == "__main__":

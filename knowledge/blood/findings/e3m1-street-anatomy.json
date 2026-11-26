@@ -5,7 +5,7 @@
  "claim": "E3M1's street: the road wears 352, the pavement wears 4 and stands 2,048 above it; kerb tile 6 sits only on the road-side record where a road meets a pavement (all eleven records wearing it step 2,048). Pavements are 2,048 wide and roads (the carriageway alone) 4,096 to 7,456, so with a pavement each side a street is 8,192 to 11,552 from front to front; between abutting houses with no road runs a 512 pavement-only path.",
  "evidence": [
   "E3M1 s10/s11 the 512 path; its pavement sectors' median narrow dimension 2,048; its four road sectors 4,096, 4,096, 5,120, 7,456 (projects/blood-city/level/city_plan.py; build_street_slice.py and build_graph_slice2.py as committed at HEAD)",
-  "2026-11-26: road sectors (floor 352 under sky) s3, s7, s8, s45 measure 5,120, 4,096-7,328, 7,456 and 4,096 across; s8's pavements s6 and s9 are 2,048 deep (work/consolidation probe of sector bounds). A remembered 'about 10,240 between blocks' is the front-to-front width, not the road",
+  "2026-11-26: road sectors (floor 352 under sky) s3, s7, s8, s45 measure 5,120, 4,096-7,328, 7,456 and 4,096 across; s8's pavements s6 and s9 are 2,048 deep (knowledge/blood/findings/probes/consolidation_e3m1_streets.py, which also lists the kerb walls). A remembered 'about 10,240 between blocks' is the front-to-front width, not the road",
   "2026-11-26: the eleven walls wearing tile 6 (w23, 25, 48, 50, 52, 54, 55, 57, 58, 219, 221) all belong to a 352 road sector and face a tile-4 pavement 2,048 higher"
  ],
  "use": "Lay the road whole and stand pavement islands on it; put the kerb tile on the road's record, never as a default wall material.",

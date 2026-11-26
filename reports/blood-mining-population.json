@@ -94,7 +94,7 @@
       ]
     },
     "mine_prop_catalogue": {
-      "artifact": "projects/blood-city/references/prop-catalogue.json",
+      "artifact": "knowledge/blood/references/prop-catalogue.json",
       "headlines": [],
       "tiles": {
         "published": 263,
@@ -347,7 +347,7 @@
       }
     },
     "mine_style_combinations": {
-      "artifact": "projects/blood-city/references/style-combinations.json",
+      "artifact": "knowledge/blood/references/style-combinations.json",
       "headlines": [
         {
           "measure": "rooms examined",

@@ -4,9 +4,9 @@
  "standing": "tendency",
  "claim": "Blood's raised furniture (a roofed sector standing above every neighbour, at most 4,096 across, 512 to 16,960 up) rises a median 6,144 over the campaign (952 pieces; q1 3,072, q3 8,192), and its commonest rise is 8,192, 0.48 of a body (246 pieces; 4,096 has 121). E3M1's 36 such pieces rise a median 8,192, 21 of them exactly that. Two-tier altars, biers and tombs rise 0.60-0.97 bodies (median 0.85; 42 pieces, 16 maps); a stall is a counter plus a lowered ceiling of the same footprint (66 pieces, 21 maps). What stands on them is face sprites (73 of E3M1's saloon's 77 sprites).",
  "evidence": [
-  "work/consolidation/probe_raised.py over the 43 campaign maps and over E3M1, 2026-11-26",
+  "knowledge/blood/findings/probes/consolidation_probe_raised.py over the 43 campaign maps and over E3M1, 2026-11-26",
   "knowledge/blood/design/set-pieces-v1.json (7,014 pieces, campaign plus Death Wish, TEDE and Duke-conversion maps): its classes in rise band 2 all report a median of 0.42-0.48 because the band is 0.30-0.48 bodies; the '363 pieces over 38 maps' and the altar and stall counts are that miner's, not re-measured",
-  "tools/mine_venues.py on E3M1's saloon wing: four identical card tables of 1.18M area raised 8,192, and 73 of its 77 sprites face-aligned (projects/blood-city/references/venue-mining.json); the same miner's open-front booth counters in E1M4 rise 4,096-5,120, the '3,072-4,096 counter' of venue-patterns.md",
+  "tools/mine_venues.py on E3M1's saloon wing: four identical card tables of 1.18M area raised 8,192, and 73 of its 77 sprites face-aligned (knowledge/blood/references/venue-mining.json); the same miner's open-front booth counters in E1M4 rise 4,096-5,120, the '3,072-4,096 counter' of venue-patterns.md",
   "Gravesend's counters at 4,096 read as steps (Gravesend practice)"
  ],
  "use": "Raise a table or bar 8,192 (half a body); a booth counter may stand 4,096-5,120, which reads as a step from close by. A counter too high to step over must leave a way round it.",

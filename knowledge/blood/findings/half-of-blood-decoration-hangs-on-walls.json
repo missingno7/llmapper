@@ -5,7 +5,7 @@
  "claim": "Of the 263 props the campaign uses more than rarely, 142 are wall-aligned (paintings, posters, signs, windows), 77 stand on the floor, 40 are floor decals and 4 are brackets. A tile's alignment belongs to the tile: 795, the flat round light, is floor-aligned and lies flat against the ceiling (147 of its 159 campaign uses, at the ceiling's own z).",
  "evidence": [
   "263 props classed 142 / 77 / 40 / 4 by tools/mine_prop_catalogue.py from each tile's cstat alignment bits",
-  "2026-11-26, work/consolidation/probe_tile.py 795: 159 campaign uses in 18 maps, 147 floor-aligned and 12 wall-aligned, median distance under the ceiling 0"
+  "2026-11-26, knowledge/blood/findings/probes/consolidation_probe_tile.py 795: 159 campaign uses in 18 maps, 147 floor-aligned and 12 wall-aligned, median distance under the ceiling 0"
  ],
  "use": "Dress with a wall anchor as well as a floor one, and read each tile's alignment from the catalogue instead of declaring it; refuse to stand on the floor a tile Blood hangs.",
  "code": [

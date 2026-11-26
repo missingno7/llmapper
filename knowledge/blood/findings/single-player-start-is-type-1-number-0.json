@@ -5,7 +5,7 @@
  "claim": "Player starts are marker sprites: type 1 for single player and co-op, type 2 for Bloodbath, data1 the player's number; type 1 number 0 is where a game alone starts. The engine reads them into start zones at load and deletes them. The campaign maps carry eight type-1 markers (one map nine) and seven to nine type-2 (pictures 2522-2529), z on the floor. The map header's start is only a fallback and is not where the game starts: in 37 of 43 campaign maps it disagrees with the marker. Pick number 0, not the first marker by index.",
  "evidence": [
   "NBlood/source/blood/src/warp.cpp:61-70 kMarkerSPStart -> gStartZone[data1] for nGameType <= coop, DeleteSprite; warp.cpp:72-80 kMarkerMPStart for Bloodbath",
-  "Recounted 2026-11-26 over the 43 campaign maps (work/consolidation/audit3/p6.py): eight type-1 markers in 42 maps and nine in one; seven to nine type-2 markers (eight in 36)",
+  "Recounted 2026-11-26 over the 43 campaign maps (knowledge/blood/findings/probes/consolidation_audit3_p6.py): eight type-1 markers in 42 maps and nine in one; seven to nine type-2 markers (eight in 36)",
   "NBlood/source/blood/src/blood.cpp:724-731: the header start fills gStartZone first and is only the fallback",
   "all 43 campaign maps carry the marker and the header disagrees with it on 37; the first start marker by sprite index is wrong on E3M7, E4M3 and E6M7 (docs/blood-mechanics-and-conventions.md, 2026-08-23)"
  ],

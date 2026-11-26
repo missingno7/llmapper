@@ -2,9 +2,10 @@
  "id": "e3m1-walks-its-roofs",
  "topic": "place",
  "standing": "tendency",
- "claim": "E3M1's town is a second storey of routes: sky sectors above grade cover 52.8% of its street area, joined with 3 stack pairs; 7 of its 15 buildings are multi-storey (47%, the most vertical town measured). DukCity's roofs are scenery (at most 2% of street area) and its depth is a sewer of 75-125 sectors instead.",
+ "claim": "E3M1's town is a second storey of routes: sky sectors above grade cover 52.8% of its street area, joined with 3 stack pairs, the most of the six towns city-norms measured (DWE3M1 7.2%, DukCity1-4 0.1-2%). 7 of its 15 buildings are multi-storey (47%), second of the five maps urban-semantics.json measured to E3M2 (5 of 8, 62.5%; E1M4 6/25, TEDE1M2 4/25, DWE3M10 2/52); the DukCity maps run 4/66 to 6/34 (6-18%). DukCity's roofs are scenery and its depth is a sewer instead: 17, 99, 125 and 75 below-grade sectors in DukCity1-4, against none in E3M1.",
  "evidence": [
-  "tools/mine_city_norms.py (rooftop share 0.528 E3M1, 0.001-0.020 DukCity); tools/mine_urban_semantics.py (E3M1 7/15 buildings multi-storey, DukCity 10-17%)"
+  "knowledge/blood/references/city-norms.md section 5 (tools/mine_city_norms.py): rooftop share of street area 0.528 E3M1, 0.072 DWE3M1, 0.001/0.014/0.004/0.020 DukCity1-4; below-grade sectors 0, 20, 17, 99, 125, 75",
+  "knowledge/blood/references/urban-semantics.json per_map.*.buildings.storey_mix (tools/mine_urban_semantics.py): E3M2 5 of 8 multi-storey, E3M1 7/15, E1M4 6/25, TEDE1M2 4/25, DWE3M10 2/52; the DukCity rows are only in urban-semantics.md's table (7/58, 8/48, 6/34, 4/66). That page's 'most vertical town' sentence overlooks its own E3M2 row"
  ],
  "use": "Give a Blood town walkable roofs and upper storeys; that is the move Duke cannot make.",
  "code": [

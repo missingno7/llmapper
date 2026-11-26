@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "maps/blood/mechanism is a taught course of single-purpose tutorial maps, one mechanism each: 98 in Vanilla/ and 38 '#'-prefixed at its top level; Modern/ (35) is the NBlood-extension dialect and must not be mined as vanilla law. Consult it first for any mechanism question.",
  "evidence": [
-  "The owner's standing instruction (noted 2026-09-01): consult this folder first for any mechanism question.",
+  "The owner's standing instruction (noted 2026-09-01): consult this folder first for any mechanism question. Said to the agent in conversation; bloodmap/curriculum.py's docstring says 'The owner supplied a curriculum'.",
   "2026-11-26 file count: Vanilla/ 98 maps, top level 38, Modern/ 35. The 981-page XMapEdit manual (xmapedit.pdf) an earlier note placed in this folder is not in it now, and the earlier '105 tutorials in Vanilla/' does not match the folder as it stands"
  ],
  "use": "Ask through catalog find/show/record, which index the tutorials; keep Modern/ out of base-engine claims.",

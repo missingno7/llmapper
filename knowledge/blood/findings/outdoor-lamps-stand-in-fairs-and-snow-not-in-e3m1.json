@@ -4,7 +4,7 @@
  "standing": "tendency",
  "claim": "Few campaign maps light open ground with lamp sprites: 91 visible light-tile sprites stand under the sky in 15 of 43 maps, 34 of them at E1M4's fair (candles 560, flames 2101, posts 640, bonfires 3566) and 29 street lamps 2493 in the snow maps (E2M3 14, E2M5 11, E2M2 2, E2M4 2). E3M1, the town, has none but one bonfire (sprite 329): its streets are lit by sector shade alone.",
  "evidence": [
-  "work/consolidation/probe_outdoor_lamps.py over bloodmap.corpus.campaign_maps(), 2026-11-26: visible sprites (no cstat 32768, statnum not 10) of the light tiles of knowledge/blood/light-sources.json plus 640/693/676/677/560/938 in sectors whose ceiling is parallax",
+  "knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py over bloodmap.corpus.campaign_maps(), 2026-11-26: visible sprites (no cstat 32768, statnum not 10) of the light tiles of knowledge/blood/light-sources.json plus 640/693/676/677/560/938 in sectors whose ceiling is parallax",
   "E3M1's 45 bright outdoor sprites are tiles 2519/2521, cstat 32896 (invisible), types 708/710: sound generators, not lamps (same probe)",
   "E2M3 sprites 7, 30, 50, 72-75: tile 2493, cstat 385, repeat 64"
  ],

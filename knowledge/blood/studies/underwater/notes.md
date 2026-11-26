@@ -1,6 +1,6 @@
 # Study: underwater
 
-Written 2026-11-25. Frames by the observer (`look.py --ref`), numbers read from
+Written 2026-11-25. Frames by the observer (`python -m tools.look --ref`), numbers read from
 the 43 campaign maps' records (191 water pairs, 618 sectors with `underwater`
 in 24 maps), behaviour from NBlood (`warp.cpp`, `actor.cpp`, `player.cpp`).
 

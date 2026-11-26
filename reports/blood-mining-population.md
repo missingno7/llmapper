@@ -61,10 +61,10 @@ mine_monuments  ->  knowledge/blood/design/monuments-v1.json
   carrying statuary                      77         73         17
   median top, plan units                2.0        2.0        2.0
 
-mine_prop_catalogue  ->  projects/blood-city/references/prop-catalogue.json
+mine_prop_catalogue  ->  knowledge/blood/references/prop-catalogue.json
   tiles catalogued                      263        313         71
 
-mine_style_combinations  ->  projects/blood-city/references/style-combinations.json
+mine_style_combinations  ->  knowledge/blood/references/style-combinations.json
   rooms examined                      19504      20710       7247
   distinct styles                      6316       6767       2276
 ```

@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "The owner's own Blood maps (D:/Games/DOS/BLOOD/Maps/RABID; RABIDN01-09 are his city) are references for ideas, never to be copied or brought into the repository.",
  "evidence": [
-  "The owner, 2026-11-20: 'you don't have to directly copy it' (his street memorial in RABIDN09)."
+  "The owner, 2026-11-20, of his street memorial in RABIDN09: 'you don't have to directly copy it'. Said to the agent in conversation on 2026-11-20; not quoted in the repository (projects/blood-city/reports/owner-review-queue.md says only 'read for ideas, not copied'). Keeping his maps out of the repository is AGENTS.md's rule for commercial data applied, not his words."
  ],
  "use": "When he names a rabid map, find the thing by tile and plan view and read it for ideas.",
  "code": [

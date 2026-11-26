@@ -34,7 +34,7 @@ from bloodmap.format import read_map
 from bloodmap.viewplan import named_poses, sector_poses
 from bloodmap.visual import ObservationRequest, Viewpoint, as_played, run_observation
 
-RESOURCES = pathlib.Path("reference/blood")
+RESOURCES = ROOT / "reference" / "blood"
 
 
 def digest(path) -> str:
@@ -44,6 +44,9 @@ def digest(path) -> str:
 def pose_hash(project: P.Project, names: list[str]) -> str:
     """The identity of some of a project's pose sets as written: a camera moved is a different look."""
     sets = project.pose_sets()
+    missing = [name for name in names if name not in sets]
+    if missing:
+        raise P.ProjectError(f"{project.key} has no pose set {', '.join(missing)}: python -m tools.look {project.key} --list")
     said = {name: sets[name] for name in sorted(names)}
     return hashlib.sha256(json.dumps(said, sort_keys=True, default=list).encode("utf-8")).hexdigest()
 
@@ -160,6 +163,8 @@ def main(argv=None) -> int:
         if args.project or not (args.ref or (args.map and sectors)):
             project = P.named(args.project)
         if args.list:
+            if project is None:
+                parser.error("--list names a project's pose sets: say which project")
             for name, views in project.pose_sets().items():
                 print(f"  {name:<28}{len(views)} views")
             return 0

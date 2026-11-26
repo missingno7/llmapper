@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "The owner reviews in large batches; agent loops must not stop for approval. Gates are automated acceptance checks, human judgments go to a review queue, and every iteration keeps a playable build.",
  "evidence": [
-  "The owner, 2026-08-27."
+  "The owner, 2026-08-27, designing the Blood City process: feedback comes in bigger chunks and creation should be automated as far as it will go. Said to the agent in conversation on 2026-08-27; not quoted in the repository (docs/history/llmapper_level_understanding_handbook/HANDOFF-ARCHITECT-2026-09-01.md restates it: 'Owner review is batched, never blocking')."
  ],
  "use": "Proceed when the automated checks pass; flag what only a player can judge.",
  "code": [],

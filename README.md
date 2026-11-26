@@ -19,7 +19,7 @@ it (`AGENTS.md`, "Give back what you learn"). Gravesend
 
 ```text
 python -m tools.project new my-level --title "My Level"   # a level that builds as it stands
-python projects/my-level/level/build.py                   # compile, align, gates, light, write
+python projects/my-level/level/build.py                   # compile, align, gates (four of them refuse the map), light, write
 python -m tools.project status my-level                   # every open item and what to do
 python -m tools.look my-level --set start -o work/look    # frames, as the game shows it
 python -m tools.catalog find <words>                      # look anything up before building it

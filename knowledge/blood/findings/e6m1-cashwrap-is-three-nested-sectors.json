@@ -6,7 +6,7 @@
  "evidence": [
   "E6M1 s32 (base) and s33, s34 (caps: floor_stat 122, floor_heinum -1792, floor 2476), catalog record",
   "E6M1 s45 apparel bay, s50 display window (tools/mine_e6m1_shop, knowledge/blood/references/e6m1-shop.json)",
-  "2026-11-26: s33 and s34 (512 square, floor 81,920) are bounded only by s32 (1,024 x 3,072, floor 83,968, itself 6,144 above the shop floor s61 at 90,112), and tile 2476 is the owner's 'cash register top surface': they are register caps on the counter, not free pedestals; s58 is a separate 512-square block raised 16,384 (projects/blood-city/references/venue-patterns.md groups 33/34/58 as pedestals)"
+  "2026-11-26: s33 and s34 (512 square, floor 81,920) are bounded only by s32 (1,024 x 3,072, floor 83,968, itself 6,144 above the shop floor s61 at 90,112), and tile 2476 is the owner's 'cash register top surface': they are register caps on the counter, not free pedestals; s58 is a separate 512-square block raised 16,384 (knowledge/blood/references/venue-patterns.md groups 33/34/58 as pedestals)"
  ],
  "use": "Build a shop as zones: shelf banks against walls, a display volume, a cashwrap of three sectors; keep the caps' floor flags.",
  "code": [

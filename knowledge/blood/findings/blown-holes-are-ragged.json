@@ -2,11 +2,12 @@
  "id": "blown-holes-are-ragged",
  "topic": "construction",
  "standing": "precedent",
- "claim": "A blown-out hole (a wall crack) is a few type-600 sectors across the wall, rarely a clean box: of 96 campaign holes, 46 are one piece, 23 two, 20 three, 5 four and one each five and eight; 137 of their 185 pieces have a slanted edge, and most slope floor or ceiling (116 floors, 123 ceilings) with the slope running across the hole's width so the top zigzags. Shut, the piece is solid: in 87 the floor stays and the ceiling drops onto it, in the other 98 floor and ceiling meet between; 178 of 185 keep the ceiling's heinum at least the floor's. Sills stand above the floor they open from (E1M2: 2,048-3,072).",
+ "claim": "A blown-out hole (a wall crack) is a few type-600 sectors across the wall, rarely a clean box: of 96 campaign holes, 46 are one piece, 23 two, 20 three, 5 four and one each five and eight; 137 of their 185 pieces have a slanted edge, and most slope floor or ceiling (116 floors, 123 ceilings) with the slope running across the hole's width so the top zigzags. Shut, the piece is solid: in 87 the floor stays and the ceiling drops onto it, in the other 98 floor and ceiling meet between; 178 of 185 keep the ceiling's heinum at least the floor's. Sills stand above the floor they open from (E1M2 channel 104: 3,072-7,868).",
  "evidence": [
   "E1M1 sector 25: a 1,792-wide hole whose west jamb runs 192 along over 256 through; E1M2 channel 104 (s197-199): three pieces with tops at -112,640, -109,568 and -116,736, and floors that move (s197 off_floor -103,424, on_floor -81,920)",
-  "work/sewer-study/breach_shapes.json over the campaign's 185 crack-opened sectors, re-read 2026-11-26: pieces per channel 46x1, 23x2, 20x3, 5x4, 1x5, 1x8 (the earlier '46/46/60/20 holes' counted sectors, not holes); off_floor differs from on_floor in 98; ceiling heinum below floor heinum in 7",
-  "The owner, 2026-11-22: 'Blown out holes are usually using sloped floor and ceiling and usually aren't regular, our look too blocky.'"
+  "knowledge/blood/findings/probes/sewer-study_breach_shapes.json over the campaign's 185 crack-opened sectors, re-read 2026-11-26: pieces per channel 46x1, 23x2, 20x3, 5x4, 1x5, 1x8 (the earlier '46/46/60/20 holes' counted sectors, not holes); off_floor differs from on_floor in 98; ceiling heinum below floor heinum in 7",
+  "The owner, 2026-11-22: 'Blown out holes are usually using sloped floor and ceiling and usually aren't regular, our look too blocky.'",
+  "knowledge/blood/findings/probes/consolidation_e1m2_sills.py, 2026-11-26: each E1M2 crack piece's sloped floor (bloodmap.slope.rise_at about its first wall) against each neighbour's at the shared wall's two ends: channel 104's three pieces stand 3,072-7,868 above the higher neighbour s302 and 18,432-24,602 above the far side s270; an earlier '2,048-3,072' read the unsloped floor_z only"
  ],
  "use": "Build holes with bloodmap.breach.ragged / lay, which give the pieces and heights in the hole's own frame; under a low ceiling pass top=, or its straight edge hides the ragged top; face the hole in the wall's own stone.",
  "code": [

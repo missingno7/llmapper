@@ -223,7 +223,14 @@ class EvidenceRuleTests(unittest.TestCase):
 
 #: The live levels: projects whose map the build rewrites. A library test that
 #: reads one breaks when the level changes, and passes only while it exists.
-LIVE_LEVELS = ("blood-city", "cold-store", "duke-e4l1-remake")
+def _live_levels() -> tuple[str, ...]:
+    from bloodmap import project
+
+    return tuple(p.key for p in project.projects("level"))
+
+
+#: every project that says it is a level (`project.json`): not a list kept by hand
+LIVE_LEVELS = _live_levels()
 
 #: Library tests that still name a live level's project, each with the reason.
 #: None of them reads the level's built map from the working tree. Shrink it;

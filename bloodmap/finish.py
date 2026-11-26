@@ -17,11 +17,15 @@ that has no passes of its own to put between them:
               run of walls, standing on its floor; a raised solid's top starts at
               its own corner
     disk      `on_disk(disk, compiled)`: the level's own work on the finished records
-    gates     the rule registry; every mechanism swept through its travel; the
-              map read back against what the layout declared; every sprite as the
-              engine draws it; tile uses nobody has shown; the wiring read back.
-              A mechanism that breaks what it drags, or a read-back difference,
-              REFUSES the map: nothing is written.
+    gates     the rule registry; every sliding and turning mechanism swept
+              through its travel; the map read back against what the layout
+              declared; every sprite as the engine draws it; tile uses nobody has
+              shown; the wiring read back. Four things REFUSE the map, and then
+              nothing is written: a rule of severity error, a mechanism that
+              breaks what it drags, a read-back difference, and wiring that
+              differs from what the circuit declared. Everything else is
+              measured and reported (a warning, a sunk sprite, a tile nobody has
+              shown): the level's status lists it, and it is the author's to answer.
     overlays  shadows and patches declared on the layout are cut into the map,
               and may add no warning and break no sweep
     light     `bloodmap.light_stage`, when the level gives a `light` rule: lamps
@@ -97,6 +101,7 @@ def gates(disk: Any, compiled: Any, layout: Any = None, *, circuit: Any = None, 
         "by_code": {f"{a}:{b}": c for (a, b), c in collections.Counter((d.severity, d.code) for d in diags).items()},
         "open": [{"severity": d.severity, "code": d.code, "at": d.location, "says": d.message}
                  for d in diags if d.severity in ("error", "warning")]}
+    report["refused"] += [f"rule {d.code} at {d.location}: {d.message}" for d in diags if d.severity == "error"]
     swept = sweep(disk)
     report["swept"] = {k: swept[k] for k in ("mechanisms", "sound", "deforming_neighbours", "problems", "notes")}
     report["refused"] += [f"a mechanism breaks geometry it drags: {line}" for line in swept["problems"]]
@@ -122,6 +127,9 @@ def gates(disk: Any, compiled: Any, layout: Any = None, *, circuit: Any = None, 
                    for r in novel if r.get("misfit")]}
     if circuit is not None:
         report["wires"] = circuit.read_back(compiled, disk)
+        if not report["wires"].get("agrees", True):
+            report["refused"] += [f"wire {row['name']}: {fault}" for row in report["wires"].get("wires", [])
+                                  for fault in row.get("faults", [])] or ["the map's wiring differs from what the circuit declared"]
     report["_diags"] = diags
     return report
 
@@ -181,7 +189,9 @@ def finish(layout: Any, out: str | Path | None = None, *, circuit: Any = None,
     if circuit is not None:
         if circuit.layout is None:
             circuit.bind(layout)
-        idle = circuit.drop_idle()
+        # a table of planned wires may name more than is built yet; a wire declared by hand with no end is a mistake,
+        # and `apply` says so
+        idle = circuit.drop_idle() if getattr(circuit, "planned", False) else []
         manifest["wires"] = {"declared": circuit.apply(), "idle": idle}
     compiled = layout.compile()
     manifest["lighting"] = dict(compiled.lighting_report)

@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "A thing keeps its own palette; it takes its sector's palette only in a fogged place. A town census that records the sector's palette on every sprite (DWE3M1 is fogged: 963 sprites with palette 1 in palette-1 sectors) teaches the wrong colours.",
  "evidence": [
-  "The owner, 2026-11-18: 'objects should have different palettes if they are not in foggy place.'"
+  "The owner, 2026-11-18: 'objects should have different palettes if they are not in foggy place.' Said to the agent in conversation on 2026-11-18; not quoted in the repository. projects/blood-city/tests/test_city_second_walk.py records the fault he found (sprites wearing DWE3M1's fog palette in clear rooms) and holds the rule; the 963 count is in its comments."
  ],
  "use": "Mine a thing's own palette only (tools/mine_city_assets.py).",
  "code": [

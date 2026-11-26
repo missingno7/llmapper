@@ -48,13 +48,21 @@ def new(name: str, title: str, home: pathlib.Path = P.HOME) -> pathlib.Path:
             continue
         target = root / str(source.relative_to(STARTER)).replace("__NAME__", name.replace("-", "_"))
         target.parent.mkdir(parents=True, exist_ok=True)
-        text = source.read_text(encoding="utf-8").replace("__NAME__", name).replace("__TITLE__", title)
+        # the title is written into Python source: as a string where it is one, and without its quotes in prose
+        text = source.read_text(encoding="utf-8").replace("__NAME__", name)
+        text = text.replace('"__TITLE__"', json.dumps(title)).replace("__TITLE__", title.replace('"', "'").replace("\\", "/"))
         target.write_text(text, encoding="utf-8", newline="\n")
     (root / "project.json").write_text(json.dumps({
         "$schema": P.SCHEMA, "schema_version": 1, "name": title, "kind": "level", "status": "live", "game": "blood",
         "about": "", "map": f"level/{name}.MAP", "build": "level/build.py", "ground_z": 0}, indent=2) + "\n",
         encoding="utf-8", newline="\n")
     return root
+
+
+def _rel(path: pathlib.Path) -> str:
+    """A path as the repository says it, or whole where the project lives outside it."""
+    path = pathlib.Path(path).resolve()
+    return path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix()
 
 
 def listing() -> str:
@@ -81,7 +89,7 @@ def stand(project: P.Project) -> dict:
 
     manifest_path = project.need("reports") / "build-manifest.json"
     if not project.map.exists() or not manifest_path.exists():
-        raise P.ProjectError(f"{project.key} is not built: python {project.need('build').relative_to(ROOT).as_posix()}")
+        raise P.ProjectError(f"{project.key} is not built: python {_rel(project.need('build'))}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     disk = read_map(project.map)
     size = {"sectors": len(disk.sectors), "walls": len(disk.walls), "sprites": len(disk.sprites)}
@@ -98,7 +106,7 @@ def stand(project: P.Project) -> dict:
     fit = manifest.get("sprite_fit", {})
     for kind in ("sunk", "through", "squeezed", "lifted", "overlaps", "flat_overlaps", "unbacked", "sunk_actors"):
         for row in fit.get(kind, []):
-            item(f"sprite-{kind}", json.dumps(row, sort_keys=True), f"python -m tools.sprite_fit {project.map.relative_to(ROOT).as_posix()}")
+            item(f"sprite-{kind}", json.dumps(row, sort_keys=True), f"python -m tools.sprite_fit {_rel(project.map)}")
     contexts = manifest.get("tile_contexts", {})
     for row in contexts.get("new", []):
         item("tile-use-new", f"tile {row['tile']} as {row['slot']} in {row['place']} ({row['count']}x): nobody has shown this use",
@@ -146,7 +154,7 @@ def stand(project: P.Project) -> dict:
     kinds: dict[str, int] = {}
     for row in open_items:
         kinds[row["kind"]] = kinds.get(row["kind"], 0) + 1
-    return {"project": project.key, "title": project.title, "map": project.map.relative_to(ROOT).as_posix(), "size": size,
+    return {"project": project.key, "title": project.title, "map": _rel(project.map), "size": size,
             "limits": {"nblood": BUILD_LIMITS, "vanilla": VANILLA_LIMITS}, "stages": [s["name"] for s in manifest.get("stages", [])],
             "finishable": {"exits": exits, "keys": mark.get("keys", [])}, "pose_sets": pose_sets, "critique": places,
             "open": open_items, "open_by_kind": dict(sorted(kinds.items()))}
@@ -194,7 +202,7 @@ def main(argv=None) -> int:
             print(listing())
         elif args.cmd == "new":
             root = new(args.name, args.title)
-            print(f"{root.relative_to(ROOT).as_posix()} is a level: read its README.md, then python {root.relative_to(ROOT).as_posix()}/level/build.py")
+            print(f"{_rel(root)} is a level: read its README.md, then python {_rel(root)}/level/build.py")
         else:
             project = P.named(args.name)
             own = project.path("status_script")
@@ -205,7 +213,7 @@ def main(argv=None) -> int:
                 return subprocess.run([sys.executable, str(own)], cwd=ROOT).returncode
             data = write_status(project)
             print(f"{data['title']}: {data['size']['sectors']} sectors, {data['size']['walls']} walls, {data['size']['sprites']} sprites; "
-                  f"{len(data['open'])} open {data['open_by_kind']} -> {project.need('reports').relative_to(ROOT).as_posix()}/STATUS.md")
+                  f"{len(data['open'])} open {data['open_by_kind']} -> {_rel(project.need('reports'))}/STATUS.md")
     except P.ProjectError as exc:
         print(exc, file=sys.stderr)
         return 2

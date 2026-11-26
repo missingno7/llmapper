@@ -2,9 +2,11 @@
  "id": "a-moving-sector-is-named-by-its-embedding-not-its-type",
  "topic": "mechanism",
  "standing": "tendency",
- "claim": "Naming a mechanism from the surface that moves gets 471 of 1,179 campaign mechanisms wrong. 122 sectors whose floor moves change what fits through a portal, 102 whose ceiling moves change nothing; of 88 auto-rotating sectors (campaign, curated and converted maps) 6 are doors. kSectorZMotion is read 671 times as changing what fits through and 186 as carrying a body between levels, and 972 of 1,236 are moved by something else. 662 sliding or turning sectors cannot be named from z at all.",
+ "claim": "Naming a mechanism from the surface that moves gets 471 of 1,179 campaign mechanisms wrong. 122 sectors whose floor moves change what fits through a portal, 102 whose ceiling moves change nothing; of 88 auto-rotating sectors (campaign, curated and converted maps) 6 are doors. kSectorZMotion is read 671 times as changing what fits through and 186 as carrying a body between levels, and 972 of 1,236 are moved by something else. 662 come back 'not decidable from z alone', 647 of them sectors that only slide or turn.",
  "evidence": [
-  "2,027 moving sectors over 43 campaign maps, counted by bloodmap.effects, 2026-08-31 and 2026-11-19."
+  "2,027 moving sectors over 43 campaign maps, counted by bloodmap.effects, 2026-08-31 and 2026-11-19.",
+  "reports/blood-effects-motion.json (naming_from_fields, cross, by_sector_type): not decidable from z alone 662 = slide 387 + rotate 260 + 15 others",
+  "knowledge/blood/references/auto-rotators.md (88 in 14 maps, 3 door pairs); python -m tools.catalog show kSectorZMotion (1236 in 43 maps; remote_rx x972)"
  ],
  "use": "Name from two spatial questions (does the motion change whether a body fits, asked both ways; does it carry a body between two standing levels), and let the reading decline.",
  "code": [

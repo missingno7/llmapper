@@ -13,7 +13,7 @@ does in it, how it ends. Keep it short, and keep it true as the level changes.
 ## Working on it
 
 ```bash
-python projects/__NAME__/level/build.py            # build; refuses to write a map a gate fails
+python projects/__NAME__/level/build.py            # build; a rule error, a broken sweep, a read-back or wiring difference writes no map
 python -m tools.project status __NAME__            # reports/STATUS.md: every open item and what to do
 python -m tools.look __NAME__ --set start -o work/__NAME__   # frames, as the game shows it
 python -m tools.suite --project __NAME__           # this level's own tests

@@ -2,10 +2,11 @@
  "id": "bot-mode-draws-no-frame-and-runs-fast",
  "topic": "validation",
  "standing": "engine",
- "claim": "In the llmapper NBlood fork, -bot without -bot_visible draws no frame and runs the game clock as fast as it can; -bot_trajectory writes the player's x/y/z and sector each tick. That run takes no window from the desktop and its per-tick sector is a better readout than any screenshot.",
+ "claim": "In the llmapper NBlood fork, -bot without -bot_visible draws no frame and runs the game clock as fast as it can; -bot_trajectory writes the player's x/y/z and sector each tick. The window is still made: launched hidden (bloodmap.oracle's SW_HIDE and CREATE_NO_WINDOW) and in the background, the run takes nothing from the desktop, and its per-tick sector is a better readout than any screenshot.",
  "evidence": [
-  "NBlood/source/blood/src/blood.cpp:2008 (bot Fast: totalclock = gNetFifoClock), :2066 (bDraw only when Visible), :1275/:1278 (flags).",
-  "The owner, 2026-08-31: run NBlood 'only ... completely in background'."
+  "NBlood/source/blood/src/blood.cpp:2008 (bot Fast: totalclock = gNetFifoClock), :2066 (bDraw only when Visible), :1275/:1278 (flags)",
+  "bloodmap/oracle.py _hidden_process_options (STARTF_USESHOWWINDOW with SW_HIDE, CREATE_NO_WINDOW): nothing in the -bot path stops the SDL window being made",
+  "The owner, 2026-08-31: run NBlood 'only ... completely in background'. Said to the agent in conversation on 2026-08-31; not quoted in the repository."
  ],
  "use": "Run the engine only with -bot hidden, through a background process; read the trajectory.",
  "code": [

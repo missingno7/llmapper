@@ -2,12 +2,11 @@
  "id": "diagonal-rope-sprites-must-overlap",
  "topic": "sprite",
  "standing": "ruling",
- "claim": "A rope laid diagonally out of sprites shows gaps unless each piece begins inside the last one's end: the rope art (tile 513) leaves its tile at 33 of 38 columns and 50 of 52 rows, past which is a loose tuft.",
+ "claim": "The owner: diagonal ropes laid out of sprites need a little overlap, because of how the rope texture is drawn; laid end to end they show visible gaps even when the sprites are aligned correctly.",
  "evidence": [
-  "the owner, 2026-11-25: 'diagonal ropes would need to have little bit of overlapping because how the texture is done, right now it has visible gaps'",
-  "tile 513's art measured in projects/blood-city/level/harbour_ship.py stay()"
+  "the owner, 2026-11-25: 'diagonal ropes would need to have little bit of overlapping because how the texture is done, right now it has visible gaps even the sprites itself are aligned correctly' (quoted in projects/blood-city/level/harbour_ship.py stay())"
  ],
- "use": "Lay each piece to reach 38/32 and 52/49 of its share so the next covers the tuft; stay() does it.",
+ "use": "Read rope-tile-513-ends-before-its-tile-edge for the overlap we measured.",
  "code": [
   "projects/blood-city/level/harbour_ship.py"
  ],

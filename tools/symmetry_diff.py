@@ -3,7 +3,7 @@
     PYTHONPATH=. python -m tools.symmetry_diff tests/fixtures/city-slices \
         --map tests/fixtures/city-slices/slice2-streets.MAP \
         --report projects/blood-city/reports/symmetry-diff.md \
-        --json projects/blood-city/references/symmetry-diff.json
+        --json work/symmetry-diff.json
 
 The compiler writes a fact store as it builds (the city's second slice wrote
 the one now frozen in `tests/fixtures/city-slices/facts/`).

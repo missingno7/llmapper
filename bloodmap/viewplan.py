@@ -427,10 +427,11 @@ def named_poses(level: LevelIR, poses: Mapping[str, Sequence[Any]], *, unit: int
     for view_id, pose in poses.items():
         if isinstance(pose, Mapping):
             sector = int(pose["sector"])
-            z = eye_z(level, sector)
+            z = eye_z(level, sector) if 0 <= sector < len(level.sectors) else None
             if z is None:
                 if refused is not None:
-                    refused.append(f"{view_id}: no room for an eye in sector {sector}")
+                    refused.append(f"{view_id}: no sector {sector}" if not 0 <= sector < len(level.sectors)
+                                   else f"{view_id}: no room for an eye in sector {sector}")
                 continue
             out.append(Viewpoint(view_id=view_id, x=int(pose["x"]), y=int(pose["y"]), z=z, angle=int(pose["angle"]) & 2047,
                                  horiz=int(pose.get("horiz", 100)), sector=sector, node=f"pose:{view_id}", purpose="loop",
@@ -450,14 +451,21 @@ def named_poses(level: LevelIR, poses: Mapping[str, Sequence[Any]], *, unit: int
     return out
 
 
-def sector_poses(level: LevelIR, sectors: Iterable[int], *, horiz: int = 100) -> list[Viewpoint]:
-    """One view of each sector from inside it, toward its farthest corner: how a reference map's room is looked at."""
+def sector_poses(level: LevelIR, sectors: Iterable[int], *, horiz: int = 100,
+                 refused: list[str] | None = None) -> list[Viewpoint]:
+    """One view of each sector from inside it, toward its farthest corner: how a reference map's room is looked at.
+
+    A sector that is not in the map, or has no room to stand in, is left out and named in `refused`.
+    """
     from .sector_geom import outline_and_holes
 
     out = []
     for sector_id in sectors:
-        point, z = interior_point(level, sector_id), eye_z(level, sector_id)
+        there = 0 <= int(sector_id) < len(level.sectors)
+        point, z = (interior_point(level, sector_id), eye_z(level, sector_id)) if there else (None, None)
         if point is None or z is None:
+            if refused is not None:
+                refused.append(f"sector {sector_id}: " + ("no room to stand in" if there else "not in the map"))
             continue
         outer, _holes = outline_and_holes(level, sector_id)
         far = max(outer, key=lambda p: (p[0] - point[0]) ** 2 + (p[1] - point[1]) ** 2)

@@ -103,10 +103,13 @@ def changed() -> list[str]:
         more = {name for name, used in reach.items() if name not in stems and used & stems}
         grown = bool(more)
         stems |= more
+    # a project's tests load its build by path, which no import says: any change under a project brings all of them
+    touched = {Path(p).parts[1] for p in paths if Path(p).parts[:1] == ("projects",) and len(Path(p).parts) > 2}
     out = []
     for name in modules():
         path = path_of(name)
-        if path.stem in stems or imports(path) & stems or any(t in path.read_text(encoding="utf-8") for t in texts):
+        if (name.split(":", 1)[0] in touched or path.stem in stems or imports(path) & stems
+                or any(t in path.read_text(encoding="utf-8") for t in texts)):
             out.append(name)
     return out
 
@@ -134,9 +137,15 @@ def main(argv=None) -> int:
     if args.library:
         chosen = [name for name in chosen if ":" not in name]
     if args.project:
+        if not (ROOT / "projects" / args.project / "tests").is_dir():
+            print(f"no tests at projects/{args.project}/tests: python -m tools.project list")
+            return 2
         chosen = [name for name in chosen if name.startswith(args.project + ":")]
     if args.words:
         chosen = [name for name in chosen if any(word in name for word in args.words)]
+    if not chosen and not args.changed:
+        print("no test module answers to that: nothing ran, which is not a pass")
+        return 2
     start = time.perf_counter()
     rows = []
     with ThreadPoolExecutor(args.jobs) as pool:

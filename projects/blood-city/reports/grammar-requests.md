@@ -264,7 +264,7 @@ Checked against the tree as it stands, not as it was when these were filed.
   before `warpInit` ever sees them. All 273 campaign stack markers sit on
   **statnum 0** with tiles **2332** (upper) and **2331** (lower); 3997 is a
   torch, which is what XMapEdit draws where the link should be.
-  This matters more now: `docs/authoring-toolkit.md` routes authors to
+  This matters more now: `docs/toolkit-index.md` (then `docs/authoring-toolkit.md`) routes authors to
   `roomoverroom` for linked volumes, so the next map to follow the guide
   gets links that silently do nothing. Blood City hand-builds its three
   stack pairs for exactly this reason and they work.
@@ -400,7 +400,7 @@ wall-aligned sprite onto its own supporting line and intersects:
 
 Every letter of St Gallow's sign sat behind a 2,048 x 32,768 hanging.
 
-`projects/blood-city/level/wallplane.py` is the working version: occupancy
+`bloodmap/wallplane.py` (then in the level's directory) is the working version: occupancy
 per plane, `find_slot` (slide along, then stack), `sprite`, `text` and
 `composition`. What would close it is that model in `bloodmap.placement`,
 with `place_on_wall` taking a `reserve=True` that refuses rather than

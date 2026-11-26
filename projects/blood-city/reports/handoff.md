@@ -57,7 +57,7 @@ stack links with two legible entrances; a pumping station. Sixteen signs.
 python projects/blood-city/level/build_skeleton.py      # build
 python projects/blood-city/level/conformance.py         # 11 standing rows
 python projects/blood-city/level/plan_review.py         # 16 L1 contract rows
-python projects/blood-city/level/look.py --set church --tag next
+python -m tools.look blood-city --set church --tag next
 python projects/blood-city/level/object_loop.py         # per-object packets
 ```
 
@@ -108,7 +108,7 @@ this project's modules would not exist under that rule.
 - **A fix you did not re-render did not happen.**
 - **Say what a change will do before making it.** Write the prediction and
   a control into an `experiments/<name>/hypothesis.json`, render the same
-  poses before and after (`look.py --set ... -o experiments/<name>/<run>`
+  poses before and after (`python -m tools.look blood-city --set ... -o experiments/<name>/<run>`
   keeps the MAP it looked at), and score it with
   `python -m tools.judge_experiment`. A failed prediction is a finding.
 - **Have a stranger look.** Hand the frames, and nothing else, to a reviewer
@@ -148,7 +148,7 @@ caught three inheritance faults on the way -- see iteration 25 in
 
 ## A wall is a 2D surface
 
-`level/wallplane.py` treats a wall as the plane it is: every wall sprite
+`bloodmap/wallplane.py` treats a wall as the plane it is: every wall sprite
 reserves the rectangle it actually draws (tile width x `x_repeat` along,
 `sprite_extent` down), and nothing may be hung over it. Two things stacked
 at different heights are legal -- that is the point -- so a caption sits

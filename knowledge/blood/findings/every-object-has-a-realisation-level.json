@@ -4,8 +4,8 @@
  "standing": "ruling",
  "claim": "Each kind of object is realised at one level, and building it at another is a category error: a standalone sprite (mannequin), a sector volume wearing textures (crate, counter, clock), a wall texture on a shallow sector (shelf, drawers), a thin sector (curtain), a masked wall (grate), or flat sprites composed into a volume (a sprite bridge). A shelf drawn as a sprite on a wall and crates as sprites were both wrong.",
  "evidence": [
-  "The owner's model of tile and sprite use, 2026-09-01, after walking the pattern zoo's first version.",
-  "The owner, 2026-11-25, of a clock and a booth: 'shouldn't be just sprite but a made out of sector'."
+  "The owner's model of tile and sprite use, 2026-09-01, after walking the pattern zoo's first version: said to the agent in conversation; the taxonomy is written as binding in projects/pattern-zoo/registry.py's docstring.",
+  "The owner, 2026-11-25, of a clock and a booth: 'shouldn't be just sprite but a made out of sector'. (projects/blood-city/level/booking_hall.py)"
  ],
  "use": "Find how Blood realises a thing before building it.",
  "code": [

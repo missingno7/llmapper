@@ -5,7 +5,7 @@
  "claim": "The campaign has no visible outdoor lamps: 0 in 43 maps over 51,277,134,846 square units of outdoor ground.",
  "evidence": [
   "census in projects/blood-city/level/build_graph_slice2.py (owner's walk W3; that file was removed from the working tree in the 2026-11-26 consolidation, at commit ea7be12) said 0 in 43 maps",
-  "Re-measured 2026-11-26 by work/consolidation/probe_outdoor_lamps.py: visible (no cstat 32768), not statnum 10, light tiles 506 2101 641 3566 580 1701 501 2493 2290 2288 795 796 693 640 676 677 570 554 550 560 938 in ceiling-parallax sectors: 91 over 15 campaign maps"
+  "Re-measured 2026-11-26 by knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py: visible (no cstat 32768), not statnum 10, light tiles 506 2101 641 3566 580 1701 501 2493 2290 2288 795 796 693 640 676 677 570 554 550 560 938 in ceiling-parallax sectors: 91 over 15 campaign maps"
  ],
  "use": "Light streets with sky shade and the light field; hang lamps only where something real holds them (a porch, an arcade, a wall bracket).",
  "code": [

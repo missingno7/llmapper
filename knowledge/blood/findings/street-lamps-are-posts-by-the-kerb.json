@@ -6,7 +6,7 @@
  "evidence": [
   "DWE3M1 outdoor lamps counted for projects/blood-city/level/streets.py and projects/blood-city/level/props.py",
   "the owner, 2026-11-18: 'lamps are also placed a little bit weirdly around the town'",
-  "Recounted 2026-11-26 (work/consolidation/probe_outdoor_lamps.py): DWE3M1 has 26 visible 640 sprites in sky sectors, x_repeat 120 x18, 64 x7, 112 x1; the kerb distance is the harvest's and was not re-measured"
+  "Recounted 2026-11-26 (knowledge/blood/findings/probes/consolidation_probe_outdoor_lamps.py): DWE3M1 has 26 visible 640 sprites in sky sectors, x_repeat 120 x18, 64 x7, 112 x1; the kerb distance is the harvest's and was not re-measured"
  ],
  "use": "Stand street lamps as posts near the kerb, not in the middle of the walk.",
  "code": [

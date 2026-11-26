@@ -4,7 +4,7 @@
  "standing": "tendency",
  "claim": "41 of the campaign's 43 maps end at a pushed switch wearing the exit tile 318 (a type 20/21 switch sending on channel 4). The other two end otherwise: E1M7 when its eight gargoyles (types 206 and 207) are dead (their deaths count through closet switches to the exit), and E3M6 when the player walks into sector 517 (trigger_enter, relayed by a closet switch to channel 4).",
  "evidence": [
-  "2026-11-26 recount (work/consolidation/audit_mid/exits.py): every sender on channel 4 (kChannelLevelExitNormal, NBlood/source/blood/src/eventq.h:29) in the 43 campaign maps is a switch sprite; 41 maps have one wearing tile 318. E1M7: closet switch sprite 109 (tile 0) on rx 106, sent by combination switches 173-176, which listen to gargoyles 76, 93-95, 180-183. E3M6: closet switch sprite 748 on rx 175, whose only sender is sector 517 (trigger_enter)",
+  "2026-11-26 recount (knowledge/blood/findings/probes/consolidation_audit_mid_exits.py): every sender on channel 4 (kChannelLevelExitNormal, NBlood/source/blood/src/eventq.h:29) in the 43 campaign maps is a switch sprite; 41 maps have one wearing tile 318. E1M7: closet switch sprite 109 (tile 0) on rx 106, sent by combination switches 173-176, which listen to gargoyles 76, 93-95, 180-183. E3M6: closet switch sprite 748 on rx 175, whose only sender is sector 517 (trigger_enter)",
   "projects/blood-city/level/l3_station.py (Gravesend's exit)"
  ],
  "use": "End a level at a pushed exit switch at the place the level is about; a boss's death or a walked-into sector are the campaign's rarer endings.",

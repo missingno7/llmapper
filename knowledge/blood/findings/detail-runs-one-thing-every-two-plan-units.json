@@ -2,11 +2,13 @@
  "id": "detail-runs-one-thing-every-two-plan-units",
  "topic": "construction",
  "standing": "tendency",
- "claim": "Along Blood's long thin spaces (corridors, quays, tunnels) attached detail comes about once every two plan units: 702 runs, 4,755 gaps, 0.485 items per plan unit, median gap 0.5, q3 1.25, p90 2.99.",
+ "claim": "Along long thin sectors (at least 4 plan units long and 2.5 times longer than wide) unwired sprites (status 0, type 0) come about once every two plan units in the reference view of the corpus, which is mostly community maps (584 of its 707 runs; campaign 99, BloodBath 24): median 0.49 per plan unit, median gap 0.5. Half of those things (4,681 of 9,457) are the white round glow sprites 624 and 625, all in community maps. The campaign and BloodBath alone (123 runs in 52 maps) are sparser: median 0.375 per plan unit (one every 2.7), median gap 1.16.",
  "evidence": [
-  "702 runs and 4,755 gaps, by tools/mine_run_rhythm.py (figures in projects/blood-city/level/runs.py)"
+  "knowledge/blood/design/run-rhythm-v1.json by tools/mine_run_rhythm.py (default --view reference: campaign, BloodBath and curated community maps): 702 runs, 4,755 gaps, median 0.485 items per plan unit, gap median 0.5, q3 1.25, p90 2.99; tiles 624 x2,943 and 625 x1,561 lead its tile list",
+  "knowledge/blood/findings/probes/consolidation_run_rhythm_population.py, 2026-11-26, the same measure per view: reference 707 runs by population (campaign 99, BloodBath 24, community 584), 624+625 are 4,681 of 9,457 items; original (campaign + BloodBath) 123 runs, 288 gaps, 0 glow sprites, median 0.375 per plan unit, gap median 1.16",
+  "624/625 read as 'white round glow' (tools.catalog show 624; a reading, not the owner's name)"
  ],
- "use": "Space a run's beats at that density, evenly inside the span ((i + 0.5) / count), clear of its ends and of every opening, varied but deterministic.",
+ "use": "Space a run's beats about one per two to three plan units (the campaign's own is nearer one per 2.7), evenly inside the span ((i + 0.5) / count), clear of its ends and of every opening, varied but deterministic; do not count glow sprites as detail.",
  "code": [
   "projects/blood-city/level/runs.py:Run"
  ],

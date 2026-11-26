@@ -2,11 +2,12 @@
  "id": "blood-towns-are-lit-by-contrast-not-level",
  "topic": "light",
  "standing": "tendency",
- "claim": "E3M1's streets are two-tone, not dark: 48% of its road area (s8) is lit at shade 8 and the rest stands at 32; its pavements are 34 over 60% of their area and 8-24 over the rest (area-weighted means 20.5 and 27.6). Chosen facade faces are lit to -8 (50 street walls, tiles 400, 401, 108, 393, 380) against masonry at 24-36. One rendered sector says nothing of a map's light: read the whole surface.",
+ "claim": "E3M1's streets are two-tone, not dark: 48% of its road area (s8) is lit at shade 8 and the rest stands at 32; its pavements are 34 over 65% of their area and 8-24 over the rest (area-weighted means 20.5 and 27.6). Chosen facade faces are lit to -8 (50 of the 52 street walls below shade 0, mostly tiles 400, 401, 108, 393, 380) against masonry at 24-36. One rendered sector says nothing of a map's light: read the whole surface.",
  "evidence": [
   "2026-11-26 count over E3M1's open-sky sectors by floor tile (352 road, 4 pavement), weighted by area; walls of open-sky sectors at shade below 0",
   "python -m tools.city_profile on E3M1: ground median shade 34, street wall median 28",
-  "the 2026-11-17 reading 'road 32, pavement 34 ... s8 the misleading sample' overlooked that s8 is half the road"
+  "the 2026-11-17 reading 'road 32, pavement 34 ... s8 the misleading sample' overlooked that s8 is half the road",
+  "re-measured 2026-11-26 (area from outline_and_holes): pavement shade 34 65.0%, 8 17.9%, 24 17.1%; road s8 at 8 is 47.9%; walls below 0: 52, 50 at -8 (400 x18, 401 x16, 108 x6, 393 x4, 380 x4, 6 x1, 384 x1)"
  ],
  "use": "Compare light by area-weighted profile; light chosen faces and large lit pieces against a plain base.",
  "code": [

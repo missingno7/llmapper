@@ -1,6 +1,6 @@
 # Building a turnstile: a mechanism promoted from four rotors
 
-`projects/blood-city/references/auto-rotators.md` recorded the family and
+`knowledge/blood/references/auto-rotators.md` recorded the family and
 refused to promote it, listing what promotion would need. This does that, and
 the interesting part is again what building found.
 

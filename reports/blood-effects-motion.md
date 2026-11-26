@@ -65,7 +65,7 @@ nothing at all.
 
 This is the same result one family over. 88 instances of the auto-rotating
 primitive and only 6 are doors; the rest are a carnival ride, station rotors
-and fans (`projects/blood-city/references/auto-rotators.md`). Same machine,
+and fans (`knowledge/blood/references/auto-rotators.md`). Same machine,
 different design object, decided by space.
 
 ## The three, described without their names

@@ -4,8 +4,8 @@
  "standing": "tendency",
  "claim": "Enterable venues are mostly as dark as or darker than the street outside (higher shade is darker): over 40 venues of E1M4, E3M1 and DWE3M1 the floor shade step from street to venue runs -19.2 to +33.3, 23 darker, 8 equal (7 of them in unshaded DWE3M1) and 9 brighter, four of those E1M4 venues 7-19 shades brighter, and open-front booths -2.7 to -3.9. What sells a lit venue is internal contrast: shade spans of 30-50 inside (E3M1's saloon wing -8 to +44) against the street's near-uniform band. Night street floors: E1M4's sky sectors a median 23, E3M1's 32.",
  "evidence": [
-  "tools/mine_venues.py over E1M4, E3M1 and DWE3M1 venues (projects/blood-city/references/venue-mining.json threshold.shade_step_mean, read 2026-11-26)",
-  "work/consolidation/probe_shade.py, 2026-11-26: floor shade of sky sectors median E3M1 32 (45 sectors), E1M4 23; roofed E3M1 34, E1M4 26",
+  "tools/mine_venues.py over E1M4, E3M1 and DWE3M1 venues (knowledge/blood/references/venue-mining.json threshold.shade_step_mean, read 2026-11-26)",
+  "knowledge/blood/findings/probes/consolidation_probe_shade.py, 2026-11-26: floor shade of sky sectors median E3M1 32 (45 sectors), E1M4 23; roofed E3M1 34, E1M4 26",
   "E3M1's two masked walls from a sky sector into a room show room 34 and 28 against street 34 (2026-11-26): rooms behind glass are not 8-13 shades brighter than its street"
  ],
  "use": "Do not light a venue brighter than its street; give it pools and a wide shade range.",

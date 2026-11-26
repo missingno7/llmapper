@@ -110,5 +110,5 @@ a grill has to look hot to cook them (open).
 
 `l3_foundry.dress` restyles `main` and `back` and adds `freezer_door`;
 `l3_foundry.dress_canteen` places the tables, the kitchen wall and the
-freezer's meat, drips, blood and tools. Frames: `look.py --set canteen`
+freezer's meat, drips, blood and tools. Frames: `python -m tools.look blood-city --set canteen`
 (`canteen_dine`, `freezer_door`, `freezer_in`).

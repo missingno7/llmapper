@@ -2,9 +2,9 @@
  "id": "what-hangs-outside-a-vehicle-stands-in-its-host",
  "topic": "mechanism",
  "standing": "precedent",
- "claim": "Things that ride on the outside of a moving body stand in the host sector, so Blood makes the host a 614 with the same motion and leaves its outline's walls unflagged: its sprites ride (cstat 8192), its outline stays. Holes inside the host may still move with it.",
+ "claim": "Things that ride on the outside of a moving body stand in the host sector, so Blood makes the host a 614 with the same motion and leaves its outline's walls unflagged: the sprites that ride (its wheels) carry cstat 8192, its outline stays. Holes inside the host may still move with it.",
  "evidence": [
-  "E1M2 s34: type 614, markers 303/304; wheel sprites 66, 67, 70, 71 (tile 847) carry bit 8192; its 23-wall outline has no wall flagged 16384, but its hole 386-389 is flagged throughout and walls 390, 396 and 397 of another hole are flagged (work/consolidation/audit3, 2026-11-26); studied in knowledge/blood/studies/moving-bodies"
+  "E1M2 s34: type 614, markers 303/304; wheel sprites 66, 67, 70, 71 (tile 847) carry bit 8192; its 23-wall outline has no wall flagged 16384, but its hole 386-389 is flagged throughout and walls 390, 396 and 397 of another hole are flagged (knowledge/blood/findings/probes/consolidation_e1m2_rider_host.py, 2026-11-26); studied in knowledge/blood/studies/moving-bodies"
  ],
  "use": "Type the host 614 with the body's markers and timing, flag the sprites that ride, and flag no outline wall.",
  "code": [

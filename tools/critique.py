@@ -95,12 +95,15 @@ def prepare(project: P.Project, slug: str, poses: list[str], kind: str, study: s
     done = sorted(int(p.name.split("-")[1]) for p in folder.glob("round-*"))
     number = (done[-1] + 1) if done else 1
     packet = folder / f"round-{number}"
-    (packet / "reference").mkdir(parents=True, exist_ok=True)
     source = digest(project.map)
     level = read_map(project.map).to_level_ir()
     views = []
     for name in poses:
         views += poses_for(project, level, name)
+    if not views:
+        raise P.ProjectError(f"{project.key}: the pose sets {poses} resolve to no view in its map")
+    # only now: a prepare that fails must leave no half-made round for `verdict` to trip on
+    (packet / "reference").mkdir(parents=True, exist_ok=True)
     about = {"project": project.key, "pose_sets": poses, "poses_sha256": pose_hash(project, poses)}
     #: `ours_empty` is the place with nobody and nothing to pick up in it
     #: (the owner: "without enemies and pickups ... to get rid of visual
@@ -149,6 +152,8 @@ def verdict(project: P.Project, slug: str) -> list[dict]:
     out = []
     for packet in sorted(project.rounds(slug).glob("round-*"),
                          key=lambda p: int(p.name.split("-")[1])):
+        if not (packet / "packet.json").exists():
+            continue                                    # a prepare that was interrupted: not a round
         meta = json.loads((packet / "packet.json").read_text("utf-8"))
         path = packet / "reviews.json"
         reviews = json.loads(path.read_text("utf-8")) if path.exists() else {}
@@ -450,6 +455,14 @@ def ask_change(packet: pathlib.Path, models: list[str], effort: str,
 
 
 def main(argv=None) -> int:
+    try:
+        return _main(argv)
+    except P.ProjectError as exc:
+        print(exc, file=sys.stderr)
+        return 2
+
+
+def _main(argv=None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("--project", default=None, help=f"whose place is judged: a directory under projects/ (or ${P.ENV})")
     sub = parser.add_subparsers(dest="command", required=True)

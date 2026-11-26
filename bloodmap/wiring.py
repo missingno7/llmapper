@@ -404,6 +404,8 @@ class Circuit:
         self.first_channel = int(first_channel)
         self.wires: list[Wire] = []
         self.applied = False
+        #: made by `from_plan`: its table may hold wires nothing is built for yet
+        self.planned = False
 
     def bind(self, layout: Any) -> "Circuit":
         """Give the circuit the layout its names are names in."""
@@ -422,6 +424,7 @@ class Circuit:
         `drop_idle`.
         """
         made = cls()
+        made.planned = True
         for index, (name, says) in enumerate(plan):
             made.wire(name, says, channel=USER_CHANNELS_FROM + index)
         for name, says, channel in engine:

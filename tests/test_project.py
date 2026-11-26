@@ -71,20 +71,28 @@ class Repository(unittest.TestCase):
 
         live = [p.key for p in P.projects("level")]
         self.assertTrue(live)
-        #: one-off miners that still write their corpus-wide output into the level they were written for, and two
-        #: experiments on Gravesend's station: each is a debt, and none may be added to
+        #: nothing is owed today. A module that must name a level for a while is entered in OWED with the day, so that
+        #: the list can only shrink
         owed = OWED
+
+        def typed(value: str) -> bool:
+            """A string that is a level's name as a piece of a path, or a path into a level (a line of usage is not)."""
+            if value in live:
+                return True
+            return any(f"projects/{name}" in line and "python " not in line for name in live for line in value.split(chr(10)))
+
         found = set()
         for folder in ("bloodmap", "tools"):
-            for path in sorted((ROOT / folder).glob("*.py")):
+            for path in sorted((ROOT / folder).rglob("*.py")):
+                if "starter" in path.parts or "__pycache__" in path.parts:
+                    continue                            # the starter names its own level by a placeholder
                 tree = ast.parse(path.read_text(encoding="utf-8"))
                 said = {id(node.body[0].value) for node in ast.walk(tree)
                         if isinstance(node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) and node.body
                         and isinstance(node.body[0], ast.Expr) and isinstance(node.body[0].value, ast.Constant)}
                 for node in ast.walk(tree):
-                    if (isinstance(node, ast.Constant) and isinstance(node.value, str) and id(node) not in said
-                            and any(name in node.value for name in live) and chr(10) not in node.value):
-                        found.add(f"{folder}/{path.name}")
+                    if isinstance(node, ast.Constant) and isinstance(node.value, str) and id(node) not in said and typed(node.value):
+                        found.add(path.relative_to(ROOT).as_posix())
         self.assertEqual(sorted(found - owed), [], "take the level from bloodmap.project.named(args.project)")
         self.assertEqual(sorted(owed - found), [], "paid: take it off the list of what is owed")
 

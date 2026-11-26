@@ -175,6 +175,9 @@
       "region:cold-store/landing": {
         "ceiling 795": 1
       },
+      "region:cold-store/passage": {
+        "its own lights": 0
+      },
       "region:cold-store/store": {
         "ceiling 795": 1
       }
@@ -235,7 +238,6 @@
     "sprites": 19,
     "pieces": 1,
     "rules_that_laid_nothing": [
-      "region:cold-store/passage",
       "region:stairs:up:step_01",
       "region:stairs:up:step_02",
       "region:stairs:up:step_03",

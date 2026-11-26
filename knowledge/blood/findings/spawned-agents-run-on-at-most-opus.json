@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "Spawned subagents run on at most Opus, never inheriting a higher tier from the supervising session.",
  "evidence": [
-  "The owner, 2026-09-01."
+  "The owner, 2026-09-01 (in Czech: generally give them at most Opus). Said to the agent in conversation on 2026-09-01; not quoted in the repository."
  ],
  "use": "Pass the model explicitly on every agent spawn.",
  "code": [],

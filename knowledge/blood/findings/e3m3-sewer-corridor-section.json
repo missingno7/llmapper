@@ -5,7 +5,7 @@
  "claim": "E3M3's sewer corridor is 2,048 wide: a 512 walk each side of a 1,024 channel that lies 2,048 lower; the walks' ceilings slope 8,192 down to the outer wall (heinum 4,096) and the channel's is flat, 28,672 over the walks; the water sectors carry shade wave 7, amplitude -4, frequency 4. Corners are pools at the water's level. The module repeats about 30 times as a ~2,048x512 segment class.",
  "evidence": [
   "E3M3 s136: ceiling heinum 4096, floor 568, shade_wave 7, amplitude -4, shade_frequency 4 (catalog record)",
-  "E3M3 s120 and s117 complete the section (work/sewer-study/e3m3_section.py)",
+  "E3M3 s120 and s117 complete the section (knowledge/blood/findings/probes/sewer-study_e3m3_section.py)",
   "2026-11-26: E3M3 s136 (walk) floor 90,112 and s120 (water, tile 1120) floor 92,160: the walk stands 2,048 over the water, half of a 4,096 step; l3_sewer.py's docstring 'one max step (4096) above the water' does not describe E3M3"
  ],
  "use": "Copy the section for any brick sewer; where a side channel enters, drop that walk to the water's level as a ford.",

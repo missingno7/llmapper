@@ -4,7 +4,7 @@
  "standing": "ruling",
  "claim": "Do not offer or schedule runs of the headless NBlood playtest bot as evidence that a map can be finished; it is unfinished and unreliable. 'Can it be finished' is answered by the static reader held to the campaign scorecard, stated with its failure rate, and by the owner's walks.",
  "evidence": [
-  "The owner, 2026-11-19: 'bot is not working properly and is unreliable, I won't bother with it now.'"
+  "The owner, 2026-11-19: 'bot is not working properly and is unreliable, I won't bother with it now.' Said to the agent in conversation on 2026-11-19; not quoted in the repository."
  ],
  "use": "python -m tools.reading_check for the reader's mark; bot runs are crash smoke at most, until the owner brings it back.",
  "code": [

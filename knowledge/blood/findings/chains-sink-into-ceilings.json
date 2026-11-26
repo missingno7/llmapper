@@ -2,11 +2,11 @@
  "id": "chains-sink-into-ceilings",
  "topic": "sprite",
  "standing": "ruling",
- "claim": "Hang a chained thing (skeleton, lantern) at the height that matters, its body or lamp, and let the chain run up into the ceiling; never shrink the chain to fit a low room.",
+ "claim": "The owner: a lantern on a chain may be hung so its chain sinks into the ceiling; and a skeleton on a chain may be lifted so part of the chain goes into the ceiling.",
  "evidence": [
-  "The owner, 2026-11-21: 'you can simply let it sink into ceiling and it looks good.' Shrunk chains (repeat 32-40) read small and odd; Blood's own chains run into ceilings."
+  "The owner, 2026-11-21: 'lanterns on chain, you can simply let it sink into ceiling and it looks good' (quoted in bloodmap/light_stage.py:356 and projects/blood-city/references/sewer-design.md). The skeleton half ('That skeleton on chain can be lifted up so part of the chain goes inside ceiling, but it doesn't matter') was said to the agent in conversation the same day and is not quoted in the repository."
  ],
- "use": "sprite_fit will report such a chain as 'through' the ceiling: expected. A layout-placed sprite still needs its origin (the chain's top for 689/641) under its sector's ceiling.",
+ "use": "Read a-chained-thing-is-hung-by-its-body for how we apply it.",
  "code": [],
  "scope": "blood",
  "learned": {

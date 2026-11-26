@@ -1136,6 +1136,40 @@ class RisingDoorReadBack(unittest.TestCase):
         self.assertEqual(sorted(int(w["picnum"]) for w in onto), [495, 495])
         self.assertEqual([row for row in made.manifest["rules"]["open"] if row["code"] == "wall-tile-is-drawn-somewhere"], [])
 
+    def test_a_room_behind_a_door_is_shut_in_only_if_the_door_can_open_and_leads_on(self):
+        from bloodmap import doors, wiring
+        from bloodmap.levelprog import LevelProgram, Style
+        from bloodmap.planar_layout import PlanarLayoutError
+
+        def level(remote: bool, wired: bool, beyond: bool):
+            made = LevelProgram("pair", style=Style(wall_picnum=180, floor_picnum=292, ceiling_picnum=385, floor_z=0,
+                                                    clear_height=30000))
+            hall = made.rect_room("hall", size=(4000, 1200))
+            door = doors.rising_door(made, "door", wide=1200, floor_z=0, opening=20000, remote=remote)
+            door.place_against("west", hall.face("east"))
+            made.connect(hall.face("east"), door.face("west"))
+            if beyond:
+                store = made.rect_room("store", size=(3000, 1200))
+                store.place_against("west", door.face("east"))
+                made.connect(door.face("east"), store.face("west"))
+            made.set_start(hall, local=(0.3, 0.5))
+            layout = made.compile()
+            if wired:
+                layout.add_sprite("lever", hall.region_id, x=600, y=600, z=-8000, type=20, picnum=1074, status=0)
+                circuit = wiring.Circuit(layout)
+                circuit.wire("gate", "the lever lifts the door").when(wiring.placement("lever"), "push").then(
+                    wiring.region(door.region_id))
+                circuit.apply()
+            return layout
+
+        level(remote=False, wired=False, beyond=True).compile()             # pushed open by hand: shut in, and built
+        level(remote=True, wired=True, beyond=True).compile()               # a lever answers for it
+        with self.assertRaises(PlanarLayoutError) as sealed:
+            level(remote=True, wired=False, beyond=True).compile()          # nothing can ever open it
+        self.assertIn("zero_exit", str(sealed.exception))
+        with self.assertRaises(PlanarLayoutError):
+            level(remote=False, wired=False, beyond=False).compile()        # a door onto nothing is no way out
+
     def test_a_remote_door_needs_a_channel_or_a_circuit(self):
         from bloodmap import doors
         from bloodmap.levelprog import LevelProgram, Style

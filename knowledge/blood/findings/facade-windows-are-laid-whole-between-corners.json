@@ -1,0 +1,26 @@
+{
+ "id": "facade-windows-are-laid-whole-between-corners",
+ "topic": "texture",
+ "standing": "practice",
+ "claim": "Ours, in Gravesend: a facade tile with painted windows is laid as whole windows, so no corner, doorway or cut window slices one: each straight stretch between corners and openings carries whole windows with the plaster between taking the remainder, a stretch too short for one wears the facade's windowless twin, and a window one can look through is cut where a painted one stands. Before it, phasing facades from the world's 1,024 grid with corners cut back half a bay left 43 of 236 windowed walls ending inside a window.",
+ "evidence": [
+  "projects/blood-city/level/facade_bays.py docstring (the 43 of 236 count and the method), 2026-11-25; built for the owner's ruling whole-painted-windows-on-facades"
+ ],
+ "use": "Lay each straight stretch of front with whole windows; where too short for one, wear the windowless twin; cut real windows at windows_on.",
+ "code": [
+  "projects/blood-city/level/facade_bays.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-25"
+ },
+ "words": [
+  "alignment",
+  "bay",
+  "corner",
+  "facade",
+  "panning",
+  "window"
+ ]
+}

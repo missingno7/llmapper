@@ -4,7 +4,7 @@
  "standing": "tendency",
  "claim": "In the 43 campaign maps, 271 of 271 connected outdoor regions carry exactly one sky picnum, at every size.",
  "evidence": [
-  "Recounted 2026-11-26 by work/consolidation/audit3/sky.py: sectors with a parallax ceiling, joined through two-sided walls, over bloodmap.corpus.campaign_maps(): 271 regions, none with two sky picnums",
+  "Recounted 2026-11-26 by knowledge/blood/findings/probes/consolidation_audit3_sky.py: sectors with a parallax ceiling, joined through two-sided walls, over bloodmap.corpus.campaign_maps(): 271 regions, none with two sky picnums",
   "first counted in projects/blood-city/level/build_graph_slice2.py (owner's walk W4; removed in the 2026-11-26 consolidation, at commit ea7be12)"
  ],
  "use": "Give a horizon or sea the level's own sky tile on both surfaces; the trick is the zero height and parallax bit, not the tile.",

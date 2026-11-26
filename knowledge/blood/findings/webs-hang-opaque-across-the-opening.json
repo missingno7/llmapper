@@ -4,7 +4,7 @@
  "standing": "tendency",
  "claim": "Of 693 webs in the corpus the commonest is opaque (cstat 401; only 181 are translucent) and hung ON the opening's line at its full width with its foot on the floor. A translucent web set back inside a passage reads as lying flat on the floor.",
  "evidence": [
-  "work/spider/webs.py over the corpus, 2026-11-22 (projects/blood-city/references/sewer-design.md)"
+  "knowledge/blood/findings/probes/spider_webs.py over the corpus, 2026-11-22 (projects/blood-city/references/sewer-design.md)"
  ],
  "use": "Hang a web as a wall sprite on the opening's line, full width, foot on the floor, opaque.",
  "code": [

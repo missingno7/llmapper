@@ -2,13 +2,12 @@
  "id": "stack-markers-on-statnum-10-are-deleted",
  "topic": "engine",
  "standing": "engine",
- "claim": "A room-over-room marker placed on statnum 10 (kStatMarker) is deleted when the map loads, unless its type is kMarkerOff/Axis/WarpDest/On and its owner names a sector with an XSector, so stack and link markers there never connect: the floor stays solid and nothing is drawn through, while the map file looks perfect. Every campaign link marker sits on statnum 0: 502 of them over all four families (link 6/7, water 9/10, stack 11/12, goo 13/14), 251 upper wearing tile 2332 and 251 lower wearing 2331, all with cstat bit 128 set (486 exactly 128; 9 at 8320, 4 at 32896, 2 at 192, 1 at 16512).",
+ "claim": "A room-over-room marker placed on statnum 10 (kStatMarker) is deleted when the map loads, unless its type is kMarkerOff/Axis/WarpDest/On and its owner names a sector with an XSector, so stack and link markers there never connect: the floor stays solid and nothing is drawn through, while the map file looks perfect. Every campaign link marker sits on statnum 0: 502 of them over the 43 maps, in three families (link 6/7: 44, water 9/10: 382, stack 11/12: 76; the goo pair 13/14 is never used), 251 upper wearing tile 2332 and 251 lower wearing 2331, all with cstat bit 128 set (486 exactly 128; 9 at 8320, 4 at 32896, 2 at 192, 1 at 16512).",
  "evidence": [
   "NBlood/source/blood/src/db.cpp:680 PropagateMarkerReferences, called at :1325 at the end of dbLoadMap; warpInit runs later, NBlood/source/blood/src/blood.cpp:750",
-  "E3M1's six stack markers: statnum 0, cstat 128; census of 273 markers in projects/blood-city/level/build_skeleton.py",
-  "Recounted 2026-11-26 over the 43 campaign maps (work/consolidation/mem_a_probe3.py, mem_a_probe4.py): 502 markers of types 6, 7 and 9-14, every one statnum 0, picnum 2332 or 2331 (251 each), cstat 128; 76 of them are the stack pair 11/12.",
-  "The first room-over-room our toolkit built (bloodmap/roomoverroom.py with statnum 10) passed every validator and was found dead only when the owner walked it, 2026-08-28.",
-  "2026-11-26 recount by type over campaign_maps(): cstat values 128 x486, 8320 x9, 32896 x4, 192 x2, 16512 x1 (every one has bit 128)"
+  "E3M1's six stack markers: statnum 0, cstat 128",
+  "knowledge/blood/findings/probes/consolidation_link_markers.py over the 43 campaign maps, 2026-11-26: types 6/7 22 each, 9/10 191 each, 11/12 38 each, 13/14 none; every one statnum 0; cstat 128 x486, 8320 x9, 32896 x4, 192 x2, 16512 x1. The '273' in projects/blood-city/level/build_skeleton.py's comment is an older count and does not reproduce",
+  "The first room-over-room our toolkit built (bloodmap/roomoverroom.py with statnum 10) passed every validator and was found dead only when the owner walked it, 2026-08-28."
  ],
  "use": "Put link markers on statnum 0 with tiles 2332/2331 and cstat 128; walkable room-over-room uses the stack family (types 11/12), not the link family (6/7). No static check catches the other way.",
  "code": [

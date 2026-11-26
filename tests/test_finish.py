@@ -37,7 +37,6 @@ def two_rooms():
                          height_player_heights=way_out.pop("height_player_heights"), **way_out)
     circuit.wire("way-out", "pushing the switch in the store ends the level", engine="kChannelLevelExitNormal").when(
         wiring.placement("exit_switch"), "push", command=1)
-    circuit.wire("spare", "a wire nothing declares an end of")
     return layout, circuit
 
 
@@ -56,7 +55,7 @@ class Finish(unittest.TestCase):
         self.assertTrue(out.with_suffix(".tags.json").exists())
         for measured in ("rules", "swept", "readback", "sprite_fit", "tile_contexts", "wires", "light_stage", "tidy", "size"):
             self.assertIn(measured, made.manifest)
-        self.assertEqual(made.manifest["wires"]["idle"], ["spare"])
+        self.assertEqual(made.manifest["wires"]["idle"], [])
         self.assertTrue(made.manifest["wires"]["agrees"])
         self.assertEqual(made.manifest["size"]["sectors"], len(made.disk.sectors))
         finish.write_manifest(made, out.parent.parent / "reports" / "build-manifest.json")
@@ -64,9 +63,8 @@ class Finish(unittest.TestCase):
         self.assertEqual(kept["size"], made.manifest["size"])
 
     def test_the_same_layout_finishes_to_the_same_bytes(self):
-        first = finish.finish(*two_rooms()[:1], circuit=two_rooms()[1], say=quiet)
         again = [finish.finish(layout, circuit=circuit, say=quiet) for layout, circuit in (two_rooms(), two_rooms())]
-        self.assertTrue(first.ok)
+        self.assertTrue(again[0].ok, again[0].refused)
         self.assertEqual(encode_map(again[0].disk), encode_map(again[1].disk))
 
     def test_without_a_light_rule_the_layouts_shades_stand_and_nothing_is_cut(self):
@@ -102,6 +100,36 @@ class Finish(unittest.TestCase):
         self.assertEqual(made.refused, ["a mechanism breaks geometry it drags: sector 1"])
         self.assertFalse(out.exists())
         self.assertNotIn("light_stage", made.manifest)
+
+    def test_a_wire_with_no_end_is_a_mistake_unless_it_is_a_row_of_a_plan(self):
+        layout, circuit = two_rooms()
+        circuit.wire("spare", "a wire nothing declares an end of")
+        with self.assertRaises(wiring.WireError):
+            finish.finish(layout, circuit=circuit, say=quiet)
+        layout, _circuit = two_rooms()
+        planned = wiring.Circuit.from_plan((("later", "a door that is not built yet"),),
+                                           (("way-out", "the switch ends the level", "kChannelLevelExitNormal"),))
+        planned.named("way-out").when(wiring.placement("exit_switch"), "push", command=1)
+        made = finish.finish(layout, circuit=planned.bind(layout), say=quiet)
+        self.assertTrue(made.ok, made.refused)
+        self.assertEqual(made.manifest["wires"]["idle"], ["later"])
+
+    def test_a_rule_error_or_wiring_that_differs_refuses_the_map(self):
+        from types import SimpleNamespace
+
+        layout, circuit = two_rooms()
+        out = Path(tempfile.mkdtemp()) / "pair.MAP"
+        bad = SimpleNamespace(severity="error", code="made-up-rule", location="sector[0]", message="for the test")
+        with mock.patch("bloodmap.rules.evaluate", lambda disk: [bad]):
+            made = finish.finish(layout, out, circuit=circuit, say=quiet)
+        self.assertEqual(made.refused, ["rule made-up-rule at sector[0]: for the test"])
+        self.assertFalse(out.exists())
+        layout, circuit = two_rooms()
+        with mock.patch.object(type(circuit), "read_back", lambda self, compiled, disk: {
+                "agrees": False, "wires": [{"name": "way-out", "faults": ["no sender on the map"]}], "undeclared": [], "silent": []}):
+            made = finish.finish(layout, out, circuit=circuit, say=quiet)
+        self.assertEqual(made.refused, ["wire way-out: no sender on the map"])
+        self.assertFalse(out.exists())
 
     def test_the_gates_can_be_asked_alone(self):
         layout, circuit = two_rooms()

@@ -13,7 +13,7 @@ does in it, how it ends. Keep it short, and keep it true as the level changes.
 ## Working on it
 
 ```bash
-python projects/cold-store/level/build.py            # build; refuses to write a map a gate fails
+python projects/cold-store/level/build.py            # build; a rule error, a broken sweep, a read-back or wiring difference writes no map
 python -m tools.project status cold-store            # reports/STATUS.md: every open item and what to do
 python -m tools.look cold-store --set start -o work/cold-store   # frames, as the game shows it
 python -m tools.suite --project cold-store           # this level's own tests

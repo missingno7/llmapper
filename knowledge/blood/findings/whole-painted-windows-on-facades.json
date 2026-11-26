@@ -2,11 +2,11 @@
  "id": "whole-painted-windows-on-facades",
  "topic": "texture",
  "standing": "ruling",
- "claim": "A facade tile with painted windows is drawn as whole windows: no corner, doorway or cut window slices one, and a window one can look through is cut where a painted one would stand. Cutting building corners back half a bay left 43 of 236 windowed walls ending inside a window.",
+ "claim": "The owner wants the city's facade windows aligned with their texture: painted windows not misaligned, and window cut-outs placed on the windows painted on the building's facade tile.",
  "evidence": [
-  "the owner, 2026-11-25: 'I would like to fix textures misalignments across the city windows' and 'align the windows cutouts with texture of the building that has windows on it'"
+  "the owner, 2026-11-25: 'I would like to fix textures misalignments across the city windows' and 'I would try to align the windows cutouts with texture of the building that has windows on it' (quoted in projects/blood-city/level/facade_bays.py's docstring)"
  ],
- "use": "Lay each straight stretch of front with whole windows (the plaster between taking the remainder); where too short for one, wear the facade's windowless twin; cut real windows at windows_on.",
+ "use": "Read facade-windows-are-laid-whole-between-corners for how Gravesend met it.",
  "code": [
   "projects/blood-city/level/facade_bays.py"
  ],

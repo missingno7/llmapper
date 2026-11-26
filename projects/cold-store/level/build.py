@@ -54,6 +54,7 @@ BRICK = Style(wall_picnum=180, floor_picnum=292, ceiling_picnum=385, wall_shade=
 #: which kind of light each place is lit by: the first key found in a region's path wins
 LIGHTS = (
     ("door", Rule("none", 0, 0, cut=False)),
+    ("passage", Rule("none", 0, 0)),            # too low for a lamp of its own: it is lit from both ends
     ("hall", Rule("hanging", 641, 4096)),
     ("", Rule("ceiling", 795, 3072)),
 )
@@ -96,7 +97,8 @@ def program() -> tuple[LevelProgram, dict]:
     return level, {"entry": entry, "store": store, "passage": passage, "door": door, "hall": hall, "landing": landing}
 
 
-def build() -> finish.Finished:
+def build(write: bool = True) -> finish.Finished:
+    """Build the level; `write=False` builds and holds it to the gates without touching the files (a test)."""
     level, rooms = program()
     layout = level.compile()
     counts = {}
@@ -123,8 +125,10 @@ def build() -> finish.Finished:
                          height_player_heights=way_out.pop("height_player_heights"), **way_out)
     circuit.wire("way-out", "pushing the switch on the landing ends the level", engine="kChannelLevelExitNormal").when(
         wiring.placement("exit_switch"), "push", command=1)
-    made = finish.finish(layout, MAP, circuit=circuit, light=light, manifest=counts)
-    finish.write_manifest(made, PROJECT / "reports" / "build-manifest.json")
+    made = finish.finish(layout, MAP if write else None, circuit=circuit, light=light, manifest=counts)
+    if write and made.ok:
+        # only for a map that was written: a manifest beside an older map would describe a level that is not there
+        finish.write_manifest(made, PROJECT / "reports" / "build-manifest.json")
     return made
 
 

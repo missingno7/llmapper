@@ -2,10 +2,11 @@
  "id": "wading-water-is-1120-at-depth-7",
  "topic": "place",
  "standing": "precedent",
- "claim": "Blood's shallow water (a sewer channel, a slip, a basin) is tile 1120 with a faint shade wave (amplitude -4, frequency 4) and a slow floor pan; where a body should sink into it, its XSECTOR depth is 7 (E3M3 s198-217 and s227, 16 sectors), but most 1120 floors carry no depth at all (211 of the campaign's 227, E3M3's channel s120 among them). Tiles 404 and 433 read as dirt at the surface.",
+ "claim": "Blood's shallow water is tile 1120 (227 floors in 9 campaign maps, mostly E1M8 110 and E3M3 78). Its surface moves by map: E3M3 a faint wave (7, amplitude -4, frequency 2 or 4, a floor pan in 19 of 72), E1M8 a strong one (5, amplitude -48, frequency 7-30, panned). Where a body should sink into it, depth is 7 (E3M3 s198-200, s206-217, s227: 16 sectors); 211 of 227 carry no depth, E3M3's channel s120 among them. Tiles 404 and 433 read as dirt at the surface.",
  "evidence": [
   "E3M3 sector 120: floor 1120, shade_wave 7, amplitude -4, frequency 4, pan_floor, pan_velocity 8, depth 0",
-  "2026-11-26 count over the 43 campaign maps: 1120 floors by depth: 0 x211, 7 x16 (all E3M3: s198-200, s206-217, s227)"
+  "2026-11-26 count over the 43 campaign maps: 1120 floors by depth: 0 x211, 7 x16 (all E3M3: s198-200, s206-217, s227); by (map, wave, amplitude, frequency, pan): E1M8 (5,-48,20,pan) x68 and (5,-48,10/30/7,pan) x31; E3M3 (7,-4,2) x32, (7,-4,4) x21, (7,-4,4,pan) x19; no wave x58",
+  "projects/blood-city/level/l3_market.py:63-67: 404 and 433 rendered read as dirt"
  ],
  "use": "Use it for ankle-deep water; open sea is 2490/2448 in palette 10, and real underwater volumes need the underwater flag and a link pair.",
  "code": [

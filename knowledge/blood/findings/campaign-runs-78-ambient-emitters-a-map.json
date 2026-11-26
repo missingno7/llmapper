@@ -4,7 +4,7 @@
  "standing": "refuted",
  "claim": "Blood's campaign maps carry a median of 78 ambient sound emitters each, 23.6 per hundred sectors.",
  "evidence": [
-  "2026-11-26 recount over bloodmap.corpus.campaign_maps(): sprites of type 710 per map, 1,778 in all (the total the study also gives), median 30, median per hundred sectors 10.6 (work/consolidation/audit_mid/counts.py)",
+  "2026-11-26 recount over bloodmap.corpus.campaign_maps(): sprites of type 710 per map, 1,778 in all (the total the study also gives), median 30, median per hundred sectors 10.6 (knowledge/blood/findings/probes/consolidation_audit_mid_counts.py)",
   "knowledge/blood/studies/ambient-sounds/notes.md counts 1,778 emitters; the 78 and 23.6 are in projects/blood-city/level/ambience.py:5-6 and its fill(target_per_100_sectors=23.6), and are not reproduced",
   "Gravesend had one emitter before the count was taken (projects/blood-city/level/ambience.py docstring)"
  ],

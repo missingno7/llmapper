@@ -286,3 +286,12 @@ needs no level and proving that Gravesend's map does not change by a byte.
 - **A project status of two kinds.** `tools.project status` is every level's; Gravesend's
   `level/status.py` and the E4L1 remake's `status.py` know their own places. The place table
   (`character.PLACES`, `places.json`) is the part worth making common.
+- **The findings are cited, not yet all true.** The shelf was filled in a day from notes and
+  comments, audited whole once (81 of 322 corrected), and two later samples read more strictly
+  still found a wrong figure or citation in a quarter to two fifths of what they opened. Its
+  check holds form. Until each finding has been read against its evidence by someone who is
+  not its author, treat a number on it as a pointer to its citation. A few stale figures the
+  audits disproved are still in source comments: `build_skeleton.py` (273 link markers; it is
+  502), `bloodmap/city.py:753` (1,269 doors; 594 ceiling doors), `motion_sounds.py` (165 as
+  metal's commonest stop; it is 169), `knowledge/blood/references/urban-semantics.md` (E3M1
+  "most vertical"; E3M2's multi-storey share is higher).

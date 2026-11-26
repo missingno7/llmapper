@@ -4,11 +4,11 @@
  "standing": "practice",
  "claim": "The software renderer draws the part of a wall-aligned sprite that runs inside a post or wall over that post. A rail must stop at the post's face, not run into it.",
  "evidence": [
-  "Seen in Gravesend's shot-lamp and railing work, 2026-11-25 (projects/blood-city/level/shot_lamps.py)."
+  "projects/blood-city/level/booking_hall.py:389-392: the station hall's rail runs to the middle of each newel's face and no further, after the owner, 2026-11-25: 'It should be like exactly ending in the middle of it. It is wrong on both sides'; seen in the frames of that work. No renderer line is cited, and sprite_fit does not check it."
  ],
  "use": "Cut rails, beams and bars at the faces of what they meet.",
  "code": [
-  "tools/sprite_fit.py"
+  "projects/blood-city/level/booking_hall.py"
  ],
  "scope": "blood",
  "learned": {

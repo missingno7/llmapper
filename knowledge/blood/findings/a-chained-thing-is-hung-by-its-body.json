@@ -1,0 +1,25 @@
+{
+ "id": "a-chained-thing-is-hung-by-its-body",
+ "topic": "sprite",
+ "standing": "practice",
+ "claim": "Ours: hang a chained thing (lantern, skeleton) at the height that matters, its lamp or body, and let the chain run up into the ceiling rather than shrinking the chain to fit a low room: chains shrunk to repeat 32-40 read small and odd in Gravesend. sprite_fit then reports such a chain as 'through' the ceiling, which is expected. Whether Blood's own chains run into ceilings has not been counted.",
+ "evidence": [
+  "bloodmap/light_stage.py:350-360: a 'hanging' lamp is lifted until its foot clears the floor with its head kept under the ceiling (built for the owner's ruling chains-sink-into-ceilings, 2026-11-21); projects/blood-city/references/sewer-design.md: Graves Brook's chain lamps (641) read 19% through the vault"
+ ],
+ "use": "A layout-placed sprite still needs its origin (the chain's top for 689/641) under its sector's ceiling; the light stage places on the finished map and is not held to that.",
+ "code": [
+  "bloodmap/light_stage.py"
+ ],
+ "scope": "blood",
+ "learned": {
+  "in": "blood-city",
+  "date": "2026-11-21"
+ },
+ "words": [
+  "ceiling",
+  "chain",
+  "hanging",
+  "lantern",
+  "skeleton"
+ ]
+}

@@ -5,7 +5,8 @@
  "claim": "Command 5 (kCmdLink) is sent outside the ON/OFF edge guards: the receiver follows the sender's busy state the whole way rather than switching when it finishes. A stage light linked to a curtain brightens as the curtain draws.",
  "evidence": [
   "NBlood/source/blood/src/triggers.cpp:101-105 and :152: the edge sends are guarded by `command != kCmdLink`",
-  "E1M1 s125 -> s124, and maps/blood/mechanism DOOR-CURTAINS s21 -> s20"
+  "E1M1 s125 -> s124, and maps/blood/mechanism DOOR-CURTAINS s21 -> s20",
+  "NBlood/source/blood/src/triggers.cpp:1198-1199 (VCrushBusy: each busy step evSends kCmdLink when command is kCmdLink), repeated at :1247, :1346, :1374, :1401, :1434, :1454, sprite :491; the sector ON guard is :140, the wall guards :123/:125"
  ],
  "use": "Link a light to a mover with command 5 on the mover's tx; it spends the mover's one tx, so decide that slot first.",
  "code": [

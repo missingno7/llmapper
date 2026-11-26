@@ -2,12 +2,13 @@
  "id": "outdoor-lamps-are-not-laid-by-the-light-stage",
  "topic": "light",
  "standing": "practice",
- "claim": "light_stage lays a Rule's lamps only in roofed sectors (rooms_by_region skips ceiling_stat bit 1): a Rule('pairs', 640, ...) on a street or yard places nothing and says nothing. Set an open place's lamp posts yourself with floor_detail(..., emits_light=True) and cstat 128; with cstat 0 tile 640 is seated below the floor and the compile refuses it.",
+ "claim": "light_stage lays a Rule's lamps only in roofed sectors (rooms_by_region skips ceiling_stat bit 1): a Rule('pairs', 640, ...) on a street or yard places nothing, and finish only names it (the line 'light rules that laid no light' and the manifest's light_stage.rules_that_laid_nothing). Set an open place's lamp posts yourself with floor_detail(..., emits_light=True) and cstat 128; with cstat 0 tile 640 is seated below the floor and the compile refuses it (not re-run).",
  "evidence": [
   "bloodmap/light_stage.py rooms_by_region: 'if ... int(f[\"ceiling_stat\"]) & 1 ... continue'",
-  "projects/signal-box/level/build.py: lamp posts in the lane and far road; manifest light_stage.rooms lists no open region"
+  "bloodmap/finish.py light stage: rules that lit no room are said and written to the manifest as rules_that_laid_nothing; projects/signal-box/reports/build-manifest.json lists lane and far_road there and no open region under light_stage.rooms",
+  "projects/signal-box/level/build.py: lamp posts in the lane and far road set by hand with floor_detail"
  ],
- "use": "",
+ "use": "Lay outdoor lamps as floor details with emits_light=True and cstat 128; read rules_that_laid_nothing after a build.",
  "code": [
   "bloodmap.light_stage.rooms_by_region"
  ],

@@ -30,6 +30,14 @@ and each must cite what its kind is made of (`problems`). A finding found false
 is kept as ``refuted`` with what is true ``instead``, so that it is not found
 again.
 
+What `check` holds is the FORM: that a kind cites the sort of thing it must,
+that the code it names is there, that nothing cites scratch. It cannot tell a
+true number from a false one. The shelf was audited against its evidence once,
+on the day it was filled, and a second sample still found a wrong figure in
+one finding in four: a finding is a signpost with a citation. Open the
+citation before you build on its number, and correct the finding when it is
+wrong (`--replace`).
+
 One file a finding (`HOME`), so that two levels can file at once. The other
 shelves are for what they hold: a tile in a slot is a tile context
 (`bloodmap.tile_contexts`), a mechanism is the catalog's wiring, how Blood built
@@ -65,9 +73,24 @@ TOPICS = ("engine", "renderer", "construction", "texture", "light", "mechanism",
 SCOPES = ("blood", "build", "duke")
 FIELDS = ("id", "topic", "standing", "claim", "evidence", "use", "code", "scope", "learned", "words", "instead")
 
-_SOURCE = re.compile(r"\.(cpp|c|h|hpp|con|pas|asm)\b|\brun\b|\bheadless\b|\bobserver\b", re.I)
-_MAP = re.compile(r"\b[A-Z][A-Z0-9_]{2,11}\b[^.;]*?\b(s|sector|sectors|wall|walls|sprite|sprites|w|#)\s*\d+", re.I)
+#: a source file by name (`actor.cpp:2710`, `build.h`), or a run that is named as one ("a headless run", "the observer")
+_SOURCE = re.compile(r"\b[\w/-]+\.(cpp|c|h|hpp|con|pas|asm)\b|\b(headless|observer)\b|\b(a|the|one|each|every) run\b", re.I)
+#: a map by its name as the corpus writes it (capitals and digits: E3M1, DWE1M4, BB4, CASTLE23) and a record of it
+_MAP = re.compile(r"\b[A-Z][A-Z0-9_]{2,11}\b[^.;]*?\b(?i:s|sector|sectors|wall|walls|sprite|sprites|w|channel)\s*#?\d+")
 _DAY = re.compile(r"\b20\d\d-\d\d-\d\d\b")
+#: what another agent cannot open: scratch that is not in the repository
+_SCRATCH = re.compile(r"(?<![\w/])work/[\w./-]+")
+
+
+def _a_day(text: str) -> bool:
+    """Whether some date written in the text is a real day."""
+    for said in _DAY.findall(text):
+        try:
+            datetime.date.fromisoformat(said)
+            return True
+        except ValueError:
+            continue
+    return False
 
 
 class FindingError(ValueError):
@@ -115,6 +138,8 @@ def resolves(name: str, root: Path = ROOT) -> bool:
     if "/" in name or name.endswith((".py", ".md", ".json")):
         return (root / name.split(":")[0]).exists()
     parts = name.split(".")
+    if root.joinpath(*parts).is_dir():
+        return True                                     # a package
     for cut in range(len(parts), 0, -1):
         module = root.joinpath(*parts[:cut]).with_suffix(".py")
         if module.exists():
@@ -155,15 +180,19 @@ def problems(row: dict[str, Any], root: Path = ROOT) -> list[str]:
         said.append("a precedent cites a map and where in it (`E3M1 s79`)")
     if standing == "tendency" and not re.search(r"\d", whole):
         said.append("a tendency cites its count")
-    if standing == "ruling" and not _DAY.search(whole):
+    if standing == "ruling" and not _a_day(whole):
         said.append("a ruling cites the day it was given (`2026-11-25`)")
+    scratch = _SCRATCH.findall(whole)
+    if scratch:
+        said.append(f"evidence cites {scratch[0]}, which is scratch nobody else has: say what was counted and how to count "
+                    "it again (a tool, or the few lines of the method), or put the script where it is kept")
     if standing == "refuted" and not str(row.get("instead", "")).strip():
         said.append("a refuted finding says what is true `instead`")
     scope = str(row.get("scope", ""))
     if scope not in SCOPES and not re.fullmatch(r"project:[a-z0-9-]+", scope):
         said.append(f"scope is one of {', '.join(SCOPES)}, or project:<name>")
     learned = row.get("learned", {})
-    if not isinstance(learned, dict) or not learned.get("in") or not _DAY.fullmatch(str(learned.get("date", ""))):
+    if not isinstance(learned, dict) or not learned.get("in") or not _a_day(str(learned.get("date", ""))):
         said.append("learned says in which project and on which day: {\"in\": ..., \"date\": \"YYYY-MM-DD\"}")
     for field in ("code", "words"):
         if not isinstance(row.get(field, []), list):

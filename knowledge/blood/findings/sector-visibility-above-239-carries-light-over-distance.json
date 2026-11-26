@@ -5,7 +5,7 @@
  "claim": "A sector's visibility byte scales distance shading by (visibility+16) mod 256 sixteenths (0 leaves the map's own), so 240-255 give 0-15 sixteenths: less fog with distance, and 1-239 give more. Values in the 240s and low 250s keep a far water or plain lit to the horizon.",
  "evidence": [
   "NBlood/source/build/src/engine.cpp:4413-4414 (globvis = mulscale4(globvis, (uint8_t)(secvisibility+16))).",
-  "The campaign sets 249-252 on 9 sectors (E1M5 8, E2M7 1); work/consolidation/audit3, 2026-11-26. Gravesend's sea uses 243-252."
+  "The campaign sets 249-252 on 9 sectors (E1M5 8, E2M7 1); knowledge/blood/findings/probes/consolidation_sector_visibility.py, 2026-11-26: values 249 x4, 251 x4, 252 x1; 963 other sectors set 1-239. Gravesend's sea uses 243-252."
  ],
  "use": "Lower the distance shading of a wide open place (sea, plain) with visibility 243-252 instead of brightening its shade.",
  "code": [],

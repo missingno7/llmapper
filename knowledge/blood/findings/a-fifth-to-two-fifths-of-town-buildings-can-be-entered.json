@@ -2,12 +2,12 @@
  "id": "a-fifth-to-two-fifths-of-town-buildings-can-be-entered",
  "topic": "place",
  "standing": "tendency",
- "claim": "Across both games 13-40% of a town's ground-floor buildings are entered from the street network: E3M1 6 of 15 (0.40), TEDE1M2 0.385, DukCity3 0.37, DukCity1-2 0.20, DWE3M10 0.135, DukCity4 0.13. The facade promises far more building than exists: interiors are 3-8k deep behind 24k frontages.",
+ "claim": "Of a town's ground-floor buildings, 0-40% are entered from the street network over the eight maps measured in both games: E3M1 6 of 15 (0.40), TEDE1M2 10/25 (0.385), DukCity3 13/34 (0.37), DukCity1 12/58 and DukCity2 10/48 (0.20), DWE3M10 7/52 (0.135), DukCity4 9/66 (0.13), E1M4 2/25 (0.08, a carnival of courts whose street is one sector) and E3M2 0/8 (0.0: its buildings are entered from the walls and roofs above). The six street-fronted towns run 0.13-0.40. Interiors are pocket-sized behind their fronts: a 24k superblock fronts interiors 4-8k deep.",
  "evidence": [
-  "tools/mine_urban_semantics.py, per-building segmentation (knowledge/blood/references/urban-semantics.json)",
-  "tools/mine_city_norms.py: interior area median 14M-115M (city-norms.json)"
+  "knowledge/blood/references/urban-semantics.json (tools/mine_urban_semantics.py, per-building segmentation): enterable_share_per_building E3M1 0.40, TEDE1M2 0.385, DWE3M10 0.135, E1M4 0.08, E3M2 0.0; the DukCity rows are in urban-semantics.md's table, which also explains E3M2 and E1M4",
+  "knowledge/blood/references/city-norms.md (tools/mine_city_norms.py): interior components 14M-115M square units (a 4-10k square equivalent); 'a 24k superblock fronts interiors 4-8k deep'"
  ],
- "use": "Make roughly a quarter of a town's buildings enterable, and shallow.",
+ "use": "Make roughly a fifth to a third of a street town's buildings enterable, and shallow; a town entered from above (E3M2) or a fair of courts (E1M4) is another pattern.",
  "code": [
   "knowledge/blood/references/urban-semantics.md"
  ],

@@ -2,9 +2,10 @@
  "id": "water-runs-to-its-fall-and-a-pool-needs-a-way-out",
  "topic": "place",
  "standing": "ruling",
- "claim": "Water must flow meaningfully: currents above a fall run toward the fall, channels run toward an outfall or basin, landings run fast toward the main channel, and the pool below a fall needs a way out (a barred culvert).",
+ "claim": "Water must flow meaningfully: currents above a fall run toward the fall and the pool below a fall needs a way out (the owner). Gravesend met it with channels running toward an outfall or basin, landings running fast toward the main channel, and barred culverts out of the pools (ours).",
  "evidence": [
-  "The owner, 2026-11-21 (sewer overhaul) and 2026-11-23 (second playthrough)."
+  "The owner, 2026-11-23, of the Stockyard Drain: 'the rest of the water is going the other direction than the waterfall would suggest' (quoted in projects/blood-city/references/sewer-design.md). His sewer-overhaul words of 2026-11-21 (water that flows) and the pool's way out were said to the agent in conversation and are not quoted in the repository.",
+  "projects/blood-city/references/sewer-design.md: the barred culvert at each pool's east end"
  ],
  "use": "Every new water piece states where its water comes from and where it goes; set pan direction by that.",
  "code": [],

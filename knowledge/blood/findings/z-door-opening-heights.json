@@ -4,8 +4,8 @@
  "standing": "tendency",
  "claim": "Blood's ceiling-lifting doors (type 600 whose ceiling moves, floor fixed, shut in one pose: 594 in the campaign) open a median 28,672, 1.69 player heights (q1 23,552, q3 32,768, p10 15,360); 87% are taller than a body, so a 16,384 door is lower than nearly all of them. The 31,744 median quoted elsewhere is all 1,231 type-600 sectors with an XSECTOR, lifts and floor-dropping gates included (floor movers alone: 608, median 39,936), and is not a door height. Wooden leaves are 128 thick (29 of 72) or 256 (26), and a door is lower than the room behind it (88 of 161 sides) or as tall (60), seldom taller (13).",
  "evidence": [
-  "work/consolidation/probe_zdoors.py over the 43 campaign maps, 2026-11-26: opening = max(on, off) of floor z minus ceiling z from the XSECTOR",
-  "the 1,269 / 31,744 census quoted in projects/blood-city/level/l3_shed.py, l3_theatre.py, l3_church.py:42 and l3_market.py counted every Z-motion sector; l3_foundry.py:46 gives the door population (594, 28,672) and matches the probe exactly",
+  "knowledge/blood/findings/probes/consolidation_probe_zdoors.py over the 43 campaign maps, 2026-11-26: opening = max(on, off) of floor z minus ceiling z from the XSECTOR",
+  "the 1,231 / 31,744 census quoted in projects/blood-city/level/l3_shed.py:52, l3_theatre.py:42, l3_church.py:44 and l3_market.py:37 counted every type-600 sector with an XSECTOR (bloodmap/city.py:753 still says 1,269); l3_foundry.py:46-47 gives the door population (594, 28,672) and matches the probe exactly",
   "leaf thickness and room comparison in build_skeleton.py (not re-measured)",
   "the owner, of 16,384 doors: 'short like for midgets'; 2026-11-25: 'Some building door like pawn shop door are taller than the ceiling inside it'"
  ],

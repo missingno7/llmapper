@@ -5,7 +5,7 @@
  "claim": "kTrapZapSwitchable (type 456) does nothing on Off but make its sprite invisible and non-blocking, and the reverse on On: it is an apparition that appears and vanishes on a wire. It is rare: 49 sprites in 19 of the corpus's 1,771 maps, once in the campaign (E6M4 sprite 156, tile 1156), the rest in community maps and the XMapEdit tutorials.",
  "evidence": [
   "NBlood/source/blood/src/triggers.cpp:393-404 (case kTrapZapSwitchable)",
-  "work/consolidation/audit3/census3.py over bloodmap.corpus.list_corpus_maps(), 2026-11-26: E6M4 sprite 156; TUTORIUM sprites 110 and 115; also ATLANTIS, BLUDCITY, DRKTE1M3 (8), mechanism/Vanilla SPRITE-ENEMIES, SPRITE-TRAPS, 0-GILL, 0-GLASS and others",
+  "knowledge/blood/findings/probes/consolidation_audit3_census3.py over bloodmap.corpus.list_corpus_maps(), 2026-11-26: E6M4 sprite 156; TUTORIUM sprites 110 and 115; also ATLANTIS, BLUDCITY, DRKTE1M3 (8), mechanism/Vanilla SPRITE-ENEMIES, SPRITE-TRAPS, 0-GILL, 0-GLASS and others",
   "projects/blood-city/references/cabal-rite-design.md:110 said 'used twice in all 1,600 maps, both in TUTORIUM'; that count was wrong"
  ],
  "use": "Use it for a figure or effect that should appear on a wire; frames show it posed through bloodmap.posed.",

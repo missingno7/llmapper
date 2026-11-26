@@ -5,7 +5,7 @@
  "claim": "The stone gargoyle takes a twenty-fifth of the damage from bullets and blasts (10 of 256) and a quarter from the Tesla (64), so the campaign gives a Tesla Cannon in 17 of the 18 maps that place one; over the whole corpus, 139 of the 169 maps that place one.",
  "evidence": [
   "NBlood/source/blood/src/dude.cpp:249, dudeInfo for kDudeGargoyleStone (207): startDamage fall 0, burn 0, bullet 10, explode 10, choke 0, spirit 128, tesla 64",
-  "work/consolidation/audit3/census2.py and census3.py, 2026-11-26: sprites of type 207 (or statue 209) and item 45 (kItemWeaponTeslaCannon) in one map; campaign 17 of 18; corpus 139 of 169 with type 207",
+  "knowledge/blood/findings/probes/consolidation_audit3_census2.py and census3.py, 2026-11-26: sprites of type 207 (or statue 209) and item 45 (kItemWeaponTeslaCannon) in one map; campaign 17 of 18; corpus 139 of 169 with type 207",
   "projects/blood-city/level/cabal_rite.py:496 quoted '21 of the 26 maps', a count no tool reproduces"
  ],
  "use": "Put a weapon that hurts it in reach of any fight with it.",

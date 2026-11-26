@@ -6,7 +6,7 @@
  "evidence": [
   "the owner, 2026-11-25: 'some of the shops have lever next to it, but it just opens door the same way you would interact with them' (projects/blood-city/level/l3_theatre.py)",
   "recount 2026-11-26 over the 43 campaign maps (every sprite of tile 1070); the 0.79 height from knowledge/blood/design/switches-v1.json by_how.pushed",
-  "projects/blood-city/level/doorswitch.py's docstring says 356 instances, 351 with tx, 230 push and 316 on; those do not reproduce over the campaign"
+  "projects/blood-city/level/doorswitch.py's docstring carries the same 283/280/147 (an earlier 356/351/230/316 did not reproduce and was corrected)"
  ],
  "use": "Place levers through bloodmap.switches.pressed_switch, which sets trigger_push and trigger_on; a hand-rolled one could not be pushed. Say on and off when it is to work both ways.",
  "code": [
